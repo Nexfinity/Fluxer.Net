@@ -1,4 +1,7 @@
 ﻿// using System.Net.WebSockets;
+using System;
+using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web;
 using Newtonsoft.Json;
 using Squll.Net.Extensions;
@@ -14,6 +17,11 @@ public class SqullConnection
     private WebSocket ws;
     public HttpClient HttpClient = new();
     public int Sequence = 0;
+    private readonly JsonSerializerSettings jsonSettings = new JsonSerializerSettings()
+    {
+        TypeNameHandling = TypeNameHandling.All,
+        Formatting = Formatting.Indented
+    };
 
     public SqullConnection(string token)
     {
@@ -23,42 +31,49 @@ public class SqullConnection
 
     public async Task ConnectToGateway()
     {
-        var login = new LoginGatewayPacket(new(Token));
-        var content = JsonConvert.SerializeObject(login);
-
         ws = new WebSocket("wss://gateway.squll.com?v=1&encoding=json");
         ws.MessageReceived += HandleMessage;
         await ws.OpenAsync();
-        SendMessage(content);
-        // var uri = new Uri("ws://gateway.squll.com?v=1&encoding=json");
-        // using var handler = new SocketsHttpHandler();
-        // using var ws = new ClientWebSocket();
-        // await ws.ConnectAsync(uri, CancellationToken.None);
-        // await ws.SendAsync()
     }
 
     private void HandleMessage(object? sender, MessageReceivedEventArgs e)
     {
         Console.ForegroundColor = ConsoleColor.Red;
         Console.WriteLine($"⬅ {e.Message}");
-        var message = JsonConvert.DeserializeObject<IGatewayPacket>(e.Message);
+        var message = JsonConvert.DeserializeObject<GatewayPacket>(e.Message, jsonSettings);
         if (message.Sequence != null)
             Sequence = (int)message.Sequence;
 
         switch (message.OpCode)
         {
-            case SqullOpCode.Ready:
-                HandleReady(message as ReadyGatewayPacket);
+            case SqullOpCode.Dispatch:
+                HandleDispatch(message);
+                break;
+            case SqullOpCode.Hello:
+                HandleHello(message);
                 break;
         }
     }
 
-    private void HandleReady(ReadyGatewayPacket packet)
+    private void HandleDispatch(GatewayPacket packet)
     {
-        Task.Run(() =>
-        {
+        Console.WriteLine(packet);
+    }
 
-        })
+    private void HandleHello(GatewayPacket packet)
+    {
+        var login = new GatewayPacket
+        {
+            OpCode = SqullOpCode.Identify,
+            Data = new IdentifyGatewayData(Token)
+        };
+
+        var data = packet.Data as HelloGatewayData;
+        _ = Heartbeat(data.HeartbeatInterval);
+
+        var content = JsonConvert.SerializeObject(login);
+        SendMessage(content);
+
     }
 
     private void SendMessage(string message)
@@ -70,11 +85,15 @@ public class SqullConnection
 
     public void SetStatus(string status)
     {
-        var packet = new StatusUpdateGatewayPacket(new(status));
+        var packet = new GatewayPacket()
+        {
+            OpCode = SqullOpCode.PresenceUpdate,
+            Data = new PresenceUpdateGatewayData(status)
+        };
         SendMessage(JsonConvert.SerializeObject(packet));
     }
 
-    public async Task<Squad> JoinSquad(string invite)
+    public async Task<SquadProperties> JoinSquad(string invite)
     {
         var request = new HttpRequestMessage(HttpMethod.Post, $"https://api.squll.com/v1/invites/{invite}");
         var response = await HttpClient.SendAsync(request);
@@ -84,10 +103,10 @@ public class SqullConnection
             {
                 SqullData = content
             };
-        return JsonConvert.DeserializeObject<Squad>(content);
+        return JsonConvert.DeserializeObject<SquadProperties>(content);
     }
 
-    public async Task<Squad> GetSquad(ulong id)
+    public async Task<SquadProperties> GetSquad(ulong id)
     {
         var request = new HttpRequestMessage(HttpMethod.Get, $"https://api.squll.com/v1/squads/{id}");
         var response = await HttpClient.SendAsync(request);
@@ -97,7 +116,21 @@ public class SqullConnection
             {
                 SqullData = content
             };
-        return JsonConvert.DeserializeObject<Squad>(content);
+        return JsonConvert.DeserializeObject<SquadProperties>(content);
+    }
+
+    private async Task Heartbeat(int interval)
+    {
+        while (true)
+        {
+            var packet = new UntypedDataGatewayPacket()
+            {
+                Data = Sequence,
+                OpCode = SqullOpCode.Heartbeat,
+            };
+            SendMessage(JsonConvert.SerializeObject(packet));
+            await Task.Delay(interval);
+        }
     }
 
 

@@ -2,7 +2,13 @@ namespace Squll.Net.Gateway;
 
 public enum SqullOpCode
 {
-    Ready = 0,
-    Login = 2,
-    SetStatus = 3,
+    Dispatch = 0,
+    Heartbeat = 1,
+    Identify = 2,
+    PresenceUpdate = 3,
+    Resume = 4,
+    Reconnect = 5,
+    InvalidSession = 6, // ?????
+    Hello = 7,
+    HeartbeatAck = 8
 }

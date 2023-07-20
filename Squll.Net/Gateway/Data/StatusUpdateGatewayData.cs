@@ -2,11 +2,11 @@ using Newtonsoft.Json;
 
 namespace Squll.Net.Gateway;
 
-public class StatusUpdateGatewayData : IGatewayData
+public class PresenceUpdateGatewayData : IGatewayData
 {
     [JsonProperty("status")]
     public string Status { get; set; }
 
-    public StatusUpdateGatewayData(string status)
+    public PresenceUpdateGatewayData(string status)
         => Status = status;
 }

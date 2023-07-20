@@ -5,36 +5,17 @@ namespace Squll.Net.Objects;
 public class Squad
 {
     [JsonProperty("id")]
-    public ulong ID { get; set; }
-    [JsonProperty("name")]
-    public string Name { get; set; }
-    [JsonProperty("icon")]
-    public string? Icon { get; set; }
-    [JsonProperty("features")]
-    public string[]? Features { get; set; }
-    [JsonProperty("description")]
-    public string? Description { get; set; }
-    [JsonProperty("banner")]
-    public string? Banner { get; set; }
-    [JsonProperty("splash")]
-    public string? Splash { get; set; }
-    [JsonProperty("discovery_splash")]
-    public string? DiscoverySplash { get; set; }
-    [JsonProperty("preferred_locale")]
-    public string? PreferredLocale { get; set; }
-    [JsonProperty("vanity_url_code")]
-    public string? VanityUrl { get; set; }
-    [JsonProperty("owner_id")]
-    public ulong OwnerId { get; set; }
-    [JsonProperty("rules_space_id")]
-    public ulong? RulesSpaceId { get; set; }
-    [JsonProperty("system_space_id")]
-    public ulong? SystemSpaceId { get; set; }
-    [JsonProperty("max_members")]
-    public int? MaxMembers { get; set; }
-    [JsonProperty("premium_type")]
-    public int? PremiumType { get; set; }
-    [JsonProperty("system_space_flags")]
-    public int? SystemSpaceFlags { get; set; }
-    // no idea what premium_since is
+    public ulong Id { get; set; }
+    [JsonProperty("members")]
+    public SquadMember[] Members { get; set; }
+    [JsonProperty("spaces")]
+    public Space[] Spaces { get; set; }
+    [JsonProperty("properties")]
+    public SquadProperties Properties { get; set; }
+    [JsonProperty("roles")]
+    public Role[] Roles { get; set; }
+    [JsonProperty("member_count")]
+    public int MemberCount { get; set; }
+    [JsonProperty("presences")]
+    public ulong Presences { get; set; }
 }
