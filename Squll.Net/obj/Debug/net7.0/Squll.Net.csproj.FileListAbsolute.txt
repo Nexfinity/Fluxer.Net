@@ -1,0 +1,12 @@
+/home/cat/code/cs/Squll.Net/Squll.Net/bin/Debug/net7.0/Squll.Net.deps.json
+/home/cat/code/cs/Squll.Net/Squll.Net/bin/Debug/net7.0/Squll.Net.dll
+/home/cat/code/cs/Squll.Net/Squll.Net/bin/Debug/net7.0/Squll.Net.pdb
+/home/cat/code/cs/Squll.Net/Squll.Net/obj/Debug/net7.0/Squll.Net.csproj.AssemblyReference.cache
+/home/cat/code/cs/Squll.Net/Squll.Net/obj/Debug/net7.0/Squll.Net.GeneratedMSBuildEditorConfig.editorconfig
+/home/cat/code/cs/Squll.Net/Squll.Net/obj/Debug/net7.0/Squll.Net.AssemblyInfoInputs.cache
+/home/cat/code/cs/Squll.Net/Squll.Net/obj/Debug/net7.0/Squll.Net.AssemblyInfo.cs
+/home/cat/code/cs/Squll.Net/Squll.Net/obj/Debug/net7.0/Squll.Net.csproj.CoreCompileInputs.cache
+/home/cat/code/cs/Squll.Net/Squll.Net/obj/Debug/net7.0/Squll.Net.dll
+/home/cat/code/cs/Squll.Net/Squll.Net/obj/Debug/net7.0/refint/Squll.Net.dll
+/home/cat/code/cs/Squll.Net/Squll.Net/obj/Debug/net7.0/Squll.Net.pdb
+/home/cat/code/cs/Squll.Net/Squll.Net/obj/Debug/net7.0/ref/Squll.Net.dll

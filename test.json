@@ -1,0 +1,26 @@
+{
+    "state": {
+        "userSettings": {
+            "animate_expressions": false,
+            "convert_emoticons": false,
+            "custom_status": "null",
+            "default_squads_restricted": false,
+            "developer_mode": true,
+            "friend_source_flags": 1,
+            "gif_auto_play": true,
+            "idle_timeout": 60,
+            "inline_attachment_media": true,
+            "inline_embed_media": true,
+            "locale": "en-US",
+            "message_display_compact": false,
+            "nsfw_filter_level": 0,
+            "render_embeds": true,
+            "render_reactions": true,
+            "restricted_squads": [],
+            "squad_folders": [],
+            "status": "dnd",
+            "theme": "dark"
+        }
+    },
+    "version": 1
+}
