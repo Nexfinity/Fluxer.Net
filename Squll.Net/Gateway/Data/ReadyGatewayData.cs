@@ -16,7 +16,7 @@ public class ReadyGatewayData : IGatewayData
     [JsonProperty("session_id")]
     public string SessionId { get; set; }
     [JsonProperty("squads")]
-    public SquadProperties[] Squads { get; set; }
+    public Squad[] Squads { get; set; }
     [JsonProperty("user")]
     public User User { get; set; }
     [JsonProperty("user_settings")]

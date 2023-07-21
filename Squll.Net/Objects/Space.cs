@@ -19,7 +19,7 @@ public class Space
     [JsonProperty("last_message_id")]
     public ulong? LastMessageId { get; set; }
     [JsonProperty("name")]
-    public uint General { get; set; }
+    public string Name { get; set; }
     [JsonProperty("overwrites")]
     public object[] Overwrites { get; set; }
     [JsonProperty("parent_id")]

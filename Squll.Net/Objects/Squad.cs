@@ -17,5 +17,5 @@ public class Squad
     [JsonProperty("member_count")]
     public int MemberCount { get; set; }
     [JsonProperty("presences")]
-    public ulong Presences { get; set; }
+    public Presence[] Presences { get; set; }
 }

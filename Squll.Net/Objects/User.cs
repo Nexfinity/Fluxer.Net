@@ -7,7 +7,7 @@ public class User
     [JsonProperty("avatar")]
     public string Avatar { get; set; }
     [JsonProperty("avatar_decoration")]
-    public object AvatarDecoration { get; set; }
+    public object? AvatarDecoration { get; set; }
     [JsonProperty("discriminator")]
     public string Discriminator { get; set; }
     [JsonProperty("display_name")]
@@ -17,7 +17,7 @@ public class User
     [JsonProperty("public_flags")]
     public UserPublicFlags PublicFlags { get; set; }
     [JsonProperty("timezone_offset")]
-    public int TimezoneOffsett { get; set; }
+    public int? TimezoneOffsett { get; set; }
     [JsonProperty("type")]
     public UserType Type { get; set; }
     [JsonProperty("username")]
@@ -29,22 +29,21 @@ public class User
     [JsonProperty("biography")]
     public string? Biography { get; set; }
     [JsonProperty("date_of_birth")]
-    public DateOnly DateOfBirth { get; set; }
+    public DateOnly? DateOfBirth { get; set; }
     [JsonProperty("email")]
-    public string Email { get; set; }
+    public string? Email { get; set; }
     [JsonProperty("location")]
-    public string Location { get; set; }
+    public string? Location { get; set; }
     [JsonProperty("mention_privacy_level")]
-    public MentionPrivacyLevel MentionPrivacyLevel { get; set; }
+    public MentionPrivacyLevel? MentionPrivacyLevel { get; set; }
     [JsonProperty("mfa_flags")]
-    public MfaFlags MfaFlags { get; set; }
+    public MfaFlags? MfaFlags { get; set; }
     [JsonProperty("premium_since")]
-    public DateTime PremiumSince { get; set; }
+    public DateTime? PremiumSince { get; set; }
     [JsonProperty("premium_type")]
-    public UserPremiumType PremiumType { get; set; }
+    public UserPremiumType? PremiumType { get; set; }
     [JsonProperty("premium_usage_flags")]
-    public PremiumUsageFlags PremiumUsageFlags { get; set; }
+    public PremiumUsageFlags? PremiumUsageFlags { get; set; }
     [JsonProperty("pronouns")]
     public string? Pronouns { get; set; }
-
 }
