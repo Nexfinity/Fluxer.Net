@@ -1,0 +1,44 @@
+#nullable enable
+#pragma warning disable CS8618
+
+using Newtonsoft.Json;
+
+namespace Squll.Net.Objects;
+
+public class OutgoingMessage
+{
+    [JsonProperty("attachments")]
+    public object[]? Attachments { get; set; }
+    [JsonProperty("author")]
+    public User? Author { get; set; }
+    [JsonProperty("author_id")]
+    public ulong? AuthorId { get; set; }
+    [JsonProperty("content")]
+    public string? Content { get; set; }
+    [JsonProperty("created_at")]
+    public DateTime? CreatedAt { get; set; }
+    [JsonProperty("embeds")]
+    public object[]? Embeds { get; set; }
+    [JsonProperty("exploding_at")]
+    public object? ExplodingAt { get; set; }
+    [JsonProperty("flags")]
+    public MessageFlags? Flags { get; set; }
+    [JsonProperty("id")]
+    public ulong? Id { get; set; }
+    [JsonProperty("mention_roles")]
+    public object[]? MentionRoles { get; set; }
+    [JsonProperty("mention_users")]
+    public object[]? MentionUsers { get; set; }
+    [JsonProperty("message_reference")]
+    public object? MessageReference { get; set; }
+    [JsonProperty("nonce")]
+    public string? Nonce { get; set; }
+    [JsonProperty("reactions")]
+    public object[]? Reactions { get; set; }
+    [JsonProperty("space_id")]
+    public ulong? SpaceId { get; set; }
+    [JsonProperty("type")]
+    public MessageType? Type { get; set; }
+    [JsonProperty("updated_at")]
+    public DateTime? UpdatedAt { get; set; }
+}
