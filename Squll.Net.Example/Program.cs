@@ -81,14 +81,19 @@ async Task Help(Message msg)
 
 async Task Status(Message msg)
 {
-    if (msg.Author.Id is not 72076505658228736)
-        throw new AccessViolationException("You are not the bots developer.");
-    client!.SetStatus(msg.Content[11..].Trim());
-    await client!.SendMessage(msg.SpaceId, new()
-    {
-        Content = $"set status to `{msg.Content[11..].Trim()}`",
-        Nonce = $"c:3:{msg.Id}"
-    });
+    if (msg.Author.Id is 72076505658228736 || msg.Author.Id is 72068936915025920)
+	{
+		client!.SetStatus(msg.Content[11..].Trim());
+		await client!.SendMessage(msg.SpaceId, new()
+		{
+			Content = $"set status to `{msg.Content[11..].Trim()}`",
+			Nonce = $"c:3:{msg.Id}"
+		});
+	}
+	else
+	{
+		throw new AccessViolationException("You are not the bots developer.");
+	}
 }
 
 
