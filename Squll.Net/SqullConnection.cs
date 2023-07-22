@@ -62,7 +62,7 @@ public partial class SqullConnection
     private void HandleMessage(object? sender, MessageReceivedEventArgs e)
     {
         Console.ForegroundColor = ConsoleColor.Red;
-        Console.WriteLine($"⬅ {e.Message}");
+        Console.WriteLine($"⬅ {e.Message.Replace(Token, "[[ TOKEN REDACTED ]]")}");
         var message = new GatewayPacket();
         try
         {
@@ -128,7 +128,7 @@ public partial class SqullConnection
     private void SendMessage(string message)
     {
         Console.ForegroundColor = ConsoleColor.Green;
-        Console.WriteLine($"➡ {message}");
+        Console.WriteLine($"➡ {message.Replace(Token, "[[ TOKEN REDACTED ]]")}");
         ws.Send(message);
     }
 
