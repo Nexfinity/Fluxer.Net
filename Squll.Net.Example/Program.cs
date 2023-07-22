@@ -7,13 +7,22 @@ client.Ready += x =>
 {
     squads = x.Squads;
 };
-client.MessageCreated += x =>
+client.MessageCreated += async x =>
 {
     Console.ForegroundColor = ConsoleColor.Green;
     Console.WriteLine($"{x.Author.DisplayName}#{x.Author.Discriminator}: {x.Content}");
+
+    if (x.Content.StartsWith("/say"))
+    {
+        var toSend = x.Content[4..];
+        await client.SendMessage(x.SpaceId, new()
+        {
+            Content = toSend,
+            Nonce = "73315849653989376"
+        });
+    }
 };
 await client.ConnectToGateway();
-
 
 var squad = await client.GetSquad(72078685781950464);
 Console.WriteLine(squad.Name);

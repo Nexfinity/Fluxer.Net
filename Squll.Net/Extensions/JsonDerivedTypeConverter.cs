@@ -66,9 +66,8 @@ public class JsonDerivedTypeConverter<T> : JsonConverter
         if (reader.TokenType == JsonToken.Null)
             return null;
         var obj = JObject.Load(reader); // Throws an exception if the current token is not an object.
-        var contract = FindContract(obj, serializer);
-        if (contract == null)
-            throw new JsonSerializationException("no contract found for " + obj.ToString());
+        var contract = FindContract(obj, serializer)
+            ?? throw new JsonSerializationException("no contract found for " + obj.ToString());
         if (existingValue == null || !contract.UnderlyingType.IsAssignableFrom(existingValue.GetType()))
             existingValue = contract.DefaultCreator();
         using (var sr = obj.CreateReader())

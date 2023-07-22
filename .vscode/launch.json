@@ -15,7 +15,12 @@
             "cwd": "${workspaceFolder}/Squll.Net.Example",
             // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
             "console": "integratedTerminal",
-            "stopAtEntry": false
+            "stopAtEntry": false,
+            "presentation": {
+                "hidden": false,
+                "group": "Example 1",
+                "order": 1
+            }
         },
         {
             "name": ".NET Core Attach",

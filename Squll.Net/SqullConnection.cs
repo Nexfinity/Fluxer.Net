@@ -23,7 +23,7 @@ public partial class SqullConnection
     public HttpClient HttpClient = new();
     public int Sequence = 0;
     Stopwatch stopwatch;
-    private readonly JsonSerializerSettings jsonSettings = new JsonSerializerSettings()
+    private readonly JsonSerializerSettings jsonSettings = new()
     {
         TypeNameHandling = TypeNameHandling.All,
         Formatting = Formatting.Indented
@@ -34,6 +34,7 @@ public partial class SqullConnection
     {
         Token = token;
         HttpClient.DefaultRequestHeaders.Add("Authorization", Token);
+        // _ = HttpClient.DefaultRequestHeaders.TryAddWithoutValidation("Content-Type", "application/json");
     }
 
     public async Task ConnectToGateway()
@@ -186,9 +187,30 @@ public partial class SqullConnection
         }
     }
 
-    private async Task SendMessageAsync(ulong spaceId, Message message)
+    public async Task<Message> SendMessage(ulong spaceId, OutgoingMessage message)
     {
+        var content = JsonConvert.SerializeObject(message, new JsonSerializerSettings()
+        {
+            NullValueHandling = NullValueHandling.Ignore
+        });
+        var result = await SendDataToSqull(HttpMethod.Post, $"spaces/{spaceId}/messages", content);
+        return JsonConvert.DeserializeObject<Message>(result);
+    }
 
+    public async Task<string> SendDataToSqull(HttpMethod method, string route, string? content = null, int apiVersion = 1)
+    {
+        var reqMessage = new HttpRequestMessage(method, $"https://api.squll.com/v{apiVersion}/{route}");
+        if (content is not null)
+            reqMessage.Content = new StringContent(content!, mediaType: new("application/json"));
+
+        var result = await HttpClient.SendAsync(reqMessage);
+
+        if (!result.IsSuccessStatusCode)
+            throw new SqullException("Squll returned error on message send")
+            {
+                SqullData = await result.Content.ReadAsStringAsync()
+            };
+        return await result.Content.ReadAsStringAsync();
     }
 
     public delegate void ReadyEvent(ReadyGatewayData data);

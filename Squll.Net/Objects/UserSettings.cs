@@ -1,3 +1,6 @@
+#nullable enable
+#pragma warning disable CS8618
+
 using Newtonsoft.Json;
 
 namespace Squll.Net.Objects;
