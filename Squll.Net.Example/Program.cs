@@ -1,4 +1,5 @@
-﻿using Squll.Net;
+﻿using System;
+using Squll.Net;
 using Squll.Net.Extensions;
 using Squll.Net.Objects;
 
@@ -35,6 +36,15 @@ client.MessageCreated += async x =>
                 Nonce = $"ex"
             });
         }
+        catch (Exception ex)
+        {
+            await client.SendMessage(x.SpaceId, new()
+            {
+                Content = $"# Error\n\n{ex.Message}\n\n",
+                Nonce = $"ex"
+            });
+        }
+
 #pragma warning restore CS8509
     }
 };
@@ -71,6 +81,8 @@ async Task Help(Message msg)
 
 async Task Status(Message msg)
 {
+    if (msg.Author.Id is not 72076505658228736)
+        throw new AccessViolationException("You are not the bots developer.");
     client!.SetStatus(msg.Content[11..].Trim());
     await client!.SendMessage(msg.SpaceId, new()
     {
