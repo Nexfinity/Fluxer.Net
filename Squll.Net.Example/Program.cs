@@ -81,7 +81,7 @@ async Task Help(Message msg)
 
 async Task Status(Message msg)
 {
-    if (msg.Author.Id is not 72076505658228736)
+    if (msg.Author.Id is not 72076505658228736 or 72068936915025920)
         throw new AccessViolationException("You are not the bots developer.");
     client!.SetStatus(msg.Content[11..].Trim());
     await client!.SendMessage(msg.SpaceId, new()
