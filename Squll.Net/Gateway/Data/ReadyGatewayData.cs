@@ -23,4 +23,6 @@ public class ReadyGatewayData : IGatewayData
     public UserSettings UserSettings { get; set; }
     [JsonProperty("v")]
     public string Version { get; set; }
+    [JsonProperty("read_states")]
+    public object[] ReadStates { get; set; }
 }
