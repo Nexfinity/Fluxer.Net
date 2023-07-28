@@ -12,7 +12,7 @@ var v2Client = new SqullConnection("**redacted**", new()
     SerilogConfig = new LoggerConfiguration()
                 .MinimumLevel.Verbose()
                 .WriteTo.Console(theme: AnsiConsoleTheme.Code)
-                .WriteTo.File(new SerilogJsonFormatter(), $"output-{DateTime.Now:yyyy-dd-mm:hh-mm-ss}.log", rollingInterval: RollingInterval.Infinite, rollOnFileSizeLimit: true)
+                .WriteTo.File($"output-{DateTime.Now:yyyy-dd-mm:hh-mm-ss}.log", rollingInterval: RollingInterval.Infinite, rollOnFileSizeLimit: true)
 });
 // await v2Client.LeaveSquad(72070065598038016);
 await v2Client.ConnectAsync();
@@ -27,6 +27,10 @@ v2Client.MessageCreate += async x =>
         });
 };
 
+v2Client.SpaceCreate += x => Console.WriteLine(x.Name);
+await Task.Delay(1000);
+v2Client.SetStatus("dnd");
+Console.WriteLine((await v2Client.GetSquad(71918911678676992)).Name);
 await Task.Delay(-1);
 
 

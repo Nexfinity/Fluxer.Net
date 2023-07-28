@@ -115,6 +115,9 @@ public partial class SqullConnection
     public async Task LeaveSquad(ulong Id)
         => await MakeSqullApiRequest(HttpMethod.Delete, $"users/@me/squads/{Id}", true);
 
+    public async Task<SquadProperties> GetSquad(ulong squadId)
+        => await MakeSqullApiRequest<SquadProperties>(HttpMethod.Get, $"squads/{squadId}", true);
+
 
     #endregion
 
@@ -238,6 +241,9 @@ public partial class SqullConnection
             case "MESSAGE_DELETE":
                 MessageDelete?.Invoke(p.Data as MessageGatewayData);
                 return;
+            case "SPACE_CREATE":
+                SpaceCreate?.Invoke(p.Data as SpaceGatewayData);
+                return;
         }
     }
 
@@ -258,7 +264,7 @@ public partial class SqullConnection
         if (_lastGatewayReEstablishAttempt.AddSeconds(_config.ReconnectAttemptDelay) > DateTime.Now)
         {
             Log.Warning("Cannot reestablish more than once every {Timeout} seconds. Blocking until the time expires.", _config.ReconnectAttemptDelay);
-            Thread.Sleep(_config.ReconnectAttemptDelay * 1000);
+            Task.Delay(_config.ReconnectAttemptDelay * 1000).GetAwaiter().GetResult();
         }
 
         _lastGatewayReEstablishAttempt = DateTime.Now;
@@ -301,14 +307,28 @@ public partial class SqullConnection
         }
     }
 
+    public void SetStatus(string status)
+    {
+        var packet = new GatewayPacket()
+        {
+            Data = new PresenceUpdateGatewayData(status),
+            OpCode = SqullOpCode.PresenceUpdate
+        };
+        SendGatewayPacket(packet);
+    }
+
     #region events
     // non-dispatch events
+
+    // generic
 
     public delegate void HeartbeatAckEvent();
     public event HeartbeatAckEvent HeartbeatAck;
 
     public delegate void ReadyEvent(ReadyGatewayData data);
     public event ReadyEvent Ready;
+
+    // message
 
     public delegate void MessageCreateEvent(MessageGatewayData data);
     public event MessageCreateEvent MessageCreate;
@@ -318,6 +338,11 @@ public partial class SqullConnection
 
     public delegate void MessageDeleteEvent(MessageGatewayData data);
     public event MessageDeleteEvent MessageDelete;
+
+    // space
+
+    public delegate void SpaceCreateEvent(SpaceGatewayData data);
+    public event SpaceCreateEvent SpaceCreate;
 
     #endregion
 
