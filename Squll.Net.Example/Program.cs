@@ -6,7 +6,7 @@ using Squll.Net;
 using Squll.Net.Extensions;
 using Squll.Net.Objects;
 
-var v2Client = new SqullConnectionV2("**redacted**", new()
+var v2Client = new SqullConnection("**redacted**", new()
 {
     ReconnectAttemptDelay = 2,
     SerilogConfig = new LoggerConfiguration()

@@ -32,7 +32,7 @@ public partial class SqullConnection
     #endregion
 
     #region Meta
-    public SqullConnectionV2(string token, SqullConfig config)
+    public SqullConnection(string token, SqullConfig config)
     {
         Token = token;
         _config = config;
