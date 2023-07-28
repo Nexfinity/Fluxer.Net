@@ -99,10 +99,10 @@ public partial class SqullConnection
                 Ready?.Invoke(packet.Data as ReadyGatewayData);
                 break;
             case "MESSAGE_CREATE":
-                MessageCreated?.Invoke(packet.Data as MessageCreatedGatewayData);
+                MessageCreated?.Invoke(packet.Data as MessageGatewayData);
                 break;
             case "MESSAGE_UPDATE":
-                MessageUpdated?.Invoke(packet.Data as MessageCreatedGatewayData);
+                MessageUpdated?.Invoke(packet.Data as MessageGatewayData);
                 break;
         }
     }
@@ -148,10 +148,7 @@ public partial class SqullConnection
         var response = await HttpClient.SendAsync(request);
         string content = await response.Content.ReadAsStringAsync();
         if (!response.IsSuccessStatusCode)
-            throw new SqullException("Squll returned non-success code")
-            {
-                SqullData = content
-            };
+            throw new SqullApiException("Squll returned non-success code", content);
         return JsonConvert.DeserializeObject<SquadProperties>(content);
     }
 
@@ -161,10 +158,7 @@ public partial class SqullConnection
         var response = await HttpClient.SendAsync(request);
         string content = await response.Content.ReadAsStringAsync();
         if (!response.IsSuccessStatusCode)
-            throw new SqullException("Squll returned non-success code")
-            {
-                SqullData = content
-            };
+            throw new SqullApiException("Squll returned non-success code", content);
         return JsonConvert.DeserializeObject<SquadProperties>(content);
     }
 
@@ -187,7 +181,7 @@ public partial class SqullConnection
         }
     }
 
-    public async Task<Message> SendMessage(ulong spaceId, OutgoingMessage message)
+    public async Task<Message> SendMessage(ulong spaceId, Message message)
     {
         var content = JsonConvert.SerializeObject(message, new JsonSerializerSettings()
         {
@@ -206,17 +200,14 @@ public partial class SqullConnection
         var result = await HttpClient.SendAsync(reqMessage);
 
         if (!result.IsSuccessStatusCode)
-            throw new SqullException("Squll returned error on message send")
-            {
-                SqullData = await result.Content.ReadAsStringAsync()
-            };
+            throw new SqullApiException("Squll returned error on message send", content);
         return await result.Content.ReadAsStringAsync();
     }
 
     public delegate void ReadyEvent(ReadyGatewayData data);
     public event ReadyEvent Ready;
-    public delegate void MessageCreatedEvent(MessageCreatedGatewayData data);
+    public delegate void MessageCreatedEvent(MessageGatewayData data);
     public event MessageCreatedEvent MessageCreated;
-    public delegate void MessageUpdatedEvent(MessageCreatedGatewayData data);
+    public delegate void MessageUpdatedEvent(MessageGatewayData data);
     public event MessageUpdatedEvent MessageUpdated;
 }

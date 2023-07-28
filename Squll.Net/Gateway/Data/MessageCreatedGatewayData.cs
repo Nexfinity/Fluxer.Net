@@ -3,4 +3,4 @@ using Squll.Net.Objects;
 
 namespace Squll.Net.Gateway;
 
-public class MessageCreatedGatewayData : Message, IGatewayData { }
+public class MessageGatewayData : Message, IGatewayData { }
