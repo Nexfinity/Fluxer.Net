@@ -1,213 +1,325 @@
-﻿// using System.Net.WebSockets;
-using System;
-using System.Diagnostics;
-using System.Net.Http;
+﻿using System.Diagnostics;
+using System.Net;
+using System.Net.Http.Headers;
+using System.Reflection;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Web;
 using Newtonsoft.Json;
+using Serilog;
 using Squll.Net.Extensions;
 using Squll.Net.Gateway;
 using Squll.Net.Objects;
 using WebSocket4Net;
-
 namespace Squll.Net;
 
 public partial class SqullConnection
 {
+    #region Declares
+    public string Token { get; set; }
+    public HttpClient HttpClient { get; set; }
+
+    private readonly SqullConfig _config;
+    private WebSocket _gateway;
+    private readonly Stopwatch _gatewayDuration = new();
+    private int _sequence = 0;
+    private bool _heartbeatStarted = false;
+    private int _heartbeatInterval = 0;
+    private DateTime _lastGatewayReEstablishAttempt = DateTime.Now;
+    private string _sessionId = "";
+    private bool _deferDisconnect = false;
+
     [GeneratedRegex(@"(?<=""s""\s*?:\s*?)\d*", RegexOptions.IgnoreCase | RegexOptions.Compiled, "en-US")]
     private static partial Regex PacketSRegex();
+    #endregion
 
-    public string Token { get; set; }
-    private WebSocket ws;
-    public HttpClient HttpClient = new();
-    public int Sequence = 0;
-    Stopwatch stopwatch;
-    private readonly JsonSerializerSettings jsonSettings = new()
-    {
-        TypeNameHandling = TypeNameHandling.All,
-        Formatting = Formatting.Indented
-    };
-    private Task heart = null;
-
-    public SqullConnection(string token)
+    #region Meta
+    public SqullConnectionV2(string token, SqullConfig config)
     {
         Token = token;
-        HttpClient.DefaultRequestHeaders.Add("Authorization", Token);
-        // _ = HttpClient.DefaultRequestHeaders.TryAddWithoutValidation("Content-Type", "application/json");
+        _config = config;
+        HttpClient = _config.HttpClient ?? new();
+        Log.Logger = (_config.SerilogConfig
+            ?? new LoggerConfiguration()
+                .MinimumLevel.Verbose()
+                .WriteTo.Console()).CreateLogger();
+        Log.Information("Initialized Squll.Net ({AssemblyVersion}) (API {ApiVersion})", Assembly.GetExecutingAssembly().GetName().Version, _config.Version);
+        Log.Verbose("Loaded with config {@Config}", _config);
     }
 
-    public async Task ConnectToGateway()
+    public async Task<TResponse> MakeSqullApiRequest<TResponse, TSend>(HttpMethod method, string route, TSend data, bool throwOnNonSuccess = false)
     {
-        ws = new WebSocket("wss://gateway.squll.com?v=1&encoding=json");
-        ws.MessageReceived += HandleMessage;
-        ws.Closed += HandleClosed;
-        ws.EnableAutoSendPing = false;
-        ws.NoDelay = true;
-        stopwatch = new();
-        stopwatch.Start();
-        await ws.OpenAsync();
-    }
-
-    private void HandleClosed(object? sender, EventArgs e)
-    {
-        stopwatch.Stop();
-        Console.ForegroundColor = ConsoleColor.DarkMagenta;
-        Console.WriteLine($"Disconnected from websocket after {stopwatch.ElapsedMilliseconds}ms. Attempting to reconnect.");
-        stopwatch = new();
-        stopwatch.Start();
-        ws.Open();
-    }
-
-    private void HandleMessage(object? sender, MessageReceivedEventArgs e)
-    {
-        Console.ForegroundColor = ConsoleColor.Red;
-        Console.WriteLine($"⬅ {e.Message.Replace(Token, "[[ TOKEN REDACTED ]]")}");
-        var message = new GatewayPacket();
-        try
+        Log.Verbose("Sending {@Data} to {Route}", data, route);
+        var req = new HttpRequestMessage()
         {
-            message = JsonConvert.DeserializeObject<GatewayPacket>(e.Message, jsonSettings);
-        }
-        catch
-        {
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("Failed to deserialize packet. This can happen when the opcode is opcode is unknown or the data is unsupported.");
-            // extract packet sequence with regex because we need it to heartbeat
-            var match = PacketSRegex().Match(e.Message);
-            Sequence = Convert.ToInt32(match.Value);
-            return;
-        }
-        if (message.Sequence != null)
-            Sequence = (int)message.Sequence;
+            Method = method,
+            Content = new StringContent(JsonConvert.SerializeObject(data), new MediaTypeHeaderValue("application/json")),
+            RequestUri = new(_config.RealApiBaseUrl + route)
+        };
+        req.Headers.Add("Authorization", Token);
+        var result = await HttpClient.SendAsync(req);
 
-        switch (message.OpCode)
-        {
-            case SqullOpCode.Dispatch:
-                _ = Task.Run(() => HandleDispatch(message));
-                break;
-            case SqullOpCode.Hello:
-                HandleHello(message);
-                break;
-        }
+        Log.Debug("Made {Method} request to {Route}", method, route);
+        var resp = await result.Content.ReadAsStringAsync();
+        Log.Verbose("Received {Code}:{Result} from {Route}", result.StatusCode, resp, route);
+
+        if (throwOnNonSuccess && !result.IsSuccessStatusCode)
+            throw new SqullApiException($"Squll returned a non-success code {result.StatusCode}", resp);
+
+        return JsonConvert.DeserializeObject<TResponse>(resp);
     }
 
-    private void HandleDispatch(GatewayPacket packet)
+    public async Task<TResponse> MakeSqullApiRequest<TResponse>(HttpMethod method, string route, bool throwOnNonSuccess = false)
     {
-        switch (packet.Dispatch)
+        var req = new HttpRequestMessage()
         {
-            case "READY":
-                Ready?.Invoke(packet.Data as ReadyGatewayData);
-                break;
-            case "MESSAGE_CREATE":
-                MessageCreated?.Invoke(packet.Data as MessageGatewayData);
-                break;
-            case "MESSAGE_UPDATE":
-                MessageUpdated?.Invoke(packet.Data as MessageGatewayData);
-                break;
-        }
+            Method = method,
+            RequestUri = new(_config.RealApiBaseUrl + route)
+        };
+        req.Headers.Add("Authorization", Token);
+        var result = await HttpClient.SendAsync(req);
+
+        Log.Debug("Made {Method} request to {Route}", method, route);
+        var resp = await result.Content.ReadAsStringAsync();
+        Log.Verbose("Received {Code}:{Result} from {Route}", result.StatusCode, resp, route);
+
+        if (throwOnNonSuccess && !result.IsSuccessStatusCode)
+            throw new SqullApiException($"Squll returned a non-success code {result.StatusCode}", resp);
+
+        return JsonConvert.DeserializeObject<TResponse>(resp);
     }
 
-    private void HandleHello(GatewayPacket packet)
+    public async Task<HttpStatusCode> MakeSqullApiRequest(HttpMethod method, string route, bool throwOnNonSuccess = false)
     {
+        var req = new HttpRequestMessage()
+        {
+            Method = method,
+            RequestUri = new(_config.RealApiBaseUrl + route)
+        };
+        req.Headers.Add("Authorization", Token);
+        var result = await HttpClient.SendAsync(req);
+
+        Log.Debug("Made {Method} request to {Route} with response code {Code}", method, route, result.StatusCode);
+        if (throwOnNonSuccess && !result.IsSuccessStatusCode)
+            throw new SqullApiException($"Squll returned a non-success code {result.StatusCode}", await result.Content.ReadAsStringAsync());
+
+        return result.StatusCode;
+    }
+    #endregion
+
+    #region API
+    public async Task<Message> SendMessage(ulong spaceId, Message message)
+        => await MakeSqullApiRequest<Message, Message>(HttpMethod.Post, $"spaces/{spaceId}/messages", message, true);
+
+    public async Task<SquadProperties> JoinSquad(string invite)
+        => await MakeSqullApiRequest<SquadProperties>(HttpMethod.Post, $"invites/{invite}", true);
+
+    public async Task LeaveSquad(ulong Id)
+        => await MakeSqullApiRequest(HttpMethod.Delete, $"users/@me/squads/{Id}", true);
+
+
+    #endregion
+
+    #region Gateway
+    public async Task ConnectAsync()
+    {
+        if (_gateway is not null && _gateway.State == WebSocketState.Open)
+            await _gateway.CloseAsync();
+
+        _gateway = new WebSocket(_config.SqullGatewayUrl)
+        {
+            EnableAutoSendPing = false,
+            // NoDelay = true,
+        };
+        _gateway.Closed += GatewayClosedHandler;
+        _gateway.MessageReceived += GatewayMessageHandler;
+        Stopwatch.StartNew();
+        await _gateway.OpenAsync();
+
         var login = new GatewayPacket
         {
             OpCode = SqullOpCode.Identify,
             Data = new IdentifyGatewayData(Token)
         };
 
+        SendGatewayPacket(login);
+    }
+
+    public void SendGatewayPacket<T>(T Data)
+    {
+        var text = JsonConvert.SerializeObject(Data, new JsonSerializerSettings()
+        {
+            NullValueHandling = NullValueHandling.Ignore
+        });
+        Log.Debug("Sending serialized gateway packet {Data}", text);
+        _gateway.Send(text);
+    }
+
+    private void GatewayMessageHandler(object? sender, MessageReceivedEventArgs e)
+    {
+        // try deserializing the packet, fallback to regex
+        Log.Verbose("Received raw gateway message {Message}", e.Message);
+        try
+        {
+            var packet = JsonConvert.DeserializeObject<GatewayPacket>(e.Message);
+            _sequence = packet.Sequence ?? _sequence;
+            Log.Debug("Deserialized gateway packet {@Packet}", packet);
+            switch (packet.OpCode)
+            {
+                case SqullOpCode.Dispatch:
+                    HandleDispatch(packet);
+                    return;
+                case SqullOpCode.Heartbeat:
+                case SqullOpCode.Identify:
+                case SqullOpCode.PresenceUpdate:
+                    throw new NotImplementedException();
+                case SqullOpCode.InvalidSession:
+                    ConnectAsync().GetAwaiter().GetResult();
+                    return;
+                case SqullOpCode.Reconnect:
+                    ReEstablishGatewayConnection();
+                    return;
+                case SqullOpCode.Hello:
+                    HandleHello(packet);
+                    return;
+                case SqullOpCode.HeartbeatAck:
+                    HandleHeartbeatAck();
+                    return;
+            }
+        }
+        catch
+        {
+            var result = PacketSRegex().Match(e.Message);
+            _sequence = Convert.ToInt32(result.Value);
+            Log.Warning("Failed to parse a gateway event. This can happen when the OpCode is unsupported or a dispatch failed to parse.");
+        }
+
+    }
+
+    private void GatewayClosedHandler(object? sender, EventArgs e)
+    {
+        if (_deferDisconnect)
+        {
+            _deferDisconnect = false;
+            return;
+        }
+
+        var nE = e as ClosedEventArgs;
+        Log.Information("Websocket closed with code {Code}:{Reason}. It should auto restart.", nE.Code, nE.Reason);
+        if (_gateway.State != WebSocketState.Closed)
+        {
+            _deferDisconnect = true;
+            _gateway.CloseAsync().GetAwaiter().GetResult();
+        }
+        try
+        {
+            _gateway.OpenAsync().GetAwaiter().GetResult();
+            ReEstablishGatewayConnection();
+        }
+        catch
+        {
+            ConnectAsync().GetAwaiter().GetResult();
+        }
+    }
+
+    private void HandleDispatch(GatewayPacket p)
+    {
+        switch (p.Dispatch)
+        {
+            case "READY":
+                var data = p.Data as ReadyGatewayData;
+                _sessionId = data.SessionId;
+                Ready?.Invoke(data);
+                return;
+            case "MESSAGE_CREATE":
+                MessageCreate?.Invoke(p.Data as MessageGatewayData);
+                return;
+            case "MESSAGE_UPDATE":
+                MessageUpdate?.Invoke(p.Data as MessageGatewayData);
+                return;
+            case "MESSAGE_DELETE":
+                MessageDelete?.Invoke(p.Data as MessageGatewayData);
+                return;
+        }
+    }
+
+    private void HandleHello(GatewayPacket packet)
+    {
+
         var data = packet.Data as HelloGatewayData;
 
         // avoid multiple heartbeat threads
-        heart ??= Heartbeat(data.HeartbeatInterval);
-
-        var content = JsonConvert.SerializeObject(login);
-        SendMessage(content);
-
+        _heartbeatInterval = data.HeartbeatInterval;
+        if (!_heartbeatStarted)
+            Task.Run(() => HandleHeartbeat());
+        _heartbeatStarted = true;
     }
 
-    private void SendMessage(string message)
+    private void ReEstablishGatewayConnection()
     {
-        Console.ForegroundColor = ConsoleColor.Green;
-        Console.WriteLine($"➡ {message.Replace(Token, "[[ TOKEN REDACTED ]]")}");
-        ws.Send(message);
-    }
+        if (_lastGatewayReEstablishAttempt.AddSeconds(_config.ReconnectAttemptDelay) > DateTime.Now)
+        {
+            Log.Warning("Cannot reestablish more than once every {Timeout} seconds. Blocking until the time expires.", _config.ReconnectAttemptDelay);
+            Thread.Sleep(_config.ReconnectAttemptDelay * 1000);
+        }
 
-    public void SetStatus(string status)
-    {
+        _lastGatewayReEstablishAttempt = DateTime.Now;
+        _gatewayDuration.Restart();
+
+        Log.Information("Attempting to reestablish the gateway connection after {time}ms", _gatewayDuration.ElapsedMilliseconds);
+
         var packet = new GatewayPacket()
         {
-            OpCode = SqullOpCode.PresenceUpdate,
-            Data = new PresenceUpdateGatewayData(status)
+            OpCode = SqullOpCode.Resume,
+            Data = new ReconnectGatewayData()
+            {
+                Sequence = _sequence,
+                SessionId = _sessionId,
+                Token = Token
+            }
         };
-        SendMessage(JsonConvert.SerializeObject(packet));
+        SendGatewayPacket(packet);
     }
 
-    public async Task<SquadProperties> JoinSquad(string invite)
+    private void HandleHeartbeatAck()
     {
-        var request = new HttpRequestMessage(HttpMethod.Post, $"https://api.squll.com/v1/invites/{invite}");
-        var response = await HttpClient.SendAsync(request);
-        string content = await response.Content.ReadAsStringAsync();
-        if (!response.IsSuccessStatusCode)
-            throw new SqullApiException("Squll returned non-success code", content);
-        return JsonConvert.DeserializeObject<SquadProperties>(content);
+        HeartbeatAck?.Invoke();
     }
 
-    public async Task<SquadProperties> GetSquad(ulong id)
-    {
-        var request = new HttpRequestMessage(HttpMethod.Get, $"https://api.squll.com/v1/squads/{id}");
-        var response = await HttpClient.SendAsync(request);
-        string content = await response.Content.ReadAsStringAsync();
-        if (!response.IsSuccessStatusCode)
-            throw new SqullApiException("Squll returned non-success code", content);
-        return JsonConvert.DeserializeObject<SquadProperties>(content);
-    }
-
-    // TODO: better invalid session detection and resuming.
-    //       "this is fine" for now.
-    private async Task Heartbeat(int interval)
+    private async Task HandleHeartbeat()
     {
         var jitter = Random.Shared.Next(1);
         while (true)
         {
-            await Task.Delay(interval + jitter);
+            await Task.Delay(_heartbeatInterval + jitter);
             Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine(Sequence);
+            Console.WriteLine(_sequence);
             var packet = new HeartbeatPacketOfDoom()
             {
-                Data = Sequence,
+                Data = _sequence,
                 OpCode = SqullOpCode.Heartbeat,
             };
-            SendMessage(JsonConvert.SerializeObject(packet));
+            SendGatewayPacket(packet);
         }
     }
 
-    public async Task<Message> SendMessage(ulong spaceId, Message message)
-    {
-        var content = JsonConvert.SerializeObject(message, new JsonSerializerSettings()
-        {
-            NullValueHandling = NullValueHandling.Ignore
-        });
-        var result = await SendDataToSqull(HttpMethod.Post, $"spaces/{spaceId}/messages", content);
-        return JsonConvert.DeserializeObject<Message>(result);
-    }
+    #region events
+    // non-dispatch events
 
-    public async Task<string> SendDataToSqull(HttpMethod method, string route, string? content = null, int apiVersion = 1)
-    {
-        var reqMessage = new HttpRequestMessage(method, $"https://api.squll.com/v{apiVersion}/{route}");
-        if (content is not null)
-            reqMessage.Content = new StringContent(content!, mediaType: new("application/json"));
-
-        var result = await HttpClient.SendAsync(reqMessage);
-
-        if (!result.IsSuccessStatusCode)
-            throw new SqullApiException("Squll returned error on message send", content);
-        return await result.Content.ReadAsStringAsync();
-    }
+    public delegate void HeartbeatAckEvent();
+    public event HeartbeatAckEvent HeartbeatAck;
 
     public delegate void ReadyEvent(ReadyGatewayData data);
     public event ReadyEvent Ready;
-    public delegate void MessageCreatedEvent(MessageGatewayData data);
-    public event MessageCreatedEvent MessageCreated;
-    public delegate void MessageUpdatedEvent(MessageGatewayData data);
-    public event MessageUpdatedEvent MessageUpdated;
+
+    public delegate void MessageCreateEvent(MessageGatewayData data);
+    public event MessageCreateEvent MessageCreate;
+
+    public delegate void MessageUpdateEvent(MessageGatewayData data);
+    public event MessageCreateEvent MessageUpdate;
+
+    public delegate void MessageDeleteEvent(MessageGatewayData data);
+    public event MessageDeleteEvent MessageDelete;
+
+    #endregion
+
+    #endregion
 }
