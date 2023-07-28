@@ -51,7 +51,10 @@ public partial class SqullConnection
         var req = new HttpRequestMessage()
         {
             Method = method,
-            Content = new StringContent(JsonConvert.SerializeObject(data), new MediaTypeHeaderValue("application/json")),
+            Content = new StringContent(JsonConvert.SerializeObject(data, new JsonSerializerSettings()
+            {
+                NullValueHandling = NullValueHandling.Ignore
+            }), new MediaTypeHeaderValue("application/json")),
             RequestUri = new(_config.RealApiBaseUrl + route)
         };
         req.Headers.Add("Authorization", Token);

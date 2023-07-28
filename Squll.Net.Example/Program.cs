@@ -23,7 +23,7 @@ v2Client.MessageCreate += async x =>
         await v2Client.SendMessage(x.SpaceId, new()
         {
             Content = "pong ;P",
-            MentionUsers = new ulong[1] { x.AuthorId }
+            // MentionUsers = new ulong[1] { x.AuthorId }
         });
 };
 
