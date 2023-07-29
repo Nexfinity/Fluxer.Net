@@ -6,7 +6,7 @@ using Squll.Net;
 using Squll.Net.Extensions;
 using Squll.Net.Objects;
 
-var v2Client = new SqullConnection("**redacted**", new()
+var v2Client = new SqullConnection("", new()
 {
     ReconnectAttemptDelay = 2,
     SerilogConfig = new LoggerConfiguration()
@@ -27,7 +27,11 @@ v2Client.MessageCreate += async x =>
         });
 };
 
-v2Client.SpaceCreate += x => Console.WriteLine(x.Name);
+void spaceAction(Space space)
+ => Console.WriteLine(space.Id);
+
+v2Client.SpaceCreate += spaceAction;
+v2Client.SpaceUpdate += spaceAction;
 await Task.Delay(1000);
 v2Client.SetStatus("dnd");
 Console.WriteLine((await v2Client.GetSquad(71918911678676992)).Name);

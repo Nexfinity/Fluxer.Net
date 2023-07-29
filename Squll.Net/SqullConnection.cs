@@ -235,6 +235,9 @@ public partial class SqullConnection
                 _sessionId = data.SessionId;
                 Ready?.Invoke(data);
                 return;
+            case "RESUMED":
+                Resumed?.Invoke();
+                return;
             case "MESSAGE_CREATE":
                 MessageCreate?.Invoke(p.Data as MessageGatewayData);
                 return;
@@ -242,10 +245,25 @@ public partial class SqullConnection
                 MessageUpdate?.Invoke(p.Data as MessageGatewayData);
                 return;
             case "MESSAGE_DELETE":
-                MessageDelete?.Invoke(p.Data as MessageGatewayData);
+                MessageDelete?.Invoke(p.Data as EntityRemovedGatewayData);
                 return;
             case "SPACE_CREATE":
                 SpaceCreate?.Invoke(p.Data as SpaceGatewayData);
+                return;
+            case "SPACE_UPDATE":
+                SpaceUpdate?.Invoke(p.Data as SpaceGatewayData);
+                return;
+            case "SPACE_DELETE":
+                SpaceDelete?.Invoke(p.Data as EntityRemovedGatewayData);
+                return;
+            case "USER_UPDATE":
+                UserUpdate?.Invoke(p.Data as UserGatewayData);
+                return;
+            case "SQUAD_MEMBER_UPDATE":
+                SquadMemberUpdate?.Invoke(p.Data as SquadMemberGatewayData);
+                return;
+            case "SQUAD_MEMBER_DELETE":
+                SquadMemberDelete?.Invoke(p.Data as EntityRemovedGatewayData);
                 return;
         }
     }
@@ -331,6 +349,9 @@ public partial class SqullConnection
     public delegate void ReadyEvent(ReadyGatewayData data);
     public event ReadyEvent Ready;
 
+    public delegate void ResumedEvent();
+    public event ResumedEvent Resumed;
+
     // message
 
     public delegate void MessageCreateEvent(MessageGatewayData data);
@@ -339,13 +360,35 @@ public partial class SqullConnection
     public delegate void MessageUpdateEvent(MessageGatewayData data);
     public event MessageCreateEvent MessageUpdate;
 
-    public delegate void MessageDeleteEvent(MessageGatewayData data);
+    public delegate void MessageDeleteEvent(EntityRemovedGatewayData data);
     public event MessageDeleteEvent MessageDelete;
 
     // space
 
     public delegate void SpaceCreateEvent(SpaceGatewayData data);
     public event SpaceCreateEvent SpaceCreate;
+
+    public delegate void SpaceUpdateEvent(SpaceGatewayData data);
+    public event SpaceUpdateEvent SpaceUpdate;
+
+    public delegate void SpaceDeleteEvent(EntityRemovedGatewayData data);
+    public event SpaceDeleteEvent SpaceDelete;
+
+    // user
+
+    public delegate void UserUpdateEvent(UserGatewayData data);
+    public event UserUpdateEvent UserUpdate;
+
+    // squad member
+
+    public delegate void SquadMemberCreateEvent(SquadMemberGatewayData data);
+    public event SquadMemberCreateEvent SquadMemberCreate;
+
+    public delegate void SquadMemberUpdateEvent(SquadMemberGatewayData data);
+    public event SquadMemberUpdateEvent SquadMemberUpdate;
+
+    public delegate void SquadMemberDeleteEvent(EntityRemovedGatewayData data);
+    public event SquadMemberDeleteEvent SquadMemberDelete;
 
     #endregion
 
