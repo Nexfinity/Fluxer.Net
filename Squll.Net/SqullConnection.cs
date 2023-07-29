@@ -268,6 +268,9 @@ public partial class SqullConnection
             case "SQUAD_MEMBER_DELETE":
                 SquadMemberDelete?.Invoke(p.Data as EntityRemovedGatewayData);
                 return;
+			default:
+	            Log.Warning("Unhandled dispatch {Dispatch}", p.Dispatch);
+	            break;
         }
     }
 
