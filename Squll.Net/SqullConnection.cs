@@ -10,6 +10,7 @@ using Newtonsoft.Json;
 using Serilog;
 using Squll.Net.Extensions;
 using Squll.Net.Gateway;
+using Squll.Net.Gateway.Data;
 using Squll.Net.Objects;
 using WebSocket4Net;
 namespace Squll.Net;
@@ -269,8 +270,17 @@ public partial class SqullConnection
                 SquadMemberDelete?.Invoke(p.Data as EntityRemovedGatewayData);
                 return;
             case "PRESENCE_UPDATE":
-				PresenceUpdate?.Invoke(p.Data as PresenceGatewayData);
-				return;
+	            PresenceUpdate?.Invoke(p.Data as PresenceGatewayData);
+	            return;
+            case "SQUAD_CREATE":
+	            SquadCreate?.Invoke(p.Data as SquadGatewayData);
+	            return;
+            case "SQUAD_UPDATE":
+	            SquadUpdate?.Invoke(p.Data as SquadGatewayData);
+	            return;
+            case "SQUAD_DELETE":
+	            SquadDelete?.Invoke(p.Data as EntityRemovedGatewayData);
+	            return;
             default:
 	            Log.Warning("Unhandled dispatch {Dispatch}", p.Dispatch);
 	            break;
@@ -391,6 +401,16 @@ public partial class SqullConnection
     // presence
     public delegate void PresenceUpdateEvent(PresenceGatewayData data);
     public event PresenceUpdateEvent PresenceUpdate;
+    
+    // squad
+    public delegate void SquadCreateEvent(SquadGatewayData data);
+    public event SquadCreateEvent SquadCreate;
+    
+    public delegate void SquadUpdateEvent(SquadGatewayData data);
+    public event SquadUpdateEvent SquadUpdate;
+    
+    public delegate void SquadDeleteEvent(EntityRemovedGatewayData data);
+    public event SquadDeleteEvent SquadDelete;
 
     // squad member
 

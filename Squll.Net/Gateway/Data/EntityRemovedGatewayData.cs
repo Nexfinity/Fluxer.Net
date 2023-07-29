@@ -1,7 +1,6 @@
 using Newtonsoft.Json;
-using Squll.Net.Objects;
 
-namespace Squll.Net.Gateway;
+namespace Squll.Net.Gateway.Data;
 
 public class EntityRemovedGatewayData : IGatewayData
 {

@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace Squll.Net.Gateway;
+namespace Squll.Net.Gateway.Data;
 
 public class HelloGatewayData : IGatewayData
 {
