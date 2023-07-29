@@ -278,8 +278,11 @@ public partial class SqullConnection
             case "SQUAD_UPDATE":
 	            SquadUpdate?.Invoke(p.Data as SquadGatewayData);
 	            return;
-            case "SQUAD_DELETE":
-	            SquadDelete?.Invoke(p.Data as EntityRemovedGatewayData);
+            case "TYPING_START":
+	            TypingStart?.Invoke(p.Data as TypingGatewayData);
+	            return;
+            case "TYPING_STOP":
+	            TypingStop?.Invoke(p.Data as TypingGatewayData);
 	            return;
             default:
 	            Log.Warning("Unhandled dispatch {Dispatch}", p.Dispatch);
@@ -412,6 +415,13 @@ public partial class SqullConnection
     public delegate void SquadDeleteEvent(EntityRemovedGatewayData data);
     public event SquadDeleteEvent SquadDelete;
 
+    // typing
+    public delegate void TypingStartEvent(TypingGatewayData data);
+    public event TypingStartEvent TypingStart;
+    
+    public delegate void TypingStopEvent(TypingGatewayData data);
+    public event TypingStopEvent TypingStop;
+    
     // squad member
 
     public delegate void SquadMemberCreateEvent(SquadMemberGatewayData data);
