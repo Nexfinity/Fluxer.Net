@@ -268,7 +268,10 @@ public partial class SqullConnection
             case "SQUAD_MEMBER_DELETE":
                 SquadMemberDelete?.Invoke(p.Data as EntityRemovedGatewayData);
                 return;
-			default:
+            case "PRESENCE_UPDATE":
+				PresenceUpdate?.Invoke(p.Data as PresenceGatewayData);
+				return;
+            default:
 	            Log.Warning("Unhandled dispatch {Dispatch}", p.Dispatch);
 	            break;
         }
@@ -384,6 +387,10 @@ public partial class SqullConnection
 
     public delegate void UserUpdateEvent(UserGatewayData data);
     public event UserUpdateEvent UserUpdate;
+    
+    // presence
+    public delegate void PresenceUpdateEvent(PresenceGatewayData data);
+    public event PresenceUpdateEvent PresenceUpdate;
 
     // squad member
 
