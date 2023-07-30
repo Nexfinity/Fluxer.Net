@@ -290,6 +290,15 @@ public partial class SqullConnection
             case "TYPING_STOP":
 	            TypingStop?.Invoke(p.Data as TypingGatewayData);
 	            return;
+            case "ROLE_CREATE":
+	            RoleCreate?.Invoke(p.Data as RoleGatewayData);
+	            return;
+            case "ROLE_UPDATE":
+	            RoleUpdate?.Invoke(p.Data as RoleGatewayData);
+	            return;
+            case "ROLE_DELETE":
+	            RoleDelete?.Invoke(p.Data as EntityRemovedGatewayData);
+	            return;
             default:
 	            Log.Warning("Unhandled dispatch {Dispatch}", p.Dispatch);
 	            break;
@@ -438,6 +447,17 @@ public partial class SqullConnection
 
     public delegate void SquadMemberDeleteEvent(EntityRemovedGatewayData data);
     public event SquadMemberDeleteEvent SquadMemberDelete;
+    
+    // role
+    
+    public delegate void RoleCreateEvent(RoleGatewayData data);
+    public event RoleCreateEvent RoleCreate;
+    
+    public delegate void RoleUpdateEvent(RoleGatewayData data);
+    public event RoleUpdateEvent RoleUpdate;
+    
+    public delegate void RoleDeleteEvent(EntityRemovedGatewayData data);
+    public event RoleDeleteEvent RoleDelete;
 
     #endregion
 
