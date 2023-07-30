@@ -1,6 +1,7 @@
 using System.Net.Http;
 using Serilog;
 using Serilog.Configuration;
+using Serilog.Core;
 
 namespace Squll.Net;
 
@@ -14,7 +15,7 @@ public class SqullConfig
     /// <summary>
     ///     The configuration to use for the libraries logger. Leave null to user the developers configuration
     /// </summary>
-    public LoggerConfiguration? SerilogConfig { get; set; }
+    public Logger? Serilog { get; set; }
 
     /// <summary>
     ///     Base url for squll's api. Defaults to "https://squll.com/api/v{v}/". {v} is replaced with <see cref="Version"/>

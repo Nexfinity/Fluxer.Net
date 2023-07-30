@@ -1,25 +1,18 @@
-﻿using System;
-using System.Diagnostics;
-using System.Net;
-using System.Net.Http;
-using System.Net.Http.Headers;
+﻿using System.Diagnostics;
 using System.Reflection;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Serilog;
-using Squll.Net.Extensions;
+using Serilog.Core;
 using Squll.Net.Gateway;
 using Squll.Net.Gateway.Data;
-using Squll.Net.Objects;
 using WebSocket4Net;
 namespace Squll.Net;
 
-public partial class SqullConnection
+public partial class GatewayClient
 {
     #region Declares
     public string Token { get; set; }
-    public HttpClient HttpClient { get; set; }
 
     private readonly SqullConfig _config;
     private WebSocket _gateway;
@@ -30,102 +23,23 @@ public partial class SqullConnection
     private DateTime _lastGatewayReEstablishAttempt = DateTime.Now;
     private string _sessionId = "";
     private bool _deferDisconnect = false;
+    private Logger _logger;
 
     [GeneratedRegex(@"(?<=""s""\s*?:\s*?)\d*", RegexOptions.IgnoreCase | RegexOptions.Compiled, "en-US")]
     private static partial Regex PacketSRegex();
     #endregion
 
     #region Meta
-    public SqullConnection(string token, SqullConfig config)
+    public GatewayClient(string token, SqullConfig config)
     {
         Token = token;
         _config = config;
-        HttpClient = _config.HttpClient ?? new();
-        Log.Logger = (_config.SerilogConfig
-            ?? new LoggerConfiguration()
+        _logger = _config.Serilog ?? new LoggerConfiguration()
                 .MinimumLevel.Verbose()
-                .WriteTo.Console()).CreateLogger();
-        Log.Information("Initialized Squll.Net ({AssemblyVersion}) (API {ApiVersion})", Assembly.GetExecutingAssembly().GetName().Version, _config.Version);
-        Log.Verbose("Loaded with config {@Config}", _config);
+                .WriteTo.Console().CreateLogger();
+        _logger.Information("Initialized Squll.Net gateway client ({AssemblyVersion}) (API {ApiVersion})", Assembly.GetExecutingAssembly().GetName().Version, _config.Version);
+        _logger.Verbose("Loaded with config {@Config}", _config);
     }
-
-    public async Task<TResponse> MakeSqullApiRequest<TResponse, TSend>(HttpMethod method, string route, TSend data, bool throwOnNonSuccess = false)
-    {
-        Log.Verbose("Sending {@Data} to {Route}", data, route);
-        var req = new HttpRequestMessage()
-        {
-            Method = method,
-            Content = new StringContent(JsonConvert.SerializeObject(data, new JsonSerializerSettings()
-            {
-                NullValueHandling = NullValueHandling.Ignore
-            }), new MediaTypeHeaderValue("application/json")),
-            RequestUri = new(_config.RealApiBaseUrl + route)
-        };
-        req.Headers.Add("Authorization", Token);
-        var result = await HttpClient.SendAsync(req);
-
-        Log.Debug("Made {Method} request to {Route}", method, route);
-        var resp = await result.Content.ReadAsStringAsync();
-        Log.Verbose("Received {Code}:{Result} from {Route}", result.StatusCode, resp, route);
-
-        if (throwOnNonSuccess && !result.IsSuccessStatusCode)
-            throw new SqullApiException($"Squll returned a non-success code {result.StatusCode}", resp);
-
-        return JsonConvert.DeserializeObject<TResponse>(resp);
-    }
-
-    public async Task<TResponse> MakeSqullApiRequest<TResponse>(HttpMethod method, string route, bool throwOnNonSuccess = false)
-    {
-        var req = new HttpRequestMessage()
-        {
-            Method = method,
-            RequestUri = new(_config.RealApiBaseUrl + route)
-        };
-        req.Headers.Add("Authorization", Token);
-        var result = await HttpClient.SendAsync(req);
-
-        Log.Debug("Made {Method} request to {Route}", method, route);
-        var resp = await result.Content.ReadAsStringAsync();
-        Log.Verbose("Received {Code}:{Result} from {Route}", result.StatusCode, resp, route);
-
-        if (throwOnNonSuccess && !result.IsSuccessStatusCode)
-            throw new SqullApiException($"Squll returned a non-success code {result.StatusCode}", resp);
-
-        return JsonConvert.DeserializeObject<TResponse>(resp);
-    }
-
-    public async Task<HttpStatusCode> MakeSqullApiRequest(HttpMethod method, string route, bool throwOnNonSuccess = false)
-    {
-        var req = new HttpRequestMessage()
-        {
-            Method = method,
-            RequestUri = new(_config.RealApiBaseUrl + route)
-        };
-        req.Headers.Add("Authorization", Token);
-        var result = await HttpClient.SendAsync(req);
-
-        Log.Debug("Made {Method} request to {Route} with response code {Code}", method, route, result.StatusCode);
-        if (throwOnNonSuccess && !result.IsSuccessStatusCode)
-            throw new SqullApiException($"Squll returned a non-success code {result.StatusCode}", await result.Content.ReadAsStringAsync());
-
-        return result.StatusCode;
-    }
-    #endregion
-
-    #region API
-    public async Task<Message> SendMessage(ulong spaceId, Message message)
-        => await MakeSqullApiRequest<Message, Message>(HttpMethod.Post, $"spaces/{spaceId}/messages", message, true);
-
-    public async Task<SquadProperties> JoinSquad(string invite)
-        => await MakeSqullApiRequest<SquadProperties>(HttpMethod.Post, $"invites/{invite}", true);
-
-    public async Task LeaveSquad(ulong Id)
-        => await MakeSqullApiRequest(HttpMethod.Delete, $"users/@me/squads/{Id}", true);
-
-    public async Task<SquadProperties> GetSquad(ulong squadId)
-        => await MakeSqullApiRequest<SquadProperties>(HttpMethod.Get, $"squads/{squadId}", true);
-
-
     #endregion
 
     #region Gateway
@@ -159,19 +73,19 @@ public partial class SqullConnection
         {
             NullValueHandling = NullValueHandling.Ignore
         });
-        Log.Debug("Sending serialized gateway packet {Data}", text);
+        _logger.Debug("Sending serialized gateway packet {Data}", text);
         _gateway.Send(text);
     }
 
     private void GatewayMessageHandler(object? sender, MessageReceivedEventArgs e)
     {
         // try deserializing the packet, fallback to regex
-        Log.Verbose("Received raw gateway message {Message}", e.Message);
+        _logger.Verbose("Received raw gateway message {Message}", e.Message);
         try
         {
             var packet = JsonConvert.DeserializeObject<GatewayPacket>(e.Message);
             _sequence = packet.Sequence ?? _sequence;
-            Log.Debug("Deserialized gateway packet {@Packet}", packet);
+            _logger.Debug("Deserialized gateway packet {@Packet}", packet);
             switch (packet.OpCode)
             {
                 case SqullOpCode.Dispatch:
@@ -199,7 +113,7 @@ public partial class SqullConnection
         {
             var result = PacketSRegex().Match(e.Message);
             _sequence = Convert.ToInt32(result.Value);
-            Log.Warning("Failed to parse a gateway event. This can happen when the OpCode is unsupported or a dispatch failed to parse.");
+            _logger.Warning("Failed to parse a gateway event. This can happen when the OpCode is unsupported or a dispatch failed to parse.");
         }
 
     }
@@ -213,7 +127,7 @@ public partial class SqullConnection
         }
 
         var nE = e as ClosedEventArgs;
-        Log.Information("Websocket closed with code {Code}:{Reason}. It should auto restart.", nE.Code, nE.Reason);
+        _logger.Information("Websocket closed with code {Code}:{Reason}. It should auto restart.", nE.Code, nE.Reason);
         if (_gateway.State != WebSocketState.Closed)
         {
             _deferDisconnect = true;
@@ -264,8 +178,8 @@ public partial class SqullConnection
                 UserUpdate?.Invoke(p.Data as UserGatewayData);
                 return;
             case "SQUAD_MEMBER_CREATE":
-	            SquadMemberCreate?.Invoke(p.Data as SquadMemberGatewayData);
-	            return;
+                SquadMemberCreate?.Invoke(p.Data as SquadMemberGatewayData);
+                return;
             case "SQUAD_MEMBER_UPDATE":
                 SquadMemberUpdate?.Invoke(p.Data as SquadMemberGatewayData);
                 return;
@@ -273,35 +187,35 @@ public partial class SqullConnection
                 SquadMemberDelete?.Invoke(p.Data as EntityRemovedGatewayData);
                 return;
             case "PRESENCE_UPDATE":
-	            PresenceUpdate?.Invoke(p.Data as PresenceGatewayData);
-	            return;
+                PresenceUpdate?.Invoke(p.Data as PresenceGatewayData);
+                return;
             case "SQUAD_CREATE":
-	            SquadCreate?.Invoke(p.Data as SquadGatewayData);
-	            return;
+                SquadCreate?.Invoke(p.Data as SquadGatewayData);
+                return;
             case "SQUAD_UPDATE":
-	            SquadUpdate?.Invoke(p.Data as SquadGatewayData);
-	            return;
+                SquadUpdate?.Invoke(p.Data as SquadGatewayData);
+                return;
             case "SQUAD_DELETE":
-	            SquadDelete?.Invoke(p.Data as EntityRemovedGatewayData);
-	            return;
+                SquadDelete?.Invoke(p.Data as EntityRemovedGatewayData);
+                return;
             case "TYPING_START":
-	            TypingStart?.Invoke(p.Data as TypingGatewayData);
-	            return;
+                TypingStart?.Invoke(p.Data as TypingGatewayData);
+                return;
             case "TYPING_STOP":
-	            TypingStop?.Invoke(p.Data as TypingGatewayData);
-	            return;
+                TypingStop?.Invoke(p.Data as TypingGatewayData);
+                return;
             case "ROLE_CREATE":
-	            RoleCreate?.Invoke(p.Data as RoleGatewayData);
-	            return;
+                RoleCreate?.Invoke(p.Data as RoleGatewayData);
+                return;
             case "ROLE_UPDATE":
-	            RoleUpdate?.Invoke(p.Data as RoleGatewayData);
-	            return;
+                RoleUpdate?.Invoke(p.Data as RoleGatewayData);
+                return;
             case "ROLE_DELETE":
-	            RoleDelete?.Invoke(p.Data as EntityRemovedGatewayData);
-	            return;
+                RoleDelete?.Invoke(p.Data as EntityRemovedGatewayData);
+                return;
             default:
-	            Log.Warning("Unhandled dispatch {Dispatch}", p.Dispatch);
-	            break;
+                _logger.Warning("Unhandled dispatch {Dispatch}", p.Dispatch);
+                break;
         }
     }
 
@@ -321,14 +235,14 @@ public partial class SqullConnection
     {
         if (_lastGatewayReEstablishAttempt.AddSeconds(_config.ReconnectAttemptDelay) > DateTime.Now)
         {
-            Log.Warning("Cannot reestablish more than once every {Timeout} seconds. Blocking until the time expires.", _config.ReconnectAttemptDelay);
+            _logger.Warning("Cannot reestablish more than once every {Timeout} seconds. Blocking until the time expires.", _config.ReconnectAttemptDelay);
             Task.Delay(_config.ReconnectAttemptDelay * 1000).GetAwaiter().GetResult();
         }
 
         _lastGatewayReEstablishAttempt = DateTime.Now;
         _gatewayDuration.Restart();
 
-        Log.Information("Attempting to reestablish the gateway connection after {time}ms", _gatewayDuration.ElapsedMilliseconds);
+        _logger.Information("Attempting to reestablish the gateway connection after {time}ms", _gatewayDuration.ElapsedMilliseconds);
 
         var packet = new GatewayPacket()
         {
@@ -415,28 +329,28 @@ public partial class SqullConnection
 
     public delegate void UserUpdateEvent(UserGatewayData data);
     public event UserUpdateEvent UserUpdate;
-    
+
     // presence
     public delegate void PresenceUpdateEvent(PresenceGatewayData data);
     public event PresenceUpdateEvent PresenceUpdate;
-    
+
     // squad
     public delegate void SquadCreateEvent(SquadGatewayData data);
     public event SquadCreateEvent SquadCreate;
-    
+
     public delegate void SquadUpdateEvent(SquadGatewayData data);
     public event SquadUpdateEvent SquadUpdate;
-    
+
     public delegate void SquadDeleteEvent(EntityRemovedGatewayData data);
     public event SquadDeleteEvent SquadDelete;
 
     // typing
     public delegate void TypingStartEvent(TypingGatewayData data);
     public event TypingStartEvent TypingStart;
-    
+
     public delegate void TypingStopEvent(TypingGatewayData data);
     public event TypingStopEvent TypingStop;
-    
+
     // squad member
 
     public delegate void SquadMemberCreateEvent(SquadMemberGatewayData data);
@@ -447,15 +361,15 @@ public partial class SqullConnection
 
     public delegate void SquadMemberDeleteEvent(EntityRemovedGatewayData data);
     public event SquadMemberDeleteEvent SquadMemberDelete;
-    
+
     // role
-    
+
     public delegate void RoleCreateEvent(RoleGatewayData data);
     public event RoleCreateEvent RoleCreate;
-    
+
     public delegate void RoleUpdateEvent(RoleGatewayData data);
     public event RoleUpdateEvent RoleUpdate;
-    
+
     public delegate void RoleDeleteEvent(EntityRemovedGatewayData data);
     public event RoleDeleteEvent RoleDelete;
 

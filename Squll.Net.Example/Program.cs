@@ -1,26 +1,34 @@
 ﻿using System;
 using Eris.Serilog.Formatting.Json;
 using Serilog;
+using Serilog.Core;
 using Serilog.Sinks.SystemConsole.Themes;
 using Squll.Net;
 using Squll.Net.Extensions;
 using Squll.Net.Objects;
 
-var v2Client = new SqullConnection("", new()
-{
-    ReconnectAttemptDelay = 2,
-    SerilogConfig = new LoggerConfiguration()
+Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Verbose()
                 .WriteTo.Console(theme: AnsiConsoleTheme.Code)
                 .WriteTo.File($"output-{DateTime.Now:yyyy-dd-mm:hh-mm-ss}.log", rollingInterval: RollingInterval.Infinite, rollOnFileSizeLimit: true)
+                .CreateLogger();
+
+var gateway = new GatewayClient("NzIwNzY1MDU2NTgyMjg3MzY.ZMbHcA.WGTwOYjyZ2oYwDFtQqbG-hgzthk", new()
+{
+    ReconnectAttemptDelay = 2,
+    Serilog = Log.Logger as Logger,
+});
+var api = new ApiClient("NzIwNzY1MDU2NTgyMjg3MzY.ZMbHcA.WGTwOYjyZ2oYwDFtQqbG-hgzthk", new()
+{
+    Serilog = Log.Logger as Logger
 });
 // await v2Client.LeaveSquad(72070065598038016);
-await v2Client.ConnectAsync();
+await gateway.ConnectAsync();
 
-v2Client.MessageCreate += async x =>
+gateway.MessageCreate += async x =>
 {
     if (x.Content == "/ping")
-        await v2Client.SendMessage(x.SpaceId, new()
+        await api.SendMessage(x.SpaceId, new()
         {
             Content = "pong ;P",
             // MentionUsers = new ulong[1] { x.AuthorId }
@@ -30,11 +38,9 @@ v2Client.MessageCreate += async x =>
 void spaceAction(Space space)
  => Console.WriteLine(space.Id);
 
-v2Client.SpaceCreate += spaceAction;
-v2Client.SpaceUpdate += spaceAction;
 await Task.Delay(1000);
-v2Client.SetStatus("dnd");
-Console.WriteLine((await v2Client.GetSquad(71918911678676992)).Name);
+gateway.SetStatus("dnd");
+Console.WriteLine((await api.GetSquad(71918911678676992)).Name);
 await Task.Delay(-1);
 
 
