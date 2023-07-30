@@ -263,6 +263,9 @@ public partial class SqullConnection
             case "USER_UPDATE":
                 UserUpdate?.Invoke(p.Data as UserGatewayData);
                 return;
+            case "SQUAD_MEMBER_CREATE":
+	            SquadMemberCreate?.Invoke(p.Data as SquadMemberGatewayData);
+	            return;
             case "SQUAD_MEMBER_UPDATE":
                 SquadMemberUpdate?.Invoke(p.Data as SquadMemberGatewayData);
                 return;
@@ -277,6 +280,9 @@ public partial class SqullConnection
 	            return;
             case "SQUAD_UPDATE":
 	            SquadUpdate?.Invoke(p.Data as SquadGatewayData);
+	            return;
+            case "SQUAD_DELETE":
+	            SquadDelete?.Invoke(p.Data as EntityRemovedGatewayData);
 	            return;
             case "TYPING_START":
 	            TypingStart?.Invoke(p.Data as TypingGatewayData);
