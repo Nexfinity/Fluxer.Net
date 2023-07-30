@@ -4,10 +4,13 @@
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>annotations</Nullable>
+    <Version>0.1.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="serilog" Version="3.0.1" />
+    <PackageReference Include="serilog.sinks.console" Version="4.1.0" />
     <PackageReference Include="websocket4net" Version="0.15.2" />
   </ItemGroup>
 

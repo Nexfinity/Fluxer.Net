@@ -1,3 +1,4 @@
+using System;
 using Newtonsoft.Json;
 
 namespace Squll.Net.Objects;
@@ -25,7 +26,7 @@ public class Message
     [JsonProperty("mention_roles")]
     public object[] MentionRoles { get; set; }
     [JsonProperty("mention_users")]
-    public object[] MentionUsers { get; set; }
+    public ulong[] MentionUsers { get; set; }
     [JsonProperty("message_reference")]
     public object? MessageReference { get; set; }
     [JsonProperty("nonce")]

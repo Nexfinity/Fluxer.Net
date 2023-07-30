@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -34,26 +37,22 @@ public class JsonDerivedTypeConverter<T> : JsonConverter
 
     JsonObjectContract FindContract(JObject obj, JsonSerializer serializer)
     {
-        List<JsonObjectContract> bestContracts = new();
+        List<(JsonObjectContract Contract, int MissingProps)> bestContracts = new();
         foreach (var type in derivedTypes)
         {
             if (type.IsAbstract)
                 continue;
             if (serializer.ContractResolver.ResolveContract(type) is not JsonObjectContract contract)
                 continue;
-            if (obj.Properties().Select(p => p.Name).Any(n => contract.Properties.GetClosestMatchProperty(n) == null))
-                continue;
-            if (bestContracts.Count == 0 || bestContracts[0].Properties.Count > contract.Properties.Count)
+            var sel = (contract, obj.Properties().Select(p => p.Name).Count(n => contract.Properties.GetClosestMatchProperty(n) == null));
+
+            if (bestContracts.Count == 0 || bestContracts[0].MissingProps > sel.Item2)
             {
                 bestContracts.Clear();
-                bestContracts.Add(contract);
-            }
-            else if (contract.Properties.Count == bestContracts[0].Properties.Count)
-            {
-                bestContracts.Add(contract);
+                bestContracts.Add(sel);
             }
         }
-        return bestContracts.Single();
+        return bestContracts.Single().Contract;
     }
 
     public override bool CanConvert(Type objectType)

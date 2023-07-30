@@ -16,5 +16,5 @@ public class GatewayPacket
     public int? Sequence { get; set; }
 
     [JsonProperty("t")]
-    public string Dispatch { get; set; }
+    public string? Dispatch { get; set; }
 }
