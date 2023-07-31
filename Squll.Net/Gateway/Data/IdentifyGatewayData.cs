@@ -1,4 +1,5 @@
 using Newtonsoft.Json;
+using Squll.Net.Objects;
 
 namespace Squll.Net.Gateway.Data;
 
@@ -8,7 +9,7 @@ public class IdentifyGatewayData : IGatewayData
     public string Token { get; set; }
 
     [JsonProperty("properties")]
-    public object Properties { get; set; } = new();
+    public GatewayConnectionProperties Properties { get; set; } = new();
 
     public IdentifyGatewayData(string token)
         => Token = token;

@@ -36,6 +36,11 @@ public class SqullConfig
     ///     Pass your applications HttpClient here if one is generated
     /// </summary>
     public HttpClient HttpClient { get; set; } = null;
+    
+    /// <summary>
+    ///     (optionally) block some dispathes your application does not handle -- for example PRESENCE_UPDATE
+    /// </summary>
+    public List<string> IgnoredGatewayEvents { get; set; } = new();
 
     public string RealApiBaseUrl { get => SqullApiBaseUrl.Replace("{v}", Version.ToString()); }
 }

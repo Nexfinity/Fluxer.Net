@@ -62,6 +62,12 @@ public partial class GatewayClient
         {
             OpCode = SqullOpCode.Identify,
             Data = new IdentifyGatewayData(Token)
+            {
+                Properties = new()
+                {
+                    IgnoredEvents = _config.IgnoredGatewayEvents.ToArray()
+                }
+            }
         };
 
         SendGatewayPacket(login);

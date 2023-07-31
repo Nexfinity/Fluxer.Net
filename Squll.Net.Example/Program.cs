@@ -17,6 +17,10 @@ var gateway = new GatewayClient("NzIwNzY1MDU2NTgyMjg3MzY.ZMbHcA.WGTwOYjyZ2oYwDFt
 {
     ReconnectAttemptDelay = 2,
     Serilog = Log.Logger as Logger,
+    IgnoredGatewayEvents = new()
+    {
+        "PRESENCE_UPDATE"
+    }
 });
 var api = new ApiClient("NzIwNzY1MDU2NTgyMjg3MzY.ZMbHcA.WGTwOYjyZ2oYwDFtQqbG-hgzthk", new()
 {
