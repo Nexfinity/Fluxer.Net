@@ -2,6 +2,7 @@
 #pragma warning disable CS8618
 
 using Newtonsoft.Json;
+using Squll.Net.Objects.DataTables;
 
 namespace Squll.Net.Objects;
 

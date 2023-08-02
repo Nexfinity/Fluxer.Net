@@ -1,4 +1,4 @@
-namespace Squll.Net.Objects;
+namespace Squll.Net.Objects.DataTables;
 
 public enum MessageFlags
 {

@@ -1,4 +1,5 @@
 using Newtonsoft.Json;
+using Squll.Net.Objects.DataTables;
 
 namespace Squll.Net.Objects;
 

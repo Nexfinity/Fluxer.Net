@@ -1,5 +1,6 @@
 using System;
 using Newtonsoft.Json;
+using Squll.Net.Objects.DataTables;
 
 namespace Squll.Net.Objects;
 
@@ -9,8 +10,6 @@ public class Message
     public object[] Attachments { get; set; }
     [JsonProperty("author")]
     public User Author { get; set; }
-    [JsonProperty("author_id")]
-    public ulong AuthorId { get; set; }
     [JsonProperty("content")]
     public string Content { get; set; }
     [JsonProperty("created_at")]

@@ -1,5 +1,6 @@
 using System;
 using Newtonsoft.Json;
+using Squll.Net.Objects.DataTables;
 
 namespace Squll.Net.Objects;
 
@@ -7,8 +8,6 @@ public class SquadMember
 {
     [JsonProperty("flags")]
     public SquadMemberFlags Flags { get; set; }
-    [JsonProperty("id")]
-    public ulong Id { get; set; }
     [JsonProperty("joined_at")]
     public DateTime JoinedAt { get; set; }
     [JsonProperty("mention_privacy_level")]

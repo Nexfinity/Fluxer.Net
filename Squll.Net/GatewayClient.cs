@@ -132,8 +132,15 @@ public partial class GatewayClient
             return;
         }
 
-        var nE = e as ClosedEventArgs;
-        _logger.Information("Websocket closed with code {Code}:{Reason}. It should auto restart.", nE.Code, nE.Reason);
+        if (e is ClosedEventArgs nE)
+        {
+	        _logger.Information("Websocket closed with code {Code}:{Reason}. It should auto restart.", nE.Code, nE.Reason ?? "Unknown");
+        }
+        else
+        {
+	        _logger.Information("Websocket closed. It should auto restart. ClosedEventArgs was null.");
+        }
+        
         if (_gateway.State != WebSocketState.Closed)
         {
             _deferDisconnect = true;

@@ -1,5 +1,6 @@
 using System;
 using Newtonsoft.Json;
+using Squll.Net.Objects.DataTables;
 
 namespace Squll.Net.Objects;
 
@@ -37,14 +38,10 @@ public class User
     public string? Location { get; set; }
     [JsonProperty("mention_privacy_level")]
     public MentionPrivacyLevel? MentionPrivacyLevel { get; set; }
-    [JsonProperty("mfa_flags")]
-    public MfaFlags? MfaFlags { get; set; }
     [JsonProperty("premium_since")]
     public DateTime? PremiumSince { get; set; }
     [JsonProperty("premium_type")]
     public UserPremiumType? PremiumType { get; set; }
-    [JsonProperty("premium_usage_flags")]
-    public PremiumUsageFlags? PremiumUsageFlags { get; set; }
     [JsonProperty("pronouns")]
     public string? Pronouns { get; set; }
 }
