@@ -127,8 +127,12 @@ public class ApiClient
 	
     //PATCH /v1/spaces/{spaceId}
     //PATCH /v1/spaces/{spaceId}/messages/{message_id}
-    //POST /v1/spaces/{spaceId}/invites
-    //POST /v1/spaces/{spaceId}/typing
+
+    public async Task CreateInvite(ulong spaceId)
+	    => await MakeSqullApiRequest(HttpMethod.Post, $"spaces/{spaceId}/invites", true);
+
+    public async Task StartTyping(ulong spaceId)
+	    => await MakeSqullApiRequest(HttpMethod.Post, $"spaces/{spaceId}/typing", true);
 
     #endregion
 
@@ -161,9 +165,14 @@ public class ApiClient
 	//PATCH /v1/squads/{squadId}
     //PATCH /v1/squads/{squadId}/members/{userId}
     //PATCH /v1/squads/{squadId}/members/@me
-	//POST /v1/squads
-	//POST /v1/squads/{squadId}/roles
-	//POST /v1/squads/{squadId}/spaces
+    public async Task<SquadProperties> CreateSquad()
+		=> await MakeSqullApiRequest<SquadProperties>(HttpMethod.Post, $"squads", true);
+    
+	public async Task<Role> CreateSquadRole(ulong squadId)
+		=> await MakeSqullApiRequest<Role>(HttpMethod.Post, $"squads/{squadId}/roles", true);
+
+	public async Task<Space> CreateSquadSpace(ulong squadId)
+		=> await MakeSqullApiRequest<Space>(HttpMethod.Post, $"squads/{squadId}/spaces", true);
 	//POST /v1/squads/{squadId}/vanity-url
 
     #endregion
