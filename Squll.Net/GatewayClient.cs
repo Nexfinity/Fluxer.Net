@@ -80,7 +80,15 @@ public partial class GatewayClient
             NullValueHandling = NullValueHandling.Ignore
         });
         _logger.Debug("Sending serialized gateway packet {Data}", text);
-        _gateway.Send(text);
+        try
+        {
+            _gateway.Send(text);
+        }
+        catch
+        {
+            _logger.Warning("Failed to send gateway packet. Restarting the gateway. Some packets may be dropped.");
+            ConnectAsync().GetAwaiter().GetResult();
+        }
     }
 
     private void GatewayMessageHandler(object? sender, MessageReceivedEventArgs e)
@@ -134,13 +142,13 @@ public partial class GatewayClient
 
         if (e is ClosedEventArgs nE)
         {
-	        _logger.Information("Websocket closed with code {Code}:{Reason}. It should auto restart.", nE.Code, nE.Reason ?? "Unknown");
+            _logger.Information("Websocket closed with code {Code}:{Reason}. It should auto restart.", nE.Code, nE.Reason ?? "Unknown");
         }
         else
         {
-	        _logger.Information("Websocket closed. It should auto restart. ClosedEventArgs was null.");
+            _logger.Information("Websocket closed. It should auto restart. ClosedEventArgs was null.");
         }
-        
+
         if (_gateway.State != WebSocketState.Closed)
         {
             _deferDisconnect = true;
