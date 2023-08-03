@@ -99,17 +99,104 @@ public class ApiClient
     }
     #endregion
 
-    #region API
+    #region Spaces API
+    
     public async Task<Message> SendMessage(ulong spaceId, Message message)
         => await MakeSqullApiRequest<Message, Message>(HttpMethod.Post, $"spaces/{spaceId}/messages", message, true);
+    
+    public async Task DeleteSpace(ulong spaceId)
+	    => await MakeSqullApiRequest(HttpMethod.Delete, $"spaces/{spaceId}", true);
+    
+    public async Task DeleteMessage(ulong spaceId, ulong messageId)
+	    => await MakeSqullApiRequest(HttpMethod.Delete, $"spaces/{spaceId}/messages/{messageId}", true);
+    
+    public async Task StopTyping(ulong spaceId)
+	    => await MakeSqullApiRequest(HttpMethod.Delete, $"spaces/{spaceId}/typing", true);
+    
+	public async Task<Space> GetSpace(ulong spaceId)
+		=> await MakeSqullApiRequest<Space>(HttpMethod.Get, $"spaces/{spaceId}", true);
 
-    public async Task<SquadProperties> JoinSquad(string invite)
-        => await MakeSqullApiRequest<SquadProperties>(HttpMethod.Post, $"invites/{invite}", true);
+    public async Task<List<Invite>> GetSpaceInvites(ulong spaceId)
+	    => await MakeSqullApiRequest<List<Invite>>(HttpMethod.Get, $"spaces/{spaceId}/invites", true);
 
-    public async Task LeaveSquad(ulong Id)
-        => await MakeSqullApiRequest(HttpMethod.Delete, $"users/@me/squads/{Id}", true);
+	public async Task<List<Message>> GetSpaceMessages(ulong spaceId)
+		=> await MakeSqullApiRequest<List<Message>>(HttpMethod.Get, $"spaces/{spaceId}/messages", true);
+
+	public async Task<Message> GetSpaceMessage(ulong spaceId, ulong messageId)
+		=> await MakeSqullApiRequest<Message>(HttpMethod.Get, $"spaces/{spaceId}/messages/{messageId}", true);
+	
+    //PATCH /v1/spaces/{spaceId}
+    //PATCH /v1/spaces/{spaceId}/messages/{message_id}
+    //POST /v1/spaces/{spaceId}/invites
+    //POST /v1/spaces/{spaceId}/typing
+
+    #endregion
+
+    #region Squads API
 
     public async Task<SquadProperties> GetSquad(ulong squadId)
-        => await MakeSqullApiRequest<SquadProperties>(HttpMethod.Get, $"squads/{squadId}", true);
+	    => await MakeSqullApiRequest<SquadProperties>(HttpMethod.Get, $"squads/{squadId}", true);
+    
+    public async Task DeleteSquad(ulong squadId)
+	    => await MakeSqullApiRequest(HttpMethod.Delete, $"squads/{squadId}", true);
+    
+    public async Task KickUser(ulong squadId, ulong userId)
+	    => await MakeSqullApiRequest(HttpMethod.Delete, $"squads/{squadId}/members/{userId}", true);
+    
+    public async Task<List<Invite>> GetSquadInvites(ulong squadId)
+	    => await MakeSqullApiRequest<List<Invite>>(HttpMethod.Get, $"squads/{squadId}/invites", true);
+    
+	public async Task<List<User>> GetSquadUsers(ulong squadId)
+		=> await MakeSqullApiRequest<List<User>>(HttpMethod.Get, $"squads/{squadId}/members", true);
+	
+	public async Task<User> GetSquadUser(ulong squadId, ulong userId)
+		=> await MakeSqullApiRequest<User>(HttpMethod.Get, $"squads/{squadId}/members/{userId}", true);
+	
+    public async Task<List<Role>> GetSquadRoles(ulong squadId)
+	    => await MakeSqullApiRequest<List<Role>>(HttpMethod.Get, $"squads/{squadId}/roles", true);
+    
+	public async Task<List<Space>> GetSquadSpaces(ulong squadId)
+		=> await MakeSqullApiRequest<List<Space>>(HttpMethod.Get, $"squads/{squadId}/spaces", true);
+	
+	//PATCH /v1/squads/{squadId}
+    //PATCH /v1/squads/{squadId}/members/{userId}
+    //PATCH /v1/squads/{squadId}/members/@me
+	//POST /v1/squads
+	//POST /v1/squads/{squadId}/roles
+	//POST /v1/squads/{squadId}/spaces
+	//POST /v1/squads/{squadId}/vanity-url
+
+    #endregion
+
+    #region Invites API
+
+    public async Task<SquadProperties> JoinSquad(string invite)
+	    => await MakeSqullApiRequest<SquadProperties>(HttpMethod.Post, $"invites/{invite}", true);
+
+    #endregion
+
+    #region Users API
+
+    public async Task LeaveSquad(ulong squadId)
+	    => await MakeSqullApiRequest(HttpMethod.Delete, $"users/@me/squads/{squadId}", true);
+    
+    public async Task<User> GetUser(ulong userId)
+	    => await MakeSqullApiRequest<User>(HttpMethod.Get, $"users/{userId}", true);
+    
+    public async Task<User> GetCurrentUser()
+	    => await MakeSqullApiRequest<User>(HttpMethod.Get, $"users/@me", true);
+    
+    public async Task<UserSettings> GetCurrentUserSettings()
+	    => await MakeSqullApiRequest<UserSettings>(HttpMethod.Get, $"users/@me/settings", true);
+    
+    public async Task<List<SquadProperties>> GetCurrentUserSquads()
+	    => await MakeSqullApiRequest<List<SquadProperties>>(HttpMethod.Get, $"users/@me/squads", true); 
+    
+    //PATCH /v1/users/@me/email
+	//PATCH /v1/users/@me/password
+	//PATCH /v1/users/@me/profile
+	//PATCH /v1/users/@me/settings
+	//PATCH /v1/users/@me/username
+	
     #endregion
 }
