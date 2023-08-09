@@ -45,8 +45,9 @@ public partial class GatewayClient
     #region Gateway
     public async Task ConnectAsync()
     {
-        if (_gateway is not null && _gateway.State == WebSocketState.Open)
-            await _gateway.CloseAsync();
+        // disabled for testing
+        // if (_gateway is not null && _gateway.State == WebSocketState.Open)
+        //     await _gateway.CloseAsync();
 
         _gateway = new WebSocket(_config.SqullGatewayUrl)
         {
