@@ -173,7 +173,9 @@ public class ApiClient
 
 	public async Task<Space> CreateSquadSpace(ulong squadId)
 		=> await MakeSqullApiRequest<Space>(HttpMethod.Post, $"squads/{squadId}/spaces", true);
-	//POST /v1/squads/{squadId}/vanity-url
+
+	public async Task<SquadProperties> UpdateVanityUrl(ulong squadId, string vanityUrl)
+		=> await MakeSqullApiRequest<SquadProperties, string>(HttpMethod.Post, $"squads/{squadId}/vanity-url", "{code: \"" + vanityUrl + "\"}", true);
 
     #endregion
 
@@ -201,11 +203,7 @@ public class ApiClient
     public async Task<List<SquadProperties>> GetCurrentUserSquads()
 	    => await MakeSqullApiRequest<List<SquadProperties>>(HttpMethod.Get, $"users/@me/squads", true); 
     
-    //PATCH /v1/users/@me/email
-	//PATCH /v1/users/@me/password
 	//PATCH /v1/users/@me/profile
-	//PATCH /v1/users/@me/settings
-	//PATCH /v1/users/@me/username
 	
     #endregion
 }
