@@ -2,6 +2,7 @@ using System.Net.Http;
 using Serilog;
 using Serilog.Configuration;
 using Serilog.Core;
+using Squll.Net.Gateway.Data;
 
 namespace Squll.Net;
 
@@ -41,6 +42,11 @@ public class SqullConfig
     ///     (optionally) block some dispathes your application does not handle -- for example PRESENCE_UPDATE
     /// </summary>
     public List<string> IgnoredGatewayEvents { get; set; } = new();
+    
+    /// <summary>
+    ///     The initial presence to send to squll
+    /// </summary>
+    public PresenceUpdateGatewayData? Presence { get; set; } = null;
 
     public string RealApiBaseUrl { get => SqullApiBaseUrl.Replace("{v}", Version.ToString()); }
 }

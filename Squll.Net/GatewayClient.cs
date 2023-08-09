@@ -64,10 +64,8 @@ public partial class GatewayClient
             OpCode = SqullOpCode.Identify,
             Data = new IdentifyGatewayData(Token)
             {
-                Properties = new()
-                {
-                    IgnoredEvents = _config.IgnoredGatewayEvents.ToArray()
-                }
+	            IgnoredGatewayEvents = _config.IgnoredGatewayEvents,
+	            Presence = _config.Presence
             }
         };
 
