@@ -18,8 +18,8 @@ public class User
     public ulong Id { get; set; }
     [JsonProperty("public_flags")]
     public UserPublicFlags PublicFlags { get; set; }
-    [JsonProperty("timezone_offset")]
-    public int? TimezoneOffsett { get; set; }
+    [JsonProperty("timezone")]
+    public string? Timezone { get; set; }
     [JsonProperty("type")]
     public UserType Type { get; set; }
     [JsonProperty("username")]
