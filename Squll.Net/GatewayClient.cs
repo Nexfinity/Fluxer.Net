@@ -6,6 +6,7 @@ using Serilog;
 using Serilog.Core;
 using Squll.Net.Gateway;
 using Squll.Net.Gateway.Data;
+using Squll.Net.Objects.Enums;
 using WebSocket4Net;
 namespace Squll.Net;
 
@@ -299,7 +300,7 @@ public partial class GatewayClient
         }
     }
 
-    public void SetStatus(string status)
+    public void SetStatus(Status status)
     {
         var packet = new GatewayPacket()
         {
