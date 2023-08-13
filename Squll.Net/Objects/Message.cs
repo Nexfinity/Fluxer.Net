@@ -16,8 +16,8 @@ public class Message
     public DateTime CreatedAt { get; set; }
     [JsonProperty("embeds")]
     public object[] Embeds { get; set; }
-    [JsonProperty("exploding_at")]
-    public object? ExplodingAt { get; set; }
+    [JsonProperty("expires_at")]
+    public object? ExpiresAt { get; set; }
     [JsonProperty("flags")]
     public MessageFlags Flags { get; set; }
     [JsonProperty("id")]
