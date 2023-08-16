@@ -21,7 +21,7 @@ public class SqullConfig
     /// <summary>
     ///     Base url for squll's api. Defaults to "https://squll.com/api/v{v}/". {v} is replaced with <see cref="Version"/>
     /// </summary>
-    public string SqullApiBaseUrl { get; set; } = "https://api.squll.com/v{v}/";
+    public string SqullApiBaseUrl { get; set; } = "https://squll.com/api/v{v}/";
 
     /// <summary>
     ///     The version of squll's api to use. Defaults to 1. The only supported value is 1.
