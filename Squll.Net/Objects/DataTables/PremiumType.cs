@@ -1,6 +1,6 @@
 namespace Squll.Net.Objects.DataTables;
 
-public enum UserPremiumType
+public enum PremiumType
 {
     None = 0,
     Silver = 1,

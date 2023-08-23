@@ -41,7 +41,7 @@ public class User
     [JsonProperty("premium_since")]
     public DateTime? PremiumSince { get; set; }
     [JsonProperty("premium_type")]
-    public UserPremiumType? PremiumType { get; set; }
+    public PremiumType? PremiumType { get; set; }
     [JsonProperty("pronouns")]
     public string? Pronouns { get; set; }
 }
