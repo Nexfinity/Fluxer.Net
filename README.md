@@ -8,6 +8,11 @@ dotnet pack --include-symbols --include-source
 ```
 
 ## Installing
+
+
+> [!WARNING]  
+> This installation method will likely **not** be supported when squll leaves alpha. At the very least the package id will change.
+
 Installing from @CottageDwellingCat's official myget feed:
 add the following to the `<PropertyGroup>` tag that contains your app's configuration (prefer nuget to the private feed, but use it when packages are missing):
 ```xml
