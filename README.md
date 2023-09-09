@@ -37,17 +37,11 @@ An increment of the **PATCH** component always indicates that an internal-only c
 
 An increment of the **MINOR** component indicates that some addition was made to the library,
 and this addition is not backwards-compatible with prior versions.
-However, Discord.Net **does not guarantee forward-compatibility** on minor additions.
+However, Squll.Net **does not guarantee forward-compatibility** on minor additions.
 In other words, we permit a limited set of breaking changes on a minor version bump.
 
-Due to the nature of the Discord API, we will oftentimes need to add a property to an entity to support the latest API changes.
-Discord.Net provides interfaces as a method of consuming entities; and as such, introducing a new field to an entity is technically a breaking change.
 Major version bumps generally indicate some major change to the library,
 and as such we are hesitant to bump the major version for every minor addition to the library.
-To compromise, we have decided that interfaces should be treated as **consumable only**,
-and your applications should typically not be implementing interfaces.
-
-> For applications where interfaces are implemented, such as in test mocks, we apologize for this inconsistency with SemVer.
 
 While we will never break the API (outside of interface changes) on minor builds,
 we will occasionally need to break the ABI, by introducing parameters to a method to match changes upstream with Discord.
