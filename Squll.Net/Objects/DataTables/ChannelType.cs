@@ -1,6 +1,6 @@
 namespace Squll.Net.Objects.DataTables;
 
-public enum SpaceType
+public enum ChannelType
 {
     SquadText = 0,
     SquadVoice = 1,

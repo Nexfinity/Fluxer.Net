@@ -1,6 +1,6 @@
 namespace Squll.Net.Objects.DataTables;
 
-public enum SpaceFlags
+public enum ChannelFlags
 {
     None = 0,
     Sensitive = 1 << 0,

@@ -26,10 +26,10 @@ public class SquadProperties
     public string? VanityUrl { get; set; }
     [JsonProperty("owner_id")]
     public ulong OwnerId { get; set; }
-    [JsonProperty("rules_space_id")]
-    public ulong? RulesSpaceId { get; set; }
-    [JsonProperty("system_space_id")]
-    public ulong? SystemSpaceId { get; set; }
+    [JsonProperty("rules_channel_id")]
+    public ulong? RulesChannelId { get; set; }
+    [JsonProperty("system_channel_id")]
+    public ulong? SystemChannelId { get; set; }
     [JsonProperty("max_members")]
     public int? MaxMembers { get; set; }
     [JsonProperty("premium_type")]

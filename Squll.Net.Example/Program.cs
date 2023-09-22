@@ -16,8 +16,8 @@ Log.Logger = new LoggerConfiguration()
 var config = ConfigExtension.LoadConfig();
 if (config == null)
 {
-	Log.Error("YAML file not found.");
-	return;
+    Log.Error("YAML file not found.");
+    return;
 }
 
 Log.Debug("Config file loaded.");
@@ -46,14 +46,14 @@ var api = new ApiClient(config["Token"], new()
 //Handle the MESSAGE_CREATE event (Allows us to receive and process commands)
 gateway.MessageCreate += async x =>
 {
-	if (x.Content == "/ping") //Listen for the /ping command
-	{
-		//Respond with our own message
-		await api.SendMessage(x.SpaceId, new()
-		{
-			Content = "pong ;P"
-		});
-	}
+    if (x.Content == "/ping") //Listen for the /ping command
+    {
+        //Respond with our own message
+        await api.SendMessage(x.channelId, new()
+        {
+            Content = "pong ;P"
+        });
+    }
 };
 
 //Keep the bot running

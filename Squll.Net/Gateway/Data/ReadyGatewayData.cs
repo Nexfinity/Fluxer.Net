@@ -9,8 +9,8 @@ public class ReadyGatewayData : IGatewayData
     public SquadMember[] Members { get; set; }
     [JsonProperty("notes")]
     public object[] Notes { get; set; }
-    [JsonProperty("private_spaces")]
-    public object[] PrivateSpaces { get; set; }
+    [JsonProperty("private_channels")]
+    public object[] PrivateChannels { get; set; }
     [JsonProperty("relationships")]
     public object[] Relationships { get; set; }
     [JsonProperty("session_id")]

@@ -26,8 +26,9 @@ public partial class GatewayClient
     private bool _deferDisconnect = false;
     private Logger _logger;
 
-    [GeneratedRegex(@"(?<=""s""\s*?:\s*?)\d*", RegexOptions.IgnoreCase | RegexOptions.Compiled, "en-US")]
-    private static partial Regex PacketSRegex();
+    // build error from generated regex
+    // temp. removed pending investigation.
+    private static readonly Regex PacketSRegex = new(@"(?<=""s""\s*?:\s*?)\d*", RegexOptions.IgnoreCase | RegexOptions.Compiled);
     #endregion
 
     #region Meta
@@ -65,8 +66,8 @@ public partial class GatewayClient
             OpCode = SqullOpCode.Identify,
             Data = new IdentifyGatewayData(Token)
             {
-	            IgnoredGatewayEvents = _config.IgnoredGatewayEvents,
-	            Presence = _config.Presence
+                IgnoredGatewayEvents = _config.IgnoredGatewayEvents,
+                Presence = _config.Presence
             }
         };
 
@@ -125,7 +126,7 @@ public partial class GatewayClient
         }
         catch
         {
-            var result = PacketSRegex().Match(e.Message);
+            var result = PacketSRegex.Match(e.Message);
             _sequence = Convert.ToInt32(result.Value);
             _logger.Warning("Failed to parse a gateway event. This can happen when the OpCode is unsupported or a dispatch failed to parse.");
         }
@@ -186,14 +187,15 @@ public partial class GatewayClient
             case "MESSAGE_DELETE":
                 MessageDelete?.Invoke(p.Data as EntityRemovedGatewayData);
                 return;
-            case "SPACE_CREATE":
-                SpaceCreate?.Invoke(p.Data as SpaceGatewayData);
+            // I miss spaces, man, it was more whimsical
+            case "CHANNEL_CREATE":
+                ChannelCreate?.Invoke(p.Data as ChannelGatewayData);
                 return;
-            case "SPACE_UPDATE":
-                SpaceUpdate?.Invoke(p.Data as SpaceGatewayData);
+            case "CHANNEL_UPDATE":
+                ChannelUpdate?.Invoke(p.Data as ChannelGatewayData);
                 return;
-            case "SPACE_DELETE":
-                SpaceDelete?.Invoke(p.Data as EntityRemovedGatewayData);
+            case "CHANNEL_DELETE":
+                ChannelDelete?.Invoke(p.Data as EntityRemovedGatewayData);
                 return;
             case "USER_UPDATE":
                 UserUpdate?.Invoke(p.Data as UserGatewayData);
@@ -337,14 +339,14 @@ public partial class GatewayClient
 
     // space
 
-    public delegate void SpaceCreateEvent(SpaceGatewayData data);
-    public event SpaceCreateEvent SpaceCreate;
+    public delegate void ChannelCreateEvent(ChannelGatewayData data);
+    public event ChannelCreateEvent ChannelCreate;
 
-    public delegate void SpaceUpdateEvent(SpaceGatewayData data);
-    public event SpaceUpdateEvent SpaceUpdate;
+    public delegate void ChannelUpdateEvent(ChannelGatewayData data);
+    public event ChannelUpdateEvent ChannelUpdate;
 
-    public delegate void SpaceDeleteEvent(EntityRemovedGatewayData data);
-    public event SpaceDeleteEvent SpaceDelete;
+    public delegate void ChannelDeleteEvent(EntityRemovedGatewayData data);
+    public event ChannelDeleteEvent ChannelDelete;
 
     // user
 

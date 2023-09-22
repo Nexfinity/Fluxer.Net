@@ -19,7 +19,9 @@ public class ApiClient
     public HttpClient HttpClient { get; set; }
 
     private readonly SqullConfig _config;
+#pragma warning disable CS0169
     private readonly Logger _logger;
+#pragma warning restore CS0169
     #endregion
 
     #region Meta
@@ -124,43 +126,43 @@ public class ApiClient
     }
     #endregion
 
-    #region Spaces API
+    #region Channels API
 
-    public async Task<Message> SendMessage(ulong spaceId, Message message)
-        => await MakeSqullApiRequest<Message, Message>(HttpMethod.Post, $"spaces/{spaceId}/messages", message, true);
+    public async Task<Message> SendMessage(ulong channelId, Message message)
+        => await MakeSqullApiRequest<Message, Message>(HttpMethod.Post, $"channels/{channelId}/messages", message, true);
 
-    public async Task AckMessage(ulong spaceId, ulong messageId, MessageAck details)
-        => await MakeSqullApiRequest<MessageAck>(HttpMethod.Post, $"/spaces/{spaceId}/messages/{messageId}/ack", details, true);
+    public async Task AckMessage(ulong channelId, ulong messageId, MessageAck details)
+        => await MakeSqullApiRequest<MessageAck>(HttpMethod.Post, $"channels/{channelId}/messages/{messageId}/ack", details, true);
 
-    public async Task DeleteSpace(ulong spaceId)
-        => await MakeSqullApiRequest(HttpMethod.Delete, $"spaces/{spaceId}", true);
+    public async Task DeleteChannel(ulong channelId)
+        => await MakeSqullApiRequest(HttpMethod.Delete, $"channels/{channelId}", true);
 
-    public async Task DeleteMessage(ulong spaceId, ulong messageId)
-        => await MakeSqullApiRequest(HttpMethod.Delete, $"spaces/{spaceId}/messages/{messageId}", true);
+    public async Task DeleteMessage(ulong channelId, ulong messageId)
+        => await MakeSqullApiRequest(HttpMethod.Delete, $"channels/{channelId}/messages/{messageId}", true);
 
-    public async Task StopTyping(ulong spaceId)
-        => await MakeSqullApiRequest(HttpMethod.Delete, $"spaces/{spaceId}/typing", true);
+    public async Task StopTyping(ulong channelId)
+        => await MakeSqullApiRequest(HttpMethod.Delete, $"channels/{channelId}/typing", true);
 
-    public async Task<Space> GetSpace(ulong spaceId)
-        => await MakeSqullApiRequest<Space>(HttpMethod.Get, $"spaces/{spaceId}", true);
+    public async Task<Channel> GetChannel(ulong channelId)
+        => await MakeSqullApiRequest<Channel>(HttpMethod.Get, $"channels/{channelId}", true);
 
-    public async Task<List<Invite>> GetSpaceInvites(ulong spaceId)
-        => await MakeSqullApiRequest<List<Invite>>(HttpMethod.Get, $"spaces/{spaceId}/invites", true);
+    public async Task<List<Invite>> GetChannelInvites(ulong channelId)
+        => await MakeSqullApiRequest<List<Invite>>(HttpMethod.Get, $"channels/{channelId}/invites", true);
 
-    public async Task<List<Message>> GetSpaceMessages(ulong spaceId)
-        => await MakeSqullApiRequest<List<Message>>(HttpMethod.Get, $"spaces/{spaceId}/messages", true);
+    public async Task<List<Message>> GetChannelMessages(ulong channelId)
+        => await MakeSqullApiRequest<List<Message>>(HttpMethod.Get, $"channels/{channelId}/messages", true);
 
-    public async Task<Message> GetSpaceMessage(ulong spaceId, ulong messageId)
-        => await MakeSqullApiRequest<Message>(HttpMethod.Get, $"spaces/{spaceId}/messages/{messageId}", true);
+    public async Task<Message> GetChannelMessage(ulong channelId, ulong messageId)
+        => await MakeSqullApiRequest<Message>(HttpMethod.Get, $"channels/{channelId}/messages/{messageId}", true);
 
-    //PATCH /v1/spaces/{spaceId}
-    //PATCH /v1/spaces/{spaceId}/messages/{message_id}
+    //PATCH /v1/channels/{channelId}
+    //PATCH /v1/channels/{channelId}/messages/{message_id}
 
-    public async Task CreateInvite(ulong spaceId)
-        => await MakeSqullApiRequest(HttpMethod.Post, $"spaces/{spaceId}/invites", true);
+    public async Task CreateInvite(ulong channelId)
+        => await MakeSqullApiRequest(HttpMethod.Post, $"channels/{channelId}/invites", true);
 
-    public async Task StartTyping(ulong spaceId)
-        => await MakeSqullApiRequest(HttpMethod.Post, $"spaces/{spaceId}/typing", true);
+    public async Task StartTyping(ulong channelId)
+        => await MakeSqullApiRequest(HttpMethod.Post, $"channels/{channelId}/typing", true);
 
     #endregion
 
@@ -187,8 +189,8 @@ public class ApiClient
     public async Task<List<Role>> GetSquadRoles(ulong squadId)
         => await MakeSqullApiRequest<List<Role>>(HttpMethod.Get, $"squads/{squadId}/roles", true);
 
-    public async Task<List<Space>> GetSquadSpaces(ulong squadId)
-        => await MakeSqullApiRequest<List<Space>>(HttpMethod.Get, $"squads/{squadId}/spaces", true);
+    public async Task<List<Channel>> GetSquadChannels(ulong squadId)
+        => await MakeSqullApiRequest<List<Channel>>(HttpMethod.Get, $"squads/{squadId}/channels", true);
 
     //PATCH /v1/squads/{squadId}
     //PATCH /v1/squads/{squadId}/members/{userId}
@@ -199,8 +201,8 @@ public class ApiClient
     public async Task<Role> CreateSquadRole(ulong squadId)
         => await MakeSqullApiRequest<Role>(HttpMethod.Post, $"squads/{squadId}/roles", true);
 
-    public async Task<Space> CreateSquadSpace(ulong squadId)
-        => await MakeSqullApiRequest<Space>(HttpMethod.Post, $"squads/{squadId}/spaces", true);
+    public async Task<Channel> CreateSquadChannel(ulong squadId)
+        => await MakeSqullApiRequest<Channel>(HttpMethod.Post, $"squads/{squadId}/channels", true);
 
     public async Task<SquadProperties> UpdateVanityUrl(ulong squadId, string vanityUrl)
         => await MakeSqullApiRequest<SquadProperties, string>(HttpMethod.Post, $"squads/{squadId}/vanity-url", "{code: \"" + vanityUrl + "\"}", true);

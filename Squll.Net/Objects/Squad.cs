@@ -8,8 +8,8 @@ public class Squad
     public ulong Id { get; set; }
     [JsonProperty("members")]
     public SquadMember[] Members { get; set; }
-    [JsonProperty("spaces")]
-    public Space[] Spaces { get; set; }
+    [JsonProperty("channels")]
+    public Channel[] Channels { get; set; }
     [JsonProperty("properties")]
     public SquadProperties Properties { get; set; }
     [JsonProperty("roles")]

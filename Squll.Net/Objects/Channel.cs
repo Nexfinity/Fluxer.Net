@@ -3,7 +3,7 @@ using Squll.Net.Objects.DataTables;
 
 namespace Squll.Net.Objects;
 
-public class Space
+public class Channel
 {
     [JsonProperty("color")]
     public uint Color { get; set; }
@@ -12,7 +12,7 @@ public class Space
     [JsonProperty("description")]
     public string Description { get; set; }
     [JsonProperty("flags")]
-    public SpaceFlags Flags { get; set; }
+    public ChannelFlags Flags { get; set; }
     [JsonProperty("icon")]
     public string? Icon { get; set; }
     [JsonProperty("id")]
@@ -30,7 +30,7 @@ public class Space
     [JsonProperty("squad_id")]
     public ulong SquadId { get; set; }
     [JsonProperty("type")]
-    public SpaceType Type { get; set; }
+    public ChannelType Type { get; set; }
     [JsonProperty("unicode_emoji")]
     public string UnicodeEmoji { get; set; }
 }

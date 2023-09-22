@@ -32,8 +32,8 @@ public class Message
     public string Nonce { get; set; }
     [JsonProperty("reactions")]
     public object[] Reactions { get; set; }
-    [JsonProperty("space_id")]
-    public ulong SpaceId { get; set; }
+    [JsonProperty("channel_id")]
+    public ulong ChannelId { get; set; }
     [JsonProperty("type")]
     public MessageType Type { get; set; }
     [JsonProperty("updated_at")]
