@@ -8,10 +8,9 @@ Nexfinity takes the security of our software products and services seriously, in
 
 ## Supported Versions
 
-| Version | Supported          |
-| ------- | ------------------ |
-| 1.0.x   | :white_check_mark: |
-| < 1.0   | :x:                |
+> [!WARNING]  
+> Security reports are only excepted for the latest git commit, or the latest version on myget.
+> We have no plans to offer long term support for any version.
 
 ## Reporting a Vulnerability
 
