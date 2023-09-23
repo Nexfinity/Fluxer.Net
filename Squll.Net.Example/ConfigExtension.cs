@@ -27,7 +27,7 @@
 		private static Dictionary<string, string> ParseYaml(string[] lines)
 		{
 			Dictionary<string, string> configValues = new Dictionary<string, string>();
-			string currentKey = null;
+			string currentKey = "";
 
 			foreach (string line in lines)
 			{

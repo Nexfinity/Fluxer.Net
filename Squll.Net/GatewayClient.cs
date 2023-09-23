@@ -6,7 +6,7 @@ using Serilog;
 using Serilog.Core;
 using Squll.Net.Gateway;
 using Squll.Net.Gateway.Data;
-using Squll.Net.Objects.Enums;
+using Squll.Net.Objects.Data;
 using WebSocket4Net;
 namespace Squll.Net;
 

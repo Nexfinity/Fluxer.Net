@@ -3,6 +3,9 @@ using Serilog.Core;
 using Serilog.Sinks.SystemConsole.Themes;
 using Squll.Net;
 using Squll.Net.Example;
+using Squll.Net.Objects;
+using Squll.Net.Objects.Data;
+using Squll.Net.Gateway;
 using Squll.Net.Gateway.Data;
 
 //Configure logger to log to console and file
@@ -31,7 +34,7 @@ var gateway = new GatewayClient(config["Token"], new()
     {
         "PRESENCE_UPDATE"
     },
-    Presence = new PresenceUpdateGatewayData(Squll.Net.Objects.Enums.Status.Online) //Set the default presence to online
+    Presence = new PresenceUpdateGatewayData(Status.Online) //Set the default presence to online
 });
 
 //Connect to the gateway
@@ -49,7 +52,7 @@ gateway.MessageCreate += async x =>
     if (x.Content == "/ping") //Listen for the /ping command
     {
         //Respond with our own message
-        await api.SendMessage(x.channelId, new()
+        await api.SendMessage(x.ChannelId, new()
         {
             Content = "pong ;P"
         });

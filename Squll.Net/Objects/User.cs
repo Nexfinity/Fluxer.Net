@@ -14,7 +14,7 @@ public class User
     public string Username { get; set; }
 
     [JsonProperty("discriminator")]
-    public string Discriminator { get; set; }
+    public string? Discriminator { get; set; }
 
     [JsonProperty("type")]
     public UserType Type { get; set; }

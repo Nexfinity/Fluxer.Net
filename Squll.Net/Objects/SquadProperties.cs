@@ -54,5 +54,5 @@ public class SquadProperties
     public SystemChannelFlags SystemChannelFlags { get; set; }
 
     [JsonProperty("premium_since")]
-    public DateTime PremiumSince { get; set; }
+    public DateTime? PremiumSince { get; set; }
 }
