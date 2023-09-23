@@ -1,4 +1,4 @@
-﻿namespace Squll.Net.Objects.Enums
+﻿namespace Squll.Net.Objects.Data
 {
 	public enum Status
 	{

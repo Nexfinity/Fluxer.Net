@@ -1,6 +1,6 @@
-namespace Squll.Net.Objects.DataTables;
+namespace Squll.Net.Objects.Data;
 
-public enum UserPublicFlags
+public enum UserFlags
 {
     None = 0,
     Staff = 1 << 0,

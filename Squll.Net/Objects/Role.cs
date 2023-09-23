@@ -1,5 +1,5 @@
 using Newtonsoft.Json;
-using Squll.Net.Objects.DataTables;
+using Squll.Net.Objects.Data;
 
 namespace Squll.Net.Objects;
 

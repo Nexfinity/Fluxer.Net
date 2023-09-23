@@ -1,4 +1,4 @@
-namespace Squll.Net.Objects.DataTables;
+namespace Squll.Net.Objects.Data;
 
 [Flags]
 public enum Permissions
