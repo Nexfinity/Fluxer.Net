@@ -9,7 +9,7 @@ Nexfinity takes the security of our software products and services seriously, in
 ## Supported Versions
 
 > [!WARNING]  
-> Security reports are only excepted for the latest git commit, or the latest version on myget.
+> Security reports are only accepted for the latest git commit, or the latest version on myget.
 > We have no plans to offer long term support for any version.
 
 ## Reporting a Vulnerability
