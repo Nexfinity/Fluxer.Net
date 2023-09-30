@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿#undef NOPE
+using System.Diagnostics;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using Newtonsoft.Json;
@@ -7,7 +8,7 @@ using Serilog.Core;
 using Squll.Net.Gateway;
 using Squll.Net.Gateway.Data;
 using Squll.Net.Objects.Data;
-using WebSocket4Net;
+using Websocket.Client;
 namespace Squll.Net;
 
 public partial class GatewayClient
@@ -16,14 +17,13 @@ public partial class GatewayClient
     public string Token { get; set; }
 
     private readonly SqullConfig _config;
-    private WebSocket _gateway;
+    private WebsocketClient _gateway;
     private readonly Stopwatch _gatewayDuration = new();
     private int _sequence = 0;
     private bool _heartbeatStarted = false;
     private int _heartbeatInterval = 0;
     private DateTime _lastGatewayReEstablishAttempt = DateTime.Now;
     private string _sessionId = "";
-    private bool _deferDisconnect = false;
     private Logger _logger;
 
     // build error from generated regex
@@ -51,15 +51,11 @@ public partial class GatewayClient
         // if (_gateway is not null && _gateway.State == WebSocketState.Open)
         //     await _gateway.CloseAsync();
 
-        _gateway = new WebSocket(_config.SqullGatewayUrl)
-        {
-            EnableAutoSendPing = false,
-            // NoDelay = true,
-        };
-        _gateway.Closed += GatewayClosedHandler;
-        _gateway.MessageReceived += GatewayMessageHandler;
+        _gateway = new WebsocketClient(new(_config.SqullGatewayUrl));
+        _gateway.MessageReceived.Subscribe(x => GatewayMessageHandler(x.Text));
+        _gateway.ReconnectionHappened.Subscribe(x => ReEstablishGatewayConnection(x));
         Stopwatch.StartNew();
-        await _gateway.OpenAsync();
+        await _gateway.Start();
 
         var login = new GatewayPacket
         {
@@ -92,13 +88,13 @@ public partial class GatewayClient
         }
     }
 
-    private void GatewayMessageHandler(object? sender, MessageReceivedEventArgs e)
+    private void GatewayMessageHandler(string message)
     {
         // try deserializing the packet, fallback to regex
-        _logger.Verbose("Received raw gateway message {Message}", e.Message);
+        _logger.Verbose("Received raw gateway message {Message}", message);
         try
         {
-            var packet = JsonConvert.DeserializeObject<GatewayPacket>(e.Message);
+            var packet = JsonConvert.DeserializeObject<GatewayPacket>(message);
             _sequence = packet.Sequence ?? _sequence;
             _logger.Debug("Deserialized gateway packet {@Packet}", packet);
             switch (packet.OpCode)
@@ -126,13 +122,15 @@ public partial class GatewayClient
         }
         catch
         {
-            var result = PacketSRegex.Match(e.Message);
+            var result = PacketSRegex.Match(message);
             _sequence = Convert.ToInt32(result.Value);
             _logger.Warning("Failed to parse a gateway event. This can happen when the OpCode is unsupported or a dispatch failed to parse.");
         }
 
     }
 
+    // old closed handler, kept in case it's needed someday 
+#if NOPE
     private void GatewayClosedHandler(object? sender, EventArgs e)
     {
         if (_deferDisconnect)
@@ -165,7 +163,7 @@ public partial class GatewayClient
             ConnectAsync().GetAwaiter().GetResult();
         }
     }
-
+#endif
     private void HandleDispatch(GatewayPacket p)
     {
         switch (p.Dispatch)
@@ -227,13 +225,13 @@ public partial class GatewayClient
             case "TYPING_STOP":
                 TypingStop?.Invoke(p.Data as TypingGatewayData);
                 return;
-            case "ROLE_CREATE":
+            case "SQUAD_ROLE_CREATE":
                 RoleCreate?.Invoke(p.Data as RoleGatewayData);
                 return;
-            case "ROLE_UPDATE":
+            case "SQUAD_ROLE_UPDATE":
                 RoleUpdate?.Invoke(p.Data as RoleGatewayData);
                 return;
-            case "ROLE_DELETE":
+            case "SQUAD_ROLE_DELETE":
                 RoleDelete?.Invoke(p.Data as EntityRemovedGatewayData);
                 return;
             default:
@@ -254,8 +252,16 @@ public partial class GatewayClient
         _heartbeatStarted = true;
     }
 
-    private void ReEstablishGatewayConnection()
+    private void ReEstablishGatewayConnection(ReconnectionInfo? info = null)
     {
+        if (info is not null)
+            if (info.Type is ReconnectionType.Error or ReconnectionType.ByServer)
+                Log.Error("Reconnected with info {info}", info);
+            else
+                Log.Information("Reconnected with info {info}", info);
+        else
+            Log.Warning("Reconnected without connection info");
+
         if (_lastGatewayReEstablishAttempt.AddSeconds(_config.ReconnectAttemptDelay) > DateTime.Now)
         {
             _logger.Warning("Cannot reestablish more than once every {Timeout} seconds. Blocking until the time expires.", _config.ReconnectAttemptDelay);
@@ -311,6 +317,7 @@ public partial class GatewayClient
         };
         SendGatewayPacket(packet);
     }
+
 
     #region events
     // non-dispatch events

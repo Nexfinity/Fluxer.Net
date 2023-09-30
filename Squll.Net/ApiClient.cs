@@ -235,5 +235,8 @@ public class ApiClient
 
     //PATCH /v1/users/@me/profile
 
+    public async Task<LoginResponse> Login(LoginRequest data)
+        => await MakeSqullApiRequest<LoginResponse, LoginRequest>(HttpMethod.Post, "auth/login", data, true);
+
     #endregion
 }

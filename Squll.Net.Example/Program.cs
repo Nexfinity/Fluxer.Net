@@ -12,7 +12,7 @@ using Squll.Net.Gateway.Data;
 Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Verbose()
                 .WriteTo.Console(theme: AnsiConsoleTheme.Code)
-                .WriteTo.File($"output-{DateTime.Now:yyyy-dd-mm:hh-mm-ss}.log", rollingInterval: RollingInterval.Infinite, rollOnFileSizeLimit: true)
+                .WriteTo.File($"output-{DateTime.Now:yyyy-MM-dd:hh-mm-ss}.log", rollingInterval: RollingInterval.Infinite, rollOnFileSizeLimit: true)
                 .CreateLogger();
 
 //Load configuration file values

@@ -19,7 +19,7 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="serilog" Version="3.0.1" />
     <PackageReference Include="serilog.sinks.console" Version="4.1.0" />
-    <PackageReference Include="websocket4net" Version="0.15.2" />
+    <PackageReference Include="Websocket.Client" Version="5.0" />
   </ItemGroup>
 
 
