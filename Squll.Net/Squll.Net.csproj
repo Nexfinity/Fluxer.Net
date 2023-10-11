@@ -4,9 +4,8 @@
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>annotations</Nullable>
-    <Version>0.3.0</Version>
+    <Version>0.4.0</Version>
     <PackageId>Nexfinity.Squll.Net.Alpha</PackageId>
-    <Version>0.3.0</Version>
     <Authors>CottageDwellingCat, MrCakeSlayer</Authors>
     <Company>Nexfinity</Company>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
