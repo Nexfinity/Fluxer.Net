@@ -159,8 +159,12 @@ public class ApiClient
     public async Task<Message> GetChannelMessage(ulong channelId, ulong messageId)
         => await MakeSqullApiRequestR<Message>(HttpMethod.Get, $"channels/{channelId}/messages/{messageId}", true);
 
-    //PATCH /v1/channels/{channelId}
-    //PATCH /v1/channels/{channelId}/messages/{message_id}
+
+    public async Task<Channel> PatchChannel(ulong channelId, Channel channel)
+        => await MakeSqullApiRequestRS<Channel, Channel>(HttpMethod.Patch, $"channels/{channelId}", channel, true);
+
+    public async Task<Message> PatchChannelMessage(ulong channelId, ulong messageId, Message message)
+        => await MakeSqullApiRequestRS<Message, Message>(HttpMethod.Patch, $"channels/{channelId}/messages/{messageId}", message, true);
 
     public async Task CreateInvite(ulong channelId)
         => await MakeSqullApiRequest(HttpMethod.Post, $"channels/{channelId}/invites", true);
@@ -196,7 +200,9 @@ public class ApiClient
     public async Task<List<Channel>> GetSquadChannels(ulong squadId)
         => await MakeSqullApiRequestR<List<Channel>>(HttpMethod.Get, $"squads/{squadId}/channels", true);
 
-    //PATCH /v1/squads/{squadId}
+    public async Task<SquadProperties> PatchSquad(ulong squadId, SquadProperties squad)
+        => await MakeSqullApiRequestRS<SquadProperties, SquadProperties>(HttpMethod.Patch, $"squads/{squadId}", squad, true);
+
     //PATCH /v1/squads/{squadId}/members/{userId}
     //PATCH /v1/squads/{squadId}/members/@me
     public async Task<SquadProperties> CreateSquad()
@@ -237,7 +243,11 @@ public class ApiClient
     public async Task<List<SquadProperties>> GetCurrentUserSquads()
         => await MakeSqullApiRequestR<List<SquadProperties>>(HttpMethod.Get, $"users/@me/squads", true);
 
-    //PATCH /v1/users/@me/profile
+    public async Task<User> PatchCurrentUser(User user)
+        => await MakeSqullApiRequestRS<User, User>(HttpMethod.Patch, $"users/@me", user, true);
+
+    public async Task<UserProfile> PatchCurrentUserProfile(UserProfile profile)
+        => await MakeSqullApiRequestRS<UserProfile, UserProfile>(HttpMethod.Patch, $"users/@me/profile", profile, true);
 
     public async Task<LoginResponse> Login(LoginRequest data)
         => await MakeSqullApiRequestRS<LoginResponse, LoginRequest>(HttpMethod.Post, "auth/login", data, true);
