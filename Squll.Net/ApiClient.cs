@@ -38,7 +38,7 @@ public class ApiClient
         Log.Verbose("Loaded with config {@Config}", _config);
     }
 
-    public async Task<TResponse> MakeSqullApiRequest<TResponse, TSend>(HttpMethod method, string route, TSend data, bool throwOnNonSuccess = false)
+    public async Task<TResponse> MakeSqullApiRequestRS<TResponse, TSend>(HttpMethod method, string route, TSend data, bool throwOnNonSuccess = false, bool authorize = true)
     {
         Log.Verbose("Sending {@Data} to {Route}", data, route);
         var req = new HttpRequestMessage()
@@ -50,7 +50,8 @@ public class ApiClient
             }), new MediaTypeHeaderValue("application/json")),
             RequestUri = new(_config.RealApiBaseUrl + route)
         };
-        req.Headers.Add("Authorization", Token);
+        if (authorize)
+            req.Headers.Add("Authorization", Token);
         var result = await HttpClient.SendAsync(req);
 
         Log.Debug("Made {Method} request to {Route}", method, route);
@@ -63,7 +64,7 @@ public class ApiClient
         return JsonConvert.DeserializeObject<TResponse>(resp);
     }
 
-    public async Task<HttpStatusCode> MakeSqullApiRequest<TSend>(HttpMethod method, string route, TSend data, bool throwOnNonSuccess = false)
+    public async Task<HttpStatusCode> MakeSqullApiRequestS<TSend>(HttpMethod method, string route, TSend data, bool throwOnNonSuccess = false, bool authorize = true)
     {
         Log.Verbose("Sending {@Data} to {Route}", data, route);
         var req = new HttpRequestMessage()
@@ -75,7 +76,8 @@ public class ApiClient
             }), new MediaTypeHeaderValue("application/json")),
             RequestUri = new(_config.RealApiBaseUrl + route)
         };
-        req.Headers.Add("Authorization", Token);
+        if (authorize)
+            req.Headers.Add("Authorization", Token);
         var result = await HttpClient.SendAsync(req);
 
         Log.Debug("Made {Method} request to {Route}", method, route);
@@ -88,14 +90,15 @@ public class ApiClient
         return result.StatusCode;
     }
 
-    public async Task<TResponse> MakeSqullApiRequest<TResponse>(HttpMethod method, string route, bool throwOnNonSuccess = false)
+    public async Task<TResponse> MakeSqullApiRequestR<TResponse>(HttpMethod method, string route, bool throwOnNonSuccess = false, bool authorize = true)
     {
         var req = new HttpRequestMessage()
         {
             Method = method,
             RequestUri = new(_config.RealApiBaseUrl + route)
         };
-        req.Headers.Add("Authorization", Token);
+        if (authorize)
+            req.Headers.Add("Authorization", Token);
         var result = await HttpClient.SendAsync(req);
 
         Log.Debug("Made {Method} request to {Route}", method, route);
@@ -108,14 +111,15 @@ public class ApiClient
         return JsonConvert.DeserializeObject<TResponse>(resp);
     }
 
-    public async Task<HttpStatusCode> MakeSqullApiRequest(HttpMethod method, string route, bool throwOnNonSuccess = false)
+    public async Task<HttpStatusCode> MakeSqullApiRequest(HttpMethod method, string route, bool throwOnNonSuccess = false, bool authorize = true)
     {
         var req = new HttpRequestMessage()
         {
             Method = method,
             RequestUri = new(_config.RealApiBaseUrl + route)
         };
-        req.Headers.Add("Authorization", Token);
+        if (authorize)
+            req.Headers.Add("Authorization", Token);
         var result = await HttpClient.SendAsync(req);
 
         Log.Debug("Made {Method} request to {Route} with response code {Code}", method, route, result.StatusCode);
@@ -129,10 +133,10 @@ public class ApiClient
     #region Channels API
 
     public async Task<Message> SendMessage(ulong channelId, Message message)
-        => await MakeSqullApiRequest<Message, Message>(HttpMethod.Post, $"channels/{channelId}/messages", message, true);
+        => await MakeSqullApiRequestRS<Message, Message>(HttpMethod.Post, $"channels/{channelId}/messages", message, true);
 
     public async Task AckMessage(ulong channelId, ulong messageId, MessageAck details)
-        => await MakeSqullApiRequest<MessageAck>(HttpMethod.Post, $"channels/{channelId}/messages/{messageId}/ack", details, true);
+        => await MakeSqullApiRequestS<MessageAck>(HttpMethod.Post, $"channels/{channelId}/messages/{messageId}/ack", details, true);
 
     public async Task DeleteChannel(ulong channelId)
         => await MakeSqullApiRequest(HttpMethod.Delete, $"channels/{channelId}", true);
@@ -144,16 +148,16 @@ public class ApiClient
         => await MakeSqullApiRequest(HttpMethod.Delete, $"channels/{channelId}/typing", true);
 
     public async Task<Channel> GetChannel(ulong channelId)
-        => await MakeSqullApiRequest<Channel>(HttpMethod.Get, $"channels/{channelId}", true);
+        => await MakeSqullApiRequestR<Channel>(HttpMethod.Get, $"channels/{channelId}", true);
 
     public async Task<List<Invite>> GetChannelInvites(ulong channelId)
-        => await MakeSqullApiRequest<List<Invite>>(HttpMethod.Get, $"channels/{channelId}/invites", true);
+        => await MakeSqullApiRequestR<List<Invite>>(HttpMethod.Get, $"channels/{channelId}/invites", true);
 
     public async Task<List<Message>> GetChannelMessages(ulong channelId)
-        => await MakeSqullApiRequest<List<Message>>(HttpMethod.Get, $"channels/{channelId}/messages", true);
+        => await MakeSqullApiRequestR<List<Message>>(HttpMethod.Get, $"channels/{channelId}/messages", true);
 
     public async Task<Message> GetChannelMessage(ulong channelId, ulong messageId)
-        => await MakeSqullApiRequest<Message>(HttpMethod.Get, $"channels/{channelId}/messages/{messageId}", true);
+        => await MakeSqullApiRequestR<Message>(HttpMethod.Get, $"channels/{channelId}/messages/{messageId}", true);
 
     //PATCH /v1/channels/{channelId}
     //PATCH /v1/channels/{channelId}/messages/{message_id}
@@ -169,7 +173,7 @@ public class ApiClient
     #region Squads API
 
     public async Task<SquadProperties> GetSquad(ulong squadId)
-        => await MakeSqullApiRequest<SquadProperties>(HttpMethod.Get, $"squads/{squadId}", true);
+        => await MakeSqullApiRequestR<SquadProperties>(HttpMethod.Get, $"squads/{squadId}", true);
 
     public async Task DeleteSquad(ulong squadId)
         => await MakeSqullApiRequest(HttpMethod.Delete, $"squads/{squadId}", true);
@@ -178,65 +182,70 @@ public class ApiClient
         => await MakeSqullApiRequest(HttpMethod.Delete, $"squads/{squadId}/members/{userId}", true);
 
     public async Task<List<Invite>> GetSquadInvites(ulong squadId)
-        => await MakeSqullApiRequest<List<Invite>>(HttpMethod.Get, $"squads/{squadId}/invites", true);
+        => await MakeSqullApiRequestR<List<Invite>>(HttpMethod.Get, $"squads/{squadId}/invites", true);
 
     public async Task<List<User>> GetSquadUsers(ulong squadId)
-        => await MakeSqullApiRequest<List<User>>(HttpMethod.Get, $"squads/{squadId}/members", true);
+        => await MakeSqullApiRequestR<List<User>>(HttpMethod.Get, $"squads/{squadId}/members", true);
 
     public async Task<User> GetSquadUser(ulong squadId, ulong userId)
-        => await MakeSqullApiRequest<User>(HttpMethod.Get, $"squads/{squadId}/members/{userId}", true);
+        => await MakeSqullApiRequestR<User>(HttpMethod.Get, $"squads/{squadId}/members/{userId}", true);
 
     public async Task<List<Role>> GetSquadRoles(ulong squadId)
-        => await MakeSqullApiRequest<List<Role>>(HttpMethod.Get, $"squads/{squadId}/roles", true);
+        => await MakeSqullApiRequestR<List<Role>>(HttpMethod.Get, $"squads/{squadId}/roles", true);
 
     public async Task<List<Channel>> GetSquadChannels(ulong squadId)
-        => await MakeSqullApiRequest<List<Channel>>(HttpMethod.Get, $"squads/{squadId}/channels", true);
+        => await MakeSqullApiRequestR<List<Channel>>(HttpMethod.Get, $"squads/{squadId}/channels", true);
 
     //PATCH /v1/squads/{squadId}
     //PATCH /v1/squads/{squadId}/members/{userId}
     //PATCH /v1/squads/{squadId}/members/@me
     public async Task<SquadProperties> CreateSquad()
-        => await MakeSqullApiRequest<SquadProperties>(HttpMethod.Post, $"squads", true);
+        => await MakeSqullApiRequestR<SquadProperties>(HttpMethod.Post, $"squads", true);
 
     public async Task<Role> CreateSquadRole(ulong squadId)
-        => await MakeSqullApiRequest<Role>(HttpMethod.Post, $"squads/{squadId}/roles", true);
+        => await MakeSqullApiRequestR<Role>(HttpMethod.Post, $"squads/{squadId}/roles", true);
 
     public async Task<Channel> CreateSquadChannel(ulong squadId)
-        => await MakeSqullApiRequest<Channel>(HttpMethod.Post, $"squads/{squadId}/channels", true);
+        => await MakeSqullApiRequestR<Channel>(HttpMethod.Post, $"squads/{squadId}/channels", true);
 
     public async Task<SquadProperties> UpdateVanityUrl(ulong squadId, string vanityUrl)
-        => await MakeSqullApiRequest<SquadProperties, string>(HttpMethod.Post, $"squads/{squadId}/vanity-url", "{code: \"" + vanityUrl + "\"}", true);
+        => await MakeSqullApiRequestRS<SquadProperties, string>(HttpMethod.Post, $"squads/{squadId}/vanity-url", "{code: \"" + vanityUrl + "\"}", true);
 
     #endregion
 
     #region Invites API
 
     public async Task<SquadProperties> JoinSquad(string invite)
-        => await MakeSqullApiRequest<SquadProperties>(HttpMethod.Post, $"invites/{invite}", true);
+        => await MakeSqullApiRequestR<SquadProperties>(HttpMethod.Post, $"invites/{invite}", true);
 
     #endregion
 
     #region Users API
 
     public async Task LeaveSquad(ulong squadId)
-        => await MakeSqullApiRequest(HttpMethod.Delete, $"users/@me/squads/{squadId}", true);
+        => await MakeSqullApiRequest(HttpMethod.Delete, $"users/@me/squads/{squadId}", true, true);
 
     public async Task<User> GetUser(ulong userId)
-        => await MakeSqullApiRequest<User>(HttpMethod.Get, $"users/{userId}", true);
+        => await MakeSqullApiRequestR<User>(HttpMethod.Get, $"users/{userId}", true);
 
     public async Task<User> GetCurrentUser()
-        => await MakeSqullApiRequest<User>(HttpMethod.Get, $"users/@me", true);
+        => await MakeSqullApiRequestR<User>(HttpMethod.Get, $"users/@me", true);
 
     public async Task<UserSettings> GetCurrentUserSettings()
-        => await MakeSqullApiRequest<UserSettings>(HttpMethod.Get, $"users/@me/settings", true);
+        => await MakeSqullApiRequestR<UserSettings>(HttpMethod.Get, $"users/@me/settings", true);
 
     public async Task<List<SquadProperties>> GetCurrentUserSquads()
-        => await MakeSqullApiRequest<List<SquadProperties>>(HttpMethod.Get, $"users/@me/squads", true);
+        => await MakeSqullApiRequestR<List<SquadProperties>>(HttpMethod.Get, $"users/@me/squads", true);
 
     //PATCH /v1/users/@me/profile
 
     public async Task<LoginResponse> Login(LoginRequest data)
-        => await MakeSqullApiRequest<LoginResponse, LoginRequest>(HttpMethod.Post, "auth/login", data, true);
+        => await MakeSqullApiRequestRS<LoginResponse, LoginRequest>(HttpMethod.Post, "auth/login", data, true);
 
+    #endregion
+
+    #region Tokens API
+    public async Task RevokeToken(TokenRevokeRequest data)
+        => await MakeSqullApiRequestS<TokenRevokeRequest>(HttpMethod.Post, "tokens/revoke", data, true);
     #endregion
 }

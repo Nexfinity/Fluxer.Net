@@ -7,5 +7,7 @@ public enum ChannelFlags
     /// <summary>
     ///     NOTE: this flag will probably be removed.
     /// </summary>
-    OwnerOnlyDeleteMe = 1 << 1
+    OwnerOnlyDeleteMe = 1 << 1,
+    ResourceChannel = 1 << 2,
+    ChannelDeleteLocked = 1 << 3,
 }

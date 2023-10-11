@@ -41,10 +41,16 @@ var gateway = new GatewayClient(config["Token"], new()
 await gateway.ConnectAsync();
 
 //connect to the API (This allows you to create, modify and delete spaces, squads, users, etc)
-var api = new ApiClient(config["Token"], new()
+var api = new ApiClient(config[key: "Token"], new()
 {
     Serilog = Log.Logger as Logger
 });
+
+if (args.Length > 0 && args[0] == "--revoke") //If the first argument is "--revoke" then revoke the token and exit
+{
+    await api.RevokeToken(new() { Token = config[key: "Token"] });
+    return;
+}
 
 //Handle the MESSAGE_CREATE event (Allows us to receive and process commands)
 gateway.MessageCreate += async x =>

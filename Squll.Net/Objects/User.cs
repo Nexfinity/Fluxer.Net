@@ -28,8 +28,8 @@ public class User
     [JsonProperty("avatar_decoration")]
     public object? AvatarDecoration { get; set; }
 
-    [JsonProperty("flags")]
-    public UserFlags Flags { get; set; }
+    [JsonProperty("public_flags")]
+    public UserFlags PublicFlags { get; set; }
 
     [JsonProperty("email")]
     public string? Email { get; set; }
