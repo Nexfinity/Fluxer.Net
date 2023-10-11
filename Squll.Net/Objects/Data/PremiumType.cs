@@ -1,6 +1,6 @@
-namespace Squll.Net.Objects;
+namespace Squll.Net.Objects.Data;
 
-public enum UserPremiumType
+public enum PremiumType
 {
     None = 0,
     Silver = 1,

@@ -1,136 +1,69 @@
-﻿using System;
-using Eris.Serilog.Formatting.Json;
-using Serilog;
+﻿using Serilog;
+using Serilog.Core;
 using Serilog.Sinks.SystemConsole.Themes;
 using Squll.Net;
-using Squll.Net.Extensions;
+using Squll.Net.Example;
 using Squll.Net.Objects;
+using Squll.Net.Objects.Data;
+using Squll.Net.Gateway;
+using Squll.Net.Gateway.Data;
 
-var v2Client = new SqullConnection("", new()
-{
-    ReconnectAttemptDelay = 2,
-    SerilogConfig = new LoggerConfiguration()
+//Configure logger to log to console and file
+Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Verbose()
                 .WriteTo.Console(theme: AnsiConsoleTheme.Code)
-                .WriteTo.File($"output-{DateTime.Now:yyyy-dd-mm:hh-mm-ss}.log", rollingInterval: RollingInterval.Infinite, rollOnFileSizeLimit: true)
-});
-// await v2Client.LeaveSquad(72070065598038016);
-await v2Client.ConnectAsync();
+                .WriteTo.File($"output-{DateTime.Now:yyyy-MM-dd:hh-mm-ss}.log", rollingInterval: RollingInterval.Infinite, rollOnFileSizeLimit: true)
+                .CreateLogger();
 
-v2Client.MessageCreate += async x =>
+//Load configuration file values
+var config = ConfigExtension.LoadConfig();
+if (config == null)
 {
-    if (x.Content == "/ping")
-        await v2Client.SendMessage(x.SpaceId, new()
+    Log.Error("YAML file not found.");
+    return;
+}
+
+Log.Debug("Config file loaded.");
+
+//Setup gateway connection (This receives events such as MESSAGE_CREATE)
+var gateway = new GatewayClient(config["Token"], new()
+{
+    ReconnectAttemptDelay = 2,
+    Serilog = Log.Logger as Logger,
+    IgnoredGatewayEvents = new() //Ignore specific events we don't plan to use
+    {
+        "PRESENCE_UPDATE"
+    },
+    Presence = new PresenceUpdateGatewayData(Status.Online) //Set the default presence to online
+});
+
+//Connect to the gateway
+await gateway.ConnectAsync();
+
+//connect to the API (This allows you to create, modify and delete spaces, squads, users, etc)
+var api = new ApiClient(config[key: "Token"], new()
+{
+    Serilog = Log.Logger as Logger
+});
+
+if (args.Length > 0 && args[0] == "--revoke") //If the first argument is "--revoke" then revoke the token and exit
+{
+    await api.RevokeToken(new() { Token = config[key: "Token"] });
+    return;
+}
+
+//Handle the MESSAGE_CREATE event (Allows us to receive and process commands)
+gateway.MessageCreate += async x =>
+{
+    if (x.Content == "/ping") //Listen for the /ping command
+    {
+        //Respond with our own message
+        await api.SendMessage(x.ChannelId, new()
         {
-            Content = "pong ;P",
-            // MentionUsers = new ulong[1] { x.AuthorId }
+            Content = "pong ;P"
         });
+    }
 };
 
-void spaceAction(Space space)
- => Console.WriteLine(space.Id);
-
-v2Client.SpaceCreate += spaceAction;
-v2Client.SpaceUpdate += spaceAction;
-await Task.Delay(1000);
-v2Client.SetStatus("dnd");
-Console.WriteLine((await v2Client.GetSquad(71918911678676992)).Name);
+//Keep the bot running
 await Task.Delay(-1);
-
-
-
-// var client = new SqullConnection("**redacted**");
-// Squad[] squads = Array.Empty<Squad>();
-// client.Ready += x =>
-// {
-//     squads = x.Squads;
-// };
-// client.MessageCreated += async x =>
-// {
-//     Console.ForegroundColor = ConsoleColor.Green;
-//     Console.WriteLine($"{x.Author.DisplayName}#{x.Author.Discriminator}: {x.Content}");
-
-//     if (x.Content.StartsWith("/"))
-//     {
-// #pragma warning disable CS8509
-//         var command = x.Content[1..].Split(' ').First();
-//         try
-//         {
-//             await (command switch
-//             {
-//                 "say" => Say(x),
-//                 "join" => Join(x),
-//                 "help" => Help(x),
-//                 "dev-status" => Status(x),
-//             });
-//         }
-//         catch (SqullApiException ex)
-//         {
-//             await client.SendMessage(x.SpaceId, new()
-//             {
-//                 Content = $"# Error\n\n{ex.Message}\n\n```\n{ex.SqullData}\n```",
-//                 Nonce = $"ex"
-//             });
-//         }
-//         catch (Exception ex)
-//         {
-//             await client.SendMessage(x.SpaceId, new()
-//             {
-//                 Content = $"# Error\n\n{ex.Message}\n\n",
-//                 Nonce = $"ex"
-//             });
-//         }
-
-// #pragma warning restore CS8509
-//     }
-// };
-
-// async Task Say(Message msg)
-// {
-//     var toSend = msg.Content[4..];
-//     await client!.SendMessage(msg.SpaceId, new()
-//     {
-//         Content = toSend,
-//         Nonce = $"c:1:{msg.Id}"
-//     });
-// }
-
-// async Task Join(Message msg)
-// {
-//     var invite = msg.Content[5..].Trim();
-//     await client!.JoinSquad(invite);
-//     await client.SendMessage(msg.SpaceId, new()
-//     {
-//         Content = "Joined the squad!",
-//         Nonce = $"c:2:{msg.Id}"
-//     });
-// }
-
-// async Task Help(Message msg)
-// {
-//     await client!.SendMessage(msg.SpaceId, new()
-//     {
-//         Content = File.ReadAllText("Help.md"),
-//         Nonce = $"c:3:{msg.Id}"
-//     });
-// }
-
-// async Task Status(Message msg)
-// {
-//     if (msg.Author.Id is not 72076505658228736 or 72068936915025920)
-//         throw new AccessViolationException("You are not the bots developer.");
-//     client!.SetStatus(msg.Content[11..].Trim());
-//     await client!.SendMessage(msg.SpaceId, new()
-//     {
-//         Content = $"set status to `{msg.Content[11..].Trim()}`",
-//         Nonce = $"c:3:{msg.Id}"
-//     });
-// }
-
-
-// await client.ConnectToGateway();
-
-// var squad = await client.GetSquad(72078685781950464);
-// Console.WriteLine(squad.Name);
-
-// await Task.Delay(-1);

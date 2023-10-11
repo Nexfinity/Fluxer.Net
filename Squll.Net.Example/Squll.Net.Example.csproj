@@ -12,12 +12,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Update="Help.md">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Eris.Serilog.Formatting.Json" Version="1.0.0" />
     <PackageReference Include="serilog.sinks.file" Version="5.0.0" />
   </ItemGroup>

@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.002.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Squll.Net", "Squll.Net\Squll.Net.csproj", "{99804E8F-C2CD-4A1D-8942-B6154EDBB607}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Squll.Net.Example", "Squll.Net.Example\Squll.Net.Example.csproj", "{3C42703F-86B8-4D0E-9422-E83FFB246E94}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{99804E8F-C2CD-4A1D-8942-B6154EDBB607}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99804E8F-C2CD-4A1D-8942-B6154EDBB607}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99804E8F-C2CD-4A1D-8942-B6154EDBB607}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99804E8F-C2CD-4A1D-8942-B6154EDBB607}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C42703F-86B8-4D0E-9422-E83FFB246E94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C42703F-86B8-4D0E-9422-E83FFB246E94}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C42703F-86B8-4D0E-9422-E83FFB246E94}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C42703F-86B8-4D0E-9422-E83FFB246E94}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0A3FF62A-D1F0-44A6-A1F1-7850A31BD487}
+	EndGlobalSection
+EndGlobal

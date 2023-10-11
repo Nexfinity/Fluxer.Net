@@ -4,14 +4,22 @@
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>annotations</Nullable>
-    <Version>0.1.0</Version>
+    <Version>0.4.0</Version>
+    <PackageId>Nexfinity.Squll.Net.Alpha</PackageId>
+    <Authors>CottageDwellingCat, MrCakeSlayer</Authors>
+    <Company>Nexfinity</Company>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <DebugSymbols>true</DebugSymbols>
+    <EmbedAllSources>true</EmbedAllSources>
+    <DebugType>portable</DebugType>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="serilog" Version="3.0.1" />
     <PackageReference Include="serilog.sinks.console" Version="4.1.0" />
-    <PackageReference Include="websocket4net" Version="0.15.2" />
+    <PackageReference Include="Websocket.Client" Version="5.0" />
   </ItemGroup>
+
 
 </Project>

@@ -2,5 +2,6 @@
     "cSpell.words": [
         "Serilog",
         "Squll"
-    ]
+    ],
+    "dotnet.defaultSolution": "Squll.Net.sln"
 }

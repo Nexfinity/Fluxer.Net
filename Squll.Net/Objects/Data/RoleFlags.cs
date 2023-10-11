@@ -1,4 +1,4 @@
-namespace Squll.Net.Objects;
+namespace Squll.Net.Objects.Data;
 
 public enum RoleFlags
 {
@@ -6,6 +6,5 @@ public enum RoleFlags
     Hoiseted = 1 << 0,
     Managed = 1 << 1,
     SelfAssignable = 1 << 2,
-    MfaRequired = 1 << 3,
-    AgeVerifiedAdult = 1 << 4,
+    MfaRequired = 1 << 3
 }

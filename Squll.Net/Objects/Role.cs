@@ -1,4 +1,5 @@
 using Newtonsoft.Json;
+using Squll.Net.Objects.Data;
 
 namespace Squll.Net.Objects;
 
@@ -19,7 +20,7 @@ public class Role
     [JsonProperty("name")]
     public string Name { get; set; }
     [JsonProperty("permissions")]
-    public Permission[] Permissions { get; set; }
+    public Permissions Permissions { get; set; }
     [JsonProperty("position")]
     public int Position { get; set; }
     [JsonProperty("squad_id")]
