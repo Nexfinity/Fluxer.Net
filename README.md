@@ -22,7 +22,7 @@ add the following to the `<PropertyGroup>` tag that contains your app's configur
 ```
 then reference our package in the `<ItemGroup>` that contains your all of your `<PackageReference ... />` tags
 ```xml
-<PackageReference Include="Nexfinity.Squll.Net.Alpha" Version="0.3.0" />
+<PackageReference Include="Nexfinity.Squll.Net.Alpha" Version="0.4.0" />
 ```
 
 ## 🗃️ Versioning Guarantees
