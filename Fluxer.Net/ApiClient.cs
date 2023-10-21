@@ -133,19 +133,19 @@ public class ApiClient
 
     #region Channels API
 
-    public async Task<Message> SendMessage(ulong channelId, Message message)
+    public async Task<Message> PostChannelMessage(ulong channelId, Message message)
         => await MakeFluxerApiRequestRS<Message, Message>(HttpMethod.Post, $"channels/{channelId}/messages", message, true);
 
-    public async Task AckMessage(ulong channelId, ulong messageId, MessageAck details)
+    public async Task PostChannelMessageAck(ulong channelId, ulong messageId, MessageAck details)
         => await MakeFluxerApiRequestS<MessageAck>(HttpMethod.Post, $"channels/{channelId}/messages/{messageId}/ack", details, true);
 
     public async Task DeleteChannel(ulong channelId)
         => await MakeFluxerApiRequest(HttpMethod.Delete, $"channels/{channelId}", true);
 
-    public async Task DeleteMessage(ulong channelId, ulong messageId)
+    public async Task DeleteChannelMessage(ulong channelId, ulong messageId)
         => await MakeFluxerApiRequest(HttpMethod.Delete, $"channels/{channelId}/messages/{messageId}", true);
 
-    public async Task StopTyping(ulong channelId)
+    public async Task DeleteTyping(ulong channelId)
         => await MakeFluxerApiRequest(HttpMethod.Delete, $"channels/{channelId}/typing", true);
 
     public async Task<Channel> GetChannel(ulong channelId)
@@ -167,10 +167,10 @@ public class ApiClient
     public async Task<Message> PatchChannelMessage(ulong channelId, ulong messageId, Message message)
         => await MakeFluxerApiRequestRS<Message, Message>(HttpMethod.Patch, $"channels/{channelId}/messages/{messageId}", message, true);
 
-    public async Task CreateInvite(ulong channelId)
+    public async Task PostInvite(ulong channelId)
         => await MakeFluxerApiRequest(HttpMethod.Post, $"channels/{channelId}/invites", true);
 
-    public async Task StartTyping(ulong channelId)
+    public async Task PostTyping(ulong channelId)
         => await MakeFluxerApiRequest(HttpMethod.Post, $"channels/{channelId}/typing", true);
 
     #endregion
@@ -183,7 +183,7 @@ public class ApiClient
     public async Task DeleteCommunity(ulong communityId)
         => await MakeFluxerApiRequest(HttpMethod.Delete, $"communities/{communityId}", true);
 
-    public async Task KickUser(ulong communityId, ulong userId)
+    public async Task DeleteCommunityUser(ulong communityId, ulong userId)
         => await MakeFluxerApiRequest(HttpMethod.Delete, $"communities/{communityId}/members/{userId}", true);
 
     public async Task<List<Invite>> GetCommunityInvites(ulong communityId)
@@ -191,9 +191,6 @@ public class ApiClient
 
     public async Task<List<User>> GetCommunityUsers(ulong communityId)
         => await MakeFluxerApiRequestR<List<User>>(HttpMethod.Get, $"communities/{communityId}/members", true);
-
-    public async Task<User> GetCommunityMember(ulong communityId, ulong userId)
-        => await MakeFluxerApiRequestR<User>(HttpMethod.Get, $"communities/{communityId}/members/{userId}", true);
 
     public async Task<List<Role>> GetCommunityRoles(ulong communityId)
         => await MakeFluxerApiRequestR<List<Role>>(HttpMethod.Get, $"communities/{communityId}/roles", true);
@@ -204,36 +201,36 @@ public class ApiClient
     public async Task<CommunityProperties> PatchCommunity(ulong communityId, CommunityProperties community)
         => await MakeFluxerApiRequestRS<CommunityProperties, CommunityProperties>(HttpMethod.Patch, $"communities/{communityId}", community, true);
 
-    public async Task<CommunityMember> PatchCommunityMember(ulong communityId, ulong userId, CommunityMember member)
+    public async Task<CommunityMember> PatchCommunityUser(ulong communityId, ulong userId, CommunityMember member)
         => await MakeFluxerApiRequestRS<CommunityMember, CommunityMember>(HttpMethod.Patch, $"communities/{communityId}/members/{userId}", member, true);
 
-    public async Task<CommunityMember> PatchCommunitySelfMember(ulong communityId, CommunityMember member)
+    public async Task<CommunityMember> PatchCommunitySelfUser(ulong communityId, CommunityMember member)
         => await MakeFluxerApiRequestRS<CommunityMember, CommunityMember>(HttpMethod.Patch, $"communities/{communityId}/members/@me", member, true);
 
-    public async Task<CommunityProperties> CreateCommunity()
+    public async Task<CommunityProperties> PostCommunity()
         => await MakeFluxerApiRequestR<CommunityProperties>(HttpMethod.Post, $"communities", true);
 
-    public async Task<Role> CreateCommunityRole(ulong communityId)
+    public async Task<Role> PostCommunityRole(ulong communityId)
         => await MakeFluxerApiRequestR<Role>(HttpMethod.Post, $"communities/{communityId}/roles", true);
 
-    public async Task<Channel> CreateCommunityChannel(ulong communityId)
+    public async Task<Channel> PostCommunityChannel(ulong communityId)
         => await MakeFluxerApiRequestR<Channel>(HttpMethod.Post, $"communities/{communityId}/channels", true);
 
-    public async Task<CommunityProperties> UpdateVanityUrl(ulong communityId, string vanityUrl)
+    public async Task<CommunityProperties> PostCommunityVanityUrl(ulong communityId, string vanityUrl)
         => await MakeFluxerApiRequestRS<CommunityProperties, string>(HttpMethod.Post, $"communities/{communityId}/vanity-url", "{code: \"" + vanityUrl + "\"}", true);
 
     #endregion
 
     #region Invites API
 
-    public async Task<CommunityProperties> JoinCommunity(string invite)
+    public async Task<CommunityProperties> PostCommunity(string invite)
         => await MakeFluxerApiRequestR<CommunityProperties>(HttpMethod.Post, $"invites/{invite}", true);
 
     #endregion
 
     #region Users API
 
-    public async Task LeaveCommunity(ulong communityId)
+    public async Task DeleteCommunity(ulong communityId)
         => await MakeFluxerApiRequest(HttpMethod.Delete, $"users/@me/communities/{communityId}", true, true);
 
     public async Task<User> GetUser(ulong userId)
@@ -245,7 +242,7 @@ public class ApiClient
     public async Task<UserSettings> GetCurrentUserSettings()
         => await MakeFluxerApiRequestR<UserSettings>(HttpMethod.Get, $"users/@me/settings", true);
 
-    public async Task<List<CommunityProperties>> GetCurrentUserCommunitys()
+    public async Task<List<CommunityProperties>> GetCurrentUserCommunities()
         => await MakeFluxerApiRequestR<List<CommunityProperties>>(HttpMethod.Get, $"users/@me/communities", true);
 
     public async Task<User> PatchCurrentUser(User user)
@@ -254,13 +251,13 @@ public class ApiClient
     public async Task<UserProfile> PatchCurrentUserProfile(UserProfile profile)
         => await MakeFluxerApiRequestRS<UserProfile, UserProfile>(HttpMethod.Patch, $"users/@me/profile", profile, true);
 
-    public async Task<LoginResponse> Login(LoginRequest data)
+    public async Task<LoginResponse> PostLogin(LoginRequest data)
         => await MakeFluxerApiRequestRS<LoginResponse, LoginRequest>(HttpMethod.Post, "auth/login", data, true);
 
     #endregion
 
     #region Tokens API
-    public async Task RevokeToken(TokenRevokeRequest data)
+    public async Task PostTokenRevoke(TokenRevokeRequest data)
         => await MakeFluxerApiRequestS<TokenRevokeRequest>(HttpMethod.Post, "tokens/revoke", data, true);
     #endregion
 }
