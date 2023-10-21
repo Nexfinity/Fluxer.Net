@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.002.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Squll.Net", "Squll.Net\Squll.Net.csproj", "{99804E8F-C2CD-4A1D-8942-B6154EDBB607}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fluxer.Net", "Fluxer.Net\Fluxer.Net.csproj", "{99804E8F-C2CD-4A1D-8942-B6154EDBB607}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Squll.Net.Example", "Squll.Net.Example\Squll.Net.Example.csproj", "{3C42703F-86B8-4D0E-9422-E83FFB246E94}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fluxer.Net.Example", "Fluxer.Net.Example\Fluxer.Net.Example.csproj", "{3C42703F-86B8-4D0E-9422-E83FFB246E94}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

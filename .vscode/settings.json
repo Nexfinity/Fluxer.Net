@@ -1,7 +1,8 @@
 {
     "cSpell.words": [
+        "Fluxer",
         "Serilog",
-        "Squll"
+        "Fluxer"
     ],
-    "dotnet.defaultSolution": "Squll.Net.sln"
+    "dotnet.defaultSolution": "Fluxer.Net.sln"
 }
