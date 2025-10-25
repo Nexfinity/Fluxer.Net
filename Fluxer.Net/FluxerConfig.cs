@@ -19,9 +19,9 @@ public class FluxerConfig
     public Logger? Serilog { get; set; }
 
     /// <summary>
-    ///     Base url for fluxer's api. Defaults to "https://fluxer.com/api/v{v}/". {v} is replaced with <see cref="Version"/>
+    ///     Base url for fluxer's api. Defaults to "https://api.fluxer.net/v{v}/". {v} is replaced with <see cref="Version"/>
     /// </summary>
-    public string FluxerApiBaseUrl { get; set; } = "https://squll.com/api/v{v}/";
+    public string FluxerApiBaseUrl { get; set; } = "https://api.fluxer.net/v{v}/";
 
     /// <summary>
     ///     The version of fluxer's api to use. Defaults to 1. The only supported value is 1.
@@ -31,7 +31,7 @@ public class FluxerConfig
     /// <summary>
     ///     The gateway to connect to. Encoding must be json and compression is unsupported.
     /// </summary>
-    public string FluxerGatewayUrl { get; set; } = "wss://gateway.squll.com?encoding=json";
+    public string FluxerGatewayUrl { get; set; } = "wss://gateway.fluxer.net?encoding=json";
 
     /// <summary>
     ///     Pass your applications HttpClient here if one is generated
