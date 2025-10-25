@@ -1,5 +1,10 @@
-# Squll.Net
-Squll.Net is currently unsupported for any usecase, please report bug reports in the issues page, and open pull requests for missing endpoints. 
+# Fluxer.Net
+Fluxer.Net is currently unsupported for any usecase, please report bug reports in the issues page, and open pull requests for missing endpoints. 
+
+> [!WARNING]  
+> This library was built for the early ALPHA builds for Fluxer and does not work on the current public BETA.
+> Feel free to create a PR to help updated the library to be compliant with the current API. 
+> Issues opened related to this will be closed.
 
 ## Building 
 to build nupkg:
@@ -11,7 +16,7 @@ dotnet pack --include-symbols --include-source
 
 
 > [!WARNING]  
-> This installation method will likely **not** be supported when squll leaves alpha. At the very least the package id will change.
+> This installation method will likely **not** be supported when Fluxer leaves alpha. At the very least the package id will change.
 
 Installing from @CottageDwellingCat's official myget feed:
 add the following to the `<PropertyGroup>` tag that contains your app's configuration (prefer nuget to the private feed, but use it when packages are missing):
@@ -22,7 +27,7 @@ add the following to the `<PropertyGroup>` tag that contains your app's configur
 ```
 then reference our package in the `<ItemGroup>` that contains your all of your `<PackageReference ... />` tags
 ```xml
-<PackageReference Include="Nexfinity.Squll.Net.Alpha" Version="0.4.0" />
+<PackageReference Include="Nexfinity.Fluxer.Net.Alpha" Version="0.4.0" />
 ```
 
 ## 🗃️ Versioning Guarantees
@@ -37,7 +42,7 @@ An increment of the **PATCH** component always indicates that an internal-only c
 
 An increment of the **MINOR** component indicates that some addition was made to the library,
 and this addition is not backwards-compatible with prior versions.
-However, Squll.Net **does not guarantee forward-compatibility** on minor additions.
+However, Fluxer.Net **does not guarantee forward-compatibility** on minor additions.
 In other words, we permit a limited set of breaking changes on a minor version bump.
 
 Major version bumps generally indicate some major change to the library,

@@ -10,9 +10,9 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/Squll.Net.Example/bin/Debug/net7.0/Squll.Net.Example.dll",
+            "program": "${workspaceFolder}/Fluxer.Net.Example/bin/Debug/net7.0/Fluxer.Net.Example.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/Squll.Net.Example/bin/Debug/net7.0",
+            "cwd": "${workspaceFolder}/Fluxer.Net.Example/bin/Debug/net7.0",
             // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
             "console": "integratedTerminal",
             "stopAtEntry": false,

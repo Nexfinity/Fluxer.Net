@@ -1,10 +1,10 @@
 # Security Policy
 
-Thanks for helping make Squll.Net safe for everyone.
+Thanks for helping make Fluxer.Net safe for everyone.
 
 ## Security
 
-Nexfinity takes the security of our software products and services seriously, including all of the open source code repositories managed through our GitHub organization, such as [Squll.Net]([https://github.com/GitHub](https://github.com/Nexfinity/Squll.Net)).
+Nexfinity takes the security of our software products and services seriously, including all of the open source code repositories managed through our GitHub organization, such as [Fluxer.Net]([https://github.com/GitHub](https://github.com/Nexfinity/Fluxer.Net)).
 
 ## Supported Versions
 
@@ -18,7 +18,7 @@ If you believe you have found a security vulnerability in any Nexfinity-owned re
 
 **Please do not report security vulnerabilities through public GitHub issues, discussions, or pull requests.**
 
-Instead, please send an email to security[@]cakeybot.app.
+Instead, please send an email to security[@]cakey.bot
 
 Please include as much of the information listed below as you can to help us better understand and resolve the issue:
 
