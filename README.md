@@ -1,6 +1,11 @@
 # Fluxer.Net
 Fluxer.Net is currently unsupported for any usecase, please report bug reports in the issues page, and open pull requests for missing endpoints. 
 
+> [!WARNING]  
+> This library was built for the early ALPHA builds for Fluxer and does not work on the current public BETA.
+> Feel free to create a PR to help updated the library to be compliant with the current API. 
+> Issues opened related to this will be closed.
+
 ## Building 
 to build nupkg:
 ```sh
