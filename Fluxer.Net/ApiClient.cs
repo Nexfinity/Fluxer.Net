@@ -9,7 +9,9 @@ using Newtonsoft.Json;
 using Serilog;
 using Serilog.Core;
 using Fluxer.Net.Extensions;
-using Fluxer.Net.Objects;
+using Fluxer.Net.Objects.Models;
+using Fluxer.Net.Objects.Models;
+
 namespace Fluxer.Net;
 
 public class ApiClient
@@ -44,7 +46,7 @@ public class ApiClient
         {
             NullValueHandling = NullValueHandling.Ignore
         });
-        Log.Verbose("Sending {@Data} to {Route}", rawContent, route);
+        Log.Verbose("Sending {@Enums} to {Route}", rawContent, route);
         var req = new HttpRequestMessage()
         {
             Method = method,
@@ -67,7 +69,7 @@ public class ApiClient
 
     public async Task<HttpStatusCode> MakeFluxerApiRequestS<TSend>(HttpMethod method, string route, TSend data, bool throwOnNonSuccess = false, bool authorize = true)
     {
-        Log.Verbose("Sending {@Data} to {Route}", data, route);
+        Log.Verbose("Sending {@Enums} to {Route}", data, route);
         var req = new HttpRequestMessage()
         {
             Method = method,

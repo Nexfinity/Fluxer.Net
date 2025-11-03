@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 using Newtonsoft.Json;
 using Fluxer.Net.Objects.Data;
 
-namespace Fluxer.Net.Objects;
+namespace Fluxer.Net.Objects.Models;
 
 public class User
 {

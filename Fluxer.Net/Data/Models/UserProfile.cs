@@ -1,7 +1,7 @@
 using System.Drawing;
 using Newtonsoft.Json;
 
-namespace Fluxer.Net.Objects;
+namespace Fluxer.Net.Objects.Models;
 
 public class UserProfile
 {

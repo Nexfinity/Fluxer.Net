@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace Fluxer.Net.Objects;
+namespace Fluxer.Net.Objects.Models;
 
 public class LoginRequest
 {

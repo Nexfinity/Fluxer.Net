@@ -79,7 +79,7 @@ public partial class GatewayClient : IDisposable
         {
             NullValueHandling = NullValueHandling.Ignore
         });
-        _logger.Debug("Sending serialized gateway packet {Data}", text);
+        _logger.Debug("Sending serialized gateway packet {Enums}", text);
         try
         {
             _gateway.Send(text);
