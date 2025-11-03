@@ -123,10 +123,31 @@ public partial class GatewayClient : IDisposable
                     HandleDispatch(packet);
                     return;
                 case FluxerOpCode.Heartbeat:
+                    _logger.Debug("Received Heartbeat opcode from server");
+                    return;
                 case FluxerOpCode.Identify:
+                    _logger.Debug("Received Identify opcode from server (unexpected)");
+                    return;
                 case FluxerOpCode.PresenceUpdate:
-                    throw new NotImplementedException();
+                    _logger.Debug("Received PresenceUpdate opcode from server (unexpected)");
+                    return;
+                case FluxerOpCode.VoiceStateUpdate:
+                    _logger.Debug("Received VoiceStateUpdate opcode from server");
+                    return;
+                case FluxerOpCode.VoiceServerPing:
+                    _logger.Debug("Received VoiceServerPing opcode from server");
+                    return;
+                case FluxerOpCode.RequestGuildMembers:
+                    _logger.Debug("Received RequestGuildMembers opcode from server (unexpected)");
+                    return;
+                case FluxerOpCode.CallConnect:
+                    _logger.Debug("Received CallConnect opcode from server");
+                    return;
+                case FluxerOpCode.GuildSubscriptions:
+                    _logger.Debug("Received GuildSubscriptions opcode from server");
+                    return;
                 case FluxerOpCode.InvalidSession:
+                    _logger.Warning("Received InvalidSession opcode, reconnecting");
                     // Don't block the message handler - reconnect asynchronously
                     _ = Task.Run(async () =>
                     {
@@ -141,6 +162,7 @@ public partial class GatewayClient : IDisposable
                     });
                     return;
                 case FluxerOpCode.Reconnect:
+                    _logger.Warning("Received Reconnect opcode from server");
                     // Don't block the message handler - reconnect asynchronously
                     _ = Task.Run(async () => await ReEstablishGatewayConnectionAsync());
                     return;
@@ -149,6 +171,9 @@ public partial class GatewayClient : IDisposable
                     return;
                 case FluxerOpCode.HeartbeatAck:
                     HandleHeartbeatAck();
+                    return;
+                default:
+                    _logger.Warning("Received unknown OpCode: {OpCode}", packet.OpCode);
                     return;
             }
         }
@@ -347,6 +372,147 @@ public partial class GatewayClient : IDisposable
                 else
                     _logger.Warning("COMMUNITY_ROLE_DELETE event received but data could not be cast to EntityRemovedGatewayData");
                 return;
+
+            // Message reactions
+            case "MESSAGE_REACTION_ADD":
+                if (p.Data is MessageReactionGatewayData reactionAddData)
+                    MessageReactionAdd?.Invoke(reactionAddData);
+                else
+                    _logger.Warning("MESSAGE_REACTION_ADD event received but data could not be cast to MessageReactionGatewayData");
+                return;
+            case "MESSAGE_REACTION_REMOVE":
+                if (p.Data is MessageReactionGatewayData reactionRemoveData)
+                    MessageReactionRemove?.Invoke(reactionRemoveData);
+                else
+                    _logger.Warning("MESSAGE_REACTION_REMOVE event received but data could not be cast to MessageReactionGatewayData");
+                return;
+            case "MESSAGE_REACTION_REMOVE_ALL":
+                if (p.Data is EntityRemovedGatewayData reactionRemoveAllData)
+                    MessageReactionRemoveAll?.Invoke(reactionRemoveAllData);
+                else
+                    _logger.Warning("MESSAGE_REACTION_REMOVE_ALL event received but data could not be cast to EntityRemovedGatewayData");
+                return;
+            case "MESSAGE_REACTION_REMOVE_EMOJI":
+                if (p.Data is MessageReactionRemoveEmojiGatewayData reactionRemoveEmojiData)
+                    MessageReactionRemoveEmoji?.Invoke(reactionRemoveEmojiData);
+                else
+                    _logger.Warning("MESSAGE_REACTION_REMOVE_EMOJI event received but data could not be cast to MessageReactionRemoveEmojiGatewayData");
+                return;
+
+            // Message bulk operations
+            case "MESSAGE_DELETE_BULK":
+                if (p.Data is MessageBulkDeleteGatewayData bulkDeleteData)
+                    MessageDeleteBulk?.Invoke(bulkDeleteData);
+                else
+                    _logger.Warning("MESSAGE_DELETE_BULK event received but data could not be cast to MessageBulkDeleteGatewayData");
+                return;
+            case "MESSAGE_ACK":
+                if (p.Data is MessageAckGatewayData ackData)
+                    MessageAck?.Invoke(ackData);
+                else
+                    _logger.Warning("MESSAGE_ACK event received but data could not be cast to MessageAckGatewayData");
+                return;
+
+            // Channel updates
+            case "CHANNEL_PINS_UPDATE":
+                if (p.Data is ChannelPinsUpdateGatewayData pinsUpdateData)
+                    ChannelPinsUpdate?.Invoke(pinsUpdateData);
+                else
+                    _logger.Warning("CHANNEL_PINS_UPDATE event received but data could not be cast to ChannelPinsUpdateGatewayData");
+                return;
+
+            // Voice events
+            case "VOICE_STATE_UPDATE":
+                if (p.Data is VoiceStateGatewayData voiceStateData)
+                    VoiceStateUpdate?.Invoke(voiceStateData);
+                else
+                    _logger.Warning("VOICE_STATE_UPDATE event received but data could not be cast to VoiceStateGatewayData");
+                return;
+            case "VOICE_SERVER_UPDATE":
+                if (p.Data is VoiceServerUpdateGatewayData voiceServerData)
+                    VoiceServerUpdate?.Invoke(voiceServerData);
+                else
+                    _logger.Warning("VOICE_SERVER_UPDATE event received but data could not be cast to VoiceServerUpdateGatewayData");
+                return;
+
+            // Guild/Community ban events
+            case "GUILD_BAN_ADD":
+                if (p.Data is GuildBanGatewayData banAddData)
+                    GuildBanAdd?.Invoke(banAddData);
+                else
+                    _logger.Warning("GUILD_BAN_ADD event received but data could not be cast to GuildBanGatewayData");
+                return;
+            case "GUILD_BAN_REMOVE":
+                if (p.Data is GuildBanGatewayData banRemoveData)
+                    GuildBanRemove?.Invoke(banRemoveData);
+                else
+                    _logger.Warning("GUILD_BAN_REMOVE event received but data could not be cast to GuildBanGatewayData");
+                return;
+
+            // Webhooks
+            case "WEBHOOKS_UPDATE":
+                if (p.Data is WebhooksUpdateGatewayData webhooksData)
+                    WebhooksUpdate?.Invoke(webhooksData);
+                else
+                    _logger.Warning("WEBHOOKS_UPDATE event received but data could not be cast to WebhooksUpdateGatewayData");
+                return;
+
+            // Legacy GUILD_ events (map to COMMUNITY_)
+            case "GUILD_CREATE":
+                if (p.Data is CommunityGatewayData guildCreateData)
+                    CommunityCreate?.Invoke(guildCreateData);
+                else
+                    _logger.Warning("GUILD_CREATE event received but data could not be cast to CommunityGatewayData");
+                return;
+            case "GUILD_UPDATE":
+                if (p.Data is CommunityGatewayData guildUpdateData)
+                    CommunityUpdate?.Invoke(guildUpdateData);
+                else
+                    _logger.Warning("GUILD_UPDATE event received but data could not be cast to CommunityGatewayData");
+                return;
+            case "GUILD_DELETE":
+                if (p.Data is EntityRemovedGatewayData guildDeleteData)
+                    CommunityDelete?.Invoke(guildDeleteData);
+                else
+                    _logger.Warning("GUILD_DELETE event received but data could not be cast to EntityRemovedGatewayData");
+                return;
+            case "GUILD_MEMBER_ADD":
+                if (p.Data is CommunityMemberGatewayData guildMemberAddData)
+                    CommunityMemberCreate?.Invoke(guildMemberAddData);
+                else
+                    _logger.Warning("GUILD_MEMBER_ADD event received but data could not be cast to CommunityMemberGatewayData");
+                return;
+            case "GUILD_MEMBER_UPDATE":
+                if (p.Data is CommunityMemberGatewayData guildMemberUpdateData)
+                    CommunityMemberUpdate?.Invoke(guildMemberUpdateData);
+                else
+                    _logger.Warning("GUILD_MEMBER_UPDATE event received but data could not be cast to CommunityMemberGatewayData");
+                return;
+            case "GUILD_MEMBER_REMOVE":
+                if (p.Data is EntityRemovedGatewayData guildMemberRemoveData)
+                    CommunityMemberDelete?.Invoke(guildMemberRemoveData);
+                else
+                    _logger.Warning("GUILD_MEMBER_REMOVE event received but data could not be cast to EntityRemovedGatewayData");
+                return;
+            case "GUILD_ROLE_CREATE":
+                if (p.Data is RoleGatewayData guildRoleCreateData)
+                    RoleCreate?.Invoke(guildRoleCreateData);
+                else
+                    _logger.Warning("GUILD_ROLE_CREATE event received but data could not be cast to RoleGatewayData");
+                return;
+            case "GUILD_ROLE_UPDATE":
+                if (p.Data is RoleGatewayData guildRoleUpdateData)
+                    RoleUpdate?.Invoke(guildRoleUpdateData);
+                else
+                    _logger.Warning("GUILD_ROLE_UPDATE event received but data could not be cast to RoleGatewayData");
+                return;
+            case "GUILD_ROLE_DELETE":
+                if (p.Data is EntityRemovedGatewayData guildRoleDeleteData)
+                    RoleDelete?.Invoke(guildRoleDeleteData);
+                else
+                    _logger.Warning("GUILD_ROLE_DELETE event received but data could not be cast to EntityRemovedGatewayData");
+                return;
+
             default:
                 _logger.Warning("Unhandled dispatch {Dispatch}", p.Dispatch);
                 break;
@@ -563,6 +729,54 @@ public partial class GatewayClient : IDisposable
 
     public delegate void RoleDeleteEvent(EntityRemovedGatewayData data);
     public event RoleDeleteEvent RoleDelete;
+
+    // message reactions
+
+    public delegate void MessageReactionAddEvent(MessageReactionGatewayData data);
+    public event MessageReactionAddEvent MessageReactionAdd;
+
+    public delegate void MessageReactionRemoveEvent(MessageReactionGatewayData data);
+    public event MessageReactionRemoveEvent MessageReactionRemove;
+
+    public delegate void MessageReactionRemoveAllEvent(EntityRemovedGatewayData data);
+    public event MessageReactionRemoveAllEvent MessageReactionRemoveAll;
+
+    public delegate void MessageReactionRemoveEmojiEvent(MessageReactionRemoveEmojiGatewayData data);
+    public event MessageReactionRemoveEmojiEvent MessageReactionRemoveEmoji;
+
+    // message bulk operations
+
+    public delegate void MessageDeleteBulkEvent(MessageBulkDeleteGatewayData data);
+    public event MessageDeleteBulkEvent MessageDeleteBulk;
+
+    public delegate void MessageAckEvent(MessageAckGatewayData data);
+    public event MessageAckEvent MessageAck;
+
+    // channel updates
+
+    public delegate void ChannelPinsUpdateEvent(ChannelPinsUpdateGatewayData data);
+    public event ChannelPinsUpdateEvent ChannelPinsUpdate;
+
+    // voice events
+
+    public delegate void VoiceStateUpdateEvent(VoiceStateGatewayData data);
+    public event VoiceStateUpdateEvent VoiceStateUpdate;
+
+    public delegate void VoiceServerUpdateEvent(VoiceServerUpdateGatewayData data);
+    public event VoiceServerUpdateEvent VoiceServerUpdate;
+
+    // guild/community ban events
+
+    public delegate void GuildBanAddEvent(GuildBanGatewayData data);
+    public event GuildBanAddEvent GuildBanAdd;
+
+    public delegate void GuildBanRemoveEvent(GuildBanGatewayData data);
+    public event GuildBanRemoveEvent GuildBanRemove;
+
+    // webhooks
+
+    public delegate void WebhooksUpdateEvent(WebhooksUpdateGatewayData data);
+    public event WebhooksUpdateEvent WebhooksUpdate;
 
     #endregion
 
