@@ -22,7 +22,7 @@ public class GuildMember
     public List<ulong> Roles { get; set; }
 
     [JsonProperty("flags")]
-    public GuildMemberFlags Flags { get; set; }
+    public int Flags { get; set; }
 
     [JsonProperty("joined_at")]
     public DateTime JoinedAt { get; set; }

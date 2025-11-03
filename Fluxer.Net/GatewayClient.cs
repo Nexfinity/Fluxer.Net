@@ -204,41 +204,6 @@ public partial class GatewayClient : IDisposable
         }
     }
 
-    // old closed handler, kept in case it's needed someday 
-#if NOPE
-    private void GatewayClosedHandler(object? sender, EventArgs e)
-    {
-        if (_deferDisconnect)
-        {
-            _deferDisconnect = false;
-            return;
-        }
-
-        if (e is ClosedEventArgs nE)
-        {
-            _logger.Information("Websocket closed with code {Code}:{Reason}. It should auto restart.", nE.Code, nE.Reason ?? "Unknown");
-        }
-        else
-        {
-            _logger.Information("Websocket closed. It should auto restart. ClosedEventArgs was null.");
-        }
-
-        if (_gateway.State != WebSocketState.Closed)
-        {
-            _deferDisconnect = true;
-            _gateway.CloseAsync().GetAwaiter().GetResult();
-        }
-        try
-        {
-            _gateway.OpenAsync().GetAwaiter().GetResult();
-            ReEstablishGatewayConnection();
-        }
-        catch
-        {
-            ConnectAsync().GetAwaiter().GetResult();
-        }
-    }
-#endif
     private void HandleDispatch(GatewayPacket p)
     {
         switch (p.Dispatch)

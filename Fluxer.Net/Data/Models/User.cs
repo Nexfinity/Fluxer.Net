@@ -17,7 +17,7 @@ public class User
     public string? Discriminator { get; set; }
 
     [JsonProperty("type")]
-    public UserType Type { get; set; }
+    public int Type { get; set; }
 
     [JsonProperty("display_name")]
     public string DisplayName { get; set; }
@@ -41,10 +41,10 @@ public class User
     public DateOnly? DateOfBirth { get; set; }
 
     [JsonProperty("birthday_visibility")]
-    public BirthdayVisibility BirthdayVisibility { get; set; }
+    public int BirthdayVisibility { get; set; }
 
     [JsonProperty("premium_usage_flags")]
-    public UserPremiumUsageFlags? PremiumUsageFlags { get; set; }
+    public int? PremiumUsageFlags { get; set; }
 
     [JsonProperty("premium_type")]
     public PremiumType? PremiumType { get; set; }

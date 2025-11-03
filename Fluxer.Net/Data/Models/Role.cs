@@ -10,13 +10,13 @@ public class Role
     [JsonProperty("description")]
     public string Description { get; set; }
     [JsonProperty("flags")]
-    public RoleFlags Flags { get; set; }
+    public int Flags { get; set; }
     [JsonProperty("icon")]
     public string Icon { get; set; }
     [JsonProperty("id")]
     public ulong Id { get; set; }
     [JsonProperty("mention_privacy_level")]
-    public MentionPrivacyLevel MentionPrivacyLevel { get; set; }
+    public int MentionPrivacyLevel { get; set; }
     [JsonProperty("name")]
     public string Name { get; set; }
     [JsonProperty("permissions")]

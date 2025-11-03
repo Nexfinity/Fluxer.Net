@@ -42,7 +42,7 @@ public class Channel
     public int Cooldown { get; set; }
 
     [JsonProperty("flags")]
-    public ChannelFlags Flags { get; set; }
+    public int Flags { get; set; }
 
     [JsonProperty("overwrites")]
     public object[] Overwrites { get; set; }
