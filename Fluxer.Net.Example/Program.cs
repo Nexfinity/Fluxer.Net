@@ -52,7 +52,7 @@ if (args.Length > 0 && args[0] == "--revoke") //If the first argument is "--revo
     return;
 }
 
-await api.PatchGuildSelfUser(1431484523333775609, new() { Nickname = "Fluxer.Net" });
+await api.PatchGuildMemberSelf(1431484523333775609, new() { Nickname = "Fluxer.Net" });
 
 //Handle the MESSAGE_CREATE event (Allows us to receive and process commands)
 gateway.MessageCreate += async x =>
