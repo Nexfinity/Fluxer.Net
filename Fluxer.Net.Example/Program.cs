@@ -48,7 +48,7 @@ var api = new ApiClient(config[key: "Token"], new()
 
 if (args.Length > 0 && args[0] == "--revoke") //If the first argument is "--revoke" then revoke the token and exit
 {
-    await api.PostTokenRevoke(new() { Token = config[key: "Token"] });
+    await api.PostAuthLogout();
     return;
 }
 
