@@ -20,12 +20,14 @@ Then reference our package in the `<ItemGroup>` that contains your all of your `
 <PackageReference Include="Nexfinity.Fluxer.Net" Version="1.0.0" />
 ```
 
-> [!INFORMATION]  
+> [!IMPORTANT] 
 > You will need to change the `Version="1.0.0"` to reflect the current release tag version.
 
 ## 🗃️ Versioning Guarantees
 
-This library generally abides by [Semantic Versioning](https://semver.org). Packages are published in `MAJOR.MINOR.PATCH` version format. Alpha or pre-releases may have an additional suffix tag to mark them from primary releases.
+> [!NOTE]
+> This library generally abides by [Semantic Versioning](https://semver.org). Packages are published in `MAJOR.MINOR.PATCH` version format. Alpha or pre-releases may have an additional suffix tag to mark them from primary releases.
+> Also note that _sometimes_ exceptions may be made to this policy, and when this occurs a note will be included in the relevent changelist.
 
 ### Patch component
 
@@ -66,3 +68,6 @@ Development branch, available on MyGet. This branch is what pull requests are ta
 ### Feature/X
 
 Branches that target Dev, adding new features. Feel free to explore these branches and give feedback where necessary.
+
+> [!WARNING]  
+> Dev and Feature/X branches are VERY likely to contain breaking or even unstable changes and are NOT reccomended to be used in production. Use at your own risk.
