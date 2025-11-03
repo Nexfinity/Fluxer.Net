@@ -1,6 +1,3 @@
-using System.Net.Http;
-using Serilog;
-using Serilog.Configuration;
 using Serilog.Core;
 using Fluxer.Net.Gateway.Data;
 
