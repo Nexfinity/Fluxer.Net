@@ -4,7 +4,7 @@ using Fluxer.Net.Objects.Data;
 
 namespace Fluxer.Net.Objects;
 
-public class CommunityMember
+public class GuildMember
 {
     [JsonProperty("user")]
     public User User { get; set; }
@@ -22,7 +22,7 @@ public class CommunityMember
     public List<ulong> Roles { get; set; }
 
     [JsonProperty("flags")]
-    public CommunityMemberFlags Flags { get; set; }
+    public GuildMemberFlags Flags { get; set; }
 
     [JsonProperty("joined_at")]
     public DateTime JoinedAt { get; set; }

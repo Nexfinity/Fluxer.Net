@@ -14,8 +14,8 @@ public class UserSettings
     public bool ConvertEmoticons { get; set; }
     [JsonProperty("custom_status")]
     public string? CustomStatus { get; set; }
-    [JsonProperty("default_communitys_restricted")]
-    public bool DefaultCommunitysRestricted { get; set; }
+    [JsonProperty("default_guilds_restricted")]
+    public bool DefaultGuildsRestricted { get; set; }
     [JsonProperty("developer_mode")]
     public bool DeveloperMode { get; set; }
     [JsonProperty("friend_source_flags")]
@@ -38,10 +38,10 @@ public class UserSettings
     public bool RenderEmbeds { get; set; }
     [JsonProperty("render_reactions")]
     public bool RenderReactions { get; set; }
-    [JsonProperty("restricted_communitys")]
-    public object[]? RestrictedCommunitys { get; set; }
-    [JsonProperty("community_folders")]
-    public object[]? CommunityFolders { get; set; }
+    [JsonProperty("restricted_guilds")]
+    public object[]? RestrictedGuilds { get; set; }
+    [JsonProperty("guild_folders")]
+    public object[]? GuildFolders { get; set; }
     [JsonProperty("status")]
     public string Status { get; set; }
     [JsonProperty("theme")]

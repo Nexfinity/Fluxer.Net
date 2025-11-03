@@ -275,7 +275,6 @@ public partial class GatewayClient : IDisposable
                 else
                     _logger.Warning("MESSAGE_DELETE event received but data could not be cast to EntityRemovedGatewayData");
                 return;
-            // I miss spaces, man, it was more whimsical
             case "CHANNEL_CREATE":
                 if (p.Data is ChannelGatewayData channelCreateData)
                     ChannelCreate?.Invoke(channelCreateData);
@@ -300,47 +299,11 @@ public partial class GatewayClient : IDisposable
                 else
                     _logger.Warning("USER_UPDATE event received but data could not be cast to UserGatewayData");
                 return;
-            case "COMMUNITY_MEMBER_CREATE":
-                if (p.Data is CommunityMemberGatewayData memberCreateData)
-                    CommunityMemberCreate?.Invoke(memberCreateData);
-                else
-                    _logger.Warning("COMMUNITY_MEMBER_CREATE event received but data could not be cast to CommunityMemberGatewayData");
-                return;
-            case "COMMUNITY_MEMBER_UPDATE":
-                if (p.Data is CommunityMemberGatewayData memberUpdateData)
-                    CommunityMemberUpdate?.Invoke(memberUpdateData);
-                else
-                    _logger.Warning("COMMUNITY_MEMBER_UPDATE event received but data could not be cast to CommunityMemberGatewayData");
-                return;
-            case "COMMUNITY_MEMBER_DELETE":
-                if (p.Data is EntityRemovedGatewayData memberDeleteData)
-                    CommunityMemberDelete?.Invoke(memberDeleteData);
-                else
-                    _logger.Warning("COMMUNITY_MEMBER_DELETE event received but data could not be cast to EntityRemovedGatewayData");
-                return;
             case "PRESENCE_UPDATE":
                 if (p.Data is PresenceGatewayData presenceData)
                     PresenceUpdate?.Invoke(presenceData);
                 else
                     _logger.Warning("PRESENCE_UPDATE event received but data could not be cast to PresenceGatewayData");
-                return;
-            case "COMMUNITY_CREATE":
-                if (p.Data is CommunityGatewayData communityCreateData)
-                    CommunityCreate?.Invoke(communityCreateData);
-                else
-                    _logger.Warning("COMMUNITY_CREATE event received but data could not be cast to CommunityGatewayData");
-                return;
-            case "COMMUNITY_UPDATE":
-                if (p.Data is CommunityGatewayData communityUpdateData)
-                    CommunityUpdate?.Invoke(communityUpdateData);
-                else
-                    _logger.Warning("COMMUNITY_UPDATE event received but data could not be cast to CommunityGatewayData");
-                return;
-            case "COMMUNITY_DELETE":
-                if (p.Data is EntityRemovedGatewayData communityDeleteData)
-                    CommunityDelete?.Invoke(communityDeleteData);
-                else
-                    _logger.Warning("COMMUNITY_DELETE event received but data could not be cast to EntityRemovedGatewayData");
                 return;
             case "TYPING_START":
                 if (p.Data is TypingGatewayData typingStartData)
@@ -353,24 +316,6 @@ public partial class GatewayClient : IDisposable
                     TypingStop?.Invoke(typingStopData);
                 else
                     _logger.Warning("TYPING_STOP event received but data could not be cast to TypingGatewayData");
-                return;
-            case "COMMUNITY_ROLE_CREATE":
-                if (p.Data is RoleGatewayData roleCreateData)
-                    RoleCreate?.Invoke(roleCreateData);
-                else
-                    _logger.Warning("COMMUNITY_ROLE_CREATE event received but data could not be cast to RoleGatewayData");
-                return;
-            case "COMMUNITY_ROLE_UPDATE":
-                if (p.Data is RoleGatewayData roleUpdateData)
-                    RoleUpdate?.Invoke(roleUpdateData);
-                else
-                    _logger.Warning("COMMUNITY_ROLE_UPDATE event received but data could not be cast to RoleGatewayData");
-                return;
-            case "COMMUNITY_ROLE_DELETE":
-                if (p.Data is EntityRemovedGatewayData roleDeleteData)
-                    RoleDelete?.Invoke(roleDeleteData);
-                else
-                    _logger.Warning("COMMUNITY_ROLE_DELETE event received but data could not be cast to EntityRemovedGatewayData");
                 return;
 
             // Message reactions
@@ -435,7 +380,7 @@ public partial class GatewayClient : IDisposable
                     _logger.Warning("VOICE_SERVER_UPDATE event received but data could not be cast to VoiceServerUpdateGatewayData");
                 return;
 
-            // Guild/Community ban events
+            // Guildban events
             case "GUILD_BAN_ADD":
                 if (p.Data is GuildBanGatewayData banAddData)
                     GuildBanAdd?.Invoke(banAddData);
@@ -457,58 +402,58 @@ public partial class GatewayClient : IDisposable
                     _logger.Warning("WEBHOOKS_UPDATE event received but data could not be cast to WebhooksUpdateGatewayData");
                 return;
 
-            // Legacy GUILD_ events (map to COMMUNITY_)
+            // Guild events
             case "GUILD_CREATE":
-                if (p.Data is CommunityGatewayData guildCreateData)
-                    CommunityCreate?.Invoke(guildCreateData);
+                if (p.Data is GuildGatewayData guildCreateData)
+                    GuildCreate?.Invoke(guildCreateData);
                 else
-                    _logger.Warning("GUILD_CREATE event received but data could not be cast to CommunityGatewayData");
+                    _logger.Warning("GUILD_CREATE event received but data could not be cast to GuildGatewayData");
                 return;
             case "GUILD_UPDATE":
-                if (p.Data is CommunityGatewayData guildUpdateData)
-                    CommunityUpdate?.Invoke(guildUpdateData);
+                if (p.Data is GuildGatewayData guildUpdateData)
+                    GuildUpdate?.Invoke(guildUpdateData);
                 else
-                    _logger.Warning("GUILD_UPDATE event received but data could not be cast to CommunityGatewayData");
+                    _logger.Warning("GUILD_UPDATE event received but data could not be cast to GuildGatewayData");
                 return;
             case "GUILD_DELETE":
                 if (p.Data is EntityRemovedGatewayData guildDeleteData)
-                    CommunityDelete?.Invoke(guildDeleteData);
+                    GuildDelete?.Invoke(guildDeleteData);
                 else
                     _logger.Warning("GUILD_DELETE event received but data could not be cast to EntityRemovedGatewayData");
                 return;
             case "GUILD_MEMBER_ADD":
-                if (p.Data is CommunityMemberGatewayData guildMemberAddData)
-                    CommunityMemberCreate?.Invoke(guildMemberAddData);
+                if (p.Data is GuildMemberGatewayData guildMemberAddData)
+                    GuildMemberAdd?.Invoke(guildMemberAddData);
                 else
-                    _logger.Warning("GUILD_MEMBER_ADD event received but data could not be cast to CommunityMemberGatewayData");
+                    _logger.Warning("GUILD_MEMBER_ADD event received but data could not be cast to GuildMemberGatewayData");
                 return;
             case "GUILD_MEMBER_UPDATE":
-                if (p.Data is CommunityMemberGatewayData guildMemberUpdateData)
-                    CommunityMemberUpdate?.Invoke(guildMemberUpdateData);
+                if (p.Data is GuildMemberGatewayData guildMemberUpdateData)
+                    GuildMemberUpdate?.Invoke(guildMemberUpdateData);
                 else
-                    _logger.Warning("GUILD_MEMBER_UPDATE event received but data could not be cast to CommunityMemberGatewayData");
+                    _logger.Warning("GUILD_MEMBER_UPDATE event received but data could not be cast to GuildMemberGatewayData");
                 return;
             case "GUILD_MEMBER_REMOVE":
                 if (p.Data is EntityRemovedGatewayData guildMemberRemoveData)
-                    CommunityMemberDelete?.Invoke(guildMemberRemoveData);
+                    GuildMemberRemove?.Invoke(guildMemberRemoveData);
                 else
                     _logger.Warning("GUILD_MEMBER_REMOVE event received but data could not be cast to EntityRemovedGatewayData");
                 return;
             case "GUILD_ROLE_CREATE":
                 if (p.Data is RoleGatewayData guildRoleCreateData)
-                    RoleCreate?.Invoke(guildRoleCreateData);
+                    GuildRoleCreate?.Invoke(guildRoleCreateData);
                 else
                     _logger.Warning("GUILD_ROLE_CREATE event received but data could not be cast to RoleGatewayData");
                 return;
             case "GUILD_ROLE_UPDATE":
                 if (p.Data is RoleGatewayData guildRoleUpdateData)
-                    RoleUpdate?.Invoke(guildRoleUpdateData);
+                    GuildRoleUpdate?.Invoke(guildRoleUpdateData);
                 else
                     _logger.Warning("GUILD_ROLE_UPDATE event received but data could not be cast to RoleGatewayData");
                 return;
             case "GUILD_ROLE_DELETE":
                 if (p.Data is EntityRemovedGatewayData guildRoleDeleteData)
-                    RoleDelete?.Invoke(guildRoleDeleteData);
+                    GuildRoleDelete?.Invoke(guildRoleDeleteData);
                 else
                     _logger.Warning("GUILD_ROLE_DELETE event received but data could not be cast to EntityRemovedGatewayData");
                 return;
@@ -617,7 +562,7 @@ public partial class GatewayClient : IDisposable
                 await Task.Delay(_heartbeatInterval + jitter, cancellationToken);
 
                 _logger.Verbose("Sending heartbeat with sequence {Sequence}", _sequence);
-                var packet = new HeartbeatPacketOfDoom()
+                var packet = new HeartbeatPacket()
                 {
                     Data = _sequence,
                     OpCode = FluxerOpCode.Heartbeat,
@@ -691,15 +636,15 @@ public partial class GatewayClient : IDisposable
     public delegate void PresenceUpdateEvent(PresenceGatewayData data);
     public event PresenceUpdateEvent PresenceUpdate;
 
-    // community
-    public delegate void CommunityCreateEvent(CommunityGatewayData data);
-    public event CommunityCreateEvent CommunityCreate;
+    // guild
+    public delegate void GuildCreateEvent(GuildGatewayData data);
+    public event GuildCreateEvent GuildCreate;
 
-    public delegate void CommunityUpdateEvent(CommunityGatewayData data);
-    public event CommunityUpdateEvent CommunityUpdate;
+    public delegate void GuildUpdateEvent(GuildGatewayData data);
+    public event GuildUpdateEvent GuildUpdate;
 
-    public delegate void CommunityDeleteEvent(EntityRemovedGatewayData data);
-    public event CommunityDeleteEvent CommunityDelete;
+    public delegate void GuildDeleteEvent(EntityRemovedGatewayData data);
+    public event GuildDeleteEvent GuildDelete;
 
     // typing
     public delegate void TypingStartEvent(TypingGatewayData data);
@@ -708,27 +653,27 @@ public partial class GatewayClient : IDisposable
     public delegate void TypingStopEvent(TypingGatewayData data);
     public event TypingStopEvent TypingStop;
 
-    // community member
+    // guild member
 
-    public delegate void CommunityMemberCreateEvent(CommunityMemberGatewayData data);
-    public event CommunityMemberCreateEvent CommunityMemberCreate;
+    public delegate void GuildMemberAddEvent(GuildMemberGatewayData data);
+    public event GuildMemberAddEvent GuildMemberAdd;
 
-    public delegate void CommunityMemberUpdateEvent(CommunityMemberGatewayData data);
-    public event CommunityMemberUpdateEvent CommunityMemberUpdate;
+    public delegate void GuildMemberUpdateEvent(GuildMemberGatewayData data);
+    public event GuildMemberUpdateEvent GuildMemberUpdate;
 
-    public delegate void CommunityMemberDeleteEvent(EntityRemovedGatewayData data);
-    public event CommunityMemberDeleteEvent CommunityMemberDelete;
+    public delegate void GuildMemberRemoveEvent(EntityRemovedGatewayData data);
+    public event GuildMemberRemoveEvent GuildMemberRemove;
 
-    // role
+    // guild role
 
-    public delegate void RoleCreateEvent(RoleGatewayData data);
-    public event RoleCreateEvent RoleCreate;
+    public delegate void GuildRoleCreateEvent(RoleGatewayData data);
+    public event GuildRoleCreateEvent GuildRoleCreate;
 
-    public delegate void RoleUpdateEvent(RoleGatewayData data);
-    public event RoleUpdateEvent RoleUpdate;
+    public delegate void GuildRoleUpdateEvent(RoleGatewayData data);
+    public event GuildRoleUpdateEvent GuildRoleUpdate;
 
-    public delegate void RoleDeleteEvent(EntityRemovedGatewayData data);
-    public event RoleDeleteEvent RoleDelete;
+    public delegate void GuildRoleDeleteEvent(EntityRemovedGatewayData data);
+    public event GuildRoleDeleteEvent GuildRoleDelete;
 
     // message reactions
 
@@ -765,7 +710,7 @@ public partial class GatewayClient : IDisposable
     public delegate void VoiceServerUpdateEvent(VoiceServerUpdateGatewayData data);
     public event VoiceServerUpdateEvent VoiceServerUpdate;
 
-    // guild/community ban events
+    // guild ban events
 
     public delegate void GuildBanAddEvent(GuildBanGatewayData data);
     public event GuildBanAddEvent GuildBanAdd;

@@ -7,8 +7,8 @@ public class Invite
 	[JsonProperty("code")]
 	public string Code { get; set; }
 
-	[JsonProperty("community_id")]
-	public ulong CommunityID { get; set; }
+	[JsonProperty("guild_id")]
+	public ulong GuildID { get; set; }
 
 	[JsonProperty("channel_id")]
 	public ulong ChannelId { get; set; }

@@ -14,6 +14,6 @@ public class Presence
     public object[] Activities { get; set; }
     [JsonProperty("user_id")]
     public ulong UserId { get; set; }
-    [JsonProperty("community_id")]
-    public ulong? CommunityId { get; set; }
+    [JsonProperty("guild_id")]
+    public ulong? GuildId { get; set; }
 }

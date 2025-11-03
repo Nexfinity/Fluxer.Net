@@ -1,9 +1,8 @@
 using Newtonsoft.Json;
-using Fluxer.Net.Extensions;
 
 namespace Fluxer.Net.Gateway;
 
-public class HeartbeatPacketOfDoom
+public class HeartbeatPacket
 {
     [JsonProperty("op")]
     public FluxerOpCode OpCode { get; set; }

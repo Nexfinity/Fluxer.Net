@@ -23,11 +23,11 @@ public class Profile
     [JsonProperty("birthday")]
     public DateOnly Birthday { get; set; }
 
-    [JsonProperty("community_member")]
-    public CommunityMember CommunityMember { get; set; }
+    [JsonProperty("guild_member")]
+    public GuildMember GuildMember { get; set; }
 
-    [JsonProperty("community_member_profile")]
-    public CommunityMemberProfile CommunityMemberProfile { get; set; }
+    [JsonProperty("guild_member_profile")]
+    public GuildMemberProfile GuildMemberProfile { get; set; }
 
 
 }

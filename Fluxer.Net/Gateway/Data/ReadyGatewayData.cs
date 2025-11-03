@@ -6,7 +6,7 @@ namespace Fluxer.Net.Gateway.Data;
 public class ReadyGatewayData : IGatewayData
 {
     [JsonProperty("members")]
-    public CommunityMember[] Members { get; set; }
+    public GuildMember[] Members { get; set; }
     [JsonProperty("notes")]
     public object[] Notes { get; set; }
     [JsonProperty("private_channels")]
@@ -15,8 +15,8 @@ public class ReadyGatewayData : IGatewayData
     public object[] Relationships { get; set; }
     [JsonProperty("session_id")]
     public string SessionId { get; set; }
-    [JsonProperty("communities")]
-    public Community[] Communities { get; set; }
+    [JsonProperty("guilds")]
+    public Guild[] Guilds { get; set; }
     [JsonProperty("user")]
     public User User { get; set; }
     [JsonProperty("user_settings")]

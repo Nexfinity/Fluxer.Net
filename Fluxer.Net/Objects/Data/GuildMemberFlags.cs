@@ -1,6 +1,6 @@
 namespace Fluxer.Net.Objects.Data;
 
-public enum CommunityMemberFlags
+public enum GuildMemberFlags
 {
     None = 0,
     Deafened = 1 << 0,

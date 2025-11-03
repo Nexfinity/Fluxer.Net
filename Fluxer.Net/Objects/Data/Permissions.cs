@@ -28,7 +28,7 @@ public enum Permissions
 	TimeoutMembers = 1 << 21,
 	ViewAnalytics = 1 << 22,
 	ViewAuditLog = 1 << 23,
-	ManageCommunity = 1 << 24,
+	ManageGuild = 1 << 24,
 	ManageApplications = 1 << 25,
 	ManageAutomod = 1 << 26,
 	ManageCalendar = 1 << 27,

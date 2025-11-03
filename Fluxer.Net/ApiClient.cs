@@ -175,63 +175,63 @@ public class ApiClient
 
     #endregion
 
-    #region Communities API
+    #region Guilds API
 
-    public async Task<CommunityProperties> GetCommunity(ulong communityId)
-        => await MakeFluxerApiRequestR<CommunityProperties>(HttpMethod.Get, $"communities/{communityId}", true);
+    public async Task<GuildProperties> GetGuild(ulong guildId)
+        => await MakeFluxerApiRequestR<GuildProperties>(HttpMethod.Get, $"guilds/{guildId}", true);
 
-    public async Task DeleteCommunity(ulong communityId)
-        => await MakeFluxerApiRequest(HttpMethod.Delete, $"communities/{communityId}", true);
+    public async Task DeleteGuild(ulong guildId)
+        => await MakeFluxerApiRequest(HttpMethod.Delete, $"guilds/{guildId}", true);
 
-    public async Task DeleteCommunityUser(ulong communityId, ulong userId)
-        => await MakeFluxerApiRequest(HttpMethod.Delete, $"communities/{communityId}/members/{userId}", true);
+    public async Task DeleteGuildUser(ulong guildId, ulong userId)
+        => await MakeFluxerApiRequest(HttpMethod.Delete, $"guilds/{guildId}/members/{userId}", true);
 
-    public async Task<List<Invite>> GetCommunityInvites(ulong communityId)
-        => await MakeFluxerApiRequestR<List<Invite>>(HttpMethod.Get, $"communities/{communityId}/invites", true);
+    public async Task<List<Invite>> GetGuildInvites(ulong guildId)
+        => await MakeFluxerApiRequestR<List<Invite>>(HttpMethod.Get, $"guilds/{guildId}/invites", true);
 
-    public async Task<List<User>> GetCommunityUsers(ulong communityId)
-        => await MakeFluxerApiRequestR<List<User>>(HttpMethod.Get, $"communities/{communityId}/members", true);
+    public async Task<List<User>> GetGuildUsers(ulong guildId)
+        => await MakeFluxerApiRequestR<List<User>>(HttpMethod.Get, $"guilds/{guildId}/members", true);
 
-    public async Task<List<Role>> GetCommunityRoles(ulong communityId)
-        => await MakeFluxerApiRequestR<List<Role>>(HttpMethod.Get, $"communities/{communityId}/roles", true);
+    public async Task<List<Role>> GetGuildRoles(ulong guildId)
+        => await MakeFluxerApiRequestR<List<Role>>(HttpMethod.Get, $"guilds/{guildId}/roles", true);
 
-    public async Task<List<Channel>> GetCommunityChannels(ulong communityId)
-        => await MakeFluxerApiRequestR<List<Channel>>(HttpMethod.Get, $"communities/{communityId}/channels", true);
+    public async Task<List<Channel>> GetGuildChannels(ulong guildId)
+        => await MakeFluxerApiRequestR<List<Channel>>(HttpMethod.Get, $"guilds/{guildId}/channels", true);
 
-    public async Task<CommunityProperties> PatchCommunity(ulong communityId, CommunityProperties community)
-        => await MakeFluxerApiRequestRS<CommunityProperties, CommunityProperties>(HttpMethod.Patch, $"communities/{communityId}", community, true);
+    public async Task<GuildProperties> PatchGuild(ulong guildId, GuildProperties guild)
+        => await MakeFluxerApiRequestRS<GuildProperties, GuildProperties>(HttpMethod.Patch, $"guilds/{guildId}", guild, true);
 
-    public async Task<CommunityMember> PatchCommunityUser(ulong communityId, ulong userId, CommunityMember member)
-        => await MakeFluxerApiRequestRS<CommunityMember, CommunityMember>(HttpMethod.Patch, $"communities/{communityId}/members/{userId}", member, true);
+    public async Task<GuildMember> PatchGuildUser(ulong guildId, ulong userId, GuildMember member)
+        => await MakeFluxerApiRequestRS<GuildMember, GuildMember>(HttpMethod.Patch, $"guilds/{guildId}/members/{userId}", member, true);
 
-    public async Task<CommunityMember> PatchCommunitySelfUser(ulong communityId, CommunityMember member)
-        => await MakeFluxerApiRequestRS<CommunityMember, CommunityMember>(HttpMethod.Patch, $"communities/{communityId}/members/@me", member, true);
+    public async Task<GuildMember> PatchGuildSelfUser(ulong guildId, GuildMember member)
+        => await MakeFluxerApiRequestRS<GuildMember, GuildMember>(HttpMethod.Patch, $"guilds/{guildId}/members/@me", member, true);
 
-    public async Task<CommunityProperties> PostCommunity()
-        => await MakeFluxerApiRequestR<CommunityProperties>(HttpMethod.Post, $"communities", true);
+    public async Task<GuildProperties> PostGuild()
+        => await MakeFluxerApiRequestR<GuildProperties>(HttpMethod.Post, $"guilds", true);
 
-    public async Task<Role> PostCommunityRole(ulong communityId)
-        => await MakeFluxerApiRequestR<Role>(HttpMethod.Post, $"communities/{communityId}/roles", true);
+    public async Task<Role> PostGuildRole(ulong guildId)
+        => await MakeFluxerApiRequestR<Role>(HttpMethod.Post, $"guilds/{guildId}/roles", true);
 
-    public async Task<Channel> PostCommunityChannel(ulong communityId)
-        => await MakeFluxerApiRequestR<Channel>(HttpMethod.Post, $"communities/{communityId}/channels", true);
+    public async Task<Channel> PostGuildChannel(ulong guildId)
+        => await MakeFluxerApiRequestR<Channel>(HttpMethod.Post, $"guilds/{guildId}/channels", true);
 
-    public async Task<CommunityProperties> PostCommunityVanityUrl(ulong communityId, string vanityUrl)
-        => await MakeFluxerApiRequestRS<CommunityProperties, string>(HttpMethod.Post, $"communities/{communityId}/vanity-url", "{code: \"" + vanityUrl + "\"}", true);
+    public async Task<GuildProperties> PostGuildVanityUrl(ulong guildId, string vanityUrl)
+        => await MakeFluxerApiRequestRS<GuildProperties, string>(HttpMethod.Post, $"guilds/{guildId}/vanity-url", "{code: \"" + vanityUrl + "\"}", true);
 
     #endregion
 
     #region Invites API
 
-    public async Task<CommunityProperties> PostCommunity(string invite)
-        => await MakeFluxerApiRequestR<CommunityProperties>(HttpMethod.Post, $"invites/{invite}", true);
+    public async Task<GuildProperties> PostGuildJoin(string invite)
+        => await MakeFluxerApiRequestR<GuildProperties>(HttpMethod.Post, $"invites/{invite}", true);
 
     #endregion
 
     #region Users API
 
-    // public async Task DeleteCommunity(ulong communityId)
-    //     => await MakeFluxerApiRequest(HttpMethod.Delete, $"users/@me/communities/{communityId}", true, true);
+    // public async Task DeleteGuild(ulong guildId)
+    //     => await MakeFluxerApiRequest(HttpMethod.Delete, $"users/@me/guilds/{guildId}", true, true);
 
     public async Task<User> GetUser(ulong userId)
         => await MakeFluxerApiRequestR<User>(HttpMethod.Get, $"users/{userId}", true);
@@ -242,8 +242,8 @@ public class ApiClient
     public async Task<UserSettings> GetCurrentUserSettings()
         => await MakeFluxerApiRequestR<UserSettings>(HttpMethod.Get, $"users/@me/settings", true);
 
-    public async Task<List<CommunityProperties>> GetCurrentUserCommunities()
-        => await MakeFluxerApiRequestR<List<CommunityProperties>>(HttpMethod.Get, $"users/@me/communities", true);
+    public async Task<List<GuildProperties>> GetCurrentUserGuilds()
+        => await MakeFluxerApiRequestR<List<GuildProperties>>(HttpMethod.Get, $"users/@me/guilds", true);
 
     public async Task<User> PatchCurrentUser(User user)
         => await MakeFluxerApiRequestRS<User, User>(HttpMethod.Patch, $"users/@me", user, true);

@@ -3,7 +3,7 @@ using Fluxer.Net.Objects.Data;
 
 namespace Fluxer.Net.Objects;
 
-public class CommunityProperties
+public class GuildProperties
 {
     [JsonProperty("id")]
     public ulong ID { get; set; }

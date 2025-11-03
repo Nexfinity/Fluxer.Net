@@ -23,8 +23,8 @@ public class Role
     public Permissions Permissions { get; set; }
     [JsonProperty("position")]
     public int Position { get; set; }
-    [JsonProperty("community_id")]
-    public ulong CommunityId { get; set; }
+    [JsonProperty("guild_id")]
+    public ulong GuildId { get; set; }
     [JsonProperty("unicode_emoji")]
     public string UnicodeEmoji { get; set; }
 }
