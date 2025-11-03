@@ -1,5 +1,4 @@
 using Newtonsoft.Json;
-using Fluxer.Net.Objects;
 
 namespace Fluxer.Net.Gateway.Data;
 

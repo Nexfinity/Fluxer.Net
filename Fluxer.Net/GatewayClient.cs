@@ -2,29 +2,65 @@
 using System.Diagnostics;
 using System.Reflection;
 using System.Text.RegularExpressions;
+using Fluxer.Net.Data.Enums;
 using Newtonsoft.Json;
 using Serilog;
 using Serilog.Core;
 using Fluxer.Net.Gateway;
 using Fluxer.Net.Gateway.Data;
-using Fluxer.Net.Objects.Data;
 using Websocket.Client;
 namespace Fluxer.Net;
 
-public partial class GatewayClient
+/// <summary>
+/// WebSocket gateway client for real-time events from the Fluxer platform.
+/// Handles bidirectional communication, automatic heartbeats, and reconnection with resume capability.
+/// </summary>
+/// <remarks>
+/// <para>
+/// The GatewayClient provides an event-driven architecture for receiving real-time updates
+/// from Fluxer, including messages, user presence, guild changes, and more. It implements
+/// the Fluxer Gateway protocol with support for:
+/// </para>
+/// <list type="bullet">
+/// <item>Automatic heartbeat mechanism to maintain connection</item>
+/// <item>Sequence tracking for ordered event processing</item>
+/// <item>Session-based reconnection with resume capability (no event loss)</item>
+/// <item>Event filtering via <see cref="FluxerConfig.IgnoredGatewayEvents"/></item>
+/// </list>
+/// <para>
+/// This client should be paired with <see cref="ApiClient"/> for full Fluxer functionality.
+/// </para>
+/// </remarks>
+public partial class GatewayClient : IDisposable
 {
     #region Declares
+    /// <summary>
+    /// The authentication token used for gateway connection.
+    /// </summary>
     public string Token { get; set; }
 
     private readonly FluxerConfig _config;
     private WebsocketClient _gateway;
     private readonly Stopwatch _gatewayDuration = new();
+
+    /// <summary>
+    /// Current sequence number for gateway events. Used for resuming connections without data loss.
+    /// </summary>
     private int _sequence = 0;
+
     private bool _heartbeatStarted = false;
     private int _heartbeatInterval = 0;
     private DateTime _lastGatewayReEstablishAttempt = DateTime.Now;
+
+    /// <summary>
+    /// Session ID received from the READY event. Used for resuming connections.
+    /// </summary>
     private string _sessionId = "";
+
     private Logger _logger;
+    private CancellationTokenSource? _heartbeatCancellation;
+    private readonly SemaphoreSlim _reconnectLock = new(1, 1);
+    private bool _disposed = false;
 
     // build error from generated regex
     // temp. removed pending investigation.
@@ -32,6 +68,14 @@ public partial class GatewayClient
     #endregion
 
     #region Meta
+    /// <summary>
+    /// Initializes a new instance of the <see cref="GatewayClient"/> class.
+    /// </summary>
+    /// <param name="token">The authentication token for gateway connection.</param>
+    /// <param name="config">Configuration options including gateway URL, event filtering, and reconnection settings.</param>
+    /// <remarks>
+    /// The client is initialized but not connected. Call <see cref="ConnectAsync"/> to establish the gateway connection.
+    /// </remarks>
     public GatewayClient(string token, FluxerConfig config)
     {
         Token = token;
@@ -45,6 +89,24 @@ public partial class GatewayClient
     #endregion
 
     #region Gateway
+    /// <summary>
+    /// Establishes a WebSocket connection to the Fluxer gateway and sends the IDENTIFY packet.
+    /// </summary>
+    /// <returns>A task that represents the asynchronous connection operation.</returns>
+    /// <remarks>
+    /// <para>
+    /// This method:
+    /// </para>
+    /// <list type="number">
+    /// <item>Creates a WebSocket connection to the gateway URL specified in configuration</item>
+    /// <item>Sets up message and reconnection handlers</item>
+    /// <item>Sends an IDENTIFY packet with authentication token and presence</item>
+    /// <item>Waits for HELLO event to begin heartbeat mechanism</item>
+    /// </list>
+    /// <para>
+    /// The connection will automatically reconnect on disconnect and attempt to resume the session.
+    /// </para>
+    /// </remarks>
     public async Task ConnectAsync()
     {
         // disabled for testing
@@ -70,21 +132,41 @@ public partial class GatewayClient
         SendGatewayPacket(login);
     }
 
+    /// <summary>
+    /// Sends a gateway packet to the Fluxer WebSocket server.
+    /// </summary>
+    /// <typeparam name="T">The type of the gateway packet data.</typeparam>
+    /// <param name="Data">The packet data to serialize and send.</param>
+    /// <remarks>
+    /// This method automatically schedules reconnection if sending fails. Packets may be dropped
+    /// during reconnection attempts. For critical operations, use the REST API via <see cref="ApiClient"/>.
+    /// </remarks>
     public void SendGatewayPacket<T>(T Data)
     {
         var text = JsonConvert.SerializeObject(Data, new JsonSerializerSettings()
         {
             NullValueHandling = NullValueHandling.Ignore
         });
-        _logger.Debug("Sending serialized gateway packet {Data}", text);
+        _logger.Debug("Sending serialized gateway packet {Enums}", text);
         try
         {
             _gateway.Send(text);
         }
-        catch
+        catch (Exception ex)
         {
-            _logger.Warning("Failed to send gateway packet. Restarting the gateway. Some packets may be dropped.");
-            ConnectAsync().GetAwaiter().GetResult();
+            _logger.Warning(ex, "Failed to send gateway packet. Scheduling reconnection. Some packets may be dropped.");
+            // Don't block - schedule reconnection on thread pool
+            _ = Task.Run(async () =>
+            {
+                try
+                {
+                    await ConnectAsync();
+                }
+                catch (Exception reconnectEx)
+                {
+                    _logger.Error(reconnectEx, "Failed to reconnect after send failure");
+                }
+            });
         }
     }
 
@@ -95,6 +177,12 @@ public partial class GatewayClient
         try
         {
             var packet = JsonConvert.DeserializeObject<GatewayPacket>(message);
+            if (packet == null)
+            {
+                _logger.Warning("Deserialized gateway packet was null");
+                return;
+            }
+
             _sequence = packet.Sequence ?? _sequence;
             _logger.Debug("Deserialized gateway packet {@Packet}", packet);
             switch (packet.OpCode)
@@ -103,14 +191,48 @@ public partial class GatewayClient
                     HandleDispatch(packet);
                     return;
                 case FluxerOpCode.Heartbeat:
+                    _logger.Debug("Received Heartbeat opcode from server");
+                    return;
                 case FluxerOpCode.Identify:
+                    _logger.Debug("Received Identify opcode from server (unexpected)");
+                    return;
                 case FluxerOpCode.PresenceUpdate:
-                    throw new NotImplementedException();
+                    _logger.Debug("Received PresenceUpdate opcode from server (unexpected)");
+                    return;
+                case FluxerOpCode.VoiceStateUpdate:
+                    _logger.Debug("Received VoiceStateUpdate opcode from server");
+                    return;
+                case FluxerOpCode.VoiceServerPing:
+                    _logger.Debug("Received VoiceServerPing opcode from server");
+                    return;
+                case FluxerOpCode.RequestGuildMembers:
+                    _logger.Debug("Received RequestGuildMembers opcode from server (unexpected)");
+                    return;
+                case FluxerOpCode.CallConnect:
+                    _logger.Debug("Received CallConnect opcode from server");
+                    return;
+                case FluxerOpCode.GuildSubscriptions:
+                    _logger.Debug("Received GuildSubscriptions opcode from server");
+                    return;
                 case FluxerOpCode.InvalidSession:
-                    ConnectAsync().GetAwaiter().GetResult();
+                    _logger.Warning("Received InvalidSession opcode, reconnecting");
+                    // Don't block the message handler - reconnect asynchronously
+                    _ = Task.Run(async () =>
+                    {
+                        try
+                        {
+                            await ConnectAsync();
+                        }
+                        catch (Exception ex)
+                        {
+                            _logger.Error(ex, "Failed to reconnect after invalid session");
+                        }
+                    });
                     return;
                 case FluxerOpCode.Reconnect:
-                    ReEstablishGatewayConnection();
+                    _logger.Warning("Received Reconnect opcode from server");
+                    // Don't block the message handler - reconnect asynchronously
+                    _ = Task.Run(async () => await ReEstablishGatewayConnectionAsync());
                     return;
                 case FluxerOpCode.Hello:
                     HandleHello(packet);
@@ -118,122 +240,257 @@ public partial class GatewayClient
                 case FluxerOpCode.HeartbeatAck:
                     HandleHeartbeatAck();
                     return;
+                default:
+                    _logger.Warning("Received unknown OpCode: {OpCode}", packet.OpCode);
+                    return;
             }
         }
-        catch
+        catch (JsonException ex)
         {
-            var result = PacketSRegex.Match(message);
-            _sequence = Convert.ToInt32(result.Value);
-            _logger.Warning("Failed to parse a gateway event. This can happen when the OpCode is unsupported or a dispatch failed to parse.");
+            _logger.Warning(ex, "Failed to deserialize gateway packet. Attempting to extract sequence from raw message.");
+            try
+            {
+                var result = PacketSRegex.Match(message);
+                if (result.Success && !string.IsNullOrEmpty(result.Value))
+                {
+                    _sequence = Convert.ToInt32(result.Value);
+                    _logger.Debug("Extracted sequence {Sequence} from malformed packet", _sequence);
+                }
+                else
+                {
+                    _logger.Warning("Could not extract sequence from malformed packet");
+                }
+            }
+            catch (Exception regexEx)
+            {
+                _logger.Error(regexEx, "Failed to extract sequence using regex fallback");
+            }
         }
-
-    }
-
-    // old closed handler, kept in case it's needed someday 
-#if NOPE
-    private void GatewayClosedHandler(object? sender, EventArgs e)
-    {
-        if (_deferDisconnect)
+        catch (Exception ex)
         {
-            _deferDisconnect = false;
-            return;
-        }
-
-        if (e is ClosedEventArgs nE)
-        {
-            _logger.Information("Websocket closed with code {Code}:{Reason}. It should auto restart.", nE.Code, nE.Reason ?? "Unknown");
-        }
-        else
-        {
-            _logger.Information("Websocket closed. It should auto restart. ClosedEventArgs was null.");
-        }
-
-        if (_gateway.State != WebSocketState.Closed)
-        {
-            _deferDisconnect = true;
-            _gateway.CloseAsync().GetAwaiter().GetResult();
-        }
-        try
-        {
-            _gateway.OpenAsync().GetAwaiter().GetResult();
-            ReEstablishGatewayConnection();
-        }
-        catch
-        {
-            ConnectAsync().GetAwaiter().GetResult();
+            _logger.Error(ex, "Unexpected error in gateway message handler");
         }
     }
-#endif
+
     private void HandleDispatch(GatewayPacket p)
     {
         switch (p.Dispatch)
         {
             case "READY":
-                var data = p.Data as ReadyGatewayData;
-                _sessionId = data.SessionId;
-                Ready?.Invoke(data);
+                if (p.Data is ReadyGatewayData readyData)
+                {
+                    _sessionId = readyData.SessionId;
+                    Ready?.Invoke(readyData);
+                }
+                else
+                {
+                    _logger.Warning("READY event received but data could not be cast to ReadyGatewayData");
+                }
                 return;
             case "RESUMED":
                 Resumed?.Invoke();
                 return;
             case "MESSAGE_CREATE":
-                MessageCreate?.Invoke(p.Data as MessageGatewayData);
+                if (p.Data is MessageGatewayData messageCreateData)
+                    MessageCreate?.Invoke(messageCreateData);
+                else
+                    _logger.Warning("MESSAGE_CREATE event received but data could not be cast to MessageGatewayData");
                 return;
             case "MESSAGE_UPDATE":
-                MessageUpdate?.Invoke(p.Data as MessageGatewayData);
+                if (p.Data is MessageGatewayData messageUpdateData)
+                    MessageUpdate?.Invoke(messageUpdateData);
+                else
+                    _logger.Warning("MESSAGE_UPDATE event received but data could not be cast to MessageGatewayData");
                 return;
             case "MESSAGE_DELETE":
-                MessageDelete?.Invoke(p.Data as EntityRemovedGatewayData);
+                if (p.Data is EntityRemovedGatewayData messageDeleteData)
+                    MessageDelete?.Invoke(messageDeleteData);
+                else
+                    _logger.Warning("MESSAGE_DELETE event received but data could not be cast to EntityRemovedGatewayData");
                 return;
-            // I miss spaces, man, it was more whimsical
             case "CHANNEL_CREATE":
-                ChannelCreate?.Invoke(p.Data as ChannelGatewayData);
+                if (p.Data is ChannelGatewayData channelCreateData)
+                    ChannelCreate?.Invoke(channelCreateData);
+                else
+                    _logger.Warning("CHANNEL_CREATE event received but data could not be cast to ChannelGatewayData");
                 return;
             case "CHANNEL_UPDATE":
-                ChannelUpdate?.Invoke(p.Data as ChannelGatewayData);
+                if (p.Data is ChannelGatewayData channelUpdateData)
+                    ChannelUpdate?.Invoke(channelUpdateData);
+                else
+                    _logger.Warning("CHANNEL_UPDATE event received but data could not be cast to ChannelGatewayData");
                 return;
             case "CHANNEL_DELETE":
-                ChannelDelete?.Invoke(p.Data as EntityRemovedGatewayData);
+                if (p.Data is EntityRemovedGatewayData channelDeleteData)
+                    ChannelDelete?.Invoke(channelDeleteData);
+                else
+                    _logger.Warning("CHANNEL_DELETE event received but data could not be cast to EntityRemovedGatewayData");
                 return;
             case "USER_UPDATE":
-                UserUpdate?.Invoke(p.Data as UserGatewayData);
-                return;
-            case "COMMUNITY_MEMBER_CREATE":
-                CommunityMemberCreate?.Invoke(p.Data as CommunityMemberGatewayData);
-                return;
-            case "COMMUNITY_MEMBER_UPDATE":
-                CommunityMemberUpdate?.Invoke(p.Data as CommunityMemberGatewayData);
-                return;
-            case "COMMUNITY_MEMBER_DELETE":
-                CommunityMemberDelete?.Invoke(p.Data as EntityRemovedGatewayData);
+                if (p.Data is UserGatewayData userUpdateData)
+                    UserUpdate?.Invoke(userUpdateData);
+                else
+                    _logger.Warning("USER_UPDATE event received but data could not be cast to UserGatewayData");
                 return;
             case "PRESENCE_UPDATE":
-                PresenceUpdate?.Invoke(p.Data as PresenceGatewayData);
-                return;
-            case "COMMUNITY_CREATE":
-                CommunityCreate?.Invoke(p.Data as CommunityGatewayData);
-                return;
-            case "COMMUNITY_UPDATE":
-                CommunityUpdate?.Invoke(p.Data as CommunityGatewayData);
-                return;
-            case "COMMUNITY_DELETE":
-                CommunityDelete?.Invoke(p.Data as EntityRemovedGatewayData);
+                if (p.Data is PresenceGatewayData presenceData)
+                    PresenceUpdate?.Invoke(presenceData);
+                else
+                    _logger.Warning("PRESENCE_UPDATE event received but data could not be cast to PresenceGatewayData");
                 return;
             case "TYPING_START":
-                TypingStart?.Invoke(p.Data as TypingGatewayData);
+                if (p.Data is TypingGatewayData typingStartData)
+                    TypingStart?.Invoke(typingStartData);
+                else
+                    _logger.Warning("TYPING_START event received but data could not be cast to TypingGatewayData");
                 return;
             case "TYPING_STOP":
-                TypingStop?.Invoke(p.Data as TypingGatewayData);
+                if (p.Data is TypingGatewayData typingStopData)
+                    TypingStop?.Invoke(typingStopData);
+                else
+                    _logger.Warning("TYPING_STOP event received but data could not be cast to TypingGatewayData");
                 return;
-            case "COMMUNITY_ROLE_CREATE":
-                RoleCreate?.Invoke(p.Data as RoleGatewayData);
+
+            // Message reactions
+            case "MESSAGE_REACTION_ADD":
+                if (p.Data is MessageReactionGatewayData reactionAddData)
+                    MessageReactionAdd?.Invoke(reactionAddData);
+                else
+                    _logger.Warning("MESSAGE_REACTION_ADD event received but data could not be cast to MessageReactionGatewayData");
                 return;
-            case "COMMUNITY_ROLE_UPDATE":
-                RoleUpdate?.Invoke(p.Data as RoleGatewayData);
+            case "MESSAGE_REACTION_REMOVE":
+                if (p.Data is MessageReactionGatewayData reactionRemoveData)
+                    MessageReactionRemove?.Invoke(reactionRemoveData);
+                else
+                    _logger.Warning("MESSAGE_REACTION_REMOVE event received but data could not be cast to MessageReactionGatewayData");
                 return;
-            case "COMMUNITY_ROLE_DELETE":
-                RoleDelete?.Invoke(p.Data as EntityRemovedGatewayData);
+            case "MESSAGE_REACTION_REMOVE_ALL":
+                if (p.Data is EntityRemovedGatewayData reactionRemoveAllData)
+                    MessageReactionRemoveAll?.Invoke(reactionRemoveAllData);
+                else
+                    _logger.Warning("MESSAGE_REACTION_REMOVE_ALL event received but data could not be cast to EntityRemovedGatewayData");
                 return;
+            case "MESSAGE_REACTION_REMOVE_EMOJI":
+                if (p.Data is MessageReactionRemoveEmojiGatewayData reactionRemoveEmojiData)
+                    MessageReactionRemoveEmoji?.Invoke(reactionRemoveEmojiData);
+                else
+                    _logger.Warning("MESSAGE_REACTION_REMOVE_EMOJI event received but data could not be cast to MessageReactionRemoveEmojiGatewayData");
+                return;
+
+            // Message bulk operations
+            case "MESSAGE_DELETE_BULK":
+                if (p.Data is MessageBulkDeleteGatewayData bulkDeleteData)
+                    MessageDeleteBulk?.Invoke(bulkDeleteData);
+                else
+                    _logger.Warning("MESSAGE_DELETE_BULK event received but data could not be cast to MessageBulkDeleteGatewayData");
+                return;
+            case "MESSAGE_ACK":
+                if (p.Data is MessageAckGatewayData ackData)
+                    MessageAck?.Invoke(ackData);
+                else
+                    _logger.Warning("MESSAGE_ACK event received but data could not be cast to MessageAckGatewayData");
+                return;
+
+            // Channel updates
+            case "CHANNEL_PINS_UPDATE":
+                if (p.Data is ChannelPinsUpdateGatewayData pinsUpdateData)
+                    ChannelPinsUpdate?.Invoke(pinsUpdateData);
+                else
+                    _logger.Warning("CHANNEL_PINS_UPDATE event received but data could not be cast to ChannelPinsUpdateGatewayData");
+                return;
+
+            // Voice events
+            case "VOICE_STATE_UPDATE":
+                if (p.Data is VoiceStateGatewayData voiceStateData)
+                    VoiceStateUpdate?.Invoke(voiceStateData);
+                else
+                    _logger.Warning("VOICE_STATE_UPDATE event received but data could not be cast to VoiceStateGatewayData");
+                return;
+            case "VOICE_SERVER_UPDATE":
+                if (p.Data is VoiceServerUpdateGatewayData voiceServerData)
+                    VoiceServerUpdate?.Invoke(voiceServerData);
+                else
+                    _logger.Warning("VOICE_SERVER_UPDATE event received but data could not be cast to VoiceServerUpdateGatewayData");
+                return;
+
+            // Guildban events
+            case "GUILD_BAN_ADD":
+                if (p.Data is GuildBanGatewayData banAddData)
+                    GuildBanAdd?.Invoke(banAddData);
+                else
+                    _logger.Warning("GUILD_BAN_ADD event received but data could not be cast to GuildBanGatewayData");
+                return;
+            case "GUILD_BAN_REMOVE":
+                if (p.Data is GuildBanGatewayData banRemoveData)
+                    GuildBanRemove?.Invoke(banRemoveData);
+                else
+                    _logger.Warning("GUILD_BAN_REMOVE event received but data could not be cast to GuildBanGatewayData");
+                return;
+
+            // Webhooks
+            case "WEBHOOKS_UPDATE":
+                if (p.Data is WebhooksUpdateGatewayData webhooksData)
+                    WebhooksUpdate?.Invoke(webhooksData);
+                else
+                    _logger.Warning("WEBHOOKS_UPDATE event received but data could not be cast to WebhooksUpdateGatewayData");
+                return;
+
+            // Guild events
+            case "GUILD_CREATE":
+                if (p.Data is GuildGatewayData guildCreateData)
+                    GuildCreate?.Invoke(guildCreateData);
+                else
+                    _logger.Warning("GUILD_CREATE event received but data could not be cast to GuildGatewayData");
+                return;
+            case "GUILD_UPDATE":
+                if (p.Data is GuildGatewayData guildUpdateData)
+                    GuildUpdate?.Invoke(guildUpdateData);
+                else
+                    _logger.Warning("GUILD_UPDATE event received but data could not be cast to GuildGatewayData");
+                return;
+            case "GUILD_DELETE":
+                if (p.Data is EntityRemovedGatewayData guildDeleteData)
+                    GuildDelete?.Invoke(guildDeleteData);
+                else
+                    _logger.Warning("GUILD_DELETE event received but data could not be cast to EntityRemovedGatewayData");
+                return;
+            case "GUILD_MEMBER_ADD":
+                if (p.Data is GuildMemberGatewayData guildMemberAddData)
+                    GuildMemberAdd?.Invoke(guildMemberAddData);
+                else
+                    _logger.Warning("GUILD_MEMBER_ADD event received but data could not be cast to GuildMemberGatewayData");
+                return;
+            case "GUILD_MEMBER_UPDATE":
+                if (p.Data is GuildMemberGatewayData guildMemberUpdateData)
+                    GuildMemberUpdate?.Invoke(guildMemberUpdateData);
+                else
+                    _logger.Warning("GUILD_MEMBER_UPDATE event received but data could not be cast to GuildMemberGatewayData");
+                return;
+            case "GUILD_MEMBER_REMOVE":
+                if (p.Data is EntityRemovedGatewayData guildMemberRemoveData)
+                    GuildMemberRemove?.Invoke(guildMemberRemoveData);
+                else
+                    _logger.Warning("GUILD_MEMBER_REMOVE event received but data could not be cast to EntityRemovedGatewayData");
+                return;
+            case "GUILD_ROLE_CREATE":
+                if (p.Data is RoleGatewayData guildRoleCreateData)
+                    GuildRoleCreate?.Invoke(guildRoleCreateData);
+                else
+                    _logger.Warning("GUILD_ROLE_CREATE event received but data could not be cast to RoleGatewayData");
+                return;
+            case "GUILD_ROLE_UPDATE":
+                if (p.Data is RoleGatewayData guildRoleUpdateData)
+                    GuildRoleUpdate?.Invoke(guildRoleUpdateData);
+                else
+                    _logger.Warning("GUILD_ROLE_UPDATE event received but data could not be cast to RoleGatewayData");
+                return;
+            case "GUILD_ROLE_DELETE":
+                if (p.Data is EntityRemovedGatewayData guildRoleDeleteData)
+                    GuildRoleDelete?.Invoke(guildRoleDeleteData);
+                else
+                    _logger.Warning("GUILD_ROLE_DELETE event received but data could not be cast to EntityRemovedGatewayData");
+                return;
+
             default:
                 _logger.Warning("Unhandled dispatch {Dispatch}", p.Dispatch);
                 break;
@@ -242,48 +499,82 @@ public partial class GatewayClient
 
     private void HandleHello(GatewayPacket packet)
     {
-
-        var data = packet.Data as HelloGatewayData;
+        if (packet.Data is not HelloGatewayData data)
+        {
+            _logger.Warning("HELLO event received but data could not be cast to HelloGatewayData");
+            return;
+        }
 
         // avoid multiple heartbeat threads
         _heartbeatInterval = data.HeartbeatInterval;
         if (!_heartbeatStarted)
-            Task.Run(() => HandleHeartbeat());
-        _heartbeatStarted = true;
+        {
+            _heartbeatCancellation = new CancellationTokenSource();
+            _ = Task.Run(async () => await HandleHeartbeat(_heartbeatCancellation.Token), _heartbeatCancellation.Token);
+            _heartbeatStarted = true;
+        }
     }
 
     private void ReEstablishGatewayConnection(ReconnectionInfo? info = null)
     {
-        if (info is not null)
-            if (info.Type is ReconnectionType.Error or ReconnectionType.ByServer)
-                Log.Error("Reconnected with info {info}", info);
-            else
-                Log.Information("Reconnected with info {info}", info);
-        else
-            Log.Warning("Reconnected without connection info");
+        // Synchronous wrapper for backward compatibility
+        _ = Task.Run(async () => await ReEstablishGatewayConnectionAsync(info));
+    }
 
-        if (_lastGatewayReEstablishAttempt.AddSeconds(_config.ReconnectAttemptDelay) > DateTime.Now)
+    private async Task ReEstablishGatewayConnectionAsync(ReconnectionInfo? info = null)
+    {
+        if (info is not null)
         {
-            _logger.Warning("Cannot reestablish more than once every {Timeout} seconds. Blocking until the time expires.", _config.ReconnectAttemptDelay);
-            Task.Delay(_config.ReconnectAttemptDelay * 1000).GetAwaiter().GetResult();
+            if (info.Type is ReconnectionType.Error or ReconnectionType.ByServer)
+                _logger.Error("Reconnected with info {Info}", info);
+            else
+                _logger.Information("Reconnected with info {Info}", info);
+        }
+        else
+        {
+            _logger.Warning("Reconnected without connection info");
         }
 
-        _lastGatewayReEstablishAttempt = DateTime.Now;
-        _gatewayDuration.Restart();
-
-        _logger.Information("Attempting to reestablish the gateway connection after {time}ms", _gatewayDuration.ElapsedMilliseconds);
-
-        var packet = new GatewayPacket()
+        // Use semaphore to prevent concurrent reconnection attempts
+        if (!await _reconnectLock.WaitAsync(0))
         {
-            OpCode = FluxerOpCode.Resume,
-            Data = new ReconnectGatewayData()
+            _logger.Debug("Reconnection already in progress, skipping duplicate attempt");
+            return;
+        }
+
+        try
+        {
+            var timeSinceLastAttempt = DateTime.Now - _lastGatewayReEstablishAttempt;
+            var requiredDelay = TimeSpan.FromSeconds(_config.ReconnectAttemptDelay);
+
+            if (timeSinceLastAttempt < requiredDelay)
             {
-                Sequence = _sequence,
-                SessionId = _sessionId,
-                Token = Token
+                var remainingDelay = requiredDelay - timeSinceLastAttempt;
+                _logger.Warning("Rate limiting reconnection. Waiting {RemainingSeconds:F1} seconds before reconnect attempt.", remainingDelay.TotalSeconds);
+                await Task.Delay(remainingDelay);
             }
-        };
-        SendGatewayPacket(packet);
+
+            _lastGatewayReEstablishAttempt = DateTime.Now;
+            _gatewayDuration.Restart();
+
+            _logger.Information("Attempting to reestablish the gateway connection after {Time}ms", _gatewayDuration.ElapsedMilliseconds);
+
+            var packet = new GatewayPacket()
+            {
+                OpCode = FluxerOpCode.Resume,
+                Data = new ReconnectGatewayData()
+                {
+                    Sequence = _sequence,
+                    SessionId = _sessionId,
+                    Token = Token
+                }
+            };
+            SendGatewayPacket(packet);
+        }
+        finally
+        {
+            _reconnectLock.Release();
+        }
     }
 
     private void HandleHeartbeatAck()
@@ -291,23 +582,45 @@ public partial class GatewayClient
         HeartbeatAck?.Invoke();
     }
 
-    private async Task HandleHeartbeat()
+    private async Task HandleHeartbeat(CancellationToken cancellationToken)
     {
-        var jitter = Random.Shared.Next(1);
-        while (true)
+        // Add jitter between 0-500ms to prevent thundering herd
+        var jitter = Random.Shared.Next(0, 500);
+        _logger.Debug("Starting heartbeat with interval {Interval}ms and jitter {Jitter}ms", _heartbeatInterval, jitter);
+
+        try
         {
-            await Task.Delay(_heartbeatInterval + jitter);
-            Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine(_sequence);
-            var packet = new HeartbeatPacketOfDoom()
+            while (!cancellationToken.IsCancellationRequested)
             {
-                Data = _sequence,
-                OpCode = FluxerOpCode.Heartbeat,
-            };
-            SendGatewayPacket(packet);
+                await Task.Delay(_heartbeatInterval + jitter, cancellationToken);
+
+                _logger.Verbose("Sending heartbeat with sequence {Sequence}", _sequence);
+                var packet = new HeartbeatPacket()
+                {
+                    Data = _sequence,
+                    OpCode = FluxerOpCode.Heartbeat,
+                };
+                SendGatewayPacket(packet);
+            }
+        }
+        catch (OperationCanceledException)
+        {
+            _logger.Information("Heartbeat task cancelled");
+        }
+        catch (Exception ex)
+        {
+            _logger.Error(ex, "Unexpected error in heartbeat handler");
         }
     }
 
+    /// <summary>
+    /// Updates the current user's presence status on the gateway.
+    /// </summary>
+    /// <param name="status">The new status to set (Online, Idle, DoNotDisturb, Invisible).</param>
+    /// <remarks>
+    /// This sends a PRESENCE_UPDATE packet to the gateway. Other users will see the status change
+    /// in real-time through PRESENCE_UPDATE events.
+    /// </remarks>
     public void SetStatus(Status status)
     {
         var packet = new GatewayPacket()
@@ -324,24 +637,71 @@ public partial class GatewayClient
 
     // generic
 
+    /// <summary>
+    /// Delegate for heartbeat acknowledgment events from the gateway.
+    /// </summary>
     public delegate void HeartbeatAckEvent();
+
+    /// <summary>
+    /// Occurs when the gateway acknowledges a heartbeat packet.
+    /// </summary>
     public event HeartbeatAckEvent HeartbeatAck;
 
+    /// <summary>
+    /// Delegate for the READY event fired when the gateway connection is established.
+    /// </summary>
+    /// <param name="data">The ready event data including session ID, user info, and initial state.</param>
     public delegate void ReadyEvent(ReadyGatewayData data);
+
+    /// <summary>
+    /// Occurs when the gateway connection is established and initial data is received.
+    /// Contains session ID, current user information, and initial guilds/channels/DMs.
+    /// </summary>
     public event ReadyEvent Ready;
 
+    /// <summary>
+    /// Delegate for the RESUMED event fired when a session is successfully resumed.
+    /// </summary>
     public delegate void ResumedEvent();
+
+    /// <summary>
+    /// Occurs when a disconnected session is successfully resumed without data loss.
+    /// </summary>
     public event ResumedEvent Resumed;
 
     // message
 
+    /// <summary>
+    /// Delegate for MESSAGE_CREATE events when a new message is sent.
+    /// </summary>
+    /// <param name="data">The message data including content, author, channel, etc.</param>
     public delegate void MessageCreateEvent(MessageGatewayData data);
+
+    /// <summary>
+    /// Occurs when a new message is created in any channel the user has access to.
+    /// </summary>
     public event MessageCreateEvent MessageCreate;
 
+    /// <summary>
+    /// Delegate for MESSAGE_UPDATE events when a message is edited.
+    /// </summary>
+    /// <param name="data">The updated message data.</param>
     public delegate void MessageUpdateEvent(MessageGatewayData data);
+
+    /// <summary>
+    /// Occurs when a message is edited.
+    /// </summary>
     public event MessageCreateEvent MessageUpdate;
 
+    /// <summary>
+    /// Delegate for MESSAGE_DELETE events when a message is deleted.
+    /// </summary>
+    /// <param name="data">The deleted entity data containing message and channel IDs.</param>
     public delegate void MessageDeleteEvent(EntityRemovedGatewayData data);
+
+    /// <summary>
+    /// Occurs when a message is deleted.
+    /// </summary>
     public event MessageDeleteEvent MessageDelete;
 
     // space
@@ -364,15 +724,15 @@ public partial class GatewayClient
     public delegate void PresenceUpdateEvent(PresenceGatewayData data);
     public event PresenceUpdateEvent PresenceUpdate;
 
-    // community
-    public delegate void CommunityCreateEvent(CommunityGatewayData data);
-    public event CommunityCreateEvent CommunityCreate;
+    // guild
+    public delegate void GuildCreateEvent(GuildGatewayData data);
+    public event GuildCreateEvent GuildCreate;
 
-    public delegate void CommunityUpdateEvent(CommunityGatewayData data);
-    public event CommunityUpdateEvent CommunityUpdate;
+    public delegate void GuildUpdateEvent(GuildGatewayData data);
+    public event GuildUpdateEvent GuildUpdate;
 
-    public delegate void CommunityDeleteEvent(EntityRemovedGatewayData data);
-    public event CommunityDeleteEvent CommunityDelete;
+    public delegate void GuildDeleteEvent(EntityRemovedGatewayData data);
+    public event GuildDeleteEvent GuildDelete;
 
     // typing
     public delegate void TypingStartEvent(TypingGatewayData data);
@@ -381,29 +741,136 @@ public partial class GatewayClient
     public delegate void TypingStopEvent(TypingGatewayData data);
     public event TypingStopEvent TypingStop;
 
-    // community member
+    // guild member
 
-    public delegate void CommunityMemberCreateEvent(CommunityMemberGatewayData data);
-    public event CommunityMemberCreateEvent CommunityMemberCreate;
+    public delegate void GuildMemberAddEvent(GuildMemberGatewayData data);
+    public event GuildMemberAddEvent GuildMemberAdd;
 
-    public delegate void CommunityMemberUpdateEvent(CommunityMemberGatewayData data);
-    public event CommunityMemberUpdateEvent CommunityMemberUpdate;
+    public delegate void GuildMemberUpdateEvent(GuildMemberGatewayData data);
+    public event GuildMemberUpdateEvent GuildMemberUpdate;
 
-    public delegate void CommunityMemberDeleteEvent(EntityRemovedGatewayData data);
-    public event CommunityMemberDeleteEvent CommunityMemberDelete;
+    public delegate void GuildMemberRemoveEvent(EntityRemovedGatewayData data);
+    public event GuildMemberRemoveEvent GuildMemberRemove;
 
-    // role
+    // guild role
 
-    public delegate void RoleCreateEvent(RoleGatewayData data);
-    public event RoleCreateEvent RoleCreate;
+    public delegate void GuildRoleCreateEvent(RoleGatewayData data);
+    public event GuildRoleCreateEvent GuildRoleCreate;
 
-    public delegate void RoleUpdateEvent(RoleGatewayData data);
-    public event RoleUpdateEvent RoleUpdate;
+    public delegate void GuildRoleUpdateEvent(RoleGatewayData data);
+    public event GuildRoleUpdateEvent GuildRoleUpdate;
 
-    public delegate void RoleDeleteEvent(EntityRemovedGatewayData data);
-    public event RoleDeleteEvent RoleDelete;
+    public delegate void GuildRoleDeleteEvent(EntityRemovedGatewayData data);
+    public event GuildRoleDeleteEvent GuildRoleDelete;
+
+    // message reactions
+
+    public delegate void MessageReactionAddEvent(MessageReactionGatewayData data);
+    public event MessageReactionAddEvent MessageReactionAdd;
+
+    public delegate void MessageReactionRemoveEvent(MessageReactionGatewayData data);
+    public event MessageReactionRemoveEvent MessageReactionRemove;
+
+    public delegate void MessageReactionRemoveAllEvent(EntityRemovedGatewayData data);
+    public event MessageReactionRemoveAllEvent MessageReactionRemoveAll;
+
+    public delegate void MessageReactionRemoveEmojiEvent(MessageReactionRemoveEmojiGatewayData data);
+    public event MessageReactionRemoveEmojiEvent MessageReactionRemoveEmoji;
+
+    // message bulk operations
+
+    public delegate void MessageDeleteBulkEvent(MessageBulkDeleteGatewayData data);
+    public event MessageDeleteBulkEvent MessageDeleteBulk;
+
+    public delegate void MessageAckEvent(MessageAckGatewayData data);
+    public event MessageAckEvent MessageAck;
+
+    // channel updates
+
+    public delegate void ChannelPinsUpdateEvent(ChannelPinsUpdateGatewayData data);
+    public event ChannelPinsUpdateEvent ChannelPinsUpdate;
+
+    // voice events
+
+    public delegate void VoiceStateUpdateEvent(VoiceStateGatewayData data);
+    public event VoiceStateUpdateEvent VoiceStateUpdate;
+
+    public delegate void VoiceServerUpdateEvent(VoiceServerUpdateGatewayData data);
+    public event VoiceServerUpdateEvent VoiceServerUpdate;
+
+    // guild ban events
+
+    public delegate void GuildBanAddEvent(GuildBanGatewayData data);
+    public event GuildBanAddEvent GuildBanAdd;
+
+    public delegate void GuildBanRemoveEvent(GuildBanGatewayData data);
+    public event GuildBanRemoveEvent GuildBanRemove;
+
+    // webhooks
+
+    public delegate void WebhooksUpdateEvent(WebhooksUpdateGatewayData data);
+    public event WebhooksUpdateEvent WebhooksUpdate;
 
     #endregion
+
+    #endregion
+
+    #region IDisposable
+
+    public void Dispose()
+    {
+        Dispose(true);
+        GC.SuppressFinalize(this);
+    }
+
+    protected virtual void Dispose(bool disposing)
+    {
+        if (_disposed)
+            return;
+
+        if (disposing)
+        {
+            _logger.Information("Disposing GatewayClient");
+
+            // Cancel and dispose heartbeat
+            try
+            {
+                _heartbeatCancellation?.Cancel();
+                _heartbeatCancellation?.Dispose();
+            }
+            catch (Exception ex)
+            {
+                _logger.Warning(ex, "Error cancelling heartbeat during disposal");
+            }
+
+            // Dispose WebSocket client
+            try
+            {
+                _gateway?.Dispose();
+            }
+            catch (Exception ex)
+            {
+                _logger.Warning(ex, "Error disposing WebSocket client");
+            }
+
+            // Dispose semaphore
+            try
+            {
+                _reconnectLock?.Dispose();
+            }
+            catch (Exception ex)
+            {
+                _logger.Warning(ex, "Error disposing reconnect lock");
+            }
+        }
+
+        _disposed = true;
+    }
+
+    ~GatewayClient()
+    {
+        Dispose(false);
+    }
 
     #endregion
 }
