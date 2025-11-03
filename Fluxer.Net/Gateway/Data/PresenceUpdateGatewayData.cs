@@ -18,7 +18,7 @@ public class PresenceUpdateGatewayData : IGatewayData
 		{
 			StatusEnum.Online => "online",
 			StatusEnum.Idle => "idle",
-			StatusEnum.DoNotDisturb => "dnd",
+			StatusEnum.Dnd => "dnd",
 			StatusEnum.Invisible => "invisible",
 			_ => Status
 		};

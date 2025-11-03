@@ -1,10 +1,9 @@
-﻿namespace Fluxer.Net.Objects.Data
+namespace Fluxer.Net.Objects.Data;
+
+public enum Status
 {
-	public enum Status
-	{
-		Online,
-		Idle,
-		DoNotDisturb,
-		Invisible
-	}
+	Online,
+	Dnd,
+	Idle,
+	Invisible,
 }

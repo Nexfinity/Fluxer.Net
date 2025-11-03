@@ -55,10 +55,10 @@ The library separates synchronous and asynchronous communication:
 - Enables polymorphic deserialization via `JsonDerivedTypeConverter<IGatewayData>`
 
 **GatewayPacket** (Message Envelope)
-- `OpCode: FluxerOpCode` - Operation type (Dispatch, Heartbeat, Identify, Hello, etc.)
+- `OpCode: FluxerOpCode` - Operation type (Dispatch=0, Heartbeat=1, Identify=2, PresenceUpdate=3, VoiceStateUpdate=4, VoiceServerPing=5, Resume=6, Reconnect=7, RequestGuildMembers=8, InvalidSession=9, Hello=10, HeartbeatAck=11, CallConnect=13, GuildSubscriptions=14)
 - `Data: IGatewayData` - Polymorphic payload automatically deserialized to concrete type
 - `Sequence: int?` - Event ordering for resumption after disconnection
-- `Dispatch: string?` - Event name (e.g., "MESSAGE_CREATE", "CHANNEL_UPDATE")
+- `Dispatch: string?` - Event name (e.g., "MESSAGE_CREATE", "CHANNEL_UPDATE", "MESSAGE_REACTION_ADD")
 
 **FluxerConfig** (Shared Configuration)
 - Single configuration object passed to both ApiClient and GatewayClient
@@ -141,10 +141,23 @@ public async Task<Channel> PatchChannel(ulong channelId, Channel channel)
 ### Adding a New Gateway Event Handler
 
 1. Create `XyzGatewayData : IGatewayData` class in `Gateway/Data/`
-2. Add case in `GatewayClient.HandleDispatch()` switch statement matching the event name
+2. Add case in `GatewayClient.HandleDispatch()` switch statement matching the event name (from Constants.ts)
 3. Add event delegate type (e.g., `public delegate void XyzEvent(XyzGatewayData data);`)
 4. Add event field (e.g., `public event XyzEvent? Xyz;`)
-5. Invoke event in handler: `Xyz?.Invoke(data);`
+5. Use pattern matching to validate cast before invoking:
+   ```csharp
+   if (p.Data is XyzGatewayData xyzData)
+       Xyz?.Invoke(xyzData);
+   else
+       _logger.Warning("XYZ_EVENT received but data could not be cast to XyzGatewayData");
+   ```
+
+**Reference**: See `ExternalApiReferences/Constants.ts` for the complete list of `GatewayDispatchEvent` types supported by the Fluxer API.
+
+**Event Naming**: All gateway events follow the official Fluxer API naming:
+- Guild events: `GUILD_CREATE`, `GUILD_UPDATE`, `GUILD_DELETE`
+- Guild members: `GUILD_MEMBER_ADD`, `GUILD_MEMBER_UPDATE`, `GUILD_MEMBER_REMOVE`
+- Guild roles: `GUILD_ROLE_CREATE`, `GUILD_ROLE_UPDATE`, `GUILD_ROLE_DELETE`
 
 ### Configuration Extension
 
@@ -156,11 +169,18 @@ Add properties to `FluxerConfig` and reference as `_config.PropertyName` in clie
 
 ## Naming Conventions
 
-**Note**: The codebase is transitioning from "Squad" terminology to "Community":
-- `Community` is the current domain object name
-- `Squad*` classes exist for backward compatibility
-- Gateway events use "GUILD" naming from upstream protocol (e.g., "GUILD_CREATE" maps to Community)
-- File `FluxerOpCode.cs` was renamed from `SqullOpCode.cs` (recent git history shows this rename)
+**Important Terminology**:
+- The official Fluxer API uses **"Guild"** terminology (matching Discord-like platforms)
+- "Community" and "Squad" were legacy/internal names from early development
+- All gateway events use `GUILD_*` naming from the official specification
+- Domain objects may still reference `Community` in some legacy code paths
+
+**File Naming**:
+- `GuildGatewayData` - Guild information events
+- `GuildMemberGatewayData` - Guild member events
+- File `FluxerOpCode.cs` was renamed from `SqullOpCode.cs`
+
+**Important**: The OpCode values were corrected in a recent update. The previous implementation had incorrect enum values that didn't match the official Fluxer API specification (e.g., Resume was 4 instead of 6, Hello was 7 instead of 10). See `GATEWAY_UPDATES.md` for details.
 
 ## Dependencies
 
