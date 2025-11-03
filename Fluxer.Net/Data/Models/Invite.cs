@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+using Newtonsoft.Json;
 
 namespace Fluxer.Net.Data.Models;
 
@@ -7,14 +7,20 @@ public class Invite
 	[JsonProperty("code")]
 	public string Code { get; set; }
 
+	[JsonProperty("type")]
+	public int Type { get; set; }
+
 	[JsonProperty("guild_id")]
-	public ulong GuildID { get; set; }
+	public ulong? GuildId { get; set; }
 
 	[JsonProperty("channel_id")]
-	public ulong ChannelId { get; set; }
+	public ulong? ChannelId { get; set; }
 
-	[JsonProperty("inviter")]
-	public User Inviter { get; set; }
+	[JsonProperty("inviter_id")]
+	public ulong? InviterId { get; set; }
+
+	[JsonProperty("created_at")]
+	public DateTime CreatedAt { get; set; }
 
 	[JsonProperty("uses")]
 	public int Uses { get; set; }
@@ -25,9 +31,6 @@ public class Invite
 	[JsonProperty("max_age")]
 	public int MaxAge { get; set; }
 
-	[JsonProperty("created_at")]
-	public DateTime CreatedAt { get; set; }
-
-	[JsonProperty("expires_at")]
-	public DateTime ExpiresAt { get; set; }
+	[JsonProperty("temporary")]
+	public bool Temporary { get; set; }
 }

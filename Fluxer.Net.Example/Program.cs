@@ -4,7 +4,7 @@ using Serilog.Sinks.SystemConsole.Themes;
 using Fluxer.Net;
 using Fluxer.Net.Data.Enums;
 using Fluxer.Net.Example;
-using Fluxer.Net.Objects;
+using Fluxer.Net.Data.Models;
 using Fluxer.Net.Gateway;
 using Fluxer.Net.Gateway.Data;
 
@@ -48,11 +48,11 @@ var api = new ApiClient(config[key: "Token"], new()
 
 if (args.Length > 0 && args[0] == "--revoke") //If the first argument is "--revoke" then revoke the token and exit
 {
-    await api.RevokeToken(new() { Token = config[key: "Token"] });
+    await api.PostTokenRevoke(new() { Token = config[key: "Token"] });
     return;
 }
 
-await api.PatchCommunitySelfMember(73956348832264192, new() { DisplayName = "Just a Normal User" });
+await api.PatchGuildSelfUser(73956348832264192, new() { Nickname = "Just a Normal User" });
 
 //Handle the MESSAGE_CREATE event (Allows us to receive and process commands)
 gateway.MessageCreate += async x =>
@@ -60,7 +60,7 @@ gateway.MessageCreate += async x =>
     if (x.Content == "/ping") //Listen for the /ping command
     {
         //Respond with our own message
-        await api.SendMessage(x.ChannelId, new()
+        await api.PostChannelMessage(x.ChannelId, new()
         {
             Content = "pong ;P"
         });
