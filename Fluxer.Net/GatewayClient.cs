@@ -11,19 +11,52 @@ using Fluxer.Net.Gateway.Data;
 using Websocket.Client;
 namespace Fluxer.Net;
 
+/// <summary>
+/// WebSocket gateway client for real-time events from the Fluxer platform.
+/// Handles bidirectional communication, automatic heartbeats, and reconnection with resume capability.
+/// </summary>
+/// <remarks>
+/// <para>
+/// The GatewayClient provides an event-driven architecture for receiving real-time updates
+/// from Fluxer, including messages, user presence, guild changes, and more. It implements
+/// the Fluxer Gateway protocol with support for:
+/// </para>
+/// <list type="bullet">
+/// <item>Automatic heartbeat mechanism to maintain connection</item>
+/// <item>Sequence tracking for ordered event processing</item>
+/// <item>Session-based reconnection with resume capability (no event loss)</item>
+/// <item>Event filtering via <see cref="FluxerConfig.IgnoredGatewayEvents"/></item>
+/// </list>
+/// <para>
+/// This client should be paired with <see cref="ApiClient"/> for full Fluxer functionality.
+/// </para>
+/// </remarks>
 public partial class GatewayClient : IDisposable
 {
     #region Declares
+    /// <summary>
+    /// The authentication token used for gateway connection.
+    /// </summary>
     public string Token { get; set; }
 
     private readonly FluxerConfig _config;
     private WebsocketClient _gateway;
     private readonly Stopwatch _gatewayDuration = new();
+
+    /// <summary>
+    /// Current sequence number for gateway events. Used for resuming connections without data loss.
+    /// </summary>
     private int _sequence = 0;
+
     private bool _heartbeatStarted = false;
     private int _heartbeatInterval = 0;
     private DateTime _lastGatewayReEstablishAttempt = DateTime.Now;
+
+    /// <summary>
+    /// Session ID received from the READY event. Used for resuming connections.
+    /// </summary>
     private string _sessionId = "";
+
     private Logger _logger;
     private CancellationTokenSource? _heartbeatCancellation;
     private readonly SemaphoreSlim _reconnectLock = new(1, 1);
@@ -35,6 +68,14 @@ public partial class GatewayClient : IDisposable
     #endregion
 
     #region Meta
+    /// <summary>
+    /// Initializes a new instance of the <see cref="GatewayClient"/> class.
+    /// </summary>
+    /// <param name="token">The authentication token for gateway connection.</param>
+    /// <param name="config">Configuration options including gateway URL, event filtering, and reconnection settings.</param>
+    /// <remarks>
+    /// The client is initialized but not connected. Call <see cref="ConnectAsync"/> to establish the gateway connection.
+    /// </remarks>
     public GatewayClient(string token, FluxerConfig config)
     {
         Token = token;
@@ -48,6 +89,24 @@ public partial class GatewayClient : IDisposable
     #endregion
 
     #region Gateway
+    /// <summary>
+    /// Establishes a WebSocket connection to the Fluxer gateway and sends the IDENTIFY packet.
+    /// </summary>
+    /// <returns>A task that represents the asynchronous connection operation.</returns>
+    /// <remarks>
+    /// <para>
+    /// This method:
+    /// </para>
+    /// <list type="number">
+    /// <item>Creates a WebSocket connection to the gateway URL specified in configuration</item>
+    /// <item>Sets up message and reconnection handlers</item>
+    /// <item>Sends an IDENTIFY packet with authentication token and presence</item>
+    /// <item>Waits for HELLO event to begin heartbeat mechanism</item>
+    /// </list>
+    /// <para>
+    /// The connection will automatically reconnect on disconnect and attempt to resume the session.
+    /// </para>
+    /// </remarks>
     public async Task ConnectAsync()
     {
         // disabled for testing
@@ -73,6 +132,15 @@ public partial class GatewayClient : IDisposable
         SendGatewayPacket(login);
     }
 
+    /// <summary>
+    /// Sends a gateway packet to the Fluxer WebSocket server.
+    /// </summary>
+    /// <typeparam name="T">The type of the gateway packet data.</typeparam>
+    /// <param name="Data">The packet data to serialize and send.</param>
+    /// <remarks>
+    /// This method automatically schedules reconnection if sending fails. Packets may be dropped
+    /// during reconnection attempts. For critical operations, use the REST API via <see cref="ApiClient"/>.
+    /// </remarks>
     public void SendGatewayPacket<T>(T Data)
     {
         var text = JsonConvert.SerializeObject(Data, new JsonSerializerSettings()
@@ -545,6 +613,14 @@ public partial class GatewayClient : IDisposable
         }
     }
 
+    /// <summary>
+    /// Updates the current user's presence status on the gateway.
+    /// </summary>
+    /// <param name="status">The new status to set (Online, Idle, DoNotDisturb, Invisible).</param>
+    /// <remarks>
+    /// This sends a PRESENCE_UPDATE packet to the gateway. Other users will see the status change
+    /// in real-time through PRESENCE_UPDATE events.
+    /// </remarks>
     public void SetStatus(Status status)
     {
         var packet = new GatewayPacket()
@@ -561,24 +637,71 @@ public partial class GatewayClient : IDisposable
 
     // generic
 
+    /// <summary>
+    /// Delegate for heartbeat acknowledgment events from the gateway.
+    /// </summary>
     public delegate void HeartbeatAckEvent();
+
+    /// <summary>
+    /// Occurs when the gateway acknowledges a heartbeat packet.
+    /// </summary>
     public event HeartbeatAckEvent HeartbeatAck;
 
+    /// <summary>
+    /// Delegate for the READY event fired when the gateway connection is established.
+    /// </summary>
+    /// <param name="data">The ready event data including session ID, user info, and initial state.</param>
     public delegate void ReadyEvent(ReadyGatewayData data);
+
+    /// <summary>
+    /// Occurs when the gateway connection is established and initial data is received.
+    /// Contains session ID, current user information, and initial guilds/channels/DMs.
+    /// </summary>
     public event ReadyEvent Ready;
 
+    /// <summary>
+    /// Delegate for the RESUMED event fired when a session is successfully resumed.
+    /// </summary>
     public delegate void ResumedEvent();
+
+    /// <summary>
+    /// Occurs when a disconnected session is successfully resumed without data loss.
+    /// </summary>
     public event ResumedEvent Resumed;
 
     // message
 
+    /// <summary>
+    /// Delegate for MESSAGE_CREATE events when a new message is sent.
+    /// </summary>
+    /// <param name="data">The message data including content, author, channel, etc.</param>
     public delegate void MessageCreateEvent(MessageGatewayData data);
+
+    /// <summary>
+    /// Occurs when a new message is created in any channel the user has access to.
+    /// </summary>
     public event MessageCreateEvent MessageCreate;
 
+    /// <summary>
+    /// Delegate for MESSAGE_UPDATE events when a message is edited.
+    /// </summary>
+    /// <param name="data">The updated message data.</param>
     public delegate void MessageUpdateEvent(MessageGatewayData data);
+
+    /// <summary>
+    /// Occurs when a message is edited.
+    /// </summary>
     public event MessageCreateEvent MessageUpdate;
 
+    /// <summary>
+    /// Delegate for MESSAGE_DELETE events when a message is deleted.
+    /// </summary>
+    /// <param name="data">The deleted entity data containing message and channel IDs.</param>
     public delegate void MessageDeleteEvent(EntityRemovedGatewayData data);
+
+    /// <summary>
+    /// Occurs when a message is deleted.
+    /// </summary>
     public event MessageDeleteEvent MessageDelete;
 
     // space

@@ -10,11 +10,32 @@ using Fluxer.Net.Extensions;
 
 namespace Fluxer.Net;
 
+/// <summary>
+/// REST API client for the Fluxer platform. Provides methods for all Fluxer API endpoints
+/// including authentication, channels, guilds, users, messages, and more.
+/// </summary>
+/// <remarks>
+/// This client handles HTTP requests to the Fluxer API with automatic rate limiting,
+/// JSON serialization, and error handling. It supports both synchronous operations via
+/// REST and can be paired with <see cref="GatewayClient"/> for real-time events.
+/// </remarks>
 public class ApiClient
 {
     #region Declares
+    /// <summary>
+    /// The authentication token used for API requests.
+    /// </summary>
     public string Token { get; set; }
+
+    /// <summary>
+    /// The HTTP client used to make requests. Can be shared or injected for connection pooling.
+    /// </summary>
     public HttpClient HttpClient { get; set; }
+
+    /// <summary>
+    /// Manages client-side rate limiting using sliding window algorithm.
+    /// Prevents exceeding Fluxer API rate limits by automatically waiting when necessary.
+    /// </summary>
     public RateLimitManager RateLimitManager { get; set; }
 
     private readonly FluxerConfig _config;
@@ -24,6 +45,19 @@ public class ApiClient
     #endregion
 
     #region Meta
+    /// <summary>
+    /// Initializes a new instance of the <see cref="ApiClient"/> class.
+    /// </summary>
+    /// <param name="token">The authentication token for API requests.</param>
+    /// <param name="config">Configuration options including API endpoints, rate limiting, and logging.</param>
+    /// <remarks>
+    /// The client is automatically configured with:
+    /// <list type="bullet">
+    /// <item>Rate limiting enabled by default (configurable via <see cref="FluxerConfig.EnableRateLimiting"/>)</item>
+    /// <item>Serilog logger for request/response tracking</item>
+    /// <item>HTTP client for connection pooling</item>
+    /// </list>
+    /// </remarks>
     public ApiClient(string token, FluxerConfig config)
     {
         Token = token;
@@ -42,8 +76,14 @@ public class ApiClient
     }
 
     /// <summary>
-    /// Helper method to wait for rate limiting before making a request
+    /// Helper method to wait for rate limiting before making a request.
     /// </summary>
+    /// <param name="config">The rate limit configuration for this request.</param>
+    /// <param name="channelId">Optional channel ID for channel-specific rate limits.</param>
+    /// <param name="guildId">Optional guild ID for guild-specific rate limits.</param>
+    /// <param name="userId">Optional user ID for user-specific rate limits.</param>
+    /// <param name="webhookId">Optional webhook ID for webhook-specific rate limits.</param>
+    /// <param name="inviteCode">Optional invite code for invite-specific rate limits.</param>
     private async Task WaitForRateLimit(RateLimitConfig config, ulong? channelId = null, ulong? guildId = null, ulong? userId = null, ulong? webhookId = null, string inviteCode = null)
     {
         if (!_config.EnableRateLimiting)
@@ -53,6 +93,18 @@ public class ApiClient
         await RateLimitManager.WaitForRateLimitAsync(bucket);
     }
 
+    /// <summary>
+    /// Makes an HTTP request with both request and response bodies.
+    /// </summary>
+    /// <typeparam name="TResponse">The type to deserialize the response into.</typeparam>
+    /// <typeparam name="TSend">The type of the request body.</typeparam>
+    /// <param name="method">The HTTP method (GET, POST, PATCH, etc.).</param>
+    /// <param name="route">The API route (e.g., "/channels/123/messages").</param>
+    /// <param name="data">The request body data to serialize and send.</param>
+    /// <param name="throwOnNonSuccess">Whether to throw an exception on non-2xx status codes.</param>
+    /// <param name="authorize">Whether to include the Authorization header.</param>
+    /// <returns>The deserialized response object.</returns>
+    /// <exception cref="FluxerApiException">Thrown when <paramref name="throwOnNonSuccess"/> is true and the API returns a non-success status code.</exception>
     public async Task<TResponse> MakeFluxerApiRequestRS<TResponse, TSend>(HttpMethod method, string route, TSend data, bool throwOnNonSuccess = false, bool authorize = true)
     {
         var rawContent = JsonConvert.SerializeObject(data, new JsonSerializerSettings()
@@ -80,6 +132,17 @@ public class ApiClient
         return JsonConvert.DeserializeObject<TResponse>(resp);
     }
 
+    /// <summary>
+    /// Makes an HTTP request with a request body but no response body (returns status code only).
+    /// </summary>
+    /// <typeparam name="TSend">The type of the request body.</typeparam>
+    /// <param name="method">The HTTP method (POST, PATCH, DELETE, etc.).</param>
+    /// <param name="route">The API route (e.g., "/channels/123/typing").</param>
+    /// <param name="data">The request body data to serialize and send.</param>
+    /// <param name="throwOnNonSuccess">Whether to throw an exception on non-2xx status codes.</param>
+    /// <param name="authorize">Whether to include the Authorization header.</param>
+    /// <returns>The HTTP status code of the response.</returns>
+    /// <exception cref="FluxerApiException">Thrown when <paramref name="throwOnNonSuccess"/> is true and the API returns a non-success status code.</exception>
     public async Task<HttpStatusCode> MakeFluxerApiRequestS<TSend>(HttpMethod method, string route, TSend data, bool throwOnNonSuccess = false, bool authorize = true)
     {
         Log.Verbose("Sending {@Enums} to {Route}", data, route);
@@ -106,6 +169,16 @@ public class ApiClient
         return result.StatusCode;
     }
 
+    /// <summary>
+    /// Makes an HTTP request with no request body but expects a response body.
+    /// </summary>
+    /// <typeparam name="TResponse">The type to deserialize the response into.</typeparam>
+    /// <param name="method">The HTTP method (typically GET).</param>
+    /// <param name="route">The API route (e.g., "/users/@me").</param>
+    /// <param name="throwOnNonSuccess">Whether to throw an exception on non-2xx status codes.</param>
+    /// <param name="authorize">Whether to include the Authorization header.</param>
+    /// <returns>The deserialized response object.</returns>
+    /// <exception cref="FluxerApiException">Thrown when <paramref name="throwOnNonSuccess"/> is true and the API returns a non-success status code.</exception>
     public async Task<TResponse> MakeFluxerApiRequestR<TResponse>(HttpMethod method, string route, bool throwOnNonSuccess = false, bool authorize = true)
     {
         var req = new HttpRequestMessage()
@@ -127,6 +200,15 @@ public class ApiClient
         return JsonConvert.DeserializeObject<TResponse>(resp);
     }
 
+    /// <summary>
+    /// Makes an HTTP request with no request or response body (returns status code only).
+    /// </summary>
+    /// <param name="method">The HTTP method (DELETE, POST, etc.).</param>
+    /// <param name="route">The API route (e.g., "/channels/123").</param>
+    /// <param name="throwOnNonSuccess">Whether to throw an exception on non-2xx status codes.</param>
+    /// <param name="authorize">Whether to include the Authorization header.</param>
+    /// <returns>The HTTP status code of the response.</returns>
+    /// <exception cref="FluxerApiException">Thrown when <paramref name="throwOnNonSuccess"/> is true and the API returns a non-success status code.</exception>
     public async Task<HttpStatusCode> MakeFluxerApiRequest(HttpMethod method, string route, bool throwOnNonSuccess = false, bool authorize = true)
     {
         var req = new HttpRequestMessage()

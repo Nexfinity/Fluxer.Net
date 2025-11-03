@@ -6,53 +6,70 @@ using Fluxer.Net.Gateway.Data;
 
 namespace Fluxer.Net;
 
+/// <summary>
+/// Configuration class for the Fluxer.Net library. Controls behavior for both ApiClient and GatewayClient
+/// including endpoints, reconnection, logging, rate limiting, and gateway event handling.
+/// </summary>
 public class FluxerConfig
 {
     /// <summary>
-    ///     how many seconds to wait between reconnect attempts
+    /// Number of seconds to wait between gateway reconnection attempts. Defaults to 10 seconds.
     /// </summary>
     public int ReconnectAttemptDelay { get; set; } = 10;
 
     /// <summary>
-    ///     The configuration to use for the libraries logger. Leave null to user the developers configuration
+    /// Custom Serilog logger configuration for the library. If null, the library will use the
+    /// application's existing Serilog configuration. Allows for separate log levels and sinks
+    /// for Fluxer.Net operations.
     /// </summary>
     public Logger? Serilog { get; set; }
 
     /// <summary>
-    ///     Base url for fluxer's api. Defaults to "https://web.fluxer.app/client-api/v{v}/". {v} is replaced with <see cref="Version"/>
+    /// Base URL for the Fluxer REST API. The {v} placeholder is replaced with <see cref="Version"/>.
+    /// Defaults to "https://api.fluxer.app/v{v}/".
     /// </summary>
     public string FluxerApiBaseUrl { get; set; } = "https://api.fluxer.app/v{v}/";
 
     /// <summary>
-    ///     The version of fluxer's api to use. Defaults to 1. The only supported value is 1.
+    /// API version number to use. Defaults to 1, which is currently the only supported version.
+    /// This value replaces the {v} placeholder in <see cref="FluxerApiBaseUrl"/>.
     /// </summary>
     public int Version { get; set; } = 1;
 
     /// <summary>
-    ///     The gateway to connect to. Encoding must be json and compression is unsupported.
+    /// WebSocket gateway URL for real-time event streaming. Must use JSON encoding.
+    /// Compression is not currently supported. Defaults to "wss://gateway.fluxer.app/?v=1&amp;encoding=json".
     /// </summary>
     public string FluxerGatewayUrl { get; set; } = "wss://gateway.fluxer.app/?v=1&encoding=json";
 
     /// <summary>
-    ///     Pass your applications HttpClient here if one is generated
+    /// Optional HttpClient instance to use for API requests. If null, a new HttpClient will be created.
+    /// Providing your own HttpClient allows for connection pooling, custom headers, and proxy configuration.
     /// </summary>
     public HttpClient HttpClient { get; set; } = null;
 
     /// <summary>
-    ///     (optionally) block some dispathes your application does not handle -- for example PRESENCE_UPDATE
+    /// List of gateway event dispatch types to ignore. Useful for filtering out high-volume events
+    /// your application doesn't need (e.g., "PRESENCE_UPDATE", "TYPING_START"). Defaults to empty list.
     /// </summary>
     public List<string> IgnoredGatewayEvents { get; set; } = new();
 
     /// <summary>
-    ///     The initial presence to send to fluxer
+    /// Initial presence data to send when connecting to the gateway. If null, no presence is sent.
+    /// Allows setting your bot's or user's online status, activity, and other presence information.
     /// </summary>
     public PresenceUpdateGatewayData? Presence { get; set; } = null;
 
     /// <summary>
-    ///     Enable client-side rate limiting using sliding window algorithm. Defaults to true.
-    ///     When enabled, API requests will automatically wait when rate limits are hit.
+    /// Enable client-side rate limiting using a sliding window algorithm. Defaults to true.
+    /// When enabled, API requests automatically wait when approaching rate limits to prevent
+    /// 429 responses from the server. See RateLimiting/README.md for details.
     /// </summary>
     public bool EnableRateLimiting { get; set; } = true;
 
+    /// <summary>
+    /// Gets the fully resolved API base URL with the version number substituted.
+    /// This is the actual URL used for API requests.
+    /// </summary>
     public string RealApiBaseUrl { get => FluxerApiBaseUrl.Replace("{v}", Version.ToString()); }
 }
