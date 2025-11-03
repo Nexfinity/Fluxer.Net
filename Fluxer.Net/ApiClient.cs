@@ -5,12 +5,11 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Reflection;
 using System.Threading.Tasks;
+using Fluxer.Net.Data.Models;
 using Newtonsoft.Json;
 using Serilog;
 using Serilog.Core;
 using Fluxer.Net.Extensions;
-using Fluxer.Net.Objects.Models;
-using Fluxer.Net.Objects.Models;
 
 namespace Fluxer.Net;
 

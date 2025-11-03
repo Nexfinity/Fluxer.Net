@@ -1,4 +1,4 @@
-namespace Fluxer.Net.Objects.Data;
+namespace Fluxer.Net.Data.Enums;
 
 public enum NSFWFilterLevelType
 {

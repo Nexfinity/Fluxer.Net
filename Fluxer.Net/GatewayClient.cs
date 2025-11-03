@@ -2,12 +2,12 @@
 using System.Diagnostics;
 using System.Reflection;
 using System.Text.RegularExpressions;
+using Fluxer.Net.Data.Enums;
 using Newtonsoft.Json;
 using Serilog;
 using Serilog.Core;
 using Fluxer.Net.Gateway;
 using Fluxer.Net.Gateway.Data;
-using Fluxer.Net.Objects.Data;
 using Websocket.Client;
 namespace Fluxer.Net;
 

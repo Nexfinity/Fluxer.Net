@@ -1,10 +1,10 @@
 #nullable enable
 #pragma warning disable CS8618
 
+using Fluxer.Net.Data.Enums;
 using Newtonsoft.Json;
-using Fluxer.Net.Objects.Data;
 
-namespace Fluxer.Net.Objects.Models;
+namespace Fluxer.Net.Data.Models;
 
 public class UserSettings
 {

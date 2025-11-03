@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace Fluxer.Net.Objects.Models;
+namespace Fluxer.Net.Data.Models;
 
 public class MessageAck
 {

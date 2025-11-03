@@ -1,4 +1,4 @@
-using Fluxer.Net.Objects.Models;
+using Fluxer.Net.Data.Models;
 
 namespace Fluxer.Net.Gateway.Data;
 

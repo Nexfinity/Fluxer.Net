@@ -1,8 +1,6 @@
-using System;
 using Newtonsoft.Json;
-using Fluxer.Net.Objects.Data;
 
-namespace Fluxer.Net.Objects.Models;
+namespace Fluxer.Net.Data.Models;
 
 public class GuildMember
 {

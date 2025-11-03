@@ -1,9 +1,7 @@
-using System;
-using System.Text.Json.Serialization;
+using Fluxer.Net.Data.Enums;
 using Newtonsoft.Json;
-using Fluxer.Net.Objects.Data;
 
-namespace Fluxer.Net.Objects.Models;
+namespace Fluxer.Net.Data.Models;
 
 public class User
 {
