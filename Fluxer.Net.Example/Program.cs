@@ -21,8 +21,6 @@ using Serilog.Sinks.SystemConsole.Themes;
 using Fluxer.Net;
 using Fluxer.Net.Data.Enums;
 using Fluxer.Net.Example;
-using Fluxer.Net.Data.Models;
-using Fluxer.Net.Gateway;
 using Fluxer.Net.Gateway.Data;
 
 // ============================================================================
