@@ -1,10 +1,6 @@
-using System;
-using System.Diagnostics;
 using System.Net;
-using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Reflection;
-using System.Threading.Tasks;
 using Fluxer.Net.Data.Models;
 using Newtonsoft.Json;
 using Serilog;
