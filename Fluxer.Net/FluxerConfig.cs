@@ -21,7 +21,7 @@ public class FluxerConfig
     /// <summary>
     ///     Base url for fluxer's api. Defaults to "https://web.fluxer.app/client-api/v{v}/". {v} is replaced with <see cref="Version"/>
     /// </summary>
-    public string FluxerApiBaseUrl { get; set; } = "https://web.fluxer.app/client-api/v{v}/";
+    public string FluxerApiBaseUrl { get; set; } = "https://api.fluxer.app/v{v}/";
 
     /// <summary>
     ///     The version of fluxer's api to use. Defaults to 1. The only supported value is 1.
