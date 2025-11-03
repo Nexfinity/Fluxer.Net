@@ -6,9 +6,14 @@ public enum FluxerOpCode
     Heartbeat = 1,
     Identify = 2,
     PresenceUpdate = 3,
-    Resume = 4,
-    Reconnect = 5,
-    InvalidSession = 6, // ?????
-    Hello = 7,
-    HeartbeatAck = 8
+    VoiceStateUpdate = 4,
+    VoiceServerPing = 5,
+    Resume = 6,
+    Reconnect = 7,
+    RequestGuildMembers = 8,
+    InvalidSession = 9,
+    Hello = 10,
+    HeartbeatAck = 11,
+    CallConnect = 13,
+    GuildSubscriptions = 14
 }
