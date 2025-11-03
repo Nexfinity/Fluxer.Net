@@ -1,6 +1,5 @@
 using Newtonsoft.Json;
-using Fluxer.Net.Objects.Data;
-using StatusEnum = Fluxer.Net.Objects.Data.Status;
+using StatusEnum = Fluxer.Net.Data.Enums.Status;
 
 namespace Fluxer.Net.Gateway.Data;
 
@@ -18,7 +17,7 @@ public class PresenceUpdateGatewayData : IGatewayData
 		{
 			StatusEnum.Online => "online",
 			StatusEnum.Idle => "idle",
-			StatusEnum.DoNotDisturb => "dnd",
+			StatusEnum.Dnd => "dnd",
 			StatusEnum.Invisible => "invisible",
 			_ => Status
 		};

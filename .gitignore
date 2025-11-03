@@ -475,3 +475,7 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+.idea/.idea.Fluxer.Net/.idea/
+
+.claude/
