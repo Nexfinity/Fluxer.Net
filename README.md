@@ -1,38 +1,33 @@
 # Fluxer.Net
-Fluxer.Net is currently unsupported for any usecase, please report bug reports in the issues page, and open pull requests for missing endpoints. 
-
-> [!WARNING]  
-> This library was built for the early ALPHA builds for Fluxer and does not work on the current public BETA.
-> Feel free to create a PR to help updated the library to be compliant with the current API. 
-> Issues opened related to this will be closed.
+Fluxer.Net is currently functional with Fluxer's pre-release, however, things are very likely to break or stop working as Fluxer updates. Please report bug reports in the issues page, and open pull requests for missing or broken features and endpoints. 
 
 ## Building 
-to build nupkg:
+To build the nupkg:
 ```sh
 dotnet pack --include-symbols --include-source
 ```
 
 ## Installing
-
-
-> [!WARNING]  
-> This installation method will likely **not** be supported when Fluxer leaves alpha. At the very least the package id will change.
-
-Installing from @CottageDwellingCat's official myget feed:
-add the following to the `<PropertyGroup>` tag that contains your app's configuration (prefer nuget to the private feed, but use it when packages are missing):
+Installing from Fluxer's official myget feed:
+Add the following to the `<PropertyGroup>` tag that contains your app's configuration (prefer nuget to the private feed, but use it when packages are missing):
 ```xml
 <RestoreSources>
-    $(RestoreSources);https://api.nuget.org/v3/index.json;https://www.myget.org/F/nexfinity-alpha/api/v3/index.json
+    $(RestoreSources);https://api.nuget.org/v3/index.json;https://www.myget.org/F/nexfinity/api/v3/index.json
 </RestoreSources>
 ```
-then reference our package in the `<ItemGroup>` that contains your all of your `<PackageReference ... />` tags
+Then reference our package in the `<ItemGroup>` that contains your all of your `<PackageReference ... />` tags
 ```xml
-<PackageReference Include="Nexfinity.Fluxer.Net.Alpha" Version="0.4.0" />
+<PackageReference Include="Nexfinity.Fluxer.Net" Version="1.0.0" />
 ```
+
+> [!IMPORTANT] 
+> You will need to change the `Version="1.0.0"` to reflect the current release tag version.
 
 ## 🗃️ Versioning Guarantees
 
-This library generally abides by [Semantic Versioning](https://semver.org). Packages are published in `MAJOR.MINOR.PATCH` version format.
+> [!NOTE]
+> This library generally abides by [Semantic Versioning](https://semver.org). Packages are published in `MAJOR.MINOR.PATCH` version format. Alpha or pre-releases may have an additional suffix tag to mark them from primary releases.
+> Also note that _sometimes_ exceptions may be made to this policy, and when this occurs a note will be included in the relevent changelist.
 
 ### Patch component
 
@@ -74,4 +69,5 @@ Development branch, available on MyGet. This branch is what pull requests are ta
 
 Branches that target Dev, adding new features. Feel free to explore these branches and give feedback where necessary.
 
-we might even use webooks, sometimes!
+> [!WARNING]  
+> Dev and Feature/X branches are VERY likely to contain breaking or even unstable changes and are NOT reccomended to be used in production. Use at your own risk.
