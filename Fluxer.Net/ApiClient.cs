@@ -230,8 +230,8 @@ public class ApiClient
 
     #region Users API
 
-    public async Task DeleteCommunity(ulong communityId)
-        => await MakeFluxerApiRequest(HttpMethod.Delete, $"users/@me/communities/{communityId}", true, true);
+    // public async Task DeleteCommunity(ulong communityId)
+    //     => await MakeFluxerApiRequest(HttpMethod.Delete, $"users/@me/communities/{communityId}", true, true);
 
     public async Task<User> GetUser(ulong userId)
         => await MakeFluxerApiRequestR<User>(HttpMethod.Get, $"users/{userId}", true);
