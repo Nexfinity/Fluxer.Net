@@ -48,5 +48,11 @@ public class FluxerConfig
     /// </summary>
     public PresenceUpdateGatewayData? Presence { get; set; } = null;
 
+    /// <summary>
+    ///     Enable client-side rate limiting using sliding window algorithm. Defaults to true.
+    ///     When enabled, API requests will automatically wait when rate limits are hit.
+    /// </summary>
+    public bool EnableRateLimiting { get; set; } = true;
+
     public string RealApiBaseUrl { get => FluxerApiBaseUrl.Replace("{v}", Version.ToString()); }
 }

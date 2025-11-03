@@ -2,6 +2,7 @@ using System.Net;
 using System.Net.Http.Headers;
 using System.Reflection;
 using Fluxer.Net.Data.Models;
+using Fluxer.Net.RateLimiting;
 using Newtonsoft.Json;
 using Serilog;
 using Serilog.Core;
@@ -14,6 +15,7 @@ public class ApiClient
     #region Declares
     public string Token { get; set; }
     public HttpClient HttpClient { get; set; }
+    public RateLimitManager RateLimitManager { get; set; }
 
     private readonly FluxerConfig _config;
 #pragma warning disable CS0169
@@ -27,12 +29,28 @@ public class ApiClient
         Token = token;
         _config = config;
         HttpClient = _config.HttpClient ?? new();
+        RateLimitManager = new RateLimitManager(_config.EnableRateLimiting);
         Log.Logger = _config.Serilog ?? new LoggerConfiguration()
                 .MinimumLevel.Verbose()
                 .WriteTo.Console()
                 .CreateLogger();
-        Log.Information("Initialized Fluxer.Net api client ({AssemblyVersion}) (API {ApiVersion})", Assembly.GetExecutingAssembly().GetName().Version, _config.Version);
+        Log.Information("Initialized Fluxer.Net api client ({AssemblyVersion}) (API {ApiVersion}) with rate limiting {RateLimitEnabled}",
+            Assembly.GetExecutingAssembly().GetName().Version,
+            _config.Version,
+            _config.EnableRateLimiting ? "enabled" : "disabled");
         Log.Verbose("Loaded with config {@Config}", _config);
+    }
+
+    /// <summary>
+    /// Helper method to wait for rate limiting before making a request
+    /// </summary>
+    private async Task WaitForRateLimit(RateLimitConfig config, ulong? channelId = null, ulong? guildId = null, ulong? userId = null, ulong? webhookId = null, string inviteCode = null)
+    {
+        if (!_config.EnableRateLimiting)
+            return;
+
+        var bucket = RateLimitManager.GetBucket(config, channelId, guildId, userId, webhookId, inviteCode);
+        await RateLimitManager.WaitForRateLimitAsync(bucket);
     }
 
     public async Task<TResponse> MakeFluxerApiRequestRS<TResponse, TSend>(HttpMethod method, string route, TSend data, bool throwOnNonSuccess = false, bool authorize = true)
