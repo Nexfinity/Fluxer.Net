@@ -9,7 +9,7 @@
     <DebugType>portable</DebugType>
 	
 	<!-- NuGet package info -->
-    <PackageId>Nexfinity.Fluxer.Net</PackageId>
+    <PackageId>Fluxer.Net</PackageId>
     <Version>1.0.0</Version>
     <Authors>Nexfinity</Authors>
     <Company>Nexfinity</Company>
