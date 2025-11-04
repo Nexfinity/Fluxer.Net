@@ -4,7 +4,10 @@ Fluxer.Net is currently functional with Fluxer's pre-release, however, things ar
 <br />
 
 <div align="center">
-<a href="https://www.nuget.org/packages/Fluxer.Net/">
+  <a href="https://www.nuget.org/packages/Fluxer.Net/">
+    <img src="https://img.shields.io/nuget/v/Fluxer.Net.svg?maxAge=2592000?style=plastic" alt="NuGet">
+  </a>
+  <a href="https://www.nuget.org/packages/Fluxer.Net/">
     <img src="https://img.shields.io/nuget/vpre/Fluxer.Net.svg?maxAge=2592000?style=plastic" alt="NuGet">
   </a>
   <a href="https://github.com/Nexfinity/Fluxer.Net/actions/workflows/publish.yml">
