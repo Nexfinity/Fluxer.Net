@@ -1,27 +1,34 @@
 # Fluxer.Net
 Fluxer.Net is currently functional with Fluxer's pre-release, however, things are very likely to break or stop working as Fluxer updates. Please report bug reports in the issues page, and open pull requests for missing or broken features and endpoints. 
 
-## Building 
-To build the nupkg:
-```sh
-dotnet pack --include-symbols --include-source
-```
+<br />
 
-## Installing
-Installing from Fluxer's official myget feed:
-Add the following to the `<PropertyGroup>` tag that contains your app's configuration (prefer nuget to the private feed, but use it when packages are missing):
-```xml
-<RestoreSources>
-    $(RestoreSources);https://api.nuget.org/v3/index.json;https://www.myget.org/F/nexfinity/api/v3/index.json
-</RestoreSources>
-```
-Then reference our package in the `<ItemGroup>` that contains your all of your `<PackageReference ... />` tags
-```xml
-<PackageReference Include="Nexfinity.Fluxer.Net" Version="1.0.0" />
-```
+<div align="center">
+<a href="https://www.nuget.org/packages/Fluxer.Net/">
+    <img src="https://img.shields.io/nuget/vpre/Fluxer.Net.svg?maxAge=2592000?style=plastic" alt="NuGet">
+  </a>
+  <a href="https://github.com/Nexfinity/Fluxer.Net/actions/workflows/publish.yml">
+    <img src="https://github.com/Nexfinity/Fluxer.Net/actions/workflows/publish.yml/badge.svg" alt="Dotnet Build Status">
+  </a>
+</div>
 
-> [!IMPORTANT] 
-> You will need to change the `Version="1.0.0"` to reflect the current release tag version.
+## 📄 Documentation
+Documentation can be found at [https://docs.discordnet.dev/index.html](https://fluxer.net/)
+
+## 🩷 Supporting Fluxer.Net
+Fluxer.Net is an MIT-licensed open source project with its development made possible entirely by volunteers. 
+
+## 📥 Installation
+
+### Stable (NuGet)
+
+Our stable builds available from NuGet through the Fluxer.Net metapackage:
+
+- [Fluxer.Net](https://www.nuget.org/packages/Fluxer.Net/)
+
+### Nightlies
+
+Nightlies are builds of Fluxer.Net that are still in an experimental phase, and have not been released. We do not current have a nightlies build feed.
 
 ## 🗃️ Versioning Guarantees
 
