@@ -13,7 +13,7 @@ Fluxer.Net is currently functional with Fluxer's pre-release, however, things ar
 </div>
 
 ## 📄 Documentation
-Documentation can be found at [https://docs.discordnet.dev/index.html](https://fluxer.net/)
+Documentation can be found at [https://fluxer.net/](https://fluxer.net/)
 
 ## 🩷 Supporting Fluxer.Net
 Fluxer.Net is an MIT-licensed open source project with its development made possible entirely by volunteers. 
@@ -51,7 +51,7 @@ Major version bumps generally indicate some major change to the library,
 and as such we are hesitant to bump the major version for every minor addition to the library.
 
 While we will never break the API (outside of interface changes) on minor builds,
-we will occasionally need to break the ABI, by introducing parameters to a method to match changes upstream with Discord.
+we will occasionally need to break the ABI, by introducing parameters to a method to match changes upstream with Fluxer.
 As such, a minor version increment may require you to recompile your code, and dependencies,
 such as addons, may also need to be recompiled and republished on the newer version.
 When a binary breaking change is made, the change will be noted in the release notes.
