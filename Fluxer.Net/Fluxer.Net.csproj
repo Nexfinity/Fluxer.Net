@@ -4,14 +4,26 @@
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>annotations</Nullable>
-    <Version>1.0.0</Version>
-    <PackageId>Nexfinity.Fluxer.Net</PackageId>
-    <Authors>CottageDwellingCat, MrCakeSlayer</Authors>
-    <Company>Nexfinity</Company>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <DebugSymbols>true</DebugSymbols>
     <EmbedAllSources>true</EmbedAllSources>
     <DebugType>portable</DebugType>
+	
+	<!-- NuGet package info -->
+    <PackageId>Nexfinity.Fluxer.Net</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>Nexfinity</Authors>
+    <Company>Nexfinity</Company>
+    <Description>A .NET library for Fluxer bot development.</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/nexfinity/fluxer.net</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Nexfinity/Fluxer.Net.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+
+    <!-- Optional but good practice -->
+    <PackageTags>fluxer;bot;library;dotnet</PackageTags>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
 
   <ItemGroup>

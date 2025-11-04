@@ -158,61 +158,69 @@ if (args.Length > 0 && args[0] == "--revoke")
 
 gateway.MessageCreate += async messageData =>
 {
-    // Ignore messages from webhooks (they don't have an AuthorId)
-    if (!messageData.AuthorId.HasValue)
-        return;
-
-    // Log every message for debugging (optional - can be noisy!)
-    Log.Debug("Message received in channel {ChannelId}: {Content}",
-              messageData.ChannelId, messageData.Content);
-
-    // ========================================================================
-    // Example Command: /ping
-    // ========================================================================
-    // Simple command that responds with "pong" when a user types "/ping"
-
-    if (messageData.Content == "/ping")
+    try
     {
-        Log.Information("Ping command received from user {UserId}", messageData.AuthorId);
+        // Ignore messages from webhooks or system messages (they don't have an Author)
+        if (messageData.Author == null)
+            return;
 
-        // Send a response message to the same channel
-        await api.PostChannelMessage(messageData.ChannelId, new()
+        // Log every message for debugging (optional - can be noisy!)
+        Log.Debug("Message received in channel {ChannelId} from {Username}: {Content}",
+            messageData.ChannelId, messageData.Author.Username, messageData.Content);
+
+        // ========================================================================
+        // Example Command: /ping
+        // ========================================================================
+        // Simple command that responds with "pong" when a user types "/ping"
+
+        if (messageData.Content == "/ping")
         {
-            Content = "pong ;P"
-        });
+            Log.Information("Ping command received from user {Username} ({UserId})",
+                messageData.Author.Username, messageData.Author.Id);
+
+            // Send a response message to the same channel
+            await api.PostChannelMessage(messageData.ChannelId, new()
+            {
+                Content = "pong ;P"
+            });
+        }
+
+        // ========================================================================
+        // Example Command: /hello
+        // ========================================================================
+        // Demonstrates mentioning the user who sent the command
+
+        else if (messageData.Content == "/hello")
+        {
+            await api.PostChannelMessage(messageData.ChannelId, new()
+            {
+                Content = $"Hello, <@{messageData.Author.Id}>! 👋"
+            });
+        }
+
+        // ========================================================================
+        // Example Command: /info
+        // ========================================================================
+        // Demonstrates sending a formatted message with multiple lines
+
+        else if (messageData.Content == "/info")
+        {
+            await api.PostChannelMessage(messageData.ChannelId, new()
+            {
+                Content = $"**Fluxer.Net Example Bot**\n" +
+                          $"Version: 0.4.0\n" +
+                          $"Framework: .NET 7.0\n" +
+                          $"Library: Fluxer.Net\n\n" +
+                          $"Available Commands:\n" +
+                          $"• `/ping` - Check if bot is responsive\n" +
+                          $"• `/hello` - Get a friendly greeting\n" +
+                          $"• `/info` - Show this information"
+            });
+        }
     }
-
-    // ========================================================================
-    // Example Command: /hello
-    // ========================================================================
-    // Demonstrates mentioning the user who sent the command
-
-    else if (messageData.Content == "/hello")
+    catch (Exception ex)
     {
-        await api.PostChannelMessage(messageData.ChannelId, new()
-        {
-            Content = $"Hello, <@{messageData.AuthorId}>! 👋"
-        });
-    }
-
-    // ========================================================================
-    // Example Command: /info
-    // ========================================================================
-    // Demonstrates sending a formatted message with multiple lines
-
-    else if (messageData.Content == "/info")
-    {
-        await api.PostChannelMessage(messageData.ChannelId, new()
-        {
-            Content = $"**Fluxer.Net Example Bot**\n" +
-                     $"Version: 0.4.0\n" +
-                     $"Framework: .NET 7.0\n" +
-                     $"Library: Fluxer.Net\n\n" +
-                     $"Available Commands:\n" +
-                     $"• `/ping` - Check if bot is responsive\n" +
-                     $"• `/hello` - Get a friendly greeting\n" +
-                     $"• `/info` - Show this information"
-        });
+        Log.Error(ex, "Error while receiving message");
     }
 };
 
@@ -223,7 +231,14 @@ gateway.MessageCreate += async messageData =>
 // Example: Log when the bot is ready
 gateway.Ready += readyData =>
 {
-    Log.Information("Bot is ready! Logged in as {Username}", readyData.User?.Username);
+    try
+    {
+        Log.Information("Bot is ready! Logged in as {Username}", readyData.User?.Username);
+    }
+    catch (Exception ex)
+    {
+        Log.Error(ex, "Error on ready event");
+    }
 };
 
 // Example: Track message deletions
@@ -274,6 +289,8 @@ Log.Information("Connected to Fluxer gateway. Bot is now online!");
 //   - Add graceful shutdown handling (CancellationToken)
 //   - Implement a /shutdown command for authorized users
 //   - Run as a system service or Docker container
+
+await api.PatchGuildMemberSelf(1431484523333775609, new() { Nickname = "Fluxer.Net" });
 
 Log.Information("Bot is running. Press Ctrl+C to stop.");
 await Task.Delay(-1);

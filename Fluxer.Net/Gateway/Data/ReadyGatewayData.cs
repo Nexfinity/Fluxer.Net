@@ -8,7 +8,7 @@ public class ReadyGatewayData : IGatewayData
     [JsonProperty("members")]
     public GuildMember[] Members { get; set; }
     [JsonProperty("notes")]
-    public object[] Notes { get; set; }
+    public Dictionary<string, string> Notes { get; set; }
     [JsonProperty("private_channels")]
     public object[] PrivateChannels { get; set; }
     [JsonProperty("relationships")]

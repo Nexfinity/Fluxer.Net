@@ -6,6 +6,9 @@ public class IdentifyGatewayData : IGatewayData
 {
     [JsonProperty("token")]
     public string Token { get; set; }
+	
+	[JsonProperty("properties")]
+	public Dictionary<string, string> Properties { get; set; }
 
     [JsonProperty("ignored_events")]
     public List<string> IgnoredGatewayEvents { get; set; } = new();

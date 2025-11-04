@@ -25,7 +25,7 @@ public class FluxerConfig
     /// Base URL for the Fluxer REST API. The {v} placeholder is replaced with <see cref="Version"/>.
     /// Defaults to "https://api.fluxer.app/v{v}/".
     /// </summary>
-    public string FluxerApiBaseUrl { get; set; } = "https://api.fluxer.app/v{v}/";
+    public string FluxerApiBaseUrl { get; set; } = "https://api.fluxer.app/v{v}";
 
     /// <summary>
     /// API version number to use. Defaults to 1, which is currently the only supported version.

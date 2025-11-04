@@ -4,6 +4,7 @@ using System.Reflection;
 using System.Text.RegularExpressions;
 using Fluxer.Net.Data.Enums;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Serilog;
 using Serilog.Core;
 using Fluxer.Net.Gateway;
@@ -109,13 +110,41 @@ public partial class GatewayClient : IDisposable
     /// </remarks>
     public async Task ConnectAsync()
     {
-        // disabled for testing
-        // if (_gateway is not null && _gateway.State == WebSocketState.Open)
-        //     await _gateway.CloseAsync();
+        // Dispose existing gateway connection if present to avoid multiple connections
+        if (_gateway != null)
+        {
+            try
+            {
+                _gateway.Dispose();
+                _logger.Debug("Disposed existing WebSocket connection before creating new one");
+            }
+            catch (Exception ex)
+            {
+                _logger.Warning(ex, "Error disposing existing gateway connection");
+            }
+        }
 
-        _gateway = new WebsocketClient(new(_config.FluxerGatewayUrl));
+        _gateway = new WebsocketClient(new(_config.FluxerGatewayUrl))
+        {
+            // IMPORTANT: Do not set ReconnectTimeout here - we manage reconnection manually through the gateway protocol
+            IsReconnectionEnabled = false  // Completely disable automatic reconnection
+        };
         _gateway.MessageReceived.Subscribe(x => GatewayMessageHandler(x.Text));
-        _gateway.ReconnectionHappened.Subscribe(x => ReEstablishGatewayConnection(x));
+        _gateway.DisconnectionHappened.Subscribe(info =>
+        {
+            _logger.Warning("WebSocket disconnected: Type={Type}, CloseStatus={CloseStatus}, CloseStatusDescription={CloseDescription}, Exception={Exception}",
+                info.Type,
+                info.CloseStatus?.ToString() ?? "None",
+                info.CloseStatusDescription ?? "None",
+                info.Exception?.Message ?? "None");
+
+            // Manual reconnection handling - only reconnect if we have a valid reason
+            if (info.Type == DisconnectionType.ByServer || info.Type == DisconnectionType.Lost)
+            {
+                _logger.Information("Connection lost, manually reconnecting...");
+                _ = Task.Run(async () => await ReEstablishGatewayConnectionAsync(null));
+            }
+        });
         Stopwatch.StartNew();
         await _gateway.Start();
 
@@ -124,6 +153,12 @@ public partial class GatewayClient : IDisposable
             OpCode = FluxerOpCode.Identify,
             Data = new IdentifyGatewayData(Token)
             {
+                Properties = new Dictionary<string, string>
+                {
+                    { "os", "linux" },
+                    { "browser", "fluxer-net" },
+                    { "device", "fluxer-net" }
+                },
                 IgnoredGatewayEvents = _config.IgnoredGatewayEvents,
                 Presence = _config.Presence
             }
@@ -176,6 +211,49 @@ public partial class GatewayClient : IDisposable
         _logger.Verbose("Received raw gateway message {Message}", message);
         try
         {
+            // Pre-parse to check for InvalidSession opcode (which has a boolean payload instead of an object)
+            var preCheck = JObject.Parse(message);
+            var opCode = preCheck["op"]?.Value<int>();
+            var dispatch = preCheck["t"]?.Value<string>();
+
+            // Log READY events specifically
+            if (dispatch == "READY")
+            {
+                _logger.Information("Received READY event - connection fully established");
+            }
+
+            if (opCode == (int)FluxerOpCode.InvalidSession)
+            {
+                // InvalidSession has a boolean "d" field indicating if session is resumable
+                var canResume = preCheck["d"]?.Value<bool>() ?? false;
+                _logger.Warning("Received InvalidSession opcode (resumable: {CanResume}). Need to reconnect with new session.", canResume);
+
+                // For non-resumable session, we need to do a fresh IDENTIFY, not a RESUME
+                _ = Task.Run(async () =>
+                {
+                    try
+                    {
+                        if (canResume)
+                        {
+                            // Try to resume the existing session
+                            await ReEstablishGatewayConnectionAsync();
+                        }
+                        else
+                        {
+                            // Session is not resumable, need fresh connection
+                            _sessionId = ""; // Clear session ID to force IDENTIFY
+                            _sequence = 0;   // Reset sequence
+                            await ConnectAsync();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        _logger.Error(ex, "Failed to reconnect after invalid session");
+                    }
+                });
+                return;
+            }
+
             var packet = JsonConvert.DeserializeObject<GatewayPacket>(message);
             if (packet == null)
             {
@@ -215,8 +293,8 @@ public partial class GatewayClient : IDisposable
                     _logger.Debug("Received GuildSubscriptions opcode from server");
                     return;
                 case FluxerOpCode.InvalidSession:
-                    _logger.Warning("Received InvalidSession opcode, reconnecting");
-                    // Don't block the message handler - reconnect asynchronously
+                    // Should not reach here due to pre-check above, but handle it anyway
+                    _logger.Warning("Received InvalidSession opcode via fallback path, reconnecting");
                     _ = Task.Run(async () =>
                     {
                         try
@@ -515,25 +593,10 @@ public partial class GatewayClient : IDisposable
         }
     }
 
-    private void ReEstablishGatewayConnection(ReconnectionInfo? info = null)
-    {
-        // Synchronous wrapper for backward compatibility
-        _ = Task.Run(async () => await ReEstablishGatewayConnectionAsync(info));
-    }
-
     private async Task ReEstablishGatewayConnectionAsync(ReconnectionInfo? info = null)
     {
-        if (info is not null)
-        {
-            if (info.Type is ReconnectionType.Error or ReconnectionType.ByServer)
-                _logger.Error("Reconnected with info {Info}", info);
-            else
-                _logger.Information("Reconnected with info {Info}", info);
-        }
-        else
-        {
-            _logger.Warning("Reconnected without connection info");
-        }
+        _logger.Information("Attempting to reestablish gateway connection...");
+
 
         // Use semaphore to prevent concurrent reconnection attempts
         if (!await _reconnectLock.WaitAsync(0))
@@ -544,6 +607,31 @@ public partial class GatewayClient : IDisposable
 
         try
         {
+            // Check if we have a valid session to resume
+            if (string.IsNullOrEmpty(_sessionId))
+            {
+                _logger.Information("No valid session ID available. Sending IDENTIFY instead of RESUME.");
+
+                // Send fresh IDENTIFY packet since we don't have a session to resume
+                var identifyPacket = new GatewayPacket
+                {
+                    OpCode = FluxerOpCode.Identify,
+                    Data = new IdentifyGatewayData(Token)
+                    {
+                        Properties = new Dictionary<string, string>
+                        {
+                            { "os", Environment.OSVersion.Platform.ToString() },
+                            { "browser", "Fluxer.Net" },
+                            { "device", "Fluxer.Net" }
+                        },
+                        IgnoredGatewayEvents = _config.IgnoredGatewayEvents,
+                        Presence = _config.Presence
+                    }
+                };
+                SendGatewayPacket(identifyPacket);
+                return;
+            }
+
             var timeSinceLastAttempt = DateTime.Now - _lastGatewayReEstablishAttempt;
             var requiredDelay = TimeSpan.FromSeconds(_config.ReconnectAttemptDelay);
 
@@ -557,7 +645,7 @@ public partial class GatewayClient : IDisposable
             _lastGatewayReEstablishAttempt = DateTime.Now;
             _gatewayDuration.Restart();
 
-            _logger.Information("Attempting to reestablish the gateway connection after {Time}ms", _gatewayDuration.ElapsedMilliseconds);
+            _logger.Information("Attempting to resume session {SessionId} with sequence {Sequence}", _sessionId, _sequence);
 
             var packet = new GatewayPacket()
             {
