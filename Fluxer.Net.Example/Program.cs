@@ -158,13 +158,13 @@ if (args.Length > 0 && args[0] == "--revoke")
 
 gateway.MessageCreate += async messageData =>
 {
-    // Ignore messages from webhooks (they don't have an AuthorId)
-    if (!messageData.AuthorId.HasValue)
+    // Ignore messages from webhooks or system messages (they don't have an Author)
+    if (messageData.Author == null)
         return;
 
     // Log every message for debugging (optional - can be noisy!)
-    Log.Debug("Message received in channel {ChannelId}: {Content}",
-              messageData.ChannelId, messageData.Content);
+    Log.Debug("Message received in channel {ChannelId} from {Username}: {Content}",
+              messageData.ChannelId, messageData.Author.Username, messageData.Content);
 
     // ========================================================================
     // Example Command: /ping
@@ -173,7 +173,8 @@ gateway.MessageCreate += async messageData =>
 
     if (messageData.Content == "/ping")
     {
-        Log.Information("Ping command received from user {UserId}", messageData.AuthorId);
+        Log.Information("Ping command received from user {Username} ({UserId})",
+                       messageData.Author.Username, messageData.Author.Id);
 
         // Send a response message to the same channel
         await api.PostChannelMessage(messageData.ChannelId, new()
@@ -191,7 +192,7 @@ gateway.MessageCreate += async messageData =>
     {
         await api.PostChannelMessage(messageData.ChannelId, new()
         {
-            Content = $"Hello, <@{messageData.AuthorId}>! 👋"
+            Content = $"Hello, <@{messageData.Author.Id}>! 👋"
         });
     }
 
@@ -274,6 +275,8 @@ Log.Information("Connected to Fluxer gateway. Bot is now online!");
 //   - Add graceful shutdown handling (CancellationToken)
 //   - Implement a /shutdown command for authorized users
 //   - Run as a system service or Docker container
+
+//await api.PatchGuildMemberSelf(1431484523333775609, new() { Nickname = "Fluxer.Net" });
 
 Log.Information("Bot is running. Press Ctrl+C to stop.");
 await Task.Delay(-1);
