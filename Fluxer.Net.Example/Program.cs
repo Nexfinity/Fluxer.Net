@@ -290,7 +290,7 @@ Log.Information("Connected to Fluxer gateway. Bot is now online!");
 //   - Implement a /shutdown command for authorized users
 //   - Run as a system service or Docker container
 
-//await api.PatchGuildMemberSelf(1431484523333775609, new() { Nickname = "Fluxer.Net" });
+await api.PatchGuildMemberSelf(1431484523333775609, new() { Nickname = "Fluxer.Net" });
 
 Log.Information("Bot is running. Press Ctrl+C to stop.");
 await Task.Delay(-1);
