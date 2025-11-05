@@ -59,7 +59,7 @@ public class ChannelGatewayData : IGatewayData
 	public List<UserPartialResponse>? Recipients { get; set; }
 
 	[JsonProperty("nsfw")]
-	public bool? Nsfw { get; set; }
+	public bool IsNsfw { get; set; }
 
 	[JsonProperty("rate_limit_per_user")]
 	public int? RateLimitPerUser { get; set; }

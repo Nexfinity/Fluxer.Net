@@ -10,6 +10,8 @@ using Serilog.Core;
 using Fluxer.Net.Gateway;
 using Fluxer.Net.Gateway.Data;
 using Websocket.Client;
+// ReSharper disable ConstantConditionalAccessQualifier
+
 namespace Fluxer.Net;
 
 /// <summary>
@@ -138,11 +140,24 @@ public partial class GatewayClient : IDisposable
                 info.CloseStatusDescription ?? "None",
                 info.Exception?.Message ?? "None");
 
-            // Manual reconnection handling - only reconnect if we have a valid reason
-            if (info.Type == DisconnectionType.ByServer || info.Type == DisconnectionType.Lost)
+            // Determine if we should attempt reconnection based on close code
+            bool shouldReconnect = true;
+
+            // Handle Fluxer-specific close codes
+            if (info.CloseStatus.HasValue)
+            {
+                shouldReconnect = HandleGatewayCloseCode((int)info.CloseStatus.Value, info.CloseStatusDescription);
+            }
+
+            // Manual reconnection handling - only reconnect if we have a valid reason and close code allows it
+            if (shouldReconnect && (info.Type == DisconnectionType.ByServer || info.Type == DisconnectionType.Lost))
             {
                 _logger.Information("Connection lost, manually reconnecting...");
                 _ = Task.Run(async () => await ReEstablishGatewayConnectionAsync(null));
+            }
+            else if (!shouldReconnect)
+            {
+                _logger.Warning("Reconnection disabled due to close code. Manual intervention required.");
             }
         });
         Stopwatch.StartNew();
@@ -358,7 +373,7 @@ public partial class GatewayClient : IDisposable
                 if (p.Data is ReadyGatewayData readyData)
                 {
                     _sessionId = readyData.SessionId;
-                    Ready.Invoke(readyData);
+                    Ready?.Invoke(readyData);
                 }
                 else
                 {
@@ -366,65 +381,105 @@ public partial class GatewayClient : IDisposable
                 }
                 return;
             case "RESUMED":
-                Resumed.Invoke();
+                Resumed?.Invoke();
                 return;
+            case "SESSIONS_REPLACE":
+                if (p.Data is SessionsReplaceGatewayData sessionsReplaceData)
+                    SessionsReplace?.Invoke(sessionsReplaceData);
+                else
+                    _logger.Warning("SESSIONS_REPLACE event received but data could not be cast to SessionsReplaceGatewayData");
+                return;
+
+            // User settings events
+            case "USER_SETTINGS_UPDATE":
+                if (p.Data is UserSettingsUpdateGatewayData userSettingsData)
+                    UserSettingsUpdate?.Invoke(userSettingsData);
+                else
+                    _logger.Warning("USER_SETTINGS_UPDATE event received but data could not be cast to UserSettingsUpdateGatewayData");
+                return;
+            case "USER_GUILD_SETTINGS_UPDATE":
+                if (p.Data is UserGuildSettingsUpdateGatewayData userGuildSettingsData)
+                    UserGuildSettingsUpdate?.Invoke(userGuildSettingsData);
+                else
+                    _logger.Warning("USER_GUILD_SETTINGS_UPDATE event received but data could not be cast to UserGuildSettingsUpdateGatewayData");
+                return;
+            case "USER_PINNED_DMS_UPDATE":
+                if (p.Data is UserPinnedDmsUpdateGatewayData pinnedDmsData)
+                    UserPinnedDmsUpdate?.Invoke(pinnedDmsData);
+                else
+                    _logger.Warning("USER_PINNED_DMS_UPDATE event received but data could not be cast to UserPinnedDmsUpdateGatewayData");
+                return;
+            case "USER_NOTE_UPDATE":
+                if (p.Data is UserNoteUpdateGatewayData userNoteData)
+                    UserNoteUpdate?.Invoke(userNoteData);
+                else
+                    _logger.Warning("USER_NOTE_UPDATE event received but data could not be cast to UserNoteUpdateGatewayData");
+                return;
+            case "AUTH_SESSION_CHANGE":
+                if (p.Data is AuthSessionChangeGatewayData authSessionData)
+                    AuthSessionChange?.Invoke(authSessionData);
+                else
+                    _logger.Warning("AUTH_SESSION_CHANGE event received but data could not be cast to AuthSessionChangeGatewayData");
+                return;
+
+            // Message events
             case "MESSAGE_CREATE":
                 if (p.Data is MessageGatewayData messageCreateData)
-                    MessageCreate.Invoke(messageCreateData);
+                    MessageCreate?.Invoke(messageCreateData);
                 else
                     _logger.Warning("MESSAGE_CREATE event received but data could not be cast to MessageGatewayData");
                 return;
             case "MESSAGE_UPDATE":
                 if (p.Data is MessageGatewayData messageUpdateData)
-                    MessageUpdate.Invoke(messageUpdateData);
+                    MessageUpdate?.Invoke(messageUpdateData);
                 else
                     _logger.Warning("MESSAGE_UPDATE event received but data could not be cast to MessageGatewayData");
                 return;
             case "MESSAGE_DELETE":
                 if (p.Data is EntityRemovedGatewayData messageDeleteData)
-                    MessageDelete.Invoke(messageDeleteData);
+                    MessageDelete?.Invoke(messageDeleteData);
                 else
                     _logger.Warning("MESSAGE_DELETE event received but data could not be cast to EntityRemovedGatewayData");
                 return;
             case "CHANNEL_CREATE":
                 if (p.Data is ChannelGatewayData channelCreateData)
-                    ChannelCreate.Invoke(channelCreateData);
+                    ChannelCreate?.Invoke(channelCreateData);
                 else
                     _logger.Warning("CHANNEL_CREATE event received but data could not be cast to ChannelGatewayData");
                 return;
             case "CHANNEL_UPDATE":
                 if (p.Data is ChannelGatewayData channelUpdateData)
-                    ChannelUpdate.Invoke(channelUpdateData);
+                    ChannelUpdate?.Invoke(channelUpdateData);
                 else
                     _logger.Warning("CHANNEL_UPDATE event received but data could not be cast to ChannelGatewayData");
                 return;
             case "CHANNEL_DELETE":
-                if (p.Data is EntityRemovedGatewayData channelDeleteData)
-                    ChannelDelete.Invoke(channelDeleteData);
+                if (p.Data is ChannelGatewayData channelDeleteData)
+                    ChannelDelete?.Invoke(channelDeleteData);
                 else
-                    _logger.Warning("CHANNEL_DELETE event received but data could not be cast to EntityRemovedGatewayData");
+                    _logger.Warning("CHANNEL_DELETE event received but data could not be cast to ChannelGatewayData");
                 return;
             case "USER_UPDATE":
                 if (p.Data is UserGatewayData userUpdateData)
-                    UserUpdate.Invoke(userUpdateData);
+                    UserUpdate?.Invoke(userUpdateData);
                 else
                     _logger.Warning("USER_UPDATE event received but data could not be cast to UserGatewayData");
                 return;
             case "PRESENCE_UPDATE":
                 if (p.Data is PresenceGatewayData presenceData)
-                    PresenceUpdate.Invoke(presenceData);
+                    PresenceUpdate?.Invoke(presenceData);
                 else
                     _logger.Warning("PRESENCE_UPDATE event received but data could not be cast to PresenceGatewayData");
                 return;
             case "TYPING_START":
                 if (p.Data is TypingGatewayData typingStartData)
-                    TypingStart.Invoke(typingStartData);
+                    TypingStart?.Invoke(typingStartData);
                 else
                     _logger.Warning("TYPING_START event received but data could not be cast to TypingGatewayData");
                 return;
             case "TYPING_STOP":
                 if (p.Data is TypingGatewayData typingStopData)
-                    TypingStop.Invoke(typingStopData);
+                    TypingStop?.Invoke(typingStopData);
                 else
                     _logger.Warning("TYPING_STOP event received but data could not be cast to TypingGatewayData");
                 return;
@@ -432,61 +487,105 @@ public partial class GatewayClient : IDisposable
             // Message reactions
             case "MESSAGE_REACTION_ADD":
                 if (p.Data is MessageReactionGatewayData reactionAddData)
-                    MessageReactionAdd.Invoke(reactionAddData);
+                    MessageReactionAdd?.Invoke(reactionAddData);
                 else
                     _logger.Warning("MESSAGE_REACTION_ADD event received but data could not be cast to MessageReactionGatewayData");
                 return;
             case "MESSAGE_REACTION_REMOVE":
                 if (p.Data is MessageReactionGatewayData reactionRemoveData)
-                    MessageReactionRemove.Invoke(reactionRemoveData);
+                    MessageReactionRemove?.Invoke(reactionRemoveData);
                 else
                     _logger.Warning("MESSAGE_REACTION_REMOVE event received but data could not be cast to MessageReactionGatewayData");
                 return;
             case "MESSAGE_REACTION_REMOVE_ALL":
                 if (p.Data is EntityRemovedGatewayData reactionRemoveAllData)
-                    MessageReactionRemoveAll.Invoke(reactionRemoveAllData);
+                    MessageReactionRemoveAll?.Invoke(reactionRemoveAllData);
                 else
                     _logger.Warning("MESSAGE_REACTION_REMOVE_ALL event received but data could not be cast to EntityRemovedGatewayData");
                 return;
             case "MESSAGE_REACTION_REMOVE_EMOJI":
                 if (p.Data is MessageReactionRemoveEmojiGatewayData reactionRemoveEmojiData)
-                    MessageReactionRemoveEmoji.Invoke(reactionRemoveEmojiData);
+                    MessageReactionRemoveEmoji?.Invoke(reactionRemoveEmojiData);
                 else
                     _logger.Warning("MESSAGE_REACTION_REMOVE_EMOJI event received but data could not be cast to MessageReactionRemoveEmojiGatewayData");
+                return;
+
+            // Saved messages
+            case "SAVED_MESSAGE_CREATE":
+                if (p.Data is SavedMessageGatewayData savedMessageCreateData)
+                    SavedMessageCreate?.Invoke(savedMessageCreateData);
+                else
+                    _logger.Warning("SAVED_MESSAGE_CREATE event received but data could not be cast to SavedMessageGatewayData");
+                return;
+            case "SAVED_MESSAGE_DELETE":
+                if (p.Data is SavedMessageGatewayData savedMessageDeleteData)
+                    SavedMessageDelete?.Invoke(savedMessageDeleteData);
+                else
+                    _logger.Warning("SAVED_MESSAGE_DELETE event received but data could not be cast to SavedMessageGatewayData");
+                return;
+            case "RECENT_MENTION_DELETE":
+                if (p.Data is RecentMentionDeleteGatewayData recentMentionData)
+                    RecentMentionDelete?.Invoke(recentMentionData);
+                else
+                    _logger.Warning("RECENT_MENTION_DELETE event received but data could not be cast to RecentMentionDeleteGatewayData");
                 return;
 
             // Message bulk operations
             case "MESSAGE_DELETE_BULK":
                 if (p.Data is MessageBulkDeleteGatewayData bulkDeleteData)
-                    MessageDeleteBulk.Invoke(bulkDeleteData);
+                    MessageDeleteBulk?.Invoke(bulkDeleteData);
                 else
                     _logger.Warning("MESSAGE_DELETE_BULK event received but data could not be cast to MessageBulkDeleteGatewayData");
                 return;
             case "MESSAGE_ACK":
                 if (p.Data is MessageAckGatewayData ackData)
-                    MessageAck.Invoke(ackData);
+                    MessageAck?.Invoke(ackData);
                 else
                     _logger.Warning("MESSAGE_ACK event received but data could not be cast to MessageAckGatewayData");
                 return;
 
             // Channel updates
+            case "CHANNEL_UPDATE_BULK":
+                if (p.Data is ChannelUpdateBulkGatewayData channelBulkUpdateData)
+                    ChannelUpdateBulk?.Invoke(channelBulkUpdateData);
+                else
+                    _logger.Warning("CHANNEL_UPDATE_BULK event received but data could not be cast to ChannelUpdateBulkGatewayData");
+                return;
+            case "CHANNEL_RECIPIENT_ADD":
+                if (p.Data is ChannelRecipientGatewayData recipientAddData)
+                    ChannelRecipientAdd?.Invoke(recipientAddData);
+                else
+                    _logger.Warning("CHANNEL_RECIPIENT_ADD event received but data could not be cast to ChannelRecipientGatewayData");
+                return;
+            case "CHANNEL_RECIPIENT_REMOVE":
+                if (p.Data is ChannelRecipientGatewayData recipientRemoveData)
+                    ChannelRecipientRemove?.Invoke(recipientRemoveData);
+                else
+                    _logger.Warning("CHANNEL_RECIPIENT_REMOVE event received but data could not be cast to ChannelRecipientGatewayData");
+                return;
             case "CHANNEL_PINS_UPDATE":
                 if (p.Data is ChannelPinsUpdateGatewayData pinsUpdateData)
-                    ChannelPinsUpdate.Invoke(pinsUpdateData);
+                    ChannelPinsUpdate?.Invoke(pinsUpdateData);
                 else
                     _logger.Warning("CHANNEL_PINS_UPDATE event received but data could not be cast to ChannelPinsUpdateGatewayData");
+                return;
+            case "CHANNEL_PINS_ACK":
+                if (p.Data is ChannelPinsAckGatewayData pinsAckData)
+                    ChannelPinsAck?.Invoke(pinsAckData);
+                else
+                    _logger.Warning("CHANNEL_PINS_ACK event received but data could not be cast to ChannelPinsAckGatewayData");
                 return;
 
             // Voice events
             case "VOICE_STATE_UPDATE":
                 if (p.Data is VoiceStateGatewayData voiceStateData)
-                    VoiceStateUpdate.Invoke(voiceStateData);
+                    VoiceStateUpdate?.Invoke(voiceStateData);
                 else
                     _logger.Warning("VOICE_STATE_UPDATE event received but data could not be cast to VoiceStateGatewayData");
                 return;
             case "VOICE_SERVER_UPDATE":
                 if (p.Data is VoiceServerUpdateGatewayData voiceServerData)
-                    VoiceServerUpdate.Invoke(voiceServerData);
+                    VoiceServerUpdate?.Invoke(voiceServerData);
                 else
                     _logger.Warning("VOICE_SERVER_UPDATE event received but data could not be cast to VoiceServerUpdateGatewayData");
                 return;
@@ -494,13 +593,13 @@ public partial class GatewayClient : IDisposable
             // Guildban events
             case "GUILD_BAN_ADD":
                 if (p.Data is GuildBanGatewayData banAddData)
-                    GuildBanAdd.Invoke(banAddData);
+                    GuildBanAdd?.Invoke(banAddData);
                 else
                     _logger.Warning("GUILD_BAN_ADD event received but data could not be cast to GuildBanGatewayData");
                 return;
             case "GUILD_BAN_REMOVE":
                 if (p.Data is GuildBanGatewayData banRemoveData)
-                    GuildBanRemove.Invoke(banRemoveData);
+                    GuildBanRemove?.Invoke(banRemoveData);
                 else
                     _logger.Warning("GUILD_BAN_REMOVE event received but data could not be cast to GuildBanGatewayData");
                 return;
@@ -508,7 +607,7 @@ public partial class GatewayClient : IDisposable
             // Webhooks
             case "WEBHOOKS_UPDATE":
                 if (p.Data is WebhooksUpdateGatewayData webhooksData)
-                    WebhooksUpdate.Invoke(webhooksData);
+                    WebhooksUpdate?.Invoke(webhooksData);
                 else
                     _logger.Warning("WEBHOOKS_UPDATE event received but data could not be cast to WebhooksUpdateGatewayData");
                 return;
@@ -516,57 +615,135 @@ public partial class GatewayClient : IDisposable
             // Guild events
             case "GUILD_CREATE":
                 if (p.Data is GuildGatewayData guildCreateData)
-                    GuildCreate.Invoke(guildCreateData);
+                    GuildCreate?.Invoke(guildCreateData);
                 else
                     _logger.Warning("GUILD_CREATE event received but data could not be cast to GuildGatewayData");
                 return;
             case "GUILD_UPDATE":
                 if (p.Data is GuildGatewayData guildUpdateData)
-                    GuildUpdate.Invoke(guildUpdateData);
+                    GuildUpdate?.Invoke(guildUpdateData);
                 else
                     _logger.Warning("GUILD_UPDATE event received but data could not be cast to GuildGatewayData");
                 return;
             case "GUILD_DELETE":
                 if (p.Data is EntityRemovedGatewayData guildDeleteData)
-                    GuildDelete.Invoke(guildDeleteData);
+                    GuildDelete?.Invoke(guildDeleteData);
                 else
                     _logger.Warning("GUILD_DELETE event received but data could not be cast to EntityRemovedGatewayData");
                 return;
             case "GUILD_MEMBER_ADD":
                 if (p.Data is GuildMemberGatewayData guildMemberAddData)
-                    GuildMemberAdd.Invoke(guildMemberAddData);
+                    GuildMemberAdd?.Invoke(guildMemberAddData);
                 else
                     _logger.Warning("GUILD_MEMBER_ADD event received but data could not be cast to GuildMemberGatewayData");
                 return;
             case "GUILD_MEMBER_UPDATE":
                 if (p.Data is GuildMemberGatewayData guildMemberUpdateData)
-                    GuildMemberUpdate.Invoke(guildMemberUpdateData);
+                    GuildMemberUpdate?.Invoke(guildMemberUpdateData);
                 else
                     _logger.Warning("GUILD_MEMBER_UPDATE event received but data could not be cast to GuildMemberGatewayData");
                 return;
             case "GUILD_MEMBER_REMOVE":
                 if (p.Data is EntityRemovedGatewayData guildMemberRemoveData)
-                    GuildMemberRemove.Invoke(guildMemberRemoveData);
+                    GuildMemberRemove?.Invoke(guildMemberRemoveData);
                 else
                     _logger.Warning("GUILD_MEMBER_REMOVE event received but data could not be cast to EntityRemovedGatewayData");
                 return;
             case "GUILD_ROLE_CREATE":
-                if (p.Data is RoleGatewayData guildRoleCreateData)
-                    GuildRoleCreate.Invoke(guildRoleCreateData);
+                if (p.Data is GuildRoleGatewayData guildRoleCreateData)
+                    GuildRoleCreate?.Invoke(guildRoleCreateData);
                 else
-                    _logger.Warning("GUILD_ROLE_CREATE event received but data could not be cast to RoleGatewayData");
+                    _logger.Warning("GUILD_ROLE_CREATE event received but data could not be cast to GuildRoleGatewayData");
                 return;
             case "GUILD_ROLE_UPDATE":
-                if (p.Data is RoleGatewayData guildRoleUpdateData)
-                    GuildRoleUpdate.Invoke(guildRoleUpdateData);
+                if (p.Data is GuildRoleGatewayData guildRoleUpdateData)
+                    GuildRoleUpdate?.Invoke(guildRoleUpdateData);
                 else
-                    _logger.Warning("GUILD_ROLE_UPDATE event received but data could not be cast to RoleGatewayData");
+                    _logger.Warning("GUILD_ROLE_UPDATE event received but data could not be cast to GuildRoleGatewayData");
                 return;
             case "GUILD_ROLE_DELETE":
-                if (p.Data is EntityRemovedGatewayData guildRoleDeleteData)
-                    GuildRoleDelete.Invoke(guildRoleDeleteData);
+                if (p.Data is GuildRoleDeleteGatewayData guildRoleDeleteData)
+                    GuildRoleDelete?.Invoke(guildRoleDeleteData);
                 else
-                    _logger.Warning("GUILD_ROLE_DELETE event received but data could not be cast to EntityRemovedGatewayData");
+                    _logger.Warning("GUILD_ROLE_DELETE event received but data could not be cast to GuildRoleDeleteGatewayData");
+                return;
+            case "GUILD_ROLE_UPDATE_BULK":
+                if (p.Data is GuildRoleUpdateBulkGatewayData guildRoleBulkData)
+                    GuildRoleUpdateBulk?.Invoke(guildRoleBulkData);
+                else
+                    _logger.Warning("GUILD_ROLE_UPDATE_BULK event received but data could not be cast to GuildRoleUpdateBulkGatewayData");
+                return;
+            case "GUILD_EMOJIS_UPDATE":
+                if (p.Data is GuildEmojisUpdateGatewayData guildEmojisUpdateData)
+                    GuildEmojisUpdate?.Invoke(guildEmojisUpdateData);
+                else
+                    _logger.Warning("GUILD_EMOJIS_UPDATE event received but data could not be cast to GuildEmojisUpdateGatewayData");
+                return;
+            case "GUILD_STICKERS_UPDATE":
+                if (p.Data is GuildStickersUpdateGatewayData guildStickersUpdateData)
+                    GuildStickersUpdate?.Invoke(guildStickersUpdateData);
+                else
+                    _logger.Warning("GUILD_STICKERS_UPDATE event received but data could not be cast to GuildStickersUpdateGatewayData");
+                return;
+
+            // Relationship events
+            case "RELATIONSHIP_ADD":
+                if (p.Data is RelationshipGatewayData relationshipAddData)
+                    RelationshipAdd?.Invoke(relationshipAddData);
+                else
+                    _logger.Warning("RELATIONSHIP_ADD event received but data could not be cast to RelationshipGatewayData");
+                return;
+            case "RELATIONSHIP_UPDATE":
+                if (p.Data is RelationshipGatewayData relationshipUpdateData)
+                    RelationshipUpdate?.Invoke(relationshipUpdateData);
+                else
+                    _logger.Warning("RELATIONSHIP_UPDATE event received but data could not be cast to RelationshipGatewayData");
+                return;
+            case "RELATIONSHIP_REMOVE":
+                if (p.Data is RelationshipGatewayData relationshipRemoveData)
+                    RelationshipRemove?.Invoke(relationshipRemoveData);
+                else
+                    _logger.Warning("RELATIONSHIP_REMOVE event received but data could not be cast to RelationshipGatewayData");
+                return;
+
+            // Favorite meme events
+            case "FAVORITE_MEME_CREATE":
+                if (p.Data is FavoriteMemeGatewayData favoriteMemeCreateData)
+                    FavoriteMemeCreate?.Invoke(favoriteMemeCreateData);
+                else
+                    _logger.Warning("FAVORITE_MEME_CREATE event received but data could not be cast to FavoriteMemeGatewayData");
+                return;
+            case "FAVORITE_MEME_UPDATE":
+                if (p.Data is FavoriteMemeGatewayData favoriteMemeUpdateData)
+                    FavoriteMemeUpdate?.Invoke(favoriteMemeUpdateData);
+                else
+                    _logger.Warning("FAVORITE_MEME_UPDATE event received but data could not be cast to FavoriteMemeGatewayData");
+                return;
+            case "FAVORITE_MEME_DELETE":
+                if (p.Data is FavoriteMemeGatewayData favoriteMemeDeleteData)
+                    FavoriteMemeDelete?.Invoke(favoriteMemeDeleteData);
+                else
+                    _logger.Warning("FAVORITE_MEME_DELETE event received but data could not be cast to FavoriteMemeGatewayData");
+                return;
+
+            // Call events
+            case "CALL_CREATE":
+                if (p.Data is CallGatewayData callCreateData)
+                    CallCreate?.Invoke(callCreateData);
+                else
+                    _logger.Warning("CALL_CREATE event received but data could not be cast to CallGatewayData");
+                return;
+            case "CALL_UPDATE":
+                if (p.Data is CallGatewayData callUpdateData)
+                    CallUpdate?.Invoke(callUpdateData);
+                else
+                    _logger.Warning("CALL_UPDATE event received but data could not be cast to CallGatewayData");
+                return;
+            case "CALL_DELETE":
+                if (p.Data is CallGatewayData callDeleteData)
+                    CallDelete?.Invoke(callDeleteData);
+                else
+                    _logger.Warning("CALL_DELETE event received but data could not be cast to CallGatewayData");
                 return;
 
             default:
@@ -667,7 +844,165 @@ public partial class GatewayClient : IDisposable
 
     private void HandleHeartbeatAck()
     {
-        HeartbeatAck.Invoke();
+        HeartbeatAck?.Invoke();
+    }
+
+    /// <summary>
+    /// Handles Fluxer-specific gateway close codes and determines appropriate action.
+    /// </summary>
+    /// <param name="closeCode">The WebSocket close code received from the gateway.</param>
+    /// <param name="description">Optional description provided with the close event.</param>
+    /// <returns>True if reconnection should be attempted; false if reconnection should be prevented.</returns>
+    private bool HandleGatewayCloseCode(int closeCode, string? description)
+    {
+        // Check if this is a Fluxer-specific close code (4000-4014)
+        if (!Enum.IsDefined(typeof(FluxerCloseCode), closeCode))
+        {
+            _logger.Debug("Received non-Fluxer close code {CloseCode}, using default reconnection logic", closeCode);
+            return true; // Allow reconnection for non-Fluxer codes
+        }
+
+        var fluxerCode = (FluxerCloseCode)closeCode;
+        _logger.Warning("Received Fluxer close code: {CloseCode} ({CodeValue}) - {Description}",
+            fluxerCode, closeCode, description ?? "No description");
+
+        switch (fluxerCode)
+        {
+            case FluxerCloseCode.UnknownError:
+                // Unknown error - can retry connection
+                _logger.Information("Unknown error occurred, connection will be retried");
+                return true;
+
+            case FluxerCloseCode.UnknownOpcode:
+                // Invalid opcode sent - this is a client bug, but we can retry
+                _logger.Error("Invalid gateway opcode was sent. This indicates a client implementation error.");
+                return true;
+
+            case FluxerCloseCode.DecodeError:
+                // Invalid payload sent - this is a client bug, but we can retry
+                _logger.Error("Invalid payload sent that could not be decoded. This indicates a client serialization error.");
+                return true;
+
+            case FluxerCloseCode.NotAuthenticated:
+                // Sent payload before authenticating - this is a client bug
+                _logger.Error("Payload was sent before authentication. This indicates a client sequencing error.");
+                return true;
+
+            case FluxerCloseCode.AuthenticationFailed:
+                // Invalid token - DO NOT retry, clear session and notify
+                _logger.Error("Authentication failed - token is invalid. Cannot reconnect with current credentials.");
+                _sessionId = "";
+                _sequence = 0;
+                // Stop heartbeat to prevent further connection attempts
+                try
+                {
+                    _heartbeatCancellation?.Cancel();
+                }
+                catch (Exception ex)
+                {
+                    _logger.Warning(ex, "Error cancelling heartbeat after authentication failure");
+                }
+                return false; // DO NOT reconnect
+
+            case FluxerCloseCode.AlreadyAuthenticated:
+                // Sent auth payload after already authenticating - this is a client bug
+                _logger.Error("Authentication payload sent after already authenticated. This indicates a client sequencing error.");
+                return true;
+
+            case FluxerCloseCode.InvalidSequence:
+                // Invalid sequence in RESUME - session cannot be resumed, must create new session
+                _logger.Warning("Invalid sequence number in RESUME packet. Session cannot be resumed, will create new session.");
+                _sessionId = ""; // Clear session ID to force IDENTIFY on reconnect
+                _sequence = 0;
+                return true; // Can reconnect with fresh IDENTIFY
+
+            case FluxerCloseCode.RateLimited:
+                // Rate limited - need to slow down
+                _logger.Warning("Gateway rate limited. Slowing down reconnection attempts.");
+                // The reconnection delay will be handled by ReEstablishGatewayConnectionAsync
+                return true;
+
+            case FluxerCloseCode.SessionTimeout:
+                // Session expired - must create new session
+                _logger.Information("Session timed out. Will create new session on reconnection.");
+                _sessionId = ""; // Clear session ID to force IDENTIFY on reconnect
+                _sequence = 0;
+                return true;
+
+            case FluxerCloseCode.InvalidShard:
+                // Invalid shard configuration - DO NOT retry without fixing configuration
+                _logger.Error("Invalid shard specified. Check gateway configuration before reconnecting.");
+                // Stop heartbeat to prevent automatic reconnection
+                try
+                {
+                    _heartbeatCancellation?.Cancel();
+                }
+                catch (Exception ex)
+                {
+                    _logger.Warning(ex, "Error cancelling heartbeat after invalid shard error");
+                }
+                return false; // DO NOT reconnect
+
+            case FluxerCloseCode.ShardingRequired:
+                // Sharding is required for this bot - DO NOT retry without sharding
+                _logger.Error("Sharding is required for this bot. Gateway connection requires shard configuration.");
+                // Stop heartbeat to prevent automatic reconnection
+                try
+                {
+                    _heartbeatCancellation?.Cancel();
+                }
+                catch (Exception ex)
+                {
+                    _logger.Warning(ex, "Error cancelling heartbeat after sharding required error");
+                }
+                return false; // DO NOT reconnect
+
+            case FluxerCloseCode.InvalidApiVersion:
+                // Invalid API version - DO NOT retry, this is a configuration error
+                _logger.Error("Invalid API version specified. Update the library or check gateway configuration.");
+                // Stop heartbeat to prevent automatic reconnection
+                try
+                {
+                    _heartbeatCancellation?.Cancel();
+                }
+                catch (Exception ex)
+                {
+                    _logger.Warning(ex, "Error cancelling heartbeat after invalid API version error");
+                }
+                return false; // DO NOT reconnect
+
+            case FluxerCloseCode.InvalidIntents:
+                // Invalid intents specified - DO NOT retry without fixing configuration
+                _logger.Error("Invalid gateway intents specified. Check gateway configuration.");
+                // Stop heartbeat to prevent automatic reconnection
+                try
+                {
+                    _heartbeatCancellation?.Cancel();
+                }
+                catch (Exception ex)
+                {
+                    _logger.Warning(ex, "Error cancelling heartbeat after invalid intents error");
+                }
+                return false; // DO NOT reconnect
+
+            case FluxerCloseCode.DisallowedIntents:
+                // Disallowed intents - DO NOT retry, requires verification/approval
+                _logger.Error("Disallowed gateway intents specified. These intents require verification or approval from Fluxer.");
+                // Stop heartbeat to prevent automatic reconnection
+                try
+                {
+                    _heartbeatCancellation?.Cancel();
+                }
+                catch (Exception ex)
+                {
+                    _logger.Warning(ex, "Error cancelling heartbeat after disallowed intents error");
+                }
+                return false; // DO NOT reconnect
+
+            default:
+                _logger.Warning("Unhandled Fluxer close code: {CloseCode}", fluxerCode);
+                return true; // Default to allowing reconnection
+        }
     }
 
     private async Task HandleHeartbeat(CancellationToken cancellationToken)
@@ -758,6 +1093,76 @@ public partial class GatewayClient : IDisposable
     /// </summary>
     public event ResumedEvent Resumed;
 
+    /// <summary>
+    /// Delegate for SESSIONS_REPLACE event when auth sessions are replaced.
+    /// </summary>
+    /// <param name="data">The sessions replace data.</param>
+    public delegate void SessionsReplaceEvent(SessionsReplaceGatewayData data);
+
+    /// <summary>
+    /// Occurs when auth sessions are replaced.
+    /// </summary>
+    public event SessionsReplaceEvent SessionsReplace;
+
+    // ============================================================================
+    // User Settings Events
+    // ============================================================================
+
+    /// <summary>
+    /// Delegate for USER_SETTINGS_UPDATE events when user settings are updated.
+    /// </summary>
+    /// <param name="data">The user settings data.</param>
+    public delegate void UserSettingsUpdateEvent(UserSettingsUpdateGatewayData data);
+
+    /// <summary>
+    /// Occurs when user settings are updated.
+    /// </summary>
+    public event UserSettingsUpdateEvent UserSettingsUpdate;
+
+    /// <summary>
+    /// Delegate for USER_GUILD_SETTINGS_UPDATE events when user guild settings are updated.
+    /// </summary>
+    /// <param name="data">The user guild settings data.</param>
+    public delegate void UserGuildSettingsUpdateEvent(UserGuildSettingsUpdateGatewayData data);
+
+    /// <summary>
+    /// Occurs when user guild settings are updated.
+    /// </summary>
+    public event UserGuildSettingsUpdateEvent UserGuildSettingsUpdate;
+
+    /// <summary>
+    /// Delegate for USER_PINNED_DMS_UPDATE events when pinned DMs are updated.
+    /// </summary>
+    /// <param name="data">The pinned DMs data.</param>
+    public delegate void UserPinnedDmsUpdateEvent(UserPinnedDmsUpdateGatewayData data);
+
+    /// <summary>
+    /// Occurs when pinned DMs are updated.
+    /// </summary>
+    public event UserPinnedDmsUpdateEvent UserPinnedDmsUpdate;
+
+    /// <summary>
+    /// Delegate for USER_NOTE_UPDATE events when a user note is updated.
+    /// </summary>
+    /// <param name="data">The user note data.</param>
+    public delegate void UserNoteUpdateEvent(UserNoteUpdateGatewayData data);
+
+    /// <summary>
+    /// Occurs when a user note is updated.
+    /// </summary>
+    public event UserNoteUpdateEvent UserNoteUpdate;
+
+    /// <summary>
+    /// Delegate for AUTH_SESSION_CHANGE events when an auth session changes.
+    /// </summary>
+    /// <param name="data">The auth session data.</param>
+    public delegate void AuthSessionChangeEvent(AuthSessionChangeGatewayData data);
+
+    /// <summary>
+    /// Occurs when an auth session changes.
+    /// </summary>
+    public event AuthSessionChangeEvent AuthSessionChange;
+
     // ============================================================================
     // Message Events
     // ============================================================================
@@ -824,8 +1229,8 @@ public partial class GatewayClient : IDisposable
     /// <summary>
     /// Delegate for CHANNEL_DELETE events when a channel is deleted.
     /// </summary>
-    /// <param name="data">The deleted entity data containing channel ID.</param>
-    public delegate void ChannelDeleteEvent(EntityRemovedGatewayData data);
+    /// <param name="data">The deleted channel data.</param>
+    public delegate void ChannelDeleteEvent(ChannelGatewayData data);
 
     /// <summary>
     /// Occurs when a channel is deleted.
@@ -937,6 +1342,43 @@ public partial class GatewayClient : IDisposable
     public event MessageReactionRemoveEmojiEvent MessageReactionRemoveEmoji;
 
     // ============================================================================
+    // Saved Messages and Mentions
+    // ============================================================================
+
+    /// <summary>
+    /// Delegate for SAVED_MESSAGE_CREATE events when a message is saved.
+    /// </summary>
+    /// <param name="data">The saved message data.</param>
+    public delegate void SavedMessageCreateEvent(SavedMessageGatewayData data);
+
+    /// <summary>
+    /// Occurs when a message is saved.
+    /// </summary>
+    public event SavedMessageCreateEvent SavedMessageCreate;
+
+    /// <summary>
+    /// Delegate for SAVED_MESSAGE_DELETE events when a saved message is deleted.
+    /// </summary>
+    /// <param name="data">The saved message data.</param>
+    public delegate void SavedMessageDeleteEvent(SavedMessageGatewayData data);
+
+    /// <summary>
+    /// Occurs when a saved message is deleted.
+    /// </summary>
+    public event SavedMessageDeleteEvent SavedMessageDelete;
+
+    /// <summary>
+    /// Delegate for RECENT_MENTION_DELETE events when a recent mention is deleted.
+    /// </summary>
+    /// <param name="data">The recent mention data.</param>
+    public delegate void RecentMentionDeleteEvent(RecentMentionDeleteGatewayData data);
+
+    /// <summary>
+    /// Occurs when a recent mention is deleted.
+    /// </summary>
+    public event RecentMentionDeleteEvent RecentMentionDelete;
+
+    // ============================================================================
     // Message Bulk Operations
     // ============================================================================
 
@@ -976,6 +1418,50 @@ public partial class GatewayClient : IDisposable
     /// Occurs when a message is pinned or unpinned in a channel.
     /// </summary>
     public event ChannelPinsUpdateEvent ChannelPinsUpdate;
+
+    /// <summary>
+    /// Delegate for CHANNEL_PINS_ACK events when channel pins are acknowledged.
+    /// </summary>
+    /// <param name="data">The pins acknowledgment data.</param>
+    public delegate void ChannelPinsAckEvent(ChannelPinsAckGatewayData data);
+
+    /// <summary>
+    /// Occurs when channel pins are acknowledged.
+    /// </summary>
+    public event ChannelPinsAckEvent ChannelPinsAck;
+
+    /// <summary>
+    /// Delegate for CHANNEL_UPDATE_BULK events when multiple channels are updated.
+    /// </summary>
+    /// <param name="data">The bulk channel update data.</param>
+    public delegate void ChannelUpdateBulkEvent(ChannelUpdateBulkGatewayData data);
+
+    /// <summary>
+    /// Occurs when multiple channels are updated at once.
+    /// </summary>
+    public event ChannelUpdateBulkEvent ChannelUpdateBulk;
+
+    /// <summary>
+    /// Delegate for CHANNEL_RECIPIENT_ADD events when a recipient is added to a channel.
+    /// </summary>
+    /// <param name="data">The channel recipient data.</param>
+    public delegate void ChannelRecipientAddEvent(ChannelRecipientGatewayData data);
+
+    /// <summary>
+    /// Occurs when a recipient is added to a group DM or channel.
+    /// </summary>
+    public event ChannelRecipientAddEvent ChannelRecipientAdd;
+
+    /// <summary>
+    /// Delegate for CHANNEL_RECIPIENT_REMOVE events when a recipient is removed from a channel.
+    /// </summary>
+    /// <param name="data">The channel recipient data.</param>
+    public delegate void ChannelRecipientRemoveEvent(ChannelRecipientGatewayData data);
+
+    /// <summary>
+    /// Occurs when a recipient is removed from a group DM or channel.
+    /// </summary>
+    public event ChannelRecipientRemoveEvent ChannelRecipientRemove;
 
     // ============================================================================
     // Voice Events
@@ -1125,8 +1611,8 @@ public partial class GatewayClient : IDisposable
     /// <summary>
     /// Delegate for GUILD_ROLE_CREATE events when a role is created in a guild.
     /// </summary>
-    /// <param name="data">The role data.</param>
-    public delegate void GuildRoleCreateEvent(RoleGatewayData data);
+    /// <param name="data">The guild role data containing guild ID and role information.</param>
+    public delegate void GuildRoleCreateEvent(GuildRoleGatewayData data);
 
     /// <summary>
     /// Occurs when a new role is created in a guild.
@@ -1136,8 +1622,8 @@ public partial class GatewayClient : IDisposable
     /// <summary>
     /// Delegate for GUILD_ROLE_UPDATE events when a role is updated.
     /// </summary>
-    /// <param name="data">The updated role data.</param>
-    public delegate void GuildRoleUpdateEvent(RoleGatewayData data);
+    /// <param name="data">The updated guild role data containing guild ID and role information.</param>
+    public delegate void GuildRoleUpdateEvent(GuildRoleGatewayData data);
 
     /// <summary>
     /// Occurs when a role is updated (name, color, permissions, etc.).
@@ -1147,13 +1633,161 @@ public partial class GatewayClient : IDisposable
     /// <summary>
     /// Delegate for GUILD_ROLE_DELETE events when a role is deleted from a guild.
     /// </summary>
-    /// <param name="data">The entity data containing guild and role IDs.</param>
-    public delegate void GuildRoleDeleteEvent(EntityRemovedGatewayData data);
+    /// <param name="data">The guild role delete data containing guild and role IDs.</param>
+    public delegate void GuildRoleDeleteEvent(GuildRoleDeleteGatewayData data);
 
     /// <summary>
     /// Occurs when a role is deleted from a guild.
     /// </summary>
     public event GuildRoleDeleteEvent GuildRoleDelete;
+
+    // ============================================================================
+    // Guild Emoji Events
+    // ============================================================================
+
+    /// <summary>
+    /// Delegate for GUILD_EMOJIS_UPDATE events when guild emojis are updated.
+    /// </summary>
+    /// <param name="data">The guild emojis update data containing guild ID and updated emoji list.</param>
+    public delegate void GuildEmojisUpdateEvent(GuildEmojisUpdateGatewayData data);
+
+    /// <summary>
+    /// Occurs when the list of emojis in a guild is updated (added, removed, or modified).
+    /// </summary>
+    public event GuildEmojisUpdateEvent GuildEmojisUpdate;
+
+    /// <summary>
+    /// Delegate for GUILD_ROLE_UPDATE_BULK events when multiple guild roles are updated.
+    /// </summary>
+    /// <param name="data">The guild role bulk update data containing guild ID and updated roles.</param>
+    public delegate void GuildRoleUpdateBulkEvent(GuildRoleUpdateBulkGatewayData data);
+
+    /// <summary>
+    /// Occurs when multiple roles are updated at once in a guild.
+    /// </summary>
+    public event GuildRoleUpdateBulkEvent GuildRoleUpdateBulk;
+
+    /// <summary>
+    /// Delegate for GUILD_STICKERS_UPDATE events when guild stickers are updated.
+    /// </summary>
+    /// <param name="data">The guild stickers update data containing guild ID and updated sticker list.</param>
+    public delegate void GuildStickersUpdateEvent(GuildStickersUpdateGatewayData data);
+
+    /// <summary>
+    /// Occurs when the list of stickers in a guild is updated (added, removed, or modified).
+    /// </summary>
+    public event GuildStickersUpdateEvent GuildStickersUpdate;
+
+    // ============================================================================
+    // Relationship Events
+    // ============================================================================
+
+    /// <summary>
+    /// Delegate for RELATIONSHIP_ADD events when a relationship is added.
+    /// </summary>
+    /// <param name="data">The relationship data.</param>
+    public delegate void RelationshipAddEvent(RelationshipGatewayData data);
+
+    /// <summary>
+    /// Occurs when a relationship (friend, blocked user, etc.) is added.
+    /// </summary>
+    public event RelationshipAddEvent RelationshipAdd;
+
+    /// <summary>
+    /// Delegate for RELATIONSHIP_UPDATE events when a relationship is updated.
+    /// </summary>
+    /// <param name="data">The relationship data.</param>
+    public delegate void RelationshipUpdateEvent(RelationshipGatewayData data);
+
+    /// <summary>
+    /// Occurs when a relationship is updated.
+    /// </summary>
+    public event RelationshipUpdateEvent RelationshipUpdate;
+
+    /// <summary>
+    /// Delegate for RELATIONSHIP_REMOVE events when a relationship is removed.
+    /// </summary>
+    /// <param name="data">The relationship data.</param>
+    public delegate void RelationshipRemoveEvent(RelationshipGatewayData data);
+
+    /// <summary>
+    /// Occurs when a relationship is removed.
+    /// </summary>
+    public event RelationshipRemoveEvent RelationshipRemove;
+
+    // ============================================================================
+    // Favorite Meme Events
+    // ============================================================================
+
+    /// <summary>
+    /// Delegate for FAVORITE_MEME_CREATE events when a favorite meme is created.
+    /// </summary>
+    /// <param name="data">The favorite meme data.</param>
+    public delegate void FavoriteMemeCreateEvent(FavoriteMemeGatewayData data);
+
+    /// <summary>
+    /// Occurs when a favorite meme is created.
+    /// </summary>
+    public event FavoriteMemeCreateEvent FavoriteMemeCreate;
+
+    /// <summary>
+    /// Delegate for FAVORITE_MEME_UPDATE events when a favorite meme is updated.
+    /// </summary>
+    /// <param name="data">The favorite meme data.</param>
+    public delegate void FavoriteMemeUpdateEvent(FavoriteMemeGatewayData data);
+
+    /// <summary>
+    /// Occurs when a favorite meme is updated.
+    /// </summary>
+    public event FavoriteMemeUpdateEvent FavoriteMemeUpdate;
+
+    /// <summary>
+    /// Delegate for FAVORITE_MEME_DELETE events when a favorite meme is deleted.
+    /// </summary>
+    /// <param name="data">The favorite meme data.</param>
+    public delegate void FavoriteMemeDeleteEvent(FavoriteMemeGatewayData data);
+
+    /// <summary>
+    /// Occurs when a favorite meme is deleted.
+    /// </summary>
+    public event FavoriteMemeDeleteEvent FavoriteMemeDelete;
+
+    // ============================================================================
+    // Call Events
+    // ============================================================================
+
+    /// <summary>
+    /// Delegate for CALL_CREATE events when a call is created.
+    /// </summary>
+    /// <param name="data">The call data.</param>
+    public delegate void CallCreateEvent(CallGatewayData data);
+
+    /// <summary>
+    /// Occurs when a call is created.
+    /// </summary>
+    public event CallCreateEvent CallCreate;
+
+    /// <summary>
+    /// Delegate for CALL_UPDATE events when a call is updated.
+    /// </summary>
+    /// <param name="data">The call data.</param>
+    public delegate void CallUpdateEvent(CallGatewayData data);
+
+    /// <summary>
+    /// Occurs when a call is updated.
+    /// </summary>
+    public event CallUpdateEvent CallUpdate;
+
+    /// <summary>
+    /// Delegate for CALL_DELETE events when a call is deleted.
+    /// </summary>
+    /// <param name="data">The call data.</param>
+    public delegate void CallDeleteEvent(CallGatewayData data);
+
+    /// <summary>
+    /// Occurs when a call is deleted.
+    /// </summary>
+    public event CallDeleteEvent CallDelete;
 
     #endregion
 

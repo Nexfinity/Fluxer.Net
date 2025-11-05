@@ -38,10 +38,10 @@ public class GuildMemberGatewayData : IGatewayData
 	public ulong? InviterId { get; set; }
 
 	[JsonProperty("mute")]
-	public bool Mute { get; set; }
+	public bool IsMuted { get; set; }
 
 	[JsonProperty("deaf")]
-	public bool Deaf { get; set; }
+	public bool IsDeafened { get; set; }
 
 	/// <summary>
 	/// Guild ID for context (added for gateway events)

@@ -36,10 +36,10 @@ public class MessageGatewayData : IGatewayData
 	public DateTime? EditedTimestamp { get; set; }
 
 	[JsonProperty("pinned")]
-	public bool Pinned { get; set; }
+	public bool IsPinned { get; set; }
 
 	[JsonProperty("mention_everyone")]
-	public bool MentionEveryone { get; set; }
+	public bool MentionsEveryone { get; set; }
 
 	[JsonProperty("mentions")]
 	public List<UserPartialResponse>? Mentions { get; set; }
@@ -102,10 +102,10 @@ public class UserPartialResponse
 	public string? Avatar { get; set; }
 
 	[JsonProperty("bot")]
-	public bool? Bot { get; set; }
+	public bool IsBot { get; set; }
 
 	[JsonProperty("system")]
-	public bool? System { get; set; }
+	public bool IsSystem { get; set; }
 
 	[JsonProperty("flags")]
 	public int Flags { get; set; }
