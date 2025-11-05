@@ -370,6 +370,46 @@ public partial class GatewayClient : IDisposable
             case "RESUMED":
                 Resumed?.Invoke();
                 return;
+            case "SESSIONS_REPLACE":
+                if (p.Data is SessionsReplaceGatewayData sessionsReplaceData)
+                    SessionsReplace?.Invoke(sessionsReplaceData);
+                else
+                    _logger.Warning("SESSIONS_REPLACE event received but data could not be cast to SessionsReplaceGatewayData");
+                return;
+
+            // User settings events
+            case "USER_SETTINGS_UPDATE":
+                if (p.Data is UserSettingsUpdateGatewayData userSettingsData)
+                    UserSettingsUpdate?.Invoke(userSettingsData);
+                else
+                    _logger.Warning("USER_SETTINGS_UPDATE event received but data could not be cast to UserSettingsUpdateGatewayData");
+                return;
+            case "USER_GUILD_SETTINGS_UPDATE":
+                if (p.Data is UserGuildSettingsUpdateGatewayData userGuildSettingsData)
+                    UserGuildSettingsUpdate?.Invoke(userGuildSettingsData);
+                else
+                    _logger.Warning("USER_GUILD_SETTINGS_UPDATE event received but data could not be cast to UserGuildSettingsUpdateGatewayData");
+                return;
+            case "USER_PINNED_DMS_UPDATE":
+                if (p.Data is UserPinnedDmsUpdateGatewayData pinnedDmsData)
+                    UserPinnedDmsUpdate?.Invoke(pinnedDmsData);
+                else
+                    _logger.Warning("USER_PINNED_DMS_UPDATE event received but data could not be cast to UserPinnedDmsUpdateGatewayData");
+                return;
+            case "USER_NOTE_UPDATE":
+                if (p.Data is UserNoteUpdateGatewayData userNoteData)
+                    UserNoteUpdate?.Invoke(userNoteData);
+                else
+                    _logger.Warning("USER_NOTE_UPDATE event received but data could not be cast to UserNoteUpdateGatewayData");
+                return;
+            case "AUTH_SESSION_CHANGE":
+                if (p.Data is AuthSessionChangeGatewayData authSessionData)
+                    AuthSessionChange?.Invoke(authSessionData);
+                else
+                    _logger.Warning("AUTH_SESSION_CHANGE event received but data could not be cast to AuthSessionChangeGatewayData");
+                return;
+
+            // Message events
             case "MESSAGE_CREATE":
                 if (p.Data is MessageGatewayData messageCreateData)
                     MessageCreate?.Invoke(messageCreateData);
@@ -457,6 +497,26 @@ public partial class GatewayClient : IDisposable
                     _logger.Warning("MESSAGE_REACTION_REMOVE_EMOJI event received but data could not be cast to MessageReactionRemoveEmojiGatewayData");
                 return;
 
+            // Saved messages
+            case "SAVED_MESSAGE_CREATE":
+                if (p.Data is SavedMessageGatewayData savedMessageCreateData)
+                    SavedMessageCreate?.Invoke(savedMessageCreateData);
+                else
+                    _logger.Warning("SAVED_MESSAGE_CREATE event received but data could not be cast to SavedMessageGatewayData");
+                return;
+            case "SAVED_MESSAGE_DELETE":
+                if (p.Data is SavedMessageGatewayData savedMessageDeleteData)
+                    SavedMessageDelete?.Invoke(savedMessageDeleteData);
+                else
+                    _logger.Warning("SAVED_MESSAGE_DELETE event received but data could not be cast to SavedMessageGatewayData");
+                return;
+            case "RECENT_MENTION_DELETE":
+                if (p.Data is RecentMentionDeleteGatewayData recentMentionData)
+                    RecentMentionDelete?.Invoke(recentMentionData);
+                else
+                    _logger.Warning("RECENT_MENTION_DELETE event received but data could not be cast to RecentMentionDeleteGatewayData");
+                return;
+
             // Message bulk operations
             case "MESSAGE_DELETE_BULK":
                 if (p.Data is MessageBulkDeleteGatewayData bulkDeleteData)
@@ -472,11 +532,35 @@ public partial class GatewayClient : IDisposable
                 return;
 
             // Channel updates
+            case "CHANNEL_UPDATE_BULK":
+                if (p.Data is ChannelUpdateBulkGatewayData channelBulkUpdateData)
+                    ChannelUpdateBulk?.Invoke(channelBulkUpdateData);
+                else
+                    _logger.Warning("CHANNEL_UPDATE_BULK event received but data could not be cast to ChannelUpdateBulkGatewayData");
+                return;
+            case "CHANNEL_RECIPIENT_ADD":
+                if (p.Data is ChannelRecipientGatewayData recipientAddData)
+                    ChannelRecipientAdd?.Invoke(recipientAddData);
+                else
+                    _logger.Warning("CHANNEL_RECIPIENT_ADD event received but data could not be cast to ChannelRecipientGatewayData");
+                return;
+            case "CHANNEL_RECIPIENT_REMOVE":
+                if (p.Data is ChannelRecipientGatewayData recipientRemoveData)
+                    ChannelRecipientRemove?.Invoke(recipientRemoveData);
+                else
+                    _logger.Warning("CHANNEL_RECIPIENT_REMOVE event received but data could not be cast to ChannelRecipientGatewayData");
+                return;
             case "CHANNEL_PINS_UPDATE":
                 if (p.Data is ChannelPinsUpdateGatewayData pinsUpdateData)
                     ChannelPinsUpdate?.Invoke(pinsUpdateData);
                 else
                     _logger.Warning("CHANNEL_PINS_UPDATE event received but data could not be cast to ChannelPinsUpdateGatewayData");
+                return;
+            case "CHANNEL_PINS_ACK":
+                if (p.Data is ChannelPinsAckGatewayData pinsAckData)
+                    ChannelPinsAck?.Invoke(pinsAckData);
+                else
+                    _logger.Warning("CHANNEL_PINS_ACK event received but data could not be cast to ChannelPinsAckGatewayData");
                 return;
 
             // Voice events
@@ -570,11 +654,83 @@ public partial class GatewayClient : IDisposable
                 else
                     _logger.Warning("GUILD_ROLE_DELETE event received but data could not be cast to GuildRoleDeleteGatewayData");
                 return;
+            case "GUILD_ROLE_UPDATE_BULK":
+                if (p.Data is GuildRoleUpdateBulkGatewayData guildRoleBulkData)
+                    GuildRoleUpdateBulk?.Invoke(guildRoleBulkData);
+                else
+                    _logger.Warning("GUILD_ROLE_UPDATE_BULK event received but data could not be cast to GuildRoleUpdateBulkGatewayData");
+                return;
             case "GUILD_EMOJIS_UPDATE":
                 if (p.Data is GuildEmojisUpdateGatewayData guildEmojisUpdateData)
                     GuildEmojisUpdate?.Invoke(guildEmojisUpdateData);
                 else
                     _logger.Warning("GUILD_EMOJIS_UPDATE event received but data could not be cast to GuildEmojisUpdateGatewayData");
+                return;
+            case "GUILD_STICKERS_UPDATE":
+                if (p.Data is GuildStickersUpdateGatewayData guildStickersUpdateData)
+                    GuildStickersUpdate?.Invoke(guildStickersUpdateData);
+                else
+                    _logger.Warning("GUILD_STICKERS_UPDATE event received but data could not be cast to GuildStickersUpdateGatewayData");
+                return;
+
+            // Relationship events
+            case "RELATIONSHIP_ADD":
+                if (p.Data is RelationshipGatewayData relationshipAddData)
+                    RelationshipAdd?.Invoke(relationshipAddData);
+                else
+                    _logger.Warning("RELATIONSHIP_ADD event received but data could not be cast to RelationshipGatewayData");
+                return;
+            case "RELATIONSHIP_UPDATE":
+                if (p.Data is RelationshipGatewayData relationshipUpdateData)
+                    RelationshipUpdate?.Invoke(relationshipUpdateData);
+                else
+                    _logger.Warning("RELATIONSHIP_UPDATE event received but data could not be cast to RelationshipGatewayData");
+                return;
+            case "RELATIONSHIP_REMOVE":
+                if (p.Data is RelationshipGatewayData relationshipRemoveData)
+                    RelationshipRemove?.Invoke(relationshipRemoveData);
+                else
+                    _logger.Warning("RELATIONSHIP_REMOVE event received but data could not be cast to RelationshipGatewayData");
+                return;
+
+            // Favorite meme events
+            case "FAVORITE_MEME_CREATE":
+                if (p.Data is FavoriteMemeGatewayData favoriteMemeCreateData)
+                    FavoriteMemeCreate?.Invoke(favoriteMemeCreateData);
+                else
+                    _logger.Warning("FAVORITE_MEME_CREATE event received but data could not be cast to FavoriteMemeGatewayData");
+                return;
+            case "FAVORITE_MEME_UPDATE":
+                if (p.Data is FavoriteMemeGatewayData favoriteMemeUpdateData)
+                    FavoriteMemeUpdate?.Invoke(favoriteMemeUpdateData);
+                else
+                    _logger.Warning("FAVORITE_MEME_UPDATE event received but data could not be cast to FavoriteMemeGatewayData");
+                return;
+            case "FAVORITE_MEME_DELETE":
+                if (p.Data is FavoriteMemeGatewayData favoriteMemeDeleteData)
+                    FavoriteMemeDelete?.Invoke(favoriteMemeDeleteData);
+                else
+                    _logger.Warning("FAVORITE_MEME_DELETE event received but data could not be cast to FavoriteMemeGatewayData");
+                return;
+
+            // Call events
+            case "CALL_CREATE":
+                if (p.Data is CallGatewayData callCreateData)
+                    CallCreate?.Invoke(callCreateData);
+                else
+                    _logger.Warning("CALL_CREATE event received but data could not be cast to CallGatewayData");
+                return;
+            case "CALL_UPDATE":
+                if (p.Data is CallGatewayData callUpdateData)
+                    CallUpdate?.Invoke(callUpdateData);
+                else
+                    _logger.Warning("CALL_UPDATE event received but data could not be cast to CallGatewayData");
+                return;
+            case "CALL_DELETE":
+                if (p.Data is CallGatewayData callDeleteData)
+                    CallDelete?.Invoke(callDeleteData);
+                else
+                    _logger.Warning("CALL_DELETE event received but data could not be cast to CallGatewayData");
                 return;
 
             default:
@@ -766,6 +922,76 @@ public partial class GatewayClient : IDisposable
     /// </summary>
     public event ResumedEvent Resumed;
 
+    /// <summary>
+    /// Delegate for SESSIONS_REPLACE event when auth sessions are replaced.
+    /// </summary>
+    /// <param name="data">The sessions replace data.</param>
+    public delegate void SessionsReplaceEvent(SessionsReplaceGatewayData data);
+
+    /// <summary>
+    /// Occurs when auth sessions are replaced.
+    /// </summary>
+    public event SessionsReplaceEvent SessionsReplace;
+
+    // ============================================================================
+    // User Settings Events
+    // ============================================================================
+
+    /// <summary>
+    /// Delegate for USER_SETTINGS_UPDATE events when user settings are updated.
+    /// </summary>
+    /// <param name="data">The user settings data.</param>
+    public delegate void UserSettingsUpdateEvent(UserSettingsUpdateGatewayData data);
+
+    /// <summary>
+    /// Occurs when user settings are updated.
+    /// </summary>
+    public event UserSettingsUpdateEvent UserSettingsUpdate;
+
+    /// <summary>
+    /// Delegate for USER_GUILD_SETTINGS_UPDATE events when user guild settings are updated.
+    /// </summary>
+    /// <param name="data">The user guild settings data.</param>
+    public delegate void UserGuildSettingsUpdateEvent(UserGuildSettingsUpdateGatewayData data);
+
+    /// <summary>
+    /// Occurs when user guild settings are updated.
+    /// </summary>
+    public event UserGuildSettingsUpdateEvent UserGuildSettingsUpdate;
+
+    /// <summary>
+    /// Delegate for USER_PINNED_DMS_UPDATE events when pinned DMs are updated.
+    /// </summary>
+    /// <param name="data">The pinned DMs data.</param>
+    public delegate void UserPinnedDmsUpdateEvent(UserPinnedDmsUpdateGatewayData data);
+
+    /// <summary>
+    /// Occurs when pinned DMs are updated.
+    /// </summary>
+    public event UserPinnedDmsUpdateEvent UserPinnedDmsUpdate;
+
+    /// <summary>
+    /// Delegate for USER_NOTE_UPDATE events when a user note is updated.
+    /// </summary>
+    /// <param name="data">The user note data.</param>
+    public delegate void UserNoteUpdateEvent(UserNoteUpdateGatewayData data);
+
+    /// <summary>
+    /// Occurs when a user note is updated.
+    /// </summary>
+    public event UserNoteUpdateEvent UserNoteUpdate;
+
+    /// <summary>
+    /// Delegate for AUTH_SESSION_CHANGE events when an auth session changes.
+    /// </summary>
+    /// <param name="data">The auth session data.</param>
+    public delegate void AuthSessionChangeEvent(AuthSessionChangeGatewayData data);
+
+    /// <summary>
+    /// Occurs when an auth session changes.
+    /// </summary>
+    public event AuthSessionChangeEvent AuthSessionChange;
+
     // ============================================================================
     // Message Events
     // ============================================================================
@@ -945,6 +1171,43 @@ public partial class GatewayClient : IDisposable
     public event MessageReactionRemoveEmojiEvent MessageReactionRemoveEmoji;
 
     // ============================================================================
+    // Saved Messages and Mentions
+    // ============================================================================
+
+    /// <summary>
+    /// Delegate for SAVED_MESSAGE_CREATE events when a message is saved.
+    /// </summary>
+    /// <param name="data">The saved message data.</param>
+    public delegate void SavedMessageCreateEvent(SavedMessageGatewayData data);
+
+    /// <summary>
+    /// Occurs when a message is saved.
+    /// </summary>
+    public event SavedMessageCreateEvent SavedMessageCreate;
+
+    /// <summary>
+    /// Delegate for SAVED_MESSAGE_DELETE events when a saved message is deleted.
+    /// </summary>
+    /// <param name="data">The saved message data.</param>
+    public delegate void SavedMessageDeleteEvent(SavedMessageGatewayData data);
+
+    /// <summary>
+    /// Occurs when a saved message is deleted.
+    /// </summary>
+    public event SavedMessageDeleteEvent SavedMessageDelete;
+
+    /// <summary>
+    /// Delegate for RECENT_MENTION_DELETE events when a recent mention is deleted.
+    /// </summary>
+    /// <param name="data">The recent mention data.</param>
+    public delegate void RecentMentionDeleteEvent(RecentMentionDeleteGatewayData data);
+
+    /// <summary>
+    /// Occurs when a recent mention is deleted.
+    /// </summary>
+    public event RecentMentionDeleteEvent RecentMentionDelete;
+
+    // ============================================================================
     // Message Bulk Operations
     // ============================================================================
 
@@ -984,6 +1247,50 @@ public partial class GatewayClient : IDisposable
     /// Occurs when a message is pinned or unpinned in a channel.
     /// </summary>
     public event ChannelPinsUpdateEvent ChannelPinsUpdate;
+
+    /// <summary>
+    /// Delegate for CHANNEL_PINS_ACK events when channel pins are acknowledged.
+    /// </summary>
+    /// <param name="data">The pins acknowledgment data.</param>
+    public delegate void ChannelPinsAckEvent(ChannelPinsAckGatewayData data);
+
+    /// <summary>
+    /// Occurs when channel pins are acknowledged.
+    /// </summary>
+    public event ChannelPinsAckEvent ChannelPinsAck;
+
+    /// <summary>
+    /// Delegate for CHANNEL_UPDATE_BULK events when multiple channels are updated.
+    /// </summary>
+    /// <param name="data">The bulk channel update data.</param>
+    public delegate void ChannelUpdateBulkEvent(ChannelUpdateBulkGatewayData data);
+
+    /// <summary>
+    /// Occurs when multiple channels are updated at once.
+    /// </summary>
+    public event ChannelUpdateBulkEvent ChannelUpdateBulk;
+
+    /// <summary>
+    /// Delegate for CHANNEL_RECIPIENT_ADD events when a recipient is added to a channel.
+    /// </summary>
+    /// <param name="data">The channel recipient data.</param>
+    public delegate void ChannelRecipientAddEvent(ChannelRecipientGatewayData data);
+
+    /// <summary>
+    /// Occurs when a recipient is added to a group DM or channel.
+    /// </summary>
+    public event ChannelRecipientAddEvent ChannelRecipientAdd;
+
+    /// <summary>
+    /// Delegate for CHANNEL_RECIPIENT_REMOVE events when a recipient is removed from a channel.
+    /// </summary>
+    /// <param name="data">The channel recipient data.</param>
+    public delegate void ChannelRecipientRemoveEvent(ChannelRecipientGatewayData data);
+
+    /// <summary>
+    /// Occurs when a recipient is removed from a group DM or channel.
+    /// </summary>
+    public event ChannelRecipientRemoveEvent ChannelRecipientRemove;
 
     // ============================================================================
     // Voice Events
@@ -1177,6 +1484,139 @@ public partial class GatewayClient : IDisposable
     /// Occurs when the list of emojis in a guild is updated (added, removed, or modified).
     /// </summary>
     public event GuildEmojisUpdateEvent GuildEmojisUpdate;
+
+    /// <summary>
+    /// Delegate for GUILD_ROLE_UPDATE_BULK events when multiple guild roles are updated.
+    /// </summary>
+    /// <param name="data">The guild role bulk update data containing guild ID and updated roles.</param>
+    public delegate void GuildRoleUpdateBulkEvent(GuildRoleUpdateBulkGatewayData data);
+
+    /// <summary>
+    /// Occurs when multiple roles are updated at once in a guild.
+    /// </summary>
+    public event GuildRoleUpdateBulkEvent GuildRoleUpdateBulk;
+
+    /// <summary>
+    /// Delegate for GUILD_STICKERS_UPDATE events when guild stickers are updated.
+    /// </summary>
+    /// <param name="data">The guild stickers update data containing guild ID and updated sticker list.</param>
+    public delegate void GuildStickersUpdateEvent(GuildStickersUpdateGatewayData data);
+
+    /// <summary>
+    /// Occurs when the list of stickers in a guild is updated (added, removed, or modified).
+    /// </summary>
+    public event GuildStickersUpdateEvent GuildStickersUpdate;
+
+    // ============================================================================
+    // Relationship Events
+    // ============================================================================
+
+    /// <summary>
+    /// Delegate for RELATIONSHIP_ADD events when a relationship is added.
+    /// </summary>
+    /// <param name="data">The relationship data.</param>
+    public delegate void RelationshipAddEvent(RelationshipGatewayData data);
+
+    /// <summary>
+    /// Occurs when a relationship (friend, blocked user, etc.) is added.
+    /// </summary>
+    public event RelationshipAddEvent RelationshipAdd;
+
+    /// <summary>
+    /// Delegate for RELATIONSHIP_UPDATE events when a relationship is updated.
+    /// </summary>
+    /// <param name="data">The relationship data.</param>
+    public delegate void RelationshipUpdateEvent(RelationshipGatewayData data);
+
+    /// <summary>
+    /// Occurs when a relationship is updated.
+    /// </summary>
+    public event RelationshipUpdateEvent RelationshipUpdate;
+
+    /// <summary>
+    /// Delegate for RELATIONSHIP_REMOVE events when a relationship is removed.
+    /// </summary>
+    /// <param name="data">The relationship data.</param>
+    public delegate void RelationshipRemoveEvent(RelationshipGatewayData data);
+
+    /// <summary>
+    /// Occurs when a relationship is removed.
+    /// </summary>
+    public event RelationshipRemoveEvent RelationshipRemove;
+
+    // ============================================================================
+    // Favorite Meme Events
+    // ============================================================================
+
+    /// <summary>
+    /// Delegate for FAVORITE_MEME_CREATE events when a favorite meme is created.
+    /// </summary>
+    /// <param name="data">The favorite meme data.</param>
+    public delegate void FavoriteMemeCreateEvent(FavoriteMemeGatewayData data);
+
+    /// <summary>
+    /// Occurs when a favorite meme is created.
+    /// </summary>
+    public event FavoriteMemeCreateEvent FavoriteMemeCreate;
+
+    /// <summary>
+    /// Delegate for FAVORITE_MEME_UPDATE events when a favorite meme is updated.
+    /// </summary>
+    /// <param name="data">The favorite meme data.</param>
+    public delegate void FavoriteMemeUpdateEvent(FavoriteMemeGatewayData data);
+
+    /// <summary>
+    /// Occurs when a favorite meme is updated.
+    /// </summary>
+    public event FavoriteMemeUpdateEvent FavoriteMemeUpdate;
+
+    /// <summary>
+    /// Delegate for FAVORITE_MEME_DELETE events when a favorite meme is deleted.
+    /// </summary>
+    /// <param name="data">The favorite meme data.</param>
+    public delegate void FavoriteMemeDeleteEvent(FavoriteMemeGatewayData data);
+
+    /// <summary>
+    /// Occurs when a favorite meme is deleted.
+    /// </summary>
+    public event FavoriteMemeDeleteEvent FavoriteMemeDelete;
+
+    // ============================================================================
+    // Call Events
+    // ============================================================================
+
+    /// <summary>
+    /// Delegate for CALL_CREATE events when a call is created.
+    /// </summary>
+    /// <param name="data">The call data.</param>
+    public delegate void CallCreateEvent(CallGatewayData data);
+
+    /// <summary>
+    /// Occurs when a call is created.
+    /// </summary>
+    public event CallCreateEvent CallCreate;
+
+    /// <summary>
+    /// Delegate for CALL_UPDATE events when a call is updated.
+    /// </summary>
+    /// <param name="data">The call data.</param>
+    public delegate void CallUpdateEvent(CallGatewayData data);
+
+    /// <summary>
+    /// Occurs when a call is updated.
+    /// </summary>
+    public event CallUpdateEvent CallUpdate;
+
+    /// <summary>
+    /// Delegate for CALL_DELETE events when a call is deleted.
+    /// </summary>
+    /// <param name="data">The call data.</param>
+    public delegate void CallDeleteEvent(CallGatewayData data);
+
+    /// <summary>
+    /// Occurs when a call is deleted.
+    /// </summary>
+    public event CallDeleteEvent CallDelete;
 
     #endregion
 
