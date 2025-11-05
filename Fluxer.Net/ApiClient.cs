@@ -230,40 +230,40 @@ public class ApiClient
 
     #region Auth API
 
-    public async Task<LoginResponse> PostAuthLogin(LoginRequest data)
+    public async Task<LoginResponse> Login(LoginRequest data)
         => await MakeFluxerApiRequestRS<LoginResponse, LoginRequest>(HttpMethod.Post, "/auth/login", data, false);
 
-    public async Task PostAuthRegister<TRequest>(TRequest data)
+    public async Task Register<TRequest>(TRequest data)
         => await MakeFluxerApiRequestS<TRequest>(HttpMethod.Post, "/auth/register", data, true, false);
 
-    public async Task PostAuthLoginMfaTotp<TRequest, TResponse>(TRequest data)
+    public async Task LoginMfaTotp<TRequest, TResponse>(TRequest data)
         => await MakeFluxerApiRequestRS<TResponse, TRequest>(HttpMethod.Post, "/auth/login/mfa/totp", data, true, false);
 
-    public async Task PostAuthLoginMfaSmsSend()
+    public async Task SendMfaSmsCode()
         => await MakeFluxerApiRequest(HttpMethod.Post, "/auth/login/mfa/sms/send", true, false);
 
-    public async Task PostAuthLoginMfaSms<TRequest, TResponse>(TRequest data)
+    public async Task LoginMfaSms<TRequest, TResponse>(TRequest data)
         => await MakeFluxerApiRequestRS<TResponse, TRequest>(HttpMethod.Post, "/auth/login/mfa/sms", data, true, false);
 
-    public async Task PostAuthLogout()
+    public async Task Logout()
         => await MakeFluxerApiRequest(HttpMethod.Post, "/auth/logout", true);
 
-    public async Task PostAuthVerify<TRequest>(TRequest data)
+    public async Task VerifyEmail<TRequest>(TRequest data)
         => await MakeFluxerApiRequestS<TRequest>(HttpMethod.Post, "/auth/verify", data, true, false);
 
-    public async Task PostAuthVerifyResend()
+    public async Task ResendVerificationEmail()
         => await MakeFluxerApiRequest(HttpMethod.Post, "/auth/verify/resend", true);
 
-    public async Task PostAuthForgot<TRequest>(TRequest data)
+    public async Task ForgotPassword<TRequest>(TRequest data)
         => await MakeFluxerApiRequestS<TRequest>(HttpMethod.Post, "/auth/forgot", data, true, false);
 
-    public async Task PostAuthReset<TRequest>(TRequest data)
+    public async Task ResetPassword<TRequest>(TRequest data)
         => await MakeFluxerApiRequestS<TRequest>(HttpMethod.Post, "/auth/reset", data, true, false);
 
-    public async Task<TResponse> GetAuthSessions<TResponse>()
+    public async Task<TResponse> GetSessions<TResponse>()
         => await MakeFluxerApiRequestR<TResponse>(HttpMethod.Get, "/auth/sessions", true);
 
-    public async Task PostAuthSessionsLogout<TRequest>(TRequest data)
+    public async Task LogoutSessions<TRequest>(TRequest data)
         => await MakeFluxerApiRequestS<TRequest>(HttpMethod.Post, "/auth/sessions/logout", data, true);
 
     public async Task PostAuthAuthorizeIp<TRequest>(TRequest data)
@@ -294,103 +294,103 @@ public class ApiClient
     public async Task<TResponse> GetChannelRtcRegions<TResponse>(ulong channelId)
         => await MakeFluxerApiRequestR<TResponse>(HttpMethod.Get, $"/channels/{channelId}/rtc-regions", true);
 
-    public async Task<Channel> PatchChannel(ulong channelId, Channel channel)
+    public async Task<Channel> UpdateChannel(ulong channelId, Channel channel)
         => await MakeFluxerApiRequestRS<Channel, Channel>(HttpMethod.Patch, $"/channels/{channelId}", channel, true);
 
     public async Task DeleteChannel(ulong channelId)
         => await MakeFluxerApiRequest(HttpMethod.Delete, $"/channels/{channelId}", true);
 
-    public async Task DeleteChannelMessagesAck(ulong channelId)
+    public async Task ClearMessageAcknowledgement(ulong channelId)
         => await MakeFluxerApiRequest(HttpMethod.Delete, $"/channels/{channelId}/messages/ack", true);
 
-    public async Task<List<Message>> GetChannelMessages(ulong channelId)
+    public async Task<List<Message>> GetMessages(ulong channelId)
         => await MakeFluxerApiRequestR<List<Message>>(HttpMethod.Get, $"/channels/{channelId}/messages", true);
 
-    public async Task<Message> GetChannelMessage(ulong channelId, ulong messageId)
+    public async Task<Message> GetMessage(ulong channelId, ulong messageId)
         => await MakeFluxerApiRequestR<Message>(HttpMethod.Get, $"/channels/{channelId}/messages/{messageId}", true);
 
-    public async Task<TResponse> PostChannelSearch<TRequest, TResponse>(ulong channelId, TRequest data)
+    public async Task<TResponse> SearchChannel<TRequest, TResponse>(ulong channelId, TRequest data)
         => await MakeFluxerApiRequestRS<TResponse, TRequest>(HttpMethod.Post, $"/channels/{channelId}/search", data, true);
 
-    public async Task<Message> PostChannelMessage(ulong channelId, Message message)
+    public async Task<Message> SendMessage(ulong channelId, Message message)
         => await MakeFluxerApiRequestRS<Message, Message>(HttpMethod.Post, $"/channels/{channelId}/messages", message, true);
 
-    public async Task<Message> PatchChannelMessage(ulong channelId, ulong messageId, Message message)
+    public async Task<Message> EditMessage(ulong channelId, ulong messageId, Message message)
         => await MakeFluxerApiRequestRS<Message, Message>(HttpMethod.Patch, $"/channels/{channelId}/messages/{messageId}", message, true);
 
-    public async Task DeleteChannelMessage(ulong channelId, ulong messageId)
+    public async Task DeleteMessage(ulong channelId, ulong messageId)
         => await MakeFluxerApiRequest(HttpMethod.Delete, $"/channels/{channelId}/messages/{messageId}", true);
 
-    public async Task DeleteChannelMessageAttachment(ulong channelId, ulong messageId, ulong attachmentId)
+    public async Task DeleteMessageAttachment(ulong channelId, ulong messageId, ulong attachmentId)
         => await MakeFluxerApiRequest(HttpMethod.Delete, $"/channels/{channelId}/messages/{messageId}/attachments/{attachmentId}", true);
 
-    public async Task PostChannelMessagesBulkDelete<TRequest>(ulong channelId, TRequest data)
+    public async Task BulkDeleteMessages<TRequest>(ulong channelId, TRequest data)
         => await MakeFluxerApiRequestS<TRequest>(HttpMethod.Post, $"/channels/{channelId}/messages/bulk-delete", data, true);
 
-    public async Task PostChannelTyping(ulong channelId)
+    public async Task TriggerTypingIndicator(ulong channelId)
         => await MakeFluxerApiRequest(HttpMethod.Post, $"/channels/{channelId}/typing", true);
 
-    public async Task PostChannelMessageAck(ulong channelId, ulong messageId, MessageAck details)
+    public async Task AcknowledgeMessage(ulong channelId, ulong messageId, MessageAck details)
         => await MakeFluxerApiRequestS<MessageAck>(HttpMethod.Post, $"/channels/{channelId}/messages/{messageId}/ack", details, true);
 
-    public async Task<TResponse> GetChannelPins<TResponse>(ulong channelId)
+    public async Task<TResponse> GetPinnedMessages<TResponse>(ulong channelId)
         => await MakeFluxerApiRequestR<TResponse>(HttpMethod.Get, $"/channels/{channelId}/pins", true);
 
-    public async Task PutChannelPin(ulong channelId, ulong messageId)
+    public async Task PinMessage(ulong channelId, ulong messageId)
         => await MakeFluxerApiRequest(HttpMethod.Put, $"/channels/{channelId}/pins/{messageId}", true);
 
-    public async Task DeleteChannelPin(ulong channelId, ulong messageId)
+    public async Task UnpinMessage(ulong channelId, ulong messageId)
         => await MakeFluxerApiRequest(HttpMethod.Delete, $"/channels/{channelId}/pins/{messageId}", true);
 
-    public async Task<TResponse> GetChannelMessageReactions<TResponse>(ulong channelId, ulong messageId, string emoji)
+    public async Task<TResponse> GetReactions<TResponse>(ulong channelId, ulong messageId, string emoji)
         => await MakeFluxerApiRequestR<TResponse>(HttpMethod.Get, $"/channels/{channelId}/messages/{messageId}/reactions/{emoji}", true);
 
-    public async Task PutChannelMessageReaction(ulong channelId, ulong messageId, string emoji)
+    public async Task AddReaction(ulong channelId, ulong messageId, string emoji)
         => await MakeFluxerApiRequest(HttpMethod.Put, $"/channels/{channelId}/messages/{messageId}/reactions/{emoji}/@me", true);
 
-    public async Task DeleteChannelMessageReactionSelf(ulong channelId, ulong messageId, string emoji)
+    public async Task RemoveOwnReaction(ulong channelId, ulong messageId, string emoji)
         => await MakeFluxerApiRequest(HttpMethod.Delete, $"/channels/{channelId}/messages/{messageId}/reactions/{emoji}/@me", true);
 
-    public async Task DeleteChannelMessageReactionUser(ulong channelId, ulong messageId, string emoji, ulong targetId)
+    public async Task RemoveUserReaction(ulong channelId, ulong messageId, string emoji, ulong targetId)
         => await MakeFluxerApiRequest(HttpMethod.Delete, $"/channels/{channelId}/messages/{messageId}/reactions/{emoji}/{targetId}", true);
 
-    public async Task DeleteChannelMessageReactionsEmoji(ulong channelId, ulong messageId, string emoji)
+    public async Task RemoveAllReactionsForEmoji(ulong channelId, ulong messageId, string emoji)
         => await MakeFluxerApiRequest(HttpMethod.Delete, $"/channels/{channelId}/messages/{messageId}/reactions/{emoji}", true);
 
-    public async Task DeleteChannelMessageReactions(ulong channelId, ulong messageId)
+    public async Task RemoveAllReactions(ulong channelId, ulong messageId)
         => await MakeFluxerApiRequest(HttpMethod.Delete, $"/channels/{channelId}/messages/{messageId}/reactions", true);
 
-    public async Task<TResponse> PostChannelAttachments<TRequest, TResponse>(ulong channelId, TRequest data)
+    public async Task<TResponse> UploadAttachments<TRequest, TResponse>(ulong channelId, TRequest data)
         => await MakeFluxerApiRequestRS<TResponse, TRequest>(HttpMethod.Post, $"/channels/{channelId}/attachments", data, true);
 
-    public async Task PutChannelRecipient(ulong channelId, ulong userId)
+    public async Task AddRecipient(ulong channelId, ulong userId)
         => await MakeFluxerApiRequest(HttpMethod.Put, $"/channels/{channelId}/recipients/{userId}", true);
 
-    public async Task DeleteChannelRecipient(ulong channelId, ulong userId)
+    public async Task RemoveRecipient(ulong channelId, ulong userId)
         => await MakeFluxerApiRequest(HttpMethod.Delete, $"/channels/{channelId}/recipients/{userId}", true);
 
-    public async Task<TResponse> GetChannelCall<TResponse>(ulong channelId)
+    public async Task<TResponse> GetCall<TResponse>(ulong channelId)
         => await MakeFluxerApiRequestR<TResponse>(HttpMethod.Get, $"/channels/{channelId}/call", true);
 
-    public async Task<TResponse> PatchChannelCall<TRequest, TResponse>(ulong channelId, TRequest data)
+    public async Task<TResponse> UpdateCall<TRequest, TResponse>(ulong channelId, TRequest data)
         => await MakeFluxerApiRequestRS<TResponse, TRequest>(HttpMethod.Patch, $"/channels/{channelId}/call", data, true);
 
-    public async Task PostChannelCallRing<TRequest>(ulong channelId, TRequest data)
+    public async Task RingCall<TRequest>(ulong channelId, TRequest data)
         => await MakeFluxerApiRequestS<TRequest>(HttpMethod.Post, $"/channels/{channelId}/call/ring", data, true);
 
-    public async Task PostChannelCallStopRinging(ulong channelId)
+    public async Task StopRinging(ulong channelId)
         => await MakeFluxerApiRequest(HttpMethod.Post, $"/channels/{channelId}/call/stop-ringing", true);
 
     public async Task<List<Invite>> GetChannelInvites(ulong channelId)
         => await MakeFluxerApiRequestR<List<Invite>>(HttpMethod.Get, $"/channels/{channelId}/invites", true);
 
-    public async Task<TResponse> PostChannelInvite<TRequest, TResponse>(ulong channelId, TRequest data)
+    public async Task<TResponse> CreateInvite<TRequest, TResponse>(ulong channelId, TRequest data)
         => await MakeFluxerApiRequestRS<TResponse, TRequest>(HttpMethod.Post, $"/channels/{channelId}/invites", data, true);
 
     public async Task<TResponse> GetChannelWebhooks<TResponse>(ulong channelId)
         => await MakeFluxerApiRequestR<TResponse>(HttpMethod.Get, $"/channels/{channelId}/webhooks", true);
 
-    public async Task<TResponse> PostChannelWebhook<TRequest, TResponse>(ulong channelId, TRequest data)
+    public async Task<TResponse> CreateWebhook<TRequest, TResponse>(ulong channelId, TRequest data)
         => await MakeFluxerApiRequestRS<TResponse, TRequest>(HttpMethod.Post, $"/channels/{channelId}/webhooks", data, true);
 
     #endregion
@@ -429,7 +429,7 @@ public class ApiClient
     public async Task<TResponse> GetInvite<TResponse>(string inviteCode)
         => await MakeFluxerApiRequestR<TResponse>(HttpMethod.Get, $"/invites/{inviteCode}", true);
 
-    public async Task<GuildProperties> PostInviteJoin(string inviteCode)
+    public async Task<GuildProperties> JoinGuild(string inviteCode)
         => await MakeFluxerApiRequestR<GuildProperties>(HttpMethod.Post, $"/invites/{inviteCode}", true);
 
     public async Task DeleteInvite(string inviteCode)
@@ -459,124 +459,124 @@ public class ApiClient
 
     #region Guilds API
 
-    public async Task<GuildProperties> PostGuild<TRequest>(TRequest data)
+    public async Task<GuildProperties> CreateGuild<TRequest>(TRequest data)
         => await MakeFluxerApiRequestRS<GuildProperties, TRequest>(HttpMethod.Post, "/guilds", data, true);
 
     public async Task<List<GuildProperties>> GetCurrentUserGuilds()
         => await MakeFluxerApiRequestR<List<GuildProperties>>(HttpMethod.Get, "/users/@me/guilds", true);
 
-    public async Task DeleteCurrentUserGuild(ulong guildId)
+    public async Task LeaveGuild(ulong guildId)
         => await MakeFluxerApiRequest(HttpMethod.Delete, $"/users/@me/guilds/{guildId}", true);
 
     public async Task<GuildProperties> GetGuild(ulong guildId)
         => await MakeFluxerApiRequestR<GuildProperties>(HttpMethod.Get, $"/guilds/{guildId}", true);
 
-    public async Task<GuildProperties> PatchGuild(ulong guildId, GuildProperties guild)
+    public async Task<GuildProperties> UpdateGuild(ulong guildId, GuildProperties guild)
         => await MakeFluxerApiRequestRS<GuildProperties, GuildProperties>(HttpMethod.Patch, $"/guilds/{guildId}", guild, true);
 
-    public async Task PostGuildDelete<TRequest>(ulong guildId, TRequest data)
+    public async Task DeleteGuild<TRequest>(ulong guildId, TRequest data)
         => await MakeFluxerApiRequestS<TRequest>(HttpMethod.Post, $"/guilds/{guildId}/delete", data, true);
 
     public async Task<TResponse> GetGuildVanityUrl<TResponse>(ulong guildId)
         => await MakeFluxerApiRequestR<TResponse>(HttpMethod.Get, $"/guilds/{guildId}/vanity-url", true);
 
-    public async Task<TResponse> PatchGuildVanityUrl<TRequest, TResponse>(ulong guildId, TRequest data)
+    public async Task<TResponse> UpdateGuildVanityUrl<TRequest, TResponse>(ulong guildId, TRequest data)
         => await MakeFluxerApiRequestRS<TResponse, TRequest>(HttpMethod.Patch, $"/guilds/{guildId}/vanity-url", data, true);
 
-    public async Task<List<User>> GetGuildMembers(ulong guildId)
+    public async Task<List<User>> GetMembers(ulong guildId)
         => await MakeFluxerApiRequestR<List<User>>(HttpMethod.Get, $"/guilds/{guildId}/members", true);
 
-    public async Task<GuildMember> GetGuildMemberSelf(ulong guildId)
+    public async Task<GuildMember> GetCurrentMember(ulong guildId)
         => await MakeFluxerApiRequestR<GuildMember>(HttpMethod.Get, $"/guilds/{guildId}/members/@me", true);
 
-    public async Task<User> GetGuildMember(ulong guildId, ulong userId)
+    public async Task<User> GetMember(ulong guildId, ulong userId)
         => await MakeFluxerApiRequestR<User>(HttpMethod.Get, $"/guilds/{guildId}/members/{userId}", true);
 
-    public async Task<GuildMember> PatchGuildMemberSelf(ulong guildId, GuildMember member)
+    public async Task<GuildMember> UpdateCurrentMember(ulong guildId, GuildMember member)
         => await MakeFluxerApiRequestRS<GuildMember, GuildMember>(HttpMethod.Patch, $"/guilds/{guildId}/members/@me", member, true);
 
-    public async Task<GuildMember> PatchGuildMember(ulong guildId, ulong userId, GuildMember member)
+    public async Task<GuildMember> UpdateMember(ulong guildId, ulong userId, GuildMember member)
         => await MakeFluxerApiRequestRS<GuildMember, GuildMember>(HttpMethod.Patch, $"/guilds/{guildId}/members/{userId}", member, true);
 
-    public async Task DeleteGuildMember(ulong guildId, ulong userId)
+    public async Task KickMember(ulong guildId, ulong userId)
         => await MakeFluxerApiRequest(HttpMethod.Delete, $"/guilds/{guildId}/members/{userId}", true);
 
-    public async Task PostGuildTransferOwnership<TRequest>(ulong guildId, TRequest data)
+    public async Task TransferOwnership<TRequest>(ulong guildId, TRequest data)
         => await MakeFluxerApiRequestS<TRequest>(HttpMethod.Post, $"/guilds/{guildId}/transfer-ownership", data, true);
 
-    public async Task<TResponse> GetGuildBans<TResponse>(ulong guildId)
+    public async Task<TResponse> GetBans<TResponse>(ulong guildId)
         => await MakeFluxerApiRequestR<TResponse>(HttpMethod.Get, $"/guilds/{guildId}/bans", true);
 
-    public async Task PutGuildBan<TRequest>(ulong guildId, ulong userId, TRequest data)
+    public async Task BanMember<TRequest>(ulong guildId, ulong userId, TRequest data)
         => await MakeFluxerApiRequestS<TRequest>(HttpMethod.Put, $"/guilds/{guildId}/bans/{userId}", data, true);
 
-    public async Task DeleteGuildBan(ulong guildId, ulong userId)
+    public async Task UnbanMember(ulong guildId, ulong userId)
         => await MakeFluxerApiRequest(HttpMethod.Delete, $"/guilds/{guildId}/bans/{userId}", true);
 
-    public async Task PutGuildMemberRole(ulong guildId, ulong userId, ulong roleId)
+    public async Task AddMemberRole(ulong guildId, ulong userId, ulong roleId)
         => await MakeFluxerApiRequest(HttpMethod.Put, $"/guilds/{guildId}/members/{userId}/roles/{roleId}", true);
 
-    public async Task DeleteGuildMemberRole(ulong guildId, ulong userId, ulong roleId)
+    public async Task RemoveMemberRole(ulong guildId, ulong userId, ulong roleId)
         => await MakeFluxerApiRequest(HttpMethod.Delete, $"/guilds/{guildId}/members/{userId}/roles/{roleId}", true);
 
-    public async Task<Role> PostGuildRole<TRequest>(ulong guildId, TRequest data)
+    public async Task<Role> CreateRole<TRequest>(ulong guildId, TRequest data)
         => await MakeFluxerApiRequestRS<Role, TRequest>(HttpMethod.Post, $"/guilds/{guildId}/roles", data, true);
 
-    public async Task<Role> PatchGuildRole<TRequest>(ulong guildId, ulong roleId, TRequest data)
+    public async Task<Role> UpdateRole<TRequest>(ulong guildId, ulong roleId, TRequest data)
         => await MakeFluxerApiRequestRS<Role, TRequest>(HttpMethod.Patch, $"/guilds/{guildId}/roles/{roleId}", data, true);
 
-    public async Task<TResponse> PatchGuildRoles<TRequest, TResponse>(ulong guildId, TRequest data)
+    public async Task<TResponse> UpdateRoles<TRequest, TResponse>(ulong guildId, TRequest data)
         => await MakeFluxerApiRequestRS<TResponse, TRequest>(HttpMethod.Patch, $"/guilds/{guildId}/roles", data, true);
 
-    public async Task DeleteGuildRole(ulong guildId, ulong roleId)
+    public async Task DeleteRole(ulong guildId, ulong roleId)
         => await MakeFluxerApiRequest(HttpMethod.Delete, $"/guilds/{guildId}/roles/{roleId}", true);
 
-    public async Task<List<Channel>> GetGuildChannels(ulong guildId)
+    public async Task<List<Channel>> GetChannels(ulong guildId)
         => await MakeFluxerApiRequestR<List<Channel>>(HttpMethod.Get, $"/guilds/{guildId}/channels", true);
 
-    public async Task<Channel> PostGuildChannel<TRequest>(ulong guildId, TRequest data)
+    public async Task<Channel> CreateChannel<TRequest>(ulong guildId, TRequest data)
         => await MakeFluxerApiRequestRS<Channel, TRequest>(HttpMethod.Post, $"/guilds/{guildId}/channels", data, true);
 
-    public async Task<TResponse> PatchGuildChannels<TRequest, TResponse>(ulong guildId, TRequest data)
+    public async Task<TResponse> UpdateChannels<TRequest, TResponse>(ulong guildId, TRequest data)
         => await MakeFluxerApiRequestRS<TResponse, TRequest>(HttpMethod.Patch, $"/guilds/{guildId}/channels", data, true);
 
-    public async Task<TResponse> PostGuildSearch<TRequest, TResponse>(ulong guildId, TRequest data)
+    public async Task<TResponse> SearchGuild<TRequest, TResponse>(ulong guildId, TRequest data)
         => await MakeFluxerApiRequestRS<TResponse, TRequest>(HttpMethod.Post, $"/guilds/{guildId}/search", data, true);
 
     public async Task<TResponse> GetGuildAuditLogFilters<TResponse>(ulong guildId)
         => await MakeFluxerApiRequestR<TResponse>(HttpMethod.Get, $"/guilds/{guildId}/audit-logs/filters", true);
 
-    public async Task<TResponse> PostGuildAuditLogSearch<TRequest, TResponse>(ulong guildId, TRequest data)
+    public async Task<TResponse> SearchAuditLog<TRequest, TResponse>(ulong guildId, TRequest data)
         => await MakeFluxerApiRequestRS<TResponse, TRequest>(HttpMethod.Post, $"/guilds/{guildId}/audit-logs/search", data, true);
 
-    public async Task<TResponse> PostGuildEmoji<TRequest, TResponse>(ulong guildId, TRequest data)
+    public async Task<TResponse> CreateEmoji<TRequest, TResponse>(ulong guildId, TRequest data)
         => await MakeFluxerApiRequestRS<TResponse, TRequest>(HttpMethod.Post, $"/guilds/{guildId}/emojis", data, true);
 
-    public async Task<TResponse> PostGuildEmojisBulk<TRequest, TResponse>(ulong guildId, TRequest data)
+    public async Task<TResponse> CreateEmojiBulk<TRequest, TResponse>(ulong guildId, TRequest data)
         => await MakeFluxerApiRequestRS<TResponse, TRequest>(HttpMethod.Post, $"/guilds/{guildId}/emojis/bulk", data, true);
 
-    public async Task<TResponse> GetGuildEmojis<TResponse>(ulong guildId)
+    public async Task<TResponse> GetEmojis<TResponse>(ulong guildId)
         => await MakeFluxerApiRequestR<TResponse>(HttpMethod.Get, $"/guilds/{guildId}/emojis", true);
 
-    public async Task<TResponse> PatchGuildEmoji<TRequest, TResponse>(ulong guildId, ulong emojiId, TRequest data)
+    public async Task<TResponse> UpdateEmoji<TRequest, TResponse>(ulong guildId, ulong emojiId, TRequest data)
         => await MakeFluxerApiRequestRS<TResponse, TRequest>(HttpMethod.Patch, $"/guilds/{guildId}/emojis/{emojiId}", data, true);
 
-    public async Task DeleteGuildEmoji(ulong guildId, ulong emojiId)
+    public async Task DeleteEmoji(ulong guildId, ulong emojiId)
         => await MakeFluxerApiRequest(HttpMethod.Delete, $"/guilds/{guildId}/emojis/{emojiId}", true);
 
-    public async Task<TResponse> PostGuildSticker<TRequest, TResponse>(ulong guildId, TRequest data)
+    public async Task<TResponse> CreateSticker<TRequest, TResponse>(ulong guildId, TRequest data)
         => await MakeFluxerApiRequestRS<TResponse, TRequest>(HttpMethod.Post, $"/guilds/{guildId}/stickers", data, true);
 
-    public async Task<TResponse> PostGuildStickersBulk<TRequest, TResponse>(ulong guildId, TRequest data)
+    public async Task<TResponse> CreateStickerBulk<TRequest, TResponse>(ulong guildId, TRequest data)
         => await MakeFluxerApiRequestRS<TResponse, TRequest>(HttpMethod.Post, $"/guilds/{guildId}/stickers/bulk", data, true);
 
-    public async Task<TResponse> GetGuildStickers<TResponse>(ulong guildId)
+    public async Task<TResponse> GetStickers<TResponse>(ulong guildId)
         => await MakeFluxerApiRequestR<TResponse>(HttpMethod.Get, $"/guilds/{guildId}/stickers", true);
 
-    public async Task<TResponse> PatchGuildSticker<TRequest, TResponse>(ulong guildId, ulong stickerId, TRequest data)
+    public async Task<TResponse> UpdateSticker<TRequest, TResponse>(ulong guildId, ulong stickerId, TRequest data)
         => await MakeFluxerApiRequestRS<TResponse, TRequest>(HttpMethod.Patch, $"/guilds/{guildId}/stickers/{stickerId}", data, true);
 
-    public async Task DeleteGuildSticker(ulong guildId, ulong stickerId)
+    public async Task DeleteSticker(ulong guildId, ulong stickerId)
         => await MakeFluxerApiRequest(HttpMethod.Delete, $"/guilds/{guildId}/stickers/{stickerId}", true);
 
     public async Task<List<Invite>> GetGuildInvites(ulong guildId)
@@ -611,10 +611,10 @@ public class ApiClient
     public async Task<User> GetCurrentUser()
         => await MakeFluxerApiRequestR<User>(HttpMethod.Get, "/users/@me", true);
 
-    public async Task<User> PatchCurrentUser(User user)
+    public async Task<User> UpdateCurrentUser(User user)
         => await MakeFluxerApiRequestRS<User, User>(HttpMethod.Patch, "/users/@me", user, true);
 
-    public async Task<TResponse> GetUserCheckTag<TResponse>(string tag)
+    public async Task<TResponse> CheckUsernameAvailability<TResponse>(string tag)
         => await MakeFluxerApiRequestR<TResponse>(HttpMethod.Get, $"/users/check-tag?tag={tag}", true);
 
     public async Task<User> GetUser(ulong userId)
@@ -626,7 +626,7 @@ public class ApiClient
     public async Task<UserSettings> GetCurrentUserSettings()
         => await MakeFluxerApiRequestR<UserSettings>(HttpMethod.Get, "/users/@me/settings", true);
 
-    public async Task<UserSettings> PatchCurrentUserSettings<TRequest>(TRequest settings)
+    public async Task<UserSettings> UpdateCurrentUserSettings<TRequest>(TRequest settings)
         => await MakeFluxerApiRequestRS<UserSettings, TRequest>(HttpMethod.Patch, "/users/@me/settings", settings, true);
 
     public async Task<TResponse> GetCurrentUserNotes<TResponse>()
@@ -777,7 +777,7 @@ public class ApiClient
     public async Task<TResponse> GetWebhook<TResponse>(ulong webhookId)
         => await MakeFluxerApiRequestR<TResponse>(HttpMethod.Get, $"/webhooks/{webhookId}", true);
 
-    public async Task<TResponse> PatchWebhook<TRequest, TResponse>(ulong webhookId, TRequest data)
+    public async Task<TResponse> UpdateWebhook<TRequest, TResponse>(ulong webhookId, TRequest data)
         => await MakeFluxerApiRequestRS<TResponse, TRequest>(HttpMethod.Patch, $"/webhooks/{webhookId}", data, true);
 
     public async Task DeleteWebhook(ulong webhookId)
@@ -786,16 +786,16 @@ public class ApiClient
     public async Task<TResponse> GetWebhookWithToken<TResponse>(ulong webhookId, string token)
         => await MakeFluxerApiRequestR<TResponse>(HttpMethod.Get, $"/webhooks/{webhookId}/{token}", false);
 
-    public async Task<TResponse> PatchWebhookWithToken<TRequest, TResponse>(ulong webhookId, string token, TRequest data)
+    public async Task<TResponse> UpdateWebhookWithToken<TRequest, TResponse>(ulong webhookId, string token, TRequest data)
         => await MakeFluxerApiRequestRS<TResponse, TRequest>(HttpMethod.Patch, $"/webhooks/{webhookId}/{token}", data, false);
 
     public async Task DeleteWebhookWithToken(ulong webhookId, string token)
         => await MakeFluxerApiRequest(HttpMethod.Delete, $"/webhooks/{webhookId}/{token}", false, false);
 
-    public async Task PostWebhookExecute<TRequest>(ulong webhookId, string token, TRequest data)
+    public async Task ExecuteWebhook<TRequest>(ulong webhookId, string token, TRequest data)
         => await MakeFluxerApiRequestS<TRequest>(HttpMethod.Post, $"/webhooks/{webhookId}/{token}", data, true, false);
 
-    public async Task PostWebhookGithub<TRequest>(ulong webhookId, string token, TRequest data)
+    public async Task ExecuteGithubWebhook<TRequest>(ulong webhookId, string token, TRequest data)
         => await MakeFluxerApiRequestS<TRequest>(HttpMethod.Post, $"/webhooks/{webhookId}/{token}/github", data, true, false);
 
     public async Task PostWebhookLivekit<TRequest>(TRequest data)
