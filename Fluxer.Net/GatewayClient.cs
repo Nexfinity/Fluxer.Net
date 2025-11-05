@@ -358,7 +358,7 @@ public partial class GatewayClient : IDisposable
                 if (p.Data is ReadyGatewayData readyData)
                 {
                     _sessionId = readyData.SessionId;
-                    Ready?.Invoke(readyData);
+                    Ready.Invoke(readyData);
                 }
                 else
                 {
@@ -366,65 +366,65 @@ public partial class GatewayClient : IDisposable
                 }
                 return;
             case "RESUMED":
-                Resumed?.Invoke();
+                Resumed.Invoke();
                 return;
             case "MESSAGE_CREATE":
                 if (p.Data is MessageGatewayData messageCreateData)
-                    MessageCreate?.Invoke(messageCreateData);
+                    MessageCreate.Invoke(messageCreateData);
                 else
                     _logger.Warning("MESSAGE_CREATE event received but data could not be cast to MessageGatewayData");
                 return;
             case "MESSAGE_UPDATE":
                 if (p.Data is MessageGatewayData messageUpdateData)
-                    MessageUpdate?.Invoke(messageUpdateData);
+                    MessageUpdate.Invoke(messageUpdateData);
                 else
                     _logger.Warning("MESSAGE_UPDATE event received but data could not be cast to MessageGatewayData");
                 return;
             case "MESSAGE_DELETE":
                 if (p.Data is EntityRemovedGatewayData messageDeleteData)
-                    MessageDelete?.Invoke(messageDeleteData);
+                    MessageDelete.Invoke(messageDeleteData);
                 else
                     _logger.Warning("MESSAGE_DELETE event received but data could not be cast to EntityRemovedGatewayData");
                 return;
             case "CHANNEL_CREATE":
                 if (p.Data is ChannelGatewayData channelCreateData)
-                    ChannelCreate?.Invoke(channelCreateData);
+                    ChannelCreate.Invoke(channelCreateData);
                 else
                     _logger.Warning("CHANNEL_CREATE event received but data could not be cast to ChannelGatewayData");
                 return;
             case "CHANNEL_UPDATE":
                 if (p.Data is ChannelGatewayData channelUpdateData)
-                    ChannelUpdate?.Invoke(channelUpdateData);
+                    ChannelUpdate.Invoke(channelUpdateData);
                 else
                     _logger.Warning("CHANNEL_UPDATE event received but data could not be cast to ChannelGatewayData");
                 return;
             case "CHANNEL_DELETE":
                 if (p.Data is EntityRemovedGatewayData channelDeleteData)
-                    ChannelDelete?.Invoke(channelDeleteData);
+                    ChannelDelete.Invoke(channelDeleteData);
                 else
                     _logger.Warning("CHANNEL_DELETE event received but data could not be cast to EntityRemovedGatewayData");
                 return;
             case "USER_UPDATE":
                 if (p.Data is UserGatewayData userUpdateData)
-                    UserUpdate?.Invoke(userUpdateData);
+                    UserUpdate.Invoke(userUpdateData);
                 else
                     _logger.Warning("USER_UPDATE event received but data could not be cast to UserGatewayData");
                 return;
             case "PRESENCE_UPDATE":
                 if (p.Data is PresenceGatewayData presenceData)
-                    PresenceUpdate?.Invoke(presenceData);
+                    PresenceUpdate.Invoke(presenceData);
                 else
                     _logger.Warning("PRESENCE_UPDATE event received but data could not be cast to PresenceGatewayData");
                 return;
             case "TYPING_START":
                 if (p.Data is TypingGatewayData typingStartData)
-                    TypingStart?.Invoke(typingStartData);
+                    TypingStart.Invoke(typingStartData);
                 else
                     _logger.Warning("TYPING_START event received but data could not be cast to TypingGatewayData");
                 return;
             case "TYPING_STOP":
                 if (p.Data is TypingGatewayData typingStopData)
-                    TypingStop?.Invoke(typingStopData);
+                    TypingStop.Invoke(typingStopData);
                 else
                     _logger.Warning("TYPING_STOP event received but data could not be cast to TypingGatewayData");
                 return;
@@ -432,25 +432,25 @@ public partial class GatewayClient : IDisposable
             // Message reactions
             case "MESSAGE_REACTION_ADD":
                 if (p.Data is MessageReactionGatewayData reactionAddData)
-                    MessageReactionAdd?.Invoke(reactionAddData);
+                    MessageReactionAdd.Invoke(reactionAddData);
                 else
                     _logger.Warning("MESSAGE_REACTION_ADD event received but data could not be cast to MessageReactionGatewayData");
                 return;
             case "MESSAGE_REACTION_REMOVE":
                 if (p.Data is MessageReactionGatewayData reactionRemoveData)
-                    MessageReactionRemove?.Invoke(reactionRemoveData);
+                    MessageReactionRemove.Invoke(reactionRemoveData);
                 else
                     _logger.Warning("MESSAGE_REACTION_REMOVE event received but data could not be cast to MessageReactionGatewayData");
                 return;
             case "MESSAGE_REACTION_REMOVE_ALL":
                 if (p.Data is EntityRemovedGatewayData reactionRemoveAllData)
-                    MessageReactionRemoveAll?.Invoke(reactionRemoveAllData);
+                    MessageReactionRemoveAll.Invoke(reactionRemoveAllData);
                 else
                     _logger.Warning("MESSAGE_REACTION_REMOVE_ALL event received but data could not be cast to EntityRemovedGatewayData");
                 return;
             case "MESSAGE_REACTION_REMOVE_EMOJI":
                 if (p.Data is MessageReactionRemoveEmojiGatewayData reactionRemoveEmojiData)
-                    MessageReactionRemoveEmoji?.Invoke(reactionRemoveEmojiData);
+                    MessageReactionRemoveEmoji.Invoke(reactionRemoveEmojiData);
                 else
                     _logger.Warning("MESSAGE_REACTION_REMOVE_EMOJI event received but data could not be cast to MessageReactionRemoveEmojiGatewayData");
                 return;
@@ -458,13 +458,13 @@ public partial class GatewayClient : IDisposable
             // Message bulk operations
             case "MESSAGE_DELETE_BULK":
                 if (p.Data is MessageBulkDeleteGatewayData bulkDeleteData)
-                    MessageDeleteBulk?.Invoke(bulkDeleteData);
+                    MessageDeleteBulk.Invoke(bulkDeleteData);
                 else
                     _logger.Warning("MESSAGE_DELETE_BULK event received but data could not be cast to MessageBulkDeleteGatewayData");
                 return;
             case "MESSAGE_ACK":
                 if (p.Data is MessageAckGatewayData ackData)
-                    MessageAck?.Invoke(ackData);
+                    MessageAck.Invoke(ackData);
                 else
                     _logger.Warning("MESSAGE_ACK event received but data could not be cast to MessageAckGatewayData");
                 return;
@@ -472,7 +472,7 @@ public partial class GatewayClient : IDisposable
             // Channel updates
             case "CHANNEL_PINS_UPDATE":
                 if (p.Data is ChannelPinsUpdateGatewayData pinsUpdateData)
-                    ChannelPinsUpdate?.Invoke(pinsUpdateData);
+                    ChannelPinsUpdate.Invoke(pinsUpdateData);
                 else
                     _logger.Warning("CHANNEL_PINS_UPDATE event received but data could not be cast to ChannelPinsUpdateGatewayData");
                 return;
@@ -480,13 +480,13 @@ public partial class GatewayClient : IDisposable
             // Voice events
             case "VOICE_STATE_UPDATE":
                 if (p.Data is VoiceStateGatewayData voiceStateData)
-                    VoiceStateUpdate?.Invoke(voiceStateData);
+                    VoiceStateUpdate.Invoke(voiceStateData);
                 else
                     _logger.Warning("VOICE_STATE_UPDATE event received but data could not be cast to VoiceStateGatewayData");
                 return;
             case "VOICE_SERVER_UPDATE":
                 if (p.Data is VoiceServerUpdateGatewayData voiceServerData)
-                    VoiceServerUpdate?.Invoke(voiceServerData);
+                    VoiceServerUpdate.Invoke(voiceServerData);
                 else
                     _logger.Warning("VOICE_SERVER_UPDATE event received but data could not be cast to VoiceServerUpdateGatewayData");
                 return;
@@ -494,13 +494,13 @@ public partial class GatewayClient : IDisposable
             // Guildban events
             case "GUILD_BAN_ADD":
                 if (p.Data is GuildBanGatewayData banAddData)
-                    GuildBanAdd?.Invoke(banAddData);
+                    GuildBanAdd.Invoke(banAddData);
                 else
                     _logger.Warning("GUILD_BAN_ADD event received but data could not be cast to GuildBanGatewayData");
                 return;
             case "GUILD_BAN_REMOVE":
                 if (p.Data is GuildBanGatewayData banRemoveData)
-                    GuildBanRemove?.Invoke(banRemoveData);
+                    GuildBanRemove.Invoke(banRemoveData);
                 else
                     _logger.Warning("GUILD_BAN_REMOVE event received but data could not be cast to GuildBanGatewayData");
                 return;
@@ -508,7 +508,7 @@ public partial class GatewayClient : IDisposable
             // Webhooks
             case "WEBHOOKS_UPDATE":
                 if (p.Data is WebhooksUpdateGatewayData webhooksData)
-                    WebhooksUpdate?.Invoke(webhooksData);
+                    WebhooksUpdate.Invoke(webhooksData);
                 else
                     _logger.Warning("WEBHOOKS_UPDATE event received but data could not be cast to WebhooksUpdateGatewayData");
                 return;
@@ -516,55 +516,55 @@ public partial class GatewayClient : IDisposable
             // Guild events
             case "GUILD_CREATE":
                 if (p.Data is GuildGatewayData guildCreateData)
-                    GuildCreate?.Invoke(guildCreateData);
+                    GuildCreate.Invoke(guildCreateData);
                 else
                     _logger.Warning("GUILD_CREATE event received but data could not be cast to GuildGatewayData");
                 return;
             case "GUILD_UPDATE":
                 if (p.Data is GuildGatewayData guildUpdateData)
-                    GuildUpdate?.Invoke(guildUpdateData);
+                    GuildUpdate.Invoke(guildUpdateData);
                 else
                     _logger.Warning("GUILD_UPDATE event received but data could not be cast to GuildGatewayData");
                 return;
             case "GUILD_DELETE":
                 if (p.Data is EntityRemovedGatewayData guildDeleteData)
-                    GuildDelete?.Invoke(guildDeleteData);
+                    GuildDelete.Invoke(guildDeleteData);
                 else
                     _logger.Warning("GUILD_DELETE event received but data could not be cast to EntityRemovedGatewayData");
                 return;
             case "GUILD_MEMBER_ADD":
                 if (p.Data is GuildMemberGatewayData guildMemberAddData)
-                    GuildMemberAdd?.Invoke(guildMemberAddData);
+                    GuildMemberAdd.Invoke(guildMemberAddData);
                 else
                     _logger.Warning("GUILD_MEMBER_ADD event received but data could not be cast to GuildMemberGatewayData");
                 return;
             case "GUILD_MEMBER_UPDATE":
                 if (p.Data is GuildMemberGatewayData guildMemberUpdateData)
-                    GuildMemberUpdate?.Invoke(guildMemberUpdateData);
+                    GuildMemberUpdate.Invoke(guildMemberUpdateData);
                 else
                     _logger.Warning("GUILD_MEMBER_UPDATE event received but data could not be cast to GuildMemberGatewayData");
                 return;
             case "GUILD_MEMBER_REMOVE":
                 if (p.Data is EntityRemovedGatewayData guildMemberRemoveData)
-                    GuildMemberRemove?.Invoke(guildMemberRemoveData);
+                    GuildMemberRemove.Invoke(guildMemberRemoveData);
                 else
                     _logger.Warning("GUILD_MEMBER_REMOVE event received but data could not be cast to EntityRemovedGatewayData");
                 return;
             case "GUILD_ROLE_CREATE":
                 if (p.Data is RoleGatewayData guildRoleCreateData)
-                    GuildRoleCreate?.Invoke(guildRoleCreateData);
+                    GuildRoleCreate.Invoke(guildRoleCreateData);
                 else
                     _logger.Warning("GUILD_ROLE_CREATE event received but data could not be cast to RoleGatewayData");
                 return;
             case "GUILD_ROLE_UPDATE":
                 if (p.Data is RoleGatewayData guildRoleUpdateData)
-                    GuildRoleUpdate?.Invoke(guildRoleUpdateData);
+                    GuildRoleUpdate.Invoke(guildRoleUpdateData);
                 else
                     _logger.Warning("GUILD_ROLE_UPDATE event received but data could not be cast to RoleGatewayData");
                 return;
             case "GUILD_ROLE_DELETE":
                 if (p.Data is EntityRemovedGatewayData guildRoleDeleteData)
-                    GuildRoleDelete?.Invoke(guildRoleDeleteData);
+                    GuildRoleDelete.Invoke(guildRoleDeleteData);
                 else
                     _logger.Warning("GUILD_ROLE_DELETE event received but data could not be cast to EntityRemovedGatewayData");
                 return;
@@ -667,7 +667,7 @@ public partial class GatewayClient : IDisposable
 
     private void HandleHeartbeatAck()
     {
-        HeartbeatAck?.Invoke();
+        HeartbeatAck.Invoke();
     }
 
     private async Task HandleHeartbeat(CancellationToken cancellationToken)
@@ -720,10 +720,11 @@ public partial class GatewayClient : IDisposable
     }
 
 
-    #region events
-    // non-dispatch events
+    #region Events
 
-    // generic
+    // ============================================================================
+    // Gateway Lifecycle Events
+    // ============================================================================
 
     /// <summary>
     /// Delegate for heartbeat acknowledgment events from the gateway.
@@ -757,7 +758,9 @@ public partial class GatewayClient : IDisposable
     /// </summary>
     public event ResumedEvent Resumed;
 
-    // message
+    // ============================================================================
+    // Message Events
+    // ============================================================================
 
     /// <summary>
     /// Delegate for MESSAGE_CREATE events when a new message is sent.
@@ -779,7 +782,7 @@ public partial class GatewayClient : IDisposable
     /// <summary>
     /// Occurs when a message is edited.
     /// </summary>
-    public event MessageCreateEvent MessageUpdate;
+    public event MessageUpdateEvent MessageUpdate;
 
     /// <summary>
     /// Delegate for MESSAGE_DELETE events when a message is deleted.
@@ -792,112 +795,365 @@ public partial class GatewayClient : IDisposable
     /// </summary>
     public event MessageDeleteEvent MessageDelete;
 
-    // space
+    // ============================================================================
+    // Channel Events
+    // ============================================================================
 
+    /// <summary>
+    /// Delegate for CHANNEL_CREATE events when a channel is created.
+    /// </summary>
+    /// <param name="data">The channel data.</param>
     public delegate void ChannelCreateEvent(ChannelGatewayData data);
+
+    /// <summary>
+    /// Occurs when a channel is created in a guild.
+    /// </summary>
     public event ChannelCreateEvent ChannelCreate;
 
+    /// <summary>
+    /// Delegate for CHANNEL_UPDATE events when a channel is updated.
+    /// </summary>
+    /// <param name="data">The updated channel data.</param>
     public delegate void ChannelUpdateEvent(ChannelGatewayData data);
+
+    /// <summary>
+    /// Occurs when a channel is updated.
+    /// </summary>
     public event ChannelUpdateEvent ChannelUpdate;
 
+    /// <summary>
+    /// Delegate for CHANNEL_DELETE events when a channel is deleted.
+    /// </summary>
+    /// <param name="data">The deleted entity data containing channel ID.</param>
     public delegate void ChannelDeleteEvent(EntityRemovedGatewayData data);
+
+    /// <summary>
+    /// Occurs when a channel is deleted.
+    /// </summary>
     public event ChannelDeleteEvent ChannelDelete;
 
-    // user
+    // ============================================================================
+    // User Events
+    // ============================================================================
 
+    /// <summary>
+    /// Delegate for USER_UPDATE events when the current user's data is updated.
+    /// </summary>
+    /// <param name="data">The updated user data.</param>
     public delegate void UserUpdateEvent(UserGatewayData data);
+
+    /// <summary>
+    /// Occurs when the current user's account is updated.
+    /// </summary>
     public event UserUpdateEvent UserUpdate;
 
-    // presence
+    // ============================================================================
+    // Presence Events
+    // ============================================================================
+
+    /// <summary>
+    /// Delegate for PRESENCE_UPDATE events when a user's presence changes.
+    /// </summary>
+    /// <param name="data">The presence data.</param>
     public delegate void PresenceUpdateEvent(PresenceGatewayData data);
+
+    /// <summary>
+    /// Occurs when a user's presence (online status) changes.
+    /// </summary>
     public event PresenceUpdateEvent PresenceUpdate;
 
-    // guild
-    public delegate void GuildCreateEvent(GuildGatewayData data);
-    public event GuildCreateEvent GuildCreate;
+    // ============================================================================
+    // Typing Events
+    // ============================================================================
 
-    public delegate void GuildUpdateEvent(GuildGatewayData data);
-    public event GuildUpdateEvent GuildUpdate;
-
-    public delegate void GuildDeleteEvent(EntityRemovedGatewayData data);
-    public event GuildDeleteEvent GuildDelete;
-
-    // typing
+    /// <summary>
+    /// Delegate for TYPING_START events when a user starts typing.
+    /// </summary>
+    /// <param name="data">The typing indicator data.</param>
     public delegate void TypingStartEvent(TypingGatewayData data);
+
+    /// <summary>
+    /// Occurs when a user starts typing in a channel.
+    /// </summary>
     public event TypingStartEvent TypingStart;
 
+    /// <summary>
+    /// Delegate for TYPING_STOP events when a user stops typing.
+    /// </summary>
+    /// <param name="data">The typing indicator data.</param>
     public delegate void TypingStopEvent(TypingGatewayData data);
+
+    /// <summary>
+    /// Occurs when a user stops typing in a channel.
+    /// </summary>
     public event TypingStopEvent TypingStop;
 
-    // guild member
+    // ============================================================================
+    // Message Reaction Events
+    // ============================================================================
 
-    public delegate void GuildMemberAddEvent(GuildMemberGatewayData data);
-    public event GuildMemberAddEvent GuildMemberAdd;
-
-    public delegate void GuildMemberUpdateEvent(GuildMemberGatewayData data);
-    public event GuildMemberUpdateEvent GuildMemberUpdate;
-
-    public delegate void GuildMemberRemoveEvent(EntityRemovedGatewayData data);
-    public event GuildMemberRemoveEvent GuildMemberRemove;
-
-    // guild role
-
-    public delegate void GuildRoleCreateEvent(RoleGatewayData data);
-    public event GuildRoleCreateEvent GuildRoleCreate;
-
-    public delegate void GuildRoleUpdateEvent(RoleGatewayData data);
-    public event GuildRoleUpdateEvent GuildRoleUpdate;
-
-    public delegate void GuildRoleDeleteEvent(EntityRemovedGatewayData data);
-    public event GuildRoleDeleteEvent GuildRoleDelete;
-
-    // message reactions
-
+    /// <summary>
+    /// Delegate for MESSAGE_REACTION_ADD events when a reaction is added.
+    /// </summary>
+    /// <param name="data">The reaction data.</param>
     public delegate void MessageReactionAddEvent(MessageReactionGatewayData data);
+
+    /// <summary>
+    /// Occurs when a user adds a reaction to a message.
+    /// </summary>
     public event MessageReactionAddEvent MessageReactionAdd;
 
+    /// <summary>
+    /// Delegate for MESSAGE_REACTION_REMOVE events when a reaction is removed.
+    /// </summary>
+    /// <param name="data">The reaction data.</param>
     public delegate void MessageReactionRemoveEvent(MessageReactionGatewayData data);
+
+    /// <summary>
+    /// Occurs when a user removes a reaction from a message.
+    /// </summary>
     public event MessageReactionRemoveEvent MessageReactionRemove;
 
+    /// <summary>
+    /// Delegate for MESSAGE_REACTION_REMOVE_ALL events when all reactions are cleared.
+    /// </summary>
+    /// <param name="data">The entity data containing message and channel IDs.</param>
     public delegate void MessageReactionRemoveAllEvent(EntityRemovedGatewayData data);
+
+    /// <summary>
+    /// Occurs when all reactions are removed from a message.
+    /// </summary>
     public event MessageReactionRemoveAllEvent MessageReactionRemoveAll;
 
+    /// <summary>
+    /// Delegate for MESSAGE_REACTION_REMOVE_EMOJI events when all reactions of a specific emoji are removed.
+    /// </summary>
+    /// <param name="data">The reaction removal data.</param>
     public delegate void MessageReactionRemoveEmojiEvent(MessageReactionRemoveEmojiGatewayData data);
+
+    /// <summary>
+    /// Occurs when all instances of a specific emoji are removed from a message.
+    /// </summary>
     public event MessageReactionRemoveEmojiEvent MessageReactionRemoveEmoji;
 
-    // message bulk operations
+    // ============================================================================
+    // Message Bulk Operations
+    // ============================================================================
 
+    /// <summary>
+    /// Delegate for MESSAGE_DELETE_BULK events when multiple messages are deleted at once.
+    /// </summary>
+    /// <param name="data">The bulk delete data containing message IDs.</param>
     public delegate void MessageDeleteBulkEvent(MessageBulkDeleteGatewayData data);
+
+    /// <summary>
+    /// Occurs when multiple messages are deleted in bulk (e.g., purge operation).
+    /// </summary>
     public event MessageDeleteBulkEvent MessageDeleteBulk;
 
+    /// <summary>
+    /// Delegate for MESSAGE_ACK events when a message is acknowledged as read.
+    /// </summary>
+    /// <param name="data">The acknowledgment data.</param>
     public delegate void MessageAckEvent(MessageAckGatewayData data);
+
+    /// <summary>
+    /// Occurs when a message is acknowledged as read by the current user.
+    /// </summary>
     public event MessageAckEvent MessageAck;
 
-    // channel updates
+    // ============================================================================
+    // Channel Update Events
+    // ============================================================================
 
+    /// <summary>
+    /// Delegate for CHANNEL_PINS_UPDATE events when channel pins are updated.
+    /// </summary>
+    /// <param name="data">The pins update data.</param>
     public delegate void ChannelPinsUpdateEvent(ChannelPinsUpdateGatewayData data);
+
+    /// <summary>
+    /// Occurs when a message is pinned or unpinned in a channel.
+    /// </summary>
     public event ChannelPinsUpdateEvent ChannelPinsUpdate;
 
-    // voice events
+    // ============================================================================
+    // Voice Events
+    // ============================================================================
 
+    /// <summary>
+    /// Delegate for VOICE_STATE_UPDATE events when a user's voice state changes.
+    /// </summary>
+    /// <param name="data">The voice state data.</param>
     public delegate void VoiceStateUpdateEvent(VoiceStateGatewayData data);
+
+    /// <summary>
+    /// Occurs when a user joins, leaves, or updates their state in a voice channel.
+    /// </summary>
     public event VoiceStateUpdateEvent VoiceStateUpdate;
 
+    /// <summary>
+    /// Delegate for VOICE_SERVER_UPDATE events for voice connection data.
+    /// </summary>
+    /// <param name="data">The voice server data.</param>
     public delegate void VoiceServerUpdateEvent(VoiceServerUpdateGatewayData data);
+
+    /// <summary>
+    /// Occurs when voice server information is updated (used for establishing voice connections).
+    /// </summary>
     public event VoiceServerUpdateEvent VoiceServerUpdate;
 
-    // guild ban events
+    // ============================================================================
+    // Guild Ban Events
+    // ============================================================================
 
+    /// <summary>
+    /// Delegate for GUILD_BAN_ADD events when a user is banned from a guild.
+    /// </summary>
+    /// <param name="data">The ban data.</param>
     public delegate void GuildBanAddEvent(GuildBanGatewayData data);
+
+    /// <summary>
+    /// Occurs when a user is banned from a guild.
+    /// </summary>
     public event GuildBanAddEvent GuildBanAdd;
 
+    /// <summary>
+    /// Delegate for GUILD_BAN_REMOVE events when a user is unbanned from a guild.
+    /// </summary>
+    /// <param name="data">The ban data.</param>
     public delegate void GuildBanRemoveEvent(GuildBanGatewayData data);
+
+    /// <summary>
+    /// Occurs when a user is unbanned from a guild.
+    /// </summary>
     public event GuildBanRemoveEvent GuildBanRemove;
 
-    // webhooks
+    // ============================================================================
+    // Webhook Events
+    // ============================================================================
 
+    /// <summary>
+    /// Delegate for WEBHOOKS_UPDATE events when webhooks in a channel are updated.
+    /// </summary>
+    /// <param name="data">The webhooks update data.</param>
     public delegate void WebhooksUpdateEvent(WebhooksUpdateGatewayData data);
+
+    /// <summary>
+    /// Occurs when webhooks are created, updated, or deleted in a channel.
+    /// </summary>
     public event WebhooksUpdateEvent WebhooksUpdate;
+
+    // ============================================================================
+    // Guild Events
+    // ============================================================================
+
+    /// <summary>
+    /// Delegate for GUILD_CREATE events when a guild becomes available.
+    /// </summary>
+    /// <param name="data">The guild data.</param>
+    public delegate void GuildCreateEvent(GuildGatewayData data);
+
+    /// <summary>
+    /// Occurs when the bot joins a guild or when a guild becomes available after an outage.
+    /// </summary>
+    public event GuildCreateEvent GuildCreate;
+
+    /// <summary>
+    /// Delegate for GUILD_UPDATE events when guild properties are updated.
+    /// </summary>
+    /// <param name="data">The updated guild data.</param>
+    public delegate void GuildUpdateEvent(GuildGatewayData data);
+
+    /// <summary>
+    /// Occurs when a guild is updated (name, icon, settings, etc.).
+    /// </summary>
+    public event GuildUpdateEvent GuildUpdate;
+
+    /// <summary>
+    /// Delegate for GUILD_DELETE events when a guild becomes unavailable or the bot is removed.
+    /// </summary>
+    /// <param name="data">The entity data containing guild ID.</param>
+    public delegate void GuildDeleteEvent(EntityRemovedGatewayData data);
+
+    /// <summary>
+    /// Occurs when the bot is removed from a guild or when a guild becomes unavailable.
+    /// </summary>
+    public event GuildDeleteEvent GuildDelete;
+
+    // ============================================================================
+    // Guild Member Events
+    // ============================================================================
+
+    /// <summary>
+    /// Delegate for GUILD_MEMBER_ADD events when a user joins a guild.
+    /// </summary>
+    /// <param name="data">The guild member data.</param>
+    public delegate void GuildMemberAddEvent(GuildMemberGatewayData data);
+
+    /// <summary>
+    /// Occurs when a new member joins a guild.
+    /// </summary>
+    public event GuildMemberAddEvent GuildMemberAdd;
+
+    /// <summary>
+    /// Delegate for GUILD_MEMBER_UPDATE events when a guild member is updated.
+    /// </summary>
+    /// <param name="data">The updated guild member data.</param>
+    public delegate void GuildMemberUpdateEvent(GuildMemberGatewayData data);
+
+    /// <summary>
+    /// Occurs when a guild member is updated (roles, nickname, avatar, etc.).
+    /// </summary>
+    public event GuildMemberUpdateEvent GuildMemberUpdate;
+
+    /// <summary>
+    /// Delegate for GUILD_MEMBER_REMOVE events when a member leaves or is removed from a guild.
+    /// </summary>
+    /// <param name="data">The entity data containing guild and user IDs.</param>
+    public delegate void GuildMemberRemoveEvent(EntityRemovedGatewayData data);
+
+    /// <summary>
+    /// Occurs when a member leaves a guild or is kicked/banned.
+    /// </summary>
+    public event GuildMemberRemoveEvent GuildMemberRemove;
+
+    // ============================================================================
+    // Guild Role Events
+    // ============================================================================
+
+    /// <summary>
+    /// Delegate for GUILD_ROLE_CREATE events when a role is created in a guild.
+    /// </summary>
+    /// <param name="data">The role data.</param>
+    public delegate void GuildRoleCreateEvent(RoleGatewayData data);
+
+    /// <summary>
+    /// Occurs when a new role is created in a guild.
+    /// </summary>
+    public event GuildRoleCreateEvent GuildRoleCreate;
+
+    /// <summary>
+    /// Delegate for GUILD_ROLE_UPDATE events when a role is updated.
+    /// </summary>
+    /// <param name="data">The updated role data.</param>
+    public delegate void GuildRoleUpdateEvent(RoleGatewayData data);
+
+    /// <summary>
+    /// Occurs when a role is updated (name, color, permissions, etc.).
+    /// </summary>
+    public event GuildRoleUpdateEvent GuildRoleUpdate;
+
+    /// <summary>
+    /// Delegate for GUILD_ROLE_DELETE events when a role is deleted from a guild.
+    /// </summary>
+    /// <param name="data">The entity data containing guild and role IDs.</param>
+    public delegate void GuildRoleDeleteEvent(EntityRemovedGatewayData data);
+
+    /// <summary>
+    /// Occurs when a role is deleted from a guild.
+    /// </summary>
+    public event GuildRoleDeleteEvent GuildRoleDelete;
 
     #endregion
 
