@@ -10,6 +10,8 @@ using Serilog.Core;
 using Fluxer.Net.Gateway;
 using Fluxer.Net.Gateway.Data;
 using Websocket.Client;
+// ReSharper disable ConstantConditionalAccessQualifier
+
 namespace Fluxer.Net;
 
 /// <summary>
@@ -358,7 +360,7 @@ public partial class GatewayClient : IDisposable
                 if (p.Data is ReadyGatewayData readyData)
                 {
                     _sessionId = readyData.SessionId;
-                    Ready.Invoke(readyData);
+                    Ready?.Invoke(readyData);
                 }
                 else
                 {
@@ -366,65 +368,65 @@ public partial class GatewayClient : IDisposable
                 }
                 return;
             case "RESUMED":
-                Resumed.Invoke();
+                Resumed?.Invoke();
                 return;
             case "MESSAGE_CREATE":
                 if (p.Data is MessageGatewayData messageCreateData)
-                    MessageCreate.Invoke(messageCreateData);
+                    MessageCreate?.Invoke(messageCreateData);
                 else
                     _logger.Warning("MESSAGE_CREATE event received but data could not be cast to MessageGatewayData");
                 return;
             case "MESSAGE_UPDATE":
                 if (p.Data is MessageGatewayData messageUpdateData)
-                    MessageUpdate.Invoke(messageUpdateData);
+                    MessageUpdate?.Invoke(messageUpdateData);
                 else
                     _logger.Warning("MESSAGE_UPDATE event received but data could not be cast to MessageGatewayData");
                 return;
             case "MESSAGE_DELETE":
                 if (p.Data is EntityRemovedGatewayData messageDeleteData)
-                    MessageDelete.Invoke(messageDeleteData);
+                    MessageDelete?.Invoke(messageDeleteData);
                 else
                     _logger.Warning("MESSAGE_DELETE event received but data could not be cast to EntityRemovedGatewayData");
                 return;
             case "CHANNEL_CREATE":
                 if (p.Data is ChannelGatewayData channelCreateData)
-                    ChannelCreate.Invoke(channelCreateData);
+                    ChannelCreate?.Invoke(channelCreateData);
                 else
                     _logger.Warning("CHANNEL_CREATE event received but data could not be cast to ChannelGatewayData");
                 return;
             case "CHANNEL_UPDATE":
                 if (p.Data is ChannelGatewayData channelUpdateData)
-                    ChannelUpdate.Invoke(channelUpdateData);
+                    ChannelUpdate?.Invoke(channelUpdateData);
                 else
                     _logger.Warning("CHANNEL_UPDATE event received but data could not be cast to ChannelGatewayData");
                 return;
             case "CHANNEL_DELETE":
                 if (p.Data is EntityRemovedGatewayData channelDeleteData)
-                    ChannelDelete.Invoke(channelDeleteData);
+                    ChannelDelete?.Invoke(channelDeleteData);
                 else
                     _logger.Warning("CHANNEL_DELETE event received but data could not be cast to EntityRemovedGatewayData");
                 return;
             case "USER_UPDATE":
                 if (p.Data is UserGatewayData userUpdateData)
-                    UserUpdate.Invoke(userUpdateData);
+                    UserUpdate?.Invoke(userUpdateData);
                 else
                     _logger.Warning("USER_UPDATE event received but data could not be cast to UserGatewayData");
                 return;
             case "PRESENCE_UPDATE":
                 if (p.Data is PresenceGatewayData presenceData)
-                    PresenceUpdate.Invoke(presenceData);
+                    PresenceUpdate?.Invoke(presenceData);
                 else
                     _logger.Warning("PRESENCE_UPDATE event received but data could not be cast to PresenceGatewayData");
                 return;
             case "TYPING_START":
                 if (p.Data is TypingGatewayData typingStartData)
-                    TypingStart.Invoke(typingStartData);
+                    TypingStart?.Invoke(typingStartData);
                 else
                     _logger.Warning("TYPING_START event received but data could not be cast to TypingGatewayData");
                 return;
             case "TYPING_STOP":
                 if (p.Data is TypingGatewayData typingStopData)
-                    TypingStop.Invoke(typingStopData);
+                    TypingStop?.Invoke(typingStopData);
                 else
                     _logger.Warning("TYPING_STOP event received but data could not be cast to TypingGatewayData");
                 return;
@@ -432,25 +434,25 @@ public partial class GatewayClient : IDisposable
             // Message reactions
             case "MESSAGE_REACTION_ADD":
                 if (p.Data is MessageReactionGatewayData reactionAddData)
-                    MessageReactionAdd.Invoke(reactionAddData);
+                    MessageReactionAdd?.Invoke(reactionAddData);
                 else
                     _logger.Warning("MESSAGE_REACTION_ADD event received but data could not be cast to MessageReactionGatewayData");
                 return;
             case "MESSAGE_REACTION_REMOVE":
                 if (p.Data is MessageReactionGatewayData reactionRemoveData)
-                    MessageReactionRemove.Invoke(reactionRemoveData);
+                    MessageReactionRemove?.Invoke(reactionRemoveData);
                 else
                     _logger.Warning("MESSAGE_REACTION_REMOVE event received but data could not be cast to MessageReactionGatewayData");
                 return;
             case "MESSAGE_REACTION_REMOVE_ALL":
                 if (p.Data is EntityRemovedGatewayData reactionRemoveAllData)
-                    MessageReactionRemoveAll.Invoke(reactionRemoveAllData);
+                    MessageReactionRemoveAll?.Invoke(reactionRemoveAllData);
                 else
                     _logger.Warning("MESSAGE_REACTION_REMOVE_ALL event received but data could not be cast to EntityRemovedGatewayData");
                 return;
             case "MESSAGE_REACTION_REMOVE_EMOJI":
                 if (p.Data is MessageReactionRemoveEmojiGatewayData reactionRemoveEmojiData)
-                    MessageReactionRemoveEmoji.Invoke(reactionRemoveEmojiData);
+                    MessageReactionRemoveEmoji?.Invoke(reactionRemoveEmojiData);
                 else
                     _logger.Warning("MESSAGE_REACTION_REMOVE_EMOJI event received but data could not be cast to MessageReactionRemoveEmojiGatewayData");
                 return;
@@ -458,13 +460,13 @@ public partial class GatewayClient : IDisposable
             // Message bulk operations
             case "MESSAGE_DELETE_BULK":
                 if (p.Data is MessageBulkDeleteGatewayData bulkDeleteData)
-                    MessageDeleteBulk.Invoke(bulkDeleteData);
+                    MessageDeleteBulk?.Invoke(bulkDeleteData);
                 else
                     _logger.Warning("MESSAGE_DELETE_BULK event received but data could not be cast to MessageBulkDeleteGatewayData");
                 return;
             case "MESSAGE_ACK":
                 if (p.Data is MessageAckGatewayData ackData)
-                    MessageAck.Invoke(ackData);
+                    MessageAck?.Invoke(ackData);
                 else
                     _logger.Warning("MESSAGE_ACK event received but data could not be cast to MessageAckGatewayData");
                 return;
@@ -472,7 +474,7 @@ public partial class GatewayClient : IDisposable
             // Channel updates
             case "CHANNEL_PINS_UPDATE":
                 if (p.Data is ChannelPinsUpdateGatewayData pinsUpdateData)
-                    ChannelPinsUpdate.Invoke(pinsUpdateData);
+                    ChannelPinsUpdate?.Invoke(pinsUpdateData);
                 else
                     _logger.Warning("CHANNEL_PINS_UPDATE event received but data could not be cast to ChannelPinsUpdateGatewayData");
                 return;
@@ -480,13 +482,13 @@ public partial class GatewayClient : IDisposable
             // Voice events
             case "VOICE_STATE_UPDATE":
                 if (p.Data is VoiceStateGatewayData voiceStateData)
-                    VoiceStateUpdate.Invoke(voiceStateData);
+                    VoiceStateUpdate?.Invoke(voiceStateData);
                 else
                     _logger.Warning("VOICE_STATE_UPDATE event received but data could not be cast to VoiceStateGatewayData");
                 return;
             case "VOICE_SERVER_UPDATE":
                 if (p.Data is VoiceServerUpdateGatewayData voiceServerData)
-                    VoiceServerUpdate.Invoke(voiceServerData);
+                    VoiceServerUpdate?.Invoke(voiceServerData);
                 else
                     _logger.Warning("VOICE_SERVER_UPDATE event received but data could not be cast to VoiceServerUpdateGatewayData");
                 return;
@@ -494,13 +496,13 @@ public partial class GatewayClient : IDisposable
             // Guildban events
             case "GUILD_BAN_ADD":
                 if (p.Data is GuildBanGatewayData banAddData)
-                    GuildBanAdd.Invoke(banAddData);
+                    GuildBanAdd?.Invoke(banAddData);
                 else
                     _logger.Warning("GUILD_BAN_ADD event received but data could not be cast to GuildBanGatewayData");
                 return;
             case "GUILD_BAN_REMOVE":
                 if (p.Data is GuildBanGatewayData banRemoveData)
-                    GuildBanRemove.Invoke(banRemoveData);
+                    GuildBanRemove?.Invoke(banRemoveData);
                 else
                     _logger.Warning("GUILD_BAN_REMOVE event received but data could not be cast to GuildBanGatewayData");
                 return;
@@ -508,7 +510,7 @@ public partial class GatewayClient : IDisposable
             // Webhooks
             case "WEBHOOKS_UPDATE":
                 if (p.Data is WebhooksUpdateGatewayData webhooksData)
-                    WebhooksUpdate.Invoke(webhooksData);
+                    WebhooksUpdate?.Invoke(webhooksData);
                 else
                     _logger.Warning("WEBHOOKS_UPDATE event received but data could not be cast to WebhooksUpdateGatewayData");
                 return;
@@ -516,55 +518,55 @@ public partial class GatewayClient : IDisposable
             // Guild events
             case "GUILD_CREATE":
                 if (p.Data is GuildGatewayData guildCreateData)
-                    GuildCreate.Invoke(guildCreateData);
+                    GuildCreate?.Invoke(guildCreateData);
                 else
                     _logger.Warning("GUILD_CREATE event received but data could not be cast to GuildGatewayData");
                 return;
             case "GUILD_UPDATE":
                 if (p.Data is GuildGatewayData guildUpdateData)
-                    GuildUpdate.Invoke(guildUpdateData);
+                    GuildUpdate?.Invoke(guildUpdateData);
                 else
                     _logger.Warning("GUILD_UPDATE event received but data could not be cast to GuildGatewayData");
                 return;
             case "GUILD_DELETE":
                 if (p.Data is EntityRemovedGatewayData guildDeleteData)
-                    GuildDelete.Invoke(guildDeleteData);
+                    GuildDelete?.Invoke(guildDeleteData);
                 else
                     _logger.Warning("GUILD_DELETE event received but data could not be cast to EntityRemovedGatewayData");
                 return;
             case "GUILD_MEMBER_ADD":
                 if (p.Data is GuildMemberGatewayData guildMemberAddData)
-                    GuildMemberAdd.Invoke(guildMemberAddData);
+                    GuildMemberAdd?.Invoke(guildMemberAddData);
                 else
                     _logger.Warning("GUILD_MEMBER_ADD event received but data could not be cast to GuildMemberGatewayData");
                 return;
             case "GUILD_MEMBER_UPDATE":
                 if (p.Data is GuildMemberGatewayData guildMemberUpdateData)
-                    GuildMemberUpdate.Invoke(guildMemberUpdateData);
+                    GuildMemberUpdate?.Invoke(guildMemberUpdateData);
                 else
                     _logger.Warning("GUILD_MEMBER_UPDATE event received but data could not be cast to GuildMemberGatewayData");
                 return;
             case "GUILD_MEMBER_REMOVE":
                 if (p.Data is EntityRemovedGatewayData guildMemberRemoveData)
-                    GuildMemberRemove.Invoke(guildMemberRemoveData);
+                    GuildMemberRemove?.Invoke(guildMemberRemoveData);
                 else
                     _logger.Warning("GUILD_MEMBER_REMOVE event received but data could not be cast to EntityRemovedGatewayData");
                 return;
             case "GUILD_ROLE_CREATE":
                 if (p.Data is RoleGatewayData guildRoleCreateData)
-                    GuildRoleCreate.Invoke(guildRoleCreateData);
+                    GuildRoleCreate?.Invoke(guildRoleCreateData);
                 else
                     _logger.Warning("GUILD_ROLE_CREATE event received but data could not be cast to RoleGatewayData");
                 return;
             case "GUILD_ROLE_UPDATE":
                 if (p.Data is RoleGatewayData guildRoleUpdateData)
-                    GuildRoleUpdate.Invoke(guildRoleUpdateData);
+                    GuildRoleUpdate?.Invoke(guildRoleUpdateData);
                 else
                     _logger.Warning("GUILD_ROLE_UPDATE event received but data could not be cast to RoleGatewayData");
                 return;
             case "GUILD_ROLE_DELETE":
                 if (p.Data is EntityRemovedGatewayData guildRoleDeleteData)
-                    GuildRoleDelete.Invoke(guildRoleDeleteData);
+                    GuildRoleDelete?.Invoke(guildRoleDeleteData);
                 else
                     _logger.Warning("GUILD_ROLE_DELETE event received but data could not be cast to EntityRemovedGatewayData");
                 return;
@@ -667,7 +669,7 @@ public partial class GatewayClient : IDisposable
 
     private void HandleHeartbeatAck()
     {
-        HeartbeatAck.Invoke();
+        HeartbeatAck?.Invoke();
     }
 
     private async Task HandleHeartbeat(CancellationToken cancellationToken)
