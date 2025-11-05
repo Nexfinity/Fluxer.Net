@@ -33,7 +33,7 @@ using Fluxer.Net.Gateway.Data;
 Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Verbose()  // Log everything (Verbose, Debug, Info, Warning, Error, Fatal)
                 .WriteTo.Console(theme: AnsiConsoleTheme.Code)  // Pretty console output with colors
-                .WriteTo.File($"output-{DateTime.Now:yyyy-MM-dd:hh-mm-ss}.log",
+                .WriteTo.File($"output-{DateTime.Now:yyyy-MM-dd-HH-mm-ss}.log",
                               rollingInterval: RollingInterval.Infinite,
                               rollOnFileSizeLimit: true)  // Time-stamped log files
                 .CreateLogger();
