@@ -746,6 +746,20 @@ public partial class GatewayClient : IDisposable
                     _logger.Warning("CALL_DELETE event received but data could not be cast to CallGatewayData");
                 return;
 
+            // Invite events
+            case "INVITE_CREATE":
+                if (p.Data is InviteGatewayData inviteCreateData)
+                    InviteCreate?.Invoke(inviteCreateData);
+                else
+                    _logger.Warning("INVITE_CREATE event received but data could not be cast to InviteGatewayData");
+                return;
+            case "INVITE_DELETE":
+                if (p.Data is InviteGatewayData inviteDeleteData)
+                    InviteDelete?.Invoke(inviteDeleteData);
+                else
+                    _logger.Warning("INVITE_DELETE event received but data could not be cast to InviteGatewayData");
+                return;
+
             default:
                 _logger.Warning("Unhandled dispatch {Dispatch}", p.Dispatch);
                 break;
@@ -1788,6 +1802,32 @@ public partial class GatewayClient : IDisposable
     /// Occurs when a call is deleted.
     /// </summary>
     public event CallDeleteEvent CallDelete;
+
+    // ============================================================================
+    // Invite Events
+    // ============================================================================
+
+    /// <summary>
+    /// Delegate for INVITE_CREATE events when an invite is created.
+    /// </summary>
+    /// <param name="data">The invite data including code, channel, guild, and inviter information.</param>
+    public delegate void InviteCreateEvent(InviteGatewayData data);
+
+    /// <summary>
+    /// Occurs when a new invite is created for a guild or group DM.
+    /// </summary>
+    public event InviteCreateEvent InviteCreate;
+
+    /// <summary>
+    /// Delegate for INVITE_DELETE events when an invite is deleted or expires.
+    /// </summary>
+    /// <param name="data">The invite data containing the deleted invite code and channel/guild information.</param>
+    public delegate void InviteDeleteEvent(InviteGatewayData data);
+
+    /// <summary>
+    /// Occurs when an invite is deleted or expires.
+    /// </summary>
+    public event InviteDeleteEvent InviteDelete;
 
     #endregion
 
