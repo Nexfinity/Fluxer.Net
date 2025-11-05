@@ -570,6 +570,12 @@ public partial class GatewayClient : IDisposable
                 else
                     _logger.Warning("GUILD_ROLE_DELETE event received but data could not be cast to GuildRoleDeleteGatewayData");
                 return;
+            case "GUILD_EMOJIS_UPDATE":
+                if (p.Data is GuildEmojisUpdateGatewayData guildEmojisUpdateData)
+                    GuildEmojisUpdate?.Invoke(guildEmojisUpdateData);
+                else
+                    _logger.Warning("GUILD_EMOJIS_UPDATE event received but data could not be cast to GuildEmojisUpdateGatewayData");
+                return;
 
             default:
                 _logger.Warning("Unhandled dispatch {Dispatch}", p.Dispatch);
@@ -1156,6 +1162,21 @@ public partial class GatewayClient : IDisposable
     /// Occurs when a role is deleted from a guild.
     /// </summary>
     public event GuildRoleDeleteEvent GuildRoleDelete;
+
+    // ============================================================================
+    // Guild Emoji Events
+    // ============================================================================
+
+    /// <summary>
+    /// Delegate for GUILD_EMOJIS_UPDATE events when guild emojis are updated.
+    /// </summary>
+    /// <param name="data">The guild emojis update data containing guild ID and updated emoji list.</param>
+    public delegate void GuildEmojisUpdateEvent(GuildEmojisUpdateGatewayData data);
+
+    /// <summary>
+    /// Occurs when the list of emojis in a guild is updated (added, removed, or modified).
+    /// </summary>
+    public event GuildEmojisUpdateEvent GuildEmojisUpdate;
 
     #endregion
 
