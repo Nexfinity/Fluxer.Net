@@ -20,10 +20,10 @@ public class UserGatewayData : IGatewayData
 	public string? Avatar { get; set; }
 
 	[JsonProperty("bot")]
-	public bool? Bot { get; set; }
+	public bool IsBot { get; set; }
 
 	[JsonProperty("system")]
-	public bool? System { get; set; }
+	public bool IsSystem { get; set; }
 
 	[JsonProperty("flags")]
 	public int Flags { get; set; }
