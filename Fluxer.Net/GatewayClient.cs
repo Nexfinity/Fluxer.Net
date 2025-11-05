@@ -140,11 +140,24 @@ public partial class GatewayClient : IDisposable
                 info.CloseStatusDescription ?? "None",
                 info.Exception?.Message ?? "None");
 
-            // Manual reconnection handling - only reconnect if we have a valid reason
-            if (info.Type == DisconnectionType.ByServer || info.Type == DisconnectionType.Lost)
+            // Determine if we should attempt reconnection based on close code
+            bool shouldReconnect = true;
+
+            // Handle Fluxer-specific close codes
+            if (info.CloseStatus.HasValue)
+            {
+                shouldReconnect = HandleGatewayCloseCode((int)info.CloseStatus.Value, info.CloseStatusDescription);
+            }
+
+            // Manual reconnection handling - only reconnect if we have a valid reason and close code allows it
+            if (shouldReconnect && (info.Type == DisconnectionType.ByServer || info.Type == DisconnectionType.Lost))
             {
                 _logger.Information("Connection lost, manually reconnecting...");
                 _ = Task.Run(async () => await ReEstablishGatewayConnectionAsync(null));
+            }
+            else if (!shouldReconnect)
+            {
+                _logger.Warning("Reconnection disabled due to close code. Manual intervention required.");
             }
         });
         Stopwatch.StartNew();
@@ -832,6 +845,164 @@ public partial class GatewayClient : IDisposable
     private void HandleHeartbeatAck()
     {
         HeartbeatAck?.Invoke();
+    }
+
+    /// <summary>
+    /// Handles Fluxer-specific gateway close codes and determines appropriate action.
+    /// </summary>
+    /// <param name="closeCode">The WebSocket close code received from the gateway.</param>
+    /// <param name="description">Optional description provided with the close event.</param>
+    /// <returns>True if reconnection should be attempted; false if reconnection should be prevented.</returns>
+    private bool HandleGatewayCloseCode(int closeCode, string? description)
+    {
+        // Check if this is a Fluxer-specific close code (4000-4014)
+        if (!Enum.IsDefined(typeof(FluxerCloseCode), closeCode))
+        {
+            _logger.Debug("Received non-Fluxer close code {CloseCode}, using default reconnection logic", closeCode);
+            return true; // Allow reconnection for non-Fluxer codes
+        }
+
+        var fluxerCode = (FluxerCloseCode)closeCode;
+        _logger.Warning("Received Fluxer close code: {CloseCode} ({CodeValue}) - {Description}",
+            fluxerCode, closeCode, description ?? "No description");
+
+        switch (fluxerCode)
+        {
+            case FluxerCloseCode.UnknownError:
+                // Unknown error - can retry connection
+                _logger.Information("Unknown error occurred, connection will be retried");
+                return true;
+
+            case FluxerCloseCode.UnknownOpcode:
+                // Invalid opcode sent - this is a client bug, but we can retry
+                _logger.Error("Invalid gateway opcode was sent. This indicates a client implementation error.");
+                return true;
+
+            case FluxerCloseCode.DecodeError:
+                // Invalid payload sent - this is a client bug, but we can retry
+                _logger.Error("Invalid payload sent that could not be decoded. This indicates a client serialization error.");
+                return true;
+
+            case FluxerCloseCode.NotAuthenticated:
+                // Sent payload before authenticating - this is a client bug
+                _logger.Error("Payload was sent before authentication. This indicates a client sequencing error.");
+                return true;
+
+            case FluxerCloseCode.AuthenticationFailed:
+                // Invalid token - DO NOT retry, clear session and notify
+                _logger.Error("Authentication failed - token is invalid. Cannot reconnect with current credentials.");
+                _sessionId = "";
+                _sequence = 0;
+                // Stop heartbeat to prevent further connection attempts
+                try
+                {
+                    _heartbeatCancellation?.Cancel();
+                }
+                catch (Exception ex)
+                {
+                    _logger.Warning(ex, "Error cancelling heartbeat after authentication failure");
+                }
+                return false; // DO NOT reconnect
+
+            case FluxerCloseCode.AlreadyAuthenticated:
+                // Sent auth payload after already authenticating - this is a client bug
+                _logger.Error("Authentication payload sent after already authenticated. This indicates a client sequencing error.");
+                return true;
+
+            case FluxerCloseCode.InvalidSequence:
+                // Invalid sequence in RESUME - session cannot be resumed, must create new session
+                _logger.Warning("Invalid sequence number in RESUME packet. Session cannot be resumed, will create new session.");
+                _sessionId = ""; // Clear session ID to force IDENTIFY on reconnect
+                _sequence = 0;
+                return true; // Can reconnect with fresh IDENTIFY
+
+            case FluxerCloseCode.RateLimited:
+                // Rate limited - need to slow down
+                _logger.Warning("Gateway rate limited. Slowing down reconnection attempts.");
+                // The reconnection delay will be handled by ReEstablishGatewayConnectionAsync
+                return true;
+
+            case FluxerCloseCode.SessionTimeout:
+                // Session expired - must create new session
+                _logger.Information("Session timed out. Will create new session on reconnection.");
+                _sessionId = ""; // Clear session ID to force IDENTIFY on reconnect
+                _sequence = 0;
+                return true;
+
+            case FluxerCloseCode.InvalidShard:
+                // Invalid shard configuration - DO NOT retry without fixing configuration
+                _logger.Error("Invalid shard specified. Check gateway configuration before reconnecting.");
+                // Stop heartbeat to prevent automatic reconnection
+                try
+                {
+                    _heartbeatCancellation?.Cancel();
+                }
+                catch (Exception ex)
+                {
+                    _logger.Warning(ex, "Error cancelling heartbeat after invalid shard error");
+                }
+                return false; // DO NOT reconnect
+
+            case FluxerCloseCode.ShardingRequired:
+                // Sharding is required for this bot - DO NOT retry without sharding
+                _logger.Error("Sharding is required for this bot. Gateway connection requires shard configuration.");
+                // Stop heartbeat to prevent automatic reconnection
+                try
+                {
+                    _heartbeatCancellation?.Cancel();
+                }
+                catch (Exception ex)
+                {
+                    _logger.Warning(ex, "Error cancelling heartbeat after sharding required error");
+                }
+                return false; // DO NOT reconnect
+
+            case FluxerCloseCode.InvalidApiVersion:
+                // Invalid API version - DO NOT retry, this is a configuration error
+                _logger.Error("Invalid API version specified. Update the library or check gateway configuration.");
+                // Stop heartbeat to prevent automatic reconnection
+                try
+                {
+                    _heartbeatCancellation?.Cancel();
+                }
+                catch (Exception ex)
+                {
+                    _logger.Warning(ex, "Error cancelling heartbeat after invalid API version error");
+                }
+                return false; // DO NOT reconnect
+
+            case FluxerCloseCode.InvalidIntents:
+                // Invalid intents specified - DO NOT retry without fixing configuration
+                _logger.Error("Invalid gateway intents specified. Check gateway configuration.");
+                // Stop heartbeat to prevent automatic reconnection
+                try
+                {
+                    _heartbeatCancellation?.Cancel();
+                }
+                catch (Exception ex)
+                {
+                    _logger.Warning(ex, "Error cancelling heartbeat after invalid intents error");
+                }
+                return false; // DO NOT reconnect
+
+            case FluxerCloseCode.DisallowedIntents:
+                // Disallowed intents - DO NOT retry, requires verification/approval
+                _logger.Error("Disallowed gateway intents specified. These intents require verification or approval from Fluxer.");
+                // Stop heartbeat to prevent automatic reconnection
+                try
+                {
+                    _heartbeatCancellation?.Cancel();
+                }
+                catch (Exception ex)
+                {
+                    _logger.Warning(ex, "Error cancelling heartbeat after disallowed intents error");
+                }
+                return false; // DO NOT reconnect
+
+            default:
+                _logger.Warning("Unhandled Fluxer close code: {CloseCode}", fluxerCode);
+                return true; // Default to allowing reconnection
+        }
     }
 
     private async Task HandleHeartbeat(CancellationToken cancellationToken)
