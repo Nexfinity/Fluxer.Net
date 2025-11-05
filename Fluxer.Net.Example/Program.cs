@@ -118,7 +118,7 @@ var api = new ApiClient(config[key: "Token"], new()
 if (args.Length > 0 && args[0] == "--revoke")
 {
     Log.Information("Revoking token and logging out...");
-    await api.PostAuthLogout();
+    await api.Logout();
     Log.Information("Token revoked successfully. The bot is now logged out.");
     return;
 }
@@ -135,7 +135,7 @@ if (args.Length > 0 && args[0] == "--revoke")
 //   3. Click "Copy ID"
 
 // NOTE: Replace this guild ID with your own!
-// await api.PatchGuildMemberSelf(1431484523333775609, new()
+// await api.UpdateCurrentMember(1431484523333775609, new()
 // {
 //     Nickname = "Fluxer.Net Example Bot"
 // });
@@ -179,7 +179,7 @@ gateway.MessageCreate += async messageData =>
                 messageData.Author.Username, messageData.Author.Id);
 
             // Send a response message to the same channel
-            await api.PostChannelMessage(messageData.ChannelId, new()
+            await api.SendMessage(messageData.ChannelId, new()
             {
                 Content = "pong ;P"
             });
@@ -192,7 +192,7 @@ gateway.MessageCreate += async messageData =>
 
         else if (messageData.Content == "/hello")
         {
-            await api.PostChannelMessage(messageData.ChannelId, new()
+            await api.SendMessage(messageData.ChannelId, new()
             {
                 Content = $"Hello, <@{messageData.Author.Id}>! 👋"
             });
@@ -205,7 +205,7 @@ gateway.MessageCreate += async messageData =>
 
         else if (messageData.Content == "/info")
         {
-            await api.PostChannelMessage(messageData.ChannelId, new()
+            await api.SendMessage(messageData.ChannelId, new()
             {
                 Content = $"**Fluxer.Net Example Bot**\n" +
                           $"Version: 0.4.0\n" +
@@ -255,7 +255,7 @@ gateway.Ready += readyData =>
 //                     memberData.GuildId, memberData.UserId);
 //
 //     // Send a welcome message (replace with your welcome channel ID)
-//     // await api.PostChannelMessage(yourWelcomeChannelId, new()
+//     // await api.SendMessage(yourWelcomeChannelId, new()
 //     // {
 //     //     Content = $"Welcome to the server, <@{memberData.UserId}>! 🎉"
 //     // });
@@ -290,7 +290,7 @@ Log.Information("Connected to Fluxer gateway. Bot is now online!");
 //   - Implement a /shutdown command for authorized users
 //   - Run as a system service or Docker container
 
-await api.PatchGuildMemberSelf(1431484523333775609, new() { Nickname = "Fluxer.Net" });
+await api.UpdateCurrentMember(1431484523333775609, new() { Nickname = "Fluxer.Net" });
 
 Log.Information("Bot is running. Press Ctrl+C to stop.");
 await Task.Delay(-1);
@@ -306,10 +306,10 @@ await Task.Delay(-1);
 //    - Utility commands (polls, reminders, search)
 //
 // 2. Use more API endpoints:
-//    - Create/manage channels: api.PostGuildChannel()
-//    - Manage roles: api.PostGuildRole(), api.PatchGuildRole()
-//    - Send embeds: Include embed data in PostChannelMessage()
-//    - Manage members: api.PatchGuildMember(), api.DeleteGuildMember()
+//    - Create/manage channels: api.CreateChannel()
+//    - Manage roles: api.CreateRole(), api.UpdateRole()
+//    - Send embeds: Include embed data in SendMessage()
+//    - Manage members: api.UpdateMember(), api.KickMember()
 //
 // 3. Implement advanced features:
 //    - Command framework with prefix handling
