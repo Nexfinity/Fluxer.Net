@@ -401,10 +401,10 @@ public partial class GatewayClient : IDisposable
                     _logger.Warning("CHANNEL_UPDATE event received but data could not be cast to ChannelGatewayData");
                 return;
             case "CHANNEL_DELETE":
-                if (p.Data is EntityRemovedGatewayData channelDeleteData)
+                if (p.Data is ChannelGatewayData channelDeleteData)
                     ChannelDelete?.Invoke(channelDeleteData);
                 else
-                    _logger.Warning("CHANNEL_DELETE event received but data could not be cast to EntityRemovedGatewayData");
+                    _logger.Warning("CHANNEL_DELETE event received but data could not be cast to ChannelGatewayData");
                 return;
             case "USER_UPDATE":
                 if (p.Data is UserGatewayData userUpdateData)
@@ -553,22 +553,22 @@ public partial class GatewayClient : IDisposable
                     _logger.Warning("GUILD_MEMBER_REMOVE event received but data could not be cast to EntityRemovedGatewayData");
                 return;
             case "GUILD_ROLE_CREATE":
-                if (p.Data is RoleGatewayData guildRoleCreateData)
+                if (p.Data is GuildRoleGatewayData guildRoleCreateData)
                     GuildRoleCreate?.Invoke(guildRoleCreateData);
                 else
-                    _logger.Warning("GUILD_ROLE_CREATE event received but data could not be cast to RoleGatewayData");
+                    _logger.Warning("GUILD_ROLE_CREATE event received but data could not be cast to GuildRoleGatewayData");
                 return;
             case "GUILD_ROLE_UPDATE":
-                if (p.Data is RoleGatewayData guildRoleUpdateData)
+                if (p.Data is GuildRoleGatewayData guildRoleUpdateData)
                     GuildRoleUpdate?.Invoke(guildRoleUpdateData);
                 else
-                    _logger.Warning("GUILD_ROLE_UPDATE event received but data could not be cast to RoleGatewayData");
+                    _logger.Warning("GUILD_ROLE_UPDATE event received but data could not be cast to GuildRoleGatewayData");
                 return;
             case "GUILD_ROLE_DELETE":
-                if (p.Data is EntityRemovedGatewayData guildRoleDeleteData)
+                if (p.Data is GuildRoleDeleteGatewayData guildRoleDeleteData)
                     GuildRoleDelete?.Invoke(guildRoleDeleteData);
                 else
-                    _logger.Warning("GUILD_ROLE_DELETE event received but data could not be cast to EntityRemovedGatewayData");
+                    _logger.Warning("GUILD_ROLE_DELETE event received but data could not be cast to GuildRoleDeleteGatewayData");
                 return;
 
             default:
@@ -826,8 +826,8 @@ public partial class GatewayClient : IDisposable
     /// <summary>
     /// Delegate for CHANNEL_DELETE events when a channel is deleted.
     /// </summary>
-    /// <param name="data">The deleted entity data containing channel ID.</param>
-    public delegate void ChannelDeleteEvent(EntityRemovedGatewayData data);
+    /// <param name="data">The deleted channel data.</param>
+    public delegate void ChannelDeleteEvent(ChannelGatewayData data);
 
     /// <summary>
     /// Occurs when a channel is deleted.
@@ -1127,8 +1127,8 @@ public partial class GatewayClient : IDisposable
     /// <summary>
     /// Delegate for GUILD_ROLE_CREATE events when a role is created in a guild.
     /// </summary>
-    /// <param name="data">The role data.</param>
-    public delegate void GuildRoleCreateEvent(RoleGatewayData data);
+    /// <param name="data">The guild role data containing guild ID and role information.</param>
+    public delegate void GuildRoleCreateEvent(GuildRoleGatewayData data);
 
     /// <summary>
     /// Occurs when a new role is created in a guild.
@@ -1138,8 +1138,8 @@ public partial class GatewayClient : IDisposable
     /// <summary>
     /// Delegate for GUILD_ROLE_UPDATE events when a role is updated.
     /// </summary>
-    /// <param name="data">The updated role data.</param>
-    public delegate void GuildRoleUpdateEvent(RoleGatewayData data);
+    /// <param name="data">The updated guild role data containing guild ID and role information.</param>
+    public delegate void GuildRoleUpdateEvent(GuildRoleGatewayData data);
 
     /// <summary>
     /// Occurs when a role is updated (name, color, permissions, etc.).
@@ -1149,8 +1149,8 @@ public partial class GatewayClient : IDisposable
     /// <summary>
     /// Delegate for GUILD_ROLE_DELETE events when a role is deleted from a guild.
     /// </summary>
-    /// <param name="data">The entity data containing guild and role IDs.</param>
-    public delegate void GuildRoleDeleteEvent(EntityRemovedGatewayData data);
+    /// <param name="data">The guild role delete data containing guild and role IDs.</param>
+    public delegate void GuildRoleDeleteEvent(GuildRoleDeleteGatewayData data);
 
     /// <summary>
     /// Occurs when a role is deleted from a guild.
