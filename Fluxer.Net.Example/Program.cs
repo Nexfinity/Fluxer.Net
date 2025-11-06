@@ -15,10 +15,12 @@
 //   - Basic understanding of async/await in C#
 // ============================================================================
 
+using System.Reflection;
 using Serilog;
 using Serilog.Core;
 using Serilog.Sinks.SystemConsole.Themes;
 using Fluxer.Net;
+using Fluxer.Net.Commands;
 using Fluxer.Net.Data.Enums;
 using Fluxer.Net.EmbedBuilder;
 using Fluxer.Net.Example;
@@ -109,6 +111,32 @@ var api = new ApiClient(config[key: "Token"], new()
 });
 
 // ============================================================================
+// STEP 4.5: Initialize the Command Service
+// ============================================================================
+// The CommandService provides a Discord.Net-style command framework for handling
+// text-based commands. It automatically discovers command modules, parses arguments,
+// and executes commands with support for preconditions and dependency injection.
+//
+// Key Features:
+//   - Attribute-based command definition
+//   - Automatic type parsing (string, int, bool, DateTime, etc.)
+//   - Optional and remainder parameters
+//   - Precondition support (RequireOwner, RequireContext, etc.)
+//   - Sync/Async execution modes
+
+var commands = new CommandService(
+    prefixChar: '/',  // Commands start with /
+    logger: Log.Logger as Logger,  // Use our configured logger
+    services: null  // No dependency injection for this example
+);
+
+// Automatically register all command modules from this assembly
+await commands.AddModulesAsync(Assembly.GetExecutingAssembly());
+
+Log.Information("Registered {ModuleCount} command module(s) with {CommandCount} command(s)",
+    commands.Modules.Count, commands.Commands.Count());
+
+// ============================================================================
 // STEP 5: Handle Command-Line Arguments
 // ============================================================================
 // This example supports a --revoke flag to log out the bot and invalidate
@@ -170,97 +198,74 @@ gateway.MessageCreate += async messageData =>
             messageData.ChannelId, messageData.Author.Username, messageData.Content);
 
         // ========================================================================
-        // Example Command: /ping
+        // Command Handling using CommandService
         // ========================================================================
-        // Simple command that responds with "pong" when a user types "/ping"
+        // The CommandService automatically parses commands and executes them.
+        // Commands are defined in module classes (see Modules/BasicCommands.cs)
 
-        if (messageData.Content == "/ping")
+        // Check if the message starts with the command prefix
+        int argPos = 0;
+        if (messageData.Content?.StartsWith('/') == true)
         {
-            Log.Information("Ping command received from user {Username} ({UserId})",
-                messageData.Author.Username, messageData.Author.Id);
+            argPos = 1; // Skip the prefix character
 
-            // Send a response message to the same channel
-            await api.SendMessage(messageData.ChannelId, new()
+            // Create a command context with all the necessary information
+            var context = new CommandContext(api, gateway, messageData);
+
+            // Execute the command
+            var result = await commands.ExecuteAsync(context, argPos);
+
+            // Log command execution results
+            if (!result.IsSuccess)
             {
-                Content = "pong ;P"
-            });
-        }
+                // Log errors (you can also send error messages to the user here)
+                Log.Warning("Command execution failed: {Error} ({ErrorType})",
+                    result.Error, result.ErrorType);
 
-        // ========================================================================
-        // Example Command: /hello
-        // ========================================================================
-        // Demonstrates mentioning the user who sent the command
-
-        else if (messageData.Content == "/hello")
-        {
-            await api.SendMessage(messageData.ChannelId, new()
+                // Optionally send error message to user
+                if (result.ErrorType == CommandError.UnknownCommand)
+                {
+                    // Don't spam for unknown commands - just log it
+                }
+                else if (result.ErrorType == CommandError.BadArgCount)
+                {
+                    await api.SendMessage(messageData.ChannelId, new()
+                    {
+                        Content = $"❌ Error: {result.Error}"
+                    });
+                }
+                else if (result.ErrorType == CommandError.ParseFailed)
+                {
+                    await api.SendMessage(messageData.ChannelId, new()
+                    {
+                        Content = $"❌ Error: {result.Error}"
+                    });
+                }
+                else if (result.ErrorType == CommandError.UnmetPrecondition)
+                {
+                    await api.SendMessage(messageData.ChannelId, new()
+                    {
+                        Content = $"⛔ {result.Error}"
+                    });
+                }
+                else
+                {
+                    await api.SendMessage(messageData.ChannelId, new()
+                    {
+                        Content = $"❌ An error occurred: {result.Error}"
+                    });
+                }
+            }
+            else
             {
-                Content = $"Hello, <@{messageData.Author.Id}>! 👋"
-            });
-        }
-
-        // ========================================================================
-        // Example Command: /info
-        // ========================================================================
-        // Demonstrates sending a formatted message with multiple lines
-
-        else if (messageData.Content == "/info")
-        {
-            await api.SendMessage(messageData.ChannelId, new()
-            {
-                Content = $"**Fluxer.Net Example Bot**\n" +
-                          $"Version: 0.4.0\n" +
-                          $"Framework: .NET 7.0\n" +
-                          $"Library: Fluxer.Net\n\n" +
-                          $"Available Commands:\n" +
-                          $"• `/ping` - Check if bot is responsive\n" +
-                          $"• `/hello` - Get a friendly greeting\n" +
-                          $"• `/info` - Show this information\n" +
-                          $"• `/embed` - Show an example rich embed"
-            });
-        }
-
-        // ========================================================================
-        // Example Command: /embed
-        // ========================================================================
-        // Demonstrates using the EmbedBuilder to create rich embeds
-
-        else if (messageData.Content == "/embed")
-        {
-            // Create a rich embed using the fluent EmbedBuilder API
-            var embed = new EmbedBuilder()
-                .WithTitle("Example Rich Embed")
-                .WithDescription("This is a demonstration of Fluxer.Net's EmbedBuilder system, " +
-                                 "based on Discord.Net's implementation. Embeds support rich formatting " +
-                                 "with titles, descriptions, fields, images, and more!")
-                .WithColor(0x5865F2) // Blurple color (RGB: 88, 101, 242)
-                .WithAuthor(
-                    name: messageData.Author.Username,
-                    iconUrl: messageData.Author.Avatar != null
-                        ? $"https://cdn.fluxer.dev/avatars/{messageData.Author.Id}/{messageData.Author.Avatar}.png"
-                        : null
-                )
-                .WithThumbnailUrl("https://avatars.githubusercontent.com/u/20194446")
-                .WithImageUrl("https://repository-images.githubusercontent.com/123456789/example")
-                .AddField("Field 1", "This is an inline field", inline: true)
-                .AddField("Field 2", "This is also inline", inline: true)
-                .AddField("Field 3", "This is another inline field", inline: true)
-                .AddField("Full Width Field", "This field takes up the full width because inline is false", inline: false)
-                .AddField("Bot Stats", $"Guilds: 1\nChannels: 5\nUptime: {DateTime.UtcNow:HH:mm:ss}", inline: true)
-                .WithFooter("Fluxer.Net v0.4.0", "https://avatars.githubusercontent.com/u/20194446")
-                .WithCurrentTimestamp()
-                .Build();
-
-            await api.SendMessage(messageData.ChannelId, new()
-            {
-                Content = "Here's an example of a rich embed:",
-                Embeds = new List<Fluxer.Net.Data.Models.Embed> { embed }
-            });
+                Log.Information("Command executed successfully by {Username} ({UserId})",
+                    messageData.Author.Username, messageData.Author.Id);
+            }
         }
     }
     catch (Exception ex)
     {
-        Log.Error(ex, "Error while receiving message");
+        Log.Error(ex, "Error while processing message");
     }
 };
 
@@ -341,9 +346,25 @@ await Task.Delay(-1);
 // Now that you understand the basics, here are some ideas to expand your bot:
 //
 // 1. Add more commands:
-//    - Moderation commands (kick, ban, mute)
-//    - Fun commands (random facts, jokes, games)
-//    - Utility commands (polls, reminders, search)
+//    - Create new command modules in the Modules/ folder
+//    - Use preconditions: [RequireOwner], [RequireContext(ContextType.Guild)]
+//    - Add parameter types: int, bool, DateTime, TimeSpan, enums, etc.
+//    - Use [Remainder] for multi-word parameters
+//    - Use [Alias] to add alternative command names
+//    - Implement BeforeExecute/AfterExecute hooks in your modules
+//
+//    Example command module:
+//    public class ModerationCommands : ModuleBase
+//    {
+//        [Command("kick")]
+//        [RequireUserPermission(Permissions.KickMembers)]
+//        [RequireContext(ContextType.Guild)]
+//        public async Task KickCommand(ulong userId, [Remainder] string reason = "No reason provided")
+//        {
+//            // Kick logic here
+//            await ReplyAsync($"Kicked user {userId} for: {reason}");
+//        }
+//    }
 //
 // 2. Use more API endpoints:
 //    - Create/manage channels: api.CreateChannel()
@@ -371,10 +392,10 @@ await Task.Delay(-1);
 //    }
 //
 // 3. Implement advanced features:
-//    - Command framework with prefix handling
-//    - Permission checks before executing commands
-//    - Database integration for persistent data
+//    - Database integration for persistent data (Entity Framework, Dapper, etc.)
 //    - Scheduled tasks and background jobs
+//    - Custom preconditions for advanced permission checks
+//    - Dependency injection with service providers
 //
 // 4. Explore rate limiting:
 //    - Check remaining requests: api.RateLimitManager.GetBucketInfoAsync()
