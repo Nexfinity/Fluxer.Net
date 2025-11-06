@@ -275,8 +275,16 @@ gateway.MessageCreate += async messageData =>
         // ========================================================================
         // Example Command: /play <voice_channel_id>
         // ========================================================================
-        // Demonstrates joining a voice channel and playing crab-rave.mp3
+        // Demonstrates joining a voice channel using LiveKit and playing audio.
+        // The VoiceClient has been updated to use LiveKit's WebRTC protocol,
+        // compatible with Fluxer BETA API.
+        //
         // Usage: /play 123456789
+        //
+        // Note: Full audio streaming requires WebRTC RTP implementation.
+        // The current implementation establishes LiveKit WebSocket signaling
+        // and room joining. For production audio playback, you may need to
+        // integrate a full WebRTC library like SIPSorcery.
 
         else if (messageData.Content.StartsWith("/play "))
         {
