@@ -23,6 +23,7 @@ using Fluxer.Net.Data.Enums;
 using Fluxer.Net.EmbedBuilder;
 using Fluxer.Net.Example;
 using Fluxer.Net.Gateway.Data;
+using Fluxer.Net.Voice;
 
 // ============================================================================
 // STEP 1: Configure Logging
@@ -142,7 +143,19 @@ if (args.Length > 0 && args[0] == "--revoke")
 // });
 
 // ============================================================================
-// STEP 7: Subscribe to Gateway Events
+// STEP 7: Voice State Tracking Variables
+// ============================================================================
+// These variables track voice connection state and must be declared before
+// the event handlers that use them.
+
+string? voiceEndpoint = null;
+string? voiceToken = null;
+string? voiceSessionId = null;
+ulong? voiceGuildId = null;
+ReadyGatewayData? readyData = null;
+
+// ============================================================================
+// STEP 8: Subscribe to Gateway Events
 // ============================================================================
 // The gateway uses an event-driven architecture. You subscribe to events by
 // attaching handlers to the GatewayClient. Here we demonstrate basic command
@@ -216,7 +229,8 @@ gateway.MessageCreate += async messageData =>
                           $"• `/ping` - Check if bot is responsive\n" +
                           $"• `/hello` - Get a friendly greeting\n" +
                           $"• `/info` - Show this information\n" +
-                          $"• `/embed` - Show an example rich embed"
+                          $"• `/embed` - Show an example rich embed\n" +
+                          $"• `/play <channel_id>` - Join voice and play crab-rave.mp3"
             });
         }
 
@@ -257,6 +271,145 @@ gateway.MessageCreate += async messageData =>
                 Embeds = new List<Fluxer.Net.Data.Models.Embed> { embed }
             });
         }
+
+        // ========================================================================
+        // Example Command: /play <voice_channel_id>
+        // ========================================================================
+        // Demonstrates joining a voice channel and playing crab-rave.mp3
+        // Usage: /play 123456789
+
+        else if (messageData.Content.StartsWith("/play "))
+        {
+            var parts = messageData.Content.Split(' ', 2);
+            if (parts.Length < 2)
+            {
+                await api.SendMessage(messageData.ChannelId, new()
+                {
+                    Content = "Usage: `/play <voice_channel_id>`\n" +
+                              "Example: `/play 123456789`"
+                });
+                return;
+            }
+
+            if (!ulong.TryParse(parts[1], out ulong voiceChannelId))
+            {
+                await api.SendMessage(messageData.ChannelId, new()
+                {
+                    Content = "Invalid voice channel ID. Please provide a valid numeric channel ID."
+                });
+                return;
+            }
+
+            // Use hardcoded crab-rave.mp3 file
+            string filePath = "crab-rave.mp3";
+            if (!File.Exists(filePath))
+            {
+                await api.SendMessage(messageData.ChannelId, new()
+                {
+                    Content = $"File not found: `{filePath}` - Please place crab-rave.mp3 in the same directory as the executable."
+                });
+                return;
+            }
+
+            await api.SendMessage(messageData.ChannelId, new()
+            {
+                Content = $"Joining voice channel and playing: `{Path.GetFileName(filePath)}`..."
+            });
+
+            // Join voice channel by sending Voice State Update via gateway
+            // Note: In production, you'd need to track which guild the channel belongs to
+            // For this example, we'll use a fixed guild ID
+            ulong guildId = 1431484523333775609; // Replace with your guild ID
+
+            try
+            {
+                // Send voice state update to join the channel
+                gateway.UpdateVoiceState(guildId, voiceChannelId, false, false);
+
+                // Wait for voice server and state updates (with timeout)
+                var timeout = DateTime.UtcNow.AddSeconds(10);
+                while ((voiceEndpoint == null || voiceToken == null || voiceSessionId == null) &&
+                       DateTime.UtcNow < timeout)
+                {
+                    await Task.Delay(100);
+                }
+
+                if (voiceEndpoint == null || voiceToken == null || voiceSessionId == null || readyData?.User == null)
+                {
+                    await api.SendMessage(messageData.ChannelId, new()
+                    {
+                        Content = "Failed to join voice channel: Timeout waiting for voice connection data."
+                    });
+                    return;
+                }
+
+                // Create voice client
+                var voiceClient = new VoiceClient(
+                    endpoint: voiceEndpoint,
+                    guildId: guildId,
+                    userId: readyData.User.Id,
+                    sessionId: voiceSessionId,
+                    token: voiceToken,
+                    logger: Log.Logger as Logger
+                );
+
+                // Connect to voice
+                await voiceClient.ConnectAsync();
+
+                // Wait for voice client to be ready
+                var voiceReady = false;
+                voiceClient.OnReady += () => { voiceReady = true; };
+
+                timeout = DateTime.UtcNow.AddSeconds(10);
+                while (!voiceReady && DateTime.UtcNow < timeout)
+                {
+                    await Task.Delay(100);
+                }
+
+                if (!voiceReady)
+                {
+                    await api.SendMessage(messageData.ChannelId, new()
+                    {
+                        Content = "Failed to establish voice connection."
+                    });
+                    voiceClient.Dispose();
+                    return;
+                }
+
+                // Play audio
+                var audioPlayer = new AudioPlayer(voiceClient, Log.Logger as Logger);
+                audioPlayer.OnPlaybackFinished += async () =>
+                {
+                    await api.SendMessage(messageData.ChannelId, new()
+                    {
+                        Content = "Playback finished!"
+                    });
+                    await voiceClient.DisconnectAsync();
+                    voiceClient.Dispose();
+                };
+
+                audioPlayer.OnError += async (error) =>
+                {
+                    Log.Error(error, "Audio playback error");
+                    await api.SendMessage(messageData.ChannelId, new()
+                    {
+                        Content = $"Playback error: {error.Message}"
+                    });
+                    await voiceClient.DisconnectAsync();
+                    voiceClient.Dispose();
+                };
+
+                await audioPlayer.PlayAsync(filePath);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, "Error playing audio");
+                await api.SendMessage(messageData.ChannelId, new()
+                {
+                    Content = $"Error: {ex.Message}"
+                });
+            }
+        }
     }
     catch (Exception ex)
     {
@@ -265,15 +418,34 @@ gateway.MessageCreate += async messageData =>
 };
 
 // ============================================================================
-// Additional Gateway Event Examples (Uncomment to use)
+// Additional Gateway Event Handlers
 // ============================================================================
 
-// Example: Log when the bot is ready
-gateway.Ready += readyData =>
+// Voice State Tracking - Handle voice server and state updates
+gateway.VoiceServerUpdate += voiceData =>
+{
+    voiceEndpoint = voiceData.Endpoint;
+    voiceToken = voiceData.Token;
+    voiceGuildId = voiceData.GuildId;
+    Log.Debug("Voice server update: Endpoint={Endpoint}, Guild={GuildId}", voiceEndpoint, voiceGuildId);
+};
+
+gateway.VoiceStateUpdate += voiceStateData =>
+{
+    if (voiceStateData.UserId.ToString() == readyData?.User?.Id.ToString())
+    {
+        voiceSessionId = voiceStateData.SessionId;
+        Log.Debug("Voice state update: Session={SessionId}, Channel={ChannelId}", voiceSessionId, voiceStateData.ChannelId);
+    }
+};
+
+// Log when the bot is ready
+gateway.Ready += data =>
 {
     try
     {
-        Log.Information("Bot is ready! Logged in as {Username}", readyData.User?.Username);
+        readyData = data;
+        Log.Information("Bot is ready! Logged in as {Username}", data.User?.Username);
     }
     catch (Exception ex)
     {

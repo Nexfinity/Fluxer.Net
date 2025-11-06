@@ -1068,6 +1068,27 @@ public partial class GatewayClient : IDisposable
         SendGatewayPacket(packet);
     }
 
+    /// <summary>
+    /// Updates the current user's voice state (join/leave voice channels, mute, deafen).
+    /// </summary>
+    /// <param name="guildId">The guild ID containing the voice channel.</param>
+    /// <param name="channelId">The voice channel ID to join, or null to disconnect.</param>
+    /// <param name="selfMute">Whether the user should be self-muted.</param>
+    /// <param name="selfDeaf">Whether the user should be self-deafened.</param>
+    /// <remarks>
+    /// This sends a VOICE_STATE_UPDATE packet to the gateway. The server will respond with
+    /// VOICE_STATE_UPDATE and VOICE_SERVER_UPDATE events containing connection information.
+    /// </remarks>
+    public void UpdateVoiceState(ulong guildId, ulong? channelId, bool selfMute, bool selfDeaf)
+    {
+        var packet = new GatewayPacket()
+        {
+            Data = new VoiceStateUpdatePayload(guildId, channelId, selfMute, selfDeaf),
+            OpCode = FluxerOpCode.VoiceStateUpdate
+        };
+        SendGatewayPacket(packet);
+    }
+
 
     #region Events
 
