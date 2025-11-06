@@ -324,6 +324,7 @@ gateway.MessageCreate += async messageData =>
             try
             {
                 // Send voice state update to join the channel
+                Log.Information("Sending voice state update for guild {GuildId}, channel {ChannelId}", guildId, voiceChannelId);
                 gateway.UpdateVoiceState(guildId, voiceChannelId, false, false);
 
                 // Wait for voice server and state updates (with timeout)
@@ -333,6 +334,9 @@ gateway.MessageCreate += async messageData =>
                 {
                     await Task.Delay(100);
                 }
+
+                Log.Debug("Voice connection data after wait: Endpoint={Endpoint}, Token={HasToken}, SessionId={SessionId}, User={HasUser}",
+                    voiceEndpoint, voiceToken != null, voiceSessionId, readyData?.User != null);
 
                 if (voiceEndpoint == null || voiceToken == null || voiceSessionId == null || readyData?.User == null)
                 {
@@ -424,18 +428,30 @@ gateway.MessageCreate += async messageData =>
 // Voice State Tracking - Handle voice server and state updates
 gateway.VoiceServerUpdate += voiceData =>
 {
+    Log.Information("VOICE_SERVER_UPDATE received! Endpoint={Endpoint}, Token={Token}, Guild={GuildId}",
+        voiceData.Endpoint, voiceData.Token?.Substring(0, Math.Min(10, voiceData.Token?.Length ?? 0)) + "...", voiceData.GuildId);
     voiceEndpoint = voiceData.Endpoint;
     voiceToken = voiceData.Token;
     voiceGuildId = voiceData.GuildId;
-    Log.Debug("Voice server update: Endpoint={Endpoint}, Guild={GuildId}", voiceEndpoint, voiceGuildId);
 };
 
 gateway.VoiceStateUpdate += voiceStateData =>
 {
-    if (voiceStateData.UserId.ToString() == readyData?.User?.Id.ToString())
+    Log.Information("VOICE_STATE_UPDATE received! UserId={UserId}, SessionId={SessionId}, ChannelId={ChannelId}, GuildId={GuildId}",
+        voiceStateData.UserId, voiceStateData.SessionId, voiceStateData.ChannelId, voiceStateData.GuildId);
+
+    if (readyData?.User == null)
+    {
+        Log.Warning("readyData.User is null, cannot match voice state update");
+    }
+    else if (voiceStateData.UserId.ToString() == readyData.User.Id.ToString())
     {
         voiceSessionId = voiceStateData.SessionId;
-        Log.Debug("Voice state update: Session={SessionId}, Channel={ChannelId}", voiceSessionId, voiceStateData.ChannelId);
+        Log.Information("Voice state matched bot user! SessionId set to: {SessionId}", voiceSessionId);
+    }
+    else
+    {
+        Log.Debug("Voice state update for different user: {UserId} (bot is {BotId})", voiceStateData.UserId, readyData.User.Id);
     }
 };
 
