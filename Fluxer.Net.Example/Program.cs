@@ -20,6 +20,7 @@ using Serilog.Core;
 using Serilog.Sinks.SystemConsole.Themes;
 using Fluxer.Net;
 using Fluxer.Net.Data.Enums;
+using Fluxer.Net.EmbedBuilder;
 using Fluxer.Net.Example;
 using Fluxer.Net.Gateway.Data;
 
@@ -214,7 +215,46 @@ gateway.MessageCreate += async messageData =>
                           $"Available Commands:\n" +
                           $"• `/ping` - Check if bot is responsive\n" +
                           $"• `/hello` - Get a friendly greeting\n" +
-                          $"• `/info` - Show this information"
+                          $"• `/info` - Show this information\n" +
+                          $"• `/embed` - Show an example rich embed"
+            });
+        }
+
+        // ========================================================================
+        // Example Command: /embed
+        // ========================================================================
+        // Demonstrates using the EmbedBuilder to create rich embeds
+
+        else if (messageData.Content == "/embed")
+        {
+            // Create a rich embed using the fluent EmbedBuilder API
+            var embed = new EmbedBuilder()
+                .WithTitle("Example Rich Embed")
+                .WithDescription("This is a demonstration of Fluxer.Net's EmbedBuilder system, " +
+                                 "based on Discord.Net's implementation. Embeds support rich formatting " +
+                                 "with titles, descriptions, fields, images, and more!")
+                .WithColor(0x5865F2) // Blurple color (RGB: 88, 101, 242)
+                .WithAuthor(
+                    name: messageData.Author.Username,
+                    iconUrl: messageData.Author.Avatar != null
+                        ? $"https://cdn.fluxer.dev/avatars/{messageData.Author.Id}/{messageData.Author.Avatar}.png"
+                        : null
+                )
+                .WithThumbnailUrl("https://avatars.githubusercontent.com/u/20194446")
+                .WithImageUrl("https://repository-images.githubusercontent.com/123456789/example")
+                .AddField("Field 1", "This is an inline field", inline: true)
+                .AddField("Field 2", "This is also inline", inline: true)
+                .AddField("Field 3", "This is another inline field", inline: true)
+                .AddField("Full Width Field", "This field takes up the full width because inline is false", inline: false)
+                .AddField("Bot Stats", $"Guilds: 1\nChannels: 5\nUptime: {DateTime.UtcNow:HH:mm:ss}", inline: true)
+                .WithFooter("Fluxer.Net v0.4.0", "https://avatars.githubusercontent.com/u/20194446")
+                .WithCurrentTimestamp()
+                .Build();
+
+            await api.SendMessage(messageData.ChannelId, new()
+            {
+                Content = "Here's an example of a rich embed:",
+                Embeds = new List<Fluxer.Net.Data.Models.Embed> { embed }
             });
         }
     }
@@ -308,8 +348,27 @@ await Task.Delay(-1);
 // 2. Use more API endpoints:
 //    - Create/manage channels: api.CreateChannel()
 //    - Manage roles: api.CreateRole(), api.UpdateRole()
-//    - Send embeds: Include embed data in SendMessage()
+//    - Send embeds: Use EmbedBuilder to create rich embeds (see /embed command)
 //    - Manage members: api.UpdateMember(), api.KickMember()
+//
+//    Example: Create a complex embed with error handling
+//    try {
+//        var embed = new EmbedBuilder()
+//            .WithTitle("Server Stats")
+//            .WithDescription($"Statistics for {guildName}")
+//            .WithColor(0x00FF00) // Green
+//            .AddField("Total Members", memberCount.ToString(), inline: true)
+//            .AddField("Online Members", onlineCount.ToString(), inline: true)
+//            .AddField("Total Channels", channelCount.ToString(), inline: true)
+//            .WithThumbnailUrl(guildIconUrl)
+//            .WithFooter($"Requested by {username}", userAvatarUrl)
+//            .WithCurrentTimestamp()
+//            .Build();
+//
+//        await api.SendMessage(channelId, new() { Embeds = new() { embed } });
+//    } catch (InvalidOperationException ex) {
+//        Log.Error(ex, "Embed validation failed - check field lengths and URL formats");
+//    }
 //
 // 3. Implement advanced features:
 //    - Command framework with prefix handling
