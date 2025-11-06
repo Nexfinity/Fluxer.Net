@@ -2,6 +2,9 @@ using Fluxer.Net.Commands;
 using Fluxer.Net.Commands.Attributes;
 using Fluxer.Net.Data.Models;
 using Fluxer.Net.EmbedBuilder;
+using Fluxer.Net.Voice;
+using Serilog;
+using Serilog.Core;
 
 namespace Fluxer.Net.Example.Modules;
 
@@ -63,8 +66,8 @@ public class BasicCommands : ModuleBase
 		var embed = new Fluxer.Net.EmbedBuilder.EmbedBuilder()
 			.WithTitle("Example Rich Embed")
 			.WithDescription("This is a demonstration of Fluxer.Net's EmbedBuilder system, " +
-			                 "based on Discord.Net's implementation. Embeds support rich formatting " +
-			                 "with titles, descriptions, fields, images, and more!")
+							 "based on Discord.Net's implementation. Embeds support rich formatting " +
+							 "with titles, descriptions, fields, images, and more!")
 			.WithColor(0x5865F2) // Blurple color
 			.WithAuthor(
 				name: Context.User.Username,
@@ -117,5 +120,111 @@ public class BasicCommands : ModuleBase
 	public async Task GreetCommand(string name = "stranger")
 	{
 		await ReplyAsync($"Hello, {name}!");
+	}
+
+	/// <summary>
+	/// An example voice chat command.
+	/// </summary>
+	[Command("play")]
+	[Summary("Play a test song.")]
+	public async Task PlayCommand(ulong voiceChannelId)
+	{
+		// Use hardcoded crab-rave.mp3 file
+		string filePath = "crab-rave.mp3";
+		if (!File.Exists(filePath))
+		{
+			await ReplyAsync($"File not found: `{filePath}` - Please place crab-rave.mp3 in the same directory as the executable.");
+			return;
+		}
+
+		await ReplyAsync($"Joining voice channel and playing: `{Path.GetFileName(filePath)}`...");
+
+		// Join voice channel by sending Voice State Update via gateway
+		// Note: In production, you'd need to track which guild the channel belongs to
+		// For this example, we'll use a fixed guild ID
+		ulong guildId = 1431484523333775609; // Replace with your guild ID
+
+		try
+		{
+			// Reset voice state before joining
+			VoiceStateManager.Reset();
+
+			// Send voice state update to join the channel
+			Log.Information("Sending voice state update for guild {GuildId}, channel {ChannelId}", guildId, voiceChannelId);
+			Context.Gateway.UpdateVoiceState(guildId, voiceChannelId, false, false);
+
+			// Wait for voice server and state updates (with timeout)
+			var timeout = DateTime.UtcNow.AddSeconds(10);
+			while (!VoiceStateManager.IsVoiceDataReady() && DateTime.UtcNow < timeout)
+			{
+				await Task.Delay(100);
+			}
+
+			Log.Debug("Voice connection data after wait: Endpoint={Endpoint}, Token={HasToken}, SessionId={SessionId}, User={HasUser}",
+				VoiceStateManager.VoiceEndpoint,
+				VoiceStateManager.VoiceToken != null,
+				VoiceStateManager.VoiceSessionId,
+				VoiceStateManager.ReadyData?.User != null);
+
+			if (!VoiceStateManager.IsVoiceDataReady())
+			{
+				await ReplyAsync("Failed to join voice channel: Timeout waiting for voice connection data.");
+				return;
+			}
+
+			// Create voice client
+			var voiceClient = new VoiceClient(
+				endpoint: VoiceStateManager.VoiceEndpoint!,
+				guildId: guildId,
+				userId: VoiceStateManager.ReadyData!.User!.Id,
+				sessionId: VoiceStateManager.VoiceSessionId!,
+				token: VoiceStateManager.VoiceToken!,
+				logger: Log.Logger as Logger
+			);
+
+			// Connect to voice
+			await voiceClient.ConnectAsync();
+
+			// Wait for voice client to be ready
+			var voiceReady = false;
+			voiceClient.OnReady += () => { voiceReady = true; };
+
+			timeout = DateTime.UtcNow.AddSeconds(10);
+			while (!voiceReady && DateTime.UtcNow < timeout)
+			{
+				await Task.Delay(100);
+			}
+
+			if (!voiceReady)
+			{
+				await ReplyAsync("Failed to establish voice connection.");
+				voiceClient.Dispose();
+				return;
+			}
+
+			// Play audio
+			var audioPlayer = new AudioPlayer(voiceClient, Log.Logger as Logger);
+			audioPlayer.OnPlaybackFinished += async () =>
+			{
+				await ReplyAsync("Playback finished!");
+				await voiceClient.DisconnectAsync();
+				voiceClient.Dispose();
+			};
+
+			audioPlayer.OnError += async (error) =>
+			{
+				Log.Error(error, "Audio playback error");
+				await ReplyAsync($"Playback error: {error.Message}");
+				await voiceClient.DisconnectAsync();
+				voiceClient.Dispose();
+			};
+
+			await audioPlayer.PlayAsync(filePath);
+		}
+		catch (Exception ex)
+		{
+			Log.Error(ex, "Error playing audio");
+			await ReplyAsync($"Error: {ex.Message}");
+		}
 	}
 }

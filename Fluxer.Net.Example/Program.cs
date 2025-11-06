@@ -171,16 +171,10 @@ if (args.Length > 0 && args[0] == "--revoke")
 // });
 
 // ============================================================================
-// STEP 7: Voice State Tracking Variables
+// STEP 7: Voice State Tracking
 // ============================================================================
-// These variables track voice connection state and must be declared before
-// the event handlers that use them.
-
-string? voiceEndpoint = null;
-string? voiceToken = null;
-string? voiceSessionId = null;
-ulong? voiceGuildId = null;
-ReadyGatewayData? readyData = null;
+// Voice connection state is now managed by VoiceStateManager, which can be
+// accessed from both Program.cs and command modules.
 
 // ============================================================================
 // STEP 8: Subscribe to Gateway Events
@@ -291,9 +285,9 @@ gateway.VoiceServerUpdate += voiceData =>
 {
     Log.Information("VOICE_SERVER_UPDATE received! Endpoint={Endpoint}, Token={Token}, Guild={GuildId}",
         voiceData.Endpoint, voiceData.Token?.Substring(0, Math.Min(10, voiceData.Token?.Length ?? 0)) + "...", voiceData.GuildId);
-    voiceEndpoint = voiceData.Endpoint;
-    voiceToken = voiceData.Token;
-    voiceGuildId = voiceData.GuildId;
+    VoiceStateManager.VoiceEndpoint = voiceData.Endpoint;
+    VoiceStateManager.VoiceToken = voiceData.Token;
+    VoiceStateManager.VoiceGuildId = voiceData.GuildId;
 };
 
 gateway.VoiceStateUpdate += voiceStateData =>
@@ -301,18 +295,18 @@ gateway.VoiceStateUpdate += voiceStateData =>
     Log.Information("VOICE_STATE_UPDATE received! UserId={UserId}, SessionId={SessionId}, ChannelId={ChannelId}, GuildId={GuildId}",
         voiceStateData.UserId, voiceStateData.SessionId, voiceStateData.ChannelId, voiceStateData.GuildId);
 
-    if (readyData?.User == null)
+    if (VoiceStateManager.ReadyData?.User == null)
     {
         Log.Warning("readyData.User is null, cannot match voice state update");
     }
-    else if (voiceStateData.UserId.ToString() == readyData.User.Id.ToString())
+    else if (voiceStateData.UserId.ToString() == VoiceStateManager.ReadyData.User.Id.ToString())
     {
-        voiceSessionId = voiceStateData.SessionId;
-        Log.Information("Voice state matched bot user! SessionId set to: {SessionId}", voiceSessionId);
+        VoiceStateManager.VoiceSessionId = voiceStateData.SessionId;
+        Log.Information("Voice state matched bot user! SessionId set to: {SessionId}", VoiceStateManager.VoiceSessionId);
     }
     else
     {
-        Log.Debug("Voice state update for different user: {UserId} (bot is {BotId})", voiceStateData.UserId, readyData.User.Id);
+        Log.Debug("Voice state update for different user: {UserId} (bot is {BotId})", voiceStateData.UserId, VoiceStateManager.ReadyData.User.Id);
     }
 };
 
@@ -321,7 +315,7 @@ gateway.Ready += data =>
 {
     try
     {
-        readyData = data;
+        VoiceStateManager.ReadyData = data;
         Log.Information("Bot is ready! Logged in as {Username}", data.User?.Username);
     }
     catch (Exception ex)
