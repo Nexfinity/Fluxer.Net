@@ -519,11 +519,11 @@ public class ApiClient
     public async Task RemoveMemberRole(ulong guildId, ulong userId, ulong roleId)
         => await MakeFluxerApiRequest(HttpMethod.Delete, $"/guilds/{guildId}/members/{userId}/roles/{roleId}", true);
 
-    public async Task<Role> CreateRole<TRequest>(ulong guildId, TRequest data)
-        => await MakeFluxerApiRequestRS<Role, TRequest>(HttpMethod.Post, $"/guilds/{guildId}/roles", data, true);
+    public async Task<GuildRole> CreateRole<TRequest>(ulong guildId, TRequest data)
+        => await MakeFluxerApiRequestRS<GuildRole, TRequest>(HttpMethod.Post, $"/guilds/{guildId}/roles", data, true);
 
-    public async Task<Role> UpdateRole<TRequest>(ulong guildId, ulong roleId, TRequest data)
-        => await MakeFluxerApiRequestRS<Role, TRequest>(HttpMethod.Patch, $"/guilds/{guildId}/roles/{roleId}", data, true);
+    public async Task<GuildRole> UpdateRole<TRequest>(ulong guildId, ulong roleId, TRequest data)
+        => await MakeFluxerApiRequestRS<GuildRole, TRequest>(HttpMethod.Patch, $"/guilds/{guildId}/roles/{roleId}", data, true);
 
     public async Task<TResponse> UpdateRoles<TRequest, TResponse>(ulong guildId, TRequest data)
         => await MakeFluxerApiRequestRS<TResponse, TRequest>(HttpMethod.Patch, $"/guilds/{guildId}/roles", data, true);
