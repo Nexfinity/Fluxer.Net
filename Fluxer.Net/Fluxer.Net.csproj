@@ -36,6 +36,10 @@
     <PackageReference Include="serilog" Version="3.0.1" />
     <PackageReference Include="serilog.sinks.console" Version="4.1.0" />
     <PackageReference Include="Websocket.Client" Version="5.0" />
+    <!-- Voice dependencies -->
+    <PackageReference Include="Concentus" Version="2.1.2" />
+    <PackageReference Include="Sodium.Core" Version="1.3.6" />
+    <PackageReference Include="NAudio" Version="2.2.1" />
   </ItemGroup>
 
 
