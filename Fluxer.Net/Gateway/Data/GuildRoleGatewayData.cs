@@ -12,5 +12,5 @@ public class GuildRoleGatewayData : IGatewayData
 	public ulong GuildId { get; set; }
 
 	[JsonProperty("role")]
-	public Role Role { get; set; } = null!;
+	public GuildRole Role { get; set; } = null!;
 }

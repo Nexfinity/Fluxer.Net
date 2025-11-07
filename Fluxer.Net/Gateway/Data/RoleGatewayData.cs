@@ -2,4 +2,4 @@ using Fluxer.Net.Data.Models;
 
 namespace Fluxer.Net.Gateway.Data;
 
-public class RoleGatewayData : Role, IGatewayData { }
+public class RoleGatewayData : GuildRole, IGatewayData { }

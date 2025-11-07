@@ -62,7 +62,7 @@ public class Guild
 	public int DisabledOperations { get; set; }
 
 	[JsonProperty("max_presences")]
-	public int MaxPresences { get; set; }
+	public int? MaxPresences { get; set; }
 
 	[JsonProperty("member_count")]
 	public int MemberCount { get; set; }
