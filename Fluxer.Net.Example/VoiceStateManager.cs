@@ -60,9 +60,10 @@ public static class VoiceStateManager
 	/// </summary>
 	public static bool IsVoiceDataReady()
 	{
+		// Note: VoiceSessionId may not always be provided by the gateway in current implementation
+		// We can use ConnectionId as a fallback for session_id if needed
 		return VoiceEndpoint != null
 		       && VoiceToken != null
-		       && VoiceSessionId != null
 		       && ReadyData?.User != null;
 	}
 }

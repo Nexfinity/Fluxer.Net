@@ -32,10 +32,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Livekit.Server.Sdk.Dotnet" Version="1.0.13" />
+    <PackageReference Include="Google.Protobuf" Version="3.32.1" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
     <PackageReference Include="serilog" Version="3.0.1" />
     <PackageReference Include="serilog.sinks.console" Version="4.1.0" />
+    <PackageReference Include="SIPSorcery" Version="6.2.0" />
     <PackageReference Include="Websocket.Client" Version="5.0" />
     <!-- Voice dependencies -->
     <PackageReference Include="Concentus" Version="2.1.2" />

@@ -1083,7 +1083,8 @@ public partial class GatewayClient : IDisposable
     {
         var packet = new GatewayPacket()
         {
-            Data = new VoiceStateUpdatePayload(guildId, channelId, selfMute, selfDeaf),
+            // TODO: Technically should be ulong, but fluxer expects strings. Fluxer will eventually be lenient and accept both.
+            Data = new VoiceStateUpdatePayload(guildId.ToString(), channelId.ToString(), selfMute, selfDeaf),
             OpCode = FluxerOpCode.VoiceStateUpdate
         };
         SendGatewayPacket(packet);

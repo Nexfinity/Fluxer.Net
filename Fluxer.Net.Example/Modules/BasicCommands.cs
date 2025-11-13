@@ -174,19 +174,20 @@ public class BasicCommands : ModuleBase
 				return;
 			}
 
-			if (!VoiceStateManager.VoiceChannelId.HasValue)
+			if (VoiceStateManager.ConnectionId == null)
 			{
-				await ReplyAsync("Failed to join voice channel: Channel ID not received from gateway.");
+				await ReplyAsync("Failed to join voice channel: Connection ID not received from gateway.");
 				return;
 			}
 
 			// Create voice client with credentials from gateway events
+			// Note: Using ConnectionId as sessionId since VOICE_STATE_UPDATE event is not being received
 			var voiceClient = new VoiceClient(
 				endpoint: VoiceStateManager.VoiceEndpoint!,
 				guildId: guildId,
-				channelId: VoiceStateManager.VoiceChannelId.Value,
+				channelId: voiceChannelId, // Use command parameter since VoiceChannelId is not populated
 				userId: VoiceStateManager.ReadyData!.User!.Id,
-				sessionId: VoiceStateManager.VoiceSessionId!,
+				sessionId: VoiceStateManager.ConnectionId!, // Use ConnectionId as sessionId
 				token: VoiceStateManager.VoiceToken!,
 				logger: Log.Logger as Logger
 			);

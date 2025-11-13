@@ -9,10 +9,13 @@ namespace Fluxer.Net.Gateway.Data;
 public class VoiceStateUpdatePayload : IGatewayData
 {
 	[JsonProperty("guild_id")]
-	public ulong GuildId { get; set; }
+	public string GuildId { get; set; }
 
 	[JsonProperty("channel_id")]
-	public ulong? ChannelId { get; set; }
+	public string? ChannelId { get; set; }
+
+	[JsonProperty("connection_id")]
+	public string? ConnectionId { get; set; }
 
 	[JsonProperty("self_mute")]
 	public bool SelfMute { get; set; }
@@ -20,11 +23,32 @@ public class VoiceStateUpdatePayload : IGatewayData
 	[JsonProperty("self_deaf")]
 	public bool SelfDeaf { get; set; }
 
-	public VoiceStateUpdatePayload(ulong guildId, ulong? channelId, bool selfMute, bool selfDeaf)
+	[JsonProperty("self_stream")]
+	public bool SelfStream { get; set; }
+
+	[JsonProperty("self_video")]
+	public bool SelfVideo { get; set; }
+
+	[JsonProperty("is_mobile")]
+	public bool IsMobile { get; set; }
+
+	[JsonProperty("latitude")]
+	public string? Latitude { get; set; }
+
+	[JsonProperty("longitude")]
+	public string? Longitude { get; set; }
+
+	public VoiceStateUpdatePayload(string guildId, string? channelId, bool selfMute, bool selfDeaf)
 	{
 		GuildId = guildId;
 		ChannelId = channelId;
 		SelfMute = selfMute;
 		SelfDeaf = selfDeaf;
+		SelfStream = false;
+		SelfVideo = false;
+		IsMobile = false;
+		ConnectionId = null;
+		Latitude = null;
+		Longitude = null;
 	}
 }
