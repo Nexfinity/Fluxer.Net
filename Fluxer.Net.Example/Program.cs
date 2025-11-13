@@ -283,17 +283,18 @@ gateway.MessageCreate += async messageData =>
 // Voice State Tracking - Handle voice server and state updates
 gateway.VoiceServerUpdate += voiceData =>
 {
-    Log.Information("VOICE_SERVER_UPDATE received! Endpoint={Endpoint}, Token={Token}, Guild={GuildId}",
-        voiceData.Endpoint, voiceData.Token?.Substring(0, Math.Min(10, voiceData.Token?.Length ?? 0)) + "...", voiceData.GuildId);
+    Log.Information("VOICE_SERVER_UPDATE received! Endpoint={Endpoint}, Token={Token}, Guild={GuildId}, ConnectionId={ConnectionId}",
+        voiceData.Endpoint, voiceData.Token?.Substring(0, Math.Min(10, voiceData.Token?.Length ?? 0)) + "...", voiceData.GuildId, voiceData.ConnectionId);
     VoiceStateManager.VoiceEndpoint = voiceData.Endpoint;
     VoiceStateManager.VoiceToken = voiceData.Token;
     VoiceStateManager.VoiceGuildId = voiceData.GuildId;
+    VoiceStateManager.ConnectionId = voiceData.ConnectionId;
 };
 
 gateway.VoiceStateUpdate += voiceStateData =>
 {
-    Log.Information("VOICE_STATE_UPDATE received! UserId={UserId}, SessionId={SessionId}, ChannelId={ChannelId}, GuildId={GuildId}",
-        voiceStateData.UserId, voiceStateData.SessionId, voiceStateData.ChannelId, voiceStateData.GuildId);
+    Log.Information("VOICE_STATE_UPDATE received! UserId={UserId}, SessionId={SessionId}, ChannelId={ChannelId}, GuildId={GuildId}, ConnectionId={ConnectionId}",
+        voiceStateData.UserId, voiceStateData.SessionId, voiceStateData.ChannelId, voiceStateData.GuildId, voiceStateData.ConnectionId);
 
     if (VoiceStateManager.ReadyData?.User == null)
     {
@@ -302,7 +303,9 @@ gateway.VoiceStateUpdate += voiceStateData =>
     else if (voiceStateData.UserId.ToString() == VoiceStateManager.ReadyData.User.Id.ToString())
     {
         VoiceStateManager.VoiceSessionId = voiceStateData.SessionId;
-        Log.Information("Voice state matched bot user! SessionId set to: {SessionId}", VoiceStateManager.VoiceSessionId);
+        VoiceStateManager.VoiceChannelId = voiceStateData.ChannelId;
+        Log.Information("Voice state matched bot user! SessionId={SessionId}, ChannelId={ChannelId}",
+            VoiceStateManager.VoiceSessionId, VoiceStateManager.VoiceChannelId);
     }
     else
     {

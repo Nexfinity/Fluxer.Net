@@ -20,6 +20,9 @@ public class VoiceStateGatewayData : IGatewayData
     [JsonProperty("session_id")]
     public string SessionId { get; set; }
 
+    [JsonProperty("connection_id")]
+    public string? ConnectionId { get; set; }
+
     [JsonProperty("deaf")]
     public bool Deaf { get; set; }
 

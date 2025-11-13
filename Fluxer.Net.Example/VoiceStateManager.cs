@@ -28,6 +28,16 @@ public static class VoiceStateManager
 	public static ulong? VoiceGuildId { get; set; }
 
 	/// <summary>
+	/// Voice channel ID from VOICE_STATE_UPDATE event.
+	/// </summary>
+	public static ulong? VoiceChannelId { get; set; }
+
+	/// <summary>
+	/// Connection ID from VOICE_SERVER_UPDATE event.
+	/// </summary>
+	public static string? ConnectionId { get; set; }
+
+	/// <summary>
 	/// Ready data containing bot user information.
 	/// </summary>
 	public static ReadyGatewayData? ReadyData { get; set; }
@@ -41,6 +51,8 @@ public static class VoiceStateManager
 		VoiceToken = null;
 		VoiceSessionId = null;
 		VoiceGuildId = null;
+		VoiceChannelId = null;
+		ConnectionId = null;
 	}
 
 	/// <summary>

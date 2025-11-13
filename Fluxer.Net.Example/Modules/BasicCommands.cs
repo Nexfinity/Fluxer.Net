@@ -139,9 +139,6 @@ public class BasicCommands : ModuleBase
 
 		await ReplyAsync($"Joining voice channel and playing: `{Path.GetFileName(filePath)}`...");
 
-		// Join voice channel by sending Voice State Update via gateway
-		// Note: In production, you'd need to track which guild the channel belongs to
-		// For this example, we'll use a fixed guild ID
 		ulong guildId = 1431484523333775609; // Replace with your guild ID
 
 		try
@@ -149,40 +146,52 @@ public class BasicCommands : ModuleBase
 			// Reset voice state before joining
 			VoiceStateManager.Reset();
 
-			// Send voice state update to join the channel
-			Log.Information("Sending voice state update for guild {GuildId}, channel {ChannelId}", guildId, voiceChannelId);
+			// Send OpCode 4 (VOICE_STATE_UPDATE) to join the voice channel
+			// The gateway will respond with VOICE_SERVER_UPDATE and VOICE_STATE_UPDATE events
+			Log.Information("=== Sending OpCode 4 VOICE_STATE_UPDATE ===");
+			Log.Information("Guild ID: {GuildId}", guildId);
+			Log.Information("Channel ID: {ChannelId}", voiceChannelId);
 			Context.Gateway.UpdateVoiceState(guildId, voiceChannelId, false, false);
 
-			// Wait for voice server and state updates (with timeout)
+			// Wait for gateway events to populate VoiceStateManager
 			var timeout = DateTime.UtcNow.AddSeconds(10);
 			while (!VoiceStateManager.IsVoiceDataReady() && DateTime.UtcNow < timeout)
 			{
 				await Task.Delay(100);
 			}
 
-			Log.Debug("Voice connection data after wait: Endpoint={Endpoint}, Token={HasToken}, SessionId={SessionId}, User={HasUser}",
-				VoiceStateManager.VoiceEndpoint,
-				VoiceStateManager.VoiceToken != null,
-				VoiceStateManager.VoiceSessionId,
-				VoiceStateManager.ReadyData?.User != null);
+			Log.Information("=== Voice connection data after gateway events ===");
+			Log.Information("Endpoint: {Endpoint}", VoiceStateManager.VoiceEndpoint);
+			Log.Information("Token present: {HasToken}", VoiceStateManager.VoiceToken != null);
+			Log.Information("Session ID: {SessionId}", VoiceStateManager.VoiceSessionId);
+			Log.Information("Channel ID: {ChannelId}", VoiceStateManager.VoiceChannelId);
+			Log.Information("Connection ID: {ConnectionId}", VoiceStateManager.ConnectionId);
+			Log.Information("User present: {HasUser}", VoiceStateManager.ReadyData?.User != null);
 
 			if (!VoiceStateManager.IsVoiceDataReady())
 			{
-				await ReplyAsync("Failed to join voice channel: Timeout waiting for voice connection data.");
+				await ReplyAsync("Failed to join voice channel: Timeout waiting for gateway events (VOICE_SERVER_UPDATE/VOICE_STATE_UPDATE).");
 				return;
 			}
 
-			// Create voice client
+			if (!VoiceStateManager.VoiceChannelId.HasValue)
+			{
+				await ReplyAsync("Failed to join voice channel: Channel ID not received from gateway.");
+				return;
+			}
+
+			// Create voice client with credentials from gateway events
 			var voiceClient = new VoiceClient(
 				endpoint: VoiceStateManager.VoiceEndpoint!,
 				guildId: guildId,
+				channelId: VoiceStateManager.VoiceChannelId.Value,
 				userId: VoiceStateManager.ReadyData!.User!.Id,
 				sessionId: VoiceStateManager.VoiceSessionId!,
 				token: VoiceStateManager.VoiceToken!,
 				logger: Log.Logger as Logger
 			);
 
-			// Connect to voice
+			// Connect to LiveKit WebSocket
 			await voiceClient.ConnectAsync();
 
 			// Wait for voice client to be ready
@@ -197,10 +206,12 @@ public class BasicCommands : ModuleBase
 
 			if (!voiceReady)
 			{
-				await ReplyAsync("Failed to establish voice connection.");
+				await ReplyAsync("Failed to establish LiveKit WebSocket connection.");
 				voiceClient.Dispose();
 				return;
 			}
+
+			await ReplyAsync("Successfully connected to voice channel!");
 
 			// Play audio
 			var audioPlayer = new AudioPlayer(voiceClient, Log.Logger as Logger);

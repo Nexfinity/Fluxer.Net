@@ -12,4 +12,7 @@ public class VoiceServerUpdateGatewayData : IGatewayData
 
     [JsonProperty("endpoint")]
     public string Endpoint { get; set; }
+
+    [JsonProperty("connection_id")]
+    public string? ConnectionId { get; set; }
 }

@@ -33,21 +33,23 @@ public class VoiceClient : IDisposable
 	/// <summary>
 	/// Creates a new LiveKit VoiceClient instance.
 	/// </summary>
-	/// <param name="endpoint">LiveKit server endpoint (from VOICE_SERVER_UPDATE event).</param>
+	/// <param name="endpoint">LiveKit server endpoint (from VOICE_SERVER_UPDATE event, e.g., wss://ferret.iad.fluxer.media).</param>
 	/// <param name="guildId">Guild/server ID.</param>
+	/// <param name="channelId">Voice channel ID.</param>
 	/// <param name="userId">Bot's user ID.</param>
 	/// <param name="sessionId">Session ID (from VOICE_STATE_UPDATE event).</param>
 	/// <param name="token">LiveKit JWT token (from VOICE_SERVER_UPDATE event).</param>
 	/// <param name="logger">Optional Serilog logger.</param>
-	public VoiceClient(string endpoint, ulong guildId, ulong userId, string sessionId, string token, ILogger? logger = null)
+	public VoiceClient(string endpoint, ulong guildId, ulong channelId, ulong userId, string sessionId, string token, ILogger? logger = null)
 	{
-		_endpoint = endpoint.Replace(":80", "").Replace(":443", "");
+		// Remove the wss:// prefix if present to get just the hostname
+		_endpoint = endpoint.Replace("wss://", "").Replace("ws://", "").Replace(":80", "").Replace(":443", "");
 		_guildId = guildId;
 		_userId = userId;
 		_sessionId = sessionId;
 		_token = token;
 		_logger = logger;
-		_roomName = $"guild_{guildId}_channel_{{channel_id}}"; // Will be set when we know the channel
+		_roomName = $"guild_{guildId}_channel_{channelId}";
 	}
 
 	/// <summary>
@@ -57,13 +59,24 @@ public class VoiceClient : IDisposable
 	{
 		try
 		{
-			_logger?.Information("Connecting to LiveKit server: {Endpoint}", _endpoint);
+			_logger?.Information("=== Starting LiveKit Connection ===");
+			_logger?.Information("Endpoint: {Endpoint}", _endpoint);
+			_logger?.Information("Room: {RoomName}", _roomName);
+			_logger?.Information("User ID: {UserId}", _userId);
+			_logger?.Information("Guild ID: {GuildId}", _guildId);
+			_logger?.Information("Session ID: {SessionId}", _sessionId);
+			_logger?.Information("Token length: {TokenLength} characters", _token?.Length ?? 0);
 
-			// Construct LiveKit WebSocket URL
-			// LiveKit signaling URL format: wss://endpoint/rtc?access_token=TOKEN
-			var wsUrl = new Uri($"wss://{_endpoint}/rtc?access_token={_token}");
+			// Construct LiveKit WebSocket URL with all required query parameters
+			// Format from browser: wss://ferret.iad.fluxer.media/rtc?access_token=...&auto_subscribe=0&sdk=js&version=2.15.14&protocol=16&adaptive_stream=1
+			var wsUrl = new Uri($"wss://{_endpoint}/rtc?access_token={_token}&auto_subscribe=0&sdk=js&version=2.15.14&protocol=16&adaptive_stream=1");
 
+			_logger?.Information("Full WebSocket URL: wss://{Endpoint}/rtc?access_token={TokenPrefix}...&auto_subscribe=0&sdk=js&version=2.15.14&protocol=16&adaptive_stream=1",
+				_endpoint, _token.Substring(0, Math.Min(20, _token.Length)));
+
+			_logger?.Information("Creating WebSocket client...");
 			_wsClient = new WebsocketClient(wsUrl);
+
 			_wsClient.MessageReceived.Subscribe(HandleWebSocketMessage);
 			_wsClient.DisconnectionHappened.Subscribe(info =>
 			{
@@ -71,12 +84,18 @@ public class VoiceClient : IDisposable
 					info.Type, info.CloseStatusDescription);
 				_isConnected = false;
 			});
+			_wsClient.ReconnectionHappened.Subscribe(info =>
+			{
+				_logger?.Information("LiveKit WebSocket reconnected: {Type}", info.Type);
+			});
 
+			_logger?.Information("Starting WebSocket connection...");
 			await _wsClient.Start();
-			_logger?.Information("LiveKit WebSocket connected, waiting for join response...");
+			_logger?.Information("WebSocket Start() completed - connection should be established");
 
-			// Send JoinRequest
-			await SendJoinRequest();
+			// Note: LiveKit uses Protocol Buffers for signaling, not JSON
+			// The official LiveKit SDK handles the binary protobuf protocol
+			// For now, we'll wait for server messages to see what format they use
 		}
 		catch (Exception ex)
 		{
@@ -121,34 +140,111 @@ public class VoiceClient : IDisposable
 	{
 		try
 		{
-			_logger?.Debug("LiveKit message received: {Message}", message.Text?.Substring(0, Math.Min(200, message.Text?.Length ?? 0)));
+			_logger?.Information("=== MESSAGE RECEIVED ===");
+			_logger?.Information("Message type: {Type}", message.MessageType);
 
-			// Parse LiveKit SignalResponse
-			var response = JObject.Parse(message.Text);
+			// LiveKit uses Protocol Buffers for signaling
+			if (message.MessageType == System.Net.WebSockets.WebSocketMessageType.Binary)
+			{
+				_logger?.Information("Received BINARY message of {Length} bytes", message.Binary?.Length ?? 0);
 
-			// Check for join response
-			if (response["join"] != null)
-			{
-				HandleJoinResponse(response["join"]);
+				if (message.Binary != null && message.Binary.Length > 0)
+				{
+					// Log first 100 bytes as hex for debugging
+					var hexDump = BitConverter.ToString(message.Binary.Take(Math.Min(100, message.Binary.Length)).ToArray());
+					_logger?.Debug("Binary data (first 100 bytes hex): {Hex}", hexDump);
+
+					// Try to find readable strings in the binary data
+					var readableChars = System.Text.Encoding.UTF8.GetString(message.Binary)
+						.Where(c => !char.IsControl(c) || c == '\n' || c == '\r' || c == '\t')
+						.ToArray();
+					if (readableChars.Length > 0)
+					{
+						var readableText = new string(readableChars).Substring(0, Math.Min(200, readableChars.Length));
+						_logger?.Debug("Readable text in binary: {Text}", readableText);
+					}
+
+					// For now, assume we successfully joined if we get any binary response
+					// Full LiveKit implementation would require protobuf deserialization
+					if (!_isConnected)
+					{
+						_logger?.Information("First binary message received - marking as connected");
+						_logger?.Warning("Note: Full protobuf implementation needed for proper message handling");
+						_isConnected = true;
+
+						// Fire OnReady event
+						try
+						{
+							OnReady?.Invoke();
+							_logger?.Information("OnReady event invoked");
+						}
+						catch (Exception ex)
+						{
+							_logger?.Error(ex, "Error invoking OnReady event");
+						}
+					}
+				}
 			}
-			// Check for participant update
-			else if (response["participant_update"] != null)
+			else if (message.MessageType == System.Net.WebSockets.WebSocketMessageType.Text)
 			{
-				HandleParticipantUpdate(response["participant_update"]);
-			}
-			// Check for track published
-			else if (response["track_published"] != null)
-			{
-				HandleTrackPublished(response["track_published"]);
-			}
-			// Check for connection quality update
-			else if (response["connection_quality"] != null)
-			{
-				// Optional: handle connection quality
+				_logger?.Information("Received TEXT message: {Message}", message.Text?.Substring(0, Math.Min(500, message.Text?.Length ?? 0)));
+
+				// Some implementations might use JSON for certain messages
+				if (!string.IsNullOrEmpty(message.Text))
+				{
+					try
+					{
+						var json = JObject.Parse(message.Text);
+						_logger?.Information("Parsed JSON message: {Json}", json.ToString(Formatting.None));
+
+						// Check for various LiveKit message types
+						if (json["join"] != null)
+						{
+							_logger?.Information("Received JOIN response!");
+							_isConnected = true;
+							_participantSid = json["join"]?["participant"]?["sid"]?.ToString();
+							_logger?.Information("Participant SID: {Sid}", _participantSid);
+
+							try
+							{
+								OnReady?.Invoke();
+								_logger?.Information("OnReady event invoked");
+							}
+							catch (Exception ex)
+							{
+								_logger?.Error(ex, "Error invoking OnReady event");
+							}
+						}
+						else if (json["offer"] != null)
+						{
+							_logger?.Information("Received WebRTC OFFER");
+						}
+						else if (json["answer"] != null)
+						{
+							_logger?.Information("Received WebRTC ANSWER");
+						}
+						else if (json["trickle"] != null)
+						{
+							_logger?.Debug("Received ICE candidate (trickle)");
+						}
+						else if (json["leave"] != null)
+						{
+							_logger?.Information("Received LEAVE notification");
+						}
+						else
+						{
+							_logger?.Warning("Received unknown JSON message type: {Keys}", string.Join(", ", json.Properties().Select(p => p.Name)));
+						}
+					}
+					catch (JsonException ex)
+					{
+						_logger?.Warning(ex, "Text message is not valid JSON: {Text}", message.Text?.Substring(0, Math.Min(200, message.Text?.Length ?? 0)));
+					}
+				}
 			}
 			else
 			{
-				_logger?.Debug("Unhandled LiveKit message type");
+				_logger?.Warning("Received message of unknown type: {Type}", message.MessageType);
 			}
 		}
 		catch (Exception ex)
