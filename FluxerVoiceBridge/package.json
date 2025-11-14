@@ -1,0 +1,18 @@
+{
+  "name": "fluxer-voice-bridge",
+  "version": "1.0.0",
+  "description": "Node.js bridge between Fluxer.Net and LiveKit voice servers",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js"
+  },
+  "keywords": ["fluxer", "livekit", "voice", "bridge"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "livekit-client": "^2.15.14",
+    "ws": "^8.18.0"
+  }
+}

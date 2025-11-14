@@ -141,13 +141,21 @@ public class VoiceClient : IDisposable
 		var candidate = SimpleProtobufParser.TryExtractIceCandidate(data);
 		if (!string.IsNullOrEmpty(candidate))
 		{
-			_logger?.Debug("✓ Received remote ICE candidate from server");
+			_logger?.Debug("✓ Received remote ICE candidate from server: {Candidate}",
+				candidate.Substring(0, Math.Min(100, candidate.Length)));
 			HandleRemoteIceCandidate(candidate);
 			return;
 		}
 
 		// Unknown message type - log for debugging
 		_logger?.Debug("Received unhandled binary message ({Length} bytes)", data.Length);
+
+		// Try to log the first few bytes to identify the message type
+		if (data.Length > 0)
+		{
+			var preview = string.Join(" ", data.Take(Math.Min(20, data.Length)).Select(b => b.ToString("X2")));
+			_logger?.Verbose("Message bytes: {Bytes}", preview);
+		}
 	}
 
 	private void HandleTextMessage(string text)
@@ -197,12 +205,9 @@ public class VoiceClient : IDisposable
 				}
 			});
 
-			// Add audio track for voice communication
-			// Use Opus codec (96) which is what LiveKit expects for audio
-			var audioFormat = new SDPAudioVideoMediaFormat(SDPMediaTypesEnum.audio, 96, "opus", 48000, 2);
-			var audioTrack = new MediaStreamTrack(SDPMediaTypesEnum.audio, false, new List<SDPAudioVideoMediaFormat> { audioFormat });
-			_peerConnection.addTrack(audioTrack);
-			_logger?.Debug("✓ Added audio track to peer connection (Opus codec)");
+			// LiveKit uses data channels for all communication, not separate audio tracks
+			// The SDP offer only contains a data channel, so we don't add audio tracks here
+			_logger?.Debug("Peer connection created (data channel mode)");
 
 			// Set up ICE candidate handler
 			_peerConnection.onicecandidate += (candidate) =>
@@ -213,6 +218,16 @@ public class VoiceClient : IDisposable
 						candidate.ToString().Substring(0, Math.Min(100, candidate.ToString().Length)));
 					SendIceCandidate(candidate);
 				}
+			};
+
+			// Set up data channel handler (LiveKit uses data channels for signaling)
+			_peerConnection.ondatachannel += (dataChannel) =>
+			{
+				_logger?.Information("✓ Data channel opened: {Label}", dataChannel.label);
+				dataChannel.onmessage += (dc, protocol, data) =>
+				{
+					_logger?.Debug("Data channel message received: {Length} bytes", data.Length);
+				};
 			};
 
 			// Set up connection state handler
@@ -255,6 +270,7 @@ public class VoiceClient : IDisposable
 
 			_peerConnection.setRemoteDescription(rtcOffer);
 			_logger?.Information("✓ Remote description set successfully");
+			_logger?.Debug("Full SDP Offer:\n{SDP}", sdp);
 
 			// Create answer
 			_logger?.Information("Creating SDP answer...");
@@ -273,11 +289,20 @@ public class VoiceClient : IDisposable
 
 			// Send answer back to server via protobuf
 			var answerBytes = SimpleProtobufParser.CreateAnswerRequest(answerInit.sdp);
+
+			// Log the raw protobuf bytes we're sending for debugging
+			_logger?.Debug("Answer protobuf bytes ({Length} total):", answerBytes.Length);
+			for (int i = 0; i < Math.Min(answerBytes.Length, 100); i += 20)
+			{
+				var chunk = answerBytes.Skip(i).Take(20);
+				var hex = string.Join(" ", chunk.Select(b => b.ToString("X2")));
+				_logger?.Debug("  [{Offset:D4}] {Hex}", i, hex);
+			}
+
 			_wsClient?.Send(answerBytes);
 
 			_logger?.Information("✓ Answer sent to LiveKit server ({Length} bytes)", answerBytes.Length);
-			_logger?.Debug("Answer SDP preview: {SDP}",
-				answerInit.sdp.Substring(0, Math.Min(200, answerInit.sdp.Length)));
+			_logger?.Debug("Full SDP Answer:\n{SDP}", answerInit.sdp);
 
 			// Process any ICE candidates that arrived before the peer connection was created
 			lock (_pendingIceCandidates)
@@ -324,11 +349,24 @@ public class VoiceClient : IDisposable
 				return;
 			}
 
-			// Parse candidate string to RTCIceCandidateInit
-			// Format: "candidate:..." or full JSON
+			// Parse candidate init - server sends JSON format: {"candidate":"...", "sdpMid":"...", "sdpMLineIndex":0}
+			string candidateString;
+			try
+			{
+				var candidateJson = JObject.Parse(candidateInit);
+				candidateString = candidateJson["candidate"]?.ToString() ?? candidateInit;
+				_logger?.Verbose("Parsed ICE candidate from JSON: {Candidate}",
+					candidateString.Substring(0, Math.Min(50, candidateString.Length)));
+			}
+			catch
+			{
+				// If not JSON, use as-is
+				candidateString = candidateInit;
+			}
+
 			var rtcCandidate = new RTCIceCandidateInit
 			{
-				candidate = candidateInit
+				candidate = candidateString
 			};
 
 			_peerConnection.addIceCandidate(rtcCandidate);
@@ -347,14 +385,21 @@ public class VoiceClient : IDisposable
 			if (_wsClient?.IsRunning != true)
 				return;
 
+			// Get candidate string - RTCIceCandidate.ToString() returns the full line
+			var candidateString = candidate.ToString();
+
+			// LiveKit expects the full candidate string including "candidate:" prefix
+			// Format the candidate init as a JSON object as per WebRTC spec
+			var candidateInit = $"{{\"candidate\":\"{candidateString}\",\"sdpMid\":\"{candidate.sdpMid}\",\"sdpMLineIndex\":{candidate.sdpMLineIndex}}}";
+
 			// Send ICE candidate via protobuf
 			var candidateBytes = SimpleProtobufParser.CreateTrickleRequest(
-				candidate.ToString(),
+				candidateInit,
 				isPublisher: true  // We're publishing audio
 			);
 
 			_wsClient.Send(candidateBytes);
-			_logger?.Verbose("✓ Sent ICE candidate to server");
+			_logger?.Verbose("✓ Sent ICE candidate to server: {Candidate}", candidateString.Substring(0, Math.Min(50, candidateString.Length)));
 		}
 		catch (Exception ex)
 		{

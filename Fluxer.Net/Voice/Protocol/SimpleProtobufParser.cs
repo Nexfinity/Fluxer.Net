@@ -197,9 +197,16 @@ public static class SimpleProtobufParser
 		var typeBytes = Encoding.UTF8.GetBytes("answer");
 		var sdpBytes = Encoding.UTF8.GetBytes(sdpAnswer);
 
+		// Calculate accurate size including tag sizes
 		int sessionDescSize = 0;
-		sessionDescSize += 1 + GetVarintSize((ulong)typeBytes.Length) + typeBytes.Length; // field 1
-		sessionDescSize += 1 + GetVarintSize((ulong)sdpBytes.Length) + sdpBytes.Length;   // field 2
+		// Field 1 (type): tag + length + data
+		sessionDescSize += GetVarintSize((ulong)((1 << 3) | 2)); // tag for field 1, wire type 2
+		sessionDescSize += GetVarintSize((ulong)typeBytes.Length);
+		sessionDescSize += typeBytes.Length;
+		// Field 2 (sdp): tag + length + data
+		sessionDescSize += GetVarintSize((ulong)((2 << 3) | 2)); // tag for field 2, wire type 2
+		sessionDescSize += GetVarintSize((ulong)sdpBytes.Length);
+		sessionDescSize += sdpBytes.Length;
 
 		// Write SignalRequest field 2 (answer)
 		WriteTag(ms, 2, 2); // field 2, wire type LengthDelimited
