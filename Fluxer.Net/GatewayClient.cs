@@ -1,4 +1,4 @@
-﻿#undef NOPE
+#undef NOPE
 using System.Diagnostics;
 using System.Reflection;
 using System.Text.RegularExpressions;
@@ -626,10 +626,10 @@ public partial class GatewayClient : IDisposable
                     _logger.Warning("GUILD_UPDATE event received but data could not be cast to GuildGatewayData");
                 return;
             case "GUILD_DELETE":
-                if (p.Data is EntityRemovedGatewayData guildDeleteData)
+                if (p.Data is GuildDeleteGatewayData guildDeleteData)
                     GuildDelete?.Invoke(guildDeleteData);
                 else
-                    _logger.Warning("GUILD_DELETE event received but data could not be cast to EntityRemovedGatewayData");
+                    _logger.Warning("GUILD_DELETE event received but data could not be cast to GuildDeleteGatewayData");
                 return;
             case "GUILD_MEMBER_ADD":
                 if (p.Data is GuildMemberGatewayData guildMemberAddData)
@@ -1573,11 +1573,12 @@ public partial class GatewayClient : IDisposable
     /// <summary>
     /// Delegate for GUILD_DELETE events when a guild becomes unavailable or the bot is removed.
     /// </summary>
-    /// <param name="data">The entity data containing guild ID.</param>
-    public delegate void GuildDeleteEvent(EntityRemovedGatewayData data);
+    /// <param name="data">The guild delete data containing guild ID and unavailable status.</param>
+    public delegate void GuildDeleteEvent(GuildDeleteGatewayData data);
 
     /// <summary>
     /// Occurs when the bot is removed from a guild or when a guild becomes unavailable.
+    /// Check the Unavailable property to distinguish between guild outages (true) and the user being removed (false/null).
     /// </summary>
     public event GuildDeleteEvent GuildDelete;
 
