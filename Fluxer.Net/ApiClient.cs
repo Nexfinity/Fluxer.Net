@@ -60,6 +60,7 @@ public class ApiClient
     /// </remarks>
     public ApiClient(string token, FluxerConfig config)
     {
+        ValidateToken(token);
         Token = token;
         _config = config;
         HttpClient = _config.HttpClient ?? new();
@@ -73,6 +74,30 @@ public class ApiClient
             _config.Version,
             _config.EnableRateLimiting ? "enabled" : "disabled");
         Log.Verbose("Loaded with config {@Config}", _config);
+    }
+
+    /// <summary>
+    /// Validates that the token has a recognized prefix for the Fluxer API.
+    /// </summary>
+    /// <param name="token">The token to validate.</param>
+    /// <exception cref="ArgumentException">
+    /// Thrown when the token is null, empty, or does not begin with a valid prefix.
+    /// Bot tokens must start with <c>Bot </c> (including the trailing space).
+    /// User tokens must start with <c>flx_</c>.
+    /// </exception>
+    internal static void ValidateToken(string token)
+    {
+        if (string.IsNullOrWhiteSpace(token))
+            throw new ArgumentException(
+                "Token must not be null or empty.", nameof(token));
+
+        if (!token.StartsWith("Bot ", StringComparison.Ordinal) &&
+            !token.StartsWith("flx_", StringComparison.Ordinal))
+            throw new ArgumentException(
+                $"Invalid token format. Bot tokens must be prefixed with 'Bot ' (e.g. 'Bot <token>') " +
+                $"and user tokens must be prefixed with 'flx_'. " +
+                $"Received token starting with: '{(token.Length > 8 ? token[..8] : token)}...'",
+                nameof(token));
     }
 
     /// <summary>

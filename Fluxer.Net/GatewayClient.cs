@@ -91,6 +91,7 @@ public partial class GatewayClient : IDisposable
     /// </remarks>
     public GatewayClient(string token, FluxerConfig config)
     {
+        ApiClient.ValidateToken(token);
         Token = token;
         _config = config;
         _logger = _config.Serilog ?? new LoggerConfiguration()
@@ -699,6 +700,13 @@ public partial class GatewayClient : IDisposable
             case "GUILD_CREATE":
                 if (p.Data is GuildGatewayData guildCreateData)
                     GuildCreate?.Invoke(guildCreateData);
+                else if (p.Data is GuildDeleteGatewayData unavailableGuildData)
+                {
+                    // GUILD_CREATE with unavailable:true means the guild exists but is temporarily unavailable (outage).
+                    // Synthesize a minimal GuildGatewayData so consumers receive the event consistently.
+                    _logger.Debug("GUILD_CREATE received for unavailable guild {GuildId}, synthesizing GuildGatewayData", unavailableGuildData.Id);
+                    GuildCreate?.Invoke(new GuildGatewayData { Id = unavailableGuildData.Id, Unavailable = true });
+                }
                 else
                     _logger.Warning("GUILD_CREATE event received but data could not be cast to GuildGatewayData");
                 return;
