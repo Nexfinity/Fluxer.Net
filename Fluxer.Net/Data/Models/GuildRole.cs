@@ -13,7 +13,11 @@ public class GuildRole
 	[JsonProperty("name")]
 	public string Name { get; set; }
 
+	/// <summary>
+	/// The role's permission bitfield. Sent as a quoted string by the gateway (e.g. "8933636165184").
+	/// </summary>
 	[JsonProperty("permissions")]
+	[JsonConverter(typeof(Fluxer.Net.Extensions.StringUInt64Converter))]
 	public ulong Permissions { get; set; }
 
 	[JsonProperty("position")]
