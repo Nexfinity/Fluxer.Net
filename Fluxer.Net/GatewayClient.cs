@@ -42,6 +42,14 @@ public partial class GatewayClient : IDisposable
     /// </summary>
     public string Token { get; set; }
 
+    /// <summary>
+    /// Returns the raw token without any "Bot " prefix, for use in gateway IDENTIFY/RESUME packets.
+    /// The gateway protocol expects only the raw token, not the HTTP authorization format.
+    /// </summary>
+    private string GatewayToken => Token.StartsWith("Bot ", StringComparison.OrdinalIgnoreCase)
+        ? Token[4..]
+        : Token;
+
     private readonly FluxerConfig _config;
     private WebsocketClient _gateway;
     private readonly Stopwatch _gatewayDuration = new();
@@ -191,7 +199,7 @@ public partial class GatewayClient : IDisposable
             var login = new GatewayPacket
             {
                 OpCode = FluxerOpCode.Identify,
-                Data = new IdentifyGatewayData(Token)
+                Data = new IdentifyGatewayData(GatewayToken)
                 {
                     Properties = new Dictionary<string, string>
                     {
@@ -882,7 +890,7 @@ public partial class GatewayClient : IDisposable
                 var identifyPacket = new GatewayPacket
                 {
                     OpCode = FluxerOpCode.Identify,
-                    Data = new IdentifyGatewayData(Token)
+                    Data = new IdentifyGatewayData(GatewayToken)
                     {
                         Properties = new Dictionary<string, string>
                         {
@@ -920,7 +928,7 @@ public partial class GatewayClient : IDisposable
                 {
                     Sequence = _sequence,
                     SessionId = _sessionId,
-                    Token = Token
+                    Token = GatewayToken
                 }
             };
             SendGatewayPacket(packet);
