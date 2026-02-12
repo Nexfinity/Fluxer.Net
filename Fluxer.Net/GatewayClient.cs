@@ -42,6 +42,14 @@ public partial class GatewayClient : IDisposable
     /// </summary>
     public string Token { get; set; }
 
+    /// <summary>
+    /// Returns the raw token without any "Bot " prefix, for use in gateway IDENTIFY/RESUME packets.
+    /// The gateway protocol expects only the raw token, not the HTTP authorization format.
+    /// </summary>
+    private string GatewayToken => Token.StartsWith("Bot ", StringComparison.OrdinalIgnoreCase)
+        ? Token[4..]
+        : Token;
+
     private readonly FluxerConfig _config;
     private WebsocketClient _gateway;
     private readonly Stopwatch _gatewayDuration = new();
@@ -83,6 +91,7 @@ public partial class GatewayClient : IDisposable
     /// </remarks>
     public GatewayClient(string token, FluxerConfig config)
     {
+        ApiClient.ValidateToken(token);
         Token = token;
         _config = config;
         _logger = _config.Serilog ?? new LoggerConfiguration()
@@ -191,7 +200,7 @@ public partial class GatewayClient : IDisposable
             var login = new GatewayPacket
             {
                 OpCode = FluxerOpCode.Identify,
-                Data = new IdentifyGatewayData(Token)
+                Data = new IdentifyGatewayData(GatewayToken)
                 {
                     Properties = new Dictionary<string, string>
                     {
@@ -691,6 +700,13 @@ public partial class GatewayClient : IDisposable
             case "GUILD_CREATE":
                 if (p.Data is GuildGatewayData guildCreateData)
                     GuildCreate?.Invoke(guildCreateData);
+                else if (p.Data is GuildDeleteGatewayData unavailableGuildData)
+                {
+                    // GUILD_CREATE with unavailable:true means the guild exists but is temporarily unavailable (outage).
+                    // Synthesize a minimal GuildGatewayData so consumers receive the event consistently.
+                    _logger.Debug("GUILD_CREATE received for unavailable guild {GuildId}, synthesizing GuildGatewayData", unavailableGuildData.Id);
+                    GuildCreate?.Invoke(new GuildGatewayData { Id = unavailableGuildData.Id, Unavailable = true });
+                }
                 else
                     _logger.Warning("GUILD_CREATE event received but data could not be cast to GuildGatewayData");
                 return;
@@ -882,7 +898,7 @@ public partial class GatewayClient : IDisposable
                 var identifyPacket = new GatewayPacket
                 {
                     OpCode = FluxerOpCode.Identify,
-                    Data = new IdentifyGatewayData(Token)
+                    Data = new IdentifyGatewayData(GatewayToken)
                     {
                         Properties = new Dictionary<string, string>
                         {
@@ -920,7 +936,7 @@ public partial class GatewayClient : IDisposable
                 {
                     Sequence = _sequence,
                     SessionId = _sessionId,
-                    Token = Token
+                    Token = GatewayToken
                 }
             };
             SendGatewayPacket(packet);

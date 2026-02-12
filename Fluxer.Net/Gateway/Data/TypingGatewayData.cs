@@ -8,11 +8,26 @@ public class TypingGatewayData : IGatewayData
     public ulong ChannelId { get; set; }
 
     [JsonProperty("guild_id")]
-    public ulong GuildId { get; set; }
+    public ulong? GuildId { get; set; }
 
     [JsonProperty("user_id")]
     public ulong UserId { get; set; }
 
+    /// <summary>
+    /// Unix timestamp in milliseconds when the user started typing.
+    /// </summary>
     [JsonProperty("timestamp")]
-    public ulong Timestamp { get; set; }
+    public long Timestamp { get; set; }
+
+    /// <summary>
+    /// The <see cref="Timestamp"/> value converted to a UTC <see cref="DateTime"/>.
+    /// </summary>
+    [JsonIgnore]
+    public DateTime TimestampUtc => DateTimeOffset.FromUnixTimeMilliseconds(Timestamp).UtcDateTime;
+
+    /// <summary>
+    /// Guild member data for the typing user (only present in guild channels).
+    /// </summary>
+    [JsonProperty("member")]
+    public GuildMemberGatewayData? Member { get; set; }
 }
