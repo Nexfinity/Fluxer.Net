@@ -26,21 +26,35 @@ public abstract class ModuleBase
 	{
 	}
 
-	/// <summary>
-	/// Sends a message to the channel the command was executed in.
-	/// </summary>
-	/// <param name="content">The message content.</param>
-	protected async Task<Message> ReplyAsync(string content)
+    /// <summary>
+    /// Sends a message to the channel the command was executed in,
+	/// and reply to the message that invoked the command.
+    /// </summary>
+    /// <param name="content">The message content.</param>
+    protected async Task<Message> ReplyAsync(string content)
 	{
-		return await Context.Client.SendMessage(Context.ChannelId, new Message { Content = content });
+		return await ReplyAsync(new Message
+		{
+			Content = content
+		});
 	}
 
 	/// <summary>
-	/// Sends a message to the channel the command was executed in.
+	/// Sends a message to the channel the command was executed in,
+	/// and reply to the message that invoked the command.
 	/// </summary>
 	/// <param name="message">The message to send.</param>
 	protected async Task<Message> ReplyAsync(Message message)
 	{
+		// don't override ref
+		if (message.Reference != null)
+		{
+			message.Reference = new MessageRef()
+			{
+				ChannelId = Context.Message.ChannelId,
+				MessageId = Context.Message.Id
+			};
+        }
 		return await Context.Client.SendMessage(Context.ChannelId, message);
 	}
 }
