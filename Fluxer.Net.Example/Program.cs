@@ -189,8 +189,8 @@ gateway.MessageCreate += async messageData =>
 {
     try
     {
-        // Ignore messages from webhooks or system messages (they don't have an Author)
-        if (messageData.Author == null)
+        // Ignore messages from webhooks or system messages (they don't have an Author) and other bots to prevent spam loops
+        if (messageData.Author == null || messageData.Author.IsBot)
             return;
 
         // Log every message for debugging (optional - can be noisy!)
