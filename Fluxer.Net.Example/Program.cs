@@ -15,15 +15,16 @@
 //   - Basic understanding of async/await in C#
 // ============================================================================
 
-using Fluxer.Net;
-using Fluxer.Net.Commands;
-using Fluxer.Net.Data.Enums;
-using Fluxer.Net.Example;
-using Fluxer.Net.Gateway.Data;
+using System.Reflection;
 using Serilog;
 using Serilog.Core;
 using Serilog.Sinks.SystemConsole.Themes;
-using System.Reflection;
+using Fluxer.Net;
+using Fluxer.Net.Commands;
+using Fluxer.Net.Data.Enums;
+using Fluxer.Net.EmbedBuilder;
+using Fluxer.Net.Example;
+using Fluxer.Net.Gateway.Data;
 
 // ============================================================================
 // STEP 1: Configure Logging
@@ -124,6 +125,7 @@ var api = new ApiClient(config[key: "Token"], new()
 //   - Sync/Async execution modes
 
 var commands = new CommandService(
+    prefixChar: '/',  // Commands start with /
     logger: Log.Logger as Logger,  // Use our configured logger
     services: null  // No dependency injection for this example
 );
