@@ -1,5 +1,6 @@
 using Fluxer.Net.Data;
 using Fluxer.Net.Data.Models;
+using Fluxer.Net.Data.Requests;
 using Fluxer.Net.Extensions;
 using Fluxer.Net.RateLimiting;
 using Newtonsoft.Json;
@@ -8,7 +9,6 @@ using Serilog.Core;
 using System.Net;
 using System.Net.Http.Headers;
 using System.Reflection;
-using System.Linq;
 
 namespace Fluxer.Net;
 
@@ -695,6 +695,9 @@ public class ApiClient
 
     public async Task<UserSettings> UpdateCurrentUserSettings<TRequest>(TRequest settings)
         => await MakeFluxerApiRequestRS<UserSettings, TRequest>(HttpMethod.Patch, "/users/@me/settings", settings, true);
+
+    public async Task<UserSettings> SetCustomStatus(UserCustomStatus status)
+        => await MakeFluxerApiRequestRS<UserSettings, ModifyCustomStatus>(HttpMethod.Patch, "/users/@me/settings", new ModifyCustomStatus(status), true);
 
     public async Task<TResponse> GetCurrentUserNotes<TResponse>()
         => await MakeFluxerApiRequestR<TResponse>(HttpMethod.Get, "/users/@me/notes", true);
