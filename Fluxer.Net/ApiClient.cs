@@ -40,6 +40,11 @@ public class ApiClient
     /// </summary>
     public RateLimitManager RateLimitManager { get; set; }
 
+    /// <summary>
+    /// API limits for message length, attachment count and premium limits.
+    /// </summary>
+    public ApiLimits Limits { get; set; }
+
     private readonly FluxerConfig _config;
 #pragma warning disable CS0169
     private readonly Logger _logger;
