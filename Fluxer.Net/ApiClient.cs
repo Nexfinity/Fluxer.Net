@@ -1,12 +1,14 @@
-using System.Net;
-using System.Net.Http.Headers;
-using System.Reflection;
+using Fluxer.Net.Data;
 using Fluxer.Net.Data.Models;
+using Fluxer.Net.Data.Requests;
+using Fluxer.Net.Extensions;
 using Fluxer.Net.RateLimiting;
 using Newtonsoft.Json;
 using Serilog;
 using Serilog.Core;
-using Fluxer.Net.Extensions;
+using System.Net;
+using System.Net.Http.Headers;
+using System.Reflection;
 
 namespace Fluxer.Net;
 
@@ -37,6 +39,11 @@ public class ApiClient
     /// Prevents exceeding Fluxer API rate limits by automatically waiting when necessary.
     /// </summary>
     public RateLimitManager RateLimitManager { get; set; }
+
+    /// <summary>
+    /// API limits for message length, attachment count and premium limits.
+    /// </summary>
+    public ApiLimits Limits { get; set; }
 
     private readonly FluxerConfig _config;
 #pragma warning disable CS0169
@@ -130,7 +137,8 @@ public class ApiClient
     /// <param name="authorize">Whether to include the Authorization header.</param>
     /// <returns>The deserialized response object.</returns>
     /// <exception cref="FluxerApiException">Thrown when <paramref name="throwOnNonSuccess"/> is true and the API returns a non-success status code.</exception>
-    public async Task<TResponse> MakeFluxerApiRequestRS<TResponse, TSend>(HttpMethod method, string route, TSend data, bool throwOnNonSuccess = false, bool authorize = true)
+    public async Task<TResponse> MakeFluxerApiRequestRS<TResponse, TSend>(HttpMethod method, string route, TSend data, bool throwOnNonSuccess = false, bool authorize = true,
+        ICollection<KeyValuePair<string, (HttpContent content, string? filename)>>? otherFormData = null)
     {
         var rawContent = JsonConvert.SerializeObject(data, new JsonSerializerSettings()
         {
@@ -140,9 +148,35 @@ public class ApiClient
         var req = new HttpRequestMessage()
         {
             Method = method,
-            Content = new StringContent(rawContent, new MediaTypeHeaderValue("application/json")),
             RequestUri = new(_config.RealApiBaseUrl + route)
         };
+        if (otherFormData != null)
+        {
+            var form = new MultipartFormDataContent
+            {
+                {
+                    new StringContent(rawContent, new MediaTypeHeaderValue("application/json")),
+                    "payload_json"
+                }
+            };
+            foreach (var (key, (content, filename)) in otherFormData)
+            {
+                if (key == "payload_json") continue;
+                if (string.IsNullOrEmpty(filename?.Trim()))
+                {
+                    form.Add(content, key);
+                }
+                else
+                {
+                    form.Add(content, key, filename);
+                }
+            }
+            req.Content = form;
+        }
+        else
+        {
+            req.Content = new StringContent(rawContent, new MediaTypeHeaderValue("application/json"));
+        }
         if (authorize)
             req.Headers.Add("Authorization", Token);
         var result = await HttpClient.SendAsync(req);
@@ -337,8 +371,21 @@ public class ApiClient
     public async Task<TResponse> SearchChannel<TRequest, TResponse>(ulong channelId, TRequest data)
         => await MakeFluxerApiRequestRS<TResponse, TRequest>(HttpMethod.Post, $"/channels/{channelId}/search", data, true);
 
-    public async Task<Message> SendMessage(ulong channelId, Message message)
-        => await MakeFluxerApiRequestRS<Message, Message>(HttpMethod.Post, $"/channels/{channelId}/messages", message, true);
+    public async Task<Message> SendMessage(ulong channelId, Message message, StreamAttachment[]? attachments = null)
+    {
+        if (attachments?.Length < 1)
+        {
+            return await MakeFluxerApiRequestRS<Message, Message>(HttpMethod.Post, $"/channels/{channelId}/messages", message, true);
+        }
+        var form = new List<KeyValuePair<string, (HttpContent content, string? filename)>>();
+        for (int i = 0; i < attachments.Length; i++)
+        {
+            attachments[i].Id = (ulong)i;
+            form.Add(new KeyValuePair<string, (HttpContent content, string? filename)>($"file[{i}]", (new StreamContent(attachments[i].Stream), attachments[i].Filename)));
+        }
+        message.Attachments = attachments.Cast<Attachment>().ToList();
+        return await MakeFluxerApiRequestRS<Message, Message>(HttpMethod.Post, $"/channels/{channelId}/messages", message, true);
+    }
 
     public async Task<Message> EditMessage(ulong channelId, ulong messageId, Message message)
         => await MakeFluxerApiRequestRS<Message, Message>(HttpMethod.Patch, $"/channels/{channelId}/messages/{messageId}", message, true);
@@ -653,6 +700,9 @@ public class ApiClient
 
     public async Task<UserSettings> UpdateCurrentUserSettings<TRequest>(TRequest settings)
         => await MakeFluxerApiRequestRS<UserSettings, TRequest>(HttpMethod.Patch, "/users/@me/settings", settings, true);
+
+    public async Task<UserSettings> SetCustomStatus(UserCustomStatus status)
+        => await MakeFluxerApiRequestRS<UserSettings, ModifyCustomStatus>(HttpMethod.Patch, "/users/@me/settings", new ModifyCustomStatus(status), true);
 
     public async Task<TResponse> GetCurrentUserNotes<TResponse>()
         => await MakeFluxerApiRequestR<TResponse>(HttpMethod.Get, "/users/@me/notes", true);
