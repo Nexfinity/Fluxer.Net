@@ -1,6 +1,8 @@
 using Fluxer.Net.Data;
 using Fluxer.Net.Data.Models;
 using Fluxer.Net.Data.Requests;
+using Fluxer.Net.Data.Response;
+using Fluxer.Net.Data.Responses;
 using Fluxer.Net.Extensions;
 using Fluxer.Net.RateLimiting;
 using Newtonsoft.Json;
@@ -531,8 +533,8 @@ public class ApiClient
 
     #region Guilds API
 
-    public async Task<GuildProperties> CreateGuild<TRequest>(TRequest data)
-        => await MakeFluxerApiRequestRS<GuildProperties, TRequest>(HttpMethod.Post, "/guilds", data, true);
+    public async Task<GuildProperties> CreateGuild(GuildCreateRequest data)
+        => await MakeFluxerApiRequestRS<GuildProperties, GuildCreateRequest>(HttpMethod.Post, "/guilds", data, true);
 
     public async Task<List<GuildProperties>> GetCurrentUserGuilds()
         => await MakeFluxerApiRequestR<List<GuildProperties>>(HttpMethod.Get, "/users/@me/guilds", true);
@@ -546,14 +548,14 @@ public class ApiClient
     public async Task<GuildProperties> UpdateGuild(ulong guildId, GuildProperties guild)
         => await MakeFluxerApiRequestRS<GuildProperties, GuildProperties>(HttpMethod.Patch, $"/guilds/{guildId}", guild, true);
 
-    public async Task DeleteGuild<TRequest>(ulong guildId, TRequest data)
-        => await MakeFluxerApiRequestS<TRequest>(HttpMethod.Post, $"/guilds/{guildId}/delete", data, true);
+    public async Task DeleteGuild(ulong guildId, GuildDeleteRequest data)
+        => await MakeFluxerApiRequestS(HttpMethod.Post, $"/guilds/{guildId}/delete", data, true);
 
-    public async Task<TResponse> GetGuildVanityUrl<TResponse>(ulong guildId)
-        => await MakeFluxerApiRequestR<TResponse>(HttpMethod.Get, $"/guilds/{guildId}/vanity-url", true);
+    public async Task<GuildVanityUrlResponse> GetGuildVanityUrl(ulong guildId)
+        => await MakeFluxerApiRequestR<GuildVanityUrlResponse>(HttpMethod.Get, $"/guilds/{guildId}/vanity-url", true);
 
-    public async Task<TResponse> UpdateGuildVanityUrl<TRequest, TResponse>(ulong guildId, TRequest data)
-        => await MakeFluxerApiRequestRS<TResponse, TRequest>(HttpMethod.Patch, $"/guilds/{guildId}/vanity-url", data, true);
+    public async Task<GuildVanityUrlUpdateResponse> UpdateGuildVanityUrl(ulong guildId, GuildVanityUrlUpdateRequest data)
+        => await MakeFluxerApiRequestRS<GuildVanityUrlUpdateResponse, GuildVanityUrlUpdateRequest>(HttpMethod.Patch, $"/guilds/{guildId}/vanity-url", data, true);
 
     public async Task<List<User>> GetMembers(ulong guildId)
         => await MakeFluxerApiRequestR<List<User>>(HttpMethod.Get, $"/guilds/{guildId}/members", true);
@@ -573,14 +575,14 @@ public class ApiClient
     public async Task KickMember(ulong guildId, ulong userId)
         => await MakeFluxerApiRequest(HttpMethod.Delete, $"/guilds/{guildId}/members/{userId}", true);
 
-    public async Task TransferOwnership<TRequest>(ulong guildId, TRequest data)
-        => await MakeFluxerApiRequestS<TRequest>(HttpMethod.Post, $"/guilds/{guildId}/transfer-ownership", data, true);
+    public async Task TransferOwnership(ulong guildId, GuildTransferOwnershipRequest data)
+        => await MakeFluxerApiRequestS(HttpMethod.Post, $"/guilds/{guildId}/transfer-ownership", data, true);
 
-    public async Task<TResponse> GetBans<TResponse>(ulong guildId)
-        => await MakeFluxerApiRequestR<TResponse>(HttpMethod.Get, $"/guilds/{guildId}/bans", true);
+    public async Task<IReadOnlyCollection<GuildBanResponse>> GetBans(ulong guildId)
+        => await MakeFluxerApiRequestR<IReadOnlyCollection<GuildBanResponse>>(HttpMethod.Get, $"/guilds/{guildId}/bans", true);
 
-    public async Task BanMember<TRequest>(ulong guildId, ulong userId, TRequest data)
-        => await MakeFluxerApiRequestS<TRequest>(HttpMethod.Put, $"/guilds/{guildId}/bans/{userId}", data, true);
+    public async Task BanMember(ulong guildId, ulong userId, GuildBanCreateRequest data)
+        => await MakeFluxerApiRequestS(HttpMethod.Put, $"/guilds/{guildId}/bans/{userId}", data, true);
 
     public async Task UnbanMember(ulong guildId, ulong userId)
         => await MakeFluxerApiRequest(HttpMethod.Delete, $"/guilds/{guildId}/bans/{userId}", true);
@@ -591,14 +593,14 @@ public class ApiClient
     public async Task RemoveMemberRole(ulong guildId, ulong userId, ulong roleId)
         => await MakeFluxerApiRequest(HttpMethod.Delete, $"/guilds/{guildId}/members/{userId}/roles/{roleId}", true);
 
-    public async Task<GuildRole> CreateRole<TRequest>(ulong guildId, TRequest data)
-        => await MakeFluxerApiRequestRS<GuildRole, TRequest>(HttpMethod.Post, $"/guilds/{guildId}/roles", data, true);
+    public async Task<GuildRole> CreateRole(ulong guildId, GuildRoleCreateRequest data)
+        => await MakeFluxerApiRequestRS<GuildRole, GuildRoleCreateRequest>(HttpMethod.Post, $"/guilds/{guildId}/roles", data, true);
 
-    public async Task<GuildRole> UpdateRole<TRequest>(ulong guildId, ulong roleId, TRequest data)
-        => await MakeFluxerApiRequestRS<GuildRole, TRequest>(HttpMethod.Patch, $"/guilds/{guildId}/roles/{roleId}", data, true);
+    public async Task<GuildRole> UpdateRole(ulong guildId, ulong roleId, GuildRoleUpdateRequest data)
+        => await MakeFluxerApiRequestRS<GuildRole, GuildRoleUpdateRequest>(HttpMethod.Patch, $"/guilds/{guildId}/roles/{roleId}", data, true);
 
-    public async Task<TResponse> UpdateRoles<TRequest, TResponse>(ulong guildId, TRequest data)
-        => await MakeFluxerApiRequestRS<TResponse, TRequest>(HttpMethod.Patch, $"/guilds/{guildId}/roles", data, true);
+    public async Task UpdateRolePositions(ulong guildId, IEnumerable<GuildRolePositionItem> positions)
+        => await MakeFluxerApiRequestS(HttpMethod.Patch, $"/guilds/{guildId}/roles", positions, true);
 
     public async Task DeleteRole(ulong guildId, ulong roleId)
         => await MakeFluxerApiRequest(HttpMethod.Delete, $"/guilds/{guildId}/roles/{roleId}", true);
@@ -607,10 +609,11 @@ public class ApiClient
         => await MakeFluxerApiRequestR<List<Channel>>(HttpMethod.Get, $"/guilds/{guildId}/channels", true);
 
     public async Task<Channel> CreateChannel<TRequest>(ulong guildId, TRequest data)
+        where TRequest : ChannelCreateRequest
         => await MakeFluxerApiRequestRS<Channel, TRequest>(HttpMethod.Post, $"/guilds/{guildId}/channels", data, true);
 
-    public async Task<TResponse> UpdateChannels<TRequest, TResponse>(ulong guildId, TRequest data)
-        => await MakeFluxerApiRequestRS<TResponse, TRequest>(HttpMethod.Patch, $"/guilds/{guildId}/channels", data, true);
+    public async Task UpdateChannelPositions(ulong guildId, IEnumerable<ChannelPositionUpdateRequestItem> data)
+        => await MakeFluxerApiRequestS(HttpMethod.Patch, $"/guilds/{guildId}/channels", data, true);
 
     public async Task<TResponse> SearchGuild<TRequest, TResponse>(ulong guildId, TRequest data)
         => await MakeFluxerApiRequestRS<TResponse, TRequest>(HttpMethod.Post, $"/guilds/{guildId}/search", data, true);
@@ -621,32 +624,32 @@ public class ApiClient
     public async Task<TResponse> SearchAuditLog<TRequest, TResponse>(ulong guildId, TRequest data)
         => await MakeFluxerApiRequestRS<TResponse, TRequest>(HttpMethod.Post, $"/guilds/{guildId}/audit-logs/search", data, true);
 
-    public async Task<TResponse> CreateEmoji<TRequest, TResponse>(ulong guildId, TRequest data)
-        => await MakeFluxerApiRequestRS<TResponse, TRequest>(HttpMethod.Post, $"/guilds/{guildId}/emojis", data, true);
+    public async Task<GuildEmojiResponse> CreateEmoji(ulong guildId, GuildEmojiCreateRequest data)
+        => await MakeFluxerApiRequestRS<GuildEmojiResponse, GuildEmojiCreateRequest>(HttpMethod.Post, $"/guilds/{guildId}/emojis", data, true);
 
-    public async Task<TResponse> CreateEmojiBulk<TRequest, TResponse>(ulong guildId, TRequest data)
-        => await MakeFluxerApiRequestRS<TResponse, TRequest>(HttpMethod.Post, $"/guilds/{guildId}/emojis/bulk", data, true);
+    public async Task<GuildEmojiBulkCreateResponse> CreateEmojiBulk(ulong guildId, GuildEmojiBulkCreateRequest data)
+        => await MakeFluxerApiRequestRS<GuildEmojiBulkCreateResponse, GuildEmojiBulkCreateRequest>(HttpMethod.Post, $"/guilds/{guildId}/emojis/bulk", data, true);
 
-    public async Task<TResponse> GetEmojis<TResponse>(ulong guildId)
-        => await MakeFluxerApiRequestR<TResponse>(HttpMethod.Get, $"/guilds/{guildId}/emojis", true);
+    public async Task<IEnumerable<GuildEmojiWithUserResponse>> GetEmojis(ulong guildId)
+        => await MakeFluxerApiRequestR<IEnumerable<GuildEmojiWithUserResponse>>(HttpMethod.Get, $"/guilds/{guildId}/emojis", true);
 
-    public async Task<TResponse> UpdateEmoji<TRequest, TResponse>(ulong guildId, ulong emojiId, TRequest data)
-        => await MakeFluxerApiRequestRS<TResponse, TRequest>(HttpMethod.Patch, $"/guilds/{guildId}/emojis/{emojiId}", data, true);
+    public async Task<GuildEmojiResponse> UpdateEmoji(ulong guildId, ulong emojiId, GuildEmojiUpdateRequest data)
+        => await MakeFluxerApiRequestRS<GuildEmojiResponse, GuildEmojiUpdateRequest>(HttpMethod.Patch, $"/guilds/{guildId}/emojis/{emojiId}", data, true);
 
     public async Task DeleteEmoji(ulong guildId, ulong emojiId)
         => await MakeFluxerApiRequest(HttpMethod.Delete, $"/guilds/{guildId}/emojis/{emojiId}", true);
 
-    public async Task<TResponse> CreateSticker<TRequest, TResponse>(ulong guildId, TRequest data)
-        => await MakeFluxerApiRequestRS<TResponse, TRequest>(HttpMethod.Post, $"/guilds/{guildId}/stickers", data, true);
+    public async Task<GuildStickerResponse> CreateSticker(ulong guildId, GuildStickerCreateRequest data)
+        => await MakeFluxerApiRequestRS<GuildStickerResponse, GuildStickerCreateRequest>(HttpMethod.Post, $"/guilds/{guildId}/stickers", data, true);
 
-    public async Task<TResponse> CreateStickerBulk<TRequest, TResponse>(ulong guildId, TRequest data)
-        => await MakeFluxerApiRequestRS<TResponse, TRequest>(HttpMethod.Post, $"/guilds/{guildId}/stickers/bulk", data, true);
+    public async Task<GuildStickerBulkCreateResponse> CreateStickerBulk(ulong guildId, GuildStickerBulkCreateRequest data)
+        => await MakeFluxerApiRequestRS<GuildStickerBulkCreateResponse, GuildStickerBulkCreateRequest>(HttpMethod.Post, $"/guilds/{guildId}/stickers/bulk", data, true);
 
-    public async Task<TResponse> GetStickers<TResponse>(ulong guildId)
-        => await MakeFluxerApiRequestR<TResponse>(HttpMethod.Get, $"/guilds/{guildId}/stickers", true);
+    public async Task<IEnumerable<GuildStickerWithUserResponse>> GetStickers(ulong guildId)
+        => await MakeFluxerApiRequestR<IEnumerable<GuildStickerWithUserResponse>>(HttpMethod.Get, $"/guilds/{guildId}/stickers", true);
 
-    public async Task<TResponse> UpdateSticker<TRequest, TResponse>(ulong guildId, ulong stickerId, TRequest data)
-        => await MakeFluxerApiRequestRS<TResponse, TRequest>(HttpMethod.Patch, $"/guilds/{guildId}/stickers/{stickerId}", data, true);
+    public async Task<GuildStickerResponse> UpdateSticker(ulong guildId, ulong stickerId, GuildStickerUpdateRequest data)
+        => await MakeFluxerApiRequestRS<GuildStickerResponse, GuildStickerUpdateRequest>(HttpMethod.Patch, $"/guilds/{guildId}/stickers/{stickerId}", data, true);
 
     public async Task DeleteSticker(ulong guildId, ulong stickerId)
         => await MakeFluxerApiRequest(HttpMethod.Delete, $"/guilds/{guildId}/stickers/{stickerId}", true);
@@ -654,8 +657,8 @@ public class ApiClient
     public async Task<List<Invite>> GetGuildInvites(ulong guildId)
         => await MakeFluxerApiRequestR<List<Invite>>(HttpMethod.Get, $"/guilds/{guildId}/invites", true);
 
-    public async Task<TResponse> GetGuildWebhooks<TResponse>(ulong guildId)
-        => await MakeFluxerApiRequestR<TResponse>(HttpMethod.Get, $"/guilds/{guildId}/webhooks", true);
+    public async Task<IEnumerable<WebhookResponse>> GetGuildWebhooks(ulong guildId)
+        => await MakeFluxerApiRequestR<IEnumerable<WebhookResponse>>(HttpMethod.Get, $"/guilds/{guildId}/webhooks", true);
 
     #endregion
 
