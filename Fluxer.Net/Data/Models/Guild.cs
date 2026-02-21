@@ -1,3 +1,4 @@
+using Fluxer.Net.Data.Enums;
 using Newtonsoft.Json;
 
 namespace Fluxer.Net.Data.Models;
@@ -22,10 +23,34 @@ public class Guild
 	[JsonProperty("banner")]
 	public string? BannerHash { get; set; }
 
-	[JsonProperty("splash")]
+    [JsonProperty("banner_width")]
+    public int? BannerWidth { get; set; }
+
+    [JsonProperty("banner_height")]
+    public int? BannerHeight { get; set; }
+
+    [JsonProperty("embed_splash")]
+	public string? EmbedSplashHash { get; set; }
+
+    [JsonProperty("embed_splash_width")]
+	public int? EmbedSplashWidth { get; set; }
+    
+    [JsonProperty("embed_splash_height")]
+    public int? EmbedSplashHeight { get; set; }
+
+    [JsonProperty("splash")]
 	public string? SplashHash { get; set; }
 
-	[JsonProperty("features")]
+    [JsonProperty("splash_width")]
+	public int? SplashWidth { get; set; }
+	
+    [JsonProperty("splash_height")]
+	public int? SplashHeight { get; set; }
+
+    [JsonProperty("splash_card_alignment")]
+	public GuildSplashCardAlignment SplashCardAligment { get; set; }
+
+    [JsonProperty("features")]
 	public HashSet<string>? Features { get; set; }
 
 	[JsonProperty("verification_level")]
@@ -69,4 +94,7 @@ public class Guild
 
 	[JsonProperty("audit_logs_indexed_at")]
 	public DateTime? AuditLogsIndexedAt { get; set; }
+
+	[JsonProperty("message_history_cutoff")]
+	public DateTime? MessageHistoryCutoff { get; set; }
 }
