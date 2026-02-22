@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace Fluxer.Net.Data.Models;
 
+/// <remarks>
+/// <see href="https://github.com/fluxerapp/fluxer/blob/4f5704fa1f6426d65a12ee5fef13c0104669d08e/packages/schema/src/domains/channel/ChannelSchemas.tsx#L51"/>
+/// </remarks>
 public class Channel
 {
 	[JsonProperty("id")]
@@ -59,7 +62,7 @@ public class Channel
 	public DateTime? LastPinTimestamp { get; set; }
 
 	[JsonProperty("permission_overwrites")]
-	public Dictionary<ulong, ChannelPermissionOverwrite>? PermissionOverwrites { get; set; }
+	public List<ChannelPermissionOverwrite>? PermissionOverwrites { get; set; }
 
 	[JsonProperty("nicks")]
 	public Dictionary<string, string>? Nicknames { get; set; }
