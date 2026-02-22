@@ -621,8 +621,8 @@ public class ApiClient
     public async Task<TResponse> GetGuildAuditLogFilters<TResponse>(ulong guildId)
         => await MakeFluxerApiRequestR<TResponse>(HttpMethod.Get, $"/guilds/{guildId}/audit-logs/filters", true);
 
-    public async Task<TResponse> SearchAuditLog<TRequest, TResponse>(ulong guildId, TRequest data)
-        => await MakeFluxerApiRequestRS<TResponse, TRequest>(HttpMethod.Post, $"/guilds/{guildId}/audit-logs/search", data, true);
+    public async Task<GuildAuditLogListResponse> SearchAuditLog(ulong guildId, GuildAuditLogListRequest data)
+        => await MakeFluxerApiRequestRS<GuildAuditLogListResponse, GuildAuditLogListRequest>(HttpMethod.Post, $"/guilds/{guildId}/audit-logs", data, true);
 
     public async Task<GuildEmojiResponse> CreateEmoji(ulong guildId, GuildEmojiCreateRequest data)
         => await MakeFluxerApiRequestRS<GuildEmojiResponse, GuildEmojiCreateRequest>(HttpMethod.Post, $"/guilds/{guildId}/emojis", data, true);
