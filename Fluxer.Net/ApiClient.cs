@@ -364,11 +364,11 @@ public class ApiClient
     public async Task ClearMessageAcknowledgement(ulong channelId)
         => await MakeFluxerApiRequest(HttpMethod.Delete, $"/channels/{channelId}/messages/ack", true);
 
-    public async Task<List<Message>> GetMessages(ulong channelId)
-        => await MakeFluxerApiRequestR<List<Message>>(HttpMethod.Get, $"/channels/{channelId}/messages", true);
+    public async Task<List<MessageBaseResponse>> GetMessages(ulong channelId)
+        => await MakeFluxerApiRequestR<List<MessageBaseResponse>>(HttpMethod.Get, $"/channels/{channelId}/messages", true);
 
-    public async Task<Message> GetMessage(ulong channelId, ulong messageId)
-        => await MakeFluxerApiRequestR<Message>(HttpMethod.Get, $"/channels/{channelId}/messages/{messageId}", true);
+    public async Task<MessageBaseResponse> GetMessage(ulong channelId, ulong messageId)
+        => await MakeFluxerApiRequestR<MessageBaseResponse>(HttpMethod.Get, $"/channels/{channelId}/messages/{messageId}", true);
 
     public async Task<TResponse> SearchChannel<TRequest, TResponse>(ulong channelId, TRequest data)
         => await MakeFluxerApiRequestRS<TResponse, TRequest>(HttpMethod.Post, $"/channels/{channelId}/search", data, true);
@@ -398,8 +398,8 @@ public class ApiClient
     public async Task DeleteMessageAttachment(ulong channelId, ulong messageId, ulong attachmentId)
         => await MakeFluxerApiRequest(HttpMethod.Delete, $"/channels/{channelId}/messages/{messageId}/attachments/{attachmentId}", true);
 
-    public async Task BulkDeleteMessages<TRequest>(ulong channelId, TRequest data)
-        => await MakeFluxerApiRequestS<TRequest>(HttpMethod.Post, $"/channels/{channelId}/messages/bulk-delete", data, true);
+    public async Task BulkDeleteMessages(ulong channelId, BulkDeleteMessagesRequest data)
+        => await MakeFluxerApiRequestS(HttpMethod.Post, $"/channels/{channelId}/messages/bulk-delete", data, true);
 
     public async Task TriggerTypingIndicator(ulong channelId)
         => await MakeFluxerApiRequest(HttpMethod.Post, $"/channels/{channelId}/typing", true);
