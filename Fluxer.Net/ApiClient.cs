@@ -375,7 +375,7 @@ public class ApiClient
 
     public async Task<Message> SendMessage(ulong channelId, Message message, StreamAttachment[]? attachments = null)
     {
-        if (attachments?.Length < 1)
+        if ((attachments?.Length ?? 0) < 1)
         {
             return await MakeFluxerApiRequestRS<Message, Message>(HttpMethod.Post, $"/channels/{channelId}/messages", message, true);
         }
