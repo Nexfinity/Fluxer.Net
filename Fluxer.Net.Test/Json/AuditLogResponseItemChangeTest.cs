@@ -5,11 +5,6 @@ namespace Fluxer.Net.Test.Json;
 
 public class AuditLogResponseItemChangeTest
 {
-    [SetUp]
-    public void Setup()
-    {
-    }
-
     [Test]
     public void TestNull()
     {
