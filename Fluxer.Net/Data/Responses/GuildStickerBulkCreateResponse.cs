@@ -1,4 +1,4 @@
-﻿using System.Text.Json.Serialization;
+﻿using Newtonsoft.Json;
 
 namespace Fluxer.Net.Data.Responses;
 
@@ -7,20 +7,20 @@ namespace Fluxer.Net.Data.Responses;
 /// </remarks>
 public class GuildStickerBulkCreateResponse
 {
-    [JsonPropertyName("success")]
+    [JsonProperty("success")]
     public GuildStickerResponse[] Success { get; set; }
 
-    [JsonPropertyName("failed")]
+    [JsonProperty("failed")]
     public GuildStickerBulkCreateResponseFailureItem[] Failed { get; set; } = Array.Empty<GuildStickerBulkCreateResponseFailureItem>();
 }
 
 public class GuildStickerBulkCreateResponseFailureItem
 {
     [JsonRequired]
-    [JsonPropertyName("name")]
+    [JsonProperty("name")]
     public string Name { get; set; }
 
     [JsonRequired]
-    [JsonPropertyName("error")]
+    [JsonProperty("error")]
     public string Error { get; set; }
 }

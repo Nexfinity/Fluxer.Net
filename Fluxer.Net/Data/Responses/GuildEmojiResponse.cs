@@ -1,17 +1,17 @@
-﻿using System.Text.Json.Serialization;
+﻿using Newtonsoft.Json;
 
 namespace Fluxer.Net.Data.Responses;
 
 public class GuildEmojiResponse
 {
     [JsonRequired]
-    [JsonPropertyName("id")]
+    [JsonProperty("id")]
     public ulong Id { get; set; }
 
     [JsonRequired]
-    [JsonPropertyName("name")]
+    [JsonProperty("name")]
     public string Name { get; set; }
 
-    [JsonPropertyName("animated")]
+    [JsonProperty("animated")]
     public bool IsAnimated { get; set; }
 }

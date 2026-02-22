@@ -1,13 +1,13 @@
-﻿using System.Text.Json.Serialization;
+﻿using Newtonsoft.Json;
 
 namespace Fluxer.Net.Data.Requests;
 
 public class GuildEmojiCreateRequest
 {
-    [JsonPropertyName("name")]
+    [JsonProperty("name")]
     public string Name { get; set; }
     
-    [JsonPropertyName("image")]
+    [JsonProperty("image")]
     public string ImageBase64 { get; set; }
 
     public void ImageFromStream(Stream stream)

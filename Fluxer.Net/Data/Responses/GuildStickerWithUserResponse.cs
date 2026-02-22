@@ -1,5 +1,5 @@
 ﻿using Fluxer.Net.Gateway.Data;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace Fluxer.Net.Data.Responses;
 
@@ -12,6 +12,6 @@ public class GuildStickerWithUserResponse : GuildStickerResponse
     /// User that created this sticker
     /// </summary>
     [JsonRequired]
-    [JsonPropertyName("user")]
+    [JsonProperty("user")]
     public UserPartialResponse User { get; set; }
 }

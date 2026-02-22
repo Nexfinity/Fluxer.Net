@@ -1,12 +1,12 @@
-﻿using System.Text.Json.Serialization;
+﻿using Newtonsoft.Json;
 
 namespace Fluxer.Net.Data.Responses;
 
 public class GuildVanityUrlResponse
 {
-    [JsonPropertyName("code")]
+    [JsonProperty("code")]
     public string? Code { get; set; }
     
-    [JsonPropertyName("uses")]
+    [JsonProperty("uses")]
     public int Uses { get; set; }
 }

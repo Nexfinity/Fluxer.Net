@@ -1,4 +1,4 @@
-﻿using System.Text.Json.Serialization;
+﻿using Newtonsoft.Json;
 
 namespace Fluxer.Net.Data.Responses;
 
@@ -8,19 +8,19 @@ namespace Fluxer.Net.Data.Responses;
 public class GuildStickerResponse
 {
     [JsonRequired]
-    [JsonPropertyName("id")]
+    [JsonProperty("id")]
     public ulong Id { get; set; }
 
     [JsonRequired]
-    [JsonPropertyName(name: "name")]
+    [JsonProperty("name")]
     public string Name { get; set; }
 
-    [JsonPropertyName("description")]
+    [JsonProperty("description")]
     public string? Description { get; set; }
 
-    [JsonPropertyName("tags")]
+    [JsonProperty("tags")]
     public HashSet<string> Tags { get; set; } = new();
 
-    [JsonPropertyName("animated")]
+    [JsonProperty("animated")]
     public bool IsAnimated { get; set; }
 }

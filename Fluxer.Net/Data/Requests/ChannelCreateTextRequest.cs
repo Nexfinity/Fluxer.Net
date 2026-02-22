@@ -1,10 +1,12 @@
-﻿using System.Text.Json.Serialization;
+﻿using Newtonsoft.Json;
 
 namespace Fluxer.Net.Data.Requests;
 
 public class ChannelCreateTextRequest : ChannelCreateRequest
 {
+    public override string Type => "GUILD_TEXT";
+
     [JsonRequired]
-    [JsonPropertyName("name")]
+    [JsonProperty("name")]
     public string Name { get; set; }
 }

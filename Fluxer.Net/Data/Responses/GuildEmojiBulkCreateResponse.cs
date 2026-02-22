@@ -1,24 +1,24 @@
 ﻿using Fluxer.Net.Data.Responses;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace Fluxer.Net.Data.Response;
 
 public class GuildEmojiBulkCreateResponse
 {
-    [JsonPropertyName("success")]
+    [JsonProperty("success")]
     public GuildEmojiResponse[] Success { get; set; } = Array.Empty<GuildEmojiResponse>();
     
-    [JsonPropertyName("failed")]
+    [JsonProperty("failed")]
     public GuildEmojiBulkCreateResponseFailureItem[] Failed { get; set; } = Array.Empty<GuildEmojiBulkCreateResponseFailureItem>();
 }
 
 public class GuildEmojiBulkCreateResponseFailureItem
 {
     [JsonRequired]
-    [JsonPropertyName("name")]
+    [JsonProperty("name")]
     public string Name { get; set; }
     
     [JsonRequired]
-    [JsonPropertyName("error")]
+    [JsonProperty("error")]
     public string Error { get; set; }
 }

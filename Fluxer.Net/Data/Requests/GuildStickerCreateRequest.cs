@@ -1,4 +1,4 @@
-﻿using System.Text.Json.Serialization;
+﻿using Newtonsoft.Json;
 
 namespace Fluxer.Net.Data.Requests;
 
@@ -7,16 +7,16 @@ namespace Fluxer.Net.Data.Requests;
 /// </remarks>
 public class GuildStickerCreateRequest
 {
-    [JsonPropertyName("name")]
+    [JsonProperty("name")]
     public string Name { get; set; }
     
-    [JsonPropertyName("description")]
+    [JsonProperty("description")]
     public string? Description { get; set; }
     
-    [JsonPropertyName("tags")]
+    [JsonProperty("tags")]
     public string[]? Tags { get; set; }
 
-    [JsonPropertyName("image")]
+    [JsonProperty("image")]
     public string ImageBase64 { get; set; }
 
     public void ImageFromStream(Stream stream)

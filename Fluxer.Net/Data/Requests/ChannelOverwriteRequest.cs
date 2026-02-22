@@ -1,19 +1,19 @@
 ﻿using Fluxer.Net.Data.Enums;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace Fluxer.Net.Data.Requests;
 
 public class ChannelOverwriteRequest
 {
-    [JsonPropertyName("id")]
+    [JsonProperty("id")]
     public ulong Id { get; set; }
 
-    [JsonPropertyName("type")]
+    [JsonProperty("type")]
     public ChannelOverwriteRequestType Type { get; set; }
 
-    [JsonPropertyName("allow")]
+    [JsonProperty("allow")]
     public ulong Allow { get; set; }
 
-    [JsonPropertyName("deny")]
+    [JsonProperty("deny")]
     public ulong Deny { get; set; }
 }

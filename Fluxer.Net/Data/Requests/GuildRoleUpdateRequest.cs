@@ -1,4 +1,4 @@
-﻿using System.Text.Json.Serialization;
+﻿using Newtonsoft.Json;
 
 namespace Fluxer.Net.Data.Requests;
 
@@ -10,33 +10,33 @@ public class GuildRoleUpdateRequest
     /// <summary>
     /// The color of the role as an integer
     /// </summary>
-    [JsonPropertyName("color")]
+    [JsonProperty("color")]
     public int? Color { get; set; }
 
     /// <summary>
     /// Whether the role should be displayed separately in the member list
     /// </summary>
-    [JsonPropertyName("hoist")]
+    [JsonProperty("hoist")]
     public bool? Hoist { get; set; }
 
     /// <summary>
     /// The position of the role in the hoisted member list
     /// </summary>
-    [JsonPropertyName("hoist_position")]
+    [JsonProperty("hoist_position")]
     public int? HoistPosition { get; set; }
 
     /// <summary>
     /// Whether the role can be mentioned by anyone
     /// </summary>
-    [JsonPropertyName("mentionable")]
+    [JsonProperty("mentionable")]
     public bool? Mentionable { get; set; }
 
     /// <summary>
     /// The name of the role (1-100 characters)
     /// </summary>
-    [JsonPropertyName("name")]
+    [JsonProperty("name")]
     public string? Name { get; set; }
     
-    [JsonPropertyName("permissions")]
+    [JsonProperty("permissions")]
     public ulong? Permissions { get; set; }
 }

@@ -1,28 +1,28 @@
-﻿using System.ComponentModel;
-using System.Text.Json.Serialization;
+﻿using Fluxer.Net.Extensions;
+using Newtonsoft.Json;
+using System.ComponentModel;
 
 namespace Fluxer.Net.Data.Requests;
 
-[JsonPolymorphic(TypeDiscriminatorPropertyName = "type")]
-[JsonDerivedType(typeof(ChannelCreateTextRequest), "GUILD_TEXT")]
-[JsonDerivedType(typeof(ChannelCreateVoiceRequest), "GUILD_VOICE")]
-[JsonDerivedType(typeof(ChannelCreateCategoryRequest), "GUILD_CATEGORY")]
-[JsonDerivedType(typeof(ChannelCreateLinkRequest), "GUILD_LINK")]
-public class ChannelCreateRequest
+[JsonConverter(typeof(JsonDerivedTypeConverter<ChannelCreateRequest>), nameof(Type))]
+public abstract class ChannelCreateRequest
 {
-    [JsonPropertyName("topic")]
+    [JsonProperty("type")]
+    public abstract string Type { get; }
+
+    [JsonProperty("topic")]
     public string? Topic { get; set; }
 
-    [JsonPropertyName("parent_id")]
+    [JsonProperty("parent_id")]
     public ulong? ParentCategoryId { get; set; }
 
-    [JsonPropertyName("url")]
+    [JsonProperty("url")]
     public string? Url { get; set; }
 
     [DefaultValue(false)]
-    [JsonPropertyName("nsfw")]
+    [JsonProperty("nsfw")]
     public bool Nsfw { get; set; }
     
-    [JsonPropertyName("permission_overwrites")]
+    [JsonProperty("permission_overwrites")]
     public ChannelOverwriteRequest[]? PermissionOverwrites { get; set; }
 }

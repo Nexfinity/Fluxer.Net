@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace Fluxer.Net.Data.Requests;
 
@@ -10,6 +10,6 @@ public class GuildStickerBulkCreateRequest
 {
     [MinLength(1)]
     [MaxLength(50)]
-    [JsonPropertyName("stickers")]
+    [JsonProperty("stickers")]
     public GuildStickerCreateRequest[] Stickers { get; set; } = Array.Empty<GuildStickerCreateRequest>();
 }

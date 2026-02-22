@@ -1,5 +1,5 @@
 ﻿using Fluxer.Net.Data.Enums;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace Fluxer.Net.Data.Responses;
 
@@ -9,23 +9,23 @@ namespace Fluxer.Net.Data.Responses;
 public class AuditLogWebhookResponse
 {
     [JsonRequired]
-    [JsonPropertyName("id")]
+    [JsonProperty("id")]
     public ulong Id { get; set; }
 
     [JsonRequired]
-    [JsonPropertyName("type")]
+    [JsonProperty("type")]
     public WebhookType Type { get; set; }
     
-    [JsonPropertyName("guild_id")]
+    [JsonProperty("guild_id")]
     public ulong? GuildId { get; set; }
 
-    [JsonPropertyName("channel_id")]
+    [JsonProperty("channel_id")]
     public ulong? ChannelId { get; set; }
 
     [JsonRequired]
-    [JsonPropertyName("name")]
+    [JsonProperty("name")]
     public string Name { get; set; }
 
-    [JsonPropertyName("avatar_hash")]
+    [JsonProperty("avatar_hash")]
     public string? AvatarHash { get; set; }
 }

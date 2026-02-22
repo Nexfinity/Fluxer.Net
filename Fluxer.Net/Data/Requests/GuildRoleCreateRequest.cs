@@ -1,4 +1,4 @@
-﻿using System.Text.Json.Serialization;
+﻿using Newtonsoft.Json;
 
 namespace Fluxer.Net.Data.Requests;
 
@@ -14,15 +14,15 @@ public class GuildRoleCreateRequest
     /// <summary>
     /// Color as an integer (e.g: 0xff0000 for red)
     /// </summary>
-    [JsonPropertyName("color")]
+    [JsonProperty("color")]
     public int? Color { get; set; }
 
     /// <summary>
     /// The name of the role (1-100 characters)
     /// </summary>
-    [JsonPropertyName("name")]
+    [JsonProperty("name")]
     public string Name { get; set; }
 
-    [JsonPropertyName("permissions")]
+    [JsonProperty("permissions")]
     public ulong? Permissions { get; set; }
 }

@@ -1,58 +1,45 @@
-﻿using Fluxer.Net.Extensions;
-using System.Text.Json.Serialization;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System.Runtime.Serialization;
 
 namespace Fluxer.Net.Data.Responses;
 
 /// <remarks>
 /// <see href="https://github.com/fluxerapp/fluxer/blob/c2b69be17d1877c5bb82d10c77fa67cbe4e882d7/packages/schema/src/domains/guild/GuildAuditLogSchemas.tsx#L46"/>
 /// </remarks>
-[JsonConverter(typeof(AuditLogResponseItemChangeConverter))]
-public class AuditLogResponseItemChangeBase
+public class AuditLogResponseItemChange
 {
     [JsonRequired]
-    [JsonPropertyName("key")]
+    [JsonProperty("key")]
     public string Key { get; set; }
 
-    [JsonPropertyName("old_value")]
+    [JsonProperty("old_value")]
     public object? OldValue { get; set; }
 
-    [JsonPropertyName("new_value")]
+    [JsonProperty("new_value")]
     public object? NewValue { get; set; }
-}
 
-[JsonConverter(typeof(AuditLogResponseItemChangeConverter))]
-public class AuditLogResponseItemChange<TValue> : AuditLogResponseItemChangeBase
-{
-    private TValue _oldValue;
-    private TValue _newValue;
-    [JsonPropertyName("old_value")]
-    public new TValue OldValue
+    [OnDeserialized]
+    private void OnDeserialized(StreamingContext context)
     {
-        get => _oldValue;
-        set
+        if (!Key.Equals("permissions_diff", StringComparison.OrdinalIgnoreCase)) return;
+        
+        if (NewValue is JObject newValueObj)
         {
-            base.OldValue = value;
-            _oldValue = value;
+            NewValue = newValueObj.ToObject<PermissionDiffSchema>();
         }
-    }
-
-    [JsonPropertyName("new_value")]
-    public new TValue NewValue
-    {
-        get => _newValue;
-        set
+        if (OldValue is JObject oldValueObj)
         {
-            base.NewValue = value;
-            _newValue = value;
+            OldValue = oldValueObj.ToObject<PermissionDiffSchema>();
         }
     }
 }
 
 public class PermissionDiffSchema
 {
-    [JsonPropertyName("added")]
+    [JsonProperty("added")]
     public HashSet<string> Added { get; set; }
 
-    [JsonPropertyName("removed")]
+    [JsonProperty("removed")]
     public HashSet<string> Removed { get; set; }
 }

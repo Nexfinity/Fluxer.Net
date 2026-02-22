@@ -1,5 +1,5 @@
 ﻿using Fluxer.Net.Gateway.Data;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace Fluxer.Net.Data.Responses;
 
@@ -8,12 +8,12 @@ namespace Fluxer.Net.Data.Responses;
 /// </remarks>
 public class GuildAuditLogListResponse
 {
-    [JsonPropertyName("audit_log_entries")]
+    [JsonProperty("audit_log_entries")]
     public GuildAuditLogEntryResponse[] Entries { get; set; } = Array.Empty<GuildAuditLogEntryResponse>();
 
-    [JsonPropertyName("users")]
+    [JsonProperty("users")]
     public UserPartialResponse[] Users { get; set; } = Array.Empty<UserPartialResponse>();
 
-    [JsonPropertyName("webhooks")]    
+    [JsonProperty("webhooks")]    
     public AuditLogWebhookResponse[] Webhooks { get; set; } = Array.Empty<AuditLogWebhookResponse>();
 }

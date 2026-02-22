@@ -1,19 +1,19 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace Fluxer.Net.Data.Requests;
 
 public class GuildCreateRequest
 {
-    [JsonPropertyName("empty_features")]
+    [JsonProperty("empty_features")]
     public bool? EmptyFeatures { get; set; }
 
-    [JsonPropertyName("icon")]
+    [JsonProperty("icon")]
     public string? IconBase64 { get; set; }
     
     [MinLength(1)]
     [MaxLength(100)]
-    [JsonPropertyName("name")]
+    [JsonProperty("name")]
     public string Name { get; set; }
 
     public void IconFromStream(Stream stream)

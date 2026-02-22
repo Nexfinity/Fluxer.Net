@@ -1,4 +1,4 @@
-﻿using System.Text.Json.Serialization;
+﻿using Newtonsoft.Json;
 
 namespace Fluxer.Net.Data.Models;
 
@@ -7,9 +7,9 @@ namespace Fluxer.Net.Data.Models;
 /// </summary>
 public class GuildRolePositionItem
 {
-    [JsonPropertyName("id")]
+    [JsonProperty("id")]
     public ulong Id { get; set; }
 
-    [JsonPropertyName("position")]
+    [JsonProperty("position")]
     public int? Position { get; set; }
 }

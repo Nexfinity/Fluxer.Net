@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace Fluxer.Net.Data.Requests;
 
@@ -7,6 +7,6 @@ public class GuildEmojiBulkCreateRequest
 {
     [MinLength(1)]
     [MaxLength(50)]
-    [JsonPropertyName("emojis")]
+    [JsonProperty("emojis")]
     public GuildEmojiCreateRequest[] Emojis { get; set; } = Array.Empty<GuildEmojiCreateRequest>();
 }

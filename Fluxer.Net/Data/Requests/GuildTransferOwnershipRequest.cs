@@ -1,12 +1,12 @@
-﻿using System.Text.Json.Serialization;
+﻿using Newtonsoft.Json;
 
 namespace Fluxer.Net.Data.Requests;
 
 public class GuildTransferOwnershipRequest
 {
-    [JsonPropertyName("new_owner_id")]
+    [JsonProperty("new_owner_id")]
     public ulong NewOwnerId { get; set; }
 
-    [JsonPropertyName("password")]
+    [JsonProperty("password")]
     public string? Password { get; set; }
 }

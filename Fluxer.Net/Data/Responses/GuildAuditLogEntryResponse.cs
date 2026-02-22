@@ -1,5 +1,5 @@
 ﻿using Fluxer.Net.Data.Enums;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace Fluxer.Net.Data.Responses;
 
@@ -9,27 +9,27 @@ namespace Fluxer.Net.Data.Responses;
 public class GuildAuditLogEntryResponse
 {
     [JsonRequired]
-    [JsonPropertyName("id")]
+    [JsonProperty("id")]
     public ulong Id { get; set; }
 
     [JsonRequired]
-    [JsonPropertyName("action_type")]
+    [JsonProperty("action_type")]
     public AuditLogActionType ActionType { get; set; }
 
-    [JsonPropertyName("user_id")]
+    [JsonProperty("user_id")]
     public ulong? UserId { get; set; }
 
-    [JsonPropertyName("target_id")]
+    [JsonProperty("target_id")]
     public ulong? TargetId { get; set; }
 
-    [JsonPropertyName("reason")]
+    [JsonProperty("reason")]
     public string? Reason { get; set; }
 
-    [JsonPropertyName("options")]
+    [JsonProperty("options")]
     public AuditLogResponseItemOptions? Options { get; set; }
 
-    [JsonPropertyName("changes")]
-    public AuditLogResponseItemChangeBase[]? Changes { get; set; }
+    [JsonProperty("changes")]
+    public AuditLogResponseItemChange[]? Changes { get; set; }
 }
 
 /// <remarks>
@@ -37,45 +37,45 @@ public class GuildAuditLogEntryResponse
 /// </remarks>
 public class AuditLogResponseItemOptions
 {
-    [JsonPropertyName("channel_id")]
+    [JsonProperty("channel_id")]
     public ulong? ChannelId { get; set; }
 
-    [JsonPropertyName("count")]
+    [JsonProperty("count")]
     public int? Count { get; set; }
 
-    [JsonPropertyName("delete_member_days")]
+    [JsonProperty("delete_member_days")]
     public int? DeleteMemberDays { get; set; }
 
-    [JsonPropertyName("id")]
+    [JsonProperty("id")]
     public ulong? Id { get; set; }
 
-    [JsonPropertyName("integration_type")]
+    [JsonProperty("integration_type")]
     public int? IntegrationType { get; set; }
 
-    [JsonPropertyName("message_id")]
+    [JsonProperty("message_id")]
     public ulong? MessageId { get; set; }
 
-    [JsonPropertyName("members_removed")]
+    [JsonProperty("members_removed")]
     public int? MembersRemoved { get; set; }
 
-    [JsonPropertyName("role_name")]
+    [JsonProperty("role_name")]
     public string? RoleName { get; set; }
 
-    [JsonPropertyName("type")]
+    [JsonProperty("type")]
     public int? Type { get; set; }
 
-    [JsonPropertyName("inviter_id")]
+    [JsonProperty("inviter_id")]
     public ulong? InviterId { get; set; }
 
-    [JsonPropertyName("max_age")]
+    [JsonProperty("max_age")]
     public int? MaxAge { get; set; }
 
-    [JsonPropertyName("max_uses")]
+    [JsonProperty("max_uses")]
     public int? MaxUses { get; set; }
 
-    [JsonPropertyName("temporary")]
+    [JsonProperty("temporary")]
     public bool? Temporary { get; set; }
 
-    [JsonPropertyName("uses")]
+    [JsonProperty("uses")]
     public int? Uses { get; set; }
 }

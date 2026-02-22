@@ -1,4 +1,4 @@
-﻿using System.Text.Json.Serialization;
+﻿using Newtonsoft.Json;
 
 namespace Fluxer.Net.Data.Responses;
 
@@ -8,6 +8,6 @@ public class GuildVanityUrlUpdateResponse
     /// The new vanity Url code
     /// </summary>
     [JsonRequired]
-    [JsonPropertyName("code")]
+    [JsonProperty("code")]
     public string Code { get; set; }
 }
