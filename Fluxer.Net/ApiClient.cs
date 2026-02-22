@@ -618,6 +618,7 @@ public class ApiClient
     public async Task<TResponse> SearchGuild<TRequest, TResponse>(ulong guildId, TRequest data)
         => await MakeFluxerApiRequestRS<TResponse, TRequest>(HttpMethod.Post, $"/guilds/{guildId}/search", data, true);
 
+    [Obsolete("API Endpoint no longer exists")]
     public async Task<TResponse> GetGuildAuditLogFilters<TResponse>(ulong guildId)
         => await MakeFluxerApiRequestR<TResponse>(HttpMethod.Get, $"/guilds/{guildId}/audit-logs/filters", true);
 
