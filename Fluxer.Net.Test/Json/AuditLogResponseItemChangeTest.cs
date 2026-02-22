@@ -138,6 +138,92 @@ public class AuditLogResponseItemChangeTest
         Assert.That(datStringString.NewValue, Is.EqualTo("new value!"));
     }
 
+    [Test]
+    public void TestPermissionDiffSchema()
+    {
+        const string addOnly = """
+            {
+                "key": "permissions_diff",
+                "new_value": {
+                    "added": [
+                        "ADMINISTRATOR",
+                        "MANAGE_CHANNELS",
+                        "MANAGE_GUILD",
+                        "VIEW_AUDIT_LOG",
+                        "MANAGE_ROLES"
+                    ],
+                    "removed": []
+                }
+            }
+            """;
+        const string removeOnly = """
+            {
+                "key": "permissions_diff",
+                "new_value": {
+                    "added": [],
+                    "removed": [
+                        "MANAGE_CHANNELS"
+                    ]
+                }
+            }
+            """;
+        const string addAndRemove = """
+            {
+                "key": "permissions_diff",
+                "new_value": {
+                    "added": [
+                        "MANAGE_CHANNELS"
+                    ],
+                    "removed": [
+                        "MANAGE_ROLES"
+                    ]
+                }
+            }
+            """;
+
+        var dataAddOnly = Deserialize<AuditLogResponseItemChangeBase>(addOnly);
+        var dataRemoveOnly = Deserialize<AuditLogResponseItemChangeBase>(removeOnly);
+        var dataAddAndRemove = Deserialize<AuditLogResponseItemChangeBase>(addAndRemove);
+
+        Assert.That(dataAddOnly, Is.Not.Null);
+        Assert.That(dataRemoveOnly, Is.Not.Null);
+        Assert.That(dataAddAndRemove, Is.Not.Null);
+
+        Assert.That(dataAddOnly.GetType(), Is.EqualTo(typeof(AuditLogResponseItemChange<PermissionDiffSchema?>)));
+        Assert.That(dataRemoveOnly.GetType(), Is.EqualTo(typeof(AuditLogResponseItemChange<PermissionDiffSchema?>)));
+        Assert.That(dataAddAndRemove.GetType(), Is.EqualTo(typeof(AuditLogResponseItemChange<PermissionDiffSchema?>)));
+
+        var typedAddOnly = (AuditLogResponseItemChange<PermissionDiffSchema>)dataAddOnly;
+        var typedRemoveOnly = (AuditLogResponseItemChange<PermissionDiffSchema>)dataRemoveOnly;
+        var typedAddAndRemove = (AuditLogResponseItemChange<PermissionDiffSchema>)dataAddAndRemove;
+
+        Assert.That(typedAddOnly.Key, Is.EqualTo("permissions_diff"));
+        Assert.That(typedAddOnly.NewValue.GetType, Is.EqualTo(typeof(PermissionDiffSchema)));
+        Assert.That(typedAddOnly.NewValue, Is.Not.Null);
+        Assert.That(typedAddOnly.NewValue.Added.Count, Is.EqualTo(5));
+        Assert.That(typedAddOnly.NewValue.Added, Has.Some.EqualTo("ADMINISTRATOR"));
+        Assert.That(typedAddOnly.NewValue.Added, Has.Some.EqualTo("MANAGE_CHANNELS"));
+        Assert.That(typedAddOnly.NewValue.Added, Has.Some.EqualTo("MANAGE_GUILD"));
+        Assert.That(typedAddOnly.NewValue.Added, Has.Some.EqualTo("VIEW_AUDIT_LOG"));
+        Assert.That(typedAddOnly.NewValue.Added, Has.Some.EqualTo("MANAGE_ROLES"));
+        Assert.That(typedAddOnly.NewValue.Removed.Count, Is.EqualTo(0));
+
+        Assert.That(typedRemoveOnly.Key, Is.EqualTo("permissions_diff"));
+        Assert.That(typedRemoveOnly.NewValue.GetType, Is.EqualTo(typeof(PermissionDiffSchema)));
+        Assert.That(typedRemoveOnly.NewValue, Is.Not.Null);
+        Assert.That(typedRemoveOnly.NewValue.Added.Count, Is.EqualTo(0));
+        Assert.That(typedRemoveOnly.NewValue.Removed.Count, Is.EqualTo(1));
+        Assert.That(typedRemoveOnly.NewValue.Removed, Has.Some.EqualTo("MANAGE_CHANNELS"));
+
+        Assert.That(typedAddAndRemove.Key, Is.EqualTo("permissions_diff"));
+        Assert.That(typedAddAndRemove.NewValue.GetType, Is.EqualTo(typeof(PermissionDiffSchema)));
+        Assert.That(typedAddAndRemove.NewValue, Is.Not.Null);
+        Assert.That(typedAddAndRemove.NewValue.Added.Count, Is.EqualTo(1));
+        Assert.That(typedAddAndRemove.NewValue.Removed.Count, Is.EqualTo(1));
+        Assert.That(typedAddAndRemove.NewValue.Added, Has.Some.EqualTo("MANAGE_CHANNELS"));
+        Assert.That(typedAddAndRemove.NewValue.Removed, Has.Some.EqualTo("MANAGE_ROLES"));
+    }
+
     private T? Deserialize<T>(string json)
     {
         return JsonSerializer.Deserialize<T>(json, SerializerOptions);

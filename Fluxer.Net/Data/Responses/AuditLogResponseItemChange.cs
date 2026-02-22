@@ -51,8 +51,8 @@ public class AuditLogResponseItemChange<TValue> : AuditLogResponseItemChangeBase
 public class PermissionDiffSchema
 {
     [JsonPropertyName("added")]
-    public HashSet<ulong> Added { get; set; }
+    public HashSet<string> Added { get; set; }
 
     [JsonPropertyName("removed")]
-    public HashSet<ulong> Removed { get; set; }
+    public HashSet<string> Removed { get; set; }
 }

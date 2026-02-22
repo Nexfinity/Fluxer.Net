@@ -18,7 +18,6 @@ public class AuditLogResponseItemChangeConverter : JsonConverter<AuditLogRespons
 
         if (JsonDocument.TryParseValue(ref reader, out var tJsonDoc))
         {
-            Debugger.Break();
             var objDto = new AuditLogResponseItemChangeBase();
             if (tJsonDoc.RootElement.TryGetProperty("key", out var keyProp))
             {
