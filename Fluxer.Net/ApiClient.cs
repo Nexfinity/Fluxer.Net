@@ -155,7 +155,15 @@ public class ApiClient
             var form = new MultipartFormDataContent
             {
                 {
-                    new StringContent(rawContent, new MediaTypeHeaderValue("application/json")),
+                    new StringContent(rawContent,
+#if NET5_0_OR_GREATER
+                    new MediaTypeHeaderValue("application/json")
+#else
+                    System.Text.Encoding.UTF8,
+                    "application/json"
+#endif
+                    ),
+
                     "payload_json"
                 }
             };
@@ -175,7 +183,14 @@ public class ApiClient
         }
         else
         {
-            req.Content = new StringContent(rawContent, new MediaTypeHeaderValue("application/json"));
+            req.Content = new StringContent(rawContent,
+#if NET5_0_OR_GREATER
+                    new MediaTypeHeaderValue("application/json")
+#else
+                    System.Text.Encoding.UTF8,
+                    "application/json"
+#endif
+                );
         }
         if (authorize)
             req.Headers.Add("Authorization", Token);
@@ -211,7 +226,14 @@ public class ApiClient
             Content = new StringContent(JsonConvert.SerializeObject(data, new JsonSerializerSettings()
             {
                 NullValueHandling = NullValueHandling.Ignore
-            }), new MediaTypeHeaderValue("application/json")),
+            }),
+#if NET5_0_OR_GREATER
+                    new MediaTypeHeaderValue("application/json")
+#else
+                    System.Text.Encoding.UTF8,
+                    "application/json"
+#endif
+            ),
             RequestUri = new(_config.RealApiBaseUrl + route)
         };
         if (authorize)
@@ -285,7 +307,7 @@ public class ApiClient
 
         return result.StatusCode;
     }
-    #endregion
+#endregion
 
     #region Auth API
 
