@@ -4,6 +4,7 @@ using Fluxer.Net.Data.Requests;
 using Fluxer.Net.Data.Response;
 using Fluxer.Net.Data.Responses;
 using Fluxer.Net.Extensions;
+using Fluxer.Net.Gateway.Data;
 using Fluxer.Net.RateLimiting;
 using Newtonsoft.Json;
 using Serilog;
@@ -364,20 +365,20 @@ public class ApiClient
     public async Task ClearMessageAcknowledgement(ulong channelId)
         => await MakeFluxerApiRequest(HttpMethod.Delete, $"/channels/{channelId}/messages/ack", true);
 
-    public async Task<List<Message>> GetMessages(ulong channelId)
-        => await MakeFluxerApiRequestR<List<Message>>(HttpMethod.Get, $"/channels/{channelId}/messages", true);
+    public async Task<List<MessageBaseResponse>> GetMessages(ulong channelId)
+        => await MakeFluxerApiRequestR<List<MessageBaseResponse>>(HttpMethod.Get, $"/channels/{channelId}/messages", true);
 
-    public async Task<Message> GetMessage(ulong channelId, ulong messageId)
-        => await MakeFluxerApiRequestR<Message>(HttpMethod.Get, $"/channels/{channelId}/messages/{messageId}", true);
+    public async Task<MessageBaseResponse> GetMessage(ulong channelId, ulong messageId)
+        => await MakeFluxerApiRequestR<MessageBaseResponse>(HttpMethod.Get, $"/channels/{channelId}/messages/{messageId}", true);
 
     public async Task<TResponse> SearchChannel<TRequest, TResponse>(ulong channelId, TRequest data)
         => await MakeFluxerApiRequestRS<TResponse, TRequest>(HttpMethod.Post, $"/channels/{channelId}/search", data, true);
 
-    public async Task<Message> SendMessage(ulong channelId, Message message, StreamAttachment[]? attachments = null)
+    public async Task<MessageBaseResponse> SendMessage(ulong channelId, Message message, StreamAttachment[]? attachments = null)
     {
         if ((attachments?.Length ?? 0) < 1)
         {
-            return await MakeFluxerApiRequestRS<Message, Message>(HttpMethod.Post, $"/channels/{channelId}/messages", message, true);
+            return await MakeFluxerApiRequestRS<MessageBaseResponse, Message>(HttpMethod.Post, $"/channels/{channelId}/messages", message, true);
         }
         var form = new List<KeyValuePair<string, (HttpContent content, string? filename)>>();
         for (int i = 0; i < attachments.Length; i++)
@@ -386,11 +387,11 @@ public class ApiClient
             form.Add(new KeyValuePair<string, (HttpContent content, string? filename)>($"file[{i}]", (new StreamContent(attachments[i].Stream), attachments[i].Filename)));
         }
         message.Attachments = attachments.Cast<Attachment>().ToList();
-        return await MakeFluxerApiRequestRS<Message, Message>(HttpMethod.Post, $"/channels/{channelId}/messages", message, true);
+        return await MakeFluxerApiRequestRS<MessageBaseResponse, Message>(HttpMethod.Post, $"/channels/{channelId}/messages", message, true);
     }
 
-    public async Task<Message> EditMessage(ulong channelId, ulong messageId, Message message)
-        => await MakeFluxerApiRequestRS<Message, Message>(HttpMethod.Patch, $"/channels/{channelId}/messages/{messageId}", message, true);
+    public async Task<MessageBaseResponse> EditMessage(ulong channelId, ulong messageId, MessageUpdateRequest message)
+        => await MakeFluxerApiRequestRS<MessageBaseResponse, MessageUpdateRequest>(HttpMethod.Patch, $"/channels/{channelId}/messages/{messageId}", message, true);
 
     public async Task DeleteMessage(ulong channelId, ulong messageId)
         => await MakeFluxerApiRequest(HttpMethod.Delete, $"/channels/{channelId}/messages/{messageId}", true);
@@ -398,8 +399,8 @@ public class ApiClient
     public async Task DeleteMessageAttachment(ulong channelId, ulong messageId, ulong attachmentId)
         => await MakeFluxerApiRequest(HttpMethod.Delete, $"/channels/{channelId}/messages/{messageId}/attachments/{attachmentId}", true);
 
-    public async Task BulkDeleteMessages<TRequest>(ulong channelId, TRequest data)
-        => await MakeFluxerApiRequestS<TRequest>(HttpMethod.Post, $"/channels/{channelId}/messages/bulk-delete", data, true);
+    public async Task BulkDeleteMessages(ulong channelId, BulkDeleteMessagesRequest data)
+        => await MakeFluxerApiRequestS(HttpMethod.Post, $"/channels/{channelId}/messages/bulk-delete", data, true);
 
     public async Task TriggerTypingIndicator(ulong channelId)
         => await MakeFluxerApiRequest(HttpMethod.Post, $"/channels/{channelId}/typing", true);
@@ -407,8 +408,8 @@ public class ApiClient
     public async Task AcknowledgeMessage(ulong channelId, ulong messageId, MessageAck details)
         => await MakeFluxerApiRequestS<MessageAck>(HttpMethod.Post, $"/channels/{channelId}/messages/{messageId}/ack", details, true);
 
-    public async Task<TResponse> GetPinnedMessages<TResponse>(ulong channelId)
-        => await MakeFluxerApiRequestR<TResponse>(HttpMethod.Get, $"/channels/{channelId}/pins", true);
+    public async Task<ChannelPinsResponse> GetPinnedMessages(ulong channelId, ChannelPinsQuery? query = null)
+        => await MakeFluxerApiRequestR<ChannelPinsResponse>(HttpMethod.Get, $"/channels/{channelId}/pins?{query?.BuildQuery() ?? string.Empty}", true);
 
     public async Task PinMessage(ulong channelId, ulong messageId)
         => await MakeFluxerApiRequest(HttpMethod.Put, $"/channels/{channelId}/pins/{messageId}", true);
@@ -416,8 +417,8 @@ public class ApiClient
     public async Task UnpinMessage(ulong channelId, ulong messageId)
         => await MakeFluxerApiRequest(HttpMethod.Delete, $"/channels/{channelId}/pins/{messageId}", true);
 
-    public async Task<TResponse> GetReactions<TResponse>(ulong channelId, ulong messageId, string emoji)
-        => await MakeFluxerApiRequestR<TResponse>(HttpMethod.Get, $"/channels/{channelId}/messages/{messageId}/reactions/{emoji}", true);
+    public async Task<List<UserPartialResponse>> GetReactions(ulong channelId, ulong messageId, string emoji)
+        => await MakeFluxerApiRequestR<List<UserPartialResponse>>(HttpMethod.Get, $"/channels/{channelId}/messages/{messageId}/reactions/{emoji}", true);
 
     public async Task AddReaction(ulong channelId, ulong messageId, string emoji)
         => await MakeFluxerApiRequest(HttpMethod.Put, $"/channels/{channelId}/messages/{messageId}/reactions/{emoji}/@me", true);
@@ -443,8 +444,8 @@ public class ApiClient
     public async Task RemoveRecipient(ulong channelId, ulong userId)
         => await MakeFluxerApiRequest(HttpMethod.Delete, $"/channels/{channelId}/recipients/{userId}", true);
 
-    public async Task<TResponse> GetCall<TResponse>(ulong channelId)
-        => await MakeFluxerApiRequestR<TResponse>(HttpMethod.Get, $"/channels/{channelId}/call", true);
+    public async Task<CallEligibilityResponse> GetCall(ulong channelId)
+        => await MakeFluxerApiRequestR<CallEligibilityResponse>(HttpMethod.Get, $"/channels/{channelId}/call", true);
 
     public async Task<TResponse> UpdateCall<TRequest, TResponse>(ulong channelId, TRequest data)
         => await MakeFluxerApiRequestRS<TResponse, TRequest>(HttpMethod.Patch, $"/channels/{channelId}/call", data, true);
