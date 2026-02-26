@@ -121,7 +121,7 @@ public class MessageSearchRequest
     /// Content types the message must have
     /// </summary>
     /// <remarks>
-    /// TODO add values link for MessageContentType
+    /// Values: <see href="https://github.com/fluxerapp/fluxer/blob/d843d6f3f8a0bd850673ba55036354093977109f/packages/schema/src/domains/message/MessageRequestSchemas.tsx#L99"/>
     /// </remarks>
     [JsonProperty("has")]
     public HashSet<string>? HasContentType { get; set; }
@@ -130,7 +130,7 @@ public class MessageSearchRequest
     /// Content types the message must not have
     /// </summary>
     /// <remarks>
-    /// TODO add values link for MessageContentType
+    /// Values: <see href="https://github.com/fluxerapp/fluxer/blob/d843d6f3f8a0bd850673ba55036354093977109f/packages/schema/src/domains/message/MessageRequestSchemas.tsx#L99"/>
     /// </remarks>
     [JsonProperty("exclude_has")]
     public HashSet<string>? ExcludeContentType { get; set; }
@@ -139,7 +139,7 @@ public class MessageSearchRequest
     /// Embed types to filter by
     /// </summary>
     /// <remarks>
-    /// TODO add values link for MessageEmbedType
+    /// Values: <see href="https://github.com/fluxerapp/fluxer/blob/d843d6f3f8a0bd850673ba55036354093977109f/packages/schema/src/domains/message/MessageRequestSchemas.tsx#L119"/>
     /// </remarks>
     [JsonProperty("embed_type")]
     public HashSet<string>? EmbedType { get; set; }
@@ -148,7 +148,7 @@ public class MessageSearchRequest
     /// Embed types to exclude
     /// </summary>
     /// <remarks>
-    /// TODO add values link for MessageEmbedType
+    /// Values: <see href="https://github.com/fluxerapp/fluxer/blob/d843d6f3f8a0bd850673ba55036354093977109f/packages/schema/src/domains/message/MessageRequestSchemas.tsx#L119"/>
     /// </remarks>
     [JsonProperty("exclude_embed_type")]
     public HashSet<string>? ExcludeEmbedType { get; set; }
