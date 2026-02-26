@@ -25,7 +25,6 @@ public class MessageReferenceResponse
     /// <summary>
     /// The ID of the guild containing the referenced message
     /// </summary>
-    [JsonRequired]
     [JsonProperty("guild_id")]
     public ulong? GuildId { get; set; }
     
