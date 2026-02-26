@@ -49,4 +49,6 @@ public enum MessageType
 	/// A message that is a reply to another message.
 	/// </summary>
 	Reply = 19,
+
+	ClientSystem = 99,
 }

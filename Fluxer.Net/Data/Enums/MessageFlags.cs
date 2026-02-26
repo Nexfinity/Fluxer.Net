@@ -20,4 +20,8 @@ public enum MessageFlags
 	/// Message will not trigger push or desktop notifications.
 	/// </summary>
 	SuppressNotifications = 1 << 12,
+
+	VoiceMessage = 1 << 13,
+
+	CompactAttachments = 1 << 17
 }
