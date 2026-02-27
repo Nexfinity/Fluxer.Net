@@ -1,4 +1,5 @@
 using Fluxer.Net.Data.Models;
+using Fluxer.Net.Data.Responses;
 
 namespace Fluxer.Net.Commands;
 
@@ -30,7 +31,7 @@ public abstract class ModuleBase
 	/// Sends a message to the channel the command was executed in.
 	/// </summary>
 	/// <param name="content">The message content.</param>
-	protected async Task<Message> ReplyAsync(string content)
+	protected async Task<MessageBaseResponse> ReplyAsync(string content)
 	{
 		return await Context.Client.SendMessage(Context.ChannelId, new Message { Content = content });
 	}
@@ -39,7 +40,7 @@ public abstract class ModuleBase
 	/// Sends a message to the channel the command was executed in.
 	/// </summary>
 	/// <param name="message">The message to send.</param>
-	protected async Task<Message> ReplyAsync(Message message)
+	protected async Task<MessageBaseResponse> ReplyAsync(Message message)
 	{
 		return await Context.Client.SendMessage(Context.ChannelId, message);
 	}
