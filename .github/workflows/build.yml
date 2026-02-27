@@ -3,7 +3,7 @@ name: Build project and run unit tests
 on:
   push:
   pull_request:
-    branches: [ main, dev ]
+    branches: [ release, dev ]
   workflow_dispatch:
 
 jobs:
