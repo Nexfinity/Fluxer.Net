@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace Fluxer.Net.Gateway;
+namespace Fluxer.Net.Gateway.Packets;
 
 public class HeartbeatPacket
 {

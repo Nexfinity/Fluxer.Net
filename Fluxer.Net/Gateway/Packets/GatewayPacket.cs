@@ -1,7 +1,7 @@
 using Newtonsoft.Json;
 using Fluxer.Net.Extensions;
 
-namespace Fluxer.Net.Gateway;
+namespace Fluxer.Net.Gateway.Packets;
 
 public class GatewayPacket
 {
