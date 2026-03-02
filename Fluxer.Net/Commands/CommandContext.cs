@@ -10,7 +10,7 @@ public class CommandContext
     /// <summary>
     /// Gets the API client.
     /// </summary>
-    public ApiClient Api { get; }
+    public ApiClient Rest { get; }
 
     /// <summary>
     /// Gets the gateway client.
@@ -50,7 +50,7 @@ public class CommandContext
     /// <param name="message">The message that triggered the command.</param>
     public CommandContext(FluxerClient client, MessageGatewayData message)
     {
-        Api = client.Api;
+        Rest = client.Rest;
         Gateway = client.Gateway;
         Message = message;
     }

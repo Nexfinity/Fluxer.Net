@@ -139,7 +139,7 @@ Log.Information("Registered {ModuleCount} command module(s) with {CommandCount} 
 if (args.Length > 0 && args[0] == "--revoke")
 {
     Log.Information("Revoking token and logging out...");
-    await client.Api.Logout();
+    await client.Rest.Logout();
     Log.Information("Token revoked successfully. The bot is now logged out.");
     return;
 }
@@ -221,28 +221,28 @@ client.Gateway.MessageCreate += async messageData =>
                 }
                 else if (result.ErrorType == CommandError.BadArgCount)
                 {
-                    await client.Api.SendMessage(messageData.ChannelId, new()
+                    await client.Rest.SendMessage(messageData.ChannelId, new()
                     {
                         Content = $"❌ Error: {result.Error}"
                     });
                 }
                 else if (result.ErrorType == CommandError.ParseFailed)
                 {
-                    await client.Api.SendMessage(messageData.ChannelId, new()
+                    await client.Rest.SendMessage(messageData.ChannelId, new()
                     {
                         Content = $"❌ Error: {result.Error}"
                     });
                 }
                 else if (result.ErrorType == CommandError.UnmetPrecondition)
                 {
-                    await client.Api.SendMessage(messageData.ChannelId, new()
+                    await client.Rest.SendMessage(messageData.ChannelId, new()
                     {
                         Content = $"⛔ {result.Error}"
                     });
                 }
                 else
                 {
-                    await client.Api.SendMessage(messageData.ChannelId, new()
+                    await client.Rest.SendMessage(messageData.ChannelId, new()
                     {
                         Content = $"❌ An error occurred: {result.Error}"
                     });
@@ -327,7 +327,7 @@ Log.Information("Connected to Fluxer gateway. Bot is now online!");
 //   - Implement a /shutdown command for authorized users
 //   - Run as a system service or Docker container
 
-await client.Api.UpdateCurrentMember(1431484523333775609, new() { Nickname = "Fluxer.Net" });
+await client.Rest.UpdateCurrentMember(1431484523333775609, new() { Nickname = "Fluxer.Net" });
 
 Log.Information("Bot is running. Press Ctrl+C to stop.");
 await Task.Delay(-1);

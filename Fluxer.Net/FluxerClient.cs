@@ -28,7 +28,7 @@ public class FluxerClient
         Config.Serilog.Verbose("Loaded with config {@Config}", Config);
 
         // Set clients with reference to fluxer client
-        Api = new ApiClient(this);
+        Rest = new ApiClient(this);
         Gateway = new GatewayClient(this);
     }
 
@@ -44,7 +44,7 @@ public class FluxerClient
         ? Token[4..]
         : Token;
 
-    public ApiClient Api { get; }
+    public ApiClient Rest { get; }
 
     public GatewayClient Gateway { get; }
 
