@@ -69,14 +69,14 @@ public class ApiClient
     {
         _token = client.Token;
         _config = client.Config;
-        _logger = client.Config.Serilog;
+        _logger = client.Config.RestSerilog;
         Initialize();
     }
 
     internal ApiClient(FluxerWebhookClient webhook)
     {
         _config = webhook.Config;
-        _logger = webhook.Config.Serilog;
+        _logger = webhook.Config.RestSerilog;
         Initialize();
     }
 

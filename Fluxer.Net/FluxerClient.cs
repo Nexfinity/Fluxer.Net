@@ -18,14 +18,21 @@ public class FluxerClient
         Config = config;
 
         // Load logger
-        if (config.Serilog == null)
+        if (config.RestSerilog == null)
         {
-            Config.Serilog = new LoggerConfiguration()
+            Config.RestSerilog = new LoggerConfiguration()
                 .MinimumLevel.Verbose()
                 .WriteTo.Console().CreateLogger();
         }
 
-        Config.Serilog.Verbose("Loaded with config {@Config}", Config);
+        Config.RestSerilog.Verbose("Loaded with config {@Config}", Config);
+
+        if (config.GatewaySerilog == null)
+        {
+            Config.GatewaySerilog = new LoggerConfiguration()
+                .MinimumLevel.Verbose()
+                .WriteTo.Console().CreateLogger();
+        }
 
         // Set clients with reference to fluxer client
         Rest = new ApiClient(this);

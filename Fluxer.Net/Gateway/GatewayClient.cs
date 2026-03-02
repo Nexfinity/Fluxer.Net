@@ -78,7 +78,7 @@ public partial class GatewayClient : IDisposable
     internal GatewayClient(FluxerClient client)
     {
         _client = client;
-        _logger = client.Config.Serilog;
+        _logger = client.Config.GatewaySerilog;
         _logger.Information("Initialized Fluxer.Net gateway client ({AssemblyVersion}) (API {ApiVersion})", Assembly.GetExecutingAssembly().GetName().Version, _client.Config.Version);
     }
     #endregion
