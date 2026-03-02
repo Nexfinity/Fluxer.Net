@@ -62,7 +62,7 @@ if (config == null)
 Log.Debug("Config file loaded successfully.");
 
 // ============================================================================
-// STEP 3: Initialize the Gateway Client (Real-Time Events)
+// STEP 3: Initialize Client
 // ============================================================================
 // The GatewayClient connects to Fluxer's WebSocket gateway to receive real-time
 // events like messages, reactions, member joins, etc. This is the "listening"
@@ -74,7 +74,17 @@ Log.Debug("Config file loaded successfully.");
 //   - IgnoredGatewayEvents: Filter out events you don't need (reduces processing)
 //   - Presence: Your bot's initial status (Online, Idle, DND, Invisible)
 
-var gateway = new GatewayClient(config["Token"], new()
+// The ApiClient handles REST API requests for creating, reading, updating, and
+// deleting resources (messages, channels, guilds, users, etc.). This is the
+// "action" part of your bot that makes changes on Fluxer.
+//
+// Key Features:
+//   - Automatic rate limiting (enabled by default via sliding window algorithm)
+//   - Token-based authentication
+//   - Full coverage of 150+ Fluxer API endpoints
+//   - Shared logging configuration with the gateway
+
+var client = new FluxerClient(config["Token"], new()
 {
     ReconnectAttemptDelay = 2,  // Reconnect quickly if connection drops
     Serilog = Log.Logger as Logger,  // Use our configured logger
@@ -87,27 +97,11 @@ var gateway = new GatewayClient(config["Token"], new()
     },
 
     // Set your bot's status. Options: Online, Idle, DND, Invisible
-    Presence = new PresenceUpdateGatewayData(Status.Online)
-});
+    Presence = new PresenceUpdateGatewayData(Status.Online),
 
-// ============================================================================
-// STEP 4: Initialize the API Client (REST Operations)
-// ============================================================================
-// The ApiClient handles REST API requests for creating, reading, updating, and
-// deleting resources (messages, channels, guilds, users, etc.). This is the
-// "action" part of your bot that makes changes on Fluxer.
-//
-// Key Features:
-//   - Automatic rate limiting (enabled by default via sliding window algorithm)
-//   - Token-based authentication
-//   - Full coverage of 150+ Fluxer API endpoints
-//   - Shared logging configuration with the gateway
-
-var api = new ApiClient(config[key: "Token"], new()
-{
-    Serilog = Log.Logger as Logger,  // Use our configured logger
     EnableRateLimiting = true  // Prevent hitting rate limits (default: true)
 });
+
 
 // ============================================================================
 // STEP 4.5: Initialize the Command Service
@@ -145,7 +139,7 @@ Log.Information("Registered {ModuleCount} command module(s) with {CommandCount} 
 if (args.Length > 0 && args[0] == "--revoke")
 {
     Log.Information("Revoking token and logging out...");
-    await api.Logout();
+    await client.Api.Logout();
     Log.Information("Token revoked successfully. The bot is now logged out.");
     return;
 }
@@ -183,7 +177,7 @@ if (args.Length > 0 && args[0] == "--revoke")
 //   - MessageReactionAdd: Reaction added to a message
 //   ... and many more! See GatewayClient.cs for the full list.
 
-gateway.MessageCreate += async messageData =>
+client.Gateway.MessageCreate += async messageData =>
 {
     try
     {
@@ -208,7 +202,7 @@ gateway.MessageCreate += async messageData =>
             argPos = 1; // Skip the prefix character
 
             // Create a command context with all the necessary information
-            var context = new CommandContext(api, gateway, messageData);
+            var context = new CommandContext(client, messageData);
 
             // Execute the command
             var result = await commands.ExecuteAsync(context, argPos);
@@ -227,28 +221,28 @@ gateway.MessageCreate += async messageData =>
                 }
                 else if (result.ErrorType == CommandError.BadArgCount)
                 {
-                    await api.SendMessage(messageData.ChannelId, new()
+                    await client.Api.SendMessage(messageData.ChannelId, new()
                     {
                         Content = $"❌ Error: {result.Error}"
                     });
                 }
                 else if (result.ErrorType == CommandError.ParseFailed)
                 {
-                    await api.SendMessage(messageData.ChannelId, new()
+                    await client.Api.SendMessage(messageData.ChannelId, new()
                     {
                         Content = $"❌ Error: {result.Error}"
                     });
                 }
                 else if (result.ErrorType == CommandError.UnmetPrecondition)
                 {
-                    await api.SendMessage(messageData.ChannelId, new()
+                    await client.Api.SendMessage(messageData.ChannelId, new()
                     {
                         Content = $"⛔ {result.Error}"
                     });
                 }
                 else
                 {
-                    await api.SendMessage(messageData.ChannelId, new()
+                    await client.Api.SendMessage(messageData.ChannelId, new()
                     {
                         Content = $"❌ An error occurred: {result.Error}"
                     });
@@ -272,7 +266,7 @@ gateway.MessageCreate += async messageData =>
 // ============================================================================
 
 // Example: Log when the bot is ready
-gateway.Ready += readyData =>
+client.Gateway.Ready += readyData =>
 {
     try
     {
@@ -318,7 +312,7 @@ gateway.Ready += readyData =>
 // IMPORTANT: Uncomment this line to actually connect! It's commented out by
 // default so you can test API calls without connecting to the gateway.
 
-await gateway.ConnectAsync();
+await client.Gateway.ConnectAsync();
 Log.Information("Connected to Fluxer gateway. Bot is now online!");
 
 // ============================================================================
@@ -333,7 +327,7 @@ Log.Information("Connected to Fluxer gateway. Bot is now online!");
 //   - Implement a /shutdown command for authorized users
 //   - Run as a system service or Docker container
 
-await api.UpdateCurrentMember(1431484523333775609, new() { Nickname = "Fluxer.Net" });
+await client.Api.UpdateCurrentMember(1431484523333775609, new() { Nickname = "Fluxer.Net" });
 
 Log.Information("Bot is running. Press Ctrl+C to stop.");
 await Task.Delay(-1);
