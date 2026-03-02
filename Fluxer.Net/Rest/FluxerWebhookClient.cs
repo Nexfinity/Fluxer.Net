@@ -15,9 +15,9 @@ public class FluxerWebhookClient
         Config = config;
 
         // Load logger
-        if (config.Serilog == null)
+        if (config.RestSerilog == null)
         {
-            Config.Serilog = new LoggerConfiguration()
+            Config.RestSerilog = new LoggerConfiguration()
                 .MinimumLevel.Verbose()
                 .WriteTo.Console().CreateLogger();
         }

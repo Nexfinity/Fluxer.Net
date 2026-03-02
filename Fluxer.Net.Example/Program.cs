@@ -87,7 +87,7 @@ Log.Debug("Config file loaded successfully.");
 var client = new FluxerClient(config["Token"], new()
 {
     ReconnectAttemptDelay = 2,  // Reconnect quickly if connection drops
-    Serilog = Log.Logger as Logger,  // Use our configured logger
+    RestSerilog = Log.Logger as Logger,  // Use our configured logger
 
     // Ignore high-volume events we don't need to reduce CPU/memory usage
     // Common events to ignore: PRESENCE_UPDATE, TYPING_START, VOICE_STATE_UPDATE
