@@ -30,4 +30,13 @@ public class ApiLimits
 
     public int MaxBioLength = 160;
     public int MaxBioLengthPremium = 320;
+
+    public const int FilenameTypeMinLength = 1;
+    public const int FilenameTypeMaxLength = 255;
+
+    public const int UrlTypeMinLength = 1;
+    public const int UrlTypeMaxLength = 2048;
+
+    public const int MessageNonceMinLength = 1;
+    public const int MessageNonceMaxLength = 32;
 }

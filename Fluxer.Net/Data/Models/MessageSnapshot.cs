@@ -1,3 +1,4 @@
+using Fluxer.Net.Data.Enums;
 using Newtonsoft.Json;
 
 namespace Fluxer.Net.Data.Models;
@@ -32,8 +33,8 @@ public class MessageSnapshot
 	public List<StickerItem>? Stickers { get; set; }
 
 	[JsonProperty("type")]
-	public int Type { get; set; }
+	public MessageType Type { get; set; }
 
 	[JsonProperty("flags")]
-	public int Flags { get; set; }
+	public MessageFlags Flags { get; set; }
 }

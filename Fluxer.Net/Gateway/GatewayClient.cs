@@ -1,14 +1,13 @@
 ﻿#undef NOPE
+using Fluxer.Net.Data.Enums;
+using Fluxer.Net.Gateway.Data;
+using Fluxer.Net.Gateway.Packets;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using Serilog.Core;
 using System.Diagnostics;
 using System.Reflection;
 using System.Text.RegularExpressions;
-using Fluxer.Net.Data.Enums;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using Serilog;
-using Serilog.Core;
-using Fluxer.Net.Gateway;
-using Fluxer.Net.Gateway.Data;
 using Websocket.Client;
 // ReSharper disable ConstantConditionalAccessQualifier
 
@@ -37,21 +36,8 @@ namespace Fluxer.Net;
 public partial class GatewayClient : IDisposable
 {
     #region Declares
-    /// <summary>
-    /// The authentication token used for gateway connection.
-    /// </summary>
-    public string Token { get; set; }
-
-    /// <summary>
-    /// Returns the raw token without any "Bot " prefix, for use in gateway IDENTIFY/RESUME packets.
-    /// The gateway protocol expects only the raw token, not the HTTP authorization format.
-    /// </summary>
-    private string GatewayToken => Token.StartsWith("Bot ", StringComparison.OrdinalIgnoreCase)
-        ? Token[4..]
-        : Token;
-
-    private readonly FluxerConfig _config;
-    private WebsocketClient _gateway;
+    private FluxerClient _client;
+    private WebsocketClient _webSocket;
     private readonly Stopwatch _gatewayDuration = new();
 
     /// <summary>
@@ -95,16 +81,11 @@ public partial class GatewayClient : IDisposable
     /// <remarks>
     /// The client is initialized but not connected. Call <see cref="ConnectAsync"/> to establish the gateway connection.
     /// </remarks>
-    public GatewayClient(string token, FluxerConfig config)
+    internal GatewayClient(FluxerClient client)
     {
-        ApiClient.ValidateToken(token);
-        Token = token;
-        _config = config;
-        _logger = _config.Serilog ?? new LoggerConfiguration()
-                .MinimumLevel.Verbose()
-                .WriteTo.Console().CreateLogger();
-        _logger.Information("Initialized Fluxer.Net gateway client ({AssemblyVersion}) (API {ApiVersion})", Assembly.GetExecutingAssembly().GetName().Version, _config.Version);
-        _logger.Verbose("Loaded with config {@Config}", _config);
+        _client = client;
+        _logger = client.Config.GatewaySerilog;
+        _logger.Information("Initialized Fluxer.Net gateway client ({AssemblyVersion}) (API {ApiVersion})", Assembly.GetExecutingAssembly().GetName().Version, _client.Config.Version);
     }
     #endregion
 
@@ -139,11 +120,11 @@ public partial class GatewayClient : IDisposable
         try
         {
             // Dispose existing gateway connection if present to avoid multiple connections
-            if (_gateway != null)
+            if (_webSocket != null)
             {
                 try
                 {
-                    _gateway.Dispose();
+                    _webSocket.Dispose();
                     _logger.Debug("Disposed existing WebSocket connection before creating new one");
                 }
                 catch (Exception ex)
@@ -152,13 +133,13 @@ public partial class GatewayClient : IDisposable
                 }
             }
 
-            _gateway = new WebsocketClient(new(_config.FluxerGatewayUrl))
+            _webSocket = new WebsocketClient(new(_client.Config.FluxerGatewayUrl))
             {
                 // IMPORTANT: Do not set ReconnectTimeout here - we manage reconnection manually through the gateway protocol
                 IsReconnectionEnabled = false  // Completely disable automatic reconnection
             };
-            _gateway.MessageReceived.Subscribe(x => GatewayMessageHandler(x.Text));
-            _gateway.DisconnectionHappened.Subscribe(info =>
+            _webSocket.MessageReceived.Subscribe(x => GatewayMessageHandler(x.Text));
+            _webSocket.DisconnectionHappened.Subscribe(info =>
             {
                 _isConnecting = false; // Connection attempt finished (failed)
                 _logger.Warning("WebSocket disconnected: Type={Type}, CloseStatus={CloseStatus}, CloseStatusDescription={CloseDescription}, Exception={Exception}",
@@ -190,13 +171,13 @@ public partial class GatewayClient : IDisposable
             });
             Stopwatch.StartNew();
 
-            _logger.Information("Starting WebSocket connection to {GatewayUrl}", _config.FluxerGatewayUrl);
-            await _gateway.Start();
+            _logger.Information("Starting WebSocket connection to {GatewayUrl}", _client.Config.FluxerGatewayUrl);
+            await _webSocket.Start();
 
             // Wait a moment for connection to establish before sending IDENTIFY
             await Task.Delay(100);
 
-            if (_gateway?.IsRunning != true)
+            if (_webSocket?.IsRunning != true)
             {
                 _logger.Error("WebSocket failed to start properly");
                 _isConnecting = false;
@@ -206,7 +187,7 @@ public partial class GatewayClient : IDisposable
             var login = new GatewayPacket
             {
                 OpCode = FluxerOpCode.Identify,
-                Data = new IdentifyGatewayData(GatewayToken)
+                Data = new IdentifyGatewayData(_client.RawToken)
                 {
                     Properties = new Dictionary<string, string>
                     {
@@ -214,8 +195,8 @@ public partial class GatewayClient : IDisposable
                         { "browser", "fluxer-net" },
                         { "device", "fluxer-net" }
                     },
-                    IgnoredGatewayEvents = _config.IgnoredGatewayEvents,
-                    Presence = _config.Presence
+                    IgnoredGatewayEvents = _client.Config.IgnoredGatewayEvents,
+                    Presence = _client.Config.Presence
                 }
             };
 
@@ -240,20 +221,17 @@ public partial class GatewayClient : IDisposable
     public void SendGatewayPacket<T>(T Data)
     {
         // Check if WebSocket is actually connected before trying to send
-        if (_gateway == null || !_gateway.IsRunning)
+        if (_webSocket == null || !_webSocket.IsRunning)
         {
-            _logger.Warning("Cannot send gateway packet - WebSocket is not connected (IsRunning={IsRunning})", _gateway?.IsRunning ?? false);
+            _logger.Warning("Cannot send gateway packet - WebSocket is not connected (IsRunning={IsRunning})", _webSocket?.IsRunning ?? false);
             return;
         }
 
-        var text = JsonConvert.SerializeObject(Data, new JsonSerializerSettings()
-        {
-            NullValueHandling = NullValueHandling.Ignore
-        });
+        var text = JsonConvert.SerializeObject(Data, FluxerClient._serializerSettings);
         _logger.Debug("Sending serialized gateway packet {Enums}", text);
         try
         {
-            _gateway.Send(text);
+            _webSocket.Send(text);
         }
         catch (Exception ex)
         {
@@ -336,11 +314,11 @@ public partial class GatewayClient : IDisposable
                     try
                     {
                         // Dispose current connection
-                        if (_gateway != null)
+                        if (_webSocket != null)
                         {
                             try
                             {
-                                _gateway.Dispose();
+                                _webSocket.Dispose();
                             }
                             catch (Exception ex)
                             {
@@ -910,7 +888,7 @@ public partial class GatewayClient : IDisposable
                 var identifyPacket = new GatewayPacket
                 {
                     OpCode = FluxerOpCode.Identify,
-                    Data = new IdentifyGatewayData(GatewayToken)
+                    Data = new IdentifyGatewayData(_client.RawToken)
                     {
                         Properties = new Dictionary<string, string>
                         {
@@ -918,8 +896,8 @@ public partial class GatewayClient : IDisposable
                             { "browser", "Fluxer.Net" },
                             { "device", "Fluxer.Net" }
                         },
-                        IgnoredGatewayEvents = _config.IgnoredGatewayEvents,
-                        Presence = _config.Presence
+                        IgnoredGatewayEvents = _client.Config.IgnoredGatewayEvents,
+                        Presence = _client.Config.Presence
                     }
                 };
                 SendGatewayPacket(identifyPacket);
@@ -927,7 +905,7 @@ public partial class GatewayClient : IDisposable
             }
 
             var timeSinceLastAttempt = DateTime.Now - _lastGatewayReEstablishAttempt;
-            var requiredDelay = TimeSpan.FromSeconds(_config.ReconnectAttemptDelay);
+            var requiredDelay = TimeSpan.FromSeconds(_client.Config.ReconnectAttemptDelay);
 
             if (timeSinceLastAttempt < requiredDelay)
             {
@@ -948,7 +926,7 @@ public partial class GatewayClient : IDisposable
                 {
                     Sequence = _sequence,
                     SessionId = _sessionId,
-                    Token = GatewayToken
+                    Token = _client.RawToken
                 }
             };
             SendGatewayPacket(packet);
@@ -1941,7 +1919,7 @@ public partial class GatewayClient : IDisposable
 
     #endregion
 
-#endregion
+    #endregion
 
     #region IDisposable
 
@@ -1974,7 +1952,7 @@ public partial class GatewayClient : IDisposable
             // Dispose WebSocket client
             try
             {
-                _gateway?.Dispose();
+                _webSocket?.Dispose();
             }
             catch (Exception ex)
             {

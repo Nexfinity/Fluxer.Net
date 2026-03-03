@@ -4,9 +4,9 @@ using Fluxer.Net.Data.Requests;
 using Fluxer.Net.Data.Response;
 using Fluxer.Net.Data.Responses;
 using Fluxer.Net.Extensions;
+using Fluxer.Net.Gateway.Data;
 using Fluxer.Net.RateLimiting;
 using Newtonsoft.Json;
-using Serilog;
 using Serilog.Core;
 using System.Net;
 using System.Net.Http.Headers;
@@ -26,10 +26,9 @@ namespace Fluxer.Net;
 public class ApiClient
 {
     #region Declares
-    /// <summary>
-    /// The authentication token used for API requests.
-    /// </summary>
-    public string Token { get; set; }
+    //private FluxerClient? _client;
+    private string _token;
+    private FluxerConfig _config;
 
     /// <summary>
     /// The HTTP client used to make requests. Can be shared or injected for connection pooling.
@@ -47,7 +46,6 @@ public class ApiClient
     /// </summary>
     public ApiLimits Limits { get; set; }
 
-    private readonly FluxerConfig _config;
 #pragma warning disable CS0169
     private readonly Logger _logger;
 #pragma warning restore CS0169
@@ -67,46 +65,30 @@ public class ApiClient
     /// <item>HTTP client for connection pooling</item>
     /// </list>
     /// </remarks>
-    public ApiClient(string token, FluxerConfig config)
+    internal ApiClient(FluxerClient client)
     {
-        ValidateToken(token);
-        Token = token;
-        _config = config;
+        _token = client.Token;
+        _config = client.Config;
+        _logger = client.Config.RestSerilog;
+        Initialize();
+    }
+
+    internal ApiClient(FluxerWebhookClient webhook)
+    {
+        _config = webhook.Config;
+        _logger = webhook.Config.RestSerilog;
+        Initialize();
+    }
+
+    private void Initialize()
+    {
         HttpClient = _config.HttpClient ?? new();
         RateLimitManager = new RateLimitManager(_config.EnableRateLimiting);
-        Log.Logger = _config.Serilog ?? new LoggerConfiguration()
-                .MinimumLevel.Verbose()
-                .WriteTo.Console()
-                .CreateLogger();
-        Log.Information("Initialized Fluxer.Net api client ({AssemblyVersion}) (API {ApiVersion}) with rate limiting {RateLimitEnabled}",
+
+        _logger.Information("Initialized Fluxer.Net api client ({AssemblyVersion}) (API {ApiVersion}) with rate limiting {RateLimitEnabled}",
             Assembly.GetExecutingAssembly().GetName().Version,
             _config.Version,
             _config.EnableRateLimiting ? "enabled" : "disabled");
-        Log.Verbose("Loaded with config {@Config}", _config);
-    }
-
-    /// <summary>
-    /// Validates that the token has a recognized prefix for the Fluxer API.
-    /// </summary>
-    /// <param name="token">The token to validate.</param>
-    /// <exception cref="ArgumentException">
-    /// Thrown when the token is null, empty, or does not begin with a valid prefix.
-    /// Bot tokens must start with <c>Bot </c> (including the trailing space).
-    /// User tokens must start with <c>flx_</c>.
-    /// </exception>
-    internal static void ValidateToken(string token)
-    {
-        if (string.IsNullOrWhiteSpace(token))
-            throw new ArgumentException(
-                "Token must not be null or empty.", nameof(token));
-
-        if (!token.StartsWith("Bot ", StringComparison.Ordinal) &&
-            !token.StartsWith("flx_", StringComparison.Ordinal))
-            throw new ArgumentException(
-                $"Invalid token format. Bot tokens must be prefixed with 'Bot ' (e.g. 'Bot <token>') " +
-                $"and user tokens must be prefixed with 'flx_'. " +
-                $"Received token starting with: '{(token.Length > 8 ? token[..8] : token)}...'",
-                nameof(token));
     }
 
     /// <summary>
@@ -142,11 +124,8 @@ public class ApiClient
     public async Task<TResponse> MakeFluxerApiRequestRS<TResponse, TSend>(HttpMethod method, string route, TSend data, bool throwOnNonSuccess = false, bool authorize = true,
         ICollection<KeyValuePair<string, (HttpContent content, string? filename)>>? otherFormData = null)
     {
-        var rawContent = JsonConvert.SerializeObject(data, new JsonSerializerSettings()
-        {
-            NullValueHandling = NullValueHandling.Ignore
-        });
-        Log.Verbose("Sending {@Enums} to {Route}", rawContent, route);
+        var rawContent = JsonConvert.SerializeObject(data, FluxerClient._serializerSettings);
+        _logger.Verbose("Sending {@Enums} to {Route}", rawContent, route);
         var req = new HttpRequestMessage()
         {
             Method = method,
@@ -194,13 +173,13 @@ public class ApiClient
 #endif
                 );
         }
-        if (authorize)
-            req.Headers.Add("Authorization", Token);
+        if (!string.IsNullOrEmpty(_token) && authorize)
+            req.Headers.Add("Authorization", _token);
         var result = await HttpClient.SendAsync(req);
 
-        Log.Debug("Made {Method} request to {Route}", method, route);
+        _logger.Debug("Made {Method} request to {Route}", method, route);
         var resp = await result.Content.ReadAsStringAsync();
-        Log.Verbose("Received {Code}:{Result} from {Route}", result.StatusCode, resp, route);
+        _logger.Verbose("Received {Code}:{Result} from {Route}", result.StatusCode, resp, route);
 
         if (throwOnNonSuccess && !result.IsSuccessStatusCode)
             throw new FluxerApiException($"Fluxer returned a non-success code {result.StatusCode}", resp);
@@ -221,30 +200,21 @@ public class ApiClient
     /// <exception cref="FluxerApiException">Thrown when <paramref name="throwOnNonSuccess"/> is true and the API returns a non-success status code.</exception>
     public async Task<HttpStatusCode> MakeFluxerApiRequestS<TSend>(HttpMethod method, string route, TSend data, bool throwOnNonSuccess = false, bool authorize = true)
     {
-        Log.Verbose("Sending {@Enums} to {Route}", data, route);
+        _logger.Verbose("Sending {@Enums} to {Route}", data, route);
         var req = new HttpRequestMessage()
         {
             Method = method,
-            Content = new StringContent(JsonConvert.SerializeObject(data, new JsonSerializerSettings()
-            {
-                NullValueHandling = NullValueHandling.Ignore
-            }),
-#if NET5_0_OR_GREATER
-                    new MediaTypeHeaderValue("application/json")
-#else
-                    System.Text.Encoding.UTF8,
-                    "application/json"
-#endif
-            ),
+            Content = new StringContent(JsonConvert.SerializeObject(data, FluxerClient._serializerSettings),
+            new MediaTypeHeaderValue("application/json")),
             RequestUri = new(_config.RealApiBaseUrl + route)
         };
-        if (authorize)
-            req.Headers.Add("Authorization", Token);
+        if (!string.IsNullOrEmpty(_token) && authorize)
+            req.Headers.Add("Authorization", _token);
         var result = await HttpClient.SendAsync(req);
 
-        Log.Debug("Made {Method} request to {Route}", method, route);
+        _logger.Debug("Made {Method} request to {Route}", method, route);
         var resp = await result.Content.ReadAsStringAsync();
-        Log.Verbose("Received {Code}:{Result} from {Route}", result.StatusCode, resp, route);
+        _logger.Verbose("Received {Code}:{Result} from {Route}", result.StatusCode, resp, route);
 
         if (throwOnNonSuccess && !result.IsSuccessStatusCode)
             throw new FluxerApiException($"Fluxer returned a non-success code {result.StatusCode}", resp);
@@ -269,13 +239,13 @@ public class ApiClient
             Method = method,
             RequestUri = new(_config.RealApiBaseUrl + route)
         };
-        if (authorize)
-            req.Headers.Add("Authorization", Token);
+        if (!string.IsNullOrEmpty(_token) && authorize)
+            req.Headers.Add("Authorization", _token);
         var result = await HttpClient.SendAsync(req);
 
-        Log.Debug("Made {Method} request to {Route}", method, route);
+        _logger.Debug("Made {Method} request to {Route}", method, route);
         var resp = await result.Content.ReadAsStringAsync();
-        Log.Verbose("Received {Code}:{Result} from {Route}", result.StatusCode, resp, route);
+        _logger.Verbose("Received {Code}:{Result} from {Route}", result.StatusCode, resp, route);
 
         if (throwOnNonSuccess && !result.IsSuccessStatusCode)
             throw new FluxerApiException($"Fluxer returned a non-success code {result.StatusCode}", resp);
@@ -299,17 +269,17 @@ public class ApiClient
             Method = method,
             RequestUri = new(_config.RealApiBaseUrl + route)
         };
-        if (authorize)
-            req.Headers.Add("Authorization", Token);
+        if (!string.IsNullOrEmpty(_token) && authorize)
+            req.Headers.Add("Authorization", _token);
         var result = await HttpClient.SendAsync(req);
 
-        Log.Debug("Made {Method} request to {Route} with response code {Code}", method, route, result.StatusCode);
+        _logger.Debug("Made {Method} request to {Route} with response code {Code}", method, route, result.StatusCode);
         if (throwOnNonSuccess && !result.IsSuccessStatusCode)
             throw new FluxerApiException($"Fluxer returned a non-success code {result.StatusCode}", await result.Content.ReadAsStringAsync());
 
         return result.StatusCode;
     }
-#endregion
+    #endregion
 
     #region Auth API
 
@@ -386,20 +356,20 @@ public class ApiClient
     public async Task ClearMessageAcknowledgement(ulong channelId)
         => await MakeFluxerApiRequest(HttpMethod.Delete, $"/channels/{channelId}/messages/ack", true);
 
-    public async Task<List<Message>> GetMessages(ulong channelId)
-        => await MakeFluxerApiRequestR<List<Message>>(HttpMethod.Get, $"/channels/{channelId}/messages", true);
+    public async Task<List<MessageBaseResponse>> GetMessages(ulong channelId)
+        => await MakeFluxerApiRequestR<List<MessageBaseResponse>>(HttpMethod.Get, $"/channels/{channelId}/messages", true);
 
-    public async Task<Message> GetMessage(ulong channelId, ulong messageId)
-        => await MakeFluxerApiRequestR<Message>(HttpMethod.Get, $"/channels/{channelId}/messages/{messageId}", true);
+    public async Task<MessageBaseResponse> GetMessage(ulong channelId, ulong messageId)
+        => await MakeFluxerApiRequestR<MessageBaseResponse>(HttpMethod.Get, $"/channels/{channelId}/messages/{messageId}", true);
 
     public async Task<TResponse> SearchChannel<TRequest, TResponse>(ulong channelId, TRequest data)
         => await MakeFluxerApiRequestRS<TResponse, TRequest>(HttpMethod.Post, $"/channels/{channelId}/search", data, true);
 
-    public async Task<Message> SendMessage(ulong channelId, Message message, StreamAttachment[]? attachments = null)
+    public async Task<MessageBaseResponse> SendMessage(ulong channelId, Message message, StreamAttachment[]? attachments = null)
     {
         if ((attachments?.Length ?? 0) < 1)
         {
-            return await MakeFluxerApiRequestRS<Message, Message>(HttpMethod.Post, $"/channels/{channelId}/messages", message, true);
+            return await MakeFluxerApiRequestRS<MessageBaseResponse, Message>(HttpMethod.Post, $"/channels/{channelId}/messages", message, true);
         }
         var form = new List<KeyValuePair<string, (HttpContent content, string? filename)>>();
         for (int i = 0; i < attachments.Length; i++)
@@ -408,11 +378,11 @@ public class ApiClient
             form.Add(new KeyValuePair<string, (HttpContent content, string? filename)>($"file[{i}]", (new StreamContent(attachments[i].Stream), attachments[i].Filename)));
         }
         message.Attachments = attachments.Cast<Attachment>().ToList();
-        return await MakeFluxerApiRequestRS<Message, Message>(HttpMethod.Post, $"/channels/{channelId}/messages", message, true);
+        return await MakeFluxerApiRequestRS<MessageBaseResponse, Message>(HttpMethod.Post, $"/channels/{channelId}/messages", message, true);
     }
 
-    public async Task<Message> EditMessage(ulong channelId, ulong messageId, Message message)
-        => await MakeFluxerApiRequestRS<Message, Message>(HttpMethod.Patch, $"/channels/{channelId}/messages/{messageId}", message, true);
+    public async Task<MessageBaseResponse> EditMessage(ulong channelId, ulong messageId, MessageUpdateRequest message)
+        => await MakeFluxerApiRequestRS<MessageBaseResponse, MessageUpdateRequest>(HttpMethod.Patch, $"/channels/{channelId}/messages/{messageId}", message, true);
 
     public async Task DeleteMessage(ulong channelId, ulong messageId)
         => await MakeFluxerApiRequest(HttpMethod.Delete, $"/channels/{channelId}/messages/{messageId}", true);
@@ -420,8 +390,8 @@ public class ApiClient
     public async Task DeleteMessageAttachment(ulong channelId, ulong messageId, ulong attachmentId)
         => await MakeFluxerApiRequest(HttpMethod.Delete, $"/channels/{channelId}/messages/{messageId}/attachments/{attachmentId}", true);
 
-    public async Task BulkDeleteMessages<TRequest>(ulong channelId, TRequest data)
-        => await MakeFluxerApiRequestS<TRequest>(HttpMethod.Post, $"/channels/{channelId}/messages/bulk-delete", data, true);
+    public async Task BulkDeleteMessages(ulong channelId, BulkDeleteMessagesRequest data)
+        => await MakeFluxerApiRequestS(HttpMethod.Post, $"/channels/{channelId}/messages/bulk-delete", data, true);
 
     public async Task TriggerTypingIndicator(ulong channelId)
         => await MakeFluxerApiRequest(HttpMethod.Post, $"/channels/{channelId}/typing", true);
@@ -429,8 +399,8 @@ public class ApiClient
     public async Task AcknowledgeMessage(ulong channelId, ulong messageId, MessageAck details)
         => await MakeFluxerApiRequestS<MessageAck>(HttpMethod.Post, $"/channels/{channelId}/messages/{messageId}/ack", details, true);
 
-    public async Task<TResponse> GetPinnedMessages<TResponse>(ulong channelId)
-        => await MakeFluxerApiRequestR<TResponse>(HttpMethod.Get, $"/channels/{channelId}/pins", true);
+    public async Task<ChannelPinsResponse> GetPinnedMessages(ulong channelId, ChannelPinsQuery? query = null)
+        => await MakeFluxerApiRequestR<ChannelPinsResponse>(HttpMethod.Get, $"/channels/{channelId}/pins?{query?.BuildQuery() ?? string.Empty}", true);
 
     public async Task PinMessage(ulong channelId, ulong messageId)
         => await MakeFluxerApiRequest(HttpMethod.Put, $"/channels/{channelId}/pins/{messageId}", true);
@@ -438,8 +408,8 @@ public class ApiClient
     public async Task UnpinMessage(ulong channelId, ulong messageId)
         => await MakeFluxerApiRequest(HttpMethod.Delete, $"/channels/{channelId}/pins/{messageId}", true);
 
-    public async Task<TResponse> GetReactions<TResponse>(ulong channelId, ulong messageId, string emoji)
-        => await MakeFluxerApiRequestR<TResponse>(HttpMethod.Get, $"/channels/{channelId}/messages/{messageId}/reactions/{emoji}", true);
+    public async Task<List<UserPartialResponse>> GetReactions(ulong channelId, ulong messageId, string emoji)
+        => await MakeFluxerApiRequestR<List<UserPartialResponse>>(HttpMethod.Get, $"/channels/{channelId}/messages/{messageId}/reactions/{emoji}", true);
 
     public async Task AddReaction(ulong channelId, ulong messageId, string emoji)
         => await MakeFluxerApiRequest(HttpMethod.Put, $"/channels/{channelId}/messages/{messageId}/reactions/{emoji}/@me", true);
@@ -465,8 +435,8 @@ public class ApiClient
     public async Task RemoveRecipient(ulong channelId, ulong userId)
         => await MakeFluxerApiRequest(HttpMethod.Delete, $"/channels/{channelId}/recipients/{userId}", true);
 
-    public async Task<TResponse> GetCall<TResponse>(ulong channelId)
-        => await MakeFluxerApiRequestR<TResponse>(HttpMethod.Get, $"/channels/{channelId}/call", true);
+    public async Task<CallEligibilityResponse> GetCall(ulong channelId)
+        => await MakeFluxerApiRequestR<CallEligibilityResponse>(HttpMethod.Get, $"/channels/{channelId}/call", true);
 
     public async Task<TResponse> UpdateCall<TRequest, TResponse>(ulong channelId, TRequest data)
         => await MakeFluxerApiRequestRS<TResponse, TRequest>(HttpMethod.Patch, $"/channels/{channelId}/call", data, true);
