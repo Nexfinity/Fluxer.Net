@@ -53,9 +53,6 @@ public partial class GatewayClient : IDisposable
     private readonly FluxerConfig _config;
     private WebsocketClient _gateway;
     private readonly Stopwatch _gatewayDuration = new();
-#if !NET5_0_OR_GREATER
-    private readonly Random SharedRandom = new();
-#endif
 
     /// <summary>
     /// Current sequence number for gateway events. Used for resuming connections without data loss.
@@ -81,6 +78,12 @@ public partial class GatewayClient : IDisposable
     // build error from generated regex
     // temp. removed pending investigation.
     private static readonly Regex PacketSRegex = new(@"(?<=""s""\s*?:\s*?)\d*", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+
+#if !NET5_0_OR_GREATER
+    [ThreadStatic]
+    private static Random? SharedRandom = null;
+#endif
+
     #endregion
 
     #region Meta
@@ -269,11 +272,11 @@ public partial class GatewayClient : IDisposable
 
         // Exponential backoff: 1s, 2s, 4s, 8s, 16s, max 60s
         var baseDelay = Math.Min(Math.Pow(2, _reconnectAttemptCount - 1), 60);
-        double random =
 #if NET5_0_OR_GREATER
-        Random.Shared.NextDouble();
+        double random = Random.Shared.NextDouble();
 #else
-        SharedRandom.NextDouble();
+        SharedRandom ??= new();
+        double random = SharedRandom.NextDouble();
 #endif
         var jitter = random * 0.3 * baseDelay; // Add up to 30% jitter
         var totalDelay = TimeSpan.FromSeconds(baseDelay + jitter);
@@ -1122,11 +1125,11 @@ public partial class GatewayClient : IDisposable
     private async Task HandleHeartbeat(CancellationToken cancellationToken)
     {
         // Add jitter between 0-500ms to prevent thundering herd
-        var jitter =
 #if NET5_0_OR_GREATER
-        Random.Shared.Next(0, 500);
+        var jitter = Random.Shared.Next(0, 500);
 #else
-        SharedRandom.Next(0, 500);
+        SharedRandom ??= new();
+        var jitter = SharedRandom.Next(0, 500);
 #endif
 
         _logger.Debug("Starting heartbeat with interval {Interval}ms and jitter {Jitter}ms", _heartbeatInterval, jitter);
