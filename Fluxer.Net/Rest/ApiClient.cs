@@ -84,6 +84,7 @@ public class ApiClient
     {
         HttpClient = _config.HttpClient ?? new();
         RateLimitManager = new RateLimitManager(_config.EnableRateLimiting);
+        Limits = new ApiLimits();
 
         _logger.Information("Initialized Fluxer.Net api client ({AssemblyVersion}) (API {ApiVersion}) with rate limiting {RateLimitEnabled}",
             Assembly.GetExecutingAssembly().GetName().Version,
