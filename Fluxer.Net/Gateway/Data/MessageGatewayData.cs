@@ -87,7 +87,7 @@ public class MessageGatewayData : IGatewayData
 /// <summary>
 /// Partial user response matching UserPartialResponse from the API
 /// </summary>
-public class UserPartialResponse
+public class UserPartialResponse : Entity
 {
     [JsonProperty("id")]
     public ulong Id { get; set; }

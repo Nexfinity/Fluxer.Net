@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace Fluxer.Net.Data.Guilds;
 
-public class GuildBanResponse
+public class GuildBanResponse : Entity
 {
     /// <summary>
     /// When the member was banned.

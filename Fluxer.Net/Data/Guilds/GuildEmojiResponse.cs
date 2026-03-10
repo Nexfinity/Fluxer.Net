@@ -2,7 +2,7 @@
 
 namespace Fluxer.Net.Data.Guilds;
 
-public class GuildEmojiResponse
+public class GuildEmojiResponse : Entity
 {
     [JsonRequired]
     [JsonProperty("id")]

@@ -34,6 +34,7 @@ public class ApiClient
     //private FluxerClient? _client;
     private string _token;
     private FluxerConfig _config;
+    private FluxerClient _client;
 
     /// <summary>
     /// The HTTP client used to make requests. Can be shared or injected for connection pooling.
@@ -72,6 +73,7 @@ public class ApiClient
     /// </remarks>
     internal ApiClient(FluxerClient client)
     {
+        _client = client;
         _token = client.Token;
         _config = client.Config;
         _logger = client.Config.RestSerilog;
@@ -127,7 +129,7 @@ public class ApiClient
     /// <returns>The deserialized response object.</returns>
     /// <exception cref="FluxerApiException">Thrown when <paramref name="throwOnNonSuccess"/> is true and the API returns a non-success status code.</exception>
     public async Task<TResponse> MakeFluxerApiRequestRS<TResponse, TSend>(HttpMethod method, string route, TSend data, bool throwOnNonSuccess = false, bool authorize = true,
-        ICollection<KeyValuePair<string, (HttpContent content, string? filename)>>? otherFormData = null)
+        ICollection<KeyValuePair<string, (HttpContent content, string? filename)>>? otherFormData = null) where TResponse : Entity
     {
         var rawContent = JsonConvert.SerializeObject(data, FluxerClient._serializerSettings);
         _logger.Verbose("Sending {@Enums} to {Route}", rawContent, route);
@@ -174,7 +176,10 @@ public class ApiClient
         if (throwOnNonSuccess && !result.IsSuccessStatusCode)
             throw new FluxerApiException($"Fluxer returned a non-success code {result.StatusCode}", resp);
 
-        return JsonConvert.DeserializeObject<TResponse>(resp);
+        TResponse response = JsonConvert.DeserializeObject<TResponse>(resp);
+        response.Client = _client;
+
+        return response;
     }
 
     /// <summary>
@@ -222,7 +227,7 @@ public class ApiClient
     /// <param name="authorize">Whether to include the Authorization header.</param>
     /// <returns>The deserialized response object.</returns>
     /// <exception cref="FluxerApiException">Thrown when <paramref name="throwOnNonSuccess"/> is true and the API returns a non-success status code.</exception>
-    public async Task<TResponse> MakeFluxerApiRequestR<TResponse>(HttpMethod method, string route, bool throwOnNonSuccess = false, bool authorize = true)
+    public async Task<TResponse> MakeFluxerApiRequestR<TResponse>(HttpMethod method, string route, bool throwOnNonSuccess = false, bool authorize = true) where TResponse : Entity
     {
         var req = new HttpRequestMessage()
         {
@@ -240,7 +245,47 @@ public class ApiClient
         if (throwOnNonSuccess && !result.IsSuccessStatusCode)
             throw new FluxerApiException($"Fluxer returned a non-success code {result.StatusCode}", resp);
 
-        return JsonConvert.DeserializeObject<TResponse>(resp);
+        TResponse response = JsonConvert.DeserializeObject<TResponse>(resp);
+        response.Client = _client;
+
+        return response;
+    }
+
+    /// <summary>
+    /// Makes an HTTP request with no request body but expects a response body.
+    /// </summary>
+    /// <typeparam name="TResponse">The type to deserialize the response into.</typeparam>
+    /// <param name="method">The HTTP method (typically GET).</param>
+    /// <param name="route">The API route (e.g., "/users/@me").</param>
+    /// <param name="throwOnNonSuccess">Whether to throw an exception on non-2xx status codes.</param>
+    /// <param name="authorize">Whether to include the Authorization header.</param>
+    /// <returns>The deserialized response object.</returns>
+    /// <exception cref="FluxerApiException">Thrown when <paramref name="throwOnNonSuccess"/> is true and the API returns a non-success status code.</exception>
+    public async Task<List<TResponse>> MakeFluxerApiRequestList<TResponse>(HttpMethod method, string route, bool throwOnNonSuccess = false, bool authorize = true) where TResponse : Entity
+    {
+        var req = new HttpRequestMessage()
+        {
+            Method = method,
+            RequestUri = new(_config.RealApiBaseUrl + route)
+        };
+        if (!string.IsNullOrEmpty(_token) && authorize)
+            req.Headers.Add("Authorization", _token);
+        var result = await HttpClient.SendAsync(req);
+
+        _logger.Debug("Made {Method} request to {Route}", method, route);
+        var resp = await result.Content.ReadAsStringAsync();
+        _logger.Verbose("Received {Code}:{Result} from {Route}", result.StatusCode, resp, route);
+
+        if (throwOnNonSuccess && !result.IsSuccessStatusCode)
+            throw new FluxerApiException($"Fluxer returned a non-success code {result.StatusCode}", resp);
+
+        List<TResponse> response = JsonConvert.DeserializeObject<List<TResponse>>(resp);
+        foreach (var i in response)
+        {
+            i.Client = _client;
+        }
+
+        return response;
     }
 
     /// <summary>
@@ -279,13 +324,13 @@ public class ApiClient
     public async Task Register<TRequest>(TRequest data)
         => await MakeFluxerApiRequestS<TRequest>(HttpMethod.Post, "/auth/register", data, true, false);
 
-    public async Task LoginMfaTotp<TRequest, TResponse>(TRequest data)
+    public async Task LoginMfaTotp<TRequest, TResponse>(TRequest data) where TResponse : Entity
         => await MakeFluxerApiRequestRS<TResponse, TRequest>(HttpMethod.Post, "/auth/login/mfa/totp", data, true, false);
 
     public async Task SendMfaSmsCode()
         => await MakeFluxerApiRequest(HttpMethod.Post, "/auth/login/mfa/sms/send", true, false);
 
-    public async Task LoginMfaSms<TRequest, TResponse>(TRequest data)
+    public async Task LoginMfaSms<TRequest, TResponse>(TRequest data) where TResponse : Entity
         => await MakeFluxerApiRequestRS<TResponse, TRequest>(HttpMethod.Post, "/auth/login/mfa/sms", data, true, false);
 
     public async Task Logout()
@@ -303,7 +348,7 @@ public class ApiClient
     public async Task ResetPassword<TRequest>(TRequest data)
         => await MakeFluxerApiRequestS<TRequest>(HttpMethod.Post, "/auth/reset", data, true, false);
 
-    public async Task<TResponse> GetSessions<TResponse>()
+    public async Task<TResponse> GetSessions<TResponse>() where TResponse : Entity
         => await MakeFluxerApiRequestR<TResponse>(HttpMethod.Get, "/auth/sessions", true);
 
     public async Task LogoutSessions<TRequest>(TRequest data)
@@ -312,19 +357,19 @@ public class ApiClient
     public async Task PostAuthAuthorizeIp<TRequest>(TRequest data)
         => await MakeFluxerApiRequestS<TRequest>(HttpMethod.Post, "/auth/authorize-ip", data, true);
 
-    public async Task<TResponse> PostAuthWebauthnAuthenticationOptions<TResponse>()
+    public async Task<TResponse> PostAuthWebauthnAuthenticationOptions<TResponse>() where TResponse : Entity
         => await MakeFluxerApiRequestR<TResponse>(HttpMethod.Post, "/auth/webauthn/authentication-options", true, false);
 
-    public async Task<TResponse> PostAuthWebauthnAuthenticate<TRequest, TResponse>(TRequest data)
+    public async Task<TResponse> PostAuthWebauthnAuthenticate<TRequest, TResponse>(TRequest data) where TResponse : Entity
         => await MakeFluxerApiRequestRS<TResponse, TRequest>(HttpMethod.Post, "/auth/webauthn/authenticate", data, true, false);
 
-    public async Task<TResponse> PostAuthLoginMfaWebauthnAuthenticationOptions<TResponse>()
+    public async Task<TResponse> PostAuthLoginMfaWebauthnAuthenticationOptions<TResponse>() where TResponse : Entity
         => await MakeFluxerApiRequestR<TResponse>(HttpMethod.Post, "/auth/login/mfa/webauthn/authentication-options", true, false);
 
-    public async Task<TResponse> PostAuthLoginMfaWebauthn<TRequest, TResponse>(TRequest data)
+    public async Task<TResponse> PostAuthLoginMfaWebauthn<TRequest, TResponse>(TRequest data) where TResponse : Entity
         => await MakeFluxerApiRequestRS<TResponse, TRequest>(HttpMethod.Post, "/auth/login/mfa/webauthn", data, true, false);
 
-    public async Task<TResponse> PostAuthRedeemBetaCode<TRequest, TResponse>(TRequest data)
+    public async Task<TResponse> PostAuthRedeemBetaCode<TRequest, TResponse>(TRequest data) where TResponse : Entity
         => await MakeFluxerApiRequestRS<TResponse, TRequest>(HttpMethod.Post, "/auth/redeem-beta-code", data, true);
 
     #endregion
@@ -334,7 +379,7 @@ public class ApiClient
     public async Task<Channel> GetChannel(ulong channelId)
         => await MakeFluxerApiRequestR<Channel>(HttpMethod.Get, $"/channels/{channelId}", true);
 
-    public async Task<TResponse> GetChannelRtcRegions<TResponse>(ulong channelId)
+    public async Task<TResponse> GetChannelRtcRegions<TResponse>(ulong channelId) where TResponse : Entity
         => await MakeFluxerApiRequestR<TResponse>(HttpMethod.Get, $"/channels/{channelId}/rtc-regions", true);
 
     public async Task<Channel> UpdateChannel(ulong channelId, Channel channel)
@@ -347,12 +392,12 @@ public class ApiClient
         => await MakeFluxerApiRequest(HttpMethod.Delete, $"/channels/{channelId}/messages/ack", true);
 
     public async Task<List<MessageBaseResponse>> GetMessages(ulong channelId)
-        => await MakeFluxerApiRequestR<List<MessageBaseResponse>>(HttpMethod.Get, $"/channels/{channelId}/messages", true);
+        => await MakeFluxerApiRequestList<MessageBaseResponse>(HttpMethod.Get, $"/channels/{channelId}/messages", true);
 
     public async Task<MessageBaseResponse> GetMessage(ulong channelId, ulong messageId)
         => await MakeFluxerApiRequestR<MessageBaseResponse>(HttpMethod.Get, $"/channels/{channelId}/messages/{messageId}", true);
 
-    public async Task<TResponse> SearchChannel<TRequest, TResponse>(ulong channelId, TRequest data)
+    public async Task<TResponse> SearchChannel<TRequest, TResponse>(ulong channelId, TRequest data) where TResponse : Entity
         => await MakeFluxerApiRequestRS<TResponse, TRequest>(HttpMethod.Post, $"/channels/{channelId}/search", data, true);
 
     public async Task<MessageBaseResponse> SendMessage(ulong channelId, Message message, StreamAttachment[]? attachments = null)
@@ -368,6 +413,7 @@ public class ApiClient
             form.Add(new KeyValuePair<string, (HttpContent content, string? filename)>($"file[{i}]", (new StreamContent(attachments[i].Stream), attachments[i].Filename)));
         }
         message.Attachments = attachments.Cast<Attachment>().ToList();
+
         return await MakeFluxerApiRequestRS<MessageBaseResponse, Message>(HttpMethod.Post, $"/channels/{channelId}/messages", message, true);
     }
 
@@ -399,7 +445,7 @@ public class ApiClient
         => await MakeFluxerApiRequest(HttpMethod.Delete, $"/channels/{channelId}/pins/{messageId}", true);
 
     public async Task<List<UserPartialResponse>> GetReactions(ulong channelId, ulong messageId, string emoji)
-        => await MakeFluxerApiRequestR<List<UserPartialResponse>>(HttpMethod.Get, $"/channels/{channelId}/messages/{messageId}/reactions/{emoji}", true);
+        => await MakeFluxerApiRequestList<UserPartialResponse>(HttpMethod.Get, $"/channels/{channelId}/messages/{messageId}/reactions/{emoji}", true);
 
     public async Task AddReaction(ulong channelId, ulong messageId, string emoji)
         => await MakeFluxerApiRequest(HttpMethod.Put, $"/channels/{channelId}/messages/{messageId}/reactions/{emoji}/@me", true);
@@ -416,7 +462,7 @@ public class ApiClient
     public async Task RemoveAllReactions(ulong channelId, ulong messageId)
         => await MakeFluxerApiRequest(HttpMethod.Delete, $"/channels/{channelId}/messages/{messageId}/reactions", true);
 
-    public async Task<TResponse> UploadAttachments<TRequest, TResponse>(ulong channelId, TRequest data)
+    public async Task<TResponse> UploadAttachments<TRequest, TResponse>(ulong channelId, TRequest data) where TResponse : Entity
         => await MakeFluxerApiRequestRS<TResponse, TRequest>(HttpMethod.Post, $"/channels/{channelId}/attachments", data, true);
 
     public async Task AddRecipient(ulong channelId, ulong userId)
@@ -428,7 +474,7 @@ public class ApiClient
     public async Task<CallEligibilityResponse> GetCall(ulong channelId)
         => await MakeFluxerApiRequestR<CallEligibilityResponse>(HttpMethod.Get, $"/channels/{channelId}/call", true);
 
-    public async Task<TResponse> UpdateCall<TRequest, TResponse>(ulong channelId, TRequest data)
+    public async Task<TResponse> UpdateCall<TRequest, TResponse>(ulong channelId, TRequest data) where TResponse : Entity
         => await MakeFluxerApiRequestRS<TResponse, TRequest>(HttpMethod.Patch, $"/channels/{channelId}/call", data, true);
 
     public async Task RingCall<TRequest>(ulong channelId, TRequest data)
@@ -438,15 +484,15 @@ public class ApiClient
         => await MakeFluxerApiRequest(HttpMethod.Post, $"/channels/{channelId}/call/stop-ringing", true);
 
     public async Task<List<Invite>> GetChannelInvites(ulong channelId)
-        => await MakeFluxerApiRequestR<List<Invite>>(HttpMethod.Get, $"/channels/{channelId}/invites", true);
+        => await MakeFluxerApiRequestList<Invite>(HttpMethod.Get, $"/channels/{channelId}/invites", true);
 
-    public async Task<TResponse> CreateInvite<TRequest, TResponse>(ulong channelId, TRequest data)
+    public async Task<TResponse> CreateInvite<TRequest, TResponse>(ulong channelId, TRequest data) where TResponse : Entity
         => await MakeFluxerApiRequestRS<TResponse, TRequest>(HttpMethod.Post, $"/channels/{channelId}/invites", data, true);
 
-    public async Task<TResponse> GetChannelWebhooks<TResponse>(ulong channelId)
+    public async Task<TResponse> GetChannelWebhooks<TResponse>(ulong channelId) where TResponse : Entity
         => await MakeFluxerApiRequestR<TResponse>(HttpMethod.Get, $"/channels/{channelId}/webhooks", true);
 
-    public async Task<TResponse> CreateWebhook<TRequest, TResponse>(ulong channelId, TRequest data)
+    public async Task<TResponse> CreateWebhook<TRequest, TResponse>(ulong channelId, TRequest data) where TResponse : Entity
         => await MakeFluxerApiRequestRS<TResponse, TRequest>(HttpMethod.Post, $"/channels/{channelId}/webhooks", data, true);
 
     #endregion
@@ -460,19 +506,19 @@ public class ApiClient
 
     #region Memes API
 
-    public async Task<TResponse> GetCurrentUserMemes<TResponse>()
+    public async Task<TResponse> GetCurrentUserMemes<TResponse>() where TResponse : Entity
         => await MakeFluxerApiRequestR<TResponse>(HttpMethod.Get, "/users/@me/memes", true);
 
-    public async Task<TResponse> PostCurrentUserMeme<TRequest, TResponse>(TRequest data)
+    public async Task<TResponse> PostCurrentUserMeme<TRequest, TResponse>(TRequest data) where TResponse : Entity
         => await MakeFluxerApiRequestRS<TResponse, TRequest>(HttpMethod.Post, "/users/@me/memes", data, true);
 
     public async Task PostChannelMessageMeme<TRequest>(ulong channelId, ulong messageId, TRequest data)
         => await MakeFluxerApiRequestS<TRequest>(HttpMethod.Post, $"/channels/{channelId}/messages/{messageId}/memes", data, true);
 
-    public async Task<TResponse> GetCurrentUserMeme<TResponse>(ulong memeId)
+    public async Task<TResponse> GetCurrentUserMeme<TResponse>(ulong memeId) where TResponse : Entity
         => await MakeFluxerApiRequestR<TResponse>(HttpMethod.Get, $"/users/@me/memes/{memeId}", true);
 
-    public async Task<TResponse> PatchCurrentUserMeme<TRequest, TResponse>(ulong memeId, TRequest data)
+    public async Task<TResponse> PatchCurrentUserMeme<TRequest, TResponse>(ulong memeId, TRequest data) where TResponse : Entity
         => await MakeFluxerApiRequestRS<TResponse, TRequest>(HttpMethod.Patch, $"/users/@me/memes/{memeId}", data, true);
 
     public async Task DeleteCurrentUserMeme(ulong memeId)
@@ -482,7 +528,7 @@ public class ApiClient
 
     #region Invites API
 
-    public async Task<TResponse> GetInvite<TResponse>(string inviteCode)
+    public async Task<TResponse> GetInvite<TResponse>(string inviteCode) where TResponse : Entity
         => await MakeFluxerApiRequestR<TResponse>(HttpMethod.Get, $"/invites/{inviteCode}", true);
 
     public async Task<GuildProperties> JoinGuild(string inviteCode)
@@ -519,7 +565,7 @@ public class ApiClient
         => await MakeFluxerApiRequestRS<GuildProperties, GuildCreateRequest>(HttpMethod.Post, "/guilds", data, true);
 
     public async Task<List<GuildProperties>> GetCurrentUserGuilds()
-        => await MakeFluxerApiRequestR<List<GuildProperties>>(HttpMethod.Get, "/users/@me/guilds", true);
+        => await MakeFluxerApiRequestList<GuildProperties>(HttpMethod.Get, "/users/@me/guilds", true);
 
     public async Task LeaveGuild(ulong guildId)
         => await MakeFluxerApiRequest(HttpMethod.Delete, $"/users/@me/guilds/{guildId}", true);
@@ -540,7 +586,7 @@ public class ApiClient
         => await MakeFluxerApiRequestRS<GuildVanityUrlUpdateResponse, GuildVanityUrlUpdateRequest>(HttpMethod.Patch, $"/guilds/{guildId}/vanity-url", data, true);
 
     public async Task<List<User>> GetMembers(ulong guildId)
-        => await MakeFluxerApiRequestR<List<User>>(HttpMethod.Get, $"/guilds/{guildId}/members", true);
+        => await MakeFluxerApiRequestList<User>(HttpMethod.Get, $"/guilds/{guildId}/members", true);
 
     public async Task<GuildMember> GetCurrentMember(ulong guildId)
         => await MakeFluxerApiRequestR<GuildMember>(HttpMethod.Get, $"/guilds/{guildId}/members/@me", true);
@@ -561,7 +607,7 @@ public class ApiClient
         => await MakeFluxerApiRequestS(HttpMethod.Post, $"/guilds/{guildId}/transfer-ownership", data, true);
 
     public async Task<IReadOnlyCollection<GuildBanResponse>> GetBans(ulong guildId)
-        => await MakeFluxerApiRequestR<IReadOnlyCollection<GuildBanResponse>>(HttpMethod.Get, $"/guilds/{guildId}/bans", true);
+        => await MakeFluxerApiRequestList<GuildBanResponse>(HttpMethod.Get, $"/guilds/{guildId}/bans", true);
 
     public async Task BanMember(ulong guildId, ulong userId, GuildBanCreateRequest data)
         => await MakeFluxerApiRequestS(HttpMethod.Put, $"/guilds/{guildId}/bans/{userId}", data, true);
@@ -588,7 +634,7 @@ public class ApiClient
         => await MakeFluxerApiRequest(HttpMethod.Delete, $"/guilds/{guildId}/roles/{roleId}", true);
 
     public async Task<List<Channel>> GetChannels(ulong guildId)
-        => await MakeFluxerApiRequestR<List<Channel>>(HttpMethod.Get, $"/guilds/{guildId}/channels", true);
+        => await MakeFluxerApiRequestList<Channel>(HttpMethod.Get, $"/guilds/{guildId}/channels", true);
 
     public async Task<Channel> CreateChannel<TRequest>(ulong guildId, TRequest data)
         where TRequest : ChannelCreateRequest
@@ -597,11 +643,11 @@ public class ApiClient
     public async Task UpdateChannelPositions(ulong guildId, IEnumerable<ChannelPositionUpdateRequestItem> data)
         => await MakeFluxerApiRequestS(HttpMethod.Patch, $"/guilds/{guildId}/channels", data, true);
 
-    public async Task<TResponse> SearchGuild<TRequest, TResponse>(ulong guildId, TRequest data)
+    public async Task<TResponse> SearchGuild<TRequest, TResponse>(ulong guildId, TRequest data) where TResponse : Entity
         => await MakeFluxerApiRequestRS<TResponse, TRequest>(HttpMethod.Post, $"/guilds/{guildId}/search", data, true);
 
     [Obsolete("API Endpoint no longer exists")]
-    public async Task<TResponse> GetGuildAuditLogFilters<TResponse>(ulong guildId)
+    public async Task<TResponse> GetGuildAuditLogFilters<TResponse>(ulong guildId) where TResponse : Entity
         => await MakeFluxerApiRequestR<TResponse>(HttpMethod.Get, $"/guilds/{guildId}/audit-logs/filters", true);
 
     public async Task<GuildAuditLogListResponse> SearchAuditLog(ulong guildId, GuildAuditLogListRequest data)
@@ -614,7 +660,7 @@ public class ApiClient
         => await MakeFluxerApiRequestRS<GuildEmojiBulkCreateResponse, GuildEmojiBulkCreateRequest>(HttpMethod.Post, $"/guilds/{guildId}/emojis/bulk", data, true);
 
     public async Task<IEnumerable<GuildEmojiWithUserResponse>> GetEmojis(ulong guildId)
-        => await MakeFluxerApiRequestR<IEnumerable<GuildEmojiWithUserResponse>>(HttpMethod.Get, $"/guilds/{guildId}/emojis", true);
+        => await MakeFluxerApiRequestList<GuildEmojiWithUserResponse>(HttpMethod.Get, $"/guilds/{guildId}/emojis", true);
 
     public async Task<GuildEmojiResponse> UpdateEmoji(ulong guildId, ulong emojiId, GuildEmojiUpdateRequest data)
         => await MakeFluxerApiRequestRS<GuildEmojiResponse, GuildEmojiUpdateRequest>(HttpMethod.Patch, $"/guilds/{guildId}/emojis/{emojiId}", data, true);
@@ -629,7 +675,7 @@ public class ApiClient
         => await MakeFluxerApiRequestRS<GuildStickerBulkCreateResponse, GuildStickerBulkCreateRequest>(HttpMethod.Post, $"/guilds/{guildId}/stickers/bulk", data, true);
 
     public async Task<IEnumerable<GuildStickerWithUserResponse>> GetStickers(ulong guildId)
-        => await MakeFluxerApiRequestR<IEnumerable<GuildStickerWithUserResponse>>(HttpMethod.Get, $"/guilds/{guildId}/stickers", true);
+        => await MakeFluxerApiRequestList<GuildStickerWithUserResponse>(HttpMethod.Get, $"/guilds/{guildId}/stickers", true);
 
     public async Task<GuildStickerResponse> UpdateSticker(ulong guildId, ulong stickerId, GuildStickerUpdateRequest data)
         => await MakeFluxerApiRequestRS<GuildStickerResponse, GuildStickerUpdateRequest>(HttpMethod.Patch, $"/guilds/{guildId}/stickers/{stickerId}", data, true);
@@ -638,28 +684,28 @@ public class ApiClient
         => await MakeFluxerApiRequest(HttpMethod.Delete, $"/guilds/{guildId}/stickers/{stickerId}", true);
 
     public async Task<List<Invite>> GetGuildInvites(ulong guildId)
-        => await MakeFluxerApiRequestR<List<Invite>>(HttpMethod.Get, $"/guilds/{guildId}/invites", true);
+        => await MakeFluxerApiRequestList<Invite>(HttpMethod.Get, $"/guilds/{guildId}/invites", true);
 
     public async Task<IEnumerable<WebhookResponse>> GetGuildWebhooks(ulong guildId)
-        => await MakeFluxerApiRequestR<IEnumerable<WebhookResponse>>(HttpMethod.Get, $"/guilds/{guildId}/webhooks", true);
+        => await MakeFluxerApiRequestList<WebhookResponse>(HttpMethod.Get, $"/guilds/{guildId}/webhooks", true);
 
     #endregion
 
     #region Tenor API
 
-    public async Task<TResponse> GetTenorSearch<TResponse>(string query)
+    public async Task<TResponse> GetTenorSearch<TResponse>(string query) where TResponse : Entity
         => await MakeFluxerApiRequestR<TResponse>(HttpMethod.Get, $"/tenor/search?q={query}", true);
 
-    public async Task<TResponse> GetTenorFeatured<TResponse>()
+    public async Task<TResponse> GetTenorFeatured<TResponse>() where TResponse : Entity
         => await MakeFluxerApiRequestR<TResponse>(HttpMethod.Get, "/tenor/featured", true);
 
-    public async Task<TResponse> GetTenorTrendingGifs<TResponse>()
+    public async Task<TResponse> GetTenorTrendingGifs<TResponse>() where TResponse : Entity
         => await MakeFluxerApiRequestR<TResponse>(HttpMethod.Get, "/tenor/trending-gifs", true);
 
     public async Task PostTenorRegisterShare<TRequest>(TRequest data)
         => await MakeFluxerApiRequestS<TRequest>(HttpMethod.Post, "/tenor/register-share", data, true);
 
-    public async Task<TResponse> GetTenorSuggest<TResponse>(string query)
+    public async Task<TResponse> GetTenorSuggest<TResponse>(string query) where TResponse : Entity
         => await MakeFluxerApiRequestR<TResponse>(HttpMethod.Get, $"/tenor/suggest?q={query}", true);
 
     #endregion
@@ -672,13 +718,13 @@ public class ApiClient
     public async Task<User> UpdateCurrentUser(User user)
         => await MakeFluxerApiRequestRS<User, User>(HttpMethod.Patch, "/users/@me", user, true);
 
-    public async Task<TResponse> CheckUsernameAvailability<TResponse>(string tag)
+    public async Task<TResponse> CheckUsernameAvailability<TResponse>(string tag) where TResponse : Entity
         => await MakeFluxerApiRequestR<TResponse>(HttpMethod.Get, $"/users/check-tag?tag={tag}", true);
 
     public async Task<User> GetUser(ulong userId)
         => await MakeFluxerApiRequestR<User>(HttpMethod.Get, $"/users/{userId}", true);
 
-    public async Task<TResponse> GetUserProfile<TResponse>(ulong targetId)
+    public async Task<TResponse> GetUserProfile<TResponse>(ulong targetId) where TResponse : Entity
         => await MakeFluxerApiRequestR<TResponse>(HttpMethod.Get, $"/users/{targetId}/profile", true);
 
     public async Task<UserSettings> GetCurrentUserSettings()
@@ -690,46 +736,46 @@ public class ApiClient
     public async Task<UserSettings> SetCustomStatus(UserCustomStatus status)
         => await MakeFluxerApiRequestRS<UserSettings, ModifyCustomStatus>(HttpMethod.Patch, "/users/@me/settings", new ModifyCustomStatus(status), true);
 
-    public async Task<TResponse> GetCurrentUserNotes<TResponse>()
+    public async Task<TResponse> GetCurrentUserNotes<TResponse>() where TResponse : Entity
         => await MakeFluxerApiRequestR<TResponse>(HttpMethod.Get, "/users/@me/notes", true);
 
-    public async Task<TResponse> GetCurrentUserNote<TResponse>(ulong targetId)
+    public async Task<TResponse> GetCurrentUserNote<TResponse>(ulong targetId) where TResponse : Entity
         => await MakeFluxerApiRequestR<TResponse>(HttpMethod.Get, $"/users/@me/notes/{targetId}", true);
 
-    public async Task<TResponse> PutCurrentUserNote<TRequest, TResponse>(ulong targetId, TRequest data)
+    public async Task<TResponse> PutCurrentUserNote<TRequest, TResponse>(ulong targetId, TRequest data) where TResponse : Entity
         => await MakeFluxerApiRequestRS<TResponse, TRequest>(HttpMethod.Put, $"/users/@me/notes/{targetId}", data, true);
 
-    public async Task<TResponse> GetCurrentUserBetaCodes<TResponse>()
+    public async Task<TResponse> GetCurrentUserBetaCodes<TResponse>() where TResponse : Entity
         => await MakeFluxerApiRequestR<TResponse>(HttpMethod.Get, "/users/@me/beta-codes", true);
 
-    public async Task<TResponse> PostCurrentUserBetaCode<TRequest, TResponse>(TRequest data)
+    public async Task<TResponse> PostCurrentUserBetaCode<TRequest, TResponse>(TRequest data) where TResponse : Entity
         => await MakeFluxerApiRequestRS<TResponse, TRequest>(HttpMethod.Post, "/users/@me/beta-codes", data, true);
 
     public async Task DeleteCurrentUserBetaCode(string code)
         => await MakeFluxerApiRequest(HttpMethod.Delete, $"/users/@me/beta-codes/{code}", true);
 
-    public async Task<TResponse> GetCurrentUserMentions<TResponse>()
+    public async Task<TResponse> GetCurrentUserMentions<TResponse>() where TResponse : Entity
         => await MakeFluxerApiRequestR<TResponse>(HttpMethod.Get, "/users/@me/mentions", true);
 
     public async Task DeleteCurrentUserMention(ulong messageId)
         => await MakeFluxerApiRequest(HttpMethod.Delete, $"/users/@me/mentions/{messageId}", true);
 
-    public async Task<TResponse> PostCurrentUserMfaTotpEnable<TRequest, TResponse>(TRequest data)
+    public async Task<TResponse> PostCurrentUserMfaTotpEnable<TRequest, TResponse>(TRequest data) where TResponse : Entity
         => await MakeFluxerApiRequestRS<TResponse, TRequest>(HttpMethod.Post, "/users/@me/mfa/totp/enable", data, true);
 
     public async Task PostCurrentUserMfaTotpDisable<TRequest>(TRequest data)
         => await MakeFluxerApiRequestS<TRequest>(HttpMethod.Post, "/users/@me/mfa/totp/disable", data, true);
 
-    public async Task<TResponse> PostCurrentUserMfaBackupCodes<TRequest, TResponse>(TRequest data)
+    public async Task<TResponse> PostCurrentUserMfaBackupCodes<TRequest, TResponse>(TRequest data) where TResponse : Entity
         => await MakeFluxerApiRequestRS<TResponse, TRequest>(HttpMethod.Post, "/users/@me/mfa/backup-codes", data, true);
 
     public async Task PostCurrentUserPhoneSendVerification<TRequest>(TRequest data)
         => await MakeFluxerApiRequestS<TRequest>(HttpMethod.Post, "/users/@me/phone/send-verification", data, true);
 
-    public async Task<TResponse> PostCurrentUserPhoneVerify<TRequest, TResponse>(TRequest data)
+    public async Task<TResponse> PostCurrentUserPhoneVerify<TRequest, TResponse>(TRequest data) where TResponse : Entity
         => await MakeFluxerApiRequestRS<TResponse, TRequest>(HttpMethod.Post, "/users/@me/phone/verify", data, true);
 
-    public async Task<TResponse> PostCurrentUserPhone<TRequest, TResponse>(TRequest data)
+    public async Task<TResponse> PostCurrentUserPhone<TRequest, TResponse>(TRequest data) where TResponse : Entity
         => await MakeFluxerApiRequestRS<TResponse, TRequest>(HttpMethod.Post, "/users/@me/phone", data, true);
 
     public async Task DeleteCurrentUserPhone<TRequest>(TRequest data)
@@ -741,34 +787,34 @@ public class ApiClient
     public async Task PostCurrentUserMfaSmsDisable<TRequest>(TRequest data)
         => await MakeFluxerApiRequestS<TRequest>(HttpMethod.Post, "/users/@me/mfa/sms/disable", data, true);
 
-    public async Task<TResponse> GetCurrentUserMfaWebauthnCredentials<TResponse>()
+    public async Task<TResponse> GetCurrentUserMfaWebauthnCredentials<TResponse>() where TResponse : Entity
         => await MakeFluxerApiRequestR<TResponse>(HttpMethod.Get, "/users/@me/mfa/webauthn/credentials", true);
 
-    public async Task<TResponse> PostCurrentUserMfaWebauthnCredentialsRegistrationOptions<TResponse>()
+    public async Task<TResponse> PostCurrentUserMfaWebauthnCredentialsRegistrationOptions<TResponse>() where TResponse : Entity
         => await MakeFluxerApiRequestR<TResponse>(HttpMethod.Post, "/users/@me/mfa/webauthn/credentials/registration-options", true);
 
-    public async Task<TResponse> PostCurrentUserMfaWebauthnCredentials<TRequest, TResponse>(TRequest data)
+    public async Task<TResponse> PostCurrentUserMfaWebauthnCredentials<TRequest, TResponse>(TRequest data) where TResponse : Entity
         => await MakeFluxerApiRequestRS<TResponse, TRequest>(HttpMethod.Post, "/users/@me/mfa/webauthn/credentials", data, true);
 
-    public async Task<TResponse> PatchCurrentUserMfaWebauthnCredential<TRequest, TResponse>(ulong credentialId, TRequest data)
+    public async Task<TResponse> PatchCurrentUserMfaWebauthnCredential<TRequest, TResponse>(ulong credentialId, TRequest data) where TResponse : Entity
         => await MakeFluxerApiRequestRS<TResponse, TRequest>(HttpMethod.Patch, $"/users/@me/mfa/webauthn/credentials/{credentialId}", data, true);
 
     public async Task DeleteCurrentUserMfaWebauthnCredential(ulong credentialId)
         => await MakeFluxerApiRequest(HttpMethod.Delete, $"/users/@me/mfa/webauthn/credentials/{credentialId}", true);
 
-    public async Task<TResponse> GetCurrentUserSavedMessages<TResponse>()
+    public async Task<TResponse> GetCurrentUserSavedMessages<TResponse>() where TResponse : Entity
         => await MakeFluxerApiRequestR<TResponse>(HttpMethod.Get, "/users/@me/saved-messages", true);
 
-    public async Task<TResponse> PostCurrentUserSavedMessage<TRequest, TResponse>(TRequest data)
+    public async Task<TResponse> PostCurrentUserSavedMessage<TRequest, TResponse>(TRequest data) where TResponse : Entity
         => await MakeFluxerApiRequestRS<TResponse, TRequest>(HttpMethod.Post, "/users/@me/saved-messages", data, true);
 
     public async Task DeleteCurrentUserSavedMessage(ulong messageId)
         => await MakeFluxerApiRequest(HttpMethod.Delete, $"/users/@me/saved-messages/{messageId}", true);
 
-    public async Task<TResponse> GetCurrentUserChannels<TResponse>()
+    public async Task<TResponse> GetCurrentUserChannels<TResponse>() where TResponse : Entity
         => await MakeFluxerApiRequestR<TResponse>(HttpMethod.Get, "/users/@me/channels", true);
 
-    public async Task<TResponse> PostCurrentUserChannel<TRequest, TResponse>(TRequest data)
+    public async Task<TResponse> PostCurrentUserChannel<TRequest, TResponse>(TRequest data) where TResponse : Entity
         => await MakeFluxerApiRequestRS<TResponse, TRequest>(HttpMethod.Post, "/users/@me/channels", data, true);
 
     public async Task PutCurrentUserChannelPin(ulong channelId)
@@ -777,13 +823,13 @@ public class ApiClient
     public async Task DeleteCurrentUserChannelPin(ulong channelId)
         => await MakeFluxerApiRequest(HttpMethod.Delete, $"/users/@me/channels/{channelId}/pin", true);
 
-    public async Task<TResponse> GetCurrentUserRelationships<TResponse>()
+    public async Task<TResponse> GetCurrentUserRelationships<TResponse>() where TResponse : Entity
         => await MakeFluxerApiRequestR<TResponse>(HttpMethod.Get, "/users/@me/relationships", true);
 
-    public async Task<TResponse> PostCurrentUserRelationship<TRequest, TResponse>(TRequest data)
+    public async Task<TResponse> PostCurrentUserRelationship<TRequest, TResponse>(TRequest data) where TResponse : Entity
         => await MakeFluxerApiRequestRS<TResponse, TRequest>(HttpMethod.Post, "/users/@me/relationships", data, true);
 
-    public async Task<TResponse> PostCurrentUserRelationshipWithUser<TRequest, TResponse>(ulong userId, TRequest data)
+    public async Task<TResponse> PostCurrentUserRelationshipWithUser<TRequest, TResponse>(ulong userId, TRequest data) where TResponse : Entity
         => await MakeFluxerApiRequestRS<TResponse, TRequest>(HttpMethod.Post, $"/users/@me/relationships/{userId}", data, true);
 
     public async Task PutCurrentUserRelationship<TRequest>(ulong userId, TRequest data)
@@ -792,10 +838,10 @@ public class ApiClient
     public async Task DeleteCurrentUserRelationship(ulong userId)
         => await MakeFluxerApiRequest(HttpMethod.Delete, $"/users/@me/relationships/{userId}", true);
 
-    public async Task<TResponse> PatchCurrentUserGuildSettingsSelf<TRequest, TResponse>(TRequest data)
+    public async Task<TResponse> PatchCurrentUserGuildSettingsSelf<TRequest, TResponse>(TRequest data) where TResponse : Entity
         => await MakeFluxerApiRequestRS<TResponse, TRequest>(HttpMethod.Patch, "/users/@me/guilds/@me/settings", data, true);
 
-    public async Task<TResponse> PatchCurrentUserGuildSettings<TRequest, TResponse>(ulong guildId, TRequest data)
+    public async Task<TResponse> PatchCurrentUserGuildSettings<TRequest, TResponse>(ulong guildId, TRequest data) where TResponse : Entity
         => await MakeFluxerApiRequestRS<TResponse, TRequest>(HttpMethod.Patch, $"/users/@me/guilds/{guildId}/settings", data, true);
 
     public async Task PostCurrentUserDisable<TRequest>(TRequest data)
@@ -804,25 +850,25 @@ public class ApiClient
     public async Task PostCurrentUserDelete<TRequest>(TRequest data)
         => await MakeFluxerApiRequestS<TRequest>(HttpMethod.Post, "/users/@me/delete", data, true);
 
-    public async Task<TResponse> PostCurrentUserPushSubscribe<TRequest, TResponse>(TRequest data)
+    public async Task<TResponse> PostCurrentUserPushSubscribe<TRequest, TResponse>(TRequest data) where TResponse : Entity
         => await MakeFluxerApiRequestRS<TResponse, TRequest>(HttpMethod.Post, "/users/@me/push/subscribe", data, true);
 
-    public async Task<TResponse> GetCurrentUserPushSubscriptions<TResponse>()
+    public async Task<TResponse> GetCurrentUserPushSubscriptions<TResponse>() where TResponse : Entity
         => await MakeFluxerApiRequestR<TResponse>(HttpMethod.Get, "/users/@me/push/subscriptions", true);
 
     public async Task DeleteCurrentUserPushSubscription(ulong subscriptionId)
         => await MakeFluxerApiRequest(HttpMethod.Delete, $"/users/@me/push/subscriptions/{subscriptionId}", true);
 
-    public async Task<TResponse> PostCurrentUserHarvest<TRequest, TResponse>(TRequest data)
+    public async Task<TResponse> PostCurrentUserHarvest<TRequest, TResponse>(TRequest data) where TResponse : Entity
         => await MakeFluxerApiRequestRS<TResponse, TRequest>(HttpMethod.Post, "/users/@me/harvest", data, true);
 
-    public async Task<TResponse> GetCurrentUserHarvestLatest<TResponse>()
+    public async Task<TResponse> GetCurrentUserHarvestLatest<TResponse>() where TResponse : Entity
         => await MakeFluxerApiRequestR<TResponse>(HttpMethod.Get, "/users/@me/harvest/latest", true);
 
-    public async Task<TResponse> GetCurrentUserHarvest<TResponse>(string harvestId)
+    public async Task<TResponse> GetCurrentUserHarvest<TResponse>(string harvestId) where TResponse : Entity
         => await MakeFluxerApiRequestR<TResponse>(HttpMethod.Get, $"/users/@me/harvest/{harvestId}", true);
 
-    public async Task<TResponse> GetCurrentUserHarvestDownload<TResponse>(string harvestId)
+    public async Task<TResponse> GetCurrentUserHarvestDownload<TResponse>(string harvestId) where TResponse : Entity
         => await MakeFluxerApiRequestR<TResponse>(HttpMethod.Get, $"/users/@me/harvest/{harvestId}/download", true);
 
     public async Task PostCurrentUserPreloadMessages<TRequest>(TRequest data)
@@ -835,19 +881,19 @@ public class ApiClient
 
     #region Webhooks API
 
-    public async Task<TResponse> GetWebhook<TResponse>(ulong webhookId)
+    public async Task<TResponse> GetWebhook<TResponse>(ulong webhookId) where TResponse : Entity
         => await MakeFluxerApiRequestR<TResponse>(HttpMethod.Get, $"/webhooks/{webhookId}", true);
 
-    public async Task<TResponse> UpdateWebhook<TRequest, TResponse>(ulong webhookId, TRequest data)
+    public async Task<TResponse> UpdateWebhook<TRequest, TResponse>(ulong webhookId, TRequest data) where TResponse : Entity
         => await MakeFluxerApiRequestRS<TResponse, TRequest>(HttpMethod.Patch, $"/webhooks/{webhookId}", data, true);
 
     public async Task DeleteWebhook(ulong webhookId)
         => await MakeFluxerApiRequest(HttpMethod.Delete, $"/webhooks/{webhookId}", true);
 
-    public async Task<TResponse> GetWebhookWithToken<TResponse>(ulong webhookId, string token)
+    public async Task<TResponse> GetWebhookWithToken<TResponse>(ulong webhookId, string token) where TResponse : Entity
         => await MakeFluxerApiRequestR<TResponse>(HttpMethod.Get, $"/webhooks/{webhookId}/{token}", false);
 
-    public async Task<TResponse> UpdateWebhookWithToken<TRequest, TResponse>(ulong webhookId, string token, TRequest data)
+    public async Task<TResponse> UpdateWebhookWithToken<TRequest, TResponse>(ulong webhookId, string token, TRequest data) where TResponse : Entity
         => await MakeFluxerApiRequestRS<TResponse, TRequest>(HttpMethod.Patch, $"/webhooks/{webhookId}/{token}", data, false);
 
     public async Task DeleteWebhookWithToken(ulong webhookId, string token)
@@ -872,36 +918,36 @@ public class ApiClient
     public async Task PostStripeWebhook<TRequest>(TRequest data)
         => await MakeFluxerApiRequestS<TRequest>(HttpMethod.Post, "/stripe/webhook", data, true, false);
 
-    public async Task<TResponse> PostStripeCheckoutSubscription<TRequest, TResponse>(TRequest data)
+    public async Task<TResponse> PostStripeCheckoutSubscription<TRequest, TResponse>(TRequest data) where TResponse : Entity
         => await MakeFluxerApiRequestRS<TResponse, TRequest>(HttpMethod.Post, "/stripe/checkout/subscription", data, true);
 
-    public async Task<TResponse> PostStripeCheckoutGift<TRequest, TResponse>(TRequest data)
+    public async Task<TResponse> PostStripeCheckoutGift<TRequest, TResponse>(TRequest data) where TResponse : Entity
         => await MakeFluxerApiRequestRS<TResponse, TRequest>(HttpMethod.Post, "/stripe/checkout/gift", data, true);
 
     #endregion
 
     #region Gifts API
 
-    public async Task<TResponse> GetGift<TResponse>(string code)
+    public async Task<TResponse> GetGift<TResponse>(string code) where TResponse : Entity
         => await MakeFluxerApiRequestR<TResponse>(HttpMethod.Get, $"/gifts/{code}", true);
 
-    public async Task<TResponse> PostGiftRedeem<TRequest, TResponse>(string code, TRequest data)
+    public async Task<TResponse> PostGiftRedeem<TRequest, TResponse>(string code, TRequest data) where TResponse : Entity
         => await MakeFluxerApiRequestRS<TResponse, TRequest>(HttpMethod.Post, $"/gifts/{code}/redeem", data, true);
 
-    public async Task<TResponse> GetCurrentUserGifts<TResponse>()
+    public async Task<TResponse> GetCurrentUserGifts<TResponse>() where TResponse : Entity
         => await MakeFluxerApiRequestR<TResponse>(HttpMethod.Get, "/users/@me/gifts", true);
 
     #endregion
 
     #region Premium API
 
-    public async Task<TResponse> GetPremiumVisionarySlots<TResponse>()
+    public async Task<TResponse> GetPremiumVisionarySlots<TResponse>() where TResponse : Entity
         => await MakeFluxerApiRequestR<TResponse>(HttpMethod.Get, "/premium/visionary/slots", true);
 
-    public async Task<TResponse> GetPremiumPriceIds<TResponse>()
+    public async Task<TResponse> GetPremiumPriceIds<TResponse>() where TResponse : Entity
         => await MakeFluxerApiRequestR<TResponse>(HttpMethod.Get, "/premium/price-ids", true);
 
-    public async Task<TResponse> PostPremiumCustomerPortal<TRequest, TResponse>(TRequest data)
+    public async Task<TResponse> PostPremiumCustomerPortal<TRequest, TResponse>(TRequest data) where TResponse : Entity
         => await MakeFluxerApiRequestRS<TResponse, TRequest>(HttpMethod.Post, "/premium/customer-portal", data, true);
 
     public async Task PostPremiumCancelSubscription<TRequest>(TRequest data)
@@ -920,7 +966,7 @@ public class ApiClient
 
     #region Misc API
 
-    public async Task<TResponse> PostRpc<TRequest, TResponse>(TRequest data)
+    public async Task<TResponse> PostRpc<TRequest, TResponse>(TRequest data) where TResponse : Entity
         => await MakeFluxerApiRequestRS<TResponse, TRequest>(HttpMethod.Post, "/_rpc", data, true);
 
     #endregion

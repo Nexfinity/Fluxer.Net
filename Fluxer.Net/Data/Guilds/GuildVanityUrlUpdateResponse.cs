@@ -2,7 +2,7 @@
 
 namespace Fluxer.Net.Data.Guilds;
 
-public class GuildVanityUrlUpdateResponse
+public class GuildVanityUrlUpdateResponse : Entity
 {
     /// <summary>
     /// The new vanity Url code

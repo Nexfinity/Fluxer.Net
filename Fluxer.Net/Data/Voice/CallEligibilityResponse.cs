@@ -5,7 +5,7 @@ namespace Fluxer.Net.Data.Voice;
 /// <remarks>
 /// <see href="https://github.com/fluxerapp/fluxer/blob/848269a4d4df7349acfc861ff926b17fe4c4a548/packages/schema/src/domains/channel/ChannelSchemas.tsx#L44"/>
 /// </remarks>
-public class CallEligibilityResponse
+public class CallEligibilityResponse : Entity
 {
     /// <summary>
     /// Whether the current user can ring this call

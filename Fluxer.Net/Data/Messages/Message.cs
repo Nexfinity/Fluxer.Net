@@ -3,13 +3,8 @@ using Newtonsoft.Json;
 
 namespace Fluxer.Net.Data.Messages;
 
-public class Message : Entity
+public class Message
 {
-    internal Message(FluxerClient client) : base(client)
-    {
-
-    }
-
     [JsonProperty("id")]
     public ulong Id { get; set; }
 

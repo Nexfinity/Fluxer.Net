@@ -2,7 +2,7 @@ using Newtonsoft.Json;
 
 namespace Fluxer.Net.Data.Guilds;
 
-public class Guild
+public class Guild : Entity
 {
     [JsonProperty("id")]
     public ulong Id { get; set; }

@@ -1,11 +1,6 @@
-﻿namespace Fluxer.Net.Data;
+﻿namespace Fluxer.Net;
 
 public abstract class Entity
 {
-    internal Entity(FluxerClient client)
-    {
-        Client = client;
-    }
-
-    internal FluxerClient Client { get; }
+    internal FluxerClient Client { get; set; }
 }

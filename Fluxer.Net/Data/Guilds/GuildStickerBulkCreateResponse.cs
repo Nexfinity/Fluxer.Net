@@ -5,7 +5,7 @@ namespace Fluxer.Net.Data.Guilds;
 /// <remarks>
 /// <see href="https://github.com/fluxerapp/fluxer/blob/38146cc2babb504bfa9e71f61a60dd57ab2c1b67/packages/schema/src/domains/guild/GuildEmojiSchemas.tsx#L77C14-L77C44"/>
 /// </remarks>
-public class GuildStickerBulkCreateResponse
+public class GuildStickerBulkCreateResponse : Entity
 {
     [JsonProperty("success")]
     public GuildStickerResponse[] Success { get; set; }
