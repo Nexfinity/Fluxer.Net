@@ -25,6 +25,7 @@ public class ApiClient
     private string _token;
     private FluxerConfig _config;
     private BaseClient _client;
+    private bool _isWebhook;
 
     /// <summary>
     /// The HTTP client used to make requests. Can be shared or injected for connection pooling.
@@ -72,7 +73,9 @@ public class ApiClient
 
     internal ApiClient(FluxerWebhookClient webhook)
     {
+        _isWebhook = true;
         _client = webhook;
+        _token = webhook.Token;
         _config = webhook.Config;
         _logger = webhook.Config.RestSerilog;
         Initialize();
@@ -168,7 +171,8 @@ public class ApiClient
             throw new FluxerApiException($"Fluxer returned a non-success code {result.StatusCode}", resp);
 
         TResponse response = JsonConvert.DeserializeObject<TResponse>(resp);
-        response.Client = _client;
+        if (response != null)
+            response.Client = _client;
 
         return response;
     }
@@ -237,7 +241,8 @@ public class ApiClient
             throw new FluxerApiException($"Fluxer returned a non-success code {result.StatusCode}", resp);
 
         TResponse response = JsonConvert.DeserializeObject<TResponse>(resp);
-        response.Client = _client;
+        if (response != null)
+            response.Client = _client;
 
         return response;
     }
@@ -271,9 +276,12 @@ public class ApiClient
             throw new FluxerApiException($"Fluxer returned a non-success code {result.StatusCode}", resp);
 
         List<TResponse> response = JsonConvert.DeserializeObject<List<TResponse>>(resp);
-        foreach (var i in response)
+        if (response != null)
         {
-            i.Client = _client;
+            foreach (var i in response)
+            {
+                i.Client = _client;
+            }
         }
 
         return response;
@@ -395,7 +403,9 @@ public class ApiClient
     {
         if ((attachments?.Length ?? 0) < 1)
         {
-            return await MakeFluxerApiRequestAsync<MessageBaseResponse, Message>(HttpMethod.Post, $"/channels/{channelId}/messages", message, true);
+            return await MakeFluxerApiRequestAsync<MessageBaseResponse, Message>(HttpMethod.Post,
+                _isWebhook ? $"/webhooks/{channelId}/{_token}" : $"/channels/{channelId}/messages",
+                message, true);
         }
         var form = new List<KeyValuePair<string, (HttpContent content, string? filename)>>();
         for (int i = 0; i < attachments.Length; i++)
@@ -405,7 +415,9 @@ public class ApiClient
         }
         message.Attachments = attachments.Cast<Attachment>().ToList();
 
-        return await MakeFluxerApiRequestAsync<MessageBaseResponse, Message>(HttpMethod.Post, $"/channels/{channelId}/messages", message, true);
+        return await MakeFluxerApiRequestAsync<MessageBaseResponse, Message>(HttpMethod.Post,
+            _isWebhook ? $"/webhooks/{channelId}/{_token}" : $"/channels/{channelId}/messages",
+            message, true);
     }
 
     public async Task<MessageBaseResponse> EditMessageAsync(ulong channelId, ulong messageId, MessageUpdateRequest message)
