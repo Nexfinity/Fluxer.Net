@@ -2,5 +2,5 @@
 
 public abstract class Entity
 {
-    internal FluxerClient Client { get; set; }
+    internal BaseClient Client { get; set; }
 }

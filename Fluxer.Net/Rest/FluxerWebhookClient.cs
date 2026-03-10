@@ -2,7 +2,7 @@
 
 namespace Fluxer.Net;
 
-public class FluxerWebhookClient
+public class FluxerWebhookClient : BaseClient
 {
     public FluxerWebhookClient(string webhookUrl, FluxerConfig config)
     {
@@ -22,12 +22,10 @@ public class FluxerWebhookClient
                 .WriteTo.Console().CreateLogger();
         }
 
-        _api = new ApiClient(this);
+        Rest = new ApiClient(this);
     }
 
     public FluxerConfig Config { get; }
-
-    private ApiClient _api;
 
     public string WebhookUrl { get; }
 

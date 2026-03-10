@@ -24,7 +24,7 @@ public class ApiClient
     //private FluxerClient? _client;
     private string _token;
     private FluxerConfig _config;
-    private FluxerClient _client;
+    private BaseClient _client;
 
     /// <summary>
     /// The HTTP client used to make requests. Can be shared or injected for connection pooling.
@@ -72,6 +72,7 @@ public class ApiClient
 
     internal ApiClient(FluxerWebhookClient webhook)
     {
+        _client = webhook;
         _config = webhook.Config;
         _logger = webhook.Config.RestSerilog;
         Initialize();
