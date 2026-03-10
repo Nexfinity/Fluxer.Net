@@ -1,4 +1,4 @@
-using Fluxer.Net.Data.Enums;
+using Fluxer.Net.Data.Guilds;
 
 namespace Fluxer.Net.Commands.Attributes;
 

@@ -1,5 +1,5 @@
 using Newtonsoft.Json;
-using StatusEnum = Fluxer.Net.Data.Enums.Status;
+using StatusEnum = Fluxer.Net.Data.Users.Status;
 
 namespace Fluxer.Net.Gateway.Data;
 

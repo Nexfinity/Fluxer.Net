@@ -1,3 +1,4 @@
+using Fluxer.Net.Data.Messages;
 using Fluxer.Net.Data.Models;
 
 namespace Fluxer.Net.EmbedBuilder;

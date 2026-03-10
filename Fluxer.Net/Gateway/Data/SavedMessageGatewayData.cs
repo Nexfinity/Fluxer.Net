@@ -1,4 +1,4 @@
-using Fluxer.Net.Data.Models;
+using Fluxer.Net.Data.Messages;
 using Newtonsoft.Json;
 
 namespace Fluxer.Net.Gateway.Data;

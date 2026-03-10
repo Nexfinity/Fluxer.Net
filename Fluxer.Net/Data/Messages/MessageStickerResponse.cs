@@ -1,0 +1,17 @@
+﻿using Newtonsoft.Json;
+
+namespace Fluxer.Net.Data.Messages;
+
+public class MessageStickerResponse
+{
+    [JsonRequired]
+    [JsonProperty("id")]
+    public ulong Id { get; set; }
+
+    [JsonRequired]
+    [JsonProperty("name")]
+    public string Name { get; set; }
+
+    [JsonProperty("aminated")]
+    public bool Animated { get; set; }
+}

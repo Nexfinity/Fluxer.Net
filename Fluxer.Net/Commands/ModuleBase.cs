@@ -1,5 +1,4 @@
-using Fluxer.Net.Data.Models;
-using Fluxer.Net.Data.Responses;
+using Fluxer.Net.Data.Messages;
 
 namespace Fluxer.Net.Commands;
 
