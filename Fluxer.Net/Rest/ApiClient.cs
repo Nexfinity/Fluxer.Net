@@ -1,7 +1,6 @@
 using Fluxer.Net.Extensions;
 using Fluxer.Net.Gateway.Data;
 using Fluxer.Net.RateLimiting;
-using Fluxer.Net.Rest.Requests;
 using Newtonsoft.Json;
 using Serilog.Core;
 using System.Net;

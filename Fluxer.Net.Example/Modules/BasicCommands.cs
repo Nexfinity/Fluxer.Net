@@ -58,7 +58,7 @@ public class BasicCommands : ModuleBase
     [Summary("Show an example rich embed")]
     public async Task EmbedCommand()
     {
-        var embed = new Fluxer.Net.EmbedBuilder.EmbedBuilder()
+        var embed = new EmbedBuilder()
             .WithTitle("Example Rich Embed")
             .WithDescription("This is a demonstration of Fluxer.Net's EmbedBuilder system, " +
                              "based on Discord.Net's implementation. Embeds support rich formatting " +
