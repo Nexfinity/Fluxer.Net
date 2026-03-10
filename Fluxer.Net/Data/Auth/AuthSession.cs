@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace Fluxer.Net.Data.Auth;
+namespace Fluxer.Net;
 
 public class AuthSession
 {

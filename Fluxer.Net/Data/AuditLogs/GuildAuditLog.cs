@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace Fluxer.Net.Data.AuditLogs;
+namespace Fluxer.Net;
 
 public class GuildAuditLog
 {

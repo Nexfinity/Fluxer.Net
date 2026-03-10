@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Newtonsoft.Json;
 
-namespace Fluxer.Net.Rest.Requests;
+namespace Fluxer.Net;
 
 public class GuildBanCreateRequest
 {

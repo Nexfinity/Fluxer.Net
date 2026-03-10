@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Fluxer.Net.Rest.Requests;
+namespace Fluxer.Net;
 
 /// <summary>
 /// <c>PATCH /guilds/{guild_id}/roles/{role_id}</c>

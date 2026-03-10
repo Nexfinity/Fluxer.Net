@@ -17,7 +17,6 @@
 
 using Fluxer.Net;
 using Fluxer.Net.Commands;
-using Fluxer.Net.Data.Enums;
 using Fluxer.Net.Example;
 using Fluxer.Net.Gateway.Data;
 using Serilog;

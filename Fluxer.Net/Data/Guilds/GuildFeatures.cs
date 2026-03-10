@@ -1,4 +1,4 @@
-﻿namespace Fluxer.Net.Data.Guilds;
+﻿namespace Fluxer.Net;
 
 public class GuildFeatures
 {

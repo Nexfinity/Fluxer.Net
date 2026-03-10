@@ -1,5 +1,4 @@
 ﻿#undef NOPE
-using Fluxer.Net.Data.Users;
 using Fluxer.Net.Gateway.Data;
 using Fluxer.Net.Gateway.Packets;
 using Newtonsoft.Json;

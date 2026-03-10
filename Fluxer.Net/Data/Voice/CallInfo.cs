@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace Fluxer.Net.Data.Voice;
+namespace Fluxer.Net;
 
 public class CallInfo
 {

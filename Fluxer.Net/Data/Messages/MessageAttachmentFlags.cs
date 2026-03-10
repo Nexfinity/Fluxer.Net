@@ -1,4 +1,4 @@
-namespace Fluxer.Net.Data.Messages;
+namespace Fluxer.Net;
 
 /// <summary>
 /// Flags that describe properties of a message attachment. Multiple flags can be combined using bitwise OR.

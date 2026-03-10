@@ -1,4 +1,4 @@
-namespace Fluxer.Net.Data.Invites;
+namespace Fluxer.Net;
 
 /// <summary>
 /// Represents the type of invite (what the invite is for).

@@ -1,4 +1,3 @@
-using Fluxer.Net.Data.Channels;
 using Newtonsoft.Json;
 
 namespace Fluxer.Net.Gateway.Data;

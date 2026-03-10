@@ -1,4 +1,4 @@
-namespace Fluxer.Net.Data.Guilds;
+namespace Fluxer.Net;
 
 /// <summary>
 /// Represents guild and channel permissions in Fluxer. Multiple permissions can be combined using bitwise OR.

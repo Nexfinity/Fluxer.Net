@@ -1,4 +1,4 @@
-namespace Fluxer.Net.Data.Guilds;
+namespace Fluxer.Net;
 
 /// <summary>
 /// Represents the verification level required for members to participate in a guild.

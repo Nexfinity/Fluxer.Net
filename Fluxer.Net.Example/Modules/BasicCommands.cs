@@ -1,6 +1,5 @@
 using Fluxer.Net.Commands;
 using Fluxer.Net.Commands.Attributes;
-using Fluxer.Net.Data.Models;
 
 namespace Fluxer.Net.Example.Modules;
 

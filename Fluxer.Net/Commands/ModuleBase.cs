@@ -1,5 +1,3 @@
-using Fluxer.Net.Data.Messages;
-
 namespace Fluxer.Net.Commands;
 
 /// <summary>

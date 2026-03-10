@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace Fluxer.Net.Data.Messages;
+namespace Fluxer.Net;
 
 // TODO MessageReferenceResponse should be used instead, and a seperate gateway message/model if it's different in any way
 public class MessageRef

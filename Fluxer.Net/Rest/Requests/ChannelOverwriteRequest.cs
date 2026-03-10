@@ -1,7 +1,6 @@
-﻿using Fluxer.Net.Data.Channels;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
-namespace Fluxer.Net.Rest.Requests;
+namespace Fluxer.Net;
 
 public class ChannelOverwriteRequest
 {

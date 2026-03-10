@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Fluxer.Net.Data.Guilds;
+namespace Fluxer.Net;
 
 /// <summary>
 /// Currently only used when updating role positions in <see cref="ApiClient.UpdateRolePositions"/>

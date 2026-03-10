@@ -1,4 +1,4 @@
-namespace Fluxer.Net.Data.Channels;
+namespace Fluxer.Net;
 
 /// <summary>
 /// Represents the different types of channels available in Fluxer.

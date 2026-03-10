@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Fluxer.Net.Rest.Requests;
+namespace Fluxer.Net;
 
 /// <summary>
 /// <para>Request body for creating a role in a guild.</para>

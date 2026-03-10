@@ -1,4 +1,4 @@
-namespace Fluxer.Net.Data.Guilds;
+namespace Fluxer.Net;
 
 /// <summary>
 /// Represents the explicit content filter level for a guild.

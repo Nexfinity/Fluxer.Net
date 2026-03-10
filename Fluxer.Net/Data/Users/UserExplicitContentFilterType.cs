@@ -1,4 +1,4 @@
-namespace Fluxer.Net.Data.Users;
+namespace Fluxer.Net;
 
 /// <summary>
 /// Represents the explicit content filter level for a user's direct messages.

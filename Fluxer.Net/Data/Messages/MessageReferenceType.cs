@@ -1,4 +1,4 @@
-namespace Fluxer.Net.Data.Messages;
+namespace Fluxer.Net;
 
 /// <summary>
 /// Represents how a message references another message.

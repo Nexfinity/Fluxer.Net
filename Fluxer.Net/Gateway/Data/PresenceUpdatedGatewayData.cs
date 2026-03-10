@@ -1,5 +1,4 @@
-﻿using Fluxer.Net.Data.Users;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace Fluxer.Net.Gateway.Data;
 

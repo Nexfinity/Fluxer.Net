@@ -1,4 +1,4 @@
-namespace Fluxer.Net.Data.Guilds;
+namespace Fluxer.Net;
 
 /// <summary>
 /// Represents the multi-factor authentication (MFA) requirement level for a guild.

@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace Fluxer.Net.Data.Invites;
+namespace Fluxer.Net;
 
 public class Invite : Entity
 {

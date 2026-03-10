@@ -1,6 +1,4 @@
-using Fluxer.Net.Data.Messages;
-
-namespace Fluxer.Net.EmbedBuilder;
+namespace Fluxer.Net;
 
 /// <summary>
 /// A builder for creating rich embeds with validation and a fluent API.

@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Fluxer.Net.Data.Messages;
+namespace Fluxer.Net;
 
 public class MessageSnapshotResponse
 {

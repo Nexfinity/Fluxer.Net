@@ -1,12 +1,3 @@
-using Fluxer.Net.Data.AuditLogs;
-using Fluxer.Net.Data.Auth;
-using Fluxer.Net.Data.Channels;
-using Fluxer.Net.Data.Guilds;
-using Fluxer.Net.Data.Invites;
-using Fluxer.Net.Data.Messages;
-using Fluxer.Net.Data.Users;
-using Fluxer.Net.Data.Voice;
-using Fluxer.Net.Data.Webhooks;
 using Fluxer.Net.Extensions;
 using Fluxer.Net.Gateway.Data;
 using Fluxer.Net.RateLimiting;

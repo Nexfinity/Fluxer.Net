@@ -1,4 +1,4 @@
-namespace Fluxer.Net.Data.Users;
+namespace Fluxer.Net;
 
 /// <summary>
 /// Flags that control who can send friend requests to a user. Multiple sources can be combined using bitwise OR.

@@ -1,4 +1,4 @@
-namespace Fluxer.Net.Data.Guilds;
+namespace Fluxer.Net;
 
 /// <summary>
 /// Represents the NSFW (Not Safe For Work) filter level for a user.

@@ -1,6 +1,4 @@
-﻿using Fluxer.Net.Data.Messages;
-
-namespace Fluxer.Net;
+﻿namespace Fluxer.Net;
 
 public static class MessageHelpers
 {

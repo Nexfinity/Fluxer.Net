@@ -1,5 +1,3 @@
-using Fluxer.Net.Data.Guilds;
-using Fluxer.Net.Data.Users;
 using Newtonsoft.Json;
 
 namespace Fluxer.Net.Gateway.Data;

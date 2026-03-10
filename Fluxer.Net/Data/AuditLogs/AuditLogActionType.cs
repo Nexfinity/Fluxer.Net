@@ -1,4 +1,4 @@
-﻿namespace Fluxer.Net.Data.AuditLogs;
+﻿namespace Fluxer.Net;
 
 /// <summary>
 /// 

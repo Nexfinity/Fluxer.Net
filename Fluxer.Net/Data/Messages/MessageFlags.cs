@@ -1,4 +1,4 @@
-namespace Fluxer.Net.Data.Messages;
+namespace Fluxer.Net;
 
 /// <summary>
 /// Flags that can be applied to messages. Multiple flags can be combined using bitwise OR.

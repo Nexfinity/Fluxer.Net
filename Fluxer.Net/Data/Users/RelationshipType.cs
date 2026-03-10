@@ -1,4 +1,4 @@
-namespace Fluxer.Net.Data.Users;
+namespace Fluxer.Net;
 
 /// <summary>
 /// Represents the type of relationship between the current user and another user.

@@ -1,4 +1,4 @@
-namespace Fluxer.Net.Data.Channels;
+namespace Fluxer.Net;
 
 /// <summary>
 /// Flags that control which system messages are sent to the guild's system channel. Multiple flags can be combined using bitwise OR.

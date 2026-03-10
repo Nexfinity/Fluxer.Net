@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 using System.ComponentModel;
 
-namespace Fluxer.Net.Rest.Requests;
+namespace Fluxer.Net;
 
 [JsonConverter(typeof(JsonDerivedTypeConverter<ChannelCreateRequest>), nameof(Type))]
 public abstract class ChannelCreateRequest

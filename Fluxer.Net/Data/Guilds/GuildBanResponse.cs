@@ -1,7 +1,7 @@
 ﻿using Fluxer.Net.Gateway.Data;
 using Newtonsoft.Json;
 
-namespace Fluxer.Net.Data.Guilds;
+namespace Fluxer.Net;
 
 public class GuildBanResponse : Entity
 {

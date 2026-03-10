@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace Fluxer.Net.Data.Users;
+namespace Fluxer.Net;
 
 public class UserNote
 {

@@ -1,7 +1,6 @@
-using Fluxer.Net.Data.Voice;
 using Newtonsoft.Json;
 
-namespace Fluxer.Net.Data.Messages;
+namespace Fluxer.Net;
 
 public class Message
 {

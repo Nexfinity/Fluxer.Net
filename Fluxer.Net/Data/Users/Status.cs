@@ -1,4 +1,4 @@
-namespace Fluxer.Net.Data.Users;
+namespace Fluxer.Net;
 
 /// <summary>
 /// Represents a user's online status/presence.

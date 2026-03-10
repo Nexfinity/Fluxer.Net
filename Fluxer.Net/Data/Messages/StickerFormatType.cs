@@ -1,4 +1,4 @@
-namespace Fluxer.Net.Data.Messages;
+namespace Fluxer.Net;
 
 /// <summary>
 /// Represents the format/type of a sticker.

@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace Fluxer.Net.Data.Channels;
+namespace Fluxer.Net;
 
 public class PrivateChannel
 {

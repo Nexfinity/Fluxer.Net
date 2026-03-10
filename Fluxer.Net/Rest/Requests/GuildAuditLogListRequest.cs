@@ -1,7 +1,6 @@
-﻿using Fluxer.Net.Data.AuditLogs;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
-namespace Fluxer.Net.Rest.Requests;
+namespace Fluxer.Net;
 
 public class GuildAuditLogListRequest
 {

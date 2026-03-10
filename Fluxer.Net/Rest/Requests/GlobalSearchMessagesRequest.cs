@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations;
 
-namespace Fluxer.Net.Rest.Requests;
+namespace Fluxer.Net;
 
 public class GlobalSearchMessagesRequest : MessageSearchRequest
 {

@@ -1,9 +1,7 @@
-﻿using Fluxer.Net.Data.Messages;
-using Fluxer.Net.Data.Voice;
-using Fluxer.Net.Gateway.Data;
+﻿using Fluxer.Net.Gateway.Data;
 using Newtonsoft.Json;
 
-namespace Fluxer.Net.Data.Channels;
+namespace Fluxer.Net;
 
 /// <remarks>
 /// <see href="https://github.com/fluxerapp/fluxer/blob/848269a4d4df7349acfc861ff926b17fe4c4a548/packages/schema/src/domains/message/MessageResponseSchemas.tsx#L179C14-L179C39"/>

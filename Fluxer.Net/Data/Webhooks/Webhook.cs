@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace Fluxer.Net.Data.Webhooks;
+namespace Fluxer.Net;
 
 public class Webhook : Entity
 {

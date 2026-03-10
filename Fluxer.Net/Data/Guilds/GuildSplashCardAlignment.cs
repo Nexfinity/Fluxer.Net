@@ -1,4 +1,4 @@
-﻿namespace Fluxer.Net.Data.Guilds;
+﻿namespace Fluxer.Net;
 
 /// <summary>
 /// Splash card alignment types for <see cref="Guild.SplashCardAligment"/>

@@ -1,4 +1,4 @@
-namespace Fluxer.Net.Data.Users;
+namespace Fluxer.Net;
 
 /// <summary>
 /// Represents user account flags and badges in Fluxer. Multiple flags can be combined using bitwise OR.

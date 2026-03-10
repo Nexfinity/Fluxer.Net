@@ -1,4 +1,4 @@
-namespace Fluxer.Net.Data.Messages;
+namespace Fluxer.Net;
 
 /// <summary>
 /// Represents the type of a message, including regular messages and system messages.
