@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 namespace Fluxer.Net.RateLimiting;
 
 /// <summary>

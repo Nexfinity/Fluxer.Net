@@ -1,5 +1,3 @@
-using Fluxer.Net.Data.Enums;
-
 namespace Fluxer.Net.Commands.Attributes;
 
 /// <summary>

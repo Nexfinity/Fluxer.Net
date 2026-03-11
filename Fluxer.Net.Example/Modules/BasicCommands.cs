@@ -1,6 +1,5 @@
 using Fluxer.Net.Commands;
 using Fluxer.Net.Commands.Attributes;
-using Fluxer.Net.Data.Models;
 
 namespace Fluxer.Net.Example.Modules;
 
@@ -59,7 +58,7 @@ public class BasicCommands : ModuleBase
     [Summary("Show an example rich embed")]
     public async Task EmbedCommand()
     {
-        var embed = new Fluxer.Net.EmbedBuilder.EmbedBuilder()
+        var embed = new EmbedBuilder()
             .WithTitle("Example Rich Embed")
             .WithDescription("This is a demonstration of Fluxer.Net's EmbedBuilder system, " +
                              "based on Discord.Net's implementation. Embeds support rich formatting " +
@@ -81,7 +80,7 @@ public class BasicCommands : ModuleBase
             .WithCurrentTimestamp()
             .Build();
 
-        await Context.Rest.SendMessage(Context.ChannelId, new()
+        await Context.Rest.SendMessageAsync(Context.ChannelId, new()
         {
             Content = "Here's an example of a rich embed:",
             Embeds = new List<Embed> { embed }
