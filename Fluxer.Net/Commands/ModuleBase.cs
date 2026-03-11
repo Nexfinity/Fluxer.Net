@@ -1,6 +1,3 @@
-using Fluxer.Net.Data.Models;
-using Fluxer.Net.Data.Responses;
-
 namespace Fluxer.Net.Commands;
 
 /// <summary>
@@ -33,7 +30,7 @@ public abstract class ModuleBase
     /// <param name="content">The message content.</param>
     protected async Task<MessageBaseResponse> ReplyAsync(string content)
     {
-        return await Context.Rest.SendMessage(Context.ChannelId, new Message { Content = content });
+        return await Context.Rest.SendMessageAsync(Context.ChannelId, new Message { Content = content });
     }
 
     /// <summary>
@@ -42,7 +39,7 @@ public abstract class ModuleBase
     /// <param name="message">The message to send.</param>
     protected async Task<MessageBaseResponse> ReplyAsync(Message message)
     {
-        return await Context.Rest.SendMessage(Context.ChannelId, message);
+        return await Context.Rest.SendMessageAsync(Context.ChannelId, message);
     }
 }
 
