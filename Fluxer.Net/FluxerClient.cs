@@ -3,10 +3,15 @@ using Serilog;
 
 namespace Fluxer.Net;
 
+public abstract class BaseClient
+{
+    internal ApiClient Rest { get; set; }
+}
+
 /// <summary>
 /// Client used for connecting to the Fluxer API and Gateway.
 /// </summary>
-public class FluxerClient
+public class FluxerClient : BaseClient
 {
     public FluxerClient(string token, FluxerConfig? config = null)
     {
@@ -35,7 +40,7 @@ public class FluxerClient
         }
 
         // Set clients with reference to fluxer client
-        Rest = new ApiClient(this);
+        base.Rest = new ApiClient(this);
         Gateway = new GatewayClient(this);
     }
 
@@ -51,9 +56,11 @@ public class FluxerClient
         ? Token[4..]
         : Token;
 
-    public ApiClient Rest { get; }
+
 
     public GatewayClient Gateway { get; }
+
+    public new ApiClient Rest => base.Rest;
 
     // Used by both api and gateway
     internal static JsonSerializerSettings _serializerSettings = new JsonSerializerSettings()
