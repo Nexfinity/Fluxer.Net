@@ -2,7 +2,7 @@
 
 namespace Fluxer.Net;
 
-public class MessageCallResponse
+public class MessageCallResponse : Entity
 {
     [JsonProperty("participants")]
     public HashSet<ulong> Participants { get; set; }

@@ -2,7 +2,7 @@ using Newtonsoft.Json;
 
 namespace Fluxer.Net;
 
-public class Attachment
+public class Attachment : Entity
 {
     [JsonProperty("id")]
     public ulong Id { get; set; }

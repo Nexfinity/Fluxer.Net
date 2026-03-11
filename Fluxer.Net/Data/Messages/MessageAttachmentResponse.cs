@@ -2,7 +2,7 @@
 
 namespace Fluxer.Net;
 
-public class MessageAttachmentResponse
+public class MessageAttachmentResponse : Entity
 {
     [JsonRequired]
     [JsonProperty("id")]

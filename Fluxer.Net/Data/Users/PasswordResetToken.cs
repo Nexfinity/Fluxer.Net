@@ -2,7 +2,7 @@ using Newtonsoft.Json;
 
 namespace Fluxer.Net;
 
-public class PasswordResetToken
+public class PasswordResetToken : Entity
 {
     [JsonProperty("token")]
     public string Token { get; set; }

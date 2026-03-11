@@ -2,7 +2,7 @@ using Newtonsoft.Json;
 
 namespace Fluxer.Net;
 
-public class SavedMessage
+public class SavedMessage : Entity
 {
     [JsonProperty("user_id")]
     public ulong UserId { get; set; }

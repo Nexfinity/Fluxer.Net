@@ -2,7 +2,7 @@
 
 namespace Fluxer.Net;
 
-public class MessageReactionResponse
+public class MessageReactionResponse : Entity
 {
     [JsonRequired]
     [JsonProperty("emoji")]

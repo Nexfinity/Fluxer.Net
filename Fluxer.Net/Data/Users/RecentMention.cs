@@ -2,23 +2,23 @@ using Newtonsoft.Json;
 
 namespace Fluxer.Net;
 
-public class RecentMention
+public class RecentMention : Entity
 {
-	[JsonProperty("user_id")]
-	public ulong UserId { get; set; }
+    [JsonProperty("user_id")]
+    public ulong UserId { get; set; }
 
-	[JsonProperty("channel_id")]
-	public ulong ChannelId { get; set; }
+    [JsonProperty("channel_id")]
+    public ulong ChannelId { get; set; }
 
-	[JsonProperty("message_id")]
-	public ulong MessageId { get; set; }
+    [JsonProperty("message_id")]
+    public ulong MessageId { get; set; }
 
-	[JsonProperty("guild_id")]
-	public ulong GuildId { get; set; }
+    [JsonProperty("guild_id")]
+    public ulong GuildId { get; set; }
 
-	[JsonProperty("is_everyone")]
-	public bool IsEveryone { get; set; }
+    [JsonProperty("is_everyone")]
+    public bool IsEveryone { get; set; }
 
-	[JsonProperty("is_role")]
-	public bool IsRole { get; set; }
+    [JsonProperty("is_role")]
+    public bool IsRole { get; set; }
 }

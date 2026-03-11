@@ -2,7 +2,7 @@
 
 namespace Fluxer.Net;
 
-public class MessageSnapshotResponse
+public class MessageSnapshotResponse : Entity
 {
     [JsonProperty("content")]
     public string? Content { get; set; }

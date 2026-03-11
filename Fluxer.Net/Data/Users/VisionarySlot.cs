@@ -2,11 +2,11 @@ using Newtonsoft.Json;
 
 namespace Fluxer.Net;
 
-public class VisionarySlot
+public class VisionarySlot : Entity
 {
-	[JsonProperty("slot_index")]
-	public int SlotIndex { get; set; }
+    [JsonProperty("slot_index")]
+    public int SlotIndex { get; set; }
 
-	[JsonProperty("user_id")]
-	public ulong? UserId { get; set; }
+    [JsonProperty("user_id")]
+    public ulong? UserId { get; set; }
 }
