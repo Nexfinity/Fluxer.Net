@@ -795,6 +795,13 @@ public class ApiClient
 
     #endregion
 
+    #region Apps API
+
+    public Task<Application> GetPublicAppAsync(ulong id)
+        => MakeFluxerApiRequestAsync<Application>(HttpMethod.Get, $"/oauth2/applications/{id}/public", true);
+
+    #endregion
+
     #region Users API
 
     public async Task<User> GetCurrentUserAsync()

@@ -1,12 +1,11 @@
-﻿using Fluxer.Net.Data.Apps;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace Fluxer.Net;
 
 public class OAuthToken : Entity
 {
     [JsonProperty("application")]
-    public Application Application { get; set; }
+    public PartialApplication Application { get; set; }
 
     [JsonProperty("scopes")]
     public string[] Scopes { get; set; }
