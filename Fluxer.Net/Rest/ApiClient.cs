@@ -825,8 +825,9 @@ public class ApiClient
     public async Task<User> GetUserAsync(ulong userId)
         => await MakeFluxerApiRequestAsync<User>(HttpMethod.Get, $"/users/{userId}", true);
 
-    public async Task<TResponse> GetUserProfileAsync<TResponse>(ulong targetId) where TResponse : Entity
-        => await MakeFluxerApiRequestAsync<TResponse>(HttpMethod.Get, $"/users/{targetId}/profile", true);
+    public async Task<UserProfileResponse> GetUserProfileAsync(ulong targetId, string? guildId = null, bool mutualFriends = false, bool mutualGuilds = false)
+        => await MakeFluxerApiRequestAsync<UserProfileResponse>(HttpMethod.Get,
+            new QueryBuilder($"/users/{targetId}/profile").With("guild_id", guildId).With("with_mutual_friends", mutualFriends).With("with_mutual_guilds", mutualGuilds).Build(), true);
 
     public async Task<UserSettings> GetCurrentUserSettingsAsync()
         => await MakeFluxerApiRequestAsync<UserSettings>(HttpMethod.Get, "/users/@me/settings", true);
