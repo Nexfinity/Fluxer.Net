@@ -613,8 +613,8 @@ public class ApiClient
 
     #region Invites API
 
-    public async Task<TResponse> GetInviteAsync<TResponse>(string inviteCode) where TResponse : Entity
-        => await MakeFluxerApiRequestAsync<TResponse>(HttpMethod.Get, $"/invites/{inviteCode}", true);
+    public async Task<PartialInvite> GetInviteAsync(string inviteCode)
+        => await MakeFluxerApiRequestAsync<PartialInvite>(HttpMethod.Get, $"/invites/{inviteCode}", true);
 
     public async Task<GuildProperties> JoinGuildAsync(string inviteCode)
         => await MakeFluxerApiRequestAsync<GuildProperties>(HttpMethod.Post, $"/invites/{inviteCode}", true);
