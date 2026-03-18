@@ -136,11 +136,11 @@ public class EmbedBuilder
             length += Author?.Name?.Length ?? 0;
             length += Footer?.Text?.Length ?? 0;
 
-            foreach (var field in Fields)
-            {
-                length += field.Name?.Length ?? 0;
-                length += field.Value?.Length ?? 0;
-            }
+			foreach (var @field in Fields)
+			{
+				length += @field.Name?.Length ?? 0;
+				length += @field.Value?.Length ?? 0;
+			}
 
             return length;
         }

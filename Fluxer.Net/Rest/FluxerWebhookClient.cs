@@ -7,7 +7,12 @@ public class FluxerWebhookClient : BaseClient
     public FluxerWebhookClient(string webhookUrl, FluxerConfig? config = null)
     {
         // TODO: Implement webhook validation
-        string[] Split = webhookUrl.Split('/', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
+
+        StringSplitOptions options = StringSplitOptions.RemoveEmptyEntries;
+#if !NETSTANDARD
+        options |= StringSplitOptions.TrimEntries;
+#endif
+        string[] Split = webhookUrl.Split('/', options);
         if (!webhookUrl.StartsWith("http") || Split.Length < 2)
             throw new ArgumentException("Invalid webhook url.");
 
