@@ -430,8 +430,8 @@ public class ApiClient
     public async Task ResetPasswordAsync<TRequest>(TRequest data)
         => await MakeFluxerApiRequestAsync<TRequest>(HttpMethod.Post, "/auth/reset", data, true, false);
 
-    public async Task<TResponse> GetSessionsAsync<TResponse>() where TResponse : Entity
-        => await MakeFluxerApiRequestAsync<TResponse>(HttpMethod.Get, "/auth/sessions", true);
+    public async Task<IEnumerable<AuthSession>> GetSessionsAsync()
+        => await MakeFluxerApiRequestListAsync<AuthSession>(HttpMethod.Get, "/auth/sessions", true);
 
     public async Task LogoutSessionsAsync<TRequest>(TRequest data)
         => await MakeFluxerApiRequestAsync<TRequest>(HttpMethod.Post, "/auth/sessions/logout", data, true);
@@ -461,8 +461,8 @@ public class ApiClient
     public async Task<Channel> GetChannelAsync(ulong channelId)
         => await MakeFluxerApiRequestAsync<Channel>(HttpMethod.Get, $"/channels/{channelId}", true);
 
-    public async Task<TResponse> GetChannelRtcRegionsAsync<TResponse>(ulong channelId) where TResponse : Entity
-        => await MakeFluxerApiRequestAsync<TResponse>(HttpMethod.Get, $"/channels/{channelId}/rtc-regions", true);
+    public async Task<IEnumerable<RtcRegion>> GetChannelRtcRegionsAsync(ulong channelId)
+        => await MakeFluxerApiRequestListAsync<RtcRegion>(HttpMethod.Get, $"/channels/{channelId}/rtc-regions", true);
 
     public async Task<Channel> UpdateChannelAsync(ulong channelId, Channel channel)
         => await MakeFluxerApiRequestAsync<Channel, Channel>(HttpMethod.Patch, $"/channels/{channelId}", channel, true);
