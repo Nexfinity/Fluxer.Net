@@ -819,8 +819,8 @@ public class ApiClient
     public async Task<User> UpdateCurrentUserAsync(User user)
         => await MakeFluxerApiRequestAsync<User, User>(HttpMethod.Patch, "/users/@me", user, true);
 
-    public async Task<TResponse> CheckUsernameAvailabilityAsync<TResponse>(string tag) where TResponse : Entity
-        => await MakeFluxerApiRequestAsync<TResponse>(HttpMethod.Get, $"/users/check-tag?tag={tag}", true);
+    public async Task<UsernameAvailable> CheckUsernameAvailabilityAsync(string username, string discriminator)
+        => await MakeFluxerApiRequestAsync<UsernameAvailable>(HttpMethod.Get, $"/users/check-tag?username={username}&discriminator={discriminator}", true);
 
     public async Task<User> GetUserAsync(ulong userId)
         => await MakeFluxerApiRequestAsync<User>(HttpMethod.Get, $"/users/{userId}", true);
