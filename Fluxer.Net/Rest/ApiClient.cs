@@ -1,5 +1,6 @@
 using Fluxer.Net.Extensions;
 using Fluxer.Net.Gateway.Data;
+using Fluxer.Net.OAuth;
 using Fluxer.Net.RateLimiting;
 using Newtonsoft.Json;
 using Serilog.Core;
@@ -81,6 +82,14 @@ public class ApiClient
         Initialize();
     }
 
+    internal ApiClient(FluxerOAuthClient oauth)
+    {
+        _client = oauth;
+        _config = oauth.Config;
+        _logger = oauth.Config.RestSerilog;
+        Initialize();
+    }
+
     private void Initialize()
     {
         HttpClient = _config.HttpClient ?? new();
@@ -132,6 +141,8 @@ public class ApiClient
             Method = method,
             RequestUri = new(_config.RealApiBaseUrl + route)
         };
+
+
         if (otherFormData != null)
         {
             var form = new MultipartFormDataContent
@@ -145,7 +156,6 @@ public class ApiClient
                     "application/json"
 #endif
                     ),
-
                     "payload_json"
                 }
             };
@@ -176,6 +186,43 @@ public class ApiClient
         }
         if (!string.IsNullOrEmpty(_token) && authorize)
             req.Headers.Add("Authorization", _token);
+
+        var result = await HttpClient.SendAsync(req);
+
+        _logger.Debug("Made {Method} request to {Route}", method, route);
+        var resp = await result.Content.ReadAsStringAsync();
+        _logger.Verbose("Received {Code}:{Result} from {Route}", result.StatusCode, resp, route);
+
+        if (throwOnNonSuccess && !result.IsSuccessStatusCode)
+            throw new FluxerApiException($"Fluxer returned a non-success code {result.StatusCode}", resp);
+
+        TResponse response = JsonConvert.DeserializeObject<TResponse>(resp);
+        if (response != null)
+            response.Client = _client;
+
+        return response;
+    }
+
+    internal async Task<TResponse> InternalMakeFluxerApiRequestFormAsync<TResponse>(HttpMethod method, string route, bool throwOnNonSuccess = false,
+        Dictionary<string, string?>? formData = null) where TResponse : Entity
+    {
+        var req = new HttpRequestMessage()
+        {
+            Method = method,
+            RequestUri = new(_config.RealApiBaseUrl + route)
+        };
+
+
+        if (formData != null)
+        {
+            var form = new MultipartFormDataContent();
+            foreach (var (key, value) in formData)
+            {
+                form.Add(new StringContent(value), key);
+            }
+            req.Content = form;
+        }
+
         var result = await HttpClient.SendAsync(req);
 
         _logger.Debug("Made {Method} request to {Route}", method, route);
@@ -243,15 +290,22 @@ public class ApiClient
     /// <param name="authorize">Whether to include the Authorization header.</param>
     /// <returns>The deserialized response object.</returns>
     /// <exception cref="FluxerApiException">Thrown when <paramref name="throwOnNonSuccess"/> is true and the API returns a non-success status code.</exception>
-    public async Task<TResponse> MakeFluxerApiRequestAsync<TResponse>(HttpMethod method, string route, bool throwOnNonSuccess = false, bool authorize = true) where TResponse : Entity
+    public Task<TResponse> MakeFluxerApiRequestAsync<TResponse>(HttpMethod method, string route, bool throwOnNonSuccess = false, bool authorize = true) where TResponse : Entity
+     => InternalMakeFluxerApiRequestAsync<TResponse>(method, route, throwOnNonSuccess, authorize, null);
+
+    internal async Task<TResponse> InternalMakeFluxerApiRequestAsync<TResponse>(HttpMethod method, string route, bool throwOnNonSuccess, bool authorize, string accessToken) where TResponse : Entity
     {
         var req = new HttpRequestMessage()
         {
             Method = method,
             RequestUri = new(_config.RealApiBaseUrl + route)
         };
-        if (!string.IsNullOrEmpty(_token) && authorize)
+
+        if (!string.IsNullOrEmpty(accessToken))
+            req.Headers.Add("Authorization", "Bearer " + accessToken);
+        else if (!string.IsNullOrEmpty(_token) && authorize)
             req.Headers.Add("Authorization", _token);
+
         var result = await HttpClient.SendAsync(req);
 
         _logger.Debug("Made {Method} request to {Route}", method, route);
@@ -278,15 +332,22 @@ public class ApiClient
     /// <param name="authorize">Whether to include the Authorization header.</param>
     /// <returns>The deserialized response object.</returns>
     /// <exception cref="FluxerApiException">Thrown when <paramref name="throwOnNonSuccess"/> is true and the API returns a non-success status code.</exception>
-    public async Task<List<TResponse>> MakeFluxerApiRequestListAsync<TResponse>(HttpMethod method, string route, bool throwOnNonSuccess = false, bool authorize = true) where TResponse : Entity
+    public Task<List<TResponse>> MakeFluxerApiRequestListAsync<TResponse>(HttpMethod method, string route, bool throwOnNonSuccess = false, bool authorize = true) where TResponse : Entity
+        => InternalMakeFluxerApiRequestListAsync<TResponse>(method, route, throwOnNonSuccess, authorize, null);
+
+
+    internal async Task<List<TResponse>> InternalMakeFluxerApiRequestListAsync<TResponse>(HttpMethod method, string route, bool throwOnNonSuccess, bool authorize, string accessToken) where TResponse : Entity
     {
         var req = new HttpRequestMessage()
         {
             Method = method,
             RequestUri = new(_config.RealApiBaseUrl + route)
         };
-        if (!string.IsNullOrEmpty(_token) && authorize)
+        if (!string.IsNullOrEmpty(accessToken))
+            req.Headers.Add("Authorization", "Bearer " + accessToken);
+        else if (!string.IsNullOrEmpty(_token) && authorize)
             req.Headers.Add("Authorization", _token);
+
         var result = await HttpClient.SendAsync(req);
 
         _logger.Debug("Made {Method} request to {Route}", method, route);
@@ -993,5 +1054,63 @@ public class ApiClient
     public async Task<TResponse> PostRpcAsync<TRequest, TResponse>(TRequest data) where TResponse : Entity
         => await MakeFluxerApiRequestAsync<TResponse, TRequest>(HttpMethod.Post, "/_rpc", data, true);
 
+    #endregion
+
+    #region OAuth API
+
+    public Task<User> GetOAuthUserAsync(string accessToken)
+        => InternalMakeFluxerApiRequestAsync<User>(HttpMethod.Get, "/oauth2/userinfo", true, false, accessToken);
+
+    public Task<OAuthToken> GetOAuthTokenAsync(string accessToken)
+        => InternalMakeFluxerApiRequestAsync<OAuthToken>(HttpMethod.Get, "/oauth2/@me", true, false, accessToken);
+
+    public Task<List<Guild>> GetOAuthGuildsAsync(string accessToken)
+        => InternalMakeFluxerApiRequestListAsync<Guild>(HttpMethod.Get, "/users/@me/guilds", true, false, accessToken);
+
+    public Task<List<UserConnection>> GetOAuthConnectionsAsync(string accessToken)
+        => InternalMakeFluxerApiRequestListAsync<UserConnection>(HttpMethod.Get, "/users/@me/connections", true, false, accessToken);
+
+    public async Task<OAuthValidToken> GetOAuthValidTokenAsync(ulong clientId, string clientSecret, string accessToken)
+    {
+        return await InternalMakeFluxerApiRequestFormAsync<OAuthValidToken>(HttpMethod.Post, "/oauth2/introspect", true, new Dictionary<string, string>
+        {
+            { "client_id", clientId.ToString() },
+            { "client_secret", clientSecret },
+            { "token", accessToken }
+        });
+    }
+
+    public async Task<OAuthRefreshToken> GetOAuthRefreshTokenAsync(ulong clientId, string clientSecret, string refreshToken)
+    {
+        return await InternalMakeFluxerApiRequestFormAsync<OAuthRefreshToken>(HttpMethod.Post, "/oauth2/token", true, new Dictionary<string, string>
+        {
+            { "client_id", clientId.ToString() },
+            { "client_secret", clientSecret },
+            { "grant_type", "refresh_token" },
+            { "refresh_token", refreshToken }
+        });
+    }
+
+    public async Task RevokeAccessTokenAsync(ulong clientId, string clientSecret, string accessToken)
+    {
+        await InternalMakeFluxerApiRequestFormAsync<User>(HttpMethod.Post, "/oauth2/token/revoke", true, new Dictionary<string, string>
+        {
+            { "client_id", clientId.ToString() },
+            { "client_secret", clientSecret },
+            { "token", accessToken },
+            { "token_type_hint", "access_token" }
+        });
+    }
+
+    public async Task RevokeRefreshTokenAsync(ulong clientId, string clientSecret, string refreshToken)
+    {
+        await InternalMakeFluxerApiRequestFormAsync<User>(HttpMethod.Post, "/oauth2/token/revoke", true, new Dictionary<string, string>
+        {
+            { "client_id", clientId.ToString() },
+            { "client_secret", clientSecret },
+            { "token", refreshToken },
+            { "token_type_hint", "refresh_token" }
+        });
+    }
     #endregion
 }

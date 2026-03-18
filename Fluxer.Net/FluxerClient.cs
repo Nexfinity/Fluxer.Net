@@ -5,6 +5,8 @@ namespace Fluxer.Net;
 
 public abstract class BaseClient
 {
+    internal ulong Id { get; set; }
+    internal string Token { get; set; }
     internal ApiClient Rest { get; set; }
 }
 
@@ -17,7 +19,7 @@ public class FluxerClient : BaseClient
     {
         // Load token
         ValidateToken(token);
-        Token = token;
+        base.Token = token;
         if (config == null)
             config = new FluxerConfig();
         Config = config;
@@ -44,7 +46,7 @@ public class FluxerClient : BaseClient
         Gateway = new GatewayClient(this);
     }
 
-    public string Token { get; }
+    public new string Token => base.Token;
 
     public FluxerConfig Config { get; }
 
