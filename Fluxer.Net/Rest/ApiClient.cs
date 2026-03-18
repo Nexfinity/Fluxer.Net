@@ -2,6 +2,7 @@ using Fluxer.Net.Extensions;
 using Fluxer.Net.Gateway.Data;
 using Fluxer.Net.OAuth;
 using Fluxer.Net.RateLimiting;
+using Fluxer.Net.Rest.Requests;
 using Newtonsoft.Json;
 using Serilog.Core;
 using System.Net;
@@ -571,8 +572,8 @@ public class ApiClient
     public async Task<List<Invite>> GetChannelInvitesAsync(ulong channelId)
         => await MakeFluxerApiRequestListAsync<Invite>(HttpMethod.Get, $"/channels/{channelId}/invites", true);
 
-    public async Task<TResponse> CreateInviteAsync<TRequest, TResponse>(ulong channelId, TRequest data) where TResponse : Entity
-        => await MakeFluxerApiRequestAsync<TResponse, TRequest>(HttpMethod.Post, $"/channels/{channelId}/invites", data, true);
+    public async Task<Invite> CreateInviteAsync<TRequest>(ulong channelId, ChannelCreateInviteRequest data)
+        => await MakeFluxerApiRequestAsync<Invite, ChannelCreateInviteRequest>(HttpMethod.Post, $"/channels/{channelId}/invites", data, true);
 
     public async Task<TResponse> GetChannelWebhooksAsync<TResponse>(ulong channelId) where TResponse : Entity
         => await MakeFluxerApiRequestAsync<TResponse>(HttpMethod.Get, $"/channels/{channelId}/webhooks", true);
