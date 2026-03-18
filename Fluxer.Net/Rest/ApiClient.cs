@@ -617,8 +617,8 @@ public class ApiClient
     public async Task<PartialInvite> GetInviteAsync(string inviteCode)
         => await MakeFluxerApiRequestAsync<PartialInvite>(HttpMethod.Get, $"/invites/{inviteCode}", true);
 
-    public async Task<GuildProperties> JoinGuildAsync(string inviteCode)
-        => await MakeFluxerApiRequestAsync<GuildProperties>(HttpMethod.Post, $"/invites/{inviteCode}", true);
+    public async Task<PartialInvite> JoinGuildAsync(string inviteCode)
+        => await MakeFluxerApiRequestAsync<PartialInvite>(HttpMethod.Post, $"/invites/{inviteCode}", true);
 
     public async Task DeleteInviteAsync(string inviteCode)
         => await MakeFluxerApiRequestRawAsync(HttpMethod.Delete, $"/invites/{inviteCode}", true);
