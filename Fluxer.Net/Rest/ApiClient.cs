@@ -779,20 +779,28 @@ public class ApiClient
 
     #region Tenor API
 
-    public async Task<TResponse> GetTenorSearchAsync<TResponse>(string query) where TResponse : Entity
-        => await MakeFluxerApiRequestAsync<TResponse>(HttpMethod.Get, $"/tenor/search?q={query}", true);
+    public async Task<IEnumerable<TenorGif>> SearchTenorAsync(string query)
+        => await MakeFluxerApiRequestListAsync<TenorGif>(HttpMethod.Get, $"/tenor/search?q={query}", true);
 
-    public async Task<TResponse> GetTenorFeaturedAsync<TResponse>() where TResponse : Entity
-        => await MakeFluxerApiRequestAsync<TResponse>(HttpMethod.Get, "/tenor/featured", true);
+    public async Task<TenorFeatured> GetTenorFeaturedAsync()
+        => await MakeFluxerApiRequestAsync<TenorFeatured>(HttpMethod.Get, "/tenor/featured", true);
 
-    public async Task<TResponse> GetTenorTrendingGifsAsync<TResponse>() where TResponse : Entity
-        => await MakeFluxerApiRequestAsync<TResponse>(HttpMethod.Get, "/tenor/trending-gifs", true);
+    public async Task<IEnumerable<TenorGif>> GetTenorTrendingGifsAsync()
+        => await MakeFluxerApiRequestListAsync<TenorGif>(HttpMethod.Get, "/tenor/trending-gifs", true);
 
-    public async Task PostTenorRegisterShareAsync<TRequest>(TRequest data)
-        => await MakeFluxerApiRequestAsync<TRequest>(HttpMethod.Post, "/tenor/register-share", data, true);
+    #endregion
 
-    public async Task<TResponse> GetTenorSuggestAsync<TResponse>(string query) where TResponse : Entity
-        => await MakeFluxerApiRequestAsync<TResponse>(HttpMethod.Get, $"/tenor/suggest?q={query}", true);
+    #region Klipy API
+
+    public async Task<IEnumerable<TenorGif>> SearchKlipyAsync(string query)
+        => await MakeFluxerApiRequestListAsync<TenorGif>(HttpMethod.Get, $"/klipy/search?q={query}", true);
+
+    public async Task<TenorFeatured> GetKlipyFeaturedAsync()
+        => await MakeFluxerApiRequestAsync<TenorFeatured>(HttpMethod.Get, "/klipy/featured", true);
+
+    public async Task<IEnumerable<TenorGif>> GetKlipyTrendingGifsAsync()
+        => await MakeFluxerApiRequestListAsync<TenorGif>(HttpMethod.Get, "/klipy/trending-gifs", true);
+
 
     #endregion
 
