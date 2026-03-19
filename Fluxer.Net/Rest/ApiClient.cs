@@ -598,8 +598,9 @@ public class ApiClient
     public async Task<GifFavourite> PostCurrentUserFavouriteGifAsync<TRequest>(TRequest data)
         => await MakeFluxerApiRequestAsync<GifFavourite, TRequest>(HttpMethod.Post, "/users/@me/memes", data, true);
 
-    public async Task PostChannelMessageFavouriteGifAsync<TRequest>(ulong channelId, ulong messageId, TRequest data)
-        => await MakeFluxerApiRequestAsync(HttpMethod.Post, $"/channels/{channelId}/messages/{messageId}/memes", data, true);
+    // ??? what is this ???
+    //public async Task PostChannelMessageFavouriteGifAsync<TRequest>(ulong channelId, ulong messageId, TRequest data)
+    //    => await MakeFluxerApiRequestAsync(HttpMethod.Post, $"/channels/{channelId}/messages/{messageId}/memes", data, true);
 
     public async Task<GifFavourite> GetCurrentUserFavouriteGifAsync(ulong memeId)
         => await MakeFluxerApiRequestAsync<GifFavourite>(HttpMethod.Get, $"/users/@me/memes/{memeId}", true);
@@ -983,26 +984,29 @@ public class ApiClient
 
     #region Webhooks API
 
-    public async Task<TResponse> GetWebhookAsync<TResponse>(ulong webhookId) where TResponse : Entity
-        => await MakeFluxerApiRequestAsync<TResponse>(HttpMethod.Get, $"/webhooks/{webhookId}", true);
+    public async Task<Webhook> GetWebhookAsync(ulong webhookId)
+        => await MakeFluxerApiRequestAsync<Webhook>(HttpMethod.Get, $"/webhooks/{webhookId}", true);
 
-    public async Task<TResponse> UpdateWebhookAsync<TRequest, TResponse>(ulong webhookId, TRequest data) where TResponse : Entity
-        => await MakeFluxerApiRequestAsync<TResponse, TRequest>(HttpMethod.Patch, $"/webhooks/{webhookId}", data, true);
+    public async Task<Webhook> UpdateWebhookAsync<TRequest>(ulong webhookId, TRequest data)
+        => await MakeFluxerApiRequestAsync<Webhook, TRequest>(HttpMethod.Patch, $"/webhooks/{webhookId}", data, true);
 
     public async Task DeleteWebhookAsync(ulong webhookId)
         => await MakeFluxerApiRequestRawAsync(HttpMethod.Delete, $"/webhooks/{webhookId}", true);
 
-    public async Task<TResponse> GetWebhookWithTokenAsync<TResponse>(ulong webhookId, string token) where TResponse : Entity
-        => await MakeFluxerApiRequestAsync<TResponse>(HttpMethod.Get, $"/webhooks/{webhookId}/{token}", false);
+    public async Task<Webhook> GetWebhookWithTokenAsync(ulong webhookId, string token)
+        => await MakeFluxerApiRequestAsync<Webhook>(HttpMethod.Get, $"/webhooks/{webhookId}/{token}", false);
 
-    public async Task<TResponse> UpdateWebhookWithTokenAsync<TRequest, TResponse>(ulong webhookId, string token, TRequest data) where TResponse : Entity
-        => await MakeFluxerApiRequestAsync<TResponse, TRequest>(HttpMethod.Patch, $"/webhooks/{webhookId}/{token}", data, false);
+    public async Task<Webhook> UpdateWebhookWithTokenAsync<TRequest>(ulong webhookId, string token, TRequest data)
+        => await MakeFluxerApiRequestAsync<Webhook, TRequest>(HttpMethod.Patch, $"/webhooks/{webhookId}/{token}", data, false);
 
     public async Task DeleteWebhookWithTokenAsync(ulong webhookId, string token)
         => await MakeFluxerApiRequestRawAsync(HttpMethod.Delete, $"/webhooks/{webhookId}/{token}", false, false);
 
-    public async Task ExecuteWebhookAsync<TRequest>(ulong webhookId, string token, TRequest data)
-        => await MakeFluxerApiRequestAsync<TRequest>(HttpMethod.Post, $"/webhooks/{webhookId}/{token}", data, true, false);
+    public async Task ExecuteWebhookAsync(ulong webhookId, string token, Message data)
+        => await MakeFluxerApiRequestAsync(HttpMethod.Post, $"/webhooks/{webhookId}/{token}", data, true, false);
+
+    public Task<Message> ExecuteWebhookWaitAsync(ulong webhookId, string token, Message data)
+        => MakeFluxerApiRequestAsync<Message, Message>(HttpMethod.Post, $"/webhooks/{webhookId}/{token}?wait", data, true);
 
     public async Task ExecuteGithubWebhookAsync<TRequest>(ulong webhookId, string token, TRequest data)
         => await MakeFluxerApiRequestAsync<TRequest>(HttpMethod.Post, $"/webhooks/{webhookId}/{token}/github", data, true, false);
