@@ -2,6 +2,7 @@ using Fluxer.Net.Extensions;
 using Fluxer.Net.Gateway.Data;
 using Fluxer.Net.OAuth;
 using Fluxer.Net.RateLimiting;
+using Fluxer.Net.Rest.Requests;
 using Newtonsoft.Json;
 using Serilog.Core;
 using System.Net;
@@ -429,8 +430,8 @@ public class ApiClient
     public async Task ResetPasswordAsync<TRequest>(TRequest data)
         => await MakeFluxerApiRequestAsync<TRequest>(HttpMethod.Post, "/auth/reset", data, true, false);
 
-    public async Task<TResponse> GetSessionsAsync<TResponse>() where TResponse : Entity
-        => await MakeFluxerApiRequestAsync<TResponse>(HttpMethod.Get, "/auth/sessions", true);
+    public async Task<IEnumerable<AuthSession>> GetSessionsAsync()
+        => await MakeFluxerApiRequestListAsync<AuthSession>(HttpMethod.Get, "/auth/sessions", true);
 
     public async Task LogoutSessionsAsync<TRequest>(TRequest data)
         => await MakeFluxerApiRequestAsync<TRequest>(HttpMethod.Post, "/auth/sessions/logout", data, true);
@@ -460,8 +461,8 @@ public class ApiClient
     public async Task<Channel> GetChannelAsync(ulong channelId)
         => await MakeFluxerApiRequestAsync<Channel>(HttpMethod.Get, $"/channels/{channelId}", true);
 
-    public async Task<TResponse> GetChannelRtcRegionsAsync<TResponse>(ulong channelId) where TResponse : Entity
-        => await MakeFluxerApiRequestAsync<TResponse>(HttpMethod.Get, $"/channels/{channelId}/rtc-regions", true);
+    public async Task<IEnumerable<RtcRegion>> GetChannelRtcRegionsAsync(ulong channelId)
+        => await MakeFluxerApiRequestListAsync<RtcRegion>(HttpMethod.Get, $"/channels/{channelId}/rtc-regions", true);
 
     public async Task<Channel> UpdateChannelAsync(ulong channelId, Channel channel)
         => await MakeFluxerApiRequestAsync<Channel, Channel>(HttpMethod.Patch, $"/channels/{channelId}", channel, true);
@@ -571,8 +572,8 @@ public class ApiClient
     public async Task<List<Invite>> GetChannelInvitesAsync(ulong channelId)
         => await MakeFluxerApiRequestListAsync<Invite>(HttpMethod.Get, $"/channels/{channelId}/invites", true);
 
-    public async Task<TResponse> CreateInviteAsync<TRequest, TResponse>(ulong channelId, TRequest data) where TResponse : Entity
-        => await MakeFluxerApiRequestAsync<TResponse, TRequest>(HttpMethod.Post, $"/channels/{channelId}/invites", data, true);
+    public async Task<Invite> CreateInviteAsync<TRequest>(ulong channelId, ChannelCreateInviteRequest data)
+        => await MakeFluxerApiRequestAsync<Invite, ChannelCreateInviteRequest>(HttpMethod.Post, $"/channels/{channelId}/invites", data, true);
 
     public async Task<TResponse> GetChannelWebhooksAsync<TResponse>(ulong channelId) where TResponse : Entity
         => await MakeFluxerApiRequestAsync<TResponse>(HttpMethod.Get, $"/channels/{channelId}/webhooks", true);
@@ -589,35 +590,36 @@ public class ApiClient
 
     #endregion
 
-    #region Memes API
+    #region Favourite Gifs API
 
-    public async Task<TResponse> GetCurrentUserMemesAsync<TResponse>() where TResponse : Entity
-        => await MakeFluxerApiRequestAsync<TResponse>(HttpMethod.Get, "/users/@me/memes", true);
+    public async Task<IEnumerable<GifFavourite>> GetCurrentUserFavouriteGifsAsync()
+        => await MakeFluxerApiRequestListAsync<GifFavourite>(HttpMethod.Get, "/users/@me/memes", true);
 
-    public async Task<TResponse> PostCurrentUserMemeAsync<TRequest, TResponse>(TRequest data) where TResponse : Entity
-        => await MakeFluxerApiRequestAsync<TResponse, TRequest>(HttpMethod.Post, "/users/@me/memes", data, true);
+    public async Task<GifFavourite> PostCurrentUserFavouriteGifAsync<TRequest>(TRequest data)
+        => await MakeFluxerApiRequestAsync<GifFavourite, TRequest>(HttpMethod.Post, "/users/@me/memes", data, true);
 
-    public async Task PostChannelMessageMemeAsync<TRequest>(ulong channelId, ulong messageId, TRequest data)
-        => await MakeFluxerApiRequestAsync<TRequest>(HttpMethod.Post, $"/channels/{channelId}/messages/{messageId}/memes", data, true);
+    // ??? what is this ???
+    //public async Task PostChannelMessageFavouriteGifAsync<TRequest>(ulong channelId, ulong messageId, TRequest data)
+    //    => await MakeFluxerApiRequestAsync(HttpMethod.Post, $"/channels/{channelId}/messages/{messageId}/memes", data, true);
 
-    public async Task<TResponse> GetCurrentUserMemeAsync<TResponse>(ulong memeId) where TResponse : Entity
-        => await MakeFluxerApiRequestAsync<TResponse>(HttpMethod.Get, $"/users/@me/memes/{memeId}", true);
+    public async Task<GifFavourite> GetCurrentUserFavouriteGifAsync(ulong memeId)
+        => await MakeFluxerApiRequestAsync<GifFavourite>(HttpMethod.Get, $"/users/@me/memes/{memeId}", true);
 
-    public async Task<TResponse> PatchCurrentUserMemeAsync<TRequest, TResponse>(ulong memeId, TRequest data) where TResponse : Entity
-        => await MakeFluxerApiRequestAsync<TResponse, TRequest>(HttpMethod.Patch, $"/users/@me/memes/{memeId}", data, true);
+    public async Task<GifFavourite> PatchCurrentUserFavouriteGifAsync<TRequest>(ulong memeId, TRequest data)
+        => await MakeFluxerApiRequestAsync<GifFavourite, TRequest>(HttpMethod.Patch, $"/users/@me/memes/{memeId}", data, true);
 
-    public async Task DeleteCurrentUserMemeAsync(ulong memeId)
+    public async Task DeleteCurrentUserFavouriteGifAsync(ulong memeId)
         => await MakeFluxerApiRequestRawAsync(HttpMethod.Delete, $"/users/@me/memes/{memeId}", true);
 
     #endregion
 
     #region Invites API
 
-    public async Task<TResponse> GetInviteAsync<TResponse>(string inviteCode) where TResponse : Entity
-        => await MakeFluxerApiRequestAsync<TResponse>(HttpMethod.Get, $"/invites/{inviteCode}", true);
+    public async Task<PartialInvite> GetInviteAsync(string inviteCode)
+        => await MakeFluxerApiRequestAsync<PartialInvite>(HttpMethod.Get, $"/invites/{inviteCode}", true);
 
-    public async Task<GuildProperties> JoinGuildAsync(string inviteCode)
-        => await MakeFluxerApiRequestAsync<GuildProperties>(HttpMethod.Post, $"/invites/{inviteCode}", true);
+    public async Task<PartialInvite> JoinGuildAsync(string inviteCode)
+        => await MakeFluxerApiRequestAsync<PartialInvite>(HttpMethod.Post, $"/invites/{inviteCode}", true);
 
     public async Task DeleteInviteAsync(string inviteCode)
         => await MakeFluxerApiRequestRawAsync(HttpMethod.Delete, $"/invites/{inviteCode}", true);
@@ -778,20 +780,35 @@ public class ApiClient
 
     #region Tenor API
 
-    public async Task<TResponse> GetTenorSearchAsync<TResponse>(string query) where TResponse : Entity
-        => await MakeFluxerApiRequestAsync<TResponse>(HttpMethod.Get, $"/tenor/search?q={query}", true);
+    public async Task<IEnumerable<Gif>> SearchTenorAsync(string query)
+        => await MakeFluxerApiRequestListAsync<Gif>(HttpMethod.Get, $"/tenor/search?q={query}", true);
 
-    public async Task<TResponse> GetTenorFeaturedAsync<TResponse>() where TResponse : Entity
-        => await MakeFluxerApiRequestAsync<TResponse>(HttpMethod.Get, "/tenor/featured", true);
+    public async Task<GifFeatured> GetTenorFeaturedAsync()
+        => await MakeFluxerApiRequestAsync<GifFeatured>(HttpMethod.Get, "/tenor/featured", true);
 
-    public async Task<TResponse> GetTenorTrendingGifsAsync<TResponse>() where TResponse : Entity
-        => await MakeFluxerApiRequestAsync<TResponse>(HttpMethod.Get, "/tenor/trending-gifs", true);
+    public async Task<IEnumerable<Gif>> GetTenorTrendingGifsAsync()
+        => await MakeFluxerApiRequestListAsync<Gif>(HttpMethod.Get, "/tenor/trending-gifs", true);
 
-    public async Task PostTenorRegisterShareAsync<TRequest>(TRequest data)
-        => await MakeFluxerApiRequestAsync<TRequest>(HttpMethod.Post, "/tenor/register-share", data, true);
+    #endregion
 
-    public async Task<TResponse> GetTenorSuggestAsync<TResponse>(string query) where TResponse : Entity
-        => await MakeFluxerApiRequestAsync<TResponse>(HttpMethod.Get, $"/tenor/suggest?q={query}", true);
+    #region Klipy API
+
+    public async Task<IEnumerable<Gif>> SearchKlipyAsync(string query)
+        => await MakeFluxerApiRequestListAsync<Gif>(HttpMethod.Get, $"/klipy/search?q={query}", true);
+
+    public async Task<GifFeatured> GetKlipyFeaturedAsync()
+        => await MakeFluxerApiRequestAsync<GifFeatured>(HttpMethod.Get, "/klipy/featured", true);
+
+    public async Task<IEnumerable<Gif>> GetKlipyTrendingGifsAsync()
+        => await MakeFluxerApiRequestListAsync<Gif>(HttpMethod.Get, "/klipy/trending-gifs", true);
+
+
+    #endregion
+
+    #region Apps API
+
+    public Task<Application> GetPublicAppAsync(ulong id)
+        => MakeFluxerApiRequestAsync<Application>(HttpMethod.Get, $"/oauth2/applications/{id}/public", true);
 
     #endregion
 
@@ -803,14 +820,15 @@ public class ApiClient
     public async Task<User> UpdateCurrentUserAsync(User user)
         => await MakeFluxerApiRequestAsync<User, User>(HttpMethod.Patch, "/users/@me", user, true);
 
-    public async Task<TResponse> CheckUsernameAvailabilityAsync<TResponse>(string tag) where TResponse : Entity
-        => await MakeFluxerApiRequestAsync<TResponse>(HttpMethod.Get, $"/users/check-tag?tag={tag}", true);
+    public async Task<UsernameAvailable> CheckUsernameAvailabilityAsync(string username, string discriminator)
+        => await MakeFluxerApiRequestAsync<UsernameAvailable>(HttpMethod.Get, $"/users/check-tag?username={username}&discriminator={discriminator}", true);
 
     public async Task<User> GetUserAsync(ulong userId)
         => await MakeFluxerApiRequestAsync<User>(HttpMethod.Get, $"/users/{userId}", true);
 
-    public async Task<TResponse> GetUserProfileAsync<TResponse>(ulong targetId) where TResponse : Entity
-        => await MakeFluxerApiRequestAsync<TResponse>(HttpMethod.Get, $"/users/{targetId}/profile", true);
+    public async Task<UserProfileResponse> GetUserProfileAsync(ulong targetId, string? guildId = null, bool mutualFriends = false, bool mutualGuilds = false)
+        => await MakeFluxerApiRequestAsync<UserProfileResponse>(HttpMethod.Get,
+            new QueryBuilder($"/users/{targetId}/profile").With("guild_id", guildId).With("with_mutual_friends", mutualFriends).With("with_mutual_guilds", mutualGuilds).Build(), true);
 
     public async Task<UserSettings> GetCurrentUserSettingsAsync()
         => await MakeFluxerApiRequestAsync<UserSettings>(HttpMethod.Get, "/users/@me/settings", true);
@@ -966,26 +984,29 @@ public class ApiClient
 
     #region Webhooks API
 
-    public async Task<TResponse> GetWebhookAsync<TResponse>(ulong webhookId) where TResponse : Entity
-        => await MakeFluxerApiRequestAsync<TResponse>(HttpMethod.Get, $"/webhooks/{webhookId}", true);
+    public async Task<Webhook> GetWebhookAsync(ulong webhookId)
+        => await MakeFluxerApiRequestAsync<Webhook>(HttpMethod.Get, $"/webhooks/{webhookId}", true);
 
-    public async Task<TResponse> UpdateWebhookAsync<TRequest, TResponse>(ulong webhookId, TRequest data) where TResponse : Entity
-        => await MakeFluxerApiRequestAsync<TResponse, TRequest>(HttpMethod.Patch, $"/webhooks/{webhookId}", data, true);
+    public async Task<Webhook> UpdateWebhookAsync<TRequest>(ulong webhookId, TRequest data)
+        => await MakeFluxerApiRequestAsync<Webhook, TRequest>(HttpMethod.Patch, $"/webhooks/{webhookId}", data, true);
 
     public async Task DeleteWebhookAsync(ulong webhookId)
         => await MakeFluxerApiRequestRawAsync(HttpMethod.Delete, $"/webhooks/{webhookId}", true);
 
-    public async Task<TResponse> GetWebhookWithTokenAsync<TResponse>(ulong webhookId, string token) where TResponse : Entity
-        => await MakeFluxerApiRequestAsync<TResponse>(HttpMethod.Get, $"/webhooks/{webhookId}/{token}", false);
+    public async Task<Webhook> GetWebhookWithTokenAsync(ulong webhookId, string token)
+        => await MakeFluxerApiRequestAsync<Webhook>(HttpMethod.Get, $"/webhooks/{webhookId}/{token}", false);
 
-    public async Task<TResponse> UpdateWebhookWithTokenAsync<TRequest, TResponse>(ulong webhookId, string token, TRequest data) where TResponse : Entity
-        => await MakeFluxerApiRequestAsync<TResponse, TRequest>(HttpMethod.Patch, $"/webhooks/{webhookId}/{token}", data, false);
+    public async Task<Webhook> UpdateWebhookWithTokenAsync<TRequest>(ulong webhookId, string token, TRequest data)
+        => await MakeFluxerApiRequestAsync<Webhook, TRequest>(HttpMethod.Patch, $"/webhooks/{webhookId}/{token}", data, false);
 
     public async Task DeleteWebhookWithTokenAsync(ulong webhookId, string token)
         => await MakeFluxerApiRequestRawAsync(HttpMethod.Delete, $"/webhooks/{webhookId}/{token}", false, false);
 
-    public async Task ExecuteWebhookAsync<TRequest>(ulong webhookId, string token, TRequest data)
-        => await MakeFluxerApiRequestAsync<TRequest>(HttpMethod.Post, $"/webhooks/{webhookId}/{token}", data, true, false);
+    public async Task ExecuteWebhookAsync(ulong webhookId, string token, Message data)
+        => await MakeFluxerApiRequestAsync(HttpMethod.Post, $"/webhooks/{webhookId}/{token}", data, true, false);
+
+    public Task<Message> ExecuteWebhookWaitAsync(ulong webhookId, string token, Message data)
+        => MakeFluxerApiRequestAsync<Message, Message>(HttpMethod.Post, $"/webhooks/{webhookId}/{token}?wait", data, true);
 
     public async Task ExecuteGithubWebhookAsync<TRequest>(ulong webhookId, string token, TRequest data)
         => await MakeFluxerApiRequestAsync<TRequest>(HttpMethod.Post, $"/webhooks/{webhookId}/{token}/github", data, true, false);

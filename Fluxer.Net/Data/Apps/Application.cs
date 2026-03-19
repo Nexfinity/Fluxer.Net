@@ -1,27 +1,12 @@
 ﻿using Newtonsoft.Json;
 
-namespace Fluxer.Net.Data.Apps;
+namespace Fluxer.Net;
 
-public class Application : Entity
+public class Application : PartialApplication
 {
-    [JsonProperty("id")]
-    public ulong Id { get; set; }
+    [JsonProperty("redirect_urls")]
+    public string[] RedirectUrls { get; set; }
 
-    [JsonProperty("name")]
-    public string Name { get; set; }
-
-    [JsonProperty("icon")]
-    public string Icon { get; set; }
-
-    [JsonProperty("description")]
-    public string Description { get; set; }
-
-    [JsonProperty("bot_public")]
-    public bool IsPublic { get; set; }
-
-    [JsonProperty("bot_requires_code_grant")]
-    public bool RequiresCodeGrant { get; set; }
-
-    [JsonProperty("flags")]
-    public ulong Flags { get; set; }
+    [JsonProperty("bot")]
+    public User Bot { get; set; }
 }

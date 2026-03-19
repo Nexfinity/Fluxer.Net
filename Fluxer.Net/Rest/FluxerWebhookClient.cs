@@ -48,7 +48,7 @@ public class FluxerWebhookClient : BaseClient
     public new string Token => base.Token;
 
     public Task<Webhook> GetAsync()
-        => Rest.GetWebhookWithTokenAsync<Webhook>(Id, Token);
+        => Rest.GetWebhookWithTokenAsync(Id, Token);
 
     public Task DeleteAsync()
         => Rest.DeleteWebhookWithTokenAsync(Id, Token);

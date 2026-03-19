@@ -10,17 +10,14 @@ public class Webhook : Entity
     [JsonProperty("token")]
     public string Token { get; set; }
 
-    [JsonProperty("type")]
-    public int Type { get; set; }
-
     [JsonProperty("guild_id")]
     public ulong? GuildId { get; set; }
 
     [JsonProperty("channel_id")]
     public ulong? ChannelId { get; set; }
 
-    [JsonProperty("creator_id")]
-    public ulong? CreatorId { get; set; }
+    [JsonProperty("user")]
+    public User? Creator { get; set; }
 
     [JsonProperty("name")]
     public string Name { get; set; }
