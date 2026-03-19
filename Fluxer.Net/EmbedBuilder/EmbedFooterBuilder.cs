@@ -58,10 +58,10 @@ public class EmbedFooterBuilder
     /// <summary>
     /// Builds the embed footer.
     /// </summary>
-    /// <returns>A new <see cref="EmbedFooter"/> object.</returns>
-    public EmbedFooter Build()
+    /// <returns>A new <see cref="EmbedFooterJson"/> object.</returns>
+    public EmbedFooterJson Build()
     {
-        return new EmbedFooter
+        return new EmbedFooterJson
         {
             Text = Text,
             IconUrl = IconUrl

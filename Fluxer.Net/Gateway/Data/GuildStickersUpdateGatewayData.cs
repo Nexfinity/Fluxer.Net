@@ -11,5 +11,5 @@ public class GuildStickersUpdateGatewayData : IGatewayData
 	public ulong GuildId { get; set; }
 
 	[JsonProperty("stickers")]
-	public List<GuildSticker> Stickers { get; set; } = new();
+	public List<GuildStickerJson> Stickers { get; set; } = new();
 }

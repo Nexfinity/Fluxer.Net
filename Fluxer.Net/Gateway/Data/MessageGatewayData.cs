@@ -47,22 +47,22 @@ public class MessageGatewayData : IGatewayData
     public List<ulong>? MentionRoles { get; set; }
 
     [JsonProperty("embeds")]
-    public List<Embed>? Embeds { get; set; }
+    public List<EmbedJson>? Embeds { get; set; }
 
     [JsonProperty("attachments")]
-    public List<Attachment>? Attachments { get; set; }
+    public List<AttachmentJson>? Attachments { get; set; }
 
     [JsonProperty("stickers")]
-    public List<StickerItem>? Stickers { get; set; }
+    public List<StickerItemJson>? Stickers { get; set; }
 
     [JsonProperty("reactions")]
-    public List<MessageReaction>? Reactions { get; set; }
+    public List<MessageReactionJson>? Reactions { get; set; }
 
     [JsonProperty("message_reference")]
-    public MessageRef? MessageReference { get; set; }
+    public MessageRefJson? MessageReference { get; set; }
 
     [JsonProperty("message_snapshots")]
-    public List<MessageSnapshot>? MessageSnapshots { get; set; }
+    public List<MessageSnapshotJson>? MessageSnapshots { get; set; }
 
     [JsonProperty("nonce")]
     public string? Nonce { get; set; }
@@ -86,7 +86,7 @@ public class MessageGatewayData : IGatewayData
 /// <summary>
 /// Partial user response matching UserPartialResponse from the API
 /// </summary>
-public class UserPartialResponse : Entity
+public class UserPartialResponse
 {
     [JsonProperty("id")]
     public ulong Id { get; set; }

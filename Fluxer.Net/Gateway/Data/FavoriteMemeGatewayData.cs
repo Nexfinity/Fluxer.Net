@@ -8,5 +8,5 @@ namespace Fluxer.Net.Gateway.Data;
 public class FavoriteMemeGatewayData : IGatewayData
 {
 	[JsonProperty("favorite_meme")]
-	public FavoriteMeme FavoriteMeme { get; set; } = null!;
+	public FavoriteMemeJson FavoriteMeme { get; set; } = null!;
 }

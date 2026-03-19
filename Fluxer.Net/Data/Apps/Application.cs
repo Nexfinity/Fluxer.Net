@@ -1,12 +1,19 @@
-﻿using Newtonsoft.Json;
-
-namespace Fluxer.Net;
+﻿namespace Fluxer.Net;
 
 public class Application : PartialApplication
 {
-    [JsonProperty("redirect_urls")]
-    public string[] RedirectUrls { get; set; }
+    internal Application(BaseClient client) : base(client)
+    {
 
-    [JsonProperty("bot")]
-    public User Bot { get; set; }
+    }
+
+    public static Application Create(BaseClient client, ApplicationJson json)
+    {
+        return new Application(client);
+    }
+
+    internal void Update(ApplicationJson json)
+    {
+
+    }
 }

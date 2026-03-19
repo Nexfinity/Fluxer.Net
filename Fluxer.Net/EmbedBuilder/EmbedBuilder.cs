@@ -380,9 +380,9 @@ public class EmbedBuilder
     /// <summary>
     /// Builds the embed.
     /// </summary>
-    /// <returns>A new <see cref="Embed"/> object.</returns>
+    /// <returns>A new <see cref="EmbedJson"/> object.</returns>
     /// <exception cref="InvalidOperationException">The embed exceeds <see cref="MaxEmbedLength"/>.</exception>
-    public Embed Build()
+    public EmbedJson Build()
     {
         // Validate total length
         if (Length > MaxEmbedLength)
@@ -396,7 +396,7 @@ public class EmbedBuilder
         if (!string.IsNullOrEmpty(ImageUrl) && !IsValidUrl(ImageUrl))
             throw new InvalidOperationException("Image URL must include a protocol (http:// or https://).");
 
-        var embed = new Embed
+        var embed = new EmbedJson
         {
             Type = "rich",
             Title = Title,
@@ -412,13 +412,13 @@ public class EmbedBuilder
         // Set thumbnail
         if (!string.IsNullOrEmpty(ThumbnailUrl))
         {
-            embed.Thumbnail = new EmbedMedia { Url = ThumbnailUrl };
+            embed.Thumbnail = new EmbedMediaJson { Url = ThumbnailUrl };
         }
 
         // Set image
         if (!string.IsNullOrEmpty(ImageUrl))
         {
-            embed.Image = new EmbedMedia { Url = ImageUrl };
+            embed.Image = new EmbedMediaJson { Url = ImageUrl };
         }
 
         return embed;

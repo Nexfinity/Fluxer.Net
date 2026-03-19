@@ -8,5 +8,5 @@ namespace Fluxer.Net.Gateway.Data;
 public class SavedMessageGatewayData : IGatewayData
 {
 	[JsonProperty("saved_message")]
-	public SavedMessage SavedMessage { get; set; } = null!;
+	public SavedMessageJson SavedMessage { get; set; } = null!;
 }

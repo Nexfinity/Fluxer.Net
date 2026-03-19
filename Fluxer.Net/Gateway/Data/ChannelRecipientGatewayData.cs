@@ -11,5 +11,5 @@ public class ChannelRecipientGatewayData : IGatewayData
 	public ulong ChannelId { get; set; }
 
 	[JsonProperty("user")]
-	public User User { get; set; } = null!;
+	public UserJson User { get; set; } = null!;
 }

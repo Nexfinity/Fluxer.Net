@@ -2,7 +2,7 @@
 
 namespace Fluxer.Net;
 
-public class MessageSnapshotResponse : Entity
+public class MessageSnapshotResponse
 {
     [JsonProperty("content")]
     public string? Content { get; set; }
@@ -21,13 +21,13 @@ public class MessageSnapshotResponse : Entity
     public HashSet<ulong>? MentionedRoleIds { get; set; }
 
     [JsonProperty("embeds")]
-    public MessageEmbedResponse[]? Embeds { get; set; }
+    public MessageEmbedJson[]? Embeds { get; set; }
 
     [JsonProperty("attachments")]
-    public MessageAttachmentResponse[]? Attachments { get; set; }
+    public MessageAttachmentJson[]? Attachments { get; set; }
 
     [JsonProperty("stickers")]
-    public MessageStickerResponse[]? Stickers { get; set; }
+    public MessageStickerJson[]? Stickers { get; set; }
 
     [JsonRequired]
     [JsonProperty("type")]

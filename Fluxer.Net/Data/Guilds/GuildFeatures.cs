@@ -104,7 +104,7 @@ public class GuildFeatures
     public bool HasLargeGuildOverride { get; }
     public bool IsLargeGuild { get; }
 
-    public static GuildFeatures FromGuild(Guild guild)
+    public static GuildFeatures FromGuild(GuildJson guild)
     {
         return new GuildFeatures(guild.Features);
     }

@@ -8,5 +8,5 @@ namespace Fluxer.Net.Gateway.Data;
 public class AuthSessionChangeGatewayData : IGatewayData
 {
 	[JsonProperty("session")]
-	public AuthSession Session { get; set; } = null!;
+	public AuthSessionJson Session { get; set; } = null!;
 }

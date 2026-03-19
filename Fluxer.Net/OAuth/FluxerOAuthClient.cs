@@ -40,16 +40,16 @@ public class FluxerOAuthClient : BaseClient
 
     public new ApiClient Rest => base.Rest;
 
-    public Task<User> GetOAuthUser(string accessToken)
+    public Task<UserJson> GetOAuthUser(string accessToken)
         => Rest.GetOAuthUserAsync(accessToken);
 
-    public Task<OAuthToken> GetOAuthTokenAsync(string accessToken)
+    public Task<OAuthTokenJson> GetOAuthTokenAsync(string accessToken)
         => Rest.GetOAuthTokenAsync(accessToken);
 
-    public Task<List<Guild>> GetOAuthGuildsAsync(string accessToken)
+    public Task<IEnumerable<GuildJson>> GetOAuthGuildsAsync(string accessToken)
         => Rest.GetOAuthGuildsAsync(accessToken);
 
-    public Task<List<UserConnection>> GetOAuthConnectionsAsync(string accessToken)
+    public Task<IEnumerable<UserConnection>> GetOAuthConnectionsAsync(string accessToken)
         => Rest.GetOAuthConnectionsAsync(accessToken);
 
     public async Task<bool> CheckValidTokenAsync(string accessToken)
@@ -65,10 +65,10 @@ public class FluxerOAuthClient : BaseClient
         }
     }
 
-    public Task<OAuthValidToken> GetValidTokenAsync(string accessToken)
+    public Task<OAuthValidTokenJson> GetValidTokenAsync(string accessToken)
         => Rest.GetOAuthValidTokenAsync(ClientId, ClientSecret, accessToken);
 
-    public Task<OAuthRefreshToken> GetRefreshTokenAsync(string refreshToken)
+    public Task<OAuthRefreshTokenJson> GetRefreshTokenAsync(string refreshToken)
         => Rest.GetOAuthRefreshTokenAsync(ClientId, ClientSecret, refreshToken);
 
     public Task RevokeAccessTokenAsync(string accessToken)

@@ -2,19 +2,19 @@
 
 namespace Fluxer.Net;
 
-public class UserProfileResponse : Entity
+public class UserProfileResponse
 {
     [JsonProperty("user")]
-    public User User { get; set; }
+    public UserJson User { get; set; }
 
     [JsonProperty("user_profile")]
-    public UserProfile Profile { get; set; }
+    public UserProfileJson Profile { get; set; }
 
     [JsonProperty("guild_member")]
-    public GuildMember? Member { get; set; }
+    public GuildMemberJson? Member { get; set; }
 
     [JsonProperty("guild_member_profile")]
-    public UserProfile? MemberProfile { get; set; }
+    public UserProfileJson? MemberProfile { get; set; }
 
     [JsonProperty("premium_type")]
     public int PremiumType { get; set; }
@@ -23,10 +23,10 @@ public class UserProfileResponse : Entity
     public DateTime? PremiumSince { get; set; }
 
     [JsonProperty("mutual_friends")]
-    public User[]? MutualFriends { get; set; }
+    public UserJson[]? MutualFriends { get; set; }
 
     [JsonProperty("mutual_guilds")]
-    public Guild[]? MutualGuilds { get; set; }
+    public GuildJson[]? MutualGuilds { get; set; }
 
     [JsonProperty("connected_accounts")]
     public UserConnection[] Connections { get; set; }

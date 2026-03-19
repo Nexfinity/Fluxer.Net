@@ -12,16 +12,16 @@ public class PresenceGatewayData : IGatewayData
 	public ulong? GuildId { get; set; }
 
 	[JsonProperty("user")]
-	public User User { get; set; }
+	public UserJson User { get; set; }
 
 	[JsonProperty("status")]
 	public string Status { get; set; }
 
 	[JsonProperty("activities")]
-	public List<Activity>? Activities { get; set; }
+	public List<ActivityJson>? Activities { get; set; }
 
 	[JsonProperty("client_status")]
-	public ClientStatus? ClientStatus { get; set; }
+	public ClientStatusJson? ClientStatus { get; set; }
 
 	/// <summary>
 	/// Whether the user is AFK.

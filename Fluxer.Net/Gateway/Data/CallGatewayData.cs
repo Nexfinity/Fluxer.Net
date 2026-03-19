@@ -8,5 +8,5 @@ namespace Fluxer.Net.Gateway.Data;
 public class CallGatewayData : IGatewayData
 {
 	[JsonProperty("call")]
-	public CallInfo Call { get; set; } = null!;
+	public CallInfoJson Call { get; set; } = null!;
 }

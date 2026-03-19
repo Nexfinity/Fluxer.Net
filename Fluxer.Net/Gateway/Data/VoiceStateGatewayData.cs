@@ -14,7 +14,7 @@ public class VoiceStateGatewayData : IGatewayData
     public ulong UserId { get; set; }
 
     [JsonProperty("member")]
-    public GuildMember Member { get; set; }
+    public GuildMemberJson Member { get; set; }
 
     [JsonProperty("session_id")]
     public string SessionId { get; set; }
