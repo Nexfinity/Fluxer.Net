@@ -8,20 +8,20 @@ public class OAuthValidToken : Entity
     public bool IsActive { get; set; }
 
     [JsonProperty("scope")]
-    public string Scope { get; set; }
+    public string? Scope { get; set; }
 
     [JsonProperty("client_id")]
-    public ulong ClientId { get; set; }
+    public ulong? ClientId { get; set; }
 
     [JsonProperty("token_type")]
-    public string TokenType { get; set; }
+    public string? TokenType { get; set; }
 
     [JsonProperty("exp")]
-    public int Exp { get; set; }
+    public int? Exp { get; set; }
 
     [JsonProperty("iat")]
-    public int Iat { get; set; }
+    public int? Iat { get; set; }
 
     [JsonProperty("Sub")]
-    public ulong Sub { get; set; }
+    public ulong? Sub { get; set; }
 }
