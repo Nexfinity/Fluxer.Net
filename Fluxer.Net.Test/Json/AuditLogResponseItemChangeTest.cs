@@ -32,10 +32,10 @@ public class AuditLogResponseItemChangeTest
             }
             """;
 
-        var datNull = Deserialize<AuditLogResponseItemChange>(testNull);
-        var datNullNothing = Deserialize<AuditLogResponseItemChange>(testNullNothing);
-        var datNothingNull = Deserialize<AuditLogResponseItemChange>(testNothingNull);
-        var datNothing = Deserialize<AuditLogResponseItemChange>(testNothing);
+        var datNull = Deserialize<AuditLogResponseItemChangeJson>(testNull);
+        var datNullNothing = Deserialize<AuditLogResponseItemChangeJson>(testNullNothing);
+        var datNothingNull = Deserialize<AuditLogResponseItemChangeJson>(testNothingNull);
+        var datNothing = Deserialize<AuditLogResponseItemChangeJson>(testNothing);
 
         Assert.That(datNull, Is.Not.Null);
         Assert.That(datNullNothing, Is.Not.Null);
@@ -77,9 +77,9 @@ public class AuditLogResponseItemChangeTest
             }
             """;
 
-        var datNullThenString = Deserialize<AuditLogResponseItemChange>(testNullThenString);
-        var datStringThenNull = Deserialize<AuditLogResponseItemChange>(testStringThenNull);
-        var datStringString = Deserialize<AuditLogResponseItemChange>(testStringString);
+        var datNullThenString = Deserialize<AuditLogResponseItemChangeJson>(testNullThenString);
+        var datStringThenNull = Deserialize<AuditLogResponseItemChangeJson>(testStringThenNull);
+        var datStringString = Deserialize<AuditLogResponseItemChangeJson>(testStringString);
 
         Assert.That(datNullThenString, Is.Not.Null);
         Assert.That(datStringThenNull, Is.Not.Null);
@@ -145,24 +145,24 @@ public class AuditLogResponseItemChangeTest
             }
             """;
 
-        var dataAddOnly = Deserialize<AuditLogResponseItemChange>(addOnly);
-        var dataRemoveOnly = Deserialize<AuditLogResponseItemChange>(removeOnly);
-        var dataAddAndRemove = Deserialize<AuditLogResponseItemChange>(addAndRemove);
+        var dataAddOnly = Deserialize<AuditLogResponseItemChangeJson>(addOnly);
+        var dataRemoveOnly = Deserialize<AuditLogResponseItemChangeJson>(removeOnly);
+        var dataAddAndRemove = Deserialize<AuditLogResponseItemChangeJson>(addAndRemove);
 
         Assert.That(dataAddOnly, Is.Not.Null);
         Assert.That(dataRemoveOnly, Is.Not.Null);
         Assert.That(dataAddAndRemove, Is.Not.Null);
 
-        Assert.That(dataAddOnly.NewValue?.GetType(), Is.EqualTo(typeof(PermissionDiffSchema)));
-        Assert.That(dataRemoveOnly.NewValue?.GetType(), Is.EqualTo(typeof(PermissionDiffSchema)));
-        Assert.That(dataAddAndRemove.NewValue?.GetType(), Is.EqualTo(typeof(PermissionDiffSchema)));
+        Assert.That(dataAddOnly.NewValue?.GetType(), Is.EqualTo(typeof(PermissionDiffSchemaJson)));
+        Assert.That(dataRemoveOnly.NewValue?.GetType(), Is.EqualTo(typeof(PermissionDiffSchemaJson)));
+        Assert.That(dataAddAndRemove.NewValue?.GetType(), Is.EqualTo(typeof(PermissionDiffSchemaJson)));
 
-        var valueAddOnly = (PermissionDiffSchema)dataAddOnly.NewValue!;
-        var valueTypedRemoveOnly = (PermissionDiffSchema)dataRemoveOnly.NewValue!;
-        var valueAddAndRemove = (PermissionDiffSchema)dataAddAndRemove.NewValue!;
+        var valueAddOnly = (PermissionDiffSchemaJson)dataAddOnly.NewValue!;
+        var valueTypedRemoveOnly = (PermissionDiffSchemaJson)dataRemoveOnly.NewValue!;
+        var valueAddAndRemove = (PermissionDiffSchemaJson)dataAddAndRemove.NewValue!;
 
         Assert.That(dataAddOnly.Key, Is.EqualTo("permissions_diff"));
-        Assert.That(dataAddOnly.NewValue.GetType, Is.EqualTo(typeof(PermissionDiffSchema)));
+        Assert.That(dataAddOnly.NewValue.GetType, Is.EqualTo(typeof(PermissionDiffSchemaJson)));
         Assert.That(dataAddOnly.NewValue, Is.Not.Null);
         Assert.That(valueAddOnly.Added.Count, Is.EqualTo(5));
         Assert.That(valueAddOnly.Added, Has.Some.EqualTo("ADMINISTRATOR"));
@@ -173,14 +173,14 @@ public class AuditLogResponseItemChangeTest
         Assert.That(valueAddOnly.Removed.Count, Is.EqualTo(0));
 
         Assert.That(dataRemoveOnly.Key, Is.EqualTo("permissions_diff"));
-        Assert.That(dataRemoveOnly.NewValue.GetType, Is.EqualTo(typeof(PermissionDiffSchema)));
+        Assert.That(dataRemoveOnly.NewValue.GetType, Is.EqualTo(typeof(PermissionDiffSchemaJson)));
         Assert.That(dataRemoveOnly.NewValue, Is.Not.Null);
         Assert.That(valueTypedRemoveOnly.Added.Count, Is.EqualTo(0));
         Assert.That(valueTypedRemoveOnly.Removed.Count, Is.EqualTo(1));
         Assert.That(valueTypedRemoveOnly.Removed, Has.Some.EqualTo("MANAGE_CHANNELS"));
 
         Assert.That(dataAddAndRemove.Key, Is.EqualTo("permissions_diff"));
-        Assert.That(dataAddAndRemove.NewValue.GetType, Is.EqualTo(typeof(PermissionDiffSchema)));
+        Assert.That(dataAddAndRemove.NewValue.GetType, Is.EqualTo(typeof(PermissionDiffSchemaJson)));
         Assert.That(dataAddAndRemove.NewValue, Is.Not.Null);
         Assert.That(valueAddAndRemove.Added.Count, Is.EqualTo(1));
         Assert.That(valueAddAndRemove.Removed.Count, Is.EqualTo(1));
