@@ -2,7 +2,7 @@
 
 namespace Fluxer.Net;
 
-public class TenorGif : Entity
+public class Gif : Entity
 {
     [JsonProperty("id")]
     public string Id { get; set; }

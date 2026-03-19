@@ -2,7 +2,7 @@
 
 namespace Fluxer.Net;
 
-public class TenorCategory : Entity
+public class GifCategory : Entity
 {
     [JsonProperty("name")]
     public string Name { get; set; }

@@ -590,24 +590,24 @@ public class ApiClient
 
     #endregion
 
-    #region Memes API
+    #region Favourite Gifs API
 
-    public async Task<TResponse> GetCurrentUserMemesAsync<TResponse>() where TResponse : Entity
-        => await MakeFluxerApiRequestAsync<TResponse>(HttpMethod.Get, "/users/@me/memes", true);
+    public async Task<IEnumerable<GifFavourite>> GetCurrentUserFavouriteGifsAsync()
+        => await MakeFluxerApiRequestListAsync<GifFavourite>(HttpMethod.Get, "/users/@me/memes", true);
 
-    public async Task<TResponse> PostCurrentUserMemeAsync<TRequest, TResponse>(TRequest data) where TResponse : Entity
-        => await MakeFluxerApiRequestAsync<TResponse, TRequest>(HttpMethod.Post, "/users/@me/memes", data, true);
+    public async Task<GifFavourite> PostCurrentUserFavouriteGifAsync<TRequest>(TRequest data)
+        => await MakeFluxerApiRequestAsync<GifFavourite, TRequest>(HttpMethod.Post, "/users/@me/memes", data, true);
 
-    public async Task PostChannelMessageMemeAsync<TRequest>(ulong channelId, ulong messageId, TRequest data)
-        => await MakeFluxerApiRequestAsync<TRequest>(HttpMethod.Post, $"/channels/{channelId}/messages/{messageId}/memes", data, true);
+    public async Task PostChannelMessageFavouriteGifAsync<TRequest>(ulong channelId, ulong messageId, TRequest data)
+        => await MakeFluxerApiRequestAsync(HttpMethod.Post, $"/channels/{channelId}/messages/{messageId}/memes", data, true);
 
-    public async Task<TResponse> GetCurrentUserMemeAsync<TResponse>(ulong memeId) where TResponse : Entity
-        => await MakeFluxerApiRequestAsync<TResponse>(HttpMethod.Get, $"/users/@me/memes/{memeId}", true);
+    public async Task<GifFavourite> GetCurrentUserFavouriteGifAsync(ulong memeId)
+        => await MakeFluxerApiRequestAsync<GifFavourite>(HttpMethod.Get, $"/users/@me/memes/{memeId}", true);
 
-    public async Task<TResponse> PatchCurrentUserMemeAsync<TRequest, TResponse>(ulong memeId, TRequest data) where TResponse : Entity
-        => await MakeFluxerApiRequestAsync<TResponse, TRequest>(HttpMethod.Patch, $"/users/@me/memes/{memeId}", data, true);
+    public async Task<GifFavourite> PatchCurrentUserFavouriteGifAsync<TRequest>(ulong memeId, TRequest data)
+        => await MakeFluxerApiRequestAsync<GifFavourite, TRequest>(HttpMethod.Patch, $"/users/@me/memes/{memeId}", data, true);
 
-    public async Task DeleteCurrentUserMemeAsync(ulong memeId)
+    public async Task DeleteCurrentUserFavouriteGifAsync(ulong memeId)
         => await MakeFluxerApiRequestRawAsync(HttpMethod.Delete, $"/users/@me/memes/{memeId}", true);
 
     #endregion
@@ -779,27 +779,27 @@ public class ApiClient
 
     #region Tenor API
 
-    public async Task<IEnumerable<TenorGif>> SearchTenorAsync(string query)
-        => await MakeFluxerApiRequestListAsync<TenorGif>(HttpMethod.Get, $"/tenor/search?q={query}", true);
+    public async Task<IEnumerable<Gif>> SearchTenorAsync(string query)
+        => await MakeFluxerApiRequestListAsync<Gif>(HttpMethod.Get, $"/tenor/search?q={query}", true);
 
-    public async Task<TenorFeatured> GetTenorFeaturedAsync()
-        => await MakeFluxerApiRequestAsync<TenorFeatured>(HttpMethod.Get, "/tenor/featured", true);
+    public async Task<GifFeatured> GetTenorFeaturedAsync()
+        => await MakeFluxerApiRequestAsync<GifFeatured>(HttpMethod.Get, "/tenor/featured", true);
 
-    public async Task<IEnumerable<TenorGif>> GetTenorTrendingGifsAsync()
-        => await MakeFluxerApiRequestListAsync<TenorGif>(HttpMethod.Get, "/tenor/trending-gifs", true);
+    public async Task<IEnumerable<Gif>> GetTenorTrendingGifsAsync()
+        => await MakeFluxerApiRequestListAsync<Gif>(HttpMethod.Get, "/tenor/trending-gifs", true);
 
     #endregion
 
     #region Klipy API
 
-    public async Task<IEnumerable<TenorGif>> SearchKlipyAsync(string query)
-        => await MakeFluxerApiRequestListAsync<TenorGif>(HttpMethod.Get, $"/klipy/search?q={query}", true);
+    public async Task<IEnumerable<Gif>> SearchKlipyAsync(string query)
+        => await MakeFluxerApiRequestListAsync<Gif>(HttpMethod.Get, $"/klipy/search?q={query}", true);
 
-    public async Task<TenorFeatured> GetKlipyFeaturedAsync()
-        => await MakeFluxerApiRequestAsync<TenorFeatured>(HttpMethod.Get, "/klipy/featured", true);
+    public async Task<GifFeatured> GetKlipyFeaturedAsync()
+        => await MakeFluxerApiRequestAsync<GifFeatured>(HttpMethod.Get, "/klipy/featured", true);
 
-    public async Task<IEnumerable<TenorGif>> GetKlipyTrendingGifsAsync()
-        => await MakeFluxerApiRequestListAsync<TenorGif>(HttpMethod.Get, "/klipy/trending-gifs", true);
+    public async Task<IEnumerable<Gif>> GetKlipyTrendingGifsAsync()
+        => await MakeFluxerApiRequestListAsync<Gif>(HttpMethod.Get, "/klipy/trending-gifs", true);
 
 
     #endregion
