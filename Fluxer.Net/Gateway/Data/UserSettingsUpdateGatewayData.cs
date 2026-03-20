@@ -8,5 +8,5 @@ namespace Fluxer.Net.Gateway.Data;
 public class UserSettingsUpdateGatewayData : IGatewayData
 {
 	[JsonProperty("settings")]
-	public UserSettings Settings { get; set; } = null!;
+	public UserSettingsJson Settings { get; set; } = null!;
 }

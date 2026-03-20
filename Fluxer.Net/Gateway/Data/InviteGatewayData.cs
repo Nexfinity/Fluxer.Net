@@ -29,7 +29,7 @@ public class InviteGatewayData : IGatewayData
 	/// The user who created the invite.
 	/// </summary>
 	[JsonProperty("inviter")]
-	public User? Inviter { get; set; }
+	public UserJson? Inviter { get; set; }
 
 	/// <summary>
 	/// The type of invite (Guild = 0, GroupDm = 1).

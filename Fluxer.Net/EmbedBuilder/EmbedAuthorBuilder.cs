@@ -74,10 +74,10 @@ public class EmbedAuthorBuilder
     /// <summary>
     /// Builds the embed author.
     /// </summary>
-    /// <returns>A new <see cref="EmbedAuthor"/> object.</returns>
-    public EmbedAuthor Build()
+    /// <returns>A new <see cref="EmbedAuthorJson"/> object.</returns>
+    public EmbedAuthorJson Build()
     {
-        return new EmbedAuthor
+        return new EmbedAuthorJson
         {
             Name = Name,
             Url = Url,

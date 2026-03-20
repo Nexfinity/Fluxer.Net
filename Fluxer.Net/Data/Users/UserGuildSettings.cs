@@ -2,7 +2,7 @@ using Newtonsoft.Json;
 
 namespace Fluxer.Net;
 
-public class UserGuildSettings : Entity
+public class UserGuildSettings
 {
     [JsonProperty("user_id")]
     public ulong UserId { get; set; }
@@ -17,7 +17,7 @@ public class UserGuildSettings : Entity
     public bool Muted { get; set; }
 
     [JsonProperty("mute_config")]
-    public MuteConfiguration? MuteConfig { get; set; }
+    public MuteConfigurationJson? MuteConfig { get; set; }
 
     [JsonProperty("mobile_push")]
     public bool MobilePush { get; set; }
@@ -32,7 +32,7 @@ public class UserGuildSettings : Entity
     public bool HideMutedChannels { get; set; }
 
     [JsonProperty("channel_overrides")]
-    public Dictionary<ulong, GuildChannelOverride>? ChannelOverrides { get; set; }
+    public Dictionary<ulong, GuildChannelOverrideJson>? ChannelOverrides { get; set; }
 
     [JsonProperty("version")]
     public int Version { get; set; }

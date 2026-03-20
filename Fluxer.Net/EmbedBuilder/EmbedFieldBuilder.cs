@@ -90,16 +90,16 @@ public class EmbedFieldBuilder
     /// <summary>
     /// Builds the embed field.
     /// </summary>
-    /// <returns>A new <see cref="EmbedField"/> object.</returns>
+    /// <returns>A new <see cref="EmbedFieldJson"/> object.</returns>
     /// <exception cref="InvalidOperationException">Name or Value is null or empty.</exception>
-    public EmbedField Build()
+    public EmbedFieldJson Build()
     {
         if (string.IsNullOrWhiteSpace(Name))
             throw new InvalidOperationException("Field name cannot be null or empty.");
         if (string.IsNullOrWhiteSpace(Value))
             throw new InvalidOperationException("Field value cannot be null or empty.");
 
-        return new EmbedField
+        return new EmbedFieldJson
         {
             Name = Name,
             Value = Value,

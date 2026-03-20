@@ -8,5 +8,5 @@ public class GuildBanGatewayData : IGatewayData
     public ulong GuildId { get; set; }
 
     [JsonProperty("user")]
-    public User User { get; set; }
+    public UserJson User { get; set; }
 }

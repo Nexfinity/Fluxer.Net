@@ -1,144 +1,204 @@
-using Newtonsoft.Json;
+﻿namespace Fluxer.Net;
 
-namespace Fluxer.Net;
-
-public class User : Entity
+public class User : Entity, IUser
 {
-    [JsonProperty("id")]
+    /// <inheritdoc />
     public ulong Id { get; set; }
 
-    [JsonProperty("username")]
+    /// <inheritdoc />
     public string Username { get; set; }
 
-    [JsonProperty("discriminator")]
+    /// <inheritdoc />
     public int Discriminator { get; set; }
 
-    [JsonProperty("bot")]
+    /// <inheritdoc />
     public bool IsBot { get; set; }
 
-    [JsonProperty("system")]
+    /// <inheritdoc />
     public bool IsSystem { get; set; }
 
-    [JsonProperty("email")]
+    /// <inheritdoc />
     public string? Email { get; set; }
 
-    [JsonProperty("email_verified")]
+    /// <inheritdoc />
     public bool EmailVerified { get; set; }
 
-    [JsonProperty("email_bounced")]
+    /// <inheritdoc />
     public bool EmailBounced { get; set; }
 
-    [JsonProperty("phone")]
+    /// <inheritdoc />
     public string? Phone { get; set; }
 
-    [JsonProperty("password_hash")]
+    /// <inheritdoc />
     public string? PasswordHash { get; set; }
 
-    [JsonProperty("password_last_changed_at")]
+    /// <inheritdoc />
     public DateTime? PasswordLastChangedAt { get; set; }
 
-    [JsonProperty("totp_secret")]
+    /// <inheritdoc />
     public string? TotpSecret { get; set; }
 
-    [JsonProperty("authenticator_types")]
+    /// <inheritdoc />
     public HashSet<int>? AuthenticatorTypes { get; set; }
 
-    [JsonProperty("avatar")]
+    /// <inheritdoc />
     public string? AvatarHash { get; set; }
 
-    [JsonProperty("banner")]
+    /// <inheritdoc />
     public string? BannerHash { get; set; }
 
-    [JsonProperty("bio")]
+    /// <inheritdoc />
     public string? Bio { get; set; }
 
-    [JsonProperty("pronouns")]
+    /// <inheritdoc />
     public string? Pronouns { get; set; }
 
-    [JsonProperty("accent_color")]
+    /// <inheritdoc />
     public int? AccentColor { get; set; }
 
-    [JsonProperty("date_of_birth")]
+    /// <inheritdoc />
     public string? DateOfBirth { get; set; }
 
-    [JsonProperty("locale")]
+    /// <inheritdoc />
     public string? Locale { get; set; }
 
-    [JsonProperty("flags")]
+    /// <inheritdoc />
     public ulong Flags { get; set; }
 
-    [JsonProperty("premium_type")]
+    /// <inheritdoc />
     public int? PremiumType { get; set; }
 
-    [JsonProperty("premium_since")]
+    /// <inheritdoc />
     public DateTime? PremiumSince { get; set; }
 
-    [JsonProperty("premium_until")]
+    /// <inheritdoc />
     public DateTime? PremiumUntil { get; set; }
 
-    [JsonProperty("premium_will_cancel")]
+    /// <inheritdoc />
     public bool PremiumWillCancel { get; set; }
 
-    [JsonProperty("premium_billing_cycle")]
+    /// <inheritdoc />
     public string? PremiumBillingCycle { get; set; }
 
-    [JsonProperty("premium_lifetime_sequence")]
+    /// <inheritdoc />
     public int? PremiumLifetimeSequence { get; set; }
 
-    [JsonProperty("stripe_subscription_id")]
+    /// <inheritdoc />
     public string? StripeSubscriptionId { get; set; }
 
-    [JsonProperty("stripe_customer_id")]
+    /// <inheritdoc />
     public string? StripeCustomerId { get; set; }
 
-    [JsonProperty("has_ever_purchased")]
+    /// <inheritdoc />
     public bool HasEverPurchased { get; set; }
 
-    [JsonProperty("suspicious_activity_flags")]
+    /// <inheritdoc />
     public int SuspiciousActivityFlags { get; set; }
 
-    [JsonProperty("terms_agreed_at")]
+    /// <inheritdoc />
     public DateTime? TermsAgreedAt { get; set; }
 
-    [JsonProperty("privacy_agreed_at")]
+    /// <inheritdoc />
     public DateTime? PrivacyAgreedAt { get; set; }
 
-    [JsonProperty("last_active_at")]
+    /// <inheritdoc />
     public DateTime? LastActiveAt { get; set; }
 
-    [JsonProperty("last_active_ip")]
+    /// <inheritdoc />
     public string? LastActiveIp { get; set; }
 
-    [JsonProperty("temp_banned_until")]
+    /// <inheritdoc />
     public DateTime? TempBannedUntil { get; set; }
 
-    [JsonProperty("pending_deletion_at")]
+    /// <inheritdoc />
     public DateTime? PendingDeletionAt { get; set; }
 
-    [JsonProperty("deletion_reason_code")]
+    /// <inheritdoc />
     public int? DeletionReasonCode { get; set; }
 
-    [JsonProperty("deletion_public_reason")]
+    /// <inheritdoc />
     public string? DeletionPublicReason { get; set; }
 
-    [JsonProperty("deletion_audit_log_reason")]
+    /// <inheritdoc />
     public string? DeletionAuditLogReason { get; set; }
 
-    [JsonProperty("acls")]
+    /// <inheritdoc />
     public HashSet<string>? Acls { get; set; }
 
-    [JsonProperty("first_refund_at")]
+    /// <inheritdoc />
     public DateTime? FirstRefundAt { get; set; }
 
-    [JsonProperty("beta_code_allowance")]
+    /// <inheritdoc />
     public int BetaCodeAllowance { get; set; }
 
-    [JsonProperty("beta_code_last_reset_at")]
+    /// <inheritdoc />
     public DateTime? BetaCodeLastResetAt { get; set; }
 
-    [JsonProperty("gift_inventory_server_seq")]
+    /// <inheritdoc />
     public int? GiftInventoryServerSeq { get; set; }
 
-    [JsonProperty("gift_inventory_client_seq")]
+    /// <inheritdoc />
     public int? GiftInventoryClientSeq { get; set; }
+
+    internal User(BaseClient client) : base(client)
+    {
+
+    }
+
+    public static User Create(BaseClient client, UserJson json)
+    {
+        var data = new User(client);
+        data.Update(json);
+        return data;
+    }
+
+    internal void Update(UserJson json)
+    {
+        Id = json.Id;
+        Username = json.Username;
+        Discriminator = json.Discriminator;
+        IsBot = json.IsBot;
+        IsSystem = json.IsSystem;
+        Email = json.Email;
+        EmailVerified = json.EmailVerified;
+        EmailBounced = json.EmailBounced;
+        Phone = json.Phone;
+        PasswordHash = json.PasswordHash;
+        PasswordLastChangedAt = json.PasswordLastChangedAt;
+        TotpSecret = json.TotpSecret;
+        AuthenticatorTypes = json.AuthenticatorTypes;
+        AvatarHash = json.AvatarHash;
+        BannerHash = json.BannerHash;
+        Bio = json.Bio;
+        Pronouns = json.Pronouns;
+        AccentColor = json.AccentColor;
+        DateOfBirth = json.DateOfBirth;
+        Locale = json.Locale;
+        Flags = json.Flags;
+        PremiumType = json.PremiumType;
+        PremiumSince = json.PremiumSince;
+        PremiumUntil = json.PremiumUntil;
+        PremiumWillCancel = json.PremiumWillCancel;
+        PremiumBillingCycle = json.PremiumBillingCycle;
+        PremiumLifetimeSequence = json.PremiumLifetimeSequence;
+        StripeSubscriptionId = json.StripeSubscriptionId;
+        StripeCustomerId = json.StripeCustomerId;
+        HasEverPurchased = json.HasEverPurchased;
+        SuspiciousActivityFlags = json.SuspiciousActivityFlags;
+        TermsAgreedAt = json.TermsAgreedAt;
+        PrivacyAgreedAt = json.PrivacyAgreedAt;
+        LastActiveAt = json.LastActiveAt;
+        LastActiveIp = json.LastActiveIp;
+        TempBannedUntil = json.TempBannedUntil;
+        PendingDeletionAt = json.PendingDeletionAt;
+        DeletionReasonCode = json.DeletionReasonCode;
+        DeletionPublicReason = json.DeletionPublicReason;
+        DeletionAuditLogReason = json.DeletionAuditLogReason;
+        Acls = json.Acls;
+        FirstRefundAt = json.FirstRefundAt;
+        BetaCodeAllowance = json.BetaCodeAllowance;
+        BetaCodeLastResetAt = json.BetaCodeLastResetAt;
+        GiftInventoryServerSeq = json.GiftInventoryServerSeq;
+        GiftInventoryClientSeq = json.GiftInventoryClientSeq;
+    }
 }

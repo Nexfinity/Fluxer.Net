@@ -11,5 +11,5 @@ public class GuildRoleUpdateBulkGatewayData : IGatewayData
 	public ulong GuildId { get; set; }
 
 	[JsonProperty("roles")]
-	public List<GuildRole> Roles { get; set; } = new();
+	public List<GuildRoleJson> Roles { get; set; } = new();
 }

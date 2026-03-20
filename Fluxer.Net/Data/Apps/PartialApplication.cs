@@ -1,27 +1,50 @@
-﻿using Newtonsoft.Json;
+﻿using Fluxer.Net.Data.Apps;
 
 namespace Fluxer.Net;
 
-public class PartialApplication : Entity
+public class PartialApplication : Entity, IPartialApplication
 {
-    [JsonProperty("id")]
+    /// <inheritdoc />
     public ulong Id { get; set; }
 
-    [JsonProperty("name")]
+    /// <inheritdoc />
     public string Name { get; set; }
 
-    [JsonProperty("icon")]
+    /// <inheritdoc />
     public string Icon { get; set; }
 
-    [JsonProperty("description")]
+    /// <inheritdoc />
     public string Description { get; set; }
 
-    [JsonProperty("bot_public")]
+    /// <inheritdoc />
     public bool IsPublic { get; set; }
 
-    [JsonProperty("bot_requires_code_grant")]
+    /// <inheritdoc />
     public bool RequiresCodeGrant { get; set; }
 
-    [JsonProperty("flags")]
+    /// <inheritdoc />
     public ulong Flags { get; set; }
+
+    internal PartialApplication(BaseClient client) : base(client)
+    {
+
+    }
+
+    public static PartialApplication Create(BaseClient client, PartialApplicationJson json)
+    {
+        var data = new PartialApplication(client);
+        data.Update(client, json);
+        return data;
+    }
+
+    internal void Update(BaseClient client, PartialApplicationJson json)
+    {
+        Id = json.Id;
+        Name = json.Name;
+        Icon = json.Icon;
+        Description = json.Description;
+        IsPublic = json.IsPublic;
+        RequiresCodeGrant = json.RequiresCodeGrant;
+        Flags = json.Flags;
+    }
 }

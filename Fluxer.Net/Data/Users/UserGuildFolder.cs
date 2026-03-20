@@ -2,7 +2,7 @@ using Newtonsoft.Json;
 
 namespace Fluxer.Net;
 
-public class UserGuildFolder : Entity
+public class UserGuildFolder
 {
     [JsonProperty("folder_id")]
     public int FolderId { get; set; }

@@ -11,5 +11,5 @@ public class GuildEmojisUpdateGatewayData : IGatewayData
 	public ulong GuildId { get; set; }
 
 	[JsonProperty("emojis")]
-	public List<GuildEmoji> Emojis { get; set; } = new();
+	public List<GuildEmojiJson> Emojis { get; set; } = new();
 }

@@ -83,7 +83,7 @@ public class BasicCommands : ModuleBase
         await Context.Rest.SendMessageAsync(Context.ChannelId, new()
         {
             Content = "Here's an example of a rich embed:",
-            Embeds = new List<Embed> { embed }
+            Embeds = new List<EmbedJson> { embed }
         });
     }
 

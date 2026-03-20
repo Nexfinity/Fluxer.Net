@@ -8,5 +8,5 @@ namespace Fluxer.Net.Gateway.Data;
 public class ChannelUpdateBulkGatewayData : IGatewayData
 {
 	[JsonProperty("channels")]
-	public List<Channel> Channels { get; set; } = new();
+	public List<ChannelJson> Channels { get; set; } = new();
 }

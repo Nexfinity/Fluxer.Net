@@ -2,7 +2,7 @@
 
 namespace Fluxer.Net;
 
-public class StreamAttachment : Attachment
+public class StreamAttachment : AttachmentJson
 {
     [JsonIgnore]
     public required Stream Stream { get; init; }

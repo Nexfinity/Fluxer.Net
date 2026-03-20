@@ -2,7 +2,7 @@
 
 namespace Fluxer.Net;
 
-public class UserConnection : Entity
+public class UserConnection
 {
     [JsonProperty("id")]
     public string Id { get; set; }

@@ -8,5 +8,5 @@ namespace Fluxer.Net.Gateway.Data;
 public class RelationshipGatewayData : IGatewayData
 {
 	[JsonProperty("relationship")]
-	public Relationship Relationship { get; set; } = null!;
+	public RelationshipJson Relationship { get; set; } = null!;
 }
