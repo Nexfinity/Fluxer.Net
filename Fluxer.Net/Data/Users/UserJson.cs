@@ -2,7 +2,7 @@ using Newtonsoft.Json;
 
 namespace Fluxer.Net;
 
-public class UserJson
+public class UserJson : IUser
 {
     [JsonProperty("id")]
     public ulong Id { get; set; }

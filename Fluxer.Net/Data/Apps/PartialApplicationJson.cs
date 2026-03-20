@@ -1,8 +1,9 @@
-﻿using Newtonsoft.Json;
+﻿using Fluxer.Net.Data.Apps;
+using Newtonsoft.Json;
 
 namespace Fluxer.Net;
 
-public class PartialApplicationJson
+public class PartialApplicationJson : IPartialApplication
 {
     [JsonProperty("id")]
     public ulong Id { get; set; }
