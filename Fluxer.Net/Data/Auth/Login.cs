@@ -1,10 +1,13 @@
 ﻿namespace Fluxer.Net;
 
-public class Login : Entity
+/// <inheritdoc />
+public class Login : Entity, ILogin
 {
-    public string Token { get; set; }
+    /// <inheritdoc />
+    public string Token { get; internal set; }
 
-    public ulong UserId { get; set; }
+    /// <inheritdoc />
+    public ulong UserId { get; internal set; }
 
     internal Login(BaseClient client) : base(client)
     {

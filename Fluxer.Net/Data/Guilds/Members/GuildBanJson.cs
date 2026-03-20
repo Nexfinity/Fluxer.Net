@@ -1,34 +1,28 @@
-﻿using Fluxer.Net.Gateway.Data;
+using Fluxer.Net.Gateway.Data;
 using Newtonsoft.Json;
 
 namespace Fluxer.Net;
 
-public class GuildBanResponse
+/// <inheritdoc />
+public class GuildBanJson : IGuildBan
 {
-    /// <summary>
-    /// When the member was banned.
-    /// </summary>
+    /// <inheritdoc />
     [JsonProperty("banned_at")]
     public DateTime BannedAt { get; set; }
 
-    /// <summary>
-    /// When the ban expires (<see langword="null"/> for never)
-    /// </summary>
+    /// <inheritdoc />
     [JsonProperty("expires_at")]
     public DateTime? ExpiresAt { get; set; }
 
-    /// <summary>
-    /// Id of the user who issues the ban.
-    /// </summary>
+    /// <inheritdoc />
     [JsonProperty("moderator_id")]
     public ulong ModeratorId { get; set; }
 
-    /// <summary>
-    /// Ban Reason (max 512 characters)
-    /// </summary>
+    /// <inheritdoc />
     [JsonProperty("reason")]
     public string? Reason { get; set; }
 
+    /// <inheritdoc />
     [JsonProperty("user")]
     public UserPartialResponse User { get; set; }
 }

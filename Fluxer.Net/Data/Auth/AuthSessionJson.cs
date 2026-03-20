@@ -2,29 +2,38 @@ using Newtonsoft.Json;
 
 namespace Fluxer.Net;
 
-public class AuthSessionJson
+/// <inheritdoc />
+public class AuthSessionJson : IAuthSession
 {
-    [JsonProperty("user_id")]
-    public ulong UserId { get; set; }
-
+    /// <inheritdoc />
     [JsonProperty("session_id_hash")]
     public byte[] SessionIdHash { get; set; }
 
+    /// <inheritdoc />
     [JsonProperty("created_at")]
     public DateTime CreatedAt { get; set; }
 
+    /// <inheritdoc />
     [JsonProperty("approx_last_used_at")]
     public DateTime ApproximateLastUsedAt { get; set; }
 
+    /// <inheritdoc />
     [JsonProperty("client_ip")]
     public string ClientIp { get; set; }
 
+    /// <inheritdoc />
+    [JsonProperty("client_ip_reverse")]
+    public string? ClientIpReverse { get; set; }
+
+    /// <inheritdoc />
     [JsonProperty("client_os")]
-    public string ClientOs { get; set; }
+    public string? ClientOs { get; set; }
 
+    /// <inheritdoc />
     [JsonProperty("client_platform")]
-    public string ClientPlatform { get; set; }
+    public string? ClientPlatform { get; set; }
 
+    /// <inheritdoc />
     [JsonProperty("client_country")]
     public string? ClientCountry { get; set; }
 }

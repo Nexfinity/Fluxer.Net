@@ -2,11 +2,14 @@ using Newtonsoft.Json;
 
 namespace Fluxer.Net;
 
-public class LoginJson
+/// <inheritdoc />
+public class LoginJson : ILogin
 {
+    /// <inheritdoc />
     [JsonProperty("token")]
     public string Token { get; set; }
 
+    /// <inheritdoc />
     [JsonProperty("user_id")]
     public ulong UserId { get; set; }
 }

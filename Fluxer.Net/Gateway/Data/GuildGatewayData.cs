@@ -129,7 +129,7 @@ public class GuildGatewayData : IGatewayData
 	/// Roles defined in the guild.
 	/// </summary>
 	[JsonProperty("roles")]
-	public List<GuildRoleJson> Roles { get; set; } = new();
+	public List<RoleJson> Roles { get; set; } = new();
 
 	/// <summary>
 	/// Emojis defined in the guild.

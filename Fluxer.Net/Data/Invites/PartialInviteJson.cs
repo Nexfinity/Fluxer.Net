@@ -2,7 +2,7 @@ using Newtonsoft.Json;
 
 namespace Fluxer.Net;
 
-public class PartialInviteJson
+public class PartialInviteJson : IPartialInvite
 {
     [JsonProperty("code")]
     public string Code { get; set; }

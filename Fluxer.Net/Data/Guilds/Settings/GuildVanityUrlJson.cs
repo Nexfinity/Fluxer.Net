@@ -2,11 +2,16 @@
 
 namespace Fluxer.Net;
 
-public class GuildVanityUrlJson
+/// <inheritdoc />
+public class GuildVanityUrlJson : IGuildVanityUrl
 {
+
+    /// <inheritdoc />
     [JsonProperty("code")]
     public string? Code { get; set; }
 
+
+    /// <inheritdoc />
     [JsonProperty("uses")]
     public int Uses { get; set; }
 }

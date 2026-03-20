@@ -1,0 +1,89 @@
+﻿namespace Fluxer.Net;
+
+/// <inheritdoc />
+public class FavouriteGif : Entity, IFavouriteGif
+{
+    /// <inheritdoc />
+    public string Id { get; internal set; }
+
+    /// <inheritdoc />
+    public ulong UserId { get; internal set; }
+
+    /// <inheritdoc />
+    public string Name { get; internal set; }
+
+    /// <inheritdoc />
+    public string[] Tags { get; internal set; }
+
+    /// <inheritdoc />
+    public ulong AttachmentId { get; internal set; }
+
+    /// <inheritdoc />
+    public string Filename { get; internal set; }
+
+    /// <inheritdoc />
+    public string ContentType { get; internal set; }
+
+    /// <inheritdoc />
+    public int Size { get; internal set; }
+
+    /// <inheritdoc />
+    public string Url { get; internal set; }
+
+    /// <inheritdoc />
+    public string? AltText { get; internal set; }
+
+    /// <inheritdoc />
+    public string? ContentHash { get; internal set; }
+
+    /// <inheritdoc />
+    public int? Width { get; internal set; }
+
+    /// <inheritdoc />
+    public int? Height { get; internal set; }
+
+    /// <inheritdoc />
+    public int? Duration { get; internal set; }
+
+    /// <inheritdoc />
+    public bool IsGifVideo { get; internal set; }
+
+    /// <inheritdoc />
+    public string? KlipySlug { get; internal set; }
+
+    /// <inheritdoc />
+    public string? TenorSlugId { get; internal set; }
+
+    internal FavouriteGif(BaseClient client) : base(client)
+    {
+
+    }
+
+    public static FavouriteGif Create(BaseClient client, FavouriteGifJson json)
+    {
+        var data = new FavouriteGif(client);
+        data.Update(client, json);
+        return data;
+    }
+
+    internal void Update(BaseClient client, FavouriteGifJson json)
+    {
+        Id = json.Id;
+        UserId = json.UserId;
+        Name = json.Name;
+        Tags = json.Tags;
+        AttachmentId = json.AttachmentId;
+        Filename = json.Filename;
+        ContentType = json.ContentType;
+        Size = json.Size;
+        Url = json.Url;
+        AltText = json.AltText;
+        ContentHash = json.ContentHash;
+        Width = json.Width;
+        Height = json.Height;
+        Duration = json.Duration;
+        IsGifVideo = json.IsGifVideo;
+        KlipySlug = json.KlipySlug;
+        TenorSlugId = json.TenorSlugId;
+    }
+}

@@ -8,7 +8,7 @@ public class ChannelOverwriteRequest
     public ulong Id { get; set; }
 
     [JsonProperty("type")]
-    public ChannelOverwriteRequestType Type { get; set; }
+    public OverwriteRequestType Type { get; set; }
 
     [JsonProperty("allow")]
     public ulong Allow { get; set; }

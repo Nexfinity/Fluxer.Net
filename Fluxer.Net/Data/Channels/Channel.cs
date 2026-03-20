@@ -1,7 +1,76 @@
 ﻿namespace Fluxer.Net;
 
-public class Channel : Entity
+/// <inheritdoc />
+public class Channel : Entity, IChannel
 {
+    /// <inheritdoc />
+    public ulong Id { get; internal set; }
+
+    /// <inheritdoc />
+    public ulong? GuildId { get; internal set; }
+
+    /// <inheritdoc />
+    public int Type { get; internal set; }
+
+    /// <inheritdoc />
+    public string? Name { get; internal set; }
+
+    /// <inheritdoc />
+    public string? Topic { get; internal set; }
+
+    /// <inheritdoc />
+    public string? IconHash { get; internal set; }
+
+    /// <inheritdoc />
+    public string? Url { get; internal set; }
+
+    /// <inheritdoc />
+    public ulong? ParentId { get; internal set; }
+
+    /// <inheritdoc />
+    public int Position { get; internal set; }
+
+    /// <inheritdoc />
+    public ulong? OwnerId { get; internal set; }
+
+    /// <inheritdoc />
+    public HashSet<ulong>? RecipientIds { get; internal set; }
+
+    /// <inheritdoc />
+    public bool IsNsfw { get; internal set; }
+
+    /// <inheritdoc />
+    public int RateLimitPerUser { get; internal set; }
+
+    /// <inheritdoc />
+    public int? Bitrate { get; internal set; }
+
+    /// <inheritdoc />
+    public int? UserLimit { get; internal set; }
+
+    /// <inheritdoc />
+    public string? RtcRegion { get; internal set; }
+
+    /// <inheritdoc />
+    public ulong? LastMessageId { get; internal set; }
+
+    /// <inheritdoc />
+    public DateTime? LastPinTimestamp { get; internal set; }
+
+    /// <inheritdoc />
+    public IEnumerable<PermissionOverwrite>? PermissionOverwrites { get; internal set; }
+
+    /// <inheritdoc />
+    public Dictionary<string, string>? Nicknames { get; internal set; }
+
+    /// <inheritdoc />
+    public bool IsSoftDeleted { get; internal set; }
+
+    /// <inheritdoc />
+    public DateTime? IndexedAt { get; internal set; }
+
+    IEnumerable<IPermissionOverwrite>? IChannel.PermissionOverwrites => PermissionOverwrites;
+
     internal Channel(BaseClient client) : base(client)
     {
 
@@ -16,6 +85,28 @@ public class Channel : Entity
 
     internal void Update(BaseClient client, ChannelJson json)
     {
-
+        Id = json.Id;
+        GuildId = json.GuildId;
+        Type = json.Type;
+        Name = json.Name;
+        Topic = json.Topic;
+        IconHash = json.IconHash;
+        Url = json.Url;
+        ParentId = json.ParentId;
+        Position = json.Position;
+        OwnerId = json.OwnerId;
+        RecipientIds = json.RecipientIds;
+        IsNsfw = json.IsNsfw;
+        RateLimitPerUser = json.RateLimitPerUser;
+        Bitrate = json.Bitrate;
+        UserLimit = json.UserLimit;
+        RtcRegion = json.RtcRegion;
+        LastMessageId = json.LastMessageId;
+        LastPinTimestamp = json.LastPinTimestamp;
+        if (json.PermissionOverwrites != null)
+            PermissionOverwrites = json.PermissionOverwrites.Select(x => PermissionOverwrite.Create(client, x));
+        Nicknames = json.Nicknames;
+        IsSoftDeleted = json.IsSoftDeleted;
+        IndexedAt = json.IndexedAt;
     }
 }

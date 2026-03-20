@@ -47,12 +47,12 @@ public class FluxerWebhookClient : BaseClient
     public new ulong Id => base.Id;
     public new string Token => base.Token;
 
-    public Task<WebhookJson> GetAsync()
+    public Task<Webhook> GetAsync()
         => Rest.GetWebhookWithTokenAsync(Id, Token);
 
     public Task DeleteAsync()
         => Rest.DeleteWebhookWithTokenAsync(Id, Token);
 
-    public Task<MessageBaseJson> SendMessageAsync(MessageJson message, StreamAttachment[]? attachments = null)
+    public Task<Message> SendMessageAsync(MessageJson message, StreamAttachment[]? attachments = null)
         => Rest.SendMessageAsync(Id, message, attachments);
 }

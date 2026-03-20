@@ -1,0 +1,62 @@
+﻿namespace Fluxer.Net;
+
+public class PartialGuild : Entity, IPartialGuild
+{
+    public ulong Id { get; internal set; }
+
+    public string Name { get; internal set; }
+
+    public string? IconHash { get; internal set; }
+
+    public string? BannerHash { get; internal set; }
+
+    public int? BannerWidth { get; internal set; }
+
+    public int? BannerHeight { get; internal set; }
+
+    public string? EmbedSplashHash { get; internal set; }
+
+    public int? EmbedSplashWidth { get; internal set; }
+
+    public int? EmbedSplashHeight { get; internal set; }
+
+    public string? SplashHash { get; internal set; }
+
+    public int? SplashWidth { get; internal set; }
+
+    public int? SplashHeight { get; internal set; }
+
+    public GuildSplashCardAlignment SplashCardAligment { get; internal set; }
+
+    public HashSet<string>? Features { get; internal set; }
+
+    internal PartialGuild(BaseClient client) : base(client)
+    {
+
+    }
+
+    public static PartialGuild Create(BaseClient client, PartialGuildJson json)
+    {
+        var data = new PartialGuild(client);
+        data.Update(client, json);
+        return data;
+    }
+
+    internal void Update(BaseClient client, PartialGuildJson json)
+    {
+        Id = json.Id;
+        Name = json.Name;
+        IconHash = json.IconHash;
+        BannerHash = json.BannerHash;
+        BannerWidth = json.BannerWidth;
+        BannerHeight = json.BannerHeight;
+        EmbedSplashHash = json.EmbedSplashHash;
+        EmbedSplashWidth = json.EmbedSplashWidth;
+        EmbedSplashHeight = json.EmbedSplashHeight;
+        SplashHash = json.SplashHash;
+        SplashWidth = json.SplashWidth;
+        SplashHeight = json.SplashHeight;
+        SplashCardAligment = json.SplashCardAligment;
+        Features = json.Features;
+    }
+}

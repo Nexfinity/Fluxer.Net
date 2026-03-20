@@ -26,6 +26,8 @@
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <PackageReadmeFile>README.md</PackageReadmeFile>
 	<LangVersion>latest</LangVersion>
+	<GenerateDocumentationFile>True</GenerateDocumentationFile>
+	<DocumentationFile>FluxerNet.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

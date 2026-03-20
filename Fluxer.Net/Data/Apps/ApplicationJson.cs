@@ -2,6 +2,7 @@
 
 namespace Fluxer.Net;
 
+/// <inheritdoc />
 public class ApplicationJson : PartialApplicationJson, IApplication
 {
     /// <inheritdoc />
