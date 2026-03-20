@@ -48,7 +48,7 @@ public class Message : Entity, IMessage
     public ulong[]? MentionRoles { get; set; }
 
     /// <inheritdoc />
-    public MessageEmbedJson[]? Embeds { get; set; }
+    public EmbedJson[]? Embeds { get; set; }
 
     /// <inheritdoc />
     public MessageAttachmentJson[]? Attachments { get; set; }

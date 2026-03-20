@@ -21,7 +21,7 @@ public class MessageSnapshotResponse
     public HashSet<ulong>? MentionedRoleIds { get; set; }
 
     [JsonProperty("embeds")]
-    public MessageEmbedJson[]? Embeds { get; set; }
+    public EmbedJson[]? Embeds { get; set; }
 
     [JsonProperty("attachments")]
     public MessageAttachmentJson[]? Attachments { get; set; }

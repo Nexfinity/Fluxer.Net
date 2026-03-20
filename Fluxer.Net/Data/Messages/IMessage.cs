@@ -32,7 +32,7 @@ public interface IMessage
 
     ulong[]? MentionRoles { get; }
 
-    MessageEmbedJson[]? Embeds { get; }
+    EmbedJson[]? Embeds { get; }
 
     MessageAttachmentJson[]? Attachments { get; }
 
