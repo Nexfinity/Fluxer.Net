@@ -28,7 +28,7 @@ public abstract class ModuleBase
     /// Sends a message to the channel the command was executed in.
     /// </summary>
     /// <param name="content">The message content.</param>
-    protected async Task<MessageBaseJson> ReplyAsync(string content)
+    protected async Task<Message> ReplyAsync(string content)
     {
         return await Context.Rest.SendMessageAsync(Context.ChannelId, new MessageJson { Content = content });
     }
@@ -37,7 +37,7 @@ public abstract class ModuleBase
     /// Sends a message to the channel the command was executed in.
     /// </summary>
     /// <param name="message">The message to send.</param>
-    protected async Task<MessageBaseJson> ReplyAsync(MessageJson message)
+    protected async Task<Message> ReplyAsync(MessageJson message)
     {
         return await Context.Rest.SendMessageAsync(Context.ChannelId, message);
     }

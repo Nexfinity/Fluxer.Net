@@ -33,7 +33,7 @@ public interface IPartialApplication
     bool RequiresCodeGrant { get; }
 
     /// <summary>
-    /// The application flags
+    /// The application flags.
     /// </summary>
     ulong Flags { get; }
 }

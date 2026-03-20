@@ -2,17 +2,22 @@
 
 namespace Fluxer.Net;
 
-public class InviteJson : PartialInviteJson
+/// <inheritdoc />
+public class InviteJson : PartialInviteJson, IInvite
 {
+    /// <inheritdoc />
     [JsonProperty("created_at")]
     public DateTime CreatedAt { get; set; }
 
+    /// <inheritdoc />
     [JsonProperty("uses")]
     public int Uses { get; set; }
 
+    /// <inheritdoc />
     [JsonProperty("max_uses")]
     public int MaxUses { get; set; }
 
+    /// <inheritdoc />
     [JsonProperty("max_age")]
     public int MaxAge { get; set; }
 }

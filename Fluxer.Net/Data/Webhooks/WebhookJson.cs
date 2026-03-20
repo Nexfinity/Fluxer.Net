@@ -2,26 +2,34 @@ using Newtonsoft.Json;
 
 namespace Fluxer.Net;
 
-public class WebhookJson
+/// <inheritdoc />
+public class WebhookJson : IWebhook
 {
+    /// <inheritdoc />
     [JsonProperty("id")]
     public ulong Id { get; set; }
 
+    /// <inheritdoc />
     [JsonProperty("token")]
-    public string Token { get; set; }
+    public string? Token { get; set; }
 
+    /// <inheritdoc />
     [JsonProperty("guild_id")]
     public ulong? GuildId { get; set; }
 
+    /// <inheritdoc />
     [JsonProperty("channel_id")]
     public ulong? ChannelId { get; set; }
 
+    /// <inheritdoc />
     [JsonProperty("user")]
     public UserJson? Creator { get; set; }
 
+    /// <inheritdoc />
     [JsonProperty("name")]
     public string Name { get; set; }
 
+    /// <inheritdoc />
     [JsonProperty("avatar")]
     public string? AvatarHash { get; set; }
 }

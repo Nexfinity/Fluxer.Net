@@ -3,8 +3,10 @@
 /// <inheritdoc />
 public class Application : PartialApplication, IApplication
 {
+    /// <inheritdoc />
     public string[] RedirectUrls { get; set; }
 
+    /// <inheritdoc />
     public User Bot { get; set; }
 
     IUser IApplication.Bot => Bot;

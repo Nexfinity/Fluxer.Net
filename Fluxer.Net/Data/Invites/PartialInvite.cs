@@ -1,0 +1,57 @@
+﻿namespace Fluxer.Net;
+
+/// <inheritdoc />
+public class PartialInvite : Entity, IPartialInvite
+{
+    /// <inheritdoc />
+    public string Code { get; internal set; }
+
+    /// <inheritdoc />
+    public int Type { get; internal set; }
+
+    /// <inheritdoc />
+    public PartialGuildJson? Guild { get; internal set; }
+
+    /// <inheritdoc />
+    public InviteChannelJson? Channel { get; internal set; }
+
+    /// <inheritdoc />
+    public InviteUserJson Inviter { get; internal set; }
+
+    /// <inheritdoc />
+    public int MemberCount { get; internal set; }
+
+    /// <inheritdoc />
+    public int PresenceCount { get; internal set; }
+
+    /// <inheritdoc />
+    public DateTime? ExpiresAt { get; internal set; }
+
+    /// <inheritdoc />
+    public bool Temporary { get; internal set; }
+
+    internal PartialInvite(BaseClient client) : base(client)
+    {
+
+    }
+
+    public static PartialInvite Create(BaseClient client, PartialInviteJson json)
+    {
+        var data = new PartialInvite(client);
+        data.Update(client, json);
+        return data;
+    }
+
+    internal void Update(BaseClient client, PartialInviteJson json)
+    {
+        Code = json.Code;
+        Type = json.Type;
+        Guild = json.Guild;
+        Channel = json.Channel;
+        Inviter = json.Inviter;
+        MemberCount = json.MemberCount;
+        PresenceCount = json.PresenceCount;
+        ExpiresAt = json.ExpiresAt;
+        Temporary = json.Temporary;
+    }
+}

@@ -1,72 +1,102 @@
+﻿using Fluxer.Net.Gateway.Data;
 using Newtonsoft.Json;
 
 namespace Fluxer.Net;
 
-public class MessageJson
+/// <inheritdoc />
+/// <remarks>
+/// <see href="https://github.com/fluxerapp/fluxer/blob/4f5704fa1f6426d65a12ee5fef13c0104669d08e/packages/schema/src/domains/message/MessageResponseSchemas.tsx#L129"/>
+/// </remarks>
+public class MessageJson : IMessage
 {
+    /// <inheritdoc />
+    [JsonRequired]
     [JsonProperty("id")]
     public ulong Id { get; set; }
 
-    [JsonProperty("bucket")]
-    public int Bucket { get; set; }
-
+    /// <inheritdoc />
     [JsonProperty("channel_id")]
     public ulong ChannelId { get; set; }
 
-    [JsonProperty("author_id")]
-    public ulong? AuthorId { get; set; }
+    /// <inheritdoc />
+    [JsonRequired]
+    [JsonProperty("author")]
+    public UserPartialResponse Author { get; set; }
 
-    [JsonProperty("type")]
-    public int Type { get; set; }
-
+    /// <inheritdoc />
     [JsonProperty("webhook_id")]
     public ulong? WebhookId { get; set; }
 
-    [JsonProperty("webhook_name")]
-    public string? WebhookName { get; set; }
+    /// <inheritdoc />
+    [JsonProperty("type")]
+    public MessageType Type { get; set; }
 
-    [JsonProperty("webhook_avatar_hash")]
-    public string? WebhookAvatarHash { get; set; }
+    /// <inheritdoc />
+    [JsonProperty("flags")]
+    public MessageFlags Flags { get; set; }
 
+    /// <inheritdoc />
+    [JsonRequired]
     [JsonProperty("content")]
-    public string? Content { get; set; }
+    public string Content { get; set; }
 
+    /// <inheritdoc />
+    [JsonProperty("timestamp")]
+    public DateTime Timestamp { get; set; }
+
+    /// <inheritdoc />
     [JsonProperty("edited_timestamp")]
     public DateTime? EditedTimestamp { get; set; }
 
-    [JsonProperty("pinned_timestamp")]
-    public DateTime? PinnedTimestamp { get; set; }
+    /// <inheritdoc />
+    [JsonProperty("pinned")]
+    public bool Pinned { get; set; }
 
-    [JsonProperty("flags")]
-    public int Flags { get; set; }
-
+    /// <inheritdoc />
     [JsonProperty("mention_everyone")]
     public bool MentionEveryone { get; set; }
 
-    [JsonProperty("mention_users")]
-    public HashSet<ulong>? MentionedUserIds { get; set; }
+    /// <inheritdoc />
+    [JsonProperty("tts")]
+    public bool Tts { get; set; }
 
+    /// <inheritdoc />
+    [JsonProperty("mentions")]
+    public UserPartialResponse[]? Mentions { get; set; }
+
+    /// <inheritdoc />
     [JsonProperty("mention_roles")]
-    public HashSet<ulong>? MentionedRoleIds { get; set; }
+    public ulong[]? MentionRoles { get; set; }
 
-    [JsonProperty("mention_channels")]
-    public HashSet<ulong>? MentionedChannelIds { get; set; }
-
-    [JsonProperty("attachments")]
-    public List<AttachmentJson>? Attachments { get; set; }
-
+    /// <inheritdoc />
     [JsonProperty("embeds")]
-    public List<EmbedJson>? Embeds { get; set; }
+    public EmbedJson[]? Embeds { get; set; }
 
-    [JsonProperty("sticker_items")]
-    public List<StickerItemJson>? Stickers { get; set; }
+    /// <inheritdoc />
+    [JsonProperty("attachments")]
+    public MessageAttachmentJson[]? Attachments { get; set; }
 
+    /// <inheritdoc />
+    [JsonProperty("stickers")]
+    public MessageStickerJson[]? Stickers { get; set; }
+
+    /// <inheritdoc />
+    [JsonProperty("reactions")]
+    public MessageReactionResponse[]? Reactions { get; set; }
+
+    /// <inheritdoc />
     [JsonProperty("message_reference")]
-    public MessageRefJson? Reference { get; set; }
+    public MessageReferenceResponse? MessageReference { get; set; }
 
+    /// <inheritdoc />
     [JsonProperty("message_snapshots")]
-    public List<MessageSnapshotJson>? MessageSnapshots { get; set; }
+    public MessageSnapshotResponse[]? MessageSnapshots { get; set; }
 
+    /// <inheritdoc />
+    [JsonProperty("nonce")]
+    public string? Nonce { get; set; }
+
+    /// <inheritdoc />
     [JsonProperty("call")]
-    public CallInfoJson? Call { get; set; }
+    public MessageCallJson? Call { get; set; }
 }

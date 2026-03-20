@@ -1,24 +1,45 @@
-﻿using Newtonsoft.Json;
+﻿namespace Fluxer.Net;
 
-namespace Fluxer.Net;
-
-public class UserConnection
+/// <inheritdoc />
+public class UserConnection : Entity, IUserConnection
 {
-    [JsonProperty("id")]
-    public string Id { get; set; }
+    /// <inheritdoc />
+    public string Id { get; internal set; }
 
-    [JsonProperty("type")]
-    public string Type { get; set; }
+    /// <inheritdoc />
+    public string Type { get; internal set; }
 
-    [JsonProperty("name")]
-    public string Name { get; set; }
+    /// <inheritdoc />
+    public string Name { get; internal set; }
 
-    [JsonProperty("verified")]
-    public bool IsVerified { get; set; }
+    /// <inheritdoc />
+    public bool IsVerified { get; internal set; }
 
-    [JsonProperty("visibility_flags")]
-    public ulong VisibilityFlags { get; set; }
+    /// <inheritdoc />
+    public ulong VisibilityFlags { get; internal set; }
 
-    [JsonProperty("sort_order")]
-    public int SortOrder { get; set; }
+    /// <inheritdoc />
+    public int SortOrder { get; internal set; }
+
+    internal UserConnection(BaseClient client) : base(client)
+    {
+
+    }
+
+    public static UserConnection Create(BaseClient client, UserConnectionJson json)
+    {
+        var data = new UserConnection(client);
+        data.Update(client, json);
+        return data;
+    }
+
+    internal void Update(BaseClient client, UserConnectionJson json)
+    {
+        Id = json.Id;
+        Type = json.Type;
+        Name = json.Name;
+        IsVerified = json.IsVerified;
+        VisibilityFlags = json.VisibilityFlags;
+        SortOrder = json.SortOrder;
+    }
 }

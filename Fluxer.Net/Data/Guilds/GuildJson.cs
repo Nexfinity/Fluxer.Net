@@ -2,56 +2,74 @@ using Newtonsoft.Json;
 
 namespace Fluxer.Net;
 
-public class GuildJson : PartialGuildJson
+/// <inheritdoc />
+public class GuildJson : PartialGuildJson, IGuild
 {
+    /// <inheritdoc />
     [JsonProperty("owner_id")]
     public ulong OwnerId { get; set; }
 
+    /// <inheritdoc />
     [JsonProperty("vanity_url_code")]
     public string? VanityUrlCode { get; set; }
 
+    /// <inheritdoc />
     [JsonProperty("verification_level")]
     public int VerificationLevel { get; set; }
 
+    /// <inheritdoc />
     [JsonProperty("mfa_level")]
     public int MfaLevel { get; set; }
 
+    /// <inheritdoc />
     [JsonProperty("nsfw_level")]
     public int NsfwLevel { get; set; }
 
+    /// <inheritdoc />
     [JsonProperty("explicit_content_filter")]
     public int ExplicitContentFilter { get; set; }
 
+    /// <inheritdoc />
     [JsonProperty("default_message_notifications")]
     public int DefaultMessageNotifications { get; set; }
 
+    /// <inheritdoc />
     [JsonProperty("system_channel_id")]
     public ulong? SystemChannelId { get; set; }
 
+    /// <inheritdoc />
     [JsonProperty("system_channel_flags")]
     public int SystemChannelFlags { get; set; }
 
+    /// <inheritdoc />
     [JsonProperty("rules_channel_id")]
     public ulong? RulesChannelId { get; set; }
 
+    /// <inheritdoc />
     [JsonProperty("afk_channel_id")]
     public ulong? AfkChannelId { get; set; }
 
+    /// <inheritdoc />
     [JsonProperty("afk_timeout")]
     public int AfkTimeout { get; set; }
 
+    /// <inheritdoc />
     [JsonProperty("disabled_operations")]
     public int DisabledOperations { get; set; }
 
+    /// <inheritdoc />
     [JsonProperty("max_presences")]
     public int? MaxPresences { get; set; }
 
+    /// <inheritdoc />
     [JsonProperty("member_count")]
     public int MemberCount { get; set; }
 
+    /// <inheritdoc />
     [JsonProperty("audit_logs_indexed_at")]
     public DateTime? AuditLogsIndexedAt { get; set; }
 
+    /// <inheritdoc />
     [JsonProperty("message_history_cutoff")]
     public DateTime? MessageHistoryCutoff { get; set; }
 }

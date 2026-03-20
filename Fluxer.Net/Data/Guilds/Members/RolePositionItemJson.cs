@@ -5,7 +5,7 @@ namespace Fluxer.Net;
 /// <summary>
 /// Currently only used when updating role positions in <see cref="ApiClient.UpdateRolePositions"/>
 /// </summary>
-public class GuildRolePositionItemJson
+public class RolePositionItemJson
 {
     [JsonProperty("id")]
     public ulong Id { get; set; }

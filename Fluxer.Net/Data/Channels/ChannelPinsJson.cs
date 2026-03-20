@@ -1,22 +1,22 @@
-﻿using Newtonsoft.Json;
+﻿using Fluxer.Net.Data.Channels;
+using Newtonsoft.Json;
 
 namespace Fluxer.Net;
 
+/// <inheritdoc />
 /// <remarks>
 /// <see href="https://github.com/fluxerapp/fluxer/blob/848269a4d4df7349acfc861ff926b17fe4c4a548/packages/schema/src/domains/message/MessageResponseSchemas.tsx#L192"/>
 /// </remarks>
-public class ChannelPinsJson
+public class ChannelPinsJson : IChannelPins
 {
-    /// <summary>
-    /// Pinned messages in this channel
-    /// </summary>
+    /// <inheritdoc />
     [JsonRequired]
     [JsonProperty("items")]
-    public ChannelPinsItemJson[] Items { get; set; } = Array.Empty<ChannelPinsItemJson>();
+    public ChannelPinJson[] Items { get; set; }
 
-    /// <summary>
-    /// Whether more pins can be fetched with pagination
-    /// </summary>
+    /// <inheritdoc />
     [JsonProperty("has_more")]
     public bool HasMore { get; set; }
+
+    IEnumerable<IChannelPin> IChannelPins.Items => Items;
 }

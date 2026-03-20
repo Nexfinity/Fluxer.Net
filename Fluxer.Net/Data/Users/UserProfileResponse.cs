@@ -29,5 +29,5 @@ public class UserProfileResponse
     public GuildJson[]? MutualGuilds { get; set; }
 
     [JsonProperty("connected_accounts")]
-    public UserConnection[] Connections { get; set; }
+    public UserConnectionJson[] Connections { get; set; }
 }

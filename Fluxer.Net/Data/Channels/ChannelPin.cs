@@ -1,0 +1,31 @@
+﻿namespace Fluxer.Net.Data.Channels;
+
+/// <inheritdoc />
+public class ChannelPin : Entity, IChannelPin
+{
+    /// <inheritdoc />
+    public Message Message { get; internal set; }
+
+    /// <inheritdoc />
+    public DateTime PinnedAt { get; internal set; }
+
+    IMessage IChannelPin.Message => Message;
+
+    internal ChannelPin(BaseClient client) : base(client)
+    {
+
+    }
+
+    public static ChannelPin Create(BaseClient client, ChannelPinJson json)
+    {
+        var data = new ChannelPin(client);
+        data.Update(client, json);
+        return data;
+    }
+
+    internal void Update(BaseClient client, ChannelPinJson json)
+    {
+        Message = Message.Create(client, json.Message);
+        PinnedAt = json.PinnedAt;
+    }
+}
