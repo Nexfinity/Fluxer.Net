@@ -35,5 +35,5 @@ public class MessageSnapshotJson
     public MessageType Type { get; set; }
 
     [JsonProperty("flags")]
-    public MessageFlags Flags { get; set; }
+    public MessageFlag Flags { get; set; }
 }

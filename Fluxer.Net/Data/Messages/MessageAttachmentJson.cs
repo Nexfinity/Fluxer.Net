@@ -45,7 +45,7 @@ public class MessageAttachmentJson
 
     [JsonRequired]
     [JsonProperty("flags")]
-    public MessageAttachmentFlags Flags { get; set; }
+    public AttachmentFlag Flags { get; set; }
 
     [JsonProperty("nsfw")]
     public bool? Nsfw { get; set; }

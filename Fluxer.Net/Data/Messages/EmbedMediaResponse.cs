@@ -65,5 +65,5 @@ public class EmbedMediaResponse
     /// The bitwise flags for this media
     /// </summary>
     [JsonProperty("flags")]
-    public EmbedMediaFlags Flags { get; set; }
+    public AttachmentFlag Flags { get; set; }
 }

@@ -1,5 +1,8 @@
 ﻿namespace Fluxer.Net;
 
+/// <summary>
+/// Login response data when successful.
+/// </summary>
 public interface ILogin
 {
     /// <summary>

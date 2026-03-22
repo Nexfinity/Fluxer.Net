@@ -1,5 +1,8 @@
 ﻿namespace Fluxer.Net.Data.Apps;
 
+/// <summary>
+/// Application/bot used to interact with the Fluxer platform and API.
+/// </summary>
 public interface IPartialApplication
 {
     /// <summary>

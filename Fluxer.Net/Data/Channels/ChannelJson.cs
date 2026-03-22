@@ -20,7 +20,7 @@ public class ChannelJson : IChannel
 
     /// <inheritdoc />
     [JsonProperty("type")]
-    public int Type { get; set; }
+    public ChannelType Type { get; set; }
 
     /// <inheritdoc />
     [JsonProperty("name")]

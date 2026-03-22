@@ -2,6 +2,9 @@
 
 namespace Fluxer.Net;
 
+/// <summary>
+/// List of pinned messages as pagination.
+/// </summary>
 internal interface IChannelPins
 {
     /// <summary>

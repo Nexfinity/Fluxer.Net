@@ -29,7 +29,7 @@ public class MessageUpdateRequest
     /// Message flags bitfield
     /// </summary>
     [JsonProperty("flags")]
-    public MessageFlags? Flags { get; set; }
+    public MessageFlag? Flags { get; set; }
 
     /// <summary>
     /// Array of attachment objects to keep or add

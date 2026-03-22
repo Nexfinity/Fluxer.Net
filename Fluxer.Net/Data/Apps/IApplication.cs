@@ -1,5 +1,8 @@
 ﻿namespace Fluxer.Net;
 
+/// <summary>
+/// Application/bot used to interact with the Fluxer platform and API.
+/// </summary>
 public interface IApplication
 {
     /// <summary>

@@ -1,144 +1,145 @@
 ﻿namespace Fluxer.Net;
 
+/// <inheritdoc />
 public class User : Entity, IUser
 {
     /// <inheritdoc />
-    public ulong Id { get; set; }
+    public ulong Id { get; internal set; }
 
     /// <inheritdoc />
-    public string Username { get; set; }
+    public string Username { get; internal set; }
 
     /// <inheritdoc />
-    public int Discriminator { get; set; }
+    public int Discriminator { get; internal set; }
 
     /// <inheritdoc />
-    public bool IsBot { get; set; }
+    public bool IsBot { get; internal set; }
 
     /// <inheritdoc />
-    public bool IsSystem { get; set; }
+    public bool IsSystem { get; internal set; }
 
     /// <inheritdoc />
-    public string? Email { get; set; }
+    public string? Email { get; internal set; }
 
     /// <inheritdoc />
-    public bool EmailVerified { get; set; }
+    public bool EmailVerified { get; internal set; }
 
     /// <inheritdoc />
-    public bool EmailBounced { get; set; }
+    public bool EmailBounced { get; internal set; }
 
     /// <inheritdoc />
-    public string? Phone { get; set; }
+    public string? Phone { get; internal set; }
 
     /// <inheritdoc />
-    public string? PasswordHash { get; set; }
+    public string? PasswordHash { get; internal set; }
 
     /// <inheritdoc />
-    public DateTime? PasswordLastChangedAt { get; set; }
+    public DateTime? PasswordLastChangedAt { get; internal set; }
 
     /// <inheritdoc />
-    public string? TotpSecret { get; set; }
+    public string? TotpSecret { get; internal set; }
 
     /// <inheritdoc />
-    public HashSet<int>? AuthenticatorTypes { get; set; }
+    public HashSet<int>? AuthenticatorTypes { get; internal set; }
 
     /// <inheritdoc />
-    public string? AvatarHash { get; set; }
+    public string? AvatarHash { get; internal set; }
 
     /// <inheritdoc />
-    public string? BannerHash { get; set; }
+    public string? BannerHash { get; internal set; }
 
     /// <inheritdoc />
-    public string? Bio { get; set; }
+    public string? Bio { get; internal set; }
 
     /// <inheritdoc />
-    public string? Pronouns { get; set; }
+    public string? Pronouns { get; internal set; }
 
     /// <inheritdoc />
-    public int? AccentColor { get; set; }
+    public int? AccentColor { get; internal set; }
 
     /// <inheritdoc />
-    public string? DateOfBirth { get; set; }
+    public string? DateOfBirth { get; internal set; }
 
     /// <inheritdoc />
-    public string? Locale { get; set; }
+    public string? Locale { get; internal set; }
 
     /// <inheritdoc />
-    public ulong Flags { get; set; }
+    public UserFlags Flags { get; internal set; }
 
     /// <inheritdoc />
-    public int? PremiumType { get; set; }
+    public int? PremiumType { get; internal set; }
 
     /// <inheritdoc />
-    public DateTime? PremiumSince { get; set; }
+    public DateTime? PremiumSince { get; internal set; }
 
     /// <inheritdoc />
-    public DateTime? PremiumUntil { get; set; }
+    public DateTime? PremiumUntil { get; internal set; }
 
     /// <inheritdoc />
-    public bool PremiumWillCancel { get; set; }
+    public bool PremiumWillCancel { get; internal set; }
 
     /// <inheritdoc />
-    public string? PremiumBillingCycle { get; set; }
+    public string? PremiumBillingCycle { get; internal set; }
 
     /// <inheritdoc />
-    public int? PremiumLifetimeSequence { get; set; }
+    public int? PremiumLifetimeSequence { get; internal set; }
 
     /// <inheritdoc />
-    public string? StripeSubscriptionId { get; set; }
+    public string? StripeSubscriptionId { get; internal set; }
 
     /// <inheritdoc />
-    public string? StripeCustomerId { get; set; }
+    public string? StripeCustomerId { get; internal set; }
 
     /// <inheritdoc />
-    public bool HasEverPurchased { get; set; }
+    public bool HasEverPurchased { get; internal set; }
 
     /// <inheritdoc />
-    public int SuspiciousActivityFlags { get; set; }
+    public int SuspiciousActivityFlags { get; internal set; }
 
     /// <inheritdoc />
-    public DateTime? TermsAgreedAt { get; set; }
+    public DateTime? TermsAgreedAt { get; internal set; }
 
     /// <inheritdoc />
-    public DateTime? PrivacyAgreedAt { get; set; }
+    public DateTime? PrivacyAgreedAt { get; internal set; }
 
     /// <inheritdoc />
-    public DateTime? LastActiveAt { get; set; }
+    public DateTime? LastActiveAt { get; internal set; }
 
     /// <inheritdoc />
-    public string? LastActiveIp { get; set; }
+    public string? LastActiveIp { get; internal set; }
 
     /// <inheritdoc />
-    public DateTime? TempBannedUntil { get; set; }
+    public DateTime? TempBannedUntil { get; internal set; }
 
     /// <inheritdoc />
-    public DateTime? PendingDeletionAt { get; set; }
+    public DateTime? PendingDeletionAt { get; internal set; }
 
     /// <inheritdoc />
-    public int? DeletionReasonCode { get; set; }
+    public int? DeletionReasonCode { get; internal set; }
 
     /// <inheritdoc />
-    public string? DeletionPublicReason { get; set; }
+    public string? DeletionPublicReason { get; internal set; }
 
     /// <inheritdoc />
-    public string? DeletionAuditLogReason { get; set; }
+    public string? DeletionAuditLogReason { get; internal set; }
 
     /// <inheritdoc />
-    public HashSet<string>? Acls { get; set; }
+    public HashSet<string>? Acls { get; internal set; }
 
     /// <inheritdoc />
-    public DateTime? FirstRefundAt { get; set; }
+    public DateTime? FirstRefundAt { get; internal set; }
 
     /// <inheritdoc />
-    public int BetaCodeAllowance { get; set; }
+    public int BetaCodeAllowance { get; internal set; }
 
     /// <inheritdoc />
-    public DateTime? BetaCodeLastResetAt { get; set; }
+    public DateTime? BetaCodeLastResetAt { get; internal set; }
 
     /// <inheritdoc />
-    public int? GiftInventoryServerSeq { get; set; }
+    public int? GiftInventoryServerSeq { get; internal set; }
 
     /// <inheritdoc />
-    public int? GiftInventoryClientSeq { get; set; }
+    public int? GiftInventoryClientSeq { get; internal set; }
 
     internal User(BaseClient client) : base(client)
     {

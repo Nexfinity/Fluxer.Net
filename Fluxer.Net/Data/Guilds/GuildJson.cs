@@ -39,7 +39,7 @@ public class GuildJson : PartialGuildJson, IGuild
 
     /// <inheritdoc />
     [JsonProperty("system_channel_flags")]
-    public int SystemChannelFlags { get; set; }
+    public SystemChannelFlags SystemChannelFlags { get; set; }
 
     /// <inheritdoc />
     [JsonProperty("rules_channel_id")]

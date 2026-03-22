@@ -10,7 +10,7 @@ public class Channel : Entity, IChannel
     public ulong? GuildId { get; internal set; }
 
     /// <inheritdoc />
-    public int Type { get; internal set; }
+    public ChannelType Type { get; internal set; }
 
     /// <inheritdoc />
     public string? Name { get; internal set; }

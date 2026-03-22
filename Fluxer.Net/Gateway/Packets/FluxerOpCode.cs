@@ -48,7 +48,7 @@ public enum FluxerOpCode
     /// </summary>
     /// <remarks>
     /// Used to change online status (Online, Idle, Do Not Disturb, Invisible).
-    /// See <see cref="Data.PresenceUpdateGatewayData"/> for payload structure.
+    /// See <see cref="Data.Users.PresenceUpdateGatewayData"/> for payload structure.
     /// </remarks>
     PresenceUpdate = 3,
 

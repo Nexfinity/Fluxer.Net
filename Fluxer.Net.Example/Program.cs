@@ -18,7 +18,7 @@
 using Fluxer.Net;
 using Fluxer.Net.Commands;
 using Fluxer.Net.Example;
-using Fluxer.Net.Gateway.Data;
+using Fluxer.Net.Gateway.Data.Users;
 using Serilog;
 using Serilog.Core;
 using Serilog.Sinks.SystemConsole.Themes;

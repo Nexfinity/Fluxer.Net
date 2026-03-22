@@ -42,7 +42,7 @@ public interface IUser
 
     string? Locale { get; }
 
-    ulong Flags { get; }
+    UserFlags Flags { get; }
 
     int? PremiumType { get; }
 
