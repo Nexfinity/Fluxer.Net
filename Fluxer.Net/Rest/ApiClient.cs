@@ -341,9 +341,9 @@ public class ApiClient
 
     #region Auth API
 
-    public async Task<Login> LoginAsync(LoginRequest data)
+    public async Task<Login> LoginAsync(LoginRequestJson data)
     {
-        LoginJson json = await MakeFluxerApiRequestAsync<LoginJson, LoginRequest>(HttpMethod.Post, "/auth/login", data, false);
+        LoginJson json = await MakeFluxerApiRequestAsync<LoginJson, LoginRequestJson>(HttpMethod.Post, "/auth/login", data, false);
         return Login.Create(_client, json);
     }
 

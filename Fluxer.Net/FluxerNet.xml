@@ -250,7 +250,7 @@
             Gets the member who executed the command.
             </summary>
         </member>
-        <member name="M:Fluxer.Net.Commands.CommandContext.#ctor(Fluxer.Net.FluxerClient,Fluxer.Net.Gateway.Data.MessageGatewayData)">
+        <member name="M:Fluxer.Net.Commands.CommandContext.#ctor(Fluxer.Net.FluxerClient,Fluxer.Net.Gateway.Data.Messages.MessageGatewayData)">
             <summary>
             Creates a new command context.
             </summary>
@@ -4473,261 +4473,250 @@
             This is the actual URL used for API requests.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.Data.AuthSessionChangeGatewayData">
+        <member name="T:Fluxer.Net.Gateway.Data.Auth.AuthSessionChangeGatewayData">
             <summary>
             Gateway data for AUTH_SESSION_CHANGE event when an auth session changes.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.Data.CallGatewayData">
-            <summary>
-            Gateway data for CALL_CREATE, CALL_UPDATE, and CALL_DELETE events.
-            </summary>
-        </member>
-        <member name="T:Fluxer.Net.Gateway.Data.ChannelGatewayData">
+        <member name="T:Fluxer.Net.Gateway.Data.Channels.ChannelGatewayData">
             <summary>
             Gateway channel data matching the ChannelResponse API model
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.Data.ChannelOverwriteResponse">
+        <member name="T:Fluxer.Net.Gateway.Data.Channels.ChannelOverwriteResponse">
             <summary>
             Channel permission overwrite response
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.Data.ChannelPinsAckGatewayData">
+        <member name="T:Fluxer.Net.Gateway.Data.Channels.ChannelPinsAckGatewayData">
             <summary>
             Gateway data for CHANNEL_PINS_ACK event when channel pins are acknowledged.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.Data.ChannelRecipientGatewayData">
+        <member name="T:Fluxer.Net.Gateway.Data.Channels.ChannelRecipientGatewayData">
             <summary>
             Gateway data for CHANNEL_RECIPIENT_ADD and CHANNEL_RECIPIENT_REMOVE events.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.Data.ChannelUpdateBulkGatewayData">
+        <member name="T:Fluxer.Net.Gateway.Data.Channels.ChannelUpdateBulkGatewayData">
             <summary>
             Gateway data for CHANNEL_UPDATE_BULK event when multiple channels are updated.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.Data.FavoriteMemeGatewayData">
+        <member name="P:Fluxer.Net.Gateway.Data.Channels.TypingGatewayData.Timestamp">
             <summary>
-            Gateway data for FAVORITE_MEME_CREATE, FAVORITE_MEME_UPDATE, and FAVORITE_MEME_DELETE events.
+            Unix timestamp in milliseconds when the user started typing.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.Data.GuildDeleteGatewayData">
+        <member name="P:Fluxer.Net.Gateway.Data.Channels.TypingGatewayData.TimestampUtc">
+            <summary>
+            The <see cref="P:Fluxer.Net.Gateway.Data.Channels.TypingGatewayData.Timestamp"/> value converted to a UTC <see cref="T:System.DateTime"/>.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Gateway.Data.Channels.TypingGatewayData.Member">
+            <summary>
+            Guild member data for the typing user (only present in guild channels).
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.Gateway.Data.Guilds.GuildDeleteGatewayData">
             <summary>
             Gateway data for GUILD_DELETE event.
             Sent when a guild becomes unavailable during a guild outage, or when the user leaves or is removed from a guild.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.Gateway.Data.GuildDeleteGatewayData.Id">
+        <member name="P:Fluxer.Net.Gateway.Data.Guilds.GuildDeleteGatewayData.Id">
             <summary>
             ID of the guild that was deleted or became unavailable.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.Gateway.Data.GuildDeleteGatewayData.Unavailable">
+        <member name="P:Fluxer.Net.Gateway.Data.Guilds.GuildDeleteGatewayData.Unavailable">
             <summary>
             If true, the guild became unavailable due to an outage and may become available again later.
             If false or null, the user was removed from the guild (left, kicked, or banned).
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.Data.GuildEmojisUpdateGatewayData">
+        <member name="T:Fluxer.Net.Gateway.Data.Guilds.GuildEmojisUpdateGatewayData">
             <summary>
             Gateway data for GUILD_EMOJIS_UPDATE event when guild emojis are updated.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.Data.GuildCreateProperties">
+        <member name="T:Fluxer.Net.Gateway.Data.Guilds.GuildCreateProperties">
             <summary>
             The nested guild properties object sent inside a GUILD_CREATE payload.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.Data.GuildGatewayData">
+        <member name="T:Fluxer.Net.Gateway.Data.Guilds.GuildGatewayData">
             <summary>
             Gateway data for GUILD_CREATE and GUILD_UPDATE events.
             Contains the full guild state including channels, members, roles, and nested guild properties.
-            When <see cref="P:Fluxer.Net.Gateway.Data.GuildGatewayData.Unavailable"/> is true the guild is temporarily unavailable (outage)
-            and only <see cref="P:Fluxer.Net.Gateway.Data.GuildGatewayData.Id"/> and <see cref="P:Fluxer.Net.Gateway.Data.GuildGatewayData.Unavailable"/> will be populated.
+            When <see cref="P:Fluxer.Net.Gateway.Data.Guilds.GuildGatewayData.Unavailable"/> is true the guild is temporarily unavailable (outage)
+            and only <see cref="P:Fluxer.Net.Gateway.Data.Guilds.GuildGatewayData.Id"/> and <see cref="P:Fluxer.Net.Gateway.Data.Guilds.GuildGatewayData.Unavailable"/> will be populated.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.Gateway.Data.GuildGatewayData.Id">
+        <member name="P:Fluxer.Net.Gateway.Data.Guilds.GuildGatewayData.Id">
             <summary>
             The guild ID.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.Gateway.Data.GuildGatewayData.JoinedAt">
+        <member name="P:Fluxer.Net.Gateway.Data.Guilds.GuildGatewayData.JoinedAt">
             <summary>
             When the current user joined this guild.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.Gateway.Data.GuildGatewayData.MemberCount">
+        <member name="P:Fluxer.Net.Gateway.Data.Guilds.GuildGatewayData.MemberCount">
             <summary>
             Total number of members in the guild.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.Gateway.Data.GuildGatewayData.OnlineCount">
+        <member name="P:Fluxer.Net.Gateway.Data.Guilds.GuildGatewayData.OnlineCount">
             <summary>
             Number of online members in the guild.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.Gateway.Data.GuildGatewayData.Unavailable">
+        <member name="P:Fluxer.Net.Gateway.Data.Guilds.GuildGatewayData.Unavailable">
             <summary>
             If true, the guild is temporarily unavailable due to an outage.
             When received on GUILD_CREATE, this indicates the guild is not yet available rather than being joined.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.Gateway.Data.GuildGatewayData.Properties">
+        <member name="P:Fluxer.Net.Gateway.Data.Guilds.GuildGatewayData.Properties">
             <summary>
             Nested guild properties (name, icon, owner, settings, etc.).
             </summary>
         </member>
-        <member name="P:Fluxer.Net.Gateway.Data.GuildGatewayData.Channels">
+        <member name="P:Fluxer.Net.Gateway.Data.Guilds.GuildGatewayData.Channels">
             <summary>
             Channels present in the guild at the time of the event.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.Gateway.Data.GuildGatewayData.Members">
+        <member name="P:Fluxer.Net.Gateway.Data.Guilds.GuildGatewayData.Members">
             <summary>
             Members present in the guild at the time of the event.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.Gateway.Data.GuildGatewayData.Roles">
+        <member name="P:Fluxer.Net.Gateway.Data.Guilds.GuildGatewayData.Roles">
             <summary>
             Roles defined in the guild.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.Gateway.Data.GuildGatewayData.Emojis">
+        <member name="P:Fluxer.Net.Gateway.Data.Guilds.GuildGatewayData.Emojis">
             <summary>
             Emojis defined in the guild.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.Gateway.Data.GuildGatewayData.Stickers">
+        <member name="P:Fluxer.Net.Gateway.Data.Guilds.GuildGatewayData.Stickers">
             <summary>
             Stickers defined in the guild.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.Data.GuildMemberGatewayData">
+        <member name="T:Fluxer.Net.Gateway.Data.Guilds.GuildMemberGatewayData">
             <summary>
             Gateway guild member data matching the GuildMemberResponse API model
             </summary>
         </member>
-        <member name="P:Fluxer.Net.Gateway.Data.GuildMemberGatewayData.GuildId">
+        <member name="P:Fluxer.Net.Gateway.Data.Guilds.GuildMemberGatewayData.GuildId">
             <summary>
             Guild ID for context (added for gateway events)
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.Data.GuildRoleDeleteGatewayData">
+        <member name="T:Fluxer.Net.Gateway.Data.Guilds.GuildRoleDeleteGatewayData">
             <summary>
             Gateway data for GUILD_ROLE_DELETE event
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.Data.GuildRoleGatewayData">
+        <member name="T:Fluxer.Net.Gateway.Data.Guilds.GuildRoleGatewayData">
             <summary>
             Gateway data for GUILD_ROLE_CREATE and GUILD_ROLE_UPDATE events
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.Data.GuildRoleUpdateBulkGatewayData">
+        <member name="T:Fluxer.Net.Gateway.Data.Guilds.GuildRoleUpdateBulkGatewayData">
             <summary>
             Gateway data for GUILD_ROLE_UPDATE_BULK event when multiple guild roles are updated.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.Data.GuildStickersUpdateGatewayData">
+        <member name="T:Fluxer.Net.Gateway.Data.Guilds.GuildStickersUpdateGatewayData">
             <summary>
             Gateway data for GUILD_STICKERS_UPDATE event when guild stickers are updated.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.Data.InviteGatewayData">
+        <member name="T:Fluxer.Net.Gateway.Data.Invites.InviteGatewayData">
             <summary>
             Gateway data for invite events (INVITE_CREATE, INVITE_DELETE).
             </summary>
         </member>
-        <member name="P:Fluxer.Net.Gateway.Data.InviteGatewayData.Code">
+        <member name="P:Fluxer.Net.Gateway.Data.Invites.InviteGatewayData.Code">
             <summary>
             The invite code (unique identifier).
             </summary>
         </member>
-        <member name="P:Fluxer.Net.Gateway.Data.InviteGatewayData.GuildId">
+        <member name="P:Fluxer.Net.Gateway.Data.Invites.InviteGatewayData.GuildId">
             <summary>
             The guild ID this invite is for (if applicable).
             </summary>
         </member>
-        <member name="P:Fluxer.Net.Gateway.Data.InviteGatewayData.ChannelId">
+        <member name="P:Fluxer.Net.Gateway.Data.Invites.InviteGatewayData.ChannelId">
             <summary>
             The channel ID this invite is for.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.Gateway.Data.InviteGatewayData.Inviter">
+        <member name="P:Fluxer.Net.Gateway.Data.Invites.InviteGatewayData.Inviter">
             <summary>
             The user who created the invite.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.Gateway.Data.InviteGatewayData.Type">
+        <member name="P:Fluxer.Net.Gateway.Data.Invites.InviteGatewayData.Type">
             <summary>
             The type of invite (Guild = 0, GroupDm = 1).
             </summary>
         </member>
-        <member name="P:Fluxer.Net.Gateway.Data.InviteGatewayData.CreatedAt">
+        <member name="P:Fluxer.Net.Gateway.Data.Invites.InviteGatewayData.CreatedAt">
             <summary>
             When this invite was created.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.Gateway.Data.InviteGatewayData.Uses">
+        <member name="P:Fluxer.Net.Gateway.Data.Invites.InviteGatewayData.Uses">
             <summary>
             How many times this invite has been used.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.Gateway.Data.InviteGatewayData.MaxUses">
+        <member name="P:Fluxer.Net.Gateway.Data.Invites.InviteGatewayData.MaxUses">
             <summary>
             Max number of times this invite can be used (0 = unlimited).
             </summary>
         </member>
-        <member name="P:Fluxer.Net.Gateway.Data.InviteGatewayData.MaxAge">
+        <member name="P:Fluxer.Net.Gateway.Data.Invites.InviteGatewayData.MaxAge">
             <summary>
             Duration (in seconds) after which the invite expires (0 = never).
             </summary>
         </member>
-        <member name="P:Fluxer.Net.Gateway.Data.InviteGatewayData.Temporary">
+        <member name="P:Fluxer.Net.Gateway.Data.Invites.InviteGatewayData.Temporary">
             <summary>
             Whether this invite grants temporary membership.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.Data.MessageGatewayData">
+        <member name="T:Fluxer.Net.Gateway.Data.Messages.MessageGatewayData">
             <summary>
             Gateway message data matching the MessageResponse API model
             </summary>
         </member>
-        <member name="P:Fluxer.Net.Gateway.Data.MessageGatewayData.Member">
+        <member name="P:Fluxer.Net.Gateway.Data.Messages.MessageGatewayData.Member">
             <summary>
             Guild member data for the author (only present in guild messages)
             </summary>
         </member>
-        <member name="P:Fluxer.Net.Gateway.Data.MessageGatewayData.GuildId">
+        <member name="P:Fluxer.Net.Gateway.Data.Messages.MessageGatewayData.GuildId">
             <summary>
             ID of the guild where the message was sent (null for DMs)
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.Data.UserPartialResponse">
+        <member name="T:Fluxer.Net.Gateway.Data.Messages.UserPartialResponse">
             <summary>
             Partial user response matching UserPartialResponse from the API
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.Data.GuildMemberPartialResponse">
+        <member name="T:Fluxer.Net.Gateway.Data.Messages.GuildMemberPartialResponse">
             <summary>
             Partial guild member response for message context
-            </summary>
-        </member>
-        <member name="T:Fluxer.Net.Gateway.Data.PresenceGatewayData">
-            <summary>
-            Gateway event data for PRESENCE_UPDATE events.
-            This differs from the base Presence class by including a full User object instead of just a user_id.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.Gateway.Data.PresenceGatewayData.Afk">
-            <summary>
-            Whether the user is AFK.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.Gateway.Data.PresenceGatewayData.Mobile">
-            <summary>
-            Whether the user is on mobile.
             </summary>
         </member>
         <member name="T:Fluxer.Net.Gateway.Data.RecentMentionDeleteGatewayData">
@@ -4735,54 +4724,65 @@
             Gateway data for RECENT_MENTION_DELETE event when a recent mention is deleted.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.Data.RelationshipGatewayData">
+        <member name="T:Fluxer.Net.Gateway.Data.Users.FavoriteMemeGatewayData">
+            <summary>
+            Gateway data for FAVORITE_MEME_CREATE, FAVORITE_MEME_UPDATE, and FAVORITE_MEME_DELETE events.
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.Gateway.Data.Users.PresenceGatewayData">
+            <summary>
+            Gateway event data for PRESENCE_UPDATE events.
+            This differs from the base Presence class by including a full User object instead of just a user_id.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Gateway.Data.Users.PresenceGatewayData.Afk">
+            <summary>
+            Whether the user is AFK.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Gateway.Data.Users.PresenceGatewayData.Mobile">
+            <summary>
+            Whether the user is on mobile.
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.Gateway.Data.Users.RelationshipGatewayData">
             <summary>
             Gateway data for RELATIONSHIP_ADD, RELATIONSHIP_UPDATE, and RELATIONSHIP_REMOVE events.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.Data.SavedMessageGatewayData">
+        <member name="T:Fluxer.Net.Gateway.Data.Users.SavedMessageGatewayData">
             <summary>
             Gateway data for SAVED_MESSAGE_CREATE and SAVED_MESSAGE_DELETE events.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.Gateway.Data.TypingGatewayData.Timestamp">
-            <summary>
-            Unix timestamp in milliseconds when the user started typing.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.Gateway.Data.TypingGatewayData.TimestampUtc">
-            <summary>
-            The <see cref="P:Fluxer.Net.Gateway.Data.TypingGatewayData.Timestamp"/> value converted to a UTC <see cref="T:System.DateTime"/>.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.Gateway.Data.TypingGatewayData.Member">
-            <summary>
-            Guild member data for the typing user (only present in guild channels).
-            </summary>
-        </member>
-        <member name="T:Fluxer.Net.Gateway.Data.UserGatewayData">
+        <member name="T:Fluxer.Net.Gateway.Data.Users.UserGatewayData">
             <summary>
             Gateway user data matching the UserPartialResponse API model
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.Data.UserGuildSettingsUpdateGatewayData">
+        <member name="T:Fluxer.Net.Gateway.Data.Users.UserGuildSettingsUpdateGatewayData">
             <summary>
             Gateway data for USER_GUILD_SETTINGS_UPDATE event when user guild settings are updated.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.Data.UserNoteUpdateGatewayData">
+        <member name="T:Fluxer.Net.Gateway.Data.Users.UserNoteUpdateGatewayData">
             <summary>
             Gateway data for USER_NOTE_UPDATE event when a user note is updated.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.Data.UserPinnedDmsUpdateGatewayData">
+        <member name="T:Fluxer.Net.Gateway.Data.Users.UserPinnedDmsUpdateGatewayData">
             <summary>
             Gateway data for USER_PINNED_DMS_UPDATE event when pinned DMs are updated.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.Data.UserSettingsUpdateGatewayData">
+        <member name="T:Fluxer.Net.Gateway.Data.Users.UserSettingsUpdateGatewayData">
             <summary>
             Gateway data for USER_SETTINGS_UPDATE event when user settings are updated.
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.Gateway.Data.Voice.CallGatewayData">
+            <summary>
+            Gateway data for CALL_CREATE, CALL_UPDATE, and CALL_DELETE events.
             </summary>
         </member>
         <member name="T:Fluxer.Net.Gateway.Packets.FluxerCloseCode">
@@ -4910,7 +4910,7 @@
             </summary>
             <remarks>
             Used to change online status (Online, Idle, Do Not Disturb, Invisible).
-            See <see cref="T:Fluxer.Net.Gateway.Data.PresenceUpdateGatewayData"/> for payload structure.
+            See <see cref="T:Fluxer.Net.Gateway.Data.Users.PresenceUpdateGatewayData"/> for payload structure.
             </remarks>
         </member>
         <member name="F:Fluxer.Net.Gateway.Packets.FluxerOpCode.VoiceStateUpdate">

@@ -4,19 +4,19 @@
 public class Presence : Entity, IPresence
 {
     /// <inheritdoc />
-    public ulong UserId { get; set; }
+    public ulong UserId { get; internal set; }
 
     /// <inheritdoc />
-    public ulong? GuildId { get; set; }
+    public ulong? GuildId { get; internal set; }
 
     /// <inheritdoc />
-    public string Status { get; set; }
+    public string Status { get; internal set; }
 
     /// <inheritdoc />
-    public List<Activity>? Activities { get; set; }
+    public List<Activity>? Activities { get; internal set; }
 
     /// <inheritdoc />
-    public ClientStatus? ClientStatus { get; set; }
+    public ClientStatus? ClientStatus { get; internal set; }
 
     IEnumerable<IActivity>? IPresence.Activities => Activities;
 

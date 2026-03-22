@@ -6,70 +6,70 @@ namespace Fluxer.Net;
 public class Message : Entity, IMessage
 {
     /// <inheritdoc />
-    public ulong Id { get; set; }
+    public ulong Id { get; internal set; }
 
     /// <inheritdoc />
-    public ulong ChannelId { get; set; }
+    public ulong ChannelId { get; internal set; }
 
     /// <inheritdoc />
-    public UserPartialResponse Author { get; set; }
+    public UserPartialResponse Author { get; internal set; }
 
     /// <inheritdoc />
-    public ulong? WebhookId { get; set; }
+    public ulong? WebhookId { get; internal set; }
 
     /// <inheritdoc />
-    public MessageType Type { get; set; }
+    public MessageType Type { get; internal set; }
 
     /// <inheritdoc />
-    public MessageFlag Flags { get; set; }
+    public MessageFlag Flags { get; internal set; }
 
     /// <inheritdoc />
-    public string Content { get; set; }
+    public string Content { get; internal set; }
 
     /// <inheritdoc />
-    public DateTime Timestamp { get; set; }
+    public DateTime Timestamp { get; internal set; }
 
     /// <inheritdoc />
-    public DateTime? EditedTimestamp { get; set; }
+    public DateTime? EditedTimestamp { get; internal set; }
 
     /// <inheritdoc />
-    public bool Pinned { get; set; }
+    public bool Pinned { get; internal set; }
 
     /// <inheritdoc />
-    public bool MentionEveryone { get; set; }
+    public bool MentionEveryone { get; internal set; }
 
     /// <inheritdoc />
-    public bool Tts { get; set; }
+    public bool Tts { get; internal set; }
 
     /// <inheritdoc />
-    public UserPartialResponse[]? Mentions { get; set; }
+    public UserPartialResponse[]? Mentions { get; internal set; }
 
     /// <inheritdoc />
-    public ulong[]? MentionRoles { get; set; }
+    public ulong[]? MentionRoles { get; internal set; }
 
     /// <inheritdoc />
-    public EmbedJson[]? Embeds { get; set; }
+    public EmbedJson[]? Embeds { get; internal set; }
 
     /// <inheritdoc />
-    public MessageAttachmentJson[]? Attachments { get; set; }
+    public MessageAttachmentJson[]? Attachments { get; internal set; }
 
     /// <inheritdoc />
-    public MessageStickerJson[]? Stickers { get; set; }
+    public MessageStickerJson[]? Stickers { get; internal set; }
 
     /// <inheritdoc />
-    public MessageReactionResponse[]? Reactions { get; set; }
+    public MessageReactionResponse[]? Reactions { get; internal set; }
 
     /// <inheritdoc />
-    public MessageReferenceResponse? MessageReference { get; set; }
+    public MessageReferenceResponse? MessageReference { get; internal set; }
 
     /// <inheritdoc />
-    public MessageSnapshotResponse[]? MessageSnapshots { get; set; }
+    public MessageSnapshotResponse[]? MessageSnapshots { get; internal set; }
 
     /// <inheritdoc />
-    public string? Nonce { get; set; }
+    public string? Nonce { get; internal set; }
 
     /// <inheritdoc />
-    public MessageCallJson? Call { get; set; }
+    public MessageCallJson? Call { get; internal set; }
 
     internal Message(BaseClient client) : base(client)
     {

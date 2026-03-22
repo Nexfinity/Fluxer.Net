@@ -6,25 +6,25 @@ namespace Fluxer.Net;
 public class PartialApplication : Entity, IPartialApplication
 {
     /// <inheritdoc />
-    public ulong Id { get; set; }
+    public ulong Id { get; internal set; }
 
     /// <inheritdoc />
-    public string Name { get; set; }
+    public string Name { get; internal set; }
 
     /// <inheritdoc />
-    public string Icon { get; set; }
+    public string Icon { get; internal set; }
 
     /// <inheritdoc />
-    public string Description { get; set; }
+    public string Description { get; internal set; }
 
     /// <inheritdoc />
-    public bool IsPublic { get; set; }
+    public bool IsPublic { get; internal set; }
 
     /// <inheritdoc />
-    public bool RequiresCodeGrant { get; set; }
+    public bool RequiresCodeGrant { get; internal set; }
 
     /// <inheritdoc />
-    public ulong Flags { get; set; }
+    public ulong Flags { get; internal set; }
 
     internal PartialApplication(BaseClient client) : base(client)
     {

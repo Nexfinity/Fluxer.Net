@@ -4,28 +4,28 @@
 public class Activity : Entity, IActivity
 {
     /// <inheritdoc />
-    public string Name { get; set; }
+    public string Name { get; internal set; }
 
     /// <inheritdoc />
-    public int Type { get; set; }
+    public int Type { get; internal set; }
 
     /// <inheritdoc />
-    public string? Url { get; set; }
+    public string? Url { get; internal set; }
 
     /// <inheritdoc />
-    public long CreatedAt { get; set; }
+    public long CreatedAt { get; internal set; }
 
     /// <inheritdoc />
-    public ActivityTimestamps? Timestamps { get; set; }
+    public ActivityTimestamps? Timestamps { get; internal set; }
 
     /// <inheritdoc />
-    public string? Details { get; set; }
+    public string? Details { get; internal set; }
 
     /// <inheritdoc />
-    public string? State { get; set; }
+    public string? State { get; internal set; }
 
     /// <inheritdoc />
-    public ActivityEmoji? Emoji { get; set; }
+    public ActivityEmoji? Emoji { get; internal set; }
 
     IActivityTimestamps? IActivity.Timestamps => Timestamps;
 

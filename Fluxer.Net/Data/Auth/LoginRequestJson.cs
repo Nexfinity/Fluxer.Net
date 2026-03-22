@@ -2,7 +2,7 @@ using Newtonsoft.Json;
 
 namespace Fluxer.Net;
 
-public class LoginRequest
+public class LoginRequestJson
 {
     [JsonProperty("email")]
     public string Email { get; set; }
