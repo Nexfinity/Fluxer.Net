@@ -35,5 +35,5 @@ public class MessageSnapshotResponse
 
     [JsonRequired]
     [JsonProperty("flags")]
-    public MessageFlags Flags { get; set; }
+    public MessageFlag Flags { get; set; }
 }

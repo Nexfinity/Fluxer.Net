@@ -42,7 +42,7 @@ public class MessageRequest
     /// Message flags bitfield
     /// </summary>
     [JsonProperty("flags")]
-    public MessageFlags Flags { get; set; }
+    public MessageFlag Flags { get; set; }
 
     /// <summary>
     /// Client-generated identifier for the message

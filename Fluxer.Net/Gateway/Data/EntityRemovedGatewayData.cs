@@ -2,7 +2,7 @@ using Newtonsoft.Json;
 
 namespace Fluxer.Net.Gateway.Data;
 
-public class EntityRemovedGatewayData : IGatewayData
+public class EntityRemovedGatewayData
 {
     [JsonProperty("id")]
     public ulong? Id { get; set; }

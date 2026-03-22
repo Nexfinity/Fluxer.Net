@@ -1,4 +1,4 @@
-﻿using Fluxer.Net.Gateway.Data;
+﻿using Fluxer.Net.Gateway.Data.Messages;
 
 namespace Fluxer.Net;
 
@@ -21,7 +21,7 @@ public class Message : Entity, IMessage
     public MessageType Type { get; set; }
 
     /// <inheritdoc />
-    public MessageFlags Flags { get; set; }
+    public MessageFlag Flags { get; set; }
 
     /// <inheritdoc />
     public string Content { get; set; }

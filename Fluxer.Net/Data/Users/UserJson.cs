@@ -65,7 +65,7 @@ public class UserJson : IUser
     public string? Locale { get; set; }
 
     [JsonProperty("flags")]
-    public ulong Flags { get; set; }
+    public UserFlags Flags { get; set; }
 
     [JsonProperty("premium_type")]
     public int? PremiumType { get; set; }

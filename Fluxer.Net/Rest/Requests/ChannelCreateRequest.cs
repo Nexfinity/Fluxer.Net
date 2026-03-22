@@ -1,10 +1,8 @@
-﻿using Fluxer.Net.Extensions;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System.ComponentModel;
 
 namespace Fluxer.Net;
 
-[JsonConverter(typeof(JsonDerivedTypeConverter<ChannelCreateRequest>), nameof(Type))]
 public abstract class ChannelCreateRequest
 {
     [JsonProperty("type")]
@@ -22,7 +20,7 @@ public abstract class ChannelCreateRequest
     [DefaultValue(false)]
     [JsonProperty("nsfw")]
     public bool Nsfw { get; set; }
-    
+
     [JsonProperty("permission_overwrites")]
     public ChannelOverwriteRequest[]? PermissionOverwrites { get; set; }
 }

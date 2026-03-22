@@ -1,50 +1,116 @@
-﻿using Fluxer.Net.Gateway.Data;
+﻿using Fluxer.Net.Gateway.Data.Messages;
 
 namespace Fluxer.Net;
 
 public interface IMessage
 {
+    /// <summary>
+    /// The unique identifier (snowflake) for this message.
+    /// </summary>
     ulong Id { get; }
 
+    /// <summary>
+    /// The ID of the channel this message was sent in.
+    /// </summary>
     ulong ChannelId { get; }
 
+    /// <summary>
+    /// Partial user that sent the message.
+    /// </summary>
     UserPartialResponse Author { get; }
 
+    /// <summary>
+    /// The ID of the webhook that sent this message.
+    /// </summary>
     ulong? WebhookId { get; }
 
+    /// <summary>
+    /// The type of message.
+    /// </summary>
     MessageType Type { get; }
 
-    MessageFlags Flags { get; }
+    /// <summary>
+    /// Message flags bitfield.
+    /// </summary>
+    MessageFlag Flags { get; }
 
+    /// <summary>
+    /// The text content of the message.
+    /// </summary>
     string Content { get; }
 
+    /// <summary>
+    /// The ISO 8601 timestamp of when the message was created.
+    /// </summary>
     DateTime Timestamp { get; }
 
+    /// <summary>
+    /// The ISO 8601 timestamp of when the message was last edited.
+    /// </summary>
     DateTime? EditedTimestamp { get; }
 
+    /// <summary>
+    /// Whether the message is pinned.
+    /// </summary>
     bool Pinned { get; }
 
+    /// <summary>
+    /// Whether the message mentions @everyone.
+    /// </summary>
     bool MentionEveryone { get; }
 
+    /// <summary>
+    /// Whether the message was sent as text-to-speech.
+    /// </summary>
     bool Tts { get; }
 
+    /// <summary>
+    /// The users mentioned in the message.
+    /// </summary>
     UserPartialResponse[]? Mentions { get; }
 
+    /// <summary>
+    /// The role IDs mentioned in the message.
+    /// </summary>
     ulong[]? MentionRoles { get; }
 
+    /// <summary>
+    /// The embeds attached to the message.
+    /// </summary>
     EmbedJson[]? Embeds { get; }
 
+    /// <summary>
+    /// The files attached to the message.
+    /// </summary>
     MessageAttachmentJson[]? Attachments { get; }
 
+    /// <summary>
+    /// The stickers sent with the message.
+    /// </summary>
     MessageStickerJson[]? Stickers { get; }
 
+    /// <summary>
+    /// The reactions on the message
+    /// </summary>
     MessageReactionResponse[]? Reactions { get; }
 
+    /// <summary>
+    /// Reference data for replies or forwards.
+    /// </summary>
     MessageReferenceResponse? MessageReference { get; }
 
+    /// <summary>
+    /// Snapshots of forwarded messages.
+    /// </summary>
     MessageSnapshotResponse[]? MessageSnapshots { get; }
 
+    /// <summary>
+    /// A client-provided value for message deduplication.
+    /// </summary>
     string? Nonce { get; }
 
+    /// <summary>
+    /// Call information if this message represents a call
+    /// </summary>
     MessageCallJson? Call { get; }
 }

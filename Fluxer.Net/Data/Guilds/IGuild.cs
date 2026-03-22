@@ -45,7 +45,7 @@ public interface IGuild
     /// <summary>
     /// System channel message flags.
     /// </summary>
-    int SystemChannelFlags { get; }
+    SystemChannelFlags SystemChannelFlags { get; }
 
     /// <summary>
     /// The ID of the rules channel.

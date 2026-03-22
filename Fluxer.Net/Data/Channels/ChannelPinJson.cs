@@ -10,12 +10,10 @@ namespace Fluxer.Net;
 public class ChannelPinJson : IChannelPin
 {
     /// <inheritdoc />
-    [JsonRequired]
     [JsonProperty("message")]
     public MessageJson Message { get; set; }
 
     /// <inheritdoc />
-    [JsonRequired]
     [JsonProperty("pinned_at")]
     public DateTime PinnedAt { get; set; }
 

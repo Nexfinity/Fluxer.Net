@@ -26,7 +26,7 @@ public class EmbedMediaJson
     public string? Placeholder { get; set; }
 
     [JsonProperty("flags")]
-    public int Flags { get; set; }
+    public AttachmentFlag Flags { get; set; }
 
     [JsonProperty("duration")]
     public double? Duration { get; set; }

@@ -5,6 +5,6 @@
 /// </remarks>
 public enum OverwriteRequestType
 {
-    ROLE = 0,
-    MEMBER = 1
+    Role = 0,
+    Member = 1
 }

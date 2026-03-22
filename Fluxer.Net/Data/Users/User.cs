@@ -1,5 +1,6 @@
 ﻿namespace Fluxer.Net;
 
+/// <inheritdoc />
 public class User : Entity, IUser
 {
     /// <inheritdoc />
@@ -63,7 +64,7 @@ public class User : Entity, IUser
     public string? Locale { get; set; }
 
     /// <inheritdoc />
-    public ulong Flags { get; set; }
+    public UserFlags Flags { get; set; }
 
     /// <inheritdoc />
     public int? PremiumType { get; set; }

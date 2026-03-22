@@ -1,5 +1,13 @@
 ﻿#undef NOPE
 using Fluxer.Net.Gateway.Data;
+using Fluxer.Net.Gateway.Data.Auth;
+using Fluxer.Net.Gateway.Data.Channels;
+using Fluxer.Net.Gateway.Data.Guilds;
+using Fluxer.Net.Gateway.Data.Invites;
+using Fluxer.Net.Gateway.Data.Messages;
+using Fluxer.Net.Gateway.Data.Users;
+using Fluxer.Net.Gateway.Data.Voice;
+using Fluxer.Net.Gateway.Data.Webhooks;
 using Fluxer.Net.Gateway.Packets;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -38,6 +46,8 @@ public partial class GatewayClient : IDisposable
     private FluxerClient _client;
     private WebsocketClient _webSocket;
     private readonly Stopwatch _gatewayDuration = new();
+
+    public HashSet<ulong> Guilds { get; internal set; } = new HashSet<ulong>();
 
     /// <summary>
     /// Current sequence number for gateway events. Used for resuming connections without data loss.
@@ -186,7 +196,7 @@ public partial class GatewayClient : IDisposable
             var login = new GatewayPacket
             {
                 OpCode = FluxerOpCode.Identify,
-                Data = new IdentifyGatewayData(_client.RawToken)
+                Data = JToken.FromObject(new IdentifyGatewayData(_client.RawToken)
                 {
                     Properties = new Dictionary<string, string>
                     {
@@ -196,7 +206,7 @@ public partial class GatewayClient : IDisposable
                     },
                     IgnoredGatewayEvents = _client.Config.IgnoredGatewayEvents,
                     Presence = _client.Config.Presence
-                }
+                })
             };
 
             SendGatewayPacket(login);
@@ -344,7 +354,7 @@ public partial class GatewayClient : IDisposable
             }
 
             _sequence = packet.Sequence ?? _sequence;
-            _logger.Debug("Deserialized gateway packet {@Packet}", packet);
+            //_logger.Debug("Deserialized gateway packet {@Packet}", packet);
             switch (packet.OpCode)
             {
                 case FluxerOpCode.Dispatch:
@@ -437,407 +447,600 @@ public partial class GatewayClient : IDisposable
         switch (p.Dispatch)
         {
             case "READY":
-                if (p.Data is ReadyGatewayData readyData)
                 {
-                    _sessionId = readyData.SessionId;
-                    _isConnecting = false; // Connection successfully established
-                    _reconnectAttemptCount = 0; // Reset backoff counter
-                    _logger.Information("Connection established successfully with session ID: {SessionId}", _sessionId);
-                    Ready?.Invoke(readyData);
-                }
-                else
-                {
-                    _logger.Warning("READY event received but data could not be cast to ReadyGatewayData");
+                    ReadyGatewayData? data = p.Data.ToObject<ReadyGatewayData>(FluxerClient._serializer);
+                    if (data != null)
+                    {
+                        Guilds = data.Guilds.Select(x => x.Id).ToHashSet();
+                        _sessionId = data.SessionId;
+                        _isConnecting = false; // Connection successfully established
+                        _reconnectAttemptCount = 0; // Reset backoff counter
+                        _logger.Information("Connection established successfully with session ID: {SessionId}", _sessionId);
+                        Ready?.Invoke(data);
+                    }
+                    else
+                    {
+                        _logger.Warning("READY event received but data could not be cast to ReadyGatewayData");
+                    }
                 }
                 return;
             case "RESUMED":
-                _isConnecting = false; // Connection successfully resumed
-                _reconnectAttemptCount = 0; // Reset backoff counter
-                _logger.Information("Session resumed successfully");
-                Resumed?.Invoke();
+                {
+                    _isConnecting = false; // Connection successfully resumed
+                    _reconnectAttemptCount = 0; // Reset backoff counter
+                    _logger.Information("Session resumed successfully");
+                    Resumed?.Invoke();
+                }
                 return;
             case "SESSIONS_REPLACE":
-                if (p.Data is SessionsReplaceGatewayData sessionsReplaceData)
-                    SessionsReplace?.Invoke(sessionsReplaceData);
-                else
-                    _logger.Warning("SESSIONS_REPLACE event received but data could not be cast to SessionsReplaceGatewayData");
+                {
+                    GatewaySessionJson[]? data = p.Data.ToObject<GatewaySessionJson[]>(FluxerClient._serializer);
+                    if (data != null)
+                        SessionsReplace?.Invoke(data[0], data[1]);
+                    else
+                        _logger.Warning("SESSIONS_REPLACE event received but data could not be cast to SessionsReplaceGatewayData");
+                }
+                return;
+            case "PASSIVE_UPDATES":
+                {
+                    PassiveGatewayData? data = p.Data.ToObject<PassiveGatewayData>(FluxerClient._serializer);
+
+                }
                 return;
 
-            // User settings events
+            //User settings events
             case "USER_SETTINGS_UPDATE":
-                if (p.Data is UserSettingsUpdateGatewayData userSettingsData)
-                    UserSettingsUpdate?.Invoke(userSettingsData);
-                else
-                    _logger.Warning("USER_SETTINGS_UPDATE event received but data could not be cast to UserSettingsUpdateGatewayData");
+                {
+                    UserSettingsUpdateGatewayData? data = p.Data.ToObject<UserSettingsUpdateGatewayData>(FluxerClient._serializer);
+                    if (data != null)
+                        UserSettingsUpdate?.Invoke(data);
+                    else
+                        _logger.Warning("USER_SETTINGS_UPDATE event received but data could not be cast to UserSettingsUpdateGatewayData");
+                }
                 return;
             case "USER_GUILD_SETTINGS_UPDATE":
-                if (p.Data is UserGuildSettingsUpdateGatewayData userGuildSettingsData)
-                    UserGuildSettingsUpdate?.Invoke(userGuildSettingsData);
-                else
-                    _logger.Warning("USER_GUILD_SETTINGS_UPDATE event received but data could not be cast to UserGuildSettingsUpdateGatewayData");
+                {
+                    UserGuildSettingsUpdateGatewayData? data = p.Data.ToObject<UserGuildSettingsUpdateGatewayData>(FluxerClient._serializer);
+                    if (data != null)
+                        UserGuildSettingsUpdate?.Invoke(data);
+                    else
+                        _logger.Warning("USER_GUILD_SETTINGS_UPDATE event received but data could not be cast to UserGuildSettingsUpdateGatewayData");
+                }
                 return;
             case "USER_PINNED_DMS_UPDATE":
-                if (p.Data is UserPinnedDmsUpdateGatewayData pinnedDmsData)
-                    UserPinnedDmsUpdate?.Invoke(pinnedDmsData);
-                else
-                    _logger.Warning("USER_PINNED_DMS_UPDATE event received but data could not be cast to UserPinnedDmsUpdateGatewayData");
+                {
+                    UserPinnedDmsUpdateGatewayData? data = p.Data.ToObject<UserPinnedDmsUpdateGatewayData>(FluxerClient._serializer);
+                    if (data != null)
+                        UserPinnedDmsUpdate?.Invoke(data);
+                    else
+                        _logger.Warning("USER_PINNED_DMS_UPDATE event received but data could not be cast to UserPinnedDmsUpdateGatewayData");
+                }
                 return;
             case "USER_NOTE_UPDATE":
-                if (p.Data is UserNoteUpdateGatewayData userNoteData)
-                    UserNoteUpdate?.Invoke(userNoteData);
-                else
-                    _logger.Warning("USER_NOTE_UPDATE event received but data could not be cast to UserNoteUpdateGatewayData");
+                {
+                    UserNoteUpdateGatewayData? data = p.Data.ToObject<UserNoteUpdateGatewayData>(FluxerClient._serializer);
+                    if (data != null)
+                        UserNoteUpdate?.Invoke(data);
+                    else
+                        _logger.Warning("USER_NOTE_UPDATE event received but data could not be cast to UserNoteUpdateGatewayData");
+                }
                 return;
             case "AUTH_SESSION_CHANGE":
-                if (p.Data is AuthSessionChangeGatewayData authSessionData)
-                    AuthSessionChange?.Invoke(authSessionData);
-                else
-                    _logger.Warning("AUTH_SESSION_CHANGE event received but data could not be cast to AuthSessionChangeGatewayData");
+                {
+                    AuthSessionChangeGatewayData? data = p.Data.ToObject<AuthSessionChangeGatewayData>(FluxerClient._serializer);
+                    if (data != null)
+                        AuthSessionChange?.Invoke(data);
+                    else
+                        _logger.Warning("AUTH_SESSION_CHANGE event received but data could not be cast to AuthSessionChangeGatewayData");
+                }
                 return;
 
-            // Message events
+            //Message events
             case "MESSAGE_CREATE":
-                if (p.Data is MessageGatewayData messageCreateData)
-                    MessageCreate?.Invoke(messageCreateData);
-                else
-                    _logger.Warning("MESSAGE_CREATE event received but data could not be cast to MessageGatewayData");
+                {
+                    MessageGatewayData? data = p.Data.ToObject<MessageGatewayData>(FluxerClient._serializer);
+                    if (data != null)
+                        MessageCreate?.Invoke(data);
+                    else
+                        _logger.Warning("MESSAGE_CREATE event received but data could not be cast to MessageGatewayData");
+                }
                 return;
             case "MESSAGE_UPDATE":
-                if (p.Data is MessageGatewayData messageUpdateData)
-                    MessageUpdate?.Invoke(messageUpdateData);
-                else
-                    _logger.Warning("MESSAGE_UPDATE event received but data could not be cast to MessageGatewayData");
+                {
+                    MessageGatewayData? data = p.Data.ToObject<MessageGatewayData>(FluxerClient._serializer);
+                    if (data != null)
+                        MessageUpdate?.Invoke(data);
+                    else
+                        _logger.Warning("MESSAGE_UPDATE event received but data could not be cast to MessageGatewayData");
+                }
                 return;
             case "MESSAGE_DELETE":
-                if (p.Data is EntityRemovedGatewayData messageDeleteData)
-                    MessageDelete?.Invoke(messageDeleteData);
-                else
-                    _logger.Warning("MESSAGE_DELETE event received but data could not be cast to EntityRemovedGatewayData");
+                {
+                    EntityRemovedGatewayData? data = p.Data.ToObject<EntityRemovedGatewayData>(FluxerClient._serializer);
+                    if (data != null)
+                        MessageDelete?.Invoke(data);
+                    else
+                        _logger.Warning("MESSAGE_DELETE event received but data could not be cast to EntityRemovedGatewayData");
+                }
                 return;
             case "CHANNEL_CREATE":
-                if (p.Data is ChannelGatewayData channelCreateData)
-                    ChannelCreate?.Invoke(channelCreateData);
-                else
-                    _logger.Warning("CHANNEL_CREATE event received but data could not be cast to ChannelGatewayData");
+                {
+                    ChannelGatewayData? data = p.Data.ToObject<ChannelGatewayData>(FluxerClient._serializer);
+                    if (data != null)
+                        ChannelCreate?.Invoke(data);
+                    else
+                        _logger.Warning("CHANNEL_CREATE event received but data could not be cast to ChannelGatewayData");
+                }
                 return;
             case "CHANNEL_UPDATE":
-                if (p.Data is ChannelGatewayData channelUpdateData)
-                    ChannelUpdate?.Invoke(channelUpdateData);
-                else
-                    _logger.Warning("CHANNEL_UPDATE event received but data could not be cast to ChannelGatewayData");
+                {
+                    ChannelGatewayData? data = p.Data.ToObject<ChannelGatewayData>(FluxerClient._serializer);
+                    if (data != null)
+                        ChannelUpdate?.Invoke(data);
+                    else
+                        _logger.Warning("CHANNEL_UPDATE event received but data could not be cast to ChannelGatewayData");
+                }
                 return;
             case "CHANNEL_DELETE":
-                if (p.Data is ChannelGatewayData channelDeleteData)
-                    ChannelDelete?.Invoke(channelDeleteData);
-                else
-                    _logger.Warning("CHANNEL_DELETE event received but data could not be cast to ChannelGatewayData");
+                {
+                    ChannelGatewayData? data = p.Data.ToObject<ChannelGatewayData>(FluxerClient._serializer);
+                    if (data != null)
+                        ChannelDelete?.Invoke(data);
+                    else
+                        _logger.Warning("CHANNEL_DELETE event received but data could not be cast to ChannelGatewayData");
+                }
                 return;
             case "USER_UPDATE":
-                if (p.Data is UserGatewayData userUpdateData)
-                    UserUpdate?.Invoke(userUpdateData);
-                else
-                    _logger.Warning("USER_UPDATE event received but data could not be cast to UserGatewayData");
+                {
+                    UserGatewayData? data = p.Data.ToObject<UserGatewayData>(FluxerClient._serializer);
+                    if (data != null)
+                        UserUpdate?.Invoke(data);
+                    else
+                        _logger.Warning("USER_UPDATE event received but data could not be cast to UserGatewayData");
+                }
                 return;
             case "PRESENCE_UPDATE":
-                if (p.Data is PresenceGatewayData presenceData)
-                    PresenceUpdate?.Invoke(presenceData);
-                else
-                    _logger.Warning("PRESENCE_UPDATE event received but data could not be cast to PresenceGatewayData");
+                {
+                    PresenceGatewayData? data = p.Data.ToObject<PresenceGatewayData>(FluxerClient._serializer);
+                    if (data != null)
+                        PresenceUpdate?.Invoke(data);
+                    else
+                        _logger.Warning("PRESENCE_UPDATE event received but data could not be cast to PresenceGatewayData");
+                }
                 return;
             case "TYPING_START":
-                if (p.Data is TypingGatewayData typingStartData)
-                    TypingStart?.Invoke(typingStartData);
-                else
-                    _logger.Warning("TYPING_START event received but data could not be cast to TypingGatewayData");
+                {
+                    TypingGatewayData? data = p.Data.ToObject<TypingGatewayData>(FluxerClient._serializer);
+                    if (data != null)
+                        TypingStart?.Invoke(data);
+                    else
+                        _logger.Warning("TYPING_START event received but data could not be cast to TypingGatewayData");
+                }
                 return;
             case "TYPING_STOP":
-                if (p.Data is TypingGatewayData typingStopData)
-                    TypingStop?.Invoke(typingStopData);
-                else
-                    _logger.Warning("TYPING_STOP event received but data could not be cast to TypingGatewayData");
+                {
+                    TypingGatewayData? data = p.Data.ToObject<TypingGatewayData>(FluxerClient._serializer);
+                    if (data != null)
+                        TypingStop?.Invoke(data);
+                    else
+                        _logger.Warning("TYPING_STOP event received but data could not be cast to TypingGatewayData");
+                }
                 return;
 
-            // Message reactions
+            //Message reactions
             case "MESSAGE_REACTION_ADD":
-                if (p.Data is MessageReactionGatewayData reactionAddData)
-                    MessageReactionAdd?.Invoke(reactionAddData);
-                else
-                    _logger.Warning("MESSAGE_REACTION_ADD event received but data could not be cast to MessageReactionGatewayData");
+                {
+                    MessageReactionGatewayData? data = p.Data.ToObject<MessageReactionGatewayData>(FluxerClient._serializer);
+                    if (data != null)
+                        MessageReactionAdd?.Invoke(data);
+                    else
+                        _logger.Warning("MESSAGE_REACTION_ADD event received but data could not be cast to MessageReactionGatewayData");
+                }
                 return;
             case "MESSAGE_REACTION_REMOVE":
-                if (p.Data is MessageReactionGatewayData reactionRemoveData)
-                    MessageReactionRemove?.Invoke(reactionRemoveData);
-                else
-                    _logger.Warning("MESSAGE_REACTION_REMOVE event received but data could not be cast to MessageReactionGatewayData");
+                {
+                    MessageReactionGatewayData? data = p.Data.ToObject<MessageReactionGatewayData>(FluxerClient._serializer);
+                    if (data != null)
+                        MessageReactionRemove?.Invoke(data);
+                    else
+                        _logger.Warning("MESSAGE_REACTION_REMOVE event received but data could not be cast to MessageReactionGatewayData");
+                }
                 return;
             case "MESSAGE_REACTION_REMOVE_ALL":
-                if (p.Data is EntityRemovedGatewayData reactionRemoveAllData)
-                    MessageReactionRemoveAll?.Invoke(reactionRemoveAllData);
-                else
-                    _logger.Warning("MESSAGE_REACTION_REMOVE_ALL event received but data could not be cast to EntityRemovedGatewayData");
+                {
+                    EntityRemovedGatewayData? data = p.Data.ToObject<EntityRemovedGatewayData>(FluxerClient._serializer);
+                    if (data != null)
+                        MessageReactionRemoveAll?.Invoke(data);
+                    else
+                        _logger.Warning("MESSAGE_REACTION_REMOVE_ALL event received but data could not be cast to EntityRemovedGatewayData");
+                }
                 return;
             case "MESSAGE_REACTION_REMOVE_EMOJI":
-                if (p.Data is MessageReactionRemoveEmojiGatewayData reactionRemoveEmojiData)
-                    MessageReactionRemoveEmoji?.Invoke(reactionRemoveEmojiData);
-                else
-                    _logger.Warning("MESSAGE_REACTION_REMOVE_EMOJI event received but data could not be cast to MessageReactionRemoveEmojiGatewayData");
+                {
+                    MessageReactionRemoveEmojiGatewayData? data = p.Data.ToObject<MessageReactionRemoveEmojiGatewayData>(FluxerClient._serializer);
+                    if (data != null)
+                        MessageReactionRemoveEmoji?.Invoke(data);
+                    else
+                        _logger.Warning("MESSAGE_REACTION_REMOVE_EMOJI event received but data could not be cast to MessageReactionRemoveEmojiGatewayData");
+                }
                 return;
 
-            // Saved messages
+            //Saved messages
             case "SAVED_MESSAGE_CREATE":
-                if (p.Data is SavedMessageGatewayData savedMessageCreateData)
-                    SavedMessageCreate?.Invoke(savedMessageCreateData);
-                else
-                    _logger.Warning("SAVED_MESSAGE_CREATE event received but data could not be cast to SavedMessageGatewayData");
+                {
+                    SavedMessageGatewayData? data = p.Data.ToObject<SavedMessageGatewayData>(FluxerClient._serializer);
+                    if (data != null)
+                        SavedMessageCreate?.Invoke(data);
+                    else
+                        _logger.Warning("SAVED_MESSAGE_CREATE event received but data could not be cast to SavedMessageGatewayData");
+                }
                 return;
             case "SAVED_MESSAGE_DELETE":
-                if (p.Data is SavedMessageGatewayData savedMessageDeleteData)
-                    SavedMessageDelete?.Invoke(savedMessageDeleteData);
-                else
-                    _logger.Warning("SAVED_MESSAGE_DELETE event received but data could not be cast to SavedMessageGatewayData");
+                {
+                    SavedMessageGatewayData? data = p.Data.ToObject<SavedMessageGatewayData>(FluxerClient._serializer);
+                    if (data != null)
+                        SavedMessageDelete?.Invoke(data);
+                    else
+                        _logger.Warning("SAVED_MESSAGE_DELETE event received but data could not be cast to SavedMessageGatewayData");
+                }
                 return;
             case "RECENT_MENTION_DELETE":
-                if (p.Data is RecentMentionDeleteGatewayData recentMentionData)
-                    RecentMentionDelete?.Invoke(recentMentionData);
-                else
-                    _logger.Warning("RECENT_MENTION_DELETE event received but data could not be cast to RecentMentionDeleteGatewayData");
+                {
+                    RecentMentionDeleteGatewayData? data = p.Data.ToObject<RecentMentionDeleteGatewayData>(FluxerClient._serializer);
+                    if (data != null)
+                        RecentMentionDelete?.Invoke(data);
+                    else
+                        _logger.Warning("RECENT_MENTION_DELETE event received but data could not be cast to RecentMentionDeleteGatewayData");
+                }
                 return;
 
-            // Message bulk operations
+            //Message bulk operations
             case "MESSAGE_DELETE_BULK":
-                if (p.Data is MessageBulkDeleteGatewayData bulkDeleteData)
-                    MessageDeleteBulk?.Invoke(bulkDeleteData);
-                else
-                    _logger.Warning("MESSAGE_DELETE_BULK event received but data could not be cast to MessageBulkDeleteGatewayData");
+                {
+                    MessageBulkDeleteGatewayData? data = p.Data.ToObject<MessageBulkDeleteGatewayData>(FluxerClient._serializer);
+                    if (data != null)
+                        MessageDeleteBulk?.Invoke(data);
+                    else
+                        _logger.Warning("MESSAGE_DELETE_BULK event received but data could not be cast to MessageBulkDeleteGatewayData");
+                }
                 return;
             case "MESSAGE_ACK":
-                if (p.Data is MessageAckGatewayData ackData)
-                    MessageAck?.Invoke(ackData);
-                else
-                    _logger.Warning("MESSAGE_ACK event received but data could not be cast to MessageAckGatewayData");
+                {
+                    MessageAckGatewayData? data = p.Data.ToObject<MessageAckGatewayData>(FluxerClient._serializer);
+                    if (data != null)
+                        MessageAck?.Invoke(data);
+                    else
+                        _logger.Warning("MESSAGE_ACK event received but data could not be cast to MessageAckGatewayData");
+                }
                 return;
 
-            // Channel updates
+            //Channel updates
             case "CHANNEL_UPDATE_BULK":
-                if (p.Data is ChannelUpdateBulkGatewayData channelBulkUpdateData)
-                    ChannelUpdateBulk?.Invoke(channelBulkUpdateData);
-                else
-                    _logger.Warning("CHANNEL_UPDATE_BULK event received but data could not be cast to ChannelUpdateBulkGatewayData");
+                {
+                    ChannelUpdateBulkGatewayData? data = p.Data.ToObject<ChannelUpdateBulkGatewayData>(FluxerClient._serializer);
+                    if (data != null)
+                        ChannelUpdateBulk?.Invoke(data);
+                    else
+                        _logger.Warning("CHANNEL_UPDATE_BULK event received but data could not be cast to ChannelUpdateBulkGatewayData");
+                }
                 return;
             case "CHANNEL_RECIPIENT_ADD":
-                if (p.Data is ChannelRecipientGatewayData recipientAddData)
-                    ChannelRecipientAdd?.Invoke(recipientAddData);
-                else
-                    _logger.Warning("CHANNEL_RECIPIENT_ADD event received but data could not be cast to ChannelRecipientGatewayData");
+                {
+                    ChannelRecipientGatewayData? data = p.Data.ToObject<ChannelRecipientGatewayData>(FluxerClient._serializer);
+                    if (data != null)
+                        ChannelRecipientAdd?.Invoke(data);
+                    else
+                        _logger.Warning("CHANNEL_RECIPIENT_ADD event received but data could not be cast to ChannelRecipientGatewayData");
+                }
                 return;
             case "CHANNEL_RECIPIENT_REMOVE":
-                if (p.Data is ChannelRecipientGatewayData recipientRemoveData)
-                    ChannelRecipientRemove?.Invoke(recipientRemoveData);
-                else
-                    _logger.Warning("CHANNEL_RECIPIENT_REMOVE event received but data could not be cast to ChannelRecipientGatewayData");
+                {
+                    ChannelRecipientGatewayData? data = p.Data.ToObject<ChannelRecipientGatewayData>(FluxerClient._serializer);
+                    if (data != null)
+                        ChannelRecipientRemove?.Invoke(data);
+                    else
+                        _logger.Warning("CHANNEL_RECIPIENT_REMOVE event received but data could not be cast to ChannelRecipientGatewayData");
+                }
                 return;
             case "CHANNEL_PINS_UPDATE":
-                if (p.Data is ChannelPinsUpdateGatewayData pinsUpdateData)
-                    ChannelPinsUpdate?.Invoke(pinsUpdateData);
-                else
-                    _logger.Warning("CHANNEL_PINS_UPDATE event received but data could not be cast to ChannelPinsUpdateGatewayData");
+                {
+                    ChannelPinsUpdateGatewayData? data = p.Data.ToObject<ChannelPinsUpdateGatewayData>(FluxerClient._serializer);
+                    if (data != null)
+                        ChannelPinsUpdate?.Invoke(data);
+                    else
+                        _logger.Warning("CHANNEL_PINS_UPDATE event received but data could not be cast to ChannelPinsUpdateGatewayData");
+                }
                 return;
             case "CHANNEL_PINS_ACK":
-                if (p.Data is ChannelPinsAckGatewayData pinsAckData)
-                    ChannelPinsAck?.Invoke(pinsAckData);
-                else
-                    _logger.Warning("CHANNEL_PINS_ACK event received but data could not be cast to ChannelPinsAckGatewayData");
+                {
+                    ChannelPinsAckGatewayData? data = p.Data.ToObject<ChannelPinsAckGatewayData>(FluxerClient._serializer);
+                    if (data != null)
+                        ChannelPinsAck?.Invoke(data);
+                    else
+                        _logger.Warning("CHANNEL_PINS_ACK event received but data could not be cast to ChannelPinsAckGatewayData");
+                }
                 return;
 
-            // Voice events
+            //Voice events
             case "VOICE_STATE_UPDATE":
-                if (p.Data is VoiceStateGatewayData voiceStateData)
-                    VoiceStateUpdate?.Invoke(voiceStateData);
-                else
-                    _logger.Warning("VOICE_STATE_UPDATE event received but data could not be cast to VoiceStateGatewayData");
+                {
+                    VoiceStateGatewayData? data = p.Data.ToObject<VoiceStateGatewayData>(FluxerClient._serializer);
+                    if (data != null)
+                        VoiceStateUpdate?.Invoke(data);
+                    else
+                        _logger.Warning("VOICE_STATE_UPDATE event received but data could not be cast to VoiceStateGatewayData");
+                }
                 return;
             case "VOICE_SERVER_UPDATE":
-                if (p.Data is VoiceServerUpdateGatewayData voiceServerData)
-                    VoiceServerUpdate?.Invoke(voiceServerData);
-                else
-                    _logger.Warning("VOICE_SERVER_UPDATE event received but data could not be cast to VoiceServerUpdateGatewayData");
+                {
+                    VoiceServerUpdateGatewayData? data = p.Data.ToObject<VoiceServerUpdateGatewayData>(FluxerClient._serializer);
+                    if (data != null)
+                        VoiceServerUpdate?.Invoke(data);
+                    else
+                        _logger.Warning("VOICE_SERVER_UPDATE event received but data could not be cast to VoiceServerUpdateGatewayData");
+                }
                 return;
 
-            // Guildban events
+            //Guildban events
             case "GUILD_BAN_ADD":
-                if (p.Data is GuildBanGatewayData banAddData)
-                    GuildBanAdd?.Invoke(banAddData);
-                else
-                    _logger.Warning("GUILD_BAN_ADD event received but data could not be cast to GuildBanGatewayData");
+                {
+                    GuildBanGatewayData? data = p.Data.ToObject<GuildBanGatewayData>(FluxerClient._serializer);
+                    if (data != null)
+                        GuildBanAdd?.Invoke(data);
+                    else
+                        _logger.Warning("GUILD_BAN_ADD event received but data could not be cast to GuildBanGatewayData");
+                }
                 return;
             case "GUILD_BAN_REMOVE":
-                if (p.Data is GuildBanGatewayData banRemoveData)
-                    GuildBanRemove?.Invoke(banRemoveData);
-                else
-                    _logger.Warning("GUILD_BAN_REMOVE event received but data could not be cast to GuildBanGatewayData");
-                return;
-
-            // Webhooks
-            case "WEBHOOKS_UPDATE":
-                if (p.Data is WebhooksUpdateGatewayData webhooksData)
-                    WebhooksUpdate?.Invoke(webhooksData);
-                else
-                    _logger.Warning("WEBHOOKS_UPDATE event received but data could not be cast to WebhooksUpdateGatewayData");
-                return;
-
-            // Guild events
-            case "GUILD_CREATE":
-                if (p.Data is GuildGatewayData guildCreateData)
-                    GuildCreate?.Invoke(guildCreateData);
-                else if (p.Data is GuildDeleteGatewayData unavailableGuildData)
                 {
-                    // GUILD_CREATE with unavailable:true means the guild exists but is temporarily unavailable (outage).
-                    // Synthesize a minimal GuildGatewayData so consumers receive the event consistently.
-                    _logger.Debug("GUILD_CREATE received for unavailable guild {GuildId}, synthesizing GuildGatewayData", unavailableGuildData.Id);
-                    GuildCreate?.Invoke(new GuildGatewayData { Id = unavailableGuildData.Id, Unavailable = true });
+                    GuildBanGatewayData? data = p.Data.ToObject<GuildBanGatewayData>(FluxerClient._serializer);
+                    if (data != null)
+                        GuildBanRemove?.Invoke(data);
+                    else
+                        _logger.Warning("GUILD_BAN_REMOVE event received but data could not be cast to GuildBanGatewayData");
                 }
-                else
-                    _logger.Warning("GUILD_CREATE event received but data could not be cast to GuildGatewayData");
+                return;
+
+            //Webhooks
+            case "WEBHOOKS_UPDATE":
+                {
+                    WebhooksUpdateGatewayData? data = p.Data.ToObject<WebhooksUpdateGatewayData>(FluxerClient._serializer);
+                    if (data != null)
+                        WebhooksUpdate?.Invoke(data);
+                    else
+                        _logger.Warning("WEBHOOKS_UPDATE event received but data could not be cast to WebhooksUpdateGatewayData");
+                }
+                return;
+
+            //Guild events
+            case "GUILD_CREATE":
+                {
+                    GuildGatewayData? data = p.Data.ToObject<GuildGatewayData>(FluxerClient._serializer);
+                    if (data != null)
+                    {
+                        Guilds.Add(data.Id);
+                        GuildCreate?.Invoke(data);
+                    }
+                    else
+                        _logger.Warning("GUILD_CREATE event received but data could not be cast to GuildGatewayData");
+                }
                 return;
             case "GUILD_UPDATE":
-                if (p.Data is GuildGatewayData guildUpdateData)
-                    GuildUpdate?.Invoke(guildUpdateData);
-                else
-                    _logger.Warning("GUILD_UPDATE event received but data could not be cast to GuildGatewayData");
+                {
+                    GuildGatewayData? data = p.Data.ToObject<GuildGatewayData>(FluxerClient._serializer);
+                    if (data != null)
+                        GuildUpdate?.Invoke(data);
+                    else
+                        _logger.Warning("GUILD_UPDATE event received but data could not be cast to GuildGatewayData");
+                }
                 return;
             case "GUILD_DELETE":
-                if (p.Data is GuildDeleteGatewayData guildDeleteData)
-                    GuildDelete?.Invoke(guildDeleteData);
-                else
-                    _logger.Warning("GUILD_DELETE event received but data could not be cast to GuildDeleteGatewayData");
+                {
+                    GuildDeleteGatewayData? data = p.Data.ToObject<GuildDeleteGatewayData>(FluxerClient._serializer);
+                    if (data != null)
+                    {
+                        if (data.Unavailable.GetValueOrDefault())
+                        {
+                            Guilds.Add(data.Id);
+                            GuildCreate?.Invoke(new GuildGatewayData { Id = data.Id, Unavailable = true });
+                        }
+                        else
+                        {
+                            Guilds.Remove(data.Id);
+                            GuildDelete?.Invoke(data);
+                        }
+                    }
+                    else
+                        _logger.Warning("GUILD_DELETE event received but data could not be cast to GuildDeleteGatewayData");
+                }
                 return;
             case "GUILD_MEMBER_ADD":
-                if (p.Data is GuildMemberGatewayData guildMemberAddData)
-                    GuildMemberAdd?.Invoke(guildMemberAddData);
-                else
-                    _logger.Warning("GUILD_MEMBER_ADD event received but data could not be cast to GuildMemberGatewayData");
+                {
+                    GuildMemberGatewayData? data = p.Data.ToObject<GuildMemberGatewayData>(FluxerClient._serializer);
+                    if (data != null)
+                        GuildMemberAdd?.Invoke(data);
+                    else
+                        _logger.Warning("GUILD_MEMBER_ADD event received but data could not be cast to GuildMemberGatewayData");
+                }
                 return;
             case "GUILD_MEMBER_UPDATE":
-                if (p.Data is GuildMemberGatewayData guildMemberUpdateData)
-                    GuildMemberUpdate?.Invoke(guildMemberUpdateData);
-                else
-                    _logger.Warning("GUILD_MEMBER_UPDATE event received but data could not be cast to GuildMemberGatewayData");
+                {
+                    GuildMemberGatewayData? data = p.Data.ToObject<GuildMemberGatewayData>(FluxerClient._serializer);
+                    if (data != null)
+                        GuildMemberUpdate?.Invoke(data);
+                    else
+                        _logger.Warning("GUILD_MEMBER_UPDATE event received but data could not be cast to GuildMemberGatewayData");
+                }
                 return;
             case "GUILD_MEMBER_REMOVE":
-                if (p.Data is EntityRemovedGatewayData guildMemberRemoveData)
-                    GuildMemberRemove?.Invoke(guildMemberRemoveData);
-                else
-                    _logger.Warning("GUILD_MEMBER_REMOVE event received but data could not be cast to EntityRemovedGatewayData");
+                {
+                    EntityRemovedGatewayData? data = p.Data.ToObject<EntityRemovedGatewayData>(FluxerClient._serializer);
+                    if (data != null)
+                        GuildMemberRemove?.Invoke(data);
+                    else
+                        _logger.Warning("GUILD_MEMBER_REMOVE event received but data could not be cast to EntityRemovedGatewayData");
+                }
                 return;
             case "GUILD_ROLE_CREATE":
-                if (p.Data is GuildRoleGatewayData guildRoleCreateData)
-                    GuildRoleCreate?.Invoke(guildRoleCreateData);
-                else
-                    _logger.Warning("GUILD_ROLE_CREATE event received but data could not be cast to GuildRoleGatewayData");
+                {
+                    GuildRoleGatewayData? data = p.Data.ToObject<GuildRoleGatewayData>(FluxerClient._serializer);
+                    if (data != null)
+                        GuildRoleCreate?.Invoke(data);
+                    else
+                        _logger.Warning("GUILD_ROLE_CREATE event received but data could not be cast to GuildRoleGatewayData");
+                }
                 return;
             case "GUILD_ROLE_UPDATE":
-                if (p.Data is GuildRoleGatewayData guildRoleUpdateData)
-                    GuildRoleUpdate?.Invoke(guildRoleUpdateData);
-                else
-                    _logger.Warning("GUILD_ROLE_UPDATE event received but data could not be cast to GuildRoleGatewayData");
+                {
+                    GuildRoleGatewayData? data = p.Data.ToObject<GuildRoleGatewayData>(FluxerClient._serializer);
+                    if (data != null)
+                        GuildRoleUpdate?.Invoke(data);
+                    else
+                        _logger.Warning("GUILD_ROLE_UPDATE event received but data could not be cast to GuildRoleGatewayData");
+                }
                 return;
             case "GUILD_ROLE_DELETE":
-                if (p.Data is GuildRoleDeleteGatewayData guildRoleDeleteData)
-                    GuildRoleDelete?.Invoke(guildRoleDeleteData);
-                else
-                    _logger.Warning("GUILD_ROLE_DELETE event received but data could not be cast to GuildRoleDeleteGatewayData");
+                {
+                    GuildRoleDeleteGatewayData? data = p.Data.ToObject<GuildRoleDeleteGatewayData>(FluxerClient._serializer);
+                    if (data != null)
+                        GuildRoleDelete?.Invoke(data);
+                    else
+                        _logger.Warning("GUILD_ROLE_DELETE event received but data could not be cast to GuildRoleDeleteGatewayData");
+                }
                 return;
             case "GUILD_ROLE_UPDATE_BULK":
-                if (p.Data is GuildRoleUpdateBulkGatewayData guildRoleBulkData)
-                    GuildRoleUpdateBulk?.Invoke(guildRoleBulkData);
-                else
-                    _logger.Warning("GUILD_ROLE_UPDATE_BULK event received but data could not be cast to GuildRoleUpdateBulkGatewayData");
+                {
+                    GuildRoleUpdateBulkGatewayData? data = p.Data.ToObject<GuildRoleUpdateBulkGatewayData>(FluxerClient._serializer);
+                    if (data != null)
+                        GuildRoleUpdateBulk?.Invoke(data);
+                    else
+                        _logger.Warning("GUILD_ROLE_UPDATE_BULK event received but data could not be cast to GuildRoleUpdateBulkGatewayData");
+                }
                 return;
             case "GUILD_EMOJIS_UPDATE":
-                if (p.Data is GuildEmojisUpdateGatewayData guildEmojisUpdateData)
-                    GuildEmojisUpdate?.Invoke(guildEmojisUpdateData);
-                else
-                    _logger.Warning("GUILD_EMOJIS_UPDATE event received but data could not be cast to GuildEmojisUpdateGatewayData");
+                {
+                    GuildEmojisUpdateGatewayData? data = p.Data.ToObject<GuildEmojisUpdateGatewayData>(FluxerClient._serializer);
+                    if (data != null)
+                        GuildEmojisUpdate?.Invoke(data);
+                    else
+                        _logger.Warning("GUILD_EMOJIS_UPDATE event received but data could not be cast to GuildEmojisUpdateGatewayData");
+                }
                 return;
             case "GUILD_STICKERS_UPDATE":
-                if (p.Data is GuildStickersUpdateGatewayData guildStickersUpdateData)
-                    GuildStickersUpdate?.Invoke(guildStickersUpdateData);
-                else
-                    _logger.Warning("GUILD_STICKERS_UPDATE event received but data could not be cast to GuildStickersUpdateGatewayData");
+                {
+                    GuildStickersUpdateGatewayData? data = p.Data.ToObject<GuildStickersUpdateGatewayData>(FluxerClient._serializer);
+                    if (data != null)
+                        GuildStickersUpdate?.Invoke(data);
+                    else
+                        _logger.Warning("GUILD_STICKERS_UPDATE event received but data could not be cast to GuildStickersUpdateGatewayData");
+                }
                 return;
 
-            // Relationship events
+            //Relationship events
             case "RELATIONSHIP_ADD":
-                if (p.Data is RelationshipGatewayData relationshipAddData)
-                    RelationshipAdd?.Invoke(relationshipAddData);
-                else
-                    _logger.Warning("RELATIONSHIP_ADD event received but data could not be cast to RelationshipGatewayData");
+                {
+                    RelationshipGatewayData? data = p.Data.ToObject<RelationshipGatewayData>(FluxerClient._serializer);
+                    if (data != null)
+                        RelationshipAdd?.Invoke(data);
+                    else
+                        _logger.Warning("RELATIONSHIP_ADD event received but data could not be cast to RelationshipGatewayData");
+                }
                 return;
             case "RELATIONSHIP_UPDATE":
-                if (p.Data is RelationshipGatewayData relationshipUpdateData)
-                    RelationshipUpdate?.Invoke(relationshipUpdateData);
-                else
-                    _logger.Warning("RELATIONSHIP_UPDATE event received but data could not be cast to RelationshipGatewayData");
+                {
+                    RelationshipGatewayData? data = p.Data.ToObject<RelationshipGatewayData>(FluxerClient._serializer);
+                    if (data != null)
+                        RelationshipUpdate?.Invoke(data);
+                    else
+                        _logger.Warning("RELATIONSHIP_UPDATE event received but data could not be cast to RelationshipGatewayData");
+                }
                 return;
             case "RELATIONSHIP_REMOVE":
-                if (p.Data is RelationshipGatewayData relationshipRemoveData)
-                    RelationshipRemove?.Invoke(relationshipRemoveData);
-                else
-                    _logger.Warning("RELATIONSHIP_REMOVE event received but data could not be cast to RelationshipGatewayData");
+                {
+                    RelationshipGatewayData? data = p.Data.ToObject<RelationshipGatewayData>(FluxerClient._serializer);
+                    if (data != null)
+                        RelationshipRemove?.Invoke(data);
+                    else
+                        _logger.Warning("RELATIONSHIP_REMOVE event received but data could not be cast to RelationshipGatewayData");
+                }
                 return;
 
-            // Favorite meme events
+            //Favorite meme events
             case "FAVORITE_MEME_CREATE":
-                if (p.Data is FavoriteMemeGatewayData favoriteMemeCreateData)
-                    FavoriteMemeCreate?.Invoke(favoriteMemeCreateData);
-                else
-                    _logger.Warning("FAVORITE_MEME_CREATE event received but data could not be cast to FavoriteMemeGatewayData");
+                {
+                    FavoriteMemeGatewayData? data = p.Data.ToObject<FavoriteMemeGatewayData>(FluxerClient._serializer);
+                    if (data != null)
+                        FavoriteMemeCreate?.Invoke(data);
+                    else
+                        _logger.Warning("FAVORITE_MEME_CREATE event received but data could not be cast to FavoriteMemeGatewayData");
+                }
                 return;
             case "FAVORITE_MEME_UPDATE":
-                if (p.Data is FavoriteMemeGatewayData favoriteMemeUpdateData)
-                    FavoriteMemeUpdate?.Invoke(favoriteMemeUpdateData);
-                else
-                    _logger.Warning("FAVORITE_MEME_UPDATE event received but data could not be cast to FavoriteMemeGatewayData");
+                {
+                    FavoriteMemeGatewayData? data = p.Data.ToObject<FavoriteMemeGatewayData>(FluxerClient._serializer);
+                    if (data != null)
+                        FavoriteMemeUpdate?.Invoke(data);
+                    else
+                        _logger.Warning("FAVORITE_MEME_UPDATE event received but data could not be cast to FavoriteMemeGatewayData");
+                }
                 return;
             case "FAVORITE_MEME_DELETE":
-                if (p.Data is FavoriteMemeGatewayData favoriteMemeDeleteData)
-                    FavoriteMemeDelete?.Invoke(favoriteMemeDeleteData);
-                else
-                    _logger.Warning("FAVORITE_MEME_DELETE event received but data could not be cast to FavoriteMemeGatewayData");
+                {
+                    FavoriteMemeDeleteGatewayData? data = p.Data.ToObject<FavoriteMemeDeleteGatewayData>(FluxerClient._serializer);
+                    if (data != null)
+                        FavoriteMemeDelete?.Invoke(data);
+                    else
+                        _logger.Warning("FAVORITE_MEME_DELETE event received but data could not be cast to FavoriteMemeGatewayData");
+                }
                 return;
 
-            // Call events
+            //Call events
             case "CALL_CREATE":
-                if (p.Data is CallGatewayData callCreateData)
-                    CallCreate?.Invoke(callCreateData);
-                else
-                    _logger.Warning("CALL_CREATE event received but data could not be cast to CallGatewayData");
+                {
+                    CallGatewayData? data = p.Data.ToObject<CallGatewayData>(FluxerClient._serializer);
+                    if (data != null)
+                        CallCreate?.Invoke(data);
+                    else
+                        _logger.Warning("CALL_CREATE event received but data could not be cast to CallGatewayData");
+                }
                 return;
             case "CALL_UPDATE":
-                if (p.Data is CallGatewayData callUpdateData)
-                    CallUpdate?.Invoke(callUpdateData);
-                else
-                    _logger.Warning("CALL_UPDATE event received but data could not be cast to CallGatewayData");
+                {
+                    CallGatewayData? data = p.Data.ToObject<CallGatewayData>(FluxerClient._serializer);
+                    if (data != null)
+                        CallUpdate?.Invoke(data);
+                    else
+                        _logger.Warning("CALL_UPDATE event received but data could not be cast to CallGatewayData");
+                }
                 return;
             case "CALL_DELETE":
-                if (p.Data is CallGatewayData callDeleteData)
-                    CallDelete?.Invoke(callDeleteData);
-                else
-                    _logger.Warning("CALL_DELETE event received but data could not be cast to CallGatewayData");
+                {
+                    CallGatewayData? data = p.Data.ToObject<CallGatewayData>(FluxerClient._serializer);
+                    if (data != null)
+                        CallDelete?.Invoke(data);
+                    else
+                        _logger.Warning("CALL_DELETE event received but data could not be cast to CallGatewayData");
+                }
                 return;
 
-            // Invite events
+            //Invite events
             case "INVITE_CREATE":
-                if (p.Data is InviteGatewayData inviteCreateData)
-                    InviteCreate?.Invoke(inviteCreateData);
-                else
-                    _logger.Warning("INVITE_CREATE event received but data could not be cast to InviteGatewayData");
+                {
+                    InviteGatewayData? data = p.Data.ToObject<InviteGatewayData>(FluxerClient._serializer);
+                    if (data != null)
+                        InviteCreate?.Invoke(data);
+                    else
+                        _logger.Warning("INVITE_CREATE event received but data could not be cast to InviteGatewayData");
+                }
                 return;
             case "INVITE_DELETE":
-                if (p.Data is InviteGatewayData inviteDeleteData)
-                    InviteDelete?.Invoke(inviteDeleteData);
-                else
-                    _logger.Warning("INVITE_DELETE event received but data could not be cast to InviteGatewayData");
+                {
+                    InviteGatewayData? data = p.Data.ToObject<InviteGatewayData>(FluxerClient._serializer);
+                    if (data != null)
+                        InviteDelete?.Invoke(data);
+                    else
+                        _logger.Warning("INVITE_DELETE event received but data could not be cast to InviteGatewayData");
+                }
                 return;
 
             default:
@@ -848,7 +1051,8 @@ public partial class GatewayClient : IDisposable
 
     private void HandleHello(GatewayPacket packet)
     {
-        if (packet.Data is not HelloGatewayData data)
+        HelloGatewayData? data = packet.Data.ToObject<HelloGatewayData>(FluxerClient._serializer);
+        if (data == null)
         {
             _logger.Warning("HELLO event received but data could not be cast to HelloGatewayData");
             return;
@@ -887,7 +1091,7 @@ public partial class GatewayClient : IDisposable
                 var identifyPacket = new GatewayPacket
                 {
                     OpCode = FluxerOpCode.Identify,
-                    Data = new IdentifyGatewayData(_client.RawToken)
+                    Data = JToken.FromObject(new IdentifyGatewayData(_client.RawToken)
                     {
                         Properties = new Dictionary<string, string>
                         {
@@ -897,7 +1101,7 @@ public partial class GatewayClient : IDisposable
                         },
                         IgnoredGatewayEvents = _client.Config.IgnoredGatewayEvents,
                         Presence = _client.Config.Presence
-                    }
+                    })
                 };
                 SendGatewayPacket(identifyPacket);
                 return;
@@ -921,12 +1125,12 @@ public partial class GatewayClient : IDisposable
             var packet = new GatewayPacket()
             {
                 OpCode = FluxerOpCode.Resume,
-                Data = new ReconnectGatewayData()
+                Data = JToken.FromObject(new ReconnectGatewayData()
                 {
                     Sequence = _sequence,
                     SessionId = _sessionId,
                     Token = _client.RawToken
-                }
+                })
             };
             SendGatewayPacket(packet);
         }
@@ -1148,7 +1352,7 @@ public partial class GatewayClient : IDisposable
     {
         var packet = new GatewayPacket()
         {
-            Data = new PresenceUpdateGatewayData(status),
+            Data = JToken.FromObject(new PresenceUpdateGatewayData(status)),
             OpCode = FluxerOpCode.PresenceUpdate
         };
         SendGatewayPacket(packet);
@@ -1197,7 +1401,7 @@ public partial class GatewayClient : IDisposable
     /// Delegate for SESSIONS_REPLACE event when auth sessions are replaced.
     /// </summary>
     /// <param name="data">The sessions replace data.</param>
-    public delegate void SessionsReplaceEvent(SessionsReplaceGatewayData data);
+    public delegate void SessionsReplaceEvent(GatewaySessionJson oldData, GatewaySessionJson newData);
 
     /// <summary>
     /// Occurs when auth sessions are replaced.
@@ -1846,7 +2050,7 @@ public partial class GatewayClient : IDisposable
     /// Delegate for FAVORITE_MEME_DELETE events when a favorite meme is deleted.
     /// </summary>
     /// <param name="data">The favorite meme data.</param>
-    public delegate void FavoriteMemeDeleteEvent(FavoriteMemeGatewayData data);
+    public delegate void FavoriteMemeDeleteEvent(FavoriteMemeDeleteGatewayData data);
 
     /// <summary>
     /// Occurs when a favorite meme is deleted.

@@ -15,7 +15,7 @@ public interface IChannel
     /// <summary>
     /// The type of the channel.
     /// </summary>
-    int Type { get; }
+    ChannelType Type { get; }
 
     /// <summary>
     /// The name of the channel.

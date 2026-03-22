@@ -28,7 +28,7 @@ public class Guild : PartialGuild, IGuild
     public ulong? SystemChannelId { get; internal set; }
 
     /// <inheritdoc />
-    public int SystemChannelFlags { get; internal set; }
+    public SystemChannelFlags SystemChannelFlags { get; internal set; }
 
     /// <inheritdoc />
     public ulong? RulesChannelId { get; internal set; }

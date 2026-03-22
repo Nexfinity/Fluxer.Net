@@ -2,7 +2,7 @@ using Newtonsoft.Json;
 
 namespace Fluxer.Net.Gateway.Data;
 
-public class ReadyGatewayData : IGatewayData
+public class ReadyGatewayData
 {
     [JsonProperty("members")]
     public GuildMemberJson[] Members { get; set; }

@@ -23,5 +23,5 @@ public class InviteUserJson
     public int AvatarColor { get; set; }
 
     [JsonProperty("flags")]
-    public ulong Flags { get; set; }
+    public UserFlags Flags { get; set; }
 }

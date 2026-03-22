@@ -1,4 +1,4 @@
-using Fluxer.Net.Gateway.Data;
+using Fluxer.Net.Gateway.Data.Messages;
 
 namespace Fluxer.Net.Commands;
 

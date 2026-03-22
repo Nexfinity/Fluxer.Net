@@ -1,0 +1,18 @@
+using Newtonsoft.Json;
+
+namespace Fluxer.Net.Gateway.Data.Messages;
+
+public class MessageReactionRemoveEmojiGatewayData
+{
+    [JsonProperty("channel_id")]
+    public ulong ChannelId { get; set; }
+
+    [JsonProperty("message_id")]
+    public ulong MessageId { get; set; }
+
+    [JsonProperty("guild_id")]
+    public ulong? GuildId { get; set; }
+
+    [JsonProperty("emoji")]
+    public ReactionEmoji Emoji { get; set; }
+}

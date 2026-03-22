@@ -1,5 +1,8 @@
 ﻿namespace Fluxer.Net;
 
+/// <summary>
+/// Authenticated session for a device with client, os and IP data.
+/// </summary>
 public interface IAuthSession
 {
     /// <summary>

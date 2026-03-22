@@ -64,6 +64,11 @@ public class FluxerClient : BaseClient
 
     public new ApiClient Rest => base.Rest;
 
+    internal static JsonSerializer _serializer = new JsonSerializer
+    {
+        NullValueHandling = NullValueHandling.Ignore,
+    };
+
     // Used by both api and gateway
     internal static JsonSerializerSettings _serializerSettings = new JsonSerializerSettings()
     {

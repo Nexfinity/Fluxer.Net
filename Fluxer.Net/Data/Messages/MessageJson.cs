@@ -1,4 +1,4 @@
-﻿using Fluxer.Net.Gateway.Data;
+﻿using Fluxer.Net.Gateway.Data.Messages;
 using Newtonsoft.Json;
 
 namespace Fluxer.Net;
@@ -33,7 +33,7 @@ public class MessageJson : IMessage
 
     /// <inheritdoc />
     [JsonProperty("flags")]
-    public MessageFlags Flags { get; set; }
+    public MessageFlag Flags { get; set; }
 
     /// <inheritdoc />
     [JsonRequired]

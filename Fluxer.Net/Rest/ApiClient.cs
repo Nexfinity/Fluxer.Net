@@ -1,5 +1,5 @@
 using Fluxer.Net.Extensions;
-using Fluxer.Net.Gateway.Data;
+using Fluxer.Net.Gateway.Data.Messages;
 using Fluxer.Net.OAuth;
 using Fluxer.Net.RateLimiting;
 using Fluxer.Net.Rest.Requests;
@@ -500,7 +500,7 @@ public class ApiClient
     public async Task UnpinMessageAsync(ulong channelId, ulong messageId)
         => await MakeFluxerApiRequestRawAsync(HttpMethod.Delete, $"/channels/{channelId}/pins/{messageId}", true);
 
-    public async Task<IEnumerable<UserPartialResponse>> GetReactionsAsync(ulong channelId, ulong messageId, string emoji)
+    public async Task<IEnumerable<UserPartialResponse>> GetReactionsForEmojiAsync(ulong channelId, ulong messageId, string emoji)
         => await MakeFluxerApiRequestAsync<IEnumerable<UserPartialResponse>>(HttpMethod.Get, $"/channels/{channelId}/messages/{messageId}/reactions/{emoji}", true);
 
     public async Task AddReactionAsync(ulong channelId, ulong messageId, string emoji)

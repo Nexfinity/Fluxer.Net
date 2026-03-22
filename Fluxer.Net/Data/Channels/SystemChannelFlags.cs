@@ -4,15 +4,15 @@ namespace Fluxer.Net;
 /// Flags that control which system messages are sent to the guild's system channel. Multiple flags can be combined using bitwise OR.
 /// </summary>
 [Flags]
-public enum SystemChannelFlags
+public enum SystemChannelFlags : ulong
 {
-	/// <summary>
-	/// No flags set (all system messages enabled).
-	/// </summary>
-	None = 0,
+    /// <summary>
+    /// No flags set (all system messages enabled).
+    /// </summary>
+    None = 0,
 
-	/// <summary>
-	/// Suppress member join notifications in the system channel.
-	/// </summary>
-	SuppressJoinNotifications = 1 << 0,
+    /// <summary>
+    /// Suppress member join notifications in the system channel.
+    /// </summary>
+    SuppressJoinNotifications = 1UL << 1,
 }
