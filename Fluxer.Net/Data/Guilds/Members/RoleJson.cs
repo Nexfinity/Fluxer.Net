@@ -2,39 +2,40 @@ using Newtonsoft.Json;
 
 namespace Fluxer.Net;
 
+/// <inheritdoc />
 public class RoleJson : IRole
 {
-    [JsonProperty("guild_id")]
-    public ulong GuildId { get; set; }
-
+    /// <inheritdoc />
     [JsonProperty("id")]
     public ulong Id { get; set; }
 
+    /// <inheritdoc />
     [JsonProperty("name")]
     public string Name { get; set; }
 
-    /// <summary>
-    /// The role's permission bitfield. Sent as a quoted string by the gateway (e.g. "8933636165184").
-    /// </summary>
+
+    /// <inheritdoc />
     [JsonProperty("permissions")]
     [JsonConverter(typeof(Extensions.StringUInt64Converter))]
     public ulong Permissions { get; set; }
 
+    /// <inheritdoc />
     [JsonProperty("position")]
     public int Position { get; set; }
 
+    /// <inheritdoc />
     [JsonProperty("color")]
     public int Color { get; set; }
 
-    [JsonProperty("icon")]
-    public string? IconHash { get; set; }
-
+    /// <inheritdoc />
     [JsonProperty("unicode_emoji")]
     public string? UnicodeEmoji { get; set; }
 
+    /// <inheritdoc />
     [JsonProperty("hoist")]
     public bool IsHoisted { get; set; }
 
+    /// <inheritdoc />
     [JsonProperty("mentionable")]
     public bool IsMentionable { get; set; }
 }

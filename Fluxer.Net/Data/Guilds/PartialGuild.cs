@@ -28,7 +28,9 @@ public class PartialGuild : Entity, IPartialGuild
 
     public GuildSplashCardAlignment SplashCardAligment { get; internal set; }
 
-    public HashSet<string>? Features { get; internal set; }
+    public GuildFeatures Features { get; internal set; }
+
+    string[]? IPartialGuild.Features => Features.Raw;
 
     internal PartialGuild(BaseClient client) : base(client)
     {
@@ -57,6 +59,6 @@ public class PartialGuild : Entity, IPartialGuild
         SplashWidth = json.SplashWidth;
         SplashHeight = json.SplashHeight;
         SplashCardAligment = json.SplashCardAligment;
-        Features = json.Features;
+        Features = GuildFeatures.FromGuild(json);
     }
 }

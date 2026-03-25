@@ -15,23 +15,23 @@ public class GuildJson : PartialGuildJson, IGuild
 
     /// <inheritdoc />
     [JsonProperty("verification_level")]
-    public int VerificationLevel { get; set; }
+    public GuildVerificationLevel VerificationLevel { get; set; }
 
     /// <inheritdoc />
     [JsonProperty("mfa_level")]
-    public int MfaLevel { get; set; }
+    public GuildMfaLevel MfaLevel { get; set; }
 
     /// <inheritdoc />
     [JsonProperty("nsfw_level")]
-    public int NsfwLevel { get; set; }
+    public GuildNsfwLevel NsfwLevel { get; set; }
 
     /// <inheritdoc />
     [JsonProperty("explicit_content_filter")]
-    public int ExplicitContentFilter { get; set; }
+    public GuildContentFilter ExplicitContentFilter { get; set; }
 
     /// <inheritdoc />
     [JsonProperty("default_message_notifications")]
-    public int DefaultMessageNotifications { get; set; }
+    public GuildDefaultNotifications DefaultMessageNotifications { get; set; }
 
     /// <inheritdoc />
     [JsonProperty("system_channel_id")]
@@ -55,7 +55,7 @@ public class GuildJson : PartialGuildJson, IGuild
 
     /// <inheritdoc />
     [JsonProperty("disabled_operations")]
-    public int DisabledOperations { get; set; }
+    public ulong DisabledOperations { get; set; }
 
     /// <inheritdoc />
     [JsonProperty("max_presences")]
@@ -64,10 +64,6 @@ public class GuildJson : PartialGuildJson, IGuild
     /// <inheritdoc />
     [JsonProperty("member_count")]
     public int MemberCount { get; set; }
-
-    /// <inheritdoc />
-    [JsonProperty("audit_logs_indexed_at")]
-    public DateTime? AuditLogsIndexedAt { get; set; }
 
     /// <inheritdoc />
     [JsonProperty("message_history_cutoff")]

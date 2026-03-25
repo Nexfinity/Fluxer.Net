@@ -1678,30 +1678,88 @@
             Proxied URL to the category preview image.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.GuildEmojiWithUserJson.User">
-            <summary>
-            User that created the emoji
-            </summary>
+        <member name="T:Fluxer.Net.GuildEmoji">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildEmoji.GuildId">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildEmoji.Id">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildEmoji.Name">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildEmoji.IsAnimated">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildEmoji.Creator">
+            <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.GuildEmojiJson">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildEmojiJson.Id">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildEmojiJson.Name">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildEmojiJson.IsAnimated">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildEmojiJson.Creator">
+            <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.GuildSticker">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildSticker.GuildId">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildSticker.Id">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildSticker.Name">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildSticker.Description">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildSticker.Tags">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildSticker.IsAnimated">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildSticker.Creator">
+            <inheritdoc />
         </member>
         <member name="T:Fluxer.Net.GuildStickerBulkCreateJson">
             <remarks>
             <see href="https://github.com/fluxerapp/fluxer/blob/38146cc2babb504bfa9e71f61a60dd57ab2c1b67/packages/schema/src/domains/guild/GuildEmojiSchemas.tsx#L77C14-L77C44"/>
             </remarks>
         </member>
-        <member name="T:Fluxer.Net.GuildStickerResponse">
-            <remarks>
-            <see href="https://github.com/fluxerapp/fluxer/blob/38146cc2babb504bfa9e71f61a60dd57ab2c1b67/packages/schema/src/domains/guild/GuildEmojiSchemas.tsx#L41"/>
-            </remarks>
+        <member name="T:Fluxer.Net.GuildStickerJson">
+            <inheritdoc />
         </member>
-        <member name="T:Fluxer.Net.GuildStickerWithUserJson">
-            <remarks>
-            <see href="https://github.com/fluxerapp/fluxer/blob/38146cc2babb504bfa9e71f61a60dd57ab2c1b67/packages/schema/src/domains/guild/GuildEmojiSchemas.tsx#L60"/>
-            </remarks>
+        <member name="P:Fluxer.Net.GuildStickerJson.Id">
+            <inheritdoc />
         </member>
-        <member name="P:Fluxer.Net.GuildStickerWithUserJson.User">
-            <summary>
-            User that created this sticker
-            </summary>
+        <member name="P:Fluxer.Net.GuildStickerJson.Name">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildStickerJson.Description">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildStickerJson.Tags">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildStickerJson.IsAnimated">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildStickerJson.Creator">
+            <inheritdoc />
         </member>
         <member name="T:Fluxer.Net.Guild">
             <inheritdoc />
@@ -1749,9 +1807,6 @@
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.Guild.MemberCount">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.Guild.AuditLogsIndexedAt">
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.Guild.MessageHistoryCutoff">
@@ -1803,9 +1858,6 @@
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.GuildJson.MemberCount">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildJson.AuditLogsIndexedAt">
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.GuildJson.MessageHistoryCutoff">
@@ -1990,6 +2042,120 @@
         <member name="P:Fluxer.Net.GuildBanJson.User">
             <inheritdoc />
         </member>
+        <member name="T:Fluxer.Net.GuildMember">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildMember.GuildId">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildMember.User">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildMember.JoinedAt">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildMember.Nickname">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildMember.AvatarHash">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildMember.BannerHash">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildMember.Bio">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildMember.Pronouns">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildMember.AccentColor">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildMember.JoinSourceType">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildMember.SourceInviteCode">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildMember.InviterId">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildMember.IsDeaf">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildMember.IsMute">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildMember.CommunicationDisabledUntil">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildMember.RoleIds">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildMember.IsPremiumSanitized">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildMember.IsTemporary">
+            <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.GuildMemberJson">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildMemberJson.GuildId">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildMemberJson.User">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildMemberJson.JoinedAt">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildMemberJson.Nickname">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildMemberJson.AvatarHash">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildMemberJson.BannerHash">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildMemberJson.Bio">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildMemberJson.Pronouns">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildMemberJson.AccentColor">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildMemberJson.JoinSourceType">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildMemberJson.SourceInviteCode">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildMemberJson.InviterId">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildMemberJson.IsDeaf">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildMemberJson.IsMute">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildMemberJson.CommunicationDisabledUntil">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildMemberJson.RoleIds">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildMemberJson.IsPremiumSanitized">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildMemberJson.IsTemporary">
+            <inheritdoc />
+        </member>
         <member name="P:Fluxer.Net.IGuildBan.BannedAt">
             <summary>
             When the member was banned.
@@ -2010,10 +2176,152 @@
             Ban Reason (max 512 characters)
             </summary>
         </member>
-        <member name="P:Fluxer.Net.RoleJson.Permissions">
+        <member name="P:Fluxer.Net.IGuildMember.GuildId">
+            <summary>
+            Guild id that the user is in.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IGuildMember.JoinedAt">
+            <summary>
+            ISO8601 timestamp of when the user joined the guild.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IGuildMember.Nickname">
+            <summary>
+            The nickname of the member in this guild.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IGuildMember.AvatarHash">
+            <summary>
+            The hash of the member guild-specific avatar.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IGuildMember.BannerHash">
+            <summary>
+            The hash of the member guild-specific banner.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IGuildMember.AccentColor">
+            <summary>
+            The accent colour of the member guild profile as an integer.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IGuildMember.IsDeaf">
+            <summary>
+            Whether the member is deafened in voice channels.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IGuildMember.IsMute">
+            <summary>
+            Whether the member is muted in voice channels.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IGuildMember.CommunicationDisabledUntil">
+            <summary>
+            ISO8601 timestamp until which the member is timed out.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IGuildMember.RoleIds">
+            <summary>
+            Array of role IDs the member has.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IRole.Id">
+            <summary>
+            The unique identifier for this role.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IRole.Name">
+            <summary>
+            The name of the role.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IRole.Permissions">
             <summary>
             The role's permission bitfield. Sent as a quoted string by the gateway (e.g. "8933636165184").
             </summary>
+        </member>
+        <member name="P:Fluxer.Net.IRole.Position">
+            <summary>
+            The position of the role in the role hierarchy.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IRole.Color">
+            <summary>
+            The colour of the role as an integer.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IRole.UnicodeEmoji">
+            <summary>
+            The unicode emoji for this role.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IRole.IsHoisted">
+            <summary>
+            Whether this role is displayed separately in the member list.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IRole.IsMentionable">
+            <summary>
+            Whether this role can be mentioned by anyone.
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.Role">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Role.GuildId">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Role.Id">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Role.Name">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Role.Permissions">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Role.Position">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Role.Color">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Role.UnicodeEmoji">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Role.IsHoisted">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Role.IsMentionable">
+            <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.RoleJson">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.RoleJson.Id">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.RoleJson.Name">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.RoleJson.Permissions">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.RoleJson.Position">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.RoleJson.Color">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.RoleJson.UnicodeEmoji">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.RoleJson.IsHoisted">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.RoleJson.IsMentionable">
+            <inheritdoc />
         </member>
         <member name="T:Fluxer.Net.RolePositionItemJson">
             <summary>
@@ -2344,6 +2652,26 @@
             Allows updating the RTC (voice) region for a channel.
             </summary>
         </member>
+        <member name="T:Fluxer.Net.GuildContentFilter">
+            <summary>
+            Represents the NSFW (Not Safe For Work) filter level for a user.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildContentFilter.Disabled">
+            <summary>
+            NSFW filtering is disabled.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildContentFilter.NonRoles">
+            <summary>
+            Filter NSFW content from members that don't have a role.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildContentFilter.Everyone">
+            <summary>
+            Filter NSFW content from all members.
+            </summary>
+        </member>
         <member name="T:Fluxer.Net.GuildExplicitContentFilterType">
             <summary>
             Represents the explicit content filter level for a guild.
@@ -2377,6 +2705,31 @@
         <member name="F:Fluxer.Net.GuildMfaLevel.Elevated">
             <summary>
             MFA required for moderator actions (elevated security).
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.GuildNsfwLevel">
+            <summary>
+            Represents the nsfw level required for members to participate in a guild.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildNsfwLevel.Default">
+            <summary>
+            Default verification level.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildNsfwLevel.Explicit">
+            <summary>
+            May contain some adults topics but not overly nsfw.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildNsfwLevel.Safe">
+            <summary>
+            Safe for all user.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildNsfwLevel.AgeRestricted">
+            <summary>
+            Users in certain countries will need to be age verified.
             </summary>
         </member>
         <member name="T:Fluxer.Net.GuildSplashCardAlignment">
@@ -2445,26 +2798,6 @@
         <member name="P:Fluxer.Net.IGuildVanityUrl.Uses">
             <summary>
             The number of times this vanity URL has been used.
-            </summary>
-        </member>
-        <member name="T:Fluxer.Net.NSFWFilterLevelType">
-            <summary>
-            Represents the NSFW (Not Safe For Work) filter level for a user.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.NSFWFilterLevelType.Disabled">
-            <summary>
-            NSFW filtering is disabled.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.NSFWFilterLevelType.NonFriends">
-            <summary>
-            Filter NSFW content from users who are not friends.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.NSFWFilterLevelType.FriendsAndNonFriends">
-            <summary>
-            Filter NSFW content from all users (friends and non-friends).
             </summary>
         </member>
         <member name="P:Fluxer.Net.IInvite.CreatedAt">

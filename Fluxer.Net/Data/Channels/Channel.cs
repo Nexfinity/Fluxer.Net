@@ -71,6 +71,8 @@ public class Channel : Entity, IChannel
 
     IEnumerable<IPermissionOverwrite>? IChannel.PermissionOverwrites => PermissionOverwrites;
 
+    public bool IsTextable { get; internal set; }
+
     internal Channel(BaseClient client) : base(client)
     {
 
@@ -78,7 +80,56 @@ public class Channel : Entity, IChannel
 
     public static Channel Create(BaseClient client, ChannelJson json)
     {
-        var data = new Channel(client);
+        Channel data = null;
+
+        switch (json.Type)
+        {
+            case ChannelType.GuildText:
+                {
+                    data.IsTextable = true;
+                    data = new TextChannel(client);
+                }
+                break;
+            case ChannelType.GuildVoice:
+                {
+                    data = new VoiceChannel(client);
+                }
+                break;
+            case ChannelType.Dm:
+                {
+                    data.IsTextable = true;
+                    data = new DMChannel(client);
+                }
+                break;
+            case ChannelType.DmPersonalNotes:
+                {
+                    data.IsTextable = true;
+                    data = new SavedMessagesChannel(client);
+                }
+                break;
+            case ChannelType.GroupDm:
+                {
+                    data.IsTextable = true;
+                    data = new GroupChannel(client);
+                }
+                break;
+            case ChannelType.GuildCategory:
+                {
+                    data = new CategoryChannel(client);
+                }
+                break;
+            case ChannelType.GuildLink:
+                {
+                    data = new LinkChannel(client);
+                }
+                break;
+            default:
+                {
+                    data.IsTextable = true;
+                    data = new Channel(client);
+                }
+                break;
+        }
         data.Update(client, json);
         return data;
     }

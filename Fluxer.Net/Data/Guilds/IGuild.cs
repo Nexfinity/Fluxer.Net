@@ -15,27 +15,27 @@ public interface IGuild
     /// <summary>
     /// Required verification level for members to participate.
     /// </summary>
-    int VerificationLevel { get; }
+    GuildVerificationLevel VerificationLevel { get; }
 
     /// <summary>
     /// Required MFA level for moderation actions.
     /// </summary>
-    int MfaLevel { get; }
+    GuildMfaLevel MfaLevel { get; }
 
     /// <summary>
     /// The NSFW level of the guild.
     /// </summary>
-    int NsfwLevel { get; }
+    GuildNsfwLevel NsfwLevel { get; }
 
     /// <summary>
     /// Level of content filtering for explicit media.
     /// </summary>
-    int ExplicitContentFilter { get; }
+    GuildContentFilter ExplicitContentFilter { get; }
 
     /// <summary>
     /// Default notification level for new members.
     /// </summary>
-    int DefaultMessageNotifications { get; }
+    GuildDefaultNotifications DefaultMessageNotifications { get; }
 
     /// <summary>
     /// The ID of the channel where system messages are sent.
@@ -65,13 +65,11 @@ public interface IGuild
     /// <summary>
     /// Bitmask of disabled guild operations.
     /// </summary>
-    int DisabledOperations { get; }
+    ulong DisabledOperations { get; }
 
     int? MaxPresences { get; }
 
     int MemberCount { get; }
-
-    DateTime? AuditLogsIndexedAt { get; }
 
     /// <summary>
     /// ISO8601 timestamp controlling how far back members without Read Message History can access messages. When null, no historical access is allowed.

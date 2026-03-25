@@ -2,8 +2,9 @@
 
 public class GuildFeatures
 {
-    private GuildFeatures(HashSet<string>? features)
+    private GuildFeatures(string[]? features)
     {
+        Raw = features ??= new string[0];
         if (features != null)
         {
             foreach (var feature in features)
@@ -81,6 +82,7 @@ public class GuildFeatures
         }
     }
 
+    public string[] Raw { get; }
     public bool HasAnimatedIcon { get; }
     public bool HasAnimatedBanner { get; }
     public bool HasBanner { get; }
@@ -104,7 +106,7 @@ public class GuildFeatures
     public bool HasLargeGuildOverride { get; }
     public bool IsLargeGuild { get; }
 
-    public static GuildFeatures FromGuild(GuildJson guild)
+    public static GuildFeatures FromGuild(PartialGuildJson guild)
     {
         return new GuildFeatures(guild.Features);
     }

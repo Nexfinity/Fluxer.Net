@@ -77,7 +77,7 @@ public interface IMessage
     /// <summary>
     /// The embeds attached to the message.
     /// </summary>
-    EmbedJson[]? Embeds { get; }
+    List<EmbedJson>? Embeds { get; }
 
     /// <summary>
     /// The files attached to the message.

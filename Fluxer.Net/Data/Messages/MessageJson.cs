@@ -70,7 +70,7 @@ public class MessageJson : IMessage
 
     /// <inheritdoc />
     [JsonProperty("embeds")]
-    public EmbedJson[]? Embeds { get; set; }
+    public List<EmbedJson>? Embeds { get; set; }
 
     /// <inheritdoc />
     [JsonProperty("attachments")]

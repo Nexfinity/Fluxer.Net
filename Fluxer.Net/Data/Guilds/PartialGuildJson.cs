@@ -59,5 +59,5 @@ public class PartialGuildJson : IPartialGuild
 
     /// <inheritdoc />
     [JsonProperty("features")]
-    public HashSet<string>? Features { get; set; }
+    public string[]? Features { get; set; }
 }
