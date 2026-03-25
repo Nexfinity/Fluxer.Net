@@ -5,7 +5,7 @@ namespace Fluxer.Net;
 public class GuildEmojiBulkCreateJson
 {
     [JsonProperty("success")]
-    public GuildEmojiResponse[] Success { get; set; } = Array.Empty<GuildEmojiResponse>();
+    public GuildEmojiJson[] Success { get; set; } = Array.Empty<GuildEmojiJson>();
 
     [JsonProperty("failed")]
     public GuildEmojiBulkCreateFailureItemJson[] Failed { get; set; } = Array.Empty<GuildEmojiBulkCreateFailureItemJson>();

@@ -8,7 +8,7 @@ namespace Fluxer.Net;
 public class GuildStickerBulkCreateJson
 {
     [JsonProperty("success")]
-    public GuildStickerResponse[] Success { get; set; }
+    public GuildStickerJson[] Success { get; set; }
 
     [JsonProperty("failed")]
     public GuildStickerBulkCreateFailureItemJson[] Failed { get; set; } = Array.Empty<GuildStickerBulkCreateFailureItemJson>();

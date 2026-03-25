@@ -40,7 +40,7 @@ public class FluxerOAuthClient : BaseClient
 
     public new ApiClient Rest => base.Rest;
 
-    public Task<UserJson> GetOAuthUser(string accessToken)
+    public Task<User> GetOAuthUser(string accessToken)
         => Rest.GetOAuthUserAsync(accessToken);
 
     public Task<OAuthTokenJson> GetOAuthTokenAsync(string accessToken)

@@ -10,19 +10,19 @@ public class Guild : PartialGuild, IGuild
     public string? VanityUrlCode { get; internal set; }
 
     /// <inheritdoc />
-    public int VerificationLevel { get; internal set; }
+    public GuildVerificationLevel VerificationLevel { get; internal set; }
 
     /// <inheritdoc />
-    public int MfaLevel { get; internal set; }
+    public GuildMfaLevel MfaLevel { get; internal set; }
 
     /// <inheritdoc />
-    public int NsfwLevel { get; internal set; }
+    public GuildNsfwLevel NsfwLevel { get; internal set; }
 
     /// <inheritdoc />
-    public int ExplicitContentFilter { get; internal set; }
+    public GuildContentFilter ExplicitContentFilter { get; internal set; }
 
     /// <inheritdoc />
-    public int DefaultMessageNotifications { get; internal set; }
+    public GuildDefaultNotifications DefaultMessageNotifications { get; internal set; }
 
     /// <inheritdoc />
     public ulong? SystemChannelId { get; internal set; }
@@ -40,16 +40,13 @@ public class Guild : PartialGuild, IGuild
     public int AfkTimeout { get; internal set; }
 
     /// <inheritdoc />
-    public int DisabledOperations { get; internal set; }
+    public ulong DisabledOperations { get; internal set; }
 
     /// <inheritdoc />
     public int? MaxPresences { get; internal set; }
 
     /// <inheritdoc />
     public int MemberCount { get; internal set; }
-
-    /// <inheritdoc />
-    public DateTime? AuditLogsIndexedAt { get; internal set; }
 
     /// <inheritdoc />
     public DateTime? MessageHistoryCutoff { get; internal set; }
@@ -84,7 +81,6 @@ public class Guild : PartialGuild, IGuild
         DisabledOperations = json.DisabledOperations;
         MaxPresences = json.MaxPresences;
         MemberCount = json.MemberCount;
-        AuditLogsIndexedAt = json.AuditLogsIndexedAt;
         MessageHistoryCutoff = json.MessageHistoryCutoff;
     }
 }

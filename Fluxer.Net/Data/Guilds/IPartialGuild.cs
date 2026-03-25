@@ -76,5 +76,5 @@ public interface IPartialGuild
     /// EXPRESSION_PURGE_ALLOWED, VANITY_URL, VERIFIED, VIP_VOICE, UNAVAILABLE_FOR_EVERYONE,
     /// UNAVAILABLE_FOR_EVERYONE_BUT_STAFF, VISIONARY, OPERATOR, LARGE_GUILD_OVERRIDE, VERY_LARGE_GUILD (other values allowed)
     /// </remarks>
-    HashSet<string>? Features { get; }
+    string[]? Features { get; }
 }

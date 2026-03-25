@@ -2,20 +2,22 @@ using Newtonsoft.Json;
 
 namespace Fluxer.Net;
 
-public class GuildEmojiJson
+/// <inheritdoc />
+public class GuildEmojiJson : IGuildEmoji
 {
-    [JsonProperty("guild_id")]
-    public ulong GuildId { get; set; }
-
+    /// <inheritdoc />
     [JsonProperty("id")]
     public ulong Id { get; set; }
 
+    /// <inheritdoc />
     [JsonProperty("name")]
     public string Name { get; set; }
 
-    [JsonProperty("creator_id")]
-    public ulong CreatorId { get; set; }
-
+    /// <inheritdoc />
     [JsonProperty("animated")]
     public bool IsAnimated { get; set; }
+
+    /// <inheritdoc />
+    [JsonProperty("user")]
+    public User? Creator { get; set; }
 }
