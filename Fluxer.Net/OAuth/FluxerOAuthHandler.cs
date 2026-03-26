@@ -12,8 +12,14 @@ using System.Text.Json;
 
 namespace Fluxer.Net.OAuth;
 
+/// <Summary>
+/// Asp.net oauth handler for Fluxer.
+/// </Summary>
 public partial class FluxerOAuthHandler : OAuthHandler<FluxerOAuthOptions>
 {
+    /// <Summary>
+    /// Create asp.net oauth handler for Fluxer.
+    /// </Summary>
     public FluxerOAuthHandler(
         IOptionsMonitor<FluxerOAuthOptions> options,
         ILoggerFactory logger,

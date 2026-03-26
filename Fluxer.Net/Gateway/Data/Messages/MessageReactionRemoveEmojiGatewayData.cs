@@ -14,5 +14,5 @@ public class MessageReactionRemoveEmojiGatewayData
     public ulong? GuildId { get; set; }
 
     [JsonProperty("emoji")]
-    public ReactionEmoji Emoji { get; set; }
+    public EmojiJson Emoji { get; set; }
 }

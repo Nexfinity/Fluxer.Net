@@ -856,7 +856,7 @@ public partial class GatewayClient : IDisposable
                 return;
             case "GUILD_MEMBER_ADD":
                 {
-                    GuildMemberGatewayData? data = p.Data.ToObject<GuildMemberGatewayData>(FluxerClient._serializer);
+                    Gateway.Data.Guilds.GuildMemberGatewayData? data = p.Data.ToObject<Gateway.Data.Guilds.GuildMemberGatewayData>(FluxerClient._serializer);
                     if (data != null)
                         GuildMemberAdd?.Invoke(data);
                     else
@@ -865,7 +865,7 @@ public partial class GatewayClient : IDisposable
                 return;
             case "GUILD_MEMBER_UPDATE":
                 {
-                    GuildMemberGatewayData? data = p.Data.ToObject<GuildMemberGatewayData>(FluxerClient._serializer);
+                    Gateway.Data.Guilds.GuildMemberGatewayData? data = p.Data.ToObject<Gateway.Data.Guilds.GuildMemberGatewayData>(FluxerClient._serializer);
                     if (data != null)
                         GuildMemberUpdate?.Invoke(data);
                     else
@@ -1880,7 +1880,7 @@ public partial class GatewayClient : IDisposable
     /// Delegate for GUILD_MEMBER_ADD events when a user joins a guild.
     /// </summary>
     /// <param name="data">The guild member data.</param>
-    public delegate void GuildMemberAddEvent(GuildMemberGatewayData data);
+    public delegate void GuildMemberAddEvent(Gateway.Data.Guilds.GuildMemberGatewayData data);
 
     /// <summary>
     /// Occurs when a new member joins a guild.
@@ -1891,7 +1891,7 @@ public partial class GatewayClient : IDisposable
     /// Delegate for GUILD_MEMBER_UPDATE events when a guild member is updated.
     /// </summary>
     /// <param name="data">The updated guild member data.</param>
-    public delegate void GuildMemberUpdateEvent(GuildMemberGatewayData data);
+    public delegate void GuildMemberUpdateEvent(Gateway.Data.Guilds.GuildMemberGatewayData data);
 
     /// <summary>
     /// Occurs when a guild member is updated (roles, nickname, avatar, etc.).

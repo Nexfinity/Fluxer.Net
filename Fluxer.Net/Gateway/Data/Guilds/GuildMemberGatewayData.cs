@@ -1,4 +1,3 @@
-using Fluxer.Net.Gateway.Data.Messages;
 using Newtonsoft.Json;
 
 namespace Fluxer.Net.Gateway.Data.Guilds;
@@ -9,7 +8,7 @@ namespace Fluxer.Net.Gateway.Data.Guilds;
 public class GuildMemberGatewayData
 {
     [JsonProperty("user")]
-    public UserPartialResponse User { get; set; } = null!;
+    public UserJson User { get; set; } = null!;
 
     [JsonProperty("nick")]
     public string? Nick { get; set; }

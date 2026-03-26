@@ -5,20 +5,20 @@ namespace Fluxer.Net.Commands.Attributes;
 /// </summary>
 public enum ContextType
 {
-	/// <summary>
-	/// Command can only be executed in a guild.
-	/// </summary>
-	Guild = 1,
+    /// <summary>
+    /// Command can only be executed in a guild.
+    /// </summary>
+    Guild = 1,
 
-	/// <summary>
-	/// Command can only be executed in a DM.
-	/// </summary>
-	DM = 2,
+    /// <summary>
+    /// Command can only be executed in a DM.
+    /// </summary>
+    DM = 2,
 
-	/// <summary>
-	/// Command can only be executed in a group DM.
-	/// </summary>
-	Group = 4
+    /// <summary>
+    /// Command can only be executed in a group DM.
+    /// </summary>
+    Group = 4
 }
 
 /// <summary>
@@ -27,45 +27,43 @@ public enum ContextType
 [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class, AllowMultiple = false, Inherited = true)]
 public class RequireContextAttribute : PreconditionAttribute
 {
-	/// <summary>
-	/// Gets the required contexts.
-	/// </summary>
-	public ContextType Contexts { get; }
+    /// <summary>
+    /// Gets the required contexts.
+    /// </summary>
+    public ContextType Contexts { get; }
 
-	/// <summary>
-	/// Creates a new context precondition.
-	/// </summary>
-	/// <param name="contexts">The allowed contexts.</param>
-	public RequireContextAttribute(ContextType contexts)
-	{
-		Contexts = contexts;
-	}
+    /// <summary>
+    /// Creates a new context precondition.
+    /// </summary>
+    /// <param name="contexts">The allowed contexts.</param>
+    public RequireContextAttribute(ContextType contexts)
+    {
+        Contexts = contexts;
+    }
 
-	/// <summary>
-	/// Checks if the command is being used in the correct context.
-	/// </summary>
-	public override Task<PreconditionResult> CheckPermissionsAsync(
-		CommandContext context,
-		CommandInfo command,
-		IServiceProvider? services)
-	{
-		bool isValid = false;
+    /// <summary>
+    /// Checks if the command is being used in the correct context.
+    /// </summary>
+    public override Task<PreconditionResult> CheckPermissionsAsync(
+        CommandContext context,
+        CommandInfo command,
+        IServiceProvider? services)
+    {
+        bool isValid = false;
 
-		if (Contexts.HasFlag(ContextType.Guild) && context.GuildId.HasValue)
-			isValid = true;
+        if (Contexts.HasFlag(ContextType.Guild) && context.GuildId.HasValue)
+            isValid = true;
 
-		if (Contexts.HasFlag(ContextType.DM) && !context.GuildId.HasValue)
-			isValid = true;
+        if (Contexts.HasFlag(ContextType.DM) && !context.GuildId.HasValue)
+            isValid = true;
 
-		// Note: Group DM detection would require additional context information
-		// For now, we treat it the same as DM (no guild ID)
-		if (Contexts.HasFlag(ContextType.Group) && !context.GuildId.HasValue)
-			isValid = true;
+        if (Contexts.HasFlag(ContextType.Group) && context.Message.ChannelType == ChannelType.GroupDm)
+            isValid = true;
 
-		if (isValid)
-			return Task.FromResult(PreconditionResult.FromSuccess());
+        if (isValid)
+            return Task.FromResult(PreconditionResult.FromSuccess());
 
-		return Task.FromResult(PreconditionResult.FromError(
-			$"This command can only be used in: {Contexts}"));
-	}
+        return Task.FromResult(PreconditionResult.FromError(
+            $"This command can only be used in: {Contexts}"));
+    }
 }

@@ -1,6 +1,4 @@
-﻿using Fluxer.Net.Gateway.Data.Messages;
-
-namespace Fluxer.Net;
+﻿namespace Fluxer.Net;
 
 public class GuildBan : Entity, IGuildBan
 {
@@ -17,7 +15,9 @@ public class GuildBan : Entity, IGuildBan
     public string? Reason { get; set; }
 
     /// <inheritdoc />
-    public UserPartialResponse User { get; set; }
+    public User User { get; set; }
+
+    IUser IGuildBan.User => User;
 
     internal GuildBan(FluxerBaseClient client) : base(client)
     {
@@ -37,6 +37,6 @@ public class GuildBan : Entity, IGuildBan
         ExpiresAt = json.ExpiresAt;
         ModeratorId = json.ModeratorId;
         Reason = json.Reason;
-        User = json.User;
+        User = User.Create(client, json.User);
     }
 }

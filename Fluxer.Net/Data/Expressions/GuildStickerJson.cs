@@ -3,16 +3,8 @@ using Newtonsoft.Json;
 namespace Fluxer.Net;
 
 /// <inheritdoc />
-public class GuildStickerJson : IGuildSticker
+public class GuildStickerJson : StickerJson
 {
-    /// <inheritdoc />
-    [JsonProperty("id")]
-    public ulong Id { get; set; }
-
-    /// <inheritdoc />
-    [JsonProperty("name")]
-    public string Name { get; set; }
-
     /// <inheritdoc />
     [JsonProperty("description")]
     public string? Description { get; set; }
@@ -20,10 +12,6 @@ public class GuildStickerJson : IGuildSticker
     /// <inheritdoc />
     [JsonProperty("tags")]
     public List<string>? Tags { get; set; }
-
-    /// <inheritdoc />
-    [JsonProperty("animated")]
-    public bool IsAnimated { get; set; }
 
     /// <inheritdoc />
     [JsonProperty("user")]

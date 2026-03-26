@@ -1,6 +1,4 @@
-﻿using Fluxer.Net.Gateway.Data.Messages;
-
-namespace Fluxer.Net;
+﻿namespace Fluxer.Net;
 
 public interface IMessage
 {
@@ -17,7 +15,7 @@ public interface IMessage
     /// <summary>
     /// Partial user that sent the message.
     /// </summary>
-    UserPartialResponse Author { get; }
+    IUser Author { get; }
 
     /// <summary>
     /// The ID of the webhook that sent this message.
@@ -67,7 +65,7 @@ public interface IMessage
     /// <summary>
     /// The users mentioned in the message.
     /// </summary>
-    UserPartialResponse[]? Mentions { get; }
+    IEnumerable<IUser>? Mentions { get; }
 
     /// <summary>
     /// The role IDs mentioned in the message.
@@ -77,7 +75,7 @@ public interface IMessage
     /// <summary>
     /// The embeds attached to the message.
     /// </summary>
-    List<EmbedJson>? Embeds { get; }
+    IEnumerable<EmbedJson>? Embeds { get; }
 
     /// <summary>
     /// The files attached to the message.
@@ -87,7 +85,7 @@ public interface IMessage
     /// <summary>
     /// The stickers sent with the message.
     /// </summary>
-    MessageStickerJson[]? Stickers { get; }
+    ISticker[]? Stickers { get; }
 
     /// <summary>
     /// The reactions on the message

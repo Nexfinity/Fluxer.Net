@@ -1,6 +1,4 @@
-﻿using Fluxer.Net.Gateway.Data.Messages;
-
-namespace Fluxer.Net;
+﻿namespace Fluxer.Net;
 
 /// <inheritdoc />
 public class Message : Entity, IMessage
@@ -12,7 +10,7 @@ public class Message : Entity, IMessage
     public ulong ChannelId { get; internal set; }
 
     /// <inheritdoc />
-    public UserPartialResponse Author { get; internal set; }
+    public User Author { get; internal set; }
 
     /// <inheritdoc />
     public ulong? WebhookId { get; internal set; }
@@ -42,19 +40,19 @@ public class Message : Entity, IMessage
     public bool Tts { get; internal set; }
 
     /// <inheritdoc />
-    public UserPartialResponse[]? Mentions { get; internal set; }
+    public IEnumerable<User>? Mentions { get; internal set; }
 
     /// <inheritdoc />
     public ulong[]? MentionRoles { get; internal set; }
 
     /// <inheritdoc />
-    public List<EmbedJson>? Embeds { get; internal set; }
+    public IEnumerable<EmbedJson>? Embeds { get; internal set; }
 
     /// <inheritdoc />
     public MessageAttachmentJson[]? Attachments { get; internal set; }
 
     /// <inheritdoc />
-    public MessageStickerJson[]? Stickers { get; internal set; }
+    public Sticker[]? Stickers { get; internal set; }
 
     /// <inheritdoc />
     public MessageReactionResponse[]? Reactions { get; internal set; }
@@ -70,6 +68,12 @@ public class Message : Entity, IMessage
 
     /// <inheritdoc />
     public MessageCallJson? Call { get; internal set; }
+
+    IUser IMessage.Author => Author;
+
+    IEnumerable<IUser>? IMessage.Mentions => Mentions;
+
+    ISticker[]? IMessage.Stickers => Stickers;
 
     internal Message(FluxerBaseClient client) : base(client)
     {
@@ -87,7 +91,7 @@ public class Message : Entity, IMessage
     {
         Id = json.Id;
         ChannelId = json.ChannelId;
-        Author = json.Author;
+        Author = User.Create(client, json.Author);
         WebhookId = json.WebhookId;
         Type = json.Type;
         Flags = json.Flags;
@@ -97,11 +101,14 @@ public class Message : Entity, IMessage
         Pinned = json.Pinned;
         MentionEveryone = json.MentionEveryone;
         Tts = json.Tts;
-        Mentions = json.Mentions;
+        if (json.Mentions != null)
+            Mentions = json.Mentions.Select(x => User.Create(client, x));
+
         MentionRoles = json.MentionRoles;
         Embeds = json.Embeds;
         Attachments = json.Attachments;
-        Stickers = json.Stickers;
+        if (json.Stickers != null)
+            Stickers = json.Stickers.Select(x => Sticker.Create(client, x)).ToArray();
         Reactions = json.Reactions;
         MessageReference = json.MessageReference;
         MessageSnapshots = json.MessageSnapshots;

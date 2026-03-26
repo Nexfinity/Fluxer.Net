@@ -27,7 +27,7 @@ public class MessageSnapshotResponse
     public MessageAttachmentJson[]? Attachments { get; set; }
 
     [JsonProperty("stickers")]
-    public MessageStickerJson[]? Stickers { get; set; }
+    public StickerJson[]? Stickers { get; set; }
 
     [JsonRequired]
     [JsonProperty("type")]

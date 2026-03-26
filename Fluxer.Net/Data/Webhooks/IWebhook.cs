@@ -10,6 +10,9 @@ public interface IWebhook
     /// <summary>
     /// The secure token used to execute the webhook.
     /// </summary>
+    /// <remarks>
+    /// Will be missing if you don't have access.
+    /// </remarks>
     string? Token { get; }
 
     /// <summary>
@@ -27,6 +30,9 @@ public interface IWebhook
     /// </summary>
     UserJson? Creator { get; }
 
+    /// <summary>
+    /// The display name of the webhook.
+    /// </summary>
     string Name { get; }
 
     /// <summary>

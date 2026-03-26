@@ -1,4 +1,3 @@
-using Fluxer.Net.Gateway.Data.Messages;
 using Newtonsoft.Json;
 
 namespace Fluxer.Net;
@@ -24,5 +23,7 @@ public class GuildBanJson : IGuildBan
 
     /// <inheritdoc />
     [JsonProperty("user")]
-    public UserPartialResponse User { get; set; }
+    public UserJson User { get; set; }
+
+    IUser IGuildBan.User => User;
 }

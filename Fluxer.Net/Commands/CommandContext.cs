@@ -35,21 +35,21 @@ public class CommandContext
     /// <summary>
     /// Gets the user who executed the command.
     /// </summary>
-    public UserPartialResponse User => Message.Author!;
+    public User User { get; internal set; }
 
     /// <summary>
     /// Gets the member who executed the command.
     /// </summary>
-    public GuildMemberPartialResponse? Member => Message.Member;
+    public GuildMemberGatewayData? Member => Message.Member;
 
     /// <summary>
     /// Creates a new command context.
     /// </summary>
     /// <param name="client">The API client.</param>
-    /// <param name="gateway">The gateway client.</param>
     /// <param name="message">The message that triggered the command.</param>
     public CommandContext(FluxerClient client, MessageGatewayData message)
     {
+        User = User.Create(client, message.Author);
         Rest = client.Rest;
         Gateway = client.Gateway;
         Message = message;

@@ -1,6 +1,4 @@
-﻿using Fluxer.Net.Gateway.Data.Messages;
-
-namespace Fluxer.Net;
+﻿namespace Fluxer.Net;
 
 public static class MessageHelpers
 {
@@ -25,7 +23,7 @@ public static class MessageHelpers
     public static Task AddReactionAsync(this Message message, string emoji)
         => message.Client.Rest.AddReactionAsync(message.ChannelId, message.Id, emoji);
 
-    public static Task<IEnumerable<UserPartialResponse>> GetReactionsForEmojiAsync(this Message message, string emoji)
+    public static Task<IEnumerable<User>> GetReactionsForEmojiAsync(this Message message, string emoji)
         => message.Client.Rest.GetReactionsForEmojiAsync(message.ChannelId, message.Id, emoji);
 
     public static Task RemoveAllReactionsAsync(this Message message)

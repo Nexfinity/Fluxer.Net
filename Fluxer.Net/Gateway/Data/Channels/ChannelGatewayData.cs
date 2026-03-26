@@ -1,4 +1,3 @@
-using Fluxer.Net.Gateway.Data.Messages;
 using Newtonsoft.Json;
 
 namespace Fluxer.Net.Gateway.Data.Channels;
@@ -57,7 +56,7 @@ public class ChannelGatewayData
     public List<ChannelOverwriteResponse>? PermissionOverwrites { get; set; }
 
     [JsonProperty("recipients")]
-    public List<UserPartialResponse>? Recipients { get; set; }
+    public List<UserJson>? Recipients { get; set; }
 
     [JsonProperty("nsfw")]
     public bool IsNsfw { get; set; }

@@ -4,9 +4,8 @@ namespace Fluxer.Net;
 
 public class MessageReactionResponse
 {
-    [JsonRequired]
     [JsonProperty("emoji")]
-    public ReactionEmojiJson Emoji { get; set; }
+    public EmojiJson Emoji { get; set; }
 
     [JsonRequired]
     [JsonProperty("count")]
