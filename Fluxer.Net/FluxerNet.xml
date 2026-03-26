@@ -101,27 +101,6 @@
             </summary>
             <param name="text">The remarks text.</param>
         </member>
-        <member name="T:Fluxer.Net.Commands.Attributes.RequireBotPermissionAttribute">
-            <summary>
-            Requires the bot to have specific permissions to execute the command.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.Commands.Attributes.RequireBotPermissionAttribute.Permissions">
-            <summary>
-            Gets the required permissions.
-            </summary>
-        </member>
-        <member name="M:Fluxer.Net.Commands.Attributes.RequireBotPermissionAttribute.#ctor(Fluxer.Net.Permissions)">
-            <summary>
-            Creates a new bot permission precondition.
-            </summary>
-            <param name="permissions">The permissions required.</param>
-        </member>
-        <member name="M:Fluxer.Net.Commands.Attributes.RequireBotPermissionAttribute.CheckPermissionsAsync(Fluxer.Net.Commands.CommandContext,Fluxer.Net.Commands.CommandInfo,System.IServiceProvider)">
-            <summary>
-            Checks if the bot has the required permissions.
-            </summary>
-        </member>
         <member name="T:Fluxer.Net.Commands.Attributes.ContextType">
             <summary>
             Specifies where a command can be executed.
@@ -171,27 +150,6 @@
         <member name="M:Fluxer.Net.Commands.Attributes.RequireOwnerAttribute.CheckPermissionsAsync(Fluxer.Net.Commands.CommandContext,Fluxer.Net.Commands.CommandInfo,System.IServiceProvider)">
             <summary>
             Checks if the user is the bot owner.
-            </summary>
-        </member>
-        <member name="T:Fluxer.Net.Commands.Attributes.RequireUserPermissionAttribute">
-            <summary>
-            Requires the user to have specific permissions to execute the command.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.Commands.Attributes.RequireUserPermissionAttribute.Permissions">
-            <summary>
-            Gets the required permissions.
-            </summary>
-        </member>
-        <member name="M:Fluxer.Net.Commands.Attributes.RequireUserPermissionAttribute.#ctor(Fluxer.Net.Permissions)">
-            <summary>
-            Creates a new user permission precondition.
-            </summary>
-            <param name="permissions">The permissions required.</param>
-        </member>
-        <member name="M:Fluxer.Net.Commands.Attributes.RequireUserPermissionAttribute.CheckPermissionsAsync(Fluxer.Net.Commands.CommandContext,Fluxer.Net.Commands.CommandInfo,System.IServiceProvider)">
-            <summary>
-            Checks if the user has the required permissions.
             </summary>
         </member>
         <member name="T:Fluxer.Net.Commands.Attributes.SummaryAttribute">
@@ -255,7 +213,6 @@
             Creates a new command context.
             </summary>
             <param name="client">The API client.</param>
-            <param name="gateway">The gateway client.</param>
             <param name="message">The message that triggered the command.</param>
         </member>
         <member name="T:Fluxer.Net.Commands.CommandError">
@@ -1363,6 +1320,98 @@
             Suppress member join notifications in the system channel.
             </summary>
         </member>
+        <member name="T:Fluxer.Net.Emoji">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Emoji.Id">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Emoji.Name">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Emoji.IsAnimated">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.EmojiJson.Id">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.EmojiJson.Name">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.EmojiJson.IsAnimated">
+            <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.GuildEmoji">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildEmoji.GuildId">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildEmoji.Creator">
+            <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.GuildEmojiJson">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildEmojiJson.Creator">
+            <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.GuildSticker">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildSticker.GuildId">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildSticker.Description">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildSticker.Tags">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildSticker.Creator">
+            <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.GuildStickerBulkCreateJson">
+            <remarks>
+            <see href="https://github.com/fluxerapp/fluxer/blob/38146cc2babb504bfa9e71f61a60dd57ab2c1b67/packages/schema/src/domains/guild/GuildEmojiSchemas.tsx#L77C14-L77C44"/>
+            </remarks>
+        </member>
+        <member name="T:Fluxer.Net.GuildStickerJson">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildStickerJson.Description">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildStickerJson.Tags">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildStickerJson.Creator">
+            <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.Sticker">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Sticker.Id">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Sticker.Name">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Sticker.IsAnimated">
+            <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.StickerJson">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.StickerJson.Id">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.StickerJson.Name">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.StickerJson.IsAnimated">
+            <inheritdoc />
+        </member>
         <member name="T:Fluxer.Net.FavouriteGif">
             <inheritdoc />
         </member>
@@ -1677,89 +1726,6 @@
             <summary>
             Proxied URL to the category preview image.
             </summary>
-        </member>
-        <member name="T:Fluxer.Net.GuildEmoji">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildEmoji.GuildId">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildEmoji.Id">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildEmoji.Name">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildEmoji.IsAnimated">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildEmoji.Creator">
-            <inheritdoc />
-        </member>
-        <member name="T:Fluxer.Net.GuildEmojiJson">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildEmojiJson.Id">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildEmojiJson.Name">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildEmojiJson.IsAnimated">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildEmojiJson.Creator">
-            <inheritdoc />
-        </member>
-        <member name="T:Fluxer.Net.GuildSticker">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildSticker.GuildId">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildSticker.Id">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildSticker.Name">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildSticker.Description">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildSticker.Tags">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildSticker.IsAnimated">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildSticker.Creator">
-            <inheritdoc />
-        </member>
-        <member name="T:Fluxer.Net.GuildStickerBulkCreateJson">
-            <remarks>
-            <see href="https://github.com/fluxerapp/fluxer/blob/38146cc2babb504bfa9e71f61a60dd57ab2c1b67/packages/schema/src/domains/guild/GuildEmojiSchemas.tsx#L77C14-L77C44"/>
-            </remarks>
-        </member>
-        <member name="T:Fluxer.Net.GuildStickerJson">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildStickerJson.Id">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildStickerJson.Name">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildStickerJson.Description">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildStickerJson.Tags">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildStickerJson.IsAnimated">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildStickerJson.Creator">
-            <inheritdoc />
         </member>
         <member name="T:Fluxer.Net.Guild">
             <inheritdoc />
@@ -3559,36 +3525,6 @@
             A message that is a reply to another message.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.ReactionEmojiJson">
-            <remarks>
-            <see href="https://github.com/fluxerapp/fluxer/blob/4f5704fa1f6426d65a12ee5fef13c0104669d08e/packages/schema/src/domains/message/MessageResponseSchemas.tsx#L71"/>
-            </remarks>
-        </member>
-        <member name="T:Fluxer.Net.StickerFormatType">
-            <summary>
-            Represents the format/type of a sticker.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.StickerFormatType.Png">
-            <summary>
-            Static PNG image sticker.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.StickerFormatType.Apng">
-            <summary>
-            Animated PNG sticker.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.StickerFormatType.Lottie">
-            <summary>
-            Lottie (JSON-based) animation sticker.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.StickerFormatType.Gif">
-            <summary>
-            GIF animation sticker.
-            </summary>
-        </member>
         <member name="T:Fluxer.Net.Activity">
             <inheritdoc />
         </member>
@@ -4645,6 +4581,9 @@
             <summary>
             The secure token used to execute the webhook.
             </summary>
+            <remarks>
+            Will be missing if you don't have access.
+            </remarks>
         </member>
         <member name="P:Fluxer.Net.IWebhook.GuildId">
             <summary>
@@ -4659,6 +4598,11 @@
         <member name="P:Fluxer.Net.IWebhook.Creator">
             <summary>
             The user that created this webhook.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IWebhook.Name">
+            <summary>
+            The display name of the webhook.
             </summary>
         </member>
         <member name="P:Fluxer.Net.IWebhook.AvatarHash">
@@ -5431,6 +5375,11 @@
             Gateway message data matching the MessageResponse API model
             </summary>
         </member>
+        <member name="P:Fluxer.Net.Gateway.Data.Messages.MessageGatewayData.ChannelType">
+            <summary>
+            The type of the channel.
+            </summary>
+        </member>
         <member name="P:Fluxer.Net.Gateway.Data.Messages.MessageGatewayData.Member">
             <summary>
             Guild member data for the author (only present in guild messages)
@@ -5441,12 +5390,7 @@
             ID of the guild where the message was sent (null for DMs)
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.Data.Messages.UserPartialResponse">
-            <summary>
-            Partial user response matching UserPartialResponse from the API
-            </summary>
-        </member>
-        <member name="T:Fluxer.Net.Gateway.Data.Messages.GuildMemberPartialResponse">
+        <member name="T:Fluxer.Net.Gateway.Data.Messages.GuildMemberGatewayData">
             <summary>
             Partial guild member response for message context
             </summary>

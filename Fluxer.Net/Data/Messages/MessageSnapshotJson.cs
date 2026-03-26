@@ -29,7 +29,7 @@ public class MessageSnapshotJson
     public List<EmbedJson>? Embeds { get; set; }
 
     [JsonProperty("sticker_items")]
-    public List<StickerItemJson>? Stickers { get; set; }
+    public List<StickerJson>? Stickers { get; set; }
 
     [JsonProperty("type")]
     public MessageType Type { get; set; }

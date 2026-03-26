@@ -1,5 +1,4 @@
-﻿using Fluxer.Net.Gateway.Data.Messages;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace Fluxer.Net;
 
@@ -21,7 +20,7 @@ public class MessageJson : IMessage
     /// <inheritdoc />
     [JsonRequired]
     [JsonProperty("author")]
-    public UserPartialResponse Author { get; set; }
+    public UserJson Author { get; set; }
 
     /// <inheritdoc />
     [JsonProperty("webhook_id")]
@@ -62,7 +61,7 @@ public class MessageJson : IMessage
 
     /// <inheritdoc />
     [JsonProperty("mentions")]
-    public UserPartialResponse[]? Mentions { get; set; }
+    public UserJson[]? Mentions { get; set; }
 
     /// <inheritdoc />
     [JsonProperty("mention_roles")]
@@ -78,7 +77,7 @@ public class MessageJson : IMessage
 
     /// <inheritdoc />
     [JsonProperty("stickers")]
-    public MessageStickerJson[]? Stickers { get; set; }
+    public StickerJson[]? Stickers { get; set; }
 
     /// <inheritdoc />
     [JsonProperty("reactions")]
@@ -99,4 +98,12 @@ public class MessageJson : IMessage
     /// <inheritdoc />
     [JsonProperty("call")]
     public MessageCallJson? Call { get; set; }
+
+    IUser IMessage.Author => Author;
+
+    IEnumerable<IUser>? IMessage.Mentions => Mentions;
+
+    IEnumerable<EmbedJson>? IMessage.Embeds => Embeds;
+
+    ISticker[]? IMessage.Stickers => Stickers;
 }

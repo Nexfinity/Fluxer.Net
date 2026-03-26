@@ -17,17 +17,5 @@ public class MessageReactionGatewayData
     public ulong? GuildId { get; set; }
 
     [JsonProperty("emoji")]
-    public ReactionEmoji Emoji { get; set; }
-}
-
-public class ReactionEmoji
-{
-    [JsonProperty("id")]
-    public ulong? Id { get; set; }
-
-    [JsonProperty("name")]
-    public string Name { get; set; }
-
-    [JsonProperty("animated")]
-    public bool? Animated { get; set; }
+    public EmojiJson Emoji { get; set; }
 }

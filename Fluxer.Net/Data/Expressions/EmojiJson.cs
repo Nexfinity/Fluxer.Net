@@ -1,9 +1,8 @@
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace Fluxer.Net;
 
-/// <inheritdoc />
-public class GuildEmojiJson : IGuildEmoji
+public class EmojiJson : IEmoji
 {
     /// <inheritdoc />
     [JsonProperty("id")]
@@ -16,8 +15,4 @@ public class GuildEmojiJson : IGuildEmoji
     /// <inheritdoc />
     [JsonProperty("animated")]
     public bool IsAnimated { get; set; }
-
-    /// <inheritdoc />
-    [JsonProperty("user")]
-    public User? Creator { get; set; }
 }

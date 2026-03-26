@@ -66,8 +66,8 @@ public class BasicCommands : ModuleBase
             .WithColor(0x5865F2) // Blurple color
             .WithAuthor(
                 name: Context.User.Username,
-                iconUrl: Context.User.Avatar != null
-                    ? $"https://cdn.fluxer.dev/avatars/{Context.User.Id}/{Context.User.Avatar}.png"
+                iconUrl: Context.User.AvatarHash != null
+                    ? $"https://cdn.fluxer.dev/avatars/{Context.User.Id}/{Context.User.AvatarHash}.png"
                     : null
             )
             .WithThumbnailUrl("https://avatars.githubusercontent.com/u/20194446")

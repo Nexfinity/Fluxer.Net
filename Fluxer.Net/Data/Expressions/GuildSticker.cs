@@ -1,25 +1,16 @@
 ﻿namespace Fluxer.Net;
 
 /// <inheritdoc />
-public class GuildSticker : Entity, IGuildSticker
+public class GuildSticker : Sticker, IGuildSticker
 {
     /// <inheritdoc />
     public ulong GuildId { get; internal set; }
-
-    /// <inheritdoc />
-    public ulong Id { get; internal set; }
-
-    /// <inheritdoc />
-    public string Name { get; internal set; }
 
     /// <inheritdoc />
     public string? Description { get; internal set; }
 
     /// <inheritdoc />
     public List<string>? Tags { get; internal set; }
-
-    /// <inheritdoc />
-    public bool IsAnimated { get; internal set; }
 
     /// <inheritdoc />
     public User? Creator { get; internal set; }
@@ -39,11 +30,9 @@ public class GuildSticker : Entity, IGuildSticker
 
     internal void Update(FluxerBaseClient client, GuildStickerJson json)
     {
-        Id = json.Id;
-        Name = json.Name;
+        base.Update(client, json);
         Description = json.Description;
         Tags = json.Tags;
-        IsAnimated = json.IsAnimated;
         Creator = json.Creator;
     }
 }

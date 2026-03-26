@@ -1,6 +1,4 @@
-﻿using Fluxer.Net.Gateway.Data.Messages;
-
-namespace Fluxer.Net;
+﻿namespace Fluxer.Net;
 
 public interface IGuildBan
 {
@@ -24,5 +22,5 @@ public interface IGuildBan
     /// </summary>
     string? Reason { get; }
 
-    UserPartialResponse User { get; }
+    IUser User { get; }
 }

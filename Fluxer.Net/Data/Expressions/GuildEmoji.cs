@@ -1,22 +1,16 @@
-﻿namespace Fluxer.Net;
+﻿using Newtonsoft.Json;
+
+namespace Fluxer.Net;
 
 /// <inheritdoc />
-public class GuildEmoji : Entity, IGuildEmoji
+public class GuildEmoji : Emoji, IGuildEmoji
 {
     /// <inheritdoc />
     public ulong GuildId { get; internal set; }
 
     /// <inheritdoc />
-    public ulong Id { get; internal set; }
-
-    /// <inheritdoc />
-    public string Name { get; internal set; }
-
-    /// <inheritdoc />
-    public bool IsAnimated { get; internal set; }
-
-    /// <inheritdoc />
-    public User? Creator { get; internal set; }
+    [JsonProperty("user")]
+    public User? Creator { get; set; }
 
     internal GuildEmoji(FluxerBaseClient client) : base(client)
     {
@@ -33,9 +27,7 @@ public class GuildEmoji : Entity, IGuildEmoji
 
     internal void Update(FluxerBaseClient client, GuildEmojiJson json)
     {
-        Id = json.Id;
-        Name = json.Name;
-        IsAnimated = json.IsAnimated;
+        base.Update(client, json);
         Creator = json.Creator;
     }
 }
