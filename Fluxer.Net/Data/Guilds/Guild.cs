@@ -43,12 +43,6 @@ public class Guild : PartialGuild, IGuild
     public ulong DisabledOperations { get; internal set; }
 
     /// <inheritdoc />
-    public int? MaxPresences { get; internal set; }
-
-    /// <inheritdoc />
-    public int MemberCount { get; internal set; }
-
-    /// <inheritdoc />
     public DateTime? MessageHistoryCutoff { get; internal set; }
 
     internal Guild(FluxerBaseClient client) : base(client)
@@ -79,8 +73,6 @@ public class Guild : PartialGuild, IGuild
         AfkChannelId = json.AfkChannelId;
         AfkTimeout = json.AfkTimeout;
         DisabledOperations = json.DisabledOperations;
-        MaxPresences = json.MaxPresences;
-        MemberCount = json.MemberCount;
         MessageHistoryCutoff = json.MessageHistoryCutoff;
     }
 }

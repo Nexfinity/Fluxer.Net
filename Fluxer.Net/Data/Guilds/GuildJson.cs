@@ -58,14 +58,6 @@ public class GuildJson : PartialGuildJson, IGuild
     public ulong DisabledOperations { get; set; }
 
     /// <inheritdoc />
-    [JsonProperty("max_presences")]
-    public int? MaxPresences { get; set; }
-
-    /// <inheritdoc />
-    [JsonProperty("member_count")]
-    public int MemberCount { get; set; }
-
-    /// <inheritdoc />
     [JsonProperty("message_history_cutoff")]
     public DateTime? MessageHistoryCutoff { get; set; }
 }
