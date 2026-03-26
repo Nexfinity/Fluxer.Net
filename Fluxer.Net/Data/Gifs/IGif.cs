@@ -1,4 +1,4 @@
-﻿namespace Fluxer.Net.Data.Gifs;
+﻿namespace Fluxer.Net;
 
 public interface IGif
 {

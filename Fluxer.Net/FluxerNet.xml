@@ -643,98 +643,44 @@
             Detailed bot user metadata.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Data.Apps.IPartialApplication">
+        <member name="T:Fluxer.Net.IPartialApplication">
             <summary>
             Application/bot used to interact with the Fluxer platform and API.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.Data.Apps.IPartialApplication.Id">
+        <member name="P:Fluxer.Net.IPartialApplication.Id">
             <summary>
             The unique identifier of the application.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.Data.Apps.IPartialApplication.Name">
+        <member name="P:Fluxer.Net.IPartialApplication.Name">
             <summary>
             The name of the application.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.Data.Apps.IPartialApplication.Icon">
+        <member name="P:Fluxer.Net.IPartialApplication.Icon">
             <summary>
             The icon hash of the application.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.Data.Apps.IPartialApplication.Description">
+        <member name="P:Fluxer.Net.IPartialApplication.Description">
             <summary>
             The description of the application.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.Data.Apps.IPartialApplication.IsPublic">
+        <member name="P:Fluxer.Net.IPartialApplication.IsPublic">
             <summary>
             Whether the bot can be invited by anyone.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.Data.Apps.IPartialApplication.RequiresCodeGrant">
+        <member name="P:Fluxer.Net.IPartialApplication.RequiresCodeGrant">
             <summary>
             Whether the bot requires OAuth2 code grant.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.Data.Apps.IPartialApplication.Flags">
+        <member name="P:Fluxer.Net.IPartialApplication.Flags">
             <summary>
             The application flags.
-            </summary>
-        </member>
-        <member name="T:Fluxer.Net.Data.Channels.ChannelPin">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.Data.Channels.ChannelPin.Message">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.Data.Channels.ChannelPin.PinnedAt">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.Data.Channels.IChannelPin.Message">
-            <summary>
-            The message data for this pin.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.Data.Channels.IChannelPin.PinnedAt">
-            <summary>
-            The ISO 8601 timestamp of when the message was pinned
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.Data.Gifs.IGif.Id">
-            <summary>
-            The unique Gif result id.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.Data.Gifs.IGif.Title">
-            <summary>
-            The title/description of the GIF.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.Data.Gifs.IGif.Url">
-            <summary>
-            The Gif page URL for the GIF.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.Data.Gifs.IGif.Source">
-            <summary>
-            Direct URL to the GIF media file.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.Data.Gifs.IGif.ProxySource">
-            <summary>
-            Proxied URL to the GIF media file.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.Data.Gifs.IGif.Width">
-            <summary>
-            Width of the GIF in pixels.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.Data.Gifs.IGif.Height">
-            <summary>
-            Height of the GIF in pixels.
             </summary>
         </member>
         <member name="T:Fluxer.Net.PartialApplication">
@@ -1092,6 +1038,15 @@
         <member name="P:Fluxer.Net.ChannelJson.IndexedAt">
             <inheritdoc />
         </member>
+        <member name="T:Fluxer.Net.ChannelPin">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelPin.Message">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelPin.PinnedAt">
+            <inheritdoc />
+        </member>
         <member name="T:Fluxer.Net.ChannelPinJson">
             <inheritdoc />
             <remarks>
@@ -1308,6 +1263,16 @@
         <member name="P:Fluxer.Net.IChannel.Nicknames">
             <summary>
             Custom nicknames for users in this channel (for group DMs)
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannelPin.Message">
+            <summary>
+            The message data for this pin.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannelPin.PinnedAt">
+            <summary>
+            The ISO 8601 timestamp of when the message was pinned
             </summary>
         </member>
         <member name="T:Fluxer.Net.IChannelPins">
@@ -1661,6 +1626,41 @@
         <member name="P:Fluxer.Net.IFavouriteGif.TenorSlugId">
             <summary>
             Tenor view/- identifier if the meme was sourced from Tenor.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IGif.Id">
+            <summary>
+            The unique Gif result id.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IGif.Title">
+            <summary>
+            The title/description of the GIF.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IGif.Url">
+            <summary>
+            The Gif page URL for the GIF.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IGif.Source">
+            <summary>
+            Direct URL to the GIF media file.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IGif.ProxySource">
+            <summary>
+            Proxied URL to the GIF media file.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IGif.Width">
+            <summary>
+            Width of the GIF in pixels.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IGif.Height">
+            <summary>
+            Height of the GIF in pixels.
             </summary>
         </member>
         <member name="P:Fluxer.Net.IGifCategory.Name">

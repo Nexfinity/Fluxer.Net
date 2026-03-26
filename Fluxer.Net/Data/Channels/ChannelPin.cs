@@ -1,4 +1,4 @@
-﻿namespace Fluxer.Net.Data.Channels;
+﻿namespace Fluxer.Net;
 
 /// <inheritdoc />
 public class ChannelPin : Entity, IChannelPin

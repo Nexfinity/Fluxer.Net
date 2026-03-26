@@ -1,6 +1,4 @@
-﻿using Fluxer.Net.Data.Apps;
-
-namespace Fluxer.Net;
+﻿namespace Fluxer.Net;
 
 /// <inheritdoc />
 public class PartialApplication : Entity, IPartialApplication
