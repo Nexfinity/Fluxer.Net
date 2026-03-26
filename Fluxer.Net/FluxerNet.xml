@@ -5429,7 +5429,7 @@
             <param name="description">Optional description provided with the close event.</param>
             <returns>True if reconnection should be attempted; false if reconnection should be prevented.</returns>
         </member>
-        <member name="M:Fluxer.Net.GatewayClient.SetStatus(Fluxer.Net.Status)">
+        <member name="M:Fluxer.Net.GatewayClient.SetStatus(Fluxer.Net.Status,Fluxer.Net.UserCustomStatusJson)">
             <summary>
             Updates the current user's presence status on the gateway.
             </summary>

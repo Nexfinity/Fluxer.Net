@@ -17,7 +17,7 @@ public class UserSettingsJson
     public string Status { get; set; }
 
     [JsonProperty("custom_status")]
-    public UserCustomStatus? CustomStatus { get; set; }
+    public UserCustomStatusJson? CustomStatus { get; set; }
 
     [JsonProperty("developer_mode")]
     public bool DeveloperMode { get; set; }

@@ -924,7 +924,7 @@ public class ApiClient
     public async Task<UserSettingsJson> UpdateCurrentUserSettingsAsync<TRequest>(TRequest settings)
         => await MakeFluxerApiRequestAsync<UserSettingsJson, TRequest>(HttpMethod.Patch, "/users/@me/settings", settings, true);
 
-    public async Task<UserSettingsJson> SetCustomStatusAsync(UserCustomStatus status)
+    public async Task<UserSettingsJson> SetCustomStatusAsync(UserCustomStatusJson status)
         => await MakeFluxerApiRequestAsync<UserSettingsJson, ModifyCustomStatus>(HttpMethod.Patch, "/users/@me/settings", new ModifyCustomStatus(status), true);
 
     public async Task<TResponse> GetCurrentUserNotesAsync<TResponse>()
