@@ -73,12 +73,12 @@ public class Channel : Entity, IChannel
 
     public bool IsTextable { get; internal set; }
 
-    internal Channel(BaseClient client) : base(client)
+    internal Channel(FluxerBaseClient client) : base(client)
     {
 
     }
 
-    public static Channel Create(BaseClient client, ChannelJson json)
+    public static Channel Create(FluxerBaseClient client, ChannelJson json)
     {
         Channel data = null;
 
@@ -134,7 +134,7 @@ public class Channel : Entity, IChannel
         return data;
     }
 
-    internal void Update(BaseClient client, ChannelJson json)
+    internal void Update(FluxerBaseClient client, ChannelJson json)
     {
         Id = json.Id;
         GuildId = json.GuildId;

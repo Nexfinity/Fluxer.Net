@@ -11,19 +11,19 @@ public class Application : PartialApplication, IApplication
 
     IUser IApplication.Bot => Bot;
 
-    internal Application(BaseClient client) : base(client)
+    internal Application(FluxerBaseClient client) : base(client)
     {
 
     }
 
-    public static Application Create(BaseClient client, ApplicationJson json)
+    public static Application Create(FluxerBaseClient client, ApplicationJson json)
     {
         var data = new Application(client);
         data.Update(client, json);
         return data;
     }
 
-    internal void Update(BaseClient client, ApplicationJson json)
+    internal void Update(FluxerBaseClient client, ApplicationJson json)
     {
         base.Update(client, json);
         RedirectUrls = json.RedirectUrls;

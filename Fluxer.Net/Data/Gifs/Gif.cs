@@ -24,19 +24,19 @@ public class Gif : Entity
     /// <inheritdoc />
     public int Height { get; set; }
 
-    internal Gif(BaseClient client) : base(client)
+    internal Gif(FluxerBaseClient client) : base(client)
     {
 
     }
 
-    public static Gif Create(BaseClient client, GifJson json)
+    public static Gif Create(FluxerBaseClient client, GifJson json)
     {
         var data = new Gif(client);
         data.Update(client, json);
         return data;
     }
 
-    internal void Update(BaseClient client, GifJson json)
+    internal void Update(FluxerBaseClient client, GifJson json)
     {
         Id = json.Id;
         Title = json.Title;

@@ -2,7 +2,7 @@
 
 namespace Fluxer.Net.OAuth;
 
-public class FluxerOAuthClient : BaseClient
+public class FluxerOAuthClient : FluxerBaseClient
 {
     public FluxerOAuthClient(string clientId, string clientSecret, FluxerConfig? config = null)
     {

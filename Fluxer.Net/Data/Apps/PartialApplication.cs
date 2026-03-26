@@ -26,19 +26,19 @@ public class PartialApplication : Entity, IPartialApplication
     /// <inheritdoc />
     public ulong Flags { get; internal set; }
 
-    internal PartialApplication(BaseClient client) : base(client)
+    internal PartialApplication(FluxerBaseClient client) : base(client)
     {
 
     }
 
-    public static PartialApplication Create(BaseClient client, PartialApplicationJson json)
+    public static PartialApplication Create(FluxerBaseClient client, PartialApplicationJson json)
     {
         var data = new PartialApplication(client);
         data.Update(client, json);
         return data;
     }
 
-    internal void Update(BaseClient client, PartialApplicationJson json)
+    internal void Update(FluxerBaseClient client, PartialApplicationJson json)
     {
         Id = json.Id;
         Name = json.Name;

@@ -9,19 +9,19 @@ public class GuildVanityUrl : Entity, IGuildVanityUrl
     /// <inheritdoc />
     public int Uses { get; internal set; }
 
-    internal GuildVanityUrl(BaseClient client) : base(client)
+    internal GuildVanityUrl(FluxerBaseClient client) : base(client)
     {
 
     }
 
-    public static GuildVanityUrl Create(BaseClient client, GuildVanityUrlJson json)
+    public static GuildVanityUrl Create(FluxerBaseClient client, GuildVanityUrlJson json)
     {
         var data = new GuildVanityUrl(client);
         data.Update(client, json);
         return data;
     }
 
-    internal void Update(BaseClient client, GuildVanityUrlJson json)
+    internal void Update(FluxerBaseClient client, GuildVanityUrlJson json)
     {
         Code = json.Code;
         Uses = json.Uses;

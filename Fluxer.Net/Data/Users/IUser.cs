@@ -2,95 +2,48 @@
 
 public interface IUser
 {
+    /// <summary>
+    /// The unique identifier (snowflake) for this user.
+    /// </summary>
     ulong Id { get; }
 
+    /// <summary>
+    /// The username of the user, not unique across the platform.
+    /// </summary>
     string Username { get; }
 
-    int Discriminator { get; }
+    /// <summary>
+    /// The four-digit discriminator tag of the user.
+    /// </summary>
+    string Discriminator { get; }
 
-    bool IsBot { get; }
+    /// <summary>
+    /// The display name of the user, if set.
+    /// </summary>
+    string? DisplayName { get; }
 
-    bool IsSystem { get; }
-
-    string? Email { get; }
-
-    bool EmailVerified { get; }
-
-    bool EmailBounced { get; }
-
-    string? Phone { get; }
-
-    string? PasswordHash { get; }
-
-    DateTime? PasswordLastChangedAt { get; }
-
-    string? TotpSecret { get; }
-
-    HashSet<int>? AuthenticatorTypes { get; }
-
+    /// <summary>
+    /// The hash of the user avatar image.
+    /// </summary>
     string? AvatarHash { get; }
 
-    string? BannerHash { get; }
+    /// <summary>
+    /// The dominant avatar color of the user as an integer.
+    /// </summary>
+    int? AvatarColor { get; }
 
-    string? Bio { get; }
-
-    string? Pronouns { get; }
-
-    int? AccentColor { get; }
-
-    string? DateOfBirth { get; }
-
-    string? Locale { get; }
-
+    /// <summary>
+    /// The public flags on the user account.
+    /// </summary>
     UserFlags Flags { get; }
 
-    int? PremiumType { get; }
+    /// <summary>
+    /// Whether the user is a bot account.
+    /// </summary>
+    bool IsBot { get; }
 
-    DateTime? PremiumSince { get; }
-
-    DateTime? PremiumUntil { get; }
-
-    bool PremiumWillCancel { get; }
-
-    string? PremiumBillingCycle { get; }
-
-    int? PremiumLifetimeSequence { get; }
-
-    string? StripeSubscriptionId { get; }
-
-    string? StripeCustomerId { get; }
-
-    bool HasEverPurchased { get; }
-
-    int SuspiciousActivityFlags { get; }
-
-    DateTime? TermsAgreedAt { get; }
-
-    DateTime? PrivacyAgreedAt { get; }
-
-    DateTime? LastActiveAt { get; }
-
-    string? LastActiveIp { get; }
-
-    DateTime? TempBannedUntil { get; }
-
-    DateTime? PendingDeletionAt { get; }
-
-    int? DeletionReasonCode { get; }
-
-    string? DeletionPublicReason { get; }
-
-    string? DeletionAuditLogReason { get; }
-
-    HashSet<string>? Acls { get; }
-
-    DateTime? FirstRefundAt { get; }
-
-    int BetaCodeAllowance { get; }
-
-    DateTime? BetaCodeLastResetAt { get; }
-
-    int? GiftInventoryServerSeq { get; }
-
-    int? GiftInventoryClientSeq { get; }
+    /// <summary>
+    /// Whether the user is an official system user.
+    /// </summary>
+    bool IsSystem { get; }
 }

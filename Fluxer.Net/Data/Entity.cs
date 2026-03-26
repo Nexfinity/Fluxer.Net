@@ -2,10 +2,10 @@
 
 public abstract class Entity
 {
-    public Entity(BaseClient client)
+    public Entity(FluxerBaseClient client)
     {
         Client = client;
     }
 
-    internal BaseClient Client { get; set; }
+    internal FluxerBaseClient Client { get; set; }
 }

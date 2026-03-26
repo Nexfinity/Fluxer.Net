@@ -2,7 +2,7 @@
 
 public class GroupChannel : Channel, ITextable
 {
-    internal GroupChannel(BaseClient client) : base(client)
+    internal GroupChannel(FluxerBaseClient client) : base(client)
     {
 
     }

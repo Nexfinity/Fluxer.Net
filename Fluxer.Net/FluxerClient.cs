@@ -3,7 +3,7 @@ using Serilog;
 
 namespace Fluxer.Net;
 
-public abstract class BaseClient
+public abstract class FluxerBaseClient
 {
     internal ulong Id { get; set; }
     internal string Token { get; set; }
@@ -13,7 +13,7 @@ public abstract class BaseClient
 /// <summary>
 /// Client used for connecting to the Fluxer API and Gateway.
 /// </summary>
-public class FluxerClient : BaseClient
+public class FluxerClient : FluxerBaseClient
 {
     public FluxerClient(string token, FluxerConfig? config = null)
     {

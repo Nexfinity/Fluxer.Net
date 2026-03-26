@@ -15,19 +15,19 @@ public class PermissionOverwrite : Entity, IPermissionOverwrite
     /// <inheritdoc />
     public ulong Deny { get; internal set; }
 
-    internal PermissionOverwrite(BaseClient client) : base(client)
+    internal PermissionOverwrite(FluxerBaseClient client) : base(client)
     {
 
     }
 
-    public static PermissionOverwrite Create(BaseClient client, PermissionOverwriteJson json)
+    public static PermissionOverwrite Create(FluxerBaseClient client, PermissionOverwriteJson json)
     {
         var data = new PermissionOverwrite(client);
         data.Update(client, json);
         return data;
     }
 
-    internal void Update(BaseClient client, PermissionOverwriteJson json)
+    internal void Update(FluxerBaseClient client, PermissionOverwriteJson json)
     {
         Id = json.Id;
         Type = json.Type;

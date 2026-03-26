@@ -19,19 +19,19 @@ public class GuildBan : Entity, IGuildBan
     /// <inheritdoc />
     public UserPartialResponse User { get; set; }
 
-    internal GuildBan(BaseClient client) : base(client)
+    internal GuildBan(FluxerBaseClient client) : base(client)
     {
 
     }
 
-    public static GuildBan Create(BaseClient client, GuildBanJson json)
+    public static GuildBan Create(FluxerBaseClient client, GuildBanJson json)
     {
         var data = new GuildBan(client);
         data.Update(client, json);
         return data;
     }
 
-    internal void Update(BaseClient client, GuildBanJson json)
+    internal void Update(FluxerBaseClient client, GuildBanJson json)
     {
         BannedAt = json.BannedAt;
         ExpiresAt = json.ExpiresAt;

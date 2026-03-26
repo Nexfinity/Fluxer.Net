@@ -2,7 +2,7 @@
 
 public class DMChannel : Channel, ITextable
 {
-    internal DMChannel(BaseClient client) : base(client)
+    internal DMChannel(FluxerBaseClient client) : base(client)
     {
 
     }

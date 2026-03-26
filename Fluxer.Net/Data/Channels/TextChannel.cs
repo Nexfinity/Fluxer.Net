@@ -2,7 +2,7 @@
 
 public class TextChannel : Channel, ITextable
 {
-    internal TextChannel(BaseClient client) : base(client)
+    internal TextChannel(FluxerBaseClient client) : base(client)
     {
 
     }

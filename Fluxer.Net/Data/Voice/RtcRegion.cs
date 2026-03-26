@@ -12,19 +12,19 @@ public class RtcRegion : Entity, IRtcRegion
     /// <inheritdoc />
     public string Emoji { get; internal set; }
 
-    internal RtcRegion(BaseClient client) : base(client)
+    internal RtcRegion(FluxerBaseClient client) : base(client)
     {
 
     }
 
-    public static RtcRegion Create(BaseClient client, RtcRegionJson json)
+    public static RtcRegion Create(FluxerBaseClient client, RtcRegionJson json)
     {
         var data = new RtcRegion(client);
         data.Update(client, json);
         return data;
     }
 
-    internal void Update(BaseClient client, RtcRegionJson json)
+    internal void Update(FluxerBaseClient client, RtcRegionJson json)
     {
         Id = json.Id;
         Name = json.Name;

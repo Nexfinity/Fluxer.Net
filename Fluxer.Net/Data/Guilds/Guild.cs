@@ -51,19 +51,19 @@ public class Guild : PartialGuild, IGuild
     /// <inheritdoc />
     public DateTime? MessageHistoryCutoff { get; internal set; }
 
-    internal Guild(BaseClient client) : base(client)
+    internal Guild(FluxerBaseClient client) : base(client)
     {
 
     }
 
-    public static Guild Create(BaseClient client, GuildJson json)
+    public static Guild Create(FluxerBaseClient client, GuildJson json)
     {
         var data = new Guild(client);
         data.Update(client, json);
         return data;
     }
 
-    internal void Update(BaseClient client, GuildJson json)
+    internal void Update(FluxerBaseClient client, GuildJson json)
     {
         base.Update(client, json);
         OwnerId = json.OwnerId;

@@ -15,19 +15,19 @@ public class Invite : PartialInvite, IInvite
     /// <inheritdoc />
     public int MaxAge { get; internal set; }
 
-    internal Invite(BaseClient client) : base(client)
+    internal Invite(FluxerBaseClient client) : base(client)
     {
 
     }
 
-    public static Invite Create(BaseClient client, InviteJson json)
+    public static Invite Create(FluxerBaseClient client, InviteJson json)
     {
         var data = new Invite(client);
         data.Update(client, json);
         return data;
     }
 
-    internal void Update(BaseClient client, InviteJson json)
+    internal void Update(FluxerBaseClient client, InviteJson json)
     {
         base.Update(client, json);
         CreatedAt = json.CreatedAt;

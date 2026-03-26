@@ -12,19 +12,19 @@ public class GifCategory : Entity, IGifCategory
     /// <inheritdoc />
     public string ProxySource { get; internal set; }
 
-    internal GifCategory(BaseClient client) : base(client)
+    internal GifCategory(FluxerBaseClient client) : base(client)
     {
 
     }
 
-    public static GifCategory Create(BaseClient client, GifCategoryJson json)
+    public static GifCategory Create(FluxerBaseClient client, GifCategoryJson json)
     {
         var data = new GifCategory(client);
         data.Update(client, json);
         return data;
     }
 
-    internal void Update(BaseClient client, GifCategoryJson json)
+    internal void Update(FluxerBaseClient client, GifCategoryJson json)
     {
         Name = json.Name;
         Source = json.Source;

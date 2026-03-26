@@ -26,7 +26,7 @@ public class ApiClient
     //private FluxerClient? _client;
     private string _token;
     private FluxerConfig _config;
-    private BaseClient _client;
+    private FluxerBaseClient _client;
     private bool _isWebhook;
 
     /// <summary>

@@ -61,19 +61,19 @@ public class GuildMember : Entity, IGuildMember
 
     IUser IGuildMember.User => User;
 
-    internal GuildMember(BaseClient client) : base(client)
+    internal GuildMember(FluxerBaseClient client) : base(client)
     {
 
     }
 
-    public static GuildMember Create(BaseClient client, GuildMemberJson json)
+    public static GuildMember Create(FluxerBaseClient client, GuildMemberJson json)
     {
         var data = new GuildMember(client);
         data.Update(client, json);
         return data;
     }
 
-    internal void Update(BaseClient client, GuildMemberJson json)
+    internal void Update(FluxerBaseClient client, GuildMemberJson json)
     {
         GuildId = json.GuildId;
         User = json.User;

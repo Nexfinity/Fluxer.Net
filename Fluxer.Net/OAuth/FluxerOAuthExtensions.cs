@@ -14,9 +14,9 @@ public static class FluxerOAuthExtensions
     }
 
 
-    public static FluxerOAuthClaims GetFluxerClaims(this ClaimsPrincipal principal)
+    public static FluxerOAuthUser GetFluxerClaims(this ClaimsPrincipal principal)
     {
-        return new FluxerOAuthClaims(principal);
+        return new FluxerOAuthUser(principal);
     }
 
     public static AuthenticationBuilder AddFluxer(

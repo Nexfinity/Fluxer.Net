@@ -22,19 +22,19 @@ public class Presence : Entity, IPresence
 
     IClientStatus? IPresence.ClientStatus => ClientStatus;
 
-    internal Presence(BaseClient client) : base(client)
+    internal Presence(FluxerBaseClient client) : base(client)
     {
 
     }
 
-    public static Presence Create(BaseClient client, PresenceJson json)
+    public static Presence Create(FluxerBaseClient client, PresenceJson json)
     {
         var data = new Presence(client);
         data.Update(client, json);
         return data;
     }
 
-    internal void Update(BaseClient client, PresenceJson json)
+    internal void Update(FluxerBaseClient client, PresenceJson json)
     {
         UserId = json.UserId;
         GuildId = json.GuildId;
