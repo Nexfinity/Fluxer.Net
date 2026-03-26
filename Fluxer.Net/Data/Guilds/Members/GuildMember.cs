@@ -76,7 +76,7 @@ public class GuildMember : Entity, IGuildMember
     internal void Update(FluxerBaseClient client, GuildMemberJson json)
     {
         GuildId = json.GuildId;
-        User = json.User;
+        User = User.Create(client, json.User);
         JoinedAt = json.JoinedAt;
         Nickname = json.Nickname;
         AvatarHash = json.AvatarHash;

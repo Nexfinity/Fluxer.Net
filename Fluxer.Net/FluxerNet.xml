@@ -6453,6 +6453,51 @@
             Occurs when an invite is deleted or expires.
             </summary>
         </member>
+        <member name="T:Fluxer.Net.OAuth.FluxerOAuthExtensions">
+            <Summary>
+            Extension methods for handling fluxer oauth client.
+            </Summary>
+        </member>
+        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.AddFluxerClient(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,System.String,Fluxer.Net.FluxerConfig)">
+            <Summary>
+            Add Fluxer oauth client on dependency injection service.
+            </Summary>
+        </member>
+        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.GetFluxerClaims(System.Security.Claims.ClaimsPrincipal,Fluxer.Net.FluxerBaseClient)">
+            <Summary>
+            Get Fluxer specific claims for a claim user.
+            </Summary>
+        </member>
+        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.AddFluxer(Microsoft.AspNetCore.Authentication.AuthenticationBuilder)">
+            <Summary>
+            Add Fluxer oauth client on dependency injection service.
+            </Summary>
+        </member>
+        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.AddFluxer(Microsoft.AspNetCore.Authentication.AuthenticationBuilder,System.Action{Fluxer.Net.OAuth.FluxerOAuthOptions})">
+            <Summary>
+            Add Fluxer oauth client on dependency injection service.
+            </Summary>
+        </member>
+        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.AddFluxer(Microsoft.AspNetCore.Authentication.AuthenticationBuilder,System.String,System.Action{Fluxer.Net.OAuth.FluxerOAuthOptions})">
+            <Summary>
+            Add Fluxer oauth client on dependency injection service.
+            </Summary>
+        </member>
+        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.AddFluxer(Microsoft.AspNetCore.Authentication.AuthenticationBuilder,System.String,System.String,System.Action{Fluxer.Net.OAuth.FluxerOAuthOptions})">
+            <Summary>
+            Add Fluxer oauth client on dependency injection service.
+            </Summary>
+        </member>
+        <member name="T:Fluxer.Net.OAuth.FluxerOAuthHandler">
+            <Summary>
+            Asp.net oauth handler for Fluxer.
+            </Summary>
+        </member>
+        <member name="M:Fluxer.Net.OAuth.FluxerOAuthHandler.#ctor(Microsoft.Extensions.Options.IOptionsMonitor{Fluxer.Net.OAuth.FluxerOAuthOptions},Microsoft.Extensions.Logging.ILoggerFactory,System.Text.Encodings.Web.UrlEncoder,Microsoft.AspNetCore.Authentication.ISystemClock)">
+            <Summary>
+            Create asp.net oauth handler for Fluxer.
+            </Summary>
+        </member>
         <member name="T:Fluxer.Net.OAuth.FluxerOAuthUser">
             <inheritdoc />
         </member>

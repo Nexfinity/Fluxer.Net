@@ -13,7 +13,7 @@ public class GuildMemberJson : IGuildMember
 
     /// <inheritdoc />
     [JsonProperty("user")]
-    public User User { get; set; }
+    public UserJson User { get; set; }
 
     /// <inheritdoc />
     [JsonProperty("joined_at")]
