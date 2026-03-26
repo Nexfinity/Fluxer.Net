@@ -30,19 +30,19 @@ public class PartialInvite : Entity, IPartialInvite
     /// <inheritdoc />
     public bool Temporary { get; internal set; }
 
-    internal PartialInvite(BaseClient client) : base(client)
+    internal PartialInvite(FluxerBaseClient client) : base(client)
     {
 
     }
 
-    public static PartialInvite Create(BaseClient client, PartialInviteJson json)
+    public static PartialInvite Create(FluxerBaseClient client, PartialInviteJson json)
     {
         var data = new PartialInvite(client);
         data.Update(client, json);
         return data;
     }
 
-    internal void Update(BaseClient client, PartialInviteJson json)
+    internal void Update(FluxerBaseClient client, PartialInviteJson json)
     {
         Code = json.Code;
         Type = json.Type;

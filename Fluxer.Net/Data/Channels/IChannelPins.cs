@@ -1,6 +1,4 @@
-﻿using Fluxer.Net.Data.Channels;
-
-namespace Fluxer.Net;
+﻿namespace Fluxer.Net;
 
 /// <summary>
 /// List of pinned messages as pagination.

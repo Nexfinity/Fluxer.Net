@@ -643,98 +643,44 @@
             Detailed bot user metadata.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Data.Apps.IPartialApplication">
+        <member name="T:Fluxer.Net.IPartialApplication">
             <summary>
             Application/bot used to interact with the Fluxer platform and API.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.Data.Apps.IPartialApplication.Id">
+        <member name="P:Fluxer.Net.IPartialApplication.Id">
             <summary>
             The unique identifier of the application.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.Data.Apps.IPartialApplication.Name">
+        <member name="P:Fluxer.Net.IPartialApplication.Name">
             <summary>
             The name of the application.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.Data.Apps.IPartialApplication.Icon">
+        <member name="P:Fluxer.Net.IPartialApplication.Icon">
             <summary>
             The icon hash of the application.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.Data.Apps.IPartialApplication.Description">
+        <member name="P:Fluxer.Net.IPartialApplication.Description">
             <summary>
             The description of the application.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.Data.Apps.IPartialApplication.IsPublic">
+        <member name="P:Fluxer.Net.IPartialApplication.IsPublic">
             <summary>
             Whether the bot can be invited by anyone.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.Data.Apps.IPartialApplication.RequiresCodeGrant">
+        <member name="P:Fluxer.Net.IPartialApplication.RequiresCodeGrant">
             <summary>
             Whether the bot requires OAuth2 code grant.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.Data.Apps.IPartialApplication.Flags">
+        <member name="P:Fluxer.Net.IPartialApplication.Flags">
             <summary>
             The application flags.
-            </summary>
-        </member>
-        <member name="T:Fluxer.Net.Data.Channels.ChannelPin">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.Data.Channels.ChannelPin.Message">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.Data.Channels.ChannelPin.PinnedAt">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.Data.Channels.IChannelPin.Message">
-            <summary>
-            The message data for this pin.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.Data.Channels.IChannelPin.PinnedAt">
-            <summary>
-            The ISO 8601 timestamp of when the message was pinned
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.Data.Gifs.IGif.Id">
-            <summary>
-            The unique Gif result id.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.Data.Gifs.IGif.Title">
-            <summary>
-            The title/description of the GIF.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.Data.Gifs.IGif.Url">
-            <summary>
-            The Gif page URL for the GIF.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.Data.Gifs.IGif.Source">
-            <summary>
-            Direct URL to the GIF media file.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.Data.Gifs.IGif.ProxySource">
-            <summary>
-            Proxied URL to the GIF media file.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.Data.Gifs.IGif.Width">
-            <summary>
-            Width of the GIF in pixels.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.Data.Gifs.IGif.Height">
-            <summary>
-            Height of the GIF in pixels.
             </summary>
         </member>
         <member name="T:Fluxer.Net.PartialApplication">
@@ -1092,6 +1038,15 @@
         <member name="P:Fluxer.Net.ChannelJson.IndexedAt">
             <inheritdoc />
         </member>
+        <member name="T:Fluxer.Net.ChannelPin">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelPin.Message">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelPin.PinnedAt">
+            <inheritdoc />
+        </member>
         <member name="T:Fluxer.Net.ChannelPinJson">
             <inheritdoc />
             <remarks>
@@ -1308,6 +1263,16 @@
         <member name="P:Fluxer.Net.IChannel.Nicknames">
             <summary>
             Custom nicknames for users in this channel (for group DMs)
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannelPin.Message">
+            <summary>
+            The message data for this pin.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannelPin.PinnedAt">
+            <summary>
+            The ISO 8601 timestamp of when the message was pinned
             </summary>
         </member>
         <member name="T:Fluxer.Net.IChannelPins">
@@ -1661,6 +1626,41 @@
         <member name="P:Fluxer.Net.IFavouriteGif.TenorSlugId">
             <summary>
             Tenor view/- identifier if the meme was sourced from Tenor.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IGif.Id">
+            <summary>
+            The unique Gif result id.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IGif.Title">
+            <summary>
+            The title/description of the GIF.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IGif.Url">
+            <summary>
+            The Gif page URL for the GIF.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IGif.Source">
+            <summary>
+            Direct URL to the GIF media file.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IGif.ProxySource">
+            <summary>
+            Proxied URL to the GIF media file.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IGif.Width">
+            <summary>
+            Width of the GIF in pixels.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IGif.Height">
+            <summary>
+            Height of the GIF in pixels.
             </summary>
         </member>
         <member name="P:Fluxer.Net.IGifCategory.Name">
@@ -3697,6 +3697,144 @@
         <member name="P:Fluxer.Net.ClientStatus.Web">
             <inheritdoc />
         </member>
+        <member name="T:Fluxer.Net.CurrentUser">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.CurrentUser.IsStaff">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.CurrentUser.Acls">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.CurrentUser.Traits">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.CurrentUser.Email">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.CurrentUser.Phone">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.CurrentUser.Bio">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.CurrentUser.Pronouns">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.CurrentUser.AccentColor">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.CurrentUser.BannerHash">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.CurrentUser.BannerColor">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.CurrentUser.IsMfaEnabled">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.CurrentUser.IsEmailVerified">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.CurrentUser.PremiumType">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.CurrentUser.PremiumSince">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.CurrentUser.PremiumUntil">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.CurrentUser.PremiumWillCancel">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.CurrentUser.PremiumBillingCycle">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.CurrentUser.PremiumLifetimeSequence">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.CurrentUser.PasswordLastChangedAt">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.CurrentUser.HasEverPurchased">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.CurrentUser.EmailBounced">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.CurrentUser.AuthenticatorTypes">
+            <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.CurrentUserJson">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.CurrentUserJson.IsStaff">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.CurrentUserJson.Acls">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.CurrentUserJson.Traits">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.CurrentUserJson.Email">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.CurrentUserJson.Phone">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.CurrentUserJson.Bio">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.CurrentUserJson.Pronouns">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.CurrentUserJson.AccentColor">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.CurrentUserJson.BannerHash">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.CurrentUserJson.BannerColor">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.CurrentUserJson.IsMfaEnabled">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.CurrentUserJson.IsEmailVerified">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.CurrentUserJson.PremiumType">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.CurrentUserJson.PremiumSince">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.CurrentUserJson.PremiumUntil">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.CurrentUserJson.PremiumWillCancel">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.CurrentUserJson.PremiumBillingCycle">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.CurrentUserJson.PremiumLifetimeSequence">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.CurrentUserJson.PasswordLastChangedAt">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.CurrentUserJson.HasEverPurchased">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.CurrentUserJson.EmailBounced">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.CurrentUserJson.AuthenticatorTypes">
+            <inheritdoc />
+        </member>
         <member name="T:Fluxer.Net.FriendSourceFlags">
             <summary>
             Flags that control who can send friend requests to a user. Multiple sources can be combined using bitwise OR.
@@ -3720,6 +3858,131 @@
         <member name="F:Fluxer.Net.FriendSourceFlags.NoRelation">
             <summary>
             Allow friend requests from users with no relation (anyone).
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.ICurrentUser.IsStaff">
+            <summary>
+            Whether the user has staff permissions.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.ICurrentUser.Acls">
+            <summary>
+            Access control list entries for the user.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.ICurrentUser.Traits">
+            <summary>
+            Special traits assigned to the user account.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.ICurrentUser.Email">
+            <summary>
+            The email address associated with the account.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.ICurrentUser.Phone">
+            <summary>
+            The phone number associated with the account.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.ICurrentUser.IsMfaEnabled">
+            <summary>
+            Whether multi-factor authentication is enabled.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.ICurrentUser.IsEmailVerified">
+            <summary>
+            Whether the email address has been verified.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.ICurrentUser.PremiumType">
+            <summary>
+            The type of premium subscription.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.ICurrentUser.PremiumSince">
+            <summary>
+            ISO8601 timestamp of when premium was first activated.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.ICurrentUser.PremiumUntil">
+            <summary>
+            ISO8601 timestamp of when the current premium period ends.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.ICurrentUser.PremiumWillCancel">
+            <summary>
+            Whether premium is set to cancel at the end of the billing period.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.ICurrentUser.PremiumBillingCycle">
+            <summary>
+            The billing cycle for the premium subscription.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.ICurrentUser.PremiumLifetimeSequence">
+            <summary>
+            The sequence number for lifetime premium subscribers.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.ICurrentUser.HasEverPurchased">
+            <summary>
+            Whether the user has ever made a purchase.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.ICurrentUser.EmailBounced">
+            <summary>
+            Whether the current email address is marked as bounced by the mail provider.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.ICurrentUser.AuthenticatorTypes">
+            <summary>
+            The types of authenticators configured for MFA.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IUser.Id">
+            <summary>
+            The unique identifier (snowflake) for this user.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IUser.Username">
+            <summary>
+            The username of the user, not unique across the platform.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IUser.Discriminator">
+            <summary>
+            The four-digit discriminator tag of the user.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IUser.DisplayName">
+            <summary>
+            The display name of the user, if set.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IUser.AvatarHash">
+            <summary>
+            The hash of the user avatar image.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IUser.AvatarColor">
+            <summary>
+            The dominant avatar color of the user as an integer.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IUser.Flags">
+            <summary>
+            The public flags on the user account.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IUser.IsBot">
+            <summary>
+            Whether the user is a bot account.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IUser.IsSystem">
+            <summary>
+            Whether the user is an official system user.
             </summary>
         </member>
         <member name="P:Fluxer.Net.IUserConnection.Id">
@@ -3753,6 +4016,31 @@
         <member name="P:Fluxer.Net.IUserConnection.SortOrder">
             <summary>
             The display order of this connection.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IUserProfile.Bio">
+            <summary>
+            The user biography text.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IUserProfile.Pronouns">
+            <summary>
+            The preferred pronouns of the user.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IUserProfile.AccentColor">
+            <summary>
+            The user-selected accent color as an integer.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IUserProfile.BannerHash">
+            <summary>
+            The hash of the user profile banner image.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IUserProfile.BannerColor">
+            <summary>
+            Default banner color if no custom banner.
             </summary>
         </member>
         <member name="T:Fluxer.Net.PremiumType">
@@ -3855,133 +4143,22 @@
         <member name="P:Fluxer.Net.User.Discriminator">
             <inheritdoc />
         </member>
-        <member name="P:Fluxer.Net.User.IsBot">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.User.IsSystem">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.User.Email">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.User.EmailVerified">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.User.EmailBounced">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.User.Phone">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.User.PasswordHash">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.User.PasswordLastChangedAt">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.User.TotpSecret">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.User.AuthenticatorTypes">
+        <member name="P:Fluxer.Net.User.DisplayName">
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.User.AvatarHash">
             <inheritdoc />
         </member>
-        <member name="P:Fluxer.Net.User.BannerHash">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.User.Bio">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.User.Pronouns">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.User.AccentColor">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.User.DateOfBirth">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.User.Locale">
+        <member name="P:Fluxer.Net.User.AvatarColor">
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.User.Flags">
             <inheritdoc />
         </member>
-        <member name="P:Fluxer.Net.User.PremiumType">
+        <member name="P:Fluxer.Net.User.IsBot">
             <inheritdoc />
         </member>
-        <member name="P:Fluxer.Net.User.PremiumSince">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.User.PremiumUntil">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.User.PremiumWillCancel">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.User.PremiumBillingCycle">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.User.PremiumLifetimeSequence">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.User.StripeSubscriptionId">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.User.StripeCustomerId">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.User.HasEverPurchased">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.User.SuspiciousActivityFlags">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.User.TermsAgreedAt">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.User.PrivacyAgreedAt">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.User.LastActiveAt">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.User.LastActiveIp">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.User.TempBannedUntil">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.User.PendingDeletionAt">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.User.DeletionReasonCode">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.User.DeletionPublicReason">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.User.DeletionAuditLogReason">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.User.Acls">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.User.FirstRefundAt">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.User.BetaCodeAllowance">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.User.BetaCodeLastResetAt">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.User.GiftInventoryServerSeq">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.User.GiftInventoryClientSeq">
+        <member name="P:Fluxer.Net.User.IsSystem">
             <inheritdoc />
         </member>
         <member name="T:Fluxer.Net.UserConnection">
@@ -4174,6 +4351,228 @@
             <summary>
             User has dismissed the premium onboarding flow (user preference).
             </summary>
+        </member>
+        <member name="T:Fluxer.Net.UserJson">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserJson.Id">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserJson.Username">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserJson.Discriminator">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserJson.DisplayName">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserJson.AvatarHash">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserJson.AvatarColor">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserJson.Flags">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserJson.IsBot">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserJson.IsSystem">
+            <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.UserProfile">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserProfile.Bio">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserProfile.Pronouns">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserProfile.AccentColor">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserProfile.BannerHash">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserProfile.BannerColor">
+            <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.UserProfileJson">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserProfileJson.Bio">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserProfileJson.Pronouns">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserProfileJson.AccentColor">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserProfileJson.BannerHash">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserProfileJson.BannerColor">
+            <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.UserSettings">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserSettings.UserId">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserSettings.Locale">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserSettings.Theme">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserSettings.Status">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserSettings.CustomStatus">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserSettings.DeveloperMode">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserSettings.CompactMessageDisplay">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserSettings.AnimateEmoji">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserSettings.AnimateStickers">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserSettings.GifAutoPlay">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserSettings.RenderEmbeds">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserSettings.RenderReactions">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserSettings.RenderSpoilers">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserSettings.InlineAttachmentMedia">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserSettings.InlineEmbedMedia">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserSettings.ExplicitContentFilter">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserSettings.FriendSourceFlags">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserSettings.IncomingCallFlags">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserSettings.GroupDmAddPermissionFlags">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserSettings.DefaultGuildsRestricted">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserSettings.RestrictedGuilds">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserSettings.GuildPositions">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserSettings.GuildFolders">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserSettings.AfkTimeout">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserSettings.TimeFormat">
+            <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.UserSettingsJson">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserSettingsJson.UserId">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserSettingsJson.Locale">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserSettingsJson.Theme">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserSettingsJson.Status">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserSettingsJson.CustomStatus">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserSettingsJson.DeveloperMode">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserSettingsJson.CompactMessageDisplay">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserSettingsJson.AnimateEmoji">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserSettingsJson.AnimateStickers">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserSettingsJson.GifAutoPlay">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserSettingsJson.RenderEmbeds">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserSettingsJson.RenderReactions">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserSettingsJson.RenderSpoilers">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserSettingsJson.InlineAttachmentMedia">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserSettingsJson.InlineEmbedMedia">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserSettingsJson.ExplicitContentFilter">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserSettingsJson.FriendSourceFlags">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserSettingsJson.IncomingCallFlags">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserSettingsJson.GroupDmAddPermissionFlags">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserSettingsJson.DefaultGuildsRestricted">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserSettingsJson.RestrictedGuilds">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserSettingsJson.GuildPositions">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserSettingsJson.GuildFolders">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserSettingsJson.AfkTimeout">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserSettingsJson.TimeFormat">
+            <inheritdoc />
         </member>
         <member name="T:Fluxer.Net.CallEligibilityJson">
             <remarks>
@@ -5429,7 +5828,7 @@
             <param name="description">Optional description provided with the close event.</param>
             <returns>True if reconnection should be attempted; false if reconnection should be prevented.</returns>
         </member>
-        <member name="M:Fluxer.Net.GatewayClient.SetStatus(Fluxer.Net.Status)">
+        <member name="M:Fluxer.Net.GatewayClient.SetStatus(Fluxer.Net.Status,Fluxer.Net.UserCustomStatusJson)">
             <summary>
             Updates the current user's presence status on the gateway.
             </summary>
@@ -6108,6 +6507,34 @@
         <member name="E:Fluxer.Net.GatewayClient.InviteDelete">
             <summary>
             Occurs when an invite is deleted or expires.
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.OAuth.FluxerOAuthUser">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.OAuth.FluxerOAuthUser.Email">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.OAuth.FluxerOAuthUser.IsVerified">
+            <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.OAuth.FluxerOAuthUserJson">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.OAuth.FluxerOAuthUserJson.Email">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.OAuth.FluxerOAuthUserJson.IsVerified">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.OAuth.IFluxerOAuthUser.Email">
+            <summary>
+            The email address of the user.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.OAuth.IFluxerOAuthUser.IsVerified">
+            <summary>
+            Whether the user has verified their email.
             </summary>
         </member>
         <member name="T:Fluxer.Net.RateLimiting.RateLimitBucket">

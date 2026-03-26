@@ -26,7 +26,7 @@ public class ApiClient
     //private FluxerClient? _client;
     private string _token;
     private FluxerConfig _config;
-    private BaseClient _client;
+    private FluxerBaseClient _client;
     private bool _isWebhook;
 
     /// <summary>
@@ -891,16 +891,16 @@ public class ApiClient
 
     #region Users API
 
-    public async Task<User> GetCurrentUserAsync()
+    public async Task<CurrentUser> GetCurrentUserAsync()
     {
-        var json = await MakeFluxerApiRequestAsync<UserJson>(HttpMethod.Get, "/users/@me", true);
-        return User.Create(_client, json);
+        var json = await MakeFluxerApiRequestAsync<CurrentUserJson>(HttpMethod.Get, "/users/@me", true);
+        return CurrentUser.Create(_client, json);
     }
 
-    public async Task<User> UpdateCurrentUserAsync(UserJson user)
+    public async Task<CurrentUser> UpdateCurrentUserAsync(UserJson user)
     {
-        var json = await MakeFluxerApiRequestAsync<UserJson, UserJson>(HttpMethod.Patch, "/users/@me", user, true);
-        return User.Create(_client, json);
+        var json = await MakeFluxerApiRequestAsync<CurrentUserJson, UserJson>(HttpMethod.Patch, "/users/@me", user, true);
+        return CurrentUser.Create(_client, json);
     }
 
     public async Task<UsernameAvailableJson> CheckUsernameAvailabilityAsync(string username, string discriminator)
@@ -918,14 +918,23 @@ public class ApiClient
         => await MakeFluxerApiRequestAsync<UserProfileResponse>(HttpMethod.Get,
             new QueryBuilder($"/users/{targetId}/profile").With("guild_id", guildId).With("with_mutual_friends", mutualFriends).With("with_mutual_guilds", mutualGuilds).Build(), true);
 
-    public async Task<UserSettingsJson> GetCurrentUserSettingsAsync()
-        => await MakeFluxerApiRequestAsync<UserSettingsJson>(HttpMethod.Get, "/users/@me/settings", true);
+    public async Task<UserSettings> GetCurrentUserSettingsAsync()
+    {
+        var json = await MakeFluxerApiRequestAsync<UserSettingsJson>(HttpMethod.Get, "/users/@me/settings", true);
+        return UserSettings.Create(_client, json);
+    }
 
-    public async Task<UserSettingsJson> UpdateCurrentUserSettingsAsync<TRequest>(TRequest settings)
-        => await MakeFluxerApiRequestAsync<UserSettingsJson, TRequest>(HttpMethod.Patch, "/users/@me/settings", settings, true);
+    public async Task<UserSettings> UpdateCurrentUserSettingsAsync<TRequest>(TRequest settings)
+    {
+        var json = await MakeFluxerApiRequestAsync<UserSettingsJson, TRequest>(HttpMethod.Patch, "/users/@me/settings", settings, true);
+        return UserSettings.Create(_client, json);
+    }
 
-    public async Task<UserSettingsJson> SetCustomStatusAsync(UserCustomStatus status)
-        => await MakeFluxerApiRequestAsync<UserSettingsJson, ModifyCustomStatus>(HttpMethod.Patch, "/users/@me/settings", new ModifyCustomStatus(status), true);
+    public async Task<UserSettings> SetCustomStatusAsync(UserCustomStatusJson status)
+    {
+        var json = await MakeFluxerApiRequestAsync<UserSettingsJson, ModifyCustomStatus>(HttpMethod.Patch, "/users/@me/settings", new ModifyCustomStatus(status), true);
+        return UserSettings.Create(_client, json);
+    }
 
     public async Task<TResponse> GetCurrentUserNotesAsync<TResponse>()
         => await MakeFluxerApiRequestAsync<TResponse>(HttpMethod.Get, "/users/@me/notes", true);
@@ -1182,10 +1191,10 @@ public class ApiClient
 
     #region OAuth API
 
-    public async Task<User> GetOAuthUserAsync(string accessToken)
+    public async Task<FluxerOAuthUser> GetOAuthUserAsync(string accessToken)
     {
-        var json = await InternalMakeFluxerApiRequestAsync<UserJson>(HttpMethod.Get, "/oauth2/userinfo", true, false, accessToken);
-        return User.Create(_client, json);
+        var json = await InternalMakeFluxerApiRequestAsync<FluxerOAuthUserJson>(HttpMethod.Get, "/oauth2/userinfo", true, false, accessToken);
+        return FluxerOAuthUser.Create(_client, json);
     }
 
     public Task<OAuthTokenJson> GetOAuthTokenAsync(string accessToken)

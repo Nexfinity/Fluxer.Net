@@ -1348,11 +1348,11 @@ public partial class GatewayClient : IDisposable
     /// This sends a PRESENCE_UPDATE packet to the gateway. Other users will see the status change
     /// in real-time through PRESENCE_UPDATE events.
     /// </remarks>
-    public void SetStatus(Status status)
+    public void SetStatus(Status status, UserCustomStatusJson? custom)
     {
         var packet = new GatewayPacket()
         {
-            Data = JToken.FromObject(new PresenceUpdateGatewayData(status)),
+            Data = JToken.FromObject(new PresenceUpdateGatewayData(status, custom)),
             OpCode = FluxerOpCode.PresenceUpdate
         };
         SendGatewayPacket(packet);

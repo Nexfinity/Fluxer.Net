@@ -1,5 +1,4 @@
-﻿using Fluxer.Net.Data.Channels;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace Fluxer.Net;
 

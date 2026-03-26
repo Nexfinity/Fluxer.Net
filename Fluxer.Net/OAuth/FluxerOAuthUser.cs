@@ -2,16 +2,20 @@
 
 namespace Fluxer.Net.OAuth;
 
-public class FluxerOAuthClaims
+/// <inheritdoc />
+public class FluxerOAuthUser : User, IFluxerOAuthUser
 {
-    public FluxerOAuthClaims(ClaimsPrincipal principal)
+    public FluxerOAuthUser(FluxerBaseClient client, ClaimsPrincipal principal) : base(client)
     {
+        if (principal == null)
+            return;
+
         foreach (var c in principal.Claims)
         {
             switch (c.Type)
             {
                 case ClaimTypes.NameIdentifier:
-                    Id = c.Value;
+                    Id = ulong.Parse(c.Value);
                     break;
                 case ClaimTypes.Name:
                     Username = c.Value;
@@ -29,20 +33,33 @@ public class FluxerOAuthClaims
                     AvatarHash = c.Value;
                     break;
                 case FluxerOAuthConstants.Claims.Verified:
-                    Verified = bool.Parse(c.Value);
+                    IsVerified = bool.Parse(c.Value);
                     break;
                 case FluxerOAuthConstants.Claims.Flags:
-                    Flags = ulong.Parse(c.Value);
+                    Flags = (UserFlags)ulong.Parse(c.Value);
                     break;
             }
         }
     }
-    public string Id { get; }
-    public string Username { get; }
-    public string Discriminator { get; }
-    public string DisplayName { get; }
-    public string? Email { get; }
-    public string? AvatarHash { get; }
-    public bool? Verified { get; }
-    public ulong Flags { get; }
+
+    public static FluxerOAuthUser Create(FluxerBaseClient client, FluxerOAuthUserJson json)
+    {
+        var data = new FluxerOAuthUser(client, null);
+        data.Update(client, json);
+        return data;
+    }
+
+    internal void Update(FluxerBaseClient client, FluxerOAuthUserJson json)
+    {
+        base.Update(json);
+        Email = json.Email;
+        IsVerified = json.IsVerified;
+    }
+
+
+    /// <inheritdoc />
+    public string? Email { get; internal set; }
+
+    /// <inheritdoc />
+    public bool? IsVerified { get; internal set; }
 }

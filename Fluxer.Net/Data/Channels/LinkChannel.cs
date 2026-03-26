@@ -2,7 +2,7 @@
 
 public class LinkChannel : Channel
 {
-    internal LinkChannel(BaseClient client) : base(client)
+    internal LinkChannel(FluxerBaseClient client) : base(client)
     {
 
     }

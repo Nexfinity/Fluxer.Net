@@ -54,19 +54,19 @@ public class FavouriteGif : Entity, IFavouriteGif
     /// <inheritdoc />
     public string? TenorSlugId { get; internal set; }
 
-    internal FavouriteGif(BaseClient client) : base(client)
+    internal FavouriteGif(FluxerBaseClient client) : base(client)
     {
 
     }
 
-    public static FavouriteGif Create(BaseClient client, FavouriteGifJson json)
+    public static FavouriteGif Create(FluxerBaseClient client, FavouriteGifJson json)
     {
         var data = new FavouriteGif(client);
         data.Update(client, json);
         return data;
     }
 
-    internal void Update(BaseClient client, FavouriteGifJson json)
+    internal void Update(FluxerBaseClient client, FavouriteGifJson json)
     {
         Id = json.Id;
         UserId = json.UserId;

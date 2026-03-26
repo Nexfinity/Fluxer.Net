@@ -32,19 +32,19 @@ public class PartialGuild : Entity, IPartialGuild
 
     string[]? IPartialGuild.Features => Features.Raw;
 
-    internal PartialGuild(BaseClient client) : base(client)
+    internal PartialGuild(FluxerBaseClient client) : base(client)
     {
 
     }
 
-    public static PartialGuild Create(BaseClient client, PartialGuildJson json)
+    public static PartialGuild Create(FluxerBaseClient client, PartialGuildJson json)
     {
         var data = new PartialGuild(client);
         data.Update(client, json);
         return data;
     }
 
-    internal void Update(BaseClient client, PartialGuildJson json)
+    internal void Update(FluxerBaseClient client, PartialGuildJson json)
     {
         Id = json.Id;
         Name = json.Name;

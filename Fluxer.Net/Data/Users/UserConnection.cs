@@ -21,19 +21,19 @@ public class UserConnection : Entity, IUserConnection
     /// <inheritdoc />
     public int SortOrder { get; internal set; }
 
-    internal UserConnection(BaseClient client) : base(client)
+    internal UserConnection(FluxerBaseClient client) : base(client)
     {
 
     }
 
-    public static UserConnection Create(BaseClient client, UserConnectionJson json)
+    public static UserConnection Create(FluxerBaseClient client, UserConnectionJson json)
     {
         var data = new UserConnection(client);
         data.Update(client, json);
         return data;
     }
 
-    internal void Update(BaseClient client, UserConnectionJson json)
+    internal void Update(FluxerBaseClient client, UserConnectionJson json)
     {
         Id = json.Id;
         Type = json.Type;

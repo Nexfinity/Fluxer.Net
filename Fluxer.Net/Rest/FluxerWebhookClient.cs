@@ -2,7 +2,7 @@
 
 namespace Fluxer.Net;
 
-public class FluxerWebhookClient : BaseClient
+public class FluxerWebhookClient : FluxerBaseClient
 {
     public FluxerWebhookClient(string webhookUrl, FluxerConfig? config = null)
     {

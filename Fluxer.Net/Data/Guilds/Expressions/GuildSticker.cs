@@ -24,12 +24,12 @@ public class GuildSticker : Entity, IGuildSticker
     /// <inheritdoc />
     public User? Creator { get; internal set; }
 
-    internal GuildSticker(BaseClient client) : base(client)
+    internal GuildSticker(FluxerBaseClient client) : base(client)
     {
 
     }
 
-    public static GuildSticker Create(BaseClient client, GuildStickerJson json, ulong guildId)
+    public static GuildSticker Create(FluxerBaseClient client, GuildStickerJson json, ulong guildId)
     {
         var data = new GuildSticker(client);
         data.GuildId = guildId;
@@ -37,7 +37,7 @@ public class GuildSticker : Entity, IGuildSticker
         return data;
     }
 
-    internal void Update(BaseClient client, GuildStickerJson json)
+    internal void Update(FluxerBaseClient client, GuildStickerJson json)
     {
         Id = json.Id;
         Name = json.Name;

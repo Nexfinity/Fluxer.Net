@@ -73,12 +73,12 @@ public class Channel : Entity, IChannel
 
     public bool IsTextable { get; internal set; }
 
-    internal Channel(BaseClient client) : base(client)
+    internal Channel(FluxerBaseClient client) : base(client)
     {
 
     }
 
-    public static Channel Create(BaseClient client, ChannelJson json)
+    public static Channel Create(FluxerBaseClient client, ChannelJson json)
     {
         Channel data = null;
 
@@ -86,8 +86,8 @@ public class Channel : Entity, IChannel
         {
             case ChannelType.GuildText:
                 {
-                    data.IsTextable = true;
                     data = new TextChannel(client);
+                    data.IsTextable = true;
                 }
                 break;
             case ChannelType.GuildVoice:
@@ -97,20 +97,20 @@ public class Channel : Entity, IChannel
                 break;
             case ChannelType.Dm:
                 {
-                    data.IsTextable = true;
                     data = new DMChannel(client);
+                    data.IsTextable = true;
                 }
                 break;
             case ChannelType.DmPersonalNotes:
                 {
-                    data.IsTextable = true;
                     data = new SavedMessagesChannel(client);
+                    data.IsTextable = true;
                 }
                 break;
             case ChannelType.GroupDm:
                 {
-                    data.IsTextable = true;
                     data = new GroupChannel(client);
+                    data.IsTextable = true;
                 }
                 break;
             case ChannelType.GuildCategory:
@@ -125,8 +125,8 @@ public class Channel : Entity, IChannel
                 break;
             default:
                 {
-                    data.IsTextable = true;
                     data = new Channel(client);
+                    data.IsTextable = true;
                 }
                 break;
         }
@@ -134,7 +134,7 @@ public class Channel : Entity, IChannel
         return data;
     }
 
-    internal void Update(BaseClient client, ChannelJson json)
+    internal void Update(FluxerBaseClient client, ChannelJson json)
     {
         Id = json.Id;
         GuildId = json.GuildId;

@@ -96,7 +96,7 @@ var client = new FluxerClient(config["Token"], new()
     },
 
     // Set your bot's status. Options: Online, Idle, DND, Invisible
-    Presence = new PresenceUpdateGatewayData(Status.Online),
+    Presence = new PresenceUpdateGatewayData(Status.Online, null),
 
     EnableRateLimiting = true  // Prevent hitting rate limits (default: true)
 });

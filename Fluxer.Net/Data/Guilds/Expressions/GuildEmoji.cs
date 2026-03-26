@@ -18,12 +18,12 @@ public class GuildEmoji : Entity, IGuildEmoji
     /// <inheritdoc />
     public User? Creator { get; internal set; }
 
-    internal GuildEmoji(BaseClient client) : base(client)
+    internal GuildEmoji(FluxerBaseClient client) : base(client)
     {
 
     }
 
-    public static GuildEmoji Create(BaseClient client, GuildEmojiJson json, ulong guildId)
+    public static GuildEmoji Create(FluxerBaseClient client, GuildEmojiJson json, ulong guildId)
     {
         var data = new GuildEmoji(client);
         data.GuildId = guildId;
@@ -31,7 +31,7 @@ public class GuildEmoji : Entity, IGuildEmoji
         return data;
     }
 
-    internal void Update(BaseClient client, GuildEmojiJson json)
+    internal void Update(FluxerBaseClient client, GuildEmojiJson json)
     {
         Id = json.Id;
         Name = json.Name;

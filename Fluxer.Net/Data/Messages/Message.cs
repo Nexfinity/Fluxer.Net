@@ -71,19 +71,19 @@ public class Message : Entity, IMessage
     /// <inheritdoc />
     public MessageCallJson? Call { get; internal set; }
 
-    internal Message(BaseClient client) : base(client)
+    internal Message(FluxerBaseClient client) : base(client)
     {
 
     }
 
-    public static Message Create(BaseClient client, MessageJson json)
+    public static Message Create(FluxerBaseClient client, MessageJson json)
     {
         var data = new Message(client);
         data.Update(client, json);
         return data;
     }
 
-    internal void Update(BaseClient client, MessageJson json)
+    internal void Update(FluxerBaseClient client, MessageJson json)
     {
         Id = json.Id;
         ChannelId = json.ChannelId;

@@ -12,12 +12,12 @@ public class ClientStatus : Entity, IClientStatus
     /// <inheritdoc />
     public string? Web { get; internal set; }
 
-    internal ClientStatus(BaseClient client) : base(client)
+    internal ClientStatus(FluxerBaseClient client) : base(client)
     {
 
     }
 
-    public static ClientStatus? Create(BaseClient client, ClientStatusJson? json)
+    public static ClientStatus? Create(FluxerBaseClient client, ClientStatusJson? json)
     {
         if (json == null)
             return null;
@@ -27,7 +27,7 @@ public class ClientStatus : Entity, IClientStatus
         return data;
     }
 
-    internal void Update(BaseClient client, ClientStatusJson json)
+    internal void Update(FluxerBaseClient client, ClientStatusJson json)
     {
         Desktop = json.Desktop;
         Mobile = json.Mobile;

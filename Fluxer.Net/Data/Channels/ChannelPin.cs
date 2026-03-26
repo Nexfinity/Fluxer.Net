@@ -1,4 +1,4 @@
-﻿namespace Fluxer.Net.Data.Channels;
+﻿namespace Fluxer.Net;
 
 /// <inheritdoc />
 public class ChannelPin : Entity, IChannelPin
@@ -11,19 +11,19 @@ public class ChannelPin : Entity, IChannelPin
 
     IMessage IChannelPin.Message => Message;
 
-    internal ChannelPin(BaseClient client) : base(client)
+    internal ChannelPin(FluxerBaseClient client) : base(client)
     {
 
     }
 
-    public static ChannelPin Create(BaseClient client, ChannelPinJson json)
+    public static ChannelPin Create(FluxerBaseClient client, ChannelPinJson json)
     {
         var data = new ChannelPin(client);
         data.Update(client, json);
         return data;
     }
 
-    internal void Update(BaseClient client, ChannelPinJson json)
+    internal void Update(FluxerBaseClient client, ChannelPinJson json)
     {
         Message = Message.Create(client, json.Message);
         PinnedAt = json.PinnedAt;

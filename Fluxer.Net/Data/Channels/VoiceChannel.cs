@@ -2,7 +2,7 @@
 
 internal class VoiceChannel : Channel
 {
-    internal VoiceChannel(BaseClient client) : base(client)
+    internal VoiceChannel(FluxerBaseClient client) : base(client)
     {
 
     }

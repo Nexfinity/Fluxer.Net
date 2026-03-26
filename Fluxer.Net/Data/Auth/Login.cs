@@ -9,19 +9,19 @@ public class Login : Entity, ILogin
     /// <inheritdoc />
     public ulong UserId { get; internal set; }
 
-    internal Login(BaseClient client) : base(client)
+    internal Login(FluxerBaseClient client) : base(client)
     {
 
     }
 
-    public static Login Create(BaseClient client, LoginJson json)
+    public static Login Create(FluxerBaseClient client, LoginJson json)
     {
         var data = new Login(client);
         data.Update(client, json);
         return data;
     }
 
-    internal void Update(BaseClient client, LoginJson json)
+    internal void Update(FluxerBaseClient client, LoginJson json)
     {
         Token = json.Token;
         UserId = json.UserId;

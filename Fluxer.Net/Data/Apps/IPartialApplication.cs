@@ -1,4 +1,4 @@
-﻿namespace Fluxer.Net.Data.Apps;
+﻿namespace Fluxer.Net;
 
 /// <summary>
 /// Application/bot used to interact with the Fluxer platform and API.

@@ -31,19 +31,19 @@ public class Activity : Entity, IActivity
 
     IActivityEmoji? IActivity.Emoji => Emoji;
 
-    internal Activity(BaseClient client) : base(client)
+    internal Activity(FluxerBaseClient client) : base(client)
     {
 
     }
 
-    public static Activity Create(BaseClient client, ActivityJson json)
+    public static Activity Create(FluxerBaseClient client, ActivityJson json)
     {
         var data = new Activity(client);
         data.Update(client, json);
         return data;
     }
 
-    internal void Update(BaseClient client, ActivityJson json)
+    internal void Update(FluxerBaseClient client, ActivityJson json)
     {
         Name = json.Name;
         Type = json.Type;
@@ -65,12 +65,12 @@ public class ActivityTimestamps : IActivityTimestamps
     /// <inheritdoc />
     public long? End { get; internal set; }
 
-    internal ActivityTimestamps(BaseClient client)
+    internal ActivityTimestamps(FluxerBaseClient client)
     {
 
     }
 
-    public static ActivityTimestamps? Create(BaseClient client, ActivityTimestampsJson? json)
+    public static ActivityTimestamps? Create(FluxerBaseClient client, ActivityTimestampsJson? json)
     {
         if (json == null)
             return null;
@@ -80,7 +80,7 @@ public class ActivityTimestamps : IActivityTimestamps
         return data;
     }
 
-    internal void Update(BaseClient client, ActivityTimestampsJson json)
+    internal void Update(FluxerBaseClient client, ActivityTimestampsJson json)
     {
         Start = json.Start;
         End = json.End;
@@ -99,12 +99,12 @@ public class ActivityEmoji : IActivityEmoji
     /// <inheritdoc />
     public bool Animated { get; internal set; }
 
-    internal ActivityEmoji(BaseClient client)
+    internal ActivityEmoji(FluxerBaseClient client)
     {
 
     }
 
-    public static ActivityEmoji? Create(BaseClient client, ActivityEmojiJson? json)
+    public static ActivityEmoji? Create(FluxerBaseClient client, ActivityEmojiJson? json)
     {
         if (json == null)
             return null;
@@ -114,7 +114,7 @@ public class ActivityEmoji : IActivityEmoji
         return data;
     }
 
-    internal void Update(BaseClient client, ActivityEmojiJson json)
+    internal void Update(FluxerBaseClient client, ActivityEmojiJson json)
     {
         Id = json.Id;
         Name = json.Name;

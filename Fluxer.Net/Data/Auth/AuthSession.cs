@@ -27,19 +27,19 @@ public class AuthSession : Entity, IAuthSession
     /// <inheritdoc />
     public string? ClientCountry { get; internal set; }
 
-    internal AuthSession(BaseClient client) : base(client)
+    internal AuthSession(FluxerBaseClient client) : base(client)
     {
 
     }
 
-    public static AuthSession Create(BaseClient client, AuthSessionJson json)
+    public static AuthSession Create(FluxerBaseClient client, AuthSessionJson json)
     {
         var data = new AuthSession(client);
         data.Update(client, json);
         return data;
     }
 
-    internal void Update(BaseClient client, AuthSessionJson json)
+    internal void Update(FluxerBaseClient client, AuthSessionJson json)
     {
         SessionIdHash = json.SessionIdHash;
         CreatedAt = json.CreatedAt;

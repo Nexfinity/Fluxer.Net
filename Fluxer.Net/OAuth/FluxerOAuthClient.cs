@@ -2,7 +2,7 @@
 
 namespace Fluxer.Net.OAuth;
 
-public class FluxerOAuthClient : BaseClient
+public class FluxerOAuthClient : FluxerBaseClient
 {
     public FluxerOAuthClient(string clientId, string clientSecret, FluxerConfig? config = null)
     {
@@ -40,7 +40,7 @@ public class FluxerOAuthClient : BaseClient
 
     public new ApiClient Rest => base.Rest;
 
-    public Task<User> GetOAuthUser(string accessToken)
+    public Task<FluxerOAuthUser> GetOAuthUser(string accessToken)
         => Rest.GetOAuthUserAsync(accessToken);
 
     public Task<OAuthTokenJson> GetOAuthTokenAsync(string accessToken)

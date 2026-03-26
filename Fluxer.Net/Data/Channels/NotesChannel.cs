@@ -2,7 +2,7 @@
 
 public class SavedMessagesChannel : Channel, ITextable
 {
-    internal SavedMessagesChannel(BaseClient client) : base(client)
+    internal SavedMessagesChannel(FluxerBaseClient client) : base(client)
     {
 
     }

@@ -24,19 +24,19 @@ public class Webhook : Entity, IWebhook
     /// <inheritdoc />
     public string? AvatarHash { get; internal set; }
 
-    internal Webhook(BaseClient client) : base(client)
+    internal Webhook(FluxerBaseClient client) : base(client)
     {
 
     }
 
-    public static Webhook Create(BaseClient client, WebhookJson json)
+    public static Webhook Create(FluxerBaseClient client, WebhookJson json)
     {
         var data = new Webhook(client);
         data.Update(client, json);
         return data;
     }
 
-    internal void Update(BaseClient client, WebhookJson json)
+    internal void Update(FluxerBaseClient client, WebhookJson json)
     {
         Id = json.Id;
         Token = json.Token;

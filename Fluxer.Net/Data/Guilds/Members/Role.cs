@@ -30,12 +30,12 @@ public class Role : Entity, IRole
     /// <inheritdoc />
     public bool IsMentionable { get; internal set; }
 
-    internal Role(BaseClient client) : base(client)
+    internal Role(FluxerBaseClient client) : base(client)
     {
 
     }
 
-    public static Role Create(BaseClient client, RoleJson json, ulong guildId)
+    public static Role Create(FluxerBaseClient client, RoleJson json, ulong guildId)
     {
         var data = new Role(client);
         data.GuildId = guildId;
@@ -43,7 +43,7 @@ public class Role : Entity, IRole
         return data;
     }
 
-    internal void Update(BaseClient client, RoleJson json)
+    internal void Update(FluxerBaseClient client, RoleJson json)
     {
         Id = json.Id;
         Name = json.Name;

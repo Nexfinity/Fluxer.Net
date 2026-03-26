@@ -4,11 +4,11 @@ namespace Fluxer.Net;
 
 public class ModifyCustomStatus
 {
-    public ModifyCustomStatus(UserCustomStatus status)
+    public ModifyCustomStatus(UserCustomStatusJson status)
     {
         CustomStatus = status;
     }
 
     [JsonProperty("custom_status")]
-    public UserCustomStatus CustomStatus { get; set; }
+    public UserCustomStatusJson CustomStatus { get; set; }
 }
