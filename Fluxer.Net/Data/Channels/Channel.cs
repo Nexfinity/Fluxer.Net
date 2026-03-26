@@ -86,8 +86,8 @@ public class Channel : Entity, IChannel
         {
             case ChannelType.GuildText:
                 {
-                    data.IsTextable = true;
                     data = new TextChannel(client);
+                    data.IsTextable = true;
                 }
                 break;
             case ChannelType.GuildVoice:
@@ -97,20 +97,20 @@ public class Channel : Entity, IChannel
                 break;
             case ChannelType.Dm:
                 {
-                    data.IsTextable = true;
                     data = new DMChannel(client);
+                    data.IsTextable = true;
                 }
                 break;
             case ChannelType.DmPersonalNotes:
                 {
-                    data.IsTextable = true;
                     data = new SavedMessagesChannel(client);
+                    data.IsTextable = true;
                 }
                 break;
             case ChannelType.GroupDm:
                 {
-                    data.IsTextable = true;
                     data = new GroupChannel(client);
+                    data.IsTextable = true;
                 }
                 break;
             case ChannelType.GuildCategory:
@@ -125,8 +125,8 @@ public class Channel : Entity, IChannel
                 break;
             default:
                 {
-                    data.IsTextable = true;
                     data = new Channel(client);
+                    data.IsTextable = true;
                 }
                 break;
         }
