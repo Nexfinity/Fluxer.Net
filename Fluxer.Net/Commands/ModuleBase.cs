@@ -1,3 +1,6 @@
+using Fluxer.Net.Rest;
+using Fluxer.Net.Rest.Requests;
+
 namespace Fluxer.Net.Commands;
 
 /// <summary>
@@ -27,19 +30,19 @@ public abstract class ModuleBase
     /// <summary>
     /// Sends a message to the channel the command was executed in.
     /// </summary>
-    /// <param name="content">The message content.</param>
-    protected async Task<Message> ReplyAsync(string content)
+    protected async Task<Message> ReplyAsync(string? content = null, List<EmbedRequest>? embeds = null,
+        MessageReferenceRequest? reference = null, AllowedMentionsRequest? allowedMentions = null, MessageFlag flags = MessageFlag.None,
+        string? nonce = null, ulong? favoruteMemeId = null, bool? tts = null, List<ulong>? stickerIds = null, List<AttachmentRequest>? attachments = null)
     {
-        return await Context.Rest.SendMessageAsync(Context.ChannelId, new MessageJson { Content = content });
+        return await Context.Rest.SendMessageAsync(Context.ChannelId, content, embeds, reference, allowedMentions, flags, nonce, favoruteMemeId, tts, stickerIds, attachments);
     }
 
     /// <summary>
     /// Sends a message to the channel the command was executed in.
     /// </summary>
-    /// <param name="message">The message to send.</param>
-    protected async Task<Message> ReplyAsync(MessageJson message)
+    protected async Task<Message> ReplyAsync(List<AttachmentRequest> attachments, string? content = null)
     {
-        return await Context.Rest.SendMessageAsync(Context.ChannelId, message);
+        return await Context.Rest.SendMessageAsync(Context.ChannelId, content, attachments: attachments);
     }
 }
 

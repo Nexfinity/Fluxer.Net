@@ -1,21 +1,20 @@
 ﻿using Newtonsoft.Json;
-using System.ComponentModel.DataAnnotations;
 
-namespace Fluxer.Net;
+namespace Fluxer.Net.Rest.Requests;
 
-/// <remarks>
-/// <see href="https://github.com/fluxerapp/fluxer/blob/848269a4d4df7349acfc861ff926b17fe4c4a548/packages/schema/src/domains/message/MessageRequestSchemas.tsx#L70"/>
-/// </remarks>
-public class RichEmbedRequest
+public class EmbedRequest
 {
+    [JsonProperty("type")]
+    public string? Type { get; internal set; } = "rich";
+
     /// <summary>
-    /// URL of the embed
+    /// URL of the embed.
     /// </summary>
     [JsonProperty("url")]
     public string? Url { get; set; }
 
     /// <summary>
-    /// Title of the embed
+    /// Title of the embed.
     /// </summary>
     [JsonProperty("title")]
     public string? Title { get; set; }
@@ -27,7 +26,7 @@ public class RichEmbedRequest
     public int? Color { get; set; }
 
     /// <summary>
-    /// ISO8601 timestamp for the embed
+    /// ISO8601 timestamp for the embed.
     /// </summary>
     [JsonProperty("timestamp")]
     public DateTime? Timestamp { get; set; }
@@ -35,40 +34,37 @@ public class RichEmbedRequest
     /// <summary>
     /// Description of the embed (1-4096 characters)
     /// </summary>
-    [MinLength(1)]
-    [MaxLength(4096)]
     [JsonProperty("description")]
     public string? Description { get; set; }
 
     /// <summary>
-    /// Author information
+    /// Author information.
     /// </summary>
     [JsonProperty("author")]
-    public RichEmbedAuthorRequest? Author { get; set; }
+    public EmbedAuthorRequest? Author { get; set; }
 
     /// <summary>
-    /// Image to display in the embed
+    /// Image to display in the embed.
     /// </summary>
     [JsonProperty("image")]
-    public RichEmbedMediaRequest? Image { get; set; }
+    public EmbedMediaRequest? Image { get; set; }
 
     /// <summary>
-    /// Thumbnail image for the embed
+    /// Thumbnail image for the embed.
     /// </summary>
     [JsonProperty("thumbnail")]
-    public RichEmbedMediaRequest? Thumbnail { get; set; }
+    public EmbedMediaRequest? Thumbnail { get; set; }
 
     /// <summary>
-    /// Footer information
+    /// Footer information.
     /// </summary>
     [JsonProperty("footer")]
-    public RichEmbedFooterRequest? Footer { get; set; }
+    public EmbedFooterRequest? Footer { get; set; }
 
     /// <summary>
     /// Array of field objects (max 25)
     /// </summary>
-    [MaxLength(25)]
     [JsonProperty("fields")]
-    public RichEmbedFieldRequest[]? Fields { get; set; }
+    public EmbedFieldRequest[]? Fields { get; set; }
 
 }

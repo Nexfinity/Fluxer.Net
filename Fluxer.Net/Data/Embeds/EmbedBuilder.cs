@@ -1,3 +1,5 @@
+using Fluxer.Net.Rest.Requests;
+
 namespace Fluxer.Net;
 
 /// <summary>
@@ -9,22 +11,22 @@ public class EmbedBuilder
     /// <summary>
     /// Maximum number of fields allowed in an embed.
     /// </summary>
-    public const int MaxFieldCount = 25;
+    public static int MaxFieldCount { get; } = 25;
 
     /// <summary>
     /// Maximum length of the title.
     /// </summary>
-    public const int MaxTitleLength = 256;
+    public static int MaxTitleLength { get; } = 256;
 
     /// <summary>
     /// Maximum length of the description.
     /// </summary>
-    public const int MaxDescriptionLength = 4096;
+    public static int MaxDescriptionLength { get; } = 4096;
 
     /// <summary>
     /// Maximum total length of all embed content.
     /// </summary>
-    public const int MaxEmbedLength = 6000;
+    public static int MaxEmbedLength { get; } = 6000;
 
     private string? _title;
     private string? _description;
@@ -136,11 +138,11 @@ public class EmbedBuilder
             length += Author?.Name?.Length ?? 0;
             length += Footer?.Text?.Length ?? 0;
 
-			foreach (var @field in Fields)
-			{
-				length += @field.Name?.Length ?? 0;
-				length += @field.Value?.Length ?? 0;
-			}
+            foreach (var @field in Fields)
+            {
+                length += @field.Name?.Length ?? 0;
+                length += @field.Value?.Length ?? 0;
+            }
 
             return length;
         }
@@ -382,7 +384,7 @@ public class EmbedBuilder
     /// </summary>
     /// <returns>A new <see cref="EmbedJson"/> object.</returns>
     /// <exception cref="InvalidOperationException">The embed exceeds <see cref="MaxEmbedLength"/>.</exception>
-    public EmbedJson Build()
+    public EmbedRequest Build()
     {
         // Validate total length
         if (Length > MaxEmbedLength)
@@ -396,9 +398,8 @@ public class EmbedBuilder
         if (!string.IsNullOrEmpty(ImageUrl) && !IsValidUrl(ImageUrl))
             throw new InvalidOperationException("Image URL must include a protocol (http:// or https://).");
 
-        var embed = new EmbedJson
+        var embed = new EmbedRequest
         {
-            Type = "rich",
             Title = Title,
             Description = Description,
             Url = Url,
@@ -406,19 +407,19 @@ public class EmbedBuilder
             Timestamp = Timestamp,
             Author = Author?.Build(),
             Footer = Footer?.Build(),
-            Fields = Fields.Count > 0 ? Fields.Select(f => f.Build()).ToList() : null
+            Fields = Fields.Count > 0 ? Fields.Select(f => f.Build()).ToArray() : null
         };
 
         // Set thumbnail
         if (!string.IsNullOrEmpty(ThumbnailUrl))
         {
-            embed.Thumbnail = new EmbedMediaJson { Url = ThumbnailUrl };
+            embed.Thumbnail = new EmbedMediaRequest { Url = ThumbnailUrl };
         }
 
         // Set image
         if (!string.IsNullOrEmpty(ImageUrl))
         {
-            embed.Image = new EmbedMediaJson { Url = ImageUrl };
+            embed.Image = new EmbedMediaRequest { Url = ImageUrl };
         }
 
         return embed;
@@ -427,7 +428,6 @@ public class EmbedBuilder
     private static bool IsValidUrl(string url)
     {
         return url.StartsWith("http://", StringComparison.OrdinalIgnoreCase) ||
-               url.StartsWith("https://", StringComparison.OrdinalIgnoreCase) ||
-               url.StartsWith("attachment://", StringComparison.OrdinalIgnoreCase);
+               url.StartsWith("https://", StringComparison.OrdinalIgnoreCase);
     }
 }

@@ -1,3 +1,5 @@
+using Fluxer.Net.Rest.Requests;
+
 namespace Fluxer.Net;
 
 /// <summary>
@@ -9,7 +11,7 @@ public class EmbedAuthorBuilder
     /// <summary>
     /// Maximum length of the author name.
     /// </summary>
-    public const int MaxAuthorNameLength = 256;
+    public static int MaxAuthorNameLength { get; } = 256;
 
     private string? _name;
 
@@ -75,9 +77,9 @@ public class EmbedAuthorBuilder
     /// Builds the embed author.
     /// </summary>
     /// <returns>A new <see cref="EmbedAuthorJson"/> object.</returns>
-    public EmbedAuthorJson Build()
+    public EmbedAuthorRequest Build()
     {
-        return new EmbedAuthorJson
+        return new EmbedAuthorRequest
         {
             Name = Name,
             Url = Url,

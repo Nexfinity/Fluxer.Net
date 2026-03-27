@@ -75,12 +75,12 @@ public interface IMessage
     /// <summary>
     /// The embeds attached to the message.
     /// </summary>
-    IEnumerable<EmbedJson>? Embeds { get; }
+    IEnumerable<IEmbed>? Embeds { get; }
 
     /// <summary>
     /// The files attached to the message.
     /// </summary>
-    MessageAttachmentJson[]? Attachments { get; }
+    IAttachment[]? Attachments { get; }
 
     /// <summary>
     /// The stickers sent with the message.

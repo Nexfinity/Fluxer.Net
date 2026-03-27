@@ -1,3 +1,5 @@
+using Fluxer.Net.Rest.Requests;
+
 namespace Fluxer.Net;
 
 /// <summary>
@@ -9,7 +11,7 @@ public class EmbedFooterBuilder
     /// <summary>
     /// Maximum length of the footer text.
     /// </summary>
-    public const int MaxFooterTextLength = 2048;
+    public static int MaxFooterTextLength { get; } = 2048;
 
     private string? _text;
 
@@ -59,9 +61,9 @@ public class EmbedFooterBuilder
     /// Builds the embed footer.
     /// </summary>
     /// <returns>A new <see cref="EmbedFooterJson"/> object.</returns>
-    public EmbedFooterJson Build()
+    public EmbedFooterRequest Build()
     {
-        return new EmbedFooterJson
+        return new EmbedFooterRequest
         {
             Text = Text,
             IconUrl = IconUrl

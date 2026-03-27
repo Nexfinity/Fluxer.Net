@@ -46,10 +46,10 @@ public class Message : Entity, IMessage
     public ulong[]? MentionRoles { get; internal set; }
 
     /// <inheritdoc />
-    public IEnumerable<EmbedJson>? Embeds { get; internal set; }
+    public IEnumerable<Embed>? Embeds { get; internal set; }
 
     /// <inheritdoc />
-    public MessageAttachmentJson[]? Attachments { get; internal set; }
+    public Attachment[]? Attachments { get; internal set; }
 
     /// <inheritdoc />
     public Sticker[]? Stickers { get; internal set; }
@@ -74,6 +74,10 @@ public class Message : Entity, IMessage
     IEnumerable<IUser>? IMessage.Mentions => Mentions;
 
     ISticker[]? IMessage.Stickers => Stickers;
+
+    IEnumerable<IEmbed>? IMessage.Embeds => Embeds;
+
+    IAttachment[]? IMessage.Attachments => Attachments;
 
     internal Message(FluxerBaseClient client) : base(client)
     {
@@ -105,10 +109,15 @@ public class Message : Entity, IMessage
             Mentions = json.Mentions.Select(x => User.Create(client, x));
 
         MentionRoles = json.MentionRoles;
-        Embeds = json.Embeds;
-        Attachments = json.Attachments;
+        if (json.Embeds != null)
+            Embeds = json.Embeds.Select(x => Embed.Create(client, x));
+
+        if (json.Attachments != null)
+            Attachments = json.Attachments.Select(x => Attachment.Create(client, x)).ToArray();
+
         if (json.Stickers != null)
             Stickers = json.Stickers.Select(x => Sticker.Create(client, x)).ToArray();
+
         Reactions = json.Reactions;
         MessageReference = json.MessageReference;
         MessageSnapshots = json.MessageSnapshots;

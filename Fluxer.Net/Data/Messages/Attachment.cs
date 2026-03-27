@@ -1,79 +1,93 @@
-using Newtonsoft.Json;
-
-namespace Fluxer.Net;
+﻿namespace Fluxer.Net;
 
 /// <inheritdoc />
-public class AttachmentJson : IAttachment
+public class Attachment : Entity, IAttachment
 {
     /// <inheritdoc />
-    [JsonProperty("id")]
     public ulong Id { get; set; }
 
     /// <inheritdoc />
-    [JsonProperty("filename")]
     public string Filename { get; set; }
 
     /// <inheritdoc />
-    [JsonProperty("size")]
     public ulong Size { get; set; }
 
     /// <inheritdoc />
-    [JsonProperty("title")]
     public string? Title { get; set; }
 
     /// <inheritdoc />
-    [JsonProperty("description")]
     public string? Description { get; set; }
 
     /// <inheritdoc />
-    [JsonProperty("width")]
     public int? Width { get; set; }
 
     /// <inheritdoc />
-    [JsonProperty("height")]
     public int? Height { get; set; }
 
     /// <inheritdoc />
-    [JsonProperty("content_type")]
     public string ContentType { get; set; }
 
     /// <inheritdoc />
-    [JsonProperty("content_hash")]
     public string? ContentHash { get; set; }
 
     /// <inheritdoc />
-    [JsonProperty("placeholder")]
     public string? Placeholder { get; set; }
 
     /// <inheritdoc />
-    [JsonProperty("flags")]
     public AttachmentFlag Flags { get; set; }
 
     /// <inheritdoc />
-    [JsonProperty("duration")]
     public ulong? Duration { get; set; }
 
     /// <inheritdoc />
-    [JsonProperty("url")]
     public string? Url { get; set; }
 
     /// <inheritdoc />
-    [JsonProperty("proxy_url")]
     public string? ProxyUrl { get; set; }
 
     /// <inheritdoc />
-    [JsonProperty("nsfw")]
     public bool? IsNsfw { get; set; }
 
     /// <inheritdoc />
-    [JsonProperty("waveform")]
     public string? Waveform { get; set; }
 
     /// <inheritdoc />
-    [JsonProperty("expires_at")]
     public DateTime? ExpiresAt { get; set; }
 
     /// <inheritdoc />
-    [JsonProperty("expired")]
     public bool? IsExpired { get; set; }
+
+    internal Attachment(FluxerBaseClient client) : base(client)
+    {
+
+    }
+
+    public static Attachment Create(FluxerBaseClient client, AttachmentJson json)
+    {
+        var data = new Attachment(client);
+        data.Update(client, json);
+        return data;
+    }
+
+    internal void Update(FluxerBaseClient client, AttachmentJson json)
+    {
+        Id = json.Id;
+        Filename = json.Filename;
+        Size = json.Size;
+        Title = json.Title;
+        Description = json.Description;
+        Width = json.Width;
+        Height = json.Height;
+        ContentType = json.ContentType;
+        ContentHash = json.ContentHash;
+        Placeholder = json.Placeholder;
+        Flags = json.Flags;
+        Duration = json.Duration;
+        Url = json.Url;
+        ProxyUrl = json.ProxyUrl;
+        IsNsfw = json.IsNsfw;
+        Waveform = json.Waveform;
+        ExpiresAt = json.ExpiresAt;
+        IsExpired = json.IsExpired;
+    }
 }

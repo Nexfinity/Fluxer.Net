@@ -1,9 +1,17 @@
-﻿namespace Fluxer.Net;
+﻿using Fluxer.Net.Rest;
+using Fluxer.Net.Rest.Requests;
+
+namespace Fluxer.Net;
 
 public static class ChannelHelpers
 {
-    public static Task<Message> SendMessageAsync(this Channel channel, MessageJson json)
-        => channel.Client.Rest.SendMessageAsync(channel.Id, json);
+    public static Task<Message> SendMessageAsync(this Channel channel, string? content = null, List<EmbedRequest>? embeds = null,
+        MessageReferenceRequest? reference = null, AllowedMentionsRequest? allowedMentions = null, MessageFlag flags = MessageFlag.None,
+        string? nonce = null, ulong? favoruteMemeId = null, bool? tts = null, List<ulong>? stickerIds = null, List<AttachmentRequest>? attachments = null)
+        => channel.Client.Rest.SendMessageAsync(channel.Id, content, embeds, reference, allowedMentions, flags, nonce, favoruteMemeId, tts, stickerIds, attachments);
+
+    public static Task<Message> SendFilesAsync(this Channel channel, List<AttachmentRequest>? attachments, string? content = null)
+        => channel.Client.Rest.SendMessageAsync(channel.Id, content, attachments: attachments);
 
     public static Task DeleteAsync(this Channel channel)
         => channel.Client.Rest.DeleteChannelAsync(channel.Id);

@@ -1,3 +1,5 @@
+using Fluxer.Net.Rest.Requests;
+
 namespace Fluxer.Net;
 
 /// <summary>
@@ -9,12 +11,12 @@ public class EmbedFieldBuilder
     /// <summary>
     /// Maximum length of the field name.
     /// </summary>
-    public const int MaxFieldNameLength = 256;
+    public static int MaxFieldNameLength { get; } = 256;
 
     /// <summary>
     /// Maximum length of the field value.
     /// </summary>
-    public const int MaxFieldValueLength = 1024;
+    public static int MaxFieldValueLength { get; } = 1024;
 
     private string? _name;
     private string? _value;
@@ -92,18 +94,18 @@ public class EmbedFieldBuilder
     /// </summary>
     /// <returns>A new <see cref="EmbedFieldJson"/> object.</returns>
     /// <exception cref="InvalidOperationException">Name or Value is null or empty.</exception>
-    public EmbedFieldJson Build()
+    public EmbedFieldRequest Build()
     {
         if (string.IsNullOrWhiteSpace(Name))
             throw new InvalidOperationException("Field name cannot be null or empty.");
         if (string.IsNullOrWhiteSpace(Value))
             throw new InvalidOperationException("Field value cannot be null or empty.");
 
-        return new EmbedFieldJson
+        return new EmbedFieldRequest
         {
             Name = Name,
             Value = Value,
-            Inline = IsInline
+            IsInline = IsInline
         };
     }
 }
