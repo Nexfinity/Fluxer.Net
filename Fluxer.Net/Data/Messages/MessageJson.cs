@@ -73,7 +73,7 @@ public class MessageJson : IMessage
 
     /// <inheritdoc />
     [JsonProperty("attachments")]
-    public MessageAttachmentJson[]? Attachments { get; set; }
+    public AttachmentJson[]? Attachments { get; set; }
 
     /// <inheritdoc />
     [JsonProperty("stickers")]
@@ -103,7 +103,9 @@ public class MessageJson : IMessage
 
     IEnumerable<IUser>? IMessage.Mentions => Mentions;
 
-    IEnumerable<EmbedJson>? IMessage.Embeds => Embeds;
-
     ISticker[]? IMessage.Stickers => Stickers;
+
+    IEnumerable<IEmbed>? IMessage.Embeds => Embeds;
+
+    IAttachment[]? IMessage.Attachments => Attachments;
 }

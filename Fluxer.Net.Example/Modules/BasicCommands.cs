@@ -1,5 +1,6 @@
 using Fluxer.Net.Commands;
 using Fluxer.Net.Commands.Attributes;
+using Fluxer.Net.Rest.Requests;
 
 namespace Fluxer.Net.Example.Modules;
 
@@ -80,11 +81,9 @@ public class BasicCommands : ModuleBase
             .WithCurrentTimestamp()
             .Build();
 
-        await Context.Rest.SendMessageAsync(Context.ChannelId, new()
-        {
-            Content = "Here's an example of a rich embed:",
-            Embeds = new List<EmbedJson> { embed }
-        });
+        await Context.Rest.SendMessageAsync(Context.ChannelId, "Here's an example of a rich embed:",
+            embeds: new List<EmbedRequest> { embed }
+        );
     }
 
     /// <summary>

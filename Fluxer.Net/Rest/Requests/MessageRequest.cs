@@ -1,5 +1,5 @@
-﻿using Newtonsoft.Json;
-using System.ComponentModel.DataAnnotations;
+﻿using Fluxer.Net.Rest.Requests;
+using Newtonsoft.Json;
 
 namespace Fluxer.Net;
 
@@ -18,13 +18,13 @@ public class MessageRequest
     /// Array of embed objects to include in the message
     /// </summary>
     [JsonProperty("embeds")]
-    public RichEmbedRequest[]? Embeds { get; set; }
+    public EmbedRequest[]? Embeds { get; set; }
 
     /// <summary>
     /// Array of attachment objects
     /// </summary>
     [JsonProperty("attachments")]
-    public ClientAttachmentRequest[]? Attachments { get; set; }
+    public List<AttachmentJson>? Attachments { get; set; }
 
     /// <summary>
     /// Reference to another message (for replies or forwards)
@@ -48,9 +48,7 @@ public class MessageRequest
     /// Client-generated identifier for the message
     /// </summary>
     [JsonProperty("nonce")]
-    [MinLength(ApiLimits.MessageNonceMinLength)]
-    [MaxLength(ApiLimits.MessageNonceMaxLength)]
-    public string Nonce { get; set; }
+    public string? Nonce { get; set; }
 
     /// <summary>
     /// ID of a favorite meme to attach
@@ -62,8 +60,7 @@ public class MessageRequest
     /// Array of sticker IDs to include (max 3)
     /// </summary>
     [JsonProperty("sticker_ids")]
-    [MaxLength(3)]
-    public HashSet<ulong>? StickerIds { get; set; }
+    public List<ulong>? StickerIds { get; set; }
 
     /// <summary>
     /// Whether this is a text-to-speech message

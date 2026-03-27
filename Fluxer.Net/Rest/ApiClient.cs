@@ -1,6 +1,7 @@
 using Fluxer.Net.Extensions;
 using Fluxer.Net.OAuth;
 using Fluxer.Net.RateLimiting;
+using Fluxer.Net.Rest;
 using Fluxer.Net.Rest.Requests;
 using Newtonsoft.Json;
 using Serilog.Core;
@@ -443,26 +444,41 @@ public class ApiClient
     public async Task<TResponse> SearchChannelAsync<TRequest, TResponse>(ulong channelId, TRequest data)
         => await MakeFluxerApiRequestAsync<TResponse, TRequest>(HttpMethod.Post, $"/channels/{channelId}/search", data, true);
 
-    public async Task<Message> SendMessageAsync(ulong channelId, MessageJson message, StreamAttachment[]? attachments = null)
+    public async Task<Message> SendMessageAsync(ulong channelId, string? content = null, List<EmbedRequest>? embeds = null,
+        MessageReferenceRequest? reference = null, AllowedMentionsRequest? allowedMentions = null, MessageFlag flags = MessageFlag.None,
+        string? nonce = null, ulong? favoruteMemeId = null, bool? tts = null, List<ulong>? stickerIds = null, List<AttachmentRequest>? attachments = null)
     {
-        if ((attachments?.Length ?? 0) < 1)
+        MessageRequest req = new MessageRequest
         {
-            var jsonAttach = await MakeFluxerApiRequestAsync<MessageJson, MessageJson>(HttpMethod.Post,
+            Content = content,
+            Embeds = embeds.ToArray(),
+            MessageReference = reference,
+            AllowedMentions = allowedMentions,
+            Flags = flags,
+            Nonce = nonce,
+            FavoriteMemeId = favoruteMemeId,
+            Tts = tts,
+            StickerIds = stickerIds,
+        };
+
+        if ((attachments?.Count ?? 0) < 1)
+        {
+            var jsonAttach = await MakeFluxerApiRequestAsync<MessageJson, MessageRequest>(HttpMethod.Post,
                 _isWebhook ? $"/webhooks/{channelId}/{_token}" : $"/channels/{channelId}/messages",
-                message, true);
+                req, true);
             return Message.Create(_client, jsonAttach);
         }
         var form = new List<KeyValuePair<string, (HttpContent content, string? filename)>>();
-        for (int i = 0; i < attachments.Length; i++)
+        for (int i = 0; i < attachments.Count; i++)
         {
             attachments[i].Id = (ulong)i;
             form.Add(new KeyValuePair<string, (HttpContent content, string? filename)>($"file[{i}]", (new StreamContent(attachments[i].Stream), attachments[i].Filename)));
         }
-        message.Attachments = attachments.Cast<MessageAttachmentJson>().ToArray();
+        req.Attachments = attachments.Select(x => x.ToJson()).ToList();
 
-        var json = await MakeFluxerApiRequestAsync<MessageJson, MessageJson>(HttpMethod.Post,
+        var json = await MakeFluxerApiRequestAsync<MessageJson, MessageRequest>(HttpMethod.Post,
             _isWebhook ? $"/webhooks/{channelId}/{_token}" : $"/channels/{channelId}/messages",
-            message, true);
+            req, true);
         return Message.Create(_client, json);
     }
 
@@ -1113,12 +1129,44 @@ public class ApiClient
     public async Task DeleteWebhookWithTokenAsync(ulong webhookId, string token)
         => await MakeFluxerApiRequestRawAsync(HttpMethod.Delete, $"/webhooks/{webhookId}/{token}", false, false);
 
-    public async Task ExecuteWebhookAsync(ulong webhookId, string token, MessageJson data)
-        => await MakeFluxerApiRequestAsync(HttpMethod.Post, $"/webhooks/{webhookId}/{token}", data, true, false);
-
-    public async Task<Message> ExecuteWebhookWaitAsync(ulong webhookId, string token, MessageJson data)
+    public async Task ExecuteWebhookAsync(ulong webhookId, string token, string? content = null, List<EmbedRequest>? embeds = null,
+        MessageReferenceRequest? reference = null, AllowedMentionsRequest? allowedMentions = null, MessageFlag flags = MessageFlag.None,
+        string? nonce = null, ulong? favoruteMemeId = null, bool? tts = null, List<ulong>? stickerIds = null)
     {
-        var json = await MakeFluxerApiRequestAsync<MessageJson, MessageJson>(HttpMethod.Post, $"/webhooks/{webhookId}/{token}?wait", data, true);
+        MessageRequest req = new MessageRequest
+        {
+            Content = content,
+            Embeds = embeds.ToArray(),
+            MessageReference = reference,
+            AllowedMentions = allowedMentions,
+            Flags = flags,
+            Nonce = nonce,
+            FavoriteMemeId = favoruteMemeId,
+            Tts = tts,
+            StickerIds = stickerIds,
+        };
+
+        await MakeFluxerApiRequestAsync(HttpMethod.Post, $"/webhooks/{webhookId}/{token}", req, true, false);
+    }
+
+    public async Task<Message> ExecuteWebhookWaitAsync(ulong webhookId, string token, string? content = null, List<EmbedRequest>? embeds = null,
+        MessageReferenceRequest? reference = null, AllowedMentionsRequest? allowedMentions = null, MessageFlag flags = MessageFlag.None,
+        string? nonce = null, ulong? favoruteMemeId = null, bool? tts = null, List<ulong>? stickerIds = null)
+    {
+        MessageRequest req = new MessageRequest
+        {
+            Content = content,
+            Embeds = embeds.ToArray(),
+            MessageReference = reference,
+            AllowedMentions = allowedMentions,
+            Flags = flags,
+            Nonce = nonce,
+            FavoriteMemeId = favoruteMemeId,
+            Tts = tts,
+            StickerIds = stickerIds,
+        };
+
+        var json = await MakeFluxerApiRequestAsync<MessageJson, MessageRequest>(HttpMethod.Post, $"/webhooks/{webhookId}/{token}?wait", req, true);
         return Message.Create(_client, json);
     }
 

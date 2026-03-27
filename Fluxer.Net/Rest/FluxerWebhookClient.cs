@@ -1,4 +1,6 @@
-﻿using Serilog;
+﻿using Fluxer.Net.Rest;
+using Fluxer.Net.Rest.Requests;
+using Serilog;
 
 namespace Fluxer.Net;
 
@@ -53,6 +55,8 @@ public class FluxerWebhookClient : FluxerBaseClient
     public Task DeleteAsync()
         => Rest.DeleteWebhookWithTokenAsync(Id, Token);
 
-    public Task<Message> SendMessageAsync(MessageJson message, StreamAttachment[]? attachments = null)
-        => Rest.SendMessageAsync(Id, message, attachments);
+    public Task<Message> SendMessageAsync(string? content = null, List<EmbedRequest>? embeds = null,
+        MessageReferenceRequest? reference = null, AllowedMentionsRequest? allowedMentions = null, MessageFlag flags = MessageFlag.None,
+        string? nonce = null, ulong? favoruteMemeId = null, bool? tts = null, List<ulong>? stickerIds = null, List<AttachmentRequest>? attachments = null)
+        => Rest.SendMessageAsync(Id, content, embeds, reference, allowedMentions, flags, nonce, favoruteMemeId, tts, stickerIds, attachments);
 }

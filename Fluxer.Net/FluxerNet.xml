@@ -431,17 +431,15 @@
             Called after a command in this module is executed.
             </summary>
         </member>
-        <member name="M:Fluxer.Net.Commands.ModuleBase.ReplyAsync(System.String)">
+        <member name="M:Fluxer.Net.Commands.ModuleBase.ReplyAsync(System.String,System.Collections.Generic.List{Fluxer.Net.Rest.Requests.EmbedRequest},Fluxer.Net.MessageReferenceRequest,Fluxer.Net.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64},System.Collections.Generic.List{Fluxer.Net.Rest.AttachmentRequest})">
             <summary>
             Sends a message to the channel the command was executed in.
             </summary>
-            <param name="content">The message content.</param>
         </member>
-        <member name="M:Fluxer.Net.Commands.ModuleBase.ReplyAsync(Fluxer.Net.MessageJson)">
+        <member name="M:Fluxer.Net.Commands.ModuleBase.ReplyAsync(System.Collections.Generic.List{Fluxer.Net.Rest.AttachmentRequest},System.String)">
             <summary>
             Sends a message to the channel the command was executed in.
             </summary>
-            <param name="message">The message to send.</param>
         </member>
         <member name="T:Fluxer.Net.Commands.ModuleBase`1">
             <summary>
@@ -1320,6 +1318,785 @@
             Suppress member join notifications in the system channel.
             </summary>
         </member>
+        <member name="T:Fluxer.Net.Embed">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Embed.RawType">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Embed.Url">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Embed.Title">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Embed.Color">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Embed.Timestamp">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Embed.Description">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Embed.Author">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Embed.Image">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Embed.Thumbnail">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Embed.Footer">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Embed.Fields">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Embed.Provider">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Embed.Video">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Embed.Audio">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Embed.IsNsfw">
+            <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.EmbedField">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.EmbedField.Name">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.EmbedField.Value">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.EmbedField.IsInline">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.EmbedAuthor.Name">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.EmbedAuthor.Url">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.EmbedAuthor.IconUrl">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.EmbedAuthor.ProxyIconUrl">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.EmbedFooter.Text">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.EmbedFooter.IconUrl">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.EmbedFooter.ProxyIconUrl">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.EmbedMedia.Url">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.EmbedMedia.Flags">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.EmbedMedia.ProxyUrl">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.EmbedMedia.ContentType">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.EmbedMedia.ContentHash">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.EmbedMedia.Width">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.EmbedMedia.Height">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.EmbedMedia.Description">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.EmbedMedia.Placeholder">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.EmbedMedia.Duration">
+            <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.EmbedAuthorBuilder">
+            <summary>
+            A builder for creating embed authors with validation.
+            Based on Discord.Net's EmbedAuthorBuilder implementation.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.EmbedAuthorBuilder.MaxAuthorNameLength">
+            <summary>
+            Maximum length of the author name.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.EmbedAuthorBuilder.Name">
+            <summary>
+            Gets or sets the name of the author.
+            </summary>
+            <exception cref="T:System.ArgumentException">Name length exceeds <see cref="P:Fluxer.Net.EmbedAuthorBuilder.MaxAuthorNameLength"/>.</exception>
+        </member>
+        <member name="P:Fluxer.Net.EmbedAuthorBuilder.Url">
+            <summary>
+            Gets or sets the URL of the author.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.EmbedAuthorBuilder.IconUrl">
+            <summary>
+            Gets or sets the icon URL of the author.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.EmbedAuthorBuilder.WithName(System.String)">
+            <summary>
+            Sets the name of the author.
+            </summary>
+            <param name="name">The name to set.</param>
+            <returns>The current builder.</returns>
+        </member>
+        <member name="M:Fluxer.Net.EmbedAuthorBuilder.WithUrl(System.String)">
+            <summary>
+            Sets the URL of the author.
+            </summary>
+            <param name="url">The URL to set.</param>
+            <returns>The current builder.</returns>
+        </member>
+        <member name="M:Fluxer.Net.EmbedAuthorBuilder.WithIconUrl(System.String)">
+            <summary>
+            Sets the icon URL of the author.
+            </summary>
+            <param name="iconUrl">The icon URL to set.</param>
+            <returns>The current builder.</returns>
+        </member>
+        <member name="M:Fluxer.Net.EmbedAuthorBuilder.Build">
+            <summary>
+            Builds the embed author.
+            </summary>
+            <returns>A new <see cref="T:Fluxer.Net.EmbedAuthorJson"/> object.</returns>
+        </member>
+        <member name="T:Fluxer.Net.EmbedBuilder">
+            <summary>
+            A builder for creating rich embeds with validation and a fluent API.
+            Based on Discord.Net's EmbedBuilder implementation.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.EmbedBuilder.MaxFieldCount">
+            <summary>
+            Maximum number of fields allowed in an embed.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.EmbedBuilder.MaxTitleLength">
+            <summary>
+            Maximum length of the title.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.EmbedBuilder.MaxDescriptionLength">
+            <summary>
+            Maximum length of the description.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.EmbedBuilder.MaxEmbedLength">
+            <summary>
+            Maximum total length of all embed content.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.EmbedBuilder.Title">
+            <summary>
+            Gets or sets the title of the embed.
+            </summary>
+            <exception cref="T:System.ArgumentException">Title length exceeds <see cref="P:Fluxer.Net.EmbedBuilder.MaxTitleLength"/>.</exception>
+        </member>
+        <member name="P:Fluxer.Net.EmbedBuilder.Description">
+            <summary>
+            Gets or sets the description of the embed.
+            </summary>
+            <exception cref="T:System.ArgumentException">Description length exceeds <see cref="P:Fluxer.Net.EmbedBuilder.MaxDescriptionLength"/>.</exception>
+        </member>
+        <member name="P:Fluxer.Net.EmbedBuilder.Url">
+            <summary>
+            Gets or sets the URL of the embed.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.EmbedBuilder.ThumbnailUrl">
+            <summary>
+            Gets or sets the thumbnail URL of the embed.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.EmbedBuilder.ImageUrl">
+            <summary>
+            Gets or sets the image URL of the embed.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.EmbedBuilder.Color">
+            <summary>
+            Gets or sets the color of the embed.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.EmbedBuilder.Timestamp">
+            <summary>
+            Gets or sets the timestamp of the embed.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.EmbedBuilder.Author">
+            <summary>
+            Gets or sets the author field of the embed.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.EmbedBuilder.Footer">
+            <summary>
+            Gets or sets the footer field of the embed.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.EmbedBuilder.Fields">
+            <summary>
+            Gets the list of field builders for the embed.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.EmbedBuilder.Length">
+            <summary>
+            Gets the total length of all embed content.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.EmbedBuilder.WithTitle(System.String)">
+            <summary>
+            Sets the title of the embed.
+            </summary>
+            <param name="title">The title to set.</param>
+            <returns>The current builder.</returns>
+        </member>
+        <member name="M:Fluxer.Net.EmbedBuilder.WithDescription(System.String)">
+            <summary>
+            Sets the description of the embed.
+            </summary>
+            <param name="description">The description to set.</param>
+            <returns>The current builder.</returns>
+        </member>
+        <member name="M:Fluxer.Net.EmbedBuilder.WithUrl(System.String)">
+            <summary>
+            Sets the URL of the embed.
+            </summary>
+            <param name="url">The URL to set.</param>
+            <returns>The current builder.</returns>
+        </member>
+        <member name="M:Fluxer.Net.EmbedBuilder.WithThumbnailUrl(System.String)">
+            <summary>
+            Sets the thumbnail URL of the embed.
+            </summary>
+            <param name="thumbnailUrl">The thumbnail URL to set.</param>
+            <returns>The current builder.</returns>
+        </member>
+        <member name="M:Fluxer.Net.EmbedBuilder.WithImageUrl(System.String)">
+            <summary>
+            Sets the image URL of the embed.
+            </summary>
+            <param name="imageUrl">The image URL to set.</param>
+            <returns>The current builder.</returns>
+        </member>
+        <member name="M:Fluxer.Net.EmbedBuilder.WithColor(System.Int32)">
+            <summary>
+            Sets the color of the embed.
+            </summary>
+            <param name="color">The color to set as an integer (RGB).</param>
+            <returns>The current builder.</returns>
+        </member>
+        <member name="M:Fluxer.Net.EmbedBuilder.WithColor(System.Byte,System.Byte,System.Byte)">
+            <summary>
+            Sets the color of the embed using RGB values.
+            </summary>
+            <param name="r">Red component (0-255).</param>
+            <param name="g">Green component (0-255).</param>
+            <param name="b">Blue component (0-255).</param>
+            <returns>The current builder.</returns>
+        </member>
+        <member name="M:Fluxer.Net.EmbedBuilder.WithTimestamp(System.DateTime)">
+            <summary>
+            Sets the timestamp of the embed.
+            </summary>
+            <param name="timestamp">The timestamp to set.</param>
+            <returns>The current builder.</returns>
+        </member>
+        <member name="M:Fluxer.Net.EmbedBuilder.WithCurrentTimestamp">
+            <summary>
+            Sets the timestamp of the embed to the current UTC time.
+            </summary>
+            <returns>The current builder.</returns>
+        </member>
+        <member name="M:Fluxer.Net.EmbedBuilder.WithAuthor(Fluxer.Net.EmbedAuthorBuilder)">
+            <summary>
+            Sets the author field of the embed.
+            </summary>
+            <param name="author">The author builder to set.</param>
+            <returns>The current builder.</returns>
+        </member>
+        <member name="M:Fluxer.Net.EmbedBuilder.WithAuthor(System.String,System.String,System.String)">
+            <summary>
+            Sets the author field of the embed.
+            </summary>
+            <param name="name">The name of the author.</param>
+            <param name="iconUrl">The icon URL of the author.</param>
+            <param name="url">The URL of the author.</param>
+            <returns>The current builder.</returns>
+        </member>
+        <member name="M:Fluxer.Net.EmbedBuilder.WithAuthor(System.Action{Fluxer.Net.EmbedAuthorBuilder})">
+            <summary>
+            Sets the author field of the embed using an action.
+            </summary>
+            <param name="action">The action to configure the author builder.</param>
+            <returns>The current builder.</returns>
+        </member>
+        <member name="M:Fluxer.Net.EmbedBuilder.WithFooter(Fluxer.Net.EmbedFooterBuilder)">
+            <summary>
+            Sets the footer field of the embed.
+            </summary>
+            <param name="footer">The footer builder to set.</param>
+            <returns>The current builder.</returns>
+        </member>
+        <member name="M:Fluxer.Net.EmbedBuilder.WithFooter(System.String,System.String)">
+            <summary>
+            Sets the footer field of the embed.
+            </summary>
+            <param name="text">The text of the footer.</param>
+            <param name="iconUrl">The icon URL of the footer.</param>
+            <returns>The current builder.</returns>
+        </member>
+        <member name="M:Fluxer.Net.EmbedBuilder.WithFooter(System.Action{Fluxer.Net.EmbedFooterBuilder})">
+            <summary>
+            Sets the footer field of the embed using an action.
+            </summary>
+            <param name="action">The action to configure the footer builder.</param>
+            <returns>The current builder.</returns>
+        </member>
+        <member name="M:Fluxer.Net.EmbedBuilder.AddField(Fluxer.Net.EmbedFieldBuilder)">
+            <summary>
+            Adds a field to the embed.
+            </summary>
+            <param name="field">The field builder to add.</param>
+            <returns>The current builder.</returns>
+            <exception cref="T:System.ArgumentException">Field count exceeds <see cref="P:Fluxer.Net.EmbedBuilder.MaxFieldCount"/>.</exception>
+        </member>
+        <member name="M:Fluxer.Net.EmbedBuilder.AddField(System.String,System.Object,System.Boolean)">
+            <summary>
+            Adds a field to the embed.
+            </summary>
+            <param name="name">The name of the field.</param>
+            <param name="value">The value of the field.</param>
+            <param name="inline">Whether the field should be inline.</param>
+            <returns>The current builder.</returns>
+            <exception cref="T:System.ArgumentException">Field count exceeds <see cref="P:Fluxer.Net.EmbedBuilder.MaxFieldCount"/>.</exception>
+        </member>
+        <member name="M:Fluxer.Net.EmbedBuilder.AddField(System.Action{Fluxer.Net.EmbedFieldBuilder})">
+            <summary>
+            Adds a field to the embed using an action.
+            </summary>
+            <param name="action">The action to configure the field builder.</param>
+            <returns>The current builder.</returns>
+            <exception cref="T:System.ArgumentException">Field count exceeds <see cref="P:Fluxer.Net.EmbedBuilder.MaxFieldCount"/>.</exception>
+        </member>
+        <member name="M:Fluxer.Net.EmbedBuilder.Build">
+            <summary>
+            Builds the embed.
+            </summary>
+            <returns>A new <see cref="T:Fluxer.Net.EmbedJson"/> object.</returns>
+            <exception cref="T:System.InvalidOperationException">The embed exceeds <see cref="P:Fluxer.Net.EmbedBuilder.MaxEmbedLength"/>.</exception>
+        </member>
+        <member name="T:Fluxer.Net.EmbedFieldBuilder">
+            <summary>
+            A builder for creating embed fields with validation.
+            Based on Discord.Net's EmbedFieldBuilder implementation.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.EmbedFieldBuilder.MaxFieldNameLength">
+            <summary>
+            Maximum length of the field name.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.EmbedFieldBuilder.MaxFieldValueLength">
+            <summary>
+            Maximum length of the field value.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.EmbedFieldBuilder.Name">
+            <summary>
+            Gets or sets the name of the field.
+            </summary>
+            <exception cref="T:System.ArgumentException">Name length exceeds <see cref="P:Fluxer.Net.EmbedFieldBuilder.MaxFieldNameLength"/>.</exception>
+        </member>
+        <member name="P:Fluxer.Net.EmbedFieldBuilder.Value">
+            <summary>
+            Gets or sets the value of the field.
+            </summary>
+            <exception cref="T:System.ArgumentException">Value length exceeds <see cref="P:Fluxer.Net.EmbedFieldBuilder.MaxFieldValueLength"/>.</exception>
+        </member>
+        <member name="P:Fluxer.Net.EmbedFieldBuilder.IsInline">
+            <summary>
+            Gets or sets whether the field should be inline.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.EmbedFieldBuilder.WithName(System.String)">
+            <summary>
+            Sets the name of the field.
+            </summary>
+            <param name="name">The name to set.</param>
+            <returns>The current builder.</returns>
+        </member>
+        <member name="M:Fluxer.Net.EmbedFieldBuilder.WithValue(System.Object)">
+            <summary>
+            Sets the value of the field.
+            </summary>
+            <param name="value">The value to set.</param>
+            <returns>The current builder.</returns>
+        </member>
+        <member name="M:Fluxer.Net.EmbedFieldBuilder.WithIsInline(System.Boolean)">
+            <summary>
+            Sets whether the field should be inline.
+            </summary>
+            <param name="isInline">Whether the field should be inline.</param>
+            <returns>The current builder.</returns>
+        </member>
+        <member name="M:Fluxer.Net.EmbedFieldBuilder.Build">
+            <summary>
+            Builds the embed field.
+            </summary>
+            <returns>A new <see cref="T:Fluxer.Net.EmbedFieldJson"/> object.</returns>
+            <exception cref="T:System.InvalidOperationException">Name or Value is null or empty.</exception>
+        </member>
+        <member name="T:Fluxer.Net.EmbedFooterBuilder">
+            <summary>
+            A builder for creating embed footers with validation.
+            Based on Discord.Net's EmbedFooterBuilder implementation.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.EmbedFooterBuilder.MaxFooterTextLength">
+            <summary>
+            Maximum length of the footer text.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.EmbedFooterBuilder.Text">
+            <summary>
+            Gets or sets the text of the footer.
+            </summary>
+            <exception cref="T:System.ArgumentException">Text length exceeds <see cref="P:Fluxer.Net.EmbedFooterBuilder.MaxFooterTextLength"/>.</exception>
+        </member>
+        <member name="P:Fluxer.Net.EmbedFooterBuilder.IconUrl">
+            <summary>
+            Gets or sets the icon URL of the footer.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.EmbedFooterBuilder.WithText(System.String)">
+            <summary>
+            Sets the text of the footer.
+            </summary>
+            <param name="text">The text to set.</param>
+            <returns>The current builder.</returns>
+        </member>
+        <member name="M:Fluxer.Net.EmbedFooterBuilder.WithIconUrl(System.String)">
+            <summary>
+            Sets the icon URL of the footer.
+            </summary>
+            <param name="iconUrl">The icon URL to set.</param>
+            <returns>The current builder.</returns>
+        </member>
+        <member name="M:Fluxer.Net.EmbedFooterBuilder.Build">
+            <summary>
+            Builds the embed footer.
+            </summary>
+            <returns>A new <see cref="T:Fluxer.Net.EmbedFooterJson"/> object.</returns>
+        </member>
+        <member name="T:Fluxer.Net.EmbedJson">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.EmbedJson.RawType">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.EmbedJson.Url">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.EmbedJson.Title">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.EmbedJson.Color">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.EmbedJson.Timestamp">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.EmbedJson.Description">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.EmbedJson.Author">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.EmbedJson.Image">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.EmbedJson.Thumbnail">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.EmbedJson.Footer">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.EmbedJson.Fields">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.EmbedJson.Provider">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.EmbedJson.Video">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.EmbedJson.Audio">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.EmbedJson.IsNsfw">
+            <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.EmbedFieldJson">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.EmbedFieldJson.Name">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.EmbedFieldJson.Value">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.EmbedFieldJson.IsInline">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.EmbedAuthorJson.Name">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.EmbedAuthorJson.Url">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.EmbedAuthorJson.IconUrl">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.EmbedAuthorJson.ProxyIconUrl">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.EmbedFooterJson.Text">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.EmbedFooterJson.IconUrl">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.EmbedFooterJson.ProxyIconUrl">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.EmbedMediaJson.Url">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.EmbedMediaJson.Flags">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.EmbedMediaJson.ProxyUrl">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.EmbedMediaJson.ContentType">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.EmbedMediaJson.ContentHash">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.EmbedMediaJson.Width">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.EmbedMediaJson.Height">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.EmbedMediaJson.Description">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.EmbedMediaJson.Placeholder">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.EmbedMediaJson.Duration">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.IEmbed.RawType">
+            <summary>
+            The type of embed as raw string.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IEmbed.Url">
+            <summary>
+            The URL of the embed.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IEmbed.Title">
+            <summary>
+            The title of the embed.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IEmbed.Color">
+            <summary>
+            The color code of the embed sidebar.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IEmbed.Timestamp">
+            <summary>
+            The ISO 8601 timestamp of the embed content.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IEmbed.Description">
+            <summary>
+            The description of the embed.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IEmbed.Author">
+            <summary>
+            The author information of the embed.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IEmbed.Image">
+            <summary>
+            The image of the embed.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IEmbed.Thumbnail">
+            <summary>
+            The thumbnail of the embed.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IEmbed.Footer">
+            <summary>
+            The footer of the embed.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IEmbed.Fields">
+            <summary>
+            The fields of the embed.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IEmbed.Provider">
+            <summary>
+            The provider of the embed (e.g., YouTube, Twitter).
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IEmbed.Video">
+            <summary>
+            The video of the embed.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IEmbed.Audio">
+            <summary>
+            The audio of the embed.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IEmbed.IsNsfw">
+            <summary>
+            Whether the embed is flagged as NSFW.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IEmbedField.Name">
+            <summary>
+            The name of the field.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IEmbedField.Value">
+            <summary>
+            The value of the field.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IEmbedField.IsInline">
+            <summary>
+            Whether the field should be displayed inline.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IEmbedAuthor.Name">
+            <summary>
+            The name of the author.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IEmbedAuthor.Url">
+            <summary>
+            The URL of the author.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IEmbedAuthor.IconUrl">
+            <summary>
+            The URL of the author icon.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IEmbedAuthor.ProxyIconUrl">
+            <summary>
+            The proxied URL of the author icon.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IEmbedFooter.Text">
+            <summary>
+            The footer text.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IEmbedFooter.IconUrl">
+            <summary>
+            The URL of the footer icon.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IEmbedFooter.ProxyIconUrl">
+            <summary>
+            .
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IEmbedMedia.Url">
+            <summary>
+            The URL of the media.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IEmbedMedia.Flags">
+            <summary>
+            The bitwise flags for this media.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IEmbedMedia.ProxyUrl">
+            <summary>
+            The proxied URL of the media.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IEmbedMedia.ContentType">
+            <summary>
+            The MIME type of the media.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IEmbedMedia.ContentHash">
+            <summary>
+            The hash of the media content.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IEmbedMedia.Width">
+            <summary>
+            The width of the media in pixels.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IEmbedMedia.Height">
+            <summary>
+            The height of the media in pixels.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IEmbedMedia.Description">
+            <summary>
+            The description of the media.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IEmbedMedia.Placeholder">
+            <summary>
+            The base64 encoded placeholder image for lazy loading.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IEmbedMedia.Duration">
+            <summary>
+            The duration of the media in seconds.
+            </summary>
+        </member>
         <member name="T:Fluxer.Net.Emoji">
             <inheritdoc />
         </member>
@@ -1769,12 +2546,6 @@
         <member name="P:Fluxer.Net.Guild.DisabledOperations">
             <inheritdoc />
         </member>
-        <member name="P:Fluxer.Net.Guild.MaxPresences">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.Guild.MemberCount">
-            <inheritdoc />
-        </member>
         <member name="P:Fluxer.Net.Guild.MessageHistoryCutoff">
             <inheritdoc />
         </member>
@@ -1818,12 +2589,6 @@
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.GuildJson.DisabledOperations">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildJson.MaxPresences">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildJson.MemberCount">
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.GuildJson.MessageHistoryCutoff">
@@ -2911,6 +3676,63 @@
             https://github.com/fluxerapp/fluxer/blob/848269a4d4df7349acfc861ff926b17fe4c4a548/packages/schema/src/primitives/MessageValidators.tsx#L76
             </remarks>
         </member>
+        <member name="T:Fluxer.Net.Attachment">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Attachment.Id">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Attachment.Filename">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Attachment.Size">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Attachment.Title">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Attachment.Description">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Attachment.Width">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Attachment.Height">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Attachment.ContentType">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Attachment.ContentHash">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Attachment.Placeholder">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Attachment.Flags">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Attachment.Duration">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Attachment.Url">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Attachment.ProxyUrl">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Attachment.IsNsfw">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Attachment.Waveform">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Attachment.ExpiresAt">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Attachment.IsExpired">
+            <inheritdoc />
+        </member>
         <member name="T:Fluxer.Net.AttachmentFlag">
             <summary>
             Flags that describe properties of a message attachment. Multiple flags can be combined using bitwise OR.
@@ -2936,124 +3758,151 @@
             Attachment is an animated file (GIF, APNG, etc.).
             </summary>
         </member>
-        <member name="T:Fluxer.Net.EmbedAuthorResponse">
-            <remarks>
-            <see href="https://github.com/fluxerapp/fluxer/blob/848269a4d4df7349acfc861ff926b17fe4c4a548/packages/schema/src/domains/message/EmbedSchemas.tsx#L24"/>
-            </remarks>
+        <member name="T:Fluxer.Net.AttachmentJson">
+            <inheritdoc />
         </member>
-        <member name="P:Fluxer.Net.EmbedAuthorResponse.Name">
+        <member name="P:Fluxer.Net.AttachmentJson.Id">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.AttachmentJson.Filename">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.AttachmentJson.Size">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.AttachmentJson.Title">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.AttachmentJson.Description">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.AttachmentJson.Width">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.AttachmentJson.Height">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.AttachmentJson.ContentType">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.AttachmentJson.ContentHash">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.AttachmentJson.Placeholder">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.AttachmentJson.Flags">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.AttachmentJson.Duration">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.AttachmentJson.Url">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.AttachmentJson.ProxyUrl">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.AttachmentJson.IsNsfw">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.AttachmentJson.Waveform">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.AttachmentJson.ExpiresAt">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.AttachmentJson.IsExpired">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.IAttachment.Id">
             <summary>
-            The name of the author
+            The unique identifier for this attachment.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.EmbedAuthorResponse.Url">
+        <member name="P:Fluxer.Net.IAttachment.Filename">
             <summary>
-            The URL of the author
+            The name of the attached file.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.EmbedAuthorResponse.IconUrl">
+        <member name="P:Fluxer.Net.IAttachment.Size">
             <summary>
-            The URL of the author icon
+            The size of the attachment in bytes.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.EmbedAuthorResponse.ProxyIconUrl">
+        <member name="P:Fluxer.Net.IAttachment.Flags">
             <summary>
-            The proxied URL of the author icon
+            Attachment flags.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.EmbedFieldResponse">
-            <remarks>
-            <see href="https://github.com/fluxerapp/fluxer/blob/848269a4d4df7349acfc861ff926b17fe4c4a548/packages/schema/src/domains/message/EmbedSchemas.tsx#L61"/>
-            </remarks>
-        </member>
-        <member name="P:Fluxer.Net.EmbedFieldResponse.Name">
+        <member name="P:Fluxer.Net.IAttachment.Title">
             <summary>
-            The name of the field
+            The title of the attachment.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.EmbedFieldResponse.Value">
+        <member name="P:Fluxer.Net.IAttachment.Description">
             <summary>
-            The value of the field
+            The description of the attachment.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.EmbedFieldResponse.Inline">
+        <member name="P:Fluxer.Net.IAttachment.ContentType">
             <summary>
-            Whether the field should be displayed inline
+            The MIME type of the attachment.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.EmbedFooterResponse">
-            <remarks>
-            <see href="https://github.com/fluxerapp/fluxer/blob/848269a4d4df7349acfc861ff926b17fe4c4a548/packages/schema/src/domains/message/EmbedSchemas.tsx#L33"/>
-            </remarks>
-        </member>
-        <member name="P:Fluxer.Net.EmbedFooterResponse.Text">
+        <member name="P:Fluxer.Net.IAttachment.ContentHash">
             <summary>
-            The footer text
+            The hash of the attachment content.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.EmbedFooterResponse.IconUrl">
+        <member name="P:Fluxer.Net.IAttachment.Url">
             <summary>
-            The URL of the footer icon
+            The URL of the attachment.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.EmbedFooterResponse.ProxyIconUrl">
+        <member name="P:Fluxer.Net.IAttachment.ProxyUrl">
             <summary>
-            The proxied URL of the footer icon
+            The proxied URL of the attachment.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.EmbedMediaResponse">
-            <remarks>
-            <see href="https://github.com/fluxerapp/fluxer/blob/848269a4d4df7349acfc861ff926b17fe4c4a548/packages/schema/src/domains/message/EmbedSchemas.tsx#L41"/>
-            </remarks>
-        </member>
-        <member name="P:Fluxer.Net.EmbedMediaResponse.Url">
+        <member name="P:Fluxer.Net.IAttachment.Width">
             <summary>
-            The URL of the media
+            The width of the attachment in pixels (for images/videos).
             </summary>
         </member>
-        <member name="P:Fluxer.Net.EmbedMediaResponse.ProxyUrl">
+        <member name="P:Fluxer.Net.IAttachment.Height">
             <summary>
-            The proxied URL of the media
+            The height of the attachment in pixels (for images/videos).
             </summary>
         </member>
-        <member name="P:Fluxer.Net.EmbedMediaResponse.ContentType">
+        <member name="P:Fluxer.Net.IAttachment.Placeholder">
             <summary>
-            The MIME type of the media
+            The base64 encoded placeholder image for lazy loading.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.EmbedMediaResponse.ContentHash">
+        <member name="P:Fluxer.Net.IAttachment.IsNsfw">
             <summary>
-            The hash of the media content
+            Whether the attachment is flagged as NSFW.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.EmbedMediaResponse.Width">
+        <member name="P:Fluxer.Net.IAttachment.Duration">
             <summary>
-            The width of the media in pixels
+            The duration of the media in seconds.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.EmbedMediaResponse.Height">
+        <member name="P:Fluxer.Net.IAttachment.Waveform">
             <summary>
-            The height of the media in pixels
+            The base64 encoded audio waveform data.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.EmbedMediaResponse.Description">
+        <member name="P:Fluxer.Net.IAttachment.ExpiresAt">
             <summary>
-            The description of the media
+            The ISO 8601 timestamp when the attachment URL expires.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.EmbedMediaResponse.Placeholder">
+        <member name="P:Fluxer.Net.IAttachment.IsExpired">
             <summary>
-            The base64 encoded placeholder image for lazy loading
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.EmbedMediaResponse.Duration">
-            <summary>
-            The duration of the media in seconds
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.EmbedMediaResponse.Flags">
-            <summary>
-            The bitwise flags for this media
+            Whether the attachment URL has expired.
             </summary>
         </member>
         <member name="P:Fluxer.Net.IMessage.Id">
@@ -3234,104 +4083,6 @@
         </member>
         <member name="P:Fluxer.Net.Message.Call">
             <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.MessageAttachmentJson.Duration">
-            <summary>
-            Duration of the media in seconds
-            </summary>
-        </member>
-        <member name="T:Fluxer.Net.MessageEmbedChildJson">
-            <remarks>
-            <see href="https://github.com/fluxerapp/fluxer/blob/848269a4d4df7349acfc861ff926b17fe4c4a548/packages/schema/src/domains/message/EmbedSchemas.tsx#L91"/>
-            </remarks>
-        </member>
-        <member name="P:Fluxer.Net.MessageEmbedChildJson.Type">
-            <summary>
-            The type of embed (e.g., rich, image, video, gifv, article, link)
-            </summary>
-            <remarks>
-            Values: <see href="https://github.com/fluxerapp/fluxer/blob/d843d6f3f8a0bd850673ba55036354093977109f/packages/schema/src/domains/message/MessageRequestSchemas.tsx#L119"/>
-            </remarks>
-        </member>
-        <member name="P:Fluxer.Net.MessageEmbedChildJson.Url">
-            <summary>
-            The URL of the embed
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.MessageEmbedChildJson.Title">
-            <summary>
-            The title of the embed
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.MessageEmbedChildJson.Color">
-            <summary>
-            The color code of the embed sidebar
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.MessageEmbedChildJson.Timestamp">
-            <summary>
-            The ISO 8601 timestamp of the embed content
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.MessageEmbedChildJson.Description">
-            <summary>
-            The description of the embed
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.MessageEmbedChildJson.Author">
-            <summary>
-            The author information of the embed
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.MessageEmbedChildJson.Image">
-            <summary>
-            The image of the embed
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.MessageEmbedChildJson.Thumbnail">
-            <summary>
-            The thumbnail of the embed
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.MessageEmbedChildJson.Footer">
-            <summary>
-            The footer of the embed
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.MessageEmbedChildJson.Fields">
-            <summary>
-            The fields of the embed
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.MessageEmbedChildJson.Provider">
-            <summary>
-            The provider of the embed (e.g., YouTube, Twitter)
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.MessageEmbedChildJson.Video">
-            <summary>
-            The video of the embed
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.MessageEmbedChildJson.Audio">
-            <summary>
-            The audio of the embed
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.MessageEmbedChildJson.Nsfw">
-            <summary>
-            Whether the embed is flagged as NSFW
-            </summary>
-        </member>
-        <member name="T:Fluxer.Net.MessageEmbedJson">
-            <remarks>
-            <see href="https://github.com/fluxerapp/fluxer/blob/848269a4d4df7349acfc861ff926b17fe4c4a548/packages/schema/src/domains/message/EmbedSchemas.tsx#L111"/>
-            </remarks>
-        </member>
-        <member name="P:Fluxer.Net.MessageEmbedJson.Children">
-            <summary>
-            Internal nested embeds generated by unfurlers
-            </summary>
         </member>
         <member name="T:Fluxer.Net.MessageFlag">
             <summary>
@@ -4662,388 +5413,6 @@
             <remarks>
             <see href="https://github.com/fluxerapp/fluxer/blob/c2b69be17d1877c5bb82d10c77fa67cbe4e882d7/packages/schema/src/primitives/WebhookValidators.tsx#L22C14-L22C25"/>
             </remarks>
-        </member>
-        <member name="T:Fluxer.Net.EmbedAuthorBuilder">
-            <summary>
-            A builder for creating embed authors with validation.
-            Based on Discord.Net's EmbedAuthorBuilder implementation.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.EmbedAuthorBuilder.MaxAuthorNameLength">
-            <summary>
-            Maximum length of the author name.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.EmbedAuthorBuilder.Name">
-            <summary>
-            Gets or sets the name of the author.
-            </summary>
-            <exception cref="T:System.ArgumentException">Name length exceeds <see cref="F:Fluxer.Net.EmbedAuthorBuilder.MaxAuthorNameLength"/>.</exception>
-        </member>
-        <member name="P:Fluxer.Net.EmbedAuthorBuilder.Url">
-            <summary>
-            Gets or sets the URL of the author.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.EmbedAuthorBuilder.IconUrl">
-            <summary>
-            Gets or sets the icon URL of the author.
-            </summary>
-        </member>
-        <member name="M:Fluxer.Net.EmbedAuthorBuilder.WithName(System.String)">
-            <summary>
-            Sets the name of the author.
-            </summary>
-            <param name="name">The name to set.</param>
-            <returns>The current builder.</returns>
-        </member>
-        <member name="M:Fluxer.Net.EmbedAuthorBuilder.WithUrl(System.String)">
-            <summary>
-            Sets the URL of the author.
-            </summary>
-            <param name="url">The URL to set.</param>
-            <returns>The current builder.</returns>
-        </member>
-        <member name="M:Fluxer.Net.EmbedAuthorBuilder.WithIconUrl(System.String)">
-            <summary>
-            Sets the icon URL of the author.
-            </summary>
-            <param name="iconUrl">The icon URL to set.</param>
-            <returns>The current builder.</returns>
-        </member>
-        <member name="M:Fluxer.Net.EmbedAuthorBuilder.Build">
-            <summary>
-            Builds the embed author.
-            </summary>
-            <returns>A new <see cref="T:Fluxer.Net.EmbedAuthorJson"/> object.</returns>
-        </member>
-        <member name="T:Fluxer.Net.EmbedBuilder">
-            <summary>
-            A builder for creating rich embeds with validation and a fluent API.
-            Based on Discord.Net's EmbedBuilder implementation.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.EmbedBuilder.MaxFieldCount">
-            <summary>
-            Maximum number of fields allowed in an embed.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.EmbedBuilder.MaxTitleLength">
-            <summary>
-            Maximum length of the title.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.EmbedBuilder.MaxDescriptionLength">
-            <summary>
-            Maximum length of the description.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.EmbedBuilder.MaxEmbedLength">
-            <summary>
-            Maximum total length of all embed content.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.EmbedBuilder.Title">
-            <summary>
-            Gets or sets the title of the embed.
-            </summary>
-            <exception cref="T:System.ArgumentException">Title length exceeds <see cref="F:Fluxer.Net.EmbedBuilder.MaxTitleLength"/>.</exception>
-        </member>
-        <member name="P:Fluxer.Net.EmbedBuilder.Description">
-            <summary>
-            Gets or sets the description of the embed.
-            </summary>
-            <exception cref="T:System.ArgumentException">Description length exceeds <see cref="F:Fluxer.Net.EmbedBuilder.MaxDescriptionLength"/>.</exception>
-        </member>
-        <member name="P:Fluxer.Net.EmbedBuilder.Url">
-            <summary>
-            Gets or sets the URL of the embed.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.EmbedBuilder.ThumbnailUrl">
-            <summary>
-            Gets or sets the thumbnail URL of the embed.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.EmbedBuilder.ImageUrl">
-            <summary>
-            Gets or sets the image URL of the embed.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.EmbedBuilder.Color">
-            <summary>
-            Gets or sets the color of the embed.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.EmbedBuilder.Timestamp">
-            <summary>
-            Gets or sets the timestamp of the embed.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.EmbedBuilder.Author">
-            <summary>
-            Gets or sets the author field of the embed.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.EmbedBuilder.Footer">
-            <summary>
-            Gets or sets the footer field of the embed.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.EmbedBuilder.Fields">
-            <summary>
-            Gets the list of field builders for the embed.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.EmbedBuilder.Length">
-            <summary>
-            Gets the total length of all embed content.
-            </summary>
-        </member>
-        <member name="M:Fluxer.Net.EmbedBuilder.WithTitle(System.String)">
-            <summary>
-            Sets the title of the embed.
-            </summary>
-            <param name="title">The title to set.</param>
-            <returns>The current builder.</returns>
-        </member>
-        <member name="M:Fluxer.Net.EmbedBuilder.WithDescription(System.String)">
-            <summary>
-            Sets the description of the embed.
-            </summary>
-            <param name="description">The description to set.</param>
-            <returns>The current builder.</returns>
-        </member>
-        <member name="M:Fluxer.Net.EmbedBuilder.WithUrl(System.String)">
-            <summary>
-            Sets the URL of the embed.
-            </summary>
-            <param name="url">The URL to set.</param>
-            <returns>The current builder.</returns>
-        </member>
-        <member name="M:Fluxer.Net.EmbedBuilder.WithThumbnailUrl(System.String)">
-            <summary>
-            Sets the thumbnail URL of the embed.
-            </summary>
-            <param name="thumbnailUrl">The thumbnail URL to set.</param>
-            <returns>The current builder.</returns>
-        </member>
-        <member name="M:Fluxer.Net.EmbedBuilder.WithImageUrl(System.String)">
-            <summary>
-            Sets the image URL of the embed.
-            </summary>
-            <param name="imageUrl">The image URL to set.</param>
-            <returns>The current builder.</returns>
-        </member>
-        <member name="M:Fluxer.Net.EmbedBuilder.WithColor(System.Int32)">
-            <summary>
-            Sets the color of the embed.
-            </summary>
-            <param name="color">The color to set as an integer (RGB).</param>
-            <returns>The current builder.</returns>
-        </member>
-        <member name="M:Fluxer.Net.EmbedBuilder.WithColor(System.Byte,System.Byte,System.Byte)">
-            <summary>
-            Sets the color of the embed using RGB values.
-            </summary>
-            <param name="r">Red component (0-255).</param>
-            <param name="g">Green component (0-255).</param>
-            <param name="b">Blue component (0-255).</param>
-            <returns>The current builder.</returns>
-        </member>
-        <member name="M:Fluxer.Net.EmbedBuilder.WithTimestamp(System.DateTime)">
-            <summary>
-            Sets the timestamp of the embed.
-            </summary>
-            <param name="timestamp">The timestamp to set.</param>
-            <returns>The current builder.</returns>
-        </member>
-        <member name="M:Fluxer.Net.EmbedBuilder.WithCurrentTimestamp">
-            <summary>
-            Sets the timestamp of the embed to the current UTC time.
-            </summary>
-            <returns>The current builder.</returns>
-        </member>
-        <member name="M:Fluxer.Net.EmbedBuilder.WithAuthor(Fluxer.Net.EmbedAuthorBuilder)">
-            <summary>
-            Sets the author field of the embed.
-            </summary>
-            <param name="author">The author builder to set.</param>
-            <returns>The current builder.</returns>
-        </member>
-        <member name="M:Fluxer.Net.EmbedBuilder.WithAuthor(System.String,System.String,System.String)">
-            <summary>
-            Sets the author field of the embed.
-            </summary>
-            <param name="name">The name of the author.</param>
-            <param name="iconUrl">The icon URL of the author.</param>
-            <param name="url">The URL of the author.</param>
-            <returns>The current builder.</returns>
-        </member>
-        <member name="M:Fluxer.Net.EmbedBuilder.WithAuthor(System.Action{Fluxer.Net.EmbedAuthorBuilder})">
-            <summary>
-            Sets the author field of the embed using an action.
-            </summary>
-            <param name="action">The action to configure the author builder.</param>
-            <returns>The current builder.</returns>
-        </member>
-        <member name="M:Fluxer.Net.EmbedBuilder.WithFooter(Fluxer.Net.EmbedFooterBuilder)">
-            <summary>
-            Sets the footer field of the embed.
-            </summary>
-            <param name="footer">The footer builder to set.</param>
-            <returns>The current builder.</returns>
-        </member>
-        <member name="M:Fluxer.Net.EmbedBuilder.WithFooter(System.String,System.String)">
-            <summary>
-            Sets the footer field of the embed.
-            </summary>
-            <param name="text">The text of the footer.</param>
-            <param name="iconUrl">The icon URL of the footer.</param>
-            <returns>The current builder.</returns>
-        </member>
-        <member name="M:Fluxer.Net.EmbedBuilder.WithFooter(System.Action{Fluxer.Net.EmbedFooterBuilder})">
-            <summary>
-            Sets the footer field of the embed using an action.
-            </summary>
-            <param name="action">The action to configure the footer builder.</param>
-            <returns>The current builder.</returns>
-        </member>
-        <member name="M:Fluxer.Net.EmbedBuilder.AddField(Fluxer.Net.EmbedFieldBuilder)">
-            <summary>
-            Adds a field to the embed.
-            </summary>
-            <param name="field">The field builder to add.</param>
-            <returns>The current builder.</returns>
-            <exception cref="T:System.ArgumentException">Field count exceeds <see cref="F:Fluxer.Net.EmbedBuilder.MaxFieldCount"/>.</exception>
-        </member>
-        <member name="M:Fluxer.Net.EmbedBuilder.AddField(System.String,System.Object,System.Boolean)">
-            <summary>
-            Adds a field to the embed.
-            </summary>
-            <param name="name">The name of the field.</param>
-            <param name="value">The value of the field.</param>
-            <param name="inline">Whether the field should be inline.</param>
-            <returns>The current builder.</returns>
-            <exception cref="T:System.ArgumentException">Field count exceeds <see cref="F:Fluxer.Net.EmbedBuilder.MaxFieldCount"/>.</exception>
-        </member>
-        <member name="M:Fluxer.Net.EmbedBuilder.AddField(System.Action{Fluxer.Net.EmbedFieldBuilder})">
-            <summary>
-            Adds a field to the embed using an action.
-            </summary>
-            <param name="action">The action to configure the field builder.</param>
-            <returns>The current builder.</returns>
-            <exception cref="T:System.ArgumentException">Field count exceeds <see cref="F:Fluxer.Net.EmbedBuilder.MaxFieldCount"/>.</exception>
-        </member>
-        <member name="M:Fluxer.Net.EmbedBuilder.Build">
-            <summary>
-            Builds the embed.
-            </summary>
-            <returns>A new <see cref="T:Fluxer.Net.EmbedJson"/> object.</returns>
-            <exception cref="T:System.InvalidOperationException">The embed exceeds <see cref="F:Fluxer.Net.EmbedBuilder.MaxEmbedLength"/>.</exception>
-        </member>
-        <member name="T:Fluxer.Net.EmbedFieldBuilder">
-            <summary>
-            A builder for creating embed fields with validation.
-            Based on Discord.Net's EmbedFieldBuilder implementation.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.EmbedFieldBuilder.MaxFieldNameLength">
-            <summary>
-            Maximum length of the field name.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.EmbedFieldBuilder.MaxFieldValueLength">
-            <summary>
-            Maximum length of the field value.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.EmbedFieldBuilder.Name">
-            <summary>
-            Gets or sets the name of the field.
-            </summary>
-            <exception cref="T:System.ArgumentException">Name length exceeds <see cref="F:Fluxer.Net.EmbedFieldBuilder.MaxFieldNameLength"/>.</exception>
-        </member>
-        <member name="P:Fluxer.Net.EmbedFieldBuilder.Value">
-            <summary>
-            Gets or sets the value of the field.
-            </summary>
-            <exception cref="T:System.ArgumentException">Value length exceeds <see cref="F:Fluxer.Net.EmbedFieldBuilder.MaxFieldValueLength"/>.</exception>
-        </member>
-        <member name="P:Fluxer.Net.EmbedFieldBuilder.IsInline">
-            <summary>
-            Gets or sets whether the field should be inline.
-            </summary>
-        </member>
-        <member name="M:Fluxer.Net.EmbedFieldBuilder.WithName(System.String)">
-            <summary>
-            Sets the name of the field.
-            </summary>
-            <param name="name">The name to set.</param>
-            <returns>The current builder.</returns>
-        </member>
-        <member name="M:Fluxer.Net.EmbedFieldBuilder.WithValue(System.Object)">
-            <summary>
-            Sets the value of the field.
-            </summary>
-            <param name="value">The value to set.</param>
-            <returns>The current builder.</returns>
-        </member>
-        <member name="M:Fluxer.Net.EmbedFieldBuilder.WithIsInline(System.Boolean)">
-            <summary>
-            Sets whether the field should be inline.
-            </summary>
-            <param name="isInline">Whether the field should be inline.</param>
-            <returns>The current builder.</returns>
-        </member>
-        <member name="M:Fluxer.Net.EmbedFieldBuilder.Build">
-            <summary>
-            Builds the embed field.
-            </summary>
-            <returns>A new <see cref="T:Fluxer.Net.EmbedFieldJson"/> object.</returns>
-            <exception cref="T:System.InvalidOperationException">Name or Value is null or empty.</exception>
-        </member>
-        <member name="T:Fluxer.Net.EmbedFooterBuilder">
-            <summary>
-            A builder for creating embed footers with validation.
-            Based on Discord.Net's EmbedFooterBuilder implementation.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.EmbedFooterBuilder.MaxFooterTextLength">
-            <summary>
-            Maximum length of the footer text.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.EmbedFooterBuilder.Text">
-            <summary>
-            Gets or sets the text of the footer.
-            </summary>
-            <exception cref="T:System.ArgumentException">Text length exceeds <see cref="F:Fluxer.Net.EmbedFooterBuilder.MaxFooterTextLength"/>.</exception>
-        </member>
-        <member name="P:Fluxer.Net.EmbedFooterBuilder.IconUrl">
-            <summary>
-            Gets or sets the icon URL of the footer.
-            </summary>
-        </member>
-        <member name="M:Fluxer.Net.EmbedFooterBuilder.WithText(System.String)">
-            <summary>
-            Sets the text of the footer.
-            </summary>
-            <param name="text">The text to set.</param>
-            <returns>The current builder.</returns>
-        </member>
-        <member name="M:Fluxer.Net.EmbedFooterBuilder.WithIconUrl(System.String)">
-            <summary>
-            Sets the icon URL of the footer.
-            </summary>
-            <param name="iconUrl">The icon URL to set.</param>
-            <returns>The current builder.</returns>
-        </member>
-        <member name="M:Fluxer.Net.EmbedFooterBuilder.Build">
-            <summary>
-            Builds the embed footer.
-            </summary>
-            <returns>A new <see cref="T:Fluxer.Net.EmbedFooterJson"/> object.</returns>
         </member>
         <member name="T:Fluxer.Net.Extensions.StringUInt64Converter">
             <summary>
@@ -6751,6 +7120,106 @@
             Whether to mention the author of the replied message
             </summary>
         </member>
+        <member name="P:Fluxer.Net.Rest.Requests.EmbedAuthorRequest.Name">
+            <summary>
+            Name of the embed author.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.Requests.EmbedAuthorRequest.Url">
+            <summary>
+            URL to link from the author name/
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.Requests.EmbedAuthorRequest.IconUrl">
+            <summary>
+            URL of the author icon.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.Requests.EmbedFieldRequest.Name">
+            <summary>
+            Name of the field.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.Requests.EmbedFieldRequest.Value">
+            <summary>
+            Value of the field (1-1024 characters)
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.Requests.EmbedFieldRequest.IsInline">
+            <summary>
+            Whether the field should display inline.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.Requests.EmbedFooterRequest.Text">
+            <summary>
+            Footer text (1-2048 characters)
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.Requests.EmbedFooterRequest.IconUrl">
+            <summary>
+            URL of the footer icon.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.Requests.EmbedMediaRequest.Url">
+            <summary>
+            URL of the media (image, video, etc.)
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.Requests.EmbedMediaRequest.Description">
+            <summary>
+            Alt text description of the media.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.Requests.EmbedRequest.Url">
+            <summary>
+            URL of the embed.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.Requests.EmbedRequest.Title">
+            <summary>
+            Title of the embed.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.Requests.EmbedRequest.Color">
+            <summary>
+            Color code of the embed (hex integer)
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.Requests.EmbedRequest.Timestamp">
+            <summary>
+            ISO8601 timestamp for the embed.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.Requests.EmbedRequest.Description">
+            <summary>
+            Description of the embed (1-4096 characters)
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.Requests.EmbedRequest.Author">
+            <summary>
+            Author information.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.Requests.EmbedRequest.Image">
+            <summary>
+            Image to display in the embed.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.Requests.EmbedRequest.Thumbnail">
+            <summary>
+            Thumbnail image for the embed.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.Requests.EmbedRequest.Footer">
+            <summary>
+            Footer information.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.Requests.EmbedRequest.Fields">
+            <summary>
+            Array of field objects (max 25)
+            </summary>
+        </member>
         <member name="T:Fluxer.Net.ChannelPinsQuery">
             <remarks>
             <see href="https://github.com/fluxerapp/fluxer/blob/848269a4d4df7349acfc861ff926b17fe4c4a548/packages/schema/src/domains/message/MessageRequestSchemas.tsx#L314"/>
@@ -6764,36 +7233,6 @@
         <member name="P:Fluxer.Net.ChannelPinsQuery.Before">
             <summary>
             Get pinned messages before this timestamp
-            </summary>
-        </member>
-        <member name="T:Fluxer.Net.ClientAttachmentReferenceRequest">
-            <remarks>
-            <see href="https://github.com/fluxerapp/fluxer/blob/848269a4d4df7349acfc861ff926b17fe4c4a548/packages/schema/src/domains/message/AttachmentSchemas.tsx#L54"/>
-            </remarks>
-        </member>
-        <member name="P:Fluxer.Net.ClientAttachmentReferenceRequest.Id">
-            <summary>
-            The identifier of the attachment being referenced (snowflake ID or file index)
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.ClientAttachmentReferenceRequest.Filename">
-            <summary>
-            A new filename for the attachment
-            </summary>
-        </member>
-        <member name="T:Fluxer.Net.ClientAttachmentRequest">
-            <remarks>
-            <see href="https://github.com/fluxerapp/fluxer/blob/848269a4d4df7349acfc861ff926b17fe4c4a548/packages/schema/src/domains/message/AttachmentSchemas.tsx#L48"/>
-            </remarks>
-        </member>
-        <member name="P:Fluxer.Net.ClientAttachmentRequest.Id">
-            <summary>
-            The client-side identifier for this attachment
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.ClientAttachmentRequest.Filename">
-            <summary>
-            The name of the file being uploaded
             </summary>
         </member>
         <member name="P:Fluxer.Net.GlobalSearchMessagesRequest.ContextChannelId">
@@ -7228,126 +7667,6 @@
         <member name="P:Fluxer.Net.MessageUpdateRequest.Attachments">
             <summary>
             Array of attachment objects to keep or add
-            </summary>
-        </member>
-        <member name="T:Fluxer.Net.RichEmbedAuthorRequest">
-            <remarks>
-            <see href="https://github.com/fluxerapp/fluxer/blob/848269a4d4df7349acfc861ff926b17fe4c4a548/packages/schema/src/domains/message/MessageRequestSchemas.tsx#L40"/>
-            </remarks>
-        </member>
-        <member name="P:Fluxer.Net.RichEmbedAuthorRequest.Name">
-            <summary>
-            Name of the embed author
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.RichEmbedAuthorRequest.Url">
-            <summary>
-            URL to link from the author name
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.RichEmbedAuthorRequest.IconUrl">
-            <summary>
-            URL of the author icon
-            </summary>
-        </member>
-        <member name="T:Fluxer.Net.RichEmbedFieldRequest">
-            <remarks>
-            <see href="https://github.com/fluxerapp/fluxer/blob/848269a4d4df7349acfc861ff926b17fe4c4a548/packages/schema/src/domains/message/MessageRequestSchemas.tsx#L62"/>
-            </remarks>
-        </member>
-        <member name="P:Fluxer.Net.RichEmbedFieldRequest.Name">
-            <summary>
-            Name of the field
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.RichEmbedFieldRequest.Value">
-            <summary>
-            Value of the field (1-1024 characters)
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.RichEmbedFieldRequest.Inline">
-            <summary>
-            Whether the field should display inline
-            </summary>
-        </member>
-        <member name="T:Fluxer.Net.RichEmbedFooterRequest">
-            <remarks>
-            <see href="https://github.com/fluxerapp/fluxer/blob/848269a4d4df7349acfc861ff926b17fe4c4a548/packages/schema/src/domains/message/MessageRequestSchemas.tsx#L55"/>
-            </remarks>
-        </member>
-        <member name="P:Fluxer.Net.RichEmbedFooterRequest.Text">
-            <summary>
-            Footer text (1-2048 characters)
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.RichEmbedFooterRequest.IconUrl">
-            <summary>
-            URL of the footer icon
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.RichEmbedMediaRequest.Url">
-            <summary>
-            URL of the media (image, video, etc.)
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.RichEmbedMediaRequest.Description">
-            <summary>
-            Alt text description of the media
-            </summary>
-        </member>
-        <member name="T:Fluxer.Net.RichEmbedRequest">
-            <remarks>
-            <see href="https://github.com/fluxerapp/fluxer/blob/848269a4d4df7349acfc861ff926b17fe4c4a548/packages/schema/src/domains/message/MessageRequestSchemas.tsx#L70"/>
-            </remarks>
-        </member>
-        <member name="P:Fluxer.Net.RichEmbedRequest.Url">
-            <summary>
-            URL of the embed
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.RichEmbedRequest.Title">
-            <summary>
-            Title of the embed
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.RichEmbedRequest.Color">
-            <summary>
-            Color code of the embed (hex integer)
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.RichEmbedRequest.Timestamp">
-            <summary>
-            ISO8601 timestamp for the embed
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.RichEmbedRequest.Description">
-            <summary>
-            Description of the embed (1-4096 characters)
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.RichEmbedRequest.Author">
-            <summary>
-            Author information
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.RichEmbedRequest.Image">
-            <summary>
-            Image to display in the embed
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.RichEmbedRequest.Thumbnail">
-            <summary>
-            Thumbnail image for the embed
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.RichEmbedRequest.Footer">
-            <summary>
-            Footer information
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.RichEmbedRequest.Fields">
-            <summary>
-            Array of field objects (max 25)
             </summary>
         </member>
     </members>

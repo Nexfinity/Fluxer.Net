@@ -220,31 +220,19 @@ client.Gateway.MessageCreate += async messageData =>
                 }
                 else if (result.ErrorType == CommandError.BadArgCount)
                 {
-                    await client.Rest.SendMessageAsync(messageData.ChannelId, new()
-                    {
-                        Content = $"❌ Error: {result.Error}"
-                    });
+                    await client.Rest.SendMessageAsync(messageData.ChannelId, $"❌ Error: {result.Error}");
                 }
                 else if (result.ErrorType == CommandError.ParseFailed)
                 {
-                    await client.Rest.SendMessageAsync(messageData.ChannelId, new()
-                    {
-                        Content = $"❌ Error: {result.Error}"
-                    });
+                    await client.Rest.SendMessageAsync(messageData.ChannelId, $"❌ Error: {result.Error}");
                 }
                 else if (result.ErrorType == CommandError.UnmetPrecondition)
                 {
-                    await client.Rest.SendMessageAsync(messageData.ChannelId, new()
-                    {
-                        Content = $"⛔ {result.Error}"
-                    });
+                    await client.Rest.SendMessageAsync(messageData.ChannelId, $"⛔ {result.Error}");
                 }
                 else
                 {
-                    await client.Rest.SendMessageAsync(messageData.ChannelId, new()
-                    {
-                        Content = $"❌ An error occurred: {result.Error}"
-                    });
+                    await client.Rest.SendMessageAsync(messageData.ChannelId, $"❌ An error occurred: {result.Error}");
                 }
             }
             else

@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using Fluxer.Net.Rest;
+using Fluxer.Net.Rest.Requests;
+using Newtonsoft.Json;
 
 namespace Fluxer.Net;
 
@@ -17,7 +19,7 @@ public class MessageUpdateRequest
     /// Array of embed objects to include in the message
     /// </summary>
     [JsonProperty("embeds")]
-    public RichEmbedRequest[]? Embeds { get; set; }
+    public EmbedRequest[]? Embeds { get; set; }
 
     /// <summary>
     /// Controls which mentions trigger notifications
@@ -35,5 +37,5 @@ public class MessageUpdateRequest
     /// Array of attachment objects to keep or add
     /// </summary>
     [JsonProperty("attachments")]
-    public ClientAttachmentReferenceRequest[]? Attachments { get; set; }
+    public AttachmentRequest[]? Attachments { get; set; }
 }
