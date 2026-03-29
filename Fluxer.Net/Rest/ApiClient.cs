@@ -545,14 +545,23 @@ public class ApiClient
     public async Task RemoveRecipientAsync(ulong channelId, ulong userId)
         => await MakeFluxerApiRequestRawAsync(HttpMethod.Delete, $"/channels/{channelId}/recipients/{userId}", true);
 
-    public async Task<CallEligibilityJson> GetCallAsync(ulong channelId)
-        => await MakeFluxerApiRequestAsync<CallEligibilityJson>(HttpMethod.Get, $"/channels/{channelId}/call", true);
+    public async Task<CallEligibility> GetVoiceEligibilityAsync(ulong channelId)
+    {
+        var json = await MakeFluxerApiRequestAsync<CallEligibilityJson>(HttpMethod.Get, $"/channels/{channelId}/call", true);
+        return CallEligibility.Create(_client, json);
+    }
 
-    public async Task<TResponse> UpdateCallAsync<TRequest, TResponse>(ulong channelId, TRequest data)
-        => await MakeFluxerApiRequestAsync<TResponse, TRequest>(HttpMethod.Patch, $"/channels/{channelId}/call", data, true);
+    public async Task UpdateVoiceRegionAsync(ulong channelId, string? region)
+        => await MakeFluxerApiRequestAsync(HttpMethod.Patch, $"/channels/{channelId}/call", new VoiceRegionUpdateRequest
+        {
+            Region = region
+        }, true);
 
-    public async Task RingCallAsync<TRequest>(ulong channelId, TRequest data)
-        => await MakeFluxerApiRequestAsync<TRequest>(HttpMethod.Post, $"/channels/{channelId}/call/ring", data, true);
+    public async Task RingCallAsync(ulong channelId, ulong[] recipients)
+        => await MakeFluxerApiRequestAsync(HttpMethod.Post, $"/channels/{channelId}/call/ring", new VoiceRingRequest
+        {
+            Recipients = recipients
+        }, true);
 
     public async Task StopRingingAsync(ulong channelId)
         => await MakeFluxerApiRequestRawAsync(HttpMethod.Post, $"/channels/{channelId}/call/stop-ringing", true);
@@ -563,17 +572,23 @@ public class ApiClient
         return json.Select(x => Invite.Create(_client, x));
     }
 
-    public async Task<Invite> CreateInviteAsync<TRequest>(ulong channelId, ChannelCreateInviteRequest data)
+    public async Task<Invite> CreateInviteAsync(ulong channelId, ChannelCreateInviteRequest data)
     {
         var json = await MakeFluxerApiRequestAsync<InviteJson, ChannelCreateInviteRequest>(HttpMethod.Post, $"/channels/{channelId}/invites", data, true);
         return Invite.Create(_client, json);
     }
 
-    public async Task<TResponse> GetChannelWebhooksAsync<TResponse>(ulong channelId)
-        => await MakeFluxerApiRequestAsync<TResponse>(HttpMethod.Get, $"/channels/{channelId}/webhooks", true);
+    public async Task<IEnumerable<Webhook>> GetChannelWebhooksAsync<TResponse>(ulong channelId)
+    {
+        var json = await MakeFluxerApiRequestAsync<IEnumerable<WebhookJson>>(HttpMethod.Get, $"/channels/{channelId}/webhooks", true);
+        return json.Select(x => Webhook.Create(_client, x));
+    }
 
-    public async Task<TResponse> CreateWebhookAsync<TRequest, TResponse>(ulong channelId, TRequest data)
-        => await MakeFluxerApiRequestAsync<TResponse, TRequest>(HttpMethod.Post, $"/channels/{channelId}/webhooks", data, true);
+    public async Task<Webhook> CreateWebhookAsync<TRequest, TResponse>(ulong channelId, TRequest data)
+    {
+        var json = await MakeFluxerApiRequestAsync<TResponse, WebhookJson>(HttpMethod.Post, $"/channels/{channelId}/webhooks", data, true);
+        return Webhook.Create(_client, json);
+    }
 
     #endregion
 
