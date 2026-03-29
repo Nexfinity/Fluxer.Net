@@ -43,7 +43,7 @@ public class FluxerOAuthClient : FluxerBaseClient
     public Task<FluxerOAuthUser> GetOAuthUser(string accessToken)
         => Rest.GetOAuthUserAsync(accessToken);
 
-    public Task<FluxerOAuthTokenJson> GetOAuthTokenAsync(string accessToken)
+    public Task<FluxerOAuthToken> GetOAuthTokenAsync(string accessToken)
         => Rest.GetOAuthTokenAsync(accessToken);
 
     public Task<IEnumerable<Guild>> GetOAuthGuildsAsync(string accessToken)
