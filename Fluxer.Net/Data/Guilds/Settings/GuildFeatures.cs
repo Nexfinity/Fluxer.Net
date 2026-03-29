@@ -50,6 +50,12 @@ public class GuildFeatures
                     case "VANITY_URL":
                         HasVanityUrl = true;
                         break;
+                    case "DISCOVERABLE":
+                        IsDiscoverable = true;
+                        break;
+                    case "PARTNERED":
+                        IsPartnered = true;
+                        break;
                     case "VERIFIED":
                         IsVerified = true;
                         break;
@@ -96,6 +102,8 @@ public class GuildFeatures
     public bool HasUnlimitedStickers { get; }
     public bool IsExpressionPurgeAllowed { get; }
     public bool HasVanityUrl { get; }
+    public bool IsDiscoverable { get; }
+    public bool IsPartnered { get; }
     public bool IsVerified { get; }
     public bool HasVipVoice { get; }
     public bool IsUnavailable { get; }

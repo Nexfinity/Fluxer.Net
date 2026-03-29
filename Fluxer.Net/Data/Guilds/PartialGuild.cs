@@ -1,33 +1,48 @@
 ﻿namespace Fluxer.Net;
 
+/// <inheritdoc />
 public class PartialGuild : Entity, IPartialGuild
 {
+    /// <inheritdoc />
     public ulong Id { get; internal set; }
 
+    /// <inheritdoc />
     public string Name { get; internal set; }
 
+    /// <inheritdoc />
     public string? IconHash { get; internal set; }
 
+    /// <inheritdoc />
     public string? BannerHash { get; internal set; }
 
+    /// <inheritdoc />
     public int? BannerWidth { get; internal set; }
 
+    /// <inheritdoc />
     public int? BannerHeight { get; internal set; }
 
+    /// <inheritdoc />
     public string? EmbedSplashHash { get; internal set; }
 
+    /// <inheritdoc />
     public int? EmbedSplashWidth { get; internal set; }
 
+    /// <inheritdoc />
     public int? EmbedSplashHeight { get; internal set; }
 
+    /// <inheritdoc />
     public string? SplashHash { get; internal set; }
 
+    /// <inheritdoc />
     public int? SplashWidth { get; internal set; }
 
+    /// <inheritdoc />
     public int? SplashHeight { get; internal set; }
 
+    /// <inheritdoc />
     public GuildSplashCardAlignment SplashCardAligment { get; internal set; }
 
+    /// <inheritdoc />
     public GuildFeatures Features { get; internal set; }
 
     string[]? IPartialGuild.Features => Features.Raw;

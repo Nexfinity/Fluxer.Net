@@ -33,7 +33,7 @@ public class GuildMember : Entity, IGuildMember
     public int? AccentColor { get; internal set; }
 
     /// <inheritdoc />
-    public int? JoinSourceType { get; internal set; }
+    public JoinSource? JoinSourceType { get; internal set; }
 
     /// <inheritdoc />
     public string? SourceInviteCode { get; internal set; }

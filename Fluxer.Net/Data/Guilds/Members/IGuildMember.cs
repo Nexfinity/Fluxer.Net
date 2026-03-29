@@ -38,7 +38,7 @@ public interface IGuildMember
     /// </summary>
     int? AccentColor { get; }
 
-    int? JoinSourceType { get; }
+    JoinSource? JoinSourceType { get; }
 
     string? SourceInviteCode { get; }
 

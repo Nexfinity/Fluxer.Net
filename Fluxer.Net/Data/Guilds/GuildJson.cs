@@ -55,7 +55,7 @@ public class GuildJson : PartialGuildJson, IGuild
 
     /// <inheritdoc />
     [JsonProperty("disabled_operations")]
-    public ulong DisabledOperations { get; set; }
+    public GuildOperations DisabledOperations { get; set; }
 
     /// <inheritdoc />
     [JsonProperty("message_history_cutoff")]
