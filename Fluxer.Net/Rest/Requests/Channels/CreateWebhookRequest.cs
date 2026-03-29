@@ -1,5 +1,12 @@
-﻿namespace Fluxer.Net;
+﻿using Newtonsoft.Json;
+
+namespace Fluxer.Net;
 
 public class CreateWebhookRequest
 {
+    [JsonProperty("name")]
+    public string Name { get; set; }
+
+    [JsonProperty("avatar")]
+    public string? Avatar { get; set; }
 }

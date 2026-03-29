@@ -584,9 +584,13 @@ public class ApiClient
         return json.Select(x => Webhook.Create(_client, x));
     }
 
-    public async Task<Webhook> CreateWebhookAsync<TRequest, TResponse>(ulong channelId, TRequest data)
+    public async Task<Webhook> CreateWebhookAsync(ulong channelId, string name, string? avatar = null)
     {
-        var json = await MakeFluxerApiRequestAsync<TResponse, WebhookJson>(HttpMethod.Post, $"/channels/{channelId}/webhooks", data, true);
+        var json = await MakeFluxerApiRequestAsync<WebhookJson, CreateWebhookRequest>(HttpMethod.Post, $"/channels/{channelId}/webhooks", new CreateWebhookRequest
+        {
+            Name = name,
+            Avatar = avatar
+        }, true);
         return Webhook.Create(_client, json);
     }
 
