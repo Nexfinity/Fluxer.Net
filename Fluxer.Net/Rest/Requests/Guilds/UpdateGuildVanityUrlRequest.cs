@@ -5,7 +5,7 @@ namespace Fluxer.Net;
 /// <remarks>
 /// <see href="https://docs.fluxer.app/resources/guilds#guildvanityurlupdaterequest"/>
 /// </remarks>
-public class GuildVanityUrlUpdateRequest
+public class UpdateGuildVanityUrlRequest
 {
     /// <summary>
     /// The new vanity Url code (2-32 characters, alphanumeric and hyphens)

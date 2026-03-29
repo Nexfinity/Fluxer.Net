@@ -40,10 +40,10 @@ public static class ChannelHelpers
     public static Task DeleteMessageAsync(this Channel channel, Message message)
         => channel.Client.Rest.DeleteMessageAsync(channel.Id, message.Id);
 
-    public static Task<Message> EditMessageAsync(this Channel channel, ulong messageId, MessageUpdateRequest json)
+    public static Task<Message> EditMessageAsync(this Channel channel, ulong messageId, UpdateMessageRequest json)
         => channel.Client.Rest.EditMessageAsync(channel.Id, messageId, json);
 
-    public static Task<Message> EditMessageAsync(this Channel channel, Message message, MessageUpdateRequest json)
+    public static Task<Message> EditMessageAsync(this Channel channel, Message message, UpdateMessageRequest json)
         => channel.Client.Rest.EditMessageAsync(channel.Id, message.Id, json);
 
     public static Task DeleteMessageAttachmentAsync(this Channel channel, ulong messageId, ulong attachmentId)

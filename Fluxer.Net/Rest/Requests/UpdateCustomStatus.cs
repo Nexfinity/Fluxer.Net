@@ -2,9 +2,9 @@
 
 namespace Fluxer.Net;
 
-public class ModifyCustomStatus
+public class UpdateCustomStatus
 {
-    public ModifyCustomStatus(UserCustomStatusJson status)
+    public UpdateCustomStatus(UserCustomStatusJson status)
     {
         CustomStatus = status;
     }

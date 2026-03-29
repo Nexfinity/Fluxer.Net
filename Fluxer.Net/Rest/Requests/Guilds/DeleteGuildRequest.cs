@@ -2,7 +2,7 @@
 
 namespace Fluxer.Net;
 
-public class GuildDeleteRequest
+public class DeleteGuildRequest
 {
     [JsonProperty("mfa_code")]
     public string? MfaCode { get; set; }

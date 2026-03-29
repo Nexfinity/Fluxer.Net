@@ -2,7 +2,7 @@
 
 namespace Fluxer.Net;
 
-public class GuildEmojiUpdateRequest
+public class UpdateGuildEmojiRequest
 {
     [JsonRequired]
     [JsonProperty("name")]

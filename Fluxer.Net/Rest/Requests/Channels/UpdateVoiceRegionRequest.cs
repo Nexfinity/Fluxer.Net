@@ -2,7 +2,7 @@
 
 namespace Fluxer.Net;
 
-public class VoiceRegionUpdateRequest
+public class UpdateVoiceRegionRequest
 {
     [JsonProperty("region")]
     public string? Region { get; set; }

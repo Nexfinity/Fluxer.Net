@@ -2,7 +2,7 @@
 
 namespace Fluxer.Net.Rest.Requests;
 
-public class ChannelCreateInviteRequest
+public class CreateInviteRequest
 {
     [JsonProperty("max_uses")]
     public int? MaxUses { get; set; }

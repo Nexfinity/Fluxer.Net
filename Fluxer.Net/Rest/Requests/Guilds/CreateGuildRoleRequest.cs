@@ -9,7 +9,7 @@ namespace Fluxer.Net;
 /// <remarks>
 /// <see href="https://docs.fluxer.app/resources/guilds#guildrolecreaterequest"/>
 /// </remarks>
-public class GuildRoleCreateRequest
+public class CreateGuildRoleRequest
 {
     /// <summary>
     /// Color as an integer (e.g: 0xff0000 for red)

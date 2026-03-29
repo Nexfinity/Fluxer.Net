@@ -1,9 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
+using System.ComponentModel.DataAnnotations;
 
 namespace Fluxer.Net;
 
-public class GuildBanCreateRequest
+public class CreateGuildBanRequest
 {
     /// <summary>
     /// Duration of the ban in seconds
@@ -17,7 +17,7 @@ public class GuildBanCreateRequest
     /// </summary>
     [JsonProperty("delete_message_days")]
     public int? DeleteMessageDays { get; set; }
-    
+
     /// <summary>
     /// The reason for the ban (max 512 characters)
     /// </summary>

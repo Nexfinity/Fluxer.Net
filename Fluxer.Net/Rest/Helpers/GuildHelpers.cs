@@ -23,19 +23,19 @@ public static class GuildHelpers
     public static Task<IEnumerable<Channel>> GetChannelsAsync(this Guild guild)
         => guild.Client.Rest.GetChannelsAsync(guild.Id);
 
-    public static Task<Channel> CreateChannelAsync(this Guild guild, ChannelCreateRequest request)
+    public static Task<Channel> CreateChannelAsync(this Guild guild, CreateChannelRequest request)
         => guild.Client.Rest.CreateChannelAsync<ChannelJson>(guild.Id, request);
 
     public static Task<IEnumerable<GuildEmoji>> GetEmojisAsync(this Guild guild)
         => guild.Client.Rest.GetEmojisAsync(guild.Id);
 
-    public static Task<GuildEmoji> CreateEmojiAsync(this Guild guild, GuildEmojiCreateRequest request)
+    public static Task<GuildEmoji> CreateEmojiAsync(this Guild guild, CreateGuildEmojiRequest request)
         => guild.Client.Rest.CreateEmojiAsync(guild.Id, request);
 
     public static Task GetStickersAsync(this Guild guild)
         => guild.Client.Rest.GetStickersAsync(guild.Id);
 
-    public static Task<GuildSticker> CreateStickerAsync(this Guild guild, GuildStickerCreateRequest request)
+    public static Task<GuildSticker> CreateStickerAsync(this Guild guild, CreateGuildStickerRequest request)
         => guild.Client.Rest.CreateStickerAsync(guild.Id, request);
 
     public static Task<IEnumerable<GuildMember>> GetMembersAsync(this Guild guild)
@@ -47,7 +47,7 @@ public static class GuildHelpers
     public static Task<GuildMember> GetMemberAsync(this Guild guild, User user)
         => guild.Client.Rest.GetMemberAsync(guild.Id, user.Id);
 
-    public static Task<Role> CreateRoleAsync(this Guild guild, GuildRoleCreateRequest request)
+    public static Task<Role> CreateRoleAsync(this Guild guild, CreateGuildRoleRequest request)
         => guild.Client.Rest.CreateRoleAsync(guild.Id, request);
 
     public static Task<GuildVanityUrl> GetVanityUrlAsync(this Guild guild)

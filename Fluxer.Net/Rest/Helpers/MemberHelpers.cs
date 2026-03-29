@@ -2,7 +2,7 @@
 
 public static class MemberHelpers
 {
-    public static Task BanAsync(this GuildMember member, GuildBanCreateRequest request)
+    public static Task BanAsync(this GuildMember member, CreateGuildBanRequest request)
         => member.Client.Rest.BanMemberAsync(member.GuildId, member.UserId, request);
 
     public static Task KickAsync(this GuildMember member)

@@ -2,7 +2,7 @@
 
 namespace Fluxer.Net;
 
-public class ChannelCreateCategoryRequest : ChannelCreateRequest
+public class CreateCategoryChannelRequest : CreateChannelRequest
 {
     public override string Type => "GUILD_CATEGORY";
 

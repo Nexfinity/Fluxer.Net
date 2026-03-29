@@ -2,7 +2,7 @@
 
 namespace Fluxer.Net;
 
-public class ChannelCreateTextRequest : ChannelCreateRequest
+public class CreateTextChannelRequest : CreateChannelRequest
 {
     public override string Type => "GUILD_TEXT";
 
