@@ -2997,6 +2997,31 @@
             Whether this role can be mentioned by anyone.
             </summary>
         </member>
+        <member name="F:Fluxer.Net.JoinSource.Creator">
+            <summary>
+            User created the guild.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.JoinSource.Invite">
+            <summary>
+            User joined by invite.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.JoinSource.VanityUrl">
+            <summary>
+            User joined by vanity url.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.JoinSource.BotInvite">
+            <summary>
+            Bot was manually added.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.JoinSource.AdminForceAdd">
+            <summary>
+            User was force joined by admin.
+            </summary>
+        </member>
         <member name="T:Fluxer.Net.Role">
             <inheritdoc />
         </member>
@@ -3058,6 +3083,51 @@
             <summary>
             Currently only used when updating role positions in <see cref="!:ApiClient.UpdateRolePositions"/>
             </summary>
+        </member>
+        <member name="T:Fluxer.Net.PartialGuild">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.PartialGuild.Id">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.PartialGuild.Name">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.PartialGuild.IconHash">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.PartialGuild.BannerHash">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.PartialGuild.BannerWidth">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.PartialGuild.BannerHeight">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.PartialGuild.EmbedSplashHash">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.PartialGuild.EmbedSplashWidth">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.PartialGuild.EmbedSplashHeight">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.PartialGuild.SplashHash">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.PartialGuild.SplashWidth">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.PartialGuild.SplashHeight">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.PartialGuild.SplashCardAligment">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.PartialGuild.Features">
+            <inheritdoc />
         </member>
         <member name="T:Fluxer.Net.PartialGuildJson">
             <inheritdoc />
@@ -3461,6 +3531,46 @@
         <member name="F:Fluxer.Net.GuildNsfwLevel.AgeRestricted">
             <summary>
             Users in certain countries will need to be age verified.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildOperations.None">
+            <summary>
+            No flags set.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildOperations.PushNotifications">
+            <summary>
+            Push notifications for this guild.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildOperations.EveryoneMentions">
+            <summary>
+            @everyone mentions in this guild.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildOperations.TypingEvents">
+            <summary>
+            Typing indicator events.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildOperations.InstantInvites">
+            <summary>
+            Creation of instant invites.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildOperations.SendMessages">
+            <summary>
+            Sending messages in the guild.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildOperations.Reactions">
+            <summary>
+            Adding reactions to messages.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildOperations.MemberListUpdates">
+            <summary>
+            Member list update events.
             </summary>
         </member>
         <member name="T:Fluxer.Net.GuildSplashCardAlignment">
@@ -4109,6 +4219,11 @@
             Message is a voice attachment.
             </summary>
         </member>
+        <member name="F:Fluxer.Net.MessageFlag.CompactAttachments">
+            <summary>
+            Display attachments in a compact format.
+            </summary>
+        </member>
         <member name="T:Fluxer.Net.MessageJson">
             <inheritdoc />
             <remarks>
@@ -4274,6 +4389,69 @@
         <member name="F:Fluxer.Net.MessageType.Reply">
             <summary>
             A message that is a reply to another message.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.MessageType.SystemMessage">
+            <summary>
+            System message.
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.FluxerOAuthToken">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FluxerOAuthToken.Application">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FluxerOAuthToken.Scopes">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FluxerOAuthToken.Expires">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FluxerOAuthToken.User">
+            <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.FluxerOAuthTokenJson">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FluxerOAuthTokenJson.Application">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FluxerOAuthTokenJson.Scopes">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FluxerOAuthTokenJson.Expires">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FluxerOAuthTokenJson.User">
+            <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.FluxerOAuthUser">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FluxerOAuthUser.Email">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FluxerOAuthUser.IsVerified">
+            <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.FluxerOAuthUserJson">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FluxerOAuthUserJson.Email">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FluxerOAuthUserJson.IsVerified">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.IFluxerOAuthUser.Email">
+            <summary>
+            The email address of the user.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IFluxerOAuthUser.IsVerified">
+            <summary>
+            Whether the user has verified their email.
             </summary>
         </member>
         <member name="T:Fluxer.Net.Activity">
@@ -4944,6 +5122,16 @@
             Bug hunter badge (found and reported bugs).
             </summary>
         </member>
+        <member name="F:Fluxer.Net.UserFlags.FriendlyBot">
+            <summary>
+            Bot accepts friend requests from users.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.UserFlags.FriendlyBotManualApproval">
+            <summary>
+            Bot requires manual approval for friend requests.
+            </summary>
+        </member>
         <member name="F:Fluxer.Net.UserFlags.HighGlobalRateLimit">
             <summary>
             User has a higher global rate limit (internal flag).
@@ -5037,6 +5225,41 @@
         <member name="F:Fluxer.Net.UserFlags.HasDismissedPremiumOnboarding">
             <summary>
             User has dismissed the premium onboarding flow (user preference).
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.UserFlags.UsedMobileClient">
+            <summary>
+            User has used a mobile client (internal flag)
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.UserFlags.AppStoreReviewer">
+            <summary>
+            User is an app store reviewer (internal flag)
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.UserFlags.DmHistoryBackfilled">
+            <summary>
+            User DM history has been backfilled (internal flag)
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.UserFlags.HasRelationshipsIndexed">
+            <summary>
+            User relationships have been indexed (internal flag)
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.UserFlags.MessagesByAuthorBackfilled">
+            <summary>
+            Messages by this author have been backfilled (internal flag)
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.UserFlags.StaffHidden">
+            <summary>
+            User staff status is hidden from public flags (internal flag)
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.UserFlags.BotSanitized">
+            <summary>
+            User's owned bot discriminators have been sanitized (internal flag)
             </summary>
         </member>
         <member name="T:Fluxer.Net.UserJson">
@@ -5261,17 +5484,30 @@
         <member name="P:Fluxer.Net.UserSettingsJson.TimeFormat">
             <inheritdoc />
         </member>
-        <member name="T:Fluxer.Net.CallEligibilityJson">
-            <remarks>
-            <see href="https://github.com/fluxerapp/fluxer/blob/848269a4d4df7349acfc861ff926b17fe4c4a548/packages/schema/src/domains/channel/ChannelSchemas.tsx#L44"/>
-            </remarks>
+        <member name="T:Fluxer.Net.CallEligibility">
+            <inheritdoc />
         </member>
-        <member name="P:Fluxer.Net.CallEligibilityJson.Ringable">
+        <member name="P:Fluxer.Net.CallEligibility.IsRingable">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.CallEligibility.IsSilent">
+            <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.CallEligibilityJson">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.CallEligibilityJson.IsRingable">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.CallEligibilityJson.IsSilent">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ICallEligibility.IsRingable">
             <summary>
             Whether the current user can ring this call
             </summary>
         </member>
-        <member name="P:Fluxer.Net.CallEligibilityJson.Silent">
+        <member name="P:Fluxer.Net.ICallEligibility.IsSilent">
             <summary>
             Whether the call should be joined silently
             </summary>
@@ -6822,79 +7058,6 @@
             Occurs when an invite is deleted or expires.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.OAuth.FluxerOAuthExtensions">
-            <Summary>
-            Extension methods for handling fluxer oauth client.
-            </Summary>
-        </member>
-        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.AddFluxerClient(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,System.String,Fluxer.Net.FluxerConfig)">
-            <Summary>
-            Add Fluxer oauth client on dependency injection service.
-            </Summary>
-        </member>
-        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.GetFluxerClaims(System.Security.Claims.ClaimsPrincipal,Fluxer.Net.FluxerBaseClient)">
-            <Summary>
-            Get Fluxer specific claims for a claim user.
-            </Summary>
-        </member>
-        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.AddFluxer(Microsoft.AspNetCore.Authentication.AuthenticationBuilder)">
-            <Summary>
-            Add Fluxer oauth client on dependency injection service.
-            </Summary>
-        </member>
-        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.AddFluxer(Microsoft.AspNetCore.Authentication.AuthenticationBuilder,System.Action{Fluxer.Net.OAuth.FluxerOAuthOptions})">
-            <Summary>
-            Add Fluxer oauth client on dependency injection service.
-            </Summary>
-        </member>
-        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.AddFluxer(Microsoft.AspNetCore.Authentication.AuthenticationBuilder,System.String,System.Action{Fluxer.Net.OAuth.FluxerOAuthOptions})">
-            <Summary>
-            Add Fluxer oauth client on dependency injection service.
-            </Summary>
-        </member>
-        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.AddFluxer(Microsoft.AspNetCore.Authentication.AuthenticationBuilder,System.String,System.String,System.Action{Fluxer.Net.OAuth.FluxerOAuthOptions})">
-            <Summary>
-            Add Fluxer oauth client on dependency injection service.
-            </Summary>
-        </member>
-        <member name="T:Fluxer.Net.OAuth.FluxerOAuthHandler">
-            <Summary>
-            Asp.net oauth handler for Fluxer.
-            </Summary>
-        </member>
-        <member name="M:Fluxer.Net.OAuth.FluxerOAuthHandler.#ctor(Microsoft.Extensions.Options.IOptionsMonitor{Fluxer.Net.OAuth.FluxerOAuthOptions},Microsoft.Extensions.Logging.ILoggerFactory,System.Text.Encodings.Web.UrlEncoder,Microsoft.AspNetCore.Authentication.ISystemClock)">
-            <Summary>
-            Create asp.net oauth handler for Fluxer.
-            </Summary>
-        </member>
-        <member name="T:Fluxer.Net.OAuth.FluxerOAuthUser">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.OAuth.FluxerOAuthUser.Email">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.OAuth.FluxerOAuthUser.IsVerified">
-            <inheritdoc />
-        </member>
-        <member name="T:Fluxer.Net.OAuth.FluxerOAuthUserJson">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.OAuth.FluxerOAuthUserJson.Email">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.OAuth.FluxerOAuthUserJson.IsVerified">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.OAuth.IFluxerOAuthUser.Email">
-            <summary>
-            The email address of the user.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.OAuth.IFluxerOAuthUser.IsVerified">
-            <summary>
-            Whether the user has verified their email.
-            </summary>
-        </member>
         <member name="T:Fluxer.Net.RateLimiting.RateLimitBucket">
             <summary>
             Represents a sliding window rate limit bucket for API requests
@@ -7095,29 +7258,19 @@
             <returns>The HTTP status code of the response.</returns>
             <exception cref="T:Fluxer.Net.Extensions.FluxerApiException">Thrown when <paramref name="throwOnNonSuccess"/> is true and the API returns a non-success status code.</exception>
         </member>
-        <member name="T:Fluxer.Net.AllowedMentionsRequest">
+        <member name="T:Fluxer.Net.ChannelPinsQuery">
             <remarks>
-            <see href="https://github.com/fluxerapp/fluxer/blob/848269a4d4df7349acfc861ff926b17fe4c4a548/packages/schema/src/domains/message/SharedMessageSchemas.tsx#L34"/>
+            <see href="https://github.com/fluxerapp/fluxer/blob/848269a4d4df7349acfc861ff926b17fe4c4a548/packages/schema/src/domains/message/MessageRequestSchemas.tsx#L314"/>
             </remarks>
         </member>
-        <member name="P:Fluxer.Net.AllowedMentionsRequest.Parse">
+        <member name="P:Fluxer.Net.ChannelPinsQuery.Limit">
             <summary>
-            Types of mentions to parse from content
+            Maximum number of pinned messages to return (1-50)
             </summary>
         </member>
-        <member name="P:Fluxer.Net.AllowedMentionsRequest.Users">
+        <member name="P:Fluxer.Net.ChannelPinsQuery.Before">
             <summary>
-            Array of user IDs to mention (max 100)
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.AllowedMentionsRequest.Roles">
-            <summary>
-            Array of role IDs to mention (max 100)
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.AllowedMentionsRequest.RepliedUser">
-            <summary>
-            Whether to mention the author of the replied message
+            Get pinned messages before this timestamp
             </summary>
         </member>
         <member name="P:Fluxer.Net.Rest.Requests.EmbedAuthorRequest.Name">
@@ -7220,21 +7373,6 @@
             Array of field objects (max 25)
             </summary>
         </member>
-        <member name="T:Fluxer.Net.ChannelPinsQuery">
-            <remarks>
-            <see href="https://github.com/fluxerapp/fluxer/blob/848269a4d4df7349acfc861ff926b17fe4c4a548/packages/schema/src/domains/message/MessageRequestSchemas.tsx#L314"/>
-            </remarks>
-        </member>
-        <member name="P:Fluxer.Net.ChannelPinsQuery.Limit">
-            <summary>
-            Maximum number of pinned messages to return (1-50)
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.ChannelPinsQuery.Before">
-            <summary>
-            Get pinned messages before this timestamp
-            </summary>
-        </member>
         <member name="P:Fluxer.Net.GlobalSearchMessagesRequest.ContextChannelId">
             <summary>
             Channel ID for context when searching across multiple channels
@@ -7249,6 +7387,51 @@
             <summary>
             Specific channel IDs to search in
             </summary>
+        </member>
+        <member name="T:Fluxer.Net.BulkCreateGuildStickersRequest">
+            <remarks>
+            <see href="https://github.com/fluxerapp/fluxer/blob/38146cc2babb504bfa9e71f61a60dd57ab2c1b67/packages/schema/src/domains/guild/GuildRequestSchemas.tsx#L235C14-L235C43"/>
+            </remarks>
+        </member>
+        <member name="P:Fluxer.Net.CreateGuildBanRequest.BanDurationSeconds">
+            <summary>
+            Duration of the ban in seconds
+            (0 or null for permanent, or anything greater than zero for it to be temporary)
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.CreateGuildBanRequest.DeleteMessageDays">
+            <summary>
+            Number of days of messages to delete from the banned user (0-7)
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.CreateGuildBanRequest.Reason">
+            <summary>
+            The reason for the ban (max 512 characters)
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.CreateGuildRoleRequest">
+            <summary>
+            <para>Request body for creating a role in a guild.</para>
+            <c>POST /guilds/{guild_id}/roles</c>
+            </summary>
+            <remarks>
+            <see href="https://docs.fluxer.app/resources/guilds#guildrolecreaterequest"/>
+            </remarks>
+        </member>
+        <member name="P:Fluxer.Net.CreateGuildRoleRequest.Color">
+            <summary>
+            Color as an integer (e.g: 0xff0000 for red)
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.CreateGuildRoleRequest.Name">
+            <summary>
+            The name of the role (1-100 characters)
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.CreateGuildStickerRequest">
+            <remarks>
+            <see href="https://github.com/fluxerapp/fluxer/blob/38146cc2babb504bfa9e71f61a60dd57ab2c1b67/packages/schema/src/domains/guild/GuildRequestSchemas.tsx#L210"/>
+            </remarks>
         </member>
         <member name="P:Fluxer.Net.GuildAuditLogListRequest.Limit">
             <summary>
@@ -7275,94 +7458,74 @@
             Filter entries by the type of action
             </summary>
         </member>
-        <member name="P:Fluxer.Net.GuildBanCreateRequest.BanDurationSeconds">
-            <summary>
-            Duration of the ban in seconds
-            (0 or null for permanent, or anything greater than zero for it to be temporary)
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.GuildBanCreateRequest.DeleteMessageDays">
-            <summary>
-            Number of days of messages to delete from the banned user (0-7)
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.GuildBanCreateRequest.Reason">
-            <summary>
-            The reason for the ban (max 512 characters)
-            </summary>
-        </member>
-        <member name="T:Fluxer.Net.GuildRoleCreateRequest">
-            <summary>
-            <para>Request body for creating a role in a guild.</para>
-            <c>POST /guilds/{guild_id}/roles</c>
-            </summary>
-            <remarks>
-            <see href="https://docs.fluxer.app/resources/guilds#guildrolecreaterequest"/>
-            </remarks>
-        </member>
-        <member name="P:Fluxer.Net.GuildRoleCreateRequest.Color">
-            <summary>
-            Color as an integer (e.g: 0xff0000 for red)
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.GuildRoleCreateRequest.Name">
-            <summary>
-            The name of the role (1-100 characters)
-            </summary>
-        </member>
-        <member name="T:Fluxer.Net.GuildRoleUpdateRequest">
+        <member name="T:Fluxer.Net.UpdateGuildRoleRequest">
             <summary>
             <c>PATCH /guilds/{guild_id}/roles/{role_id}</c>
             </summary>
         </member>
-        <member name="P:Fluxer.Net.GuildRoleUpdateRequest.Color">
+        <member name="P:Fluxer.Net.UpdateGuildRoleRequest.Color">
             <summary>
             The color of the role as an integer
             </summary>
         </member>
-        <member name="P:Fluxer.Net.GuildRoleUpdateRequest.Hoist">
+        <member name="P:Fluxer.Net.UpdateGuildRoleRequest.Hoist">
             <summary>
             Whether the role should be displayed separately in the member list
             </summary>
         </member>
-        <member name="P:Fluxer.Net.GuildRoleUpdateRequest.HoistPosition">
+        <member name="P:Fluxer.Net.UpdateGuildRoleRequest.HoistPosition">
             <summary>
             The position of the role in the hoisted member list
             </summary>
         </member>
-        <member name="P:Fluxer.Net.GuildRoleUpdateRequest.Mentionable">
+        <member name="P:Fluxer.Net.UpdateGuildRoleRequest.Mentionable">
             <summary>
             Whether the role can be mentioned by anyone
             </summary>
         </member>
-        <member name="P:Fluxer.Net.GuildRoleUpdateRequest.Name">
+        <member name="P:Fluxer.Net.UpdateGuildRoleRequest.Name">
             <summary>
             The name of the role (1-100 characters)
             </summary>
         </member>
-        <member name="T:Fluxer.Net.GuildStickerBulkCreateRequest">
-            <remarks>
-            <see href="https://github.com/fluxerapp/fluxer/blob/38146cc2babb504bfa9e71f61a60dd57ab2c1b67/packages/schema/src/domains/guild/GuildRequestSchemas.tsx#L235C14-L235C43"/>
-            </remarks>
-        </member>
-        <member name="T:Fluxer.Net.GuildStickerCreateRequest">
-            <remarks>
-            <see href="https://github.com/fluxerapp/fluxer/blob/38146cc2babb504bfa9e71f61a60dd57ab2c1b67/packages/schema/src/domains/guild/GuildRequestSchemas.tsx#L210"/>
-            </remarks>
-        </member>
-        <member name="T:Fluxer.Net.GuildStickerUpdateRequest">
+        <member name="T:Fluxer.Net.UpdateGuildStickerRequest">
             <remarks>
             <see href="https://github.com/fluxerapp/fluxer/blob/38146cc2babb504bfa9e71f61a60dd57ab2c1b67/packages/schema/src/domains/guild/GuildRequestSchemas.tsx#L227"/>
             </remarks>
         </member>
-        <member name="T:Fluxer.Net.GuildVanityUrlUpdateRequest">
+        <member name="T:Fluxer.Net.UpdateGuildVanityUrlRequest">
             <remarks>
             <see href="https://docs.fluxer.app/resources/guilds#guildvanityurlupdaterequest"/>
             </remarks>
         </member>
-        <member name="P:Fluxer.Net.GuildVanityUrlUpdateRequest.Code">
+        <member name="P:Fluxer.Net.UpdateGuildVanityUrlRequest.Code">
             <summary>
             The new vanity Url code (2-32 characters, alphanumeric and hyphens)
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.AllowedMentionsRequest">
+            <remarks>
+            <see href="https://github.com/fluxerapp/fluxer/blob/848269a4d4df7349acfc861ff926b17fe4c4a548/packages/schema/src/domains/message/SharedMessageSchemas.tsx#L34"/>
+            </remarks>
+        </member>
+        <member name="P:Fluxer.Net.AllowedMentionsRequest.Parse">
+            <summary>
+            Types of mentions to parse from content
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.AllowedMentionsRequest.Users">
+            <summary>
+            Array of user IDs to mention (max 100)
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.AllowedMentionsRequest.Roles">
+            <summary>
+            Array of role IDs to mention (max 100)
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.AllowedMentionsRequest.RepliedUser">
+            <summary>
+            Whether to mention the author of the replied message
             </summary>
         </member>
         <member name="T:Fluxer.Net.MessageReferenceRequest">
@@ -7639,32 +7802,95 @@
             <see href="https://github.com/fluxerapp/fluxer/blob/d843d6f3f8a0bd850673ba55036354093977109f/packages/schema/src/domains/message/MessageRequestSchemas.tsx#L160"/>
             </remarks>
         </member>
-        <member name="T:Fluxer.Net.MessageUpdateRequest">
+        <member name="T:Fluxer.Net.UpdateMessageRequest">
             <remarks>
             <see href="https://github.com/fluxerapp/fluxer/blob/848269a4d4df7349acfc861ff926b17fe4c4a548/packages/api/src/channel/MessageTypes.tsx#L32"/>
             </remarks>
         </member>
-        <member name="P:Fluxer.Net.MessageUpdateRequest.Content">
+        <member name="P:Fluxer.Net.UpdateMessageRequest.Content">
             <summary>
             The message content (up to 2000 characters)
             </summary>
         </member>
-        <member name="P:Fluxer.Net.MessageUpdateRequest.Embeds">
+        <member name="P:Fluxer.Net.UpdateMessageRequest.Embeds">
             <summary>
             Array of embed objects to include in the message
             </summary>
         </member>
-        <member name="P:Fluxer.Net.MessageUpdateRequest.AllowedMentions">
+        <member name="P:Fluxer.Net.UpdateMessageRequest.AllowedMentions">
             <summary>
             Controls which mentions trigger notifications
             </summary>
         </member>
-        <member name="P:Fluxer.Net.MessageUpdateRequest.Flags">
+        <member name="P:Fluxer.Net.UpdateMessageRequest.Flags">
             <summary>
             Message flags bitfield
             </summary>
         </member>
-        <member name="P:Fluxer.Net.MessageUpdateRequest.Attachments">
+        <member name="P:Fluxer.Net.UpdateMessageRequest.Attachments">
+            <summary>
+            Array of attachment objects to keep or add
+            </summary>
+        </member>
+    </members>
+</doc>
+ions">
+            <summary>
+            File extensions to exclude
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.MessageSearchRequest.SortBy">
+            <summary>
+            Field to sort results by
+            </summary>
+            <remarks>
+            <see href="https://github.com/fluxerapp/fluxer/blob/d843d6f3f8a0bd850673ba55036354093977109f/packages/schema/src/domains/message/MessageRequestSchemas.tsx#L134"/>
+            </remarks>
+        </member>
+        <member name="P:Fluxer.Net.MessageSearchRequest.SortOrder">
+            <summary>
+            Sort order for results
+            </summary>
+            <remarks>
+            <see href="https://github.com/fluxerapp/fluxer/blob/d843d6f3f8a0bd850673ba55036354093977109f/packages/schema/src/domains/message/MessageRequestSchemas.tsx#L147"/>
+            </remarks>
+        </member>
+        <member name="P:Fluxer.Net.MessageSearchRequest.IncludeNsfw">
+            <summary>
+            Whether to include NSFW channel results
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.MessageSearchRequest.MessageSearchScope">
+            <remarks>
+            <see href="https://github.com/fluxerapp/fluxer/blob/d843d6f3f8a0bd850673ba55036354093977109f/packages/schema/src/domains/message/MessageRequestSchemas.tsx#L160"/>
+            </remarks>
+        </member>
+        <member name="T:Fluxer.Net.UpdateMessageRequest">
+            <remarks>
+            <see href="https://github.com/fluxerapp/fluxer/blob/848269a4d4df7349acfc861ff926b17fe4c4a548/packages/api/src/channel/MessageTypes.tsx#L32"/>
+            </remarks>
+        </member>
+        <member name="P:Fluxer.Net.UpdateMessageRequest.Content">
+            <summary>
+            The message content (up to 2000 characters)
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.UpdateMessageRequest.Embeds">
+            <summary>
+            Array of embed objects to include in the message
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.UpdateMessageRequest.AllowedMentions">
+            <summary>
+            Controls which mentions trigger notifications
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.UpdateMessageRequest.Flags">
+            <summary>
+            Message flags bitfield
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.UpdateMessageRequest.Attachments">
             <summary>
             Array of attachment objects to keep or add
             </summary>
