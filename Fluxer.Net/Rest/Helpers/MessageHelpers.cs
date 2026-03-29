@@ -5,7 +5,7 @@ public static class MessageHelpers
     public static Task DeleteAsync(this Message message)
         => message.Client.Rest.DeleteMessageAsync(message.ChannelId, message.Id);
 
-    public static Task<Message> ModifyAsync(this Message message, MessageUpdateRequest req)
+    public static Task<Message> ModifyAsync(this Message message, UpdateMessageRequest req)
         => message.Client.Rest.EditMessageAsync(message.ChannelId, message.Id, req);
 
     public static Task AcknowledgeAsync(this Message message, MessageAckJson json)

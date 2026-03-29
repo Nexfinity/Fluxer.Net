@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace Fluxer.Net;
 
-public class GuildCreateRequest
+public class CreateGuildRequest
 {
     [JsonProperty("empty_features")]
     public bool? EmptyFeatures { get; set; }

@@ -482,9 +482,9 @@ public class ApiClient
         return Message.Create(_client, json);
     }
 
-    public async Task<Message> EditMessageAsync(ulong channelId, ulong messageId, MessageUpdateRequest message)
+    public async Task<Message> EditMessageAsync(ulong channelId, ulong messageId, UpdateMessageRequest message)
     {
-        var json = await MakeFluxerApiRequestAsync<MessageJson, MessageUpdateRequest>(HttpMethod.Patch, $"/channels/{channelId}/messages/{messageId}", message, true);
+        var json = await MakeFluxerApiRequestAsync<MessageJson, UpdateMessageRequest>(HttpMethod.Patch, $"/channels/{channelId}/messages/{messageId}", message, true);
         return Message.Create(_client, json);
     }
 
@@ -545,14 +545,23 @@ public class ApiClient
     public async Task RemoveRecipientAsync(ulong channelId, ulong userId)
         => await MakeFluxerApiRequestRawAsync(HttpMethod.Delete, $"/channels/{channelId}/recipients/{userId}", true);
 
-    public async Task<CallEligibilityJson> GetCallAsync(ulong channelId)
-        => await MakeFluxerApiRequestAsync<CallEligibilityJson>(HttpMethod.Get, $"/channels/{channelId}/call", true);
+    public async Task<CallEligibility> GetVoiceEligibilityAsync(ulong channelId)
+    {
+        var json = await MakeFluxerApiRequestAsync<CallEligibilityJson>(HttpMethod.Get, $"/channels/{channelId}/call", true);
+        return CallEligibility.Create(_client, json);
+    }
 
-    public async Task<TResponse> UpdateCallAsync<TRequest, TResponse>(ulong channelId, TRequest data)
-        => await MakeFluxerApiRequestAsync<TResponse, TRequest>(HttpMethod.Patch, $"/channels/{channelId}/call", data, true);
+    public async Task UpdateVoiceRegionAsync(ulong channelId, string? region)
+        => await MakeFluxerApiRequestAsync(HttpMethod.Patch, $"/channels/{channelId}/call", new UpdateVoiceRegionRequest
+        {
+            Region = region
+        }, true);
 
-    public async Task RingCallAsync<TRequest>(ulong channelId, TRequest data)
-        => await MakeFluxerApiRequestAsync<TRequest>(HttpMethod.Post, $"/channels/{channelId}/call/ring", data, true);
+    public async Task RingCallAsync(ulong channelId, ulong[] recipients)
+        => await MakeFluxerApiRequestAsync(HttpMethod.Post, $"/channels/{channelId}/call/ring", new VoiceRingRequest
+        {
+            Recipients = recipients
+        }, true);
 
     public async Task StopRingingAsync(ulong channelId)
         => await MakeFluxerApiRequestRawAsync(HttpMethod.Post, $"/channels/{channelId}/call/stop-ringing", true);
@@ -563,17 +572,27 @@ public class ApiClient
         return json.Select(x => Invite.Create(_client, x));
     }
 
-    public async Task<Invite> CreateInviteAsync<TRequest>(ulong channelId, ChannelCreateInviteRequest data)
+    public async Task<Invite> CreateInviteAsync(ulong channelId, CreateInviteRequest data)
     {
-        var json = await MakeFluxerApiRequestAsync<InviteJson, ChannelCreateInviteRequest>(HttpMethod.Post, $"/channels/{channelId}/invites", data, true);
+        var json = await MakeFluxerApiRequestAsync<InviteJson, CreateInviteRequest>(HttpMethod.Post, $"/channels/{channelId}/invites", data, true);
         return Invite.Create(_client, json);
     }
 
-    public async Task<TResponse> GetChannelWebhooksAsync<TResponse>(ulong channelId)
-        => await MakeFluxerApiRequestAsync<TResponse>(HttpMethod.Get, $"/channels/{channelId}/webhooks", true);
+    public async Task<IEnumerable<Webhook>> GetChannelWebhooksAsync<TResponse>(ulong channelId)
+    {
+        var json = await MakeFluxerApiRequestAsync<IEnumerable<WebhookJson>>(HttpMethod.Get, $"/channels/{channelId}/webhooks", true);
+        return json.Select(x => Webhook.Create(_client, x));
+    }
 
-    public async Task<TResponse> CreateWebhookAsync<TRequest, TResponse>(ulong channelId, TRequest data)
-        => await MakeFluxerApiRequestAsync<TResponse, TRequest>(HttpMethod.Post, $"/channels/{channelId}/webhooks", data, true);
+    public async Task<Webhook> CreateWebhookAsync(ulong channelId, string name, string? avatar = null)
+    {
+        var json = await MakeFluxerApiRequestAsync<WebhookJson, CreateWebhookRequest>(HttpMethod.Post, $"/channels/{channelId}/webhooks", new CreateWebhookRequest
+        {
+            Name = name,
+            Avatar = avatar
+        }, true);
+        return Webhook.Create(_client, json);
+    }
 
     #endregion
 
@@ -640,24 +659,11 @@ public class ApiClient
 
     #endregion
 
-    #region Reports API
-
-    public async Task PostReportMessageAsync<TRequest>(TRequest data)
-        => await MakeFluxerApiRequestAsync<TRequest>(HttpMethod.Post, "/reports/message", data, true);
-
-    public async Task PostReportUserAsync<TRequest>(TRequest data)
-        => await MakeFluxerApiRequestAsync<TRequest>(HttpMethod.Post, "/reports/user", data, true);
-
-    public async Task PostReportGuildAsync<TRequest>(TRequest data)
-        => await MakeFluxerApiRequestAsync<TRequest>(HttpMethod.Post, "/reports/guild", data, true);
-
-    #endregion
-
     #region Guilds API
 
-    public async Task<Guild> CreateGuildAsync(GuildCreateRequest data)
+    public async Task<Guild> CreateGuildAsync(CreateGuildRequest data)
     {
-        var json = await MakeFluxerApiRequestAsync<GuildJson, GuildCreateRequest>(HttpMethod.Post, "/guilds", data, true);
+        var json = await MakeFluxerApiRequestAsync<GuildJson, CreateGuildRequest>(HttpMethod.Post, "/guilds", data, true);
         return Guild.Create(_client, json);
     }
 
@@ -682,7 +688,7 @@ public class ApiClient
         return Guild.Create(_client, json);
     }
 
-    public async Task DeleteGuildAsync(ulong guildId, GuildDeleteRequest data)
+    public async Task DeleteGuildAsync(ulong guildId, DeleteGuildRequest data)
         => await MakeFluxerApiRequestAsync(HttpMethod.Post, $"/guilds/{guildId}/delete", data, true);
 
     public async Task<GuildVanityUrl> GetGuildVanityUrlAsync(ulong guildId)
@@ -691,7 +697,7 @@ public class ApiClient
         return GuildVanityUrl.Create(_client, json);
     }
 
-    public async Task UpdateGuildVanityUrlAsync(ulong guildId, GuildVanityUrlUpdateRequest data)
+    public async Task UpdateGuildVanityUrlAsync(ulong guildId, UpdateGuildVanityUrlRequest data)
     {
         await MakeFluxerApiRequestAsync(HttpMethod.Patch, $"/guilds/{guildId}/vanity-url", data, true);
     }
@@ -741,7 +747,7 @@ public class ApiClient
         return json.Select(x => GuildBan.Create(_client, x));
     }
 
-    public async Task BanMemberAsync(ulong guildId, ulong userId, GuildBanCreateRequest data)
+    public async Task BanMemberAsync(ulong guildId, ulong userId, CreateGuildBanRequest data)
         => await MakeFluxerApiRequestAsync(HttpMethod.Put, $"/guilds/{guildId}/bans/{userId}", data, true);
 
     public async Task UnbanMemberAsync(ulong guildId, ulong userId)
@@ -753,15 +759,15 @@ public class ApiClient
     public async Task RemoveMemberRoleAsync(ulong guildId, ulong userId, ulong roleId)
         => await MakeFluxerApiRequestRawAsync(HttpMethod.Delete, $"/guilds/{guildId}/members/{userId}/roles/{roleId}", true);
 
-    public async Task<Role> CreateRoleAsync(ulong guildId, GuildRoleCreateRequest data)
+    public async Task<Role> CreateRoleAsync(ulong guildId, CreateGuildRoleRequest data)
     {
-        var json = await MakeFluxerApiRequestAsync<RoleJson, GuildRoleCreateRequest>(HttpMethod.Post, $"/guilds/{guildId}/roles", data, true);
+        var json = await MakeFluxerApiRequestAsync<RoleJson, CreateGuildRoleRequest>(HttpMethod.Post, $"/guilds/{guildId}/roles", data, true);
         return Role.Create(_client, json, guildId);
     }
 
-    public async Task<Role> UpdateRoleAsync(ulong guildId, ulong roleId, GuildRoleUpdateRequest data)
+    public async Task<Role> UpdateRoleAsync(ulong guildId, ulong roleId, UpdateGuildRoleRequest data)
     {
-        var json = await MakeFluxerApiRequestAsync<RoleJson, GuildRoleUpdateRequest>(HttpMethod.Patch, $"/guilds/{guildId}/roles/{roleId}", data, true);
+        var json = await MakeFluxerApiRequestAsync<RoleJson, UpdateGuildRoleRequest>(HttpMethod.Patch, $"/guilds/{guildId}/roles/{roleId}", data, true);
         return Role.Create(_client, json, guildId);
     }
 
@@ -777,9 +783,9 @@ public class ApiClient
         return json.Select(x => Channel.Create(_client, x));
     }
 
-    public async Task<Channel> CreateChannelAsync<TRequest>(ulong guildId, ChannelCreateRequest data)
+    public async Task<Channel> CreateChannelAsync<TRequest>(ulong guildId, CreateChannelRequest data)
     {
-        var json = await MakeFluxerApiRequestAsync<ChannelJson, ChannelCreateRequest>(HttpMethod.Post, $"/guilds/{guildId}/channels", data, true);
+        var json = await MakeFluxerApiRequestAsync<ChannelJson, CreateChannelRequest>(HttpMethod.Post, $"/guilds/{guildId}/channels", data, true);
         return Channel.Create(_client, json);
     }
 
@@ -792,14 +798,14 @@ public class ApiClient
     public async Task<GuildAuditLogListJson> SearchAuditLogAsync(ulong guildId, GuildAuditLogListRequest data)
         => await MakeFluxerApiRequestAsync<GuildAuditLogListJson, GuildAuditLogListRequest>(HttpMethod.Post, $"/guilds/{guildId}/audit-logs", data, true);
 
-    public async Task<GuildEmoji> CreateEmojiAsync(ulong guildId, GuildEmojiCreateRequest data)
+    public async Task<GuildEmoji> CreateEmojiAsync(ulong guildId, CreateGuildEmojiRequest data)
     {
-        var json = await MakeFluxerApiRequestAsync<GuildEmojiJson, GuildEmojiCreateRequest>(HttpMethod.Post, $"/guilds/{guildId}/emojis", data, true);
+        var json = await MakeFluxerApiRequestAsync<GuildEmojiJson, CreateGuildEmojiRequest>(HttpMethod.Post, $"/guilds/{guildId}/emojis", data, true);
         return GuildEmoji.Create(_client, json, guildId);
     }
 
-    public async Task<GuildEmojiBulkCreateJson> CreateEmojiBulkAsync(ulong guildId, GuildEmojiBulkCreateRequest data)
-        => await MakeFluxerApiRequestAsync<GuildEmojiBulkCreateJson, GuildEmojiBulkCreateRequest>(HttpMethod.Post, $"/guilds/{guildId}/emojis/bulk", data, true);
+    public async Task<GuildEmojiBulkCreateJson> CreateEmojiBulkAsync(ulong guildId, BulkCreateGuildEmojisRequest data)
+        => await MakeFluxerApiRequestAsync<GuildEmojiBulkCreateJson, BulkCreateGuildEmojisRequest>(HttpMethod.Post, $"/guilds/{guildId}/emojis/bulk", data, true);
 
     public async Task<IEnumerable<GuildEmoji>> GetEmojisAsync(ulong guildId)
     {
@@ -807,23 +813,23 @@ public class ApiClient
         return json.Select(x => GuildEmoji.Create(_client, x, guildId));
     }
 
-    public async Task<GuildEmoji> UpdateEmojiAsync(ulong guildId, ulong emojiId, GuildEmojiUpdateRequest data)
+    public async Task<GuildEmoji> UpdateEmojiAsync(ulong guildId, ulong emojiId, UpdateGuildEmojiRequest data)
     {
-        var json = await MakeFluxerApiRequestAsync<GuildEmojiJson, GuildEmojiUpdateRequest>(HttpMethod.Patch, $"/guilds/{guildId}/emojis/{emojiId}", data, true);
+        var json = await MakeFluxerApiRequestAsync<GuildEmojiJson, UpdateGuildEmojiRequest>(HttpMethod.Patch, $"/guilds/{guildId}/emojis/{emojiId}", data, true);
         return GuildEmoji.Create(_client, json, guildId);
     }
 
     public async Task DeleteEmojiAsync(ulong guildId, ulong emojiId)
         => await MakeFluxerApiRequestRawAsync(HttpMethod.Delete, $"/guilds/{guildId}/emojis/{emojiId}", true);
 
-    public async Task<GuildSticker> CreateStickerAsync(ulong guildId, GuildStickerCreateRequest data)
+    public async Task<GuildSticker> CreateStickerAsync(ulong guildId, CreateGuildStickerRequest data)
     {
-        var json = await MakeFluxerApiRequestAsync<GuildStickerJson, GuildStickerCreateRequest>(HttpMethod.Post, $"/guilds/{guildId}/stickers", data, true);
+        var json = await MakeFluxerApiRequestAsync<GuildStickerJson, CreateGuildStickerRequest>(HttpMethod.Post, $"/guilds/{guildId}/stickers", data, true);
         return GuildSticker.Create(_client, json, guildId);
     }
 
-    public async Task<GuildStickerBulkCreateJson> CreateStickerBulkAsync(ulong guildId, GuildStickerBulkCreateRequest data)
-        => await MakeFluxerApiRequestAsync<GuildStickerBulkCreateJson, GuildStickerBulkCreateRequest>(HttpMethod.Post, $"/guilds/{guildId}/stickers/bulk", data, true);
+    public async Task<GuildStickerBulkCreateJson> CreateStickerBulkAsync(ulong guildId, BulkCreateGuildStickersRequest data)
+        => await MakeFluxerApiRequestAsync<GuildStickerBulkCreateJson, BulkCreateGuildStickersRequest>(HttpMethod.Post, $"/guilds/{guildId}/stickers/bulk", data, true);
 
     public async Task<IEnumerable<GuildSticker>> GetStickersAsync(ulong guildId)
     {
@@ -831,9 +837,9 @@ public class ApiClient
         return json.Select(x => GuildSticker.Create(_client, x, guildId));
     }
 
-    public async Task<GuildSticker> UpdateStickerAsync(ulong guildId, ulong stickerId, GuildStickerUpdateRequest data)
+    public async Task<GuildSticker> UpdateStickerAsync(ulong guildId, ulong stickerId, UpdateGuildStickerRequest data)
     {
-        var json = await MakeFluxerApiRequestAsync<GuildStickerJson, GuildStickerUpdateRequest>(HttpMethod.Patch, $"/guilds/{guildId}/stickers/{stickerId}", data, true);
+        var json = await MakeFluxerApiRequestAsync<GuildStickerJson, UpdateGuildStickerRequest>(HttpMethod.Patch, $"/guilds/{guildId}/stickers/{stickerId}", data, true);
         return GuildSticker.Create(_client, json, guildId);
     }
 
@@ -950,7 +956,7 @@ public class ApiClient
 
     public async Task<UserSettings> SetCustomStatusAsync(UserCustomStatusJson status)
     {
-        var json = await MakeFluxerApiRequestAsync<UserSettingsJson, ModifyCustomStatus>(HttpMethod.Patch, "/users/@me/settings", new ModifyCustomStatus(status), true);
+        var json = await MakeFluxerApiRequestAsync<UserSettingsJson, UpdateCustomStatus>(HttpMethod.Patch, "/users/@me/settings", new UpdateCustomStatus(status), true);
         return UserSettings.Create(_client, json);
     }
 
@@ -1181,64 +1187,6 @@ public class ApiClient
 
     #endregion
 
-    #region Stripe API
-
-    public async Task PostStripeWebhookAsync<TRequest>(TRequest data)
-        => await MakeFluxerApiRequestAsync<TRequest>(HttpMethod.Post, "/stripe/webhook", data, true, false);
-
-    public async Task<TResponse> PostStripeCheckoutSubscriptionAsync<TRequest, TResponse>(TRequest data)
-        => await MakeFluxerApiRequestAsync<TResponse, TRequest>(HttpMethod.Post, "/stripe/checkout/subscription", data, true);
-
-    public async Task<TResponse> PostStripeCheckoutGiftAsync<TRequest, TResponse>(TRequest data)
-        => await MakeFluxerApiRequestAsync<TResponse, TRequest>(HttpMethod.Post, "/stripe/checkout/gift", data, true);
-
-    #endregion
-
-    #region Gifts API
-
-    public async Task<TResponse> GetGiftAsync<TResponse>(string code)
-        => await MakeFluxerApiRequestAsync<TResponse>(HttpMethod.Get, $"/gifts/{code}", true);
-
-    public async Task<TResponse> PostGiftRedeemAsync<TRequest, TResponse>(string code, TRequest data)
-        => await MakeFluxerApiRequestAsync<TResponse, TRequest>(HttpMethod.Post, $"/gifts/{code}/redeem", data, true);
-
-    public async Task<TResponse> GetCurrentUserGiftsAsync<TResponse>()
-        => await MakeFluxerApiRequestAsync<TResponse>(HttpMethod.Get, "/users/@me/gifts", true);
-
-    #endregion
-
-    #region Premium API
-
-    public async Task<TResponse> GetPremiumVisionarySlotsAsync<TResponse>()
-        => await MakeFluxerApiRequestAsync<TResponse>(HttpMethod.Get, "/premium/visionary/slots", true);
-
-    public async Task<TResponse> GetPremiumPriceIdsAsync<TResponse>()
-        => await MakeFluxerApiRequestAsync<TResponse>(HttpMethod.Get, "/premium/price-ids", true);
-
-    public async Task<TResponse> PostPremiumCustomerPortalAsync<TRequest, TResponse>(TRequest data)
-        => await MakeFluxerApiRequestAsync<TResponse, TRequest>(HttpMethod.Post, "/premium/customer-portal", data, true);
-
-    public async Task PostPremiumCancelSubscriptionAsync<TRequest>(TRequest data)
-        => await MakeFluxerApiRequestAsync<TRequest>(HttpMethod.Post, "/premium/cancel-subscription", data, true);
-
-    public async Task PostPremiumReactivateSubscriptionAsync()
-        => await MakeFluxerApiRequestRawAsync(HttpMethod.Post, "/premium/reactivate-subscription", true);
-
-    public async Task PostPremiumVisionaryRejoinAsync()
-        => await MakeFluxerApiRequestRawAsync(HttpMethod.Post, "/premium/visionary/rejoin", true);
-
-    public async Task PostPremiumOperatorRejoinAsync()
-        => await MakeFluxerApiRequestRawAsync(HttpMethod.Post, "/premium/operator/rejoin", true);
-
-    #endregion
-
-    #region Misc API
-
-    public async Task<TResponse> PostRpcAsync<TRequest, TResponse>(TRequest data)
-        => await MakeFluxerApiRequestAsync<TResponse, TRequest>(HttpMethod.Post, "/_rpc", data, true);
-
-    #endregion
-
     #region OAuth API
 
     public async Task<FluxerOAuthUser> GetOAuthUserAsync(string accessToken)
@@ -1247,8 +1195,11 @@ public class ApiClient
         return FluxerOAuthUser.Create(_client, json);
     }
 
-    public Task<OAuthTokenJson> GetOAuthTokenAsync(string accessToken)
-        => InternalMakeFluxerApiRequestAsync<OAuthTokenJson>(HttpMethod.Get, "/oauth2/@me", true, false, accessToken);
+    public async Task<FluxerOAuthToken> GetOAuthTokenAsync(string accessToken)
+    {
+        var json = await InternalMakeFluxerApiRequestAsync<FluxerOAuthTokenJson>(HttpMethod.Get, "/oauth2/@me", true, false, accessToken);
+        return FluxerOAuthToken.Create(_client, json);
+    }
 
     public async Task<IEnumerable<Guild>> GetOAuthGuildsAsync(string accessToken)
     {
@@ -1262,9 +1213,9 @@ public class ApiClient
         return json.Select(x => UserConnection.Create(_client, x));
     }
 
-    public async Task<OAuthValidTokenJson> GetOAuthValidTokenAsync(ulong clientId, string clientSecret, string accessToken)
+    public async Task<FluxerOAuthValidTokenJson> GetOAuthValidTokenAsync(ulong clientId, string clientSecret, string accessToken)
     {
-        return await InternalMakeFluxerApiRequestFormAsync<OAuthValidTokenJson>(HttpMethod.Post, "/oauth2/introspect", true, new Dictionary<string, string>
+        return await InternalMakeFluxerApiRequestFormAsync<FluxerOAuthValidTokenJson>(HttpMethod.Post, "/oauth2/introspect", true, new Dictionary<string, string>
         {
             { "client_id", clientId.ToString() },
             { "client_secret", clientSecret },
@@ -1272,9 +1223,9 @@ public class ApiClient
         });
     }
 
-    public async Task<OAuthRefreshTokenJson> GetOAuthRefreshTokenAsync(ulong clientId, string clientSecret, string refreshToken)
+    public async Task<FluxerOAuthRefreshTokenJson> GetOAuthRefreshTokenAsync(ulong clientId, string clientSecret, string refreshToken)
     {
-        return await InternalMakeFluxerApiRequestFormAsync<OAuthRefreshTokenJson>(HttpMethod.Post, "/oauth2/token", true, new Dictionary<string, string>
+        return await InternalMakeFluxerApiRequestFormAsync<FluxerOAuthRefreshTokenJson>(HttpMethod.Post, "/oauth2/token", true, new Dictionary<string, string>
         {
             { "client_id", clientId.ToString() },
             { "client_secret", clientSecret },

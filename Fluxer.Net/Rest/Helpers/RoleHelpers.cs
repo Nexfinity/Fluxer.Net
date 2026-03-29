@@ -5,7 +5,7 @@ public static class RoleHelpers
     public static Task DeleteAsync(this Role role)
         => role.Client.Rest.DeleteRoleAsync(role.GuildId, role.Id);
 
-    public static Task ModifyAsync(this Role role, GuildRoleUpdateRequest request)
+    public static Task ModifyAsync(this Role role, UpdateGuildRoleRequest request)
         => role.Client.Rest.UpdateRoleAsync(role.GuildId, role.Id, request);
 
     public static Task AddMemberAsync(this Role role, ulong userId)

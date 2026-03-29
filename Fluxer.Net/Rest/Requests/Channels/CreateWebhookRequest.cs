@@ -2,9 +2,11 @@
 
 namespace Fluxer.Net;
 
-public class GuildEmojiUpdateRequest
+public class CreateWebhookRequest
 {
-    [JsonRequired]
     [JsonProperty("name")]
     public string Name { get; set; }
+
+    [JsonProperty("avatar")]
+    public string? Avatar { get; set; }
 }

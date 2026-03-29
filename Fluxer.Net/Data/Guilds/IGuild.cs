@@ -65,7 +65,7 @@ public interface IGuild
     /// <summary>
     /// Bitmask of disabled guild operations.
     /// </summary>
-    ulong DisabledOperations { get; }
+    GuildOperations DisabledOperations { get; }
 
     /// <summary>
     /// ISO8601 timestamp controlling how far back members without Read Message History can access messages. When null, no historical access is allowed.

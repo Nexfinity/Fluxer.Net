@@ -26,5 +26,8 @@ public enum MessageFlag : ulong
     /// </summary>
     VoiceMessage = 1UL << 13,
 
+    /// <summary>
+    /// Display attachments in a compact format.
+    /// </summary>
     CompactAttachments = 1UL << 17
 }

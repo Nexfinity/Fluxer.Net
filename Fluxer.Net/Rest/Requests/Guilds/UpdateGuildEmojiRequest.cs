@@ -2,10 +2,8 @@
 
 namespace Fluxer.Net;
 
-public class ChannelCreateTextRequest : ChannelCreateRequest
+public class UpdateGuildEmojiRequest
 {
-    public override string Type => "GUILD_TEXT";
-
     [JsonRequired]
     [JsonProperty("name")]
     public string Name { get; set; }

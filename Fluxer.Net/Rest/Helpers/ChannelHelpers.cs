@@ -19,14 +19,14 @@ public static class ChannelHelpers
     public static Task<Channel> ModifyAsync(this Channel channel, ChannelJson json)
         => channel.Client.Rest.UpdateChannelAsync(channel.Id, json);
 
-    public static Task<CallEligibilityJson> GetCallAsync(this Channel channel)
-        => channel.Client.Rest.GetCallAsync(channel.Id);
+    public static Task<CallEligibility> GetVoiceEligibilityAsync(this Channel channel)
+        => channel.Client.Rest.GetVoiceEligibilityAsync(channel.Id);
 
-    //public static Task UpdateCallAsync(this Channel channel)
-    //    => channel.Client.Rest.UpdateCallAsync(channel.Id);
+    public static Task UpdateVoiceRegionAsync(this Channel channel, string region)
+        => channel.Client.Rest.UpdateVoiceRegionAsync(channel.Id, region);
 
-    //public static Task RingCallAsync(this Channel channel)
-    //    => channel.Client.Rest.RingCallAsync(channel.Id);
+    public static Task RingCallAsync(this Channel channel, ulong[] recipients)
+        => channel.Client.Rest.RingCallAsync(channel.Id, recipients);
 
     public static Task<Message> GetMessageAsync(this Channel channel, ulong messageId)
         => channel.Client.Rest.GetMessageAsync(channel.Id, messageId);
@@ -40,10 +40,10 @@ public static class ChannelHelpers
     public static Task DeleteMessageAsync(this Channel channel, Message message)
         => channel.Client.Rest.DeleteMessageAsync(channel.Id, message.Id);
 
-    public static Task<Message> EditMessageAsync(this Channel channel, ulong messageId, MessageUpdateRequest json)
+    public static Task<Message> EditMessageAsync(this Channel channel, ulong messageId, UpdateMessageRequest json)
         => channel.Client.Rest.EditMessageAsync(channel.Id, messageId, json);
 
-    public static Task<Message> EditMessageAsync(this Channel channel, Message message, MessageUpdateRequest json)
+    public static Task<Message> EditMessageAsync(this Channel channel, Message message, UpdateMessageRequest json)
         => channel.Client.Rest.EditMessageAsync(channel.Id, message.Id, json);
 
     public static Task DeleteMessageAttachmentAsync(this Channel channel, ulong messageId, ulong attachmentId)

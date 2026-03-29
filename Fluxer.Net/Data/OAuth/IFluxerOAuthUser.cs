@@ -1,4 +1,4 @@
-﻿namespace Fluxer.Net.OAuth;
+﻿namespace Fluxer.Net;
 
 public interface IFluxerOAuthUser
 {

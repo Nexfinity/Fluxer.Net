@@ -2,9 +2,9 @@
 
 namespace Fluxer.Net;
 
-public class ChannelCreateCategoryRequest : ChannelCreateRequest
+public class CreateTextChannelRequest : CreateChannelRequest
 {
-    public override string Type => "GUILD_CATEGORY";
+    public override string Type => "GUILD_TEXT";
 
     [JsonRequired]
     [JsonProperty("name")]

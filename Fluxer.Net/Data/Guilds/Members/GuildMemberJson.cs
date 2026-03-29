@@ -45,7 +45,7 @@ public class GuildMemberJson : IGuildMember
 
     /// <inheritdoc />
     [JsonProperty("join_source_type")]
-    public int? JoinSourceType { get; set; }
+    public JoinSource? JoinSourceType { get; set; }
 
     /// <inheritdoc />
     [JsonProperty("source_invite_code")]

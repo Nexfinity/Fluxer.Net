@@ -5,7 +5,7 @@ namespace Fluxer.Net;
 /// <summary>
 /// <c>PATCH /guilds/{guild_id}/roles/{role_id}</c>
 /// </summary>
-public class GuildRoleUpdateRequest
+public class UpdateGuildRoleRequest
 {
     /// <summary>
     /// The color of the role as an integer
@@ -36,7 +36,7 @@ public class GuildRoleUpdateRequest
     /// </summary>
     [JsonProperty("name")]
     public string? Name { get; set; }
-    
+
     [JsonProperty("permissions")]
     public ulong? Permissions { get; set; }
 }

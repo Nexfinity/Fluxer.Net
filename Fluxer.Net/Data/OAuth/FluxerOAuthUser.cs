@@ -1,6 +1,7 @@
-﻿using System.Security.Claims;
+﻿using Fluxer.Net.OAuth;
+using System.Security.Claims;
 
-namespace Fluxer.Net.OAuth;
+namespace Fluxer.Net;
 
 /// <inheritdoc />
 public class FluxerOAuthUser : User, IFluxerOAuthUser

@@ -2,20 +2,16 @@
 
 namespace Fluxer.Net;
 
-/// <remarks>
-/// <see href="https://github.com/fluxerapp/fluxer/blob/848269a4d4df7349acfc861ff926b17fe4c4a548/packages/schema/src/domains/channel/ChannelSchemas.tsx#L44"/>
-/// </remarks>
-public class CallEligibilityJson
+/// <inheritdoc />
+public class CallEligibilityJson : ICallEligibility
 {
-    /// <summary>
-    /// Whether the current user can ring this call
-    /// </summary>
-    [JsonProperty("ringable")]
-    public bool Ringable { get; set; }
 
-    /// <summary>
-    /// Whether the call should be joined silently
-    /// </summary>
+    /// <inheritdoc />
+    [JsonProperty("ringable")]
+    public bool IsRingable { get; set; }
+
+
+    /// <inheritdoc />
     [JsonProperty("silent")]
-    public bool Silent { get; set; }
+    public bool IsSilent { get; set; }
 }

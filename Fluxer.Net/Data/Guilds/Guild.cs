@@ -40,7 +40,7 @@ public class Guild : PartialGuild, IGuild
     public int AfkTimeout { get; internal set; }
 
     /// <inheritdoc />
-    public ulong DisabledOperations { get; internal set; }
+    public GuildOperations DisabledOperations { get; internal set; }
 
     /// <inheritdoc />
     public DateTime? MessageHistoryCutoff { get; internal set; }

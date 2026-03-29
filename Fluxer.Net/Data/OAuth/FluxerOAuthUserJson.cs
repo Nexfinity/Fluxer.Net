@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Fluxer.Net.OAuth;
+namespace Fluxer.Net;
 
 /// <inheritdoc />
 public class FluxerOAuthUserJson : UserJson, IFluxerOAuthUser
