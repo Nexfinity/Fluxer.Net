@@ -640,19 +640,6 @@ public class ApiClient
 
     #endregion
 
-    #region Reports API
-
-    public async Task PostReportMessageAsync<TRequest>(TRequest data)
-        => await MakeFluxerApiRequestAsync<TRequest>(HttpMethod.Post, "/reports/message", data, true);
-
-    public async Task PostReportUserAsync<TRequest>(TRequest data)
-        => await MakeFluxerApiRequestAsync<TRequest>(HttpMethod.Post, "/reports/user", data, true);
-
-    public async Task PostReportGuildAsync<TRequest>(TRequest data)
-        => await MakeFluxerApiRequestAsync<TRequest>(HttpMethod.Post, "/reports/guild", data, true);
-
-    #endregion
-
     #region Guilds API
 
     public async Task<Guild> CreateGuildAsync(GuildCreateRequest data)
@@ -1178,64 +1165,6 @@ public class ApiClient
 
     public async Task PostWebhookSendgridAsync<TRequest>(TRequest data)
         => await MakeFluxerApiRequestAsync<TRequest>(HttpMethod.Post, "/webhooks/sendgrid", data, true, false);
-
-    #endregion
-
-    #region Stripe API
-
-    public async Task PostStripeWebhookAsync<TRequest>(TRequest data)
-        => await MakeFluxerApiRequestAsync<TRequest>(HttpMethod.Post, "/stripe/webhook", data, true, false);
-
-    public async Task<TResponse> PostStripeCheckoutSubscriptionAsync<TRequest, TResponse>(TRequest data)
-        => await MakeFluxerApiRequestAsync<TResponse, TRequest>(HttpMethod.Post, "/stripe/checkout/subscription", data, true);
-
-    public async Task<TResponse> PostStripeCheckoutGiftAsync<TRequest, TResponse>(TRequest data)
-        => await MakeFluxerApiRequestAsync<TResponse, TRequest>(HttpMethod.Post, "/stripe/checkout/gift", data, true);
-
-    #endregion
-
-    #region Gifts API
-
-    public async Task<TResponse> GetGiftAsync<TResponse>(string code)
-        => await MakeFluxerApiRequestAsync<TResponse>(HttpMethod.Get, $"/gifts/{code}", true);
-
-    public async Task<TResponse> PostGiftRedeemAsync<TRequest, TResponse>(string code, TRequest data)
-        => await MakeFluxerApiRequestAsync<TResponse, TRequest>(HttpMethod.Post, $"/gifts/{code}/redeem", data, true);
-
-    public async Task<TResponse> GetCurrentUserGiftsAsync<TResponse>()
-        => await MakeFluxerApiRequestAsync<TResponse>(HttpMethod.Get, "/users/@me/gifts", true);
-
-    #endregion
-
-    #region Premium API
-
-    public async Task<TResponse> GetPremiumVisionarySlotsAsync<TResponse>()
-        => await MakeFluxerApiRequestAsync<TResponse>(HttpMethod.Get, "/premium/visionary/slots", true);
-
-    public async Task<TResponse> GetPremiumPriceIdsAsync<TResponse>()
-        => await MakeFluxerApiRequestAsync<TResponse>(HttpMethod.Get, "/premium/price-ids", true);
-
-    public async Task<TResponse> PostPremiumCustomerPortalAsync<TRequest, TResponse>(TRequest data)
-        => await MakeFluxerApiRequestAsync<TResponse, TRequest>(HttpMethod.Post, "/premium/customer-portal", data, true);
-
-    public async Task PostPremiumCancelSubscriptionAsync<TRequest>(TRequest data)
-        => await MakeFluxerApiRequestAsync<TRequest>(HttpMethod.Post, "/premium/cancel-subscription", data, true);
-
-    public async Task PostPremiumReactivateSubscriptionAsync()
-        => await MakeFluxerApiRequestRawAsync(HttpMethod.Post, "/premium/reactivate-subscription", true);
-
-    public async Task PostPremiumVisionaryRejoinAsync()
-        => await MakeFluxerApiRequestRawAsync(HttpMethod.Post, "/premium/visionary/rejoin", true);
-
-    public async Task PostPremiumOperatorRejoinAsync()
-        => await MakeFluxerApiRequestRawAsync(HttpMethod.Post, "/premium/operator/rejoin", true);
-
-    #endregion
-
-    #region Misc API
-
-    public async Task<TResponse> PostRpcAsync<TRequest, TResponse>(TRequest data)
-        => await MakeFluxerApiRequestAsync<TResponse, TRequest>(HttpMethod.Post, "/_rpc", data, true);
 
     #endregion
 
