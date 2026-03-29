@@ -19,14 +19,14 @@ public static class ChannelHelpers
     public static Task<Channel> ModifyAsync(this Channel channel, ChannelJson json)
         => channel.Client.Rest.UpdateChannelAsync(channel.Id, json);
 
-    public static Task<CallEligibilityJson> GetCallAsync(this Channel channel)
-        => channel.Client.Rest.GetCallAsync(channel.Id);
+    public static Task<CallEligibility> GetVoiceEligibilityAsync(this Channel channel)
+        => channel.Client.Rest.GetVoiceEligibilityAsync(channel.Id);
 
-    //public static Task UpdateCallAsync(this Channel channel)
-    //    => channel.Client.Rest.UpdateCallAsync(channel.Id);
+    public static Task UpdateVoiceRegionAsync(this Channel channel, string region)
+        => channel.Client.Rest.UpdateVoiceRegionAsync(channel.Id, region);
 
-    //public static Task RingCallAsync(this Channel channel)
-    //    => channel.Client.Rest.RingCallAsync(channel.Id);
+    public static Task RingCallAsync(this Channel channel, ulong[] recipients)
+        => channel.Client.Rest.RingCallAsync(channel.Id, recipients);
 
     public static Task<Message> GetMessageAsync(this Channel channel, ulong messageId)
         => channel.Client.Rest.GetMessageAsync(channel.Id, messageId);

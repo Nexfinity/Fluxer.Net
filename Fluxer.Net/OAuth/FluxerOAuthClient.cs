@@ -43,7 +43,7 @@ public class FluxerOAuthClient : FluxerBaseClient
     public Task<FluxerOAuthUser> GetOAuthUser(string accessToken)
         => Rest.GetOAuthUserAsync(accessToken);
 
-    public Task<OAuthTokenJson> GetOAuthTokenAsync(string accessToken)
+    public Task<FluxerOAuthTokenJson> GetOAuthTokenAsync(string accessToken)
         => Rest.GetOAuthTokenAsync(accessToken);
 
     public Task<IEnumerable<Guild>> GetOAuthGuildsAsync(string accessToken)
@@ -65,10 +65,10 @@ public class FluxerOAuthClient : FluxerBaseClient
         }
     }
 
-    public Task<OAuthValidTokenJson> GetValidTokenAsync(string accessToken)
+    public Task<FluxerOAuthValidTokenJson> GetValidTokenAsync(string accessToken)
         => Rest.GetOAuthValidTokenAsync(ClientId, ClientSecret, accessToken);
 
-    public Task<OAuthRefreshTokenJson> GetRefreshTokenAsync(string refreshToken)
+    public Task<FluxerOAuthRefreshTokenJson> GetRefreshTokenAsync(string refreshToken)
         => Rest.GetOAuthRefreshTokenAsync(ClientId, ClientSecret, refreshToken);
 
     public Task RevokeAccessTokenAsync(string accessToken)

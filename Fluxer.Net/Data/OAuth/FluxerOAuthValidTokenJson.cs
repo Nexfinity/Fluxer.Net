@@ -2,7 +2,7 @@
 
 namespace Fluxer.Net;
 
-public class OAuthValidTokenJson
+public class FluxerOAuthValidTokenJson
 {
     [JsonProperty("active")]
     public bool IsActive { get; set; }

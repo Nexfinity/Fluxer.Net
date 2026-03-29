@@ -1195,8 +1195,11 @@ public class ApiClient
         return FluxerOAuthUser.Create(_client, json);
     }
 
-    public Task<OAuthTokenJson> GetOAuthTokenAsync(string accessToken)
-        => InternalMakeFluxerApiRequestAsync<OAuthTokenJson>(HttpMethod.Get, "/oauth2/@me", true, false, accessToken);
+    public async Task<FluxerOAuthToken> GetOAuthTokenAsync(string accessToken)
+    {
+        var json = await InternalMakeFluxerApiRequestAsync<FluxerOAuthTokenJson>(HttpMethod.Get, "/oauth2/@me", true, false, accessToken);
+        return FluxerOAuthToken.Create(_client, json);
+    }
 
     public async Task<IEnumerable<Guild>> GetOAuthGuildsAsync(string accessToken)
     {
@@ -1210,9 +1213,9 @@ public class ApiClient
         return json.Select(x => UserConnection.Create(_client, x));
     }
 
-    public async Task<OAuthValidTokenJson> GetOAuthValidTokenAsync(ulong clientId, string clientSecret, string accessToken)
+    public async Task<FluxerOAuthValidTokenJson> GetOAuthValidTokenAsync(ulong clientId, string clientSecret, string accessToken)
     {
-        return await InternalMakeFluxerApiRequestFormAsync<OAuthValidTokenJson>(HttpMethod.Post, "/oauth2/introspect", true, new Dictionary<string, string>
+        return await InternalMakeFluxerApiRequestFormAsync<FluxerOAuthValidTokenJson>(HttpMethod.Post, "/oauth2/introspect", true, new Dictionary<string, string>
         {
             { "client_id", clientId.ToString() },
             { "client_secret", clientSecret },
@@ -1220,9 +1223,9 @@ public class ApiClient
         });
     }
 
-    public async Task<OAuthRefreshTokenJson> GetOAuthRefreshTokenAsync(ulong clientId, string clientSecret, string refreshToken)
+    public async Task<FluxerOAuthRefreshTokenJson> GetOAuthRefreshTokenAsync(ulong clientId, string clientSecret, string refreshToken)
     {
-        return await InternalMakeFluxerApiRequestFormAsync<OAuthRefreshTokenJson>(HttpMethod.Post, "/oauth2/token", true, new Dictionary<string, string>
+        return await InternalMakeFluxerApiRequestFormAsync<FluxerOAuthRefreshTokenJson>(HttpMethod.Post, "/oauth2/token", true, new Dictionary<string, string>
         {
             { "client_id", clientId.ToString() },
             { "client_secret", clientSecret },

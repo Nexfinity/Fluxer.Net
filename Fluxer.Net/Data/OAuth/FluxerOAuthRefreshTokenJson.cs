@@ -2,7 +2,7 @@
 
 namespace Fluxer.Net;
 
-public class OAuthRefreshTokenJson
+public class FluxerOAuthRefreshTokenJson
 {
     [JsonProperty("access_token")]
     public string AccessToken { get; set; }
