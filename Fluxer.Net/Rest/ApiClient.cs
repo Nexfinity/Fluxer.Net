@@ -1155,6 +1155,27 @@ public class ApiClient
         await MakeFluxerApiRequestAsync(HttpMethod.Post, $"/webhooks/{webhookId}/{token}", req, true, false);
     }
 
+    public async Task<Message> EditWebhookMessageAsync(ulong webhookId, string token, ulong messageId, string? content = null, List<EmbedRequest>? embeds = null,
+        MessageReferenceRequest? reference = null, AllowedMentionsRequest? allowedMentions = null, MessageFlag flags = MessageFlag.None,
+        string? nonce = null, ulong? favoruteMemeId = null, bool? tts = null, List<ulong>? stickerIds = null)
+    {
+        MessageRequest req = new MessageRequest
+        {
+            Content = content,
+            Embeds = embeds.ToArray(),
+            MessageReference = reference,
+            AllowedMentions = allowedMentions,
+            Flags = flags,
+            Nonce = nonce,
+            FavoriteMemeId = favoruteMemeId,
+            Tts = tts,
+            StickerIds = stickerIds,
+        };
+
+        var json = await MakeFluxerApiRequestAsync<MessageJson, MessageRequest>(HttpMethod.Patch, $"/webhooks/{webhookId}/{token}/messages/{messageId}", req, true, false);
+        return Message.Create(_client, json);
+    }
+
     public async Task<Message> ExecuteWebhookWaitAsync(ulong webhookId, string token, string? content = null, List<EmbedRequest>? embeds = null,
         MessageReferenceRequest? reference = null, AllowedMentionsRequest? allowedMentions = null, MessageFlag flags = MessageFlag.None,
         string? nonce = null, ulong? favoruteMemeId = null, bool? tts = null, List<ulong>? stickerIds = null)
@@ -1172,7 +1193,7 @@ public class ApiClient
             StickerIds = stickerIds,
         };
 
-        var json = await MakeFluxerApiRequestAsync<MessageJson, MessageRequest>(HttpMethod.Post, $"/webhooks/{webhookId}/{token}?wait", req, true);
+        var json = await MakeFluxerApiRequestAsync<MessageJson, MessageRequest>(HttpMethod.Post, $"/webhooks/{webhookId}/{token}?wait=true", req, true);
         return Message.Create(_client, json);
     }
 

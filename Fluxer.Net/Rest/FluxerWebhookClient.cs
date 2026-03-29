@@ -59,4 +59,9 @@ public class FluxerWebhookClient : FluxerBaseClient
         MessageReferenceRequest? reference = null, AllowedMentionsRequest? allowedMentions = null, MessageFlag flags = MessageFlag.None,
         string? nonce = null, ulong? favoruteMemeId = null, bool? tts = null, List<ulong>? stickerIds = null, List<AttachmentRequest>? attachments = null)
         => Rest.SendMessageAsync(Id, content, embeds, reference, allowedMentions, flags, nonce, favoruteMemeId, tts, stickerIds, attachments);
+
+    public Task<Message> EditMessageAsync(ulong messageId, string? content = null, List<EmbedRequest>? embeds = null,
+        MessageReferenceRequest? reference = null, AllowedMentionsRequest? allowedMentions = null, MessageFlag flags = MessageFlag.None,
+        string? nonce = null, ulong? favoruteMemeId = null, bool? tts = null, List<ulong>? stickerIds = null, List<AttachmentRequest>? attachments = null)
+        => Rest.EditWebhookMessageAsync(Id, Token, messageId, content, embeds, reference, allowedMentions, flags, nonce, favoruteMemeId, tts, stickerIds);
 }
