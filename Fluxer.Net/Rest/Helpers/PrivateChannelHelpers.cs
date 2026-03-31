@@ -31,4 +31,7 @@ public static class PrivateChannelHelpers
          {
              Name = name,
          });
+
+    public static Task CloseAsync(this DMChannel channel)
+        => channel.Client.Rest.DeleteChannelAsync(channel.Id);
 }
