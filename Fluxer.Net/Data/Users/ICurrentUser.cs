@@ -92,50 +92,8 @@ public interface ICurrentUser : IUser
     /// </summary>
     HashSet<int>? AuthenticatorTypes { get; }
 
-
-    //
-    // Old properties???
-    //
-
-    //string? PasswordHash { get; }
-
-    //string? TotpSecret { get; }
-
-    //string? DateOfBirth { get; }
-
-    //string? Locale { get; }
-
-    //string? StripeSubscriptionId { get; }
-
-    //string? StripeCustomerId { get; }
-
-    //int SuspiciousActivityFlags { get; }
-
-    //DateTime? TermsAgreedAt { get; }
-
-    //DateTime? PrivacyAgreedAt { get; }
-
-    //DateTime? LastActiveAt { get; }
-
-    //string? LastActiveIp { get; }
-
-    //DateTime? TempBannedUntil { get; }
-
-    //DateTime? PendingDeletionAt { get; }
-
-    //int? DeletionReasonCode { get; }
-
-    //string? DeletionPublicReason { get; }
-
-    //string? DeletionAuditLogReason { get; }
-
-    //DateTime? FirstRefundAt { get; }
-
-    //int BetaCodeAllowance { get; }
-
-    //DateTime? BetaCodeLastResetAt { get; }
-
-    //int? GiftInventoryServerSeq { get; }
-
-    //int? GiftInventoryClientSeq { get; }
+    /// <summary>
+    /// Get the user's banner.
+    /// </summary>
+    string? GetBannerUrl(int size);
 }
