@@ -2,7 +2,7 @@
 
 namespace Fluxer.Net;
 
-public class CreateVoiceChannelRequest : CreateChannelRequest
+public class CreateVoiceChannelRequest : CreateGuildChannelRequest
 {
     public override string Type => "GUILD_VOICE";
 

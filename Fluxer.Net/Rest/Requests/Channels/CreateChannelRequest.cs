@@ -3,7 +3,7 @@ using System.ComponentModel;
 
 namespace Fluxer.Net;
 
-public abstract class CreateChannelRequest
+public abstract class CreateGuildChannelRequest
 {
     [JsonProperty("type")]
     public abstract string Type { get; }

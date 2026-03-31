@@ -405,6 +405,12 @@ public class ApiClient
 
     #region Channels API
 
+    public async Task<Channel> CreatePrivateChannelAsync(CreatePrivateChannelRequest req)
+    {
+        var json = await MakeFluxerApiRequestAsync<ChannelJson, CreatePrivateChannelRequest>(HttpMethod.Post, $"/users/@me/channels", req, true);
+        return Channel.Create(_client, json);
+    }
+
     public async Task<Channel> GetChannelAsync(ulong channelId)
     {
         var json = await MakeFluxerApiRequestAsync<ChannelJson>(HttpMethod.Get, $"/channels/{channelId}", true);
@@ -783,9 +789,9 @@ public class ApiClient
         return json.Select(x => Channel.Create(_client, x));
     }
 
-    public async Task<Channel> CreateChannelAsync<TRequest>(ulong guildId, CreateChannelRequest data)
+    public async Task<Channel> CreateGuildChannelAsync(ulong guildId, CreateGuildChannelRequest data)
     {
-        var json = await MakeFluxerApiRequestAsync<ChannelJson, CreateChannelRequest>(HttpMethod.Post, $"/guilds/{guildId}/channels", data, true);
+        var json = await MakeFluxerApiRequestAsync<ChannelJson, CreateGuildChannelRequest>(HttpMethod.Post, $"/guilds/{guildId}/channels", data, true);
         return Channel.Create(_client, json);
     }
 

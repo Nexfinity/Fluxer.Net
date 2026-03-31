@@ -2,7 +2,7 @@
 
 namespace Fluxer.Net;
 
-public class CreateLinkChannelRequest : CreateChannelRequest
+public class CreateLinkChannelRequest : CreateGuildChannelRequest
 {
     public override string Type => "GUILD_LINK";
 
