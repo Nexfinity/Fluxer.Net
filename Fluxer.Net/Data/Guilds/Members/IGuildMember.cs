@@ -3,10 +3,23 @@
 public interface IGuildMember
 {
     /// <summary>
+    /// User id for this member.
+    /// </summary>
+    ulong UserId { get; }
+
+    /// <summary>
     /// Guild id that the user is in.
     /// </summary>
     ulong GuildId { get; }
 
+    /// <summary>
+    /// Get the mention for the user.
+    /// </summary>
+    string Mention { get; }
+
+    /// <summary>
+    /// User data for the member.
+    /// </summary>
     IUser User { get; }
 
     /// <summary>

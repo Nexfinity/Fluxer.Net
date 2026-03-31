@@ -3,7 +3,11 @@
 /// <inheritdoc />
 public class GuildMember : Entity, IGuildMember
 {
+    /// <inheritdoc />
     public ulong UserId => User.Id;
+
+    /// <inheritdoc />
+    public string Mention => $"<@{UserId}>";
 
     /// <inheritdoc />
     public ulong GuildId { get; internal set; }

@@ -10,6 +10,9 @@ public class Role : Entity, IRole
     public ulong Id { get; internal set; }
 
     /// <inheritdoc />
+    public string Mention => $"<@&{Id}>";
+
+    /// <inheritdoc />
     public string Name { get; internal set; }
 
     /// <inheritdoc />

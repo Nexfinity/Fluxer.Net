@@ -5,7 +5,13 @@ namespace Fluxer.Net;
 /// <inheritdoc />
 public class GuildMemberJson : IGuildMember
 {
+    /// <inheritdoc />
+    [JsonIgnore]
     public ulong UserId => User.Id;
+
+    /// <inheritdoc />
+    [JsonIgnore]
+    public string Mention => $"<@{UserId}>";
 
     /// <inheritdoc />
     [JsonProperty("guild_id")]

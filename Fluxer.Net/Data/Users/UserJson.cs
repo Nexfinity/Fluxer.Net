@@ -10,6 +10,10 @@ public class UserJson : IUser
     public ulong Id { get; set; }
 
     /// <inheritdoc />
+    [JsonIgnore]
+    public string Mention => $"<@{Id}>";
+
+    /// <inheritdoc />
     [JsonProperty("username")]
     public string Username { get; set; }
 

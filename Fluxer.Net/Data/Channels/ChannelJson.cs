@@ -15,6 +15,10 @@ public class ChannelJson : IChannel
     public ulong Id { get; set; }
 
     /// <inheritdoc />
+    [JsonIgnore]
+    public string Mention => $"<#{Id}>";
+
+    /// <inheritdoc />
     [JsonProperty("guild_id")]
     public ulong? GuildId { get; set; }
 

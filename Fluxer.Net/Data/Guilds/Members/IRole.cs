@@ -8,6 +8,11 @@ public interface IRole
     ulong Id { get; }
 
     /// <summary>
+    /// Get the mention for this role.
+    /// </summary>
+    string Mention { get; }
+
+    /// <summary>
     /// The name of the role.
     /// </summary>
     string Name { get; }

@@ -7,6 +7,9 @@ public class Channel : Entity, IChannel
     public ulong Id { get; internal set; }
 
     /// <inheritdoc />
+    public string Mention => $"<#{Id}>";
+
+    /// <inheritdoc />
     public ulong? GuildId { get; internal set; }
 
     /// <inheritdoc />

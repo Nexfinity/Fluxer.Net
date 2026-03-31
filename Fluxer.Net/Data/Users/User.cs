@@ -7,6 +7,9 @@ public class User : Entity, IUser
     public ulong Id { get; internal set; }
 
     /// <inheritdoc />
+    public string Mention => $"<@{Id}>";
+
+    /// <inheritdoc />
     public string Username { get; internal set; }
 
     /// <inheritdoc />

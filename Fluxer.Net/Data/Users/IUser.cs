@@ -8,6 +8,11 @@ public interface IUser
     ulong Id { get; }
 
     /// <summary>
+    /// Get the mention for the user.
+    /// </summary>
+    string Mention { get; }
+
+    /// <summary>
     /// The username of the user, not unique across the platform.
     /// </summary>
     string Username { get; }
