@@ -457,7 +457,7 @@ public class ApiClient
         MessageRequest req = new MessageRequest
         {
             Content = content,
-            Embeds = embeds.ToArray(),
+            Embeds = embeds?.ToArray(),
             MessageReference = reference,
             AllowedMentions = allowedMentions,
             Flags = flags,
@@ -1148,7 +1148,7 @@ public class ApiClient
         MessageRequest req = new MessageRequest
         {
             Content = content,
-            Embeds = embeds.ToArray(),
+            Embeds = embeds?.ToArray(),
             MessageReference = reference,
             AllowedMentions = allowedMentions,
             Flags = flags,
@@ -1168,7 +1168,7 @@ public class ApiClient
         MessageRequest req = new MessageRequest
         {
             Content = content,
-            Embeds = embeds.ToArray(),
+            Embeds = embeds?.ToArray(),
             MessageReference = reference,
             AllowedMentions = allowedMentions,
             Flags = flags,
@@ -1189,7 +1189,7 @@ public class ApiClient
         MessageRequest req = new MessageRequest
         {
             Content = content,
-            Embeds = embeds.ToArray(),
+            Embeds = embeds?.ToArray(),
             MessageReference = reference,
             AllowedMentions = allowedMentions,
             Flags = flags,
