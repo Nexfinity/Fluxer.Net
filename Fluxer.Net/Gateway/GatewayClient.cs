@@ -465,10 +465,13 @@ public partial class GatewayClient : IDisposable
                         Roles.Clear();
                         CurrentMembers.Clear();
                         Guilds.Clear();
-                        foreach (var m in data.Members)
+                        if (data.Members != null)
                         {
-                            if (data.User.Id == m.UserId)
-                                CurrentMembers.TryAdd(m.GuildId, SocketGuildMember.Create(_client, m));
+                            foreach (var m in data.Members)
+                            {
+                                if (data.User.Id == m.UserId)
+                                    CurrentMembers.TryAdd(m.GuildId, SocketGuildMember.Create(_client, m));
+                            }
                         }
                         Guilds = new ConcurrentDictionary<ulong, SocketGuild>(data.Guilds.ToDictionary(x => x.Id, x => SocketGuild.Create(_client, x, CurrentMembers[x.Id])));
 

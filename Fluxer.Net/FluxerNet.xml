@@ -858,6 +858,9 @@
         <member name="P:Fluxer.Net.Channel.Id">
             <inheritdoc />
         </member>
+        <member name="P:Fluxer.Net.Channel.Mention">
+            <inheritdoc />
+        </member>
         <member name="P:Fluxer.Net.Channel.GuildId">
             <inheritdoc />
         </member>
@@ -928,6 +931,9 @@
             </remarks>
         </member>
         <member name="P:Fluxer.Net.ChannelJson.Id">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelJson.Mention">
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.ChannelJson.GuildId">
@@ -1123,6 +1129,11 @@
         <member name="P:Fluxer.Net.IChannel.Id">
             <summary>
             The unique identifier (snowflake) for this channel.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannel.Mention">
+            <summary>
+            Get the mention for this channel.
             </summary>
         </member>
         <member name="P:Fluxer.Net.IChannel.GuildId">
@@ -2776,6 +2787,12 @@
         <member name="T:Fluxer.Net.GuildMember">
             <inheritdoc />
         </member>
+        <member name="P:Fluxer.Net.GuildMember.UserId">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildMember.Mention">
+            <inheritdoc />
+        </member>
         <member name="P:Fluxer.Net.GuildMember.GuildId">
             <inheritdoc />
         </member>
@@ -2831,6 +2848,12 @@
             <inheritdoc />
         </member>
         <member name="T:Fluxer.Net.GuildMemberJson">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildMemberJson.UserId">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildMemberJson.Mention">
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.GuildMemberJson.GuildId">
@@ -2907,9 +2930,24 @@
             Ban Reason (max 512 characters)
             </summary>
         </member>
+        <member name="P:Fluxer.Net.IGuildMember.UserId">
+            <summary>
+            User id for this member.
+            </summary>
+        </member>
         <member name="P:Fluxer.Net.IGuildMember.GuildId">
             <summary>
             Guild id that the user is in.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IGuildMember.Mention">
+            <summary>
+            Get the mention for the user.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IGuildMember.User">
+            <summary>
+            User data for the member.
             </summary>
         </member>
         <member name="P:Fluxer.Net.IGuildMember.JoinedAt">
@@ -2960,6 +2998,11 @@
         <member name="P:Fluxer.Net.IRole.Id">
             <summary>
             The unique identifier for this role.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IRole.Mention">
+            <summary>
+            Get the mention for this role.
             </summary>
         </member>
         <member name="P:Fluxer.Net.IRole.Name">
@@ -3031,6 +3074,9 @@
         <member name="P:Fluxer.Net.Role.Id">
             <inheritdoc />
         </member>
+        <member name="P:Fluxer.Net.Role.Mention">
+            <inheritdoc />
+        </member>
         <member name="P:Fluxer.Net.Role.Name">
             <inheritdoc />
         </member>
@@ -3056,6 +3102,9 @@
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.RoleJson.Id">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.RoleJson.Mention">
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.RoleJson.Name">
@@ -3639,6 +3688,16 @@
         <member name="P:Fluxer.Net.IGuildVanityUrl.Uses">
             <summary>
             The number of times this vanity URL has been used.
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.SocketGuild">
+            <summary>
+            Cached guild from the gateway.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.SocketGuild.CurrentMember">
+            <summary>
+            Cached current logged in member for the guild.
             </summary>
         </member>
         <member name="P:Fluxer.Net.IInvite.CreatedAt">
@@ -4810,6 +4869,11 @@
             The unique identifier (snowflake) for this user.
             </summary>
         </member>
+        <member name="P:Fluxer.Net.IUser.Mention">
+            <summary>
+            Get the mention for the user.
+            </summary>
+        </member>
         <member name="P:Fluxer.Net.IUser.Username">
             <summary>
             The username of the user, not unique across the platform.
@@ -5000,6 +5064,9 @@
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.User.Id">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.User.Mention">
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.User.Username">
@@ -5266,6 +5333,9 @@
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.UserJson.Id">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserJson.Mention">
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.UserJson.Username">
@@ -5888,11 +5958,6 @@
         <member name="T:Fluxer.Net.Gateway.Data.Guilds.GuildMemberGatewayData">
             <summary>
             Gateway guild member data matching the GuildMemberResponse API model
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.Gateway.Data.Guilds.GuildMemberGatewayData.GuildId">
-            <summary>
-            Guild ID for context (added for gateway events)
             </summary>
         </member>
         <member name="T:Fluxer.Net.Gateway.Data.Guilds.GuildRoleDeleteGatewayData">
