@@ -5,7 +5,13 @@ namespace Fluxer.Net;
 /// <inheritdoc />
 public class GuildMemberJson : IGuildMember
 {
+    /// <inheritdoc />
+    [JsonIgnore]
     public ulong UserId => User.Id;
+
+    /// <inheritdoc />
+    [JsonIgnore]
+    public string Mention => $"<@{UserId}>";
 
     /// <inheritdoc />
     [JsonProperty("guild_id")]
@@ -79,5 +85,36 @@ public class GuildMemberJson : IGuildMember
     [JsonProperty("temporary")]
     public bool IsTemporary { get; set; }
 
+    /// <inheritdoc />
+    public string GetCurrentName()
+    {
+        return Nickname ?? User.DisplayName ?? User.Username;
+    }
+
+    /// <inheritdoc />
+    public string GetDefaultAvatarUrl()
+    {
+        return $"https://fluxerstatic.com/avatars/{UserId % 6}.png";
+    }
+
+    /// <inheritdoc />
+    public string? GetAvatarUrl(int size = 160)
+    {
+        if (string.IsNullOrEmpty(AvatarHash))
+            return User.GetAvatarUrl();
+
+        return $"https://fluxerusercontent.com/avatars/{UserId}/{AvatarHash}.png?size={size}";
+    }
+
+    /// <inheritdoc />
+    public string GetAvatarOrDefaultUrl(int size = 160)
+    {
+        if (string.IsNullOrEmpty(AvatarHash) && string.IsNullOrEmpty(User.AvatarHash))
+            return GetDefaultAvatarUrl();
+
+        return GetAvatarUrl(size);
+    }
+
     IUser IGuildMember.User => User;
+
 }

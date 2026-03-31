@@ -22,7 +22,7 @@ public class PermissionOverwrite : Entity, IPermissionOverwrite
 
     public static PermissionOverwrite Create(FluxerBaseClient client, PermissionOverwriteJson json)
     {
-        var data = new PermissionOverwrite(client);
+        PermissionOverwrite data = new PermissionOverwrite(client);
         data.Update(client, json);
         return data;
     }

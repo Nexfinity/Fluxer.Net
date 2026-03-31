@@ -22,7 +22,7 @@ public class ClientStatus : Entity, IClientStatus
         if (json == null)
             return null;
 
-        var data = new ClientStatus(client);
+        ClientStatus data = new ClientStatus(client);
         data.Update(client, json);
         return data;
     }

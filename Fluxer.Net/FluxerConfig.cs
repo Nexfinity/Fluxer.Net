@@ -76,4 +76,9 @@ public class FluxerConfig
     /// This is the actual URL used for API requests.
     /// </summary>
     public string RealApiBaseUrl { get => FluxerApiBaseUrl.Replace("{v}", Version.ToString()); }
+
+    /// <summary>
+    /// Get the media/user content url.
+    /// </summary>
+    public string MediaUrl { get; set; } = "https://fluxerusercontent.com";
 }

@@ -85,7 +85,7 @@ public class UserSettings : Entity, IUserSettings
 
     public static UserSettings Create(FluxerBaseClient client, UserSettingsJson json)
     {
-        var data = new UserSettings(client);
+        UserSettings data = new UserSettings(client);
         data.Update(client, json);
         return data;
     }

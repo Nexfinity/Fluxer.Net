@@ -26,7 +26,7 @@ public class GuildBan : Entity, IGuildBan
 
     public static GuildBan Create(FluxerBaseClient client, GuildBanJson json)
     {
-        var data = new GuildBan(client);
+        GuildBan data = new GuildBan(client);
         data.Update(client, json);
         return data;
     }

@@ -12,7 +12,7 @@ public class CreateGuildEmojiRequest
 
     public void ImageFromStream(Stream stream)
     {
-        using var ms = new MemoryStream();
+        using MemoryStream ms = new MemoryStream();
         stream.CopyTo(ms);
         ImageBase64 = Convert.ToBase64String(ms.ToArray());
     }

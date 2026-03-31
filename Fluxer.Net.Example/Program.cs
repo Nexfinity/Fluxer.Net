@@ -83,7 +83,7 @@ Log.Debug("Config file loaded successfully.");
 //   - Full coverage of 150+ Fluxer API endpoints
 //   - Shared logging configuration with the gateway
 
-var client = new FluxerClient(config["Token"], new()
+FluxerClient client = new FluxerClient(config["Token"], new()
 {
     ReconnectAttemptDelay = 2,  // Reconnect quickly if connection drops
     RestSerilog = Log.Logger as Logger,  // Use our configured logger
@@ -116,7 +116,7 @@ var client = new FluxerClient(config["Token"], new()
 //   - Precondition support (RequireOwner, RequireContext, etc.)
 //   - Sync/Async execution modes
 
-var commands = new CommandService(
+CommandService commands = new CommandService(
     logger: Log.Logger as Logger,  // Use our configured logger
     services: null  // No dependency injection for this example
 );
@@ -201,7 +201,7 @@ client.Gateway.MessageCreate += async messageData =>
             argPos = 1; // Skip the prefix character
 
             // Create a command context with all the necessary information
-            var context = new CommandContext(client, messageData);
+            CommandContext context = new CommandContext(client, messageData);
 
             // Execute the command
             var result = await commands.ExecuteAsync(context, argPos);

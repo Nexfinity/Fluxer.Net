@@ -8,6 +8,11 @@ public interface IUser
     ulong Id { get; }
 
     /// <summary>
+    /// Get the mention for the user.
+    /// </summary>
+    string Mention { get; }
+
+    /// <summary>
     /// The username of the user, not unique across the platform.
     /// </summary>
     string Username { get; }
@@ -46,4 +51,24 @@ public interface IUser
     /// Whether the user is an official system user.
     /// </summary>
     bool IsSystem { get; }
+
+    /// <summary>
+    /// Get the user's current display name or username.
+    /// </summary>
+    string GetCurrentName();
+
+    /// <summary>
+    /// Get the default avatar for the user.
+    /// </summary>
+    string GetDefaultAvatarUrl();
+
+    /// <summary>
+    /// Get the user's avatar.
+    /// </summary>
+    string? GetAvatarUrl(int size);
+
+    /// <summary>
+    /// Get the user's avatar or fallback to default.
+    /// </summary>
+    string GetAvatarOrDefaultUrl(int size);
 }

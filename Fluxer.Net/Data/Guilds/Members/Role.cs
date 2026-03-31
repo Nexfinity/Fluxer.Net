@@ -10,6 +10,9 @@ public class Role : Entity, IRole
     public ulong Id { get; internal set; }
 
     /// <inheritdoc />
+    public string Mention => $"<@&{Id}>";
+
+    /// <inheritdoc />
     public string Name { get; internal set; }
 
     /// <inheritdoc />
@@ -37,7 +40,7 @@ public class Role : Entity, IRole
 
     public static Role Create(FluxerBaseClient client, RoleJson json, ulong guildId)
     {
-        var data = new Role(client);
+        Role data = new Role(client);
         data.GuildId = guildId;
         data.Update(client, json);
         return data;

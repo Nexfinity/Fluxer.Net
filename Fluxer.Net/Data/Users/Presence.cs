@@ -29,7 +29,7 @@ public class Presence : Entity, IPresence
 
     public static Presence Create(FluxerBaseClient client, PresenceJson json)
     {
-        var data = new Presence(client);
+        Presence data = new Presence(client);
         data.Update(client, json);
         return data;
     }

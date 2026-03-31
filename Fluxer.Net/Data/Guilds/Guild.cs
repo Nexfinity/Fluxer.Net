@@ -52,7 +52,7 @@ public class Guild : PartialGuild, IGuild
 
     public static Guild Create(FluxerBaseClient client, GuildJson json)
     {
-        var data = new Guild(client);
+        Guild data = new Guild(client);
         data.Update(client, json);
         return data;
     }

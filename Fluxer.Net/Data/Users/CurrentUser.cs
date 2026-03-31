@@ -1,7 +1,7 @@
 ﻿namespace Fluxer.Net;
 
 /// <inheritdoc />
-public class CurrentUser : User, IUserProfile
+public class CurrentUser : User, ICurrentUser, IUserProfile
 {
     /// <inheritdoc />
     public bool IsStaff { get; internal set; }
@@ -69,70 +69,14 @@ public class CurrentUser : User, IUserProfile
     /// <inheritdoc />
     public HashSet<int>? AuthenticatorTypes { get; internal set; }
 
+    /// <inheritdoc />
+    public string? GetBannerUrl(int size = 600)
+    {
+        if (string.IsNullOrEmpty(BannerHash))
+            return null;
 
-
-    ///// <inheritdoc />
-    //public string? PasswordHash { get; internal set; }
-
-    ///// <inheritdoc />
-    //public string? TotpSecret { get; internal set; }
-
-    ///// <inheritdoc />
-    //public string? DateOfBirth { get; internal set; }
-
-    ///// <inheritdoc />
-    //public string? Locale { get; internal set; }
-
-    ///// <inheritdoc />
-    //public string? StripeSubscriptionId { get; internal set; }
-
-    ///// <inheritdoc />
-    //public string? StripeCustomerId { get; internal set; }
-
-    ///// <inheritdoc />
-    //public int SuspiciousActivityFlags { get; internal set; }
-
-    ///// <inheritdoc />
-    //public DateTime? TermsAgreedAt { get; internal set; }
-
-    ///// <inheritdoc />
-    //public DateTime? PrivacyAgreedAt { get; internal set; }
-
-    ///// <inheritdoc />
-    //public DateTime? LastActiveAt { get; internal set; }
-
-    ///// <inheritdoc />
-    //public string? LastActiveIp { get; internal set; }
-
-    ///// <inheritdoc />
-    //public DateTime? TempBannedUntil { get; internal set; }
-
-    ///// <inheritdoc />
-    //public DateTime? PendingDeletionAt { get; internal set; }
-
-    ///// <inheritdoc />
-    //public int? DeletionReasonCode { get; internal set; }
-
-    ///// <inheritdoc />
-    //public string? DeletionPublicReason { get; internal set; }
-
-    ///// <inheritdoc />
-    //public string? DeletionAuditLogReason { get; internal set; }
-
-    ///// <inheritdoc />
-    //public DateTime? FirstRefundAt { get; internal set; }
-
-    ///// <inheritdoc />
-    //public int BetaCodeAllowance { get; internal set; }
-
-    ///// <inheritdoc />
-    //public DateTime? BetaCodeLastResetAt { get; internal set; }
-
-    ///// <inheritdoc />
-    //public int? GiftInventoryServerSeq { get; internal set; }
-
-    ///// <inheritdoc />
-    //public int? GiftInventoryClientSeq { get; internal set; }
+        return $"{Client.Config.MediaUrl}/banners/{Id}/{BannerHash}.png?size={size}";
+    }
 
     internal CurrentUser(FluxerBaseClient client) : base(client)
     {
@@ -141,7 +85,7 @@ public class CurrentUser : User, IUserProfile
 
     public static CurrentUser Create(FluxerBaseClient client, CurrentUserJson json)
     {
-        var data = new CurrentUser(client);
+        CurrentUser data = new CurrentUser(client);
         data.Update(client, json);
         return data;
     }
@@ -171,27 +115,5 @@ public class CurrentUser : User, IUserProfile
         HasEverPurchased = json.HasEverPurchased;
         EmailBounced = json.EmailBounced;
         AuthenticatorTypes = json.AuthenticatorTypes;
-
-        //PasswordHash = json.PasswordHash;
-        //TotpSecret = json.TotpSecret;
-        //DateOfBirth = json.DateOfBirth;
-        //Locale = json.Locale;
-        //StripeSubscriptionId = json.StripeSubscriptionId;
-        //StripeCustomerId = json.StripeCustomerId;
-        //SuspiciousActivityFlags = json.SuspiciousActivityFlags;
-        //TermsAgreedAt = json.TermsAgreedAt;
-        //PrivacyAgreedAt = json.PrivacyAgreedAt;
-        //LastActiveAt = json.LastActiveAt;
-        //LastActiveIp = json.LastActiveIp;
-        //TempBannedUntil = json.TempBannedUntil;
-        //PendingDeletionAt = json.PendingDeletionAt;
-        //DeletionReasonCode = json.DeletionReasonCode;
-        //DeletionPublicReason = json.DeletionPublicReason;
-        //DeletionAuditLogReason = json.DeletionAuditLogReason;
-        //FirstRefundAt = json.FirstRefundAt;
-        //BetaCodeAllowance = json.BetaCodeAllowance;
-        //BetaCodeLastResetAt = json.BetaCodeLastResetAt;
-        //GiftInventoryServerSeq = json.GiftInventoryServerSeq;
-        //GiftInventoryClientSeq = json.GiftInventoryClientSeq;
     }
 }

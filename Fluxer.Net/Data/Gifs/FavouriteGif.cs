@@ -61,7 +61,7 @@ public class FavouriteGif : Entity, IFavouriteGif
 
     public static FavouriteGif Create(FluxerBaseClient client, FavouriteGifJson json)
     {
-        var data = new FavouriteGif(client);
+        FavouriteGif data = new FavouriteGif(client);
         data.Update(client, json);
         return data;
     }

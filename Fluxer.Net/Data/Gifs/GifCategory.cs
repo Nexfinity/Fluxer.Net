@@ -19,7 +19,7 @@ public class GifCategory : Entity, IGifCategory
 
     public static GifCategory Create(FluxerBaseClient client, GifCategoryJson json)
     {
-        var data = new GifCategory(client);
+        GifCategory data = new GifCategory(client);
         data.Update(client, json);
         return data;
     }

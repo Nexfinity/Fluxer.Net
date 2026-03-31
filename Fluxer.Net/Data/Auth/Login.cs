@@ -16,7 +16,7 @@ public class Login : Entity, ILogin
 
     public static Login Create(FluxerBaseClient client, LoginJson json)
     {
-        var data = new Login(client);
+        Login data = new Login(client);
         data.Update(client, json);
         return data;
     }

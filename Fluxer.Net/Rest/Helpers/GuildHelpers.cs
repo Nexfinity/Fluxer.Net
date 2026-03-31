@@ -23,8 +23,8 @@ public static class GuildHelpers
     public static Task<IEnumerable<Channel>> GetChannelsAsync(this Guild guild)
         => guild.Client.Rest.GetChannelsAsync(guild.Id);
 
-    public static Task<Channel> CreateChannelAsync(this Guild guild, CreateChannelRequest request)
-        => guild.Client.Rest.CreateChannelAsync<ChannelJson>(guild.Id, request);
+    public static Task<Channel> CreateChannelAsync(this Guild guild, CreateGuildChannelRequest request)
+        => guild.Client.Rest.CreateGuildChannelAsync(guild.Id, request);
 
     public static Task<IEnumerable<GuildEmoji>> GetEmojisAsync(this Guild guild)
         => guild.Client.Rest.GetEmojisAsync(guild.Id);

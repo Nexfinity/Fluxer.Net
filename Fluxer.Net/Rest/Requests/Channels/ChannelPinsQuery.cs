@@ -17,7 +17,7 @@ public class ChannelPinsQuery
 
     public string BuildQuery()
     {
-        var list = new List<string>(2);
+        List<string> list = new List<string>(2);
         if (Limit.HasValue && Limit.Value > 0)
         {
             list.Add($"limit={Limit.Value}");

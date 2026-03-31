@@ -34,7 +34,7 @@ public class AuthSession : Entity, IAuthSession
 
     public static AuthSession Create(FluxerBaseClient client, AuthSessionJson json)
     {
-        var data = new AuthSession(client);
+        AuthSession data = new AuthSession(client);
         data.Update(client, json);
         return data;
     }

@@ -33,8 +33,6 @@ public class FluxerOAuthClient : FluxerBaseClient
         base.Rest = new ApiClient(this);
     }
 
-    public FluxerConfig Config { get; }
-
     public ulong ClientId => base.Id;
     public string ClientSecret => base.Token;
 

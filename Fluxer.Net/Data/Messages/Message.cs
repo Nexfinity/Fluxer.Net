@@ -86,7 +86,7 @@ public class Message : Entity, IMessage
 
     public static Message Create(FluxerBaseClient client, MessageJson json)
     {
-        var data = new Message(client);
+        Message data = new Message(client);
         data.Update(client, json);
         return data;
     }

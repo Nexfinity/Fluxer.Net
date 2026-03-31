@@ -38,7 +38,7 @@ public class Activity : Entity, IActivity
 
     public static Activity Create(FluxerBaseClient client, ActivityJson json)
     {
-        var data = new Activity(client);
+        Activity data = new Activity(client);
         data.Update(client, json);
         return data;
     }
@@ -75,7 +75,7 @@ public class ActivityTimestamps : IActivityTimestamps
         if (json == null)
             return null;
 
-        var data = new ActivityTimestamps(client);
+        ActivityTimestamps data = new ActivityTimestamps(client);
         data.Update(client, json);
         return data;
     }
@@ -109,7 +109,7 @@ public class ActivityEmoji : IActivityEmoji
         if (json == null)
             return null;
 
-        var data = new ActivityEmoji(client);
+        ActivityEmoji data = new ActivityEmoji(client);
         data.Update(client, json);
         return data;
     }

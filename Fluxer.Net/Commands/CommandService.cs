@@ -67,7 +67,7 @@ public class CommandService
         if (!type.IsSubclassOf(typeof(ModuleBase)))
             throw new ArgumentException($"Type {type.Name} must inherit from ModuleBase", nameof(type));
 
-        var module = new ModuleInfo(type);
+        ModuleInfo module = new ModuleInfo(type);
         module.Build();
 
         _modules.Add(module);
@@ -94,7 +94,7 @@ public class CommandService
             return ExecuteResult.FromError(CommandError.ParseFailed, "No command specified");
 
         var commandName = parts[0].ToLowerInvariant();
-        var argList = parts.Skip(1).ToList();
+        List<string> argList = parts.Skip(1).ToList();
 
         // Find matching command
         CommandInfo? matchedCommand = null;

@@ -16,7 +16,7 @@ public class GuildVanityUrl : Entity, IGuildVanityUrl
 
     public static GuildVanityUrl Create(FluxerBaseClient client, GuildVanityUrlJson json)
     {
-        var data = new GuildVanityUrl(client);
+        GuildVanityUrl data = new GuildVanityUrl(client);
         data.Update(client, json);
         return data;
     }

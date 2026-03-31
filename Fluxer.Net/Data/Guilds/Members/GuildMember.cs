@@ -3,7 +3,11 @@
 /// <inheritdoc />
 public class GuildMember : Entity, IGuildMember
 {
+    /// <inheritdoc />
     public ulong UserId => User.Id;
+
+    /// <inheritdoc />
+    public string Mention => $"<@{UserId}>";
 
     /// <inheritdoc />
     public ulong GuildId { get; internal set; }
@@ -59,6 +63,36 @@ public class GuildMember : Entity, IGuildMember
     /// <inheritdoc />
     public bool IsTemporary { get; internal set; }
 
+    /// <inheritdoc />
+    public string GetCurrentName()
+    {
+        return Nickname ?? User.DisplayName ?? User.Username;
+    }
+
+    /// <inheritdoc />
+    public string GetDefaultAvatarUrl()
+    {
+        return $"https://fluxerstatic.com/avatars/{UserId % 6}.png";
+    }
+
+    /// <inheritdoc />
+    public string? GetAvatarUrl(int size = 160)
+    {
+        if (string.IsNullOrEmpty(AvatarHash))
+            return User.GetAvatarUrl();
+
+        return $"{Client.Config.MediaUrl}/avatars/{UserId}/{AvatarHash}.png?size={size}";
+    }
+
+    /// <inheritdoc />
+    public string GetAvatarOrDefaultUrl(int size = 160)
+    {
+        if (string.IsNullOrEmpty(AvatarHash) && string.IsNullOrEmpty(User.AvatarHash))
+            return GetDefaultAvatarUrl();
+
+        return GetAvatarUrl(size);
+    }
+
     IUser IGuildMember.User => User;
 
     internal GuildMember(FluxerBaseClient client) : base(client)
@@ -68,7 +102,7 @@ public class GuildMember : Entity, IGuildMember
 
     public static GuildMember Create(FluxerBaseClient client, GuildMemberJson json)
     {
-        var data = new GuildMember(client);
+        GuildMember data = new GuildMember(client);
         data.Update(client, json);
         return data;
     }

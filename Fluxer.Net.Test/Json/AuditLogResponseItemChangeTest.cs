@@ -157,9 +157,9 @@ public class AuditLogResponseItemChangeTest
         Assert.That(dataRemoveOnly.NewValue?.GetType(), Is.EqualTo(typeof(PermissionDiffSchemaJson)));
         Assert.That(dataAddAndRemove.NewValue?.GetType(), Is.EqualTo(typeof(PermissionDiffSchemaJson)));
 
-        var valueAddOnly = (PermissionDiffSchemaJson)dataAddOnly.NewValue!;
-        var valueTypedRemoveOnly = (PermissionDiffSchemaJson)dataRemoveOnly.NewValue!;
-        var valueAddAndRemove = (PermissionDiffSchemaJson)dataAddAndRemove.NewValue!;
+        PermissionDiffSchemaJson valueAddOnly = (PermissionDiffSchemaJson)dataAddOnly.NewValue!;
+        PermissionDiffSchemaJson valueTypedRemoveOnly = (PermissionDiffSchemaJson)dataRemoveOnly.NewValue!;
+        PermissionDiffSchemaJson valueAddAndRemove = (PermissionDiffSchemaJson)dataAddAndRemove.NewValue!;
 
         Assert.That(dataAddOnly.Key, Is.EqualTo("permissions_diff"));
         Assert.That(dataAddOnly.NewValue.GetType, Is.EqualTo(typeof(PermissionDiffSchemaJson)));

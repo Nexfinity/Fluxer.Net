@@ -268,7 +268,7 @@ public class EmbedBuilder
     /// <returns>The current builder.</returns>
     public EmbedBuilder WithAuthor(string name, string? iconUrl = null, string? url = null)
     {
-        var author = new EmbedAuthorBuilder
+        EmbedAuthorBuilder author = new EmbedAuthorBuilder
         {
             Name = name,
             IconUrl = iconUrl,
@@ -285,7 +285,7 @@ public class EmbedBuilder
     /// <returns>The current builder.</returns>
     public EmbedBuilder WithAuthor(Action<EmbedAuthorBuilder> action)
     {
-        var author = new EmbedAuthorBuilder();
+        EmbedAuthorBuilder author = new EmbedAuthorBuilder();
         action(author);
         Author = author;
         return this;
@@ -310,7 +310,7 @@ public class EmbedBuilder
     /// <returns>The current builder.</returns>
     public EmbedBuilder WithFooter(string text, string? iconUrl = null)
     {
-        var footer = new EmbedFooterBuilder
+        EmbedFooterBuilder footer = new EmbedFooterBuilder
         {
             Text = text,
             IconUrl = iconUrl
@@ -326,7 +326,7 @@ public class EmbedBuilder
     /// <returns>The current builder.</returns>
     public EmbedBuilder WithFooter(Action<EmbedFooterBuilder> action)
     {
-        var footer = new EmbedFooterBuilder();
+        EmbedFooterBuilder footer = new EmbedFooterBuilder();
         action(footer);
         Footer = footer;
         return this;
@@ -357,7 +357,7 @@ public class EmbedBuilder
     /// <exception cref="ArgumentException">Field count exceeds <see cref="MaxFieldCount"/>.</exception>
     public EmbedBuilder AddField(string name, object value, bool inline = false)
     {
-        var field = new EmbedFieldBuilder
+        EmbedFieldBuilder field = new EmbedFieldBuilder
         {
             Name = name,
             Value = value?.ToString() ?? "",
@@ -374,7 +374,7 @@ public class EmbedBuilder
     /// <exception cref="ArgumentException">Field count exceeds <see cref="MaxFieldCount"/>.</exception>
     public EmbedBuilder AddField(Action<EmbedFieldBuilder> action)
     {
-        var field = new EmbedFieldBuilder();
+        EmbedFieldBuilder field = new EmbedFieldBuilder();
         action(field);
         return AddField(field);
     }
@@ -398,7 +398,7 @@ public class EmbedBuilder
         if (!string.IsNullOrEmpty(ImageUrl) && !IsValidUrl(ImageUrl))
             throw new InvalidOperationException("Image URL must include a protocol (http:// or https://).");
 
-        var embed = new EmbedRequest
+        EmbedRequest embed = new EmbedRequest
         {
             Title = Title,
             Description = Description,

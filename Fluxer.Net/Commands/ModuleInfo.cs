@@ -39,7 +39,7 @@ public class ModuleInfo
 
 	internal void Build()
 	{
-		var commands = new List<CommandInfo>();
+        List<CommandInfo> commands = new List<CommandInfo>();
 
 		foreach (var method in Type.GetMethods(BindingFlags.Public | BindingFlags.Instance))
 		{

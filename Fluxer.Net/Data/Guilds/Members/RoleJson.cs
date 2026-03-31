@@ -10,6 +10,10 @@ public class RoleJson : IRole
     public ulong Id { get; set; }
 
     /// <inheritdoc />
+    [JsonIgnore]
+    public string Mention => $"<@&{Id}>";
+
+    /// <inheritdoc />
     [JsonProperty("name")]
     public string Name { get; set; }
 

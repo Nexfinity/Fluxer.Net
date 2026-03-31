@@ -8,6 +8,11 @@ public interface IChannel
     ulong Id { get; }
 
     /// <summary>
+    /// Get the mention for this channel.
+    /// </summary>
+    string Mention { get; }
+
+    /// <summary>
     /// The unique identifier (snowflake) for guild of this channel.
     /// </summary>
     ulong? GuildId { get; }

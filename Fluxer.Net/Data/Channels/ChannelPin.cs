@@ -18,7 +18,7 @@ public class ChannelPin : Entity, IChannelPin
 
     public static ChannelPin Create(FluxerBaseClient client, ChannelPinJson json)
     {
-        var data = new ChannelPin(client);
+        ChannelPin data = new ChannelPin(client);
         data.Update(client, json);
         return data;
     }

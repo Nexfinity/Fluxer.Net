@@ -3,10 +3,23 @@
 public interface IGuildMember
 {
     /// <summary>
+    /// User id for this member.
+    /// </summary>
+    ulong UserId { get; }
+
+    /// <summary>
     /// Guild id that the user is in.
     /// </summary>
     ulong GuildId { get; }
 
+    /// <summary>
+    /// Get the mention for the user.
+    /// </summary>
+    string Mention { get; }
+
+    /// <summary>
+    /// User data for the member.
+    /// </summary>
     IUser User { get; }
 
     /// <summary>
@@ -67,4 +80,24 @@ public interface IGuildMember
     bool IsPremiumSanitized { get; }
 
     bool IsTemporary { get; }
+
+    /// <summary>
+    /// Get the members's current nickname, display name or username.
+    /// </summary>
+    string GetCurrentName();
+
+    /// <summary>
+    /// Get the default avatar for the user.
+    /// </summary>
+    string GetDefaultAvatarUrl();
+
+    /// <summary>
+    /// Get the members's avatar.
+    /// </summary>
+    string? GetAvatarUrl(int size);
+
+    /// <summary>
+    /// Get the members's avatar or fallback to default.
+    /// </summary>
+    string GetAvatarOrDefaultUrl(int size);
 }

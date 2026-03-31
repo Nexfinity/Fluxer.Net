@@ -10,6 +10,10 @@ public class UserJson : IUser
     public ulong Id { get; set; }
 
     /// <inheritdoc />
+    [JsonIgnore]
+    public string Mention => $"<@{Id}>";
+
+    /// <inheritdoc />
     [JsonProperty("username")]
     public string Username { get; set; }
 
@@ -40,4 +44,34 @@ public class UserJson : IUser
     /// <inheritdoc />
     [JsonProperty("system")]
     public bool IsSystem { get; set; }
+
+    /// <inheritdoc />
+    public string GetCurrentName()
+    {
+        return DisplayName ?? Username;
+    }
+
+    /// <inheritdoc />
+    public string GetDefaultAvatarUrl()
+    {
+        return $"https://fluxerstatic.com/avatars/{Id % 6}.png";
+    }
+
+    /// <inheritdoc />
+    public string? GetAvatarUrl(int size = 160)
+    {
+        if (string.IsNullOrEmpty(AvatarHash))
+            return null;
+
+        return $"https://fluxerusercontent.com/avatars/{Id}/{AvatarHash}.png?size={size}";
+    }
+
+    /// <inheritdoc />
+    public string GetAvatarOrDefaultUrl(int size = 160)
+    {
+        if (string.IsNullOrEmpty(AvatarHash))
+            return GetDefaultAvatarUrl();
+
+        return GetAvatarUrl(size);
+    }
 }

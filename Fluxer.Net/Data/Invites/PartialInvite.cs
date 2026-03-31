@@ -37,7 +37,7 @@ public class PartialInvite : Entity, IPartialInvite
 
     public static PartialInvite Create(FluxerBaseClient client, PartialInviteJson json)
     {
-        var data = new PartialInvite(client);
+        PartialInvite data = new PartialInvite(client);
         data.Update(client, json);
         return data;
     }

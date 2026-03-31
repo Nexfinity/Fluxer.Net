@@ -45,7 +45,7 @@ public class FluxerOAuthUser : User, IFluxerOAuthUser
 
     public static FluxerOAuthUser Create(FluxerBaseClient client, FluxerOAuthUserJson json)
     {
-        var data = new FluxerOAuthUser(client, null);
+        FluxerOAuthUser data = new FluxerOAuthUser(client, null);
         data.Update(client, json);
         return data;
     }

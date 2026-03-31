@@ -3,6 +3,11 @@
 /// <inheritdoc />
 public class UserProfile : Entity, IUserProfile
 {
+    /// <summary>
+    /// User's id for the profile.
+    /// </summary>
+    public ulong UserId { get; internal set; }
+
     /// <inheritdoc />
     public string? Bio { get; internal set; }
 
@@ -18,14 +23,26 @@ public class UserProfile : Entity, IUserProfile
     /// <inheritdoc />
     public int? BannerColor { get; internal set; }
 
+    /// <summary>
+    /// Get the user's banner.
+    /// </summary>
+    public string? GetBannerUrl(int size = 600)
+    {
+        if (string.IsNullOrEmpty(BannerHash))
+            return null;
+
+        return $"{Client.Config.MediaUrl}/banners/{UserId}/{BannerHash}.png?size={size}";
+    }
+
     internal UserProfile(FluxerBaseClient client) : base(client)
     {
 
     }
 
-    public static UserProfile Create(FluxerBaseClient client, UserProfileJson json)
+    public static UserProfile Create(FluxerBaseClient client, UserProfileJson json, ulong userId)
     {
-        var data = new UserProfile(client);
+        UserProfile data = new UserProfile(client);
+        data.UserId = userId;
         data.Update(client, json);
         return data;
     }

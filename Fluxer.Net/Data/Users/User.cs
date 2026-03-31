@@ -7,6 +7,9 @@ public class User : Entity, IUser
     public ulong Id { get; internal set; }
 
     /// <inheritdoc />
+    public string Mention => $"<@{Id}>";
+
+    /// <inheritdoc />
     public string Username { get; internal set; }
 
     /// <inheritdoc />
@@ -30,6 +33,36 @@ public class User : Entity, IUser
     /// <inheritdoc />
     public bool IsSystem { get; internal set; }
 
+    /// <inheritdoc />
+    public string GetCurrentName()
+    {
+        return DisplayName ?? Username;
+    }
+
+    /// <inheritdoc />
+    public string GetDefaultAvatarUrl()
+    {
+        return $"https://fluxerstatic.com/avatars/{Id % 6}.png";
+    }
+
+    /// <inheritdoc />
+    public string? GetAvatarUrl(int size = 160)
+    {
+        if (string.IsNullOrEmpty(AvatarHash))
+            return null;
+
+        return $"{Client.Config.MediaUrl}/avatars/{Id}/{AvatarHash}.png?size={size}";
+    }
+
+    /// <inheritdoc />
+    public string GetAvatarOrDefaultUrl(int size = 160)
+    {
+        if (string.IsNullOrEmpty(AvatarHash))
+            return GetDefaultAvatarUrl();
+
+        return GetAvatarUrl(size);
+    }
+
     internal User(FluxerBaseClient client) : base(client)
     {
 
@@ -37,7 +70,7 @@ public class User : Entity, IUser
 
     public static User Create(FluxerBaseClient client, UserJson json)
     {
-        var data = new User(client);
+        User data = new User(client);
         data.Update(json);
         return data;
     }

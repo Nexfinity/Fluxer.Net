@@ -24,6 +24,30 @@ public class Webhook : Entity, IWebhook
     /// <inheritdoc />
     public string? AvatarHash { get; internal set; }
 
+    /// <inheritdoc />
+    public string GetDefaultAvatarUrl()
+    {
+        return $"https://fluxerstatic.com/avatars/{Id % 6}.png";
+    }
+
+    /// <inheritdoc />
+    public string? GetAvatarUrl(int size = 160)
+    {
+        if (string.IsNullOrEmpty(AvatarHash))
+            return null;
+
+        return $"{Client.Config.MediaUrl}/avatars/{Id}/{AvatarHash}.png?size={size}";
+    }
+
+    /// <inheritdoc />
+    public string GetAvatarOrDefaultUrl(int size = 160)
+    {
+        if (string.IsNullOrEmpty(AvatarHash))
+            return GetDefaultAvatarUrl();
+
+        return GetAvatarUrl(size);
+    }
+
     internal Webhook(FluxerBaseClient client) : base(client)
     {
 
@@ -31,7 +55,7 @@ public class Webhook : Entity, IWebhook
 
     public static Webhook Create(FluxerBaseClient client, WebhookJson json)
     {
-        var data = new Webhook(client);
+        Webhook data = new Webhook(client);
         data.Update(client, json);
         return data;
     }

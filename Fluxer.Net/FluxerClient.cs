@@ -8,6 +8,7 @@ public abstract class FluxerBaseClient
     internal ulong Id { get; set; }
     internal string Token { get; set; }
     internal ApiClient Rest { get; set; }
+    public FluxerConfig Config { get; internal set; }
 }
 
 /// <summary>
@@ -47,8 +48,6 @@ public class FluxerClient : FluxerBaseClient
     }
 
     public new string Token => base.Token;
-
-    public FluxerConfig Config { get; }
 
     /// <summary>
     /// Returns the raw token without any "Bot " prefix, for use in gateway IDENTIFY/RESUME packets.
