@@ -39,6 +39,24 @@ public class User : Entity, IUser
         return $"https://fluxerstatic.com/avatars/{Id % 6}.png";
     }
 
+    /// <inheritdoc />
+    public string? GetAvatarUrl(int size = 160)
+    {
+        if (string.IsNullOrEmpty(AvatarHash))
+            return null;
+
+        return $"{Client.Config.MediaUrl}/avatars/{Id}/{AvatarHash}.png?size={size}";
+    }
+
+    /// <inheritdoc />
+    public string GetAvatarOrDefaultUrl(int size = 160)
+    {
+        if (string.IsNullOrEmpty(AvatarHash))
+            return GetDefaultAvatarUrl();
+
+        return GetAvatarUrl(size);
+    }
+
     internal User(FluxerBaseClient client) : base(client)
     {
 

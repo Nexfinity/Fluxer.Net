@@ -85,4 +85,14 @@ public interface IGuildMember
     /// Get the default avatar for the user.
     /// </summary>
     string GetDefaultAvatarUrl();
+
+    /// <summary>
+    /// Get the members's avatar.
+    /// </summary>
+    string? GetAvatarUrl(int size);
+
+    /// <summary>
+    /// Get the members's avatar or fallback to default.
+    /// </summary>
+    string GetAvatarOrDefaultUrl(int size);
 }

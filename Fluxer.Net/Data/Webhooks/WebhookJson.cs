@@ -38,4 +38,22 @@ public class WebhookJson : IWebhook
     {
         return $"https://fluxerstatic.com/avatars/{Id % 6}.png";
     }
+
+    /// <inheritdoc />
+    public string? GetAvatarUrl(int size = 160)
+    {
+        if (string.IsNullOrEmpty(AvatarHash))
+            return null;
+
+        return $"https://fluxerusercontent.com/avatars/{Id}/{AvatarHash}.png?size={size}";
+    }
+
+    /// <inheritdoc />
+    public string GetAvatarOrDefaultUrl(int size = 160)
+    {
+        if (string.IsNullOrEmpty(AvatarHash))
+            return GetDefaultAvatarUrl();
+
+        return GetAvatarUrl(size);
+    }
 }

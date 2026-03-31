@@ -69,6 +69,24 @@ public class GuildMember : Entity, IGuildMember
         return $"https://fluxerstatic.com/avatars/{UserId % 6}.png";
     }
 
+    /// <inheritdoc />
+    public string? GetAvatarUrl(int size = 160)
+    {
+        if (string.IsNullOrEmpty(AvatarHash))
+            return User.GetAvatarUrl();
+
+        return $"{Client.Config.MediaUrl}/avatars/{UserId}/{AvatarHash}.png?size={size}";
+    }
+
+    /// <inheritdoc />
+    public string GetAvatarOrDefaultUrl(int size = 160)
+    {
+        if (string.IsNullOrEmpty(AvatarHash) && string.IsNullOrEmpty(User.AvatarHash))
+            return GetDefaultAvatarUrl();
+
+        return GetAvatarUrl(size);
+    }
+
     IUser IGuildMember.User => User;
 
     internal GuildMember(FluxerBaseClient client) : base(client)

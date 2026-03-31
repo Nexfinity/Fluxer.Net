@@ -91,6 +91,24 @@ public class GuildMemberJson : IGuildMember
         return $"https://fluxerstatic.com/avatars/{UserId % 6}.png";
     }
 
+    /// <inheritdoc />
+    public string? GetAvatarUrl(int size = 160)
+    {
+        if (string.IsNullOrEmpty(AvatarHash))
+            return User.GetAvatarUrl();
+
+        return $"https://fluxerusercontent.com/avatars/{UserId}/{AvatarHash}.png?size={size}";
+    }
+
+    /// <inheritdoc />
+    public string GetAvatarOrDefaultUrl(int size = 160)
+    {
+        if (string.IsNullOrEmpty(AvatarHash) && string.IsNullOrEmpty(User.AvatarHash))
+            return GetDefaultAvatarUrl();
+
+        return GetAvatarUrl(size);
+    }
+
     IUser IGuildMember.User => User;
 
 }

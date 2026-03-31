@@ -44,8 +44,6 @@ public class FluxerWebhookClient : FluxerBaseClient
         Rest = new ApiClient(this);
     }
 
-    public FluxerConfig Config { get; }
-
     public new ulong Id => base.Id;
     public new string Token => base.Token;
 
