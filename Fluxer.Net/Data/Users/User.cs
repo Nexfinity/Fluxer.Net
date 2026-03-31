@@ -34,6 +34,12 @@ public class User : Entity, IUser
     public bool IsSystem { get; internal set; }
 
     /// <inheritdoc />
+    public string GetCurrentName()
+    {
+        return DisplayName ?? Username;
+    }
+
+    /// <inheritdoc />
     public string GetDefaultAvatarUrl()
     {
         return $"https://fluxerstatic.com/avatars/{Id % 6}.png";

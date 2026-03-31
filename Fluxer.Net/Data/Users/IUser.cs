@@ -53,6 +53,11 @@ public interface IUser
     bool IsSystem { get; }
 
     /// <summary>
+    /// Get the user's current display name or username.
+    /// </summary>
+    string GetCurrentName();
+
+    /// <summary>
     /// Get the default avatar for the user.
     /// </summary>
     string GetDefaultAvatarUrl();

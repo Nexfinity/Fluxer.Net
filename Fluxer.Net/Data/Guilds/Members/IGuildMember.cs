@@ -82,6 +82,11 @@ public interface IGuildMember
     bool IsTemporary { get; }
 
     /// <summary>
+    /// Get the members's current nickname, display name or username.
+    /// </summary>
+    string GetCurrentName();
+
+    /// <summary>
     /// Get the default avatar for the user.
     /// </summary>
     string GetDefaultAvatarUrl();

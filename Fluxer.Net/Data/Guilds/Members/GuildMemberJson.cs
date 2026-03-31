@@ -86,6 +86,12 @@ public class GuildMemberJson : IGuildMember
     public bool IsTemporary { get; set; }
 
     /// <inheritdoc />
+    public string GetCurrentName()
+    {
+        return Nickname ?? User.DisplayName ?? User.Username;
+    }
+
+    /// <inheritdoc />
     public string GetDefaultAvatarUrl()
     {
         return $"https://fluxerstatic.com/avatars/{UserId % 6}.png";

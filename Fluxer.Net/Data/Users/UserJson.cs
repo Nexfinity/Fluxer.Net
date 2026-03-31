@@ -46,6 +46,12 @@ public class UserJson : IUser
     public bool IsSystem { get; set; }
 
     /// <inheritdoc />
+    public string GetCurrentName()
+    {
+        return DisplayName ?? Username;
+    }
+
+    /// <inheritdoc />
     public string GetDefaultAvatarUrl()
     {
         return $"https://fluxerstatic.com/avatars/{Id % 6}.png";

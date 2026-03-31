@@ -64,6 +64,12 @@ public class GuildMember : Entity, IGuildMember
     public bool IsTemporary { get; internal set; }
 
     /// <inheritdoc />
+    public string GetCurrentName()
+    {
+        return Nickname ?? User.DisplayName ?? User.Username;
+    }
+
+    /// <inheritdoc />
     public string GetDefaultAvatarUrl()
     {
         return $"https://fluxerstatic.com/avatars/{UserId % 6}.png";
