@@ -461,15 +461,17 @@ public partial class GatewayClient : IDisposable
                     if (data != null)
                     {
                         GuildIds = data.Guilds.Select(x => x.Id).ToHashSet();
-                        Guilds = new ConcurrentDictionary<ulong, SocketGuild>(data.Guilds.ToDictionary(x => x.Id, x => SocketGuild.Create(_client, x)));
                         Channels.Clear();
                         Roles.Clear();
                         CurrentMembers.Clear();
+                        Guilds.Clear();
                         foreach (var m in data.Members)
                         {
                             if (data.User.Id == m.UserId)
                                 CurrentMembers.TryAdd(m.GuildId, SocketGuildMember.Create(_client, m));
                         }
+                        Guilds = new ConcurrentDictionary<ulong, SocketGuild>(data.Guilds.ToDictionary(x => x.Id, x => SocketGuild.Create(_client, x, CurrentMembers[x.Id])));
+
                         _sessionId = data.SessionId;
                         _isConnecting = false; // Connection successfully established
                         _reconnectAttemptCount = 0; // Reset backoff counter
