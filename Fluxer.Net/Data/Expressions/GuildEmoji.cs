@@ -19,7 +19,7 @@ public class GuildEmoji : Emoji, IGuildEmoji
 
     public static GuildEmoji Create(FluxerBaseClient client, GuildEmojiJson json, ulong guildId)
     {
-        var data = new GuildEmoji(client);
+        GuildEmoji data = new GuildEmoji(client);
         data.GuildId = guildId;
         data.Update(client, json);
         return data;

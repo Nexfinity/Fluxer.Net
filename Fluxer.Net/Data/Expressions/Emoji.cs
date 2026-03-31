@@ -19,7 +19,7 @@ public class Emoji : Entity, IEmoji
 
     public static Emoji Create(FluxerBaseClient client, EmojiJson json)
     {
-        var data = new Emoji(client);
+        Emoji data = new Emoji(client);
         data.Update(client, json);
         return data;
     }

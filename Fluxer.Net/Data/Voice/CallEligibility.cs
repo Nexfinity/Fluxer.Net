@@ -18,7 +18,7 @@ public class CallEligibility : Entity, ICallEligibility
 
     public static CallEligibility Create(FluxerBaseClient client, CallEligibilityJson json)
     {
-        var data = new CallEligibility(client);
+        CallEligibility data = new CallEligibility(client);
         data.Update(client, json);
         return data;
     }

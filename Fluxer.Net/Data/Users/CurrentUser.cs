@@ -141,7 +141,7 @@ public class CurrentUser : User, IUserProfile
 
     public static CurrentUser Create(FluxerBaseClient client, CurrentUserJson json)
     {
-        var data = new CurrentUser(client);
+        CurrentUser data = new CurrentUser(client);
         data.Update(client, json);
         return data;
     }

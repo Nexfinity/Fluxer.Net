@@ -26,7 +26,7 @@ public class FluxerOAuthToken : Entity, IFluxerOAuthToken
 
     public static FluxerOAuthToken Create(FluxerBaseClient client, FluxerOAuthTokenJson json)
     {
-        var data = new FluxerOAuthToken(client);
+        FluxerOAuthToken data = new FluxerOAuthToken(client);
         data.Update(client, json);
         return data;
     }

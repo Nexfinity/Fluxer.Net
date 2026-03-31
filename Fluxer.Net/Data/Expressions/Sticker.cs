@@ -19,7 +19,7 @@ public class Sticker : Entity, ISticker
 
     public static Sticker Create(FluxerBaseClient client, StickerJson json)
     {
-        var data = new Sticker(client);
+        Sticker data = new Sticker(client);
         data.Update(client, json);
         return data;
     }

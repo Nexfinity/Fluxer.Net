@@ -31,7 +31,7 @@ public class Gif : Entity
 
     public static Gif Create(FluxerBaseClient client, GifJson json)
     {
-        var data = new Gif(client);
+        Gif data = new Gif(client);
         data.Update(client, json);
         return data;
     }

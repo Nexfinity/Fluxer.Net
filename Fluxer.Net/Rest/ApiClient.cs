@@ -137,7 +137,7 @@ public class ApiClient
     {
         var rawContent = JsonConvert.SerializeObject(data, FluxerClient._serializerSettings);
         _logger.Verbose("Sending {@Enums} to {Route}", rawContent, route);
-        var req = new HttpRequestMessage()
+        HttpRequestMessage req = new HttpRequestMessage()
         {
             Method = method,
             RequestUri = new(_config.RealApiBaseUrl + route)
@@ -146,7 +146,7 @@ public class ApiClient
 
         if (otherFormData != null)
         {
-            var form = new MultipartFormDataContent
+            MultipartFormDataContent form = new MultipartFormDataContent
             {
                 {
                     new StringContent(rawContent,
@@ -203,7 +203,7 @@ public class ApiClient
     internal async Task<TResponse> InternalMakeFluxerApiRequestFormAsync<TResponse>(HttpMethod method, string route, bool throwOnNonSuccess = false,
         Dictionary<string, string?>? formData = null)
     {
-        var req = new HttpRequestMessage()
+        HttpRequestMessage req = new HttpRequestMessage()
         {
             Method = method,
             RequestUri = new(_config.RealApiBaseUrl + route)
@@ -212,7 +212,7 @@ public class ApiClient
 
         if (formData != null)
         {
-            var form = new MultipartFormDataContent();
+            MultipartFormDataContent form = new MultipartFormDataContent();
             foreach (var (key, value) in formData)
             {
                 form.Add(new StringContent(value), key);
@@ -246,7 +246,7 @@ public class ApiClient
     public async Task<HttpStatusCode> MakeFluxerApiRequestAsync<TSend>(HttpMethod method, string route, TSend data, bool throwOnNonSuccess = false, bool authorize = true)
     {
         _logger.Verbose("Sending {@Enums} to {Route}", data, route);
-        var req = new HttpRequestMessage()
+        HttpRequestMessage req = new HttpRequestMessage()
         {
             Method = method,
             Content = new StringContent(JsonConvert.SerializeObject(data, FluxerClient._serializerSettings),
@@ -288,7 +288,7 @@ public class ApiClient
 
     internal async Task<TResponse> InternalMakeFluxerApiRequestAsync<TResponse>(HttpMethod method, string route, bool throwOnNonSuccess, bool authorize, string accessToken)
     {
-        var req = new HttpRequestMessage()
+        HttpRequestMessage req = new HttpRequestMessage()
         {
             Method = method,
             RequestUri = new(_config.RealApiBaseUrl + route)
@@ -322,7 +322,7 @@ public class ApiClient
     /// <exception cref="FluxerApiException">Thrown when <paramref name="throwOnNonSuccess"/> is true and the API returns a non-success status code.</exception>
     public async Task<HttpStatusCode> MakeFluxerApiRequestRawAsync(HttpMethod method, string route, bool throwOnNonSuccess = false, bool authorize = true)
     {
-        var req = new HttpRequestMessage()
+        HttpRequestMessage req = new HttpRequestMessage()
         {
             Method = method,
             RequestUri = new(_config.RealApiBaseUrl + route)
@@ -468,7 +468,7 @@ public class ApiClient
                 req, true);
             return Message.Create(_client, jsonAttach);
         }
-        var form = new List<KeyValuePair<string, (HttpContent content, string? filename)>>();
+        List<KeyValuePair<string, (HttpContent content, string? filename)>> form = new List<KeyValuePair<string, (HttpContent content, string? filename)>>();
         for (int i = 0; i < attachments.Count; i++)
         {
             attachments[i].Id = (ulong)i;

@@ -31,7 +31,7 @@ public class PartialApplication : Entity, IPartialApplication
 
     public static PartialApplication Create(FluxerBaseClient client, PartialApplicationJson json)
     {
-        var data = new PartialApplication(client);
+        PartialApplication data = new PartialApplication(client);
         data.Update(client, json);
         return data;
     }

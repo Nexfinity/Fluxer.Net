@@ -37,7 +37,7 @@ public class Role : Entity, IRole
 
     public static Role Create(FluxerBaseClient client, RoleJson json, ulong guildId)
     {
-        var data = new Role(client);
+        Role data = new Role(client);
         data.GuildId = guildId;
         data.Update(client, json);
         return data;

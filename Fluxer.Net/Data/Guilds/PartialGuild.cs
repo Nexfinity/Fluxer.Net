@@ -54,7 +54,7 @@ public class PartialGuild : Entity, IPartialGuild
 
     public static PartialGuild Create(FluxerBaseClient client, PartialGuildJson json)
     {
-        var data = new PartialGuild(client);
+        PartialGuild data = new PartialGuild(client);
         data.Update(client, json);
         return data;
     }

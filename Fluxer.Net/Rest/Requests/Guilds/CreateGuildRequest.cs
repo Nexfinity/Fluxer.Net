@@ -18,7 +18,7 @@ public class CreateGuildRequest
 
     public void IconFromStream(Stream stream)
     {
-        using var ms = new MemoryStream();
+        using MemoryStream ms = new MemoryStream();
         stream.CopyTo(ms);
         IconBase64 = Convert.ToBase64String(ms.ToArray());
     }

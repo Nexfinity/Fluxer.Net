@@ -18,7 +18,7 @@ public class Application : PartialApplication, IApplication
 
     public static Application Create(FluxerBaseClient client, ApplicationJson json)
     {
-        var data = new Application(client);
+        Application data = new Application(client);
         data.Update(client, json);
         return data;
     }

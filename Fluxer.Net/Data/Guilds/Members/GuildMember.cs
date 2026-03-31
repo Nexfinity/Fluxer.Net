@@ -68,7 +68,7 @@ public class GuildMember : Entity, IGuildMember
 
     public static GuildMember Create(FluxerBaseClient client, GuildMemberJson json)
     {
-        var data = new GuildMember(client);
+        GuildMember data = new GuildMember(client);
         data.Update(client, json);
         return data;
     }

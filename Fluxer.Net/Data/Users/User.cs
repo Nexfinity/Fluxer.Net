@@ -37,7 +37,7 @@ public class User : Entity, IUser
 
     public static User Create(FluxerBaseClient client, UserJson json)
     {
-        var data = new User(client);
+        User data = new User(client);
         data.Update(json);
         return data;
     }

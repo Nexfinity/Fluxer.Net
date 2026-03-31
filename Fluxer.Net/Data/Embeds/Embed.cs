@@ -71,7 +71,7 @@ public class Embed : IEmbed
 
     public static Embed Create(FluxerBaseClient client, EmbedJson json)
     {
-        var data = new Embed(client);
+        Embed data = new Embed(client);
         data.Update(client, json);
         return data;
     }
@@ -116,7 +116,7 @@ public class EmbedField : IEmbedField
 
     public static EmbedField Create(FluxerBaseClient client, EmbedFieldJson json)
     {
-        var data = new EmbedField(client);
+        EmbedField data = new EmbedField(client);
         data.Update(client, json);
         return data;
     }
@@ -152,7 +152,7 @@ public class EmbedAuthor : IEmbedAuthor
         if (json == null)
             return null;
 
-        var data = new EmbedAuthor(client);
+        EmbedAuthor data = new EmbedAuthor(client);
         data.Update(client, json);
         return data;
     }
@@ -186,7 +186,7 @@ public class EmbedFooter : IEmbedFooter
         if (json == null)
             return null;
 
-        var data = new EmbedFooter(client);
+        EmbedFooter data = new EmbedFooter(client);
         data.Update(client, json);
         return data;
     }
@@ -240,7 +240,7 @@ public class EmbedMedia : IEmbedMedia
         if (json == null)
             return null;
 
-        var data = new EmbedMedia(client);
+        EmbedMedia data = new EmbedMedia(client);
         data.Update(client, json);
         return data;
     }

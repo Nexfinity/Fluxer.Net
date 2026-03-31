@@ -31,7 +31,7 @@ public class Webhook : Entity, IWebhook
 
     public static Webhook Create(FluxerBaseClient client, WebhookJson json)
     {
-        var data = new Webhook(client);
+        Webhook data = new Webhook(client);
         data.Update(client, json);
         return data;
     }

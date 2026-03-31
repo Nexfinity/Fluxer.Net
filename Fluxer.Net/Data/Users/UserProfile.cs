@@ -25,7 +25,7 @@ public class UserProfile : Entity, IUserProfile
 
     public static UserProfile Create(FluxerBaseClient client, UserProfileJson json)
     {
-        var data = new UserProfile(client);
+        UserProfile data = new UserProfile(client);
         data.Update(client, json);
         return data;
     }

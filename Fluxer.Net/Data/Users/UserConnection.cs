@@ -28,7 +28,7 @@ public class UserConnection : Entity, IUserConnection
 
     public static UserConnection Create(FluxerBaseClient client, UserConnectionJson json)
     {
-        var data = new UserConnection(client);
+        UserConnection data = new UserConnection(client);
         data.Update(client, json);
         return data;
     }

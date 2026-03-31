@@ -64,7 +64,7 @@ public class Attachment : Entity, IAttachment
 
     public static Attachment Create(FluxerBaseClient client, AttachmentJson json)
     {
-        var data = new Attachment(client);
+        Attachment data = new Attachment(client);
         data.Update(client, json);
         return data;
     }

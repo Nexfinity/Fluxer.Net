@@ -19,7 +19,7 @@ public class RtcRegion : Entity, IRtcRegion
 
     public static RtcRegion Create(FluxerBaseClient client, RtcRegionJson json)
     {
-        var data = new RtcRegion(client);
+        RtcRegion data = new RtcRegion(client);
         data.Update(client, json);
         return data;
     }

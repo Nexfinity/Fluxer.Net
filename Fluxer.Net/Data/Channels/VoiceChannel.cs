@@ -1,6 +1,6 @@
 ﻿namespace Fluxer.Net;
 
-internal class VoiceChannel : Channel
+internal class VoiceChannel : GuildChannel
 {
     internal VoiceChannel(FluxerBaseClient client) : base(client)
     {

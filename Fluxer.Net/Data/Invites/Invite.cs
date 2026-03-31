@@ -22,7 +22,7 @@ public class Invite : PartialInvite, IInvite
 
     public static Invite Create(FluxerBaseClient client, InviteJson json)
     {
-        var data = new Invite(client);
+        Invite data = new Invite(client);
         data.Update(client, json);
         return data;
     }
