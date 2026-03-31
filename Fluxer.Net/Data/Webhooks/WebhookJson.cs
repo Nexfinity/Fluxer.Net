@@ -32,4 +32,10 @@ public class WebhookJson : IWebhook
     /// <inheritdoc />
     [JsonProperty("avatar")]
     public string? AvatarHash { get; set; }
+
+    /// <inheritdoc />
+    public string GetDefaultAvatarUrl()
+    {
+        return $"https://fluxerstatic.com/avatars/{Id % 6}.png";
+    }
 }

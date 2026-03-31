@@ -63,6 +63,12 @@ public class GuildMember : Entity, IGuildMember
     /// <inheritdoc />
     public bool IsTemporary { get; internal set; }
 
+    /// <inheritdoc />
+    public string GetDefaultAvatarUrl()
+    {
+        return $"https://fluxerstatic.com/avatars/{UserId % 6}.png";
+    }
+
     IUser IGuildMember.User => User;
 
     internal GuildMember(FluxerBaseClient client) : base(client)

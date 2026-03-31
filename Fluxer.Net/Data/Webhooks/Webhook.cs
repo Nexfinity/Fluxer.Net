@@ -24,6 +24,12 @@ public class Webhook : Entity, IWebhook
     /// <inheritdoc />
     public string? AvatarHash { get; internal set; }
 
+    /// <inheritdoc />
+    public string GetDefaultAvatarUrl()
+    {
+        return $"https://fluxerstatic.com/avatars/{Id % 6}.png";
+    }
+
     internal Webhook(FluxerBaseClient client) : base(client)
     {
 

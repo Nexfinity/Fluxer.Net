@@ -44,4 +44,10 @@ public class UserJson : IUser
     /// <inheritdoc />
     [JsonProperty("system")]
     public bool IsSystem { get; set; }
+
+    /// <inheritdoc />
+    public string GetDefaultAvatarUrl()
+    {
+        return $"https://fluxerstatic.com/avatars/{Id % 6}.png";
+    }
 }

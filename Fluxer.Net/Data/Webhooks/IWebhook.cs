@@ -39,4 +39,9 @@ public interface IWebhook
     /// The hash of the webhook avatar image.
     /// </summary>
     string? AvatarHash { get; }
+
+    /// <summary>
+    /// Get the default avatar for the user.
+    /// </summary>
+    string GetDefaultAvatarUrl();
 }

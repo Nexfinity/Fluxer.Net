@@ -51,4 +51,9 @@ public interface IUser
     /// Whether the user is an official system user.
     /// </summary>
     bool IsSystem { get; }
+
+    /// <summary>
+    /// Get the default avatar for the user.
+    /// </summary>
+    string GetDefaultAvatarUrl();
 }

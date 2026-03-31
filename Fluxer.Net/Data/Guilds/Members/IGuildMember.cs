@@ -80,4 +80,9 @@ public interface IGuildMember
     bool IsPremiumSanitized { get; }
 
     bool IsTemporary { get; }
+
+    /// <summary>
+    /// Get the default avatar for the user.
+    /// </summary>
+    string GetDefaultAvatarUrl();
 }

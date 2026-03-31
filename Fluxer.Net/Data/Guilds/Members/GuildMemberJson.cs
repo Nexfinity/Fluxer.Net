@@ -85,5 +85,12 @@ public class GuildMemberJson : IGuildMember
     [JsonProperty("temporary")]
     public bool IsTemporary { get; set; }
 
+    /// <inheritdoc />
+    public string GetDefaultAvatarUrl()
+    {
+        return $"https://fluxerstatic.com/avatars/{UserId % 6}.png";
+    }
+
     IUser IGuildMember.User => User;
+
 }
