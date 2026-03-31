@@ -40,10 +40,10 @@ public class CommandService
     /// <param name="assembly">The assembly to search for modules.</param>
     public async Task AddModulesAsync(Assembly assembly)
     {
-        var moduleTypes = assembly.GetTypes()
+        IEnumerable<Type> moduleTypes = assembly.GetTypes()
             .Where(t => t.IsClass && !t.IsAbstract && t.IsSubclassOf(typeof(ModuleBase)));
 
-        foreach (var type in moduleTypes)
+        foreach (Type type in moduleTypes)
         {
             await AddModuleAsync(type);
         }
@@ -99,9 +99,9 @@ public class CommandService
         // Find matching command
         CommandInfo? matchedCommand = null;
 
-        foreach (var module in _modules)
+        foreach (ModuleInfo module in _modules)
         {
-            foreach (var command in module.Commands)
+            foreach (CommandInfo command in module.Commands)
             {
                 if (command.Name.Equals(commandName, StringComparison.OrdinalIgnoreCase) ||
                     command.Aliases.Any(a => a.Equals(commandName, StringComparison.OrdinalIgnoreCase)))
@@ -149,9 +149,9 @@ public class CommandService
     {
         var lowerName = name.ToLowerInvariant();
 
-        foreach (var module in _modules)
+        foreach (ModuleInfo module in _modules)
         {
-            foreach (var command in module.Commands)
+            foreach (CommandInfo command in module.Commands)
             {
                 if (command.Name.Equals(lowerName, StringComparison.OrdinalIgnoreCase) ||
                     command.Aliases.Any(a => a.Equals(lowerName, StringComparison.OrdinalIgnoreCase)))
@@ -166,13 +166,13 @@ public class CommandService
 
     private object ParseArguments(CommandInfo command, List<string> argList)
     {
-        var parameters = command.Parameters;
+        IReadOnlyList<ParameterInfo> parameters = command.Parameters;
         var args = new object[parameters.Count];
 
         int argIndex = 0;
         for (int i = 0; i < parameters.Count; i++)
         {
-            var param = parameters[i];
+            ParameterInfo param = parameters[i];
 
             // Handle remainder parameter
             if (param.IsRemainder && argIndex < argList.Count)
@@ -216,7 +216,7 @@ public class CommandService
     private object ParseArgument(string input, Type targetType)
     {
         // Handle nullable types
-        var underlyingType = Nullable.GetUnderlyingType(targetType);
+        Type underlyingType = Nullable.GetUnderlyingType(targetType);
         if (underlyingType != null)
             targetType = underlyingType;
 

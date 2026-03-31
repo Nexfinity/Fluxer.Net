@@ -4,7 +4,7 @@ public static class UserHelpers
 {
     public static async Task<DMChannel> GetOrCreateDMChannelAsync(this User user)
     {
-        var chan = await user.Client.Rest.CreatePrivateChannelAsync(new CreatePrivateChannelRequest
+        Channel chan = await user.Client.Rest.CreatePrivateChannelAsync(new CreatePrivateChannelRequest
         {
             RecipientId = user.Id
         });
@@ -14,7 +14,7 @@ public static class UserHelpers
 
     public static async Task<GroupChannel> CreateGroupChannelAsync(this CurrentUser user, HashSet<User> users)
     {
-        var chan = await user.Client.Rest.CreatePrivateChannelAsync(new CreatePrivateChannelRequest
+        Channel chan = await user.Client.Rest.CreatePrivateChannelAsync(new CreatePrivateChannelRequest
         {
             Recipients = users.Select(x => x.Id).ToHashSet()
         });
@@ -24,7 +24,7 @@ public static class UserHelpers
 
     public static async Task<GroupChannel> CreateGroupChannelAsync(this CurrentUser user, HashSet<ulong> userIds)
     {
-        var chan = await user.Client.Rest.CreatePrivateChannelAsync(new CreatePrivateChannelRequest
+        Channel chan = await user.Client.Rest.CreatePrivateChannelAsync(new CreatePrivateChannelRequest
         {
             Recipients = userIds
         });

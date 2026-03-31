@@ -11,7 +11,7 @@ public class FluxerOAuthUser : User, IFluxerOAuthUser
         if (principal == null)
             return;
 
-        foreach (var c in principal.Claims)
+        foreach (Claim c in principal.Claims)
         {
             switch (c.Type)
             {

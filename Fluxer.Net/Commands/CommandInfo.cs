@@ -52,7 +52,7 @@ public class CommandInfo
 		Name = cmdAttr.Name;
 		RunMode = cmdAttr.RunMode;
 
-		var aliasAttr = method.GetCustomAttribute<AliasAttribute>();
+        AliasAttribute aliasAttr = method.GetCustomAttribute<AliasAttribute>();
 		Aliases = aliasAttr?.Aliases ?? Array.Empty<string>();
 
 		Summary = method.GetCustomAttribute<SummaryAttribute>()?.Text;
@@ -79,18 +79,18 @@ public class CommandInfo
 	public async Task<IResult> ExecuteAsync(CommandContext context, object[] args, IServiceProvider? services = null)
 	{
 		// Check preconditions first
-		foreach (var precondition in Preconditions)
+		foreach (PreconditionAttribute precondition in Preconditions)
 		{
-			var result = await precondition.CheckPermissionsAsync(context, this, services);
+            PreconditionResult result = await precondition.CheckPermissionsAsync(context, this, services);
 			if (!result.IsSuccess)
 				return result;
 		}
 
-		// Check module-level preconditions
-		var modulePreconditions = Module.Type.GetCustomAttributes<PreconditionAttribute>(true);
-		foreach (var precondition in modulePreconditions)
+        // Check module-level preconditions
+        IEnumerable<PreconditionAttribute> modulePreconditions = Module.Type.GetCustomAttributes<PreconditionAttribute>(true);
+		foreach (PreconditionAttribute precondition in modulePreconditions)
 		{
-			var result = await precondition.CheckPermissionsAsync(context, this, services);
+            PreconditionResult result = await precondition.CheckPermissionsAsync(context, this, services);
 			if (!result.IsSuccess)
 				return result;
 		}
@@ -111,7 +111,7 @@ public class CommandInfo
 
 			if (result is Task<IResult> taskResult)
 			{
-				var execResult = await taskResult;
+                IResult execResult = await taskResult;
 				if (instance is ModuleBase mb) mb.AfterExecute(this);
 				return execResult;
 			}

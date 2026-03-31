@@ -21,7 +21,7 @@ public class RoleJson : IRole
     /// <inheritdoc />
     [JsonProperty("permissions")]
     [JsonConverter(typeof(Extensions.StringUInt64Converter))]
-    public ulong Permissions { get; set; }
+    public Permissions Permissions { get; set; }
 
     /// <inheritdoc />
     [JsonProperty("position")]

@@ -10,6 +10,11 @@ public class SocketGuild : Guild
     /// </summary>
     public SocketGuildMember CurrentMember { get; internal set; }
 
+    /// <summary>
+    /// Permissions for the guild.
+    /// </summary>
+    public GuildPermissions Permissions { get; internal set; }
+
     internal SocketGuild(FluxerBaseClient client) : base(client)
     {
 
@@ -27,5 +32,10 @@ public class SocketGuild : Guild
     internal void Update(FluxerBaseClient client, GuildJson json)
     {
         base.Update(client, json);
+    }
+
+    internal void UpdatePermissions(SocketRole role)
+    {
+        Permissions = new GuildPermissions(role.Permissions);
     }
 }
