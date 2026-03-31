@@ -2847,6 +2847,18 @@
         <member name="P:Fluxer.Net.GuildMember.IsTemporary">
             <inheritdoc />
         </member>
+        <member name="M:Fluxer.Net.GuildMember.GetCurrentName">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.GuildMember.GetDefaultAvatarUrl">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.GuildMember.GetAvatarUrl(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.GuildMember.GetAvatarOrDefaultUrl(System.Int32)">
+            <inheritdoc />
+        </member>
         <member name="T:Fluxer.Net.GuildMemberJson">
             <inheritdoc />
         </member>
@@ -2908,6 +2920,18 @@
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.GuildMemberJson.IsTemporary">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.GuildMemberJson.GetCurrentName">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.GuildMemberJson.GetDefaultAvatarUrl">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.GuildMemberJson.GetAvatarUrl(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.GuildMemberJson.GetAvatarOrDefaultUrl(System.Int32)">
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.IGuildBan.BannedAt">
@@ -2993,6 +3017,26 @@
         <member name="P:Fluxer.Net.IGuildMember.RoleIds">
             <summary>
             Array of role IDs the member has.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.IGuildMember.GetCurrentName">
+            <summary>
+            Get the members's current nickname, display name or username.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.IGuildMember.GetDefaultAvatarUrl">
+            <summary>
+            Get the default avatar for the user.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.IGuildMember.GetAvatarUrl(System.Int32)">
+            <summary>
+            Get the members's avatar.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.IGuildMember.GetAvatarOrDefaultUrl(System.Int32)">
+            <summary>
+            Get the members's avatar or fallback to default.
             </summary>
         </member>
         <member name="P:Fluxer.Net.IRole.Id">
@@ -4690,6 +4734,9 @@
         <member name="P:Fluxer.Net.CurrentUser.AuthenticatorTypes">
             <inheritdoc />
         </member>
+        <member name="M:Fluxer.Net.CurrentUser.GetBannerUrl(System.Int32)">
+            <inheritdoc />
+        </member>
         <member name="T:Fluxer.Net.CurrentUserJson">
             <inheritdoc />
         </member>
@@ -4757,6 +4804,9 @@
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.CurrentUserJson.AuthenticatorTypes">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.CurrentUserJson.GetBannerUrl(System.Int32)">
             <inheritdoc />
         </member>
         <member name="T:Fluxer.Net.FriendSourceFlags">
@@ -4864,6 +4914,11 @@
             The types of authenticators configured for MFA.
             </summary>
         </member>
+        <member name="M:Fluxer.Net.ICurrentUser.GetBannerUrl(System.Int32)">
+            <summary>
+            Get the user's banner.
+            </summary>
+        </member>
         <member name="P:Fluxer.Net.IUser.Id">
             <summary>
             The unique identifier (snowflake) for this user.
@@ -4912,6 +4967,26 @@
         <member name="P:Fluxer.Net.IUser.IsSystem">
             <summary>
             Whether the user is an official system user.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.IUser.GetCurrentName">
+            <summary>
+            Get the user's current display name or username.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.IUser.GetDefaultAvatarUrl">
+            <summary>
+            Get the default avatar for the user.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.IUser.GetAvatarUrl(System.Int32)">
+            <summary>
+            Get the user's avatar.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.IUser.GetAvatarOrDefaultUrl(System.Int32)">
+            <summary>
+            Get the user's avatar or fallback to default.
             </summary>
         </member>
         <member name="P:Fluxer.Net.IUserConnection.Id">
@@ -5091,6 +5166,18 @@
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.User.IsSystem">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.User.GetCurrentName">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.User.GetDefaultAvatarUrl">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.User.GetAvatarUrl(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.User.GetAvatarOrDefaultUrl(System.Int32)">
             <inheritdoc />
         </member>
         <member name="T:Fluxer.Net.UserConnection">
@@ -5362,8 +5449,25 @@
         <member name="P:Fluxer.Net.UserJson.IsSystem">
             <inheritdoc />
         </member>
+        <member name="M:Fluxer.Net.UserJson.GetCurrentName">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.UserJson.GetDefaultAvatarUrl">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.UserJson.GetAvatarUrl(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.UserJson.GetAvatarOrDefaultUrl(System.Int32)">
+            <inheritdoc />
+        </member>
         <member name="T:Fluxer.Net.UserProfile">
             <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserProfile.UserId">
+            <summary>
+            User's id for the profile.
+            </summary>
         </member>
         <member name="P:Fluxer.Net.UserProfile.Bio">
             <inheritdoc />
@@ -5379,6 +5483,11 @@
         </member>
         <member name="P:Fluxer.Net.UserProfile.BannerColor">
             <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.UserProfile.GetBannerUrl(System.Int32)">
+            <summary>
+            Get the user's banner.
+            </summary>
         </member>
         <member name="T:Fluxer.Net.UserProfileJson">
             <inheritdoc />
@@ -5667,6 +5776,21 @@
             The hash of the webhook avatar image.
             </summary>
         </member>
+        <member name="M:Fluxer.Net.IWebhook.GetDefaultAvatarUrl">
+            <summary>
+            Get the default avatar for the user.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.IWebhook.GetAvatarUrl(System.Int32)">
+            <summary>
+            Get the webhooks's avatar.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.IWebhook.GetAvatarOrDefaultUrl(System.Int32)">
+            <summary>
+            Get the webhooks's avatar or fallback to default.
+            </summary>
+        </member>
         <member name="T:Fluxer.Net.Webhook">
             <inheritdoc />
         </member>
@@ -5691,6 +5815,15 @@
         <member name="P:Fluxer.Net.Webhook.AvatarHash">
             <inheritdoc />
         </member>
+        <member name="M:Fluxer.Net.Webhook.GetDefaultAvatarUrl">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.Webhook.GetAvatarUrl(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.Webhook.GetAvatarOrDefaultUrl(System.Int32)">
+            <inheritdoc />
+        </member>
         <member name="T:Fluxer.Net.WebhookJson">
             <inheritdoc />
         </member>
@@ -5713,6 +5846,15 @@
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.WebhookJson.AvatarHash">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.WebhookJson.GetDefaultAvatarUrl">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.WebhookJson.GetAvatarUrl(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.WebhookJson.GetAvatarOrDefaultUrl(System.Int32)">
             <inheritdoc />
         </member>
         <member name="T:Fluxer.Net.WebhookType">
@@ -5822,6 +5964,11 @@
             <summary>
             Gets the fully resolved API base URL with the version number substituted.
             This is the actual URL used for API requests.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.FluxerConfig.MediaUrl">
+            <summary>
+            Get the media/user content url.
             </summary>
         </member>
         <member name="T:Fluxer.Net.Gateway.Data.Auth.AuthSessionChangeGatewayData">
