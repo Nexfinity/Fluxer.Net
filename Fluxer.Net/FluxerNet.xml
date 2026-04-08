@@ -909,7 +909,7 @@
         <member name="P:Fluxer.Net.Channel.LastMessageId">
             <inheritdoc />
         </member>
-        <member name="P:Fluxer.Net.Channel.LastPinTimestamp">
+        <member name="P:Fluxer.Net.Channel.LastPinAt">
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.Channel.PermissionOverwrites">
@@ -984,7 +984,7 @@
         <member name="P:Fluxer.Net.ChannelJson.LastMessageId">
             <inheritdoc />
         </member>
-        <member name="P:Fluxer.Net.ChannelJson.LastPinTimestamp">
+        <member name="P:Fluxer.Net.ChannelJson.LastPinAt">
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.ChannelJson.PermissionOverwrites">
@@ -1216,7 +1216,7 @@
             The ID of the last message sent in this channel.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.IChannel.LastPinTimestamp">
+        <member name="P:Fluxer.Net.IChannel.LastPinAt">
             <summary>
             The ISO 8601 timestamp of when the last pinned message was pinned.
             </summary>
@@ -1313,6 +1313,11 @@
         </member>
         <member name="P:Fluxer.Net.PermissionOverwriteJson.Deny">
             <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.SocketChannel.Permissions">
+            <summary>
+            Permissions for the channel.
+            </summary>
         </member>
         <member name="T:Fluxer.Net.SystemChannelFlags">
             <summary>
@@ -2515,6 +2520,91 @@
             Proxied URL to the category preview image.
             </summary>
         </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.RawValue">
+            <summary>
+            Raw permissions flag for the guild.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.ManagePermissions">
+            <summary>
+            Edit overwrites for roles and members in this channel.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.ManageChannels">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.CreateInstantInvite">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.ManageWebhooks">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.ViewChannel">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.SendMessages">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.SendTtsMessages">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.ManageMessages">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.PinMessages">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.EmbedLinks">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.AttachFiles">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.ReadMessageHistory">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.MentionEveryone">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.UseExternalEmojis">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.UseExternalStickers">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.AddReactions">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.BypassSlowmode">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.Connect">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.Speak">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.Stream">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.UseVad">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.PrioritySpeaker">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.MuteMembers">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.DeafenMembers">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.MoveMembers">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.UpdateRtcRegion">
+            <inheritdoc />
+        </member>
         <member name="T:Fluxer.Net.Guild">
             <inheritdoc />
         </member>
@@ -2605,6 +2695,246 @@
         <member name="P:Fluxer.Net.GuildJson.MessageHistoryCutoff">
             <inheritdoc />
         </member>
+        <member name="P:Fluxer.Net.GuildPermissions.RawValue">
+            <summary>
+            Raw permissions flag for the guild.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.Administrator">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.ViewAuditLog">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.ManageGuild">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.ManageRoles">
+            <summary>
+            Create, edit, or delete roles below your highest role. Also allows editing channel permission overwrites.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.ManageChannels">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.KickMembers">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.BanMembers">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.CreateInstantInvite">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.ChangeNickname">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.ManageNicknames">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.CreateExpressions">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.ManageExpressions">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.ManageWebhooks">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.ViewChannel">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.SendMessages">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.SendTtsMessages">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.ManageMessages">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.PinMessages">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.EmbedLinks">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.AttachFiles">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.ReadMessageHistory">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.MentionEveryone">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.UseExternalEmojis">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.UseExternalStickers">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.AddReactions">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.BypassSlowmode">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.ModerateMembers">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.Connect">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.Speak">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.Stream">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.UseVad">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.PrioritySpeaker">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.MuteMembers">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.DeafenMembers">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.MoveMembers">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.UpdateRtcRegion">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.IChannelPermissions.ManageChannels">
+            <summary>
+            Create, edit, or delete channels and categories.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannelPermissions.CreateInstantInvite">
+            <summary>
+            Create invites to invite other users to the guild.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannelPermissions.ManageWebhooks">
+            <summary>
+            Create, edit, or delete webhooks.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannelPermissions.ViewChannel">
+            <summary>
+            View this channel.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannelPermissions.SendMessages">
+            <summary>
+            Send messages in this channel.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannelPermissions.SendTtsMessages">
+            <summary>
+            Send text-to-speech messages.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannelPermissions.ManageMessages">
+            <summary>
+            Delete messages from other users.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannelPermissions.PinMessages">
+            <summary>
+            Pin messages in the channel.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannelPermissions.EmbedLinks">
+            <summary>
+            Embed links in the channel.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannelPermissions.AttachFiles">
+            <summary>
+            Upload files in the channel.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannelPermissions.ReadMessageHistory">
+            <summary>
+            Read all messages in the channel.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannelPermissions.MentionEveryone">
+            <summary>
+            Mention everyone or any role (even if the role isn't set to be mentionable)
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannelPermissions.UseExternalEmojis">
+            <summary>
+            Use emojis from other guilds.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannelPermissions.UseExternalStickers">
+            <summary>
+            Use stickers from other guilds.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannelPermissions.AddReactions">
+            <summary>
+            Add new reactions to messages.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannelPermissions.BypassSlowmode">
+            <summary>
+            Ignore per-channel message rate limits..
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannelPermissions.Connect">
+            <summary>
+            Connect to the voice channel.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannelPermissions.Speak">
+            <summary>
+            Speak in the voice channel.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannelPermissions.Stream">
+            <summary>
+            Allow video and screenshare in the voice channel.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannelPermissions.UseVad">
+            <summary>
+            Denied if push to talk is required in the voice channel.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannelPermissions.PrioritySpeaker">
+            <summary>
+            Prioritize your voice in the voice channel.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannelPermissions.MuteMembers">
+            <summary>
+            Mute users in the voice channel.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannelPermissions.DeafenMembers">
+            <summary>
+            Deafen users in the voice channel.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannelPermissions.MoveMembers">
+            <summary>
+            Drag members between voice channels they can access.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannelPermissions.UpdateRtcRegion">
+            <summary>
+            Update the voice region for this voice channel.
+            </summary>
+        </member>
         <member name="P:Fluxer.Net.IGuild.OwnerId">
             <summary>
             The ID of the guild owner.
@@ -2673,6 +3003,56 @@
         <member name="P:Fluxer.Net.IGuild.MessageHistoryCutoff">
             <summary>
             ISO8601 timestamp controlling how far back members without Read Message History can access messages. When null, no historical access is allowed.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IGuildPermissions.Administrator">
+            <summary>
+            Grants all permissions and bypasses channel restrictions. Highly sensitive.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IGuildPermissions.ViewAuditLog">
+            <summary>
+            Read the community's audit log of changes and moderation actions.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IGuildPermissions.ManageGuild">
+            <summary>
+            Edit global settings like name, description, and icon.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IGuildPermissions.KickMembers">
+            <summary>
+            Kick users from the guild.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IGuildPermissions.BanMembers">
+            <summary>
+            Ban users from joining the guild.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IGuildPermissions.ChangeNickname">
+            <summary>
+            Update your own nickname.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IGuildPermissions.ManageNicknames">
+            <summary>
+            Change other members nicknames.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IGuildPermissions.CreateExpressions">
+            <summary>
+            Upload new emojis and stickers, and manage your own creations.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IGuildPermissions.ManageExpressions">
+            <summary>
+            Edit or delete emojis and stickers created by other members.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IGuildPermissions.ModerateMembers">
+            <summary>
+            Prevent members from sending messages, reacting, and joining voice for a duration.
             </summary>
         </member>
         <member name="P:Fluxer.Net.IPartialGuild.Id">
@@ -3744,6 +4124,11 @@
             Cached current logged in member for the guild.
             </summary>
         </member>
+        <member name="P:Fluxer.Net.SocketGuild.Permissions">
+            <summary>
+            Permissions for the guild.
+            </summary>
+        </member>
         <member name="P:Fluxer.Net.IInvite.CreatedAt">
             <summary>
             ISO8601 timestamp of when the invite was created.
@@ -4153,12 +4538,12 @@
             The text content of the message.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.IMessage.Timestamp">
+        <member name="P:Fluxer.Net.IMessage.CreatedAt">
             <summary>
             The ISO 8601 timestamp of when the message was created.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.IMessage.EditedTimestamp">
+        <member name="P:Fluxer.Net.IMessage.EditedAt">
             <summary>
             The ISO 8601 timestamp of when the message was last edited.
             </summary>
@@ -4228,6 +4613,21 @@
             Call information if this message represents a call
             </summary>
         </member>
+        <member name="P:Fluxer.Net.IMessageReference.ChannelId">
+            <summary>
+            The ID of the channel containing the referenced message
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IMessageReference.MessageId">
+            <summary>
+            The ID of the referenced message
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IMessageReference.GuildId">
+            <summary>
+            The ID of the guild containing the referenced message
+            </summary>
+        </member>
         <member name="T:Fluxer.Net.Message">
             <inheritdoc />
         </member>
@@ -4252,10 +4652,10 @@
         <member name="P:Fluxer.Net.Message.Content">
             <inheritdoc />
         </member>
-        <member name="P:Fluxer.Net.Message.Timestamp">
+        <member name="P:Fluxer.Net.Message.CreatedAt">
             <inheritdoc />
         </member>
-        <member name="P:Fluxer.Net.Message.EditedTimestamp">
+        <member name="P:Fluxer.Net.Message.EditedAt">
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.Message.Pinned">
@@ -4297,6 +4697,24 @@
         <member name="P:Fluxer.Net.Message.Call">
             <inheritdoc />
         </member>
+        <member name="T:Fluxer.Net.MessageCall">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.MessageCall.Participants">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.MessageCall.EndedAt">
+            <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.MessageCallJson">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.MessageCallJson.Participants">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.MessageCallJson.EndedAt">
+            <inheritdoc />
+        </member>
         <member name="T:Fluxer.Net.MessageFlag">
             <summary>
             Flags that can be applied to messages. Multiple flags can be combined using bitwise OR.
@@ -4329,9 +4747,6 @@
         </member>
         <member name="T:Fluxer.Net.MessageJson">
             <inheritdoc />
-            <remarks>
-            <see href="https://github.com/fluxerapp/fluxer/blob/4f5704fa1f6426d65a12ee5fef13c0104669d08e/packages/schema/src/domains/message/MessageResponseSchemas.tsx#L129"/>
-            </remarks>
         </member>
         <member name="P:Fluxer.Net.MessageJson.Id">
             <inheritdoc />
@@ -4354,10 +4769,10 @@
         <member name="P:Fluxer.Net.MessageJson.Content">
             <inheritdoc />
         </member>
-        <member name="P:Fluxer.Net.MessageJson.Timestamp">
+        <member name="P:Fluxer.Net.MessageJson.CreatedAt">
             <inheritdoc />
         </member>
-        <member name="P:Fluxer.Net.MessageJson.EditedTimestamp">
+        <member name="P:Fluxer.Net.MessageJson.EditedAt">
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.MessageJson.Pinned">
@@ -4399,25 +4814,56 @@
         <member name="P:Fluxer.Net.MessageJson.Call">
             <inheritdoc />
         </member>
-        <member name="T:Fluxer.Net.MessageReferenceResponse">
-            <remarks>
-            <see href="https://github.com/fluxerapp/fluxer/blob/4f5704fa1f6426d65a12ee5fef13c0104669d08e/packages/schema/src/domains/message/MessageResponseSchemas.tsx#L62"/>
-            </remarks>
+        <member name="T:Fluxer.Net.MessageReaction">
+            <inheritdoc />
         </member>
-        <member name="P:Fluxer.Net.MessageReferenceResponse.ChannelId">
-            <summary>
-            The ID of the channel containing the referenced message
-            </summary>
+        <member name="P:Fluxer.Net.MessageReaction.Emoji">
+            <inheritdoc />
         </member>
-        <member name="P:Fluxer.Net.MessageReferenceResponse.MessageId">
-            <summary>
-            The ID of the referenced message
-            </summary>
+        <member name="P:Fluxer.Net.MessageReaction.Count">
+            <inheritdoc />
         </member>
-        <member name="P:Fluxer.Net.MessageReferenceResponse.GuildId">
-            <summary>
-            The ID of the guild containing the referenced message
-            </summary>
+        <member name="P:Fluxer.Net.MessageReaction.Me">
+            <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.MessageReactionJson">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.MessageReactionJson.Emoji">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.MessageReactionJson.Count">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.MessageReactionJson.Me">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.MessageReference.ChannelId">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.MessageReference.MessageId">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.MessageReference.GuildId">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.MessageReference.Type">
+            <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.MessageReferenceJson">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.MessageReferenceJson.ChannelId">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.MessageReferenceJson.MessageId">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.MessageReferenceJson.GuildId">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.MessageReferenceJson.Type">
+            <inheritdoc />
         </member>
         <member name="T:Fluxer.Net.MessageReferenceType">
             <summary>
@@ -4434,15 +4880,71 @@
             A forwarded message from another channel or conversation.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.MessageResponse">
-            <remarks>
-            <see href="https://github.com/fluxerapp/fluxer/blob/4f5704fa1f6426d65a12ee5fef13c0104669d08e/packages/schema/src/domains/message/MessageResponseSchemas.tsx#L173"/>
-            </remarks>
+        <member name="T:Fluxer.Net.MessageSnapshot">
+            <inheritdoc />
         </member>
-        <member name="P:Fluxer.Net.MessageResponse.ReferencedMessage">
-            <summary>
-            The message that this message is replying to or forwarding
-            </summary>
+        <member name="P:Fluxer.Net.MessageSnapshot.Content">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.MessageSnapshot.CreatedAt">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.MessageSnapshot.EditedAt">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.MessageSnapshot.MentionedUserIds">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.MessageSnapshot.MentionedRoleIds">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.MessageSnapshot.Embeds">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.MessageSnapshot.Attachments">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.MessageSnapshot.Stickers">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.MessageSnapshot.Type">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.MessageSnapshot.Flags">
+            <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.MessageSnapshotJson">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.MessageSnapshotJson.Content">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.MessageSnapshotJson.CreatedAt">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.MessageSnapshotJson.EditedAt">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.MessageSnapshotJson.MentionedUserIds">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.MessageSnapshotJson.MentionedRoleIds">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.MessageSnapshotJson.Embeds">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.MessageSnapshotJson.Attachments">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.MessageSnapshotJson.Stickers">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.MessageSnapshotJson.Type">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.MessageSnapshotJson.Flags">
+            <inheritdoc />
         </member>
         <member name="T:Fluxer.Net.MessageType">
             <summary>
