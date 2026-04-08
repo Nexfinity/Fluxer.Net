@@ -25,10 +25,10 @@ public class Message : Entity, IMessage
     public string Content { get; internal set; }
 
     /// <inheritdoc />
-    public DateTime Timestamp { get; internal set; }
+    public DateTime CreatedAt { get; internal set; }
 
     /// <inheritdoc />
-    public DateTime? EditedTimestamp { get; internal set; }
+    public DateTime? EditedAt { get; internal set; }
 
     /// <inheritdoc />
     public bool Pinned { get; internal set; }
@@ -55,19 +55,19 @@ public class Message : Entity, IMessage
     public Sticker[]? Stickers { get; internal set; }
 
     /// <inheritdoc />
-    public MessageReactionResponse[]? Reactions { get; internal set; }
+    public MessageReaction[]? Reactions { get; internal set; }
 
     /// <inheritdoc />
-    public MessageReferenceResponse? MessageReference { get; internal set; }
+    public MessageReference? MessageReference { get; internal set; }
 
     /// <inheritdoc />
-    public MessageSnapshotResponse[]? MessageSnapshots { get; internal set; }
+    public MessageSnapshot[]? MessageSnapshots { get; internal set; }
 
     /// <inheritdoc />
     public string? Nonce { get; internal set; }
 
     /// <inheritdoc />
-    public MessageCallJson? Call { get; internal set; }
+    public MessageCall? Call { get; internal set; }
 
     IUser IMessage.Author => Author;
 
@@ -78,6 +78,14 @@ public class Message : Entity, IMessage
     IEnumerable<IEmbed>? IMessage.Embeds => Embeds;
 
     IAttachment[]? IMessage.Attachments => Attachments;
+
+    IMessageReaction[]? IMessage.Reactions => Reactions;
+
+    IMessageReference? IMessage.MessageReference => MessageReference;
+
+    IMessageSnapshot[]? IMessage.MessageSnapshots => MessageSnapshots;
+
+    IMessageCall? IMessage.Call => Call;
 
     internal Message(FluxerBaseClient client) : base(client)
     {
@@ -100,8 +108,8 @@ public class Message : Entity, IMessage
         Type = json.Type;
         Flags = json.Flags;
         Content = json.Content;
-        Timestamp = json.Timestamp;
-        EditedTimestamp = json.EditedTimestamp;
+        CreatedAt = json.CreatedAt;
+        EditedAt = json.EditedAt;
         Pinned = json.Pinned;
         MentionEveryone = json.MentionEveryone;
         Tts = json.Tts;
@@ -118,10 +126,18 @@ public class Message : Entity, IMessage
         if (json.Stickers != null)
             Stickers = json.Stickers.Select(x => Sticker.Create(client, x)).ToArray();
 
-        Reactions = json.Reactions;
-        MessageReference = json.MessageReference;
-        MessageSnapshots = json.MessageSnapshots;
+        if (json.Reactions != null)
+            Reactions = json.Reactions.Select(x => MessageReaction.Create(client, x)).ToArray();
+
+        if (json.MessageReference != null)
+            MessageReference = MessageReference.Create(client, json.MessageReference);
+
+        if (json.MessageSnapshots != null)
+            MessageSnapshots = json.MessageSnapshots.Select(x => MessageSnapshot.Create(client, x)).ToArray();
+
         Nonce = json.Nonce;
-        Call = json.Call;
+
+        if (json.Call != null)
+            Call = MessageCall.Create(client, json.Call);
     }
 }

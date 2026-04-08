@@ -3,13 +3,9 @@
 namespace Fluxer.Net;
 
 /// <inheritdoc />
-/// <remarks>
-/// <see href="https://github.com/fluxerapp/fluxer/blob/4f5704fa1f6426d65a12ee5fef13c0104669d08e/packages/schema/src/domains/message/MessageResponseSchemas.tsx#L129"/>
-/// </remarks>
 public class MessageJson : IMessage
 {
     /// <inheritdoc />
-    [JsonRequired]
     [JsonProperty("id")]
     public ulong Id { get; set; }
 
@@ -18,7 +14,6 @@ public class MessageJson : IMessage
     public ulong ChannelId { get; set; }
 
     /// <inheritdoc />
-    [JsonRequired]
     [JsonProperty("author")]
     public UserJson Author { get; set; }
 
@@ -35,17 +30,16 @@ public class MessageJson : IMessage
     public MessageFlag Flags { get; set; }
 
     /// <inheritdoc />
-    [JsonRequired]
     [JsonProperty("content")]
     public string Content { get; set; }
 
     /// <inheritdoc />
     [JsonProperty("timestamp")]
-    public DateTime Timestamp { get; set; }
+    public DateTime CreatedAt { get; set; }
 
     /// <inheritdoc />
     [JsonProperty("edited_timestamp")]
-    public DateTime? EditedTimestamp { get; set; }
+    public DateTime? EditedAt { get; set; }
 
     /// <inheritdoc />
     [JsonProperty("pinned")]
@@ -81,15 +75,15 @@ public class MessageJson : IMessage
 
     /// <inheritdoc />
     [JsonProperty("reactions")]
-    public MessageReactionResponse[]? Reactions { get; set; }
+    public MessageReactionJson[]? Reactions { get; set; }
 
     /// <inheritdoc />
     [JsonProperty("message_reference")]
-    public MessageReferenceResponse? MessageReference { get; set; }
+    public MessageReferenceJson? MessageReference { get; set; }
 
     /// <inheritdoc />
     [JsonProperty("message_snapshots")]
-    public MessageSnapshotResponse[]? MessageSnapshots { get; set; }
+    public MessageSnapshotJson[]? MessageSnapshots { get; set; }
 
     /// <inheritdoc />
     [JsonProperty("nonce")]
@@ -108,4 +102,12 @@ public class MessageJson : IMessage
     IEnumerable<IEmbed>? IMessage.Embeds => Embeds;
 
     IAttachment[]? IMessage.Attachments => Attachments;
+
+    IMessageReaction[]? IMessage.Reactions => Reactions;
+
+    IMessageReference? IMessage.MessageReference => MessageReference;
+
+    IMessageSnapshot[]? IMessage.MessageSnapshots => MessageSnapshots;
+
+    IMessageCall? IMessage.Call => Call;
 }

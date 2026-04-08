@@ -84,7 +84,7 @@ public class ChannelJson : IChannel
 
     /// <inheritdoc />
     [JsonProperty("last_pin_timestamp")]
-    public DateTime? LastPinTimestamp { get; set; }
+    public DateTime? LastPinAt { get; set; }
 
     /// <inheritdoc />
     [JsonProperty("permission_overwrites")]

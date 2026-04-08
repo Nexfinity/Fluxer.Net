@@ -40,12 +40,12 @@ public interface IMessage
     /// <summary>
     /// The ISO 8601 timestamp of when the message was created.
     /// </summary>
-    DateTime Timestamp { get; }
+    DateTime CreatedAt { get; }
 
     /// <summary>
     /// The ISO 8601 timestamp of when the message was last edited.
     /// </summary>
-    DateTime? EditedTimestamp { get; }
+    DateTime? EditedAt { get; }
 
     /// <summary>
     /// Whether the message is pinned.
@@ -90,17 +90,17 @@ public interface IMessage
     /// <summary>
     /// The reactions on the message
     /// </summary>
-    MessageReactionResponse[]? Reactions { get; }
+    IMessageReaction[]? Reactions { get; }
 
     /// <summary>
     /// Reference data for replies or forwards.
     /// </summary>
-    MessageReferenceResponse? MessageReference { get; }
+    IMessageReference? MessageReference { get; }
 
     /// <summary>
     /// Snapshots of forwarded messages.
     /// </summary>
-    MessageSnapshotResponse[]? MessageSnapshots { get; }
+    IMessageSnapshot[]? MessageSnapshots { get; }
 
     /// <summary>
     /// A client-provided value for message deduplication.
@@ -110,5 +110,5 @@ public interface IMessage
     /// <summary>
     /// Call information if this message represents a call
     /// </summary>
-    MessageCallJson? Call { get; }
+    IMessageCall? Call { get; }
 }

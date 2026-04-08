@@ -17,5 +17,5 @@ public class ReadStateJson
     public int MentionCount { get; set; }
 
     [JsonProperty("last_pin_timestamp")]
-    public DateTime? LastPinTimestamp { get; set; }
+    public DateTime? LastPinAt { get; set; }
 }
