@@ -12,6 +12,8 @@ public class GuildEmoji : Emoji, IGuildEmoji
     [JsonProperty("user")]
     public User? Creator { get; set; }
 
+    IUser? IGuildEmoji.Creator => Creator;
+
     internal GuildEmoji(FluxerBaseClient client) : base(client)
     {
 
@@ -28,6 +30,7 @@ public class GuildEmoji : Emoji, IGuildEmoji
     internal void Update(FluxerBaseClient client, GuildEmojiJson json)
     {
         base.Update(client, json);
-        Creator = json.Creator;
+        if (json.Creator != null)
+            Creator = User.Create(client, json.Creator);
     }
 }

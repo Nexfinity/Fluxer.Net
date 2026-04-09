@@ -42,20 +42,10 @@ public interface IGuildMember
     /// </summary>
     string? BannerHash { get; }
 
-    string? Bio { get; }
-
-    string? Pronouns { get; }
-
     /// <summary>
     /// The accent colour of the member guild profile as an integer.
     /// </summary>
     int? AccentColor { get; }
-
-    JoinSource? JoinSourceType { get; }
-
-    string? SourceInviteCode { get; }
-
-    ulong? InviterId { get; }
 
     /// <summary>
     /// Whether the member is deafened in voice channels.
@@ -76,10 +66,6 @@ public interface IGuildMember
     /// Array of role IDs the member has.
     /// </summary>
     HashSet<ulong>? RoleIds { get; }
-
-    bool IsPremiumSanitized { get; }
-
-    bool IsTemporary { get; }
 
     /// <summary>
     /// Get the members's current nickname, display name or username.

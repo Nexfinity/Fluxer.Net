@@ -30,4 +30,6 @@ public class PartialInviteJson : IPartialInvite
 
     [JsonProperty("temporary")]
     public bool Temporary { get; set; }
+
+    IPartialGuild? IPartialInvite.Guild => Guild;
 }

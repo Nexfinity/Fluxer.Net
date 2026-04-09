@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 namespace Fluxer.Net;
 
 /// <inheritdoc />
-public class GuildStickerJson : StickerJson
+public class GuildStickerJson : StickerJson, IGuildSticker
 {
     /// <inheritdoc />
     [JsonProperty("description")]
@@ -15,5 +15,7 @@ public class GuildStickerJson : StickerJson
 
     /// <inheritdoc />
     [JsonProperty("user")]
-    public User? Creator { get; set; }
+    public UserJson? Creator { get; set; }
+
+    IUser? IGuildSticker.Creator => Creator;
 }

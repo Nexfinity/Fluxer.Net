@@ -25,11 +25,11 @@ public class Activity : Entity, IActivity
     public string? State { get; internal set; }
 
     /// <inheritdoc />
-    public ActivityEmoji? Emoji { get; internal set; }
+    public Emoji? Emoji { get; internal set; }
 
     IActivityTimestamps? IActivity.Timestamps => Timestamps;
 
-    IActivityEmoji? IActivity.Emoji => Emoji;
+    IEmoji? IActivity.Emoji => Emoji;
 
     internal Activity(FluxerBaseClient client) : base(client)
     {
@@ -52,7 +52,7 @@ public class Activity : Entity, IActivity
         Timestamps = ActivityTimestamps.Create(client, json.Timestamps);
         Details = json.Details;
         State = json.State;
-        Emoji = ActivityEmoji.Create(client, json.Emoji);
+        Emoji = Emoji.Create(client, json.Emoji);
     }
 }
 
@@ -84,40 +84,5 @@ public class ActivityTimestamps : IActivityTimestamps
     {
         Start = json.Start;
         End = json.End;
-    }
-}
-
-/// <inheritdoc />
-public class ActivityEmoji : IActivityEmoji
-{
-    /// <inheritdoc />
-    public ulong? Id { get; internal set; }
-
-    /// <inheritdoc />
-    public string Name { get; internal set; }
-
-    /// <inheritdoc />
-    public bool Animated { get; internal set; }
-
-    internal ActivityEmoji(FluxerBaseClient client)
-    {
-
-    }
-
-    public static ActivityEmoji? Create(FluxerBaseClient client, ActivityEmojiJson? json)
-    {
-        if (json == null)
-            return null;
-
-        ActivityEmoji data = new ActivityEmoji(client);
-        data.Update(client, json);
-        return data;
-    }
-
-    internal void Update(FluxerBaseClient client, ActivityEmojiJson json)
-    {
-        Id = json.Id;
-        Name = json.Name;
-        Animated = json.Animated;
     }
 }

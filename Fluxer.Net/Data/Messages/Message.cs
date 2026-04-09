@@ -31,13 +31,13 @@ public class Message : Entity, IMessage
     public DateTime? EditedAt { get; internal set; }
 
     /// <inheritdoc />
-    public bool Pinned { get; internal set; }
+    public bool IsPinned { get; internal set; }
 
     /// <inheritdoc />
     public bool MentionEveryone { get; internal set; }
 
     /// <inheritdoc />
-    public bool Tts { get; internal set; }
+    public bool IsTts { get; internal set; }
 
     /// <inheritdoc />
     public IEnumerable<User>? Mentions { get; internal set; }
@@ -110,9 +110,9 @@ public class Message : Entity, IMessage
         Content = json.Content;
         CreatedAt = json.CreatedAt;
         EditedAt = json.EditedAt;
-        Pinned = json.Pinned;
+        IsPinned = json.IsPinned;
         MentionEveryone = json.MentionEveryone;
-        Tts = json.Tts;
+        IsTts = json.IsTts;
         if (json.Mentions != null)
             Mentions = json.Mentions.Select(x => User.Create(client, x));
 

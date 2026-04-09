@@ -2,5 +2,8 @@
 
 public interface IGuildEmoji : IEmoji
 {
-    User? Creator { get; }
+    /// <summary>
+    /// The user that created the emoji.
+    /// </summary>
+    IUser? Creator { get; }
 }

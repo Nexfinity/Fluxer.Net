@@ -43,7 +43,7 @@ public class MessageJson : IMessage
 
     /// <inheritdoc />
     [JsonProperty("pinned")]
-    public bool Pinned { get; set; }
+    public bool IsPinned { get; set; }
 
     /// <inheritdoc />
     [JsonProperty("mention_everyone")]
@@ -51,7 +51,7 @@ public class MessageJson : IMessage
 
     /// <inheritdoc />
     [JsonProperty("tts")]
-    public bool Tts { get; set; }
+    public bool IsTts { get; set; }
 
     /// <inheritdoc />
     [JsonProperty("mentions")]

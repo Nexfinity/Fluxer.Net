@@ -17,5 +17,8 @@ public interface IMessageReference
     /// </summary>
     ulong? GuildId { get; }
 
+    /// <summary>
+    /// The type of message reference.
+    /// </summary>
     MessageReferenceType Type { get; }
 }

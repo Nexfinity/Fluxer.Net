@@ -35,11 +35,11 @@ public class ActivityJson : IActivity
 
     /// <inheritdoc />
     [JsonProperty("emoji")]
-    public ActivityEmojiJson? Emoji { get; set; }
+    public EmojiJson? Emoji { get; set; }
 
     IActivityTimestamps? IActivity.Timestamps => Timestamps;
 
-    IActivityEmoji? IActivity.Emoji => Emoji;
+    IEmoji? IActivity.Emoji => Emoji;
 }
 
 /// <inheritdoc />
@@ -52,20 +52,4 @@ public class ActivityTimestampsJson : IActivityTimestamps
     /// <inheritdoc />
     [JsonProperty("end")]
     public long? End { get; set; }
-}
-
-/// <inheritdoc />
-public class ActivityEmojiJson : IActivityEmoji
-{
-    /// <inheritdoc />
-    [JsonProperty("id")]
-    public ulong? Id { get; set; }
-
-    /// <inheritdoc />
-    [JsonProperty("name")]
-    public string Name { get; set; }
-
-    /// <inheritdoc />
-    [JsonProperty("animated")]
-    public bool Animated { get; set; }
 }

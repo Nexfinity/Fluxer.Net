@@ -1,5 +1,6 @@
 ﻿namespace Fluxer.Net;
 
+/// <inheritdoc />
 public class MessageReference : Entity, IMessageReference
 {
     /// <inheritdoc />

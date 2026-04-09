@@ -97,6 +97,8 @@ public class EmbedFieldJson : IEmbedField
     [JsonProperty("inline")]
     public bool IsInline { get; set; }
 }
+
+/// <inheritdoc />
 public class EmbedAuthorJson : IEmbedAuthor
 {
     /// <inheritdoc />
@@ -115,6 +117,8 @@ public class EmbedAuthorJson : IEmbedAuthor
     [JsonProperty("proxy_icon_url")]
     public string? ProxyIconUrl { get; set; }
 }
+
+/// <inheritdoc />
 public class EmbedFooterJson : IEmbedFooter
 {
     /// <inheritdoc />
@@ -129,6 +133,8 @@ public class EmbedFooterJson : IEmbedFooter
     [JsonProperty("proxy_icon_url")]
     public string? ProxyIconUrl { get; set; }
 }
+
+/// <inheritdoc />
 public class EmbedMediaJson : IEmbedMedia
 {
     /// <inheritdoc />

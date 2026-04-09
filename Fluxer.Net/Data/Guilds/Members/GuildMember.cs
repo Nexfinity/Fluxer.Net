@@ -28,22 +28,7 @@ public class GuildMember : Entity, IGuildMember
     public string? BannerHash { get; internal set; }
 
     /// <inheritdoc />
-    public string? Bio { get; internal set; }
-
-    /// <inheritdoc />
-    public string? Pronouns { get; internal set; }
-
-    /// <inheritdoc />
     public int? AccentColor { get; internal set; }
-
-    /// <inheritdoc />
-    public JoinSource? JoinSourceType { get; internal set; }
-
-    /// <inheritdoc />
-    public string? SourceInviteCode { get; internal set; }
-
-    /// <inheritdoc />
-    public ulong? InviterId { get; internal set; }
 
     /// <inheritdoc />
     public bool IsDeaf { get; internal set; }
@@ -56,12 +41,6 @@ public class GuildMember : Entity, IGuildMember
 
     /// <inheritdoc />
     public HashSet<ulong>? RoleIds { get; internal set; }
-
-    /// <inheritdoc />
-    public bool IsPremiumSanitized { get; internal set; }
-
-    /// <inheritdoc />
-    public bool IsTemporary { get; internal set; }
 
     /// <inheritdoc />
     public string GetCurrentName()
@@ -115,17 +94,10 @@ public class GuildMember : Entity, IGuildMember
         Nickname = json.Nickname;
         AvatarHash = json.AvatarHash;
         BannerHash = json.BannerHash;
-        Bio = json.Bio;
-        Pronouns = json.Pronouns;
         AccentColor = json.AccentColor;
-        JoinSourceType = json.JoinSourceType;
-        SourceInviteCode = json.SourceInviteCode;
-        InviterId = json.InviterId;
         IsDeaf = json.IsDeaf;
         IsMute = json.IsMute;
         CommunicationDisabledUntil = json.CommunicationDisabledUntil;
         RoleIds = json.RoleIds;
-        IsPremiumSanitized = json.IsPremiumSanitized;
-        IsTemporary = json.IsTemporary;
     }
 }

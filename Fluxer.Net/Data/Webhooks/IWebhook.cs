@@ -28,7 +28,7 @@ public interface IWebhook
     /// <summary>
     /// The user that created this webhook.
     /// </summary>
-    UserJson? Creator { get; }
+    IUser? Creator { get; }
 
     /// <summary>
     /// The display name of the webhook.

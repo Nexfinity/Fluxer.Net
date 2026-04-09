@@ -50,7 +50,7 @@ public interface IMessage
     /// <summary>
     /// Whether the message is pinned.
     /// </summary>
-    bool Pinned { get; }
+    bool IsPinned { get; }
 
     /// <summary>
     /// Whether the message mentions @everyone.
@@ -60,7 +60,7 @@ public interface IMessage
     /// <summary>
     /// Whether the message was sent as text-to-speech.
     /// </summary>
-    bool Tts { get; }
+    bool IsTts { get; }
 
     /// <summary>
     /// The users mentioned in the message.

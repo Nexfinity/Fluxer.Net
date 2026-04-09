@@ -15,6 +15,8 @@ public class GuildSticker : Sticker, IGuildSticker
     /// <inheritdoc />
     public User? Creator { get; internal set; }
 
+    IUser? IGuildSticker.Creator => Creator;
+
     internal GuildSticker(FluxerBaseClient client) : base(client)
     {
 
@@ -33,6 +35,7 @@ public class GuildSticker : Sticker, IGuildSticker
         base.Update(client, json);
         Description = json.Description;
         Tags = json.Tags;
-        Creator = json.Creator;
+        if (json.Creator != null)
+            Creator = User.Create(client, json.Creator);
     }
 }
