@@ -50,7 +50,7 @@ Log.Logger = new LoggerConfiguration()
 //   2. Copy the bot token
 //   3. Paste it into config.yml as "Token: flx_your_token_here"
 
-var config = ConfigExtension.LoadConfig();
+Dictionary<string, string>? config = ConfigExtension.LoadConfig();
 if (config == null)
 {
     Log.Error("YAML file not found. Please create a config.yml file with your bot token.");
@@ -204,7 +204,7 @@ client.Gateway.MessageCreate += async messageData =>
             CommandContext context = new CommandContext(client, messageData);
 
             // Execute the command
-            var result = await commands.ExecuteAsync(context, argPos);
+            IResult result = await commands.ExecuteAsync(context, argPos);
 
             // Log command execution results
             if (!result.IsSuccess)

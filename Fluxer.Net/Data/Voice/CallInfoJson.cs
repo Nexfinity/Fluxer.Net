@@ -8,5 +8,5 @@ public class CallInfoJson
     public HashSet<ulong>? ParticipantIds { get; set; }
 
     [JsonProperty("ended_timestamp")]
-    public DateTime? EndedTimestamp { get; set; }
+    public DateTime? EndedAt { get; set; }
 }

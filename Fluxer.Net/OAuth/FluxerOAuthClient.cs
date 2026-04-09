@@ -54,7 +54,7 @@ public class FluxerOAuthClient : FluxerBaseClient
     {
         try
         {
-            var token = await Rest.GetOAuthValidTokenAsync(ClientId, ClientSecret, accessToken);
+            FluxerOAuthValidTokenJson token = await Rest.GetOAuthValidTokenAsync(ClientId, ClientSecret, accessToken);
             return token.IsActive;
         }
         catch

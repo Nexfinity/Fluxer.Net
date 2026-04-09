@@ -2,10 +2,14 @@
 
 namespace Fluxer.Net;
 
-public class MessageCallJson
+/// <inheritdoc />
+public class MessageCallJson : IMessageCall
 {
+    /// <inheritdoc />
     [JsonProperty("participants")]
     public HashSet<ulong> Participants { get; set; }
+
+    /// <inheritdoc />
     [JsonProperty("ended_timestamp")]
-    public DateTime? EndedTimestamp { get; set; }
+    public DateTime? EndedAt { get; set; }
 }

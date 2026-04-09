@@ -12,7 +12,7 @@ public class AttachmentRequest : AttachmentJson
     public AttachmentRequest(string file)
     {
         Filename = Path.GetFileName(file);
-        using (var f = File.OpenRead(file))
+        using (FileStream f = File.OpenRead(file))
         {
             Stream = new MemoryStream();
             f.CopyTo(Stream);

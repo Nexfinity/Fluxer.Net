@@ -112,7 +112,7 @@ public class RateLimitManager
     /// </summary>
     public async Task ClearAllBucketsAsync()
     {
-        foreach (var bucket in _buckets.Values)
+        foreach (RateLimitBucket bucket in _buckets.Values)
         {
             await bucket.ResetAsync();
         }

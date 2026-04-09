@@ -33,6 +33,8 @@ public class WebhookJson : IWebhook
     [JsonProperty("avatar")]
     public string? AvatarHash { get; set; }
 
+    IUser? IWebhook.Creator => Creator;
+
     /// <inheritdoc />
     public string GetDefaultAvatarUrl()
     {

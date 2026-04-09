@@ -38,28 +38,8 @@ public class GuildMemberJson : IGuildMember
     public string? BannerHash { get; set; }
 
     /// <inheritdoc />
-    [JsonProperty("bio")]
-    public string? Bio { get; set; }
-
-    /// <inheritdoc />
-    [JsonProperty("pronouns")]
-    public string? Pronouns { get; set; }
-
-    /// <inheritdoc />
     [JsonProperty("accent_color")]
     public int? AccentColor { get; set; }
-
-    /// <inheritdoc />
-    [JsonProperty("join_source_type")]
-    public JoinSource? JoinSourceType { get; set; }
-
-    /// <inheritdoc />
-    [JsonProperty("source_invite_code")]
-    public string? SourceInviteCode { get; set; }
-
-    /// <inheritdoc />
-    [JsonProperty("inviter_id")]
-    public ulong? InviterId { get; set; }
 
     /// <inheritdoc />
     [JsonProperty("deaf")]
@@ -76,14 +56,6 @@ public class GuildMemberJson : IGuildMember
     /// <inheritdoc />
     [JsonProperty("roles")]
     public HashSet<ulong>? RoleIds { get; set; }
-
-    /// <inheritdoc />
-    [JsonProperty("is_premium_sanitized")]
-    public bool IsPremiumSanitized { get; set; }
-
-    /// <inheritdoc />
-    [JsonProperty("temporary")]
-    public bool IsTemporary { get; set; }
 
     /// <inheritdoc />
     public string GetCurrentName()

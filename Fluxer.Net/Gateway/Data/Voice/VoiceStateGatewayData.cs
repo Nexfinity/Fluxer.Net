@@ -41,5 +41,5 @@ public class VoiceStateGatewayData
     public bool Suppress { get; set; }
 
     [JsonProperty("request_to_speak_timestamp")]
-    public DateTime? RequestToSpeakTimestamp { get; set; }
+    public DateTime? RequestToSpeakAt { get; set; }
 }

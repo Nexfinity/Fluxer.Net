@@ -2,20 +2,26 @@ using Newtonsoft.Json;
 
 namespace Fluxer.Net;
 
+/// <inheritdoc />
 public class PresenceJson : IPresence
 {
+    /// <inheritdoc />
     [JsonProperty("user_id")]
     public ulong UserId { get; set; }
 
+    /// <inheritdoc />
     [JsonProperty("guild_id")]
     public ulong? GuildId { get; set; }
 
+    /// <inheritdoc />
     [JsonProperty("status")]
     public string Status { get; set; }
 
+    /// <inheritdoc />
     [JsonProperty("activities")]
     public List<ActivityJson>? Activities { get; set; }
 
+    /// <inheritdoc />
     [JsonProperty("client_status")]
     public ClientStatusJson? ClientStatus { get; set; }
 

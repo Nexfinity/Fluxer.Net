@@ -1,27 +1,21 @@
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace Fluxer.Net;
 
-public class MessageReactionJson
+/// <inheritdoc />
+public class MessageReactionJson : IMessageReaction
 {
-    [JsonProperty("channel_id")]
-    public ulong ChannelId { get; set; }
+    /// <inheritdoc />
+    [JsonProperty("emoji")]
+    public EmojiJson Emoji { get; set; }
 
-    [JsonProperty("bucket")]
-    public int Bucket { get; set; }
+    /// <inheritdoc />
+    [JsonProperty("count")]
+    public int Count { get; set; }
 
-    [JsonProperty("message_id")]
-    public ulong MessageId { get; set; }
+    /// <inheritdoc />
+    [JsonProperty("me")]
+    public bool? Me { get; set; }
 
-    [JsonProperty("user_id")]
-    public ulong UserId { get; set; }
-
-    [JsonProperty("emoji_id")]
-    public ulong EmojiId { get; set; }
-
-    [JsonProperty("emoji_name")]
-    public string EmojiName { get; set; }
-
-    [JsonProperty("emoji_animated")]
-    public bool IsEmojiAnimated { get; set; }
+    IEmoji IMessageReaction.Emoji => Emoji;
 }

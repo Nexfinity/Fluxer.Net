@@ -16,7 +16,7 @@ public interface IActivity
 
     string? State { get; }
 
-    IActivityEmoji? Emoji { get; }
+    IEmoji? Emoji { get; }
 }
 
 public interface IActivityTimestamps
@@ -24,13 +24,4 @@ public interface IActivityTimestamps
     long? Start { get; }
 
     long? End { get; }
-}
-
-public interface IActivityEmoji
-{
-    ulong? Id { get; }
-
-    string Name { get; }
-
-    bool Animated { get; }
 }

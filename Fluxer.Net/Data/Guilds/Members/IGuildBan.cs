@@ -22,5 +22,8 @@ public interface IGuildBan
     /// </summary>
     string? Reason { get; }
 
+    /// <summary>
+    /// The user that was banned.
+    /// </summary>
     IUser User { get; }
 }

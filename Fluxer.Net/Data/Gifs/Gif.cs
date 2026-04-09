@@ -1,7 +1,7 @@
 ﻿namespace Fluxer.Net;
 
 /// <inheritdoc />
-public class Gif : Entity
+public class Gif : Entity, IGif
 {
     /// <inheritdoc />
     public string Id { get; internal set; }

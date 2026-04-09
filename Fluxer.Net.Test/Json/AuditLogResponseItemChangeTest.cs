@@ -32,10 +32,10 @@ public class AuditLogResponseItemChangeTest
             }
             """;
 
-        var datNull = Deserialize<AuditLogResponseItemChangeJson>(testNull);
-        var datNullNothing = Deserialize<AuditLogResponseItemChangeJson>(testNullNothing);
-        var datNothingNull = Deserialize<AuditLogResponseItemChangeJson>(testNothingNull);
-        var datNothing = Deserialize<AuditLogResponseItemChangeJson>(testNothing);
+        AuditLogResponseItemChangeJson? datNull = Deserialize<AuditLogResponseItemChangeJson>(testNull);
+        AuditLogResponseItemChangeJson? datNullNothing = Deserialize<AuditLogResponseItemChangeJson>(testNullNothing);
+        AuditLogResponseItemChangeJson? datNothingNull = Deserialize<AuditLogResponseItemChangeJson>(testNothingNull);
+        AuditLogResponseItemChangeJson? datNothing = Deserialize<AuditLogResponseItemChangeJson>(testNothing);
 
         Assert.That(datNull, Is.Not.Null);
         Assert.That(datNullNothing, Is.Not.Null);
@@ -77,9 +77,9 @@ public class AuditLogResponseItemChangeTest
             }
             """;
 
-        var datNullThenString = Deserialize<AuditLogResponseItemChangeJson>(testNullThenString);
-        var datStringThenNull = Deserialize<AuditLogResponseItemChangeJson>(testStringThenNull);
-        var datStringString = Deserialize<AuditLogResponseItemChangeJson>(testStringString);
+        AuditLogResponseItemChangeJson? datNullThenString = Deserialize<AuditLogResponseItemChangeJson>(testNullThenString);
+        AuditLogResponseItemChangeJson? datStringThenNull = Deserialize<AuditLogResponseItemChangeJson>(testStringThenNull);
+        AuditLogResponseItemChangeJson? datStringString = Deserialize<AuditLogResponseItemChangeJson>(testStringString);
 
         Assert.That(datNullThenString, Is.Not.Null);
         Assert.That(datStringThenNull, Is.Not.Null);
@@ -145,9 +145,9 @@ public class AuditLogResponseItemChangeTest
             }
             """;
 
-        var dataAddOnly = Deserialize<AuditLogResponseItemChangeJson>(addOnly);
-        var dataRemoveOnly = Deserialize<AuditLogResponseItemChangeJson>(removeOnly);
-        var dataAddAndRemove = Deserialize<AuditLogResponseItemChangeJson>(addAndRemove);
+        AuditLogResponseItemChangeJson? dataAddOnly = Deserialize<AuditLogResponseItemChangeJson>(addOnly);
+        AuditLogResponseItemChangeJson? dataRemoveOnly = Deserialize<AuditLogResponseItemChangeJson>(removeOnly);
+        AuditLogResponseItemChangeJson? dataAddAndRemove = Deserialize<AuditLogResponseItemChangeJson>(addAndRemove);
 
         Assert.That(dataAddOnly, Is.Not.Null);
         Assert.That(dataRemoveOnly, Is.Not.Null);

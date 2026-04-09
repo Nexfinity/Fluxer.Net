@@ -1,19 +1,24 @@
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace Fluxer.Net;
 
-// TODO MessageReferenceResponse should be used instead, and a seperate gateway message/model if it's different in any way
-public class MessageRefJson
+
+/// <inheritdoc />
+public class MessageReferenceJson : IMessageReference
 {
+    /// <inheritdoc />
     [JsonProperty("channel_id")]
     public ulong ChannelId { get; set; }
 
+    /// <inheritdoc />
     [JsonProperty("message_id")]
     public ulong MessageId { get; set; }
 
+    /// <inheritdoc />
     [JsonProperty("guild_id")]
     public ulong? GuildId { get; set; }
 
+    /// <inheritdoc />
     [JsonProperty("type")]
-    public int Type { get; set; }
+    public MessageReferenceType Type { get; set; }
 }

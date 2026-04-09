@@ -1,39 +1,53 @@
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace Fluxer.Net;
 
-public class MessageSnapshotJson
+/// <inheritdoc />
+public class MessageSnapshotJson : IMessageSnapshot
 {
+    /// <inheritdoc />
     [JsonProperty("content")]
     public string? Content { get; set; }
 
+    /// <inheritdoc />
     [JsonProperty("timestamp")]
-    public DateTime Timestamp { get; set; }
+    public DateTime CreatedAt { get; set; }
 
+    /// <inheritdoc />
     [JsonProperty("edited_timestamp")]
-    public DateTime? EditedTimestamp { get; set; }
+    public DateTime? EditedAt { get; set; }
 
-    [JsonProperty("mention_users")]
+    /// <inheritdoc />
+    [JsonProperty("mentions")]
     public HashSet<ulong>? MentionedUserIds { get; set; }
 
+    /// <inheritdoc />
     [JsonProperty("mention_roles")]
     public HashSet<ulong>? MentionedRoleIds { get; set; }
 
-    [JsonProperty("mention_channels")]
-    public HashSet<ulong>? MentionedChannelIds { get; set; }
-
-    [JsonProperty("attachments")]
-    public List<AttachmentJson>? Attachments { get; set; }
-
+    /// <inheritdoc />
     [JsonProperty("embeds")]
-    public List<EmbedJson>? Embeds { get; set; }
+    public EmbedJson[]? Embeds { get; set; }
 
-    [JsonProperty("sticker_items")]
-    public List<StickerJson>? Stickers { get; set; }
+    /// <inheritdoc />
+    [JsonProperty("attachments")]
+    public AttachmentJson[]? Attachments { get; set; }
 
+    /// <inheritdoc />
+    [JsonProperty("stickers")]
+    public StickerJson[]? Stickers { get; set; }
+
+    /// <inheritdoc />
     [JsonProperty("type")]
     public MessageType Type { get; set; }
 
+    /// <inheritdoc />
     [JsonProperty("flags")]
     public MessageFlag Flags { get; set; }
+
+    IEmbed[]? IMessageSnapshot.Embeds => Embeds;
+
+    IAttachment[]? IMessageSnapshot.Attachments => Attachments;
+
+    ISticker[]? IMessageSnapshot.Stickers => Stickers;
 }

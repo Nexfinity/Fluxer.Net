@@ -355,7 +355,7 @@ public partial class GatewayClient : IDisposable
                 return;
             }
 
-            var packet = JsonConvert.DeserializeObject<GatewayPacket>(message);
+            GatewayPacket packet = JsonConvert.DeserializeObject<GatewayPacket>(message);
             if (packet == null)
             {
                 _logger.Warning("Deserialized gateway packet was null");
@@ -429,7 +429,7 @@ public partial class GatewayClient : IDisposable
             _logger.Warning(ex, "Failed to deserialize gateway packet. Attempting to extract sequence from raw message.");
             try
             {
-                var result = PacketSRegex.Match(message);
+                Match result = PacketSRegex.Match(message);
                 if (result.Success && !string.IsNullOrEmpty(result.Value))
                 {
                     _sequence = Convert.ToInt32(result.Value);
@@ -467,7 +467,7 @@ public partial class GatewayClient : IDisposable
                         Guilds.Clear();
                         if (data.Members != null)
                         {
-                            foreach (var m in data.Members)
+                            foreach (GuildMemberJson m in data.Members)
                             {
                                 if (data.User.Id == m.UserId)
                                     CurrentMembers.TryAdd(m.GuildId, SocketGuildMember.Create(_client, m));
@@ -603,7 +603,7 @@ public partial class GatewayClient : IDisposable
                     ChannelGatewayData? data = p.Data.ToObject<ChannelGatewayData>(FluxerClient._serializer);
                     if (data != null)
                     {
-                        if (Channels.TryGetValue(data.Id, out var channel))
+                        if (Channels.TryGetValue(data.Id, out SocketChannel channel))
                             channel.Update(_client, data);
                         ChannelUpdate?.Invoke(data);
                     }
@@ -855,17 +855,19 @@ public partial class GatewayClient : IDisposable
                         if (!data.Unavailable.GetValueOrDefault())
                         {
                             SocketGuildMember member = SocketGuildMember.Create(_client, data.Members.First());
-                            if (Guilds.TryAdd(data.Id, SocketGuild.Create(_client, data.Properties, member)))
+                            SocketGuild guild = SocketGuild.Create(_client, data.Properties, member);
+                            if (Guilds.TryAdd(data.Id, guild))
                                 CurrentMembers.TryAdd(data.Id, member);
 
-                            foreach (var c in data.Channels)
+                            foreach (ChannelGatewayData c in data.Channels)
                             {
                                 Channels.TryAdd(c.Id, SocketChannel.Create(_client, c, data.Id));
                             }
-                            foreach (var r in data.Roles)
+                            foreach (RoleJson r in data.Roles)
                             {
                                 Roles.TryAdd(r.Id, SocketRole.Create(_client, r, data.Id));
                             }
+                            guild.UpdatePermissions(Roles[data.Id]);
                         }
 
                         GuildCreate?.Invoke(data);
@@ -879,7 +881,7 @@ public partial class GatewayClient : IDisposable
                     GuildGatewayData? data = p.Data.ToObject<GuildGatewayData>(FluxerClient._serializer);
                     if (data != null)
                     {
-                        if (Guilds.TryGetValue(data.Id, out var guild))
+                        if (Guilds.TryGetValue(data.Id, out SocketGuild guild))
                             guild.Update(_client, data.Properties);
                         GuildUpdate?.Invoke(data);
                     }
@@ -901,12 +903,12 @@ public partial class GatewayClient : IDisposable
                         {
                             Guilds.TryRemove(data.Id, out _);
                             CurrentMembers.TryRemove(data.Id, out _);
-                            foreach (var c in Channels.Values)
+                            foreach (SocketChannel c in Channels.Values)
                             {
                                 if (c.GuildId == data.Id)
                                     Channels.TryRemove(c.Id, out _);
                             }
-                            foreach (var r in Roles.Values)
+                            foreach (SocketRole r in Roles.Values)
                             {
                                 if (r.GuildId == data.Id)
                                     Roles.TryRemove(r.Id, out _);
@@ -933,7 +935,7 @@ public partial class GatewayClient : IDisposable
                     Gateway.Data.Guilds.GuildMemberGatewayData? data = p.Data.ToObject<Gateway.Data.Guilds.GuildMemberGatewayData>(FluxerClient._serializer);
                     if (data != null)
                     {
-                        if (CurrentMembers.TryGetValue(data.GuildId, out var member) && member.UserId == data.UserId)
+                        if (CurrentMembers.TryGetValue(data.GuildId, out SocketGuildMember member) && member.UserId == data.UserId)
                             member.Update(_client, data);
 
                         GuildMemberUpdate?.Invoke(data);
@@ -968,8 +970,12 @@ public partial class GatewayClient : IDisposable
                     GuildRoleGatewayData? data = p.Data.ToObject<GuildRoleGatewayData>(FluxerClient._serializer);
                     if (data != null)
                     {
-                        if (Roles.TryGetValue(data.Role.Id, out var role))
+                        if (Roles.TryGetValue(data.Role.Id, out SocketRole role))
+                        {
                             role.Update(_client, data.Role);
+                            if (Guilds.TryGetValue(role.Id, out SocketGuild guild))
+                                guild.UpdatePermissions(role);
+                        }
                         GuildRoleUpdate?.Invoke(data);
                     }
                     else
@@ -1187,12 +1193,12 @@ public partial class GatewayClient : IDisposable
                 return;
             }
 
-            var timeSinceLastAttempt = DateTime.Now - _lastGatewayReEstablishAttempt;
+            TimeSpan timeSinceLastAttempt = DateTime.Now - _lastGatewayReEstablishAttempt;
             TimeSpan requiredDelay = TimeSpan.FromSeconds(_client.Config.ReconnectAttemptDelay);
 
             if (timeSinceLastAttempt < requiredDelay)
             {
-                var remainingDelay = requiredDelay - timeSinceLastAttempt;
+                TimeSpan remainingDelay = requiredDelay - timeSinceLastAttempt;
                 _logger.Warning("Rate limiting reconnection. Waiting {RemainingSeconds:F1} seconds before reconnect attempt.", remainingDelay.TotalSeconds);
                 await Task.Delay(remainingDelay);
             }

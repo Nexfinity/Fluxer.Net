@@ -55,7 +55,7 @@ public partial class FluxerOAuthHandler : OAuthHandler<FluxerOAuthOptions>
         request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", tokens.AccessToken);
 
-        using var response = await Backchannel.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, Context.RequestAborted);
+        using HttpResponseMessage response = await Backchannel.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, Context.RequestAborted);
 
         string Headers = response.Headers.ToString();
         string Body = await response.Content.ReadAsStringAsync();

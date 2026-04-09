@@ -16,13 +16,15 @@ public class Webhook : Entity, IWebhook
     public ulong? ChannelId { get; internal set; }
 
     /// <inheritdoc />
-    public UserJson? Creator { get; internal set; }
+    public User? Creator { get; internal set; }
 
     /// <inheritdoc />
     public string Name { get; internal set; }
 
     /// <inheritdoc />
     public string? AvatarHash { get; internal set; }
+
+    IUser? IWebhook.Creator => Creator;
 
     /// <inheritdoc />
     public string GetDefaultAvatarUrl()
@@ -66,7 +68,9 @@ public class Webhook : Entity, IWebhook
         Token = json.Token;
         GuildId = json.GuildId;
         ChannelId = json.ChannelId;
-        Creator = json.Creator;
+        if (json.Creator != null)
+            Creator = User.Create(client, json.Creator);
+
         Name = json.Name;
         AvatarHash = json.AvatarHash;
     }

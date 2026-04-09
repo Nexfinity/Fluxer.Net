@@ -2,9 +2,18 @@
 
 public interface IGuildSticker : ISticker
 {
+    /// <summary>
+    /// The description of the sticker.
+    /// </summary>
     string? Description { get; }
 
+    /// <summary>
+    /// Autocomplete/suggestion tags for the sticker.
+    /// </summary>
     List<string>? Tags { get; }
 
-    User? Creator { get; }
+    /// <summary>
+    /// The user that created the sticker.
+    /// </summary>
+    IUser? Creator { get; }
 }

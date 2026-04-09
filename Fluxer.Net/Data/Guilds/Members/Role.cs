@@ -16,7 +16,7 @@ public class Role : Entity, IRole
     public string Name { get; internal set; }
 
     /// <inheritdoc />
-    public ulong Permissions { get; internal set; }
+    public Permissions Permissions { get; internal set; }
 
     /// <inheritdoc />
     public int Position { get; internal set; }

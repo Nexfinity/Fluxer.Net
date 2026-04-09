@@ -33,7 +33,7 @@ public class ModuleInfo
 		Type = type;
 		Name = type.Name;
 
-		var aliasAttr = type.GetCustomAttribute<AliasAttribute>();
+        AliasAttribute aliasAttr = type.GetCustomAttribute<AliasAttribute>();
 		Aliases = aliasAttr?.Aliases ?? Array.Empty<string>();
 	}
 
@@ -41,9 +41,9 @@ public class ModuleInfo
 	{
         List<CommandInfo> commands = new List<CommandInfo>();
 
-		foreach (var method in Type.GetMethods(BindingFlags.Public | BindingFlags.Instance))
+		foreach (MethodInfo method in Type.GetMethods(BindingFlags.Public | BindingFlags.Instance))
 		{
-			var cmdAttr = method.GetCustomAttribute<CommandAttribute>();
+            CommandAttribute cmdAttr = method.GetCustomAttribute<CommandAttribute>();
 			if (cmdAttr != null)
 			{
 				commands.Add(new CommandInfo(method, this, cmdAttr));

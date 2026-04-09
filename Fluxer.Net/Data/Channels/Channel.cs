@@ -58,7 +58,7 @@ public class Channel : Entity, IChannel
     public ulong? LastMessageId { get; internal set; }
 
     /// <inheritdoc />
-    public DateTime? LastPinTimestamp { get; internal set; }
+    public DateTime? LastPinAt { get; internal set; }
 
     /// <inheritdoc />
     public IEnumerable<PermissionOverwrite>? PermissionOverwrites { get; internal set; }
@@ -156,7 +156,7 @@ public class Channel : Entity, IChannel
         UserLimit = json.UserLimit;
         RtcRegion = json.RtcRegion;
         LastMessageId = json.LastMessageId;
-        LastPinTimestamp = json.LastPinTimestamp;
+        LastPinAt = json.LastPinAt;
         if (json.PermissionOverwrites != null)
             PermissionOverwrites = json.PermissionOverwrites.Select(x => PermissionOverwrite.Create(client, x));
         Nicknames = json.Nicknames;
