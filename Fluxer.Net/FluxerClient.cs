@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Fluxer.Net.Extensions;
+using Newtonsoft.Json;
 using Serilog;
 
 namespace Fluxer.Net;
@@ -63,16 +64,23 @@ public class FluxerClient : FluxerBaseClient
 
     public new ApiClient Rest => base.Rest;
 
-    internal static JsonSerializer _serializer = new JsonSerializer
-    {
-        NullValueHandling = NullValueHandling.Ignore,
-    };
+    internal static JsonSerializer _serializer { get; set; } = CreateGatewaySerializer();
 
     // Used by both api and gateway
-    internal static JsonSerializerSettings _serializerSettings = new JsonSerializerSettings()
+    internal static JsonSerializerSettings _serializerSettings { get; set; } = new JsonSerializerSettings()
     {
         NullValueHandling = NullValueHandling.Ignore
     };
+
+    internal static JsonSerializer CreateGatewaySerializer()
+    {
+        var serializer = new JsonSerializer
+        {
+            NullValueHandling = NullValueHandling.Ignore
+        };
+        serializer.Converters.Add(new StringUInt64Converter());
+        return serializer;
+    }
 
     /// <summary>
     /// Validates that the token has a recognized prefix for the Fluxer API.
