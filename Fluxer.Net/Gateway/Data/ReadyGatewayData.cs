@@ -48,5 +48,5 @@ public class ReadyGatewayData
     public UserGuildSettingsJson[]? UserGuildSettings { get; set; }
 
     [JsonProperty("rtc_regions")]
-    public RtcRegion[]? RtcRegions { get; set; }
+    public RtcRegionJson[]? RtcRegions { get; set; }
 }
