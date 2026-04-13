@@ -855,7 +855,7 @@ public partial class GatewayClient : IDisposable
                         GuildIds.Add(data.Id);
                         if (!data.Unavailable.GetValueOrDefault())
                         {
-                            SocketGuildMember member = SocketGuildMember.Create(_client, data.Members.First());
+                            SocketGuildMember member = SocketGuildMember.Create(_client, data.Members.First(x => x.UserId == CurrentUser.Id));
                             SocketGuild guild = SocketGuild.Create(_client, data.Properties, member);
                             if (Guilds.TryAdd(data.Id, guild))
                                 CurrentMembers.TryAdd(data.Id, member);
