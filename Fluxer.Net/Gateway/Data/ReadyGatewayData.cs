@@ -1,3 +1,4 @@
+using Fluxer.Net.Gateway.Data.Guilds;
 using Newtonsoft.Json;
 
 namespace Fluxer.Net.Gateway.Data;
@@ -19,9 +20,6 @@ public class ReadyGatewayData
     [JsonProperty("pinned_dms")]
     public ulong[] PinnedDMs { get; set; }
 
-    [JsonProperty("members")]
-    public GuildMemberJson[] Members { get; set; }
-
     [JsonProperty("notes")]
     public Dictionary<string, string> Notes { get; set; }
 
@@ -38,7 +36,7 @@ public class ReadyGatewayData
     public GatewaySessionJson[]? Sessions { get; set; }
 
     [JsonProperty("guilds")]
-    public GuildJson[] Guilds { get; set; }
+    public GuildGatewayData[] Guilds { get; set; }
 
     [JsonProperty("user")]
     public CurrentUserJson User { get; set; }

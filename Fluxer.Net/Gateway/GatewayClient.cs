@@ -467,15 +467,14 @@ public partial class GatewayClient : IDisposable
                         Roles.Clear();
                         CurrentMembers.Clear();
                         Guilds.Clear();
-                        if (data.Members != null)
+                        if (data.Guilds != null)
                         {
-                            foreach (GuildMemberJson m in data.Members)
+                            foreach (var g in data.Guilds)
                             {
-                                if (m.UserId == CurrentUser.Id)
-                                    CurrentMembers.TryAdd(m.GuildId, SocketGuildMember.Create(_client, m));
+                                CurrentMembers.TryAdd(g.Id, SocketGuildMember.Create(_client, g.Members.First(x => x.UserId == CurrentUser.Id)));
+                                Guilds.TryAdd(g.Id, SocketGuild.Create(_client, g.Properties, CurrentMembers[g.Id]));
                             }
                         }
-                        Guilds = new ConcurrentDictionary<ulong, SocketGuild>(data.Guilds.ToDictionary(x => x.Id, x => SocketGuild.Create(_client, x, CurrentMembers[x.Id])));
 
                         _sessionId = data.SessionId;
                         _isConnecting = false; // Connection successfully established
