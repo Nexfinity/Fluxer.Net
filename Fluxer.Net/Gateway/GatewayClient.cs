@@ -1044,7 +1044,7 @@ public partial class GatewayClient : IDisposable
                 return;
             case "RELATIONSHIP_REMOVE":
                 {
-                    RelationshipGatewayData? data = p.Data.ToObject<RelationshipGatewayData>(FluxerClient._serializer);
+                    RelationshipRemoveGatewayData? data = p.Data.ToObject<RelationshipRemoveGatewayData>(FluxerClient._serializer);
                     if (data != null)
                         RelationshipRemove?.Invoke(data);
                     else
@@ -2100,7 +2100,7 @@ public partial class GatewayClient : IDisposable
     /// Delegate for RELATIONSHIP_REMOVE events when a relationship is removed.
     /// </summary>
     /// <param name="data">The relationship data.</param>
-    public delegate void RelationshipRemoveEvent(RelationshipGatewayData data);
+    public delegate void RelationshipRemoveEvent(RelationshipRemoveGatewayData data);
 
     /// <summary>
     /// Occurs when a relationship is removed.
