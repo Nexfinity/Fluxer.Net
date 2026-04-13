@@ -101,6 +101,7 @@ public partial class GatewayClient : IDisposable
 
     #region Cache
 
+    public CurrentUser? CurrentUser { get; internal set; }
     public ConcurrentDictionary<ulong, SocketGuild> Guilds = new ConcurrentDictionary<ulong, SocketGuild>();
     public ConcurrentDictionary<ulong, SocketChannel> Channels = new ConcurrentDictionary<ulong, SocketChannel>();
     public ConcurrentDictionary<ulong, SocketRole> Roles = new ConcurrentDictionary<ulong, SocketRole>();
@@ -460,20 +461,20 @@ public partial class GatewayClient : IDisposable
                     ReadyGatewayData? data = p.Data.ToObject<ReadyGatewayData>(FluxerClient._serializer);
                     if (data != null)
                     {
+                        CurrentUser = CurrentUser.Create(_client, data.User);
                         GuildIds = data.Guilds.Select(x => x.Id).ToHashSet();
                         Channels.Clear();
                         Roles.Clear();
                         CurrentMembers.Clear();
                         Guilds.Clear();
-                        if (data.Members != null)
+                        if (data.Guilds != null)
                         {
-                            foreach (GuildMemberJson m in data.Members)
+                            foreach (var g in data.Guilds)
                             {
-                                if (data.User.Id == m.UserId)
-                                    CurrentMembers.TryAdd(m.GuildId, SocketGuildMember.Create(_client, m));
+                                CurrentMembers.TryAdd(g.Id, SocketGuildMember.Create(_client, g.Members.First(x => x.UserId == CurrentUser.Id)));
+                                Guilds.TryAdd(g.Id, SocketGuild.Create(_client, g.Properties, CurrentMembers[g.Id]));
                             }
                         }
-                        Guilds = new ConcurrentDictionary<ulong, SocketGuild>(data.Guilds.ToDictionary(x => x.Id, x => SocketGuild.Create(_client, x, CurrentMembers[x.Id])));
 
                         _sessionId = data.SessionId;
                         _isConnecting = false; // Connection successfully established
@@ -854,7 +855,7 @@ public partial class GatewayClient : IDisposable
                         GuildIds.Add(data.Id);
                         if (!data.Unavailable.GetValueOrDefault())
                         {
-                            SocketGuildMember member = SocketGuildMember.Create(_client, data.Members.First());
+                            SocketGuildMember member = SocketGuildMember.Create(_client, data.Members.First(x => x.UserId == CurrentUser.Id));
                             SocketGuild guild = SocketGuild.Create(_client, data.Properties, member);
                             if (Guilds.TryAdd(data.Id, guild))
                                 CurrentMembers.TryAdd(data.Id, member);
@@ -1043,7 +1044,7 @@ public partial class GatewayClient : IDisposable
                 return;
             case "RELATIONSHIP_REMOVE":
                 {
-                    RelationshipGatewayData? data = p.Data.ToObject<RelationshipGatewayData>(FluxerClient._serializer);
+                    RelationshipRemoveGatewayData? data = p.Data.ToObject<RelationshipRemoveGatewayData>(FluxerClient._serializer);
                     if (data != null)
                         RelationshipRemove?.Invoke(data);
                     else
@@ -2099,7 +2100,7 @@ public partial class GatewayClient : IDisposable
     /// Delegate for RELATIONSHIP_REMOVE events when a relationship is removed.
     /// </summary>
     /// <param name="data">The relationship data.</param>
-    public delegate void RelationshipRemoveEvent(RelationshipGatewayData data);
+    public delegate void RelationshipRemoveEvent(RelationshipRemoveGatewayData data);
 
     /// <summary>
     /// Occurs when a relationship is removed.

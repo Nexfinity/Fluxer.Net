@@ -1,7 +1,7 @@
 ﻿namespace Fluxer.Net;
 
 /// <inheritdoc />
-public class FavouriteGif : Entity, IFavouriteGif
+public class FavoriteGif : Entity, IFavoriteGif
 {
     /// <inheritdoc />
     public string Id { get; internal set; }
@@ -54,19 +54,19 @@ public class FavouriteGif : Entity, IFavouriteGif
     /// <inheritdoc />
     public string? TenorSlugId { get; internal set; }
 
-    internal FavouriteGif(FluxerBaseClient client) : base(client)
+    internal FavoriteGif(FluxerBaseClient client) : base(client)
     {
 
     }
 
-    public static FavouriteGif Create(FluxerBaseClient client, FavouriteGifJson json)
+    public static FavoriteGif Create(FluxerBaseClient client, FavoriteGifJson json)
     {
-        FavouriteGif data = new FavouriteGif(client);
+        FavoriteGif data = new FavoriteGif(client);
         data.Update(client, json);
         return data;
     }
 
-    internal void Update(FluxerBaseClient client, FavouriteGifJson json)
+    internal void Update(FluxerBaseClient client, FavoriteGifJson json)
     {
         Id = json.Id;
         UserId = json.UserId;

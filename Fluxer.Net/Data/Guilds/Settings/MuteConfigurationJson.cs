@@ -5,8 +5,8 @@ namespace Fluxer.Net;
 public class MuteConfigurationJson
 {
     [JsonProperty("end_time")]
-    public DateTime? EndTime { get; set; }
+    public DateTime? EndAt { get; set; }
 
     [JsonProperty("selected_time_window")]
-    public int? SelectedTimeWindow { get; set; }
+    public int? SelectedTimeSeconds { get; set; }
 }

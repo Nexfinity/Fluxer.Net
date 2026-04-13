@@ -70,7 +70,7 @@ public class UserSettings : Entity, IUserSettings
     public List<ulong>? GuildPositions { get; set; }
 
     /// <inheritdoc />
-    public List<UserGuildFolder>? GuildFolders { get; set; }
+    public List<UserGuildFolderJson>? GuildFolders { get; set; }
 
     /// <inheritdoc />
     public int AfkTimeout { get; set; }

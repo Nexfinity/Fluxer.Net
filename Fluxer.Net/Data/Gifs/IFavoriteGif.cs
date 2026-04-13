@@ -1,6 +1,6 @@
 ﻿namespace Fluxer.Net;
 
-public interface IFavouriteGif
+public interface IFavoriteGif
 {
     /// <summary>
     /// Unique identifier for the favorite gif.

@@ -95,7 +95,7 @@ public class UserSettingsJson : IUserSettings
 
     /// <inheritdoc />
     [JsonProperty("guild_folders")]
-    public List<UserGuildFolder>? GuildFolders { get; set; }
+    public List<UserGuildFolderJson>? GuildFolders { get; set; }
 
     /// <inheritdoc />
     [JsonProperty("afk_timeout")]

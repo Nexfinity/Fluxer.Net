@@ -1,36 +1,52 @@
+using Fluxer.Net.Gateway.Data.Guilds;
 using Newtonsoft.Json;
 
 namespace Fluxer.Net.Gateway.Data;
 
 public class ReadyGatewayData
 {
-    [JsonProperty("members")]
-    public GuildMemberJson[] Members { get; set; }
+    [JsonProperty("v")]
+    public string Version { get; set; }
+
+    [JsonProperty("auth_session_id_hash")]
+    public string AuthSessionIdHash { get; set; }
+
+    [JsonProperty("country_code")]
+    public string CountryCode { get; set; }
+
+    [JsonProperty("favorite_memes")]
+    public FavoriteGifJson[]? FavoriteMemes { get; set; }
+
+    [JsonProperty("pinned_dms")]
+    public ulong[] PinnedDMs { get; set; }
 
     [JsonProperty("notes")]
     public Dictionary<string, string> Notes { get; set; }
 
     [JsonProperty("private_channels")]
-    public object[] PrivateChannels { get; set; }
+    public ChannelJson[]? PrivateChannels { get; set; }
 
     [JsonProperty("relationships")]
-    public object[] Relationships { get; set; }
+    public RelationshipJson[] Relationships { get; set; }
 
     [JsonProperty("session_id")]
     public string SessionId { get; set; }
 
+    [JsonProperty("sessions")]
+    public GatewaySessionJson[]? Sessions { get; set; }
+
     [JsonProperty("guilds")]
-    public GuildJson[] Guilds { get; set; }
+    public GuildGatewayData[] Guilds { get; set; }
 
     [JsonProperty("user")]
-    public UserJson User { get; set; }
+    public CurrentUserJson User { get; set; }
 
     [JsonProperty("user_settings")]
-    public UserSettingsJson UserSettings { get; set; }
+    public UserSettingsJson? UserSettings { get; set; }
 
-    [JsonProperty("v")]
-    public string Version { get; set; }
+    [JsonProperty("user_guild_settings")]
+    public UserGuildSettingsJson[]? UserGuildSettings { get; set; }
 
-    // [JsonProperty("read_states")]
-    // public object[] ReadStates { get; set; }
+    [JsonProperty("rtc_regions")]
+    public RtcRegionJson[]? RtcRegions { get; set; }
 }

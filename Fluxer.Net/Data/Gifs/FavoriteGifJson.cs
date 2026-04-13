@@ -3,7 +3,7 @@
 namespace Fluxer.Net;
 
 /// <inheritdoc />
-public class FavouriteGifJson : IFavouriteGif
+public class FavoriteGifJson : IFavoriteGif
 {
     /// <inheritdoc />
     [JsonProperty("id")]

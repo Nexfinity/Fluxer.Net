@@ -106,7 +106,7 @@ public interface IUserSettings
     /// <summary>
     /// The folder structure for organizing guilds in the sidebar.
     /// </summary>
-    List<UserGuildFolder>? GuildFolders { get; }
+    List<UserGuildFolderJson>? GuildFolders { get; }
 
     /// <summary>
     /// The idle timeout in seconds before going AFK.

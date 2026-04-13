@@ -611,27 +611,27 @@ public class ApiClient
 
     #region Favourite Gifs API
 
-    public async Task<IEnumerable<FavouriteGif>> GetCurrentUserFavouriteGifsAsync()
+    public async Task<IEnumerable<FavoriteGif>> GetCurrentUserFavouriteGifsAsync()
     {
-        IEnumerable<FavouriteGifJson> json = await MakeFluxerApiRequestAsync<IEnumerable<FavouriteGifJson>>(HttpMethod.Get, "/users/@me/memes", true);
-        return json.Select(x => FavouriteGif.Create(_client, x));
+        IEnumerable<FavoriteGifJson> json = await MakeFluxerApiRequestAsync<IEnumerable<FavoriteGifJson>>(HttpMethod.Get, "/users/@me/memes", true);
+        return json.Select(x => FavoriteGif.Create(_client, x));
     }
 
-    public async Task<FavouriteGif> PostCurrentUserFavouriteGifAsync<TRequest>(TRequest data)
+    public async Task<FavoriteGif> PostCurrentUserFavouriteGifAsync<TRequest>(TRequest data)
     {
-        FavouriteGifJson json = await MakeFluxerApiRequestAsync<FavouriteGifJson, TRequest>(HttpMethod.Post, "/users/@me/memes", data, true);
-        return FavouriteGif.Create(_client, json);
+        FavoriteGifJson json = await MakeFluxerApiRequestAsync<FavoriteGifJson, TRequest>(HttpMethod.Post, "/users/@me/memes", data, true);
+        return FavoriteGif.Create(_client, json);
     }
-    public async Task<FavouriteGif> GetCurrentUserFavouriteGifAsync(ulong memeId)
+    public async Task<FavoriteGif> GetCurrentUserFavouriteGifAsync(ulong memeId)
     {
-        FavouriteGifJson json = await MakeFluxerApiRequestAsync<FavouriteGifJson>(HttpMethod.Get, $"/users/@me/memes/{memeId}", true);
-        return FavouriteGif.Create(_client, json);
+        FavoriteGifJson json = await MakeFluxerApiRequestAsync<FavoriteGifJson>(HttpMethod.Get, $"/users/@me/memes/{memeId}", true);
+        return FavoriteGif.Create(_client, json);
     }
 
-    public async Task<FavouriteGif> PatchCurrentUserFavouriteGifAsync<TRequest>(ulong memeId, TRequest data)
+    public async Task<FavoriteGif> PatchCurrentUserFavouriteGifAsync<TRequest>(ulong memeId, TRequest data)
     {
-        FavouriteGifJson json = await MakeFluxerApiRequestAsync<FavouriteGifJson, TRequest>(HttpMethod.Patch, $"/users/@me/memes/{memeId}", data, true);
-        return FavouriteGif.Create(_client, json);
+        FavoriteGifJson json = await MakeFluxerApiRequestAsync<FavoriteGifJson, TRequest>(HttpMethod.Patch, $"/users/@me/memes/{memeId}", data, true);
+        return FavoriteGif.Create(_client, json);
     }
 
     public async Task DeleteCurrentUserFavouriteGifAsync(ulong memeId)
