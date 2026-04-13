@@ -11,5 +11,5 @@ public class UserGuildSettingsUpdateGatewayData
     public ulong GuildId { get; set; }
 
     [JsonProperty("settings")]
-    public UserGuildSettings Settings { get; set; } = null!;
+    public UserGuildSettingsJson Settings { get; set; } = null!;
 }

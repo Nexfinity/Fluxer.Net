@@ -4,18 +4,15 @@ namespace Fluxer.Net;
 
 public class RelationshipJson
 {
-    [JsonProperty("source_user_id")]
-    public ulong SourceUserId { get; set; }
-
-    [JsonProperty("target_user_id")]
-    public ulong TargetUserId { get; set; }
+    [JsonProperty("id")]
+    public ulong Id { get; set; }
 
     [JsonProperty("type")]
-    public int Type { get; set; }
+    public RelationshipType Type { get; set; }
 
     [JsonProperty("nickname")]
     public string? Nickname { get; set; }
 
     [JsonProperty("since")]
-    public DateTime? Since { get; set; }
+    public DateTime? SinceAt { get; set; }
 }

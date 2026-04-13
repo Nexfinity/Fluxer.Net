@@ -101,6 +101,7 @@ public partial class GatewayClient : IDisposable
 
     #region Cache
 
+    public CurrentUser? CurrentUser { get; internal set; }
     public ConcurrentDictionary<ulong, SocketGuild> Guilds = new ConcurrentDictionary<ulong, SocketGuild>();
     public ConcurrentDictionary<ulong, SocketChannel> Channels = new ConcurrentDictionary<ulong, SocketChannel>();
     public ConcurrentDictionary<ulong, SocketRole> Roles = new ConcurrentDictionary<ulong, SocketRole>();
@@ -460,6 +461,7 @@ public partial class GatewayClient : IDisposable
                     ReadyGatewayData? data = p.Data.ToObject<ReadyGatewayData>(FluxerClient._serializer);
                     if (data != null)
                     {
+                        CurrentUser = CurrentUser.Create(_client, data.User);
                         GuildIds = data.Guilds.Select(x => x.Id).ToHashSet();
                         Channels.Clear();
                         Roles.Clear();
@@ -469,7 +471,7 @@ public partial class GatewayClient : IDisposable
                         {
                             foreach (GuildMemberJson m in data.Members)
                             {
-                                if (data.User.Id == m.UserId)
+                                if (m.UserId == CurrentUser.Id)
                                     CurrentMembers.TryAdd(m.GuildId, SocketGuildMember.Create(_client, m));
                             }
                         }
