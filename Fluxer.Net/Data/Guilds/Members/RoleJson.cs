@@ -17,10 +17,8 @@ public class RoleJson : IRole
     [JsonProperty("name")]
     public string Name { get; set; }
 
-
     /// <inheritdoc />
     [JsonProperty("permissions")]
-    [JsonConverter(typeof(Extensions.StringUInt64Converter))]
     public Permissions Permissions { get; set; }
 
     /// <inheritdoc />

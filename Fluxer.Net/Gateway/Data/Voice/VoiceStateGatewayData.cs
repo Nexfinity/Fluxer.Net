@@ -13,11 +13,14 @@ public class VoiceStateGatewayData
     [JsonProperty("user_id")]
     public ulong UserId { get; set; }
 
-    [JsonProperty("member")]
-    public GuildMemberJson Member { get; set; }
+    [JsonProperty("connection_id")]
+    public string ConnectionId { get; set; }
 
     [JsonProperty("session_id")]
     public string SessionId { get; set; }
+
+    [JsonProperty("member")]
+    public GuildMemberJson Member { get; set; }
 
     [JsonProperty("deaf")]
     public bool Deaf { get; set; }
@@ -31,15 +34,15 @@ public class VoiceStateGatewayData
     [JsonProperty("self_mute")]
     public bool SelfMute { get; set; }
 
-    [JsonProperty("self_stream")]
-    public bool? SelfStream { get; set; }
-
     [JsonProperty("self_video")]
     public bool SelfVideo { get; set; }
 
-    [JsonProperty("suppress")]
-    public bool Suppress { get; set; }
+    [JsonProperty("self_stream")]
+    public bool? SelfStream { get; set; }
 
-    [JsonProperty("request_to_speak_timestamp")]
-    public DateTime? RequestToSpeakAt { get; set; }
+    [JsonProperty("is_mobile")]
+    public bool IsMobile { get; set; }
+
+    [JsonProperty("viewer_stream_keys")]
+    public string[]? ViewerStreamKeys { get; set; }
 }
