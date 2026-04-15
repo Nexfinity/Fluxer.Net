@@ -868,7 +868,24 @@ public partial class GatewayClient : IDisposable
                 {
                     VoiceStateGatewayData? data = p.Data.ToObject<VoiceStateGatewayData>(FluxerClient._serializer);
                     if (data != null)
+                    {
+                        if (data.GuildId.HasValue && Guilds.TryGetValue(data.GuildId.Value, out SocketGuild guild))
+                        {
+                            guild.AddOrUpdateMember(_client, data.Member);
+                            var member = guild.GetMember(data.Member.UserId);
+                            if (data.ChannelId.HasValue)
+                            {
+                                if (!member.VoiceStates.TryAdd(data.SessionId, SocketVoiceState.Create(_client, data, guild)))
+                                    member.VoiceStates[data.SessionId].Update(_client, data);
+                            }
+                            else
+                            {
+                                member.VoiceStates.TryRemove(data.SessionId, out _);
+                            }
+                        }
+
                         VoiceStateUpdate?.Invoke(data);
+                    }
                     else
                         _logger.Warning("VOICE_STATE_UPDATE event received but data could not be cast to VoiceStateGatewayData");
                 }
@@ -1025,7 +1042,7 @@ public partial class GatewayClient : IDisposable
                     if (data != null)
                     {
                         if (Guilds.TryGetValue(data.GuildId, out SocketGuild guild))
-                            guild.AddOrUpdate(_client, data);
+                            guild.AddOrUpdateMember(_client, data);
 
                         GuildMemberAdd?.Invoke(data);
                     }
@@ -1070,7 +1087,7 @@ public partial class GatewayClient : IDisposable
                         {
                             foreach (var m in data.Members)
                             {
-                                guild.AddOrUpdate(_client, m);
+                                guild.AddOrUpdateMember(_client, m);
                             }
                             if ((data.ChunkIndex + 1) == data.ChunkCount)
                             {

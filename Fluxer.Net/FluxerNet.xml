@@ -8046,6 +8046,51 @@
             VOICE_STATE_UPDATE and VOICE_SERVER_UPDATE events containing connection information.
             </remarks>
         </member>
+        <member name="T:Fluxer.Net.OAuth.FluxerOAuthExtensions">
+            <Summary>
+            Extension methods for handling fluxer oauth client.
+            </Summary>
+        </member>
+        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.AddFluxerClient(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,System.String,Fluxer.Net.FluxerConfig)">
+            <Summary>
+            Add Fluxer oauth client on dependency injection service.
+            </Summary>
+        </member>
+        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.GetFluxerClaims(System.Security.Claims.ClaimsPrincipal,Fluxer.Net.FluxerBaseClient)">
+            <Summary>
+            Get Fluxer specific claims for a claim user.
+            </Summary>
+        </member>
+        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.AddFluxer(Microsoft.AspNetCore.Authentication.AuthenticationBuilder)">
+            <Summary>
+            Add Fluxer oauth client on dependency injection service.
+            </Summary>
+        </member>
+        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.AddFluxer(Microsoft.AspNetCore.Authentication.AuthenticationBuilder,System.Action{Fluxer.Net.OAuth.FluxerOAuthOptions})">
+            <Summary>
+            Add Fluxer oauth client on dependency injection service.
+            </Summary>
+        </member>
+        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.AddFluxer(Microsoft.AspNetCore.Authentication.AuthenticationBuilder,System.String,System.Action{Fluxer.Net.OAuth.FluxerOAuthOptions})">
+            <Summary>
+            Add Fluxer oauth client on dependency injection service.
+            </Summary>
+        </member>
+        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.AddFluxer(Microsoft.AspNetCore.Authentication.AuthenticationBuilder,System.String,System.String,System.Action{Fluxer.Net.OAuth.FluxerOAuthOptions})">
+            <Summary>
+            Add Fluxer oauth client on dependency injection service.
+            </Summary>
+        </member>
+        <member name="T:Fluxer.Net.OAuth.FluxerOAuthHandler">
+            <Summary>
+            Asp.net oauth handler for Fluxer.
+            </Summary>
+        </member>
+        <member name="M:Fluxer.Net.OAuth.FluxerOAuthHandler.#ctor(Microsoft.Extensions.Options.IOptionsMonitor{Fluxer.Net.OAuth.FluxerOAuthOptions},Microsoft.Extensions.Logging.ILoggerFactory,System.Text.Encodings.Web.UrlEncoder,Microsoft.AspNetCore.Authentication.ISystemClock)">
+            <Summary>
+            Create asp.net oauth handler for Fluxer.
+            </Summary>
+        </member>
         <member name="T:Fluxer.Net.RateLimiting.RateLimitBucket">
             <summary>
             Represents a sliding window rate limit bucket for API requests
@@ -8818,402 +8863,6 @@
         <member name="P:Fluxer.Net.UpdateMessageRequest.Attachments">
             <summary>
             Array of attachment objects to keep or add
-            </summary>
-        </member>
-        <member name="T:Fluxer.Net.Voice.AudioEncryption">
-            <summary>
-            Handles encryption of voice packets using XSalsa20_Poly1305.
-            Discord requires all voice data to be encrypted.
-            </summary>
-        </member>
-        <member name="M:Fluxer.Net.Voice.AudioEncryption.Encrypt(System.Byte[],System.Byte[])">
-            <summary>
-            Encrypts an RTP packet using XSalsa20_Poly1305 encryption.
-            </summary>
-            <param name="rtpPacket">The RTP packet to encrypt (12-byte header + Opus data).</param>
-            <param name="secretKey">The 32-byte secret key from Session Description.</param>
-            <returns>Encrypted packet with nonce.</returns>
-        </member>
-        <member name="M:Fluxer.Net.Voice.AudioEncryption.EncryptWithSuffix(System.Byte[],System.Byte[])">
-            <summary>
-            Encrypts an RTP packet using XSalsa20_Poly1305_Suffix encryption mode.
-            </summary>
-            <param name="rtpPacket">The RTP packet to encrypt.</param>
-            <param name="secretKey">The 32-byte secret key.</param>
-            <returns>Encrypted packet with nonce suffix.</returns>
-        </member>
-        <member name="M:Fluxer.Net.Voice.AudioEncryption.EncryptWithLite(System.Byte[],System.Byte[],System.UInt32@)">
-            <summary>
-            Encrypts an RTP packet using XSalsa20_Poly1305_Lite encryption mode.
-            </summary>
-            <param name="rtpPacket">The RTP packet to encrypt.</param>
-            <param name="secretKey">The 32-byte secret key.</param>
-            <param name="nonceCounter">Counter for generating nonce (incremented after each use).</param>
-            <returns>Encrypted packet with nonce suffix (4 bytes).</returns>
-        </member>
-        <member name="T:Fluxer.Net.Voice.AudioPlayer">
-            <summary>
-            Plays audio files (MP3, WAV, etc.) through a voice connection.
-            Handles conversion to PCM and encoding to Opus format required by Discord.
-            </summary>
-        </member>
-        <member name="M:Fluxer.Net.Voice.AudioPlayer.#ctor(Fluxer.Net.Voice.VoiceClient,Serilog.ILogger)">
-            <summary>
-            Creates a new AudioPlayer instance.
-            </summary>
-            <param name="voiceClient">The voice client to send audio through.</param>
-            <param name="logger">Optional Serilog logger.</param>
-        </member>
-        <member name="M:Fluxer.Net.Voice.AudioPlayer.PlayAsync(System.String,System.Threading.CancellationToken)">
-            <summary>
-            Plays an audio file through the voice connection.
-            </summary>
-            <param name="filePath">Path to the audio file (MP3, WAV, etc.).</param>
-            <param name="cancellationToken">Optional cancellation token to stop playback.</param>
-        </member>
-        <member name="M:Fluxer.Net.Voice.AudioPlayer.Stop">
-            <summary>
-            Stops the current playback.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.Voice.AudioPlayer.IsPlaying">
-            <summary>
-            Gets whether audio is currently playing.
-            </summary>
-        </member>
-        <member name="T:Fluxer.Net.Voice.OpusEncoder">
-            <summary>
-            Wrapper for Opus audio encoding.
-            Discord requires Opus-encoded audio at 48kHz, stereo, 20ms frames.
-            </summary>
-        </member>
-        <member name="M:Fluxer.Net.Voice.OpusEncoder.Encode(System.Byte[],System.Int32,System.Byte[])">
-            <summary>
-            Encodes PCM audio data to Opus format.
-            </summary>
-            <param name="pcmData">PCM audio data (16-bit, 48kHz, stereo).</param>
-            <param name="pcmLength">Length of PCM data in bytes.</param>
-            <param name="opusOutput">Output buffer for Opus-encoded data.</param>
-            <returns>Number of bytes written to opusOutput.</returns>
-        </member>
-        <member name="P:Fluxer.Net.Voice.OpusEncoder.FrameSize">
-            <summary>
-            Gets the required PCM frame size in bytes.
-            </summary>
-        </member>
-        <member name="T:Fluxer.Net.Voice.Protocol.SimpleProtobufParser">
-            <summary>
-            Simple protobuf parser for LiveKit messages.
-            Parses only what we need without using complex protobuf APIs.
-            </summary>
-        </member>
-        <member name="M:Fluxer.Net.Voice.Protocol.SimpleProtobufParser.TryExtractSDP(System.Byte[])">
-            <summary>
-            Tries to extract SDP from a LiveKit protobuf message.
-            LiveKit SignalResponse with Offer has structure:
-            - Field 3 (offer) → SessionDescription
-            - SessionDescription Field 2 (sdp) → string
-            </summary>
-        </member>
-        <member name="M:Fluxer.Net.Voice.Protocol.SimpleProtobufParser.IsJoinResponse(System.Byte[])">
-            <summary>
-            Checks if the message is a JoinResponse (field 1 in SignalResponse).
-            </summary>
-        </member>
-        <member name="M:Fluxer.Net.Voice.Protocol.SimpleProtobufParser.TryExtractIceCandidate(System.Byte[])">
-            <summary>
-            Tries to extract ICE candidate from a LiveKit protobuf message.
-            LiveKit SignalResponse with Trickle has structure:
-            - Field 4 (trickle) → TrickleRequest
-            - TrickleRequest Field 1 (candidateInit) → string
-            </summary>
-        </member>
-        <member name="M:Fluxer.Net.Voice.Protocol.SimpleProtobufParser.CreateAnswerRequest(System.String)">
-            <summary>
-            Creates a protobuf SignalRequest with an Answer.
-            Structure: Field 2 (answer) → SessionDescription { field 1 (type)="answer", field 2 (sdp)=sdpAnswer }
-            </summary>
-        </member>
-        <member name="M:Fluxer.Net.Voice.Protocol.SimpleProtobufParser.CreateTrickleRequest(System.String,System.Boolean)">
-            <summary>
-            Creates a trickle request for sending ICE candidates.
-            </summary>
-        </member>
-        <member name="M:Fluxer.Net.Voice.Protocol.SimpleProtobufParser.CreatePingRequest(System.Int64)">
-            <summary>
-            Creates a ping request.
-            </summary>
-        </member>
-        <member name="T:Fluxer.Net.Voice.RTPPacket">
-            <summary>
-            Handles creation of RTP (Real-time Transport Protocol) packets for voice transmission.
-            Discord uses RTP for sending audio data over UDP.
-            </summary>
-        </member>
-        <member name="M:Fluxer.Net.Voice.RTPPacket.CreatePacket(System.Byte[],System.Int32)">
-            <summary>
-            Creates an RTP packet with the given Opus-encoded audio data.
-            </summary>
-            <param name="opusData">Opus-encoded audio data.</param>
-            <param name="opusLength">Length of Opus data.</param>
-            <returns>Complete RTP packet ready for transmission.</returns>
-        </member>
-        <member name="P:Fluxer.Net.Voice.RTPPacket.Sequence">
-            <summary>
-            Gets the current sequence number.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.Voice.RTPPacket.Timestamp">
-            <summary>
-            Gets the current timestamp.
-            </summary>
-        </member>
-        <member name="T:Fluxer.Net.Voice.VoiceBridgeClient">
-            <summary>
-            Client for communicating with the Fluxer Voice Bridge (Node.js service).
-            This bridge uses the official LiveKit JavaScript SDK to handle all WebRTC complexity.
-            </summary>
-        </member>
-        <member name="M:Fluxer.Net.Voice.VoiceBridgeClient.#ctor(System.String,System.UInt64,System.UInt64,System.UInt64,System.String,Serilog.ILogger)">
-            <summary>
-            Creates a new VoiceBridgeClient instance.
-            </summary>
-            <param name="bridgeUrl">WebSocket URL of the Node.js bridge (e.g., "ws://localhost:8765")</param>
-            <param name="guildId">Guild/server ID</param>
-            <param name="channelId">Voice channel ID</param>
-            <param name="userId">User ID</param>
-            <param name="sessionId">Connection session ID</param>
-            <param name="logger">Optional Serilog logger</param>
-        </member>
-        <member name="M:Fluxer.Net.Voice.VoiceBridgeClient.ConnectAsync(System.String,System.String)">
-            <summary>
-            Connects to the voice bridge and joins the voice channel.
-            </summary>
-            <param name="endpoint">LiveKit server endpoint (from VoiceServerUpdate)</param>
-            <param name="token">JWT token for authentication (from VoiceServerUpdate)</param>
-        </member>
-        <member name="M:Fluxer.Net.Voice.VoiceBridgeClient.DisconnectAsync">
-            <summary>
-            Disconnects from the voice channel.
-            </summary>
-        </member>
-        <member name="M:Fluxer.Net.Voice.VoiceBridgeClient.SetMuteAsync(System.Boolean)">
-            <summary>
-            Sets the mute state of the local microphone.
-            </summary>
-        </member>
-        <member name="M:Fluxer.Net.Voice.VoiceBridgeClient.SetDeafAsync(System.Boolean)">
-            <summary>
-            Sets the deafen state (mutes microphone and disables audio output).
-            </summary>
-        </member>
-        <member name="M:Fluxer.Net.Voice.VoiceBridgeClient.ReceiveLoop(System.Threading.CancellationToken)">
-            <summary>
-            Receive loop for processing messages from the bridge.
-            </summary>
-        </member>
-        <member name="M:Fluxer.Net.Voice.VoiceBridgeClient.HandleMessage(System.String)">
-            <summary>
-            Handle incoming messages from the bridge.
-            </summary>
-        </member>
-        <member name="M:Fluxer.Net.Voice.VoiceBridgeClient.SendMessageAsync(System.Object)">
-            <summary>
-            Send a message to the bridge.
-            </summary>
-        </member>
-        <member name="M:Fluxer.Net.Voice.VoiceBridgeClient.CleanupAsync">
-            <summary>
-            Cleanup resources.
-            </summary>
-        </member>
-        <member name="T:Fluxer.Net.Voice.ParticipantInfo">
-            <summary>
-            Information about a participant in a voice channel.
-            </summary>
-        </member>
-        <member name="T:Fluxer.Net.Voice.VoiceClient">
-            <summary>
-            Manages LiveKit voice connections for real-time audio streaming with Fluxer BETA API.
-            Uses minimal protobuf parsing and SIPSorcery for WebRTC.
-            </summary>
-        </member>
-        <member name="M:Fluxer.Net.Voice.VoiceClient.#ctor(System.String,System.Nullable{System.UInt64},System.UInt64,System.UInt64,System.String,System.String,Serilog.ILogger)">
-            <summary>
-            Creates a new LiveKit VoiceClient instance.
-            </summary>
-        </member>
-        <member name="M:Fluxer.Net.Voice.VoiceClient.ConnectAsync">
-            <summary>
-            Connects to the LiveKit server and joins the voice room.
-            </summary>
-        </member>
-        <member name="M:Fluxer.Net.Voice.VoiceClient.SendAudioAsync(System.Byte[],System.Int32)">
-            <summary>
-            Sends audio data over the voice connection.
-            </summary>
-        </member>
-        <member name="M:Fluxer.Net.Voice.VoiceClient.SetSpeaking(System.Boolean)">
-            <summary>
-            Sets speaking state (LiveKit auto-manages speaking indicators).
-            </summary>
-        </member>
-        <member name="M:Fluxer.Net.Voice.VoiceClient.DisconnectAsync">
-            <summary>
-            Disconnects from the LiveKit server.
-            </summary>
-        </member>
-        <member name="T:Fluxer.Net.Voice.VoiceOpCode">
-            <summary>
-            Operation codes used in the Voice Gateway WebSocket protocol.
-            Based on Discord's voice protocol specifications.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Voice.VoiceOpCode.Identify">
-            <summary>
-            Client → Server: Begin a voice websocket connection.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Voice.VoiceOpCode.SelectProtocol">
-            <summary>
-            Client → Server: Select the voice protocol.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Voice.VoiceOpCode.Ready">
-            <summary>
-            Server → Client: Complete the websocket handshake.
-            Contains SSRC, UDP port, and encryption modes.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Voice.VoiceOpCode.Heartbeat">
-            <summary>
-            Client → Server: Keep the websocket connection alive.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Voice.VoiceOpCode.SessionDescription">
-            <summary>
-            Server → Client: Describe the session.
-            Contains secret key for encryption.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Voice.VoiceOpCode.Speaking">
-            <summary>
-            Client/Server: Indicate which users are speaking.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Voice.VoiceOpCode.HeartbeatAck">
-            <summary>
-            Server → Client: Sent to acknowledge a received client heartbeat.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Voice.VoiceOpCode.Resume">
-            <summary>
-            Client → Server: Resume a connection.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Voice.VoiceOpCode.Hello">
-            <summary>
-            Server → Client: Sent after a successful Resume.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Voice.VoiceOpCode.Resumed">
-            <summary>
-            Server → Client: Sent after a successful Resume.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Voice.VoiceOpCode.ClientDisconnect">
-            <summary>
-            Client → Server: Request member resource.
-            </summary>
-        </member>
-        <member name="T:Fluxer.Net.Voice.VoicePacket">
-            <summary>
-            Represents a packet sent or received over the voice WebSocket connection.
-            </summary>
-        </member>
-        <member name="T:Fluxer.Net.Voice.VoiceReadyPayload">
-            <summary>
-            Voice Ready payload data.
-            </summary>
-        </member>
-        <member name="T:Fluxer.Net.Voice.VoiceSessionDescriptionPayload">
-            <summary>
-            Voice Session Description payload data.
-            </summary>
-        </member>
-        <member name="T:Fluxer.Net.Voice.VoiceHelloPayload">
-            <summary>
-            Voice Hello payload data.
-            </summary>
-        </member>
-        <member name="T:Fluxer.Net.Voice.VoiceIdentifyPayload">
-            <summary>
-            Voice Identify payload data.
-            </summary>
-        </member>
-        <member name="T:Fluxer.Net.Voice.VoiceSelectProtocolPayload">
-            <summary>
-            Voice Select Protocol payload data.
-            </summary>
-        </member>
-        <member name="T:Fluxer.Net.Voice.VoiceProtocolData">
-            <summary>
-            Voice protocol data for Select Protocol.
-            </summary>
-        </member>
-        <member name="T:Fluxer.Net.Voice.VoiceSpeakingPayload">
-            <summary>
-            Voice Speaking payload data.
-            </summary>
-        </member>
-        <member name="T:Fluxer.Net.Voice.VoiceStateManager">
-            <summary>
-            Manages voice connection state across the application.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.Voice.VoiceStateManager.VoiceEndpoint">
-            <summary>
-            Voice endpoint from VOICE_SERVER_UPDATE event.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.Voice.VoiceStateManager.VoiceToken">
-            <summary>
-            Voice token from VOICE_SERVER_UPDATE event.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.Voice.VoiceStateManager.VoiceSessionId">
-            <summary>
-            Voice session ID from VOICE_STATE_UPDATE event.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.Voice.VoiceStateManager.VoiceGuildId">
-            <summary>
-            Voice guild ID from VOICE_SERVER_UPDATE event.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.Voice.VoiceStateManager.VoiceChannelId">
-            <summary>
-            Voice channel ID from VOICE_STATE_UPDATE event.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.Voice.VoiceStateManager.ConnectionId">
-            <summary>
-            Connection ID from VOICE_SERVER_UPDATE event.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.Voice.VoiceStateManager.ReadyData">
-            <summary>
-            Ready data containing bot user information.
-            </summary>
-        </member>
-        <member name="M:Fluxer.Net.Voice.VoiceStateManager.Reset">
-            <summary>
-            Resets all voice state.
-            </summary>
-        </member>
-        <member name="M:Fluxer.Net.Voice.VoiceStateManager.IsVoiceDataReady">
-            <summary>
-            Checks if all required voice connection data is available.
             </summary>
         </member>
     </members>
