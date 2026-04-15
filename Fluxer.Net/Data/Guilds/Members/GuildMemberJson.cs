@@ -88,5 +88,4 @@ public class GuildMemberJson : IGuildMember
     }
 
     IUser IGuildMember.User => User;
-
 }

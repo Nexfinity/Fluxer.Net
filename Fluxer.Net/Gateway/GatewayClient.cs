@@ -623,7 +623,10 @@ public partial class GatewayClient : IDisposable
                 {
                     MessageGatewayData? data = p.Data.ToObject<MessageGatewayData>(FluxerClient._serializer);
                     if (data != null)
+                    {
+                        data.Member.User = data.Author;
                         MessageCreate?.Invoke(data);
+                    }
                     else
                         _logger.Warning("MESSAGE_CREATE event received but data could not be cast to MessageGatewayData");
                 }
@@ -632,7 +635,10 @@ public partial class GatewayClient : IDisposable
                 {
                     MessageGatewayData? data = p.Data.ToObject<MessageGatewayData>(FluxerClient._serializer);
                     if (data != null)
+                    {
+                        data.Member.User = data.Author;
                         MessageUpdate?.Invoke(data);
+                    }
                     else
                         _logger.Warning("MESSAGE_UPDATE event received but data could not be cast to MessageGatewayData");
                 }
