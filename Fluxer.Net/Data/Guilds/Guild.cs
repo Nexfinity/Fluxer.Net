@@ -57,7 +57,7 @@ public class Guild : PartialGuild, IGuild
         return data;
     }
 
-    internal void Update(FluxerBaseClient client, GuildJson json)
+    internal virtual void Update(FluxerBaseClient client, GuildJson json)
     {
         base.Update(client, json);
         OwnerId = json.OwnerId;

@@ -20,7 +20,7 @@ public interface IRole
     /// <summary>
     /// The role's permission bitfield. Sent as a quoted string by the gateway (e.g. "8933636165184").
     /// </summary>
-    Permissions Permissions { get; }
+    GuildPermissions Permissions { get; }
 
     /// <summary>
     /// The position of the role in the role hierarchy.

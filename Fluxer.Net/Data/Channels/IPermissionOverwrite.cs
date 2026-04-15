@@ -15,10 +15,10 @@ public interface IPermissionOverwrite
     /// <summary>
     /// The bitwise value of allowed permissions.
     /// </summary>
-    ulong Allow { get; }
+    ChannelPermissions Allow { get; }
 
     /// <summary>
     /// The bitwise value of denied permissions.
     /// </summary>
-    ulong Deny { get; }
+    ChannelPermissions Deny { get; }
 }

@@ -2,20 +2,34 @@
 
 public class SocketRole : Role
 {
+    public SocketGuild Guild { get; internal set; }
+
+    public bool HasPermission(Permissions permission)
+    {
+        if (Permissions.RawValue.HasFlag(permission))
+            return true;
+
+        if (Guild.Permissions.RawValue.HasFlag(permission))
+            return true;
+
+        return false;
+    }
+
     internal SocketRole(FluxerBaseClient client) : base(client)
     {
 
     }
 
-    public static SocketRole Create(FluxerBaseClient client, RoleJson json, ulong guildId)
+    public static SocketRole Create(FluxerBaseClient client, RoleJson json, SocketGuild guild)
     {
         SocketRole data = new SocketRole(client);
-        data.GuildId = guildId;
+        data.GuildId = guild.Id;
+        data.Guild = guild;
         data.Update(client, json);
         return data;
     }
 
-    internal void Update(FluxerBaseClient client, RoleJson json)
+    internal override void Update(FluxerBaseClient client, RoleJson json)
     {
         base.Update(client, json);
     }

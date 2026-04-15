@@ -4,6 +4,20 @@ public class SocketGuildMember : GuildMember
 {
     public SocketGuild Guild { get; internal set; }
 
+    public IEnumerable<SocketRole> Roles
+            => RoleIds.Select(id => Guild.Roles[id]).Where(x => x != null);
+
+    public bool HasPermission(Permissions permission)
+    {
+        foreach (var r in Roles)
+        {
+            if (r.Permissions.RawValue.HasFlag(permission))
+                return true;
+        }
+
+        return false;
+    }
+
     internal SocketGuildMember(FluxerBaseClient client) : base(client)
     {
 
@@ -16,7 +30,7 @@ public class SocketGuildMember : GuildMember
         return data;
     }
 
-    internal void Update(FluxerBaseClient client, GuildMemberJson json)
+    internal override void Update(FluxerBaseClient client, GuildMemberJson json)
     {
         base.Update(client, json);
     }

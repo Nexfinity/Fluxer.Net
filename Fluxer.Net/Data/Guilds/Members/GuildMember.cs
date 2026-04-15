@@ -86,7 +86,7 @@ public class GuildMember : Entity, IGuildMember
         return data;
     }
 
-    internal void Update(FluxerBaseClient client, GuildMemberJson json)
+    internal virtual void Update(FluxerBaseClient client, GuildMemberJson json)
     {
         GuildId = json.GuildId;
         User = User.Create(client, json.User);

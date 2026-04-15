@@ -1314,7 +1314,7 @@
         <member name="P:Fluxer.Net.PermissionOverwriteJson.Deny">
             <inheritdoc />
         </member>
-        <member name="P:Fluxer.Net.SocketChannel.Permissions">
+        <member name="P:Fluxer.Net.SocketUnknownChannel.Permissions">
             <summary>
             Permissions for the channel.
             </summary>
@@ -7254,6 +7254,11 @@
             Used to enable or disable events for specific guilds.
             Useful for managing event load in bots that are in many guilds.
             </remarks>
+        </member>
+        <member name="P:Fluxer.Net.Gateway.Packets.RequestMembersPacket.GuildId">
+            <summary>
+            The guild ID.
+            </summary>
         </member>
         <member name="T:Fluxer.Net.GatewayClient">
             <summary>

@@ -13,6 +13,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Serilog.Core;
 using System.Collections.Concurrent;
+using System.Data;
 using System.Diagnostics;
 using System.Reflection;
 using System.Text.RegularExpressions;
@@ -102,10 +103,32 @@ public partial class GatewayClient : IDisposable
     #region Cache
 
     public CurrentUser? CurrentUser { get; internal set; }
-    public ConcurrentDictionary<ulong, SocketGuild> Guilds = new ConcurrentDictionary<ulong, SocketGuild>();
-    public ConcurrentDictionary<ulong, SocketChannel> Channels = new ConcurrentDictionary<ulong, SocketChannel>();
-    public ConcurrentDictionary<ulong, SocketRole> Roles = new ConcurrentDictionary<ulong, SocketRole>();
-    public ConcurrentDictionary<ulong, SocketGuildMember> CurrentMembers = new ConcurrentDictionary<ulong, SocketGuildMember>();
+    public ConcurrentDictionary<ulong, SocketGuild> Guilds { get; internal set; } = new ConcurrentDictionary<ulong, SocketGuild>();
+    public ConcurrentDictionary<ulong, Channel> Channels { get; internal set; } = new ConcurrentDictionary<ulong, Channel>();
+    public ConcurrentDictionary<ulong, SocketRole> Roles { get; internal set; } = new ConcurrentDictionary<ulong, SocketRole>();
+    public ConcurrentDictionary<ulong, SocketGuildMember> CurrentMembers { get; internal set; } = new ConcurrentDictionary<ulong, SocketGuildMember>();
+    public RtcRegion[] RtcRegions;
+
+    public SocketGuildMember? GetCurrentMember(ulong userId)
+    {
+        return CurrentMembers.GetValueOrDefault(userId);
+    }
+
+    public SocketGuild? GetGuild(ulong guildId)
+    {
+        return Guilds.GetValueOrDefault(guildId);
+    }
+
+    public SocketRole? GetRole(ulong roleId)
+    {
+        return Roles.GetValueOrDefault(roleId);
+    }
+
+    public Channel? GetChannel(ulong channelId)
+    {
+        return Channels.GetValueOrDefault(channelId);
+    }
+
     #endregion
 
     #region Gateway
@@ -226,6 +249,29 @@ public partial class GatewayClient : IDisposable
         {
             // Will be set to false when we receive READY event
         }
+    }
+
+    public async Task<bool> DownloadMembersAsync(SocketGuild guild)
+    {
+        if (guild._downloaderPromise != null)
+            return await guild._downloaderPromise.Task;
+
+        guild._downloaderPromise = new TaskCompletionSource<bool>();
+
+        CancellationToken token = CancellationToken.None;
+        GatewayPacket login = new GatewayPacket
+        {
+            OpCode = FluxerOpCode.RequestGuildMembers,
+            Data = JToken.FromObject(new RequestMembersPacket
+            {
+                GuildId = guild.Id.ToString()
+            })
+        };
+        SendGatewayPacket(login);
+
+        await Task.WhenAny(guild._downloaderPromise.Task, Task.Delay(new TimeSpan(0, 0, 30)));
+
+        return guild._downloaderPromise.Task.Result;
     }
 
     /// <summary>
@@ -462,23 +508,36 @@ public partial class GatewayClient : IDisposable
                     if (data != null)
                     {
                         CurrentUser = CurrentUser.Create(_client, data.User);
+
+                        _sessionId = data.SessionId;
+                        _isConnecting = false; // Connection successfully established
+                        _reconnectAttemptCount = 0; // Reset backoff counter
+
                         GuildIds = data.Guilds.Select(x => x.Id).ToHashSet();
                         Channels.Clear();
                         Roles.Clear();
                         CurrentMembers.Clear();
                         Guilds.Clear();
+                        RtcRegions = data.RtcRegions.Select(x => RtcRegion.Create(_client, x)).ToArray();
                         if (data.Guilds != null)
                         {
-                            foreach (var g in data.Guilds)
+                            foreach (GuildGatewayData g in data.Guilds)
                             {
                                 CurrentMembers.TryAdd(g.Id, SocketGuildMember.Create(_client, g.Members.First(x => x.UserId == CurrentUser.Id)));
-                                Guilds.TryAdd(g.Id, SocketGuild.Create(_client, g.Properties, CurrentMembers[g.Id]));
+                                SocketGuild guild = SocketGuild.Create(_client, g.Properties, CurrentMembers[g.Id]);
+                                foreach (Gateway.Data.Guilds.GuildMemberGatewayData m in g.Members)
+                                {
+                                    if (m.UserId != CurrentUser.Id)
+                                    {
+                                        SocketGuildMember member = SocketGuildMember.Create(_client, m);
+                                        member.Guild = guild;
+                                        guild.Members.TryAdd(m.UserId, member);
+                                    }
+                                }
+                                Guilds.TryAdd(g.Id, guild);
                             }
                         }
 
-                        _sessionId = data.SessionId;
-                        _isConnecting = false; // Connection successfully established
-                        _reconnectAttemptCount = 0; // Reset backoff counter
                         _logger.Information("Connection established successfully with session ID: {SessionId}", _sessionId);
                         Ready?.Invoke(data);
                     }
@@ -592,7 +651,15 @@ public partial class GatewayClient : IDisposable
                     ChannelGatewayData? data = p.Data.ToObject<ChannelGatewayData>(FluxerClient._serializer);
                     if (data != null)
                     {
-                        Channels.TryAdd(data.Id, SocketChannel.Create(_client, data, data.GuildId.Value));
+                        Channel channel = SocketUnknownChannel.Create(_client, data, data.GuildId.Value);
+                        if (!Channels.TryAdd(channel.Id, channel))
+                        {
+                            channel = Channels[channel.Id];
+                            channel.Update(_client, data);
+                        }
+                        if (channel.GuildId.HasValue && Guilds.TryGetValue(channel.GuildId.Value, out var guild))
+                            guild.Channels.TryAdd(channel.Id, channel);
+
                         ChannelCreate?.Invoke(data);
                     }
                     else
@@ -604,8 +671,9 @@ public partial class GatewayClient : IDisposable
                     ChannelGatewayData? data = p.Data.ToObject<ChannelGatewayData>(FluxerClient._serializer);
                     if (data != null)
                     {
-                        if (Channels.TryGetValue(data.Id, out SocketChannel channel))
+                        if (Channels.TryGetValue(data.Id, out Channel channel))
                             channel.Update(_client, data);
+
                         ChannelUpdate?.Invoke(data);
                     }
                     else
@@ -855,20 +923,50 @@ public partial class GatewayClient : IDisposable
                         GuildIds.Add(data.Id);
                         if (!data.Unavailable.GetValueOrDefault())
                         {
-                            SocketGuildMember member = SocketGuildMember.Create(_client, data.Members.First(x => x.UserId == CurrentUser.Id));
-                            SocketGuild guild = SocketGuild.Create(_client, data.Properties, member);
-                            if (Guilds.TryAdd(data.Id, guild))
-                                CurrentMembers.TryAdd(data.Id, member);
+                            Gateway.Data.Guilds.GuildMemberGatewayData json = data.Members.First(x => x.UserId == CurrentUser.Id);
+                            SocketGuildMember member = SocketGuildMember.Create(_client, json);
 
-                            foreach (ChannelGatewayData c in data.Channels)
+                            // Add or update current member
+                            if (!CurrentMembers.TryAdd(data.Id, member))
                             {
-                                Channels.TryAdd(c.Id, SocketChannel.Create(_client, c, data.Id));
+                                member = CurrentMembers[data.Id];
+                                member.Update(_client, json);
                             }
+
+                            SocketGuild guild = SocketGuild.Create(_client, data.Properties, member);
+
+                            // Ad or update guild
+                            if (!Guilds.TryAdd(data.Id, guild))
+                            {
+                                guild = Guilds[data.Id];
+                                guild.Update(_client, data.Properties);
+                            }
+
+                            // Add or update roles
                             foreach (RoleJson r in data.Roles)
                             {
-                                Roles.TryAdd(r.Id, SocketRole.Create(_client, r, data.Id));
+                                var role = SocketRole.Create(_client, r, guild);
+                                if (!Roles.TryAdd(r.Id, role))
+                                {
+                                    role = Roles[r.Id];
+                                    role.Update(_client, r);
+                                }
+
+                                guild.Roles.TryAdd(r.Id, role);
                             }
                             guild.UpdatePermissions(Roles[data.Id]);
+
+                            // Add or update channels
+                            foreach (ChannelGatewayData c in data.Channels)
+                            {
+                                var channel = SocketUnknownChannel.Create(_client, c, data.Id);
+                                if (!Channels.TryAdd(c.Id, channel))
+                                {
+                                    channel = Channels[c.Id];
+                                    channel.Update(_client, c);
+                                }
+                                guild.Channels.TryAdd(c.Id, channel);
+                            }
                         }
 
                         GuildCreate?.Invoke(data);
@@ -884,6 +982,7 @@ public partial class GatewayClient : IDisposable
                     {
                         if (Guilds.TryGetValue(data.Id, out SocketGuild guild))
                             guild.Update(_client, data.Properties);
+
                         GuildUpdate?.Invoke(data);
                     }
                     else
@@ -904,15 +1003,13 @@ public partial class GatewayClient : IDisposable
                         {
                             Guilds.TryRemove(data.Id, out _);
                             CurrentMembers.TryRemove(data.Id, out _);
-                            foreach (SocketChannel c in Channels.Values)
+                            foreach (SocketUnknownChannel c in Channels.Values.Where(x => x.GuildId == data.Id))
                             {
-                                if (c.GuildId == data.Id)
-                                    Channels.TryRemove(c.Id, out _);
+                                Channels.TryRemove(c.Id, out _);
                             }
-                            foreach (SocketRole r in Roles.Values)
+                            foreach (SocketRole r in Roles.Values.Where(x => x.GuildId == data.Id))
                             {
-                                if (r.GuildId == data.Id)
-                                    Roles.TryRemove(r.Id, out _);
+                                Roles.TryRemove(r.Id, out _);
                             }
                             GuildIds.Remove(data.Id);
                             GuildDelete?.Invoke(data);
@@ -926,7 +1023,12 @@ public partial class GatewayClient : IDisposable
                 {
                     Gateway.Data.Guilds.GuildMemberGatewayData? data = p.Data.ToObject<Gateway.Data.Guilds.GuildMemberGatewayData>(FluxerClient._serializer);
                     if (data != null)
+                    {
+                        if (Guilds.TryGetValue(data.GuildId, out SocketGuild guild))
+                            guild.AddOrUpdate(_client, data);
+
                         GuildMemberAdd?.Invoke(data);
+                    }
                     else
                         _logger.Warning("GUILD_MEMBER_ADD event received but data could not be cast to GuildMemberGatewayData");
                 }
@@ -936,7 +1038,7 @@ public partial class GatewayClient : IDisposable
                     Gateway.Data.Guilds.GuildMemberGatewayData? data = p.Data.ToObject<Gateway.Data.Guilds.GuildMemberGatewayData>(FluxerClient._serializer);
                     if (data != null)
                     {
-                        if (CurrentMembers.TryGetValue(data.GuildId, out SocketGuildMember member) && member.UserId == data.UserId)
+                        if (Guilds.TryGetValue(data.GuildId, out SocketGuild guild) && guild.Members.TryGetValue(data.UserId, out var member))
                             member.Update(_client, data);
 
                         GuildMemberUpdate?.Invoke(data);
@@ -949,9 +1051,37 @@ public partial class GatewayClient : IDisposable
                 {
                     EntityRemovedGatewayData? data = p.Data.ToObject<EntityRemovedGatewayData>(FluxerClient._serializer);
                     if (data != null)
+                    {
+                        if (Guilds.TryGetValue(data.GuildId.Value, out SocketGuild guild))
+                            guild.Members.TryRemove(data.Id.Value, out _);
+
                         GuildMemberRemove?.Invoke(data);
+                    }
                     else
                         _logger.Warning("GUILD_MEMBER_REMOVE event received but data could not be cast to EntityRemovedGatewayData");
+                }
+                return;
+            case "GUILD_MEMBERS_CHUNK":
+                {
+                    GuildMembersChunkGatewayData? data = p.Data.ToObject<GuildMembersChunkGatewayData>(FluxerClient._serializer);
+                    if (data != null)
+                    {
+                        if (Guilds.TryGetValue(data.GuildId, out var guild))
+                        {
+                            foreach (var m in data.Members)
+                            {
+                                guild.AddOrUpdate(_client, m);
+                            }
+                            if ((data.ChunkIndex + 1) == data.ChunkCount)
+                            {
+                                guild.HasAllMembers = true;
+                                if (guild._downloaderPromise != null)
+                                    guild._downloaderPromise.SetResult(true);
+                            }
+                        }
+                    }
+                    else
+                        _logger.Warning("GUILD_MEMBERS_CHUNK event received but data could not be cast to GuildMembersChunkGatewayData");
                 }
                 return;
             case "GUILD_ROLE_CREATE":
@@ -959,7 +1089,17 @@ public partial class GatewayClient : IDisposable
                     GuildRoleGatewayData? data = p.Data.ToObject<GuildRoleGatewayData>(FluxerClient._serializer);
                     if (data != null)
                     {
-                        Roles.TryAdd(data.Role.Id, SocketRole.Create(_client, data.Role, data.GuildId));
+                        if (Guilds.TryGetValue(data.GuildId, out var guild))
+                        {
+                            SocketRole role = SocketRole.Create(_client, data.Role, guild);
+                            if (!Roles.TryAdd(data.Role.Id, role))
+                            {
+                                role = Roles[data.Role.Id];
+                                role.Update(_client, data.Role);
+                            }
+                        }
+
+
                         GuildRoleCreate?.Invoke(data);
                     }
                     else
@@ -972,11 +1112,11 @@ public partial class GatewayClient : IDisposable
                     if (data != null)
                     {
                         if (Roles.TryGetValue(data.Role.Id, out SocketRole role))
-                        {
                             role.Update(_client, data.Role);
-                            if (Guilds.TryGetValue(role.Id, out SocketGuild guild))
-                                guild.UpdatePermissions(role);
-                        }
+
+                        if (data.Role.Id == data.GuildId && Guilds.TryGetValue(data.GuildId, out SocketGuild guild))
+                            guild.UpdatePermissions(role);
+
                         GuildRoleUpdate?.Invoke(data);
                     }
                     else
@@ -989,6 +1129,9 @@ public partial class GatewayClient : IDisposable
                     if (data != null)
                     {
                         Roles.TryRemove(data.RoleId, out _);
+                        if (Guilds.TryGetValue(data.GuildId, out SocketGuild guild))
+                            guild.Roles.TryRemove(data.RoleId, out _);
+
                         GuildRoleDelete?.Invoke(data);
                     }
                     else
@@ -999,7 +1142,17 @@ public partial class GatewayClient : IDisposable
                 {
                     GuildRoleUpdateBulkGatewayData? data = p.Data.ToObject<GuildRoleUpdateBulkGatewayData>(FluxerClient._serializer);
                     if (data != null)
+                    {
+                        foreach (var r in data.Roles)
+                        {
+                            if (Roles.TryGetValue(r.Id, out SocketRole role))
+                                role.Update(_client, r);
+
+                            if (r.Id == data.GuildId && Guilds.TryGetValue(data.GuildId, out SocketGuild guild))
+                                guild.UpdatePermissions(role);
+                        }
                         GuildRoleUpdateBulk?.Invoke(data);
+                    }
                     else
                         _logger.Warning("GUILD_ROLE_UPDATE_BULK event received but data could not be cast to GuildRoleUpdateBulkGatewayData");
                 }
