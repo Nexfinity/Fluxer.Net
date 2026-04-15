@@ -19,7 +19,7 @@ public class RoleJson : IRole
 
     /// <inheritdoc />
     [JsonProperty("permissions")]
-    public Permissions Permissions { get; set; }
+    public GuildPermissions Permissions { get; set; }
 
     /// <inheritdoc />
     [JsonProperty("position")]

@@ -23,7 +23,7 @@ public class Application : PartialApplication, IApplication
         return data;
     }
 
-    internal void Update(FluxerBaseClient client, ApplicationJson json)
+    internal virtual void Update(FluxerBaseClient client, ApplicationJson json)
     {
         base.Update(client, json);
         RedirectUrls = json.RedirectUrls;

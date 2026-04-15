@@ -66,12 +66,6 @@ public class FluxerClient : FluxerBaseClient
 
     internal static JsonSerializer _serializer { get; set; } = CreateGatewaySerializer();
 
-    // Used by both api and gateway
-    internal static JsonSerializerSettings _serializerSettings { get; set; } = new JsonSerializerSettings()
-    {
-        NullValueHandling = NullValueHandling.Ignore
-    };
-
     internal static JsonSerializer CreateGatewaySerializer()
     {
         var serializer = new JsonSerializer
@@ -79,8 +73,25 @@ public class FluxerClient : FluxerBaseClient
             NullValueHandling = NullValueHandling.Ignore
         };
         serializer.Converters.Add(new StringUInt64Converter());
+        serializer.Converters.Add(new GuildPermissionsConverter());
+        serializer.Converters.Add(new ChannelPermissionsConverter());
         return serializer;
     }
+
+    // Used by both api and gateway
+    internal static JsonSerializerSettings _serializerSettings { get; set; } = CreateRestSerializer();
+
+    internal static JsonSerializerSettings CreateRestSerializer()
+    {
+        var serializer = new JsonSerializerSettings
+        {
+            NullValueHandling = NullValueHandling.Ignore
+        };
+        serializer.Converters.Add(new GuildPermissionsConverter());
+        serializer.Converters.Add(new ChannelPermissionsConverter());
+        return serializer;
+    }
+
 
     /// <summary>
     /// Validates that the token has a recognized prefix for the Fluxer API.

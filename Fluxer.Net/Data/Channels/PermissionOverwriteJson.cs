@@ -18,9 +18,9 @@ public class PermissionOverwriteJson : IPermissionOverwrite
 
     /// <inheritdoc />
     [JsonProperty("allow")]
-    public ulong Allow { get; set; }
+    public ChannelPermissions Allow { get; set; }
 
     /// <inheritdoc />
     [JsonProperty("deny")]
-    public ulong Deny { get; set; }
+    public ChannelPermissions Deny { get; set; }
 }

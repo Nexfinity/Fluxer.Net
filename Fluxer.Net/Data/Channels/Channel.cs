@@ -106,7 +106,7 @@ public class Channel : Entity, IChannel
                 break;
             case ChannelType.DmPersonalNotes:
                 {
-                    data = new SavedMessagesChannel(client);
+                    data = new SavedNotesChannel(client);
                     data.IsTextable = true;
                 }
                 break;
@@ -128,7 +128,10 @@ public class Channel : Entity, IChannel
                 break;
             default:
                 {
-                    data = new Channel(client);
+                    if (data.GuildId.HasValue)
+                        data = new GuildChannel(client);
+                    else
+                        data = new Channel(client);
                     data.IsTextable = true;
                 }
                 break;
@@ -137,7 +140,7 @@ public class Channel : Entity, IChannel
         return data;
     }
 
-    internal void Update(FluxerBaseClient client, ChannelJson json)
+    internal virtual void Update(FluxerBaseClient client, ChannelJson json)
     {
         Id = json.Id;
         GuildId = json.GuildId;

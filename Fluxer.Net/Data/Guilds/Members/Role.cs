@@ -16,7 +16,7 @@ public class Role : Entity, IRole
     public string Name { get; internal set; }
 
     /// <inheritdoc />
-    public Permissions Permissions { get; internal set; }
+    public GuildPermissions Permissions { get; internal set; }
 
     /// <inheritdoc />
     public int Position { get; internal set; }
@@ -46,7 +46,7 @@ public class Role : Entity, IRole
         return data;
     }
 
-    internal void Update(FluxerBaseClient client, RoleJson json)
+    internal virtual void Update(FluxerBaseClient client, RoleJson json)
     {
         Id = json.Id;
         Name = json.Name;

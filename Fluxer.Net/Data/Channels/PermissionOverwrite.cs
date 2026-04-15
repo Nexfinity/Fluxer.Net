@@ -10,10 +10,10 @@ public class PermissionOverwrite : Entity, IPermissionOverwrite
     public int Type { get; internal set; }
 
     /// <inheritdoc />
-    public ulong Allow { get; internal set; }
+    public ChannelPermissions Allow { get; internal set; }
 
     /// <inheritdoc />
-    public ulong Deny { get; internal set; }
+    public ChannelPermissions Deny { get; internal set; }
 
     internal PermissionOverwrite(FluxerBaseClient client) : base(client)
     {
