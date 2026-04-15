@@ -2364,6 +2364,32 @@ public partial class GatewayClient : IDisposable
 
     #endregion
 
+    #region Voice
+
+    /// <summary>
+    /// Updates the current user's voice state (join/leave voice channels, mute, deafen).
+    /// </summary>
+    /// <param name="guildId">The guild ID containing the voice channel.</param>
+    /// <param name="channelId">The voice channel ID to join, or null to disconnect.</param>
+    /// <param name="selfMute">Whether the user should be self-muted.</param>
+    /// <param name="selfDeaf">Whether the user should be self-deafened.</param>
+    /// <remarks>
+    /// This sends a VOICE_STATE_UPDATE packet to the gateway. The server will respond with
+    /// VOICE_STATE_UPDATE and VOICE_SERVER_UPDATE events containing connection information.
+    /// </remarks>
+    public void UpdateVoiceState(ulong? guildId, ulong? channelId, bool selfMute, bool selfDeaf)
+    {
+        var packet = new GatewayPacket()
+        {
+            // TODO: Technically should be ulong, but fluxer expects strings. Fluxer will eventually be lenient and accept both.
+            Data = JToken.FromObject(new VoiceStateUpdatePayload(guildId.ToString(), channelId.ToString(), selfMute, selfDeaf)),
+            OpCode = FluxerOpCode.VoiceStateUpdate
+        };
+        SendGatewayPacket(packet);
+    }
+
+    #endregion
+
     #region IDisposable
 
     public void Dispose()
