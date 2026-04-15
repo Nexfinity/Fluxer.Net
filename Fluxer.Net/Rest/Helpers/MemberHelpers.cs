@@ -22,4 +22,16 @@ public static class MemberHelpers
 
     public static Task RemoveRoleAsync(this GuildMember member, Role role)
         => member.Client.Rest.RemoveMemberRoleAsync(member.GuildId, member.UserId, role.Id);
+
+    public static Task SetNicknameAsync(this GuildMember member, string? name)
+        => member.Client.Rest.UpdateMemberAsync(member.GuildId, member.UserId, new GuildMemberJson
+        {
+            Nickname = name
+        });
+
+    public static Task SetTimeoutAsync(this GuildMember member, DateTime? date)
+        => member.Client.Rest.UpdateMemberAsync(member.GuildId, member.UserId, new GuildMemberJson
+        {
+            CommunicationDisabledUntil = date
+        });
 }
