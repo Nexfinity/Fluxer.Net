@@ -51,13 +51,13 @@ public class RequireContextAttribute : PreconditionAttribute
     {
         bool isValid = false;
 
-        if (Contexts.HasFlag(ContextType.Guild) && context.GuildId.HasValue)
+        if (Contexts.HasFlag(ContextType.Guild) && context.Guild != null)
             isValid = true;
 
-        if (Contexts.HasFlag(ContextType.DM) && !context.GuildId.HasValue)
+        if (Contexts.HasFlag(ContextType.DM) && context.Guild == null)
             isValid = true;
 
-        if (Contexts.HasFlag(ContextType.Group) && context.Message.ChannelType == ChannelType.GroupDm)
+        if (Contexts.HasFlag(ContextType.Group) && context.Channel.Type == ChannelType.GroupDm)
             isValid = true;
 
         if (isValid)

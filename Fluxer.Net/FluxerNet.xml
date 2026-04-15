@@ -173,6 +173,11 @@
             Represents the context of a command execution.
             </summary>
         </member>
+        <member name="P:Fluxer.Net.Commands.CommandContext.Client">
+            <summary>
+            Gets the API client.
+            </summary>
+        </member>
         <member name="P:Fluxer.Net.Commands.CommandContext.Rest">
             <summary>
             Gets the API client.
@@ -188,12 +193,12 @@
             Gets the message that triggered the command.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.Commands.CommandContext.ChannelId">
+        <member name="P:Fluxer.Net.Commands.CommandContext.Channel">
             <summary>
             Gets the channel the command was executed in.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.Commands.CommandContext.GuildId">
+        <member name="P:Fluxer.Net.Commands.CommandContext.Guild">
             <summary>
             Gets the guild the command was executed in, if any.
             </summary>
@@ -8128,6 +8133,51 @@
             VOICE_STATE_UPDATE and VOICE_SERVER_UPDATE events containing connection information.
             </remarks>
         </member>
+        <member name="T:Fluxer.Net.OAuth.FluxerOAuthExtensions">
+            <Summary>
+            Extension methods for handling fluxer oauth client.
+            </Summary>
+        </member>
+        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.AddFluxerClient(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,System.String,Fluxer.Net.FluxerConfig)">
+            <Summary>
+            Add Fluxer oauth client on dependency injection service.
+            </Summary>
+        </member>
+        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.GetFluxerClaims(System.Security.Claims.ClaimsPrincipal,Fluxer.Net.FluxerBaseClient)">
+            <Summary>
+            Get Fluxer specific claims for a claim user.
+            </Summary>
+        </member>
+        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.AddFluxer(Microsoft.AspNetCore.Authentication.AuthenticationBuilder)">
+            <Summary>
+            Add Fluxer oauth client on dependency injection service.
+            </Summary>
+        </member>
+        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.AddFluxer(Microsoft.AspNetCore.Authentication.AuthenticationBuilder,System.Action{Fluxer.Net.OAuth.FluxerOAuthOptions})">
+            <Summary>
+            Add Fluxer oauth client on dependency injection service.
+            </Summary>
+        </member>
+        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.AddFluxer(Microsoft.AspNetCore.Authentication.AuthenticationBuilder,System.String,System.Action{Fluxer.Net.OAuth.FluxerOAuthOptions})">
+            <Summary>
+            Add Fluxer oauth client on dependency injection service.
+            </Summary>
+        </member>
+        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.AddFluxer(Microsoft.AspNetCore.Authentication.AuthenticationBuilder,System.String,System.String,System.Action{Fluxer.Net.OAuth.FluxerOAuthOptions})">
+            <Summary>
+            Add Fluxer oauth client on dependency injection service.
+            </Summary>
+        </member>
+        <member name="T:Fluxer.Net.OAuth.FluxerOAuthHandler">
+            <Summary>
+            Asp.net oauth handler for Fluxer.
+            </Summary>
+        </member>
+        <member name="M:Fluxer.Net.OAuth.FluxerOAuthHandler.#ctor(Microsoft.Extensions.Options.IOptionsMonitor{Fluxer.Net.OAuth.FluxerOAuthOptions},Microsoft.Extensions.Logging.ILoggerFactory,System.Text.Encodings.Web.UrlEncoder,Microsoft.AspNetCore.Authentication.ISystemClock)">
+            <Summary>
+            Create asp.net oauth handler for Fluxer.
+            </Summary>
+        </member>
         <member name="T:Fluxer.Net.RateLimiting.RateLimitBucket">
             <summary>
             Represents a sliding window rate limit bucket for API requests
@@ -8817,65 +8867,6 @@
             </summary>
         </member>
         <member name="P:Fluxer.Net.MessageSearchRequest.LinkHostnames">
-            <summary>
-            Link hostnames to filter by
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.MessageSearchRequest.ExcludeLinkHostnames">
-            <summary>
-            Link hostnames to exclude
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.MessageSearchRequest.AttachmentFilenames">
-            <summary>
-            Attachment filenames to filter by
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.MessageSearchRequest.ExcludeAttachmentFilenames">
-            <summary>
-            Attachment filenames to exclude
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.MessageSearchRequest.AttachmentExtensions">
-            <summary>
-            File extensions to filter by
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.MessageSearchRequest.ExcludeAttachmentExtensions">
-            <summary>
-            File extensions to exclude
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.MessageSearchRequest.SortBy">
-            <summary>
-            Field to sort results by
-            </summary>
-            <remarks>
-            <see href="https://github.com/fluxerapp/fluxer/blob/d843d6f3f8a0bd850673ba55036354093977109f/packages/schema/src/domains/message/MessageRequestSchemas.tsx#L134"/>
-            </remarks>
-        </member>
-        <member name="P:Fluxer.Net.MessageSearchRequest.SortOrder">
-            <summary>
-            Sort order for results
-            </summary>
-            <remarks>
-            <see href="https://github.com/fluxerapp/fluxer/blob/d843d6f3f8a0bd850673ba55036354093977109f/packages/schema/src/domains/message/MessageRequestSchemas.tsx#L147"/>
-            </remarks>
-        </member>
-        <member name="P:Fluxer.Net.MessageSearchRequest.IncludeNsfw">
-            <summary>
-            Whether to include NSFW channel results
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.MessageSearchRequest.MessageSearchScope">
-            <remarks>
-            <see href="https://github.com/fluxerapp/fluxer/blob/d843d6f3f8a0bd850673ba55036354093977109f/packages/schema/src/domains/message/MessageRequestSchemas.tsx#L160"/>
-            </remarks>
-        </member>
-        <member name="T:Fluxer.Net.UpdateMessageRequest">
-            <remarks>
-            <see href="https://github.com/fluxerapp/fluxer/blob/848269a4d4df7349acfc861ff926b17fe4c4a548/packages/api/src/channel/MessageTypes.tsx#L32"/>
-            </remark.Net.MessageSearchRequest.LinkHostnames">
             <summary>
             Link hostnames to filter by
             </summary>

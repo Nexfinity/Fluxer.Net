@@ -34,7 +34,7 @@ public abstract class ModuleBase
         MessageReferenceRequest? reference = null, AllowedMentionsRequest? allowedMentions = null, MessageFlag flags = MessageFlag.None,
         string? nonce = null, ulong? favoruteMemeId = null, bool? tts = null, List<ulong>? stickerIds = null, List<AttachmentRequest>? attachments = null)
     {
-        return await Context.Rest.SendMessageAsync(Context.ChannelId, content, embeds, reference, allowedMentions, flags, nonce, favoruteMemeId, tts, stickerIds, attachments);
+        return await Context.Rest.SendMessageAsync(Context.Channel.Id, content, embeds, reference, allowedMentions, flags, nonce, favoruteMemeId, tts, stickerIds, attachments);
     }
 
     /// <summary>
@@ -42,7 +42,7 @@ public abstract class ModuleBase
     /// </summary>
     protected async Task<Message> ReplyAsync(List<AttachmentRequest> attachments, string? content = null)
     {
-        return await Context.Rest.SendMessageAsync(Context.ChannelId, content, attachments: attachments);
+        return await Context.Rest.SendMessageAsync(Context.Channel.Id, content, attachments: attachments);
     }
 }
 
