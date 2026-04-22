@@ -57,14 +57,25 @@ public class Attachment : Entity, IAttachment
     /// <inheritdoc />
     public bool? IsExpired { get; set; }
 
+    internal ulong ChannelId { get; set; }
+
+    /// <summary>
+    /// Get the attachment's url.
+    /// </summary>
+    public string? GetAttachmentUrl()
+    {
+        return $"https://fluxerusercontent.com/attachments/{ChannelId}/{Id}/{Filename}";
+    }
+
     internal Attachment(FluxerBaseClient client) : base(client)
     {
 
     }
 
-    public static Attachment Create(FluxerBaseClient client, AttachmentJson json)
+    public static Attachment Create(FluxerBaseClient client, AttachmentJson json, ulong channelId)
     {
         Attachment data = new Attachment(client);
+        data.ChannelId = channelId;
         data.Update(client, json);
         return data;
     }

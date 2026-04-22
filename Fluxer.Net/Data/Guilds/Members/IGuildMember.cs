@@ -86,4 +86,9 @@ public interface IGuildMember
     /// Get the members's avatar or fallback to default.
     /// </summary>
     string GetAvatarOrDefaultUrl(int size);
+
+    /// <summary>
+    /// Get the member's banner.
+    /// </summary>
+    string? GetBannerUrl(int size);
 }

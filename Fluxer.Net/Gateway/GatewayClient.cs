@@ -623,7 +623,10 @@ public partial class GatewayClient : IDisposable
                 {
                     MessageGatewayData? data = p.Data.ToObject<MessageGatewayData>(FluxerClient._serializer);
                     if (data != null)
+                    {
+                        data.Member.User = data.Author;
                         MessageCreate?.Invoke(data);
+                    }
                     else
                         _logger.Warning("MESSAGE_CREATE event received but data could not be cast to MessageGatewayData");
                 }
@@ -632,7 +635,10 @@ public partial class GatewayClient : IDisposable
                 {
                     MessageGatewayData? data = p.Data.ToObject<MessageGatewayData>(FluxerClient._serializer);
                     if (data != null)
+                    {
+                        data.Member.User = data.Author;
                         MessageUpdate?.Invoke(data);
+                    }
                     else
                         _logger.Warning("MESSAGE_UPDATE event received but data could not be cast to MessageGatewayData");
                 }
@@ -868,7 +874,24 @@ public partial class GatewayClient : IDisposable
                 {
                     VoiceStateGatewayData? data = p.Data.ToObject<VoiceStateGatewayData>(FluxerClient._serializer);
                     if (data != null)
+                    {
+                        if (data.GuildId.HasValue && Guilds.TryGetValue(data.GuildId.Value, out SocketGuild guild))
+                        {
+                            guild.AddOrUpdateMember(_client, data.Member);
+                            var member = guild.GetMember(data.Member.UserId);
+                            if (data.ChannelId.HasValue)
+                            {
+                                if (!member.VoiceStates.TryAdd(data.SessionId, SocketVoiceState.Create(_client, data, guild)))
+                                    member.VoiceStates[data.SessionId].Update(_client, data);
+                            }
+                            else
+                            {
+                                member.VoiceStates.TryRemove(data.SessionId, out _);
+                            }
+                        }
+
                         VoiceStateUpdate?.Invoke(data);
+                    }
                     else
                         _logger.Warning("VOICE_STATE_UPDATE event received but data could not be cast to VoiceStateGatewayData");
                 }
@@ -1025,7 +1048,7 @@ public partial class GatewayClient : IDisposable
                     if (data != null)
                     {
                         if (Guilds.TryGetValue(data.GuildId, out SocketGuild guild))
-                            guild.AddOrUpdate(_client, data);
+                            guild.AddOrUpdateMember(_client, data);
 
                         GuildMemberAdd?.Invoke(data);
                     }
@@ -1070,7 +1093,7 @@ public partial class GatewayClient : IDisposable
                         {
                             foreach (var m in data.Members)
                             {
-                                guild.AddOrUpdate(_client, m);
+                                guild.AddOrUpdateMember(_client, m);
                             }
                             if ((data.ChunkIndex + 1) == data.ChunkCount)
                             {
@@ -2361,6 +2384,32 @@ public partial class GatewayClient : IDisposable
     public event InviteDeleteEvent InviteDelete;
 
     #endregion
+
+    #endregion
+
+    #region Voice
+
+    /// <summary>
+    /// Updates the current user's voice state (join/leave voice channels, mute, deafen).
+    /// </summary>
+    /// <param name="guildId">The guild ID containing the voice channel.</param>
+    /// <param name="channelId">The voice channel ID to join, or null to disconnect.</param>
+    /// <param name="selfMute">Whether the user should be self-muted.</param>
+    /// <param name="selfDeaf">Whether the user should be self-deafened.</param>
+    /// <remarks>
+    /// This sends a VOICE_STATE_UPDATE packet to the gateway. The server will respond with
+    /// VOICE_STATE_UPDATE and VOICE_SERVER_UPDATE events containing connection information.
+    /// </remarks>
+    public void UpdateVoiceState(ulong? guildId, ulong? channelId, bool selfMute, bool selfDeaf)
+    {
+        var packet = new GatewayPacket()
+        {
+            // TODO: Technically should be ulong, but fluxer expects strings. Fluxer will eventually be lenient and accept both.
+            Data = JToken.FromObject(new VoiceStateUpdatePayload(guildId.ToString(), channelId.ToString(), selfMute, selfDeaf)),
+            OpCode = FluxerOpCode.VoiceStateUpdate
+        };
+        SendGatewayPacket(packet);
+    }
 
     #endregion
 

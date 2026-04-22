@@ -12,6 +12,12 @@ public class GuildEmoji : Emoji, IGuildEmoji
     [JsonProperty("user")]
     public User? Creator { get; set; }
 
+    /// <inheritdoc />
+    public string? GetEmojiUrl(int size = 160)
+    {
+        return $"https://fluxerusercontent.com/emojis/{Id}.webp?size={size}";
+    }
+
     IUser? IGuildEmoji.Creator => Creator;
 
     internal GuildEmoji(FluxerBaseClient client) : base(client)

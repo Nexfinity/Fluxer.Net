@@ -1,8 +1,12 @@
-﻿namespace Fluxer.Net;
+﻿using System.Collections.Concurrent;
+
+namespace Fluxer.Net;
 
 public class SocketGuildMember : GuildMember
 {
     public SocketGuild Guild { get; internal set; }
+
+    public ConcurrentDictionary<string, SocketVoiceState> VoiceStates { get; internal set; } = new ConcurrentDictionary<string, SocketVoiceState>();
 
     public IEnumerable<SocketRole> Roles
             => RoleIds.Select(id => Guild.Roles[id]).Where(x => x != null);

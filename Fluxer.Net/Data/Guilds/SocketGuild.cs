@@ -67,7 +67,7 @@ public class SocketGuild : Guild
         Permissions = role.Permissions;
     }
 
-    internal void AddOrUpdate(FluxerClient client, GuildMemberJson member)
+    internal void AddOrUpdateMember(FluxerClient client, GuildMemberJson member)
     {
         var mem = SocketGuildMember.Create(client, member);
         mem.Guild = this;

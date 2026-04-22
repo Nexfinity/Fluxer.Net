@@ -72,6 +72,15 @@ public class GuildMember : Entity, IGuildMember
         return GetAvatarUrl(size);
     }
 
+    /// <inheritdoc />
+    public string? GetBannerUrl(int size = 1024)
+    {
+        if (string.IsNullOrEmpty(BannerHash))
+            return null;
+
+        return $"https://fluxerusercontent.com/guilds/{GuildId}/users/{UserId}/banners/{BannerHash}.webp?size={size}";
+    }
+
     IUser IGuildMember.User => User;
 
     internal GuildMember(FluxerBaseClient client) : base(client)

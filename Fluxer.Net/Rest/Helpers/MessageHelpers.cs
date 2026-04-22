@@ -1,4 +1,7 @@
-﻿namespace Fluxer.Net;
+﻿using Fluxer.Net.Rest;
+using Fluxer.Net.Rest.Requests;
+
+namespace Fluxer.Net;
 
 public static class MessageHelpers
 {
@@ -37,4 +40,27 @@ public static class MessageHelpers
 
     public static Task RemoveUserReactionAsync(this Message message, string emoji, ulong userId)
         => message.Client.Rest.RemoveUserReactionAsync(message.ChannelId, message.Id, emoji, userId);
+
+    public static Task<Message> ReplyAsync(this Message message, string? content = null, List<EmbedRequest>? embeds = null,
+        AllowedMentionsRequest? allowedMentions = null, MessageFlag flags = MessageFlag.None,
+        string? nonce = null, ulong? favoruteMemeId = null, bool? tts = null, List<ulong>? stickerIds = null, List<AttachmentRequest>? attachments = null)
+        => message.Client.Rest.SendMessageAsync(message.ChannelId, content, embeds, new MessageReferenceRequest
+        {
+            MessageId = message.Id,
+        }, allowedMentions, flags, nonce, favoruteMemeId, tts, stickerIds, attachments);
+
+    public static Task<Message> ForwardAsync(this Message message, Channel channel, MessageFlag flags = MessageFlag.None, string? nonce = null)
+        => message.Client.Rest.SendMessageAsync(channel.Id, null, null, new MessageReferenceRequest
+        {
+            Type = MessageReferenceType.Forward,
+            MessageId = message.Id,
+            ChannelId = message.ChannelId,
+        }, null, flags, nonce);
+
+    public static Task<Message> SuppressEmbedsAsync(this Message message, AllowedMentionsRequest? allowedMentions = null)
+        => message.Client.Rest.EditMessageAsync(message.ChannelId, message.Id, new UpdateMessageRequest
+        {
+            AllowedMentions = allowedMentions,
+            Flags = message.Flags |= MessageFlag.SuppressEmbeds,
+        });
 }

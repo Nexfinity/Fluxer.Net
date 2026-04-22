@@ -10,37 +10,42 @@ public class CommandContext
     /// <summary>
     /// Gets the API client.
     /// </summary>
-    public ApiClient Rest { get; }
+    public FluxerClient Client { get; }
+
+    /// <summary>
+    /// Gets the API client.
+    /// </summary>
+    public ApiClient Rest => Client.Rest;
 
     /// <summary>
     /// Gets the gateway client.
     /// </summary>
-    public GatewayClient Gateway { get; }
+    public GatewayClient Gateway => Client.Gateway;
 
     /// <summary>
     /// Gets the message that triggered the command.
     /// </summary>
-    public MessageGatewayData Message { get; }
+    public SocketMessage Message { get; }
 
     /// <summary>
     /// Gets the channel the command was executed in.
     /// </summary>
-    public ulong ChannelId => Message.ChannelId;
+    public Channel Channel => Message.Channel;
 
     /// <summary>
     /// Gets the guild the command was executed in, if any.
     /// </summary>
-    public ulong? GuildId => Message.GuildId;
+    public SocketGuild? Guild { get; }
 
     /// <summary>
     /// Gets the user who executed the command.
     /// </summary>
-    public User User { get; internal set; }
+    public SocketUser User { get; internal set; }
 
     /// <summary>
     /// Gets the member who executed the command.
     /// </summary>
-    public GuildMemberGatewayData? Member => Message.Member;
+    public SocketGuildMember? Member { get; }
 
     /// <summary>
     /// Creates a new command context.
@@ -49,9 +54,23 @@ public class CommandContext
     /// <param name="message">The message that triggered the command.</param>
     public CommandContext(FluxerClient client, MessageGatewayData message)
     {
-        User = User.Create(client, message.Author);
-        Rest = client.Rest;
-        Gateway = client.Gateway;
-        Message = message;
+        Client = client;
+        Message = SocketMessage.Create(client, message);
+        User = SocketUser.Create(client, message.Author);
+        if (message.GuildId.HasValue)
+        {
+
+            Guild = client.Gateway.GetGuild(message.GuildId.Value);
+            Member = Guild.GetMember(User.Id);
+            if (Member == null)
+            {
+                message.Member.User = message.Author;
+                Guild.AddOrUpdateMember(Client, message.Member);
+                Member = Guild.GetMember(User.Id);
+            }
+
+            if (Member.Guild == null)
+                Member.Guild = Guild;
+        }
     }
 }

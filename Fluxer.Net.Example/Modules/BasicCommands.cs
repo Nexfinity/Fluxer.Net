@@ -81,7 +81,7 @@ public class BasicCommands : ModuleBase
             .WithCurrentTimestamp()
             .Build();
 
-        await Context.Rest.SendMessageAsync(Context.ChannelId, "Here's an example of a rich embed:",
+        await Context.Rest.SendMessageAsync(Context.Channel.Id, "Here's an example of a rich embed:",
             embeds: new List<EmbedRequest> { embed }
         );
     }

@@ -121,7 +121,7 @@ public class Message : Entity, IMessage
             Embeds = json.Embeds.Select(x => Embed.Create(client, x));
 
         if (json.Attachments != null)
-            Attachments = json.Attachments.Select(x => Attachment.Create(client, x)).ToArray();
+            Attachments = json.Attachments.Select(x => Attachment.Create(client, x, ChannelId)).ToArray();
 
         if (json.Stickers != null)
             Stickers = json.Stickers.Select(x => Sticker.Create(client, x)).ToArray();
@@ -133,7 +133,7 @@ public class Message : Entity, IMessage
             MessageReference = MessageReference.Create(client, json.MessageReference);
 
         if (json.MessageSnapshots != null)
-            MessageSnapshots = json.MessageSnapshots.Select(x => MessageSnapshot.Create(client, x)).ToArray();
+            MessageSnapshots = json.MessageSnapshots.Select(x => MessageSnapshot.Create(client, x, ChannelId)).ToArray();
 
         Nonce = json.Nonce;
 
