@@ -31,13 +31,13 @@ public class PartialGuild : Entity, IPartialGuild
     public int? EmbedSplashHeight { get; internal set; }
 
     /// <inheritdoc />
-    public string? SplashHash { get; internal set; }
+    public string? InviteSplashHash { get; internal set; }
 
     /// <inheritdoc />
-    public int? SplashWidth { get; internal set; }
+    public int? InviteSplashWidth { get; internal set; }
 
     /// <inheritdoc />
-    public int? SplashHeight { get; internal set; }
+    public int? InviteSplashHeight { get; internal set; }
 
     /// <inheritdoc />
     public GuildSplashCardAlignment SplashCardAligment { get; internal set; }
@@ -70,10 +70,46 @@ public class PartialGuild : Entity, IPartialGuild
         EmbedSplashHash = json.EmbedSplashHash;
         EmbedSplashWidth = json.EmbedSplashWidth;
         EmbedSplashHeight = json.EmbedSplashHeight;
-        SplashHash = json.SplashHash;
-        SplashWidth = json.SplashWidth;
-        SplashHeight = json.SplashHeight;
+        InviteSplashHash = json.InviteSplashHash;
+        InviteSplashWidth = json.InviteSplashWidth;
+        InviteSplashHeight = json.InviteSplashHeight;
         SplashCardAligment = json.SplashCardAligment;
         Features = GuildFeatures.FromGuild(json);
+    }
+
+    /// <inheritdoc />
+    public string? GetIconUrl(int size = 160)
+    {
+        if (string.IsNullOrEmpty(IconHash))
+            return null;
+
+        return $"https://fluxerusercontent.com/icons/{Id}/{IconHash}.png?size={size}";
+    }
+
+    /// <inheritdoc />
+    public string? GetBannerUrl(int size = 1024)
+    {
+        if (string.IsNullOrEmpty(BannerHash))
+            return null;
+
+        return $"https://fluxerusercontent.com/banners/{Id}/{BannerHash}.webp?size={size}";
+    }
+
+    /// <inheritdoc />
+    public string? GetInviteSplashUrl(int size = 1024)
+    {
+        if (string.IsNullOrEmpty(InviteSplashHash))
+            return null;
+
+        return $"https://fluxerusercontent.com/splashes/{Id}/{InviteSplashHash}.webp?size={size}";
+    }
+
+    /// <inheritdoc />
+    public string? GetEmbedSplashUrl(int size = 1024)
+    {
+        if (string.IsNullOrEmpty(EmbedSplashHash))
+            return null;
+
+        return $"https://fluxerusercontent.com/embed-splashes/{Id}/{EmbedSplashHash}.webp?size={size}";
     }
 }

@@ -17,5 +17,11 @@ public class GuildStickerJson : StickerJson, IGuildSticker
     [JsonProperty("user")]
     public UserJson? Creator { get; set; }
 
+    /// <inheritdoc />
+    public string? GetStickerUrl(int size = 320)
+    {
+        return $"https://fluxerusercontent.com/stickers/{Id}.webp?size={size}";
+    }
+
     IUser? IGuildSticker.Creator => Creator;
 }

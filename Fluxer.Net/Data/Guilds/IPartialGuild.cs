@@ -50,17 +50,17 @@ public interface IPartialGuild
     /// <summary>
     /// The hash of the guild splash screen.
     /// </summary>
-    string? SplashHash { get; }
+    string? InviteSplashHash { get; }
 
     /// <summary>
     /// The width of the guild splash in pixels.
     /// </summary>
-    int? SplashWidth { get; }
+    int? InviteSplashWidth { get; }
 
     /// <summary>
     /// The height of the guild splash in pixels
     /// </summary>
-    int? SplashHeight { get; }
+    int? InviteSplashHeight { get; }
 
     /// <summary>
     /// The alignment of the splash card.
@@ -77,4 +77,24 @@ public interface IPartialGuild
     /// UNAVAILABLE_FOR_EVERYONE_BUT_STAFF, VISIONARY, OPERATOR, LARGE_GUILD_OVERRIDE, VERY_LARGE_GUILD (other values allowed)
     /// </remarks>
     string[]? Features { get; }
+
+    /// <summary>
+    /// Get the guild's icon.
+    /// </summary>
+    string? GetIconUrl(int size);
+
+    /// <summary>
+    /// Get the guild's banner.
+    /// </summary>
+    string? GetBannerUrl(int size);
+
+    /// <summary>
+    /// Get the guild's invite splash.
+    /// </summary>
+    string? GetInviteSplashUrl(int size);
+
+    /// <summary>
+    /// Get the guild's embed splash.
+    /// </summary>
+    string? GetEmbedSplashUrl(int size);
 }

@@ -16,4 +16,9 @@ public interface IGuildSticker : ISticker
     /// The user that created the sticker.
     /// </summary>
     IUser? Creator { get; }
+
+    /// <summary>
+    /// Get the sticker's image.
+    /// </summary>
+    string GetStickerUrl(int size);
 }

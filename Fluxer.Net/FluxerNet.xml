@@ -2160,10 +2160,16 @@
         <member name="P:Fluxer.Net.GuildEmoji.Creator">
             <inheritdoc />
         </member>
+        <member name="M:Fluxer.Net.GuildEmoji.GetEmojiUrl(System.Int32)">
+            <inheritdoc />
+        </member>
         <member name="T:Fluxer.Net.GuildEmojiJson">
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.GuildEmojiJson.Creator">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.GuildEmojiJson.GetEmojiUrl(System.Int32)">
             <inheritdoc />
         </member>
         <member name="T:Fluxer.Net.GuildSticker">
@@ -2181,6 +2187,9 @@
         <member name="P:Fluxer.Net.GuildSticker.Creator">
             <inheritdoc />
         </member>
+        <member name="M:Fluxer.Net.GuildSticker.GetStickerUrl(System.Int32)">
+            <inheritdoc />
+        </member>
         <member name="T:Fluxer.Net.GuildStickerBulkCreateJson">
             <remarks>
             <see href="https://github.com/fluxerapp/fluxer/blob/38146cc2babb504bfa9e71f61a60dd57ab2c1b67/packages/schema/src/domains/guild/GuildEmojiSchemas.tsx#L77C14-L77C44"/>
@@ -2196,6 +2205,9 @@
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.GuildStickerJson.Creator">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.GuildStickerJson.GetStickerUrl(System.Int32)">
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.IEmoji.Id">
@@ -2218,6 +2230,11 @@
             The user that created the emoji.
             </summary>
         </member>
+        <member name="M:Fluxer.Net.IGuildEmoji.GetEmojiUrl(System.Int32)">
+            <summary>
+            Get the emoji's image.
+            </summary>
+        </member>
         <member name="P:Fluxer.Net.IGuildSticker.Description">
             <summary>
             The description of the sticker.
@@ -2231,6 +2248,11 @@
         <member name="P:Fluxer.Net.IGuildSticker.Creator">
             <summary>
             The user that created the sticker.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.IGuildSticker.GetStickerUrl(System.Int32)">
+            <summary>
+            Get the sticker's image.
             </summary>
         </member>
         <member name="P:Fluxer.Net.ISticker.Id">
@@ -3167,17 +3189,17 @@
             The height of the embedded invite splash in pixels
             </summary>
         </member>
-        <member name="P:Fluxer.Net.IPartialGuild.SplashHash">
+        <member name="P:Fluxer.Net.IPartialGuild.InviteSplashHash">
             <summary>
             The hash of the guild splash screen.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.IPartialGuild.SplashWidth">
+        <member name="P:Fluxer.Net.IPartialGuild.InviteSplashWidth">
             <summary>
             The width of the guild splash in pixels.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.IPartialGuild.SplashHeight">
+        <member name="P:Fluxer.Net.IPartialGuild.InviteSplashHeight">
             <summary>
             The height of the guild splash in pixels
             </summary>
@@ -3197,6 +3219,26 @@
             EXPRESSION_PURGE_ALLOWED, VANITY_URL, VERIFIED, VIP_VOICE, UNAVAILABLE_FOR_EVERYONE,
             UNAVAILABLE_FOR_EVERYONE_BUT_STAFF, VISIONARY, OPERATOR, LARGE_GUILD_OVERRIDE, VERY_LARGE_GUILD (other values allowed)
             </remarks>
+        </member>
+        <member name="M:Fluxer.Net.IPartialGuild.GetIconUrl(System.Int32)">
+            <summary>
+            Get the guild's icon.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.IPartialGuild.GetBannerUrl(System.Int32)">
+            <summary>
+            Get the guild's banner.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.IPartialGuild.GetInviteSplashUrl(System.Int32)">
+            <summary>
+            Get the guild's invite splash.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.IPartialGuild.GetEmbedSplashUrl(System.Int32)">
+            <summary>
+            Get the guild's embed splash.
+            </summary>
         </member>
         <member name="P:Fluxer.Net.GuildBan.BannedAt">
             <inheritdoc />
@@ -3285,6 +3327,9 @@
         <member name="M:Fluxer.Net.GuildMember.GetAvatarOrDefaultUrl(System.Int32)">
             <inheritdoc />
         </member>
+        <member name="M:Fluxer.Net.GuildMember.GetBannerUrl(System.Int32)">
+            <inheritdoc />
+        </member>
         <member name="T:Fluxer.Net.GuildMemberJson">
             <inheritdoc />
         </member>
@@ -3337,6 +3382,9 @@
             <inheritdoc />
         </member>
         <member name="M:Fluxer.Net.GuildMemberJson.GetAvatarOrDefaultUrl(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.GuildMemberJson.GetBannerUrl(System.Int32)">
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.IGuildBan.BannedAt">
@@ -3447,6 +3495,11 @@
         <member name="M:Fluxer.Net.IGuildMember.GetAvatarOrDefaultUrl(System.Int32)">
             <summary>
             Get the members's avatar or fallback to default.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.IGuildMember.GetBannerUrl(System.Int32)">
+            <summary>
+            Get the member's banner.
             </summary>
         </member>
         <member name="P:Fluxer.Net.IRole.Id">
@@ -3592,19 +3645,31 @@
         <member name="P:Fluxer.Net.PartialGuild.EmbedSplashHeight">
             <inheritdoc />
         </member>
-        <member name="P:Fluxer.Net.PartialGuild.SplashHash">
+        <member name="P:Fluxer.Net.PartialGuild.InviteSplashHash">
             <inheritdoc />
         </member>
-        <member name="P:Fluxer.Net.PartialGuild.SplashWidth">
+        <member name="P:Fluxer.Net.PartialGuild.InviteSplashWidth">
             <inheritdoc />
         </member>
-        <member name="P:Fluxer.Net.PartialGuild.SplashHeight">
+        <member name="P:Fluxer.Net.PartialGuild.InviteSplashHeight">
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.PartialGuild.SplashCardAligment">
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.PartialGuild.Features">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.PartialGuild.GetIconUrl(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.PartialGuild.GetBannerUrl(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.PartialGuild.GetInviteSplashUrl(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.PartialGuild.GetEmbedSplashUrl(System.Int32)">
             <inheritdoc />
         </member>
         <member name="T:Fluxer.Net.PartialGuildJson">
@@ -3637,19 +3702,31 @@
         <member name="P:Fluxer.Net.PartialGuildJson.EmbedSplashHeight">
             <inheritdoc />
         </member>
-        <member name="P:Fluxer.Net.PartialGuildJson.SplashHash">
+        <member name="P:Fluxer.Net.PartialGuildJson.InviteSplashHash">
             <inheritdoc />
         </member>
-        <member name="P:Fluxer.Net.PartialGuildJson.SplashWidth">
+        <member name="P:Fluxer.Net.PartialGuildJson.InviteSplashWidth">
             <inheritdoc />
         </member>
-        <member name="P:Fluxer.Net.PartialGuildJson.SplashHeight">
+        <member name="P:Fluxer.Net.PartialGuildJson.InviteSplashHeight">
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.PartialGuildJson.SplashCardAligment">
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.PartialGuildJson.Features">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.PartialGuildJson.GetIconUrl(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.PartialGuildJson.GetBannerUrl(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.PartialGuildJson.GetInviteSplashUrl(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.PartialGuildJson.GetEmbedSplashUrl(System.Int32)">
             <inheritdoc />
         </member>
         <member name="T:Fluxer.Net.Permissions">
@@ -4335,6 +4412,11 @@
         </member>
         <member name="P:Fluxer.Net.Attachment.IsExpired">
             <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.Attachment.GetAttachmentUrl">
+            <summary>
+            Get the attachment's url.
+            </summary>
         </member>
         <member name="T:Fluxer.Net.AttachmentFlag">
             <summary>
@@ -8133,51 +8215,6 @@
             VOICE_STATE_UPDATE and VOICE_SERVER_UPDATE events containing connection information.
             </remarks>
         </member>
-        <member name="T:Fluxer.Net.OAuth.FluxerOAuthExtensions">
-            <Summary>
-            Extension methods for handling fluxer oauth client.
-            </Summary>
-        </member>
-        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.AddFluxerClient(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,System.String,Fluxer.Net.FluxerConfig)">
-            <Summary>
-            Add Fluxer oauth client on dependency injection service.
-            </Summary>
-        </member>
-        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.GetFluxerClaims(System.Security.Claims.ClaimsPrincipal,Fluxer.Net.FluxerBaseClient)">
-            <Summary>
-            Get Fluxer specific claims for a claim user.
-            </Summary>
-        </member>
-        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.AddFluxer(Microsoft.AspNetCore.Authentication.AuthenticationBuilder)">
-            <Summary>
-            Add Fluxer oauth client on dependency injection service.
-            </Summary>
-        </member>
-        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.AddFluxer(Microsoft.AspNetCore.Authentication.AuthenticationBuilder,System.Action{Fluxer.Net.OAuth.FluxerOAuthOptions})">
-            <Summary>
-            Add Fluxer oauth client on dependency injection service.
-            </Summary>
-        </member>
-        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.AddFluxer(Microsoft.AspNetCore.Authentication.AuthenticationBuilder,System.String,System.Action{Fluxer.Net.OAuth.FluxerOAuthOptions})">
-            <Summary>
-            Add Fluxer oauth client on dependency injection service.
-            </Summary>
-        </member>
-        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.AddFluxer(Microsoft.AspNetCore.Authentication.AuthenticationBuilder,System.String,System.String,System.Action{Fluxer.Net.OAuth.FluxerOAuthOptions})">
-            <Summary>
-            Add Fluxer oauth client on dependency injection service.
-            </Summary>
-        </member>
-        <member name="T:Fluxer.Net.OAuth.FluxerOAuthHandler">
-            <Summary>
-            Asp.net oauth handler for Fluxer.
-            </Summary>
-        </member>
-        <member name="M:Fluxer.Net.OAuth.FluxerOAuthHandler.#ctor(Microsoft.Extensions.Options.IOptionsMonitor{Fluxer.Net.OAuth.FluxerOAuthOptions},Microsoft.Extensions.Logging.ILoggerFactory,System.Text.Encodings.Web.UrlEncoder,Microsoft.AspNetCore.Authentication.ISystemClock)">
-            <Summary>
-            Create asp.net oauth handler for Fluxer.
-            </Summary>
-        </member>
         <member name="T:Fluxer.Net.RateLimiting.RateLimitBucket">
             <summary>
             Represents a sliding window rate limit bucket for API requests
@@ -8892,6 +8929,69 @@
             </summary>
         </member>
         <member name="P:Fluxer.Net.MessageSearchRequest.ExcludeAttachmentExtensions">
+            <summary>
+            File extensions to exclude
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.MessageSearchRequest.SortBy">
+            <summary>
+            Field to sort results by
+            </summary>
+            <remarks>
+            <see href="https://github.com/fluxerapp/fluxer/blob/d843d6f3f8a0bd850673ba55036354093977109f/packages/schema/src/domains/message/MessageRequestSchemas.tsx#L134"/>
+            </remarks>
+        </member>
+        <member name="P:Fluxer.Net.MessageSearchRequest.SortOrder">
+            <summary>
+            Sort order for results
+            </summary>
+            <remarks>
+            <see href="https://github.com/fluxerapp/fluxer/blob/d843d6f3f8a0bd850673ba55036354093977109f/packages/schema/src/domains/message/MessageRequestSchemas.tsx#L147"/>
+            </remarks>
+        </member>
+        <member name="P:Fluxer.Net.MessageSearchRequest.IncludeNsfw">
+            <summary>
+            Whether to include NSFW channel results
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.MessageSearchRequest.MessageSearchScope">
+            <remarks>
+            <see href="https://github.com/fluxerapp/fluxer/blob/d843d6f3f8a0bd850673ba55036354093977109f/packages/schema/src/domains/message/MessageRequestSchemas.tsx#L160"/>
+            </remarks>
+        </member>
+        <member name="T:Fluxer.Net.UpdateMessageRequest">
+            <remarks>
+            <see href="https://github.com/fluxerapp/fluxer/blob/848269a4d4df7349acfc861ff926b17fe4c4a548/packages/api/src/channel/MessageTypes.tsx#L32"/>
+            </remarks>
+        </member>
+        <member name="P:Fluxer.Net.UpdateMessageRequest.Content">
+            <summary>
+            The message content (up to 2000 characters)
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.UpdateMessageRequest.Embeds">
+            <summary>
+            Array of embed objects to include in the message
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.UpdateMessageRequest.AllowedMentions">
+            <summary>
+            Controls which mentions trigger notifications
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.UpdateMessageRequest.Flags">
+            <summary>
+            Message flags bitfield
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.UpdateMessageRequest.Attachments">
+            <summary>
+            Array of attachment objects to keep or add
+            </summary>
+        </member>
+    </members>
+</doc>
+ions">
             <summary>
             File extensions to exclude
             </summary>

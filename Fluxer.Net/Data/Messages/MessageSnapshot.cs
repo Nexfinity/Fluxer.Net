@@ -39,14 +39,17 @@ public class MessageSnapshot : Entity, IMessageSnapshot
 
     ISticker[]? IMessageSnapshot.Stickers => Stickers;
 
+    internal ulong ChannelId { get; set; }
+
     internal MessageSnapshot(FluxerBaseClient client) : base(client)
     {
 
     }
 
-    public static MessageSnapshot Create(FluxerBaseClient client, MessageSnapshotJson json)
+    public static MessageSnapshot Create(FluxerBaseClient client, MessageSnapshotJson json, ulong channelId)
     {
         var data = new MessageSnapshot(client);
+        data.ChannelId = channelId;
         data.Update(client, json);
         return data;
     }
@@ -63,7 +66,7 @@ public class MessageSnapshot : Entity, IMessageSnapshot
             Embeds = json.Embeds.Select(x => Embed.Create(client, x)).ToArray();
 
         if (json.Attachments != null)
-            Attachments = json.Attachments.Select(x => Attachment.Create(client, x)).ToArray();
+            Attachments = json.Attachments.Select(x => Attachment.Create(client, x, ChannelId)).ToArray();
 
         if (json.Stickers != null)
             Stickers = json.Stickers.Select(x => Sticker.Create(client, x)).ToArray();

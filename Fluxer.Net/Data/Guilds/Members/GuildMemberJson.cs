@@ -75,7 +75,7 @@ public class GuildMemberJson : IGuildMember
         if (string.IsNullOrEmpty(AvatarHash))
             return User.GetAvatarUrl();
 
-        return $"https://fluxerusercontent.com/avatars/{UserId}/{AvatarHash}.png?size={size}";
+        return $"https://fluxerusercontent.com/guilds/{GuildId}/users/{UserId}/avatars/{AvatarHash}.png?size={size}";
     }
 
     /// <inheritdoc />
@@ -85,6 +85,15 @@ public class GuildMemberJson : IGuildMember
             return GetDefaultAvatarUrl();
 
         return GetAvatarUrl(size);
+    }
+
+    /// <inheritdoc />
+    public string? GetBannerUrl(int size = 1024)
+    {
+        if (string.IsNullOrEmpty(BannerHash))
+            return null;
+
+        return $"https://fluxerusercontent.com/guilds/{GuildId}/users/{UserId}/banners/{BannerHash}.webp?size={size}";
     }
 
     IUser IGuildMember.User => User;
