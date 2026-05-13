@@ -20,8 +20,19 @@ public static class WebhookHelpers
         string? nonce = null, ulong? favoruteMemeId = null, bool? tts = null, List<ulong>? stickerIds = null)
         => webhook.Client.Rest.ExecuteWebhookWaitAsync(webhook.Id, webhook.Token, content, embeds, reference, allowedMentions, flags, nonce, favoruteMemeId, tts, stickerIds);
 
+    public static Task DeleteMessageAsync(this Webhook webhook, Message message)
+        => webhook.Client.Rest.EditWebhookMessageAsync(webhook.Id, webhook.Token, message.Id);
+
+    public static Task DeleteMessageAsync(this Webhook webhook, ulong messageId)
+        => webhook.Client.Rest.EditWebhookMessageAsync(webhook.Id, webhook.Token, messageId);
+
     public static Task<Message> EditMessageAsync(this Webhook webhook, ulong messageId, string? content = null, List<EmbedRequest>? embeds = null,
         MessageReferenceRequest? reference = null, AllowedMentionsRequest? allowedMentions = null, MessageFlag flags = MessageFlag.None,
         string? nonce = null, ulong? favoruteMemeId = null, bool? tts = null, List<ulong>? stickerIds = null)
         => webhook.Client.Rest.EditWebhookMessageAsync(webhook.Id, webhook.Token, messageId, content, embeds, reference, allowedMentions, flags, nonce, favoruteMemeId, tts, stickerIds);
+
+    public static Task<Message> EditMessageAsync(this Webhook webhook, Message message, string? content = null, List<EmbedRequest>? embeds = null,
+        MessageReferenceRequest? reference = null, AllowedMentionsRequest? allowedMentions = null, MessageFlag flags = MessageFlag.None,
+        string? nonce = null, ulong? favoruteMemeId = null, bool? tts = null, List<ulong>? stickerIds = null)
+        => webhook.Client.Rest.EditWebhookMessageAsync(webhook.Id, webhook.Token, message.Id, content, embeds, reference, allowedMentions, flags, nonce, favoruteMemeId, tts, stickerIds);
 }
