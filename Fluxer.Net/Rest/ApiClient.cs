@@ -1161,6 +1161,11 @@ public class ApiClient
         await MakeFluxerApiRequestAsync(HttpMethod.Post, $"/webhooks/{webhookId}/{token}", req, true, false);
     }
 
+    public async Task DeleteWebhookMessageAsync(ulong webhookId, string token, ulong messageId)
+    {
+        await MakeFluxerApiRequestAsync(HttpMethod.Delete, $"/webhooks/{webhookId}/{token}/messages/{messageId}", true);
+    }
+
     public async Task<Message> EditWebhookMessageAsync(ulong webhookId, string token, ulong messageId, string? content = null, List<EmbedRequest>? embeds = null,
         MessageReferenceRequest? reference = null, AllowedMentionsRequest? allowedMentions = null, MessageFlag flags = MessageFlag.None,
         string? nonce = null, ulong? favoruteMemeId = null, bool? tts = null, List<ulong>? stickerIds = null)
