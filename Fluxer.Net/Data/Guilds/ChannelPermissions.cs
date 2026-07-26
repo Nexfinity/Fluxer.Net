@@ -90,4 +90,7 @@ public class ChannelPermissions : IChannelPermissions
 
     /// <inheritdoc />
     public bool UpdateRtcRegion => RawValue.HasFlag(Permissions.UpdateRtcRegion);
+
+    /// <inheritdoc />
+    public bool ViewChannelMembers => RawValue.HasFlag(Permissions.ViewChannelMembers);
 }

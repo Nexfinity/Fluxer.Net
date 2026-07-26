@@ -316,7 +316,7 @@ public partial class GatewayClient : IDisposable
         // Exponential backoff: 1s, 2s, 4s, 8s, 16s, max 60s
         var baseDelay = Math.Min(Math.Pow(2, _reconnectAttemptCount - 1), 60);
 #if NET5_0_OR_GREATER
-    double random = Random.Shared.NextDouble();
+        double random = Random.Shared.NextDouble();
 #else
         SharedRandom ??= new();
         double random = SharedRandom.NextDouble();
@@ -625,7 +625,9 @@ public partial class GatewayClient : IDisposable
                     MessageGatewayData? data = p.Data.ToObject<MessageGatewayData>(FluxerClient._serializer);
                     if (data != null)
                     {
-                        data.Member.User = data.Author;
+                        if (data.Member != null)
+                            data.Member.User = data.Author;
+
                         MessageCreate?.Invoke(data);
                     }
                     else
@@ -637,7 +639,8 @@ public partial class GatewayClient : IDisposable
                     MessageGatewayData? data = p.Data.ToObject<MessageGatewayData>(FluxerClient._serializer);
                     if (data != null)
                     {
-                        data.Member.User = data.Author;
+                        if (data.Member != null)
+                            data.Member.User = data.Author;
                         MessageUpdate?.Invoke(data);
                     }
                     else

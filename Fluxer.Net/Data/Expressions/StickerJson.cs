@@ -16,4 +16,8 @@ public class StickerJson : ISticker
     /// <inheritdoc />
     [JsonProperty("animated")]
     public bool IsAnimated { get; set; }
+
+    /// <inheritdoc />
+    [JsonProperty("allow_cloning")]
+    public bool AllowCloning { get; set; }
 }

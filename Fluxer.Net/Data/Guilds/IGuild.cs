@@ -71,4 +71,30 @@ public interface IGuild
     /// ISO8601 timestamp controlling how far back members without Read Message History can access messages. When null, no historical access is allowed.
     /// </summary>
     DateTime? MessageHistoryCutoff { get; }
+
+    /// <summary>
+    /// Is the guild nsfw.
+    /// </summary>
+    bool IsNsfw { get; }
+
+    /// <summary>
+    /// Show a custom warning to new members.
+    /// </summary>
+    string ContentWarningText { get; }
+
+    /// <summary>
+    /// Current ammount of online members in the guild.
+    /// </summary>
+    /// <remarks>
+    /// Only available from rest get guild not socket guild.
+    /// </remarks>
+    int? OnlineCount { get; }
+
+    /// <summary>
+    /// Total ammount of members in the guild.
+    /// </summary>
+    /// <remarks>
+    /// Only available from rest get guild not socket guild.
+    /// </remarks>
+    int? MemberCount { get; }
 }

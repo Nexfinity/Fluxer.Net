@@ -60,4 +60,20 @@ public class GuildJson : PartialGuildJson, IGuild
     /// <inheritdoc />
     [JsonProperty("message_history_cutoff")]
     public DateTime? MessageHistoryCutoff { get; set; }
+
+    /// <inheritdoc />
+    [JsonProperty("nsfw")]
+    public bool IsNsfw { get; set; }
+
+    /// <inheritdoc />
+    [JsonProperty("content_warning_text")]
+    public string ContentWarningText { get; set; }
+
+    /// <inheritdoc />
+    [JsonProperty("online_count")]
+    public int? OnlineCount { get; set; }
+
+    /// <inheritdoc />
+    [JsonProperty("member_count")]
+    public int? MemberCount { get; set; }
 }

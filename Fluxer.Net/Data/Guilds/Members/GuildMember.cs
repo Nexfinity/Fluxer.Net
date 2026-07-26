@@ -40,7 +40,7 @@ public class GuildMember : Entity, IGuildMember
     public DateTime? CommunicationDisabledUntil { get; internal set; }
 
     /// <inheritdoc />
-    public HashSet<ulong>? RoleIds { get; internal set; }
+    public HashSet<ulong> RoleIds { get; internal set; }
 
     /// <inheritdoc />
     public string GetCurrentName()
@@ -107,6 +107,6 @@ public class GuildMember : Entity, IGuildMember
         IsDeaf = json.IsDeaf;
         IsMute = json.IsMute;
         CommunicationDisabledUntil = json.CommunicationDisabledUntil;
-        RoleIds = json.RoleIds;
+        RoleIds = json.RoleIds != null ? json.RoleIds : new HashSet<ulong>();
     }
 }

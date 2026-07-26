@@ -279,4 +279,9 @@ public enum Permissions : ulong
     /// Allows updating the RTC (voice) region for a channel.
     /// </summary>
     UpdateRtcRegion = 1UL << 53,
+
+    /// <summary>
+    /// Allows you to view members in the channel.
+    /// </summary>
+    ViewChannelMembers = 1UL << 53,
 }

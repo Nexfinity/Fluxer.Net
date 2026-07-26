@@ -45,6 +45,14 @@ public class Guild : PartialGuild, IGuild
     /// <inheritdoc />
     public DateTime? MessageHistoryCutoff { get; internal set; }
 
+    /// <inheritdoc />
+    public bool IsNsfw { get; internal set; }
+
+    public string ContentWarningText { get; internal set; }
+
+    public int? OnlineCount { get; set; }
+    public int? MemberCount { get; set; }
+
     internal Guild(FluxerBaseClient client) : base(client)
     {
 
@@ -74,5 +82,9 @@ public class Guild : PartialGuild, IGuild
         AfkTimeout = json.AfkTimeout;
         DisabledOperations = json.DisabledOperations;
         MessageHistoryCutoff = json.MessageHistoryCutoff;
+        IsNsfw = json.IsNsfw;
+        ContentWarningText = json.ContentWarningText;
+        OnlineCount = json.OnlineCount;
+        MemberCount = json.MemberCount;
     }
 }

@@ -55,7 +55,7 @@ public class GuildMemberJson : IGuildMember
 
     /// <inheritdoc />
     [JsonProperty("roles")]
-    public HashSet<ulong>? RoleIds { get; set; }
+    public HashSet<ulong>? RoleIds { get; set; } = new HashSet<ulong>();
 
     /// <inheritdoc />
     public string GetCurrentName()
