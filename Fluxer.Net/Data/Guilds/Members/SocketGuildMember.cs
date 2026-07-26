@@ -2,8 +2,14 @@
 
 namespace Fluxer.Net;
 
+/// <summary>
+/// Cached Guild Member.
+/// </summary>
 public class SocketGuildMember : GuildMember
 {
+    /// <summary>
+    /// Guild that the member is for.
+    /// </summary>
     public SocketGuild Guild { get; internal set; }
 
     public ConcurrentDictionary<string, SocketVoiceState> VoiceStates { get; internal set; } = new ConcurrentDictionary<string, SocketVoiceState>();

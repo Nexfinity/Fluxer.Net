@@ -126,4 +126,9 @@ public interface IChannelPermissions
     /// Update the voice region for this voice channel.
     /// </summary>
     bool UpdateRtcRegion { get; }
+
+    /// <summary>
+    /// Allows you to view members in the channel.
+    /// </summary>
+    bool ViewChannelMembers { get; }
 }

@@ -53,6 +53,10 @@ public class SocketGuild : Guild
         data.CurrentMember = member;
         data.Members.TryAdd(member.UserId, member);
         data.CurrentMember.Guild = data;
+
+        // Null count data on socket guild.
+        data.OnlineCount = null;
+        data.MemberCount = null;
         data.Update(client, json);
         return data;
     }

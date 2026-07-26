@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System.ComponentModel;
 
 namespace Fluxer.Net;
 
@@ -17,9 +16,20 @@ public abstract class CreateGuildChannelRequest
     [JsonProperty("url")]
     public string? Url { get; set; }
 
-    [DefaultValue(false)]
     [JsonProperty("nsfw")]
     public bool Nsfw { get; set; }
+
+    [JsonProperty("bitrate")]
+    public int? Bitrate { get; set; }
+
+    [JsonProperty("user_limit")]
+    public int? UserLimit { get; set; }
+
+    [JsonProperty("voice_connection_limit")]
+    public int? VoiceConnectionLimit { get; set; }
+
+    [JsonProperty("rate_limit_per_user")]
+    public int? RatelimitPerUser { get; set; }
 
     [JsonProperty("permission_overwrites")]
     public ChannelOverwriteRequest[]? PermissionOverwrites { get; set; }

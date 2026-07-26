@@ -2139,6 +2139,9 @@
         <member name="P:Fluxer.Net.Emoji.IsAnimated">
             <inheritdoc />
         </member>
+        <member name="P:Fluxer.Net.Emoji.AllowCloning">
+            <inheritdoc />
+        </member>
         <member name="T:Fluxer.Net.EmojiJson">
             <inheritdoc />
         </member>
@@ -2149,6 +2152,9 @@
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.EmojiJson.IsAnimated">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.EmojiJson.AllowCloning">
             <inheritdoc />
         </member>
         <member name="T:Fluxer.Net.GuildEmoji">
@@ -2225,6 +2231,11 @@
             Whether this emoji is animated.
             </summary>
         </member>
+        <member name="P:Fluxer.Net.IEmoji.AllowCloning">
+            <summary>
+            Wether you can clone this emoji.
+            </summary>
+        </member>
         <member name="P:Fluxer.Net.IGuildEmoji.Creator">
             <summary>
             The user that created the emoji.
@@ -2270,6 +2281,11 @@
             Whether this sticker is animated.
             </summary>
         </member>
+        <member name="P:Fluxer.Net.ISticker.AllowCloning">
+            <summary>
+            Wether you can clone this emoji.
+            </summary>
+        </member>
         <member name="T:Fluxer.Net.Sticker">
             <inheritdoc />
         </member>
@@ -2282,6 +2298,9 @@
         <member name="P:Fluxer.Net.Sticker.IsAnimated">
             <inheritdoc />
         </member>
+        <member name="P:Fluxer.Net.Sticker.AllowCloning">
+            <inheritdoc />
+        </member>
         <member name="T:Fluxer.Net.StickerJson">
             <inheritdoc />
         </member>
@@ -2292,6 +2311,9 @@
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.StickerJson.IsAnimated">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.StickerJson.AllowCloning">
             <inheritdoc />
         </member>
         <member name="T:Fluxer.Net.FavoriteGif">
@@ -2694,6 +2716,9 @@
         <member name="P:Fluxer.Net.ChannelPermissions.UpdateRtcRegion">
             <inheritdoc />
         </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.ViewChannelMembers">
+            <inheritdoc />
+        </member>
         <member name="T:Fluxer.Net.Guild">
             <inheritdoc />
         </member>
@@ -2739,6 +2764,9 @@
         <member name="P:Fluxer.Net.Guild.MessageHistoryCutoff">
             <inheritdoc />
         </member>
+        <member name="P:Fluxer.Net.Guild.IsNsfw">
+            <inheritdoc />
+        </member>
         <member name="T:Fluxer.Net.GuildJson">
             <inheritdoc />
         </member>
@@ -2782,6 +2810,18 @@
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.GuildJson.MessageHistoryCutoff">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildJson.IsNsfw">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildJson.ContentWarningText">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildJson.OnlineCount">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildJson.MemberCount">
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.GuildPermissions.RawValue">
@@ -2897,6 +2937,9 @@
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.GuildPermissions.UpdateRtcRegion">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.ViewChannelMembers">
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.IChannelPermissions.ManageChannels">
@@ -3024,6 +3067,11 @@
             Update the voice region for this voice channel.
             </summary>
         </member>
+        <member name="P:Fluxer.Net.IChannelPermissions.ViewChannelMembers">
+            <summary>
+            Allows you to view members in the channel.
+            </summary>
+        </member>
         <member name="P:Fluxer.Net.IGuild.OwnerId">
             <summary>
             The ID of the guild owner.
@@ -3093,6 +3141,32 @@
             <summary>
             ISO8601 timestamp controlling how far back members without Read Message History can access messages. When null, no historical access is allowed.
             </summary>
+        </member>
+        <member name="P:Fluxer.Net.IGuild.IsNsfw">
+            <summary>
+            Is the guild nsfw.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IGuild.ContentWarningText">
+            <summary>
+            Show a custom warning to new members.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IGuild.OnlineCount">
+            <summary>
+            Current ammount of online members in the guild.
+            </summary>
+            <remarks>
+            Only available from rest get guild not socket guild.
+            </remarks>
+        </member>
+        <member name="P:Fluxer.Net.IGuild.MemberCount">
+            <summary>
+            Total ammount of members in the guild.
+            </summary>
+            <remarks>
+            Only available from rest get guild not socket guild.
+            </remarks>
         </member>
         <member name="P:Fluxer.Net.IGuildPermissions.Administrator">
             <summary>
@@ -3615,6 +3689,16 @@
             Currently only used when updating role positions in <see cref="!:ApiClient.UpdateRolePositions"/>
             </summary>
         </member>
+        <member name="T:Fluxer.Net.SocketGuildMember">
+            <summary>
+            Cached Guild Member.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.SocketGuildMember.Guild">
+            <summary>
+            Guild that the member is for.
+            </summary>
+        </member>
         <member name="T:Fluxer.Net.PartialGuild">
             <inheritdoc />
         </member>
@@ -4006,6 +4090,11 @@
         <member name="F:Fluxer.Net.Permissions.UpdateRtcRegion">
             <summary>
             Allows updating the RTC (voice) region for a channel.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.Permissions.ViewChannelMembers">
+            <summary>
+            Allows you to view members in the channel.
             </summary>
         </member>
         <member name="T:Fluxer.Net.GuildContentFilter">
@@ -5170,6 +5259,492 @@
             <summary>
             System message.
             </summary>
+        </member>
+        <member name="T:Fluxer.Net.Instance">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Instance.ApiVersion">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Instance.Endpoints">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Instance.Captcha">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Instance.Features">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Instance.Gifs">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Instance.SSO">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Instance.Registration">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Instance.Community">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Instance.Services">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Instance.Limits">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Instance.Push">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Instance.App">
+            <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.InstanceEndpoints">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceEndpoints.Api">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceEndpoints.ApiClient">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceEndpoints.ApiPublic">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceEndpoints.Gateway">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceEndpoints.Media">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceEndpoints.Cdn">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceEndpoints.Marketing">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceEndpoints.Admin">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceEndpoints.Invite">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceEndpoints.Gift">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceEndpoints.WebApp">
+            <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.InstanceCaptcha">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceCaptcha.Provider">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceCaptcha.HCaptchaSiteKey">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceCaptcha.TurnstileSiteKey">
+            <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.InstanceFeatures">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceFeatures.IsVoiceEnabled">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceFeatures.IsStripeEnabled">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceFeatures.IsSelfHosted">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceFeatures.IsPresignedAttachmentUploads">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceFeatures.IsEmailsEnabled">
+            <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.InstanceGifs">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceGifs.Provider">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceGifs.DisplayName">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceGifs.IsAttributionRequired">
+            <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.InstanceSSO">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceSSO.IsEnabled">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceSSO.IsEnforced">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceSSO.DisplayName">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceSSO.RedirectUrl">
+            <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.InstanceRegistration">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceRegistration.Mode">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceRegistration.IsAdminRegistrationEnabled">
+            <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.InstanceCommunity">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceCommunity.IsSingleCommunity">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceCommunity.SingleCommunityGuildId">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceCommunity.IsDirectMessagesDisabled">
+            <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.InstanceServices">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceServices.IsGifEnabled">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceServices.IsYouTubeEnabled">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceServices.IsBlueSkyEnabled">
+            <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.InstanceLimits">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceLimits.Version">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceLimits.Traits">
+            <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.InstancePush">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstancePush.PublicVapidKey">
+            <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.InstanceApp">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceApp.Branding">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceApp.Setup">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceApp.Legal">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceApp.Registration">
+            <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.InstanceAppBranding">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceAppBranding.ProductName">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceAppBranding.IconUrl">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceAppBranding.SymbolUrl">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceAppBranding.LogoUrl">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceAppBranding.WordmarkUrl">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceAppBranding.FaviconUrl">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceAppBranding.ThemeColor">
+            <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.InstanceAppSetup">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceAppSetup.IsConfigured">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceAppSetup.AdminUrl">
+            <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.InstanceAppLegal">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceAppLegal.TermsUrl">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceAppLegal.PrivacyUrl">
+            <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.InstanceAppRegistration">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceAppRegistration.CollectDateOfBirth">
+            <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.InstanceJson">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceJson.ApiVersion">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceJson.Endpoints">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceJson.Captcha">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceJson.Features">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceJson.Gifs">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceJson.SSO">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceJson.Registration">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceJson.Community">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceJson.Services">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceJson.Limits">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceJson.Push">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceJson.App">
+            <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.InstanceEndpointsJson">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceEndpointsJson.Api">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceEndpointsJson.ApiClient">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceEndpointsJson.ApiPublic">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceEndpointsJson.Gateway">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceEndpointsJson.Media">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceEndpointsJson.Cdn">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceEndpointsJson.Marketing">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceEndpointsJson.Admin">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceEndpointsJson.Invite">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceEndpointsJson.Gift">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceEndpointsJson.WebApp">
+            <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.InstanceCaptchaJson">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceCaptchaJson.Provider">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceCaptchaJson.HCaptchaSiteKey">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceCaptchaJson.TurnstileSiteKey">
+            <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.InstanceFeaturesJson">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceFeaturesJson.IsVoiceEnabled">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceFeaturesJson.IsStripeEnabled">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceFeaturesJson.IsSelfHosted">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceFeaturesJson.IsPresignedAttachmentUploads">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceFeaturesJson.IsEmailsEnabled">
+            <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.InstanceGifsJson">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceGifsJson.Provider">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceGifsJson.DisplayName">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceGifsJson.IsAttributionRequired">
+            <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.InstanceSSOJson">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceSSOJson.IsEnabled">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceSSOJson.IsEnforced">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceSSOJson.DisplayName">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceSSOJson.RedirectUrl">
+            <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.InstanceRegistrationJson">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceRegistrationJson.Mode">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceRegistrationJson.IsAdminRegistrationEnabled">
+            <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.InstanceCommunityJson">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceCommunityJson.IsSingleCommunity">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceCommunityJson.SingleCommunityGuildId">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceCommunityJson.IsDirectMessagesDisabled">
+            <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.InstanceServicesJson">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceServicesJson.IsGifEnabled">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceServicesJson.IsYouTubeEnabled">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceServicesJson.IsBlueSkyEnabled">
+            <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.InstanceLimitsJson">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceLimitsJson.Version">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceLimitsJson.Traits">
+            <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.InstancePushJson">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstancePushJson.PublicVapidKey">
+            <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.InstanceAppJson">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceAppJson.Branding">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceAppJson.Setup">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceAppJson.Legal">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceAppJson.Registration">
+            <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.InstanceAppBrandingJson">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceAppBrandingJson.ProductName">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceAppBrandingJson.IconUrl">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceAppBrandingJson.SymbolUrl">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceAppBrandingJson.LogoUrl">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceAppBrandingJson.WordmarkUrl">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceAppBrandingJson.FaviconUrl">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceAppBrandingJson.ThemeColor">
+            <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.InstanceAppSetupJson">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceAppSetupJson.IsConfigured">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceAppSetupJson.AdminUrl">
+            <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.InstanceAppLegalJson">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceAppLegalJson.TermsUrl">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceAppLegalJson.PrivacyUrl">
+            <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.InstanceAppRegistrationJson">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceAppRegistrationJson.CollectDateOfBirth">
+            <inheritdoc />
         </member>
         <member name="T:Fluxer.Net.FluxerOAuthToken">
             <inheritdoc />
@@ -7507,6 +8082,11 @@
             This method automatically schedules reconnection if sending fails. Packets may be dropped
             during reconnection attempts. For critical operations, use the REST API via <see cref="T:Fluxer.Net.ApiClient"/>.
             </remarks>
+        </member>
+        <member name="M:Fluxer.Net.GatewayClient.TriggerReconnect">
+            <summary>
+            Handles reconnection triggers
+            </summary>
         </member>
         <member name="M:Fluxer.Net.GatewayClient.HandleReconnectWithBackoff">
             <summary>

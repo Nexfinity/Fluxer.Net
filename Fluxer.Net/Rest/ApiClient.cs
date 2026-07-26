@@ -339,6 +339,37 @@ public class ApiClient
     }
     #endregion
 
+    public async Task<Instance?> GetInstanceInfoAsync()
+    {
+        InstanceJson? json = await MakeFluxerApiRequestAsync<InstanceJson>(HttpMethod.Get, $"/.well-known/fluxer", false);
+        if (json == null)
+            return null;
+
+        return Instance.Create(_client, json);
+    }
+
+    #region Expressions API
+
+    public async Task<Emoji?> GetEmojiAsync(ulong emojiId)
+    {
+        EmojiJson? json = await MakeFluxerApiRequestAsync<EmojiJson>(HttpMethod.Get, $"/emojis/{emojiId}/metadata", false);
+        if (json == null)
+            return null;
+
+        return Emoji.Create(_client, json);
+    }
+
+    public async Task<Sticker?> GetStickerAsync(ulong stickerId)
+    {
+        StickerJson? json = await MakeFluxerApiRequestAsync<StickerJson>(HttpMethod.Get, $"/stickers/{stickerId}/metadata", false);
+        if (json == null)
+            return null;
+
+        return Sticker.Create(_client, json);
+    }
+
+    #endregion
+
     #region Auth API
 
     public async Task<Login> LoginAsync(LoginRequestJson data)
@@ -863,6 +894,12 @@ public class ApiClient
         IEnumerable<WebhookJson> json = await MakeFluxerApiRequestAsync<IEnumerable<WebhookJson>>(HttpMethod.Get, $"/guilds/{guildId}/webhooks", true);
         return json.Select(x => Webhook.Create(_client, x));
     }
+
+    #endregion
+
+    #region Discovery API
+
+
 
     #endregion
 

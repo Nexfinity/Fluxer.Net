@@ -12,6 +12,9 @@ public class Emoji : Entity, IEmoji
     /// <inheritdoc />
     public bool IsAnimated { get; internal set; }
 
+    /// <inheritdoc />
+    public bool AllowCloning { get; internal set; }
+
     internal Emoji(FluxerBaseClient client) : base(client)
     {
 
@@ -29,5 +32,6 @@ public class Emoji : Entity, IEmoji
         Id = json.Id;
         Name = json.Name;
         IsAnimated = json.IsAnimated;
+        AllowCloning = json.AllowCloning;
     }
 }
