@@ -1427,9 +1427,9 @@ public partial class GatewayClient : IDisposable
                     {
                         Properties = new Dictionary<string, string>
                         {
-                            { "os", "linux" },
-                            { "browser", "fluxer-net" },
-                            { "device", "fluxer-net" }
+                            { "os", Environment.OSVersion.Platform.ToString() },
+                            { "browser", "Fluxer.Net" },
+                            { "device", "Fluxer.Net" }
                         },
                         IgnoredGatewayEvents = _client.Config.IgnoredGatewayEvents,
                         Presence = _client.Config.Presence
