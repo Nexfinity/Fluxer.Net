@@ -71,6 +71,7 @@ public partial class GatewayClient : IDisposable
     private readonly SemaphoreSlim _reconnectLock = new(1, 1);
     private bool _disposed = false;
     private bool _isConnecting = false;
+    private int _reconnectRunning = 0;
 
     // build error from generated regex
     // temp. removed pending investigation.
@@ -181,36 +182,7 @@ public partial class GatewayClient : IDisposable
                 IsReconnectionEnabled = false  // Completely disable automatic reconnection
             };
             _webSocket.MessageReceived.Subscribe(x => GatewayMessageHandler(x.Text));
-            _webSocket.DisconnectionHappened.Subscribe(info =>
-            {
-                _isConnecting = false; // Connection attempt finished (failed)
-                _logger.Warning("WebSocket disconnected: Type={Type}, CloseStatus={CloseStatus}, CloseStatusDescription={CloseDescription}, Exception={Exception}",
-                    info.Type,
-                    info.CloseStatus?.ToString() ?? "None",
-                    info.CloseStatusDescription ?? "None",
-                    info.Exception?.Message ?? "None");
-
-                // Determine if we should attempt reconnection based on close code
-                bool shouldReconnect = true;
-
-                // Handle Fluxer-specific close codes
-                if (info.CloseStatus.HasValue)
-                {
-                    shouldReconnect = HandleGatewayCloseCode((int)info.CloseStatus.Value, info.CloseStatusDescription);
-                }
-
-                // Manual reconnection handling - only reconnect if we have a valid reason and close code allows it
-                if (shouldReconnect && (info.Type == DisconnectionType.ByServer || info.Type == DisconnectionType.Lost || info.Type == DisconnectionType.Error))
-                {
-                    _logger.Information("Connection lost, manually reconnecting...");
-                    _ = Task.Run(async () => await HandleReconnectWithBackoff());
-                }
-                else if (!shouldReconnect)
-                {
-                    _logger.Warning("Reconnection disabled due to close code. Manual intervention required.");
-                    _reconnectAttemptCount = 0; // Reset backoff counter
-                }
-            });
+            _webSocket.DisconnectionHappened.Subscribe(HandleGatewayDisconnect);
             Stopwatch.StartNew();
 
             _logger.Information("Starting WebSocket connection to {GatewayUrl}", _client.Config.FluxerGatewayUrl);
@@ -302,8 +274,36 @@ public partial class GatewayClient : IDisposable
         {
             _logger.Warning(ex, "Failed to send gateway packet. Scheduling reconnection. Some packets may be dropped.");
             // Don't block - schedule reconnection on thread pool
-            _ = Task.Run(async () => await HandleReconnectWithBackoff());
+            _ = HandleReconnectWithBackoff();
         }
+    }
+
+    /// <summary>
+    /// Handles reconnection triggers
+    /// </summary>
+    private void TriggerReconnect()
+    {
+        if (Interlocked.Exchange(ref _reconnectRunning, 1) == 1)
+        {
+            _logger.Debug("Reconnect already scheduled");
+            return;
+        }
+
+        _ = Task.Run(async () =>
+        {
+            try
+            {
+                await HandleReconnectWithBackoff();
+            }
+            catch (Exception ex)
+            {
+                _logger.Error(ex, "Reconnect loop failed");
+            }
+            finally
+            {
+                Interlocked.Exchange(ref _reconnectRunning, 0);
+            }
+        });
     }
 
     /// <summary>
@@ -316,7 +316,7 @@ public partial class GatewayClient : IDisposable
         // Exponential backoff: 1s, 2s, 4s, 8s, 16s, max 60s
         var baseDelay = Math.Min(Math.Pow(2, _reconnectAttemptCount - 1), 60);
 #if NET5_0_OR_GREATER
-        double random = Random.Shared.NextDouble();
+    double random = Random.Shared.NextDouble();
 #else
         SharedRandom ??= new();
         double random = SharedRandom.NextDouble();
@@ -329,16 +329,16 @@ public partial class GatewayClient : IDisposable
 
         await Task.Delay(totalDelay);
 
-        // Check if we have a valid session to resume
-        if (!string.IsNullOrEmpty(_sessionId))
+        try
         {
-            _logger.Information("Attempting to resume existing session");
             await ReEstablishGatewayConnectionAsync();
         }
-        else
+        catch (Exception ex)
         {
-            _logger.Information("No session to resume, creating fresh connection");
-            await ConnectAsync();
+            _logger.Error(ex, "Reconnect attempt failed");
+
+            // Try again
+            _ = HandleReconnectWithBackoff();
         }
     }
 
@@ -392,7 +392,8 @@ public partial class GatewayClient : IDisposable
                         }
 
                         // Reconnect with backoff (will use IDENTIFY or RESUME based on _sessionId)
-                        await HandleReconnectWithBackoff();
+                        _webSocket?.Dispose();
+                        TriggerReconnect();
                     }
                     catch (Exception ex)
                     {
@@ -458,7 +459,7 @@ public partial class GatewayClient : IDisposable
                 case FluxerOpCode.Reconnect:
                     _logger.Warning("Received Reconnect opcode from server");
                     // Don't block the message handler - reconnect asynchronously
-                    _ = Task.Run(async () => await ReEstablishGatewayConnectionAsync());
+                    TriggerReconnect();
                     return;
                 case FluxerOpCode.Hello:
                     HandleHello(packet);
@@ -1335,8 +1336,6 @@ public partial class GatewayClient : IDisposable
     {
         _logger.Information("Attempting to reestablish gateway connection...");
 
-
-        // Use semaphore to prevent concurrent reconnection attempts
         if (!await _reconnectLock.WaitAsync(0))
         {
             _logger.Debug("Reconnection already in progress, skipping duplicate attempt");
@@ -1345,61 +1344,142 @@ public partial class GatewayClient : IDisposable
 
         try
         {
-            // Check if we have a valid session to resume
-            if (string.IsNullOrEmpty(_sessionId))
-            {
-                _logger.Information("No valid session ID available. Sending IDENTIFY instead of RESUME.");
-
-                // Send fresh IDENTIFY packet since we don't have a session to resume
-                GatewayPacket identifyPacket = new GatewayPacket
-                {
-                    OpCode = FluxerOpCode.Identify,
-                    Data = JToken.FromObject(new IdentifyGatewayData(_client.RawToken)
-                    {
-                        Properties = new Dictionary<string, string>
-                        {
-                            { "os", Environment.OSVersion.Platform.ToString() },
-                            { "browser", "Fluxer.Net" },
-                            { "device", "Fluxer.Net" }
-                        },
-                        IgnoredGatewayEvents = _client.Config.IgnoredGatewayEvents,
-                        Presence = _client.Config.Presence
-                    })
-                };
-                SendGatewayPacket(identifyPacket);
-                return;
-            }
-
             TimeSpan timeSinceLastAttempt = DateTime.Now - _lastGatewayReEstablishAttempt;
             TimeSpan requiredDelay = TimeSpan.FromSeconds(_client.Config.ReconnectAttemptDelay);
 
             if (timeSinceLastAttempt < requiredDelay)
             {
-                TimeSpan remainingDelay = requiredDelay - timeSinceLastAttempt;
-                _logger.Warning("Rate limiting reconnection. Waiting {RemainingSeconds:F1} seconds before reconnect attempt.", remainingDelay.TotalSeconds);
+                var remainingDelay = requiredDelay - timeSinceLastAttempt;
+
+                _logger.Warning(
+                    "Rate limiting reconnection. Waiting {RemainingSeconds:F1} seconds before reconnect attempt.",
+                    remainingDelay.TotalSeconds);
+
                 await Task.Delay(remainingDelay);
             }
 
             _lastGatewayReEstablishAttempt = DateTime.Now;
-            _gatewayDuration.Restart();
 
-            _logger.Information("Attempting to resume session {SessionId} with sequence {Sequence}", _sessionId, _sequence);
-
-            GatewayPacket packet = new GatewayPacket()
+            // Kill old transport
+            if (_webSocket != null)
             {
-                OpCode = FluxerOpCode.Resume,
-                Data = JToken.FromObject(new ReconnectGatewayData()
+                try
                 {
-                    Sequence = _sequence,
-                    SessionId = _sessionId,
-                    Token = _client.RawToken
-                })
+                    _webSocket.Dispose();
+                    _logger.Debug("Disposed old gateway WebSocket");
+                }
+                catch (Exception ex)
+                {
+                    _logger.Warning(ex, "Failed disposing old WebSocket");
+                }
+            }
+
+            // Create NEW transport
+            _webSocket = new WebsocketClient(new(_client.Config.FluxerGatewayUrl))
+            {
+                IsReconnectionEnabled = false
             };
+
+            _webSocket.MessageReceived.Subscribe(x => GatewayMessageHandler(x.Text));
+            _webSocket.DisconnectionHappened.Subscribe(HandleGatewayDisconnect);
+
+            _logger.Information(
+                "Starting new WebSocket connection to {GatewayUrl}",
+                _client.Config.FluxerGatewayUrl);
+
+            await _webSocket.Start();
+
+            await Task.Delay(100);
+
+            if (_webSocket.IsRunning != true)
+            {
+                throw new Exception("New gateway WebSocket failed to start");
+            }
+
+            GatewayPacket packet;
+
+            if (!string.IsNullOrEmpty(_sessionId))
+            {
+                _logger.Information(
+                    "Attempting to resume session {SessionId} with sequence {Sequence}",
+                    _sessionId,
+                    _sequence);
+
+                packet = new GatewayPacket()
+                {
+                    OpCode = FluxerOpCode.Resume,
+                    Data = JToken.FromObject(new ReconnectGatewayData()
+                    {
+                        Sequence = _sequence,
+                        SessionId = _sessionId,
+                        Token = _client.RawToken
+                    })
+                };
+            }
+            else
+            {
+                _logger.Information("No session ID, sending IDENTIFY");
+
+                packet = new GatewayPacket
+                {
+                    OpCode = FluxerOpCode.Identify,
+                    Data = JToken.FromObject(new IdentifyGatewayData(_client.RawToken)
+                    {
+                        Properties = new Dictionary<string, string>
+                    {
+                        { "os", "linux" },
+                        { "browser", "fluxer-net" },
+                        { "device", "fluxer-net" }
+                    },
+                        IgnoredGatewayEvents = _client.Config.IgnoredGatewayEvents,
+                        Presence = _client.Config.Presence
+                    })
+                };
+            }
+
             SendGatewayPacket(packet);
         }
         finally
         {
             _reconnectLock.Release();
+        }
+    }
+
+    private void HandleGatewayDisconnect(DisconnectionInfo info)
+    {
+        _isConnecting = false;
+
+        _logger.Warning(
+            "WebSocket disconnected: Type={Type}, CloseStatus={CloseStatus}, CloseStatusDescription={CloseDescription}, Exception={Exception}",
+            info.Type,
+            info.CloseStatus?.ToString() ?? "None",
+            info.CloseStatusDescription ?? "None",
+            info.Exception?.Message ?? "None");
+
+        bool shouldReconnect = true;
+
+        if (info.CloseStatus.HasValue)
+        {
+            shouldReconnect = HandleGatewayCloseCode(
+                (int)info.CloseStatus.Value,
+                info.CloseStatusDescription);
+        }
+
+        if (shouldReconnect &&
+            (info.Type == DisconnectionType.ByServer ||
+             info.Type == DisconnectionType.Lost ||
+             info.Type == DisconnectionType.Error))
+        {
+            _logger.Information("Connection lost, manually reconnecting...");
+
+            TriggerReconnect();
+        }
+        else if (!shouldReconnect)
+        {
+            _logger.Warning(
+                "Reconnection disabled due to close code. Manual intervention required.");
+
+            _reconnectAttemptCount = 0;
         }
     }
 
