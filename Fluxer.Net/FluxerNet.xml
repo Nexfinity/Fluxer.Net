@@ -8795,6 +8795,51 @@
             VOICE_STATE_UPDATE and VOICE_SERVER_UPDATE events containing connection information.
             </remarks>
         </member>
+        <member name="T:Fluxer.Net.OAuth.FluxerOAuthExtensions">
+            <Summary>
+            Extension methods for handling fluxer oauth client.
+            </Summary>
+        </member>
+        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.AddFluxerClient(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,System.String,Fluxer.Net.FluxerConfig)">
+            <Summary>
+            Add Fluxer oauth client on dependency injection service.
+            </Summary>
+        </member>
+        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.GetFluxerClaims(System.Security.Claims.ClaimsPrincipal,Fluxer.Net.FluxerBaseClient)">
+            <Summary>
+            Get Fluxer specific claims for a claim user.
+            </Summary>
+        </member>
+        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.AddFluxer(Microsoft.AspNetCore.Authentication.AuthenticationBuilder)">
+            <Summary>
+            Add Fluxer oauth client on dependency injection service.
+            </Summary>
+        </member>
+        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.AddFluxer(Microsoft.AspNetCore.Authentication.AuthenticationBuilder,System.Action{Fluxer.Net.OAuth.FluxerOAuthOptions})">
+            <Summary>
+            Add Fluxer oauth client on dependency injection service.
+            </Summary>
+        </member>
+        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.AddFluxer(Microsoft.AspNetCore.Authentication.AuthenticationBuilder,System.String,System.Action{Fluxer.Net.OAuth.FluxerOAuthOptions})">
+            <Summary>
+            Add Fluxer oauth client on dependency injection service.
+            </Summary>
+        </member>
+        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.AddFluxer(Microsoft.AspNetCore.Authentication.AuthenticationBuilder,System.String,System.String,System.Action{Fluxer.Net.OAuth.FluxerOAuthOptions})">
+            <Summary>
+            Add Fluxer oauth client on dependency injection service.
+            </Summary>
+        </member>
+        <member name="T:Fluxer.Net.OAuth.FluxerOAuthHandler">
+            <Summary>
+            Asp.net oauth handler for Fluxer.
+            </Summary>
+        </member>
+        <member name="M:Fluxer.Net.OAuth.FluxerOAuthHandler.#ctor(Microsoft.Extensions.Options.IOptionsMonitor{Fluxer.Net.OAuth.FluxerOAuthOptions},Microsoft.Extensions.Logging.ILoggerFactory,System.Text.Encodings.Web.UrlEncoder,Microsoft.AspNetCore.Authentication.ISystemClock)">
+            <Summary>
+            Create asp.net oauth handler for Fluxer.
+            </Summary>
+        </member>
         <member name="T:Fluxer.Net.RateLimiting.RateLimitBucket">
             <summary>
             Represents a sliding window rate limit bucket for API requests
@@ -8984,6 +9029,19 @@
             <returns>The deserialized response object.</returns>
             <exception cref="T:Fluxer.Net.Extensions.FluxerApiException">Thrown when <paramref name="throwOnNonSuccess"/> is true and the API returns a non-success status code.</exception>
         </member>
+        <member name="M:Fluxer.Net.ApiClient.MakeFluxerApiRequestAsyncWithQueryParams``1(System.Net.Http.HttpMethod,Fluxer.Net.Rest.RestClientQueryParams,System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Makes an HTTP request with no request body but expects a response body.
+            </summary>
+            <typeparam name="TResponse">The type to deserialize the response into.</typeparam>
+            <param name="method">The HTTP method (typically GET).</param>
+            <param name="queryParams">The HTTP method query params like limit, after, etc.</param>
+            <param name="route">The API route (e.g., "/users/@me").</param>
+            <param name="throwOnNonSuccess">Whether to throw an exception on non-2xx status codes.</param>
+            <param name="authorize">Whether to include the Authorization header.</param>
+            <returns>The deserialized response object.</returns>
+            <exception cref="T:Fluxer.Net.Extensions.FluxerApiException">Thrown when <paramref name="throwOnNonSuccess"/> is true and the API returns a non-success status code.</exception>
+        </member>
         <member name="M:Fluxer.Net.ApiClient.MakeFluxerApiRequestRawAsync(System.Net.Http.HttpMethod,System.String,System.Boolean,System.Boolean)">
             <summary>
             Makes an HTTP request with no request or response body (returns status code only).
@@ -8995,19 +9053,9 @@
             <returns>The HTTP status code of the response.</returns>
             <exception cref="T:Fluxer.Net.Extensions.FluxerApiException">Thrown when <paramref name="throwOnNonSuccess"/> is true and the API returns a non-success status code.</exception>
         </member>
-        <member name="T:Fluxer.Net.ChannelPinsQuery">
-            <remarks>
-            <see href="https://github.com/fluxerapp/fluxer/blob/848269a4d4df7349acfc861ff926b17fe4c4a548/packages/schema/src/domains/message/MessageRequestSchemas.tsx#L314"/>
-            </remarks>
-        </member>
-        <member name="P:Fluxer.Net.ChannelPinsQuery.Limit">
+        <member name="T:Fluxer.Net.Rest.QueryParams">
             <summary>
-            Maximum number of pinned messages to return (1-50)
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.ChannelPinsQuery.Before">
-            <summary>
-            Get pinned messages before this timestamp
+            Query params for HTTP requests
             </summary>
         </member>
         <member name="P:Fluxer.Net.Rest.Requests.EmbedAuthorRequest.Name">
@@ -9108,6 +9156,40 @@
         <member name="P:Fluxer.Net.Rest.Requests.EmbedRequest.Fields">
             <summary>
             Array of field objects (max 25)
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.Rest.RestClientQueryParams">
+            <summary>
+            Query params for HTTP requests
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Rest.RestClientQueryParams.Add(System.String,System.Object)">
+            <summary>
+            Add query param
+            </summary>
+            <param name="key">Query param name (Ex.: Limit)</param>
+            <param name="value">Query param value (Ex. 10)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.Rest.RestClientQueryParams.ToDictionary">
+            <summary>
+            Create dictionary of query params for Uri
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Fluxer.Net.ChannelPinsQuery">
+            <remarks>
+            <see href="https://github.com/fluxerapp/fluxer/blob/848269a4d4df7349acfc861ff926b17fe4c4a548/packages/schema/src/domains/message/MessageRequestSchemas.tsx#L314"/>
+            </remarks>
+        </member>
+        <member name="P:Fluxer.Net.ChannelPinsQuery.Limit">
+            <summary>
+            Maximum number of pinned messages to return (1-50)
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.ChannelPinsQuery.Before">
+            <summary>
+            Get pinned messages before this timestamp
             </summary>
         </member>
         <member name="P:Fluxer.Net.GlobalSearchMessagesRequest.ContextChannelId">
@@ -9509,69 +9591,6 @@
             </summary>
         </member>
         <member name="P:Fluxer.Net.MessageSearchRequest.ExcludeAttachmentExtensions">
-            <summary>
-            File extensions to exclude
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.MessageSearchRequest.SortBy">
-            <summary>
-            Field to sort results by
-            </summary>
-            <remarks>
-            <see href="https://github.com/fluxerapp/fluxer/blob/d843d6f3f8a0bd850673ba55036354093977109f/packages/schema/src/domains/message/MessageRequestSchemas.tsx#L134"/>
-            </remarks>
-        </member>
-        <member name="P:Fluxer.Net.MessageSearchRequest.SortOrder">
-            <summary>
-            Sort order for results
-            </summary>
-            <remarks>
-            <see href="https://github.com/fluxerapp/fluxer/blob/d843d6f3f8a0bd850673ba55036354093977109f/packages/schema/src/domains/message/MessageRequestSchemas.tsx#L147"/>
-            </remarks>
-        </member>
-        <member name="P:Fluxer.Net.MessageSearchRequest.IncludeNsfw">
-            <summary>
-            Whether to include NSFW channel results
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.MessageSearchRequest.MessageSearchScope">
-            <remarks>
-            <see href="https://github.com/fluxerapp/fluxer/blob/d843d6f3f8a0bd850673ba55036354093977109f/packages/schema/src/domains/message/MessageRequestSchemas.tsx#L160"/>
-            </remarks>
-        </member>
-        <member name="T:Fluxer.Net.UpdateMessageRequest">
-            <remarks>
-            <see href="https://github.com/fluxerapp/fluxer/blob/848269a4d4df7349acfc861ff926b17fe4c4a548/packages/api/src/channel/MessageTypes.tsx#L32"/>
-            </remarks>
-        </member>
-        <member name="P:Fluxer.Net.UpdateMessageRequest.Content">
-            <summary>
-            The message content (up to 2000 characters)
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.UpdateMessageRequest.Embeds">
-            <summary>
-            Array of embed objects to include in the message
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.UpdateMessageRequest.AllowedMentions">
-            <summary>
-            Controls which mentions trigger notifications
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.UpdateMessageRequest.Flags">
-            <summary>
-            Message flags bitfield
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.UpdateMessageRequest.Attachments">
-            <summary>
-            Array of attachment objects to keep or add
-            </summary>
-        </member>
-    </members>
-</doc>
-ions">
             <summary>
             File extensions to exclude
             </summary>
