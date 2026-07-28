@@ -92,7 +92,6 @@ public class FluxerClient : FluxerBaseClient
         return serializer;
     }
 
-
     /// <summary>
     /// Validates that the token has a recognized prefix for the Fluxer API.
     /// </summary>

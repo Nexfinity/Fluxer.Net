@@ -21,6 +21,19 @@ public class RestClientQueryParams
     }
 
     /// <summary>
+    /// Add query param
+    /// </summary>
+    /// <param name="key">Query param name (Ex.: Limit)</param>
+    /// <param name="value">Query param value (Ex. 10)</param>
+    /// <returns></returns>
+    public RestClientQueryParams AddIf(bool condition, string key, object? value)
+    {
+        if (condition && value != null)
+            _params[key] = value.ToString();
+        return this;
+    }
+
+    /// <summary>
     /// Create dictionary of query params for Uri
     /// </summary>
     /// <returns></returns>

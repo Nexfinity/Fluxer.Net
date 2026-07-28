@@ -1,4 +1,6 @@
-﻿namespace Fluxer.Net;
+﻿using Fluxer.Net.Rest;
+
+namespace Fluxer.Net;
 
 public static class GuildHelpers
 {
@@ -38,8 +40,8 @@ public static class GuildHelpers
     public static Task<GuildSticker> CreateStickerAsync(this Guild guild, CreateGuildStickerRequest request)
         => guild.Client.Rest.CreateStickerAsync(guild.Id, request);
 
-    public static Task<IEnumerable<GuildMember>> GetMembersAsync(this Guild guild)
-        => guild.Client.Rest.GetMembersAsync(guild.Id);
+    public static Task<IEnumerable<GuildMember>> GetMembersAsync(this Guild guild, int limit = 1000, ulong? afterId = null, RestClientQueryParams? queryParams = null)
+        => guild.Client.Rest.GetMembersAsync(guild.Id, limit, afterId, queryParams);
 
     public static Task<GuildMember> GetMemberAsync(this Guild guild, ulong userId)
         => guild.Client.Rest.GetMemberAsync(guild.Id, userId);

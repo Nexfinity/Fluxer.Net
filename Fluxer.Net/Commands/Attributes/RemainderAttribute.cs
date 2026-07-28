@@ -1,4 +1,4 @@
-namespace Fluxer.Net.Commands.Attributes;
+namespace Fluxer.Net.Commands;
 
 /// <summary>
 /// Marks a parameter to capture all remaining text as a single string.

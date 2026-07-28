@@ -1,5 +1,4 @@
 using Fluxer.Net.Commands;
-using Fluxer.Net.Commands.Attributes;
 using Fluxer.Net.Rest.Requests;
 
 namespace Fluxer.Net.Example.Modules;

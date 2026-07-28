@@ -48,9 +48,13 @@ public class Guild : PartialGuild, IGuild
     /// <inheritdoc />
     public bool IsNsfw { get; internal set; }
 
+    /// <inheritdoc />
     public string ContentWarningText { get; internal set; }
 
+    /// <inheritdoc />
     public int? OnlineCount { get; set; }
+
+    /// <inheritdoc />
     public int? MemberCount { get; set; }
 
     internal Guild(FluxerBaseClient client) : base(client)

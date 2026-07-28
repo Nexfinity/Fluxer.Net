@@ -3,12 +3,12 @@ using Fluxer.Net.OAuth;
 using Fluxer.Net.RateLimiting;
 using Fluxer.Net.Rest;
 using Fluxer.Net.Rest.Requests;
+using Microsoft.AspNetCore.WebUtilities;
 using Newtonsoft.Json;
 using Serilog.Core;
 using System.Net;
 using System.Net.Http.Headers;
 using System.Reflection;
-using Microsoft.AspNetCore.WebUtilities;
 
 namespace Fluxer.Net;
 
@@ -311,7 +311,7 @@ public class ApiClient
 
         return JsonConvert.DeserializeObject<TResponse>(resp);
     }
-    
+
     /// <summary>
     /// Makes an HTTP request with no request body but expects a response body.
     /// </summary>
@@ -326,22 +326,22 @@ public class ApiClient
     public Task<TResponse> MakeFluxerApiRequestAsyncWithQueryParams<TResponse>(HttpMethod method, RestClientQueryParams queryParams, string route, bool throwOnNonSuccess = false, bool authorize = true)
         => InternalMakeFluxerApiRequestAsyncWithQueryParams<TResponse>(method, queryParams, route, throwOnNonSuccess, authorize, null);
     internal async Task<TResponse> InternalMakeFluxerApiRequestAsyncWithQueryParams<TResponse>(
-        HttpMethod method, 
-        RestClientQueryParams? queryParams, 
-        string route, 
-        bool throwOnNonSuccess, 
-        bool authorize, 
+        HttpMethod method,
+        RestClientQueryParams? queryParams,
+        string route,
+        bool throwOnNonSuccess,
+        bool authorize,
         string accessToken)
     {
         var uri = _config.RealApiBaseUrl + route;
-        
+
         if (queryParams != null)
         {
             var query = queryParams.ToDictionary();
 
             uri = QueryHelpers.AddQueryString(uri, query);
         }
-        
+
         HttpRequestMessage req = new()
         {
             Method = method,
@@ -353,7 +353,7 @@ public class ApiClient
             req.Headers.Add("Authorization", "Bearer " + accessToken);
         else if (!string.IsNullOrEmpty(_token) && authorize)
             req.Headers.Add("Authorization", _token);
-        
+
         HttpResponseMessage result = await HttpClient.SendAsync(req);
 
         _logger.Debug("Made {Method} request to {Route}", method, route);
@@ -521,9 +521,15 @@ public class ApiClient
     public async Task ClearMessageAcknowledgementAsync(ulong channelId)
         => await MakeFluxerApiRequestRawAsync(HttpMethod.Delete, $"/channels/{channelId}/messages/ack", true);
 
-    public async Task<IEnumerable<Message>> GetMessagesAsync(ulong channelId)
+    public async Task<IEnumerable<Message>> GetMessagesAsync(ulong channelId, int limit = 100, ulong? beforeId = null, ulong? afterId = null, ulong? aroundId = null, RestClientQueryParams? queryParams = null)
     {
-        IEnumerable<MessageJson> json = await MakeFluxerApiRequestAsync<IEnumerable<MessageJson>>(HttpMethod.Get, $"/channels/{channelId}/messages", true);
+        queryParams ??= new RestClientQueryParams()
+            .Add(QueryParams.Limit, limit)
+            .AddIf(beforeId != null, QueryParams.Before, beforeId)
+            .AddIf(afterId != null, QueryParams.After, afterId)
+            .AddIf(aroundId != null, QueryParams.Around, aroundId);
+
+        IEnumerable<MessageJson> json = await MakeFluxerApiRequestAsyncWithQueryParams<IEnumerable<MessageJson>>(HttpMethod.Get, queryParams, $"/channels/{channelId}/messages", true);
         return json.Select(x => Message.Create(_client, x));
     }
 
@@ -794,11 +800,20 @@ public class ApiClient
         await MakeFluxerApiRequestAsync(HttpMethod.Patch, $"/guilds/{guildId}/vanity-url", data, true);
     }
 
-    public async Task<IEnumerable<GuildMember>> GetMembersAsync(ulong guildId, RestClientQueryParams? queryParams = null)
+    /// <summary>
+    /// Get a list of members for a guild, default and maximum 1000.
+    /// </summary>
+    /// <param name="guildId"></param>
+    /// <param name="limit"></param>
+    /// <param name="afterId"></param>
+    /// <param name="queryParams"></param>
+    /// <returns></returns>
+    public async Task<IEnumerable<GuildMember>> GetMembersAsync(ulong guildId, int limit = 1000, ulong? afterId = null, RestClientQueryParams? queryParams = null)
     {
         queryParams ??= new RestClientQueryParams()
-            .Add(QueryParams.Limit, 1000);
-        
+            .Add(QueryParams.Limit, limit)
+            .AddIf(afterId != null, QueryParams.After, afterId);
+
         IEnumerable<GuildMemberJson> json = await MakeFluxerApiRequestAsyncWithQueryParams<IEnumerable<GuildMemberJson>>(HttpMethod.Get, queryParams, $"/guilds/{guildId}/members", true);
         return json.Select(x => GuildMember.Create(_client, x));
     }
