@@ -54,4 +54,10 @@ public static class GuildHelpers
 
     public static Task<GuildVanityUrl> GetVanityUrlAsync(this Guild guild)
         => guild.Client.Rest.GetGuildVanityUrlAsync(guild.Id);
+
+    public static Task<IEnumerable<Webhook>> GetWebhooksAsync(this Guild guild)
+        => guild.Client.Rest.GetGuildWebhooksAsync(guild.Id);
+
+    public static Task<IEnumerable<Invite>> GetInvitesAsync(this Guild guild)
+        => guild.Client.Rest.GetGuildInvitesAsync(guild.Id);
 }

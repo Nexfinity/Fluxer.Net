@@ -676,7 +676,7 @@ public class ApiClient
         return Invite.Create(_client, json);
     }
 
-    public async Task<IEnumerable<Webhook>> GetChannelWebhooksAsync<TResponse>(ulong channelId)
+    public async Task<IEnumerable<Webhook>> GetChannelWebhooksAsync(ulong channelId)
     {
         IEnumerable<WebhookJson> json = await MakeFluxerApiRequestAsync<IEnumerable<WebhookJson>>(HttpMethod.Get, $"/channels/{channelId}/webhooks", true);
         return json.Select(x => Webhook.Create(_client, x));
@@ -1317,16 +1317,6 @@ public class ApiClient
         MessageJson json = await MakeFluxerApiRequestAsync<MessageJson, MessageRequest>(HttpMethod.Post, $"/webhooks/{webhookId}/{token}?wait=true", req, true);
         return Message.Create(_client, json);
     }
-
-    public async Task ExecuteGithubWebhookAsync<TRequest>(ulong webhookId, string token, TRequest data)
-        => await MakeFluxerApiRequestAsync<TRequest>(HttpMethod.Post, $"/webhooks/{webhookId}/{token}/github", data, true, false);
-
-    public async Task PostWebhookLivekitAsync<TRequest>(TRequest data)
-        => await MakeFluxerApiRequestAsync<TRequest>(HttpMethod.Post, "/webhooks/livekit", data, true, false);
-
-    public async Task PostWebhookSendgridAsync<TRequest>(TRequest data)
-        => await MakeFluxerApiRequestAsync<TRequest>(HttpMethod.Post, "/webhooks/sendgrid", data, true, false);
-
     #endregion
 
     #region OAuth API

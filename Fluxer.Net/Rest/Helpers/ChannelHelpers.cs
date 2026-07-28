@@ -5,6 +5,18 @@ namespace Fluxer.Net;
 
 public static class ChannelHelpers
 {
+    public static Task TriggerTypingIndicatorAsync(this Channel channel)
+        => channel.Client.Rest.TriggerTypingIndicatorAsync(channel.Id);
+
+    public static Task<IEnumerable<Webhook>> GetWebhooksAsync(this Channel channel)
+        => channel.Client.Rest.GetChannelWebhooksAsync(channel.Id);
+
+    public static Task<IEnumerable<Invite>> GetInvitesAsync(this Channel channel)
+        => channel.Client.Rest.GetChannelInvitesAsync(channel.Id);
+
+    public static Task<Webhook> CreateWebhookAsync(this Channel channel, string name, string? avatar = null)
+        => channel.Client.Rest.CreateWebhookAsync(channel.Id, name, avatar);
+
     public static Task<Message> SendMessageAsync(this Channel channel, string? content = null, List<EmbedRequest>? embeds = null,
         MessageReferenceRequest? reference = null, AllowedMentionsRequest? allowedMentions = null, MessageFlag flags = MessageFlag.None,
         string? nonce = null, ulong? favoruteMemeId = null, bool? tts = null, List<ulong>? stickerIds = null, List<AttachmentRequest>? attachments = null)
