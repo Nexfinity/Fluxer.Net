@@ -53,12 +53,12 @@
         </member>
         <member name="T:Fluxer.Net.Commands.GroupAttribute">
             <summary>
-                Marks the module as a command group.
+            Marks the module as a command group.
             </summary>
         </member>
         <member name="P:Fluxer.Net.Commands.GroupAttribute.Prefix">
             <summary>
-                Gets the prefix set for the module.
+            Gets the prefix set for the module.
             </summary>
         </member>
         <member name="M:Fluxer.Net.Commands.GroupAttribute.#ctor">
@@ -66,7 +66,7 @@
         </member>
         <member name="M:Fluxer.Net.Commands.GroupAttribute.#ctor(System.String)">
             <summary>
-                Initializes a new <see cref="T:Fluxer.Net.Commands.GroupAttribute" /> with the provided prefix.
+            Initializes a new <see cref="T:Fluxer.Net.Commands.GroupAttribute" /> with the provided prefix.
             </summary>
             <param name="prefix">The prefix of the module group.</param>
         </member>
@@ -484,6 +484,11 @@
         <member name="P:Fluxer.Net.Commands.ModuleInfo.Name">
             <summary>
             Gets the module's name.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Commands.ModuleInfo.Group">
+            <summary>
+            Gets the module's command group.
             </summary>
         </member>
         <member name="P:Fluxer.Net.Commands.ModuleInfo.Aliases">
