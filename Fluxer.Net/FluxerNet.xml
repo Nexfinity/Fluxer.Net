@@ -14,65 +14,84 @@
             Creates an instance of the specified type using the service provider.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Commands.Attributes.AliasAttribute">
+        <member name="T:Fluxer.Net.Commands.AliasAttribute">
             <summary>
             Provides alternative names for a command.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.Commands.Attributes.AliasAttribute.Aliases">
+        <member name="P:Fluxer.Net.Commands.AliasAttribute.Aliases">
             <summary>
             Gets the aliases for the command or module.
             </summary>
         </member>
-        <member name="M:Fluxer.Net.Commands.Attributes.AliasAttribute.#ctor(System.String[])">
+        <member name="M:Fluxer.Net.Commands.AliasAttribute.#ctor(System.String[])">
             <summary>
             Provides alternative names for a command or module.
             </summary>
             <param name="aliases">The aliases.</param>
         </member>
-        <member name="T:Fluxer.Net.Commands.Attributes.CommandAttribute">
+        <member name="T:Fluxer.Net.Commands.CommandAttribute">
             <summary>
             Marks a method as a text command.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.Commands.Attributes.CommandAttribute.Name">
+        <member name="P:Fluxer.Net.Commands.CommandAttribute.Name">
             <summary>
             Gets the name of the command.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.Commands.Attributes.CommandAttribute.RunMode">
+        <member name="P:Fluxer.Net.Commands.CommandAttribute.RunMode">
             <summary>
             Gets or sets whether the command can be invoked while another command is running.
             </summary>
         </member>
-        <member name="M:Fluxer.Net.Commands.Attributes.CommandAttribute.#ctor(System.String)">
+        <member name="M:Fluxer.Net.Commands.CommandAttribute.#ctor(System.String)">
             <summary>
             Marks a method as a command with the specified name.
             </summary>
             <param name="name">The name of the command.</param>
         </member>
-        <member name="T:Fluxer.Net.Commands.Attributes.NameAttribute">
+        <member name="T:Fluxer.Net.Commands.GroupAttribute">
+            <summary>
+                Marks the module as a command group.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Commands.GroupAttribute.Prefix">
+            <summary>
+                Gets the prefix set for the module.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Commands.GroupAttribute.#ctor">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.Commands.GroupAttribute.#ctor(System.String)">
+            <summary>
+                Initializes a new <see cref="T:Fluxer.Net.Commands.GroupAttribute" /> with the provided prefix.
+            </summary>
+            <param name="prefix">The prefix of the module group.</param>
+        </member>
+        <member name="T:Fluxer.Net.Commands.NameAttribute">
             <summary>
             Specifies a custom name for a command parameter.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.Commands.Attributes.NameAttribute.Text">
+        <member name="P:Fluxer.Net.Commands.NameAttribute.Text">
             <summary>
             Gets the parameter name.
             </summary>
         </member>
-        <member name="M:Fluxer.Net.Commands.Attributes.NameAttribute.#ctor(System.String)">
+        <member name="M:Fluxer.Net.Commands.NameAttribute.#ctor(System.String)">
             <summary>
             Specifies a custom name for a parameter.
             </summary>
             <param name="text">The parameter name.</param>
         </member>
-        <member name="T:Fluxer.Net.Commands.Attributes.PreconditionAttribute">
+        <member name="T:Fluxer.Net.Commands.PreconditionAttribute">
             <summary>
             Base class for command preconditions that must be satisfied before execution.
             </summary>
         </member>
-        <member name="M:Fluxer.Net.Commands.Attributes.PreconditionAttribute.CheckPermissionsAsync(Fluxer.Net.Commands.CommandContext,Fluxer.Net.Commands.CommandInfo,System.IServiceProvider)">
+        <member name="M:Fluxer.Net.Commands.PreconditionAttribute.CheckPermissionsAsync(Fluxer.Net.Commands.CommandContext,Fluxer.Net.Commands.CommandInfo,System.IServiceProvider)">
             <summary>
             Checks if the precondition is met.
             </summary>
@@ -80,89 +99,89 @@
             <param name="command">The command being executed.</param>
             <param name="services">The service provider.</param>
         </member>
-        <member name="T:Fluxer.Net.Commands.Attributes.RemainderAttribute">
+        <member name="T:Fluxer.Net.Commands.RemainderAttribute">
             <summary>
             Marks a parameter to capture all remaining text as a single string.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Commands.Attributes.RemarksAttribute">
+        <member name="T:Fluxer.Net.Commands.RemarksAttribute">
             <summary>
             Provides additional remarks or detailed information for a command.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.Commands.Attributes.RemarksAttribute.Text">
+        <member name="P:Fluxer.Net.Commands.RemarksAttribute.Text">
             <summary>
             Gets the remarks text.
             </summary>
         </member>
-        <member name="M:Fluxer.Net.Commands.Attributes.RemarksAttribute.#ctor(System.String)">
+        <member name="M:Fluxer.Net.Commands.RemarksAttribute.#ctor(System.String)">
             <summary>
             Provides additional remarks for a command.
             </summary>
             <param name="text">The remarks text.</param>
         </member>
-        <member name="T:Fluxer.Net.Commands.Attributes.ContextType">
+        <member name="T:Fluxer.Net.Commands.ContextType">
             <summary>
             Specifies where a command can be executed.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Commands.Attributes.ContextType.Guild">
+        <member name="F:Fluxer.Net.Commands.ContextType.Guild">
             <summary>
             Command can only be executed in a guild.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Commands.Attributes.ContextType.DM">
+        <member name="F:Fluxer.Net.Commands.ContextType.DM">
             <summary>
             Command can only be executed in a DM.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Commands.Attributes.ContextType.Group">
+        <member name="F:Fluxer.Net.Commands.ContextType.Group">
             <summary>
             Command can only be executed in a group DM.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Commands.Attributes.RequireContextAttribute">
+        <member name="T:Fluxer.Net.Commands.RequireContextAttribute">
             <summary>
             Requires the command to be executed in a specific context.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.Commands.Attributes.RequireContextAttribute.Contexts">
+        <member name="P:Fluxer.Net.Commands.RequireContextAttribute.Contexts">
             <summary>
             Gets the required contexts.
             </summary>
         </member>
-        <member name="M:Fluxer.Net.Commands.Attributes.RequireContextAttribute.#ctor(Fluxer.Net.Commands.Attributes.ContextType)">
+        <member name="M:Fluxer.Net.Commands.RequireContextAttribute.#ctor(Fluxer.Net.Commands.ContextType)">
             <summary>
             Creates a new context precondition.
             </summary>
             <param name="contexts">The allowed contexts.</param>
         </member>
-        <member name="M:Fluxer.Net.Commands.Attributes.RequireContextAttribute.CheckPermissionsAsync(Fluxer.Net.Commands.CommandContext,Fluxer.Net.Commands.CommandInfo,System.IServiceProvider)">
+        <member name="M:Fluxer.Net.Commands.RequireContextAttribute.CheckPermissionsAsync(Fluxer.Net.Commands.CommandContext,Fluxer.Net.Commands.CommandInfo,System.IServiceProvider)">
             <summary>
             Checks if the command is being used in the correct context.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Commands.Attributes.RequireOwnerAttribute">
+        <member name="T:Fluxer.Net.Commands.RequireOwnerAttribute">
             <summary>
             Requires the command to be executed by the bot owner.
             </summary>
         </member>
-        <member name="M:Fluxer.Net.Commands.Attributes.RequireOwnerAttribute.CheckPermissionsAsync(Fluxer.Net.Commands.CommandContext,Fluxer.Net.Commands.CommandInfo,System.IServiceProvider)">
+        <member name="M:Fluxer.Net.Commands.RequireOwnerAttribute.CheckPermissionsAsync(Fluxer.Net.Commands.CommandContext,Fluxer.Net.Commands.CommandInfo,System.IServiceProvider)">
             <summary>
             Checks if the user is the bot owner.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Commands.Attributes.SummaryAttribute">
+        <member name="T:Fluxer.Net.Commands.SummaryAttribute">
             <summary>
             Provides a summary description for a command or parameter.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.Commands.Attributes.SummaryAttribute.Text">
+        <member name="P:Fluxer.Net.Commands.SummaryAttribute.Text">
             <summary>
             Gets the summary text.
             </summary>
         </member>
-        <member name="M:Fluxer.Net.Commands.Attributes.SummaryAttribute.#ctor(System.String)">
+        <member name="M:Fluxer.Net.Commands.SummaryAttribute.#ctor(System.String)">
             <summary>
             Provides a summary description.
             </summary>
@@ -2765,6 +2784,15 @@
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.Guild.IsNsfw">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Guild.ContentWarningText">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Guild.OnlineCount">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Guild.MemberCount">
             <inheritdoc />
         </member>
         <member name="T:Fluxer.Net.GuildJson">
@@ -9053,6 +9081,16 @@
             <returns>The HTTP status code of the response.</returns>
             <exception cref="T:Fluxer.Net.Extensions.FluxerApiException">Thrown when <paramref name="throwOnNonSuccess"/> is true and the API returns a non-success status code.</exception>
         </member>
+        <member name="M:Fluxer.Net.ApiClient.GetMembersAsync(System.UInt64,System.Int32,System.Nullable{System.UInt64},Fluxer.Net.Rest.RestClientQueryParams)">
+            <summary>
+            Get a list of members for a guild, default and maximum 1000.
+            </summary>
+            <param name="guildId"></param>
+            <param name="limit"></param>
+            <param name="afterId"></param>
+            <param name="queryParams"></param>
+            <returns></returns>
+        </member>
         <member name="T:Fluxer.Net.Rest.QueryParams">
             <summary>
             Query params for HTTP requests
@@ -9164,6 +9202,14 @@
             </summary>
         </member>
         <member name="M:Fluxer.Net.Rest.RestClientQueryParams.Add(System.String,System.Object)">
+            <summary>
+            Add query param
+            </summary>
+            <param name="key">Query param name (Ex.: Limit)</param>
+            <param name="value">Query param value (Ex. 10)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.Rest.RestClientQueryParams.AddIf(System.Boolean,System.String,System.Object)">
             <summary>
             Add query param
             </summary>

@@ -31,8 +31,8 @@ public static class ChannelHelpers
     public static Task<Message> GetMessageAsync(this Channel channel, ulong messageId)
         => channel.Client.Rest.GetMessageAsync(channel.Id, messageId);
 
-    public static Task<IEnumerable<Message>> GetMessagesAsync(this Channel channel)
-        => channel.Client.Rest.GetMessagesAsync(channel.Id);
+    public static Task<IEnumerable<Message>> GetMessagesAsync(this Channel channel, int limit = 100, ulong? beforeId = null, ulong? afterId = null, ulong? aroundId = null, RestClientQueryParams? queryParams = null)
+        => channel.Client.Rest.GetMessagesAsync(channel.Id, limit, beforeId, afterId, aroundId, queryParams);
 
     public static Task DeleteMessageAsync(this Channel channel, ulong messageId)
         => channel.Client.Rest.DeleteMessageAsync(channel.Id, messageId);

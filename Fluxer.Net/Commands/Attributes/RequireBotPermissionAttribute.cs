@@ -1,4 +1,4 @@
-namespace Fluxer.Net.Commands.Attributes;
+namespace Fluxer.Net.Commands;
 
 ///// <summary>
 ///// Requires the bot to have specific permissions to execute the command.

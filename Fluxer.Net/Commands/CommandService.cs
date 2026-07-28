@@ -101,13 +101,40 @@ public class CommandService
 
         foreach (ModuleInfo module in _modules)
         {
-            foreach (CommandInfo command in module.Commands)
+            if (!string.IsNullOrEmpty(module.Group) && module.Group.Equals(commandName, StringComparison.OrdinalIgnoreCase))
             {
-                if (command.Name.Equals(commandName, StringComparison.OrdinalIgnoreCase) ||
-                    command.Aliases.Any(a => a.Equals(commandName, StringComparison.OrdinalIgnoreCase)))
+                CommandInfo? GroupCommand = module.Commands.FirstOrDefault(x => string.IsNullOrEmpty(x.Name));
+                if (GroupCommand != null)
+                    matchedCommand = GroupCommand;
+                else
                 {
-                    matchedCommand = command;
-                    break;
+                    if (parts.Length < 2)
+                        continue;
+
+                    commandName = parts[1].ToLowerInvariant();
+                    argList = parts.Skip(2).ToList();
+
+                    foreach (CommandInfo command in module.Commands)
+                    {
+                        if (command.Name.Equals(commandName, StringComparison.OrdinalIgnoreCase) ||
+                            command.Aliases.Any(a => a.Equals(commandName, StringComparison.OrdinalIgnoreCase)))
+                        {
+                            matchedCommand = command;
+                            break;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                foreach (CommandInfo command in module.Commands)
+                {
+                    if (command.Name.Equals(commandName, StringComparison.OrdinalIgnoreCase) ||
+                        command.Aliases.Any(a => a.Equals(commandName, StringComparison.OrdinalIgnoreCase)))
+                    {
+                        matchedCommand = command;
+                        break;
+                    }
                 }
             }
 

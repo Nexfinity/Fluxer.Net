@@ -1,4 +1,4 @@
-namespace Fluxer.Net.Commands.Attributes;
+namespace Fluxer.Net.Commands;
 
 /// <summary>
 /// Provides additional remarks or detailed information for a command.
@@ -6,17 +6,17 @@ namespace Fluxer.Net.Commands.Attributes;
 [AttributeUsage(AttributeTargets.Method, AllowMultiple = false, Inherited = true)]
 public class RemarksAttribute : Attribute
 {
-	/// <summary>
-	/// Gets the remarks text.
-	/// </summary>
-	public string Text { get; }
+    /// <summary>
+    /// Gets the remarks text.
+    /// </summary>
+    public string Text { get; }
 
-	/// <summary>
-	/// Provides additional remarks for a command.
-	/// </summary>
-	/// <param name="text">The remarks text.</param>
-	public RemarksAttribute(string text)
-	{
-		Text = text;
-	}
+    /// <summary>
+    /// Provides additional remarks for a command.
+    /// </summary>
+    /// <param name="text">The remarks text.</param>
+    public RemarksAttribute(string text)
+    {
+        Text = text;
+    }
 }

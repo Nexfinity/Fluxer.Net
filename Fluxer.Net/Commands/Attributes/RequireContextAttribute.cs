@@ -1,4 +1,4 @@
-namespace Fluxer.Net.Commands.Attributes;
+namespace Fluxer.Net.Commands;
 
 /// <summary>
 /// Specifies where a command can be executed.
