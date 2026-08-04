@@ -1,0 +1,1052 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.UserGuildSettingsJson
+  commentId: T:Fluxer.Net.UserGuildSettingsJson
+  id: UserGuildSettingsJson
+  parent: Fluxer.Net
+  children:
+  - Fluxer.Net.UserGuildSettingsJson.ChannelOverrides
+  - Fluxer.Net.UserGuildSettingsJson.GuildId
+  - Fluxer.Net.UserGuildSettingsJson.HideMutedChannels
+  - Fluxer.Net.UserGuildSettingsJson.MessageNotifications
+  - Fluxer.Net.UserGuildSettingsJson.MobilePush
+  - Fluxer.Net.UserGuildSettingsJson.MuteConfig
+  - Fluxer.Net.UserGuildSettingsJson.Muted
+  - Fluxer.Net.UserGuildSettingsJson.SuppressEveryone
+  - Fluxer.Net.UserGuildSettingsJson.SuppressRoles
+  - Fluxer.Net.UserGuildSettingsJson.Version
+  langs:
+  - csharp
+  - vb
+  name: UserGuildSettingsJson
+  nameWithType: UserGuildSettingsJson
+  fullName: Fluxer.Net.UserGuildSettingsJson
+  type: Class
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/UserGuildSettingsJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: UserGuildSettingsJson
+    path: ../Fluxer.Net/Data/Users/UserGuildSettingsJson.cs
+    startLine: 5
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Supports all classes in the .NET class hierarchy and provides low-level services to derived classes. This is the ultimate base class of all .NET classes; it is the root of the type hierarchy.
+  example: []
+  syntax:
+    content: 'public class UserGuildSettingsJson : IUserGuildSettings'
+    content.vb: Public Class UserGuildSettingsJson Implements IUserGuildSettings
+  inheritance:
+  - System.Object
+  implements:
+  - Fluxer.Net.IUserGuildSettings
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: Fluxer.Net.UserGuildSettingsJson.ChannelOverrides
+  commentId: P:Fluxer.Net.UserGuildSettingsJson.ChannelOverrides
+  id: ChannelOverrides
+  parent: Fluxer.Net.UserGuildSettingsJson
+  langs:
+  - csharp
+  - vb
+  name: ChannelOverrides
+  nameWithType: UserGuildSettingsJson.ChannelOverrides
+  fullName: Fluxer.Net.UserGuildSettingsJson.ChannelOverrides
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/UserGuildSettingsJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: ChannelOverrides
+    path: ../Fluxer.Net/Data/Users/UserGuildSettingsJson.cs
+    startLine: 8
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("channel_overrides")]
+
+      public Dictionary<ulong, GuildChannelOverrideJson>? ChannelOverrides { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.Dictionary{System.UInt64,Fluxer.Net.GuildChannelOverrideJson}
+    content.vb: >-
+      <JsonProperty("channel_overrides")>
+
+      Public Property ChannelOverrides As Dictionary(Of ULong, GuildChannelOverrideJson)
+  overload: Fluxer.Net.UserGuildSettingsJson.ChannelOverrides*
+  implements:
+  - Fluxer.Net.IUserGuildSettings.ChannelOverrides
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: channel_overrides
+- uid: Fluxer.Net.UserGuildSettingsJson.GuildId
+  commentId: P:Fluxer.Net.UserGuildSettingsJson.GuildId
+  id: GuildId
+  parent: Fluxer.Net.UserGuildSettingsJson
+  langs:
+  - csharp
+  - vb
+  name: GuildId
+  nameWithType: UserGuildSettingsJson.GuildId
+  fullName: Fluxer.Net.UserGuildSettingsJson.GuildId
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/UserGuildSettingsJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: GuildId
+    path: ../Fluxer.Net/Data/Users/UserGuildSettingsJson.cs
+    startLine: 12
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("guild_id")]
+
+      public ulong GuildId { get; set; }
+    parameters: []
+    return:
+      type: System.UInt64
+    content.vb: >-
+      <JsonProperty("guild_id")>
+
+      Public Property GuildId As ULong
+  overload: Fluxer.Net.UserGuildSettingsJson.GuildId*
+  implements:
+  - Fluxer.Net.IUserGuildSettings.GuildId
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: guild_id
+- uid: Fluxer.Net.UserGuildSettingsJson.HideMutedChannels
+  commentId: P:Fluxer.Net.UserGuildSettingsJson.HideMutedChannels
+  id: HideMutedChannels
+  parent: Fluxer.Net.UserGuildSettingsJson
+  langs:
+  - csharp
+  - vb
+  name: HideMutedChannels
+  nameWithType: UserGuildSettingsJson.HideMutedChannels
+  fullName: Fluxer.Net.UserGuildSettingsJson.HideMutedChannels
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/UserGuildSettingsJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: HideMutedChannels
+    path: ../Fluxer.Net/Data/Users/UserGuildSettingsJson.cs
+    startLine: 16
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("hide_muted_channels")]
+
+      public bool HideMutedChannels { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: >-
+      <JsonProperty("hide_muted_channels")>
+
+      Public Property HideMutedChannels As Boolean
+  overload: Fluxer.Net.UserGuildSettingsJson.HideMutedChannels*
+  implements:
+  - Fluxer.Net.IUserGuildSettings.HideMutedChannels
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: hide_muted_channels
+- uid: Fluxer.Net.UserGuildSettingsJson.MessageNotifications
+  commentId: P:Fluxer.Net.UserGuildSettingsJson.MessageNotifications
+  id: MessageNotifications
+  parent: Fluxer.Net.UserGuildSettingsJson
+  langs:
+  - csharp
+  - vb
+  name: MessageNotifications
+  nameWithType: UserGuildSettingsJson.MessageNotifications
+  fullName: Fluxer.Net.UserGuildSettingsJson.MessageNotifications
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/UserGuildSettingsJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: MessageNotifications
+    path: ../Fluxer.Net/Data/Users/UserGuildSettingsJson.cs
+    startLine: 20
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("message_notifications")]
+
+      public NotificationType MessageNotifications { get; set; }
+    parameters: []
+    return:
+      type: Fluxer.Net.NotificationType
+    content.vb: >-
+      <JsonProperty("message_notifications")>
+
+      Public Property MessageNotifications As NotificationType
+  overload: Fluxer.Net.UserGuildSettingsJson.MessageNotifications*
+  implements:
+  - Fluxer.Net.IUserGuildSettings.MessageNotifications
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: message_notifications
+- uid: Fluxer.Net.UserGuildSettingsJson.MobilePush
+  commentId: P:Fluxer.Net.UserGuildSettingsJson.MobilePush
+  id: MobilePush
+  parent: Fluxer.Net.UserGuildSettingsJson
+  langs:
+  - csharp
+  - vb
+  name: MobilePush
+  nameWithType: UserGuildSettingsJson.MobilePush
+  fullName: Fluxer.Net.UserGuildSettingsJson.MobilePush
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/UserGuildSettingsJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: MobilePush
+    path: ../Fluxer.Net/Data/Users/UserGuildSettingsJson.cs
+    startLine: 24
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("mobile_push")]
+
+      public bool MobilePush { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: >-
+      <JsonProperty("mobile_push")>
+
+      Public Property MobilePush As Boolean
+  overload: Fluxer.Net.UserGuildSettingsJson.MobilePush*
+  implements:
+  - Fluxer.Net.IUserGuildSettings.MobilePush
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: mobile_push
+- uid: Fluxer.Net.UserGuildSettingsJson.MuteConfig
+  commentId: P:Fluxer.Net.UserGuildSettingsJson.MuteConfig
+  id: MuteConfig
+  parent: Fluxer.Net.UserGuildSettingsJson
+  langs:
+  - csharp
+  - vb
+  name: MuteConfig
+  nameWithType: UserGuildSettingsJson.MuteConfig
+  fullName: Fluxer.Net.UserGuildSettingsJson.MuteConfig
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/UserGuildSettingsJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: MuteConfig
+    path: ../Fluxer.Net/Data/Users/UserGuildSettingsJson.cs
+    startLine: 28
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("mute_config")]
+
+      public MuteConfigurationJson? MuteConfig { get; set; }
+    parameters: []
+    return:
+      type: Fluxer.Net.MuteConfigurationJson
+    content.vb: >-
+      <JsonProperty("mute_config")>
+
+      Public Property MuteConfig As MuteConfigurationJson
+  overload: Fluxer.Net.UserGuildSettingsJson.MuteConfig*
+  implements:
+  - Fluxer.Net.IUserGuildSettings.MuteConfig
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: mute_config
+- uid: Fluxer.Net.UserGuildSettingsJson.Muted
+  commentId: P:Fluxer.Net.UserGuildSettingsJson.Muted
+  id: Muted
+  parent: Fluxer.Net.UserGuildSettingsJson
+  langs:
+  - csharp
+  - vb
+  name: Muted
+  nameWithType: UserGuildSettingsJson.Muted
+  fullName: Fluxer.Net.UserGuildSettingsJson.Muted
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/UserGuildSettingsJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Muted
+    path: ../Fluxer.Net/Data/Users/UserGuildSettingsJson.cs
+    startLine: 32
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("muted")]
+
+      public bool Muted { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: >-
+      <JsonProperty("muted")>
+
+      Public Property Muted As Boolean
+  overload: Fluxer.Net.UserGuildSettingsJson.Muted*
+  implements:
+  - Fluxer.Net.IUserGuildSettings.Muted
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: muted
+- uid: Fluxer.Net.UserGuildSettingsJson.SuppressEveryone
+  commentId: P:Fluxer.Net.UserGuildSettingsJson.SuppressEveryone
+  id: SuppressEveryone
+  parent: Fluxer.Net.UserGuildSettingsJson
+  langs:
+  - csharp
+  - vb
+  name: SuppressEveryone
+  nameWithType: UserGuildSettingsJson.SuppressEveryone
+  fullName: Fluxer.Net.UserGuildSettingsJson.SuppressEveryone
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/UserGuildSettingsJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: SuppressEveryone
+    path: ../Fluxer.Net/Data/Users/UserGuildSettingsJson.cs
+    startLine: 36
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("suppress_everyone")]
+
+      public bool SuppressEveryone { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: >-
+      <JsonProperty("suppress_everyone")>
+
+      Public Property SuppressEveryone As Boolean
+  overload: Fluxer.Net.UserGuildSettingsJson.SuppressEveryone*
+  implements:
+  - Fluxer.Net.IUserGuildSettings.SuppressEveryone
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: suppress_everyone
+- uid: Fluxer.Net.UserGuildSettingsJson.SuppressRoles
+  commentId: P:Fluxer.Net.UserGuildSettingsJson.SuppressRoles
+  id: SuppressRoles
+  parent: Fluxer.Net.UserGuildSettingsJson
+  langs:
+  - csharp
+  - vb
+  name: SuppressRoles
+  nameWithType: UserGuildSettingsJson.SuppressRoles
+  fullName: Fluxer.Net.UserGuildSettingsJson.SuppressRoles
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/UserGuildSettingsJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: SuppressRoles
+    path: ../Fluxer.Net/Data/Users/UserGuildSettingsJson.cs
+    startLine: 40
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("suppress_roles")]
+
+      public bool SuppressRoles { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: >-
+      <JsonProperty("suppress_roles")>
+
+      Public Property SuppressRoles As Boolean
+  overload: Fluxer.Net.UserGuildSettingsJson.SuppressRoles*
+  implements:
+  - Fluxer.Net.IUserGuildSettings.SuppressRoles
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: suppress_roles
+- uid: Fluxer.Net.UserGuildSettingsJson.Version
+  commentId: P:Fluxer.Net.UserGuildSettingsJson.Version
+  id: Version
+  parent: Fluxer.Net.UserGuildSettingsJson
+  langs:
+  - csharp
+  - vb
+  name: Version
+  nameWithType: UserGuildSettingsJson.Version
+  fullName: Fluxer.Net.UserGuildSettingsJson.Version
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/UserGuildSettingsJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Version
+    path: ../Fluxer.Net/Data/Users/UserGuildSettingsJson.cs
+    startLine: 44
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("version")]
+
+      public int Version { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: >-
+      <JsonProperty("version")>
+
+      Public Property Version As Integer
+  overload: Fluxer.Net.UserGuildSettingsJson.Version*
+  implements:
+  - Fluxer.Net.IUserGuildSettings.Version
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: version
+references:
+- uid: Fluxer.Net
+  commentId: N:Fluxer.Net
+  href: Fluxer.html
+  name: Fluxer.Net
+  nameWithType: Fluxer.Net
+  fullName: Fluxer.Net
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Fluxer.Net.IUserGuildSettings
+  commentId: T:Fluxer.Net.IUserGuildSettings
+  parent: Fluxer.Net
+  href: Fluxer.Net.IUserGuildSettings.html
+  name: IUserGuildSettings
+  nameWithType: IUserGuildSettings
+  fullName: Fluxer.Net.IUserGuildSettings
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Fluxer.Net.UserGuildSettingsJson.ChannelOverrides*
+  commentId: Overload:Fluxer.Net.UserGuildSettingsJson.ChannelOverrides
+  href: Fluxer.Net.UserGuildSettingsJson.html#Fluxer_Net_UserGuildSettingsJson_ChannelOverrides
+  name: ChannelOverrides
+  nameWithType: UserGuildSettingsJson.ChannelOverrides
+  fullName: Fluxer.Net.UserGuildSettingsJson.ChannelOverrides
+- uid: Fluxer.Net.IUserGuildSettings.ChannelOverrides
+  commentId: P:Fluxer.Net.IUserGuildSettings.ChannelOverrides
+  parent: Fluxer.Net.IUserGuildSettings
+  href: Fluxer.Net.IUserGuildSettings.html#Fluxer_Net_IUserGuildSettings_ChannelOverrides
+  name: ChannelOverrides
+  nameWithType: IUserGuildSettings.ChannelOverrides
+  fullName: Fluxer.Net.IUserGuildSettings.ChannelOverrides
+- uid: System.Collections.Generic.Dictionary{System.UInt64,Fluxer.Net.GuildChannelOverrideJson}
+  commentId: T:System.Collections.Generic.Dictionary{System.UInt64,Fluxer.Net.GuildChannelOverrideJson}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.Dictionary`2
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  name: Dictionary<ulong, GuildChannelOverrideJson>
+  nameWithType: Dictionary<ulong, GuildChannelOverrideJson>
+  fullName: System.Collections.Generic.Dictionary<ulong, Fluxer.Net.GuildChannelOverrideJson>
+  nameWithType.vb: Dictionary(Of ULong, GuildChannelOverrideJson)
+  fullName.vb: System.Collections.Generic.Dictionary(Of ULong, Fluxer.Net.GuildChannelOverrideJson)
+  name.vb: Dictionary(Of ULong, GuildChannelOverrideJson)
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: <
+  - uid: System.UInt64
+    name: ulong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.GuildChannelOverrideJson
+    name: GuildChannelOverrideJson
+    href: Fluxer.Net.GuildChannelOverrideJson.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.UInt64
+    name: ULong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.GuildChannelOverrideJson
+    name: GuildChannelOverrideJson
+    href: Fluxer.Net.GuildChannelOverrideJson.html
+  - name: )
+- uid: System.Collections.Generic.Dictionary`2
+  commentId: T:System.Collections.Generic.Dictionary`2
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  name: Dictionary<TKey, TValue>
+  nameWithType: Dictionary<TKey, TValue>
+  fullName: System.Collections.Generic.Dictionary<TKey, TValue>
+  nameWithType.vb: Dictionary(Of TKey, TValue)
+  fullName.vb: System.Collections.Generic.Dictionary(Of TKey, TValue)
+  name.vb: Dictionary(Of TKey, TValue)
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: <
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: Fluxer.Net.UserGuildSettingsJson.GuildId*
+  commentId: Overload:Fluxer.Net.UserGuildSettingsJson.GuildId
+  href: Fluxer.Net.UserGuildSettingsJson.html#Fluxer_Net_UserGuildSettingsJson_GuildId
+  name: GuildId
+  nameWithType: UserGuildSettingsJson.GuildId
+  fullName: Fluxer.Net.UserGuildSettingsJson.GuildId
+- uid: Fluxer.Net.IUserGuildSettings.GuildId
+  commentId: P:Fluxer.Net.IUserGuildSettings.GuildId
+  parent: Fluxer.Net.IUserGuildSettings
+  href: Fluxer.Net.IUserGuildSettings.html#Fluxer_Net_IUserGuildSettings_GuildId
+  name: GuildId
+  nameWithType: IUserGuildSettings.GuildId
+  fullName: Fluxer.Net.IUserGuildSettings.GuildId
+- uid: System.UInt64
+  commentId: T:System.UInt64
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.uint64
+  name: ulong
+  nameWithType: ulong
+  fullName: ulong
+  nameWithType.vb: ULong
+  fullName.vb: ULong
+  name.vb: ULong
+- uid: Fluxer.Net.UserGuildSettingsJson.HideMutedChannels*
+  commentId: Overload:Fluxer.Net.UserGuildSettingsJson.HideMutedChannels
+  href: Fluxer.Net.UserGuildSettingsJson.html#Fluxer_Net_UserGuildSettingsJson_HideMutedChannels
+  name: HideMutedChannels
+  nameWithType: UserGuildSettingsJson.HideMutedChannels
+  fullName: Fluxer.Net.UserGuildSettingsJson.HideMutedChannels
+- uid: Fluxer.Net.IUserGuildSettings.HideMutedChannels
+  commentId: P:Fluxer.Net.IUserGuildSettings.HideMutedChannels
+  parent: Fluxer.Net.IUserGuildSettings
+  href: Fluxer.Net.IUserGuildSettings.html#Fluxer_Net_IUserGuildSettings_HideMutedChannels
+  name: HideMutedChannels
+  nameWithType: IUserGuildSettings.HideMutedChannels
+  fullName: Fluxer.Net.IUserGuildSettings.HideMutedChannels
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: Fluxer.Net.UserGuildSettingsJson.MessageNotifications*
+  commentId: Overload:Fluxer.Net.UserGuildSettingsJson.MessageNotifications
+  href: Fluxer.Net.UserGuildSettingsJson.html#Fluxer_Net_UserGuildSettingsJson_MessageNotifications
+  name: MessageNotifications
+  nameWithType: UserGuildSettingsJson.MessageNotifications
+  fullName: Fluxer.Net.UserGuildSettingsJson.MessageNotifications
+- uid: Fluxer.Net.IUserGuildSettings.MessageNotifications
+  commentId: P:Fluxer.Net.IUserGuildSettings.MessageNotifications
+  parent: Fluxer.Net.IUserGuildSettings
+  href: Fluxer.Net.IUserGuildSettings.html#Fluxer_Net_IUserGuildSettings_MessageNotifications
+  name: MessageNotifications
+  nameWithType: IUserGuildSettings.MessageNotifications
+  fullName: Fluxer.Net.IUserGuildSettings.MessageNotifications
+- uid: Fluxer.Net.NotificationType
+  commentId: T:Fluxer.Net.NotificationType
+  parent: Fluxer.Net
+  href: Fluxer.Net.NotificationType.html
+  name: NotificationType
+  nameWithType: NotificationType
+  fullName: Fluxer.Net.NotificationType
+- uid: Fluxer.Net.UserGuildSettingsJson.MobilePush*
+  commentId: Overload:Fluxer.Net.UserGuildSettingsJson.MobilePush
+  href: Fluxer.Net.UserGuildSettingsJson.html#Fluxer_Net_UserGuildSettingsJson_MobilePush
+  name: MobilePush
+  nameWithType: UserGuildSettingsJson.MobilePush
+  fullName: Fluxer.Net.UserGuildSettingsJson.MobilePush
+- uid: Fluxer.Net.IUserGuildSettings.MobilePush
+  commentId: P:Fluxer.Net.IUserGuildSettings.MobilePush
+  parent: Fluxer.Net.IUserGuildSettings
+  href: Fluxer.Net.IUserGuildSettings.html#Fluxer_Net_IUserGuildSettings_MobilePush
+  name: MobilePush
+  nameWithType: IUserGuildSettings.MobilePush
+  fullName: Fluxer.Net.IUserGuildSettings.MobilePush
+- uid: Fluxer.Net.UserGuildSettingsJson.MuteConfig*
+  commentId: Overload:Fluxer.Net.UserGuildSettingsJson.MuteConfig
+  href: Fluxer.Net.UserGuildSettingsJson.html#Fluxer_Net_UserGuildSettingsJson_MuteConfig
+  name: MuteConfig
+  nameWithType: UserGuildSettingsJson.MuteConfig
+  fullName: Fluxer.Net.UserGuildSettingsJson.MuteConfig
+- uid: Fluxer.Net.IUserGuildSettings.MuteConfig
+  commentId: P:Fluxer.Net.IUserGuildSettings.MuteConfig
+  parent: Fluxer.Net.IUserGuildSettings
+  href: Fluxer.Net.IUserGuildSettings.html#Fluxer_Net_IUserGuildSettings_MuteConfig
+  name: MuteConfig
+  nameWithType: IUserGuildSettings.MuteConfig
+  fullName: Fluxer.Net.IUserGuildSettings.MuteConfig
+- uid: Fluxer.Net.MuteConfigurationJson
+  commentId: T:Fluxer.Net.MuteConfigurationJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.MuteConfigurationJson.html
+  name: MuteConfigurationJson
+  nameWithType: MuteConfigurationJson
+  fullName: Fluxer.Net.MuteConfigurationJson
+- uid: Fluxer.Net.UserGuildSettingsJson.Muted*
+  commentId: Overload:Fluxer.Net.UserGuildSettingsJson.Muted
+  href: Fluxer.Net.UserGuildSettingsJson.html#Fluxer_Net_UserGuildSettingsJson_Muted
+  name: Muted
+  nameWithType: UserGuildSettingsJson.Muted
+  fullName: Fluxer.Net.UserGuildSettingsJson.Muted
+- uid: Fluxer.Net.IUserGuildSettings.Muted
+  commentId: P:Fluxer.Net.IUserGuildSettings.Muted
+  parent: Fluxer.Net.IUserGuildSettings
+  href: Fluxer.Net.IUserGuildSettings.html#Fluxer_Net_IUserGuildSettings_Muted
+  name: Muted
+  nameWithType: IUserGuildSettings.Muted
+  fullName: Fluxer.Net.IUserGuildSettings.Muted
+- uid: Fluxer.Net.UserGuildSettingsJson.SuppressEveryone*
+  commentId: Overload:Fluxer.Net.UserGuildSettingsJson.SuppressEveryone
+  href: Fluxer.Net.UserGuildSettingsJson.html#Fluxer_Net_UserGuildSettingsJson_SuppressEveryone
+  name: SuppressEveryone
+  nameWithType: UserGuildSettingsJson.SuppressEveryone
+  fullName: Fluxer.Net.UserGuildSettingsJson.SuppressEveryone
+- uid: Fluxer.Net.IUserGuildSettings.SuppressEveryone
+  commentId: P:Fluxer.Net.IUserGuildSettings.SuppressEveryone
+  parent: Fluxer.Net.IUserGuildSettings
+  href: Fluxer.Net.IUserGuildSettings.html#Fluxer_Net_IUserGuildSettings_SuppressEveryone
+  name: SuppressEveryone
+  nameWithType: IUserGuildSettings.SuppressEveryone
+  fullName: Fluxer.Net.IUserGuildSettings.SuppressEveryone
+- uid: Fluxer.Net.UserGuildSettingsJson.SuppressRoles*
+  commentId: Overload:Fluxer.Net.UserGuildSettingsJson.SuppressRoles
+  href: Fluxer.Net.UserGuildSettingsJson.html#Fluxer_Net_UserGuildSettingsJson_SuppressRoles
+  name: SuppressRoles
+  nameWithType: UserGuildSettingsJson.SuppressRoles
+  fullName: Fluxer.Net.UserGuildSettingsJson.SuppressRoles
+- uid: Fluxer.Net.IUserGuildSettings.SuppressRoles
+  commentId: P:Fluxer.Net.IUserGuildSettings.SuppressRoles
+  parent: Fluxer.Net.IUserGuildSettings
+  href: Fluxer.Net.IUserGuildSettings.html#Fluxer_Net_IUserGuildSettings_SuppressRoles
+  name: SuppressRoles
+  nameWithType: IUserGuildSettings.SuppressRoles
+  fullName: Fluxer.Net.IUserGuildSettings.SuppressRoles
+- uid: Fluxer.Net.UserGuildSettingsJson.Version*
+  commentId: Overload:Fluxer.Net.UserGuildSettingsJson.Version
+  href: Fluxer.Net.UserGuildSettingsJson.html#Fluxer_Net_UserGuildSettingsJson_Version
+  name: Version
+  nameWithType: UserGuildSettingsJson.Version
+  fullName: Fluxer.Net.UserGuildSettingsJson.Version
+- uid: Fluxer.Net.IUserGuildSettings.Version
+  commentId: P:Fluxer.Net.IUserGuildSettings.Version
+  parent: Fluxer.Net.IUserGuildSettings
+  href: Fluxer.Net.IUserGuildSettings.html#Fluxer_Net_IUserGuildSettings_Version
+  name: Version
+  nameWithType: IUserGuildSettings.Version
+  fullName: Fluxer.Net.IUserGuildSettings.Version
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer

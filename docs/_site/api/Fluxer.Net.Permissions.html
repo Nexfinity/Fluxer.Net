@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Enum Permissions | Fluxer.net </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Enum Permissions | Fluxer.net ">
+      
+      <meta name="description" content="Represents guild and channel permissions in Fluxer. Multiple permissions can be combined using bitwise OR.">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Nexfinity/Fluxer.Net/new/release/apiSpec/new?filename=Fluxer_Net_Permissions.md&amp;value=---%0Auid%3A%20Fluxer.Net.Permissions%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="Fluxer.net">
+            Fluxer.net
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="Fluxer.Net.Permissions">
+
+
+
+
+  <h1 id="Fluxer_Net_Permissions" data-uid="Fluxer.Net.Permissions" class="text-break">
+Enum Permissions  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Data/Guilds/Permissions.cs/#L10"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="Fluxer.html">Fluxer</a>.<a class="xref" href="Fluxer.Net.html">Net</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>Fluxer.Net.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Represents guild and channel permissions in Fluxer. Multiple permissions can be combined using bitwise OR.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Flags]
+public enum Permissions : ulong</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+  <h2 id="fields">Fields
+</h2>
+  <dl class="parameters">
+    <dt id="Fluxer_Net_Permissions_AddReactions"><code>AddReactions = 64</code></dt>
+  
+  <dd><p>Allows adding reactions to messages.</p>
+</dd>
+    <dt id="Fluxer_Net_Permissions_Administrator"><code>Administrator = 8</code></dt>
+  
+  <dd><p>Grants all permissions and bypasses channel permission overwrites.</p>
+</dd>
+    <dt id="Fluxer_Net_Permissions_AttachFiles"><code>AttachFiles = 32768</code></dt>
+  
+  <dd><p>Allows uploading files and media to messages.</p>
+</dd>
+    <dt id="Fluxer_Net_Permissions_BanMembers"><code>BanMembers = 4</code></dt>
+  
+  <dd><p>Allows banning members from the guild.</p>
+</dd>
+    <dt id="Fluxer_Net_Permissions_BypassSlowmode"><code>BypassSlowmode = 4503599627370496</code></dt>
+  
+  <dd><p>Allows bypassing channel slowmode restrictions.</p>
+</dd>
+    <dt id="Fluxer_Net_Permissions_ChangeNickname"><code>ChangeNickname = 67108864</code></dt>
+  
+  <dd><p>Allows changing own nickname.</p>
+</dd>
+    <dt id="Fluxer_Net_Permissions_Connect"><code>Connect = 1048576</code></dt>
+  
+  <dd><p>Allows joining voice channels.</p>
+</dd>
+    <dt id="Fluxer_Net_Permissions_CreateEvents"><code>CreateEvents = 17592186044416</code></dt>
+  
+  <dd><p>Allows creating guild events.</p>
+</dd>
+    <dt id="Fluxer_Net_Permissions_CreateExpressions"><code>CreateExpressions = 8796093022208</code></dt>
+  
+  <dd><p>Allows creating custom emojis, stickers, and soundboard sounds.</p>
+</dd>
+    <dt id="Fluxer_Net_Permissions_CreateInstantInvite"><code>CreateInstantInvite = 1</code></dt>
+  
+  <dd><p>Allows creation of instant invites to the guild or channel.</p>
+</dd>
+    <dt id="Fluxer_Net_Permissions_CreatePrivateThreads"><code>CreatePrivateThreads = 68719476736</code></dt>
+  
+  <dd><p>Allows creating private threads.</p>
+</dd>
+    <dt id="Fluxer_Net_Permissions_CreatePublicThreads"><code>CreatePublicThreads = 34359738368</code></dt>
+  
+  <dd><p>Allows creating public threads.</p>
+</dd>
+    <dt id="Fluxer_Net_Permissions_DeafenMembers"><code>DeafenMembers = 8388608</code></dt>
+  
+  <dd><p>Allows deafening members in voice channels.</p>
+</dd>
+    <dt id="Fluxer_Net_Permissions_EmbedLinks"><code>EmbedLinks = 16384</code></dt>
+  
+  <dd><p>Allows links sent by the user to auto-embed.</p>
+</dd>
+    <dt id="Fluxer_Net_Permissions_KickMembers"><code>KickMembers = 2</code></dt>
+  
+  <dd><p>Allows kicking members from the guild.</p>
+</dd>
+    <dt id="Fluxer_Net_Permissions_ManageChannels"><code>ManageChannels = 16</code></dt>
+  
+  <dd><p>Allows management and editing of channels.</p>
+</dd>
+    <dt id="Fluxer_Net_Permissions_ManageEvents"><code>ManageEvents = 8589934592</code></dt>
+  
+  <dd><p>Allows managing guild events.</p>
+</dd>
+    <dt id="Fluxer_Net_Permissions_ManageExpressions"><code>ManageExpressions = 1073741824</code></dt>
+  
+  <dd><p>Allows management and editing of emojis, stickers, and soundboard sounds.</p>
+</dd>
+    <dt id="Fluxer_Net_Permissions_ManageGuild"><code>ManageGuild = 32</code></dt>
+  
+  <dd><p>Allows management and editing of the guild.</p>
+</dd>
+    <dt id="Fluxer_Net_Permissions_ManageMessages"><code>ManageMessages = 8192</code></dt>
+  
+  <dd><p>Allows deleting and pinning messages from other users.</p>
+</dd>
+    <dt id="Fluxer_Net_Permissions_ManageNicknames"><code>ManageNicknames = 134217728</code></dt>
+  
+  <dd><p>Allows managing nicknames of other members.</p>
+</dd>
+    <dt id="Fluxer_Net_Permissions_ManageRoles"><code>ManageRoles = 268435456</code></dt>
+  
+  <dd><p>Allows management and editing of roles.</p>
+</dd>
+    <dt id="Fluxer_Net_Permissions_ManageThreads"><code>ManageThreads = 17179869184</code></dt>
+  
+  <dd><p>Allows management of threads (archiving, locking, deleting).</p>
+</dd>
+    <dt id="Fluxer_Net_Permissions_ManageWebhooks"><code>ManageWebhooks = 536870912</code></dt>
+  
+  <dd><p>Allows management and editing of webhooks.</p>
+</dd>
+    <dt id="Fluxer_Net_Permissions_MentionEveryone"><code>MentionEveryone = 131072</code></dt>
+  
+  <dd><p>Allows using @everyone and @here mentions, and mentioning all roles.</p>
+</dd>
+    <dt id="Fluxer_Net_Permissions_ModerateMembers"><code>ModerateMembers = 1099511627776</code></dt>
+  
+  <dd><p>Allows timing out members (preventing them from sending messages/joining voice).</p>
+</dd>
+    <dt id="Fluxer_Net_Permissions_MoveMembers"><code>MoveMembers = 16777216</code></dt>
+  
+  <dd><p>Allows moving members between voice channels.</p>
+</dd>
+    <dt id="Fluxer_Net_Permissions_MuteMembers"><code>MuteMembers = 4194304</code></dt>
+  
+  <dd><p>Allows muting members in voice channels.</p>
+</dd>
+    <dt id="Fluxer_Net_Permissions_None"><code>None = 0</code></dt>
+  
+  <dd><p>No permissions granted.</p>
+</dd>
+    <dt id="Fluxer_Net_Permissions_PinMessages"><code>PinMessages = 2251799813685248</code></dt>
+  
+  <dd><p>Allows pinning messages in channels.</p>
+</dd>
+    <dt id="Fluxer_Net_Permissions_PrioritySpeaker"><code>PrioritySpeaker = 256</code></dt>
+  
+  <dd><p>Allows using priority speaker in voice channels.</p>
+</dd>
+    <dt id="Fluxer_Net_Permissions_ReadMessageHistory"><code>ReadMessageHistory = 65536</code></dt>
+  
+  <dd><p>Allows reading message history in channels.</p>
+</dd>
+    <dt id="Fluxer_Net_Permissions_RequestToSpeak"><code>RequestToSpeak = 4294967296</code></dt>
+  
+  <dd><p>Allows requesting to speak in stage channels.</p>
+</dd>
+    <dt id="Fluxer_Net_Permissions_SendMessages"><code>SendMessages = 2048</code></dt>
+  
+  <dd><p>Allows sending messages in text channels.</p>
+</dd>
+    <dt id="Fluxer_Net_Permissions_SendMessagesInThreads"><code>SendMessagesInThreads = 274877906944</code></dt>
+  
+  <dd><p>Allows sending messages in threads.</p>
+</dd>
+    <dt id="Fluxer_Net_Permissions_SendPolls"><code>SendPolls = 562949953421312</code></dt>
+  
+  <dd><p>Allows sending polls in text channels.</p>
+</dd>
+    <dt id="Fluxer_Net_Permissions_SendTtsMessages"><code>SendTtsMessages = 4096</code></dt>
+  
+  <dd><p>Allows sending text-to-speech messages.</p>
+</dd>
+    <dt id="Fluxer_Net_Permissions_SendVoiceMessages"><code>SendVoiceMessages = 70368744177664</code></dt>
+  
+  <dd><p>Allows sending voice messages in text channels.</p>
+</dd>
+    <dt id="Fluxer_Net_Permissions_SetVoiceChannelStatus"><code>SetVoiceChannelStatus = 281474976710656</code></dt>
+  
+  <dd><p>Allows setting a custom status for voice channels.</p>
+</dd>
+    <dt id="Fluxer_Net_Permissions_Speak"><code>Speak = 2097152</code></dt>
+  
+  <dd><p>Allows speaking in voice channels.</p>
+</dd>
+    <dt id="Fluxer_Net_Permissions_Stream"><code>Stream = 512</code></dt>
+  
+  <dd><p>Allows streaming video in voice channels.</p>
+</dd>
+    <dt id="Fluxer_Net_Permissions_UpdateRtcRegion"><code>UpdateRtcRegion = 9007199254740992</code></dt>
+  
+  <dd><p>Allows updating the RTC (voice) region for a channel.</p>
+</dd>
+    <dt id="Fluxer_Net_Permissions_UseApplicationCommands"><code>UseApplicationCommands = 2147483648</code></dt>
+  
+  <dd><p>Allows using application commands (slash commands, context menu commands).</p>
+</dd>
+    <dt id="Fluxer_Net_Permissions_UseEmbeddedActivities"><code>UseEmbeddedActivities = 549755813888</code></dt>
+  
+  <dd><p>Allows using embedded activities (games, activities) in voice channels.</p>
+</dd>
+    <dt id="Fluxer_Net_Permissions_UseExternalApps"><code>UseExternalApps = 1125899906842624</code></dt>
+  
+  <dd><p>Allows using external applications in channels.</p>
+</dd>
+    <dt id="Fluxer_Net_Permissions_UseExternalEmojis"><code>UseExternalEmojis = 262144</code></dt>
+  
+  <dd><p>Allows using emojis from other guilds.</p>
+</dd>
+    <dt id="Fluxer_Net_Permissions_UseExternalSounds"><code>UseExternalSounds = 35184372088832</code></dt>
+  
+  <dd><p>Allows using soundboard sounds from other guilds.</p>
+</dd>
+    <dt id="Fluxer_Net_Permissions_UseExternalStickers"><code>UseExternalStickers = 137438953472</code></dt>
+  
+  <dd><p>Allows using stickers from other guilds.</p>
+</dd>
+    <dt id="Fluxer_Net_Permissions_UseSoundboard"><code>UseSoundboard = 4398046511104</code></dt>
+  
+  <dd><p>Allows using the soundboard in voice channels.</p>
+</dd>
+    <dt id="Fluxer_Net_Permissions_UseVad"><code>UseVad = 33554432</code></dt>
+  
+  <dd><p>Allows using voice activity detection (no push-to-talk required).</p>
+</dd>
+    <dt id="Fluxer_Net_Permissions_ViewAuditLog"><code>ViewAuditLog = 128</code></dt>
+  
+  <dd><p>Allows viewing the guild audit log.</p>
+</dd>
+    <dt id="Fluxer_Net_Permissions_ViewChannel"><code>ViewChannel = 1024</code></dt>
+  
+  <dd><p>Allows viewing channels (includes reading messages in text channels and joining voice channels).</p>
+</dd>
+    <dt id="Fluxer_Net_Permissions_ViewChannelMembers"><code>ViewChannelMembers = 9007199254740992</code></dt>
+  
+  <dd><p>Allows you to view members in the channel.</p>
+</dd>
+    <dt id="Fluxer_Net_Permissions_ViewCreatorMonetizationAnalytics"><code>ViewCreatorMonetizationAnalytics = 2199023255552</code></dt>
+  
+  <dd><p>Allows viewing monetization analytics for creators.</p>
+</dd>
+    <dt id="Fluxer_Net_Permissions_ViewGuildInsights"><code>ViewGuildInsights = 524288</code></dt>
+  
+  <dd><p>Allows viewing guild insights and analytics.</p>
+</dd>
+  </dl>
+
+
+  <h2 id="Fluxer_Net_Permissions_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>Permissions are stored as a 64-bit unsigned integer where each bit represents a specific permission.
+Use bitwise operations to check, add, or remove permissions.</p>
+</div>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Data/Guilds/Permissions.cs/#L10" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

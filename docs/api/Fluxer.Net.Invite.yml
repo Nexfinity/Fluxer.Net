@@ -1,0 +1,711 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.Invite
+  commentId: T:Fluxer.Net.Invite
+  id: Invite
+  parent: Fluxer.Net
+  children:
+  - Fluxer.Net.Invite.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.InviteJson)
+  - Fluxer.Net.Invite.CreatedAt
+  - Fluxer.Net.Invite.MaxAge
+  - Fluxer.Net.Invite.MaxUses
+  - Fluxer.Net.Invite.Uses
+  langs:
+  - csharp
+  - vb
+  name: Invite
+  nameWithType: Invite
+  fullName: Fluxer.Net.Invite
+  type: Class
+  source:
+    remote:
+      path: Fluxer.Net/Data/Invites/Invite.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Invite
+    path: ../Fluxer.Net/Data/Invites/Invite.cs
+    startLine: 3
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  example: []
+  syntax:
+    content: 'public class Invite : PartialInvite, IPartialInvite, IInvite'
+    content.vb: Public Class Invite Inherits PartialInvite Implements IPartialInvite, IInvite
+  inheritance:
+  - System.Object
+  - Fluxer.Net.Entity
+  - Fluxer.Net.PartialInvite
+  implements:
+  - Fluxer.Net.IPartialInvite
+  - Fluxer.Net.IInvite
+  inheritedMembers:
+  - Fluxer.Net.PartialInvite.Code
+  - Fluxer.Net.PartialInvite.Type
+  - Fluxer.Net.PartialInvite.Guild
+  - Fluxer.Net.PartialInvite.Channel
+  - Fluxer.Net.PartialInvite.Inviter
+  - Fluxer.Net.PartialInvite.MemberCount
+  - Fluxer.Net.PartialInvite.PresenceCount
+  - Fluxer.Net.PartialInvite.ExpiresAt
+  - Fluxer.Net.PartialInvite.Temporary
+  - Fluxer.Net.PartialInvite.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.PartialInviteJson)
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: Fluxer.Net.Invite.CreatedAt
+  commentId: P:Fluxer.Net.Invite.CreatedAt
+  id: CreatedAt
+  parent: Fluxer.Net.Invite
+  langs:
+  - csharp
+  - vb
+  name: CreatedAt
+  nameWithType: Invite.CreatedAt
+  fullName: Fluxer.Net.Invite.CreatedAt
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Invites/Invite.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: CreatedAt
+    path: ../Fluxer.Net/Data/Invites/Invite.cs
+    startLine: 6
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: ISO8601 timestamp of when the invite was created.
+  example: []
+  syntax:
+    content: public DateTime CreatedAt { get; }
+    parameters: []
+    return:
+      type: System.DateTime
+    content.vb: Public Property CreatedAt As Date
+  overload: Fluxer.Net.Invite.CreatedAt*
+  implements:
+  - Fluxer.Net.IInvite.CreatedAt
+- uid: Fluxer.Net.Invite.Uses
+  commentId: P:Fluxer.Net.Invite.Uses
+  id: Uses
+  parent: Fluxer.Net.Invite
+  langs:
+  - csharp
+  - vb
+  name: Uses
+  nameWithType: Invite.Uses
+  fullName: Fluxer.Net.Invite.Uses
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Invites/Invite.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Uses
+    path: ../Fluxer.Net/Data/Invites/Invite.cs
+    startLine: 9
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The number of times this invite has been used
+  example: []
+  syntax:
+    content: public int Uses { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property Uses As Integer
+  overload: Fluxer.Net.Invite.Uses*
+  implements:
+  - Fluxer.Net.IInvite.Uses
+- uid: Fluxer.Net.Invite.MaxUses
+  commentId: P:Fluxer.Net.Invite.MaxUses
+  id: MaxUses
+  parent: Fluxer.Net.Invite
+  langs:
+  - csharp
+  - vb
+  name: MaxUses
+  nameWithType: Invite.MaxUses
+  fullName: Fluxer.Net.Invite.MaxUses
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Invites/Invite.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: MaxUses
+    path: ../Fluxer.Net/Data/Invites/Invite.cs
+    startLine: 12
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The maximum number of times this invite can be used.
+  example: []
+  syntax:
+    content: public int MaxUses { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property MaxUses As Integer
+  overload: Fluxer.Net.Invite.MaxUses*
+  implements:
+  - Fluxer.Net.IInvite.MaxUses
+- uid: Fluxer.Net.Invite.MaxAge
+  commentId: P:Fluxer.Net.Invite.MaxAge
+  id: MaxAge
+  parent: Fluxer.Net.Invite
+  langs:
+  - csharp
+  - vb
+  name: MaxAge
+  nameWithType: Invite.MaxAge
+  fullName: Fluxer.Net.Invite.MaxAge
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Invites/Invite.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: MaxAge
+    path: ../Fluxer.Net/Data/Invites/Invite.cs
+    startLine: 15
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The duration in seconds before the invite expires.
+  example: []
+  syntax:
+    content: public int MaxAge { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property MaxAge As Integer
+  overload: Fluxer.Net.Invite.MaxAge*
+  implements:
+  - Fluxer.Net.IInvite.MaxAge
+- uid: Fluxer.Net.Invite.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.InviteJson)
+  commentId: M:Fluxer.Net.Invite.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.InviteJson)
+  id: Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.InviteJson)
+  parent: Fluxer.Net.Invite
+  langs:
+  - csharp
+  - vb
+  name: Create(FluxerBaseClient, InviteJson)
+  nameWithType: Invite.Create(FluxerBaseClient, InviteJson)
+  fullName: Fluxer.Net.Invite.Create(Fluxer.Net.FluxerBaseClient, Fluxer.Net.InviteJson)
+  type: Method
+  source:
+    remote:
+      path: Fluxer.Net/Data/Invites/Invite.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Create
+    path: ../Fluxer.Net/Data/Invites/Invite.cs
+    startLine: 22
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: public static Invite Create(FluxerBaseClient client, InviteJson json)
+    parameters:
+    - id: client
+      type: Fluxer.Net.FluxerBaseClient
+    - id: json
+      type: Fluxer.Net.InviteJson
+    return:
+      type: Fluxer.Net.Invite
+    content.vb: Public Shared Function Create(client As FluxerBaseClient, json As InviteJson) As Invite
+  overload: Fluxer.Net.Invite.Create*
+references:
+- uid: Fluxer.Net
+  commentId: N:Fluxer.Net
+  href: Fluxer.html
+  name: Fluxer.Net
+  nameWithType: Fluxer.Net
+  fullName: Fluxer.Net
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Fluxer.Net.Entity
+  commentId: T:Fluxer.Net.Entity
+  parent: Fluxer.Net
+  href: Fluxer.Net.Entity.html
+  name: Entity
+  nameWithType: Entity
+  fullName: Fluxer.Net.Entity
+- uid: Fluxer.Net.PartialInvite
+  commentId: T:Fluxer.Net.PartialInvite
+  parent: Fluxer.Net
+  href: Fluxer.Net.PartialInvite.html
+  name: PartialInvite
+  nameWithType: PartialInvite
+  fullName: Fluxer.Net.PartialInvite
+- uid: Fluxer.Net.IPartialInvite
+  commentId: T:Fluxer.Net.IPartialInvite
+  parent: Fluxer.Net
+  href: Fluxer.Net.IPartialInvite.html
+  name: IPartialInvite
+  nameWithType: IPartialInvite
+  fullName: Fluxer.Net.IPartialInvite
+- uid: Fluxer.Net.IInvite
+  commentId: T:Fluxer.Net.IInvite
+  parent: Fluxer.Net
+  href: Fluxer.Net.IInvite.html
+  name: IInvite
+  nameWithType: IInvite
+  fullName: Fluxer.Net.IInvite
+- uid: Fluxer.Net.PartialInvite.Code
+  commentId: P:Fluxer.Net.PartialInvite.Code
+  parent: Fluxer.Net.PartialInvite
+  href: Fluxer.Net.PartialInvite.html#Fluxer_Net_PartialInvite_Code
+  name: Code
+  nameWithType: PartialInvite.Code
+  fullName: Fluxer.Net.PartialInvite.Code
+- uid: Fluxer.Net.PartialInvite.Type
+  commentId: P:Fluxer.Net.PartialInvite.Type
+  parent: Fluxer.Net.PartialInvite
+  href: Fluxer.Net.PartialInvite.html#Fluxer_Net_PartialInvite_Type
+  name: Type
+  nameWithType: PartialInvite.Type
+  fullName: Fluxer.Net.PartialInvite.Type
+- uid: Fluxer.Net.PartialInvite.Guild
+  commentId: P:Fluxer.Net.PartialInvite.Guild
+  parent: Fluxer.Net.PartialInvite
+  href: Fluxer.Net.PartialInvite.html#Fluxer_Net_PartialInvite_Guild
+  name: Guild
+  nameWithType: PartialInvite.Guild
+  fullName: Fluxer.Net.PartialInvite.Guild
+- uid: Fluxer.Net.PartialInvite.Channel
+  commentId: P:Fluxer.Net.PartialInvite.Channel
+  parent: Fluxer.Net.PartialInvite
+  href: Fluxer.Net.PartialInvite.html#Fluxer_Net_PartialInvite_Channel
+  name: Channel
+  nameWithType: PartialInvite.Channel
+  fullName: Fluxer.Net.PartialInvite.Channel
+- uid: Fluxer.Net.PartialInvite.Inviter
+  commentId: P:Fluxer.Net.PartialInvite.Inviter
+  parent: Fluxer.Net.PartialInvite
+  href: Fluxer.Net.PartialInvite.html#Fluxer_Net_PartialInvite_Inviter
+  name: Inviter
+  nameWithType: PartialInvite.Inviter
+  fullName: Fluxer.Net.PartialInvite.Inviter
+- uid: Fluxer.Net.PartialInvite.MemberCount
+  commentId: P:Fluxer.Net.PartialInvite.MemberCount
+  parent: Fluxer.Net.PartialInvite
+  href: Fluxer.Net.PartialInvite.html#Fluxer_Net_PartialInvite_MemberCount
+  name: MemberCount
+  nameWithType: PartialInvite.MemberCount
+  fullName: Fluxer.Net.PartialInvite.MemberCount
+- uid: Fluxer.Net.PartialInvite.PresenceCount
+  commentId: P:Fluxer.Net.PartialInvite.PresenceCount
+  parent: Fluxer.Net.PartialInvite
+  href: Fluxer.Net.PartialInvite.html#Fluxer_Net_PartialInvite_PresenceCount
+  name: PresenceCount
+  nameWithType: PartialInvite.PresenceCount
+  fullName: Fluxer.Net.PartialInvite.PresenceCount
+- uid: Fluxer.Net.PartialInvite.ExpiresAt
+  commentId: P:Fluxer.Net.PartialInvite.ExpiresAt
+  parent: Fluxer.Net.PartialInvite
+  href: Fluxer.Net.PartialInvite.html#Fluxer_Net_PartialInvite_ExpiresAt
+  name: ExpiresAt
+  nameWithType: PartialInvite.ExpiresAt
+  fullName: Fluxer.Net.PartialInvite.ExpiresAt
+- uid: Fluxer.Net.PartialInvite.Temporary
+  commentId: P:Fluxer.Net.PartialInvite.Temporary
+  parent: Fluxer.Net.PartialInvite
+  href: Fluxer.Net.PartialInvite.html#Fluxer_Net_PartialInvite_Temporary
+  name: Temporary
+  nameWithType: PartialInvite.Temporary
+  fullName: Fluxer.Net.PartialInvite.Temporary
+- uid: Fluxer.Net.PartialInvite.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.PartialInviteJson)
+  commentId: M:Fluxer.Net.PartialInvite.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.PartialInviteJson)
+  parent: Fluxer.Net.PartialInvite
+  href: Fluxer.Net.PartialInvite.html#Fluxer_Net_PartialInvite_Create_Fluxer_Net_FluxerBaseClient_Fluxer_Net_PartialInviteJson_
+  name: Create(FluxerBaseClient, PartialInviteJson)
+  nameWithType: PartialInvite.Create(FluxerBaseClient, PartialInviteJson)
+  fullName: Fluxer.Net.PartialInvite.Create(Fluxer.Net.FluxerBaseClient, Fluxer.Net.PartialInviteJson)
+  spec.csharp:
+  - uid: Fluxer.Net.PartialInvite.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.PartialInviteJson)
+    name: Create
+    href: Fluxer.Net.PartialInvite.html#Fluxer_Net_PartialInvite_Create_Fluxer_Net_FluxerBaseClient_Fluxer_Net_PartialInviteJson_
+  - name: (
+  - uid: Fluxer.Net.FluxerBaseClient
+    name: FluxerBaseClient
+    href: Fluxer.Net.FluxerBaseClient.html
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.PartialInviteJson
+    name: PartialInviteJson
+    href: Fluxer.Net.PartialInviteJson.html
+  - name: )
+  spec.vb:
+  - uid: Fluxer.Net.PartialInvite.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.PartialInviteJson)
+    name: Create
+    href: Fluxer.Net.PartialInvite.html#Fluxer_Net_PartialInvite_Create_Fluxer_Net_FluxerBaseClient_Fluxer_Net_PartialInviteJson_
+  - name: (
+  - uid: Fluxer.Net.FluxerBaseClient
+    name: FluxerBaseClient
+    href: Fluxer.Net.FluxerBaseClient.html
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.PartialInviteJson
+    name: PartialInviteJson
+    href: Fluxer.Net.PartialInviteJson.html
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Fluxer.Net.Invite.CreatedAt*
+  commentId: Overload:Fluxer.Net.Invite.CreatedAt
+  href: Fluxer.Net.Invite.html#Fluxer_Net_Invite_CreatedAt
+  name: CreatedAt
+  nameWithType: Invite.CreatedAt
+  fullName: Fluxer.Net.Invite.CreatedAt
+- uid: Fluxer.Net.IInvite.CreatedAt
+  commentId: P:Fluxer.Net.IInvite.CreatedAt
+  parent: Fluxer.Net.IInvite
+  href: Fluxer.Net.IInvite.html#Fluxer_Net_IInvite_CreatedAt
+  name: CreatedAt
+  nameWithType: IInvite.CreatedAt
+  fullName: Fluxer.Net.IInvite.CreatedAt
+- uid: System.DateTime
+  commentId: T:System.DateTime
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.datetime
+  name: DateTime
+  nameWithType: DateTime
+  fullName: System.DateTime
+  nameWithType.vb: Date
+  fullName.vb: Date
+  name.vb: Date
+- uid: Fluxer.Net.Invite.Uses*
+  commentId: Overload:Fluxer.Net.Invite.Uses
+  href: Fluxer.Net.Invite.html#Fluxer_Net_Invite_Uses
+  name: Uses
+  nameWithType: Invite.Uses
+  fullName: Fluxer.Net.Invite.Uses
+- uid: Fluxer.Net.IInvite.Uses
+  commentId: P:Fluxer.Net.IInvite.Uses
+  parent: Fluxer.Net.IInvite
+  href: Fluxer.Net.IInvite.html#Fluxer_Net_IInvite_Uses
+  name: Uses
+  nameWithType: IInvite.Uses
+  fullName: Fluxer.Net.IInvite.Uses
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: Fluxer.Net.Invite.MaxUses*
+  commentId: Overload:Fluxer.Net.Invite.MaxUses
+  href: Fluxer.Net.Invite.html#Fluxer_Net_Invite_MaxUses
+  name: MaxUses
+  nameWithType: Invite.MaxUses
+  fullName: Fluxer.Net.Invite.MaxUses
+- uid: Fluxer.Net.IInvite.MaxUses
+  commentId: P:Fluxer.Net.IInvite.MaxUses
+  parent: Fluxer.Net.IInvite
+  href: Fluxer.Net.IInvite.html#Fluxer_Net_IInvite_MaxUses
+  name: MaxUses
+  nameWithType: IInvite.MaxUses
+  fullName: Fluxer.Net.IInvite.MaxUses
+- uid: Fluxer.Net.Invite.MaxAge*
+  commentId: Overload:Fluxer.Net.Invite.MaxAge
+  href: Fluxer.Net.Invite.html#Fluxer_Net_Invite_MaxAge
+  name: MaxAge
+  nameWithType: Invite.MaxAge
+  fullName: Fluxer.Net.Invite.MaxAge
+- uid: Fluxer.Net.IInvite.MaxAge
+  commentId: P:Fluxer.Net.IInvite.MaxAge
+  parent: Fluxer.Net.IInvite
+  href: Fluxer.Net.IInvite.html#Fluxer_Net_IInvite_MaxAge
+  name: MaxAge
+  nameWithType: IInvite.MaxAge
+  fullName: Fluxer.Net.IInvite.MaxAge
+- uid: Fluxer.Net.Invite.Create*
+  commentId: Overload:Fluxer.Net.Invite.Create
+  href: Fluxer.Net.Invite.html#Fluxer_Net_Invite_Create_Fluxer_Net_FluxerBaseClient_Fluxer_Net_InviteJson_
+  name: Create
+  nameWithType: Invite.Create
+  fullName: Fluxer.Net.Invite.Create
+- uid: Fluxer.Net.FluxerBaseClient
+  commentId: T:Fluxer.Net.FluxerBaseClient
+  parent: Fluxer.Net
+  href: Fluxer.Net.FluxerBaseClient.html
+  name: FluxerBaseClient
+  nameWithType: FluxerBaseClient
+  fullName: Fluxer.Net.FluxerBaseClient
+- uid: Fluxer.Net.InviteJson
+  commentId: T:Fluxer.Net.InviteJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.InviteJson.html
+  name: InviteJson
+  nameWithType: InviteJson
+  fullName: Fluxer.Net.InviteJson
+- uid: Fluxer.Net.Invite
+  commentId: T:Fluxer.Net.Invite
+  parent: Fluxer.Net
+  href: Fluxer.Net.Invite.html
+  name: Invite
+  nameWithType: Invite
+  fullName: Fluxer.Net.Invite

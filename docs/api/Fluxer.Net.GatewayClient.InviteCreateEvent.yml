@@ -1,0 +1,110 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.GatewayClient.InviteCreateEvent
+  commentId: T:Fluxer.Net.GatewayClient.InviteCreateEvent
+  id: GatewayClient.InviteCreateEvent
+  parent: Fluxer.Net
+  children: []
+  langs:
+  - csharp
+  - vb
+  name: GatewayClient.InviteCreateEvent
+  nameWithType: GatewayClient.InviteCreateEvent
+  fullName: Fluxer.Net.GatewayClient.InviteCreateEvent
+  type: Delegate
+  source:
+    remote:
+      path: Fluxer.Net/Gateway/GatewayClient.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: InviteCreateEvent
+    path: ../Fluxer.Net/Gateway/GatewayClient.cs
+    startLine: 2450
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Delegate for INVITE_CREATE events when an invite is created.
+  example: []
+  syntax:
+    content: public delegate void GatewayClient.InviteCreateEvent(InviteGatewayData data)
+    parameters:
+    - id: data
+      type: Fluxer.Net.Gateway.Data.Invites.InviteGatewayData
+      description: The invite data including code, channel, guild, and inviter information.
+    content.vb: Public Delegate Sub GatewayClient.InviteCreateEvent(data As InviteGatewayData)
+references:
+- uid: Fluxer.Net
+  commentId: N:Fluxer.Net
+  href: Fluxer.html
+  name: Fluxer.Net
+  nameWithType: Fluxer.Net
+  fullName: Fluxer.Net
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+- uid: Fluxer.Net.Gateway.Data.Invites.InviteGatewayData
+  commentId: T:Fluxer.Net.Gateway.Data.Invites.InviteGatewayData
+  parent: Fluxer.Net.Gateway.Data.Invites
+  href: Fluxer.Net.Gateway.Data.Invites.InviteGatewayData.html
+  name: InviteGatewayData
+  nameWithType: InviteGatewayData
+  fullName: Fluxer.Net.Gateway.Data.Invites.InviteGatewayData
+- uid: Fluxer.Net.Gateway.Data.Invites
+  commentId: N:Fluxer.Net.Gateway.Data.Invites
+  href: Fluxer.html
+  name: Fluxer.Net.Gateway.Data.Invites
+  nameWithType: Fluxer.Net.Gateway.Data.Invites
+  fullName: Fluxer.Net.Gateway.Data.Invites
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  - name: .
+  - uid: Fluxer.Net.Gateway
+    name: Gateway
+    href: Fluxer.Net.Gateway.html
+  - name: .
+  - uid: Fluxer.Net.Gateway.Data
+    name: Data
+    href: Fluxer.Net.Gateway.Data.html
+  - name: .
+  - uid: Fluxer.Net.Gateway.Data.Invites
+    name: Invites
+    href: Fluxer.Net.Gateway.Data.Invites.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  - name: .
+  - uid: Fluxer.Net.Gateway
+    name: Gateway
+    href: Fluxer.Net.Gateway.html
+  - name: .
+  - uid: Fluxer.Net.Gateway.Data
+    name: Data
+    href: Fluxer.Net.Gateway.Data.html
+  - name: .
+  - uid: Fluxer.Net.Gateway.Data.Invites
+    name: Invites
+    href: Fluxer.Net.Gateway.Data.Invites.html

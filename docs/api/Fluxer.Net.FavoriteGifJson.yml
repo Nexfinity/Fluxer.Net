@@ -1,0 +1,1433 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.FavoriteGifJson
+  commentId: T:Fluxer.Net.FavoriteGifJson
+  id: FavoriteGifJson
+  parent: Fluxer.Net
+  children:
+  - Fluxer.Net.FavoriteGifJson.AltText
+  - Fluxer.Net.FavoriteGifJson.AttachmentId
+  - Fluxer.Net.FavoriteGifJson.ContentHash
+  - Fluxer.Net.FavoriteGifJson.ContentType
+  - Fluxer.Net.FavoriteGifJson.Duration
+  - Fluxer.Net.FavoriteGifJson.Filename
+  - Fluxer.Net.FavoriteGifJson.Height
+  - Fluxer.Net.FavoriteGifJson.Id
+  - Fluxer.Net.FavoriteGifJson.IsGifVideo
+  - Fluxer.Net.FavoriteGifJson.KlipySlug
+  - Fluxer.Net.FavoriteGifJson.Name
+  - Fluxer.Net.FavoriteGifJson.Size
+  - Fluxer.Net.FavoriteGifJson.Tags
+  - Fluxer.Net.FavoriteGifJson.TenorSlugId
+  - Fluxer.Net.FavoriteGifJson.Url
+  - Fluxer.Net.FavoriteGifJson.UserId
+  - Fluxer.Net.FavoriteGifJson.Width
+  langs:
+  - csharp
+  - vb
+  name: FavoriteGifJson
+  nameWithType: FavoriteGifJson
+  fullName: Fluxer.Net.FavoriteGifJson
+  type: Class
+  source:
+    remote:
+      path: Fluxer.Net/Data/Gifs/FavoriteGifJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: FavoriteGifJson
+    path: ../Fluxer.Net/Data/Gifs/FavoriteGifJson.cs
+    startLine: 5
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Supports all classes in the .NET class hierarchy and provides low-level services to derived classes. This is the ultimate base class of all .NET classes; it is the root of the type hierarchy.
+  example: []
+  syntax:
+    content: 'public class FavoriteGifJson : IFavoriteGif'
+    content.vb: Public Class FavoriteGifJson Implements IFavoriteGif
+  inheritance:
+  - System.Object
+  derivedClasses:
+  - Fluxer.Net.Gateway.Data.Users.FavoriteMemeDeleteGatewayData
+  - Fluxer.Net.Gateway.Data.Users.FavoriteMemeGatewayData
+  implements:
+  - Fluxer.Net.IFavoriteGif
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: Fluxer.Net.FavoriteGifJson.Id
+  commentId: P:Fluxer.Net.FavoriteGifJson.Id
+  id: Id
+  parent: Fluxer.Net.FavoriteGifJson
+  langs:
+  - csharp
+  - vb
+  name: Id
+  nameWithType: FavoriteGifJson.Id
+  fullName: Fluxer.Net.FavoriteGifJson.Id
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Gifs/FavoriteGifJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Id
+    path: ../Fluxer.Net/Data/Gifs/FavoriteGifJson.cs
+    startLine: 8
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Unique identifier for the favorite gif.
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("id")]
+
+      public string Id { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <JsonProperty("id")>
+
+      Public Property Id As String
+  overload: Fluxer.Net.FavoriteGifJson.Id*
+  implements:
+  - Fluxer.Net.IFavoriteGif.Id
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: id
+- uid: Fluxer.Net.FavoriteGifJson.UserId
+  commentId: P:Fluxer.Net.FavoriteGifJson.UserId
+  id: UserId
+  parent: Fluxer.Net.FavoriteGifJson
+  langs:
+  - csharp
+  - vb
+  name: UserId
+  nameWithType: FavoriteGifJson.UserId
+  fullName: Fluxer.Net.FavoriteGifJson.UserId
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Gifs/FavoriteGifJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: UserId
+    path: ../Fluxer.Net/Data/Gifs/FavoriteGifJson.cs
+    startLine: 12
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: ID of the user who owns this favorite gif.
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("user_id")]
+
+      public ulong UserId { get; set; }
+    parameters: []
+    return:
+      type: System.UInt64
+    content.vb: >-
+      <JsonProperty("user_id")>
+
+      Public Property UserId As ULong
+  overload: Fluxer.Net.FavoriteGifJson.UserId*
+  implements:
+  - Fluxer.Net.IFavoriteGif.UserId
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: user_id
+- uid: Fluxer.Net.FavoriteGifJson.Name
+  commentId: P:Fluxer.Net.FavoriteGifJson.Name
+  id: Name
+  parent: Fluxer.Net.FavoriteGifJson
+  langs:
+  - csharp
+  - vb
+  name: Name
+  nameWithType: FavoriteGifJson.Name
+  fullName: Fluxer.Net.FavoriteGifJson.Name
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Gifs/FavoriteGifJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Name
+    path: ../Fluxer.Net/Data/Gifs/FavoriteGifJson.cs
+    startLine: 16
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Display name of the gif.
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("name")]
+
+      public string Name { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <JsonProperty("name")>
+
+      Public Property Name As String
+  overload: Fluxer.Net.FavoriteGifJson.Name*
+  implements:
+  - Fluxer.Net.IFavoriteGif.Name
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: name
+- uid: Fluxer.Net.FavoriteGifJson.Tags
+  commentId: P:Fluxer.Net.FavoriteGifJson.Tags
+  id: Tags
+  parent: Fluxer.Net.FavoriteGifJson
+  langs:
+  - csharp
+  - vb
+  name: Tags
+  nameWithType: FavoriteGifJson.Tags
+  fullName: Fluxer.Net.FavoriteGifJson.Tags
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Gifs/FavoriteGifJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Tags
+    path: ../Fluxer.Net/Data/Gifs/FavoriteGifJson.cs
+    startLine: 20
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Tags for categorizing and searching the gif.
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("tags")]
+
+      public string[] Tags { get; set; }
+    parameters: []
+    return:
+      type: System.String[]
+    content.vb: >-
+      <JsonProperty("tags")>
+
+      Public Property Tags As String()
+  overload: Fluxer.Net.FavoriteGifJson.Tags*
+  implements:
+  - Fluxer.Net.IFavoriteGif.Tags
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: tags
+- uid: Fluxer.Net.FavoriteGifJson.AttachmentId
+  commentId: P:Fluxer.Net.FavoriteGifJson.AttachmentId
+  id: AttachmentId
+  parent: Fluxer.Net.FavoriteGifJson
+  langs:
+  - csharp
+  - vb
+  name: AttachmentId
+  nameWithType: FavoriteGifJson.AttachmentId
+  fullName: Fluxer.Net.FavoriteGifJson.AttachmentId
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Gifs/FavoriteGifJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: AttachmentId
+    path: ../Fluxer.Net/Data/Gifs/FavoriteGifJson.cs
+    startLine: 24
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: ID of the attachment storing the gif.
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("attachment_id")]
+
+      public ulong AttachmentId { get; set; }
+    parameters: []
+    return:
+      type: System.UInt64
+    content.vb: >-
+      <JsonProperty("attachment_id")>
+
+      Public Property AttachmentId As ULong
+  overload: Fluxer.Net.FavoriteGifJson.AttachmentId*
+  implements:
+  - Fluxer.Net.IFavoriteGif.AttachmentId
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: attachment_id
+- uid: Fluxer.Net.FavoriteGifJson.Filename
+  commentId: P:Fluxer.Net.FavoriteGifJson.Filename
+  id: Filename
+  parent: Fluxer.Net.FavoriteGifJson
+  langs:
+  - csharp
+  - vb
+  name: Filename
+  nameWithType: FavoriteGifJson.Filename
+  fullName: Fluxer.Net.FavoriteGifJson.Filename
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Gifs/FavoriteGifJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Filename
+    path: ../Fluxer.Net/Data/Gifs/FavoriteGifJson.cs
+    startLine: 28
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Original filename of the gif.
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("filename")]
+
+      public string Filename { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <JsonProperty("filename")>
+
+      Public Property Filename As String
+  overload: Fluxer.Net.FavoriteGifJson.Filename*
+  implements:
+  - Fluxer.Net.IFavoriteGif.Filename
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: filename
+- uid: Fluxer.Net.FavoriteGifJson.ContentType
+  commentId: P:Fluxer.Net.FavoriteGifJson.ContentType
+  id: ContentType
+  parent: Fluxer.Net.FavoriteGifJson
+  langs:
+  - csharp
+  - vb
+  name: ContentType
+  nameWithType: FavoriteGifJson.ContentType
+  fullName: Fluxer.Net.FavoriteGifJson.ContentType
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Gifs/FavoriteGifJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: ContentType
+    path: ../Fluxer.Net/Data/Gifs/FavoriteGifJson.cs
+    startLine: 32
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: MIME type of the gif file.
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("content_type")]
+
+      public string ContentType { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <JsonProperty("content_type")>
+
+      Public Property ContentType As String
+  overload: Fluxer.Net.FavoriteGifJson.ContentType*
+  implements:
+  - Fluxer.Net.IFavoriteGif.ContentType
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: content_type
+- uid: Fluxer.Net.FavoriteGifJson.Size
+  commentId: P:Fluxer.Net.FavoriteGifJson.Size
+  id: Size
+  parent: Fluxer.Net.FavoriteGifJson
+  langs:
+  - csharp
+  - vb
+  name: Size
+  nameWithType: FavoriteGifJson.Size
+  fullName: Fluxer.Net.FavoriteGifJson.Size
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Gifs/FavoriteGifJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Size
+    path: ../Fluxer.Net/Data/Gifs/FavoriteGifJson.cs
+    startLine: 36
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: File size in bytes.
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("size")]
+
+      public int Size { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: >-
+      <JsonProperty("size")>
+
+      Public Property Size As Integer
+  overload: Fluxer.Net.FavoriteGifJson.Size*
+  implements:
+  - Fluxer.Net.IFavoriteGif.Size
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: size
+- uid: Fluxer.Net.FavoriteGifJson.Url
+  commentId: P:Fluxer.Net.FavoriteGifJson.Url
+  id: Url
+  parent: Fluxer.Net.FavoriteGifJson
+  langs:
+  - csharp
+  - vb
+  name: Url
+  nameWithType: FavoriteGifJson.Url
+  fullName: Fluxer.Net.FavoriteGifJson.Url
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Gifs/FavoriteGifJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Url
+    path: ../Fluxer.Net/Data/Gifs/FavoriteGifJson.cs
+    startLine: 40
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: CDN URL to access the meme.
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("url")]
+
+      public string Url { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <JsonProperty("url")>
+
+      Public Property Url As String
+  overload: Fluxer.Net.FavoriteGifJson.Url*
+  implements:
+  - Fluxer.Net.IFavoriteGif.Url
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: url
+- uid: Fluxer.Net.FavoriteGifJson.AltText
+  commentId: P:Fluxer.Net.FavoriteGifJson.AltText
+  id: AltText
+  parent: Fluxer.Net.FavoriteGifJson
+  langs:
+  - csharp
+  - vb
+  name: AltText
+  nameWithType: FavoriteGifJson.AltText
+  fullName: Fluxer.Net.FavoriteGifJson.AltText
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Gifs/FavoriteGifJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: AltText
+    path: ../Fluxer.Net/Data/Gifs/FavoriteGifJson.cs
+    startLine: 44
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Alternative text description for accessibility.
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("alt_text")]
+
+      public string? AltText { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <JsonProperty("alt_text")>
+
+      Public Property AltText As String
+  overload: Fluxer.Net.FavoriteGifJson.AltText*
+  implements:
+  - Fluxer.Net.IFavoriteGif.AltText
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: alt_text
+- uid: Fluxer.Net.FavoriteGifJson.ContentHash
+  commentId: P:Fluxer.Net.FavoriteGifJson.ContentHash
+  id: ContentHash
+  parent: Fluxer.Net.FavoriteGifJson
+  langs:
+  - csharp
+  - vb
+  name: ContentHash
+  nameWithType: FavoriteGifJson.ContentHash
+  fullName: Fluxer.Net.FavoriteGifJson.ContentHash
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Gifs/FavoriteGifJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: ContentHash
+    path: ../Fluxer.Net/Data/Gifs/FavoriteGifJson.cs
+    startLine: 48
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Hash of the file content for deduplication.
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("content_hash")]
+
+      public string? ContentHash { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <JsonProperty("content_hash")>
+
+      Public Property ContentHash As String
+  overload: Fluxer.Net.FavoriteGifJson.ContentHash*
+  implements:
+  - Fluxer.Net.IFavoriteGif.ContentHash
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: content_hash
+- uid: Fluxer.Net.FavoriteGifJson.Width
+  commentId: P:Fluxer.Net.FavoriteGifJson.Width
+  id: Width
+  parent: Fluxer.Net.FavoriteGifJson
+  langs:
+  - csharp
+  - vb
+  name: Width
+  nameWithType: FavoriteGifJson.Width
+  fullName: Fluxer.Net.FavoriteGifJson.Width
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Gifs/FavoriteGifJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Width
+    path: ../Fluxer.Net/Data/Gifs/FavoriteGifJson.cs
+    startLine: 52
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Width of the image or video in pixels.
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("width")]
+
+      public int? Width { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{System.Int32}
+    content.vb: >-
+      <JsonProperty("width")>
+
+      Public Property Width As Integer?
+  overload: Fluxer.Net.FavoriteGifJson.Width*
+  implements:
+  - Fluxer.Net.IFavoriteGif.Width
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: width
+- uid: Fluxer.Net.FavoriteGifJson.Height
+  commentId: P:Fluxer.Net.FavoriteGifJson.Height
+  id: Height
+  parent: Fluxer.Net.FavoriteGifJson
+  langs:
+  - csharp
+  - vb
+  name: Height
+  nameWithType: FavoriteGifJson.Height
+  fullName: Fluxer.Net.FavoriteGifJson.Height
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Gifs/FavoriteGifJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Height
+    path: ../Fluxer.Net/Data/Gifs/FavoriteGifJson.cs
+    startLine: 56
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Height of the image or video in pixels.
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("height")]
+
+      public int? Height { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{System.Int32}
+    content.vb: >-
+      <JsonProperty("height")>
+
+      Public Property Height As Integer?
+  overload: Fluxer.Net.FavoriteGifJson.Height*
+  implements:
+  - Fluxer.Net.IFavoriteGif.Height
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: height
+- uid: Fluxer.Net.FavoriteGifJson.Duration
+  commentId: P:Fluxer.Net.FavoriteGifJson.Duration
+  id: Duration
+  parent: Fluxer.Net.FavoriteGifJson
+  langs:
+  - csharp
+  - vb
+  name: Duration
+  nameWithType: FavoriteGifJson.Duration
+  fullName: Fluxer.Net.FavoriteGifJson.Duration
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Gifs/FavoriteGifJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Duration
+    path: ../Fluxer.Net/Data/Gifs/FavoriteGifJson.cs
+    startLine: 60
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Duration of the video in seconds
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("duration")]
+
+      public int? Duration { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{System.Int32}
+    content.vb: >-
+      <JsonProperty("duration")>
+
+      Public Property Duration As Integer?
+  overload: Fluxer.Net.FavoriteGifJson.Duration*
+  implements:
+  - Fluxer.Net.IFavoriteGif.Duration
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: duration
+- uid: Fluxer.Net.FavoriteGifJson.IsGifVideo
+  commentId: P:Fluxer.Net.FavoriteGifJson.IsGifVideo
+  id: IsGifVideo
+  parent: Fluxer.Net.FavoriteGifJson
+  langs:
+  - csharp
+  - vb
+  name: IsGifVideo
+  nameWithType: FavoriteGifJson.IsGifVideo
+  fullName: Fluxer.Net.FavoriteGifJson.IsGifVideo
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Gifs/FavoriteGifJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: IsGifVideo
+    path: ../Fluxer.Net/Data/Gifs/FavoriteGifJson.cs
+    startLine: 64
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Whether the gif is a video converted from GIF
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("is_gifv")]
+
+      public bool IsGifVideo { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: >-
+      <JsonProperty("is_gifv")>
+
+      Public Property IsGifVideo As Boolean
+  overload: Fluxer.Net.FavoriteGifJson.IsGifVideo*
+  implements:
+  - Fluxer.Net.IFavoriteGif.IsGifVideo
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: is_gifv
+- uid: Fluxer.Net.FavoriteGifJson.KlipySlug
+  commentId: P:Fluxer.Net.FavoriteGifJson.KlipySlug
+  id: KlipySlug
+  parent: Fluxer.Net.FavoriteGifJson
+  langs:
+  - csharp
+  - vb
+  name: KlipySlug
+  nameWithType: FavoriteGifJson.KlipySlug
+  fullName: Fluxer.Net.FavoriteGifJson.KlipySlug
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Gifs/FavoriteGifJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: KlipySlug
+    path: ../Fluxer.Net/Data/Gifs/FavoriteGifJson.cs
+    startLine: 68
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Klipy clip slug if the meme was sourced from Klipy.
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("klipy_slug")]
+
+      public string? KlipySlug { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <JsonProperty("klipy_slug")>
+
+      Public Property KlipySlug As String
+  overload: Fluxer.Net.FavoriteGifJson.KlipySlug*
+  implements:
+  - Fluxer.Net.IFavoriteGif.KlipySlug
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: klipy_slug
+- uid: Fluxer.Net.FavoriteGifJson.TenorSlugId
+  commentId: P:Fluxer.Net.FavoriteGifJson.TenorSlugId
+  id: TenorSlugId
+  parent: Fluxer.Net.FavoriteGifJson
+  langs:
+  - csharp
+  - vb
+  name: TenorSlugId
+  nameWithType: FavoriteGifJson.TenorSlugId
+  fullName: Fluxer.Net.FavoriteGifJson.TenorSlugId
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Gifs/FavoriteGifJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: TenorSlugId
+    path: ../Fluxer.Net/Data/Gifs/FavoriteGifJson.cs
+    startLine: 72
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Tenor view/- identifier if the meme was sourced from Tenor.
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("tenor_slug_id")]
+
+      public string? TenorSlugId { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <JsonProperty("tenor_slug_id")>
+
+      Public Property TenorSlugId As String
+  overload: Fluxer.Net.FavoriteGifJson.TenorSlugId*
+  implements:
+  - Fluxer.Net.IFavoriteGif.TenorSlugId
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: tenor_slug_id
+references:
+- uid: Fluxer.Net
+  commentId: N:Fluxer.Net
+  href: Fluxer.html
+  name: Fluxer.Net
+  nameWithType: Fluxer.Net
+  fullName: Fluxer.Net
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Fluxer.Net.IFavoriteGif
+  commentId: T:Fluxer.Net.IFavoriteGif
+  parent: Fluxer.Net
+  href: Fluxer.Net.IFavoriteGif.html
+  name: IFavoriteGif
+  nameWithType: IFavoriteGif
+  fullName: Fluxer.Net.IFavoriteGif
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Fluxer.Net.FavoriteGifJson.Id*
+  commentId: Overload:Fluxer.Net.FavoriteGifJson.Id
+  href: Fluxer.Net.FavoriteGifJson.html#Fluxer_Net_FavoriteGifJson_Id
+  name: Id
+  nameWithType: FavoriteGifJson.Id
+  fullName: Fluxer.Net.FavoriteGifJson.Id
+- uid: Fluxer.Net.IFavoriteGif.Id
+  commentId: P:Fluxer.Net.IFavoriteGif.Id
+  parent: Fluxer.Net.IFavoriteGif
+  href: Fluxer.Net.IFavoriteGif.html#Fluxer_Net_IFavoriteGif_Id
+  name: Id
+  nameWithType: IFavoriteGif.Id
+  fullName: Fluxer.Net.IFavoriteGif.Id
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: Fluxer.Net.FavoriteGifJson.UserId*
+  commentId: Overload:Fluxer.Net.FavoriteGifJson.UserId
+  href: Fluxer.Net.FavoriteGifJson.html#Fluxer_Net_FavoriteGifJson_UserId
+  name: UserId
+  nameWithType: FavoriteGifJson.UserId
+  fullName: Fluxer.Net.FavoriteGifJson.UserId
+- uid: Fluxer.Net.IFavoriteGif.UserId
+  commentId: P:Fluxer.Net.IFavoriteGif.UserId
+  parent: Fluxer.Net.IFavoriteGif
+  href: Fluxer.Net.IFavoriteGif.html#Fluxer_Net_IFavoriteGif_UserId
+  name: UserId
+  nameWithType: IFavoriteGif.UserId
+  fullName: Fluxer.Net.IFavoriteGif.UserId
+- uid: System.UInt64
+  commentId: T:System.UInt64
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.uint64
+  name: ulong
+  nameWithType: ulong
+  fullName: ulong
+  nameWithType.vb: ULong
+  fullName.vb: ULong
+  name.vb: ULong
+- uid: Fluxer.Net.FavoriteGifJson.Name*
+  commentId: Overload:Fluxer.Net.FavoriteGifJson.Name
+  href: Fluxer.Net.FavoriteGifJson.html#Fluxer_Net_FavoriteGifJson_Name
+  name: Name
+  nameWithType: FavoriteGifJson.Name
+  fullName: Fluxer.Net.FavoriteGifJson.Name
+- uid: Fluxer.Net.IFavoriteGif.Name
+  commentId: P:Fluxer.Net.IFavoriteGif.Name
+  parent: Fluxer.Net.IFavoriteGif
+  href: Fluxer.Net.IFavoriteGif.html#Fluxer_Net_IFavoriteGif_Name
+  name: Name
+  nameWithType: IFavoriteGif.Name
+  fullName: Fluxer.Net.IFavoriteGif.Name
+- uid: Fluxer.Net.FavoriteGifJson.Tags*
+  commentId: Overload:Fluxer.Net.FavoriteGifJson.Tags
+  href: Fluxer.Net.FavoriteGifJson.html#Fluxer_Net_FavoriteGifJson_Tags
+  name: Tags
+  nameWithType: FavoriteGifJson.Tags
+  fullName: Fluxer.Net.FavoriteGifJson.Tags
+- uid: Fluxer.Net.IFavoriteGif.Tags
+  commentId: P:Fluxer.Net.IFavoriteGif.Tags
+  parent: Fluxer.Net.IFavoriteGif
+  href: Fluxer.Net.IFavoriteGif.html#Fluxer_Net_IFavoriteGif_Tags
+  name: Tags
+  nameWithType: IFavoriteGif.Tags
+  fullName: Fluxer.Net.IFavoriteGif.Tags
+- uid: System.String[]
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string[]
+  nameWithType: string[]
+  fullName: string[]
+  nameWithType.vb: String()
+  fullName.vb: String()
+  name.vb: String()
+  spec.csharp:
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: (
+  - name: )
+- uid: Fluxer.Net.FavoriteGifJson.AttachmentId*
+  commentId: Overload:Fluxer.Net.FavoriteGifJson.AttachmentId
+  href: Fluxer.Net.FavoriteGifJson.html#Fluxer_Net_FavoriteGifJson_AttachmentId
+  name: AttachmentId
+  nameWithType: FavoriteGifJson.AttachmentId
+  fullName: Fluxer.Net.FavoriteGifJson.AttachmentId
+- uid: Fluxer.Net.IFavoriteGif.AttachmentId
+  commentId: P:Fluxer.Net.IFavoriteGif.AttachmentId
+  parent: Fluxer.Net.IFavoriteGif
+  href: Fluxer.Net.IFavoriteGif.html#Fluxer_Net_IFavoriteGif_AttachmentId
+  name: AttachmentId
+  nameWithType: IFavoriteGif.AttachmentId
+  fullName: Fluxer.Net.IFavoriteGif.AttachmentId
+- uid: Fluxer.Net.FavoriteGifJson.Filename*
+  commentId: Overload:Fluxer.Net.FavoriteGifJson.Filename
+  href: Fluxer.Net.FavoriteGifJson.html#Fluxer_Net_FavoriteGifJson_Filename
+  name: Filename
+  nameWithType: FavoriteGifJson.Filename
+  fullName: Fluxer.Net.FavoriteGifJson.Filename
+- uid: Fluxer.Net.IFavoriteGif.Filename
+  commentId: P:Fluxer.Net.IFavoriteGif.Filename
+  parent: Fluxer.Net.IFavoriteGif
+  href: Fluxer.Net.IFavoriteGif.html#Fluxer_Net_IFavoriteGif_Filename
+  name: Filename
+  nameWithType: IFavoriteGif.Filename
+  fullName: Fluxer.Net.IFavoriteGif.Filename
+- uid: Fluxer.Net.FavoriteGifJson.ContentType*
+  commentId: Overload:Fluxer.Net.FavoriteGifJson.ContentType
+  href: Fluxer.Net.FavoriteGifJson.html#Fluxer_Net_FavoriteGifJson_ContentType
+  name: ContentType
+  nameWithType: FavoriteGifJson.ContentType
+  fullName: Fluxer.Net.FavoriteGifJson.ContentType
+- uid: Fluxer.Net.IFavoriteGif.ContentType
+  commentId: P:Fluxer.Net.IFavoriteGif.ContentType
+  parent: Fluxer.Net.IFavoriteGif
+  href: Fluxer.Net.IFavoriteGif.html#Fluxer_Net_IFavoriteGif_ContentType
+  name: ContentType
+  nameWithType: IFavoriteGif.ContentType
+  fullName: Fluxer.Net.IFavoriteGif.ContentType
+- uid: Fluxer.Net.FavoriteGifJson.Size*
+  commentId: Overload:Fluxer.Net.FavoriteGifJson.Size
+  href: Fluxer.Net.FavoriteGifJson.html#Fluxer_Net_FavoriteGifJson_Size
+  name: Size
+  nameWithType: FavoriteGifJson.Size
+  fullName: Fluxer.Net.FavoriteGifJson.Size
+- uid: Fluxer.Net.IFavoriteGif.Size
+  commentId: P:Fluxer.Net.IFavoriteGif.Size
+  parent: Fluxer.Net.IFavoriteGif
+  href: Fluxer.Net.IFavoriteGif.html#Fluxer_Net_IFavoriteGif_Size
+  name: Size
+  nameWithType: IFavoriteGif.Size
+  fullName: Fluxer.Net.IFavoriteGif.Size
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: Fluxer.Net.FavoriteGifJson.Url*
+  commentId: Overload:Fluxer.Net.FavoriteGifJson.Url
+  href: Fluxer.Net.FavoriteGifJson.html#Fluxer_Net_FavoriteGifJson_Url
+  name: Url
+  nameWithType: FavoriteGifJson.Url
+  fullName: Fluxer.Net.FavoriteGifJson.Url
+- uid: Fluxer.Net.IFavoriteGif.Url
+  commentId: P:Fluxer.Net.IFavoriteGif.Url
+  parent: Fluxer.Net.IFavoriteGif
+  href: Fluxer.Net.IFavoriteGif.html#Fluxer_Net_IFavoriteGif_Url
+  name: Url
+  nameWithType: IFavoriteGif.Url
+  fullName: Fluxer.Net.IFavoriteGif.Url
+- uid: Fluxer.Net.FavoriteGifJson.AltText*
+  commentId: Overload:Fluxer.Net.FavoriteGifJson.AltText
+  href: Fluxer.Net.FavoriteGifJson.html#Fluxer_Net_FavoriteGifJson_AltText
+  name: AltText
+  nameWithType: FavoriteGifJson.AltText
+  fullName: Fluxer.Net.FavoriteGifJson.AltText
+- uid: Fluxer.Net.IFavoriteGif.AltText
+  commentId: P:Fluxer.Net.IFavoriteGif.AltText
+  parent: Fluxer.Net.IFavoriteGif
+  href: Fluxer.Net.IFavoriteGif.html#Fluxer_Net_IFavoriteGif_AltText
+  name: AltText
+  nameWithType: IFavoriteGif.AltText
+  fullName: Fluxer.Net.IFavoriteGif.AltText
+- uid: Fluxer.Net.FavoriteGifJson.ContentHash*
+  commentId: Overload:Fluxer.Net.FavoriteGifJson.ContentHash
+  href: Fluxer.Net.FavoriteGifJson.html#Fluxer_Net_FavoriteGifJson_ContentHash
+  name: ContentHash
+  nameWithType: FavoriteGifJson.ContentHash
+  fullName: Fluxer.Net.FavoriteGifJson.ContentHash
+- uid: Fluxer.Net.IFavoriteGif.ContentHash
+  commentId: P:Fluxer.Net.IFavoriteGif.ContentHash
+  parent: Fluxer.Net.IFavoriteGif
+  href: Fluxer.Net.IFavoriteGif.html#Fluxer_Net_IFavoriteGif_ContentHash
+  name: ContentHash
+  nameWithType: IFavoriteGif.ContentHash
+  fullName: Fluxer.Net.IFavoriteGif.ContentHash
+- uid: Fluxer.Net.FavoriteGifJson.Width*
+  commentId: Overload:Fluxer.Net.FavoriteGifJson.Width
+  href: Fluxer.Net.FavoriteGifJson.html#Fluxer_Net_FavoriteGifJson_Width
+  name: Width
+  nameWithType: FavoriteGifJson.Width
+  fullName: Fluxer.Net.FavoriteGifJson.Width
+- uid: Fluxer.Net.IFavoriteGif.Width
+  commentId: P:Fluxer.Net.IFavoriteGif.Width
+  parent: Fluxer.Net.IFavoriteGif
+  href: Fluxer.Net.IFavoriteGif.html#Fluxer_Net_IFavoriteGif_Width
+  name: Width
+  nameWithType: IFavoriteGif.Width
+  fullName: Fluxer.Net.IFavoriteGif.Width
+- uid: System.Nullable{System.Int32}
+  commentId: T:System.Nullable{System.Int32}
+  parent: System
+  definition: System.Nullable`1
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int?
+  nameWithType: int?
+  fullName: int?
+  nameWithType.vb: Integer?
+  fullName.vb: Integer?
+  name.vb: Integer?
+  spec.csharp:
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
+  spec.vb:
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: Fluxer.Net.FavoriteGifJson.Height*
+  commentId: Overload:Fluxer.Net.FavoriteGifJson.Height
+  href: Fluxer.Net.FavoriteGifJson.html#Fluxer_Net_FavoriteGifJson_Height
+  name: Height
+  nameWithType: FavoriteGifJson.Height
+  fullName: Fluxer.Net.FavoriteGifJson.Height
+- uid: Fluxer.Net.IFavoriteGif.Height
+  commentId: P:Fluxer.Net.IFavoriteGif.Height
+  parent: Fluxer.Net.IFavoriteGif
+  href: Fluxer.Net.IFavoriteGif.html#Fluxer_Net_IFavoriteGif_Height
+  name: Height
+  nameWithType: IFavoriteGif.Height
+  fullName: Fluxer.Net.IFavoriteGif.Height
+- uid: Fluxer.Net.FavoriteGifJson.Duration*
+  commentId: Overload:Fluxer.Net.FavoriteGifJson.Duration
+  href: Fluxer.Net.FavoriteGifJson.html#Fluxer_Net_FavoriteGifJson_Duration
+  name: Duration
+  nameWithType: FavoriteGifJson.Duration
+  fullName: Fluxer.Net.FavoriteGifJson.Duration
+- uid: Fluxer.Net.IFavoriteGif.Duration
+  commentId: P:Fluxer.Net.IFavoriteGif.Duration
+  parent: Fluxer.Net.IFavoriteGif
+  href: Fluxer.Net.IFavoriteGif.html#Fluxer_Net_IFavoriteGif_Duration
+  name: Duration
+  nameWithType: IFavoriteGif.Duration
+  fullName: Fluxer.Net.IFavoriteGif.Duration
+- uid: Fluxer.Net.FavoriteGifJson.IsGifVideo*
+  commentId: Overload:Fluxer.Net.FavoriteGifJson.IsGifVideo
+  href: Fluxer.Net.FavoriteGifJson.html#Fluxer_Net_FavoriteGifJson_IsGifVideo
+  name: IsGifVideo
+  nameWithType: FavoriteGifJson.IsGifVideo
+  fullName: Fluxer.Net.FavoriteGifJson.IsGifVideo
+- uid: Fluxer.Net.IFavoriteGif.IsGifVideo
+  commentId: P:Fluxer.Net.IFavoriteGif.IsGifVideo
+  parent: Fluxer.Net.IFavoriteGif
+  href: Fluxer.Net.IFavoriteGif.html#Fluxer_Net_IFavoriteGif_IsGifVideo
+  name: IsGifVideo
+  nameWithType: IFavoriteGif.IsGifVideo
+  fullName: Fluxer.Net.IFavoriteGif.IsGifVideo
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: Fluxer.Net.FavoriteGifJson.KlipySlug*
+  commentId: Overload:Fluxer.Net.FavoriteGifJson.KlipySlug
+  href: Fluxer.Net.FavoriteGifJson.html#Fluxer_Net_FavoriteGifJson_KlipySlug
+  name: KlipySlug
+  nameWithType: FavoriteGifJson.KlipySlug
+  fullName: Fluxer.Net.FavoriteGifJson.KlipySlug
+- uid: Fluxer.Net.IFavoriteGif.KlipySlug
+  commentId: P:Fluxer.Net.IFavoriteGif.KlipySlug
+  parent: Fluxer.Net.IFavoriteGif
+  href: Fluxer.Net.IFavoriteGif.html#Fluxer_Net_IFavoriteGif_KlipySlug
+  name: KlipySlug
+  nameWithType: IFavoriteGif.KlipySlug
+  fullName: Fluxer.Net.IFavoriteGif.KlipySlug
+- uid: Fluxer.Net.FavoriteGifJson.TenorSlugId*
+  commentId: Overload:Fluxer.Net.FavoriteGifJson.TenorSlugId
+  href: Fluxer.Net.FavoriteGifJson.html#Fluxer_Net_FavoriteGifJson_TenorSlugId
+  name: TenorSlugId
+  nameWithType: FavoriteGifJson.TenorSlugId
+  fullName: Fluxer.Net.FavoriteGifJson.TenorSlugId
+- uid: Fluxer.Net.IFavoriteGif.TenorSlugId
+  commentId: P:Fluxer.Net.IFavoriteGif.TenorSlugId
+  parent: Fluxer.Net.IFavoriteGif
+  href: Fluxer.Net.IFavoriteGif.html#Fluxer_Net_IFavoriteGif_TenorSlugId
+  name: TenorSlugId
+  nameWithType: IFavoriteGif.TenorSlugId
+  fullName: Fluxer.Net.IFavoriteGif.TenorSlugId

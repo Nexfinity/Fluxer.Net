@@ -1,0 +1,1009 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.AuditLogActionType
+  commentId: T:Fluxer.Net.AuditLogActionType
+  id: AuditLogActionType
+  parent: Fluxer.Net
+  children:
+  - Fluxer.Net.AuditLogActionType.BOT_ADD
+  - Fluxer.Net.AuditLogActionType.CHANNEL_CREATE
+  - Fluxer.Net.AuditLogActionType.CHANNEL_DELETE
+  - Fluxer.Net.AuditLogActionType.CHANNEL_OVERWRITE_CREATE
+  - Fluxer.Net.AuditLogActionType.CHANNEL_OVERWRITE_DELETE
+  - Fluxer.Net.AuditLogActionType.CHANNEL_OVERWRITE_UPDATE
+  - Fluxer.Net.AuditLogActionType.CHANNEL_UPDATE
+  - Fluxer.Net.AuditLogActionType.EMOJI_CREATE
+  - Fluxer.Net.AuditLogActionType.EMOJI_DELETE
+  - Fluxer.Net.AuditLogActionType.EMOJI_UPDATE
+  - Fluxer.Net.AuditLogActionType.GUILD_UPDATE
+  - Fluxer.Net.AuditLogActionType.INVITE_CREATE
+  - Fluxer.Net.AuditLogActionType.INVITE_DELETE
+  - Fluxer.Net.AuditLogActionType.INVITE_UPDATE
+  - Fluxer.Net.AuditLogActionType.MEMBER_BAN_ADD
+  - Fluxer.Net.AuditLogActionType.MEMBER_BAN_REMOVE
+  - Fluxer.Net.AuditLogActionType.MEMBER_DISCONNECT
+  - Fluxer.Net.AuditLogActionType.MEMBER_KICK
+  - Fluxer.Net.AuditLogActionType.MEMBER_MOVE
+  - Fluxer.Net.AuditLogActionType.MEMBER_PRUNE
+  - Fluxer.Net.AuditLogActionType.MEMBER_ROLE_UPDATE
+  - Fluxer.Net.AuditLogActionType.MEMBER_UPDATE
+  - Fluxer.Net.AuditLogActionType.MESSAGE_BULK_DELETE
+  - Fluxer.Net.AuditLogActionType.MESSAGE_DELETE
+  - Fluxer.Net.AuditLogActionType.MESSAGE_PIN
+  - Fluxer.Net.AuditLogActionType.MESSAGE_UNPIN
+  - Fluxer.Net.AuditLogActionType.ROLE_CREATE
+  - Fluxer.Net.AuditLogActionType.ROLE_DELETE
+  - Fluxer.Net.AuditLogActionType.ROLE_UPDATE
+  - Fluxer.Net.AuditLogActionType.STICKER_CREATE
+  - Fluxer.Net.AuditLogActionType.STICKER_DELETE
+  - Fluxer.Net.AuditLogActionType.STICKER_UPDATE
+  - Fluxer.Net.AuditLogActionType.WEBHOOK_CREATE
+  - Fluxer.Net.AuditLogActionType.WEBHOOK_DELETE
+  - Fluxer.Net.AuditLogActionType.WEBHOOK_UPDATE
+  langs:
+  - csharp
+  - vb
+  name: AuditLogActionType
+  nameWithType: AuditLogActionType
+  fullName: Fluxer.Net.AuditLogActionType
+  type: Enum
+  source:
+    remote:
+      path: Fluxer.Net/Data/AuditLogs/AuditLogActionType.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: AuditLogActionType
+    path: ../Fluxer.Net/Data/AuditLogs/AuditLogActionType.cs
+    startLine: 9
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: ''
+  remarks: >-
+    <a href="https://github.com/fluxerapp/fluxer/blob/c2b69be17d1877c5bb82d10c77fa67cbe4e882d7/packages/schema/src/primitives/AuditLogValidators.tsx#L23C14-L23C32">https://github.com/fluxerapp/fluxer/blob/c2b69be17d1877c5bb82d10c77fa67cbe4e882d7/packages/schema/src/primitives/AuditLogValidators.tsx#L23C14-L23C32</a>
+
+    <a href="https://github.com/fluxerapp/fluxer/blob/c2b69be17d1877c5bb82d10c77fa67cbe4e882d7/packages/constants/src/AuditLogActionType.tsx#L20">https://github.com/fluxerapp/fluxer/blob/c2b69be17d1877c5bb82d10c77fa67cbe4e882d7/packages/constants/src/AuditLogActionType.tsx#L20</a>
+  example: []
+  syntax:
+    content: public enum AuditLogActionType
+    content.vb: Public Enum AuditLogActionType
+- uid: Fluxer.Net.AuditLogActionType.GUILD_UPDATE
+  commentId: F:Fluxer.Net.AuditLogActionType.GUILD_UPDATE
+  id: GUILD_UPDATE
+  parent: Fluxer.Net.AuditLogActionType
+  langs:
+  - csharp
+  - vb
+  name: GUILD_UPDATE
+  nameWithType: AuditLogActionType.GUILD_UPDATE
+  fullName: Fluxer.Net.AuditLogActionType.GUILD_UPDATE
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/AuditLogs/AuditLogActionType.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: GUILD_UPDATE
+    path: ../Fluxer.Net/Data/AuditLogs/AuditLogActionType.cs
+    startLine: 11
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: GUILD_UPDATE = 1
+    return:
+      type: Fluxer.Net.AuditLogActionType
+- uid: Fluxer.Net.AuditLogActionType.CHANNEL_CREATE
+  commentId: F:Fluxer.Net.AuditLogActionType.CHANNEL_CREATE
+  id: CHANNEL_CREATE
+  parent: Fluxer.Net.AuditLogActionType
+  langs:
+  - csharp
+  - vb
+  name: CHANNEL_CREATE
+  nameWithType: AuditLogActionType.CHANNEL_CREATE
+  fullName: Fluxer.Net.AuditLogActionType.CHANNEL_CREATE
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/AuditLogs/AuditLogActionType.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: CHANNEL_CREATE
+    path: ../Fluxer.Net/Data/AuditLogs/AuditLogActionType.cs
+    startLine: 13
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: CHANNEL_CREATE = 10
+    return:
+      type: Fluxer.Net.AuditLogActionType
+- uid: Fluxer.Net.AuditLogActionType.CHANNEL_UPDATE
+  commentId: F:Fluxer.Net.AuditLogActionType.CHANNEL_UPDATE
+  id: CHANNEL_UPDATE
+  parent: Fluxer.Net.AuditLogActionType
+  langs:
+  - csharp
+  - vb
+  name: CHANNEL_UPDATE
+  nameWithType: AuditLogActionType.CHANNEL_UPDATE
+  fullName: Fluxer.Net.AuditLogActionType.CHANNEL_UPDATE
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/AuditLogs/AuditLogActionType.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: CHANNEL_UPDATE
+    path: ../Fluxer.Net/Data/AuditLogs/AuditLogActionType.cs
+    startLine: 14
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: CHANNEL_UPDATE = 11
+    return:
+      type: Fluxer.Net.AuditLogActionType
+- uid: Fluxer.Net.AuditLogActionType.CHANNEL_DELETE
+  commentId: F:Fluxer.Net.AuditLogActionType.CHANNEL_DELETE
+  id: CHANNEL_DELETE
+  parent: Fluxer.Net.AuditLogActionType
+  langs:
+  - csharp
+  - vb
+  name: CHANNEL_DELETE
+  nameWithType: AuditLogActionType.CHANNEL_DELETE
+  fullName: Fluxer.Net.AuditLogActionType.CHANNEL_DELETE
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/AuditLogs/AuditLogActionType.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: CHANNEL_DELETE
+    path: ../Fluxer.Net/Data/AuditLogs/AuditLogActionType.cs
+    startLine: 15
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: CHANNEL_DELETE = 12
+    return:
+      type: Fluxer.Net.AuditLogActionType
+- uid: Fluxer.Net.AuditLogActionType.CHANNEL_OVERWRITE_CREATE
+  commentId: F:Fluxer.Net.AuditLogActionType.CHANNEL_OVERWRITE_CREATE
+  id: CHANNEL_OVERWRITE_CREATE
+  parent: Fluxer.Net.AuditLogActionType
+  langs:
+  - csharp
+  - vb
+  name: CHANNEL_OVERWRITE_CREATE
+  nameWithType: AuditLogActionType.CHANNEL_OVERWRITE_CREATE
+  fullName: Fluxer.Net.AuditLogActionType.CHANNEL_OVERWRITE_CREATE
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/AuditLogs/AuditLogActionType.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: CHANNEL_OVERWRITE_CREATE
+    path: ../Fluxer.Net/Data/AuditLogs/AuditLogActionType.cs
+    startLine: 16
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: CHANNEL_OVERWRITE_CREATE = 13
+    return:
+      type: Fluxer.Net.AuditLogActionType
+- uid: Fluxer.Net.AuditLogActionType.CHANNEL_OVERWRITE_UPDATE
+  commentId: F:Fluxer.Net.AuditLogActionType.CHANNEL_OVERWRITE_UPDATE
+  id: CHANNEL_OVERWRITE_UPDATE
+  parent: Fluxer.Net.AuditLogActionType
+  langs:
+  - csharp
+  - vb
+  name: CHANNEL_OVERWRITE_UPDATE
+  nameWithType: AuditLogActionType.CHANNEL_OVERWRITE_UPDATE
+  fullName: Fluxer.Net.AuditLogActionType.CHANNEL_OVERWRITE_UPDATE
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/AuditLogs/AuditLogActionType.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: CHANNEL_OVERWRITE_UPDATE
+    path: ../Fluxer.Net/Data/AuditLogs/AuditLogActionType.cs
+    startLine: 17
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: CHANNEL_OVERWRITE_UPDATE = 14
+    return:
+      type: Fluxer.Net.AuditLogActionType
+- uid: Fluxer.Net.AuditLogActionType.CHANNEL_OVERWRITE_DELETE
+  commentId: F:Fluxer.Net.AuditLogActionType.CHANNEL_OVERWRITE_DELETE
+  id: CHANNEL_OVERWRITE_DELETE
+  parent: Fluxer.Net.AuditLogActionType
+  langs:
+  - csharp
+  - vb
+  name: CHANNEL_OVERWRITE_DELETE
+  nameWithType: AuditLogActionType.CHANNEL_OVERWRITE_DELETE
+  fullName: Fluxer.Net.AuditLogActionType.CHANNEL_OVERWRITE_DELETE
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/AuditLogs/AuditLogActionType.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: CHANNEL_OVERWRITE_DELETE
+    path: ../Fluxer.Net/Data/AuditLogs/AuditLogActionType.cs
+    startLine: 18
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: CHANNEL_OVERWRITE_DELETE = 15
+    return:
+      type: Fluxer.Net.AuditLogActionType
+- uid: Fluxer.Net.AuditLogActionType.MEMBER_KICK
+  commentId: F:Fluxer.Net.AuditLogActionType.MEMBER_KICK
+  id: MEMBER_KICK
+  parent: Fluxer.Net.AuditLogActionType
+  langs:
+  - csharp
+  - vb
+  name: MEMBER_KICK
+  nameWithType: AuditLogActionType.MEMBER_KICK
+  fullName: Fluxer.Net.AuditLogActionType.MEMBER_KICK
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/AuditLogs/AuditLogActionType.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: MEMBER_KICK
+    path: ../Fluxer.Net/Data/AuditLogs/AuditLogActionType.cs
+    startLine: 20
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: MEMBER_KICK = 20
+    return:
+      type: Fluxer.Net.AuditLogActionType
+- uid: Fluxer.Net.AuditLogActionType.MEMBER_PRUNE
+  commentId: F:Fluxer.Net.AuditLogActionType.MEMBER_PRUNE
+  id: MEMBER_PRUNE
+  parent: Fluxer.Net.AuditLogActionType
+  langs:
+  - csharp
+  - vb
+  name: MEMBER_PRUNE
+  nameWithType: AuditLogActionType.MEMBER_PRUNE
+  fullName: Fluxer.Net.AuditLogActionType.MEMBER_PRUNE
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/AuditLogs/AuditLogActionType.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: MEMBER_PRUNE
+    path: ../Fluxer.Net/Data/AuditLogs/AuditLogActionType.cs
+    startLine: 21
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: MEMBER_PRUNE = 21
+    return:
+      type: Fluxer.Net.AuditLogActionType
+- uid: Fluxer.Net.AuditLogActionType.MEMBER_BAN_ADD
+  commentId: F:Fluxer.Net.AuditLogActionType.MEMBER_BAN_ADD
+  id: MEMBER_BAN_ADD
+  parent: Fluxer.Net.AuditLogActionType
+  langs:
+  - csharp
+  - vb
+  name: MEMBER_BAN_ADD
+  nameWithType: AuditLogActionType.MEMBER_BAN_ADD
+  fullName: Fluxer.Net.AuditLogActionType.MEMBER_BAN_ADD
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/AuditLogs/AuditLogActionType.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: MEMBER_BAN_ADD
+    path: ../Fluxer.Net/Data/AuditLogs/AuditLogActionType.cs
+    startLine: 22
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: MEMBER_BAN_ADD = 22
+    return:
+      type: Fluxer.Net.AuditLogActionType
+- uid: Fluxer.Net.AuditLogActionType.MEMBER_BAN_REMOVE
+  commentId: F:Fluxer.Net.AuditLogActionType.MEMBER_BAN_REMOVE
+  id: MEMBER_BAN_REMOVE
+  parent: Fluxer.Net.AuditLogActionType
+  langs:
+  - csharp
+  - vb
+  name: MEMBER_BAN_REMOVE
+  nameWithType: AuditLogActionType.MEMBER_BAN_REMOVE
+  fullName: Fluxer.Net.AuditLogActionType.MEMBER_BAN_REMOVE
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/AuditLogs/AuditLogActionType.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: MEMBER_BAN_REMOVE
+    path: ../Fluxer.Net/Data/AuditLogs/AuditLogActionType.cs
+    startLine: 23
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: MEMBER_BAN_REMOVE = 23
+    return:
+      type: Fluxer.Net.AuditLogActionType
+- uid: Fluxer.Net.AuditLogActionType.MEMBER_UPDATE
+  commentId: F:Fluxer.Net.AuditLogActionType.MEMBER_UPDATE
+  id: MEMBER_UPDATE
+  parent: Fluxer.Net.AuditLogActionType
+  langs:
+  - csharp
+  - vb
+  name: MEMBER_UPDATE
+  nameWithType: AuditLogActionType.MEMBER_UPDATE
+  fullName: Fluxer.Net.AuditLogActionType.MEMBER_UPDATE
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/AuditLogs/AuditLogActionType.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: MEMBER_UPDATE
+    path: ../Fluxer.Net/Data/AuditLogs/AuditLogActionType.cs
+    startLine: 24
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: MEMBER_UPDATE = 24
+    return:
+      type: Fluxer.Net.AuditLogActionType
+- uid: Fluxer.Net.AuditLogActionType.MEMBER_ROLE_UPDATE
+  commentId: F:Fluxer.Net.AuditLogActionType.MEMBER_ROLE_UPDATE
+  id: MEMBER_ROLE_UPDATE
+  parent: Fluxer.Net.AuditLogActionType
+  langs:
+  - csharp
+  - vb
+  name: MEMBER_ROLE_UPDATE
+  nameWithType: AuditLogActionType.MEMBER_ROLE_UPDATE
+  fullName: Fluxer.Net.AuditLogActionType.MEMBER_ROLE_UPDATE
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/AuditLogs/AuditLogActionType.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: MEMBER_ROLE_UPDATE
+    path: ../Fluxer.Net/Data/AuditLogs/AuditLogActionType.cs
+    startLine: 25
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: MEMBER_ROLE_UPDATE = 25
+    return:
+      type: Fluxer.Net.AuditLogActionType
+- uid: Fluxer.Net.AuditLogActionType.MEMBER_MOVE
+  commentId: F:Fluxer.Net.AuditLogActionType.MEMBER_MOVE
+  id: MEMBER_MOVE
+  parent: Fluxer.Net.AuditLogActionType
+  langs:
+  - csharp
+  - vb
+  name: MEMBER_MOVE
+  nameWithType: AuditLogActionType.MEMBER_MOVE
+  fullName: Fluxer.Net.AuditLogActionType.MEMBER_MOVE
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/AuditLogs/AuditLogActionType.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: MEMBER_MOVE
+    path: ../Fluxer.Net/Data/AuditLogs/AuditLogActionType.cs
+    startLine: 26
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: MEMBER_MOVE = 26
+    return:
+      type: Fluxer.Net.AuditLogActionType
+- uid: Fluxer.Net.AuditLogActionType.MEMBER_DISCONNECT
+  commentId: F:Fluxer.Net.AuditLogActionType.MEMBER_DISCONNECT
+  id: MEMBER_DISCONNECT
+  parent: Fluxer.Net.AuditLogActionType
+  langs:
+  - csharp
+  - vb
+  name: MEMBER_DISCONNECT
+  nameWithType: AuditLogActionType.MEMBER_DISCONNECT
+  fullName: Fluxer.Net.AuditLogActionType.MEMBER_DISCONNECT
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/AuditLogs/AuditLogActionType.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: MEMBER_DISCONNECT
+    path: ../Fluxer.Net/Data/AuditLogs/AuditLogActionType.cs
+    startLine: 27
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: MEMBER_DISCONNECT = 27
+    return:
+      type: Fluxer.Net.AuditLogActionType
+- uid: Fluxer.Net.AuditLogActionType.BOT_ADD
+  commentId: F:Fluxer.Net.AuditLogActionType.BOT_ADD
+  id: BOT_ADD
+  parent: Fluxer.Net.AuditLogActionType
+  langs:
+  - csharp
+  - vb
+  name: BOT_ADD
+  nameWithType: AuditLogActionType.BOT_ADD
+  fullName: Fluxer.Net.AuditLogActionType.BOT_ADD
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/AuditLogs/AuditLogActionType.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: BOT_ADD
+    path: ../Fluxer.Net/Data/AuditLogs/AuditLogActionType.cs
+    startLine: 28
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: BOT_ADD = 28
+    return:
+      type: Fluxer.Net.AuditLogActionType
+- uid: Fluxer.Net.AuditLogActionType.ROLE_CREATE
+  commentId: F:Fluxer.Net.AuditLogActionType.ROLE_CREATE
+  id: ROLE_CREATE
+  parent: Fluxer.Net.AuditLogActionType
+  langs:
+  - csharp
+  - vb
+  name: ROLE_CREATE
+  nameWithType: AuditLogActionType.ROLE_CREATE
+  fullName: Fluxer.Net.AuditLogActionType.ROLE_CREATE
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/AuditLogs/AuditLogActionType.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: ROLE_CREATE
+    path: ../Fluxer.Net/Data/AuditLogs/AuditLogActionType.cs
+    startLine: 30
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: ROLE_CREATE = 30
+    return:
+      type: Fluxer.Net.AuditLogActionType
+- uid: Fluxer.Net.AuditLogActionType.ROLE_UPDATE
+  commentId: F:Fluxer.Net.AuditLogActionType.ROLE_UPDATE
+  id: ROLE_UPDATE
+  parent: Fluxer.Net.AuditLogActionType
+  langs:
+  - csharp
+  - vb
+  name: ROLE_UPDATE
+  nameWithType: AuditLogActionType.ROLE_UPDATE
+  fullName: Fluxer.Net.AuditLogActionType.ROLE_UPDATE
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/AuditLogs/AuditLogActionType.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: ROLE_UPDATE
+    path: ../Fluxer.Net/Data/AuditLogs/AuditLogActionType.cs
+    startLine: 31
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: ROLE_UPDATE = 31
+    return:
+      type: Fluxer.Net.AuditLogActionType
+- uid: Fluxer.Net.AuditLogActionType.ROLE_DELETE
+  commentId: F:Fluxer.Net.AuditLogActionType.ROLE_DELETE
+  id: ROLE_DELETE
+  parent: Fluxer.Net.AuditLogActionType
+  langs:
+  - csharp
+  - vb
+  name: ROLE_DELETE
+  nameWithType: AuditLogActionType.ROLE_DELETE
+  fullName: Fluxer.Net.AuditLogActionType.ROLE_DELETE
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/AuditLogs/AuditLogActionType.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: ROLE_DELETE
+    path: ../Fluxer.Net/Data/AuditLogs/AuditLogActionType.cs
+    startLine: 32
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: ROLE_DELETE = 32
+    return:
+      type: Fluxer.Net.AuditLogActionType
+- uid: Fluxer.Net.AuditLogActionType.INVITE_CREATE
+  commentId: F:Fluxer.Net.AuditLogActionType.INVITE_CREATE
+  id: INVITE_CREATE
+  parent: Fluxer.Net.AuditLogActionType
+  langs:
+  - csharp
+  - vb
+  name: INVITE_CREATE
+  nameWithType: AuditLogActionType.INVITE_CREATE
+  fullName: Fluxer.Net.AuditLogActionType.INVITE_CREATE
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/AuditLogs/AuditLogActionType.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: INVITE_CREATE
+    path: ../Fluxer.Net/Data/AuditLogs/AuditLogActionType.cs
+    startLine: 34
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: INVITE_CREATE = 40
+    return:
+      type: Fluxer.Net.AuditLogActionType
+- uid: Fluxer.Net.AuditLogActionType.INVITE_UPDATE
+  commentId: F:Fluxer.Net.AuditLogActionType.INVITE_UPDATE
+  id: INVITE_UPDATE
+  parent: Fluxer.Net.AuditLogActionType
+  langs:
+  - csharp
+  - vb
+  name: INVITE_UPDATE
+  nameWithType: AuditLogActionType.INVITE_UPDATE
+  fullName: Fluxer.Net.AuditLogActionType.INVITE_UPDATE
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/AuditLogs/AuditLogActionType.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: INVITE_UPDATE
+    path: ../Fluxer.Net/Data/AuditLogs/AuditLogActionType.cs
+    startLine: 35
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: INVITE_UPDATE = 41
+    return:
+      type: Fluxer.Net.AuditLogActionType
+- uid: Fluxer.Net.AuditLogActionType.INVITE_DELETE
+  commentId: F:Fluxer.Net.AuditLogActionType.INVITE_DELETE
+  id: INVITE_DELETE
+  parent: Fluxer.Net.AuditLogActionType
+  langs:
+  - csharp
+  - vb
+  name: INVITE_DELETE
+  nameWithType: AuditLogActionType.INVITE_DELETE
+  fullName: Fluxer.Net.AuditLogActionType.INVITE_DELETE
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/AuditLogs/AuditLogActionType.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: INVITE_DELETE
+    path: ../Fluxer.Net/Data/AuditLogs/AuditLogActionType.cs
+    startLine: 36
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: INVITE_DELETE = 42
+    return:
+      type: Fluxer.Net.AuditLogActionType
+- uid: Fluxer.Net.AuditLogActionType.WEBHOOK_CREATE
+  commentId: F:Fluxer.Net.AuditLogActionType.WEBHOOK_CREATE
+  id: WEBHOOK_CREATE
+  parent: Fluxer.Net.AuditLogActionType
+  langs:
+  - csharp
+  - vb
+  name: WEBHOOK_CREATE
+  nameWithType: AuditLogActionType.WEBHOOK_CREATE
+  fullName: Fluxer.Net.AuditLogActionType.WEBHOOK_CREATE
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/AuditLogs/AuditLogActionType.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: WEBHOOK_CREATE
+    path: ../Fluxer.Net/Data/AuditLogs/AuditLogActionType.cs
+    startLine: 38
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: WEBHOOK_CREATE = 50
+    return:
+      type: Fluxer.Net.AuditLogActionType
+- uid: Fluxer.Net.AuditLogActionType.WEBHOOK_UPDATE
+  commentId: F:Fluxer.Net.AuditLogActionType.WEBHOOK_UPDATE
+  id: WEBHOOK_UPDATE
+  parent: Fluxer.Net.AuditLogActionType
+  langs:
+  - csharp
+  - vb
+  name: WEBHOOK_UPDATE
+  nameWithType: AuditLogActionType.WEBHOOK_UPDATE
+  fullName: Fluxer.Net.AuditLogActionType.WEBHOOK_UPDATE
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/AuditLogs/AuditLogActionType.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: WEBHOOK_UPDATE
+    path: ../Fluxer.Net/Data/AuditLogs/AuditLogActionType.cs
+    startLine: 39
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: WEBHOOK_UPDATE = 51
+    return:
+      type: Fluxer.Net.AuditLogActionType
+- uid: Fluxer.Net.AuditLogActionType.WEBHOOK_DELETE
+  commentId: F:Fluxer.Net.AuditLogActionType.WEBHOOK_DELETE
+  id: WEBHOOK_DELETE
+  parent: Fluxer.Net.AuditLogActionType
+  langs:
+  - csharp
+  - vb
+  name: WEBHOOK_DELETE
+  nameWithType: AuditLogActionType.WEBHOOK_DELETE
+  fullName: Fluxer.Net.AuditLogActionType.WEBHOOK_DELETE
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/AuditLogs/AuditLogActionType.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: WEBHOOK_DELETE
+    path: ../Fluxer.Net/Data/AuditLogs/AuditLogActionType.cs
+    startLine: 40
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: WEBHOOK_DELETE = 52
+    return:
+      type: Fluxer.Net.AuditLogActionType
+- uid: Fluxer.Net.AuditLogActionType.EMOJI_CREATE
+  commentId: F:Fluxer.Net.AuditLogActionType.EMOJI_CREATE
+  id: EMOJI_CREATE
+  parent: Fluxer.Net.AuditLogActionType
+  langs:
+  - csharp
+  - vb
+  name: EMOJI_CREATE
+  nameWithType: AuditLogActionType.EMOJI_CREATE
+  fullName: Fluxer.Net.AuditLogActionType.EMOJI_CREATE
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/AuditLogs/AuditLogActionType.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: EMOJI_CREATE
+    path: ../Fluxer.Net/Data/AuditLogs/AuditLogActionType.cs
+    startLine: 42
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: EMOJI_CREATE = 60
+    return:
+      type: Fluxer.Net.AuditLogActionType
+- uid: Fluxer.Net.AuditLogActionType.EMOJI_UPDATE
+  commentId: F:Fluxer.Net.AuditLogActionType.EMOJI_UPDATE
+  id: EMOJI_UPDATE
+  parent: Fluxer.Net.AuditLogActionType
+  langs:
+  - csharp
+  - vb
+  name: EMOJI_UPDATE
+  nameWithType: AuditLogActionType.EMOJI_UPDATE
+  fullName: Fluxer.Net.AuditLogActionType.EMOJI_UPDATE
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/AuditLogs/AuditLogActionType.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: EMOJI_UPDATE
+    path: ../Fluxer.Net/Data/AuditLogs/AuditLogActionType.cs
+    startLine: 43
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: EMOJI_UPDATE = 61
+    return:
+      type: Fluxer.Net.AuditLogActionType
+- uid: Fluxer.Net.AuditLogActionType.EMOJI_DELETE
+  commentId: F:Fluxer.Net.AuditLogActionType.EMOJI_DELETE
+  id: EMOJI_DELETE
+  parent: Fluxer.Net.AuditLogActionType
+  langs:
+  - csharp
+  - vb
+  name: EMOJI_DELETE
+  nameWithType: AuditLogActionType.EMOJI_DELETE
+  fullName: Fluxer.Net.AuditLogActionType.EMOJI_DELETE
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/AuditLogs/AuditLogActionType.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: EMOJI_DELETE
+    path: ../Fluxer.Net/Data/AuditLogs/AuditLogActionType.cs
+    startLine: 44
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: EMOJI_DELETE = 62
+    return:
+      type: Fluxer.Net.AuditLogActionType
+- uid: Fluxer.Net.AuditLogActionType.STICKER_CREATE
+  commentId: F:Fluxer.Net.AuditLogActionType.STICKER_CREATE
+  id: STICKER_CREATE
+  parent: Fluxer.Net.AuditLogActionType
+  langs:
+  - csharp
+  - vb
+  name: STICKER_CREATE
+  nameWithType: AuditLogActionType.STICKER_CREATE
+  fullName: Fluxer.Net.AuditLogActionType.STICKER_CREATE
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/AuditLogs/AuditLogActionType.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: STICKER_CREATE
+    path: ../Fluxer.Net/Data/AuditLogs/AuditLogActionType.cs
+    startLine: 46
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: STICKER_CREATE = 90
+    return:
+      type: Fluxer.Net.AuditLogActionType
+- uid: Fluxer.Net.AuditLogActionType.STICKER_UPDATE
+  commentId: F:Fluxer.Net.AuditLogActionType.STICKER_UPDATE
+  id: STICKER_UPDATE
+  parent: Fluxer.Net.AuditLogActionType
+  langs:
+  - csharp
+  - vb
+  name: STICKER_UPDATE
+  nameWithType: AuditLogActionType.STICKER_UPDATE
+  fullName: Fluxer.Net.AuditLogActionType.STICKER_UPDATE
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/AuditLogs/AuditLogActionType.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: STICKER_UPDATE
+    path: ../Fluxer.Net/Data/AuditLogs/AuditLogActionType.cs
+    startLine: 47
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: STICKER_UPDATE = 91
+    return:
+      type: Fluxer.Net.AuditLogActionType
+- uid: Fluxer.Net.AuditLogActionType.STICKER_DELETE
+  commentId: F:Fluxer.Net.AuditLogActionType.STICKER_DELETE
+  id: STICKER_DELETE
+  parent: Fluxer.Net.AuditLogActionType
+  langs:
+  - csharp
+  - vb
+  name: STICKER_DELETE
+  nameWithType: AuditLogActionType.STICKER_DELETE
+  fullName: Fluxer.Net.AuditLogActionType.STICKER_DELETE
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/AuditLogs/AuditLogActionType.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: STICKER_DELETE
+    path: ../Fluxer.Net/Data/AuditLogs/AuditLogActionType.cs
+    startLine: 48
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: STICKER_DELETE = 92
+    return:
+      type: Fluxer.Net.AuditLogActionType
+- uid: Fluxer.Net.AuditLogActionType.MESSAGE_DELETE
+  commentId: F:Fluxer.Net.AuditLogActionType.MESSAGE_DELETE
+  id: MESSAGE_DELETE
+  parent: Fluxer.Net.AuditLogActionType
+  langs:
+  - csharp
+  - vb
+  name: MESSAGE_DELETE
+  nameWithType: AuditLogActionType.MESSAGE_DELETE
+  fullName: Fluxer.Net.AuditLogActionType.MESSAGE_DELETE
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/AuditLogs/AuditLogActionType.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: MESSAGE_DELETE
+    path: ../Fluxer.Net/Data/AuditLogs/AuditLogActionType.cs
+    startLine: 50
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: MESSAGE_DELETE = 72
+    return:
+      type: Fluxer.Net.AuditLogActionType
+- uid: Fluxer.Net.AuditLogActionType.MESSAGE_BULK_DELETE
+  commentId: F:Fluxer.Net.AuditLogActionType.MESSAGE_BULK_DELETE
+  id: MESSAGE_BULK_DELETE
+  parent: Fluxer.Net.AuditLogActionType
+  langs:
+  - csharp
+  - vb
+  name: MESSAGE_BULK_DELETE
+  nameWithType: AuditLogActionType.MESSAGE_BULK_DELETE
+  fullName: Fluxer.Net.AuditLogActionType.MESSAGE_BULK_DELETE
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/AuditLogs/AuditLogActionType.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: MESSAGE_BULK_DELETE
+    path: ../Fluxer.Net/Data/AuditLogs/AuditLogActionType.cs
+    startLine: 51
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: MESSAGE_BULK_DELETE = 73
+    return:
+      type: Fluxer.Net.AuditLogActionType
+- uid: Fluxer.Net.AuditLogActionType.MESSAGE_PIN
+  commentId: F:Fluxer.Net.AuditLogActionType.MESSAGE_PIN
+  id: MESSAGE_PIN
+  parent: Fluxer.Net.AuditLogActionType
+  langs:
+  - csharp
+  - vb
+  name: MESSAGE_PIN
+  nameWithType: AuditLogActionType.MESSAGE_PIN
+  fullName: Fluxer.Net.AuditLogActionType.MESSAGE_PIN
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/AuditLogs/AuditLogActionType.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: MESSAGE_PIN
+    path: ../Fluxer.Net/Data/AuditLogs/AuditLogActionType.cs
+    startLine: 52
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: MESSAGE_PIN = 74
+    return:
+      type: Fluxer.Net.AuditLogActionType
+- uid: Fluxer.Net.AuditLogActionType.MESSAGE_UNPIN
+  commentId: F:Fluxer.Net.AuditLogActionType.MESSAGE_UNPIN
+  id: MESSAGE_UNPIN
+  parent: Fluxer.Net.AuditLogActionType
+  langs:
+  - csharp
+  - vb
+  name: MESSAGE_UNPIN
+  nameWithType: AuditLogActionType.MESSAGE_UNPIN
+  fullName: Fluxer.Net.AuditLogActionType.MESSAGE_UNPIN
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/AuditLogs/AuditLogActionType.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: MESSAGE_UNPIN
+    path: ../Fluxer.Net/Data/AuditLogs/AuditLogActionType.cs
+    startLine: 53
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: MESSAGE_UNPIN = 75
+    return:
+      type: Fluxer.Net.AuditLogActionType
+references:
+- uid: Fluxer.Net
+  commentId: N:Fluxer.Net
+  href: Fluxer.html
+  name: Fluxer.Net
+  nameWithType: Fluxer.Net
+  fullName: Fluxer.Net
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+- uid: Fluxer.Net.AuditLogActionType
+  commentId: T:Fluxer.Net.AuditLogActionType
+  parent: Fluxer.Net
+  href: Fluxer.Net.AuditLogActionType.html
+  name: AuditLogActionType
+  nameWithType: AuditLogActionType
+  fullName: Fluxer.Net.AuditLogActionType

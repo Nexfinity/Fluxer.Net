@@ -1,0 +1,110 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.GatewayClient.ChannelRecipientRemoveEvent
+  commentId: T:Fluxer.Net.GatewayClient.ChannelRecipientRemoveEvent
+  id: GatewayClient.ChannelRecipientRemoveEvent
+  parent: Fluxer.Net
+  children: []
+  langs:
+  - csharp
+  - vb
+  name: GatewayClient.ChannelRecipientRemoveEvent
+  nameWithType: GatewayClient.ChannelRecipientRemoveEvent
+  fullName: Fluxer.Net.GatewayClient.ChannelRecipientRemoveEvent
+  type: Delegate
+  source:
+    remote:
+      path: Fluxer.Net/Gateway/GatewayClient.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: ChannelRecipientRemoveEvent
+    path: ../Fluxer.Net/Gateway/GatewayClient.cs
+    startLine: 2108
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Delegate for CHANNEL_RECIPIENT_REMOVE events when a recipient is removed from a channel.
+  example: []
+  syntax:
+    content: public delegate void GatewayClient.ChannelRecipientRemoveEvent(ChannelRecipientGatewayData data)
+    parameters:
+    - id: data
+      type: Fluxer.Net.Gateway.Data.Channels.ChannelRecipientGatewayData
+      description: The channel recipient data.
+    content.vb: Public Delegate Sub GatewayClient.ChannelRecipientRemoveEvent(data As ChannelRecipientGatewayData)
+references:
+- uid: Fluxer.Net
+  commentId: N:Fluxer.Net
+  href: Fluxer.html
+  name: Fluxer.Net
+  nameWithType: Fluxer.Net
+  fullName: Fluxer.Net
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+- uid: Fluxer.Net.Gateway.Data.Channels.ChannelRecipientGatewayData
+  commentId: T:Fluxer.Net.Gateway.Data.Channels.ChannelRecipientGatewayData
+  parent: Fluxer.Net.Gateway.Data.Channels
+  href: Fluxer.Net.Gateway.Data.Channels.ChannelRecipientGatewayData.html
+  name: ChannelRecipientGatewayData
+  nameWithType: ChannelRecipientGatewayData
+  fullName: Fluxer.Net.Gateway.Data.Channels.ChannelRecipientGatewayData
+- uid: Fluxer.Net.Gateway.Data.Channels
+  commentId: N:Fluxer.Net.Gateway.Data.Channels
+  href: Fluxer.html
+  name: Fluxer.Net.Gateway.Data.Channels
+  nameWithType: Fluxer.Net.Gateway.Data.Channels
+  fullName: Fluxer.Net.Gateway.Data.Channels
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  - name: .
+  - uid: Fluxer.Net.Gateway
+    name: Gateway
+    href: Fluxer.Net.Gateway.html
+  - name: .
+  - uid: Fluxer.Net.Gateway.Data
+    name: Data
+    href: Fluxer.Net.Gateway.Data.html
+  - name: .
+  - uid: Fluxer.Net.Gateway.Data.Channels
+    name: Channels
+    href: Fluxer.Net.Gateway.Data.Channels.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  - name: .
+  - uid: Fluxer.Net.Gateway
+    name: Gateway
+    href: Fluxer.Net.Gateway.html
+  - name: .
+  - uid: Fluxer.Net.Gateway.Data
+    name: Data
+    href: Fluxer.Net.Gateway.Data.html
+  - name: .
+  - uid: Fluxer.Net.Gateway.Data.Channels
+    name: Channels
+    href: Fluxer.Net.Gateway.Data.Channels.html

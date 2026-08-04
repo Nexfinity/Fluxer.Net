@@ -1,0 +1,4265 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net
+  commentId: N:Fluxer.Net
+  id: Fluxer.Net
+  children:
+  - Fluxer.Net.Activity
+  - Fluxer.Net.ActivityJson
+  - Fluxer.Net.ActivityTimestamps
+  - Fluxer.Net.ActivityTimestampsJson
+  - Fluxer.Net.AllowedMentionParseType
+  - Fluxer.Net.AllowedMentionsRequest
+  - Fluxer.Net.ApiClient
+  - Fluxer.Net.ApiLimits
+  - Fluxer.Net.Application
+  - Fluxer.Net.ApplicationJson
+  - Fluxer.Net.Attachment
+  - Fluxer.Net.AttachmentFlag
+  - Fluxer.Net.AttachmentJson
+  - Fluxer.Net.AuditLogActionType
+  - Fluxer.Net.AuditLogResponseItemChangeJson
+  - Fluxer.Net.AuditLogResponseItemOptions
+  - Fluxer.Net.AuditLogWebhookJson
+  - Fluxer.Net.AuthSession
+  - Fluxer.Net.AuthSessionJson
+  - Fluxer.Net.BulkCreateGuildEmojisRequest
+  - Fluxer.Net.BulkCreateGuildStickersRequest
+  - Fluxer.Net.BulkDeleteMessagesRequest
+  - Fluxer.Net.CallEligibility
+  - Fluxer.Net.CallEligibilityJson
+  - Fluxer.Net.CallInfoJson
+  - Fluxer.Net.CategoryChannel
+  - Fluxer.Net.Channel
+  - Fluxer.Net.ChannelHelpers
+  - Fluxer.Net.ChannelJson
+  - Fluxer.Net.ChannelOverwriteRequest
+  - Fluxer.Net.ChannelPermissions
+  - Fluxer.Net.ChannelPin
+  - Fluxer.Net.ChannelPinJson
+  - Fluxer.Net.ChannelPins
+  - Fluxer.Net.ChannelPinsJson
+  - Fluxer.Net.ChannelPinsQuery
+  - Fluxer.Net.ChannelPositionUpdateRequestItem
+  - Fluxer.Net.ChannelType
+  - Fluxer.Net.ClientStatus
+  - Fluxer.Net.ClientStatusJson
+  - Fluxer.Net.CreateCategoryChannelRequest
+  - Fluxer.Net.CreateGuildBanRequest
+  - Fluxer.Net.CreateGuildChannelRequest
+  - Fluxer.Net.CreateGuildEmojiRequest
+  - Fluxer.Net.CreateGuildRequest
+  - Fluxer.Net.CreateGuildRoleRequest
+  - Fluxer.Net.CreateGuildStickerRequest
+  - Fluxer.Net.CreateLinkChannelRequest
+  - Fluxer.Net.CreatePrivateChannelRequest
+  - Fluxer.Net.CreateTextChannelRequest
+  - Fluxer.Net.CreateVoiceChannelRequest
+  - Fluxer.Net.CreateWebhookRequest
+  - Fluxer.Net.CurrentUser
+  - Fluxer.Net.CurrentUserJson
+  - Fluxer.Net.DMChannel
+  - Fluxer.Net.DeleteGuildRequest
+  - Fluxer.Net.EmailVerificationTokenJson
+  - Fluxer.Net.Embed
+  - Fluxer.Net.EmbedAuthor
+  - Fluxer.Net.EmbedAuthorBuilder
+  - Fluxer.Net.EmbedAuthorJson
+  - Fluxer.Net.EmbedBuilder
+  - Fluxer.Net.EmbedField
+  - Fluxer.Net.EmbedFieldBuilder
+  - Fluxer.Net.EmbedFieldJson
+  - Fluxer.Net.EmbedFooter
+  - Fluxer.Net.EmbedFooterBuilder
+  - Fluxer.Net.EmbedFooterJson
+  - Fluxer.Net.EmbedJson
+  - Fluxer.Net.EmbedMedia
+  - Fluxer.Net.EmbedMediaJson
+  - Fluxer.Net.EmbedType
+  - Fluxer.Net.Emoji
+  - Fluxer.Net.EmojiJson
+  - Fluxer.Net.Entity
+  - Fluxer.Net.ExpressionHelpers
+  - Fluxer.Net.FavoriteGif
+  - Fluxer.Net.FavoriteGifJson
+  - Fluxer.Net.FluxerBaseClient
+  - Fluxer.Net.FluxerClient
+  - Fluxer.Net.FluxerConfig
+  - Fluxer.Net.FluxerOAuthRefreshTokenJson
+  - Fluxer.Net.FluxerOAuthToken
+  - Fluxer.Net.FluxerOAuthTokenJson
+  - Fluxer.Net.FluxerOAuthUser
+  - Fluxer.Net.FluxerOAuthUserJson
+  - Fluxer.Net.FluxerOAuthValidTokenJson
+  - Fluxer.Net.FluxerWebhookClient
+  - Fluxer.Net.FriendSourceFlags
+  - Fluxer.Net.GatewayClient
+  - Fluxer.Net.GatewayClient.AuthSessionChangeEvent
+  - Fluxer.Net.GatewayClient.CallCreateEvent
+  - Fluxer.Net.GatewayClient.CallDeleteEvent
+  - Fluxer.Net.GatewayClient.CallUpdateEvent
+  - Fluxer.Net.GatewayClient.ChannelCreateEvent
+  - Fluxer.Net.GatewayClient.ChannelDeleteEvent
+  - Fluxer.Net.GatewayClient.ChannelPinsAckEvent
+  - Fluxer.Net.GatewayClient.ChannelPinsUpdateEvent
+  - Fluxer.Net.GatewayClient.ChannelRecipientAddEvent
+  - Fluxer.Net.GatewayClient.ChannelRecipientRemoveEvent
+  - Fluxer.Net.GatewayClient.ChannelUpdateBulkEvent
+  - Fluxer.Net.GatewayClient.ChannelUpdateEvent
+  - Fluxer.Net.GatewayClient.FavoriteMemeCreateEvent
+  - Fluxer.Net.GatewayClient.FavoriteMemeDeleteEvent
+  - Fluxer.Net.GatewayClient.FavoriteMemeUpdateEvent
+  - Fluxer.Net.GatewayClient.GuildBanAddEvent
+  - Fluxer.Net.GatewayClient.GuildBanRemoveEvent
+  - Fluxer.Net.GatewayClient.GuildCreateEvent
+  - Fluxer.Net.GatewayClient.GuildDeleteEvent
+  - Fluxer.Net.GatewayClient.GuildEmojisUpdateEvent
+  - Fluxer.Net.GatewayClient.GuildMemberAddEvent
+  - Fluxer.Net.GatewayClient.GuildMemberRemoveEvent
+  - Fluxer.Net.GatewayClient.GuildMemberUpdateEvent
+  - Fluxer.Net.GatewayClient.GuildRoleCreateEvent
+  - Fluxer.Net.GatewayClient.GuildRoleDeleteEvent
+  - Fluxer.Net.GatewayClient.GuildRoleUpdateBulkEvent
+  - Fluxer.Net.GatewayClient.GuildRoleUpdateEvent
+  - Fluxer.Net.GatewayClient.GuildStickersUpdateEvent
+  - Fluxer.Net.GatewayClient.GuildUpdateEvent
+  - Fluxer.Net.GatewayClient.HeartbeatAckEvent
+  - Fluxer.Net.GatewayClient.InviteCreateEvent
+  - Fluxer.Net.GatewayClient.InviteDeleteEvent
+  - Fluxer.Net.GatewayClient.MessageAckEvent
+  - Fluxer.Net.GatewayClient.MessageCreateEvent
+  - Fluxer.Net.GatewayClient.MessageDeleteBulkEvent
+  - Fluxer.Net.GatewayClient.MessageDeleteEvent
+  - Fluxer.Net.GatewayClient.MessageReactionAddEvent
+  - Fluxer.Net.GatewayClient.MessageReactionRemoveAllEvent
+  - Fluxer.Net.GatewayClient.MessageReactionRemoveEmojiEvent
+  - Fluxer.Net.GatewayClient.MessageReactionRemoveEvent
+  - Fluxer.Net.GatewayClient.MessageUpdateEvent
+  - Fluxer.Net.GatewayClient.PresenceUpdateEvent
+  - Fluxer.Net.GatewayClient.ReadyEvent
+  - Fluxer.Net.GatewayClient.RecentMentionDeleteEvent
+  - Fluxer.Net.GatewayClient.RelationshipAddEvent
+  - Fluxer.Net.GatewayClient.RelationshipRemoveEvent
+  - Fluxer.Net.GatewayClient.RelationshipUpdateEvent
+  - Fluxer.Net.GatewayClient.ResumedEvent
+  - Fluxer.Net.GatewayClient.SavedMessageCreateEvent
+  - Fluxer.Net.GatewayClient.SavedMessageDeleteEvent
+  - Fluxer.Net.GatewayClient.SessionsReplaceEvent
+  - Fluxer.Net.GatewayClient.TypingStartEvent
+  - Fluxer.Net.GatewayClient.TypingStopEvent
+  - Fluxer.Net.GatewayClient.UserGuildSettingsUpdateEvent
+  - Fluxer.Net.GatewayClient.UserNoteUpdateEvent
+  - Fluxer.Net.GatewayClient.UserPinnedDmsUpdateEvent
+  - Fluxer.Net.GatewayClient.UserSettingsUpdateEvent
+  - Fluxer.Net.GatewayClient.UserUpdateEvent
+  - Fluxer.Net.GatewayClient.VoiceServerUpdateEvent
+  - Fluxer.Net.GatewayClient.VoiceStateUpdateEvent
+  - Fluxer.Net.GatewayClient.WebhooksUpdateEvent
+  - Fluxer.Net.GatewaySessionJson
+  - Fluxer.Net.Gif
+  - Fluxer.Net.GifCategory
+  - Fluxer.Net.GifCategoryJson
+  - Fluxer.Net.GifFeaturedJson
+  - Fluxer.Net.GifJson
+  - Fluxer.Net.GlobalSearchMessagesRequest
+  - Fluxer.Net.GroupChannel
+  - Fluxer.Net.Guild
+  - Fluxer.Net.GuildAuditLogEntryJson
+  - Fluxer.Net.GuildAuditLogJson
+  - Fluxer.Net.GuildAuditLogListJson
+  - Fluxer.Net.GuildAuditLogListRequest
+  - Fluxer.Net.GuildBan
+  - Fluxer.Net.GuildBanJson
+  - Fluxer.Net.GuildChannel
+  - Fluxer.Net.GuildChannelOverrideJson
+  - Fluxer.Net.GuildContentFilter
+  - Fluxer.Net.GuildDefaultNotifications
+  - Fluxer.Net.GuildEmoji
+  - Fluxer.Net.GuildEmojiBulkCreateFailureItemJson
+  - Fluxer.Net.GuildEmojiBulkCreateJson
+  - Fluxer.Net.GuildEmojiJson
+  - Fluxer.Net.GuildExplicitContentFilterType
+  - Fluxer.Net.GuildFeatures
+  - Fluxer.Net.GuildHelpers
+  - Fluxer.Net.GuildJson
+  - Fluxer.Net.GuildMember
+  - Fluxer.Net.GuildMemberJson
+  - Fluxer.Net.GuildMfaLevel
+  - Fluxer.Net.GuildNsfwLevel
+  - Fluxer.Net.GuildOperations
+  - Fluxer.Net.GuildPermissions
+  - Fluxer.Net.GuildSplashCardAlignment
+  - Fluxer.Net.GuildSticker
+  - Fluxer.Net.GuildStickerBulkCreateFailureItemJson
+  - Fluxer.Net.GuildStickerBulkCreateJson
+  - Fluxer.Net.GuildStickerJson
+  - Fluxer.Net.GuildTransferOwnershipRequest
+  - Fluxer.Net.GuildUpdateRequestMfaMethod
+  - Fluxer.Net.GuildVanityUrl
+  - Fluxer.Net.GuildVanityUrlJson
+  - Fluxer.Net.GuildVanityUrlUpdateJson
+  - Fluxer.Net.GuildVerificationLevel
+  - Fluxer.Net.IActivity
+  - Fluxer.Net.IActivityTimestamps
+  - Fluxer.Net.IApplication
+  - Fluxer.Net.IAttachment
+  - Fluxer.Net.IAuthSession
+  - Fluxer.Net.ICallEligibility
+  - Fluxer.Net.IChannel
+  - Fluxer.Net.IChannelPermissions
+  - Fluxer.Net.IChannelPin
+  - Fluxer.Net.IClientStatus
+  - Fluxer.Net.ICurrentUser
+  - Fluxer.Net.IDiscoveryApplication
+  - Fluxer.Net.IDiscoveryInfo
+  - Fluxer.Net.IEmbed
+  - Fluxer.Net.IEmbedAuthor
+  - Fluxer.Net.IEmbedField
+  - Fluxer.Net.IEmbedFooter
+  - Fluxer.Net.IEmbedMedia
+  - Fluxer.Net.IEmoji
+  - Fluxer.Net.IFavoriteGif
+  - Fluxer.Net.IFluxerOAuthToken
+  - Fluxer.Net.IFluxerOAuthUser
+  - Fluxer.Net.IGif
+  - Fluxer.Net.IGifCategory
+  - Fluxer.Net.IGuild
+  - Fluxer.Net.IGuildBan
+  - Fluxer.Net.IGuildChannel
+  - Fluxer.Net.IGuildEmoji
+  - Fluxer.Net.IGuildMember
+  - Fluxer.Net.IGuildPermissions
+  - Fluxer.Net.IGuildSticker
+  - Fluxer.Net.IGuildVanityUrl
+  - Fluxer.Net.IInstance
+  - Fluxer.Net.IInstanceApp
+  - Fluxer.Net.IInstanceAppBranding
+  - Fluxer.Net.IInstanceAppLegal
+  - Fluxer.Net.IInstanceAppRegistration
+  - Fluxer.Net.IInstanceAppSetup
+  - Fluxer.Net.IInstanceCaptcha
+  - Fluxer.Net.IInstanceCommunity
+  - Fluxer.Net.IInstanceEndpoints
+  - Fluxer.Net.IInstanceFeatures
+  - Fluxer.Net.IInstanceGifs
+  - Fluxer.Net.IInstanceLimits
+  - Fluxer.Net.IInstancePush
+  - Fluxer.Net.IInstanceRegistration
+  - Fluxer.Net.IInstanceSSO
+  - Fluxer.Net.IInstanceServices
+  - Fluxer.Net.IInvite
+  - Fluxer.Net.ILogin
+  - Fluxer.Net.IMessage
+  - Fluxer.Net.IMessageCall
+  - Fluxer.Net.IMessageReaction
+  - Fluxer.Net.IMessageReference
+  - Fluxer.Net.IMessageSnapshot
+  - Fluxer.Net.IPartialApplication
+  - Fluxer.Net.IPartialGuild
+  - Fluxer.Net.IPartialInvite
+  - Fluxer.Net.IPermissionOverwrite
+  - Fluxer.Net.IPresence
+  - Fluxer.Net.IRole
+  - Fluxer.Net.IRtcRegion
+  - Fluxer.Net.ISticker
+  - Fluxer.Net.ITextable
+  - Fluxer.Net.IUser
+  - Fluxer.Net.IUserConnection
+  - Fluxer.Net.IUserGuildFolder
+  - Fluxer.Net.IUserGuildSettings
+  - Fluxer.Net.IUserProfile
+  - Fluxer.Net.IUserSettings
+  - Fluxer.Net.IVoiceState
+  - Fluxer.Net.IWebhook
+  - Fluxer.Net.Instance
+  - Fluxer.Net.InstanceApp
+  - Fluxer.Net.InstanceAppBranding
+  - Fluxer.Net.InstanceAppBrandingJson
+  - Fluxer.Net.InstanceAppJson
+  - Fluxer.Net.InstanceAppLegal
+  - Fluxer.Net.InstanceAppLegalJson
+  - Fluxer.Net.InstanceAppRegistration
+  - Fluxer.Net.InstanceAppRegistrationJson
+  - Fluxer.Net.InstanceAppSetup
+  - Fluxer.Net.InstanceAppSetupJson
+  - Fluxer.Net.InstanceCaptcha
+  - Fluxer.Net.InstanceCaptchaJson
+  - Fluxer.Net.InstanceCommunity
+  - Fluxer.Net.InstanceCommunityJson
+  - Fluxer.Net.InstanceEndpoints
+  - Fluxer.Net.InstanceEndpointsJson
+  - Fluxer.Net.InstanceFeatures
+  - Fluxer.Net.InstanceFeaturesJson
+  - Fluxer.Net.InstanceGifs
+  - Fluxer.Net.InstanceGifsJson
+  - Fluxer.Net.InstanceJson
+  - Fluxer.Net.InstanceLimits
+  - Fluxer.Net.InstanceLimitsJson
+  - Fluxer.Net.InstancePush
+  - Fluxer.Net.InstancePushJson
+  - Fluxer.Net.InstanceRegistration
+  - Fluxer.Net.InstanceRegistrationJson
+  - Fluxer.Net.InstanceSSO
+  - Fluxer.Net.InstanceSSOJson
+  - Fluxer.Net.InstanceServices
+  - Fluxer.Net.InstanceServicesJson
+  - Fluxer.Net.Invite
+  - Fluxer.Net.InviteChannelJson
+  - Fluxer.Net.InviteJson
+  - Fluxer.Net.InviteType
+  - Fluxer.Net.InviteUserJson
+  - Fluxer.Net.LinkChannel
+  - Fluxer.Net.Login
+  - Fluxer.Net.LoginJson
+  - Fluxer.Net.LoginRequestJson
+  - Fluxer.Net.MemberHelpers
+  - Fluxer.Net.Message
+  - Fluxer.Net.MessageAckJson
+  - Fluxer.Net.MessageCall
+  - Fluxer.Net.MessageCallJson
+  - Fluxer.Net.MessageFlag
+  - Fluxer.Net.MessageHelpers
+  - Fluxer.Net.MessageJson
+  - Fluxer.Net.MessageReaction
+  - Fluxer.Net.MessageReactionJson
+  - Fluxer.Net.MessageReference
+  - Fluxer.Net.MessageReferenceJson
+  - Fluxer.Net.MessageReferenceRequest
+  - Fluxer.Net.MessageReferenceType
+  - Fluxer.Net.MessageRequest
+  - Fluxer.Net.MessageSearchRequest
+  - Fluxer.Net.MessageSnapshot
+  - Fluxer.Net.MessageSnapshotJson
+  - Fluxer.Net.MessageType
+  - Fluxer.Net.MfaBackupCodeJson
+  - Fluxer.Net.MuteConfigurationJson
+  - Fluxer.Net.NotificationType
+  - Fluxer.Net.OverwriteRequestType
+  - Fluxer.Net.PartialApplication
+  - Fluxer.Net.PartialApplicationJson
+  - Fluxer.Net.PartialGuild
+  - Fluxer.Net.PartialGuildJson
+  - Fluxer.Net.PartialInvite
+  - Fluxer.Net.PartialInviteJson
+  - Fluxer.Net.PasswordResetTokenJson
+  - Fluxer.Net.PermissionDiffSchemaJson
+  - Fluxer.Net.PermissionOverwrite
+  - Fluxer.Net.PermissionOverwriteJson
+  - Fluxer.Net.Permissions
+  - Fluxer.Net.PremiumType
+  - Fluxer.Net.Presence
+  - Fluxer.Net.PresenceJson
+  - Fluxer.Net.PrivateChannelHelpers
+  - Fluxer.Net.ReadStateJson
+  - Fluxer.Net.RecentMentionJson
+  - Fluxer.Net.RelationshipJson
+  - Fluxer.Net.RelationshipType
+  - Fluxer.Net.Role
+  - Fluxer.Net.RoleHelpers
+  - Fluxer.Net.RoleJson
+  - Fluxer.Net.RolePositionItemJson
+  - Fluxer.Net.RtcRegion
+  - Fluxer.Net.RtcRegionJson
+  - Fluxer.Net.SavedMessageJson
+  - Fluxer.Net.SavedNotesChannel
+  - Fluxer.Net.SocketCategoryChannel
+  - Fluxer.Net.SocketDMChannel
+  - Fluxer.Net.SocketGroupChannel
+  - Fluxer.Net.SocketGuild
+  - Fluxer.Net.SocketGuildMember
+  - Fluxer.Net.SocketLinkChannel
+  - Fluxer.Net.SocketMessage
+  - Fluxer.Net.SocketRole
+  - Fluxer.Net.SocketSavedNotesChannel
+  - Fluxer.Net.SocketTextChannel
+  - Fluxer.Net.SocketUnknownChannel
+  - Fluxer.Net.SocketUnknownGuildChannel
+  - Fluxer.Net.SocketUser
+  - Fluxer.Net.SocketVoiceChannel
+  - Fluxer.Net.SocketVoiceState
+  - Fluxer.Net.Status
+  - Fluxer.Net.Sticker
+  - Fluxer.Net.StickerJson
+  - Fluxer.Net.SystemChannelFlags
+  - Fluxer.Net.TextChannel
+  - Fluxer.Net.TokenRevokeRequestJson
+  - Fluxer.Net.UpdateCustomStatus
+  - Fluxer.Net.UpdateGuildEmojiRequest
+  - Fluxer.Net.UpdateGuildRoleRequest
+  - Fluxer.Net.UpdateGuildStickerRequest
+  - Fluxer.Net.UpdateGuildVanityUrlRequest
+  - Fluxer.Net.UpdateMessageRequest
+  - Fluxer.Net.UpdateVoiceRegionRequest
+  - Fluxer.Net.User
+  - Fluxer.Net.UserConnection
+  - Fluxer.Net.UserConnectionJson
+  - Fluxer.Net.UserCustomStatusJson
+  - Fluxer.Net.UserExplicitContentFilterType
+  - Fluxer.Net.UserFlags
+  - Fluxer.Net.UserGuildFolderJson
+  - Fluxer.Net.UserGuildSettingsJson
+  - Fluxer.Net.UserHelpers
+  - Fluxer.Net.UserJson
+  - Fluxer.Net.UserNoteJson
+  - Fluxer.Net.UserProfile
+  - Fluxer.Net.UserProfileJson
+  - Fluxer.Net.UserProfileResponse
+  - Fluxer.Net.UserSettings
+  - Fluxer.Net.UserSettingsJson
+  - Fluxer.Net.UsernameAvailableJson
+  - Fluxer.Net.VoiceChannel
+  - Fluxer.Net.VoiceRingRequest
+  - Fluxer.Net.VoiceState
+  - Fluxer.Net.VoiceStateJson
+  - Fluxer.Net.WebAuthnCredentialJson
+  - Fluxer.Net.Webhook
+  - Fluxer.Net.WebhookHelpers
+  - Fluxer.Net.WebhookJson
+  - Fluxer.Net.WebhookType
+  langs:
+  - csharp
+  - vb
+  name: Fluxer.Net
+  nameWithType: Fluxer.Net
+  fullName: Fluxer.Net
+  type: Namespace
+  assemblies:
+  - Fluxer.Net
+references:
+- uid: Fluxer.Net.Application
+  commentId: T:Fluxer.Net.Application
+  parent: Fluxer.Net
+  href: Fluxer.Net.Application.html
+  name: Application
+  nameWithType: Application
+  fullName: Fluxer.Net.Application
+- uid: Fluxer.Net.ApplicationJson
+  commentId: T:Fluxer.Net.ApplicationJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.ApplicationJson.html
+  name: ApplicationJson
+  nameWithType: ApplicationJson
+  fullName: Fluxer.Net.ApplicationJson
+- uid: Fluxer.Net.IApplication
+  commentId: T:Fluxer.Net.IApplication
+  parent: Fluxer.Net
+  href: Fluxer.Net.IApplication.html
+  name: IApplication
+  nameWithType: IApplication
+  fullName: Fluxer.Net.IApplication
+- uid: Fluxer.Net.IPartialApplication
+  commentId: T:Fluxer.Net.IPartialApplication
+  parent: Fluxer.Net
+  href: Fluxer.Net.IPartialApplication.html
+  name: IPartialApplication
+  nameWithType: IPartialApplication
+  fullName: Fluxer.Net.IPartialApplication
+- uid: Fluxer.Net.PartialApplication
+  commentId: T:Fluxer.Net.PartialApplication
+  parent: Fluxer.Net
+  href: Fluxer.Net.PartialApplication.html
+  name: PartialApplication
+  nameWithType: PartialApplication
+  fullName: Fluxer.Net.PartialApplication
+- uid: Fluxer.Net.PartialApplicationJson
+  commentId: T:Fluxer.Net.PartialApplicationJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.PartialApplicationJson.html
+  name: PartialApplicationJson
+  nameWithType: PartialApplicationJson
+  fullName: Fluxer.Net.PartialApplicationJson
+- uid: Fluxer.Net.AuditLogActionType
+  commentId: T:Fluxer.Net.AuditLogActionType
+  parent: Fluxer.Net
+  href: Fluxer.Net.AuditLogActionType.html
+  name: AuditLogActionType
+  nameWithType: AuditLogActionType
+  fullName: Fluxer.Net.AuditLogActionType
+- uid: Fluxer.Net.AuditLogResponseItemChangeJson
+  commentId: T:Fluxer.Net.AuditLogResponseItemChangeJson
+  href: Fluxer.Net.AuditLogResponseItemChangeJson.html
+  name: AuditLogResponseItemChangeJson
+  nameWithType: AuditLogResponseItemChangeJson
+  fullName: Fluxer.Net.AuditLogResponseItemChangeJson
+- uid: Fluxer.Net.PermissionDiffSchemaJson
+  commentId: T:Fluxer.Net.PermissionDiffSchemaJson
+  href: Fluxer.Net.PermissionDiffSchemaJson.html
+  name: PermissionDiffSchemaJson
+  nameWithType: PermissionDiffSchemaJson
+  fullName: Fluxer.Net.PermissionDiffSchemaJson
+- uid: Fluxer.Net.AuditLogWebhookJson
+  commentId: T:Fluxer.Net.AuditLogWebhookJson
+  href: Fluxer.Net.AuditLogWebhookJson.html
+  name: AuditLogWebhookJson
+  nameWithType: AuditLogWebhookJson
+  fullName: Fluxer.Net.AuditLogWebhookJson
+- uid: Fluxer.Net.GuildAuditLogEntryJson
+  commentId: T:Fluxer.Net.GuildAuditLogEntryJson
+  href: Fluxer.Net.GuildAuditLogEntryJson.html
+  name: GuildAuditLogEntryJson
+  nameWithType: GuildAuditLogEntryJson
+  fullName: Fluxer.Net.GuildAuditLogEntryJson
+- uid: Fluxer.Net.AuditLogResponseItemOptions
+  commentId: T:Fluxer.Net.AuditLogResponseItemOptions
+  parent: Fluxer.Net
+  href: Fluxer.Net.AuditLogResponseItemOptions.html
+  name: AuditLogResponseItemOptions
+  nameWithType: AuditLogResponseItemOptions
+  fullName: Fluxer.Net.AuditLogResponseItemOptions
+- uid: Fluxer.Net.GuildAuditLogJson
+  commentId: T:Fluxer.Net.GuildAuditLogJson
+  href: Fluxer.Net.GuildAuditLogJson.html
+  name: GuildAuditLogJson
+  nameWithType: GuildAuditLogJson
+  fullName: Fluxer.Net.GuildAuditLogJson
+- uid: Fluxer.Net.GuildAuditLogListJson
+  commentId: T:Fluxer.Net.GuildAuditLogListJson
+  href: Fluxer.Net.GuildAuditLogListJson.html
+  name: GuildAuditLogListJson
+  nameWithType: GuildAuditLogListJson
+  fullName: Fluxer.Net.GuildAuditLogListJson
+- uid: Fluxer.Net.AuthSession
+  commentId: T:Fluxer.Net.AuthSession
+  parent: Fluxer.Net
+  href: Fluxer.Net.AuthSession.html
+  name: AuthSession
+  nameWithType: AuthSession
+  fullName: Fluxer.Net.AuthSession
+- uid: Fluxer.Net.AuthSessionJson
+  commentId: T:Fluxer.Net.AuthSessionJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.AuthSessionJson.html
+  name: AuthSessionJson
+  nameWithType: AuthSessionJson
+  fullName: Fluxer.Net.AuthSessionJson
+- uid: Fluxer.Net.EmailVerificationTokenJson
+  commentId: T:Fluxer.Net.EmailVerificationTokenJson
+  href: Fluxer.Net.EmailVerificationTokenJson.html
+  name: EmailVerificationTokenJson
+  nameWithType: EmailVerificationTokenJson
+  fullName: Fluxer.Net.EmailVerificationTokenJson
+- uid: Fluxer.Net.GatewaySessionJson
+  commentId: T:Fluxer.Net.GatewaySessionJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.GatewaySessionJson.html
+  name: GatewaySessionJson
+  nameWithType: GatewaySessionJson
+  fullName: Fluxer.Net.GatewaySessionJson
+- uid: Fluxer.Net.IAuthSession
+  commentId: T:Fluxer.Net.IAuthSession
+  parent: Fluxer.Net
+  href: Fluxer.Net.IAuthSession.html
+  name: IAuthSession
+  nameWithType: IAuthSession
+  fullName: Fluxer.Net.IAuthSession
+- uid: Fluxer.Net.ILogin
+  commentId: T:Fluxer.Net.ILogin
+  parent: Fluxer.Net
+  href: Fluxer.Net.ILogin.html
+  name: ILogin
+  nameWithType: ILogin
+  fullName: Fluxer.Net.ILogin
+- uid: Fluxer.Net.Login
+  commentId: T:Fluxer.Net.Login
+  parent: Fluxer.Net
+  href: Fluxer.Net.Login.html
+  name: Login
+  nameWithType: Login
+  fullName: Fluxer.Net.Login
+- uid: Fluxer.Net.LoginJson
+  commentId: T:Fluxer.Net.LoginJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.LoginJson.html
+  name: LoginJson
+  nameWithType: LoginJson
+  fullName: Fluxer.Net.LoginJson
+- uid: Fluxer.Net.LoginRequestJson
+  commentId: T:Fluxer.Net.LoginRequestJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.LoginRequestJson.html
+  name: LoginRequestJson
+  nameWithType: LoginRequestJson
+  fullName: Fluxer.Net.LoginRequestJson
+- uid: Fluxer.Net.MfaBackupCodeJson
+  commentId: T:Fluxer.Net.MfaBackupCodeJson
+  href: Fluxer.Net.MfaBackupCodeJson.html
+  name: MfaBackupCodeJson
+  nameWithType: MfaBackupCodeJson
+  fullName: Fluxer.Net.MfaBackupCodeJson
+- uid: Fluxer.Net.PasswordResetTokenJson
+  commentId: T:Fluxer.Net.PasswordResetTokenJson
+  href: Fluxer.Net.PasswordResetTokenJson.html
+  name: PasswordResetTokenJson
+  nameWithType: PasswordResetTokenJson
+  fullName: Fluxer.Net.PasswordResetTokenJson
+- uid: Fluxer.Net.TokenRevokeRequestJson
+  commentId: T:Fluxer.Net.TokenRevokeRequestJson
+  href: Fluxer.Net.TokenRevokeRequestJson.html
+  name: TokenRevokeRequestJson
+  nameWithType: TokenRevokeRequestJson
+  fullName: Fluxer.Net.TokenRevokeRequestJson
+- uid: Fluxer.Net.WebAuthnCredentialJson
+  commentId: T:Fluxer.Net.WebAuthnCredentialJson
+  href: Fluxer.Net.WebAuthnCredentialJson.html
+  name: WebAuthnCredentialJson
+  nameWithType: WebAuthnCredentialJson
+  fullName: Fluxer.Net.WebAuthnCredentialJson
+- uid: Fluxer.Net.CategoryChannel
+  commentId: T:Fluxer.Net.CategoryChannel
+  parent: Fluxer.Net
+  href: Fluxer.Net.CategoryChannel.html
+  name: CategoryChannel
+  nameWithType: CategoryChannel
+  fullName: Fluxer.Net.CategoryChannel
+- uid: Fluxer.Net.Channel
+  commentId: T:Fluxer.Net.Channel
+  parent: Fluxer.Net
+  href: Fluxer.Net.Channel.html
+  name: Channel
+  nameWithType: Channel
+  fullName: Fluxer.Net.Channel
+- uid: Fluxer.Net.ChannelJson
+  commentId: T:Fluxer.Net.ChannelJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.ChannelJson.html
+  name: ChannelJson
+  nameWithType: ChannelJson
+  fullName: Fluxer.Net.ChannelJson
+- uid: Fluxer.Net.ChannelPin
+  commentId: T:Fluxer.Net.ChannelPin
+  parent: Fluxer.Net
+  href: Fluxer.Net.ChannelPin.html
+  name: ChannelPin
+  nameWithType: ChannelPin
+  fullName: Fluxer.Net.ChannelPin
+- uid: Fluxer.Net.ChannelPinJson
+  commentId: T:Fluxer.Net.ChannelPinJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.ChannelPinJson.html
+  name: ChannelPinJson
+  nameWithType: ChannelPinJson
+  fullName: Fluxer.Net.ChannelPinJson
+- uid: Fluxer.Net.ChannelPins
+  commentId: T:Fluxer.Net.ChannelPins
+  parent: Fluxer.Net
+  href: Fluxer.Net.ChannelPins.html
+  name: ChannelPins
+  nameWithType: ChannelPins
+  fullName: Fluxer.Net.ChannelPins
+- uid: Fluxer.Net.ChannelPinsJson
+  commentId: T:Fluxer.Net.ChannelPinsJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.ChannelPinsJson.html
+  name: ChannelPinsJson
+  nameWithType: ChannelPinsJson
+  fullName: Fluxer.Net.ChannelPinsJson
+- uid: Fluxer.Net.ChannelType
+  commentId: T:Fluxer.Net.ChannelType
+  parent: Fluxer.Net
+  href: Fluxer.Net.ChannelType.html
+  name: ChannelType
+  nameWithType: ChannelType
+  fullName: Fluxer.Net.ChannelType
+- uid: Fluxer.Net.DMChannel
+  commentId: T:Fluxer.Net.DMChannel
+  parent: Fluxer.Net
+  href: Fluxer.Net.DMChannel.html
+  name: DMChannel
+  nameWithType: DMChannel
+  fullName: Fluxer.Net.DMChannel
+- uid: Fluxer.Net.GroupChannel
+  commentId: T:Fluxer.Net.GroupChannel
+  parent: Fluxer.Net
+  href: Fluxer.Net.GroupChannel.html
+  name: GroupChannel
+  nameWithType: GroupChannel
+  fullName: Fluxer.Net.GroupChannel
+- uid: Fluxer.Net.GuildChannel
+  commentId: T:Fluxer.Net.GuildChannel
+  parent: Fluxer.Net
+  href: Fluxer.Net.GuildChannel.html
+  name: GuildChannel
+  nameWithType: GuildChannel
+  fullName: Fluxer.Net.GuildChannel
+- uid: Fluxer.Net.IChannel
+  commentId: T:Fluxer.Net.IChannel
+  parent: Fluxer.Net
+  href: Fluxer.Net.IChannel.html
+  name: IChannel
+  nameWithType: IChannel
+  fullName: Fluxer.Net.IChannel
+- uid: Fluxer.Net.IChannelPin
+  commentId: T:Fluxer.Net.IChannelPin
+  parent: Fluxer.Net
+  href: Fluxer.Net.IChannelPin.html
+  name: IChannelPin
+  nameWithType: IChannelPin
+  fullName: Fluxer.Net.IChannelPin
+- uid: Fluxer.Net.IGuildChannel
+  commentId: T:Fluxer.Net.IGuildChannel
+  parent: Fluxer.Net
+  href: Fluxer.Net.IGuildChannel.html
+  name: IGuildChannel
+  nameWithType: IGuildChannel
+  fullName: Fluxer.Net.IGuildChannel
+- uid: Fluxer.Net.IPermissionOverwrite
+  commentId: T:Fluxer.Net.IPermissionOverwrite
+  parent: Fluxer.Net
+  href: Fluxer.Net.IPermissionOverwrite.html
+  name: IPermissionOverwrite
+  nameWithType: IPermissionOverwrite
+  fullName: Fluxer.Net.IPermissionOverwrite
+- uid: Fluxer.Net.ITextable
+  commentId: T:Fluxer.Net.ITextable
+  parent: Fluxer.Net
+  href: Fluxer.Net.ITextable.html
+  name: ITextable
+  nameWithType: ITextable
+  fullName: Fluxer.Net.ITextable
+- uid: Fluxer.Net.LinkChannel
+  commentId: T:Fluxer.Net.LinkChannel
+  parent: Fluxer.Net
+  href: Fluxer.Net.LinkChannel.html
+  name: LinkChannel
+  nameWithType: LinkChannel
+  fullName: Fluxer.Net.LinkChannel
+- uid: Fluxer.Net.OverwriteRequestType
+  commentId: T:Fluxer.Net.OverwriteRequestType
+  parent: Fluxer.Net
+  href: Fluxer.Net.OverwriteRequestType.html
+  name: OverwriteRequestType
+  nameWithType: OverwriteRequestType
+  fullName: Fluxer.Net.OverwriteRequestType
+- uid: Fluxer.Net.PermissionOverwrite
+  commentId: T:Fluxer.Net.PermissionOverwrite
+  parent: Fluxer.Net
+  href: Fluxer.Net.PermissionOverwrite.html
+  name: PermissionOverwrite
+  nameWithType: PermissionOverwrite
+  fullName: Fluxer.Net.PermissionOverwrite
+- uid: Fluxer.Net.PermissionOverwriteJson
+  commentId: T:Fluxer.Net.PermissionOverwriteJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.PermissionOverwriteJson.html
+  name: PermissionOverwriteJson
+  nameWithType: PermissionOverwriteJson
+  fullName: Fluxer.Net.PermissionOverwriteJson
+- uid: Fluxer.Net.ReadStateJson
+  commentId: T:Fluxer.Net.ReadStateJson
+  href: Fluxer.Net.ReadStateJson.html
+  name: ReadStateJson
+  nameWithType: ReadStateJson
+  fullName: Fluxer.Net.ReadStateJson
+- uid: Fluxer.Net.SavedNotesChannel
+  commentId: T:Fluxer.Net.SavedNotesChannel
+  parent: Fluxer.Net
+  href: Fluxer.Net.SavedNotesChannel.html
+  name: SavedNotesChannel
+  nameWithType: SavedNotesChannel
+  fullName: Fluxer.Net.SavedNotesChannel
+- uid: Fluxer.Net.SocketCategoryChannel
+  commentId: T:Fluxer.Net.SocketCategoryChannel
+  parent: Fluxer.Net
+  href: Fluxer.Net.SocketCategoryChannel.html
+  name: SocketCategoryChannel
+  nameWithType: SocketCategoryChannel
+  fullName: Fluxer.Net.SocketCategoryChannel
+- uid: Fluxer.Net.SocketDMChannel
+  commentId: T:Fluxer.Net.SocketDMChannel
+  href: Fluxer.Net.SocketDMChannel.html
+  name: SocketDMChannel
+  nameWithType: SocketDMChannel
+  fullName: Fluxer.Net.SocketDMChannel
+- uid: Fluxer.Net.SocketGroupChannel
+  commentId: T:Fluxer.Net.SocketGroupChannel
+  parent: Fluxer.Net
+  href: Fluxer.Net.SocketGroupChannel.html
+  name: SocketGroupChannel
+  nameWithType: SocketGroupChannel
+  fullName: Fluxer.Net.SocketGroupChannel
+- uid: Fluxer.Net.SocketLinkChannel
+  commentId: T:Fluxer.Net.SocketLinkChannel
+  parent: Fluxer.Net
+  href: Fluxer.Net.SocketLinkChannel.html
+  name: SocketLinkChannel
+  nameWithType: SocketLinkChannel
+  fullName: Fluxer.Net.SocketLinkChannel
+- uid: Fluxer.Net.SocketSavedNotesChannel
+  commentId: T:Fluxer.Net.SocketSavedNotesChannel
+  parent: Fluxer.Net
+  href: Fluxer.Net.SocketSavedNotesChannel.html
+  name: SocketSavedNotesChannel
+  nameWithType: SocketSavedNotesChannel
+  fullName: Fluxer.Net.SocketSavedNotesChannel
+- uid: Fluxer.Net.SocketTextChannel
+  commentId: T:Fluxer.Net.SocketTextChannel
+  href: Fluxer.Net.SocketTextChannel.html
+  name: SocketTextChannel
+  nameWithType: SocketTextChannel
+  fullName: Fluxer.Net.SocketTextChannel
+- uid: Fluxer.Net.SocketUnknownChannel
+  commentId: T:Fluxer.Net.SocketUnknownChannel
+  href: Fluxer.Net.SocketUnknownChannel.html
+  name: SocketUnknownChannel
+  nameWithType: SocketUnknownChannel
+  fullName: Fluxer.Net.SocketUnknownChannel
+- uid: Fluxer.Net.SocketUnknownGuildChannel
+  commentId: T:Fluxer.Net.SocketUnknownGuildChannel
+  href: Fluxer.Net.SocketUnknownGuildChannel.html
+  name: SocketUnknownGuildChannel
+  nameWithType: SocketUnknownGuildChannel
+  fullName: Fluxer.Net.SocketUnknownGuildChannel
+- uid: Fluxer.Net.SocketVoiceChannel
+  commentId: T:Fluxer.Net.SocketVoiceChannel
+  parent: Fluxer.Net
+  href: Fluxer.Net.SocketVoiceChannel.html
+  name: SocketVoiceChannel
+  nameWithType: SocketVoiceChannel
+  fullName: Fluxer.Net.SocketVoiceChannel
+- uid: Fluxer.Net.SystemChannelFlags
+  commentId: T:Fluxer.Net.SystemChannelFlags
+  parent: Fluxer.Net
+  href: Fluxer.Net.SystemChannelFlags.html
+  name: SystemChannelFlags
+  nameWithType: SystemChannelFlags
+  fullName: Fluxer.Net.SystemChannelFlags
+- uid: Fluxer.Net.TextChannel
+  commentId: T:Fluxer.Net.TextChannel
+  parent: Fluxer.Net
+  href: Fluxer.Net.TextChannel.html
+  name: TextChannel
+  nameWithType: TextChannel
+  fullName: Fluxer.Net.TextChannel
+- uid: Fluxer.Net.VoiceChannel
+  commentId: T:Fluxer.Net.VoiceChannel
+  parent: Fluxer.Net
+  href: Fluxer.Net.VoiceChannel.html
+  name: VoiceChannel
+  nameWithType: VoiceChannel
+  fullName: Fluxer.Net.VoiceChannel
+- uid: Fluxer.Net.IDiscoveryInfo
+  commentId: T:Fluxer.Net.IDiscoveryInfo
+  href: Fluxer.Net.IDiscoveryInfo.html
+  name: IDiscoveryInfo
+  nameWithType: IDiscoveryInfo
+  fullName: Fluxer.Net.IDiscoveryInfo
+- uid: Fluxer.Net.IDiscoveryApplication
+  commentId: T:Fluxer.Net.IDiscoveryApplication
+  parent: Fluxer.Net
+  href: Fluxer.Net.IDiscoveryApplication.html
+  name: IDiscoveryApplication
+  nameWithType: IDiscoveryApplication
+  fullName: Fluxer.Net.IDiscoveryApplication
+- uid: Fluxer.Net.Embed
+  commentId: T:Fluxer.Net.Embed
+  parent: Fluxer.Net
+  href: Fluxer.Net.Embed.html
+  name: Embed
+  nameWithType: Embed
+  fullName: Fluxer.Net.Embed
+- uid: Fluxer.Net.EmbedField
+  commentId: T:Fluxer.Net.EmbedField
+  parent: Fluxer.Net
+  href: Fluxer.Net.EmbedField.html
+  name: EmbedField
+  nameWithType: EmbedField
+  fullName: Fluxer.Net.EmbedField
+- uid: Fluxer.Net.EmbedAuthor
+  commentId: T:Fluxer.Net.EmbedAuthor
+  parent: Fluxer.Net
+  href: Fluxer.Net.EmbedAuthor.html
+  name: EmbedAuthor
+  nameWithType: EmbedAuthor
+  fullName: Fluxer.Net.EmbedAuthor
+- uid: Fluxer.Net.EmbedFooter
+  commentId: T:Fluxer.Net.EmbedFooter
+  parent: Fluxer.Net
+  href: Fluxer.Net.EmbedFooter.html
+  name: EmbedFooter
+  nameWithType: EmbedFooter
+  fullName: Fluxer.Net.EmbedFooter
+- uid: Fluxer.Net.EmbedMedia
+  commentId: T:Fluxer.Net.EmbedMedia
+  parent: Fluxer.Net
+  href: Fluxer.Net.EmbedMedia.html
+  name: EmbedMedia
+  nameWithType: EmbedMedia
+  fullName: Fluxer.Net.EmbedMedia
+- uid: Fluxer.Net.EmbedAuthorBuilder
+  commentId: T:Fluxer.Net.EmbedAuthorBuilder
+  parent: Fluxer.Net
+  href: Fluxer.Net.EmbedAuthorBuilder.html
+  name: EmbedAuthorBuilder
+  nameWithType: EmbedAuthorBuilder
+  fullName: Fluxer.Net.EmbedAuthorBuilder
+- uid: Fluxer.Net.EmbedBuilder
+  commentId: T:Fluxer.Net.EmbedBuilder
+  parent: Fluxer.Net
+  href: Fluxer.Net.EmbedBuilder.html
+  name: EmbedBuilder
+  nameWithType: EmbedBuilder
+  fullName: Fluxer.Net.EmbedBuilder
+- uid: Fluxer.Net.EmbedFieldBuilder
+  commentId: T:Fluxer.Net.EmbedFieldBuilder
+  parent: Fluxer.Net
+  href: Fluxer.Net.EmbedFieldBuilder.html
+  name: EmbedFieldBuilder
+  nameWithType: EmbedFieldBuilder
+  fullName: Fluxer.Net.EmbedFieldBuilder
+- uid: Fluxer.Net.EmbedFooterBuilder
+  commentId: T:Fluxer.Net.EmbedFooterBuilder
+  parent: Fluxer.Net
+  href: Fluxer.Net.EmbedFooterBuilder.html
+  name: EmbedFooterBuilder
+  nameWithType: EmbedFooterBuilder
+  fullName: Fluxer.Net.EmbedFooterBuilder
+- uid: Fluxer.Net.EmbedJson
+  commentId: T:Fluxer.Net.EmbedJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.EmbedJson.html
+  name: EmbedJson
+  nameWithType: EmbedJson
+  fullName: Fluxer.Net.EmbedJson
+- uid: Fluxer.Net.EmbedFieldJson
+  commentId: T:Fluxer.Net.EmbedFieldJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.EmbedFieldJson.html
+  name: EmbedFieldJson
+  nameWithType: EmbedFieldJson
+  fullName: Fluxer.Net.EmbedFieldJson
+- uid: Fluxer.Net.EmbedAuthorJson
+  commentId: T:Fluxer.Net.EmbedAuthorJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.EmbedAuthorJson.html
+  name: EmbedAuthorJson
+  nameWithType: EmbedAuthorJson
+  fullName: Fluxer.Net.EmbedAuthorJson
+- uid: Fluxer.Net.EmbedFooterJson
+  commentId: T:Fluxer.Net.EmbedFooterJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.EmbedFooterJson.html
+  name: EmbedFooterJson
+  nameWithType: EmbedFooterJson
+  fullName: Fluxer.Net.EmbedFooterJson
+- uid: Fluxer.Net.EmbedMediaJson
+  commentId: T:Fluxer.Net.EmbedMediaJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.EmbedMediaJson.html
+  name: EmbedMediaJson
+  nameWithType: EmbedMediaJson
+  fullName: Fluxer.Net.EmbedMediaJson
+- uid: Fluxer.Net.EmbedType
+  commentId: T:Fluxer.Net.EmbedType
+  parent: Fluxer.Net
+  href: Fluxer.Net.EmbedType.html
+  name: EmbedType
+  nameWithType: EmbedType
+  fullName: Fluxer.Net.EmbedType
+- uid: Fluxer.Net.IEmbed
+  commentId: T:Fluxer.Net.IEmbed
+  parent: Fluxer.Net
+  href: Fluxer.Net.IEmbed.html
+  name: IEmbed
+  nameWithType: IEmbed
+  fullName: Fluxer.Net.IEmbed
+- uid: Fluxer.Net.IEmbedField
+  commentId: T:Fluxer.Net.IEmbedField
+  parent: Fluxer.Net
+  href: Fluxer.Net.IEmbedField.html
+  name: IEmbedField
+  nameWithType: IEmbedField
+  fullName: Fluxer.Net.IEmbedField
+- uid: Fluxer.Net.IEmbedAuthor
+  commentId: T:Fluxer.Net.IEmbedAuthor
+  parent: Fluxer.Net
+  href: Fluxer.Net.IEmbedAuthor.html
+  name: IEmbedAuthor
+  nameWithType: IEmbedAuthor
+  fullName: Fluxer.Net.IEmbedAuthor
+- uid: Fluxer.Net.IEmbedFooter
+  commentId: T:Fluxer.Net.IEmbedFooter
+  parent: Fluxer.Net
+  href: Fluxer.Net.IEmbedFooter.html
+  name: IEmbedFooter
+  nameWithType: IEmbedFooter
+  fullName: Fluxer.Net.IEmbedFooter
+- uid: Fluxer.Net.IEmbedMedia
+  commentId: T:Fluxer.Net.IEmbedMedia
+  parent: Fluxer.Net
+  href: Fluxer.Net.IEmbedMedia.html
+  name: IEmbedMedia
+  nameWithType: IEmbedMedia
+  fullName: Fluxer.Net.IEmbedMedia
+- uid: Fluxer.Net.Entity
+  commentId: T:Fluxer.Net.Entity
+  parent: Fluxer.Net
+  href: Fluxer.Net.Entity.html
+  name: Entity
+  nameWithType: Entity
+  fullName: Fluxer.Net.Entity
+- uid: Fluxer.Net.Emoji
+  commentId: T:Fluxer.Net.Emoji
+  parent: Fluxer.Net
+  href: Fluxer.Net.Emoji.html
+  name: Emoji
+  nameWithType: Emoji
+  fullName: Fluxer.Net.Emoji
+- uid: Fluxer.Net.EmojiJson
+  commentId: T:Fluxer.Net.EmojiJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.EmojiJson.html
+  name: EmojiJson
+  nameWithType: EmojiJson
+  fullName: Fluxer.Net.EmojiJson
+- uid: Fluxer.Net.GuildEmoji
+  commentId: T:Fluxer.Net.GuildEmoji
+  parent: Fluxer.Net
+  href: Fluxer.Net.GuildEmoji.html
+  name: GuildEmoji
+  nameWithType: GuildEmoji
+  fullName: Fluxer.Net.GuildEmoji
+- uid: Fluxer.Net.GuildEmojiBulkCreateJson
+  commentId: T:Fluxer.Net.GuildEmojiBulkCreateJson
+  href: Fluxer.Net.GuildEmojiBulkCreateJson.html
+  name: GuildEmojiBulkCreateJson
+  nameWithType: GuildEmojiBulkCreateJson
+  fullName: Fluxer.Net.GuildEmojiBulkCreateJson
+- uid: Fluxer.Net.GuildEmojiBulkCreateFailureItemJson
+  commentId: T:Fluxer.Net.GuildEmojiBulkCreateFailureItemJson
+  href: Fluxer.Net.GuildEmojiBulkCreateFailureItemJson.html
+  name: GuildEmojiBulkCreateFailureItemJson
+  nameWithType: GuildEmojiBulkCreateFailureItemJson
+  fullName: Fluxer.Net.GuildEmojiBulkCreateFailureItemJson
+- uid: Fluxer.Net.GuildEmojiJson
+  commentId: T:Fluxer.Net.GuildEmojiJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.GuildEmojiJson.html
+  name: GuildEmojiJson
+  nameWithType: GuildEmojiJson
+  fullName: Fluxer.Net.GuildEmojiJson
+- uid: Fluxer.Net.GuildSticker
+  commentId: T:Fluxer.Net.GuildSticker
+  parent: Fluxer.Net
+  href: Fluxer.Net.GuildSticker.html
+  name: GuildSticker
+  nameWithType: GuildSticker
+  fullName: Fluxer.Net.GuildSticker
+- uid: Fluxer.Net.GuildStickerBulkCreateJson
+  commentId: T:Fluxer.Net.GuildStickerBulkCreateJson
+  href: Fluxer.Net.GuildStickerBulkCreateJson.html
+  name: GuildStickerBulkCreateJson
+  nameWithType: GuildStickerBulkCreateJson
+  fullName: Fluxer.Net.GuildStickerBulkCreateJson
+- uid: Fluxer.Net.GuildStickerBulkCreateFailureItemJson
+  commentId: T:Fluxer.Net.GuildStickerBulkCreateFailureItemJson
+  href: Fluxer.Net.GuildStickerBulkCreateFailureItemJson.html
+  name: GuildStickerBulkCreateFailureItemJson
+  nameWithType: GuildStickerBulkCreateFailureItemJson
+  fullName: Fluxer.Net.GuildStickerBulkCreateFailureItemJson
+- uid: Fluxer.Net.GuildStickerJson
+  commentId: T:Fluxer.Net.GuildStickerJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.GuildStickerJson.html
+  name: GuildStickerJson
+  nameWithType: GuildStickerJson
+  fullName: Fluxer.Net.GuildStickerJson
+- uid: Fluxer.Net.IEmoji
+  commentId: T:Fluxer.Net.IEmoji
+  parent: Fluxer.Net
+  href: Fluxer.Net.IEmoji.html
+  name: IEmoji
+  nameWithType: IEmoji
+  fullName: Fluxer.Net.IEmoji
+- uid: Fluxer.Net.IGuildEmoji
+  commentId: T:Fluxer.Net.IGuildEmoji
+  parent: Fluxer.Net
+  href: Fluxer.Net.IGuildEmoji.html
+  name: IGuildEmoji
+  nameWithType: IGuildEmoji
+  fullName: Fluxer.Net.IGuildEmoji
+- uid: Fluxer.Net.IGuildSticker
+  commentId: T:Fluxer.Net.IGuildSticker
+  parent: Fluxer.Net
+  href: Fluxer.Net.IGuildSticker.html
+  name: IGuildSticker
+  nameWithType: IGuildSticker
+  fullName: Fluxer.Net.IGuildSticker
+- uid: Fluxer.Net.ISticker
+  commentId: T:Fluxer.Net.ISticker
+  parent: Fluxer.Net
+  href: Fluxer.Net.ISticker.html
+  name: ISticker
+  nameWithType: ISticker
+  fullName: Fluxer.Net.ISticker
+- uid: Fluxer.Net.Sticker
+  commentId: T:Fluxer.Net.Sticker
+  parent: Fluxer.Net
+  href: Fluxer.Net.Sticker.html
+  name: Sticker
+  nameWithType: Sticker
+  fullName: Fluxer.Net.Sticker
+- uid: Fluxer.Net.StickerJson
+  commentId: T:Fluxer.Net.StickerJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.StickerJson.html
+  name: StickerJson
+  nameWithType: StickerJson
+  fullName: Fluxer.Net.StickerJson
+- uid: Fluxer.Net.FavoriteGif
+  commentId: T:Fluxer.Net.FavoriteGif
+  parent: Fluxer.Net
+  href: Fluxer.Net.FavoriteGif.html
+  name: FavoriteGif
+  nameWithType: FavoriteGif
+  fullName: Fluxer.Net.FavoriteGif
+- uid: Fluxer.Net.FavoriteGifJson
+  commentId: T:Fluxer.Net.FavoriteGifJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.FavoriteGifJson.html
+  name: FavoriteGifJson
+  nameWithType: FavoriteGifJson
+  fullName: Fluxer.Net.FavoriteGifJson
+- uid: Fluxer.Net.Gif
+  commentId: T:Fluxer.Net.Gif
+  parent: Fluxer.Net
+  href: Fluxer.Net.Gif.html
+  name: Gif
+  nameWithType: Gif
+  fullName: Fluxer.Net.Gif
+- uid: Fluxer.Net.GifCategory
+  commentId: T:Fluxer.Net.GifCategory
+  parent: Fluxer.Net
+  href: Fluxer.Net.GifCategory.html
+  name: GifCategory
+  nameWithType: GifCategory
+  fullName: Fluxer.Net.GifCategory
+- uid: Fluxer.Net.GifCategoryJson
+  commentId: T:Fluxer.Net.GifCategoryJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.GifCategoryJson.html
+  name: GifCategoryJson
+  nameWithType: GifCategoryJson
+  fullName: Fluxer.Net.GifCategoryJson
+- uid: Fluxer.Net.GifFeaturedJson
+  commentId: T:Fluxer.Net.GifFeaturedJson
+  href: Fluxer.Net.GifFeaturedJson.html
+  name: GifFeaturedJson
+  nameWithType: GifFeaturedJson
+  fullName: Fluxer.Net.GifFeaturedJson
+- uid: Fluxer.Net.GifJson
+  commentId: T:Fluxer.Net.GifJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.GifJson.html
+  name: GifJson
+  nameWithType: GifJson
+  fullName: Fluxer.Net.GifJson
+- uid: Fluxer.Net.IFavoriteGif
+  commentId: T:Fluxer.Net.IFavoriteGif
+  parent: Fluxer.Net
+  href: Fluxer.Net.IFavoriteGif.html
+  name: IFavoriteGif
+  nameWithType: IFavoriteGif
+  fullName: Fluxer.Net.IFavoriteGif
+- uid: Fluxer.Net.IGif
+  commentId: T:Fluxer.Net.IGif
+  parent: Fluxer.Net
+  href: Fluxer.Net.IGif.html
+  name: IGif
+  nameWithType: IGif
+  fullName: Fluxer.Net.IGif
+- uid: Fluxer.Net.IGifCategory
+  commentId: T:Fluxer.Net.IGifCategory
+  parent: Fluxer.Net
+  href: Fluxer.Net.IGifCategory.html
+  name: IGifCategory
+  nameWithType: IGifCategory
+  fullName: Fluxer.Net.IGifCategory
+- uid: Fluxer.Net.ChannelPermissions
+  commentId: T:Fluxer.Net.ChannelPermissions
+  parent: Fluxer.Net
+  href: Fluxer.Net.ChannelPermissions.html
+  name: ChannelPermissions
+  nameWithType: ChannelPermissions
+  fullName: Fluxer.Net.ChannelPermissions
+- uid: Fluxer.Net.Guild
+  commentId: T:Fluxer.Net.Guild
+  parent: Fluxer.Net
+  href: Fluxer.Net.Guild.html
+  name: Guild
+  nameWithType: Guild
+  fullName: Fluxer.Net.Guild
+- uid: Fluxer.Net.GuildChannelOverrideJson
+  commentId: T:Fluxer.Net.GuildChannelOverrideJson
+  href: Fluxer.Net.GuildChannelOverrideJson.html
+  name: GuildChannelOverrideJson
+  nameWithType: GuildChannelOverrideJson
+  fullName: Fluxer.Net.GuildChannelOverrideJson
+- uid: Fluxer.Net.GuildJson
+  commentId: T:Fluxer.Net.GuildJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.GuildJson.html
+  name: GuildJson
+  nameWithType: GuildJson
+  fullName: Fluxer.Net.GuildJson
+- uid: Fluxer.Net.GuildPermissions
+  commentId: T:Fluxer.Net.GuildPermissions
+  parent: Fluxer.Net
+  href: Fluxer.Net.GuildPermissions.html
+  name: GuildPermissions
+  nameWithType: GuildPermissions
+  fullName: Fluxer.Net.GuildPermissions
+- uid: Fluxer.Net.IChannelPermissions
+  commentId: T:Fluxer.Net.IChannelPermissions
+  parent: Fluxer.Net
+  href: Fluxer.Net.IChannelPermissions.html
+  name: IChannelPermissions
+  nameWithType: IChannelPermissions
+  fullName: Fluxer.Net.IChannelPermissions
+- uid: Fluxer.Net.IGuild
+  commentId: T:Fluxer.Net.IGuild
+  parent: Fluxer.Net
+  href: Fluxer.Net.IGuild.html
+  name: IGuild
+  nameWithType: IGuild
+  fullName: Fluxer.Net.IGuild
+- uid: Fluxer.Net.IGuildPermissions
+  commentId: T:Fluxer.Net.IGuildPermissions
+  parent: Fluxer.Net
+  href: Fluxer.Net.IGuildPermissions.html
+  name: IGuildPermissions
+  nameWithType: IGuildPermissions
+  fullName: Fluxer.Net.IGuildPermissions
+- uid: Fluxer.Net.IPartialGuild
+  commentId: T:Fluxer.Net.IPartialGuild
+  parent: Fluxer.Net
+  href: Fluxer.Net.IPartialGuild.html
+  name: IPartialGuild
+  nameWithType: IPartialGuild
+  fullName: Fluxer.Net.IPartialGuild
+- uid: Fluxer.Net.GuildBan
+  commentId: T:Fluxer.Net.GuildBan
+  parent: Fluxer.Net
+  href: Fluxer.Net.GuildBan.html
+  name: GuildBan
+  nameWithType: GuildBan
+  fullName: Fluxer.Net.GuildBan
+- uid: Fluxer.Net.GuildBanJson
+  commentId: T:Fluxer.Net.GuildBanJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.GuildBanJson.html
+  name: GuildBanJson
+  nameWithType: GuildBanJson
+  fullName: Fluxer.Net.GuildBanJson
+- uid: Fluxer.Net.GuildMember
+  commentId: T:Fluxer.Net.GuildMember
+  parent: Fluxer.Net
+  href: Fluxer.Net.GuildMember.html
+  name: GuildMember
+  nameWithType: GuildMember
+  fullName: Fluxer.Net.GuildMember
+- uid: Fluxer.Net.GuildMemberJson
+  commentId: T:Fluxer.Net.GuildMemberJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.GuildMemberJson.html
+  name: GuildMemberJson
+  nameWithType: GuildMemberJson
+  fullName: Fluxer.Net.GuildMemberJson
+- uid: Fluxer.Net.IGuildBan
+  commentId: T:Fluxer.Net.IGuildBan
+  parent: Fluxer.Net
+  href: Fluxer.Net.IGuildBan.html
+  name: IGuildBan
+  nameWithType: IGuildBan
+  fullName: Fluxer.Net.IGuildBan
+- uid: Fluxer.Net.IGuildMember
+  commentId: T:Fluxer.Net.IGuildMember
+  parent: Fluxer.Net
+  href: Fluxer.Net.IGuildMember.html
+  name: IGuildMember
+  nameWithType: IGuildMember
+  fullName: Fluxer.Net.IGuildMember
+- uid: Fluxer.Net.IRole
+  commentId: T:Fluxer.Net.IRole
+  parent: Fluxer.Net
+  href: Fluxer.Net.IRole.html
+  name: IRole
+  nameWithType: IRole
+  fullName: Fluxer.Net.IRole
+- uid: Fluxer.Net.Role
+  commentId: T:Fluxer.Net.Role
+  parent: Fluxer.Net
+  href: Fluxer.Net.Role.html
+  name: Role
+  nameWithType: Role
+  fullName: Fluxer.Net.Role
+- uid: Fluxer.Net.RoleJson
+  commentId: T:Fluxer.Net.RoleJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.RoleJson.html
+  name: RoleJson
+  nameWithType: RoleJson
+  fullName: Fluxer.Net.RoleJson
+- uid: Fluxer.Net.RolePositionItemJson
+  commentId: T:Fluxer.Net.RolePositionItemJson
+  href: Fluxer.Net.RolePositionItemJson.html
+  name: RolePositionItemJson
+  nameWithType: RolePositionItemJson
+  fullName: Fluxer.Net.RolePositionItemJson
+- uid: Fluxer.Net.SocketGuildMember
+  commentId: T:Fluxer.Net.SocketGuildMember
+  parent: Fluxer.Net
+  href: Fluxer.Net.SocketGuildMember.html
+  name: SocketGuildMember
+  nameWithType: SocketGuildMember
+  fullName: Fluxer.Net.SocketGuildMember
+- uid: Fluxer.Net.SocketRole
+  commentId: T:Fluxer.Net.SocketRole
+  parent: Fluxer.Net
+  href: Fluxer.Net.SocketRole.html
+  name: SocketRole
+  nameWithType: SocketRole
+  fullName: Fluxer.Net.SocketRole
+- uid: Fluxer.Net.PartialGuild
+  commentId: T:Fluxer.Net.PartialGuild
+  parent: Fluxer.Net
+  href: Fluxer.Net.PartialGuild.html
+  name: PartialGuild
+  nameWithType: PartialGuild
+  fullName: Fluxer.Net.PartialGuild
+- uid: Fluxer.Net.PartialGuildJson
+  commentId: T:Fluxer.Net.PartialGuildJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.PartialGuildJson.html
+  name: PartialGuildJson
+  nameWithType: PartialGuildJson
+  fullName: Fluxer.Net.PartialGuildJson
+- uid: Fluxer.Net.Permissions
+  commentId: T:Fluxer.Net.Permissions
+  parent: Fluxer.Net
+  href: Fluxer.Net.Permissions.html
+  name: Permissions
+  nameWithType: Permissions
+  fullName: Fluxer.Net.Permissions
+- uid: Fluxer.Net.GuildContentFilter
+  commentId: T:Fluxer.Net.GuildContentFilter
+  parent: Fluxer.Net
+  href: Fluxer.Net.GuildContentFilter.html
+  name: GuildContentFilter
+  nameWithType: GuildContentFilter
+  fullName: Fluxer.Net.GuildContentFilter
+- uid: Fluxer.Net.GuildDefaultNotifications
+  commentId: T:Fluxer.Net.GuildDefaultNotifications
+  parent: Fluxer.Net
+  href: Fluxer.Net.GuildDefaultNotifications.html
+  name: GuildDefaultNotifications
+  nameWithType: GuildDefaultNotifications
+  fullName: Fluxer.Net.GuildDefaultNotifications
+- uid: Fluxer.Net.GuildExplicitContentFilterType
+  commentId: T:Fluxer.Net.GuildExplicitContentFilterType
+  parent: Fluxer.Net
+  href: Fluxer.Net.GuildExplicitContentFilterType.html
+  name: GuildExplicitContentFilterType
+  nameWithType: GuildExplicitContentFilterType
+  fullName: Fluxer.Net.GuildExplicitContentFilterType
+- uid: Fluxer.Net.GuildFeatures
+  commentId: T:Fluxer.Net.GuildFeatures
+  parent: Fluxer.Net
+  href: Fluxer.Net.GuildFeatures.html
+  name: GuildFeatures
+  nameWithType: GuildFeatures
+  fullName: Fluxer.Net.GuildFeatures
+- uid: Fluxer.Net.GuildMfaLevel
+  commentId: T:Fluxer.Net.GuildMfaLevel
+  parent: Fluxer.Net
+  href: Fluxer.Net.GuildMfaLevel.html
+  name: GuildMfaLevel
+  nameWithType: GuildMfaLevel
+  fullName: Fluxer.Net.GuildMfaLevel
+- uid: Fluxer.Net.GuildNsfwLevel
+  commentId: T:Fluxer.Net.GuildNsfwLevel
+  parent: Fluxer.Net
+  href: Fluxer.Net.GuildNsfwLevel.html
+  name: GuildNsfwLevel
+  nameWithType: GuildNsfwLevel
+  fullName: Fluxer.Net.GuildNsfwLevel
+- uid: Fluxer.Net.GuildOperations
+  commentId: T:Fluxer.Net.GuildOperations
+  parent: Fluxer.Net
+  href: Fluxer.Net.GuildOperations.html
+  name: GuildOperations
+  nameWithType: GuildOperations
+  fullName: Fluxer.Net.GuildOperations
+- uid: Fluxer.Net.GuildSplashCardAlignment
+  commentId: T:Fluxer.Net.GuildSplashCardAlignment
+  parent: Fluxer.Net
+  href: Fluxer.Net.GuildSplashCardAlignment.html
+  name: GuildSplashCardAlignment
+  nameWithType: GuildSplashCardAlignment
+  fullName: Fluxer.Net.GuildSplashCardAlignment
+- uid: Fluxer.Net.GuildUpdateRequestMfaMethod
+  commentId: T:Fluxer.Net.GuildUpdateRequestMfaMethod
+  parent: Fluxer.Net
+  href: Fluxer.Net.GuildUpdateRequestMfaMethod.html
+  name: GuildUpdateRequestMfaMethod
+  nameWithType: GuildUpdateRequestMfaMethod
+  fullName: Fluxer.Net.GuildUpdateRequestMfaMethod
+- uid: Fluxer.Net.GuildVanityUrl
+  commentId: T:Fluxer.Net.GuildVanityUrl
+  parent: Fluxer.Net
+  href: Fluxer.Net.GuildVanityUrl.html
+  name: GuildVanityUrl
+  nameWithType: GuildVanityUrl
+  fullName: Fluxer.Net.GuildVanityUrl
+- uid: Fluxer.Net.GuildVanityUrlJson
+  commentId: T:Fluxer.Net.GuildVanityUrlJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.GuildVanityUrlJson.html
+  name: GuildVanityUrlJson
+  nameWithType: GuildVanityUrlJson
+  fullName: Fluxer.Net.GuildVanityUrlJson
+- uid: Fluxer.Net.GuildVanityUrlUpdateJson
+  commentId: T:Fluxer.Net.GuildVanityUrlUpdateJson
+  href: Fluxer.Net.GuildVanityUrlUpdateJson.html
+  name: GuildVanityUrlUpdateJson
+  nameWithType: GuildVanityUrlUpdateJson
+  fullName: Fluxer.Net.GuildVanityUrlUpdateJson
+- uid: Fluxer.Net.GuildVerificationLevel
+  commentId: T:Fluxer.Net.GuildVerificationLevel
+  parent: Fluxer.Net
+  href: Fluxer.Net.GuildVerificationLevel.html
+  name: GuildVerificationLevel
+  nameWithType: GuildVerificationLevel
+  fullName: Fluxer.Net.GuildVerificationLevel
+- uid: Fluxer.Net.IGuildVanityUrl
+  commentId: T:Fluxer.Net.IGuildVanityUrl
+  parent: Fluxer.Net
+  href: Fluxer.Net.IGuildVanityUrl.html
+  name: IGuildVanityUrl
+  nameWithType: IGuildVanityUrl
+  fullName: Fluxer.Net.IGuildVanityUrl
+- uid: Fluxer.Net.MuteConfigurationJson
+  commentId: T:Fluxer.Net.MuteConfigurationJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.MuteConfigurationJson.html
+  name: MuteConfigurationJson
+  nameWithType: MuteConfigurationJson
+  fullName: Fluxer.Net.MuteConfigurationJson
+- uid: Fluxer.Net.SocketGuild
+  commentId: T:Fluxer.Net.SocketGuild
+  parent: Fluxer.Net
+  href: Fluxer.Net.SocketGuild.html
+  name: SocketGuild
+  nameWithType: SocketGuild
+  fullName: Fluxer.Net.SocketGuild
+- uid: Fluxer.Net.IInvite
+  commentId: T:Fluxer.Net.IInvite
+  parent: Fluxer.Net
+  href: Fluxer.Net.IInvite.html
+  name: IInvite
+  nameWithType: IInvite
+  fullName: Fluxer.Net.IInvite
+- uid: Fluxer.Net.Invite
+  commentId: T:Fluxer.Net.Invite
+  parent: Fluxer.Net
+  href: Fluxer.Net.Invite.html
+  name: Invite
+  nameWithType: Invite
+  fullName: Fluxer.Net.Invite
+- uid: Fluxer.Net.InviteChannelJson
+  commentId: T:Fluxer.Net.InviteChannelJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.InviteChannelJson.html
+  name: InviteChannelJson
+  nameWithType: InviteChannelJson
+  fullName: Fluxer.Net.InviteChannelJson
+- uid: Fluxer.Net.InviteJson
+  commentId: T:Fluxer.Net.InviteJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.InviteJson.html
+  name: InviteJson
+  nameWithType: InviteJson
+  fullName: Fluxer.Net.InviteJson
+- uid: Fluxer.Net.InviteType
+  commentId: T:Fluxer.Net.InviteType
+  parent: Fluxer.Net
+  href: Fluxer.Net.InviteType.html
+  name: InviteType
+  nameWithType: InviteType
+  fullName: Fluxer.Net.InviteType
+- uid: Fluxer.Net.InviteUserJson
+  commentId: T:Fluxer.Net.InviteUserJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.InviteUserJson.html
+  name: InviteUserJson
+  nameWithType: InviteUserJson
+  fullName: Fluxer.Net.InviteUserJson
+- uid: Fluxer.Net.IPartialInvite
+  commentId: T:Fluxer.Net.IPartialInvite
+  parent: Fluxer.Net
+  href: Fluxer.Net.IPartialInvite.html
+  name: IPartialInvite
+  nameWithType: IPartialInvite
+  fullName: Fluxer.Net.IPartialInvite
+- uid: Fluxer.Net.PartialInvite
+  commentId: T:Fluxer.Net.PartialInvite
+  parent: Fluxer.Net
+  href: Fluxer.Net.PartialInvite.html
+  name: PartialInvite
+  nameWithType: PartialInvite
+  fullName: Fluxer.Net.PartialInvite
+- uid: Fluxer.Net.PartialInviteJson
+  commentId: T:Fluxer.Net.PartialInviteJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.PartialInviteJson.html
+  name: PartialInviteJson
+  nameWithType: PartialInviteJson
+  fullName: Fluxer.Net.PartialInviteJson
+- uid: Fluxer.Net.AllowedMentionParseType
+  commentId: T:Fluxer.Net.AllowedMentionParseType
+  parent: Fluxer.Net
+  href: Fluxer.Net.AllowedMentionParseType.html
+  name: AllowedMentionParseType
+  nameWithType: AllowedMentionParseType
+  fullName: Fluxer.Net.AllowedMentionParseType
+- uid: Fluxer.Net.Attachment
+  commentId: T:Fluxer.Net.Attachment
+  parent: Fluxer.Net
+  href: Fluxer.Net.Attachment.html
+  name: Attachment
+  nameWithType: Attachment
+  fullName: Fluxer.Net.Attachment
+- uid: Fluxer.Net.AttachmentFlag
+  commentId: T:Fluxer.Net.AttachmentFlag
+  parent: Fluxer.Net
+  href: Fluxer.Net.AttachmentFlag.html
+  name: AttachmentFlag
+  nameWithType: AttachmentFlag
+  fullName: Fluxer.Net.AttachmentFlag
+- uid: Fluxer.Net.AttachmentJson
+  commentId: T:Fluxer.Net.AttachmentJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.AttachmentJson.html
+  name: AttachmentJson
+  nameWithType: AttachmentJson
+  fullName: Fluxer.Net.AttachmentJson
+- uid: Fluxer.Net.IAttachment
+  commentId: T:Fluxer.Net.IAttachment
+  parent: Fluxer.Net
+  href: Fluxer.Net.IAttachment.html
+  name: IAttachment
+  nameWithType: IAttachment
+  fullName: Fluxer.Net.IAttachment
+- uid: Fluxer.Net.IMessage
+  commentId: T:Fluxer.Net.IMessage
+  parent: Fluxer.Net
+  href: Fluxer.Net.IMessage.html
+  name: IMessage
+  nameWithType: IMessage
+  fullName: Fluxer.Net.IMessage
+- uid: Fluxer.Net.IMessageCall
+  commentId: T:Fluxer.Net.IMessageCall
+  parent: Fluxer.Net
+  href: Fluxer.Net.IMessageCall.html
+  name: IMessageCall
+  nameWithType: IMessageCall
+  fullName: Fluxer.Net.IMessageCall
+- uid: Fluxer.Net.IMessageReaction
+  commentId: T:Fluxer.Net.IMessageReaction
+  parent: Fluxer.Net
+  href: Fluxer.Net.IMessageReaction.html
+  name: IMessageReaction
+  nameWithType: IMessageReaction
+  fullName: Fluxer.Net.IMessageReaction
+- uid: Fluxer.Net.IMessageReference
+  commentId: T:Fluxer.Net.IMessageReference
+  parent: Fluxer.Net
+  href: Fluxer.Net.IMessageReference.html
+  name: IMessageReference
+  nameWithType: IMessageReference
+  fullName: Fluxer.Net.IMessageReference
+- uid: Fluxer.Net.IMessageSnapshot
+  commentId: T:Fluxer.Net.IMessageSnapshot
+  parent: Fluxer.Net
+  href: Fluxer.Net.IMessageSnapshot.html
+  name: IMessageSnapshot
+  nameWithType: IMessageSnapshot
+  fullName: Fluxer.Net.IMessageSnapshot
+- uid: Fluxer.Net.Message
+  commentId: T:Fluxer.Net.Message
+  parent: Fluxer.Net
+  href: Fluxer.Net.Message.html
+  name: Message
+  nameWithType: Message
+  fullName: Fluxer.Net.Message
+- uid: Fluxer.Net.MessageAckJson
+  commentId: T:Fluxer.Net.MessageAckJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.MessageAckJson.html
+  name: MessageAckJson
+  nameWithType: MessageAckJson
+  fullName: Fluxer.Net.MessageAckJson
+- uid: Fluxer.Net.MessageCall
+  commentId: T:Fluxer.Net.MessageCall
+  parent: Fluxer.Net
+  href: Fluxer.Net.MessageCall.html
+  name: MessageCall
+  nameWithType: MessageCall
+  fullName: Fluxer.Net.MessageCall
+- uid: Fluxer.Net.MessageCallJson
+  commentId: T:Fluxer.Net.MessageCallJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.MessageCallJson.html
+  name: MessageCallJson
+  nameWithType: MessageCallJson
+  fullName: Fluxer.Net.MessageCallJson
+- uid: Fluxer.Net.MessageFlag
+  commentId: T:Fluxer.Net.MessageFlag
+  parent: Fluxer.Net
+  href: Fluxer.Net.MessageFlag.html
+  name: MessageFlag
+  nameWithType: MessageFlag
+  fullName: Fluxer.Net.MessageFlag
+- uid: Fluxer.Net.MessageJson
+  commentId: T:Fluxer.Net.MessageJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.MessageJson.html
+  name: MessageJson
+  nameWithType: MessageJson
+  fullName: Fluxer.Net.MessageJson
+- uid: Fluxer.Net.MessageReaction
+  commentId: T:Fluxer.Net.MessageReaction
+  parent: Fluxer.Net
+  href: Fluxer.Net.MessageReaction.html
+  name: MessageReaction
+  nameWithType: MessageReaction
+  fullName: Fluxer.Net.MessageReaction
+- uid: Fluxer.Net.MessageReactionJson
+  commentId: T:Fluxer.Net.MessageReactionJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.MessageReactionJson.html
+  name: MessageReactionJson
+  nameWithType: MessageReactionJson
+  fullName: Fluxer.Net.MessageReactionJson
+- uid: Fluxer.Net.MessageReference
+  commentId: T:Fluxer.Net.MessageReference
+  parent: Fluxer.Net
+  href: Fluxer.Net.MessageReference.html
+  name: MessageReference
+  nameWithType: MessageReference
+  fullName: Fluxer.Net.MessageReference
+- uid: Fluxer.Net.MessageReferenceJson
+  commentId: T:Fluxer.Net.MessageReferenceJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.MessageReferenceJson.html
+  name: MessageReferenceJson
+  nameWithType: MessageReferenceJson
+  fullName: Fluxer.Net.MessageReferenceJson
+- uid: Fluxer.Net.MessageReferenceType
+  commentId: T:Fluxer.Net.MessageReferenceType
+  parent: Fluxer.Net
+  href: Fluxer.Net.MessageReferenceType.html
+  name: MessageReferenceType
+  nameWithType: MessageReferenceType
+  fullName: Fluxer.Net.MessageReferenceType
+- uid: Fluxer.Net.MessageSnapshot
+  commentId: T:Fluxer.Net.MessageSnapshot
+  parent: Fluxer.Net
+  href: Fluxer.Net.MessageSnapshot.html
+  name: MessageSnapshot
+  nameWithType: MessageSnapshot
+  fullName: Fluxer.Net.MessageSnapshot
+- uid: Fluxer.Net.MessageSnapshotJson
+  commentId: T:Fluxer.Net.MessageSnapshotJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.MessageSnapshotJson.html
+  name: MessageSnapshotJson
+  nameWithType: MessageSnapshotJson
+  fullName: Fluxer.Net.MessageSnapshotJson
+- uid: Fluxer.Net.MessageType
+  commentId: T:Fluxer.Net.MessageType
+  parent: Fluxer.Net
+  href: Fluxer.Net.MessageType.html
+  name: MessageType
+  nameWithType: MessageType
+  fullName: Fluxer.Net.MessageType
+- uid: Fluxer.Net.SavedMessageJson
+  commentId: T:Fluxer.Net.SavedMessageJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.SavedMessageJson.html
+  name: SavedMessageJson
+  nameWithType: SavedMessageJson
+  fullName: Fluxer.Net.SavedMessageJson
+- uid: Fluxer.Net.SocketMessage
+  commentId: T:Fluxer.Net.SocketMessage
+  parent: Fluxer.Net
+  href: Fluxer.Net.SocketMessage.html
+  name: SocketMessage
+  nameWithType: SocketMessage
+  fullName: Fluxer.Net.SocketMessage
+- uid: Fluxer.Net.IInstance
+  commentId: T:Fluxer.Net.IInstance
+  parent: Fluxer.Net
+  href: Fluxer.Net.IInstance.html
+  name: IInstance
+  nameWithType: IInstance
+  fullName: Fluxer.Net.IInstance
+- uid: Fluxer.Net.IInstanceEndpoints
+  commentId: T:Fluxer.Net.IInstanceEndpoints
+  parent: Fluxer.Net
+  href: Fluxer.Net.IInstanceEndpoints.html
+  name: IInstanceEndpoints
+  nameWithType: IInstanceEndpoints
+  fullName: Fluxer.Net.IInstanceEndpoints
+- uid: Fluxer.Net.IInstanceCaptcha
+  commentId: T:Fluxer.Net.IInstanceCaptcha
+  parent: Fluxer.Net
+  href: Fluxer.Net.IInstanceCaptcha.html
+  name: IInstanceCaptcha
+  nameWithType: IInstanceCaptcha
+  fullName: Fluxer.Net.IInstanceCaptcha
+- uid: Fluxer.Net.IInstanceFeatures
+  commentId: T:Fluxer.Net.IInstanceFeatures
+  parent: Fluxer.Net
+  href: Fluxer.Net.IInstanceFeatures.html
+  name: IInstanceFeatures
+  nameWithType: IInstanceFeatures
+  fullName: Fluxer.Net.IInstanceFeatures
+- uid: Fluxer.Net.IInstanceGifs
+  commentId: T:Fluxer.Net.IInstanceGifs
+  parent: Fluxer.Net
+  href: Fluxer.Net.IInstanceGifs.html
+  name: IInstanceGifs
+  nameWithType: IInstanceGifs
+  fullName: Fluxer.Net.IInstanceGifs
+- uid: Fluxer.Net.IInstanceSSO
+  commentId: T:Fluxer.Net.IInstanceSSO
+  parent: Fluxer.Net
+  href: Fluxer.Net.IInstanceSSO.html
+  name: IInstanceSSO
+  nameWithType: IInstanceSSO
+  fullName: Fluxer.Net.IInstanceSSO
+- uid: Fluxer.Net.IInstanceRegistration
+  commentId: T:Fluxer.Net.IInstanceRegistration
+  parent: Fluxer.Net
+  href: Fluxer.Net.IInstanceRegistration.html
+  name: IInstanceRegistration
+  nameWithType: IInstanceRegistration
+  fullName: Fluxer.Net.IInstanceRegistration
+- uid: Fluxer.Net.IInstanceCommunity
+  commentId: T:Fluxer.Net.IInstanceCommunity
+  parent: Fluxer.Net
+  href: Fluxer.Net.IInstanceCommunity.html
+  name: IInstanceCommunity
+  nameWithType: IInstanceCommunity
+  fullName: Fluxer.Net.IInstanceCommunity
+- uid: Fluxer.Net.IInstanceServices
+  commentId: T:Fluxer.Net.IInstanceServices
+  parent: Fluxer.Net
+  href: Fluxer.Net.IInstanceServices.html
+  name: IInstanceServices
+  nameWithType: IInstanceServices
+  fullName: Fluxer.Net.IInstanceServices
+- uid: Fluxer.Net.IInstanceLimits
+  commentId: T:Fluxer.Net.IInstanceLimits
+  parent: Fluxer.Net
+  href: Fluxer.Net.IInstanceLimits.html
+  name: IInstanceLimits
+  nameWithType: IInstanceLimits
+  fullName: Fluxer.Net.IInstanceLimits
+- uid: Fluxer.Net.IInstancePush
+  commentId: T:Fluxer.Net.IInstancePush
+  parent: Fluxer.Net
+  href: Fluxer.Net.IInstancePush.html
+  name: IInstancePush
+  nameWithType: IInstancePush
+  fullName: Fluxer.Net.IInstancePush
+- uid: Fluxer.Net.IInstanceApp
+  commentId: T:Fluxer.Net.IInstanceApp
+  parent: Fluxer.Net
+  href: Fluxer.Net.IInstanceApp.html
+  name: IInstanceApp
+  nameWithType: IInstanceApp
+  fullName: Fluxer.Net.IInstanceApp
+- uid: Fluxer.Net.IInstanceAppBranding
+  commentId: T:Fluxer.Net.IInstanceAppBranding
+  parent: Fluxer.Net
+  href: Fluxer.Net.IInstanceAppBranding.html
+  name: IInstanceAppBranding
+  nameWithType: IInstanceAppBranding
+  fullName: Fluxer.Net.IInstanceAppBranding
+- uid: Fluxer.Net.IInstanceAppSetup
+  commentId: T:Fluxer.Net.IInstanceAppSetup
+  parent: Fluxer.Net
+  href: Fluxer.Net.IInstanceAppSetup.html
+  name: IInstanceAppSetup
+  nameWithType: IInstanceAppSetup
+  fullName: Fluxer.Net.IInstanceAppSetup
+- uid: Fluxer.Net.IInstanceAppLegal
+  commentId: T:Fluxer.Net.IInstanceAppLegal
+  parent: Fluxer.Net
+  href: Fluxer.Net.IInstanceAppLegal.html
+  name: IInstanceAppLegal
+  nameWithType: IInstanceAppLegal
+  fullName: Fluxer.Net.IInstanceAppLegal
+- uid: Fluxer.Net.IInstanceAppRegistration
+  commentId: T:Fluxer.Net.IInstanceAppRegistration
+  parent: Fluxer.Net
+  href: Fluxer.Net.IInstanceAppRegistration.html
+  name: IInstanceAppRegistration
+  nameWithType: IInstanceAppRegistration
+  fullName: Fluxer.Net.IInstanceAppRegistration
+- uid: Fluxer.Net.Instance
+  commentId: T:Fluxer.Net.Instance
+  parent: Fluxer.Net
+  href: Fluxer.Net.Instance.html
+  name: Instance
+  nameWithType: Instance
+  fullName: Fluxer.Net.Instance
+- uid: Fluxer.Net.InstanceEndpoints
+  commentId: T:Fluxer.Net.InstanceEndpoints
+  parent: Fluxer.Net
+  href: Fluxer.Net.InstanceEndpoints.html
+  name: InstanceEndpoints
+  nameWithType: InstanceEndpoints
+  fullName: Fluxer.Net.InstanceEndpoints
+- uid: Fluxer.Net.InstanceCaptcha
+  commentId: T:Fluxer.Net.InstanceCaptcha
+  parent: Fluxer.Net
+  href: Fluxer.Net.InstanceCaptcha.html
+  name: InstanceCaptcha
+  nameWithType: InstanceCaptcha
+  fullName: Fluxer.Net.InstanceCaptcha
+- uid: Fluxer.Net.InstanceFeatures
+  commentId: T:Fluxer.Net.InstanceFeatures
+  parent: Fluxer.Net
+  href: Fluxer.Net.InstanceFeatures.html
+  name: InstanceFeatures
+  nameWithType: InstanceFeatures
+  fullName: Fluxer.Net.InstanceFeatures
+- uid: Fluxer.Net.InstanceGifs
+  commentId: T:Fluxer.Net.InstanceGifs
+  parent: Fluxer.Net
+  href: Fluxer.Net.InstanceGifs.html
+  name: InstanceGifs
+  nameWithType: InstanceGifs
+  fullName: Fluxer.Net.InstanceGifs
+- uid: Fluxer.Net.InstanceSSO
+  commentId: T:Fluxer.Net.InstanceSSO
+  parent: Fluxer.Net
+  href: Fluxer.Net.InstanceSSO.html
+  name: InstanceSSO
+  nameWithType: InstanceSSO
+  fullName: Fluxer.Net.InstanceSSO
+- uid: Fluxer.Net.InstanceRegistration
+  commentId: T:Fluxer.Net.InstanceRegistration
+  parent: Fluxer.Net
+  href: Fluxer.Net.InstanceRegistration.html
+  name: InstanceRegistration
+  nameWithType: InstanceRegistration
+  fullName: Fluxer.Net.InstanceRegistration
+- uid: Fluxer.Net.InstanceCommunity
+  commentId: T:Fluxer.Net.InstanceCommunity
+  parent: Fluxer.Net
+  href: Fluxer.Net.InstanceCommunity.html
+  name: InstanceCommunity
+  nameWithType: InstanceCommunity
+  fullName: Fluxer.Net.InstanceCommunity
+- uid: Fluxer.Net.InstanceServices
+  commentId: T:Fluxer.Net.InstanceServices
+  parent: Fluxer.Net
+  href: Fluxer.Net.InstanceServices.html
+  name: InstanceServices
+  nameWithType: InstanceServices
+  fullName: Fluxer.Net.InstanceServices
+- uid: Fluxer.Net.InstanceLimits
+  commentId: T:Fluxer.Net.InstanceLimits
+  parent: Fluxer.Net
+  href: Fluxer.Net.InstanceLimits.html
+  name: InstanceLimits
+  nameWithType: InstanceLimits
+  fullName: Fluxer.Net.InstanceLimits
+- uid: Fluxer.Net.InstancePush
+  commentId: T:Fluxer.Net.InstancePush
+  parent: Fluxer.Net
+  href: Fluxer.Net.InstancePush.html
+  name: InstancePush
+  nameWithType: InstancePush
+  fullName: Fluxer.Net.InstancePush
+- uid: Fluxer.Net.InstanceApp
+  commentId: T:Fluxer.Net.InstanceApp
+  parent: Fluxer.Net
+  href: Fluxer.Net.InstanceApp.html
+  name: InstanceApp
+  nameWithType: InstanceApp
+  fullName: Fluxer.Net.InstanceApp
+- uid: Fluxer.Net.InstanceAppBranding
+  commentId: T:Fluxer.Net.InstanceAppBranding
+  parent: Fluxer.Net
+  href: Fluxer.Net.InstanceAppBranding.html
+  name: InstanceAppBranding
+  nameWithType: InstanceAppBranding
+  fullName: Fluxer.Net.InstanceAppBranding
+- uid: Fluxer.Net.InstanceAppSetup
+  commentId: T:Fluxer.Net.InstanceAppSetup
+  parent: Fluxer.Net
+  href: Fluxer.Net.InstanceAppSetup.html
+  name: InstanceAppSetup
+  nameWithType: InstanceAppSetup
+  fullName: Fluxer.Net.InstanceAppSetup
+- uid: Fluxer.Net.InstanceAppLegal
+  commentId: T:Fluxer.Net.InstanceAppLegal
+  parent: Fluxer.Net
+  href: Fluxer.Net.InstanceAppLegal.html
+  name: InstanceAppLegal
+  nameWithType: InstanceAppLegal
+  fullName: Fluxer.Net.InstanceAppLegal
+- uid: Fluxer.Net.InstanceAppRegistration
+  commentId: T:Fluxer.Net.InstanceAppRegistration
+  parent: Fluxer.Net
+  href: Fluxer.Net.InstanceAppRegistration.html
+  name: InstanceAppRegistration
+  nameWithType: InstanceAppRegistration
+  fullName: Fluxer.Net.InstanceAppRegistration
+- uid: Fluxer.Net.InstanceJson
+  commentId: T:Fluxer.Net.InstanceJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.InstanceJson.html
+  name: InstanceJson
+  nameWithType: InstanceJson
+  fullName: Fluxer.Net.InstanceJson
+- uid: Fluxer.Net.InstanceEndpointsJson
+  commentId: T:Fluxer.Net.InstanceEndpointsJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.InstanceEndpointsJson.html
+  name: InstanceEndpointsJson
+  nameWithType: InstanceEndpointsJson
+  fullName: Fluxer.Net.InstanceEndpointsJson
+- uid: Fluxer.Net.InstanceCaptchaJson
+  commentId: T:Fluxer.Net.InstanceCaptchaJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.InstanceCaptchaJson.html
+  name: InstanceCaptchaJson
+  nameWithType: InstanceCaptchaJson
+  fullName: Fluxer.Net.InstanceCaptchaJson
+- uid: Fluxer.Net.InstanceFeaturesJson
+  commentId: T:Fluxer.Net.InstanceFeaturesJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.InstanceFeaturesJson.html
+  name: InstanceFeaturesJson
+  nameWithType: InstanceFeaturesJson
+  fullName: Fluxer.Net.InstanceFeaturesJson
+- uid: Fluxer.Net.InstanceGifsJson
+  commentId: T:Fluxer.Net.InstanceGifsJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.InstanceGifsJson.html
+  name: InstanceGifsJson
+  nameWithType: InstanceGifsJson
+  fullName: Fluxer.Net.InstanceGifsJson
+- uid: Fluxer.Net.InstanceSSOJson
+  commentId: T:Fluxer.Net.InstanceSSOJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.InstanceSSOJson.html
+  name: InstanceSSOJson
+  nameWithType: InstanceSSOJson
+  fullName: Fluxer.Net.InstanceSSOJson
+- uid: Fluxer.Net.InstanceRegistrationJson
+  commentId: T:Fluxer.Net.InstanceRegistrationJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.InstanceRegistrationJson.html
+  name: InstanceRegistrationJson
+  nameWithType: InstanceRegistrationJson
+  fullName: Fluxer.Net.InstanceRegistrationJson
+- uid: Fluxer.Net.InstanceCommunityJson
+  commentId: T:Fluxer.Net.InstanceCommunityJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.InstanceCommunityJson.html
+  name: InstanceCommunityJson
+  nameWithType: InstanceCommunityJson
+  fullName: Fluxer.Net.InstanceCommunityJson
+- uid: Fluxer.Net.InstanceServicesJson
+  commentId: T:Fluxer.Net.InstanceServicesJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.InstanceServicesJson.html
+  name: InstanceServicesJson
+  nameWithType: InstanceServicesJson
+  fullName: Fluxer.Net.InstanceServicesJson
+- uid: Fluxer.Net.InstanceLimitsJson
+  commentId: T:Fluxer.Net.InstanceLimitsJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.InstanceLimitsJson.html
+  name: InstanceLimitsJson
+  nameWithType: InstanceLimitsJson
+  fullName: Fluxer.Net.InstanceLimitsJson
+- uid: Fluxer.Net.InstancePushJson
+  commentId: T:Fluxer.Net.InstancePushJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.InstancePushJson.html
+  name: InstancePushJson
+  nameWithType: InstancePushJson
+  fullName: Fluxer.Net.InstancePushJson
+- uid: Fluxer.Net.InstanceAppJson
+  commentId: T:Fluxer.Net.InstanceAppJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.InstanceAppJson.html
+  name: InstanceAppJson
+  nameWithType: InstanceAppJson
+  fullName: Fluxer.Net.InstanceAppJson
+- uid: Fluxer.Net.InstanceAppBrandingJson
+  commentId: T:Fluxer.Net.InstanceAppBrandingJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.InstanceAppBrandingJson.html
+  name: InstanceAppBrandingJson
+  nameWithType: InstanceAppBrandingJson
+  fullName: Fluxer.Net.InstanceAppBrandingJson
+- uid: Fluxer.Net.InstanceAppSetupJson
+  commentId: T:Fluxer.Net.InstanceAppSetupJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.InstanceAppSetupJson.html
+  name: InstanceAppSetupJson
+  nameWithType: InstanceAppSetupJson
+  fullName: Fluxer.Net.InstanceAppSetupJson
+- uid: Fluxer.Net.InstanceAppLegalJson
+  commentId: T:Fluxer.Net.InstanceAppLegalJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.InstanceAppLegalJson.html
+  name: InstanceAppLegalJson
+  nameWithType: InstanceAppLegalJson
+  fullName: Fluxer.Net.InstanceAppLegalJson
+- uid: Fluxer.Net.InstanceAppRegistrationJson
+  commentId: T:Fluxer.Net.InstanceAppRegistrationJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.InstanceAppRegistrationJson.html
+  name: InstanceAppRegistrationJson
+  nameWithType: InstanceAppRegistrationJson
+  fullName: Fluxer.Net.InstanceAppRegistrationJson
+- uid: Fluxer.Net.UsernameAvailableJson
+  commentId: T:Fluxer.Net.UsernameAvailableJson
+  href: Fluxer.Net.UsernameAvailableJson.html
+  name: UsernameAvailableJson
+  nameWithType: UsernameAvailableJson
+  fullName: Fluxer.Net.UsernameAvailableJson
+- uid: Fluxer.Net.FluxerOAuthRefreshTokenJson
+  commentId: T:Fluxer.Net.FluxerOAuthRefreshTokenJson
+  href: Fluxer.Net.FluxerOAuthRefreshTokenJson.html
+  name: FluxerOAuthRefreshTokenJson
+  nameWithType: FluxerOAuthRefreshTokenJson
+  fullName: Fluxer.Net.FluxerOAuthRefreshTokenJson
+- uid: Fluxer.Net.FluxerOAuthToken
+  commentId: T:Fluxer.Net.FluxerOAuthToken
+  parent: Fluxer.Net
+  href: Fluxer.Net.FluxerOAuthToken.html
+  name: FluxerOAuthToken
+  nameWithType: FluxerOAuthToken
+  fullName: Fluxer.Net.FluxerOAuthToken
+- uid: Fluxer.Net.FluxerOAuthTokenJson
+  commentId: T:Fluxer.Net.FluxerOAuthTokenJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.FluxerOAuthTokenJson.html
+  name: FluxerOAuthTokenJson
+  nameWithType: FluxerOAuthTokenJson
+  fullName: Fluxer.Net.FluxerOAuthTokenJson
+- uid: Fluxer.Net.FluxerOAuthUser
+  commentId: T:Fluxer.Net.FluxerOAuthUser
+  parent: Fluxer.Net
+  href: Fluxer.Net.FluxerOAuthUser.html
+  name: FluxerOAuthUser
+  nameWithType: FluxerOAuthUser
+  fullName: Fluxer.Net.FluxerOAuthUser
+- uid: Fluxer.Net.FluxerOAuthUserJson
+  commentId: T:Fluxer.Net.FluxerOAuthUserJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.FluxerOAuthUserJson.html
+  name: FluxerOAuthUserJson
+  nameWithType: FluxerOAuthUserJson
+  fullName: Fluxer.Net.FluxerOAuthUserJson
+- uid: Fluxer.Net.FluxerOAuthValidTokenJson
+  commentId: T:Fluxer.Net.FluxerOAuthValidTokenJson
+  href: Fluxer.Net.FluxerOAuthValidTokenJson.html
+  name: FluxerOAuthValidTokenJson
+  nameWithType: FluxerOAuthValidTokenJson
+  fullName: Fluxer.Net.FluxerOAuthValidTokenJson
+- uid: Fluxer.Net.IFluxerOAuthToken
+  commentId: T:Fluxer.Net.IFluxerOAuthToken
+  parent: Fluxer.Net
+  href: Fluxer.Net.IFluxerOAuthToken.html
+  name: IFluxerOAuthToken
+  nameWithType: IFluxerOAuthToken
+  fullName: Fluxer.Net.IFluxerOAuthToken
+- uid: Fluxer.Net.IFluxerOAuthUser
+  commentId: T:Fluxer.Net.IFluxerOAuthUser
+  parent: Fluxer.Net
+  href: Fluxer.Net.IFluxerOAuthUser.html
+  name: IFluxerOAuthUser
+  nameWithType: IFluxerOAuthUser
+  fullName: Fluxer.Net.IFluxerOAuthUser
+- uid: Fluxer.Net.Activity
+  commentId: T:Fluxer.Net.Activity
+  parent: Fluxer.Net
+  href: Fluxer.Net.Activity.html
+  name: Activity
+  nameWithType: Activity
+  fullName: Fluxer.Net.Activity
+- uid: Fluxer.Net.ActivityTimestamps
+  commentId: T:Fluxer.Net.ActivityTimestamps
+  parent: Fluxer.Net
+  href: Fluxer.Net.ActivityTimestamps.html
+  name: ActivityTimestamps
+  nameWithType: ActivityTimestamps
+  fullName: Fluxer.Net.ActivityTimestamps
+- uid: Fluxer.Net.ActivityJson
+  commentId: T:Fluxer.Net.ActivityJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.ActivityJson.html
+  name: ActivityJson
+  nameWithType: ActivityJson
+  fullName: Fluxer.Net.ActivityJson
+- uid: Fluxer.Net.ActivityTimestampsJson
+  commentId: T:Fluxer.Net.ActivityTimestampsJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.ActivityTimestampsJson.html
+  name: ActivityTimestampsJson
+  nameWithType: ActivityTimestampsJson
+  fullName: Fluxer.Net.ActivityTimestampsJson
+- uid: Fluxer.Net.ClientStatus
+  commentId: T:Fluxer.Net.ClientStatus
+  parent: Fluxer.Net
+  href: Fluxer.Net.ClientStatus.html
+  name: ClientStatus
+  nameWithType: ClientStatus
+  fullName: Fluxer.Net.ClientStatus
+- uid: Fluxer.Net.CurrentUser
+  commentId: T:Fluxer.Net.CurrentUser
+  parent: Fluxer.Net
+  href: Fluxer.Net.CurrentUser.html
+  name: CurrentUser
+  nameWithType: CurrentUser
+  fullName: Fluxer.Net.CurrentUser
+- uid: Fluxer.Net.CurrentUserJson
+  commentId: T:Fluxer.Net.CurrentUserJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.CurrentUserJson.html
+  name: CurrentUserJson
+  nameWithType: CurrentUserJson
+  fullName: Fluxer.Net.CurrentUserJson
+- uid: Fluxer.Net.FriendSourceFlags
+  commentId: T:Fluxer.Net.FriendSourceFlags
+  parent: Fluxer.Net
+  href: Fluxer.Net.FriendSourceFlags.html
+  name: FriendSourceFlags
+  nameWithType: FriendSourceFlags
+  fullName: Fluxer.Net.FriendSourceFlags
+- uid: Fluxer.Net.IActivity
+  commentId: T:Fluxer.Net.IActivity
+  parent: Fluxer.Net
+  href: Fluxer.Net.IActivity.html
+  name: IActivity
+  nameWithType: IActivity
+  fullName: Fluxer.Net.IActivity
+- uid: Fluxer.Net.IActivityTimestamps
+  commentId: T:Fluxer.Net.IActivityTimestamps
+  parent: Fluxer.Net
+  href: Fluxer.Net.IActivityTimestamps.html
+  name: IActivityTimestamps
+  nameWithType: IActivityTimestamps
+  fullName: Fluxer.Net.IActivityTimestamps
+- uid: Fluxer.Net.IClientStatus
+  commentId: T:Fluxer.Net.IClientStatus
+  parent: Fluxer.Net
+  href: Fluxer.Net.IClientStatus.html
+  name: IClientStatus
+  nameWithType: IClientStatus
+  fullName: Fluxer.Net.IClientStatus
+- uid: Fluxer.Net.ICurrentUser
+  commentId: T:Fluxer.Net.ICurrentUser
+  parent: Fluxer.Net
+  href: Fluxer.Net.ICurrentUser.html
+  name: ICurrentUser
+  nameWithType: ICurrentUser
+  fullName: Fluxer.Net.ICurrentUser
+- uid: Fluxer.Net.IPresence
+  commentId: T:Fluxer.Net.IPresence
+  parent: Fluxer.Net
+  href: Fluxer.Net.IPresence.html
+  name: IPresence
+  nameWithType: IPresence
+  fullName: Fluxer.Net.IPresence
+- uid: Fluxer.Net.IUser
+  commentId: T:Fluxer.Net.IUser
+  parent: Fluxer.Net
+  href: Fluxer.Net.IUser.html
+  name: IUser
+  nameWithType: IUser
+  fullName: Fluxer.Net.IUser
+- uid: Fluxer.Net.IUserConnection
+  commentId: T:Fluxer.Net.IUserConnection
+  parent: Fluxer.Net
+  href: Fluxer.Net.IUserConnection.html
+  name: IUserConnection
+  nameWithType: IUserConnection
+  fullName: Fluxer.Net.IUserConnection
+- uid: Fluxer.Net.IUserGuildFolder
+  commentId: T:Fluxer.Net.IUserGuildFolder
+  parent: Fluxer.Net
+  href: Fluxer.Net.IUserGuildFolder.html
+  name: IUserGuildFolder
+  nameWithType: IUserGuildFolder
+  fullName: Fluxer.Net.IUserGuildFolder
+- uid: Fluxer.Net.IUserGuildSettings
+  commentId: T:Fluxer.Net.IUserGuildSettings
+  parent: Fluxer.Net
+  href: Fluxer.Net.IUserGuildSettings.html
+  name: IUserGuildSettings
+  nameWithType: IUserGuildSettings
+  fullName: Fluxer.Net.IUserGuildSettings
+- uid: Fluxer.Net.IUserProfile
+  commentId: T:Fluxer.Net.IUserProfile
+  parent: Fluxer.Net
+  href: Fluxer.Net.IUserProfile.html
+  name: IUserProfile
+  nameWithType: IUserProfile
+  fullName: Fluxer.Net.IUserProfile
+- uid: Fluxer.Net.IUserSettings
+  commentId: T:Fluxer.Net.IUserSettings
+  parent: Fluxer.Net
+  href: Fluxer.Net.IUserSettings.html
+  name: IUserSettings
+  nameWithType: IUserSettings
+  fullName: Fluxer.Net.IUserSettings
+- uid: Fluxer.Net.NotificationType
+  commentId: T:Fluxer.Net.NotificationType
+  parent: Fluxer.Net
+  href: Fluxer.Net.NotificationType.html
+  name: NotificationType
+  nameWithType: NotificationType
+  fullName: Fluxer.Net.NotificationType
+- uid: Fluxer.Net.PremiumType
+  commentId: T:Fluxer.Net.PremiumType
+  parent: Fluxer.Net
+  href: Fluxer.Net.PremiumType.html
+  name: PremiumType
+  nameWithType: PremiumType
+  fullName: Fluxer.Net.PremiumType
+- uid: Fluxer.Net.Presence
+  commentId: T:Fluxer.Net.Presence
+  parent: Fluxer.Net
+  href: Fluxer.Net.Presence.html
+  name: Presence
+  nameWithType: Presence
+  fullName: Fluxer.Net.Presence
+- uid: Fluxer.Net.PresenceJson
+  commentId: T:Fluxer.Net.PresenceJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.PresenceJson.html
+  name: PresenceJson
+  nameWithType: PresenceJson
+  fullName: Fluxer.Net.PresenceJson
+- uid: Fluxer.Net.ClientStatusJson
+  commentId: T:Fluxer.Net.ClientStatusJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.ClientStatusJson.html
+  name: ClientStatusJson
+  nameWithType: ClientStatusJson
+  fullName: Fluxer.Net.ClientStatusJson
+- uid: Fluxer.Net.RecentMentionJson
+  commentId: T:Fluxer.Net.RecentMentionJson
+  href: Fluxer.Net.RecentMentionJson.html
+  name: RecentMentionJson
+  nameWithType: RecentMentionJson
+  fullName: Fluxer.Net.RecentMentionJson
+- uid: Fluxer.Net.RelationshipJson
+  commentId: T:Fluxer.Net.RelationshipJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.RelationshipJson.html
+  name: RelationshipJson
+  nameWithType: RelationshipJson
+  fullName: Fluxer.Net.RelationshipJson
+- uid: Fluxer.Net.RelationshipType
+  commentId: T:Fluxer.Net.RelationshipType
+  parent: Fluxer.Net
+  href: Fluxer.Net.RelationshipType.html
+  name: RelationshipType
+  nameWithType: RelationshipType
+  fullName: Fluxer.Net.RelationshipType
+- uid: Fluxer.Net.SocketUser
+  commentId: T:Fluxer.Net.SocketUser
+  parent: Fluxer.Net
+  href: Fluxer.Net.SocketUser.html
+  name: SocketUser
+  nameWithType: SocketUser
+  fullName: Fluxer.Net.SocketUser
+- uid: Fluxer.Net.Status
+  commentId: T:Fluxer.Net.Status
+  parent: Fluxer.Net
+  href: Fluxer.Net.Status.html
+  name: Status
+  nameWithType: Status
+  fullName: Fluxer.Net.Status
+- uid: Fluxer.Net.User
+  commentId: T:Fluxer.Net.User
+  parent: Fluxer.Net
+  href: Fluxer.Net.User.html
+  name: User
+  nameWithType: User
+  fullName: Fluxer.Net.User
+- uid: Fluxer.Net.UserConnection
+  commentId: T:Fluxer.Net.UserConnection
+  parent: Fluxer.Net
+  href: Fluxer.Net.UserConnection.html
+  name: UserConnection
+  nameWithType: UserConnection
+  fullName: Fluxer.Net.UserConnection
+- uid: Fluxer.Net.UserConnectionJson
+  commentId: T:Fluxer.Net.UserConnectionJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.UserConnectionJson.html
+  name: UserConnectionJson
+  nameWithType: UserConnectionJson
+  fullName: Fluxer.Net.UserConnectionJson
+- uid: Fluxer.Net.UserCustomStatusJson
+  commentId: T:Fluxer.Net.UserCustomStatusJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.UserCustomStatusJson.html
+  name: UserCustomStatusJson
+  nameWithType: UserCustomStatusJson
+  fullName: Fluxer.Net.UserCustomStatusJson
+- uid: Fluxer.Net.UserExplicitContentFilterType
+  commentId: T:Fluxer.Net.UserExplicitContentFilterType
+  parent: Fluxer.Net
+  href: Fluxer.Net.UserExplicitContentFilterType.html
+  name: UserExplicitContentFilterType
+  nameWithType: UserExplicitContentFilterType
+  fullName: Fluxer.Net.UserExplicitContentFilterType
+- uid: Fluxer.Net.UserFlags
+  commentId: T:Fluxer.Net.UserFlags
+  parent: Fluxer.Net
+  href: Fluxer.Net.UserFlags.html
+  name: UserFlags
+  nameWithType: UserFlags
+  fullName: Fluxer.Net.UserFlags
+- uid: Fluxer.Net.UserGuildFolderJson
+  commentId: T:Fluxer.Net.UserGuildFolderJson
+  href: Fluxer.Net.UserGuildFolderJson.html
+  name: UserGuildFolderJson
+  nameWithType: UserGuildFolderJson
+  fullName: Fluxer.Net.UserGuildFolderJson
+- uid: Fluxer.Net.UserGuildSettingsJson
+  commentId: T:Fluxer.Net.UserGuildSettingsJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.UserGuildSettingsJson.html
+  name: UserGuildSettingsJson
+  nameWithType: UserGuildSettingsJson
+  fullName: Fluxer.Net.UserGuildSettingsJson
+- uid: Fluxer.Net.UserJson
+  commentId: T:Fluxer.Net.UserJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.UserJson.html
+  name: UserJson
+  nameWithType: UserJson
+  fullName: Fluxer.Net.UserJson
+- uid: Fluxer.Net.UserNoteJson
+  commentId: T:Fluxer.Net.UserNoteJson
+  href: Fluxer.Net.UserNoteJson.html
+  name: UserNoteJson
+  nameWithType: UserNoteJson
+  fullName: Fluxer.Net.UserNoteJson
+- uid: Fluxer.Net.UserProfile
+  commentId: T:Fluxer.Net.UserProfile
+  parent: Fluxer.Net
+  href: Fluxer.Net.UserProfile.html
+  name: UserProfile
+  nameWithType: UserProfile
+  fullName: Fluxer.Net.UserProfile
+- uid: Fluxer.Net.UserProfileJson
+  commentId: T:Fluxer.Net.UserProfileJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.UserProfileJson.html
+  name: UserProfileJson
+  nameWithType: UserProfileJson
+  fullName: Fluxer.Net.UserProfileJson
+- uid: Fluxer.Net.UserProfileResponse
+  commentId: T:Fluxer.Net.UserProfileResponse
+  href: Fluxer.Net.UserProfileResponse.html
+  name: UserProfileResponse
+  nameWithType: UserProfileResponse
+  fullName: Fluxer.Net.UserProfileResponse
+- uid: Fluxer.Net.UserSettings
+  commentId: T:Fluxer.Net.UserSettings
+  parent: Fluxer.Net
+  href: Fluxer.Net.UserSettings.html
+  name: UserSettings
+  nameWithType: UserSettings
+  fullName: Fluxer.Net.UserSettings
+- uid: Fluxer.Net.UserSettingsJson
+  commentId: T:Fluxer.Net.UserSettingsJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.UserSettingsJson.html
+  name: UserSettingsJson
+  nameWithType: UserSettingsJson
+  fullName: Fluxer.Net.UserSettingsJson
+- uid: Fluxer.Net.CallEligibility
+  commentId: T:Fluxer.Net.CallEligibility
+  parent: Fluxer.Net
+  href: Fluxer.Net.CallEligibility.html
+  name: CallEligibility
+  nameWithType: CallEligibility
+  fullName: Fluxer.Net.CallEligibility
+- uid: Fluxer.Net.CallEligibilityJson
+  commentId: T:Fluxer.Net.CallEligibilityJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.CallEligibilityJson.html
+  name: CallEligibilityJson
+  nameWithType: CallEligibilityJson
+  fullName: Fluxer.Net.CallEligibilityJson
+- uid: Fluxer.Net.CallInfoJson
+  commentId: T:Fluxer.Net.CallInfoJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.CallInfoJson.html
+  name: CallInfoJson
+  nameWithType: CallInfoJson
+  fullName: Fluxer.Net.CallInfoJson
+- uid: Fluxer.Net.ICallEligibility
+  commentId: T:Fluxer.Net.ICallEligibility
+  parent: Fluxer.Net
+  href: Fluxer.Net.ICallEligibility.html
+  name: ICallEligibility
+  nameWithType: ICallEligibility
+  fullName: Fluxer.Net.ICallEligibility
+- uid: Fluxer.Net.IRtcRegion
+  commentId: T:Fluxer.Net.IRtcRegion
+  parent: Fluxer.Net
+  href: Fluxer.Net.IRtcRegion.html
+  name: IRtcRegion
+  nameWithType: IRtcRegion
+  fullName: Fluxer.Net.IRtcRegion
+- uid: Fluxer.Net.IVoiceState
+  commentId: T:Fluxer.Net.IVoiceState
+  parent: Fluxer.Net
+  href: Fluxer.Net.IVoiceState.html
+  name: IVoiceState
+  nameWithType: IVoiceState
+  fullName: Fluxer.Net.IVoiceState
+- uid: Fluxer.Net.RtcRegion
+  commentId: T:Fluxer.Net.RtcRegion
+  parent: Fluxer.Net
+  href: Fluxer.Net.RtcRegion.html
+  name: RtcRegion
+  nameWithType: RtcRegion
+  fullName: Fluxer.Net.RtcRegion
+- uid: Fluxer.Net.RtcRegionJson
+  commentId: T:Fluxer.Net.RtcRegionJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.RtcRegionJson.html
+  name: RtcRegionJson
+  nameWithType: RtcRegionJson
+  fullName: Fluxer.Net.RtcRegionJson
+- uid: Fluxer.Net.SocketVoiceState
+  commentId: T:Fluxer.Net.SocketVoiceState
+  parent: Fluxer.Net
+  href: Fluxer.Net.SocketVoiceState.html
+  name: SocketVoiceState
+  nameWithType: SocketVoiceState
+  fullName: Fluxer.Net.SocketVoiceState
+- uid: Fluxer.Net.VoiceState
+  commentId: T:Fluxer.Net.VoiceState
+  parent: Fluxer.Net
+  href: Fluxer.Net.VoiceState.html
+  name: VoiceState
+  nameWithType: VoiceState
+  fullName: Fluxer.Net.VoiceState
+- uid: Fluxer.Net.VoiceStateJson
+  commentId: T:Fluxer.Net.VoiceStateJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.VoiceStateJson.html
+  name: VoiceStateJson
+  nameWithType: VoiceStateJson
+  fullName: Fluxer.Net.VoiceStateJson
+- uid: Fluxer.Net.IWebhook
+  commentId: T:Fluxer.Net.IWebhook
+  parent: Fluxer.Net
+  href: Fluxer.Net.IWebhook.html
+  name: IWebhook
+  nameWithType: IWebhook
+  fullName: Fluxer.Net.IWebhook
+- uid: Fluxer.Net.Webhook
+  commentId: T:Fluxer.Net.Webhook
+  parent: Fluxer.Net
+  href: Fluxer.Net.Webhook.html
+  name: Webhook
+  nameWithType: Webhook
+  fullName: Fluxer.Net.Webhook
+- uid: Fluxer.Net.WebhookJson
+  commentId: T:Fluxer.Net.WebhookJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.WebhookJson.html
+  name: WebhookJson
+  nameWithType: WebhookJson
+  fullName: Fluxer.Net.WebhookJson
+- uid: Fluxer.Net.WebhookType
+  commentId: T:Fluxer.Net.WebhookType
+  parent: Fluxer.Net
+  href: Fluxer.Net.WebhookType.html
+  name: WebhookType
+  nameWithType: WebhookType
+  fullName: Fluxer.Net.WebhookType
+- uid: Fluxer.Net.FluxerBaseClient
+  commentId: T:Fluxer.Net.FluxerBaseClient
+  parent: Fluxer.Net
+  href: Fluxer.Net.FluxerBaseClient.html
+  name: FluxerBaseClient
+  nameWithType: FluxerBaseClient
+  fullName: Fluxer.Net.FluxerBaseClient
+- uid: Fluxer.Net.FluxerClient
+  commentId: T:Fluxer.Net.FluxerClient
+  parent: Fluxer.Net
+  href: Fluxer.Net.FluxerClient.html
+  name: FluxerClient
+  nameWithType: FluxerClient
+  fullName: Fluxer.Net.FluxerClient
+- uid: Fluxer.Net.FluxerConfig
+  commentId: T:Fluxer.Net.FluxerConfig
+  parent: Fluxer.Net
+  href: Fluxer.Net.FluxerConfig.html
+  name: FluxerConfig
+  nameWithType: FluxerConfig
+  fullName: Fluxer.Net.FluxerConfig
+- uid: Fluxer.Net.GatewayClient
+  commentId: T:Fluxer.Net.GatewayClient
+  parent: Fluxer.Net
+  href: Fluxer.Net.GatewayClient.html
+  name: GatewayClient
+  nameWithType: GatewayClient
+  fullName: Fluxer.Net.GatewayClient
+- uid: Fluxer.Net.GatewayClient.HeartbeatAckEvent
+  commentId: T:Fluxer.Net.GatewayClient.HeartbeatAckEvent
+  parent: Fluxer.Net
+  href: Fluxer.Net.GatewayClient.html
+  name: GatewayClient.HeartbeatAckEvent
+  nameWithType: GatewayClient.HeartbeatAckEvent
+  fullName: Fluxer.Net.GatewayClient.HeartbeatAckEvent
+  spec.csharp:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.HeartbeatAckEvent
+    name: HeartbeatAckEvent
+    href: Fluxer.Net.GatewayClient.HeartbeatAckEvent.html
+  spec.vb:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.HeartbeatAckEvent
+    name: HeartbeatAckEvent
+    href: Fluxer.Net.GatewayClient.HeartbeatAckEvent.html
+- uid: Fluxer.Net.GatewayClient.ReadyEvent
+  commentId: T:Fluxer.Net.GatewayClient.ReadyEvent
+  parent: Fluxer.Net
+  href: Fluxer.Net.GatewayClient.html
+  name: GatewayClient.ReadyEvent
+  nameWithType: GatewayClient.ReadyEvent
+  fullName: Fluxer.Net.GatewayClient.ReadyEvent
+  spec.csharp:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.ReadyEvent
+    name: ReadyEvent
+    href: Fluxer.Net.GatewayClient.ReadyEvent.html
+  spec.vb:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.ReadyEvent
+    name: ReadyEvent
+    href: Fluxer.Net.GatewayClient.ReadyEvent.html
+- uid: Fluxer.Net.GatewayClient.ResumedEvent
+  commentId: T:Fluxer.Net.GatewayClient.ResumedEvent
+  parent: Fluxer.Net
+  href: Fluxer.Net.GatewayClient.html
+  name: GatewayClient.ResumedEvent
+  nameWithType: GatewayClient.ResumedEvent
+  fullName: Fluxer.Net.GatewayClient.ResumedEvent
+  spec.csharp:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.ResumedEvent
+    name: ResumedEvent
+    href: Fluxer.Net.GatewayClient.ResumedEvent.html
+  spec.vb:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.ResumedEvent
+    name: ResumedEvent
+    href: Fluxer.Net.GatewayClient.ResumedEvent.html
+- uid: Fluxer.Net.GatewayClient.SessionsReplaceEvent
+  commentId: T:Fluxer.Net.GatewayClient.SessionsReplaceEvent
+  parent: Fluxer.Net
+  href: Fluxer.Net.GatewayClient.html
+  name: GatewayClient.SessionsReplaceEvent
+  nameWithType: GatewayClient.SessionsReplaceEvent
+  fullName: Fluxer.Net.GatewayClient.SessionsReplaceEvent
+  spec.csharp:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.SessionsReplaceEvent
+    name: SessionsReplaceEvent
+    href: Fluxer.Net.GatewayClient.SessionsReplaceEvent.html
+  spec.vb:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.SessionsReplaceEvent
+    name: SessionsReplaceEvent
+    href: Fluxer.Net.GatewayClient.SessionsReplaceEvent.html
+- uid: Fluxer.Net.GatewayClient.UserSettingsUpdateEvent
+  commentId: T:Fluxer.Net.GatewayClient.UserSettingsUpdateEvent
+  parent: Fluxer.Net
+  href: Fluxer.Net.GatewayClient.html
+  name: GatewayClient.UserSettingsUpdateEvent
+  nameWithType: GatewayClient.UserSettingsUpdateEvent
+  fullName: Fluxer.Net.GatewayClient.UserSettingsUpdateEvent
+  spec.csharp:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.UserSettingsUpdateEvent
+    name: UserSettingsUpdateEvent
+    href: Fluxer.Net.GatewayClient.UserSettingsUpdateEvent.html
+  spec.vb:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.UserSettingsUpdateEvent
+    name: UserSettingsUpdateEvent
+    href: Fluxer.Net.GatewayClient.UserSettingsUpdateEvent.html
+- uid: Fluxer.Net.GatewayClient.UserGuildSettingsUpdateEvent
+  commentId: T:Fluxer.Net.GatewayClient.UserGuildSettingsUpdateEvent
+  parent: Fluxer.Net
+  href: Fluxer.Net.GatewayClient.html
+  name: GatewayClient.UserGuildSettingsUpdateEvent
+  nameWithType: GatewayClient.UserGuildSettingsUpdateEvent
+  fullName: Fluxer.Net.GatewayClient.UserGuildSettingsUpdateEvent
+  spec.csharp:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.UserGuildSettingsUpdateEvent
+    name: UserGuildSettingsUpdateEvent
+    href: Fluxer.Net.GatewayClient.UserGuildSettingsUpdateEvent.html
+  spec.vb:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.UserGuildSettingsUpdateEvent
+    name: UserGuildSettingsUpdateEvent
+    href: Fluxer.Net.GatewayClient.UserGuildSettingsUpdateEvent.html
+- uid: Fluxer.Net.GatewayClient.UserPinnedDmsUpdateEvent
+  commentId: T:Fluxer.Net.GatewayClient.UserPinnedDmsUpdateEvent
+  parent: Fluxer.Net
+  href: Fluxer.Net.GatewayClient.html
+  name: GatewayClient.UserPinnedDmsUpdateEvent
+  nameWithType: GatewayClient.UserPinnedDmsUpdateEvent
+  fullName: Fluxer.Net.GatewayClient.UserPinnedDmsUpdateEvent
+  spec.csharp:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.UserPinnedDmsUpdateEvent
+    name: UserPinnedDmsUpdateEvent
+    href: Fluxer.Net.GatewayClient.UserPinnedDmsUpdateEvent.html
+  spec.vb:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.UserPinnedDmsUpdateEvent
+    name: UserPinnedDmsUpdateEvent
+    href: Fluxer.Net.GatewayClient.UserPinnedDmsUpdateEvent.html
+- uid: Fluxer.Net.GatewayClient.UserNoteUpdateEvent
+  commentId: T:Fluxer.Net.GatewayClient.UserNoteUpdateEvent
+  parent: Fluxer.Net
+  href: Fluxer.Net.GatewayClient.html
+  name: GatewayClient.UserNoteUpdateEvent
+  nameWithType: GatewayClient.UserNoteUpdateEvent
+  fullName: Fluxer.Net.GatewayClient.UserNoteUpdateEvent
+  spec.csharp:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.UserNoteUpdateEvent
+    name: UserNoteUpdateEvent
+    href: Fluxer.Net.GatewayClient.UserNoteUpdateEvent.html
+  spec.vb:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.UserNoteUpdateEvent
+    name: UserNoteUpdateEvent
+    href: Fluxer.Net.GatewayClient.UserNoteUpdateEvent.html
+- uid: Fluxer.Net.GatewayClient.AuthSessionChangeEvent
+  commentId: T:Fluxer.Net.GatewayClient.AuthSessionChangeEvent
+  parent: Fluxer.Net
+  href: Fluxer.Net.GatewayClient.html
+  name: GatewayClient.AuthSessionChangeEvent
+  nameWithType: GatewayClient.AuthSessionChangeEvent
+  fullName: Fluxer.Net.GatewayClient.AuthSessionChangeEvent
+  spec.csharp:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.AuthSessionChangeEvent
+    name: AuthSessionChangeEvent
+    href: Fluxer.Net.GatewayClient.AuthSessionChangeEvent.html
+  spec.vb:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.AuthSessionChangeEvent
+    name: AuthSessionChangeEvent
+    href: Fluxer.Net.GatewayClient.AuthSessionChangeEvent.html
+- uid: Fluxer.Net.GatewayClient.MessageCreateEvent
+  commentId: T:Fluxer.Net.GatewayClient.MessageCreateEvent
+  parent: Fluxer.Net
+  href: Fluxer.Net.GatewayClient.html
+  name: GatewayClient.MessageCreateEvent
+  nameWithType: GatewayClient.MessageCreateEvent
+  fullName: Fluxer.Net.GatewayClient.MessageCreateEvent
+  spec.csharp:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.MessageCreateEvent
+    name: MessageCreateEvent
+    href: Fluxer.Net.GatewayClient.MessageCreateEvent.html
+  spec.vb:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.MessageCreateEvent
+    name: MessageCreateEvent
+    href: Fluxer.Net.GatewayClient.MessageCreateEvent.html
+- uid: Fluxer.Net.GatewayClient.MessageUpdateEvent
+  commentId: T:Fluxer.Net.GatewayClient.MessageUpdateEvent
+  parent: Fluxer.Net
+  href: Fluxer.Net.GatewayClient.html
+  name: GatewayClient.MessageUpdateEvent
+  nameWithType: GatewayClient.MessageUpdateEvent
+  fullName: Fluxer.Net.GatewayClient.MessageUpdateEvent
+  spec.csharp:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.MessageUpdateEvent
+    name: MessageUpdateEvent
+    href: Fluxer.Net.GatewayClient.MessageUpdateEvent.html
+  spec.vb:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.MessageUpdateEvent
+    name: MessageUpdateEvent
+    href: Fluxer.Net.GatewayClient.MessageUpdateEvent.html
+- uid: Fluxer.Net.GatewayClient.MessageDeleteEvent
+  commentId: T:Fluxer.Net.GatewayClient.MessageDeleteEvent
+  parent: Fluxer.Net
+  href: Fluxer.Net.GatewayClient.html
+  name: GatewayClient.MessageDeleteEvent
+  nameWithType: GatewayClient.MessageDeleteEvent
+  fullName: Fluxer.Net.GatewayClient.MessageDeleteEvent
+  spec.csharp:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.MessageDeleteEvent
+    name: MessageDeleteEvent
+    href: Fluxer.Net.GatewayClient.MessageDeleteEvent.html
+  spec.vb:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.MessageDeleteEvent
+    name: MessageDeleteEvent
+    href: Fluxer.Net.GatewayClient.MessageDeleteEvent.html
+- uid: Fluxer.Net.GatewayClient.ChannelCreateEvent
+  commentId: T:Fluxer.Net.GatewayClient.ChannelCreateEvent
+  parent: Fluxer.Net
+  href: Fluxer.Net.GatewayClient.html
+  name: GatewayClient.ChannelCreateEvent
+  nameWithType: GatewayClient.ChannelCreateEvent
+  fullName: Fluxer.Net.GatewayClient.ChannelCreateEvent
+  spec.csharp:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.ChannelCreateEvent
+    name: ChannelCreateEvent
+    href: Fluxer.Net.GatewayClient.ChannelCreateEvent.html
+  spec.vb:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.ChannelCreateEvent
+    name: ChannelCreateEvent
+    href: Fluxer.Net.GatewayClient.ChannelCreateEvent.html
+- uid: Fluxer.Net.GatewayClient.ChannelUpdateEvent
+  commentId: T:Fluxer.Net.GatewayClient.ChannelUpdateEvent
+  parent: Fluxer.Net
+  href: Fluxer.Net.GatewayClient.html
+  name: GatewayClient.ChannelUpdateEvent
+  nameWithType: GatewayClient.ChannelUpdateEvent
+  fullName: Fluxer.Net.GatewayClient.ChannelUpdateEvent
+  spec.csharp:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.ChannelUpdateEvent
+    name: ChannelUpdateEvent
+    href: Fluxer.Net.GatewayClient.ChannelUpdateEvent.html
+  spec.vb:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.ChannelUpdateEvent
+    name: ChannelUpdateEvent
+    href: Fluxer.Net.GatewayClient.ChannelUpdateEvent.html
+- uid: Fluxer.Net.GatewayClient.ChannelDeleteEvent
+  commentId: T:Fluxer.Net.GatewayClient.ChannelDeleteEvent
+  parent: Fluxer.Net
+  href: Fluxer.Net.GatewayClient.html
+  name: GatewayClient.ChannelDeleteEvent
+  nameWithType: GatewayClient.ChannelDeleteEvent
+  fullName: Fluxer.Net.GatewayClient.ChannelDeleteEvent
+  spec.csharp:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.ChannelDeleteEvent
+    name: ChannelDeleteEvent
+    href: Fluxer.Net.GatewayClient.ChannelDeleteEvent.html
+  spec.vb:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.ChannelDeleteEvent
+    name: ChannelDeleteEvent
+    href: Fluxer.Net.GatewayClient.ChannelDeleteEvent.html
+- uid: Fluxer.Net.GatewayClient.UserUpdateEvent
+  commentId: T:Fluxer.Net.GatewayClient.UserUpdateEvent
+  parent: Fluxer.Net
+  href: Fluxer.Net.GatewayClient.html
+  name: GatewayClient.UserUpdateEvent
+  nameWithType: GatewayClient.UserUpdateEvent
+  fullName: Fluxer.Net.GatewayClient.UserUpdateEvent
+  spec.csharp:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.UserUpdateEvent
+    name: UserUpdateEvent
+    href: Fluxer.Net.GatewayClient.UserUpdateEvent.html
+  spec.vb:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.UserUpdateEvent
+    name: UserUpdateEvent
+    href: Fluxer.Net.GatewayClient.UserUpdateEvent.html
+- uid: Fluxer.Net.GatewayClient.PresenceUpdateEvent
+  commentId: T:Fluxer.Net.GatewayClient.PresenceUpdateEvent
+  parent: Fluxer.Net
+  href: Fluxer.Net.GatewayClient.html
+  name: GatewayClient.PresenceUpdateEvent
+  nameWithType: GatewayClient.PresenceUpdateEvent
+  fullName: Fluxer.Net.GatewayClient.PresenceUpdateEvent
+  spec.csharp:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.PresenceUpdateEvent
+    name: PresenceUpdateEvent
+    href: Fluxer.Net.GatewayClient.PresenceUpdateEvent.html
+  spec.vb:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.PresenceUpdateEvent
+    name: PresenceUpdateEvent
+    href: Fluxer.Net.GatewayClient.PresenceUpdateEvent.html
+- uid: Fluxer.Net.GatewayClient.TypingStartEvent
+  commentId: T:Fluxer.Net.GatewayClient.TypingStartEvent
+  parent: Fluxer.Net
+  href: Fluxer.Net.GatewayClient.html
+  name: GatewayClient.TypingStartEvent
+  nameWithType: GatewayClient.TypingStartEvent
+  fullName: Fluxer.Net.GatewayClient.TypingStartEvent
+  spec.csharp:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.TypingStartEvent
+    name: TypingStartEvent
+    href: Fluxer.Net.GatewayClient.TypingStartEvent.html
+  spec.vb:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.TypingStartEvent
+    name: TypingStartEvent
+    href: Fluxer.Net.GatewayClient.TypingStartEvent.html
+- uid: Fluxer.Net.GatewayClient.TypingStopEvent
+  commentId: T:Fluxer.Net.GatewayClient.TypingStopEvent
+  parent: Fluxer.Net
+  href: Fluxer.Net.GatewayClient.html
+  name: GatewayClient.TypingStopEvent
+  nameWithType: GatewayClient.TypingStopEvent
+  fullName: Fluxer.Net.GatewayClient.TypingStopEvent
+  spec.csharp:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.TypingStopEvent
+    name: TypingStopEvent
+    href: Fluxer.Net.GatewayClient.TypingStopEvent.html
+  spec.vb:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.TypingStopEvent
+    name: TypingStopEvent
+    href: Fluxer.Net.GatewayClient.TypingStopEvent.html
+- uid: Fluxer.Net.GatewayClient.MessageReactionAddEvent
+  commentId: T:Fluxer.Net.GatewayClient.MessageReactionAddEvent
+  parent: Fluxer.Net
+  href: Fluxer.Net.GatewayClient.html
+  name: GatewayClient.MessageReactionAddEvent
+  nameWithType: GatewayClient.MessageReactionAddEvent
+  fullName: Fluxer.Net.GatewayClient.MessageReactionAddEvent
+  spec.csharp:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.MessageReactionAddEvent
+    name: MessageReactionAddEvent
+    href: Fluxer.Net.GatewayClient.MessageReactionAddEvent.html
+  spec.vb:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.MessageReactionAddEvent
+    name: MessageReactionAddEvent
+    href: Fluxer.Net.GatewayClient.MessageReactionAddEvent.html
+- uid: Fluxer.Net.GatewayClient.MessageReactionRemoveEvent
+  commentId: T:Fluxer.Net.GatewayClient.MessageReactionRemoveEvent
+  parent: Fluxer.Net
+  href: Fluxer.Net.GatewayClient.html
+  name: GatewayClient.MessageReactionRemoveEvent
+  nameWithType: GatewayClient.MessageReactionRemoveEvent
+  fullName: Fluxer.Net.GatewayClient.MessageReactionRemoveEvent
+  spec.csharp:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.MessageReactionRemoveEvent
+    name: MessageReactionRemoveEvent
+    href: Fluxer.Net.GatewayClient.MessageReactionRemoveEvent.html
+  spec.vb:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.MessageReactionRemoveEvent
+    name: MessageReactionRemoveEvent
+    href: Fluxer.Net.GatewayClient.MessageReactionRemoveEvent.html
+- uid: Fluxer.Net.GatewayClient.MessageReactionRemoveAllEvent
+  commentId: T:Fluxer.Net.GatewayClient.MessageReactionRemoveAllEvent
+  parent: Fluxer.Net
+  href: Fluxer.Net.GatewayClient.html
+  name: GatewayClient.MessageReactionRemoveAllEvent
+  nameWithType: GatewayClient.MessageReactionRemoveAllEvent
+  fullName: Fluxer.Net.GatewayClient.MessageReactionRemoveAllEvent
+  spec.csharp:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.MessageReactionRemoveAllEvent
+    name: MessageReactionRemoveAllEvent
+    href: Fluxer.Net.GatewayClient.MessageReactionRemoveAllEvent.html
+  spec.vb:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.MessageReactionRemoveAllEvent
+    name: MessageReactionRemoveAllEvent
+    href: Fluxer.Net.GatewayClient.MessageReactionRemoveAllEvent.html
+- uid: Fluxer.Net.GatewayClient.MessageReactionRemoveEmojiEvent
+  commentId: T:Fluxer.Net.GatewayClient.MessageReactionRemoveEmojiEvent
+  parent: Fluxer.Net
+  href: Fluxer.Net.GatewayClient.html
+  name: GatewayClient.MessageReactionRemoveEmojiEvent
+  nameWithType: GatewayClient.MessageReactionRemoveEmojiEvent
+  fullName: Fluxer.Net.GatewayClient.MessageReactionRemoveEmojiEvent
+  spec.csharp:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.MessageReactionRemoveEmojiEvent
+    name: MessageReactionRemoveEmojiEvent
+    href: Fluxer.Net.GatewayClient.MessageReactionRemoveEmojiEvent.html
+  spec.vb:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.MessageReactionRemoveEmojiEvent
+    name: MessageReactionRemoveEmojiEvent
+    href: Fluxer.Net.GatewayClient.MessageReactionRemoveEmojiEvent.html
+- uid: Fluxer.Net.GatewayClient.SavedMessageCreateEvent
+  commentId: T:Fluxer.Net.GatewayClient.SavedMessageCreateEvent
+  parent: Fluxer.Net
+  href: Fluxer.Net.GatewayClient.html
+  name: GatewayClient.SavedMessageCreateEvent
+  nameWithType: GatewayClient.SavedMessageCreateEvent
+  fullName: Fluxer.Net.GatewayClient.SavedMessageCreateEvent
+  spec.csharp:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.SavedMessageCreateEvent
+    name: SavedMessageCreateEvent
+    href: Fluxer.Net.GatewayClient.SavedMessageCreateEvent.html
+  spec.vb:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.SavedMessageCreateEvent
+    name: SavedMessageCreateEvent
+    href: Fluxer.Net.GatewayClient.SavedMessageCreateEvent.html
+- uid: Fluxer.Net.GatewayClient.SavedMessageDeleteEvent
+  commentId: T:Fluxer.Net.GatewayClient.SavedMessageDeleteEvent
+  parent: Fluxer.Net
+  href: Fluxer.Net.GatewayClient.html
+  name: GatewayClient.SavedMessageDeleteEvent
+  nameWithType: GatewayClient.SavedMessageDeleteEvent
+  fullName: Fluxer.Net.GatewayClient.SavedMessageDeleteEvent
+  spec.csharp:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.SavedMessageDeleteEvent
+    name: SavedMessageDeleteEvent
+    href: Fluxer.Net.GatewayClient.SavedMessageDeleteEvent.html
+  spec.vb:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.SavedMessageDeleteEvent
+    name: SavedMessageDeleteEvent
+    href: Fluxer.Net.GatewayClient.SavedMessageDeleteEvent.html
+- uid: Fluxer.Net.GatewayClient.RecentMentionDeleteEvent
+  commentId: T:Fluxer.Net.GatewayClient.RecentMentionDeleteEvent
+  parent: Fluxer.Net
+  href: Fluxer.Net.GatewayClient.html
+  name: GatewayClient.RecentMentionDeleteEvent
+  nameWithType: GatewayClient.RecentMentionDeleteEvent
+  fullName: Fluxer.Net.GatewayClient.RecentMentionDeleteEvent
+  spec.csharp:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.RecentMentionDeleteEvent
+    name: RecentMentionDeleteEvent
+    href: Fluxer.Net.GatewayClient.RecentMentionDeleteEvent.html
+  spec.vb:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.RecentMentionDeleteEvent
+    name: RecentMentionDeleteEvent
+    href: Fluxer.Net.GatewayClient.RecentMentionDeleteEvent.html
+- uid: Fluxer.Net.GatewayClient.MessageDeleteBulkEvent
+  commentId: T:Fluxer.Net.GatewayClient.MessageDeleteBulkEvent
+  parent: Fluxer.Net
+  href: Fluxer.Net.GatewayClient.html
+  name: GatewayClient.MessageDeleteBulkEvent
+  nameWithType: GatewayClient.MessageDeleteBulkEvent
+  fullName: Fluxer.Net.GatewayClient.MessageDeleteBulkEvent
+  spec.csharp:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.MessageDeleteBulkEvent
+    name: MessageDeleteBulkEvent
+    href: Fluxer.Net.GatewayClient.MessageDeleteBulkEvent.html
+  spec.vb:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.MessageDeleteBulkEvent
+    name: MessageDeleteBulkEvent
+    href: Fluxer.Net.GatewayClient.MessageDeleteBulkEvent.html
+- uid: Fluxer.Net.GatewayClient.MessageAckEvent
+  commentId: T:Fluxer.Net.GatewayClient.MessageAckEvent
+  parent: Fluxer.Net
+  href: Fluxer.Net.GatewayClient.html
+  name: GatewayClient.MessageAckEvent
+  nameWithType: GatewayClient.MessageAckEvent
+  fullName: Fluxer.Net.GatewayClient.MessageAckEvent
+  spec.csharp:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.MessageAckEvent
+    name: MessageAckEvent
+    href: Fluxer.Net.GatewayClient.MessageAckEvent.html
+  spec.vb:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.MessageAckEvent
+    name: MessageAckEvent
+    href: Fluxer.Net.GatewayClient.MessageAckEvent.html
+- uid: Fluxer.Net.GatewayClient.ChannelPinsUpdateEvent
+  commentId: T:Fluxer.Net.GatewayClient.ChannelPinsUpdateEvent
+  parent: Fluxer.Net
+  href: Fluxer.Net.GatewayClient.html
+  name: GatewayClient.ChannelPinsUpdateEvent
+  nameWithType: GatewayClient.ChannelPinsUpdateEvent
+  fullName: Fluxer.Net.GatewayClient.ChannelPinsUpdateEvent
+  spec.csharp:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.ChannelPinsUpdateEvent
+    name: ChannelPinsUpdateEvent
+    href: Fluxer.Net.GatewayClient.ChannelPinsUpdateEvent.html
+  spec.vb:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.ChannelPinsUpdateEvent
+    name: ChannelPinsUpdateEvent
+    href: Fluxer.Net.GatewayClient.ChannelPinsUpdateEvent.html
+- uid: Fluxer.Net.GatewayClient.ChannelPinsAckEvent
+  commentId: T:Fluxer.Net.GatewayClient.ChannelPinsAckEvent
+  parent: Fluxer.Net
+  href: Fluxer.Net.GatewayClient.html
+  name: GatewayClient.ChannelPinsAckEvent
+  nameWithType: GatewayClient.ChannelPinsAckEvent
+  fullName: Fluxer.Net.GatewayClient.ChannelPinsAckEvent
+  spec.csharp:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.ChannelPinsAckEvent
+    name: ChannelPinsAckEvent
+    href: Fluxer.Net.GatewayClient.ChannelPinsAckEvent.html
+  spec.vb:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.ChannelPinsAckEvent
+    name: ChannelPinsAckEvent
+    href: Fluxer.Net.GatewayClient.ChannelPinsAckEvent.html
+- uid: Fluxer.Net.GatewayClient.ChannelUpdateBulkEvent
+  commentId: T:Fluxer.Net.GatewayClient.ChannelUpdateBulkEvent
+  parent: Fluxer.Net
+  href: Fluxer.Net.GatewayClient.html
+  name: GatewayClient.ChannelUpdateBulkEvent
+  nameWithType: GatewayClient.ChannelUpdateBulkEvent
+  fullName: Fluxer.Net.GatewayClient.ChannelUpdateBulkEvent
+  spec.csharp:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.ChannelUpdateBulkEvent
+    name: ChannelUpdateBulkEvent
+    href: Fluxer.Net.GatewayClient.ChannelUpdateBulkEvent.html
+  spec.vb:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.ChannelUpdateBulkEvent
+    name: ChannelUpdateBulkEvent
+    href: Fluxer.Net.GatewayClient.ChannelUpdateBulkEvent.html
+- uid: Fluxer.Net.GatewayClient.ChannelRecipientAddEvent
+  commentId: T:Fluxer.Net.GatewayClient.ChannelRecipientAddEvent
+  parent: Fluxer.Net
+  href: Fluxer.Net.GatewayClient.html
+  name: GatewayClient.ChannelRecipientAddEvent
+  nameWithType: GatewayClient.ChannelRecipientAddEvent
+  fullName: Fluxer.Net.GatewayClient.ChannelRecipientAddEvent
+  spec.csharp:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.ChannelRecipientAddEvent
+    name: ChannelRecipientAddEvent
+    href: Fluxer.Net.GatewayClient.ChannelRecipientAddEvent.html
+  spec.vb:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.ChannelRecipientAddEvent
+    name: ChannelRecipientAddEvent
+    href: Fluxer.Net.GatewayClient.ChannelRecipientAddEvent.html
+- uid: Fluxer.Net.GatewayClient.ChannelRecipientRemoveEvent
+  commentId: T:Fluxer.Net.GatewayClient.ChannelRecipientRemoveEvent
+  parent: Fluxer.Net
+  href: Fluxer.Net.GatewayClient.html
+  name: GatewayClient.ChannelRecipientRemoveEvent
+  nameWithType: GatewayClient.ChannelRecipientRemoveEvent
+  fullName: Fluxer.Net.GatewayClient.ChannelRecipientRemoveEvent
+  spec.csharp:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.ChannelRecipientRemoveEvent
+    name: ChannelRecipientRemoveEvent
+    href: Fluxer.Net.GatewayClient.ChannelRecipientRemoveEvent.html
+  spec.vb:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.ChannelRecipientRemoveEvent
+    name: ChannelRecipientRemoveEvent
+    href: Fluxer.Net.GatewayClient.ChannelRecipientRemoveEvent.html
+- uid: Fluxer.Net.GatewayClient.VoiceStateUpdateEvent
+  commentId: T:Fluxer.Net.GatewayClient.VoiceStateUpdateEvent
+  parent: Fluxer.Net
+  href: Fluxer.Net.GatewayClient.html
+  name: GatewayClient.VoiceStateUpdateEvent
+  nameWithType: GatewayClient.VoiceStateUpdateEvent
+  fullName: Fluxer.Net.GatewayClient.VoiceStateUpdateEvent
+  spec.csharp:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.VoiceStateUpdateEvent
+    name: VoiceStateUpdateEvent
+    href: Fluxer.Net.GatewayClient.VoiceStateUpdateEvent.html
+  spec.vb:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.VoiceStateUpdateEvent
+    name: VoiceStateUpdateEvent
+    href: Fluxer.Net.GatewayClient.VoiceStateUpdateEvent.html
+- uid: Fluxer.Net.GatewayClient.VoiceServerUpdateEvent
+  commentId: T:Fluxer.Net.GatewayClient.VoiceServerUpdateEvent
+  parent: Fluxer.Net
+  href: Fluxer.Net.GatewayClient.html
+  name: GatewayClient.VoiceServerUpdateEvent
+  nameWithType: GatewayClient.VoiceServerUpdateEvent
+  fullName: Fluxer.Net.GatewayClient.VoiceServerUpdateEvent
+  spec.csharp:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.VoiceServerUpdateEvent
+    name: VoiceServerUpdateEvent
+    href: Fluxer.Net.GatewayClient.VoiceServerUpdateEvent.html
+  spec.vb:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.VoiceServerUpdateEvent
+    name: VoiceServerUpdateEvent
+    href: Fluxer.Net.GatewayClient.VoiceServerUpdateEvent.html
+- uid: Fluxer.Net.GatewayClient.GuildBanAddEvent
+  commentId: T:Fluxer.Net.GatewayClient.GuildBanAddEvent
+  parent: Fluxer.Net
+  href: Fluxer.Net.GatewayClient.html
+  name: GatewayClient.GuildBanAddEvent
+  nameWithType: GatewayClient.GuildBanAddEvent
+  fullName: Fluxer.Net.GatewayClient.GuildBanAddEvent
+  spec.csharp:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.GuildBanAddEvent
+    name: GuildBanAddEvent
+    href: Fluxer.Net.GatewayClient.GuildBanAddEvent.html
+  spec.vb:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.GuildBanAddEvent
+    name: GuildBanAddEvent
+    href: Fluxer.Net.GatewayClient.GuildBanAddEvent.html
+- uid: Fluxer.Net.GatewayClient.GuildBanRemoveEvent
+  commentId: T:Fluxer.Net.GatewayClient.GuildBanRemoveEvent
+  parent: Fluxer.Net
+  href: Fluxer.Net.GatewayClient.html
+  name: GatewayClient.GuildBanRemoveEvent
+  nameWithType: GatewayClient.GuildBanRemoveEvent
+  fullName: Fluxer.Net.GatewayClient.GuildBanRemoveEvent
+  spec.csharp:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.GuildBanRemoveEvent
+    name: GuildBanRemoveEvent
+    href: Fluxer.Net.GatewayClient.GuildBanRemoveEvent.html
+  spec.vb:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.GuildBanRemoveEvent
+    name: GuildBanRemoveEvent
+    href: Fluxer.Net.GatewayClient.GuildBanRemoveEvent.html
+- uid: Fluxer.Net.GatewayClient.WebhooksUpdateEvent
+  commentId: T:Fluxer.Net.GatewayClient.WebhooksUpdateEvent
+  parent: Fluxer.Net
+  href: Fluxer.Net.GatewayClient.html
+  name: GatewayClient.WebhooksUpdateEvent
+  nameWithType: GatewayClient.WebhooksUpdateEvent
+  fullName: Fluxer.Net.GatewayClient.WebhooksUpdateEvent
+  spec.csharp:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.WebhooksUpdateEvent
+    name: WebhooksUpdateEvent
+    href: Fluxer.Net.GatewayClient.WebhooksUpdateEvent.html
+  spec.vb:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.WebhooksUpdateEvent
+    name: WebhooksUpdateEvent
+    href: Fluxer.Net.GatewayClient.WebhooksUpdateEvent.html
+- uid: Fluxer.Net.GatewayClient.GuildCreateEvent
+  commentId: T:Fluxer.Net.GatewayClient.GuildCreateEvent
+  parent: Fluxer.Net
+  href: Fluxer.Net.GatewayClient.html
+  name: GatewayClient.GuildCreateEvent
+  nameWithType: GatewayClient.GuildCreateEvent
+  fullName: Fluxer.Net.GatewayClient.GuildCreateEvent
+  spec.csharp:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.GuildCreateEvent
+    name: GuildCreateEvent
+    href: Fluxer.Net.GatewayClient.GuildCreateEvent.html
+  spec.vb:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.GuildCreateEvent
+    name: GuildCreateEvent
+    href: Fluxer.Net.GatewayClient.GuildCreateEvent.html
+- uid: Fluxer.Net.GatewayClient.GuildUpdateEvent
+  commentId: T:Fluxer.Net.GatewayClient.GuildUpdateEvent
+  parent: Fluxer.Net
+  href: Fluxer.Net.GatewayClient.html
+  name: GatewayClient.GuildUpdateEvent
+  nameWithType: GatewayClient.GuildUpdateEvent
+  fullName: Fluxer.Net.GatewayClient.GuildUpdateEvent
+  spec.csharp:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.GuildUpdateEvent
+    name: GuildUpdateEvent
+    href: Fluxer.Net.GatewayClient.GuildUpdateEvent.html
+  spec.vb:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.GuildUpdateEvent
+    name: GuildUpdateEvent
+    href: Fluxer.Net.GatewayClient.GuildUpdateEvent.html
+- uid: Fluxer.Net.GatewayClient.GuildDeleteEvent
+  commentId: T:Fluxer.Net.GatewayClient.GuildDeleteEvent
+  parent: Fluxer.Net
+  href: Fluxer.Net.GatewayClient.html
+  name: GatewayClient.GuildDeleteEvent
+  nameWithType: GatewayClient.GuildDeleteEvent
+  fullName: Fluxer.Net.GatewayClient.GuildDeleteEvent
+  spec.csharp:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.GuildDeleteEvent
+    name: GuildDeleteEvent
+    href: Fluxer.Net.GatewayClient.GuildDeleteEvent.html
+  spec.vb:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.GuildDeleteEvent
+    name: GuildDeleteEvent
+    href: Fluxer.Net.GatewayClient.GuildDeleteEvent.html
+- uid: Fluxer.Net.GatewayClient.GuildMemberAddEvent
+  commentId: T:Fluxer.Net.GatewayClient.GuildMemberAddEvent
+  parent: Fluxer.Net
+  href: Fluxer.Net.GatewayClient.html
+  name: GatewayClient.GuildMemberAddEvent
+  nameWithType: GatewayClient.GuildMemberAddEvent
+  fullName: Fluxer.Net.GatewayClient.GuildMemberAddEvent
+  spec.csharp:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.GuildMemberAddEvent
+    name: GuildMemberAddEvent
+    href: Fluxer.Net.GatewayClient.GuildMemberAddEvent.html
+  spec.vb:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.GuildMemberAddEvent
+    name: GuildMemberAddEvent
+    href: Fluxer.Net.GatewayClient.GuildMemberAddEvent.html
+- uid: Fluxer.Net.GatewayClient.GuildMemberUpdateEvent
+  commentId: T:Fluxer.Net.GatewayClient.GuildMemberUpdateEvent
+  parent: Fluxer.Net
+  href: Fluxer.Net.GatewayClient.html
+  name: GatewayClient.GuildMemberUpdateEvent
+  nameWithType: GatewayClient.GuildMemberUpdateEvent
+  fullName: Fluxer.Net.GatewayClient.GuildMemberUpdateEvent
+  spec.csharp:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.GuildMemberUpdateEvent
+    name: GuildMemberUpdateEvent
+    href: Fluxer.Net.GatewayClient.GuildMemberUpdateEvent.html
+  spec.vb:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.GuildMemberUpdateEvent
+    name: GuildMemberUpdateEvent
+    href: Fluxer.Net.GatewayClient.GuildMemberUpdateEvent.html
+- uid: Fluxer.Net.GatewayClient.GuildMemberRemoveEvent
+  commentId: T:Fluxer.Net.GatewayClient.GuildMemberRemoveEvent
+  parent: Fluxer.Net
+  href: Fluxer.Net.GatewayClient.html
+  name: GatewayClient.GuildMemberRemoveEvent
+  nameWithType: GatewayClient.GuildMemberRemoveEvent
+  fullName: Fluxer.Net.GatewayClient.GuildMemberRemoveEvent
+  spec.csharp:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.GuildMemberRemoveEvent
+    name: GuildMemberRemoveEvent
+    href: Fluxer.Net.GatewayClient.GuildMemberRemoveEvent.html
+  spec.vb:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.GuildMemberRemoveEvent
+    name: GuildMemberRemoveEvent
+    href: Fluxer.Net.GatewayClient.GuildMemberRemoveEvent.html
+- uid: Fluxer.Net.GatewayClient.GuildRoleCreateEvent
+  commentId: T:Fluxer.Net.GatewayClient.GuildRoleCreateEvent
+  parent: Fluxer.Net
+  href: Fluxer.Net.GatewayClient.html
+  name: GatewayClient.GuildRoleCreateEvent
+  nameWithType: GatewayClient.GuildRoleCreateEvent
+  fullName: Fluxer.Net.GatewayClient.GuildRoleCreateEvent
+  spec.csharp:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.GuildRoleCreateEvent
+    name: GuildRoleCreateEvent
+    href: Fluxer.Net.GatewayClient.GuildRoleCreateEvent.html
+  spec.vb:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.GuildRoleCreateEvent
+    name: GuildRoleCreateEvent
+    href: Fluxer.Net.GatewayClient.GuildRoleCreateEvent.html
+- uid: Fluxer.Net.GatewayClient.GuildRoleUpdateEvent
+  commentId: T:Fluxer.Net.GatewayClient.GuildRoleUpdateEvent
+  parent: Fluxer.Net
+  href: Fluxer.Net.GatewayClient.html
+  name: GatewayClient.GuildRoleUpdateEvent
+  nameWithType: GatewayClient.GuildRoleUpdateEvent
+  fullName: Fluxer.Net.GatewayClient.GuildRoleUpdateEvent
+  spec.csharp:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.GuildRoleUpdateEvent
+    name: GuildRoleUpdateEvent
+    href: Fluxer.Net.GatewayClient.GuildRoleUpdateEvent.html
+  spec.vb:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.GuildRoleUpdateEvent
+    name: GuildRoleUpdateEvent
+    href: Fluxer.Net.GatewayClient.GuildRoleUpdateEvent.html
+- uid: Fluxer.Net.GatewayClient.GuildRoleDeleteEvent
+  commentId: T:Fluxer.Net.GatewayClient.GuildRoleDeleteEvent
+  parent: Fluxer.Net
+  href: Fluxer.Net.GatewayClient.html
+  name: GatewayClient.GuildRoleDeleteEvent
+  nameWithType: GatewayClient.GuildRoleDeleteEvent
+  fullName: Fluxer.Net.GatewayClient.GuildRoleDeleteEvent
+  spec.csharp:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.GuildRoleDeleteEvent
+    name: GuildRoleDeleteEvent
+    href: Fluxer.Net.GatewayClient.GuildRoleDeleteEvent.html
+  spec.vb:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.GuildRoleDeleteEvent
+    name: GuildRoleDeleteEvent
+    href: Fluxer.Net.GatewayClient.GuildRoleDeleteEvent.html
+- uid: Fluxer.Net.GatewayClient.GuildEmojisUpdateEvent
+  commentId: T:Fluxer.Net.GatewayClient.GuildEmojisUpdateEvent
+  parent: Fluxer.Net
+  href: Fluxer.Net.GatewayClient.html
+  name: GatewayClient.GuildEmojisUpdateEvent
+  nameWithType: GatewayClient.GuildEmojisUpdateEvent
+  fullName: Fluxer.Net.GatewayClient.GuildEmojisUpdateEvent
+  spec.csharp:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.GuildEmojisUpdateEvent
+    name: GuildEmojisUpdateEvent
+    href: Fluxer.Net.GatewayClient.GuildEmojisUpdateEvent.html
+  spec.vb:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.GuildEmojisUpdateEvent
+    name: GuildEmojisUpdateEvent
+    href: Fluxer.Net.GatewayClient.GuildEmojisUpdateEvent.html
+- uid: Fluxer.Net.GatewayClient.GuildRoleUpdateBulkEvent
+  commentId: T:Fluxer.Net.GatewayClient.GuildRoleUpdateBulkEvent
+  parent: Fluxer.Net
+  href: Fluxer.Net.GatewayClient.html
+  name: GatewayClient.GuildRoleUpdateBulkEvent
+  nameWithType: GatewayClient.GuildRoleUpdateBulkEvent
+  fullName: Fluxer.Net.GatewayClient.GuildRoleUpdateBulkEvent
+  spec.csharp:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.GuildRoleUpdateBulkEvent
+    name: GuildRoleUpdateBulkEvent
+    href: Fluxer.Net.GatewayClient.GuildRoleUpdateBulkEvent.html
+  spec.vb:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.GuildRoleUpdateBulkEvent
+    name: GuildRoleUpdateBulkEvent
+    href: Fluxer.Net.GatewayClient.GuildRoleUpdateBulkEvent.html
+- uid: Fluxer.Net.GatewayClient.GuildStickersUpdateEvent
+  commentId: T:Fluxer.Net.GatewayClient.GuildStickersUpdateEvent
+  parent: Fluxer.Net
+  href: Fluxer.Net.GatewayClient.html
+  name: GatewayClient.GuildStickersUpdateEvent
+  nameWithType: GatewayClient.GuildStickersUpdateEvent
+  fullName: Fluxer.Net.GatewayClient.GuildStickersUpdateEvent
+  spec.csharp:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.GuildStickersUpdateEvent
+    name: GuildStickersUpdateEvent
+    href: Fluxer.Net.GatewayClient.GuildStickersUpdateEvent.html
+  spec.vb:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.GuildStickersUpdateEvent
+    name: GuildStickersUpdateEvent
+    href: Fluxer.Net.GatewayClient.GuildStickersUpdateEvent.html
+- uid: Fluxer.Net.GatewayClient.RelationshipAddEvent
+  commentId: T:Fluxer.Net.GatewayClient.RelationshipAddEvent
+  parent: Fluxer.Net
+  href: Fluxer.Net.GatewayClient.html
+  name: GatewayClient.RelationshipAddEvent
+  nameWithType: GatewayClient.RelationshipAddEvent
+  fullName: Fluxer.Net.GatewayClient.RelationshipAddEvent
+  spec.csharp:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.RelationshipAddEvent
+    name: RelationshipAddEvent
+    href: Fluxer.Net.GatewayClient.RelationshipAddEvent.html
+  spec.vb:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.RelationshipAddEvent
+    name: RelationshipAddEvent
+    href: Fluxer.Net.GatewayClient.RelationshipAddEvent.html
+- uid: Fluxer.Net.GatewayClient.RelationshipUpdateEvent
+  commentId: T:Fluxer.Net.GatewayClient.RelationshipUpdateEvent
+  parent: Fluxer.Net
+  href: Fluxer.Net.GatewayClient.html
+  name: GatewayClient.RelationshipUpdateEvent
+  nameWithType: GatewayClient.RelationshipUpdateEvent
+  fullName: Fluxer.Net.GatewayClient.RelationshipUpdateEvent
+  spec.csharp:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.RelationshipUpdateEvent
+    name: RelationshipUpdateEvent
+    href: Fluxer.Net.GatewayClient.RelationshipUpdateEvent.html
+  spec.vb:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.RelationshipUpdateEvent
+    name: RelationshipUpdateEvent
+    href: Fluxer.Net.GatewayClient.RelationshipUpdateEvent.html
+- uid: Fluxer.Net.GatewayClient.RelationshipRemoveEvent
+  commentId: T:Fluxer.Net.GatewayClient.RelationshipRemoveEvent
+  parent: Fluxer.Net
+  href: Fluxer.Net.GatewayClient.html
+  name: GatewayClient.RelationshipRemoveEvent
+  nameWithType: GatewayClient.RelationshipRemoveEvent
+  fullName: Fluxer.Net.GatewayClient.RelationshipRemoveEvent
+  spec.csharp:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.RelationshipRemoveEvent
+    name: RelationshipRemoveEvent
+    href: Fluxer.Net.GatewayClient.RelationshipRemoveEvent.html
+  spec.vb:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.RelationshipRemoveEvent
+    name: RelationshipRemoveEvent
+    href: Fluxer.Net.GatewayClient.RelationshipRemoveEvent.html
+- uid: Fluxer.Net.GatewayClient.FavoriteMemeCreateEvent
+  commentId: T:Fluxer.Net.GatewayClient.FavoriteMemeCreateEvent
+  parent: Fluxer.Net
+  href: Fluxer.Net.GatewayClient.html
+  name: GatewayClient.FavoriteMemeCreateEvent
+  nameWithType: GatewayClient.FavoriteMemeCreateEvent
+  fullName: Fluxer.Net.GatewayClient.FavoriteMemeCreateEvent
+  spec.csharp:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.FavoriteMemeCreateEvent
+    name: FavoriteMemeCreateEvent
+    href: Fluxer.Net.GatewayClient.FavoriteMemeCreateEvent.html
+  spec.vb:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.FavoriteMemeCreateEvent
+    name: FavoriteMemeCreateEvent
+    href: Fluxer.Net.GatewayClient.FavoriteMemeCreateEvent.html
+- uid: Fluxer.Net.GatewayClient.FavoriteMemeUpdateEvent
+  commentId: T:Fluxer.Net.GatewayClient.FavoriteMemeUpdateEvent
+  parent: Fluxer.Net
+  href: Fluxer.Net.GatewayClient.html
+  name: GatewayClient.FavoriteMemeUpdateEvent
+  nameWithType: GatewayClient.FavoriteMemeUpdateEvent
+  fullName: Fluxer.Net.GatewayClient.FavoriteMemeUpdateEvent
+  spec.csharp:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.FavoriteMemeUpdateEvent
+    name: FavoriteMemeUpdateEvent
+    href: Fluxer.Net.GatewayClient.FavoriteMemeUpdateEvent.html
+  spec.vb:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.FavoriteMemeUpdateEvent
+    name: FavoriteMemeUpdateEvent
+    href: Fluxer.Net.GatewayClient.FavoriteMemeUpdateEvent.html
+- uid: Fluxer.Net.GatewayClient.FavoriteMemeDeleteEvent
+  commentId: T:Fluxer.Net.GatewayClient.FavoriteMemeDeleteEvent
+  parent: Fluxer.Net
+  href: Fluxer.Net.GatewayClient.html
+  name: GatewayClient.FavoriteMemeDeleteEvent
+  nameWithType: GatewayClient.FavoriteMemeDeleteEvent
+  fullName: Fluxer.Net.GatewayClient.FavoriteMemeDeleteEvent
+  spec.csharp:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.FavoriteMemeDeleteEvent
+    name: FavoriteMemeDeleteEvent
+    href: Fluxer.Net.GatewayClient.FavoriteMemeDeleteEvent.html
+  spec.vb:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.FavoriteMemeDeleteEvent
+    name: FavoriteMemeDeleteEvent
+    href: Fluxer.Net.GatewayClient.FavoriteMemeDeleteEvent.html
+- uid: Fluxer.Net.GatewayClient.CallCreateEvent
+  commentId: T:Fluxer.Net.GatewayClient.CallCreateEvent
+  parent: Fluxer.Net
+  href: Fluxer.Net.GatewayClient.html
+  name: GatewayClient.CallCreateEvent
+  nameWithType: GatewayClient.CallCreateEvent
+  fullName: Fluxer.Net.GatewayClient.CallCreateEvent
+  spec.csharp:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.CallCreateEvent
+    name: CallCreateEvent
+    href: Fluxer.Net.GatewayClient.CallCreateEvent.html
+  spec.vb:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.CallCreateEvent
+    name: CallCreateEvent
+    href: Fluxer.Net.GatewayClient.CallCreateEvent.html
+- uid: Fluxer.Net.GatewayClient.CallUpdateEvent
+  commentId: T:Fluxer.Net.GatewayClient.CallUpdateEvent
+  parent: Fluxer.Net
+  href: Fluxer.Net.GatewayClient.html
+  name: GatewayClient.CallUpdateEvent
+  nameWithType: GatewayClient.CallUpdateEvent
+  fullName: Fluxer.Net.GatewayClient.CallUpdateEvent
+  spec.csharp:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.CallUpdateEvent
+    name: CallUpdateEvent
+    href: Fluxer.Net.GatewayClient.CallUpdateEvent.html
+  spec.vb:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.CallUpdateEvent
+    name: CallUpdateEvent
+    href: Fluxer.Net.GatewayClient.CallUpdateEvent.html
+- uid: Fluxer.Net.GatewayClient.CallDeleteEvent
+  commentId: T:Fluxer.Net.GatewayClient.CallDeleteEvent
+  parent: Fluxer.Net
+  href: Fluxer.Net.GatewayClient.html
+  name: GatewayClient.CallDeleteEvent
+  nameWithType: GatewayClient.CallDeleteEvent
+  fullName: Fluxer.Net.GatewayClient.CallDeleteEvent
+  spec.csharp:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.CallDeleteEvent
+    name: CallDeleteEvent
+    href: Fluxer.Net.GatewayClient.CallDeleteEvent.html
+  spec.vb:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.CallDeleteEvent
+    name: CallDeleteEvent
+    href: Fluxer.Net.GatewayClient.CallDeleteEvent.html
+- uid: Fluxer.Net.GatewayClient.InviteCreateEvent
+  commentId: T:Fluxer.Net.GatewayClient.InviteCreateEvent
+  parent: Fluxer.Net
+  href: Fluxer.Net.GatewayClient.html
+  name: GatewayClient.InviteCreateEvent
+  nameWithType: GatewayClient.InviteCreateEvent
+  fullName: Fluxer.Net.GatewayClient.InviteCreateEvent
+  spec.csharp:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.InviteCreateEvent
+    name: InviteCreateEvent
+    href: Fluxer.Net.GatewayClient.InviteCreateEvent.html
+  spec.vb:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.InviteCreateEvent
+    name: InviteCreateEvent
+    href: Fluxer.Net.GatewayClient.InviteCreateEvent.html
+- uid: Fluxer.Net.GatewayClient.InviteDeleteEvent
+  commentId: T:Fluxer.Net.GatewayClient.InviteDeleteEvent
+  parent: Fluxer.Net
+  href: Fluxer.Net.GatewayClient.html
+  name: GatewayClient.InviteDeleteEvent
+  nameWithType: GatewayClient.InviteDeleteEvent
+  fullName: Fluxer.Net.GatewayClient.InviteDeleteEvent
+  spec.csharp:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.InviteDeleteEvent
+    name: InviteDeleteEvent
+    href: Fluxer.Net.GatewayClient.InviteDeleteEvent.html
+  spec.vb:
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    href: Fluxer.Net.GatewayClient.html
+  - name: .
+  - uid: Fluxer.Net.GatewayClient.InviteDeleteEvent
+    name: InviteDeleteEvent
+    href: Fluxer.Net.GatewayClient.InviteDeleteEvent.html
+- uid: Fluxer.Net.ApiClient
+  commentId: T:Fluxer.Net.ApiClient
+  parent: Fluxer.Net
+  href: Fluxer.Net.ApiClient.html
+  name: ApiClient
+  nameWithType: ApiClient
+  fullName: Fluxer.Net.ApiClient
+- uid: Fluxer.Net.ApiLimits
+  commentId: T:Fluxer.Net.ApiLimits
+  parent: Fluxer.Net
+  href: Fluxer.Net.ApiLimits.html
+  name: ApiLimits
+  nameWithType: ApiLimits
+  fullName: Fluxer.Net.ApiLimits
+- uid: Fluxer.Net.FluxerWebhookClient
+  commentId: T:Fluxer.Net.FluxerWebhookClient
+  href: Fluxer.Net.FluxerWebhookClient.html
+  name: FluxerWebhookClient
+  nameWithType: FluxerWebhookClient
+  fullName: Fluxer.Net.FluxerWebhookClient
+- uid: Fluxer.Net.ChannelHelpers
+  commentId: T:Fluxer.Net.ChannelHelpers
+  parent: Fluxer.Net
+  href: Fluxer.Net.ChannelHelpers.html
+  name: ChannelHelpers
+  nameWithType: ChannelHelpers
+  fullName: Fluxer.Net.ChannelHelpers
+- uid: Fluxer.Net.ExpressionHelpers
+  commentId: T:Fluxer.Net.ExpressionHelpers
+  parent: Fluxer.Net
+  href: Fluxer.Net.ExpressionHelpers.html
+  name: ExpressionHelpers
+  nameWithType: ExpressionHelpers
+  fullName: Fluxer.Net.ExpressionHelpers
+- uid: Fluxer.Net.GuildHelpers
+  commentId: T:Fluxer.Net.GuildHelpers
+  parent: Fluxer.Net
+  href: Fluxer.Net.GuildHelpers.html
+  name: GuildHelpers
+  nameWithType: GuildHelpers
+  fullName: Fluxer.Net.GuildHelpers
+- uid: Fluxer.Net.MemberHelpers
+  commentId: T:Fluxer.Net.MemberHelpers
+  parent: Fluxer.Net
+  href: Fluxer.Net.MemberHelpers.html
+  name: MemberHelpers
+  nameWithType: MemberHelpers
+  fullName: Fluxer.Net.MemberHelpers
+- uid: Fluxer.Net.MessageHelpers
+  commentId: T:Fluxer.Net.MessageHelpers
+  parent: Fluxer.Net
+  href: Fluxer.Net.MessageHelpers.html
+  name: MessageHelpers
+  nameWithType: MessageHelpers
+  fullName: Fluxer.Net.MessageHelpers
+- uid: Fluxer.Net.PrivateChannelHelpers
+  commentId: T:Fluxer.Net.PrivateChannelHelpers
+  parent: Fluxer.Net
+  href: Fluxer.Net.PrivateChannelHelpers.html
+  name: PrivateChannelHelpers
+  nameWithType: PrivateChannelHelpers
+  fullName: Fluxer.Net.PrivateChannelHelpers
+- uid: Fluxer.Net.RoleHelpers
+  commentId: T:Fluxer.Net.RoleHelpers
+  parent: Fluxer.Net
+  href: Fluxer.Net.RoleHelpers.html
+  name: RoleHelpers
+  nameWithType: RoleHelpers
+  fullName: Fluxer.Net.RoleHelpers
+- uid: Fluxer.Net.UserHelpers
+  commentId: T:Fluxer.Net.UserHelpers
+  parent: Fluxer.Net
+  href: Fluxer.Net.UserHelpers.html
+  name: UserHelpers
+  nameWithType: UserHelpers
+  fullName: Fluxer.Net.UserHelpers
+- uid: Fluxer.Net.WebhookHelpers
+  commentId: T:Fluxer.Net.WebhookHelpers
+  parent: Fluxer.Net
+  href: Fluxer.Net.WebhookHelpers.html
+  name: WebhookHelpers
+  nameWithType: WebhookHelpers
+  fullName: Fluxer.Net.WebhookHelpers
+- uid: Fluxer.Net.BulkDeleteMessagesRequest
+  commentId: T:Fluxer.Net.BulkDeleteMessagesRequest
+  parent: Fluxer.Net
+  href: Fluxer.Net.BulkDeleteMessagesRequest.html
+  name: BulkDeleteMessagesRequest
+  nameWithType: BulkDeleteMessagesRequest
+  fullName: Fluxer.Net.BulkDeleteMessagesRequest
+- uid: Fluxer.Net.ChannelOverwriteRequest
+  commentId: T:Fluxer.Net.ChannelOverwriteRequest
+  href: Fluxer.Net.ChannelOverwriteRequest.html
+  name: ChannelOverwriteRequest
+  nameWithType: ChannelOverwriteRequest
+  fullName: Fluxer.Net.ChannelOverwriteRequest
+- uid: Fluxer.Net.ChannelPinsQuery
+  commentId: T:Fluxer.Net.ChannelPinsQuery
+  parent: Fluxer.Net
+  href: Fluxer.Net.ChannelPinsQuery.html
+  name: ChannelPinsQuery
+  nameWithType: ChannelPinsQuery
+  fullName: Fluxer.Net.ChannelPinsQuery
+- uid: Fluxer.Net.ChannelPositionUpdateRequestItem
+  commentId: T:Fluxer.Net.ChannelPositionUpdateRequestItem
+  href: Fluxer.Net.ChannelPositionUpdateRequestItem.html
+  name: ChannelPositionUpdateRequestItem
+  nameWithType: ChannelPositionUpdateRequestItem
+  fullName: Fluxer.Net.ChannelPositionUpdateRequestItem
+- uid: Fluxer.Net.CreateCategoryChannelRequest
+  commentId: T:Fluxer.Net.CreateCategoryChannelRequest
+  href: Fluxer.Net.CreateCategoryChannelRequest.html
+  name: CreateCategoryChannelRequest
+  nameWithType: CreateCategoryChannelRequest
+  fullName: Fluxer.Net.CreateCategoryChannelRequest
+- uid: Fluxer.Net.CreateGuildChannelRequest
+  commentId: T:Fluxer.Net.CreateGuildChannelRequest
+  parent: Fluxer.Net
+  href: Fluxer.Net.CreateGuildChannelRequest.html
+  name: CreateGuildChannelRequest
+  nameWithType: CreateGuildChannelRequest
+  fullName: Fluxer.Net.CreateGuildChannelRequest
+- uid: Fluxer.Net.CreateLinkChannelRequest
+  commentId: T:Fluxer.Net.CreateLinkChannelRequest
+  href: Fluxer.Net.CreateLinkChannelRequest.html
+  name: CreateLinkChannelRequest
+  nameWithType: CreateLinkChannelRequest
+  fullName: Fluxer.Net.CreateLinkChannelRequest
+- uid: Fluxer.Net.CreatePrivateChannelRequest
+  commentId: T:Fluxer.Net.CreatePrivateChannelRequest
+  parent: Fluxer.Net
+  href: Fluxer.Net.CreatePrivateChannelRequest.html
+  name: CreatePrivateChannelRequest
+  nameWithType: CreatePrivateChannelRequest
+  fullName: Fluxer.Net.CreatePrivateChannelRequest
+- uid: Fluxer.Net.CreateTextChannelRequest
+  commentId: T:Fluxer.Net.CreateTextChannelRequest
+  href: Fluxer.Net.CreateTextChannelRequest.html
+  name: CreateTextChannelRequest
+  nameWithType: CreateTextChannelRequest
+  fullName: Fluxer.Net.CreateTextChannelRequest
+- uid: Fluxer.Net.CreateVoiceChannelRequest
+  commentId: T:Fluxer.Net.CreateVoiceChannelRequest
+  href: Fluxer.Net.CreateVoiceChannelRequest.html
+  name: CreateVoiceChannelRequest
+  nameWithType: CreateVoiceChannelRequest
+  fullName: Fluxer.Net.CreateVoiceChannelRequest
+- uid: Fluxer.Net.CreateWebhookRequest
+  commentId: T:Fluxer.Net.CreateWebhookRequest
+  href: Fluxer.Net.CreateWebhookRequest.html
+  name: CreateWebhookRequest
+  nameWithType: CreateWebhookRequest
+  fullName: Fluxer.Net.CreateWebhookRequest
+- uid: Fluxer.Net.UpdateVoiceRegionRequest
+  commentId: T:Fluxer.Net.UpdateVoiceRegionRequest
+  href: Fluxer.Net.UpdateVoiceRegionRequest.html
+  name: UpdateVoiceRegionRequest
+  nameWithType: UpdateVoiceRegionRequest
+  fullName: Fluxer.Net.UpdateVoiceRegionRequest
+- uid: Fluxer.Net.VoiceRingRequest
+  commentId: T:Fluxer.Net.VoiceRingRequest
+  href: Fluxer.Net.VoiceRingRequest.html
+  name: VoiceRingRequest
+  nameWithType: VoiceRingRequest
+  fullName: Fluxer.Net.VoiceRingRequest
+- uid: Fluxer.Net.GlobalSearchMessagesRequest
+  commentId: T:Fluxer.Net.GlobalSearchMessagesRequest
+  href: Fluxer.Net.GlobalSearchMessagesRequest.html
+  name: GlobalSearchMessagesRequest
+  nameWithType: GlobalSearchMessagesRequest
+  fullName: Fluxer.Net.GlobalSearchMessagesRequest
+- uid: Fluxer.Net.BulkCreateGuildEmojisRequest
+  commentId: T:Fluxer.Net.BulkCreateGuildEmojisRequest
+  parent: Fluxer.Net
+  href: Fluxer.Net.BulkCreateGuildEmojisRequest.html
+  name: BulkCreateGuildEmojisRequest
+  nameWithType: BulkCreateGuildEmojisRequest
+  fullName: Fluxer.Net.BulkCreateGuildEmojisRequest
+- uid: Fluxer.Net.BulkCreateGuildStickersRequest
+  commentId: T:Fluxer.Net.BulkCreateGuildStickersRequest
+  parent: Fluxer.Net
+  href: Fluxer.Net.BulkCreateGuildStickersRequest.html
+  name: BulkCreateGuildStickersRequest
+  nameWithType: BulkCreateGuildStickersRequest
+  fullName: Fluxer.Net.BulkCreateGuildStickersRequest
+- uid: Fluxer.Net.CreateGuildBanRequest
+  commentId: T:Fluxer.Net.CreateGuildBanRequest
+  parent: Fluxer.Net
+  href: Fluxer.Net.CreateGuildBanRequest.html
+  name: CreateGuildBanRequest
+  nameWithType: CreateGuildBanRequest
+  fullName: Fluxer.Net.CreateGuildBanRequest
+- uid: Fluxer.Net.CreateGuildEmojiRequest
+  commentId: T:Fluxer.Net.CreateGuildEmojiRequest
+  parent: Fluxer.Net
+  href: Fluxer.Net.CreateGuildEmojiRequest.html
+  name: CreateGuildEmojiRequest
+  nameWithType: CreateGuildEmojiRequest
+  fullName: Fluxer.Net.CreateGuildEmojiRequest
+- uid: Fluxer.Net.CreateGuildRequest
+  commentId: T:Fluxer.Net.CreateGuildRequest
+  parent: Fluxer.Net
+  href: Fluxer.Net.CreateGuildRequest.html
+  name: CreateGuildRequest
+  nameWithType: CreateGuildRequest
+  fullName: Fluxer.Net.CreateGuildRequest
+- uid: Fluxer.Net.CreateGuildRoleRequest
+  commentId: T:Fluxer.Net.CreateGuildRoleRequest
+  parent: Fluxer.Net
+  href: Fluxer.Net.CreateGuildRoleRequest.html
+  name: CreateGuildRoleRequest
+  nameWithType: CreateGuildRoleRequest
+  fullName: Fluxer.Net.CreateGuildRoleRequest
+- uid: Fluxer.Net.CreateGuildStickerRequest
+  commentId: T:Fluxer.Net.CreateGuildStickerRequest
+  parent: Fluxer.Net
+  href: Fluxer.Net.CreateGuildStickerRequest.html
+  name: CreateGuildStickerRequest
+  nameWithType: CreateGuildStickerRequest
+  fullName: Fluxer.Net.CreateGuildStickerRequest
+- uid: Fluxer.Net.DeleteGuildRequest
+  commentId: T:Fluxer.Net.DeleteGuildRequest
+  parent: Fluxer.Net
+  href: Fluxer.Net.DeleteGuildRequest.html
+  name: DeleteGuildRequest
+  nameWithType: DeleteGuildRequest
+  fullName: Fluxer.Net.DeleteGuildRequest
+- uid: Fluxer.Net.GuildAuditLogListRequest
+  commentId: T:Fluxer.Net.GuildAuditLogListRequest
+  parent: Fluxer.Net
+  href: Fluxer.Net.GuildAuditLogListRequest.html
+  name: GuildAuditLogListRequest
+  nameWithType: GuildAuditLogListRequest
+  fullName: Fluxer.Net.GuildAuditLogListRequest
+- uid: Fluxer.Net.GuildTransferOwnershipRequest
+  commentId: T:Fluxer.Net.GuildTransferOwnershipRequest
+  parent: Fluxer.Net
+  href: Fluxer.Net.GuildTransferOwnershipRequest.html
+  name: GuildTransferOwnershipRequest
+  nameWithType: GuildTransferOwnershipRequest
+  fullName: Fluxer.Net.GuildTransferOwnershipRequest
+- uid: Fluxer.Net.UpdateGuildEmojiRequest
+  commentId: T:Fluxer.Net.UpdateGuildEmojiRequest
+  parent: Fluxer.Net
+  href: Fluxer.Net.UpdateGuildEmojiRequest.html
+  name: UpdateGuildEmojiRequest
+  nameWithType: UpdateGuildEmojiRequest
+  fullName: Fluxer.Net.UpdateGuildEmojiRequest
+- uid: Fluxer.Net.UpdateGuildRoleRequest
+  commentId: T:Fluxer.Net.UpdateGuildRoleRequest
+  parent: Fluxer.Net
+  href: Fluxer.Net.UpdateGuildRoleRequest.html
+  name: UpdateGuildRoleRequest
+  nameWithType: UpdateGuildRoleRequest
+  fullName: Fluxer.Net.UpdateGuildRoleRequest
+- uid: Fluxer.Net.UpdateGuildStickerRequest
+  commentId: T:Fluxer.Net.UpdateGuildStickerRequest
+  parent: Fluxer.Net
+  href: Fluxer.Net.UpdateGuildStickerRequest.html
+  name: UpdateGuildStickerRequest
+  nameWithType: UpdateGuildStickerRequest
+  fullName: Fluxer.Net.UpdateGuildStickerRequest
+- uid: Fluxer.Net.UpdateGuildVanityUrlRequest
+  commentId: T:Fluxer.Net.UpdateGuildVanityUrlRequest
+  parent: Fluxer.Net
+  href: Fluxer.Net.UpdateGuildVanityUrlRequest.html
+  name: UpdateGuildVanityUrlRequest
+  nameWithType: UpdateGuildVanityUrlRequest
+  fullName: Fluxer.Net.UpdateGuildVanityUrlRequest
+- uid: Fluxer.Net.AllowedMentionsRequest
+  commentId: T:Fluxer.Net.AllowedMentionsRequest
+  parent: Fluxer.Net
+  href: Fluxer.Net.AllowedMentionsRequest.html
+  name: AllowedMentionsRequest
+  nameWithType: AllowedMentionsRequest
+  fullName: Fluxer.Net.AllowedMentionsRequest
+- uid: Fluxer.Net.MessageReferenceRequest
+  commentId: T:Fluxer.Net.MessageReferenceRequest
+  parent: Fluxer.Net
+  href: Fluxer.Net.MessageReferenceRequest.html
+  name: MessageReferenceRequest
+  nameWithType: MessageReferenceRequest
+  fullName: Fluxer.Net.MessageReferenceRequest
+- uid: Fluxer.Net.MessageRequest
+  commentId: T:Fluxer.Net.MessageRequest
+  href: Fluxer.Net.MessageRequest.html
+  name: MessageRequest
+  nameWithType: MessageRequest
+  fullName: Fluxer.Net.MessageRequest
+- uid: Fluxer.Net.MessageSearchRequest
+  commentId: T:Fluxer.Net.MessageSearchRequest
+  parent: Fluxer.Net
+  href: Fluxer.Net.MessageSearchRequest.html
+  name: MessageSearchRequest
+  nameWithType: MessageSearchRequest
+  fullName: Fluxer.Net.MessageSearchRequest
+- uid: Fluxer.Net.UpdateMessageRequest
+  commentId: T:Fluxer.Net.UpdateMessageRequest
+  parent: Fluxer.Net
+  href: Fluxer.Net.UpdateMessageRequest.html
+  name: UpdateMessageRequest
+  nameWithType: UpdateMessageRequest
+  fullName: Fluxer.Net.UpdateMessageRequest
+- uid: Fluxer.Net.UpdateCustomStatus
+  commentId: T:Fluxer.Net.UpdateCustomStatus
+  href: Fluxer.Net.UpdateCustomStatus.html
+  name: UpdateCustomStatus
+  nameWithType: UpdateCustomStatus
+  fullName: Fluxer.Net.UpdateCustomStatus
+- uid: Fluxer.Net
+  commentId: N:Fluxer.Net
+  href: Fluxer.html
+  name: Fluxer.Net
+  nameWithType: Fluxer.Net
+  fullName: Fluxer.Net
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html

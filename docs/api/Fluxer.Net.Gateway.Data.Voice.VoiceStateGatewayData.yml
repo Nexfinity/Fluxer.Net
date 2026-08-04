@@ -1,0 +1,473 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.Gateway.Data.Voice.VoiceStateGatewayData
+  commentId: T:Fluxer.Net.Gateway.Data.Voice.VoiceStateGatewayData
+  id: VoiceStateGatewayData
+  parent: Fluxer.Net.Gateway.Data.Voice
+  children: []
+  langs:
+  - csharp
+  - vb
+  name: VoiceStateGatewayData
+  nameWithType: VoiceStateGatewayData
+  fullName: Fluxer.Net.Gateway.Data.Voice.VoiceStateGatewayData
+  type: Class
+  source:
+    remote:
+      path: Fluxer.Net/Gateway/Data/Voice/VoiceStateGatewayData.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: VoiceStateGatewayData
+    path: ../Fluxer.Net/Gateway/Data/Voice/VoiceStateGatewayData.cs
+    startLine: 2
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net.Gateway.Data.Voice
+  syntax:
+    content: 'public class VoiceStateGatewayData : VoiceStateJson, IVoiceState'
+    content.vb: Public Class VoiceStateGatewayData Inherits VoiceStateJson Implements IVoiceState
+  inheritance:
+  - System.Object
+  - Fluxer.Net.VoiceStateJson
+  implements:
+  - Fluxer.Net.IVoiceState
+  inheritedMembers:
+  - Fluxer.Net.VoiceStateJson.SessionId
+  - Fluxer.Net.VoiceStateJson.UserId
+  - Fluxer.Net.VoiceStateJson.ChannelId
+  - Fluxer.Net.VoiceStateJson.ConnectionId
+  - Fluxer.Net.VoiceStateJson.IsDeaf
+  - Fluxer.Net.VoiceStateJson.IsMute
+  - Fluxer.Net.VoiceStateJson.GuildId
+  - Fluxer.Net.VoiceStateJson.IsMobile
+  - Fluxer.Net.VoiceStateJson.IsSelfDeaf
+  - Fluxer.Net.VoiceStateJson.IsSelfMute
+  - Fluxer.Net.VoiceStateJson.IsSelfStream
+  - Fluxer.Net.VoiceStateJson.IsSelfVideo
+  - Fluxer.Net.VoiceStateJson.ViewerStreamKeys
+  - Fluxer.Net.VoiceStateJson.Member
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+references:
+- uid: Fluxer.Net.Gateway.Data.Voice
+  commentId: N:Fluxer.Net.Gateway.Data.Voice
+  href: Fluxer.html
+  name: Fluxer.Net.Gateway.Data.Voice
+  nameWithType: Fluxer.Net.Gateway.Data.Voice
+  fullName: Fluxer.Net.Gateway.Data.Voice
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  - name: .
+  - uid: Fluxer.Net.Gateway
+    name: Gateway
+    href: Fluxer.Net.Gateway.html
+  - name: .
+  - uid: Fluxer.Net.Gateway.Data
+    name: Data
+    href: Fluxer.Net.Gateway.Data.html
+  - name: .
+  - uid: Fluxer.Net.Gateway.Data.Voice
+    name: Voice
+    href: Fluxer.Net.Gateway.Data.Voice.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  - name: .
+  - uid: Fluxer.Net.Gateway
+    name: Gateway
+    href: Fluxer.Net.Gateway.html
+  - name: .
+  - uid: Fluxer.Net.Gateway.Data
+    name: Data
+    href: Fluxer.Net.Gateway.Data.html
+  - name: .
+  - uid: Fluxer.Net.Gateway.Data.Voice
+    name: Voice
+    href: Fluxer.Net.Gateway.Data.Voice.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Fluxer.Net.VoiceStateJson
+  commentId: T:Fluxer.Net.VoiceStateJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.VoiceStateJson.html
+  name: VoiceStateJson
+  nameWithType: VoiceStateJson
+  fullName: Fluxer.Net.VoiceStateJson
+- uid: Fluxer.Net.IVoiceState
+  commentId: T:Fluxer.Net.IVoiceState
+  parent: Fluxer.Net
+  href: Fluxer.Net.IVoiceState.html
+  name: IVoiceState
+  nameWithType: IVoiceState
+  fullName: Fluxer.Net.IVoiceState
+- uid: Fluxer.Net.VoiceStateJson.SessionId
+  commentId: P:Fluxer.Net.VoiceStateJson.SessionId
+  parent: Fluxer.Net.VoiceStateJson
+  href: Fluxer.Net.VoiceStateJson.html#Fluxer_Net_VoiceStateJson_SessionId
+  name: SessionId
+  nameWithType: VoiceStateJson.SessionId
+  fullName: Fluxer.Net.VoiceStateJson.SessionId
+- uid: Fluxer.Net.VoiceStateJson.UserId
+  commentId: P:Fluxer.Net.VoiceStateJson.UserId
+  parent: Fluxer.Net.VoiceStateJson
+  href: Fluxer.Net.VoiceStateJson.html#Fluxer_Net_VoiceStateJson_UserId
+  name: UserId
+  nameWithType: VoiceStateJson.UserId
+  fullName: Fluxer.Net.VoiceStateJson.UserId
+- uid: Fluxer.Net.VoiceStateJson.ChannelId
+  commentId: P:Fluxer.Net.VoiceStateJson.ChannelId
+  parent: Fluxer.Net.VoiceStateJson
+  href: Fluxer.Net.VoiceStateJson.html#Fluxer_Net_VoiceStateJson_ChannelId
+  name: ChannelId
+  nameWithType: VoiceStateJson.ChannelId
+  fullName: Fluxer.Net.VoiceStateJson.ChannelId
+- uid: Fluxer.Net.VoiceStateJson.ConnectionId
+  commentId: P:Fluxer.Net.VoiceStateJson.ConnectionId
+  parent: Fluxer.Net.VoiceStateJson
+  href: Fluxer.Net.VoiceStateJson.html#Fluxer_Net_VoiceStateJson_ConnectionId
+  name: ConnectionId
+  nameWithType: VoiceStateJson.ConnectionId
+  fullName: Fluxer.Net.VoiceStateJson.ConnectionId
+- uid: Fluxer.Net.VoiceStateJson.IsDeaf
+  commentId: P:Fluxer.Net.VoiceStateJson.IsDeaf
+  parent: Fluxer.Net.VoiceStateJson
+  href: Fluxer.Net.VoiceStateJson.html#Fluxer_Net_VoiceStateJson_IsDeaf
+  name: IsDeaf
+  nameWithType: VoiceStateJson.IsDeaf
+  fullName: Fluxer.Net.VoiceStateJson.IsDeaf
+- uid: Fluxer.Net.VoiceStateJson.IsMute
+  commentId: P:Fluxer.Net.VoiceStateJson.IsMute
+  parent: Fluxer.Net.VoiceStateJson
+  href: Fluxer.Net.VoiceStateJson.html#Fluxer_Net_VoiceStateJson_IsMute
+  name: IsMute
+  nameWithType: VoiceStateJson.IsMute
+  fullName: Fluxer.Net.VoiceStateJson.IsMute
+- uid: Fluxer.Net.VoiceStateJson.GuildId
+  commentId: P:Fluxer.Net.VoiceStateJson.GuildId
+  parent: Fluxer.Net.VoiceStateJson
+  href: Fluxer.Net.VoiceStateJson.html#Fluxer_Net_VoiceStateJson_GuildId
+  name: GuildId
+  nameWithType: VoiceStateJson.GuildId
+  fullName: Fluxer.Net.VoiceStateJson.GuildId
+- uid: Fluxer.Net.VoiceStateJson.IsMobile
+  commentId: P:Fluxer.Net.VoiceStateJson.IsMobile
+  parent: Fluxer.Net.VoiceStateJson
+  href: Fluxer.Net.VoiceStateJson.html#Fluxer_Net_VoiceStateJson_IsMobile
+  name: IsMobile
+  nameWithType: VoiceStateJson.IsMobile
+  fullName: Fluxer.Net.VoiceStateJson.IsMobile
+- uid: Fluxer.Net.VoiceStateJson.IsSelfDeaf
+  commentId: P:Fluxer.Net.VoiceStateJson.IsSelfDeaf
+  parent: Fluxer.Net.VoiceStateJson
+  href: Fluxer.Net.VoiceStateJson.html#Fluxer_Net_VoiceStateJson_IsSelfDeaf
+  name: IsSelfDeaf
+  nameWithType: VoiceStateJson.IsSelfDeaf
+  fullName: Fluxer.Net.VoiceStateJson.IsSelfDeaf
+- uid: Fluxer.Net.VoiceStateJson.IsSelfMute
+  commentId: P:Fluxer.Net.VoiceStateJson.IsSelfMute
+  parent: Fluxer.Net.VoiceStateJson
+  href: Fluxer.Net.VoiceStateJson.html#Fluxer_Net_VoiceStateJson_IsSelfMute
+  name: IsSelfMute
+  nameWithType: VoiceStateJson.IsSelfMute
+  fullName: Fluxer.Net.VoiceStateJson.IsSelfMute
+- uid: Fluxer.Net.VoiceStateJson.IsSelfStream
+  commentId: P:Fluxer.Net.VoiceStateJson.IsSelfStream
+  parent: Fluxer.Net.VoiceStateJson
+  href: Fluxer.Net.VoiceStateJson.html#Fluxer_Net_VoiceStateJson_IsSelfStream
+  name: IsSelfStream
+  nameWithType: VoiceStateJson.IsSelfStream
+  fullName: Fluxer.Net.VoiceStateJson.IsSelfStream
+- uid: Fluxer.Net.VoiceStateJson.IsSelfVideo
+  commentId: P:Fluxer.Net.VoiceStateJson.IsSelfVideo
+  parent: Fluxer.Net.VoiceStateJson
+  href: Fluxer.Net.VoiceStateJson.html#Fluxer_Net_VoiceStateJson_IsSelfVideo
+  name: IsSelfVideo
+  nameWithType: VoiceStateJson.IsSelfVideo
+  fullName: Fluxer.Net.VoiceStateJson.IsSelfVideo
+- uid: Fluxer.Net.VoiceStateJson.ViewerStreamKeys
+  commentId: P:Fluxer.Net.VoiceStateJson.ViewerStreamKeys
+  parent: Fluxer.Net.VoiceStateJson
+  href: Fluxer.Net.VoiceStateJson.html#Fluxer_Net_VoiceStateJson_ViewerStreamKeys
+  name: ViewerStreamKeys
+  nameWithType: VoiceStateJson.ViewerStreamKeys
+  fullName: Fluxer.Net.VoiceStateJson.ViewerStreamKeys
+- uid: Fluxer.Net.VoiceStateJson.Member
+  commentId: P:Fluxer.Net.VoiceStateJson.Member
+  parent: Fluxer.Net.VoiceStateJson
+  href: Fluxer.Net.VoiceStateJson.html#Fluxer_Net_VoiceStateJson_Member
+  name: Member
+  nameWithType: VoiceStateJson.Member
+  fullName: Fluxer.Net.VoiceStateJson.Member
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Fluxer.Net
+  commentId: N:Fluxer.Net
+  href: Fluxer.html
+  name: Fluxer.Net
+  nameWithType: Fluxer.Net
+  fullName: Fluxer.Net
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html

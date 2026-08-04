@@ -1,0 +1,110 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.GatewayClient.GuildMemberUpdateEvent
+  commentId: T:Fluxer.Net.GatewayClient.GuildMemberUpdateEvent
+  id: GatewayClient.GuildMemberUpdateEvent
+  parent: Fluxer.Net
+  children: []
+  langs:
+  - csharp
+  - vb
+  name: GatewayClient.GuildMemberUpdateEvent
+  nameWithType: GatewayClient.GuildMemberUpdateEvent
+  fullName: Fluxer.Net.GatewayClient.GuildMemberUpdateEvent
+  type: Delegate
+  source:
+    remote:
+      path: Fluxer.Net/Gateway/GatewayClient.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: GuildMemberUpdateEvent
+    path: ../Fluxer.Net/Gateway/GatewayClient.cs
+    startLine: 2239
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Delegate for GUILD_MEMBER_UPDATE events when a guild member is updated.
+  example: []
+  syntax:
+    content: public delegate void GatewayClient.GuildMemberUpdateEvent(GuildMemberGatewayData data)
+    parameters:
+    - id: data
+      type: Fluxer.Net.Gateway.Data.Guilds.GuildMemberGatewayData
+      description: The updated guild member data.
+    content.vb: Public Delegate Sub GatewayClient.GuildMemberUpdateEvent(data As GuildMemberGatewayData)
+references:
+- uid: Fluxer.Net
+  commentId: N:Fluxer.Net
+  href: Fluxer.html
+  name: Fluxer.Net
+  nameWithType: Fluxer.Net
+  fullName: Fluxer.Net
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+- uid: Fluxer.Net.Gateway.Data.Guilds.GuildMemberGatewayData
+  commentId: T:Fluxer.Net.Gateway.Data.Guilds.GuildMemberGatewayData
+  parent: Fluxer.Net.Gateway.Data.Guilds
+  href: Fluxer.Net.Gateway.Data.Guilds.GuildMemberGatewayData.html
+  name: GuildMemberGatewayData
+  nameWithType: GuildMemberGatewayData
+  fullName: Fluxer.Net.Gateway.Data.Guilds.GuildMemberGatewayData
+- uid: Fluxer.Net.Gateway.Data.Guilds
+  commentId: N:Fluxer.Net.Gateway.Data.Guilds
+  href: Fluxer.html
+  name: Fluxer.Net.Gateway.Data.Guilds
+  nameWithType: Fluxer.Net.Gateway.Data.Guilds
+  fullName: Fluxer.Net.Gateway.Data.Guilds
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  - name: .
+  - uid: Fluxer.Net.Gateway
+    name: Gateway
+    href: Fluxer.Net.Gateway.html
+  - name: .
+  - uid: Fluxer.Net.Gateway.Data
+    name: Data
+    href: Fluxer.Net.Gateway.Data.html
+  - name: .
+  - uid: Fluxer.Net.Gateway.Data.Guilds
+    name: Guilds
+    href: Fluxer.Net.Gateway.Data.Guilds.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  - name: .
+  - uid: Fluxer.Net.Gateway
+    name: Gateway
+    href: Fluxer.Net.Gateway.html
+  - name: .
+  - uid: Fluxer.Net.Gateway.Data
+    name: Data
+    href: Fluxer.Net.Gateway.Data.html
+  - name: .
+  - uid: Fluxer.Net.Gateway.Data.Guilds
+    name: Guilds
+    href: Fluxer.Net.Gateway.Data.Guilds.html

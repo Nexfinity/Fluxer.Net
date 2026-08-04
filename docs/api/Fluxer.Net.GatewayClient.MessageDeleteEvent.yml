@@ -1,0 +1,102 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.GatewayClient.MessageDeleteEvent
+  commentId: T:Fluxer.Net.GatewayClient.MessageDeleteEvent
+  id: GatewayClient.MessageDeleteEvent
+  parent: Fluxer.Net
+  children: []
+  langs:
+  - csharp
+  - vb
+  name: GatewayClient.MessageDeleteEvent
+  nameWithType: GatewayClient.MessageDeleteEvent
+  fullName: Fluxer.Net.GatewayClient.MessageDeleteEvent
+  type: Delegate
+  source:
+    remote:
+      path: Fluxer.Net/Gateway/GatewayClient.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: MessageDeleteEvent
+    path: ../Fluxer.Net/Gateway/GatewayClient.cs
+    startLine: 1845
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Delegate for MESSAGE_DELETE events when a message is deleted.
+  example: []
+  syntax:
+    content: public delegate void GatewayClient.MessageDeleteEvent(EntityRemovedGatewayData data)
+    parameters:
+    - id: data
+      type: Fluxer.Net.Gateway.Data.EntityRemovedGatewayData
+      description: The deleted entity data containing message and channel IDs.
+    content.vb: Public Delegate Sub GatewayClient.MessageDeleteEvent(data As EntityRemovedGatewayData)
+references:
+- uid: Fluxer.Net
+  commentId: N:Fluxer.Net
+  href: Fluxer.html
+  name: Fluxer.Net
+  nameWithType: Fluxer.Net
+  fullName: Fluxer.Net
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+- uid: Fluxer.Net.Gateway.Data.EntityRemovedGatewayData
+  commentId: T:Fluxer.Net.Gateway.Data.EntityRemovedGatewayData
+  parent: Fluxer.Net.Gateway.Data
+  href: Fluxer.Net.Gateway.Data.EntityRemovedGatewayData.html
+  name: EntityRemovedGatewayData
+  nameWithType: EntityRemovedGatewayData
+  fullName: Fluxer.Net.Gateway.Data.EntityRemovedGatewayData
+- uid: Fluxer.Net.Gateway.Data
+  commentId: N:Fluxer.Net.Gateway.Data
+  href: Fluxer.html
+  name: Fluxer.Net.Gateway.Data
+  nameWithType: Fluxer.Net.Gateway.Data
+  fullName: Fluxer.Net.Gateway.Data
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  - name: .
+  - uid: Fluxer.Net.Gateway
+    name: Gateway
+    href: Fluxer.Net.Gateway.html
+  - name: .
+  - uid: Fluxer.Net.Gateway.Data
+    name: Data
+    href: Fluxer.Net.Gateway.Data.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  - name: .
+  - uid: Fluxer.Net.Gateway
+    name: Gateway
+    href: Fluxer.Net.Gateway.html
+  - name: .
+  - uid: Fluxer.Net.Gateway.Data
+    name: Data
+    href: Fluxer.Net.Gateway.Data.html

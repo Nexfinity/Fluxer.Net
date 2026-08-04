@@ -1,0 +1,226 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.IInstanceApp
+  commentId: T:Fluxer.Net.IInstanceApp
+  id: IInstanceApp
+  parent: Fluxer.Net
+  children:
+  - Fluxer.Net.IInstanceApp.Branding
+  - Fluxer.Net.IInstanceApp.Legal
+  - Fluxer.Net.IInstanceApp.Registration
+  - Fluxer.Net.IInstanceApp.Setup
+  langs:
+  - csharp
+  - vb
+  name: IInstanceApp
+  nameWithType: IInstanceApp
+  fullName: Fluxer.Net.IInstanceApp
+  type: Interface
+  source:
+    remote:
+      path: Fluxer.Net/Data/Misc/IInstance.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: IInstanceApp
+    path: ../Fluxer.Net/Data/Misc/IInstance.cs
+    startLine: 122
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: public interface IInstanceApp
+    content.vb: Public Interface IInstanceApp
+  derivedClasses:
+  - Fluxer.Net.InstanceApp
+  - Fluxer.Net.InstanceAppJson
+- uid: Fluxer.Net.IInstanceApp.Branding
+  commentId: P:Fluxer.Net.IInstanceApp.Branding
+  id: Branding
+  parent: Fluxer.Net.IInstanceApp
+  langs:
+  - csharp
+  - vb
+  name: Branding
+  nameWithType: IInstanceApp.Branding
+  fullName: Fluxer.Net.IInstanceApp.Branding
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Misc/IInstance.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Branding
+    path: ../Fluxer.Net/Data/Misc/IInstance.cs
+    startLine: 124
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: IInstanceAppBranding Branding { get; }
+    parameters: []
+    return:
+      type: Fluxer.Net.IInstanceAppBranding
+    content.vb: ReadOnly Property Branding As IInstanceAppBranding
+  overload: Fluxer.Net.IInstanceApp.Branding*
+- uid: Fluxer.Net.IInstanceApp.Setup
+  commentId: P:Fluxer.Net.IInstanceApp.Setup
+  id: Setup
+  parent: Fluxer.Net.IInstanceApp
+  langs:
+  - csharp
+  - vb
+  name: Setup
+  nameWithType: IInstanceApp.Setup
+  fullName: Fluxer.Net.IInstanceApp.Setup
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Misc/IInstance.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Setup
+    path: ../Fluxer.Net/Data/Misc/IInstance.cs
+    startLine: 126
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: IInstanceAppSetup Setup { get; }
+    parameters: []
+    return:
+      type: Fluxer.Net.IInstanceAppSetup
+    content.vb: ReadOnly Property Setup As IInstanceAppSetup
+  overload: Fluxer.Net.IInstanceApp.Setup*
+- uid: Fluxer.Net.IInstanceApp.Legal
+  commentId: P:Fluxer.Net.IInstanceApp.Legal
+  id: Legal
+  parent: Fluxer.Net.IInstanceApp
+  langs:
+  - csharp
+  - vb
+  name: Legal
+  nameWithType: IInstanceApp.Legal
+  fullName: Fluxer.Net.IInstanceApp.Legal
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Misc/IInstance.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Legal
+    path: ../Fluxer.Net/Data/Misc/IInstance.cs
+    startLine: 128
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: IInstanceAppLegal Legal { get; }
+    parameters: []
+    return:
+      type: Fluxer.Net.IInstanceAppLegal
+    content.vb: ReadOnly Property Legal As IInstanceAppLegal
+  overload: Fluxer.Net.IInstanceApp.Legal*
+- uid: Fluxer.Net.IInstanceApp.Registration
+  commentId: P:Fluxer.Net.IInstanceApp.Registration
+  id: Registration
+  parent: Fluxer.Net.IInstanceApp
+  langs:
+  - csharp
+  - vb
+  name: Registration
+  nameWithType: IInstanceApp.Registration
+  fullName: Fluxer.Net.IInstanceApp.Registration
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Misc/IInstance.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Registration
+    path: ../Fluxer.Net/Data/Misc/IInstance.cs
+    startLine: 130
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: IInstanceAppRegistration Registration { get; }
+    parameters: []
+    return:
+      type: Fluxer.Net.IInstanceAppRegistration
+    content.vb: ReadOnly Property Registration As IInstanceAppRegistration
+  overload: Fluxer.Net.IInstanceApp.Registration*
+references:
+- uid: Fluxer.Net
+  commentId: N:Fluxer.Net
+  href: Fluxer.html
+  name: Fluxer.Net
+  nameWithType: Fluxer.Net
+  fullName: Fluxer.Net
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+- uid: Fluxer.Net.IInstanceApp.Branding*
+  commentId: Overload:Fluxer.Net.IInstanceApp.Branding
+  href: Fluxer.Net.IInstanceApp.html#Fluxer_Net_IInstanceApp_Branding
+  name: Branding
+  nameWithType: IInstanceApp.Branding
+  fullName: Fluxer.Net.IInstanceApp.Branding
+- uid: Fluxer.Net.IInstanceAppBranding
+  commentId: T:Fluxer.Net.IInstanceAppBranding
+  parent: Fluxer.Net
+  href: Fluxer.Net.IInstanceAppBranding.html
+  name: IInstanceAppBranding
+  nameWithType: IInstanceAppBranding
+  fullName: Fluxer.Net.IInstanceAppBranding
+- uid: Fluxer.Net.IInstanceApp.Setup*
+  commentId: Overload:Fluxer.Net.IInstanceApp.Setup
+  href: Fluxer.Net.IInstanceApp.html#Fluxer_Net_IInstanceApp_Setup
+  name: Setup
+  nameWithType: IInstanceApp.Setup
+  fullName: Fluxer.Net.IInstanceApp.Setup
+- uid: Fluxer.Net.IInstanceAppSetup
+  commentId: T:Fluxer.Net.IInstanceAppSetup
+  parent: Fluxer.Net
+  href: Fluxer.Net.IInstanceAppSetup.html
+  name: IInstanceAppSetup
+  nameWithType: IInstanceAppSetup
+  fullName: Fluxer.Net.IInstanceAppSetup
+- uid: Fluxer.Net.IInstanceApp.Legal*
+  commentId: Overload:Fluxer.Net.IInstanceApp.Legal
+  href: Fluxer.Net.IInstanceApp.html#Fluxer_Net_IInstanceApp_Legal
+  name: Legal
+  nameWithType: IInstanceApp.Legal
+  fullName: Fluxer.Net.IInstanceApp.Legal
+- uid: Fluxer.Net.IInstanceAppLegal
+  commentId: T:Fluxer.Net.IInstanceAppLegal
+  parent: Fluxer.Net
+  href: Fluxer.Net.IInstanceAppLegal.html
+  name: IInstanceAppLegal
+  nameWithType: IInstanceAppLegal
+  fullName: Fluxer.Net.IInstanceAppLegal
+- uid: Fluxer.Net.IInstanceApp.Registration*
+  commentId: Overload:Fluxer.Net.IInstanceApp.Registration
+  href: Fluxer.Net.IInstanceApp.html#Fluxer_Net_IInstanceApp_Registration
+  name: Registration
+  nameWithType: IInstanceApp.Registration
+  fullName: Fluxer.Net.IInstanceApp.Registration
+- uid: Fluxer.Net.IInstanceAppRegistration
+  commentId: T:Fluxer.Net.IInstanceAppRegistration
+  parent: Fluxer.Net
+  href: Fluxer.Net.IInstanceAppRegistration.html
+  name: IInstanceAppRegistration
+  nameWithType: IInstanceAppRegistration
+  fullName: Fluxer.Net.IInstanceAppRegistration

@@ -1,0 +1,186 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.IGifCategory
+  commentId: T:Fluxer.Net.IGifCategory
+  id: IGifCategory
+  parent: Fluxer.Net
+  children:
+  - Fluxer.Net.IGifCategory.Name
+  - Fluxer.Net.IGifCategory.ProxySource
+  - Fluxer.Net.IGifCategory.Source
+  langs:
+  - csharp
+  - vb
+  name: IGifCategory
+  nameWithType: IGifCategory
+  fullName: Fluxer.Net.IGifCategory
+  type: Interface
+  source:
+    remote:
+      path: Fluxer.Net/Data/Gifs/IGifCategory.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: IGifCategory
+    path: ../Fluxer.Net/Data/Gifs/IGifCategory.cs
+    startLine: 2
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: public interface IGifCategory
+    content.vb: Public Interface IGifCategory
+  derivedClasses:
+  - Fluxer.Net.GifCategory
+  - Fluxer.Net.GifCategoryJson
+- uid: Fluxer.Net.IGifCategory.Name
+  commentId: P:Fluxer.Net.IGifCategory.Name
+  id: Name
+  parent: Fluxer.Net.IGifCategory
+  langs:
+  - csharp
+  - vb
+  name: Name
+  nameWithType: IGifCategory.Name
+  fullName: Fluxer.Net.IGifCategory.Name
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Gifs/IGifCategory.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Name
+    path: ../Fluxer.Net/Data/Gifs/IGifCategory.cs
+    startLine: 7
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The category search term.
+  example: []
+  syntax:
+    content: string Name { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: ReadOnly Property Name As String
+  overload: Fluxer.Net.IGifCategory.Name*
+- uid: Fluxer.Net.IGifCategory.Source
+  commentId: P:Fluxer.Net.IGifCategory.Source
+  id: Source
+  parent: Fluxer.Net.IGifCategory
+  langs:
+  - csharp
+  - vb
+  name: Source
+  nameWithType: IGifCategory.Source
+  fullName: Fluxer.Net.IGifCategory.Source
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Gifs/IGifCategory.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Source
+    path: ../Fluxer.Net/Data/Gifs/IGifCategory.cs
+    startLine: 12
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: URL to the category preview image.
+  example: []
+  syntax:
+    content: string Source { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: ReadOnly Property Source As String
+  overload: Fluxer.Net.IGifCategory.Source*
+- uid: Fluxer.Net.IGifCategory.ProxySource
+  commentId: P:Fluxer.Net.IGifCategory.ProxySource
+  id: ProxySource
+  parent: Fluxer.Net.IGifCategory
+  langs:
+  - csharp
+  - vb
+  name: ProxySource
+  nameWithType: IGifCategory.ProxySource
+  fullName: Fluxer.Net.IGifCategory.ProxySource
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Gifs/IGifCategory.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: ProxySource
+    path: ../Fluxer.Net/Data/Gifs/IGifCategory.cs
+    startLine: 17
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Proxied URL to the category preview image.
+  example: []
+  syntax:
+    content: string ProxySource { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: ReadOnly Property ProxySource As String
+  overload: Fluxer.Net.IGifCategory.ProxySource*
+references:
+- uid: Fluxer.Net
+  commentId: N:Fluxer.Net
+  href: Fluxer.html
+  name: Fluxer.Net
+  nameWithType: Fluxer.Net
+  fullName: Fluxer.Net
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+- uid: Fluxer.Net.IGifCategory.Name*
+  commentId: Overload:Fluxer.Net.IGifCategory.Name
+  href: Fluxer.Net.IGifCategory.html#Fluxer_Net_IGifCategory_Name
+  name: Name
+  nameWithType: IGifCategory.Name
+  fullName: Fluxer.Net.IGifCategory.Name
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Fluxer.Net.IGifCategory.Source*
+  commentId: Overload:Fluxer.Net.IGifCategory.Source
+  href: Fluxer.Net.IGifCategory.html#Fluxer_Net_IGifCategory_Source
+  name: Source
+  nameWithType: IGifCategory.Source
+  fullName: Fluxer.Net.IGifCategory.Source
+- uid: Fluxer.Net.IGifCategory.ProxySource*
+  commentId: Overload:Fluxer.Net.IGifCategory.ProxySource
+  href: Fluxer.Net.IGifCategory.html#Fluxer_Net_IGifCategory_ProxySource
+  name: ProxySource
+  nameWithType: IGifCategory.ProxySource
+  fullName: Fluxer.Net.IGifCategory.ProxySource

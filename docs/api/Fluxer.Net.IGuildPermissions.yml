@@ -1,0 +1,451 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.IGuildPermissions
+  commentId: T:Fluxer.Net.IGuildPermissions
+  id: IGuildPermissions
+  parent: Fluxer.Net
+  children:
+  - Fluxer.Net.IGuildPermissions.Administrator
+  - Fluxer.Net.IGuildPermissions.BanMembers
+  - Fluxer.Net.IGuildPermissions.ChangeNickname
+  - Fluxer.Net.IGuildPermissions.CreateExpressions
+  - Fluxer.Net.IGuildPermissions.KickMembers
+  - Fluxer.Net.IGuildPermissions.ManageExpressions
+  - Fluxer.Net.IGuildPermissions.ManageGuild
+  - Fluxer.Net.IGuildPermissions.ManageNicknames
+  - Fluxer.Net.IGuildPermissions.ModerateMembers
+  - Fluxer.Net.IGuildPermissions.ViewAuditLog
+  langs:
+  - csharp
+  - vb
+  name: IGuildPermissions
+  nameWithType: IGuildPermissions
+  fullName: Fluxer.Net.IGuildPermissions
+  type: Interface
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/IGuildPermissions.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: IGuildPermissions
+    path: ../Fluxer.Net/Data/Guilds/IGuildPermissions.cs
+    startLine: 2
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: public interface IGuildPermissions
+    content.vb: Public Interface IGuildPermissions
+  derivedClasses:
+  - Fluxer.Net.GuildPermissions
+- uid: Fluxer.Net.IGuildPermissions.Administrator
+  commentId: P:Fluxer.Net.IGuildPermissions.Administrator
+  id: Administrator
+  parent: Fluxer.Net.IGuildPermissions
+  langs:
+  - csharp
+  - vb
+  name: Administrator
+  nameWithType: IGuildPermissions.Administrator
+  fullName: Fluxer.Net.IGuildPermissions.Administrator
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/IGuildPermissions.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Administrator
+    path: ../Fluxer.Net/Data/Guilds/IGuildPermissions.cs
+    startLine: 7
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Grants all permissions and bypasses channel restrictions. Highly sensitive.
+  example: []
+  syntax:
+    content: bool Administrator { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: ReadOnly Property Administrator As Boolean
+  overload: Fluxer.Net.IGuildPermissions.Administrator*
+- uid: Fluxer.Net.IGuildPermissions.ViewAuditLog
+  commentId: P:Fluxer.Net.IGuildPermissions.ViewAuditLog
+  id: ViewAuditLog
+  parent: Fluxer.Net.IGuildPermissions
+  langs:
+  - csharp
+  - vb
+  name: ViewAuditLog
+  nameWithType: IGuildPermissions.ViewAuditLog
+  fullName: Fluxer.Net.IGuildPermissions.ViewAuditLog
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/IGuildPermissions.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: ViewAuditLog
+    path: ../Fluxer.Net/Data/Guilds/IGuildPermissions.cs
+    startLine: 12
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Read the community's audit log of changes and moderation actions.
+  example: []
+  syntax:
+    content: bool ViewAuditLog { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: ReadOnly Property ViewAuditLog As Boolean
+  overload: Fluxer.Net.IGuildPermissions.ViewAuditLog*
+- uid: Fluxer.Net.IGuildPermissions.ManageGuild
+  commentId: P:Fluxer.Net.IGuildPermissions.ManageGuild
+  id: ManageGuild
+  parent: Fluxer.Net.IGuildPermissions
+  langs:
+  - csharp
+  - vb
+  name: ManageGuild
+  nameWithType: IGuildPermissions.ManageGuild
+  fullName: Fluxer.Net.IGuildPermissions.ManageGuild
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/IGuildPermissions.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: ManageGuild
+    path: ../Fluxer.Net/Data/Guilds/IGuildPermissions.cs
+    startLine: 17
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Edit global settings like name, description, and icon.
+  example: []
+  syntax:
+    content: bool ManageGuild { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: ReadOnly Property ManageGuild As Boolean
+  overload: Fluxer.Net.IGuildPermissions.ManageGuild*
+- uid: Fluxer.Net.IGuildPermissions.KickMembers
+  commentId: P:Fluxer.Net.IGuildPermissions.KickMembers
+  id: KickMembers
+  parent: Fluxer.Net.IGuildPermissions
+  langs:
+  - csharp
+  - vb
+  name: KickMembers
+  nameWithType: IGuildPermissions.KickMembers
+  fullName: Fluxer.Net.IGuildPermissions.KickMembers
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/IGuildPermissions.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: KickMembers
+    path: ../Fluxer.Net/Data/Guilds/IGuildPermissions.cs
+    startLine: 22
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Kick users from the guild.
+  example: []
+  syntax:
+    content: bool KickMembers { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: ReadOnly Property KickMembers As Boolean
+  overload: Fluxer.Net.IGuildPermissions.KickMembers*
+- uid: Fluxer.Net.IGuildPermissions.BanMembers
+  commentId: P:Fluxer.Net.IGuildPermissions.BanMembers
+  id: BanMembers
+  parent: Fluxer.Net.IGuildPermissions
+  langs:
+  - csharp
+  - vb
+  name: BanMembers
+  nameWithType: IGuildPermissions.BanMembers
+  fullName: Fluxer.Net.IGuildPermissions.BanMembers
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/IGuildPermissions.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: BanMembers
+    path: ../Fluxer.Net/Data/Guilds/IGuildPermissions.cs
+    startLine: 27
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Ban users from joining the guild.
+  example: []
+  syntax:
+    content: bool BanMembers { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: ReadOnly Property BanMembers As Boolean
+  overload: Fluxer.Net.IGuildPermissions.BanMembers*
+- uid: Fluxer.Net.IGuildPermissions.ChangeNickname
+  commentId: P:Fluxer.Net.IGuildPermissions.ChangeNickname
+  id: ChangeNickname
+  parent: Fluxer.Net.IGuildPermissions
+  langs:
+  - csharp
+  - vb
+  name: ChangeNickname
+  nameWithType: IGuildPermissions.ChangeNickname
+  fullName: Fluxer.Net.IGuildPermissions.ChangeNickname
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/IGuildPermissions.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: ChangeNickname
+    path: ../Fluxer.Net/Data/Guilds/IGuildPermissions.cs
+    startLine: 32
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Update your own nickname.
+  example: []
+  syntax:
+    content: bool ChangeNickname { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: ReadOnly Property ChangeNickname As Boolean
+  overload: Fluxer.Net.IGuildPermissions.ChangeNickname*
+- uid: Fluxer.Net.IGuildPermissions.ManageNicknames
+  commentId: P:Fluxer.Net.IGuildPermissions.ManageNicknames
+  id: ManageNicknames
+  parent: Fluxer.Net.IGuildPermissions
+  langs:
+  - csharp
+  - vb
+  name: ManageNicknames
+  nameWithType: IGuildPermissions.ManageNicknames
+  fullName: Fluxer.Net.IGuildPermissions.ManageNicknames
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/IGuildPermissions.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: ManageNicknames
+    path: ../Fluxer.Net/Data/Guilds/IGuildPermissions.cs
+    startLine: 37
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Change other members nicknames.
+  example: []
+  syntax:
+    content: bool ManageNicknames { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: ReadOnly Property ManageNicknames As Boolean
+  overload: Fluxer.Net.IGuildPermissions.ManageNicknames*
+- uid: Fluxer.Net.IGuildPermissions.CreateExpressions
+  commentId: P:Fluxer.Net.IGuildPermissions.CreateExpressions
+  id: CreateExpressions
+  parent: Fluxer.Net.IGuildPermissions
+  langs:
+  - csharp
+  - vb
+  name: CreateExpressions
+  nameWithType: IGuildPermissions.CreateExpressions
+  fullName: Fluxer.Net.IGuildPermissions.CreateExpressions
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/IGuildPermissions.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: CreateExpressions
+    path: ../Fluxer.Net/Data/Guilds/IGuildPermissions.cs
+    startLine: 42
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Upload new emojis and stickers, and manage your own creations.
+  example: []
+  syntax:
+    content: bool CreateExpressions { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: ReadOnly Property CreateExpressions As Boolean
+  overload: Fluxer.Net.IGuildPermissions.CreateExpressions*
+- uid: Fluxer.Net.IGuildPermissions.ManageExpressions
+  commentId: P:Fluxer.Net.IGuildPermissions.ManageExpressions
+  id: ManageExpressions
+  parent: Fluxer.Net.IGuildPermissions
+  langs:
+  - csharp
+  - vb
+  name: ManageExpressions
+  nameWithType: IGuildPermissions.ManageExpressions
+  fullName: Fluxer.Net.IGuildPermissions.ManageExpressions
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/IGuildPermissions.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: ManageExpressions
+    path: ../Fluxer.Net/Data/Guilds/IGuildPermissions.cs
+    startLine: 47
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Edit or delete emojis and stickers created by other members.
+  example: []
+  syntax:
+    content: bool ManageExpressions { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: ReadOnly Property ManageExpressions As Boolean
+  overload: Fluxer.Net.IGuildPermissions.ManageExpressions*
+- uid: Fluxer.Net.IGuildPermissions.ModerateMembers
+  commentId: P:Fluxer.Net.IGuildPermissions.ModerateMembers
+  id: ModerateMembers
+  parent: Fluxer.Net.IGuildPermissions
+  langs:
+  - csharp
+  - vb
+  name: ModerateMembers
+  nameWithType: IGuildPermissions.ModerateMembers
+  fullName: Fluxer.Net.IGuildPermissions.ModerateMembers
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/IGuildPermissions.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: ModerateMembers
+    path: ../Fluxer.Net/Data/Guilds/IGuildPermissions.cs
+    startLine: 52
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Prevent members from sending messages, reacting, and joining voice for a duration.
+  example: []
+  syntax:
+    content: bool ModerateMembers { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: ReadOnly Property ModerateMembers As Boolean
+  overload: Fluxer.Net.IGuildPermissions.ModerateMembers*
+references:
+- uid: Fluxer.Net
+  commentId: N:Fluxer.Net
+  href: Fluxer.html
+  name: Fluxer.Net
+  nameWithType: Fluxer.Net
+  fullName: Fluxer.Net
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+- uid: Fluxer.Net.IGuildPermissions.Administrator*
+  commentId: Overload:Fluxer.Net.IGuildPermissions.Administrator
+  href: Fluxer.Net.IGuildPermissions.html#Fluxer_Net_IGuildPermissions_Administrator
+  name: Administrator
+  nameWithType: IGuildPermissions.Administrator
+  fullName: Fluxer.Net.IGuildPermissions.Administrator
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Fluxer.Net.IGuildPermissions.ViewAuditLog*
+  commentId: Overload:Fluxer.Net.IGuildPermissions.ViewAuditLog
+  href: Fluxer.Net.IGuildPermissions.html#Fluxer_Net_IGuildPermissions_ViewAuditLog
+  name: ViewAuditLog
+  nameWithType: IGuildPermissions.ViewAuditLog
+  fullName: Fluxer.Net.IGuildPermissions.ViewAuditLog
+- uid: Fluxer.Net.IGuildPermissions.ManageGuild*
+  commentId: Overload:Fluxer.Net.IGuildPermissions.ManageGuild
+  href: Fluxer.Net.IGuildPermissions.html#Fluxer_Net_IGuildPermissions_ManageGuild
+  name: ManageGuild
+  nameWithType: IGuildPermissions.ManageGuild
+  fullName: Fluxer.Net.IGuildPermissions.ManageGuild
+- uid: Fluxer.Net.IGuildPermissions.KickMembers*
+  commentId: Overload:Fluxer.Net.IGuildPermissions.KickMembers
+  href: Fluxer.Net.IGuildPermissions.html#Fluxer_Net_IGuildPermissions_KickMembers
+  name: KickMembers
+  nameWithType: IGuildPermissions.KickMembers
+  fullName: Fluxer.Net.IGuildPermissions.KickMembers
+- uid: Fluxer.Net.IGuildPermissions.BanMembers*
+  commentId: Overload:Fluxer.Net.IGuildPermissions.BanMembers
+  href: Fluxer.Net.IGuildPermissions.html#Fluxer_Net_IGuildPermissions_BanMembers
+  name: BanMembers
+  nameWithType: IGuildPermissions.BanMembers
+  fullName: Fluxer.Net.IGuildPermissions.BanMembers
+- uid: Fluxer.Net.IGuildPermissions.ChangeNickname*
+  commentId: Overload:Fluxer.Net.IGuildPermissions.ChangeNickname
+  href: Fluxer.Net.IGuildPermissions.html#Fluxer_Net_IGuildPermissions_ChangeNickname
+  name: ChangeNickname
+  nameWithType: IGuildPermissions.ChangeNickname
+  fullName: Fluxer.Net.IGuildPermissions.ChangeNickname
+- uid: Fluxer.Net.IGuildPermissions.ManageNicknames*
+  commentId: Overload:Fluxer.Net.IGuildPermissions.ManageNicknames
+  href: Fluxer.Net.IGuildPermissions.html#Fluxer_Net_IGuildPermissions_ManageNicknames
+  name: ManageNicknames
+  nameWithType: IGuildPermissions.ManageNicknames
+  fullName: Fluxer.Net.IGuildPermissions.ManageNicknames
+- uid: Fluxer.Net.IGuildPermissions.CreateExpressions*
+  commentId: Overload:Fluxer.Net.IGuildPermissions.CreateExpressions
+  href: Fluxer.Net.IGuildPermissions.html#Fluxer_Net_IGuildPermissions_CreateExpressions
+  name: CreateExpressions
+  nameWithType: IGuildPermissions.CreateExpressions
+  fullName: Fluxer.Net.IGuildPermissions.CreateExpressions
+- uid: Fluxer.Net.IGuildPermissions.ManageExpressions*
+  commentId: Overload:Fluxer.Net.IGuildPermissions.ManageExpressions
+  href: Fluxer.Net.IGuildPermissions.html#Fluxer_Net_IGuildPermissions_ManageExpressions
+  name: ManageExpressions
+  nameWithType: IGuildPermissions.ManageExpressions
+  fullName: Fluxer.Net.IGuildPermissions.ManageExpressions
+- uid: Fluxer.Net.IGuildPermissions.ModerateMembers*
+  commentId: Overload:Fluxer.Net.IGuildPermissions.ModerateMembers
+  href: Fluxer.Net.IGuildPermissions.html#Fluxer_Net_IGuildPermissions_ModerateMembers
+  name: ModerateMembers
+  nameWithType: IGuildPermissions.ModerateMembers
+  fullName: Fluxer.Net.IGuildPermissions.ModerateMembers

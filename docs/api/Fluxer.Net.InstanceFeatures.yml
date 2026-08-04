@@ -1,0 +1,550 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.InstanceFeatures
+  commentId: T:Fluxer.Net.InstanceFeatures
+  id: InstanceFeatures
+  parent: Fluxer.Net
+  children:
+  - Fluxer.Net.InstanceFeatures.IsEmailsEnabled
+  - Fluxer.Net.InstanceFeatures.IsPresignedAttachmentUploads
+  - Fluxer.Net.InstanceFeatures.IsSelfHosted
+  - Fluxer.Net.InstanceFeatures.IsStripeEnabled
+  - Fluxer.Net.InstanceFeatures.IsVoiceEnabled
+  langs:
+  - csharp
+  - vb
+  name: InstanceFeatures
+  nameWithType: InstanceFeatures
+  fullName: Fluxer.Net.InstanceFeatures
+  type: Class
+  source:
+    remote:
+      path: Fluxer.Net/Data/Misc/Instance.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: InstanceFeatures
+    path: ../Fluxer.Net/Data/Misc/Instance.cs
+    startLine: 214
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Supports all classes in the .NET class hierarchy and provides low-level services to derived classes. This is the ultimate base class of all .NET classes; it is the root of the type hierarchy.
+  example: []
+  syntax:
+    content: 'public class InstanceFeatures : IInstanceFeatures'
+    content.vb: Public Class InstanceFeatures Implements IInstanceFeatures
+  inheritance:
+  - System.Object
+  implements:
+  - Fluxer.Net.IInstanceFeatures
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: Fluxer.Net.InstanceFeatures.IsVoiceEnabled
+  commentId: P:Fluxer.Net.InstanceFeatures.IsVoiceEnabled
+  id: IsVoiceEnabled
+  parent: Fluxer.Net.InstanceFeatures
+  langs:
+  - csharp
+  - vb
+  name: IsVoiceEnabled
+  nameWithType: InstanceFeatures.IsVoiceEnabled
+  fullName: Fluxer.Net.InstanceFeatures.IsVoiceEnabled
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Misc/Instance.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: IsVoiceEnabled
+    path: ../Fluxer.Net/Data/Misc/Instance.cs
+    startLine: 217
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  example: []
+  syntax:
+    content: public bool IsVoiceEnabled { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property IsVoiceEnabled As Boolean
+  overload: Fluxer.Net.InstanceFeatures.IsVoiceEnabled*
+  implements:
+  - Fluxer.Net.IInstanceFeatures.IsVoiceEnabled
+- uid: Fluxer.Net.InstanceFeatures.IsStripeEnabled
+  commentId: P:Fluxer.Net.InstanceFeatures.IsStripeEnabled
+  id: IsStripeEnabled
+  parent: Fluxer.Net.InstanceFeatures
+  langs:
+  - csharp
+  - vb
+  name: IsStripeEnabled
+  nameWithType: InstanceFeatures.IsStripeEnabled
+  fullName: Fluxer.Net.InstanceFeatures.IsStripeEnabled
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Misc/Instance.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: IsStripeEnabled
+    path: ../Fluxer.Net/Data/Misc/Instance.cs
+    startLine: 220
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  example: []
+  syntax:
+    content: public bool IsStripeEnabled { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property IsStripeEnabled As Boolean
+  overload: Fluxer.Net.InstanceFeatures.IsStripeEnabled*
+  implements:
+  - Fluxer.Net.IInstanceFeatures.IsStripeEnabled
+- uid: Fluxer.Net.InstanceFeatures.IsSelfHosted
+  commentId: P:Fluxer.Net.InstanceFeatures.IsSelfHosted
+  id: IsSelfHosted
+  parent: Fluxer.Net.InstanceFeatures
+  langs:
+  - csharp
+  - vb
+  name: IsSelfHosted
+  nameWithType: InstanceFeatures.IsSelfHosted
+  fullName: Fluxer.Net.InstanceFeatures.IsSelfHosted
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Misc/Instance.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: IsSelfHosted
+    path: ../Fluxer.Net/Data/Misc/Instance.cs
+    startLine: 223
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  example: []
+  syntax:
+    content: public bool IsSelfHosted { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property IsSelfHosted As Boolean
+  overload: Fluxer.Net.InstanceFeatures.IsSelfHosted*
+  implements:
+  - Fluxer.Net.IInstanceFeatures.IsSelfHosted
+- uid: Fluxer.Net.InstanceFeatures.IsPresignedAttachmentUploads
+  commentId: P:Fluxer.Net.InstanceFeatures.IsPresignedAttachmentUploads
+  id: IsPresignedAttachmentUploads
+  parent: Fluxer.Net.InstanceFeatures
+  langs:
+  - csharp
+  - vb
+  name: IsPresignedAttachmentUploads
+  nameWithType: InstanceFeatures.IsPresignedAttachmentUploads
+  fullName: Fluxer.Net.InstanceFeatures.IsPresignedAttachmentUploads
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Misc/Instance.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: IsPresignedAttachmentUploads
+    path: ../Fluxer.Net/Data/Misc/Instance.cs
+    startLine: 226
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  example: []
+  syntax:
+    content: public bool IsPresignedAttachmentUploads { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property IsPresignedAttachmentUploads As Boolean
+  overload: Fluxer.Net.InstanceFeatures.IsPresignedAttachmentUploads*
+  implements:
+  - Fluxer.Net.IInstanceFeatures.IsPresignedAttachmentUploads
+- uid: Fluxer.Net.InstanceFeatures.IsEmailsEnabled
+  commentId: P:Fluxer.Net.InstanceFeatures.IsEmailsEnabled
+  id: IsEmailsEnabled
+  parent: Fluxer.Net.InstanceFeatures
+  langs:
+  - csharp
+  - vb
+  name: IsEmailsEnabled
+  nameWithType: InstanceFeatures.IsEmailsEnabled
+  fullName: Fluxer.Net.InstanceFeatures.IsEmailsEnabled
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Misc/Instance.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: IsEmailsEnabled
+    path: ../Fluxer.Net/Data/Misc/Instance.cs
+    startLine: 229
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  example: []
+  syntax:
+    content: public bool IsEmailsEnabled { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property IsEmailsEnabled As Boolean
+  overload: Fluxer.Net.InstanceFeatures.IsEmailsEnabled*
+  implements:
+  - Fluxer.Net.IInstanceFeatures.IsEmailsEnabled
+references:
+- uid: Fluxer.Net
+  commentId: N:Fluxer.Net
+  href: Fluxer.html
+  name: Fluxer.Net
+  nameWithType: Fluxer.Net
+  fullName: Fluxer.Net
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Fluxer.Net.IInstanceFeatures
+  commentId: T:Fluxer.Net.IInstanceFeatures
+  parent: Fluxer.Net
+  href: Fluxer.Net.IInstanceFeatures.html
+  name: IInstanceFeatures
+  nameWithType: IInstanceFeatures
+  fullName: Fluxer.Net.IInstanceFeatures
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Fluxer.Net.InstanceFeatures.IsVoiceEnabled*
+  commentId: Overload:Fluxer.Net.InstanceFeatures.IsVoiceEnabled
+  href: Fluxer.Net.InstanceFeatures.html#Fluxer_Net_InstanceFeatures_IsVoiceEnabled
+  name: IsVoiceEnabled
+  nameWithType: InstanceFeatures.IsVoiceEnabled
+  fullName: Fluxer.Net.InstanceFeatures.IsVoiceEnabled
+- uid: Fluxer.Net.IInstanceFeatures.IsVoiceEnabled
+  commentId: P:Fluxer.Net.IInstanceFeatures.IsVoiceEnabled
+  parent: Fluxer.Net.IInstanceFeatures
+  href: Fluxer.Net.IInstanceFeatures.html#Fluxer_Net_IInstanceFeatures_IsVoiceEnabled
+  name: IsVoiceEnabled
+  nameWithType: IInstanceFeatures.IsVoiceEnabled
+  fullName: Fluxer.Net.IInstanceFeatures.IsVoiceEnabled
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: Fluxer.Net.InstanceFeatures.IsStripeEnabled*
+  commentId: Overload:Fluxer.Net.InstanceFeatures.IsStripeEnabled
+  href: Fluxer.Net.InstanceFeatures.html#Fluxer_Net_InstanceFeatures_IsStripeEnabled
+  name: IsStripeEnabled
+  nameWithType: InstanceFeatures.IsStripeEnabled
+  fullName: Fluxer.Net.InstanceFeatures.IsStripeEnabled
+- uid: Fluxer.Net.IInstanceFeatures.IsStripeEnabled
+  commentId: P:Fluxer.Net.IInstanceFeatures.IsStripeEnabled
+  parent: Fluxer.Net.IInstanceFeatures
+  href: Fluxer.Net.IInstanceFeatures.html#Fluxer_Net_IInstanceFeatures_IsStripeEnabled
+  name: IsStripeEnabled
+  nameWithType: IInstanceFeatures.IsStripeEnabled
+  fullName: Fluxer.Net.IInstanceFeatures.IsStripeEnabled
+- uid: Fluxer.Net.InstanceFeatures.IsSelfHosted*
+  commentId: Overload:Fluxer.Net.InstanceFeatures.IsSelfHosted
+  href: Fluxer.Net.InstanceFeatures.html#Fluxer_Net_InstanceFeatures_IsSelfHosted
+  name: IsSelfHosted
+  nameWithType: InstanceFeatures.IsSelfHosted
+  fullName: Fluxer.Net.InstanceFeatures.IsSelfHosted
+- uid: Fluxer.Net.IInstanceFeatures.IsSelfHosted
+  commentId: P:Fluxer.Net.IInstanceFeatures.IsSelfHosted
+  parent: Fluxer.Net.IInstanceFeatures
+  href: Fluxer.Net.IInstanceFeatures.html#Fluxer_Net_IInstanceFeatures_IsSelfHosted
+  name: IsSelfHosted
+  nameWithType: IInstanceFeatures.IsSelfHosted
+  fullName: Fluxer.Net.IInstanceFeatures.IsSelfHosted
+- uid: Fluxer.Net.InstanceFeatures.IsPresignedAttachmentUploads*
+  commentId: Overload:Fluxer.Net.InstanceFeatures.IsPresignedAttachmentUploads
+  href: Fluxer.Net.InstanceFeatures.html#Fluxer_Net_InstanceFeatures_IsPresignedAttachmentUploads
+  name: IsPresignedAttachmentUploads
+  nameWithType: InstanceFeatures.IsPresignedAttachmentUploads
+  fullName: Fluxer.Net.InstanceFeatures.IsPresignedAttachmentUploads
+- uid: Fluxer.Net.IInstanceFeatures.IsPresignedAttachmentUploads
+  commentId: P:Fluxer.Net.IInstanceFeatures.IsPresignedAttachmentUploads
+  parent: Fluxer.Net.IInstanceFeatures
+  href: Fluxer.Net.IInstanceFeatures.html#Fluxer_Net_IInstanceFeatures_IsPresignedAttachmentUploads
+  name: IsPresignedAttachmentUploads
+  nameWithType: IInstanceFeatures.IsPresignedAttachmentUploads
+  fullName: Fluxer.Net.IInstanceFeatures.IsPresignedAttachmentUploads
+- uid: Fluxer.Net.InstanceFeatures.IsEmailsEnabled*
+  commentId: Overload:Fluxer.Net.InstanceFeatures.IsEmailsEnabled
+  href: Fluxer.Net.InstanceFeatures.html#Fluxer_Net_InstanceFeatures_IsEmailsEnabled
+  name: IsEmailsEnabled
+  nameWithType: InstanceFeatures.IsEmailsEnabled
+  fullName: Fluxer.Net.InstanceFeatures.IsEmailsEnabled
+- uid: Fluxer.Net.IInstanceFeatures.IsEmailsEnabled
+  commentId: P:Fluxer.Net.IInstanceFeatures.IsEmailsEnabled
+  parent: Fluxer.Net.IInstanceFeatures
+  href: Fluxer.Net.IInstanceFeatures.html#Fluxer_Net_IInstanceFeatures_IsEmailsEnabled
+  name: IsEmailsEnabled
+  nameWithType: IInstanceFeatures.IsEmailsEnabled
+  fullName: Fluxer.Net.IInstanceFeatures.IsEmailsEnabled

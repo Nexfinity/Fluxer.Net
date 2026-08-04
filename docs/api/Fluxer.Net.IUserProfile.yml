@@ -1,0 +1,315 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.IUserProfile
+  commentId: T:Fluxer.Net.IUserProfile
+  id: IUserProfile
+  parent: Fluxer.Net
+  children:
+  - Fluxer.Net.IUserProfile.AccentColor
+  - Fluxer.Net.IUserProfile.BannerColor
+  - Fluxer.Net.IUserProfile.BannerHash
+  - Fluxer.Net.IUserProfile.Bio
+  - Fluxer.Net.IUserProfile.Pronouns
+  langs:
+  - csharp
+  - vb
+  name: IUserProfile
+  nameWithType: IUserProfile
+  fullName: Fluxer.Net.IUserProfile
+  type: Interface
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/IUserProfile.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: IUserProfile
+    path: ../Fluxer.Net/Data/Users/IUserProfile.cs
+    startLine: 2
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: public interface IUserProfile
+    content.vb: Public Interface IUserProfile
+  derivedClasses:
+  - Fluxer.Net.CurrentUser
+  - Fluxer.Net.CurrentUserJson
+  - Fluxer.Net.UserProfile
+  - Fluxer.Net.UserProfileJson
+- uid: Fluxer.Net.IUserProfile.Bio
+  commentId: P:Fluxer.Net.IUserProfile.Bio
+  id: Bio
+  parent: Fluxer.Net.IUserProfile
+  langs:
+  - csharp
+  - vb
+  name: Bio
+  nameWithType: IUserProfile.Bio
+  fullName: Fluxer.Net.IUserProfile.Bio
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/IUserProfile.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Bio
+    path: ../Fluxer.Net/Data/Users/IUserProfile.cs
+    startLine: 7
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The user biography text.
+  example: []
+  syntax:
+    content: string? Bio { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: ReadOnly Property Bio As String
+  overload: Fluxer.Net.IUserProfile.Bio*
+- uid: Fluxer.Net.IUserProfile.Pronouns
+  commentId: P:Fluxer.Net.IUserProfile.Pronouns
+  id: Pronouns
+  parent: Fluxer.Net.IUserProfile
+  langs:
+  - csharp
+  - vb
+  name: Pronouns
+  nameWithType: IUserProfile.Pronouns
+  fullName: Fluxer.Net.IUserProfile.Pronouns
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/IUserProfile.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Pronouns
+    path: ../Fluxer.Net/Data/Users/IUserProfile.cs
+    startLine: 12
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The preferred pronouns of the user.
+  example: []
+  syntax:
+    content: string? Pronouns { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: ReadOnly Property Pronouns As String
+  overload: Fluxer.Net.IUserProfile.Pronouns*
+- uid: Fluxer.Net.IUserProfile.AccentColor
+  commentId: P:Fluxer.Net.IUserProfile.AccentColor
+  id: AccentColor
+  parent: Fluxer.Net.IUserProfile
+  langs:
+  - csharp
+  - vb
+  name: AccentColor
+  nameWithType: IUserProfile.AccentColor
+  fullName: Fluxer.Net.IUserProfile.AccentColor
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/IUserProfile.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: AccentColor
+    path: ../Fluxer.Net/Data/Users/IUserProfile.cs
+    startLine: 17
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The user-selected accent color as an integer.
+  example: []
+  syntax:
+    content: int? AccentColor { get; }
+    parameters: []
+    return:
+      type: System.Nullable{System.Int32}
+    content.vb: ReadOnly Property AccentColor As Integer?
+  overload: Fluxer.Net.IUserProfile.AccentColor*
+- uid: Fluxer.Net.IUserProfile.BannerHash
+  commentId: P:Fluxer.Net.IUserProfile.BannerHash
+  id: BannerHash
+  parent: Fluxer.Net.IUserProfile
+  langs:
+  - csharp
+  - vb
+  name: BannerHash
+  nameWithType: IUserProfile.BannerHash
+  fullName: Fluxer.Net.IUserProfile.BannerHash
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/IUserProfile.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: BannerHash
+    path: ../Fluxer.Net/Data/Users/IUserProfile.cs
+    startLine: 22
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The hash of the user profile banner image.
+  example: []
+  syntax:
+    content: string? BannerHash { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: ReadOnly Property BannerHash As String
+  overload: Fluxer.Net.IUserProfile.BannerHash*
+- uid: Fluxer.Net.IUserProfile.BannerColor
+  commentId: P:Fluxer.Net.IUserProfile.BannerColor
+  id: BannerColor
+  parent: Fluxer.Net.IUserProfile
+  langs:
+  - csharp
+  - vb
+  name: BannerColor
+  nameWithType: IUserProfile.BannerColor
+  fullName: Fluxer.Net.IUserProfile.BannerColor
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/IUserProfile.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: BannerColor
+    path: ../Fluxer.Net/Data/Users/IUserProfile.cs
+    startLine: 27
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Default banner color if no custom banner.
+  example: []
+  syntax:
+    content: int? BannerColor { get; }
+    parameters: []
+    return:
+      type: System.Nullable{System.Int32}
+    content.vb: ReadOnly Property BannerColor As Integer?
+  overload: Fluxer.Net.IUserProfile.BannerColor*
+references:
+- uid: Fluxer.Net
+  commentId: N:Fluxer.Net
+  href: Fluxer.html
+  name: Fluxer.Net
+  nameWithType: Fluxer.Net
+  fullName: Fluxer.Net
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+- uid: Fluxer.Net.IUserProfile.Bio*
+  commentId: Overload:Fluxer.Net.IUserProfile.Bio
+  href: Fluxer.Net.IUserProfile.html#Fluxer_Net_IUserProfile_Bio
+  name: Bio
+  nameWithType: IUserProfile.Bio
+  fullName: Fluxer.Net.IUserProfile.Bio
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Fluxer.Net.IUserProfile.Pronouns*
+  commentId: Overload:Fluxer.Net.IUserProfile.Pronouns
+  href: Fluxer.Net.IUserProfile.html#Fluxer_Net_IUserProfile_Pronouns
+  name: Pronouns
+  nameWithType: IUserProfile.Pronouns
+  fullName: Fluxer.Net.IUserProfile.Pronouns
+- uid: Fluxer.Net.IUserProfile.AccentColor*
+  commentId: Overload:Fluxer.Net.IUserProfile.AccentColor
+  href: Fluxer.Net.IUserProfile.html#Fluxer_Net_IUserProfile_AccentColor
+  name: AccentColor
+  nameWithType: IUserProfile.AccentColor
+  fullName: Fluxer.Net.IUserProfile.AccentColor
+- uid: System.Nullable{System.Int32}
+  commentId: T:System.Nullable{System.Int32}
+  parent: System
+  definition: System.Nullable`1
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int?
+  nameWithType: int?
+  fullName: int?
+  nameWithType.vb: Integer?
+  fullName.vb: Integer?
+  name.vb: Integer?
+  spec.csharp:
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
+  spec.vb:
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: Fluxer.Net.IUserProfile.BannerHash*
+  commentId: Overload:Fluxer.Net.IUserProfile.BannerHash
+  href: Fluxer.Net.IUserProfile.html#Fluxer_Net_IUserProfile_BannerHash
+  name: BannerHash
+  nameWithType: IUserProfile.BannerHash
+  fullName: Fluxer.Net.IUserProfile.BannerHash
+- uid: Fluxer.Net.IUserProfile.BannerColor*
+  commentId: Overload:Fluxer.Net.IUserProfile.BannerColor
+  href: Fluxer.Net.IUserProfile.html#Fluxer_Net_IUserProfile_BannerColor
+  name: BannerColor
+  nameWithType: IUserProfile.BannerColor
+  fullName: Fluxer.Net.IUserProfile.BannerColor

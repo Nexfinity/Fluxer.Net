@@ -1,0 +1,118 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.InviteType
+  commentId: T:Fluxer.Net.InviteType
+  id: InviteType
+  parent: Fluxer.Net
+  children:
+  - Fluxer.Net.InviteType.GroupDm
+  - Fluxer.Net.InviteType.Guild
+  langs:
+  - csharp
+  - vb
+  name: InviteType
+  nameWithType: InviteType
+  fullName: Fluxer.Net.InviteType
+  type: Enum
+  source:
+    remote:
+      path: Fluxer.Net/Data/Invites/InviteType.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: InviteType
+    path: ../Fluxer.Net/Data/Invites/InviteType.cs
+    startLine: 5
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Represents the type of invite (what the invite is for).
+  example: []
+  syntax:
+    content: public enum InviteType
+    content.vb: Public Enum InviteType
+- uid: Fluxer.Net.InviteType.Guild
+  commentId: F:Fluxer.Net.InviteType.Guild
+  id: Guild
+  parent: Fluxer.Net.InviteType
+  langs:
+  - csharp
+  - vb
+  name: Guild
+  nameWithType: InviteType.Guild
+  fullName: Fluxer.Net.InviteType.Guild
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/Invites/InviteType.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Guild
+    path: ../Fluxer.Net/Data/Invites/InviteType.cs
+    startLine: 10
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: An invite to join a guild/server.
+  example: []
+  syntax:
+    content: Guild = 0
+    return:
+      type: Fluxer.Net.InviteType
+- uid: Fluxer.Net.InviteType.GroupDm
+  commentId: F:Fluxer.Net.InviteType.GroupDm
+  id: GroupDm
+  parent: Fluxer.Net.InviteType
+  langs:
+  - csharp
+  - vb
+  name: GroupDm
+  nameWithType: InviteType.GroupDm
+  fullName: Fluxer.Net.InviteType.GroupDm
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/Invites/InviteType.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: GroupDm
+    path: ../Fluxer.Net/Data/Invites/InviteType.cs
+    startLine: 15
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: An invite to join a group DM.
+  example: []
+  syntax:
+    content: GroupDm = 1
+    return:
+      type: Fluxer.Net.InviteType
+references:
+- uid: Fluxer.Net
+  commentId: N:Fluxer.Net
+  href: Fluxer.html
+  name: Fluxer.Net
+  nameWithType: Fluxer.Net
+  fullName: Fluxer.Net
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+- uid: Fluxer.Net.InviteType
+  commentId: T:Fluxer.Net.InviteType
+  parent: Fluxer.Net
+  href: Fluxer.Net.InviteType.html
+  name: InviteType
+  nameWithType: InviteType
+  fullName: Fluxer.Net.InviteType

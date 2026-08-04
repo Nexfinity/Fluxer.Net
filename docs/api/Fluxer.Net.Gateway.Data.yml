@@ -1,0 +1,106 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.Gateway.Data
+  commentId: N:Fluxer.Net.Gateway.Data
+  id: Fluxer.Net.Gateway.Data
+  children:
+  - Fluxer.Net.Gateway.Data.EntityRemovedGatewayData
+  - Fluxer.Net.Gateway.Data.HelloGatewayData
+  - Fluxer.Net.Gateway.Data.IdentifyGatewayData
+  - Fluxer.Net.Gateway.Data.PassiveGatewayData
+  - Fluxer.Net.Gateway.Data.ReadyGatewayData
+  - Fluxer.Net.Gateway.Data.RecentMentionDeleteGatewayData
+  - Fluxer.Net.Gateway.Data.ReconnectGatewayData
+  langs:
+  - csharp
+  - vb
+  name: Fluxer.Net.Gateway.Data
+  nameWithType: Fluxer.Net.Gateway.Data
+  fullName: Fluxer.Net.Gateway.Data
+  type: Namespace
+  assemblies:
+  - Fluxer.Net
+references:
+- uid: Fluxer.Net.Gateway.Data.EntityRemovedGatewayData
+  commentId: T:Fluxer.Net.Gateway.Data.EntityRemovedGatewayData
+  parent: Fluxer.Net.Gateway.Data
+  href: Fluxer.Net.Gateway.Data.EntityRemovedGatewayData.html
+  name: EntityRemovedGatewayData
+  nameWithType: EntityRemovedGatewayData
+  fullName: Fluxer.Net.Gateway.Data.EntityRemovedGatewayData
+- uid: Fluxer.Net.Gateway.Data.HelloGatewayData
+  commentId: T:Fluxer.Net.Gateway.Data.HelloGatewayData
+  href: Fluxer.Net.Gateway.Data.HelloGatewayData.html
+  name: HelloGatewayData
+  nameWithType: HelloGatewayData
+  fullName: Fluxer.Net.Gateway.Data.HelloGatewayData
+- uid: Fluxer.Net.Gateway.Data.IdentifyGatewayData
+  commentId: T:Fluxer.Net.Gateway.Data.IdentifyGatewayData
+  href: Fluxer.Net.Gateway.Data.IdentifyGatewayData.html
+  name: IdentifyGatewayData
+  nameWithType: IdentifyGatewayData
+  fullName: Fluxer.Net.Gateway.Data.IdentifyGatewayData
+- uid: Fluxer.Net.Gateway.Data.PassiveGatewayData
+  commentId: T:Fluxer.Net.Gateway.Data.PassiveGatewayData
+  href: Fluxer.Net.Gateway.Data.PassiveGatewayData.html
+  name: PassiveGatewayData
+  nameWithType: PassiveGatewayData
+  fullName: Fluxer.Net.Gateway.Data.PassiveGatewayData
+- uid: Fluxer.Net.Gateway.Data.ReadyGatewayData
+  commentId: T:Fluxer.Net.Gateway.Data.ReadyGatewayData
+  parent: Fluxer.Net.Gateway.Data
+  href: Fluxer.Net.Gateway.Data.ReadyGatewayData.html
+  name: ReadyGatewayData
+  nameWithType: ReadyGatewayData
+  fullName: Fluxer.Net.Gateway.Data.ReadyGatewayData
+- uid: Fluxer.Net.Gateway.Data.RecentMentionDeleteGatewayData
+  commentId: T:Fluxer.Net.Gateway.Data.RecentMentionDeleteGatewayData
+  parent: Fluxer.Net.Gateway.Data
+  href: Fluxer.Net.Gateway.Data.RecentMentionDeleteGatewayData.html
+  name: RecentMentionDeleteGatewayData
+  nameWithType: RecentMentionDeleteGatewayData
+  fullName: Fluxer.Net.Gateway.Data.RecentMentionDeleteGatewayData
+- uid: Fluxer.Net.Gateway.Data.ReconnectGatewayData
+  commentId: T:Fluxer.Net.Gateway.Data.ReconnectGatewayData
+  href: Fluxer.Net.Gateway.Data.ReconnectGatewayData.html
+  name: ReconnectGatewayData
+  nameWithType: ReconnectGatewayData
+  fullName: Fluxer.Net.Gateway.Data.ReconnectGatewayData
+- uid: Fluxer.Net.Gateway.Data
+  commentId: N:Fluxer.Net.Gateway.Data
+  href: Fluxer.html
+  name: Fluxer.Net.Gateway.Data
+  nameWithType: Fluxer.Net.Gateway.Data
+  fullName: Fluxer.Net.Gateway.Data
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  - name: .
+  - uid: Fluxer.Net.Gateway
+    name: Gateway
+    href: Fluxer.Net.Gateway.html
+  - name: .
+  - uid: Fluxer.Net.Gateway.Data
+    name: Data
+    href: Fluxer.Net.Gateway.Data.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  - name: .
+  - uid: Fluxer.Net.Gateway
+    name: Gateway
+    href: Fluxer.Net.Gateway.html
+  - name: .
+  - uid: Fluxer.Net.Gateway.Data
+    name: Data
+    href: Fluxer.Net.Gateway.Data.html

@@ -1,0 +1,128 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.SystemChannelFlags
+  commentId: T:Fluxer.Net.SystemChannelFlags
+  id: SystemChannelFlags
+  parent: Fluxer.Net
+  children:
+  - Fluxer.Net.SystemChannelFlags.None
+  - Fluxer.Net.SystemChannelFlags.SuppressJoinNotifications
+  langs:
+  - csharp
+  - vb
+  name: SystemChannelFlags
+  nameWithType: SystemChannelFlags
+  fullName: Fluxer.Net.SystemChannelFlags
+  type: Enum
+  source:
+    remote:
+      path: Fluxer.Net/Data/Channels/SystemChannelFlags.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: SystemChannelFlags
+    path: ../Fluxer.Net/Data/Channels/SystemChannelFlags.cs
+    startLine: 5
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Flags that control which system messages are sent to the guild's system channel. Multiple flags can be combined using bitwise OR.
+  example: []
+  syntax:
+    content: >-
+      [Flags]
+
+      public enum SystemChannelFlags : ulong
+    content.vb: >-
+      <Flags>
+
+      Public Enum SystemChannelFlags As ULong
+  attributes:
+  - type: System.FlagsAttribute
+    ctor: System.FlagsAttribute.#ctor
+    arguments: []
+- uid: Fluxer.Net.SystemChannelFlags.None
+  commentId: F:Fluxer.Net.SystemChannelFlags.None
+  id: None
+  parent: Fluxer.Net.SystemChannelFlags
+  langs:
+  - csharp
+  - vb
+  name: None
+  nameWithType: SystemChannelFlags.None
+  fullName: Fluxer.Net.SystemChannelFlags.None
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/Channels/SystemChannelFlags.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: None
+    path: ../Fluxer.Net/Data/Channels/SystemChannelFlags.cs
+    startLine: 11
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: No flags set (all system messages enabled).
+  example: []
+  syntax:
+    content: None = 0
+    return:
+      type: Fluxer.Net.SystemChannelFlags
+- uid: Fluxer.Net.SystemChannelFlags.SuppressJoinNotifications
+  commentId: F:Fluxer.Net.SystemChannelFlags.SuppressJoinNotifications
+  id: SuppressJoinNotifications
+  parent: Fluxer.Net.SystemChannelFlags
+  langs:
+  - csharp
+  - vb
+  name: SuppressJoinNotifications
+  nameWithType: SystemChannelFlags.SuppressJoinNotifications
+  fullName: Fluxer.Net.SystemChannelFlags.SuppressJoinNotifications
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/Channels/SystemChannelFlags.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: SuppressJoinNotifications
+    path: ../Fluxer.Net/Data/Channels/SystemChannelFlags.cs
+    startLine: 16
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Suppress member join notifications in the system channel.
+  example: []
+  syntax:
+    content: SuppressJoinNotifications = 2
+    return:
+      type: Fluxer.Net.SystemChannelFlags
+references:
+- uid: Fluxer.Net
+  commentId: N:Fluxer.Net
+  href: Fluxer.html
+  name: Fluxer.Net
+  nameWithType: Fluxer.Net
+  fullName: Fluxer.Net
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+- uid: Fluxer.Net.SystemChannelFlags
+  commentId: T:Fluxer.Net.SystemChannelFlags
+  parent: Fluxer.Net
+  href: Fluxer.Net.SystemChannelFlags.html
+  name: SystemChannelFlags
+  nameWithType: SystemChannelFlags
+  fullName: Fluxer.Net.SystemChannelFlags

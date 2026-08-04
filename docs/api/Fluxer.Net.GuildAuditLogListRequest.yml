@@ -1,0 +1,640 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.GuildAuditLogListRequest
+  commentId: T:Fluxer.Net.GuildAuditLogListRequest
+  id: GuildAuditLogListRequest
+  parent: Fluxer.Net
+  children:
+  - Fluxer.Net.GuildAuditLogListRequest.ActionType
+  - Fluxer.Net.GuildAuditLogListRequest.After
+  - Fluxer.Net.GuildAuditLogListRequest.Before
+  - Fluxer.Net.GuildAuditLogListRequest.Limit
+  - Fluxer.Net.GuildAuditLogListRequest.UserId
+  langs:
+  - csharp
+  - vb
+  name: GuildAuditLogListRequest
+  nameWithType: GuildAuditLogListRequest
+  fullName: Fluxer.Net.GuildAuditLogListRequest
+  type: Class
+  source:
+    remote:
+      path: Fluxer.Net/Rest/Requests/Guilds/GuildAuditLogListRequest.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: GuildAuditLogListRequest
+    path: ../Fluxer.Net/Rest/Requests/Guilds/GuildAuditLogListRequest.cs
+    startLine: 4
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: public class GuildAuditLogListRequest
+    content.vb: Public Class GuildAuditLogListRequest
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: Fluxer.Net.GuildAuditLogListRequest.Limit
+  commentId: P:Fluxer.Net.GuildAuditLogListRequest.Limit
+  id: Limit
+  parent: Fluxer.Net.GuildAuditLogListRequest
+  langs:
+  - csharp
+  - vb
+  name: Limit
+  nameWithType: GuildAuditLogListRequest.Limit
+  fullName: Fluxer.Net.GuildAuditLogListRequest.Limit
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Rest/Requests/Guilds/GuildAuditLogListRequest.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Limit
+    path: ../Fluxer.Net/Rest/Requests/Guilds/GuildAuditLogListRequest.cs
+    startLine: 9
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Maximum number of audit log entries to return (1-100)
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("limit")]
+
+      public int? Limit { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{System.Int32}
+    content.vb: >-
+      <JsonProperty("limit")>
+
+      Public Property Limit As Integer?
+  overload: Fluxer.Net.GuildAuditLogListRequest.Limit*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: limit
+- uid: Fluxer.Net.GuildAuditLogListRequest.Before
+  commentId: P:Fluxer.Net.GuildAuditLogListRequest.Before
+  id: Before
+  parent: Fluxer.Net.GuildAuditLogListRequest
+  langs:
+  - csharp
+  - vb
+  name: Before
+  nameWithType: GuildAuditLogListRequest.Before
+  fullName: Fluxer.Net.GuildAuditLogListRequest.Before
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Rest/Requests/Guilds/GuildAuditLogListRequest.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Before
+    path: ../Fluxer.Net/Rest/Requests/Guilds/GuildAuditLogListRequest.cs
+    startLine: 15
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Get entries before this audit log entry ID
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("before")]
+
+      public ulong? Before { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{System.UInt64}
+    content.vb: >-
+      <JsonProperty("before")>
+
+      Public Property Before As ULong?
+  overload: Fluxer.Net.GuildAuditLogListRequest.Before*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: before
+- uid: Fluxer.Net.GuildAuditLogListRequest.After
+  commentId: P:Fluxer.Net.GuildAuditLogListRequest.After
+  id: After
+  parent: Fluxer.Net.GuildAuditLogListRequest
+  langs:
+  - csharp
+  - vb
+  name: After
+  nameWithType: GuildAuditLogListRequest.After
+  fullName: Fluxer.Net.GuildAuditLogListRequest.After
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Rest/Requests/Guilds/GuildAuditLogListRequest.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: After
+    path: ../Fluxer.Net/Rest/Requests/Guilds/GuildAuditLogListRequest.cs
+    startLine: 21
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Get entries after this audit log entry ID
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("after")]
+
+      public ulong? After { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{System.UInt64}
+    content.vb: >-
+      <JsonProperty("after")>
+
+      Public Property After As ULong?
+  overload: Fluxer.Net.GuildAuditLogListRequest.After*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: after
+- uid: Fluxer.Net.GuildAuditLogListRequest.UserId
+  commentId: P:Fluxer.Net.GuildAuditLogListRequest.UserId
+  id: UserId
+  parent: Fluxer.Net.GuildAuditLogListRequest
+  langs:
+  - csharp
+  - vb
+  name: UserId
+  nameWithType: GuildAuditLogListRequest.UserId
+  fullName: Fluxer.Net.GuildAuditLogListRequest.UserId
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Rest/Requests/Guilds/GuildAuditLogListRequest.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: UserId
+    path: ../Fluxer.Net/Rest/Requests/Guilds/GuildAuditLogListRequest.cs
+    startLine: 27
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Filter entries by the user who performed the action
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("user")]
+
+      public ulong? UserId { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{System.UInt64}
+    content.vb: >-
+      <JsonProperty("user")>
+
+      Public Property UserId As ULong?
+  overload: Fluxer.Net.GuildAuditLogListRequest.UserId*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: user
+- uid: Fluxer.Net.GuildAuditLogListRequest.ActionType
+  commentId: P:Fluxer.Net.GuildAuditLogListRequest.ActionType
+  id: ActionType
+  parent: Fluxer.Net.GuildAuditLogListRequest
+  langs:
+  - csharp
+  - vb
+  name: ActionType
+  nameWithType: GuildAuditLogListRequest.ActionType
+  fullName: Fluxer.Net.GuildAuditLogListRequest.ActionType
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Rest/Requests/Guilds/GuildAuditLogListRequest.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: ActionType
+    path: ../Fluxer.Net/Rest/Requests/Guilds/GuildAuditLogListRequest.cs
+    startLine: 33
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Filter entries by the type of action
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("action_type")]
+
+      public AuditLogActionType? ActionType { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{Fluxer.Net.AuditLogActionType}
+    content.vb: >-
+      <JsonProperty("action_type")>
+
+      Public Property ActionType As AuditLogActionType?
+  overload: Fluxer.Net.GuildAuditLogListRequest.ActionType*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: action_type
+references:
+- uid: Fluxer.Net
+  commentId: N:Fluxer.Net
+  href: Fluxer.html
+  name: Fluxer.Net
+  nameWithType: Fluxer.Net
+  fullName: Fluxer.Net
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Fluxer.Net.GuildAuditLogListRequest.Limit*
+  commentId: Overload:Fluxer.Net.GuildAuditLogListRequest.Limit
+  href: Fluxer.Net.GuildAuditLogListRequest.html#Fluxer_Net_GuildAuditLogListRequest_Limit
+  name: Limit
+  nameWithType: GuildAuditLogListRequest.Limit
+  fullName: Fluxer.Net.GuildAuditLogListRequest.Limit
+- uid: System.Nullable{System.Int32}
+  commentId: T:System.Nullable{System.Int32}
+  parent: System
+  definition: System.Nullable`1
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int?
+  nameWithType: int?
+  fullName: int?
+  nameWithType.vb: Integer?
+  fullName.vb: Integer?
+  name.vb: Integer?
+  spec.csharp:
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
+  spec.vb:
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: Fluxer.Net.GuildAuditLogListRequest.Before*
+  commentId: Overload:Fluxer.Net.GuildAuditLogListRequest.Before
+  href: Fluxer.Net.GuildAuditLogListRequest.html#Fluxer_Net_GuildAuditLogListRequest_Before
+  name: Before
+  nameWithType: GuildAuditLogListRequest.Before
+  fullName: Fluxer.Net.GuildAuditLogListRequest.Before
+- uid: System.Nullable{System.UInt64}
+  commentId: T:System.Nullable{System.UInt64}
+  parent: System
+  definition: System.Nullable`1
+  href: https://learn.microsoft.com/dotnet/api/system.uint64
+  name: ulong?
+  nameWithType: ulong?
+  fullName: ulong?
+  nameWithType.vb: ULong?
+  fullName.vb: ULong?
+  name.vb: ULong?
+  spec.csharp:
+  - uid: System.UInt64
+    name: ulong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: '?'
+  spec.vb:
+  - uid: System.UInt64
+    name: ULong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: '?'
+- uid: Fluxer.Net.GuildAuditLogListRequest.After*
+  commentId: Overload:Fluxer.Net.GuildAuditLogListRequest.After
+  href: Fluxer.Net.GuildAuditLogListRequest.html#Fluxer_Net_GuildAuditLogListRequest_After
+  name: After
+  nameWithType: GuildAuditLogListRequest.After
+  fullName: Fluxer.Net.GuildAuditLogListRequest.After
+- uid: Fluxer.Net.GuildAuditLogListRequest.UserId*
+  commentId: Overload:Fluxer.Net.GuildAuditLogListRequest.UserId
+  href: Fluxer.Net.GuildAuditLogListRequest.html#Fluxer_Net_GuildAuditLogListRequest_UserId
+  name: UserId
+  nameWithType: GuildAuditLogListRequest.UserId
+  fullName: Fluxer.Net.GuildAuditLogListRequest.UserId
+- uid: Fluxer.Net.GuildAuditLogListRequest.ActionType*
+  commentId: Overload:Fluxer.Net.GuildAuditLogListRequest.ActionType
+  href: Fluxer.Net.GuildAuditLogListRequest.html#Fluxer_Net_GuildAuditLogListRequest_ActionType
+  name: ActionType
+  nameWithType: GuildAuditLogListRequest.ActionType
+  fullName: Fluxer.Net.GuildAuditLogListRequest.ActionType
+- uid: System.Nullable{Fluxer.Net.AuditLogActionType}
+  commentId: T:System.Nullable{Fluxer.Net.AuditLogActionType}
+  parent: System
+  definition: System.Nullable`1
+  href: Fluxer.Net.AuditLogActionType.html
+  name: AuditLogActionType?
+  nameWithType: AuditLogActionType?
+  fullName: Fluxer.Net.AuditLogActionType?
+  spec.csharp:
+  - uid: Fluxer.Net.AuditLogActionType
+    name: AuditLogActionType
+    href: Fluxer.Net.AuditLogActionType.html
+  - name: '?'
+  spec.vb:
+  - uid: Fluxer.Net.AuditLogActionType
+    name: AuditLogActionType
+    href: Fluxer.Net.AuditLogActionType.html
+  - name: '?'

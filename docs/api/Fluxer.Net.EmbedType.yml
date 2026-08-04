@@ -1,0 +1,301 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.EmbedType
+  commentId: T:Fluxer.Net.EmbedType
+  id: EmbedType
+  parent: Fluxer.Net
+  children:
+  - Fluxer.Net.EmbedType.Article
+  - Fluxer.Net.EmbedType.Audio
+  - Fluxer.Net.EmbedType.BlueSky
+  - Fluxer.Net.EmbedType.Gifv
+  - Fluxer.Net.EmbedType.Image
+  - Fluxer.Net.EmbedType.Link
+  - Fluxer.Net.EmbedType.Rich
+  - Fluxer.Net.EmbedType.Unknown
+  - Fluxer.Net.EmbedType.Video
+  langs:
+  - csharp
+  - vb
+  name: EmbedType
+  nameWithType: EmbedType
+  fullName: Fluxer.Net.EmbedType
+  type: Enum
+  source:
+    remote:
+      path: Fluxer.Net/Data/Embeds/EmbedType.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: EmbedType
+    path: ../Fluxer.Net/Data/Embeds/EmbedType.cs
+    startLine: 2
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: public enum EmbedType
+    content.vb: Public Enum EmbedType
+- uid: Fluxer.Net.EmbedType.Unknown
+  commentId: F:Fluxer.Net.EmbedType.Unknown
+  id: Unknown
+  parent: Fluxer.Net.EmbedType
+  langs:
+  - csharp
+  - vb
+  name: Unknown
+  nameWithType: EmbedType.Unknown
+  fullName: Fluxer.Net.EmbedType.Unknown
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/Embeds/EmbedType.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Unknown
+    path: ../Fluxer.Net/Data/Embeds/EmbedType.cs
+    startLine: 4
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: Unknown = 0
+    return:
+      type: Fluxer.Net.EmbedType
+- uid: Fluxer.Net.EmbedType.Rich
+  commentId: F:Fluxer.Net.EmbedType.Rich
+  id: Rich
+  parent: Fluxer.Net.EmbedType
+  langs:
+  - csharp
+  - vb
+  name: Rich
+  nameWithType: EmbedType.Rich
+  fullName: Fluxer.Net.EmbedType.Rich
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/Embeds/EmbedType.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Rich
+    path: ../Fluxer.Net/Data/Embeds/EmbedType.cs
+    startLine: 5
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: Rich = 1
+    return:
+      type: Fluxer.Net.EmbedType
+- uid: Fluxer.Net.EmbedType.Article
+  commentId: F:Fluxer.Net.EmbedType.Article
+  id: Article
+  parent: Fluxer.Net.EmbedType
+  langs:
+  - csharp
+  - vb
+  name: Article
+  nameWithType: EmbedType.Article
+  fullName: Fluxer.Net.EmbedType.Article
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/Embeds/EmbedType.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Article
+    path: ../Fluxer.Net/Data/Embeds/EmbedType.cs
+    startLine: 6
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: Article = 2
+    return:
+      type: Fluxer.Net.EmbedType
+- uid: Fluxer.Net.EmbedType.Link
+  commentId: F:Fluxer.Net.EmbedType.Link
+  id: Link
+  parent: Fluxer.Net.EmbedType
+  langs:
+  - csharp
+  - vb
+  name: Link
+  nameWithType: EmbedType.Link
+  fullName: Fluxer.Net.EmbedType.Link
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/Embeds/EmbedType.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Link
+    path: ../Fluxer.Net/Data/Embeds/EmbedType.cs
+    startLine: 7
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: Link = 3
+    return:
+      type: Fluxer.Net.EmbedType
+- uid: Fluxer.Net.EmbedType.Image
+  commentId: F:Fluxer.Net.EmbedType.Image
+  id: Image
+  parent: Fluxer.Net.EmbedType
+  langs:
+  - csharp
+  - vb
+  name: Image
+  nameWithType: EmbedType.Image
+  fullName: Fluxer.Net.EmbedType.Image
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/Embeds/EmbedType.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Image
+    path: ../Fluxer.Net/Data/Embeds/EmbedType.cs
+    startLine: 8
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: Image = 4
+    return:
+      type: Fluxer.Net.EmbedType
+- uid: Fluxer.Net.EmbedType.Video
+  commentId: F:Fluxer.Net.EmbedType.Video
+  id: Video
+  parent: Fluxer.Net.EmbedType
+  langs:
+  - csharp
+  - vb
+  name: Video
+  nameWithType: EmbedType.Video
+  fullName: Fluxer.Net.EmbedType.Video
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/Embeds/EmbedType.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Video
+    path: ../Fluxer.Net/Data/Embeds/EmbedType.cs
+    startLine: 9
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: Video = 5
+    return:
+      type: Fluxer.Net.EmbedType
+- uid: Fluxer.Net.EmbedType.Audio
+  commentId: F:Fluxer.Net.EmbedType.Audio
+  id: Audio
+  parent: Fluxer.Net.EmbedType
+  langs:
+  - csharp
+  - vb
+  name: Audio
+  nameWithType: EmbedType.Audio
+  fullName: Fluxer.Net.EmbedType.Audio
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/Embeds/EmbedType.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Audio
+    path: ../Fluxer.Net/Data/Embeds/EmbedType.cs
+    startLine: 10
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: Audio = 6
+    return:
+      type: Fluxer.Net.EmbedType
+- uid: Fluxer.Net.EmbedType.Gifv
+  commentId: F:Fluxer.Net.EmbedType.Gifv
+  id: Gifv
+  parent: Fluxer.Net.EmbedType
+  langs:
+  - csharp
+  - vb
+  name: Gifv
+  nameWithType: EmbedType.Gifv
+  fullName: Fluxer.Net.EmbedType.Gifv
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/Embeds/EmbedType.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Gifv
+    path: ../Fluxer.Net/Data/Embeds/EmbedType.cs
+    startLine: 11
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: Gifv = 7
+    return:
+      type: Fluxer.Net.EmbedType
+- uid: Fluxer.Net.EmbedType.BlueSky
+  commentId: F:Fluxer.Net.EmbedType.BlueSky
+  id: BlueSky
+  parent: Fluxer.Net.EmbedType
+  langs:
+  - csharp
+  - vb
+  name: BlueSky
+  nameWithType: EmbedType.BlueSky
+  fullName: Fluxer.Net.EmbedType.BlueSky
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/Embeds/EmbedType.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: BlueSky
+    path: ../Fluxer.Net/Data/Embeds/EmbedType.cs
+    startLine: 12
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: BlueSky = 8
+    return:
+      type: Fluxer.Net.EmbedType
+references:
+- uid: Fluxer.Net
+  commentId: N:Fluxer.Net
+  href: Fluxer.html
+  name: Fluxer.Net
+  nameWithType: Fluxer.Net
+  fullName: Fluxer.Net
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+- uid: Fluxer.Net.EmbedType
+  commentId: T:Fluxer.Net.EmbedType
+  parent: Fluxer.Net
+  href: Fluxer.Net.EmbedType.html
+  name: EmbedType
+  nameWithType: EmbedType
+  fullName: Fluxer.Net.EmbedType

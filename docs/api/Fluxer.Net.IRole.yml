@@ -1,0 +1,456 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.IRole
+  commentId: T:Fluxer.Net.IRole
+  id: IRole
+  parent: Fluxer.Net
+  children:
+  - Fluxer.Net.IRole.Color
+  - Fluxer.Net.IRole.Id
+  - Fluxer.Net.IRole.IsHoisted
+  - Fluxer.Net.IRole.IsMentionable
+  - Fluxer.Net.IRole.Mention
+  - Fluxer.Net.IRole.Name
+  - Fluxer.Net.IRole.Permissions
+  - Fluxer.Net.IRole.Position
+  - Fluxer.Net.IRole.UnicodeEmoji
+  langs:
+  - csharp
+  - vb
+  name: IRole
+  nameWithType: IRole
+  fullName: Fluxer.Net.IRole
+  type: Interface
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/Members/IRole.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: IRole
+    path: ../Fluxer.Net/Data/Guilds/Members/IRole.cs
+    startLine: 2
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: public interface IRole
+    content.vb: Public Interface IRole
+  derivedClasses:
+  - Fluxer.Net.Gateway.Data.Guilds.RoleGatewayData
+  - Fluxer.Net.Role
+  - Fluxer.Net.RoleJson
+  - Fluxer.Net.SocketRole
+- uid: Fluxer.Net.IRole.Id
+  commentId: P:Fluxer.Net.IRole.Id
+  id: Id
+  parent: Fluxer.Net.IRole
+  langs:
+  - csharp
+  - vb
+  name: Id
+  nameWithType: IRole.Id
+  fullName: Fluxer.Net.IRole.Id
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/Members/IRole.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Id
+    path: ../Fluxer.Net/Data/Guilds/Members/IRole.cs
+    startLine: 7
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The unique identifier for this role.
+  example: []
+  syntax:
+    content: ulong Id { get; }
+    parameters: []
+    return:
+      type: System.UInt64
+    content.vb: ReadOnly Property Id As ULong
+  overload: Fluxer.Net.IRole.Id*
+- uid: Fluxer.Net.IRole.Mention
+  commentId: P:Fluxer.Net.IRole.Mention
+  id: Mention
+  parent: Fluxer.Net.IRole
+  langs:
+  - csharp
+  - vb
+  name: Mention
+  nameWithType: IRole.Mention
+  fullName: Fluxer.Net.IRole.Mention
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/Members/IRole.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Mention
+    path: ../Fluxer.Net/Data/Guilds/Members/IRole.cs
+    startLine: 12
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Get the mention for this role.
+  example: []
+  syntax:
+    content: string Mention { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: ReadOnly Property Mention As String
+  overload: Fluxer.Net.IRole.Mention*
+- uid: Fluxer.Net.IRole.Name
+  commentId: P:Fluxer.Net.IRole.Name
+  id: Name
+  parent: Fluxer.Net.IRole
+  langs:
+  - csharp
+  - vb
+  name: Name
+  nameWithType: IRole.Name
+  fullName: Fluxer.Net.IRole.Name
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/Members/IRole.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Name
+    path: ../Fluxer.Net/Data/Guilds/Members/IRole.cs
+    startLine: 17
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The name of the role.
+  example: []
+  syntax:
+    content: string Name { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: ReadOnly Property Name As String
+  overload: Fluxer.Net.IRole.Name*
+- uid: Fluxer.Net.IRole.Permissions
+  commentId: P:Fluxer.Net.IRole.Permissions
+  id: Permissions
+  parent: Fluxer.Net.IRole
+  langs:
+  - csharp
+  - vb
+  name: Permissions
+  nameWithType: IRole.Permissions
+  fullName: Fluxer.Net.IRole.Permissions
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/Members/IRole.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Permissions
+    path: ../Fluxer.Net/Data/Guilds/Members/IRole.cs
+    startLine: 22
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The role's permission bitfield. Sent as a quoted string by the gateway (e.g. "8933636165184").
+  example: []
+  syntax:
+    content: GuildPermissions Permissions { get; }
+    parameters: []
+    return:
+      type: Fluxer.Net.GuildPermissions
+    content.vb: ReadOnly Property Permissions As GuildPermissions
+  overload: Fluxer.Net.IRole.Permissions*
+- uid: Fluxer.Net.IRole.Position
+  commentId: P:Fluxer.Net.IRole.Position
+  id: Position
+  parent: Fluxer.Net.IRole
+  langs:
+  - csharp
+  - vb
+  name: Position
+  nameWithType: IRole.Position
+  fullName: Fluxer.Net.IRole.Position
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/Members/IRole.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Position
+    path: ../Fluxer.Net/Data/Guilds/Members/IRole.cs
+    startLine: 27
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The position of the role in the role hierarchy.
+  example: []
+  syntax:
+    content: int Position { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: ReadOnly Property Position As Integer
+  overload: Fluxer.Net.IRole.Position*
+- uid: Fluxer.Net.IRole.Color
+  commentId: P:Fluxer.Net.IRole.Color
+  id: Color
+  parent: Fluxer.Net.IRole
+  langs:
+  - csharp
+  - vb
+  name: Color
+  nameWithType: IRole.Color
+  fullName: Fluxer.Net.IRole.Color
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/Members/IRole.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Color
+    path: ../Fluxer.Net/Data/Guilds/Members/IRole.cs
+    startLine: 32
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The colour of the role as an integer.
+  example: []
+  syntax:
+    content: int Color { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: ReadOnly Property Color As Integer
+  overload: Fluxer.Net.IRole.Color*
+- uid: Fluxer.Net.IRole.UnicodeEmoji
+  commentId: P:Fluxer.Net.IRole.UnicodeEmoji
+  id: UnicodeEmoji
+  parent: Fluxer.Net.IRole
+  langs:
+  - csharp
+  - vb
+  name: UnicodeEmoji
+  nameWithType: IRole.UnicodeEmoji
+  fullName: Fluxer.Net.IRole.UnicodeEmoji
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/Members/IRole.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: UnicodeEmoji
+    path: ../Fluxer.Net/Data/Guilds/Members/IRole.cs
+    startLine: 37
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The unicode emoji for this role.
+  example: []
+  syntax:
+    content: string? UnicodeEmoji { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: ReadOnly Property UnicodeEmoji As String
+  overload: Fluxer.Net.IRole.UnicodeEmoji*
+- uid: Fluxer.Net.IRole.IsHoisted
+  commentId: P:Fluxer.Net.IRole.IsHoisted
+  id: IsHoisted
+  parent: Fluxer.Net.IRole
+  langs:
+  - csharp
+  - vb
+  name: IsHoisted
+  nameWithType: IRole.IsHoisted
+  fullName: Fluxer.Net.IRole.IsHoisted
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/Members/IRole.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: IsHoisted
+    path: ../Fluxer.Net/Data/Guilds/Members/IRole.cs
+    startLine: 42
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Whether this role is displayed separately in the member list.
+  example: []
+  syntax:
+    content: bool IsHoisted { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: ReadOnly Property IsHoisted As Boolean
+  overload: Fluxer.Net.IRole.IsHoisted*
+- uid: Fluxer.Net.IRole.IsMentionable
+  commentId: P:Fluxer.Net.IRole.IsMentionable
+  id: IsMentionable
+  parent: Fluxer.Net.IRole
+  langs:
+  - csharp
+  - vb
+  name: IsMentionable
+  nameWithType: IRole.IsMentionable
+  fullName: Fluxer.Net.IRole.IsMentionable
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/Members/IRole.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: IsMentionable
+    path: ../Fluxer.Net/Data/Guilds/Members/IRole.cs
+    startLine: 47
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Whether this role can be mentioned by anyone.
+  example: []
+  syntax:
+    content: bool IsMentionable { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: ReadOnly Property IsMentionable As Boolean
+  overload: Fluxer.Net.IRole.IsMentionable*
+references:
+- uid: Fluxer.Net
+  commentId: N:Fluxer.Net
+  href: Fluxer.html
+  name: Fluxer.Net
+  nameWithType: Fluxer.Net
+  fullName: Fluxer.Net
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+- uid: Fluxer.Net.IRole.Id*
+  commentId: Overload:Fluxer.Net.IRole.Id
+  href: Fluxer.Net.IRole.html#Fluxer_Net_IRole_Id
+  name: Id
+  nameWithType: IRole.Id
+  fullName: Fluxer.Net.IRole.Id
+- uid: System.UInt64
+  commentId: T:System.UInt64
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.uint64
+  name: ulong
+  nameWithType: ulong
+  fullName: ulong
+  nameWithType.vb: ULong
+  fullName.vb: ULong
+  name.vb: ULong
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Fluxer.Net.IRole.Mention*
+  commentId: Overload:Fluxer.Net.IRole.Mention
+  href: Fluxer.Net.IRole.html#Fluxer_Net_IRole_Mention
+  name: Mention
+  nameWithType: IRole.Mention
+  fullName: Fluxer.Net.IRole.Mention
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: Fluxer.Net.IRole.Name*
+  commentId: Overload:Fluxer.Net.IRole.Name
+  href: Fluxer.Net.IRole.html#Fluxer_Net_IRole_Name
+  name: Name
+  nameWithType: IRole.Name
+  fullName: Fluxer.Net.IRole.Name
+- uid: Fluxer.Net.IRole.Permissions*
+  commentId: Overload:Fluxer.Net.IRole.Permissions
+  href: Fluxer.Net.IRole.html#Fluxer_Net_IRole_Permissions
+  name: Permissions
+  nameWithType: IRole.Permissions
+  fullName: Fluxer.Net.IRole.Permissions
+- uid: Fluxer.Net.GuildPermissions
+  commentId: T:Fluxer.Net.GuildPermissions
+  parent: Fluxer.Net
+  href: Fluxer.Net.GuildPermissions.html
+  name: GuildPermissions
+  nameWithType: GuildPermissions
+  fullName: Fluxer.Net.GuildPermissions
+- uid: Fluxer.Net.IRole.Position*
+  commentId: Overload:Fluxer.Net.IRole.Position
+  href: Fluxer.Net.IRole.html#Fluxer_Net_IRole_Position
+  name: Position
+  nameWithType: IRole.Position
+  fullName: Fluxer.Net.IRole.Position
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: Fluxer.Net.IRole.Color*
+  commentId: Overload:Fluxer.Net.IRole.Color
+  href: Fluxer.Net.IRole.html#Fluxer_Net_IRole_Color
+  name: Color
+  nameWithType: IRole.Color
+  fullName: Fluxer.Net.IRole.Color
+- uid: Fluxer.Net.IRole.UnicodeEmoji*
+  commentId: Overload:Fluxer.Net.IRole.UnicodeEmoji
+  href: Fluxer.Net.IRole.html#Fluxer_Net_IRole_UnicodeEmoji
+  name: UnicodeEmoji
+  nameWithType: IRole.UnicodeEmoji
+  fullName: Fluxer.Net.IRole.UnicodeEmoji
+- uid: Fluxer.Net.IRole.IsHoisted*
+  commentId: Overload:Fluxer.Net.IRole.IsHoisted
+  href: Fluxer.Net.IRole.html#Fluxer_Net_IRole_IsHoisted
+  name: IsHoisted
+  nameWithType: IRole.IsHoisted
+  fullName: Fluxer.Net.IRole.IsHoisted
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: Fluxer.Net.IRole.IsMentionable*
+  commentId: Overload:Fluxer.Net.IRole.IsMentionable
+  href: Fluxer.Net.IRole.html#Fluxer_Net_IRole_IsMentionable
+  name: IsMentionable
+  nameWithType: IRole.IsMentionable
+  fullName: Fluxer.Net.IRole.IsMentionable

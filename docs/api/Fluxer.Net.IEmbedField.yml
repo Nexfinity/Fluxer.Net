@@ -1,0 +1,197 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.IEmbedField
+  commentId: T:Fluxer.Net.IEmbedField
+  id: IEmbedField
+  parent: Fluxer.Net
+  children:
+  - Fluxer.Net.IEmbedField.IsInline
+  - Fluxer.Net.IEmbedField.Name
+  - Fluxer.Net.IEmbedField.Value
+  langs:
+  - csharp
+  - vb
+  name: IEmbedField
+  nameWithType: IEmbedField
+  fullName: Fluxer.Net.IEmbedField
+  type: Interface
+  source:
+    remote:
+      path: Fluxer.Net/Data/Embeds/IEmbed.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: IEmbedField
+    path: ../Fluxer.Net/Data/Embeds/IEmbed.cs
+    startLine: 79
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: public interface IEmbedField
+    content.vb: Public Interface IEmbedField
+  derivedClasses:
+  - Fluxer.Net.EmbedField
+  - Fluxer.Net.EmbedFieldJson
+- uid: Fluxer.Net.IEmbedField.Name
+  commentId: P:Fluxer.Net.IEmbedField.Name
+  id: Name
+  parent: Fluxer.Net.IEmbedField
+  langs:
+  - csharp
+  - vb
+  name: Name
+  nameWithType: IEmbedField.Name
+  fullName: Fluxer.Net.IEmbedField.Name
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Embeds/IEmbed.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Name
+    path: ../Fluxer.Net/Data/Embeds/IEmbed.cs
+    startLine: 84
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The name of the field.
+  example: []
+  syntax:
+    content: string Name { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: ReadOnly Property Name As String
+  overload: Fluxer.Net.IEmbedField.Name*
+- uid: Fluxer.Net.IEmbedField.Value
+  commentId: P:Fluxer.Net.IEmbedField.Value
+  id: Value
+  parent: Fluxer.Net.IEmbedField
+  langs:
+  - csharp
+  - vb
+  name: Value
+  nameWithType: IEmbedField.Value
+  fullName: Fluxer.Net.IEmbedField.Value
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Embeds/IEmbed.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Value
+    path: ../Fluxer.Net/Data/Embeds/IEmbed.cs
+    startLine: 89
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The value of the field.
+  example: []
+  syntax:
+    content: string Value { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: ReadOnly Property Value As String
+  overload: Fluxer.Net.IEmbedField.Value*
+- uid: Fluxer.Net.IEmbedField.IsInline
+  commentId: P:Fluxer.Net.IEmbedField.IsInline
+  id: IsInline
+  parent: Fluxer.Net.IEmbedField
+  langs:
+  - csharp
+  - vb
+  name: IsInline
+  nameWithType: IEmbedField.IsInline
+  fullName: Fluxer.Net.IEmbedField.IsInline
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Embeds/IEmbed.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: IsInline
+    path: ../Fluxer.Net/Data/Embeds/IEmbed.cs
+    startLine: 94
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Whether the field should be displayed inline.
+  example: []
+  syntax:
+    content: bool IsInline { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: ReadOnly Property IsInline As Boolean
+  overload: Fluxer.Net.IEmbedField.IsInline*
+references:
+- uid: Fluxer.Net
+  commentId: N:Fluxer.Net
+  href: Fluxer.html
+  name: Fluxer.Net
+  nameWithType: Fluxer.Net
+  fullName: Fluxer.Net
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+- uid: Fluxer.Net.IEmbedField.Name*
+  commentId: Overload:Fluxer.Net.IEmbedField.Name
+  href: Fluxer.Net.IEmbedField.html#Fluxer_Net_IEmbedField_Name
+  name: Name
+  nameWithType: IEmbedField.Name
+  fullName: Fluxer.Net.IEmbedField.Name
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Fluxer.Net.IEmbedField.Value*
+  commentId: Overload:Fluxer.Net.IEmbedField.Value
+  href: Fluxer.Net.IEmbedField.html#Fluxer_Net_IEmbedField_Value
+  name: Value
+  nameWithType: IEmbedField.Value
+  fullName: Fluxer.Net.IEmbedField.Value
+- uid: Fluxer.Net.IEmbedField.IsInline*
+  commentId: Overload:Fluxer.Net.IEmbedField.IsInline
+  href: Fluxer.Net.IEmbedField.html#Fluxer_Net_IEmbedField_IsInline
+  name: IsInline
+  nameWithType: IEmbedField.IsInline
+  fullName: Fluxer.Net.IEmbedField.IsInline
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean

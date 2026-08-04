@@ -1,0 +1,877 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload
+  commentId: T:Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload
+  id: VoiceStateUpdatePayload
+  parent: Fluxer.Net.Gateway.Data.Voice
+  children:
+  - Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.#ctor(System.String,System.String,System.Boolean,System.Boolean)
+  - Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.ChannelId
+  - Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.ConnectionId
+  - Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.GuildId
+  - Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.IsMobile
+  - Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.Latitude
+  - Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.Longitude
+  - Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.SelfDeaf
+  - Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.SelfMute
+  - Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.SelfStream
+  - Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.SelfVideo
+  langs:
+  - csharp
+  - vb
+  name: VoiceStateUpdatePayload
+  nameWithType: VoiceStateUpdatePayload
+  fullName: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload
+  type: Class
+  source:
+    remote:
+      path: Fluxer.Net/Gateway/Data/Voice/VoiceStateUpdatePayload.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: VoiceStateUpdatePayload
+    path: ../Fluxer.Net/Gateway/Data/Voice/VoiceStateUpdatePayload.cs
+    startLine: 8
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net.Gateway.Data.Voice
+  summary: >-
+    Gateway data for updating the current user's voice state.
+
+    Sent as part of VOICE_STATE_UPDATE opcode (4).
+  example: []
+  syntax:
+    content: public class VoiceStateUpdatePayload
+    content.vb: Public Class VoiceStateUpdatePayload
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.GuildId
+  commentId: P:Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.GuildId
+  id: GuildId
+  parent: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload
+  langs:
+  - csharp
+  - vb
+  name: GuildId
+  nameWithType: VoiceStateUpdatePayload.GuildId
+  fullName: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.GuildId
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Gateway/Data/Voice/VoiceStateUpdatePayload.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: GuildId
+    path: ../Fluxer.Net/Gateway/Data/Voice/VoiceStateUpdatePayload.cs
+    startLine: 10
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net.Gateway.Data.Voice
+  syntax:
+    content: >-
+      [JsonProperty("guild_id")]
+
+      public string GuildId { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <JsonProperty("guild_id")>
+
+      Public Property GuildId As String
+  overload: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.GuildId*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: guild_id
+- uid: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.ChannelId
+  commentId: P:Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.ChannelId
+  id: ChannelId
+  parent: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload
+  langs:
+  - csharp
+  - vb
+  name: ChannelId
+  nameWithType: VoiceStateUpdatePayload.ChannelId
+  fullName: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.ChannelId
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Gateway/Data/Voice/VoiceStateUpdatePayload.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: ChannelId
+    path: ../Fluxer.Net/Gateway/Data/Voice/VoiceStateUpdatePayload.cs
+    startLine: 13
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net.Gateway.Data.Voice
+  syntax:
+    content: >-
+      [JsonProperty("channel_id")]
+
+      public string? ChannelId { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <JsonProperty("channel_id")>
+
+      Public Property ChannelId As String
+  overload: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.ChannelId*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: channel_id
+- uid: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.ConnectionId
+  commentId: P:Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.ConnectionId
+  id: ConnectionId
+  parent: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload
+  langs:
+  - csharp
+  - vb
+  name: ConnectionId
+  nameWithType: VoiceStateUpdatePayload.ConnectionId
+  fullName: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.ConnectionId
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Gateway/Data/Voice/VoiceStateUpdatePayload.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: ConnectionId
+    path: ../Fluxer.Net/Gateway/Data/Voice/VoiceStateUpdatePayload.cs
+    startLine: 16
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net.Gateway.Data.Voice
+  syntax:
+    content: >-
+      [JsonProperty("connection_id")]
+
+      public string? ConnectionId { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <JsonProperty("connection_id")>
+
+      Public Property ConnectionId As String
+  overload: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.ConnectionId*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: connection_id
+- uid: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.SelfMute
+  commentId: P:Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.SelfMute
+  id: SelfMute
+  parent: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload
+  langs:
+  - csharp
+  - vb
+  name: SelfMute
+  nameWithType: VoiceStateUpdatePayload.SelfMute
+  fullName: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.SelfMute
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Gateway/Data/Voice/VoiceStateUpdatePayload.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: SelfMute
+    path: ../Fluxer.Net/Gateway/Data/Voice/VoiceStateUpdatePayload.cs
+    startLine: 19
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net.Gateway.Data.Voice
+  syntax:
+    content: >-
+      [JsonProperty("self_mute")]
+
+      public bool SelfMute { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: >-
+      <JsonProperty("self_mute")>
+
+      Public Property SelfMute As Boolean
+  overload: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.SelfMute*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: self_mute
+- uid: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.SelfDeaf
+  commentId: P:Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.SelfDeaf
+  id: SelfDeaf
+  parent: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload
+  langs:
+  - csharp
+  - vb
+  name: SelfDeaf
+  nameWithType: VoiceStateUpdatePayload.SelfDeaf
+  fullName: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.SelfDeaf
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Gateway/Data/Voice/VoiceStateUpdatePayload.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: SelfDeaf
+    path: ../Fluxer.Net/Gateway/Data/Voice/VoiceStateUpdatePayload.cs
+    startLine: 22
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net.Gateway.Data.Voice
+  syntax:
+    content: >-
+      [JsonProperty("self_deaf")]
+
+      public bool SelfDeaf { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: >-
+      <JsonProperty("self_deaf")>
+
+      Public Property SelfDeaf As Boolean
+  overload: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.SelfDeaf*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: self_deaf
+- uid: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.SelfStream
+  commentId: P:Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.SelfStream
+  id: SelfStream
+  parent: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload
+  langs:
+  - csharp
+  - vb
+  name: SelfStream
+  nameWithType: VoiceStateUpdatePayload.SelfStream
+  fullName: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.SelfStream
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Gateway/Data/Voice/VoiceStateUpdatePayload.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: SelfStream
+    path: ../Fluxer.Net/Gateway/Data/Voice/VoiceStateUpdatePayload.cs
+    startLine: 25
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net.Gateway.Data.Voice
+  syntax:
+    content: >-
+      [JsonProperty("self_stream")]
+
+      public bool SelfStream { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: >-
+      <JsonProperty("self_stream")>
+
+      Public Property SelfStream As Boolean
+  overload: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.SelfStream*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: self_stream
+- uid: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.SelfVideo
+  commentId: P:Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.SelfVideo
+  id: SelfVideo
+  parent: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload
+  langs:
+  - csharp
+  - vb
+  name: SelfVideo
+  nameWithType: VoiceStateUpdatePayload.SelfVideo
+  fullName: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.SelfVideo
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Gateway/Data/Voice/VoiceStateUpdatePayload.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: SelfVideo
+    path: ../Fluxer.Net/Gateway/Data/Voice/VoiceStateUpdatePayload.cs
+    startLine: 28
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net.Gateway.Data.Voice
+  syntax:
+    content: >-
+      [JsonProperty("self_video")]
+
+      public bool SelfVideo { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: >-
+      <JsonProperty("self_video")>
+
+      Public Property SelfVideo As Boolean
+  overload: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.SelfVideo*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: self_video
+- uid: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.IsMobile
+  commentId: P:Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.IsMobile
+  id: IsMobile
+  parent: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload
+  langs:
+  - csharp
+  - vb
+  name: IsMobile
+  nameWithType: VoiceStateUpdatePayload.IsMobile
+  fullName: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.IsMobile
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Gateway/Data/Voice/VoiceStateUpdatePayload.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: IsMobile
+    path: ../Fluxer.Net/Gateway/Data/Voice/VoiceStateUpdatePayload.cs
+    startLine: 31
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net.Gateway.Data.Voice
+  syntax:
+    content: >-
+      [JsonProperty("is_mobile")]
+
+      public bool IsMobile { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: >-
+      <JsonProperty("is_mobile")>
+
+      Public Property IsMobile As Boolean
+  overload: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.IsMobile*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: is_mobile
+- uid: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.Latitude
+  commentId: P:Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.Latitude
+  id: Latitude
+  parent: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload
+  langs:
+  - csharp
+  - vb
+  name: Latitude
+  nameWithType: VoiceStateUpdatePayload.Latitude
+  fullName: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.Latitude
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Gateway/Data/Voice/VoiceStateUpdatePayload.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Latitude
+    path: ../Fluxer.Net/Gateway/Data/Voice/VoiceStateUpdatePayload.cs
+    startLine: 34
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net.Gateway.Data.Voice
+  syntax:
+    content: >-
+      [JsonProperty("latitude")]
+
+      public string? Latitude { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <JsonProperty("latitude")>
+
+      Public Property Latitude As String
+  overload: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.Latitude*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: latitude
+- uid: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.Longitude
+  commentId: P:Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.Longitude
+  id: Longitude
+  parent: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload
+  langs:
+  - csharp
+  - vb
+  name: Longitude
+  nameWithType: VoiceStateUpdatePayload.Longitude
+  fullName: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.Longitude
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Gateway/Data/Voice/VoiceStateUpdatePayload.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Longitude
+    path: ../Fluxer.Net/Gateway/Data/Voice/VoiceStateUpdatePayload.cs
+    startLine: 37
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net.Gateway.Data.Voice
+  syntax:
+    content: >-
+      [JsonProperty("longitude")]
+
+      public string? Longitude { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <JsonProperty("longitude")>
+
+      Public Property Longitude As String
+  overload: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.Longitude*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: longitude
+- uid: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.#ctor(System.String,System.String,System.Boolean,System.Boolean)
+  commentId: M:Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.#ctor(System.String,System.String,System.Boolean,System.Boolean)
+  id: '#ctor(System.String,System.String,System.Boolean,System.Boolean)'
+  parent: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload
+  langs:
+  - csharp
+  - vb
+  name: VoiceStateUpdatePayload(string?, string?, bool, bool)
+  nameWithType: VoiceStateUpdatePayload.VoiceStateUpdatePayload(string?, string?, bool, bool)
+  fullName: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.VoiceStateUpdatePayload(string?, string?, bool, bool)
+  type: Constructor
+  source:
+    remote:
+      path: Fluxer.Net/Gateway/Data/Voice/VoiceStateUpdatePayload.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: .ctor
+    path: ../Fluxer.Net/Gateway/Data/Voice/VoiceStateUpdatePayload.cs
+    startLine: 40
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net.Gateway.Data.Voice
+  syntax:
+    content: public VoiceStateUpdatePayload(string? guildId, string? channelId, bool selfMute, bool selfDeaf)
+    parameters:
+    - id: guildId
+      type: System.String
+    - id: channelId
+      type: System.String
+    - id: selfMute
+      type: System.Boolean
+    - id: selfDeaf
+      type: System.Boolean
+    content.vb: Public Sub New(guildId As String, channelId As String, selfMute As Boolean, selfDeaf As Boolean)
+  overload: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.#ctor*
+  nameWithType.vb: VoiceStateUpdatePayload.New(String, String, Boolean, Boolean)
+  fullName.vb: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.New(String, String, Boolean, Boolean)
+  name.vb: New(String, String, Boolean, Boolean)
+references:
+- uid: Fluxer.Net.Gateway.Data.Voice
+  commentId: N:Fluxer.Net.Gateway.Data.Voice
+  href: Fluxer.html
+  name: Fluxer.Net.Gateway.Data.Voice
+  nameWithType: Fluxer.Net.Gateway.Data.Voice
+  fullName: Fluxer.Net.Gateway.Data.Voice
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  - name: .
+  - uid: Fluxer.Net.Gateway
+    name: Gateway
+    href: Fluxer.Net.Gateway.html
+  - name: .
+  - uid: Fluxer.Net.Gateway.Data
+    name: Data
+    href: Fluxer.Net.Gateway.Data.html
+  - name: .
+  - uid: Fluxer.Net.Gateway.Data.Voice
+    name: Voice
+    href: Fluxer.Net.Gateway.Data.Voice.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  - name: .
+  - uid: Fluxer.Net.Gateway
+    name: Gateway
+    href: Fluxer.Net.Gateway.html
+  - name: .
+  - uid: Fluxer.Net.Gateway.Data
+    name: Data
+    href: Fluxer.Net.Gateway.Data.html
+  - name: .
+  - uid: Fluxer.Net.Gateway.Data.Voice
+    name: Voice
+    href: Fluxer.Net.Gateway.Data.Voice.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.GuildId*
+  commentId: Overload:Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.GuildId
+  href: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.html#Fluxer_Net_Gateway_Data_Voice_VoiceStateUpdatePayload_GuildId
+  name: GuildId
+  nameWithType: VoiceStateUpdatePayload.GuildId
+  fullName: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.GuildId
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.ChannelId*
+  commentId: Overload:Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.ChannelId
+  href: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.html#Fluxer_Net_Gateway_Data_Voice_VoiceStateUpdatePayload_ChannelId
+  name: ChannelId
+  nameWithType: VoiceStateUpdatePayload.ChannelId
+  fullName: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.ChannelId
+- uid: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.ConnectionId*
+  commentId: Overload:Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.ConnectionId
+  href: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.html#Fluxer_Net_Gateway_Data_Voice_VoiceStateUpdatePayload_ConnectionId
+  name: ConnectionId
+  nameWithType: VoiceStateUpdatePayload.ConnectionId
+  fullName: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.ConnectionId
+- uid: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.SelfMute*
+  commentId: Overload:Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.SelfMute
+  href: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.html#Fluxer_Net_Gateway_Data_Voice_VoiceStateUpdatePayload_SelfMute
+  name: SelfMute
+  nameWithType: VoiceStateUpdatePayload.SelfMute
+  fullName: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.SelfMute
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.SelfDeaf*
+  commentId: Overload:Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.SelfDeaf
+  href: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.html#Fluxer_Net_Gateway_Data_Voice_VoiceStateUpdatePayload_SelfDeaf
+  name: SelfDeaf
+  nameWithType: VoiceStateUpdatePayload.SelfDeaf
+  fullName: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.SelfDeaf
+- uid: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.SelfStream*
+  commentId: Overload:Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.SelfStream
+  href: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.html#Fluxer_Net_Gateway_Data_Voice_VoiceStateUpdatePayload_SelfStream
+  name: SelfStream
+  nameWithType: VoiceStateUpdatePayload.SelfStream
+  fullName: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.SelfStream
+- uid: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.SelfVideo*
+  commentId: Overload:Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.SelfVideo
+  href: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.html#Fluxer_Net_Gateway_Data_Voice_VoiceStateUpdatePayload_SelfVideo
+  name: SelfVideo
+  nameWithType: VoiceStateUpdatePayload.SelfVideo
+  fullName: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.SelfVideo
+- uid: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.IsMobile*
+  commentId: Overload:Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.IsMobile
+  href: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.html#Fluxer_Net_Gateway_Data_Voice_VoiceStateUpdatePayload_IsMobile
+  name: IsMobile
+  nameWithType: VoiceStateUpdatePayload.IsMobile
+  fullName: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.IsMobile
+- uid: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.Latitude*
+  commentId: Overload:Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.Latitude
+  href: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.html#Fluxer_Net_Gateway_Data_Voice_VoiceStateUpdatePayload_Latitude
+  name: Latitude
+  nameWithType: VoiceStateUpdatePayload.Latitude
+  fullName: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.Latitude
+- uid: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.Longitude*
+  commentId: Overload:Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.Longitude
+  href: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.html#Fluxer_Net_Gateway_Data_Voice_VoiceStateUpdatePayload_Longitude
+  name: Longitude
+  nameWithType: VoiceStateUpdatePayload.Longitude
+  fullName: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.Longitude
+- uid: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.#ctor*
+  commentId: Overload:Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.#ctor
+  href: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.html#Fluxer_Net_Gateway_Data_Voice_VoiceStateUpdatePayload__ctor_System_String_System_String_System_Boolean_System_Boolean_
+  name: VoiceStateUpdatePayload
+  nameWithType: VoiceStateUpdatePayload.VoiceStateUpdatePayload
+  fullName: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.VoiceStateUpdatePayload
+  nameWithType.vb: VoiceStateUpdatePayload.New
+  fullName.vb: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.New
+  name.vb: New

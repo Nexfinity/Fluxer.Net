@@ -1,0 +1,244 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.Commands
+  commentId: N:Fluxer.Net.Commands
+  id: Fluxer.Net.Commands
+  children:
+  - Fluxer.Net.Commands.AliasAttribute
+  - Fluxer.Net.Commands.CommandAttribute
+  - Fluxer.Net.Commands.CommandContext
+  - Fluxer.Net.Commands.CommandError
+  - Fluxer.Net.Commands.CommandInfo
+  - Fluxer.Net.Commands.CommandService
+  - Fluxer.Net.Commands.CommandService2
+  - Fluxer.Net.Commands.ContextType
+  - Fluxer.Net.Commands.ExecuteResult
+  - Fluxer.Net.Commands.GroupAttribute
+  - Fluxer.Net.Commands.IResult
+  - Fluxer.Net.Commands.ModuleBase
+  - Fluxer.Net.Commands.ModuleBase`1
+  - Fluxer.Net.Commands.ModuleInfo
+  - Fluxer.Net.Commands.NameAttribute
+  - Fluxer.Net.Commands.ParameterInfo
+  - Fluxer.Net.Commands.PreconditionAttribute
+  - Fluxer.Net.Commands.PreconditionResult
+  - Fluxer.Net.Commands.RemainderAttribute
+  - Fluxer.Net.Commands.RemarksAttribute
+  - Fluxer.Net.Commands.RequireContextAttribute
+  - Fluxer.Net.Commands.RequireOwnerAttribute
+  - Fluxer.Net.Commands.RunMode
+  - Fluxer.Net.Commands.SummaryAttribute
+  langs:
+  - csharp
+  - vb
+  name: Fluxer.Net.Commands
+  nameWithType: Fluxer.Net.Commands
+  fullName: Fluxer.Net.Commands
+  type: Namespace
+  assemblies:
+  - Fluxer.Net
+references:
+- uid: Fluxer.Net.Commands.AliasAttribute
+  commentId: T:Fluxer.Net.Commands.AliasAttribute
+  href: Fluxer.Net.Commands.AliasAttribute.html
+  name: AliasAttribute
+  nameWithType: AliasAttribute
+  fullName: Fluxer.Net.Commands.AliasAttribute
+- uid: Fluxer.Net.Commands.CommandAttribute
+  commentId: T:Fluxer.Net.Commands.CommandAttribute
+  href: Fluxer.Net.Commands.CommandAttribute.html
+  name: CommandAttribute
+  nameWithType: CommandAttribute
+  fullName: Fluxer.Net.Commands.CommandAttribute
+- uid: Fluxer.Net.Commands.GroupAttribute
+  commentId: T:Fluxer.Net.Commands.GroupAttribute
+  href: Fluxer.Net.Commands.GroupAttribute.html
+  name: GroupAttribute
+  nameWithType: GroupAttribute
+  fullName: Fluxer.Net.Commands.GroupAttribute
+- uid: Fluxer.Net.Commands.NameAttribute
+  commentId: T:Fluxer.Net.Commands.NameAttribute
+  href: Fluxer.Net.Commands.NameAttribute.html
+  name: NameAttribute
+  nameWithType: NameAttribute
+  fullName: Fluxer.Net.Commands.NameAttribute
+- uid: Fluxer.Net.Commands.PreconditionAttribute
+  commentId: T:Fluxer.Net.Commands.PreconditionAttribute
+  parent: Fluxer.Net.Commands
+  href: Fluxer.Net.Commands.PreconditionAttribute.html
+  name: PreconditionAttribute
+  nameWithType: PreconditionAttribute
+  fullName: Fluxer.Net.Commands.PreconditionAttribute
+- uid: Fluxer.Net.Commands.RemainderAttribute
+  commentId: T:Fluxer.Net.Commands.RemainderAttribute
+  href: Fluxer.Net.Commands.RemainderAttribute.html
+  name: RemainderAttribute
+  nameWithType: RemainderAttribute
+  fullName: Fluxer.Net.Commands.RemainderAttribute
+- uid: Fluxer.Net.Commands.RemarksAttribute
+  commentId: T:Fluxer.Net.Commands.RemarksAttribute
+  href: Fluxer.Net.Commands.RemarksAttribute.html
+  name: RemarksAttribute
+  nameWithType: RemarksAttribute
+  fullName: Fluxer.Net.Commands.RemarksAttribute
+- uid: Fluxer.Net.Commands.ContextType
+  commentId: T:Fluxer.Net.Commands.ContextType
+  parent: Fluxer.Net.Commands
+  href: Fluxer.Net.Commands.ContextType.html
+  name: ContextType
+  nameWithType: ContextType
+  fullName: Fluxer.Net.Commands.ContextType
+- uid: Fluxer.Net.Commands.RequireContextAttribute
+  commentId: T:Fluxer.Net.Commands.RequireContextAttribute
+  href: Fluxer.Net.Commands.RequireContextAttribute.html
+  name: RequireContextAttribute
+  nameWithType: RequireContextAttribute
+  fullName: Fluxer.Net.Commands.RequireContextAttribute
+- uid: Fluxer.Net.Commands.RequireOwnerAttribute
+  commentId: T:Fluxer.Net.Commands.RequireOwnerAttribute
+  href: Fluxer.Net.Commands.RequireOwnerAttribute.html
+  name: RequireOwnerAttribute
+  nameWithType: RequireOwnerAttribute
+  fullName: Fluxer.Net.Commands.RequireOwnerAttribute
+- uid: Fluxer.Net.Commands.SummaryAttribute
+  commentId: T:Fluxer.Net.Commands.SummaryAttribute
+  href: Fluxer.Net.Commands.SummaryAttribute.html
+  name: SummaryAttribute
+  nameWithType: SummaryAttribute
+  fullName: Fluxer.Net.Commands.SummaryAttribute
+- uid: Fluxer.Net.Commands.CommandContext
+  commentId: T:Fluxer.Net.Commands.CommandContext
+  parent: Fluxer.Net.Commands
+  href: Fluxer.Net.Commands.CommandContext.html
+  name: CommandContext
+  nameWithType: CommandContext
+  fullName: Fluxer.Net.Commands.CommandContext
+- uid: Fluxer.Net.Commands.CommandError
+  commentId: T:Fluxer.Net.Commands.CommandError
+  parent: Fluxer.Net.Commands
+  href: Fluxer.Net.Commands.CommandError.html
+  name: CommandError
+  nameWithType: CommandError
+  fullName: Fluxer.Net.Commands.CommandError
+- uid: Fluxer.Net.Commands.CommandInfo
+  commentId: T:Fluxer.Net.Commands.CommandInfo
+  parent: Fluxer.Net.Commands
+  href: Fluxer.Net.Commands.CommandInfo.html
+  name: CommandInfo
+  nameWithType: CommandInfo
+  fullName: Fluxer.Net.Commands.CommandInfo
+- uid: Fluxer.Net.Commands.CommandService
+  commentId: T:Fluxer.Net.Commands.CommandService
+  href: Fluxer.Net.Commands.CommandService.html
+  name: CommandService
+  nameWithType: CommandService
+  fullName: Fluxer.Net.Commands.CommandService
+- uid: Fluxer.Net.Commands.CommandService2
+  commentId: T:Fluxer.Net.Commands.CommandService2
+  href: Fluxer.Net.Commands.CommandService2.html
+  name: CommandService2
+  nameWithType: CommandService2
+  fullName: Fluxer.Net.Commands.CommandService2
+- uid: Fluxer.Net.Commands.ExecuteResult
+  commentId: T:Fluxer.Net.Commands.ExecuteResult
+  parent: Fluxer.Net.Commands
+  href: Fluxer.Net.Commands.ExecuteResult.html
+  name: ExecuteResult
+  nameWithType: ExecuteResult
+  fullName: Fluxer.Net.Commands.ExecuteResult
+- uid: Fluxer.Net.Commands.IResult
+  commentId: T:Fluxer.Net.Commands.IResult
+  parent: Fluxer.Net.Commands
+  href: Fluxer.Net.Commands.IResult.html
+  name: IResult
+  nameWithType: IResult
+  fullName: Fluxer.Net.Commands.IResult
+- uid: Fluxer.Net.Commands.ModuleBase
+  commentId: T:Fluxer.Net.Commands.ModuleBase
+  parent: Fluxer.Net.Commands
+  href: Fluxer.Net.Commands.ModuleBase.html
+  name: ModuleBase
+  nameWithType: ModuleBase
+  fullName: Fluxer.Net.Commands.ModuleBase
+- uid: Fluxer.Net.Commands.ModuleBase`1
+  commentId: T:Fluxer.Net.Commands.ModuleBase`1
+  href: Fluxer.Net.Commands.ModuleBase-1.html
+  name: ModuleBase<T>
+  nameWithType: ModuleBase<T>
+  fullName: Fluxer.Net.Commands.ModuleBase<T>
+  nameWithType.vb: ModuleBase(Of T)
+  fullName.vb: Fluxer.Net.Commands.ModuleBase(Of T)
+  name.vb: ModuleBase(Of T)
+  spec.csharp:
+  - uid: Fluxer.Net.Commands.ModuleBase`1
+    name: ModuleBase
+    href: Fluxer.Net.Commands.ModuleBase-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: Fluxer.Net.Commands.ModuleBase`1
+    name: ModuleBase
+    href: Fluxer.Net.Commands.ModuleBase-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: Fluxer.Net.Commands.ModuleInfo
+  commentId: T:Fluxer.Net.Commands.ModuleInfo
+  parent: Fluxer.Net.Commands
+  href: Fluxer.Net.Commands.ModuleInfo.html
+  name: ModuleInfo
+  nameWithType: ModuleInfo
+  fullName: Fluxer.Net.Commands.ModuleInfo
+- uid: Fluxer.Net.Commands.ParameterInfo
+  commentId: T:Fluxer.Net.Commands.ParameterInfo
+  href: Fluxer.Net.Commands.ParameterInfo.html
+  name: ParameterInfo
+  nameWithType: ParameterInfo
+  fullName: Fluxer.Net.Commands.ParameterInfo
+- uid: Fluxer.Net.Commands.PreconditionResult
+  commentId: T:Fluxer.Net.Commands.PreconditionResult
+  parent: Fluxer.Net.Commands
+  href: Fluxer.Net.Commands.PreconditionResult.html
+  name: PreconditionResult
+  nameWithType: PreconditionResult
+  fullName: Fluxer.Net.Commands.PreconditionResult
+- uid: Fluxer.Net.Commands.RunMode
+  commentId: T:Fluxer.Net.Commands.RunMode
+  parent: Fluxer.Net.Commands
+  href: Fluxer.Net.Commands.RunMode.html
+  name: RunMode
+  nameWithType: RunMode
+  fullName: Fluxer.Net.Commands.RunMode
+- uid: Fluxer.Net.Commands
+  commentId: N:Fluxer.Net.Commands
+  href: Fluxer.html
+  name: Fluxer.Net.Commands
+  nameWithType: Fluxer.Net.Commands
+  fullName: Fluxer.Net.Commands
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  - name: .
+  - uid: Fluxer.Net.Commands
+    name: Commands
+    href: Fluxer.Net.Commands.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  - name: .
+  - uid: Fluxer.Net.Commands
+    name: Commands
+    href: Fluxer.Net.Commands.html

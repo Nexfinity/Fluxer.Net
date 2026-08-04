@@ -1,0 +1,242 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.Commands.CommandError
+  commentId: T:Fluxer.Net.Commands.CommandError
+  id: CommandError
+  parent: Fluxer.Net.Commands
+  children:
+  - Fluxer.Net.Commands.CommandError.BadArgCount
+  - Fluxer.Net.Commands.CommandError.Exception
+  - Fluxer.Net.Commands.CommandError.ParseFailed
+  - Fluxer.Net.Commands.CommandError.UnknownCommand
+  - Fluxer.Net.Commands.CommandError.UnmetPrecondition
+  - Fluxer.Net.Commands.CommandError.Unsuccessful
+  langs:
+  - csharp
+  - vb
+  name: CommandError
+  nameWithType: CommandError
+  fullName: Fluxer.Net.Commands.CommandError
+  type: Enum
+  source:
+    remote:
+      path: Fluxer.Net/Commands/CommandError.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: CommandError
+    path: ../Fluxer.Net/Commands/CommandError.cs
+    startLine: 5
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net.Commands
+  summary: Defines the types of errors that can occur during command execution.
+  example: []
+  syntax:
+    content: public enum CommandError
+    content.vb: Public Enum CommandError
+- uid: Fluxer.Net.Commands.CommandError.ParseFailed
+  commentId: F:Fluxer.Net.Commands.CommandError.ParseFailed
+  id: ParseFailed
+  parent: Fluxer.Net.Commands.CommandError
+  langs:
+  - csharp
+  - vb
+  name: ParseFailed
+  nameWithType: CommandError.ParseFailed
+  fullName: Fluxer.Net.Commands.CommandError.ParseFailed
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Commands/CommandError.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: ParseFailed
+    path: ../Fluxer.Net/Commands/CommandError.cs
+    startLine: 10
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net.Commands
+  summary: The command failed to parse.
+  example: []
+  syntax:
+    content: ParseFailed = 0
+    return:
+      type: Fluxer.Net.Commands.CommandError
+- uid: Fluxer.Net.Commands.CommandError.UnknownCommand
+  commentId: F:Fluxer.Net.Commands.CommandError.UnknownCommand
+  id: UnknownCommand
+  parent: Fluxer.Net.Commands.CommandError
+  langs:
+  - csharp
+  - vb
+  name: UnknownCommand
+  nameWithType: CommandError.UnknownCommand
+  fullName: Fluxer.Net.Commands.CommandError.UnknownCommand
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Commands/CommandError.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: UnknownCommand
+    path: ../Fluxer.Net/Commands/CommandError.cs
+    startLine: 15
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net.Commands
+  summary: The command was not found.
+  example: []
+  syntax:
+    content: UnknownCommand = 1
+    return:
+      type: Fluxer.Net.Commands.CommandError
+- uid: Fluxer.Net.Commands.CommandError.BadArgCount
+  commentId: F:Fluxer.Net.Commands.CommandError.BadArgCount
+  id: BadArgCount
+  parent: Fluxer.Net.Commands.CommandError
+  langs:
+  - csharp
+  - vb
+  name: BadArgCount
+  nameWithType: CommandError.BadArgCount
+  fullName: Fluxer.Net.Commands.CommandError.BadArgCount
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Commands/CommandError.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: BadArgCount
+    path: ../Fluxer.Net/Commands/CommandError.cs
+    startLine: 20
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net.Commands
+  summary: The user provided too few parameters.
+  example: []
+  syntax:
+    content: BadArgCount = 2
+    return:
+      type: Fluxer.Net.Commands.CommandError
+- uid: Fluxer.Net.Commands.CommandError.UnmetPrecondition
+  commentId: F:Fluxer.Net.Commands.CommandError.UnmetPrecondition
+  id: UnmetPrecondition
+  parent: Fluxer.Net.Commands.CommandError
+  langs:
+  - csharp
+  - vb
+  name: UnmetPrecondition
+  nameWithType: CommandError.UnmetPrecondition
+  fullName: Fluxer.Net.Commands.CommandError.UnmetPrecondition
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Commands/CommandError.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: UnmetPrecondition
+    path: ../Fluxer.Net/Commands/CommandError.cs
+    startLine: 25
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net.Commands
+  summary: A precondition failed.
+  example: []
+  syntax:
+    content: UnmetPrecondition = 3
+    return:
+      type: Fluxer.Net.Commands.CommandError
+- uid: Fluxer.Net.Commands.CommandError.Exception
+  commentId: F:Fluxer.Net.Commands.CommandError.Exception
+  id: Exception
+  parent: Fluxer.Net.Commands.CommandError
+  langs:
+  - csharp
+  - vb
+  name: Exception
+  nameWithType: CommandError.Exception
+  fullName: Fluxer.Net.Commands.CommandError.Exception
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Commands/CommandError.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Exception
+    path: ../Fluxer.Net/Commands/CommandError.cs
+    startLine: 30
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net.Commands
+  summary: An exception occurred during execution.
+  example: []
+  syntax:
+    content: Exception = 4
+    return:
+      type: Fluxer.Net.Commands.CommandError
+- uid: Fluxer.Net.Commands.CommandError.Unsuccessful
+  commentId: F:Fluxer.Net.Commands.CommandError.Unsuccessful
+  id: Unsuccessful
+  parent: Fluxer.Net.Commands.CommandError
+  langs:
+  - csharp
+  - vb
+  name: Unsuccessful
+  nameWithType: CommandError.Unsuccessful
+  fullName: Fluxer.Net.Commands.CommandError.Unsuccessful
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Commands/CommandError.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Unsuccessful
+    path: ../Fluxer.Net/Commands/CommandError.cs
+    startLine: 35
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net.Commands
+  summary: The command execution was unsuccessful for an unspecified reason.
+  example: []
+  syntax:
+    content: Unsuccessful = 5
+    return:
+      type: Fluxer.Net.Commands.CommandError
+references:
+- uid: Fluxer.Net.Commands
+  commentId: N:Fluxer.Net.Commands
+  href: Fluxer.html
+  name: Fluxer.Net.Commands
+  nameWithType: Fluxer.Net.Commands
+  fullName: Fluxer.Net.Commands
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  - name: .
+  - uid: Fluxer.Net.Commands
+    name: Commands
+    href: Fluxer.Net.Commands.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  - name: .
+  - uid: Fluxer.Net.Commands
+    name: Commands
+    href: Fluxer.Net.Commands.html
+- uid: Fluxer.Net.Commands.CommandError
+  commentId: T:Fluxer.Net.Commands.CommandError
+  parent: Fluxer.Net.Commands
+  href: Fluxer.Net.Commands.CommandError.html
+  name: CommandError
+  nameWithType: CommandError
+  fullName: Fluxer.Net.Commands.CommandError

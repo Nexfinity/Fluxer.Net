@@ -1,0 +1,199 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.IFluxerOAuthUser
+  commentId: T:Fluxer.Net.IFluxerOAuthUser
+  id: IFluxerOAuthUser
+  parent: Fluxer.Net
+  children:
+  - Fluxer.Net.IFluxerOAuthUser.Email
+  - Fluxer.Net.IFluxerOAuthUser.IsVerified
+  langs:
+  - csharp
+  - vb
+  name: IFluxerOAuthUser
+  nameWithType: IFluxerOAuthUser
+  fullName: Fluxer.Net.IFluxerOAuthUser
+  type: Interface
+  source:
+    remote:
+      path: Fluxer.Net/Data/OAuth/IFluxerOAuthUser.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: IFluxerOAuthUser
+    path: ../Fluxer.Net/Data/OAuth/IFluxerOAuthUser.cs
+    startLine: 2
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: public interface IFluxerOAuthUser
+    content.vb: Public Interface IFluxerOAuthUser
+  derivedClasses:
+  - Fluxer.Net.FluxerOAuthUser
+  - Fluxer.Net.FluxerOAuthUserJson
+- uid: Fluxer.Net.IFluxerOAuthUser.Email
+  commentId: P:Fluxer.Net.IFluxerOAuthUser.Email
+  id: Email
+  parent: Fluxer.Net.IFluxerOAuthUser
+  langs:
+  - csharp
+  - vb
+  name: Email
+  nameWithType: IFluxerOAuthUser.Email
+  fullName: Fluxer.Net.IFluxerOAuthUser.Email
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/OAuth/IFluxerOAuthUser.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Email
+    path: ../Fluxer.Net/Data/OAuth/IFluxerOAuthUser.cs
+    startLine: 7
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The email address of the user.
+  example: []
+  syntax:
+    content: string? Email { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: ReadOnly Property Email As String
+  overload: Fluxer.Net.IFluxerOAuthUser.Email*
+- uid: Fluxer.Net.IFluxerOAuthUser.IsVerified
+  commentId: P:Fluxer.Net.IFluxerOAuthUser.IsVerified
+  id: IsVerified
+  parent: Fluxer.Net.IFluxerOAuthUser
+  langs:
+  - csharp
+  - vb
+  name: IsVerified
+  nameWithType: IFluxerOAuthUser.IsVerified
+  fullName: Fluxer.Net.IFluxerOAuthUser.IsVerified
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/OAuth/IFluxerOAuthUser.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: IsVerified
+    path: ../Fluxer.Net/Data/OAuth/IFluxerOAuthUser.cs
+    startLine: 12
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Whether the user has verified their email.
+  example: []
+  syntax:
+    content: bool? IsVerified { get; }
+    parameters: []
+    return:
+      type: System.Nullable{System.Boolean}
+    content.vb: ReadOnly Property IsVerified As Boolean?
+  overload: Fluxer.Net.IFluxerOAuthUser.IsVerified*
+references:
+- uid: Fluxer.Net
+  commentId: N:Fluxer.Net
+  href: Fluxer.html
+  name: Fluxer.Net
+  nameWithType: Fluxer.Net
+  fullName: Fluxer.Net
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+- uid: Fluxer.Net.IFluxerOAuthUser.Email*
+  commentId: Overload:Fluxer.Net.IFluxerOAuthUser.Email
+  href: Fluxer.Net.IFluxerOAuthUser.html#Fluxer_Net_IFluxerOAuthUser_Email
+  name: Email
+  nameWithType: IFluxerOAuthUser.Email
+  fullName: Fluxer.Net.IFluxerOAuthUser.Email
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Fluxer.Net.IFluxerOAuthUser.IsVerified*
+  commentId: Overload:Fluxer.Net.IFluxerOAuthUser.IsVerified
+  href: Fluxer.Net.IFluxerOAuthUser.html#Fluxer_Net_IFluxerOAuthUser_IsVerified
+  name: IsVerified
+  nameWithType: IFluxerOAuthUser.IsVerified
+  fullName: Fluxer.Net.IFluxerOAuthUser.IsVerified
+- uid: System.Nullable{System.Boolean}
+  commentId: T:System.Nullable{System.Boolean}
+  parent: System
+  definition: System.Nullable`1
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool?
+  nameWithType: bool?
+  fullName: bool?
+  nameWithType.vb: Boolean?
+  fullName.vb: Boolean?
+  name.vb: Boolean?
+  spec.csharp:
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '?'
+  spec.vb:
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '?'
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )

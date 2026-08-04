@@ -1,0 +1,166 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.NotificationType
+  commentId: T:Fluxer.Net.NotificationType
+  id: NotificationType
+  parent: Fluxer.Net
+  children:
+  - Fluxer.Net.NotificationType.AllMessages
+  - Fluxer.Net.NotificationType.InheritParent
+  - Fluxer.Net.NotificationType.MentionsOnly
+  - Fluxer.Net.NotificationType.NoMessages
+  langs:
+  - csharp
+  - vb
+  name: NotificationType
+  nameWithType: NotificationType
+  fullName: Fluxer.Net.NotificationType
+  type: Enum
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/NotificationType.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: NotificationType
+    path: ../Fluxer.Net/Data/Users/NotificationType.cs
+    startLine: 2
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: public enum NotificationType
+    content.vb: Public Enum NotificationType
+- uid: Fluxer.Net.NotificationType.AllMessages
+  commentId: F:Fluxer.Net.NotificationType.AllMessages
+  id: AllMessages
+  parent: Fluxer.Net.NotificationType
+  langs:
+  - csharp
+  - vb
+  name: AllMessages
+  nameWithType: NotificationType.AllMessages
+  fullName: Fluxer.Net.NotificationType.AllMessages
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/NotificationType.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: AllMessages
+    path: ../Fluxer.Net/Data/Users/NotificationType.cs
+    startLine: 4
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: AllMessages = 0
+    return:
+      type: Fluxer.Net.NotificationType
+- uid: Fluxer.Net.NotificationType.MentionsOnly
+  commentId: F:Fluxer.Net.NotificationType.MentionsOnly
+  id: MentionsOnly
+  parent: Fluxer.Net.NotificationType
+  langs:
+  - csharp
+  - vb
+  name: MentionsOnly
+  nameWithType: NotificationType.MentionsOnly
+  fullName: Fluxer.Net.NotificationType.MentionsOnly
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/NotificationType.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: MentionsOnly
+    path: ../Fluxer.Net/Data/Users/NotificationType.cs
+    startLine: 5
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: MentionsOnly = 1
+    return:
+      type: Fluxer.Net.NotificationType
+- uid: Fluxer.Net.NotificationType.NoMessages
+  commentId: F:Fluxer.Net.NotificationType.NoMessages
+  id: NoMessages
+  parent: Fluxer.Net.NotificationType
+  langs:
+  - csharp
+  - vb
+  name: NoMessages
+  nameWithType: NotificationType.NoMessages
+  fullName: Fluxer.Net.NotificationType.NoMessages
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/NotificationType.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: NoMessages
+    path: ../Fluxer.Net/Data/Users/NotificationType.cs
+    startLine: 6
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: NoMessages = 2
+    return:
+      type: Fluxer.Net.NotificationType
+- uid: Fluxer.Net.NotificationType.InheritParent
+  commentId: F:Fluxer.Net.NotificationType.InheritParent
+  id: InheritParent
+  parent: Fluxer.Net.NotificationType
+  langs:
+  - csharp
+  - vb
+  name: InheritParent
+  nameWithType: NotificationType.InheritParent
+  fullName: Fluxer.Net.NotificationType.InheritParent
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/NotificationType.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: InheritParent
+    path: ../Fluxer.Net/Data/Users/NotificationType.cs
+    startLine: 7
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: InheritParent = 3
+    return:
+      type: Fluxer.Net.NotificationType
+references:
+- uid: Fluxer.Net
+  commentId: N:Fluxer.Net
+  href: Fluxer.html
+  name: Fluxer.Net
+  nameWithType: Fluxer.Net
+  fullName: Fluxer.Net
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+- uid: Fluxer.Net.NotificationType
+  commentId: T:Fluxer.Net.NotificationType
+  parent: Fluxer.Net
+  href: Fluxer.Net.NotificationType.html
+  name: NotificationType
+  nameWithType: NotificationType
+  fullName: Fluxer.Net.NotificationType

@@ -1,0 +1,288 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.IMessageCall
+  commentId: T:Fluxer.Net.IMessageCall
+  id: IMessageCall
+  parent: Fluxer.Net
+  children:
+  - Fluxer.Net.IMessageCall.EndedAt
+  - Fluxer.Net.IMessageCall.Participants
+  langs:
+  - csharp
+  - vb
+  name: IMessageCall
+  nameWithType: IMessageCall
+  fullName: Fluxer.Net.IMessageCall
+  type: Interface
+  source:
+    remote:
+      path: Fluxer.Net/Data/Messages/IMessageCall.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: IMessageCall
+    path: ../Fluxer.Net/Data/Messages/IMessageCall.cs
+    startLine: 2
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: public interface IMessageCall
+    content.vb: Public Interface IMessageCall
+  derivedClasses:
+  - Fluxer.Net.MessageCall
+  - Fluxer.Net.MessageCallJson
+- uid: Fluxer.Net.IMessageCall.Participants
+  commentId: P:Fluxer.Net.IMessageCall.Participants
+  id: Participants
+  parent: Fluxer.Net.IMessageCall
+  langs:
+  - csharp
+  - vb
+  name: Participants
+  nameWithType: IMessageCall.Participants
+  fullName: Fluxer.Net.IMessageCall.Participants
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Messages/IMessageCall.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Participants
+    path: ../Fluxer.Net/Data/Messages/IMessageCall.cs
+    startLine: 7
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The user IDs of participants in the call.
+  example: []
+  syntax:
+    content: HashSet<ulong> Participants { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.HashSet{System.UInt64}
+    content.vb: ReadOnly Property Participants As HashSet(Of ULong)
+  overload: Fluxer.Net.IMessageCall.Participants*
+- uid: Fluxer.Net.IMessageCall.EndedAt
+  commentId: P:Fluxer.Net.IMessageCall.EndedAt
+  id: EndedAt
+  parent: Fluxer.Net.IMessageCall
+  langs:
+  - csharp
+  - vb
+  name: EndedAt
+  nameWithType: IMessageCall.EndedAt
+  fullName: Fluxer.Net.IMessageCall.EndedAt
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Messages/IMessageCall.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: EndedAt
+    path: ../Fluxer.Net/Data/Messages/IMessageCall.cs
+    startLine: 12
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The ISO 8601 timestamp of when the call ended.
+  example: []
+  syntax:
+    content: DateTime? EndedAt { get; }
+    parameters: []
+    return:
+      type: System.Nullable{System.DateTime}
+    content.vb: ReadOnly Property EndedAt As Date?
+  overload: Fluxer.Net.IMessageCall.EndedAt*
+references:
+- uid: Fluxer.Net
+  commentId: N:Fluxer.Net
+  href: Fluxer.html
+  name: Fluxer.Net
+  nameWithType: Fluxer.Net
+  fullName: Fluxer.Net
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+- uid: Fluxer.Net.IMessageCall.Participants*
+  commentId: Overload:Fluxer.Net.IMessageCall.Participants
+  href: Fluxer.Net.IMessageCall.html#Fluxer_Net_IMessageCall_Participants
+  name: Participants
+  nameWithType: IMessageCall.Participants
+  fullName: Fluxer.Net.IMessageCall.Participants
+- uid: System.Collections.Generic.HashSet{System.UInt64}
+  commentId: T:System.Collections.Generic.HashSet{System.UInt64}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.HashSet`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  name: HashSet<ulong>
+  nameWithType: HashSet<ulong>
+  fullName: System.Collections.Generic.HashSet<ulong>
+  nameWithType.vb: HashSet(Of ULong)
+  fullName.vb: System.Collections.Generic.HashSet(Of ULong)
+  name.vb: HashSet(Of ULong)
+  spec.csharp:
+  - uid: System.Collections.Generic.HashSet`1
+    name: HashSet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  - name: <
+  - uid: System.UInt64
+    name: ulong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.HashSet`1
+    name: HashSet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.UInt64
+    name: ULong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: )
+- uid: System.Collections.Generic.HashSet`1
+  commentId: T:System.Collections.Generic.HashSet`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  name: HashSet<T>
+  nameWithType: HashSet<T>
+  fullName: System.Collections.Generic.HashSet<T>
+  nameWithType.vb: HashSet(Of T)
+  fullName.vb: System.Collections.Generic.HashSet(Of T)
+  name.vb: HashSet(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.HashSet`1
+    name: HashSet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.HashSet`1
+    name: HashSet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: Fluxer.Net.IMessageCall.EndedAt*
+  commentId: Overload:Fluxer.Net.IMessageCall.EndedAt
+  href: Fluxer.Net.IMessageCall.html#Fluxer_Net_IMessageCall_EndedAt
+  name: EndedAt
+  nameWithType: IMessageCall.EndedAt
+  fullName: Fluxer.Net.IMessageCall.EndedAt
+- uid: System.Nullable{System.DateTime}
+  commentId: T:System.Nullable{System.DateTime}
+  parent: System
+  definition: System.Nullable`1
+  href: https://learn.microsoft.com/dotnet/api/system.datetime
+  name: DateTime?
+  nameWithType: DateTime?
+  fullName: System.DateTime?
+  nameWithType.vb: Date?
+  fullName.vb: Date?
+  name.vb: Date?
+  spec.csharp:
+  - uid: System.DateTime
+    name: DateTime
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.datetime
+  - name: '?'
+  spec.vb:
+  - uid: System.DateTime
+    name: Date
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.datetime
+  - name: '?'
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System

@@ -1,0 +1,499 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.Gateway.Data.Users.FavoriteMemeGatewayData
+  commentId: T:Fluxer.Net.Gateway.Data.Users.FavoriteMemeGatewayData
+  id: FavoriteMemeGatewayData
+  parent: Fluxer.Net.Gateway.Data.Users
+  children: []
+  langs:
+  - csharp
+  - vb
+  name: FavoriteMemeGatewayData
+  nameWithType: FavoriteMemeGatewayData
+  fullName: Fluxer.Net.Gateway.Data.Users.FavoriteMemeGatewayData
+  type: Class
+  source:
+    remote:
+      path: Fluxer.Net/Gateway/Data/Users/FavoriteMemeGatewayData.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: FavoriteMemeGatewayData
+    path: ../Fluxer.Net/Gateway/Data/Users/FavoriteMemeGatewayData.cs
+    startLine: 7
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net.Gateway.Data.Users
+  summary: Gateway data for FAVORITE_MEME_CREATE, FAVORITE_MEME_UPDATE, and FAVORITE_MEME_DELETE events.
+  example: []
+  syntax:
+    content: 'public class FavoriteMemeGatewayData : FavoriteGifJson, IFavoriteGif'
+    content.vb: Public Class FavoriteMemeGatewayData Inherits FavoriteGifJson Implements IFavoriteGif
+  inheritance:
+  - System.Object
+  - Fluxer.Net.FavoriteGifJson
+  implements:
+  - Fluxer.Net.IFavoriteGif
+  inheritedMembers:
+  - Fluxer.Net.FavoriteGifJson.Id
+  - Fluxer.Net.FavoriteGifJson.UserId
+  - Fluxer.Net.FavoriteGifJson.Name
+  - Fluxer.Net.FavoriteGifJson.Tags
+  - Fluxer.Net.FavoriteGifJson.AttachmentId
+  - Fluxer.Net.FavoriteGifJson.Filename
+  - Fluxer.Net.FavoriteGifJson.ContentType
+  - Fluxer.Net.FavoriteGifJson.Size
+  - Fluxer.Net.FavoriteGifJson.Url
+  - Fluxer.Net.FavoriteGifJson.AltText
+  - Fluxer.Net.FavoriteGifJson.ContentHash
+  - Fluxer.Net.FavoriteGifJson.Width
+  - Fluxer.Net.FavoriteGifJson.Height
+  - Fluxer.Net.FavoriteGifJson.Duration
+  - Fluxer.Net.FavoriteGifJson.IsGifVideo
+  - Fluxer.Net.FavoriteGifJson.KlipySlug
+  - Fluxer.Net.FavoriteGifJson.TenorSlugId
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+references:
+- uid: Fluxer.Net.Gateway.Data.Users
+  commentId: N:Fluxer.Net.Gateway.Data.Users
+  href: Fluxer.html
+  name: Fluxer.Net.Gateway.Data.Users
+  nameWithType: Fluxer.Net.Gateway.Data.Users
+  fullName: Fluxer.Net.Gateway.Data.Users
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  - name: .
+  - uid: Fluxer.Net.Gateway
+    name: Gateway
+    href: Fluxer.Net.Gateway.html
+  - name: .
+  - uid: Fluxer.Net.Gateway.Data
+    name: Data
+    href: Fluxer.Net.Gateway.Data.html
+  - name: .
+  - uid: Fluxer.Net.Gateway.Data.Users
+    name: Users
+    href: Fluxer.Net.Gateway.Data.Users.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  - name: .
+  - uid: Fluxer.Net.Gateway
+    name: Gateway
+    href: Fluxer.Net.Gateway.html
+  - name: .
+  - uid: Fluxer.Net.Gateway.Data
+    name: Data
+    href: Fluxer.Net.Gateway.Data.html
+  - name: .
+  - uid: Fluxer.Net.Gateway.Data.Users
+    name: Users
+    href: Fluxer.Net.Gateway.Data.Users.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Fluxer.Net.FavoriteGifJson
+  commentId: T:Fluxer.Net.FavoriteGifJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.FavoriteGifJson.html
+  name: FavoriteGifJson
+  nameWithType: FavoriteGifJson
+  fullName: Fluxer.Net.FavoriteGifJson
+- uid: Fluxer.Net.IFavoriteGif
+  commentId: T:Fluxer.Net.IFavoriteGif
+  parent: Fluxer.Net
+  href: Fluxer.Net.IFavoriteGif.html
+  name: IFavoriteGif
+  nameWithType: IFavoriteGif
+  fullName: Fluxer.Net.IFavoriteGif
+- uid: Fluxer.Net.FavoriteGifJson.Id
+  commentId: P:Fluxer.Net.FavoriteGifJson.Id
+  parent: Fluxer.Net.FavoriteGifJson
+  href: Fluxer.Net.FavoriteGifJson.html#Fluxer_Net_FavoriteGifJson_Id
+  name: Id
+  nameWithType: FavoriteGifJson.Id
+  fullName: Fluxer.Net.FavoriteGifJson.Id
+- uid: Fluxer.Net.FavoriteGifJson.UserId
+  commentId: P:Fluxer.Net.FavoriteGifJson.UserId
+  parent: Fluxer.Net.FavoriteGifJson
+  href: Fluxer.Net.FavoriteGifJson.html#Fluxer_Net_FavoriteGifJson_UserId
+  name: UserId
+  nameWithType: FavoriteGifJson.UserId
+  fullName: Fluxer.Net.FavoriteGifJson.UserId
+- uid: Fluxer.Net.FavoriteGifJson.Name
+  commentId: P:Fluxer.Net.FavoriteGifJson.Name
+  parent: Fluxer.Net.FavoriteGifJson
+  href: Fluxer.Net.FavoriteGifJson.html#Fluxer_Net_FavoriteGifJson_Name
+  name: Name
+  nameWithType: FavoriteGifJson.Name
+  fullName: Fluxer.Net.FavoriteGifJson.Name
+- uid: Fluxer.Net.FavoriteGifJson.Tags
+  commentId: P:Fluxer.Net.FavoriteGifJson.Tags
+  parent: Fluxer.Net.FavoriteGifJson
+  href: Fluxer.Net.FavoriteGifJson.html#Fluxer_Net_FavoriteGifJson_Tags
+  name: Tags
+  nameWithType: FavoriteGifJson.Tags
+  fullName: Fluxer.Net.FavoriteGifJson.Tags
+- uid: Fluxer.Net.FavoriteGifJson.AttachmentId
+  commentId: P:Fluxer.Net.FavoriteGifJson.AttachmentId
+  parent: Fluxer.Net.FavoriteGifJson
+  href: Fluxer.Net.FavoriteGifJson.html#Fluxer_Net_FavoriteGifJson_AttachmentId
+  name: AttachmentId
+  nameWithType: FavoriteGifJson.AttachmentId
+  fullName: Fluxer.Net.FavoriteGifJson.AttachmentId
+- uid: Fluxer.Net.FavoriteGifJson.Filename
+  commentId: P:Fluxer.Net.FavoriteGifJson.Filename
+  parent: Fluxer.Net.FavoriteGifJson
+  href: Fluxer.Net.FavoriteGifJson.html#Fluxer_Net_FavoriteGifJson_Filename
+  name: Filename
+  nameWithType: FavoriteGifJson.Filename
+  fullName: Fluxer.Net.FavoriteGifJson.Filename
+- uid: Fluxer.Net.FavoriteGifJson.ContentType
+  commentId: P:Fluxer.Net.FavoriteGifJson.ContentType
+  parent: Fluxer.Net.FavoriteGifJson
+  href: Fluxer.Net.FavoriteGifJson.html#Fluxer_Net_FavoriteGifJson_ContentType
+  name: ContentType
+  nameWithType: FavoriteGifJson.ContentType
+  fullName: Fluxer.Net.FavoriteGifJson.ContentType
+- uid: Fluxer.Net.FavoriteGifJson.Size
+  commentId: P:Fluxer.Net.FavoriteGifJson.Size
+  parent: Fluxer.Net.FavoriteGifJson
+  href: Fluxer.Net.FavoriteGifJson.html#Fluxer_Net_FavoriteGifJson_Size
+  name: Size
+  nameWithType: FavoriteGifJson.Size
+  fullName: Fluxer.Net.FavoriteGifJson.Size
+- uid: Fluxer.Net.FavoriteGifJson.Url
+  commentId: P:Fluxer.Net.FavoriteGifJson.Url
+  parent: Fluxer.Net.FavoriteGifJson
+  href: Fluxer.Net.FavoriteGifJson.html#Fluxer_Net_FavoriteGifJson_Url
+  name: Url
+  nameWithType: FavoriteGifJson.Url
+  fullName: Fluxer.Net.FavoriteGifJson.Url
+- uid: Fluxer.Net.FavoriteGifJson.AltText
+  commentId: P:Fluxer.Net.FavoriteGifJson.AltText
+  parent: Fluxer.Net.FavoriteGifJson
+  href: Fluxer.Net.FavoriteGifJson.html#Fluxer_Net_FavoriteGifJson_AltText
+  name: AltText
+  nameWithType: FavoriteGifJson.AltText
+  fullName: Fluxer.Net.FavoriteGifJson.AltText
+- uid: Fluxer.Net.FavoriteGifJson.ContentHash
+  commentId: P:Fluxer.Net.FavoriteGifJson.ContentHash
+  parent: Fluxer.Net.FavoriteGifJson
+  href: Fluxer.Net.FavoriteGifJson.html#Fluxer_Net_FavoriteGifJson_ContentHash
+  name: ContentHash
+  nameWithType: FavoriteGifJson.ContentHash
+  fullName: Fluxer.Net.FavoriteGifJson.ContentHash
+- uid: Fluxer.Net.FavoriteGifJson.Width
+  commentId: P:Fluxer.Net.FavoriteGifJson.Width
+  parent: Fluxer.Net.FavoriteGifJson
+  href: Fluxer.Net.FavoriteGifJson.html#Fluxer_Net_FavoriteGifJson_Width
+  name: Width
+  nameWithType: FavoriteGifJson.Width
+  fullName: Fluxer.Net.FavoriteGifJson.Width
+- uid: Fluxer.Net.FavoriteGifJson.Height
+  commentId: P:Fluxer.Net.FavoriteGifJson.Height
+  parent: Fluxer.Net.FavoriteGifJson
+  href: Fluxer.Net.FavoriteGifJson.html#Fluxer_Net_FavoriteGifJson_Height
+  name: Height
+  nameWithType: FavoriteGifJson.Height
+  fullName: Fluxer.Net.FavoriteGifJson.Height
+- uid: Fluxer.Net.FavoriteGifJson.Duration
+  commentId: P:Fluxer.Net.FavoriteGifJson.Duration
+  parent: Fluxer.Net.FavoriteGifJson
+  href: Fluxer.Net.FavoriteGifJson.html#Fluxer_Net_FavoriteGifJson_Duration
+  name: Duration
+  nameWithType: FavoriteGifJson.Duration
+  fullName: Fluxer.Net.FavoriteGifJson.Duration
+- uid: Fluxer.Net.FavoriteGifJson.IsGifVideo
+  commentId: P:Fluxer.Net.FavoriteGifJson.IsGifVideo
+  parent: Fluxer.Net.FavoriteGifJson
+  href: Fluxer.Net.FavoriteGifJson.html#Fluxer_Net_FavoriteGifJson_IsGifVideo
+  name: IsGifVideo
+  nameWithType: FavoriteGifJson.IsGifVideo
+  fullName: Fluxer.Net.FavoriteGifJson.IsGifVideo
+- uid: Fluxer.Net.FavoriteGifJson.KlipySlug
+  commentId: P:Fluxer.Net.FavoriteGifJson.KlipySlug
+  parent: Fluxer.Net.FavoriteGifJson
+  href: Fluxer.Net.FavoriteGifJson.html#Fluxer_Net_FavoriteGifJson_KlipySlug
+  name: KlipySlug
+  nameWithType: FavoriteGifJson.KlipySlug
+  fullName: Fluxer.Net.FavoriteGifJson.KlipySlug
+- uid: Fluxer.Net.FavoriteGifJson.TenorSlugId
+  commentId: P:Fluxer.Net.FavoriteGifJson.TenorSlugId
+  parent: Fluxer.Net.FavoriteGifJson
+  href: Fluxer.Net.FavoriteGifJson.html#Fluxer_Net_FavoriteGifJson_TenorSlugId
+  name: TenorSlugId
+  nameWithType: FavoriteGifJson.TenorSlugId
+  fullName: Fluxer.Net.FavoriteGifJson.TenorSlugId
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Fluxer.Net
+  commentId: N:Fluxer.Net
+  href: Fluxer.html
+  name: Fluxer.Net
+  nameWithType: Fluxer.Net
+  fullName: Fluxer.Net
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html

@@ -1,0 +1,1616 @@
+### YamlMime:TableOfContent
+items:
+- uid: Fluxer.Net
+  name: Fluxer.Net
+  type: Namespace
+  items:
+  - uid: Fluxer.Net.Activity
+    name: Activity
+    type: Class
+  - uid: Fluxer.Net.ActivityJson
+    name: ActivityJson
+    type: Class
+  - uid: Fluxer.Net.ActivityTimestamps
+    name: ActivityTimestamps
+    type: Class
+  - uid: Fluxer.Net.ActivityTimestampsJson
+    name: ActivityTimestampsJson
+    type: Class
+  - uid: Fluxer.Net.AllowedMentionParseType
+    name: AllowedMentionParseType
+    type: Enum
+  - uid: Fluxer.Net.AllowedMentionsRequest
+    name: AllowedMentionsRequest
+    type: Class
+  - uid: Fluxer.Net.ApiClient
+    name: ApiClient
+    type: Class
+  - uid: Fluxer.Net.ApiLimits
+    name: ApiLimits
+    type: Class
+  - uid: Fluxer.Net.Application
+    name: Application
+    type: Class
+  - uid: Fluxer.Net.ApplicationJson
+    name: ApplicationJson
+    type: Class
+  - uid: Fluxer.Net.Attachment
+    name: Attachment
+    type: Class
+  - uid: Fluxer.Net.AttachmentFlag
+    name: AttachmentFlag
+    type: Enum
+  - uid: Fluxer.Net.AttachmentJson
+    name: AttachmentJson
+    type: Class
+  - uid: Fluxer.Net.AuditLogActionType
+    name: AuditLogActionType
+    type: Enum
+  - uid: Fluxer.Net.AuditLogResponseItemChangeJson
+    name: AuditLogResponseItemChangeJson
+    type: Class
+  - uid: Fluxer.Net.AuditLogResponseItemOptions
+    name: AuditLogResponseItemOptions
+    type: Class
+  - uid: Fluxer.Net.AuditLogWebhookJson
+    name: AuditLogWebhookJson
+    type: Class
+  - uid: Fluxer.Net.AuthSession
+    name: AuthSession
+    type: Class
+  - uid: Fluxer.Net.AuthSessionJson
+    name: AuthSessionJson
+    type: Class
+  - uid: Fluxer.Net.BulkCreateGuildEmojisRequest
+    name: BulkCreateGuildEmojisRequest
+    type: Class
+  - uid: Fluxer.Net.BulkCreateGuildStickersRequest
+    name: BulkCreateGuildStickersRequest
+    type: Class
+  - uid: Fluxer.Net.BulkDeleteMessagesRequest
+    name: BulkDeleteMessagesRequest
+    type: Class
+  - uid: Fluxer.Net.CallEligibility
+    name: CallEligibility
+    type: Class
+  - uid: Fluxer.Net.CallEligibilityJson
+    name: CallEligibilityJson
+    type: Class
+  - uid: Fluxer.Net.CallInfoJson
+    name: CallInfoJson
+    type: Class
+  - uid: Fluxer.Net.CategoryChannel
+    name: CategoryChannel
+    type: Class
+  - uid: Fluxer.Net.Channel
+    name: Channel
+    type: Class
+  - uid: Fluxer.Net.ChannelHelpers
+    name: ChannelHelpers
+    type: Class
+  - uid: Fluxer.Net.ChannelJson
+    name: ChannelJson
+    type: Class
+  - uid: Fluxer.Net.ChannelOverwriteRequest
+    name: ChannelOverwriteRequest
+    type: Class
+  - uid: Fluxer.Net.ChannelPermissions
+    name: ChannelPermissions
+    type: Class
+  - uid: Fluxer.Net.ChannelPin
+    name: ChannelPin
+    type: Class
+  - uid: Fluxer.Net.ChannelPinJson
+    name: ChannelPinJson
+    type: Class
+  - uid: Fluxer.Net.ChannelPins
+    name: ChannelPins
+    type: Class
+  - uid: Fluxer.Net.ChannelPinsJson
+    name: ChannelPinsJson
+    type: Class
+  - uid: Fluxer.Net.ChannelPinsQuery
+    name: ChannelPinsQuery
+    type: Class
+  - uid: Fluxer.Net.ChannelPositionUpdateRequestItem
+    name: ChannelPositionUpdateRequestItem
+    type: Class
+  - uid: Fluxer.Net.ChannelType
+    name: ChannelType
+    type: Enum
+  - uid: Fluxer.Net.ClientStatus
+    name: ClientStatus
+    type: Class
+  - uid: Fluxer.Net.ClientStatusJson
+    name: ClientStatusJson
+    type: Class
+  - uid: Fluxer.Net.CreateCategoryChannelRequest
+    name: CreateCategoryChannelRequest
+    type: Class
+  - uid: Fluxer.Net.CreateGuildBanRequest
+    name: CreateGuildBanRequest
+    type: Class
+  - uid: Fluxer.Net.CreateGuildChannelRequest
+    name: CreateGuildChannelRequest
+    type: Class
+  - uid: Fluxer.Net.CreateGuildEmojiRequest
+    name: CreateGuildEmojiRequest
+    type: Class
+  - uid: Fluxer.Net.CreateGuildRequest
+    name: CreateGuildRequest
+    type: Class
+  - uid: Fluxer.Net.CreateGuildRoleRequest
+    name: CreateGuildRoleRequest
+    type: Class
+  - uid: Fluxer.Net.CreateGuildStickerRequest
+    name: CreateGuildStickerRequest
+    type: Class
+  - uid: Fluxer.Net.CreateLinkChannelRequest
+    name: CreateLinkChannelRequest
+    type: Class
+  - uid: Fluxer.Net.CreatePrivateChannelRequest
+    name: CreatePrivateChannelRequest
+    type: Class
+  - uid: Fluxer.Net.CreateTextChannelRequest
+    name: CreateTextChannelRequest
+    type: Class
+  - uid: Fluxer.Net.CreateVoiceChannelRequest
+    name: CreateVoiceChannelRequest
+    type: Class
+  - uid: Fluxer.Net.CreateWebhookRequest
+    name: CreateWebhookRequest
+    type: Class
+  - uid: Fluxer.Net.CurrentUser
+    name: CurrentUser
+    type: Class
+  - uid: Fluxer.Net.CurrentUserJson
+    name: CurrentUserJson
+    type: Class
+  - uid: Fluxer.Net.DMChannel
+    name: DMChannel
+    type: Class
+  - uid: Fluxer.Net.DeleteGuildRequest
+    name: DeleteGuildRequest
+    type: Class
+  - uid: Fluxer.Net.EmailVerificationTokenJson
+    name: EmailVerificationTokenJson
+    type: Class
+  - uid: Fluxer.Net.Embed
+    name: Embed
+    type: Class
+  - uid: Fluxer.Net.EmbedAuthor
+    name: EmbedAuthor
+    type: Class
+  - uid: Fluxer.Net.EmbedAuthorBuilder
+    name: EmbedAuthorBuilder
+    type: Class
+  - uid: Fluxer.Net.EmbedAuthorJson
+    name: EmbedAuthorJson
+    type: Class
+  - uid: Fluxer.Net.EmbedBuilder
+    name: EmbedBuilder
+    type: Class
+  - uid: Fluxer.Net.EmbedField
+    name: EmbedField
+    type: Class
+  - uid: Fluxer.Net.EmbedFieldBuilder
+    name: EmbedFieldBuilder
+    type: Class
+  - uid: Fluxer.Net.EmbedFieldJson
+    name: EmbedFieldJson
+    type: Class
+  - uid: Fluxer.Net.EmbedFooter
+    name: EmbedFooter
+    type: Class
+  - uid: Fluxer.Net.EmbedFooterBuilder
+    name: EmbedFooterBuilder
+    type: Class
+  - uid: Fluxer.Net.EmbedFooterJson
+    name: EmbedFooterJson
+    type: Class
+  - uid: Fluxer.Net.EmbedJson
+    name: EmbedJson
+    type: Class
+  - uid: Fluxer.Net.EmbedMedia
+    name: EmbedMedia
+    type: Class
+  - uid: Fluxer.Net.EmbedMediaJson
+    name: EmbedMediaJson
+    type: Class
+  - uid: Fluxer.Net.EmbedType
+    name: EmbedType
+    type: Enum
+  - uid: Fluxer.Net.Emoji
+    name: Emoji
+    type: Class
+  - uid: Fluxer.Net.EmojiJson
+    name: EmojiJson
+    type: Class
+  - uid: Fluxer.Net.Entity
+    name: Entity
+    type: Class
+  - uid: Fluxer.Net.ExpressionHelpers
+    name: ExpressionHelpers
+    type: Class
+  - uid: Fluxer.Net.FavoriteGif
+    name: FavoriteGif
+    type: Class
+  - uid: Fluxer.Net.FavoriteGifJson
+    name: FavoriteGifJson
+    type: Class
+  - uid: Fluxer.Net.FluxerBaseClient
+    name: FluxerBaseClient
+    type: Class
+  - uid: Fluxer.Net.FluxerClient
+    name: FluxerClient
+    type: Class
+  - uid: Fluxer.Net.FluxerConfig
+    name: FluxerConfig
+    type: Class
+  - uid: Fluxer.Net.FluxerOAuthRefreshTokenJson
+    name: FluxerOAuthRefreshTokenJson
+    type: Class
+  - uid: Fluxer.Net.FluxerOAuthToken
+    name: FluxerOAuthToken
+    type: Class
+  - uid: Fluxer.Net.FluxerOAuthTokenJson
+    name: FluxerOAuthTokenJson
+    type: Class
+  - uid: Fluxer.Net.FluxerOAuthUser
+    name: FluxerOAuthUser
+    type: Class
+  - uid: Fluxer.Net.FluxerOAuthUserJson
+    name: FluxerOAuthUserJson
+    type: Class
+  - uid: Fluxer.Net.FluxerOAuthValidTokenJson
+    name: FluxerOAuthValidTokenJson
+    type: Class
+  - uid: Fluxer.Net.FluxerWebhookClient
+    name: FluxerWebhookClient
+    type: Class
+  - uid: Fluxer.Net.FriendSourceFlags
+    name: FriendSourceFlags
+    type: Enum
+  - uid: Fluxer.Net.GatewayClient
+    name: GatewayClient
+    type: Class
+  - uid: Fluxer.Net.GatewayClient.AuthSessionChangeEvent
+    name: GatewayClient.AuthSessionChangeEvent
+    type: Delegate
+  - uid: Fluxer.Net.GatewayClient.CallCreateEvent
+    name: GatewayClient.CallCreateEvent
+    type: Delegate
+  - uid: Fluxer.Net.GatewayClient.CallDeleteEvent
+    name: GatewayClient.CallDeleteEvent
+    type: Delegate
+  - uid: Fluxer.Net.GatewayClient.CallUpdateEvent
+    name: GatewayClient.CallUpdateEvent
+    type: Delegate
+  - uid: Fluxer.Net.GatewayClient.ChannelCreateEvent
+    name: GatewayClient.ChannelCreateEvent
+    type: Delegate
+  - uid: Fluxer.Net.GatewayClient.ChannelDeleteEvent
+    name: GatewayClient.ChannelDeleteEvent
+    type: Delegate
+  - uid: Fluxer.Net.GatewayClient.ChannelPinsAckEvent
+    name: GatewayClient.ChannelPinsAckEvent
+    type: Delegate
+  - uid: Fluxer.Net.GatewayClient.ChannelPinsUpdateEvent
+    name: GatewayClient.ChannelPinsUpdateEvent
+    type: Delegate
+  - uid: Fluxer.Net.GatewayClient.ChannelRecipientAddEvent
+    name: GatewayClient.ChannelRecipientAddEvent
+    type: Delegate
+  - uid: Fluxer.Net.GatewayClient.ChannelRecipientRemoveEvent
+    name: GatewayClient.ChannelRecipientRemoveEvent
+    type: Delegate
+  - uid: Fluxer.Net.GatewayClient.ChannelUpdateBulkEvent
+    name: GatewayClient.ChannelUpdateBulkEvent
+    type: Delegate
+  - uid: Fluxer.Net.GatewayClient.ChannelUpdateEvent
+    name: GatewayClient.ChannelUpdateEvent
+    type: Delegate
+  - uid: Fluxer.Net.GatewayClient.FavoriteMemeCreateEvent
+    name: GatewayClient.FavoriteMemeCreateEvent
+    type: Delegate
+  - uid: Fluxer.Net.GatewayClient.FavoriteMemeDeleteEvent
+    name: GatewayClient.FavoriteMemeDeleteEvent
+    type: Delegate
+  - uid: Fluxer.Net.GatewayClient.FavoriteMemeUpdateEvent
+    name: GatewayClient.FavoriteMemeUpdateEvent
+    type: Delegate
+  - uid: Fluxer.Net.GatewayClient.GuildBanAddEvent
+    name: GatewayClient.GuildBanAddEvent
+    type: Delegate
+  - uid: Fluxer.Net.GatewayClient.GuildBanRemoveEvent
+    name: GatewayClient.GuildBanRemoveEvent
+    type: Delegate
+  - uid: Fluxer.Net.GatewayClient.GuildCreateEvent
+    name: GatewayClient.GuildCreateEvent
+    type: Delegate
+  - uid: Fluxer.Net.GatewayClient.GuildDeleteEvent
+    name: GatewayClient.GuildDeleteEvent
+    type: Delegate
+  - uid: Fluxer.Net.GatewayClient.GuildEmojisUpdateEvent
+    name: GatewayClient.GuildEmojisUpdateEvent
+    type: Delegate
+  - uid: Fluxer.Net.GatewayClient.GuildMemberAddEvent
+    name: GatewayClient.GuildMemberAddEvent
+    type: Delegate
+  - uid: Fluxer.Net.GatewayClient.GuildMemberRemoveEvent
+    name: GatewayClient.GuildMemberRemoveEvent
+    type: Delegate
+  - uid: Fluxer.Net.GatewayClient.GuildMemberUpdateEvent
+    name: GatewayClient.GuildMemberUpdateEvent
+    type: Delegate
+  - uid: Fluxer.Net.GatewayClient.GuildRoleCreateEvent
+    name: GatewayClient.GuildRoleCreateEvent
+    type: Delegate
+  - uid: Fluxer.Net.GatewayClient.GuildRoleDeleteEvent
+    name: GatewayClient.GuildRoleDeleteEvent
+    type: Delegate
+  - uid: Fluxer.Net.GatewayClient.GuildRoleUpdateBulkEvent
+    name: GatewayClient.GuildRoleUpdateBulkEvent
+    type: Delegate
+  - uid: Fluxer.Net.GatewayClient.GuildRoleUpdateEvent
+    name: GatewayClient.GuildRoleUpdateEvent
+    type: Delegate
+  - uid: Fluxer.Net.GatewayClient.GuildStickersUpdateEvent
+    name: GatewayClient.GuildStickersUpdateEvent
+    type: Delegate
+  - uid: Fluxer.Net.GatewayClient.GuildUpdateEvent
+    name: GatewayClient.GuildUpdateEvent
+    type: Delegate
+  - uid: Fluxer.Net.GatewayClient.HeartbeatAckEvent
+    name: GatewayClient.HeartbeatAckEvent
+    type: Delegate
+  - uid: Fluxer.Net.GatewayClient.InviteCreateEvent
+    name: GatewayClient.InviteCreateEvent
+    type: Delegate
+  - uid: Fluxer.Net.GatewayClient.InviteDeleteEvent
+    name: GatewayClient.InviteDeleteEvent
+    type: Delegate
+  - uid: Fluxer.Net.GatewayClient.MessageAckEvent
+    name: GatewayClient.MessageAckEvent
+    type: Delegate
+  - uid: Fluxer.Net.GatewayClient.MessageCreateEvent
+    name: GatewayClient.MessageCreateEvent
+    type: Delegate
+  - uid: Fluxer.Net.GatewayClient.MessageDeleteBulkEvent
+    name: GatewayClient.MessageDeleteBulkEvent
+    type: Delegate
+  - uid: Fluxer.Net.GatewayClient.MessageDeleteEvent
+    name: GatewayClient.MessageDeleteEvent
+    type: Delegate
+  - uid: Fluxer.Net.GatewayClient.MessageReactionAddEvent
+    name: GatewayClient.MessageReactionAddEvent
+    type: Delegate
+  - uid: Fluxer.Net.GatewayClient.MessageReactionRemoveAllEvent
+    name: GatewayClient.MessageReactionRemoveAllEvent
+    type: Delegate
+  - uid: Fluxer.Net.GatewayClient.MessageReactionRemoveEmojiEvent
+    name: GatewayClient.MessageReactionRemoveEmojiEvent
+    type: Delegate
+  - uid: Fluxer.Net.GatewayClient.MessageReactionRemoveEvent
+    name: GatewayClient.MessageReactionRemoveEvent
+    type: Delegate
+  - uid: Fluxer.Net.GatewayClient.MessageUpdateEvent
+    name: GatewayClient.MessageUpdateEvent
+    type: Delegate
+  - uid: Fluxer.Net.GatewayClient.PresenceUpdateEvent
+    name: GatewayClient.PresenceUpdateEvent
+    type: Delegate
+  - uid: Fluxer.Net.GatewayClient.ReadyEvent
+    name: GatewayClient.ReadyEvent
+    type: Delegate
+  - uid: Fluxer.Net.GatewayClient.RecentMentionDeleteEvent
+    name: GatewayClient.RecentMentionDeleteEvent
+    type: Delegate
+  - uid: Fluxer.Net.GatewayClient.RelationshipAddEvent
+    name: GatewayClient.RelationshipAddEvent
+    type: Delegate
+  - uid: Fluxer.Net.GatewayClient.RelationshipRemoveEvent
+    name: GatewayClient.RelationshipRemoveEvent
+    type: Delegate
+  - uid: Fluxer.Net.GatewayClient.RelationshipUpdateEvent
+    name: GatewayClient.RelationshipUpdateEvent
+    type: Delegate
+  - uid: Fluxer.Net.GatewayClient.ResumedEvent
+    name: GatewayClient.ResumedEvent
+    type: Delegate
+  - uid: Fluxer.Net.GatewayClient.SavedMessageCreateEvent
+    name: GatewayClient.SavedMessageCreateEvent
+    type: Delegate
+  - uid: Fluxer.Net.GatewayClient.SavedMessageDeleteEvent
+    name: GatewayClient.SavedMessageDeleteEvent
+    type: Delegate
+  - uid: Fluxer.Net.GatewayClient.SessionsReplaceEvent
+    name: GatewayClient.SessionsReplaceEvent
+    type: Delegate
+  - uid: Fluxer.Net.GatewayClient.TypingStartEvent
+    name: GatewayClient.TypingStartEvent
+    type: Delegate
+  - uid: Fluxer.Net.GatewayClient.TypingStopEvent
+    name: GatewayClient.TypingStopEvent
+    type: Delegate
+  - uid: Fluxer.Net.GatewayClient.UserGuildSettingsUpdateEvent
+    name: GatewayClient.UserGuildSettingsUpdateEvent
+    type: Delegate
+  - uid: Fluxer.Net.GatewayClient.UserNoteUpdateEvent
+    name: GatewayClient.UserNoteUpdateEvent
+    type: Delegate
+  - uid: Fluxer.Net.GatewayClient.UserPinnedDmsUpdateEvent
+    name: GatewayClient.UserPinnedDmsUpdateEvent
+    type: Delegate
+  - uid: Fluxer.Net.GatewayClient.UserSettingsUpdateEvent
+    name: GatewayClient.UserSettingsUpdateEvent
+    type: Delegate
+  - uid: Fluxer.Net.GatewayClient.UserUpdateEvent
+    name: GatewayClient.UserUpdateEvent
+    type: Delegate
+  - uid: Fluxer.Net.GatewayClient.VoiceServerUpdateEvent
+    name: GatewayClient.VoiceServerUpdateEvent
+    type: Delegate
+  - uid: Fluxer.Net.GatewayClient.VoiceStateUpdateEvent
+    name: GatewayClient.VoiceStateUpdateEvent
+    type: Delegate
+  - uid: Fluxer.Net.GatewayClient.WebhooksUpdateEvent
+    name: GatewayClient.WebhooksUpdateEvent
+    type: Delegate
+  - uid: Fluxer.Net.GatewaySessionJson
+    name: GatewaySessionJson
+    type: Class
+  - uid: Fluxer.Net.Gif
+    name: Gif
+    type: Class
+  - uid: Fluxer.Net.GifCategory
+    name: GifCategory
+    type: Class
+  - uid: Fluxer.Net.GifCategoryJson
+    name: GifCategoryJson
+    type: Class
+  - uid: Fluxer.Net.GifFeaturedJson
+    name: GifFeaturedJson
+    type: Class
+  - uid: Fluxer.Net.GifJson
+    name: GifJson
+    type: Class
+  - uid: Fluxer.Net.GlobalSearchMessagesRequest
+    name: GlobalSearchMessagesRequest
+    type: Class
+  - uid: Fluxer.Net.GroupChannel
+    name: GroupChannel
+    type: Class
+  - uid: Fluxer.Net.Guild
+    name: Guild
+    type: Class
+  - uid: Fluxer.Net.GuildAuditLogEntryJson
+    name: GuildAuditLogEntryJson
+    type: Class
+  - uid: Fluxer.Net.GuildAuditLogJson
+    name: GuildAuditLogJson
+    type: Class
+  - uid: Fluxer.Net.GuildAuditLogListJson
+    name: GuildAuditLogListJson
+    type: Class
+  - uid: Fluxer.Net.GuildAuditLogListRequest
+    name: GuildAuditLogListRequest
+    type: Class
+  - uid: Fluxer.Net.GuildBan
+    name: GuildBan
+    type: Class
+  - uid: Fluxer.Net.GuildBanJson
+    name: GuildBanJson
+    type: Class
+  - uid: Fluxer.Net.GuildChannel
+    name: GuildChannel
+    type: Class
+  - uid: Fluxer.Net.GuildChannelOverrideJson
+    name: GuildChannelOverrideJson
+    type: Class
+  - uid: Fluxer.Net.GuildContentFilter
+    name: GuildContentFilter
+    type: Enum
+  - uid: Fluxer.Net.GuildDefaultNotifications
+    name: GuildDefaultNotifications
+    type: Enum
+  - uid: Fluxer.Net.GuildEmoji
+    name: GuildEmoji
+    type: Class
+  - uid: Fluxer.Net.GuildEmojiBulkCreateFailureItemJson
+    name: GuildEmojiBulkCreateFailureItemJson
+    type: Class
+  - uid: Fluxer.Net.GuildEmojiBulkCreateJson
+    name: GuildEmojiBulkCreateJson
+    type: Class
+  - uid: Fluxer.Net.GuildEmojiJson
+    name: GuildEmojiJson
+    type: Class
+  - uid: Fluxer.Net.GuildExplicitContentFilterType
+    name: GuildExplicitContentFilterType
+    type: Enum
+  - uid: Fluxer.Net.GuildFeatures
+    name: GuildFeatures
+    type: Class
+  - uid: Fluxer.Net.GuildHelpers
+    name: GuildHelpers
+    type: Class
+  - uid: Fluxer.Net.GuildJson
+    name: GuildJson
+    type: Class
+  - uid: Fluxer.Net.GuildMember
+    name: GuildMember
+    type: Class
+  - uid: Fluxer.Net.GuildMemberJson
+    name: GuildMemberJson
+    type: Class
+  - uid: Fluxer.Net.GuildMfaLevel
+    name: GuildMfaLevel
+    type: Enum
+  - uid: Fluxer.Net.GuildNsfwLevel
+    name: GuildNsfwLevel
+    type: Enum
+  - uid: Fluxer.Net.GuildOperations
+    name: GuildOperations
+    type: Enum
+  - uid: Fluxer.Net.GuildPermissions
+    name: GuildPermissions
+    type: Class
+  - uid: Fluxer.Net.GuildSplashCardAlignment
+    name: GuildSplashCardAlignment
+    type: Enum
+  - uid: Fluxer.Net.GuildSticker
+    name: GuildSticker
+    type: Class
+  - uid: Fluxer.Net.GuildStickerBulkCreateFailureItemJson
+    name: GuildStickerBulkCreateFailureItemJson
+    type: Class
+  - uid: Fluxer.Net.GuildStickerBulkCreateJson
+    name: GuildStickerBulkCreateJson
+    type: Class
+  - uid: Fluxer.Net.GuildStickerJson
+    name: GuildStickerJson
+    type: Class
+  - uid: Fluxer.Net.GuildTransferOwnershipRequest
+    name: GuildTransferOwnershipRequest
+    type: Class
+  - uid: Fluxer.Net.GuildUpdateRequestMfaMethod
+    name: GuildUpdateRequestMfaMethod
+    type: Enum
+  - uid: Fluxer.Net.GuildVanityUrl
+    name: GuildVanityUrl
+    type: Class
+  - uid: Fluxer.Net.GuildVanityUrlJson
+    name: GuildVanityUrlJson
+    type: Class
+  - uid: Fluxer.Net.GuildVanityUrlUpdateJson
+    name: GuildVanityUrlUpdateJson
+    type: Class
+  - uid: Fluxer.Net.GuildVerificationLevel
+    name: GuildVerificationLevel
+    type: Enum
+  - uid: Fluxer.Net.IActivity
+    name: IActivity
+    type: Interface
+  - uid: Fluxer.Net.IActivityTimestamps
+    name: IActivityTimestamps
+    type: Interface
+  - uid: Fluxer.Net.IApplication
+    name: IApplication
+    type: Interface
+  - uid: Fluxer.Net.IAttachment
+    name: IAttachment
+    type: Interface
+  - uid: Fluxer.Net.IAuthSession
+    name: IAuthSession
+    type: Interface
+  - uid: Fluxer.Net.ICallEligibility
+    name: ICallEligibility
+    type: Interface
+  - uid: Fluxer.Net.IChannel
+    name: IChannel
+    type: Interface
+  - uid: Fluxer.Net.IChannelPermissions
+    name: IChannelPermissions
+    type: Interface
+  - uid: Fluxer.Net.IChannelPin
+    name: IChannelPin
+    type: Interface
+  - uid: Fluxer.Net.IClientStatus
+    name: IClientStatus
+    type: Interface
+  - uid: Fluxer.Net.ICurrentUser
+    name: ICurrentUser
+    type: Interface
+  - uid: Fluxer.Net.IDiscoveryApplication
+    name: IDiscoveryApplication
+    type: Interface
+  - uid: Fluxer.Net.IDiscoveryInfo
+    name: IDiscoveryInfo
+    type: Interface
+  - uid: Fluxer.Net.IEmbed
+    name: IEmbed
+    type: Interface
+  - uid: Fluxer.Net.IEmbedAuthor
+    name: IEmbedAuthor
+    type: Interface
+  - uid: Fluxer.Net.IEmbedField
+    name: IEmbedField
+    type: Interface
+  - uid: Fluxer.Net.IEmbedFooter
+    name: IEmbedFooter
+    type: Interface
+  - uid: Fluxer.Net.IEmbedMedia
+    name: IEmbedMedia
+    type: Interface
+  - uid: Fluxer.Net.IEmoji
+    name: IEmoji
+    type: Interface
+  - uid: Fluxer.Net.IFavoriteGif
+    name: IFavoriteGif
+    type: Interface
+  - uid: Fluxer.Net.IFluxerOAuthToken
+    name: IFluxerOAuthToken
+    type: Interface
+  - uid: Fluxer.Net.IFluxerOAuthUser
+    name: IFluxerOAuthUser
+    type: Interface
+  - uid: Fluxer.Net.IGif
+    name: IGif
+    type: Interface
+  - uid: Fluxer.Net.IGifCategory
+    name: IGifCategory
+    type: Interface
+  - uid: Fluxer.Net.IGuild
+    name: IGuild
+    type: Interface
+  - uid: Fluxer.Net.IGuildBan
+    name: IGuildBan
+    type: Interface
+  - uid: Fluxer.Net.IGuildChannel
+    name: IGuildChannel
+    type: Interface
+  - uid: Fluxer.Net.IGuildEmoji
+    name: IGuildEmoji
+    type: Interface
+  - uid: Fluxer.Net.IGuildMember
+    name: IGuildMember
+    type: Interface
+  - uid: Fluxer.Net.IGuildPermissions
+    name: IGuildPermissions
+    type: Interface
+  - uid: Fluxer.Net.IGuildSticker
+    name: IGuildSticker
+    type: Interface
+  - uid: Fluxer.Net.IGuildVanityUrl
+    name: IGuildVanityUrl
+    type: Interface
+  - uid: Fluxer.Net.IInstance
+    name: IInstance
+    type: Interface
+  - uid: Fluxer.Net.IInstanceApp
+    name: IInstanceApp
+    type: Interface
+  - uid: Fluxer.Net.IInstanceAppBranding
+    name: IInstanceAppBranding
+    type: Interface
+  - uid: Fluxer.Net.IInstanceAppLegal
+    name: IInstanceAppLegal
+    type: Interface
+  - uid: Fluxer.Net.IInstanceAppRegistration
+    name: IInstanceAppRegistration
+    type: Interface
+  - uid: Fluxer.Net.IInstanceAppSetup
+    name: IInstanceAppSetup
+    type: Interface
+  - uid: Fluxer.Net.IInstanceCaptcha
+    name: IInstanceCaptcha
+    type: Interface
+  - uid: Fluxer.Net.IInstanceCommunity
+    name: IInstanceCommunity
+    type: Interface
+  - uid: Fluxer.Net.IInstanceEndpoints
+    name: IInstanceEndpoints
+    type: Interface
+  - uid: Fluxer.Net.IInstanceFeatures
+    name: IInstanceFeatures
+    type: Interface
+  - uid: Fluxer.Net.IInstanceGifs
+    name: IInstanceGifs
+    type: Interface
+  - uid: Fluxer.Net.IInstanceLimits
+    name: IInstanceLimits
+    type: Interface
+  - uid: Fluxer.Net.IInstancePush
+    name: IInstancePush
+    type: Interface
+  - uid: Fluxer.Net.IInstanceRegistration
+    name: IInstanceRegistration
+    type: Interface
+  - uid: Fluxer.Net.IInstanceSSO
+    name: IInstanceSSO
+    type: Interface
+  - uid: Fluxer.Net.IInstanceServices
+    name: IInstanceServices
+    type: Interface
+  - uid: Fluxer.Net.IInvite
+    name: IInvite
+    type: Interface
+  - uid: Fluxer.Net.ILogin
+    name: ILogin
+    type: Interface
+  - uid: Fluxer.Net.IMessage
+    name: IMessage
+    type: Interface
+  - uid: Fluxer.Net.IMessageCall
+    name: IMessageCall
+    type: Interface
+  - uid: Fluxer.Net.IMessageReaction
+    name: IMessageReaction
+    type: Interface
+  - uid: Fluxer.Net.IMessageReference
+    name: IMessageReference
+    type: Interface
+  - uid: Fluxer.Net.IMessageSnapshot
+    name: IMessageSnapshot
+    type: Interface
+  - uid: Fluxer.Net.IPartialApplication
+    name: IPartialApplication
+    type: Interface
+  - uid: Fluxer.Net.IPartialGuild
+    name: IPartialGuild
+    type: Interface
+  - uid: Fluxer.Net.IPartialInvite
+    name: IPartialInvite
+    type: Interface
+  - uid: Fluxer.Net.IPermissionOverwrite
+    name: IPermissionOverwrite
+    type: Interface
+  - uid: Fluxer.Net.IPresence
+    name: IPresence
+    type: Interface
+  - uid: Fluxer.Net.IRole
+    name: IRole
+    type: Interface
+  - uid: Fluxer.Net.IRtcRegion
+    name: IRtcRegion
+    type: Interface
+  - uid: Fluxer.Net.ISticker
+    name: ISticker
+    type: Interface
+  - uid: Fluxer.Net.ITextable
+    name: ITextable
+    type: Interface
+  - uid: Fluxer.Net.IUser
+    name: IUser
+    type: Interface
+  - uid: Fluxer.Net.IUserConnection
+    name: IUserConnection
+    type: Interface
+  - uid: Fluxer.Net.IUserGuildFolder
+    name: IUserGuildFolder
+    type: Interface
+  - uid: Fluxer.Net.IUserGuildSettings
+    name: IUserGuildSettings
+    type: Interface
+  - uid: Fluxer.Net.IUserProfile
+    name: IUserProfile
+    type: Interface
+  - uid: Fluxer.Net.IUserSettings
+    name: IUserSettings
+    type: Interface
+  - uid: Fluxer.Net.IVoiceState
+    name: IVoiceState
+    type: Interface
+  - uid: Fluxer.Net.IWebhook
+    name: IWebhook
+    type: Interface
+  - uid: Fluxer.Net.Instance
+    name: Instance
+    type: Class
+  - uid: Fluxer.Net.InstanceApp
+    name: InstanceApp
+    type: Class
+  - uid: Fluxer.Net.InstanceAppBranding
+    name: InstanceAppBranding
+    type: Class
+  - uid: Fluxer.Net.InstanceAppBrandingJson
+    name: InstanceAppBrandingJson
+    type: Class
+  - uid: Fluxer.Net.InstanceAppJson
+    name: InstanceAppJson
+    type: Class
+  - uid: Fluxer.Net.InstanceAppLegal
+    name: InstanceAppLegal
+    type: Class
+  - uid: Fluxer.Net.InstanceAppLegalJson
+    name: InstanceAppLegalJson
+    type: Class
+  - uid: Fluxer.Net.InstanceAppRegistration
+    name: InstanceAppRegistration
+    type: Class
+  - uid: Fluxer.Net.InstanceAppRegistrationJson
+    name: InstanceAppRegistrationJson
+    type: Class
+  - uid: Fluxer.Net.InstanceAppSetup
+    name: InstanceAppSetup
+    type: Class
+  - uid: Fluxer.Net.InstanceAppSetupJson
+    name: InstanceAppSetupJson
+    type: Class
+  - uid: Fluxer.Net.InstanceCaptcha
+    name: InstanceCaptcha
+    type: Class
+  - uid: Fluxer.Net.InstanceCaptchaJson
+    name: InstanceCaptchaJson
+    type: Class
+  - uid: Fluxer.Net.InstanceCommunity
+    name: InstanceCommunity
+    type: Class
+  - uid: Fluxer.Net.InstanceCommunityJson
+    name: InstanceCommunityJson
+    type: Class
+  - uid: Fluxer.Net.InstanceEndpoints
+    name: InstanceEndpoints
+    type: Class
+  - uid: Fluxer.Net.InstanceEndpointsJson
+    name: InstanceEndpointsJson
+    type: Class
+  - uid: Fluxer.Net.InstanceFeatures
+    name: InstanceFeatures
+    type: Class
+  - uid: Fluxer.Net.InstanceFeaturesJson
+    name: InstanceFeaturesJson
+    type: Class
+  - uid: Fluxer.Net.InstanceGifs
+    name: InstanceGifs
+    type: Class
+  - uid: Fluxer.Net.InstanceGifsJson
+    name: InstanceGifsJson
+    type: Class
+  - uid: Fluxer.Net.InstanceJson
+    name: InstanceJson
+    type: Class
+  - uid: Fluxer.Net.InstanceLimits
+    name: InstanceLimits
+    type: Class
+  - uid: Fluxer.Net.InstanceLimitsJson
+    name: InstanceLimitsJson
+    type: Class
+  - uid: Fluxer.Net.InstancePush
+    name: InstancePush
+    type: Class
+  - uid: Fluxer.Net.InstancePushJson
+    name: InstancePushJson
+    type: Class
+  - uid: Fluxer.Net.InstanceRegistration
+    name: InstanceRegistration
+    type: Class
+  - uid: Fluxer.Net.InstanceRegistrationJson
+    name: InstanceRegistrationJson
+    type: Class
+  - uid: Fluxer.Net.InstanceSSO
+    name: InstanceSSO
+    type: Class
+  - uid: Fluxer.Net.InstanceSSOJson
+    name: InstanceSSOJson
+    type: Class
+  - uid: Fluxer.Net.InstanceServices
+    name: InstanceServices
+    type: Class
+  - uid: Fluxer.Net.InstanceServicesJson
+    name: InstanceServicesJson
+    type: Class
+  - uid: Fluxer.Net.Invite
+    name: Invite
+    type: Class
+  - uid: Fluxer.Net.InviteChannelJson
+    name: InviteChannelJson
+    type: Class
+  - uid: Fluxer.Net.InviteJson
+    name: InviteJson
+    type: Class
+  - uid: Fluxer.Net.InviteType
+    name: InviteType
+    type: Enum
+  - uid: Fluxer.Net.InviteUserJson
+    name: InviteUserJson
+    type: Class
+  - uid: Fluxer.Net.LinkChannel
+    name: LinkChannel
+    type: Class
+  - uid: Fluxer.Net.Login
+    name: Login
+    type: Class
+  - uid: Fluxer.Net.LoginJson
+    name: LoginJson
+    type: Class
+  - uid: Fluxer.Net.LoginRequestJson
+    name: LoginRequestJson
+    type: Class
+  - uid: Fluxer.Net.MemberHelpers
+    name: MemberHelpers
+    type: Class
+  - uid: Fluxer.Net.Message
+    name: Message
+    type: Class
+  - uid: Fluxer.Net.MessageAckJson
+    name: MessageAckJson
+    type: Class
+  - uid: Fluxer.Net.MessageCall
+    name: MessageCall
+    type: Class
+  - uid: Fluxer.Net.MessageCallJson
+    name: MessageCallJson
+    type: Class
+  - uid: Fluxer.Net.MessageFlag
+    name: MessageFlag
+    type: Enum
+  - uid: Fluxer.Net.MessageHelpers
+    name: MessageHelpers
+    type: Class
+  - uid: Fluxer.Net.MessageJson
+    name: MessageJson
+    type: Class
+  - uid: Fluxer.Net.MessageReaction
+    name: MessageReaction
+    type: Class
+  - uid: Fluxer.Net.MessageReactionJson
+    name: MessageReactionJson
+    type: Class
+  - uid: Fluxer.Net.MessageReference
+    name: MessageReference
+    type: Class
+  - uid: Fluxer.Net.MessageReferenceJson
+    name: MessageReferenceJson
+    type: Class
+  - uid: Fluxer.Net.MessageReferenceRequest
+    name: MessageReferenceRequest
+    type: Class
+  - uid: Fluxer.Net.MessageReferenceType
+    name: MessageReferenceType
+    type: Enum
+  - uid: Fluxer.Net.MessageRequest
+    name: MessageRequest
+    type: Class
+  - uid: Fluxer.Net.MessageSearchRequest
+    name: MessageSearchRequest
+    type: Class
+  - uid: Fluxer.Net.MessageSnapshot
+    name: MessageSnapshot
+    type: Class
+  - uid: Fluxer.Net.MessageSnapshotJson
+    name: MessageSnapshotJson
+    type: Class
+  - uid: Fluxer.Net.MessageType
+    name: MessageType
+    type: Enum
+  - uid: Fluxer.Net.MfaBackupCodeJson
+    name: MfaBackupCodeJson
+    type: Class
+  - uid: Fluxer.Net.MuteConfigurationJson
+    name: MuteConfigurationJson
+    type: Class
+  - uid: Fluxer.Net.NotificationType
+    name: NotificationType
+    type: Enum
+  - uid: Fluxer.Net.OverwriteRequestType
+    name: OverwriteRequestType
+    type: Enum
+  - uid: Fluxer.Net.PartialApplication
+    name: PartialApplication
+    type: Class
+  - uid: Fluxer.Net.PartialApplicationJson
+    name: PartialApplicationJson
+    type: Class
+  - uid: Fluxer.Net.PartialGuild
+    name: PartialGuild
+    type: Class
+  - uid: Fluxer.Net.PartialGuildJson
+    name: PartialGuildJson
+    type: Class
+  - uid: Fluxer.Net.PartialInvite
+    name: PartialInvite
+    type: Class
+  - uid: Fluxer.Net.PartialInviteJson
+    name: PartialInviteJson
+    type: Class
+  - uid: Fluxer.Net.PasswordResetTokenJson
+    name: PasswordResetTokenJson
+    type: Class
+  - uid: Fluxer.Net.PermissionDiffSchemaJson
+    name: PermissionDiffSchemaJson
+    type: Class
+  - uid: Fluxer.Net.PermissionOverwrite
+    name: PermissionOverwrite
+    type: Class
+  - uid: Fluxer.Net.PermissionOverwriteJson
+    name: PermissionOverwriteJson
+    type: Class
+  - uid: Fluxer.Net.Permissions
+    name: Permissions
+    type: Enum
+  - uid: Fluxer.Net.PremiumType
+    name: PremiumType
+    type: Enum
+  - uid: Fluxer.Net.Presence
+    name: Presence
+    type: Class
+  - uid: Fluxer.Net.PresenceJson
+    name: PresenceJson
+    type: Class
+  - uid: Fluxer.Net.PrivateChannelHelpers
+    name: PrivateChannelHelpers
+    type: Class
+  - uid: Fluxer.Net.ReadStateJson
+    name: ReadStateJson
+    type: Class
+  - uid: Fluxer.Net.RecentMentionJson
+    name: RecentMentionJson
+    type: Class
+  - uid: Fluxer.Net.RelationshipJson
+    name: RelationshipJson
+    type: Class
+  - uid: Fluxer.Net.RelationshipType
+    name: RelationshipType
+    type: Enum
+  - uid: Fluxer.Net.Role
+    name: Role
+    type: Class
+  - uid: Fluxer.Net.RoleHelpers
+    name: RoleHelpers
+    type: Class
+  - uid: Fluxer.Net.RoleJson
+    name: RoleJson
+    type: Class
+  - uid: Fluxer.Net.RolePositionItemJson
+    name: RolePositionItemJson
+    type: Class
+  - uid: Fluxer.Net.RtcRegion
+    name: RtcRegion
+    type: Class
+  - uid: Fluxer.Net.RtcRegionJson
+    name: RtcRegionJson
+    type: Class
+  - uid: Fluxer.Net.SavedMessageJson
+    name: SavedMessageJson
+    type: Class
+  - uid: Fluxer.Net.SavedNotesChannel
+    name: SavedNotesChannel
+    type: Class
+  - uid: Fluxer.Net.SocketCategoryChannel
+    name: SocketCategoryChannel
+    type: Class
+  - uid: Fluxer.Net.SocketDMChannel
+    name: SocketDMChannel
+    type: Class
+  - uid: Fluxer.Net.SocketGroupChannel
+    name: SocketGroupChannel
+    type: Class
+  - uid: Fluxer.Net.SocketGuild
+    name: SocketGuild
+    type: Class
+  - uid: Fluxer.Net.SocketGuildMember
+    name: SocketGuildMember
+    type: Class
+  - uid: Fluxer.Net.SocketLinkChannel
+    name: SocketLinkChannel
+    type: Class
+  - uid: Fluxer.Net.SocketMessage
+    name: SocketMessage
+    type: Class
+  - uid: Fluxer.Net.SocketRole
+    name: SocketRole
+    type: Class
+  - uid: Fluxer.Net.SocketSavedNotesChannel
+    name: SocketSavedNotesChannel
+    type: Class
+  - uid: Fluxer.Net.SocketTextChannel
+    name: SocketTextChannel
+    type: Class
+  - uid: Fluxer.Net.SocketUnknownChannel
+    name: SocketUnknownChannel
+    type: Class
+  - uid: Fluxer.Net.SocketUnknownGuildChannel
+    name: SocketUnknownGuildChannel
+    type: Class
+  - uid: Fluxer.Net.SocketUser
+    name: SocketUser
+    type: Class
+  - uid: Fluxer.Net.SocketVoiceChannel
+    name: SocketVoiceChannel
+    type: Class
+  - uid: Fluxer.Net.SocketVoiceState
+    name: SocketVoiceState
+    type: Class
+  - uid: Fluxer.Net.Status
+    name: Status
+    type: Enum
+  - uid: Fluxer.Net.Sticker
+    name: Sticker
+    type: Class
+  - uid: Fluxer.Net.StickerJson
+    name: StickerJson
+    type: Class
+  - uid: Fluxer.Net.SystemChannelFlags
+    name: SystemChannelFlags
+    type: Enum
+  - uid: Fluxer.Net.TextChannel
+    name: TextChannel
+    type: Class
+  - uid: Fluxer.Net.TokenRevokeRequestJson
+    name: TokenRevokeRequestJson
+    type: Class
+  - uid: Fluxer.Net.UpdateCustomStatus
+    name: UpdateCustomStatus
+    type: Class
+  - uid: Fluxer.Net.UpdateGuildEmojiRequest
+    name: UpdateGuildEmojiRequest
+    type: Class
+  - uid: Fluxer.Net.UpdateGuildRoleRequest
+    name: UpdateGuildRoleRequest
+    type: Class
+  - uid: Fluxer.Net.UpdateGuildStickerRequest
+    name: UpdateGuildStickerRequest
+    type: Class
+  - uid: Fluxer.Net.UpdateGuildVanityUrlRequest
+    name: UpdateGuildVanityUrlRequest
+    type: Class
+  - uid: Fluxer.Net.UpdateMessageRequest
+    name: UpdateMessageRequest
+    type: Class
+  - uid: Fluxer.Net.UpdateVoiceRegionRequest
+    name: UpdateVoiceRegionRequest
+    type: Class
+  - uid: Fluxer.Net.User
+    name: User
+    type: Class
+  - uid: Fluxer.Net.UserConnection
+    name: UserConnection
+    type: Class
+  - uid: Fluxer.Net.UserConnectionJson
+    name: UserConnectionJson
+    type: Class
+  - uid: Fluxer.Net.UserCustomStatusJson
+    name: UserCustomStatusJson
+    type: Class
+  - uid: Fluxer.Net.UserExplicitContentFilterType
+    name: UserExplicitContentFilterType
+    type: Enum
+  - uid: Fluxer.Net.UserFlags
+    name: UserFlags
+    type: Enum
+  - uid: Fluxer.Net.UserGuildFolderJson
+    name: UserGuildFolderJson
+    type: Class
+  - uid: Fluxer.Net.UserGuildSettingsJson
+    name: UserGuildSettingsJson
+    type: Class
+  - uid: Fluxer.Net.UserHelpers
+    name: UserHelpers
+    type: Class
+  - uid: Fluxer.Net.UserJson
+    name: UserJson
+    type: Class
+  - uid: Fluxer.Net.UserNoteJson
+    name: UserNoteJson
+    type: Class
+  - uid: Fluxer.Net.UserProfile
+    name: UserProfile
+    type: Class
+  - uid: Fluxer.Net.UserProfileJson
+    name: UserProfileJson
+    type: Class
+  - uid: Fluxer.Net.UserProfileResponse
+    name: UserProfileResponse
+    type: Class
+  - uid: Fluxer.Net.UserSettings
+    name: UserSettings
+    type: Class
+  - uid: Fluxer.Net.UserSettingsJson
+    name: UserSettingsJson
+    type: Class
+  - uid: Fluxer.Net.UsernameAvailableJson
+    name: UsernameAvailableJson
+    type: Class
+  - uid: Fluxer.Net.VoiceChannel
+    name: VoiceChannel
+    type: Class
+  - uid: Fluxer.Net.VoiceRingRequest
+    name: VoiceRingRequest
+    type: Class
+  - uid: Fluxer.Net.VoiceState
+    name: VoiceState
+    type: Class
+  - uid: Fluxer.Net.VoiceStateJson
+    name: VoiceStateJson
+    type: Class
+  - uid: Fluxer.Net.WebAuthnCredentialJson
+    name: WebAuthnCredentialJson
+    type: Class
+  - uid: Fluxer.Net.Webhook
+    name: Webhook
+    type: Class
+  - uid: Fluxer.Net.WebhookHelpers
+    name: WebhookHelpers
+    type: Class
+  - uid: Fluxer.Net.WebhookJson
+    name: WebhookJson
+    type: Class
+  - uid: Fluxer.Net.WebhookType
+    name: WebhookType
+    type: Enum
+- uid: Fluxer.Net.Commands
+  name: Fluxer.Net.Commands
+  type: Namespace
+  items:
+  - uid: Fluxer.Net.Commands.AliasAttribute
+    name: AliasAttribute
+    type: Class
+  - uid: Fluxer.Net.Commands.CommandAttribute
+    name: CommandAttribute
+    type: Class
+  - uid: Fluxer.Net.Commands.CommandContext
+    name: CommandContext
+    type: Class
+  - uid: Fluxer.Net.Commands.CommandError
+    name: CommandError
+    type: Enum
+  - uid: Fluxer.Net.Commands.CommandInfo
+    name: CommandInfo
+    type: Class
+  - uid: Fluxer.Net.Commands.CommandService
+    name: CommandService
+    type: Class
+  - uid: Fluxer.Net.Commands.CommandService2
+    name: CommandService2
+    type: Class
+  - uid: Fluxer.Net.Commands.ContextType
+    name: ContextType
+    type: Enum
+  - uid: Fluxer.Net.Commands.ExecuteResult
+    name: ExecuteResult
+    type: Class
+  - uid: Fluxer.Net.Commands.GroupAttribute
+    name: GroupAttribute
+    type: Class
+  - uid: Fluxer.Net.Commands.IResult
+    name: IResult
+    type: Interface
+  - uid: Fluxer.Net.Commands.ModuleBase
+    name: ModuleBase
+    type: Class
+  - uid: Fluxer.Net.Commands.ModuleBase`1
+    name: ModuleBase<T>
+    type: Class
+  - uid: Fluxer.Net.Commands.ModuleInfo
+    name: ModuleInfo
+    type: Class
+  - uid: Fluxer.Net.Commands.NameAttribute
+    name: NameAttribute
+    type: Class
+  - uid: Fluxer.Net.Commands.ParameterInfo
+    name: ParameterInfo
+    type: Class
+  - uid: Fluxer.Net.Commands.PreconditionAttribute
+    name: PreconditionAttribute
+    type: Class
+  - uid: Fluxer.Net.Commands.PreconditionResult
+    name: PreconditionResult
+    type: Class
+  - uid: Fluxer.Net.Commands.RemainderAttribute
+    name: RemainderAttribute
+    type: Class
+  - uid: Fluxer.Net.Commands.RemarksAttribute
+    name: RemarksAttribute
+    type: Class
+  - uid: Fluxer.Net.Commands.RequireContextAttribute
+    name: RequireContextAttribute
+    type: Class
+  - uid: Fluxer.Net.Commands.RequireOwnerAttribute
+    name: RequireOwnerAttribute
+    type: Class
+  - uid: Fluxer.Net.Commands.RunMode
+    name: RunMode
+    type: Enum
+  - uid: Fluxer.Net.Commands.SummaryAttribute
+    name: SummaryAttribute
+    type: Class
+- uid: Fluxer.Net.Extensions
+  name: Fluxer.Net.Extensions
+  type: Namespace
+  items:
+  - uid: Fluxer.Net.Extensions.ChannelPermissionsConverter
+    name: ChannelPermissionsConverter
+    type: Class
+  - uid: Fluxer.Net.Extensions.FluxerApiException
+    name: FluxerApiException
+    type: Class
+  - uid: Fluxer.Net.Extensions.GuildPermissionsConverter
+    name: GuildPermissionsConverter
+    type: Class
+  - uid: Fluxer.Net.Extensions.StringUInt64Converter
+    name: StringUInt64Converter
+    type: Class
+- uid: Fluxer.Net.Gateway.Data
+  name: Fluxer.Net.Gateway.Data
+  type: Namespace
+  items:
+  - uid: Fluxer.Net.Gateway.Data.EntityRemovedGatewayData
+    name: EntityRemovedGatewayData
+    type: Class
+  - uid: Fluxer.Net.Gateway.Data.HelloGatewayData
+    name: HelloGatewayData
+    type: Class
+  - uid: Fluxer.Net.Gateway.Data.IdentifyGatewayData
+    name: IdentifyGatewayData
+    type: Class
+  - uid: Fluxer.Net.Gateway.Data.PassiveGatewayData
+    name: PassiveGatewayData
+    type: Class
+  - uid: Fluxer.Net.Gateway.Data.ReadyGatewayData
+    name: ReadyGatewayData
+    type: Class
+  - uid: Fluxer.Net.Gateway.Data.RecentMentionDeleteGatewayData
+    name: RecentMentionDeleteGatewayData
+    type: Class
+  - uid: Fluxer.Net.Gateway.Data.ReconnectGatewayData
+    name: ReconnectGatewayData
+    type: Class
+- uid: Fluxer.Net.Gateway.Data.Auth
+  name: Fluxer.Net.Gateway.Data.Auth
+  type: Namespace
+  items:
+  - uid: Fluxer.Net.Gateway.Data.Auth.AuthSessionChangeGatewayData
+    name: AuthSessionChangeGatewayData
+    type: Class
+- uid: Fluxer.Net.Gateway.Data.Channels
+  name: Fluxer.Net.Gateway.Data.Channels
+  type: Namespace
+  items:
+  - uid: Fluxer.Net.Gateway.Data.Channels.ChannelGatewayData
+    name: ChannelGatewayData
+    type: Class
+  - uid: Fluxer.Net.Gateway.Data.Channels.ChannelOverwriteResponse
+    name: ChannelOverwriteResponse
+    type: Class
+  - uid: Fluxer.Net.Gateway.Data.Channels.ChannelPinsAckGatewayData
+    name: ChannelPinsAckGatewayData
+    type: Class
+  - uid: Fluxer.Net.Gateway.Data.Channels.ChannelPinsUpdateGatewayData
+    name: ChannelPinsUpdateGatewayData
+    type: Class
+  - uid: Fluxer.Net.Gateway.Data.Channels.ChannelRecipientGatewayData
+    name: ChannelRecipientGatewayData
+    type: Class
+  - uid: Fluxer.Net.Gateway.Data.Channels.ChannelUpdateBulkGatewayData
+    name: ChannelUpdateBulkGatewayData
+    type: Class
+  - uid: Fluxer.Net.Gateway.Data.Channels.TypingGatewayData
+    name: TypingGatewayData
+    type: Class
+- uid: Fluxer.Net.Gateway.Data.Guilds
+  name: Fluxer.Net.Gateway.Data.Guilds
+  type: Namespace
+  items:
+  - uid: Fluxer.Net.Gateway.Data.Guilds.GuildBanGatewayData
+    name: GuildBanGatewayData
+    type: Class
+  - uid: Fluxer.Net.Gateway.Data.Guilds.GuildDeleteGatewayData
+    name: GuildDeleteGatewayData
+    type: Class
+  - uid: Fluxer.Net.Gateway.Data.Guilds.GuildEmojisUpdateGatewayData
+    name: GuildEmojisUpdateGatewayData
+    type: Class
+  - uid: Fluxer.Net.Gateway.Data.Guilds.GuildGatewayData
+    name: GuildGatewayData
+    type: Class
+  - uid: Fluxer.Net.Gateway.Data.Guilds.GuildMemberGatewayData
+    name: GuildMemberGatewayData
+    type: Class
+  - uid: Fluxer.Net.Gateway.Data.Guilds.GuildMembersChunkGatewayData
+    name: GuildMembersChunkGatewayData
+    type: Class
+  - uid: Fluxer.Net.Gateway.Data.Guilds.GuildRoleDeleteGatewayData
+    name: GuildRoleDeleteGatewayData
+    type: Class
+  - uid: Fluxer.Net.Gateway.Data.Guilds.GuildRoleGatewayData
+    name: GuildRoleGatewayData
+    type: Class
+  - uid: Fluxer.Net.Gateway.Data.Guilds.GuildRoleUpdateBulkGatewayData
+    name: GuildRoleUpdateBulkGatewayData
+    type: Class
+  - uid: Fluxer.Net.Gateway.Data.Guilds.GuildStickersUpdateGatewayData
+    name: GuildStickersUpdateGatewayData
+    type: Class
+  - uid: Fluxer.Net.Gateway.Data.Guilds.RoleGatewayData
+    name: RoleGatewayData
+    type: Class
+- uid: Fluxer.Net.Gateway.Data.Invites
+  name: Fluxer.Net.Gateway.Data.Invites
+  type: Namespace
+  items:
+  - uid: Fluxer.Net.Gateway.Data.Invites.InviteGatewayData
+    name: InviteGatewayData
+    type: Class
+- uid: Fluxer.Net.Gateway.Data.Messages
+  name: Fluxer.Net.Gateway.Data.Messages
+  type: Namespace
+  items:
+  - uid: Fluxer.Net.Gateway.Data.Messages.MessageAckGatewayData
+    name: MessageAckGatewayData
+    type: Class
+  - uid: Fluxer.Net.Gateway.Data.Messages.MessageBulkDeleteGatewayData
+    name: MessageBulkDeleteGatewayData
+    type: Class
+  - uid: Fluxer.Net.Gateway.Data.Messages.MessageGatewayData
+    name: MessageGatewayData
+    type: Class
+  - uid: Fluxer.Net.Gateway.Data.Messages.MessageReactionGatewayData
+    name: MessageReactionGatewayData
+    type: Class
+  - uid: Fluxer.Net.Gateway.Data.Messages.MessageReactionRemoveEmojiGatewayData
+    name: MessageReactionRemoveEmojiGatewayData
+    type: Class
+- uid: Fluxer.Net.Gateway.Data.Users
+  name: Fluxer.Net.Gateway.Data.Users
+  type: Namespace
+  items:
+  - uid: Fluxer.Net.Gateway.Data.Users.FavoriteMemeDeleteGatewayData
+    name: FavoriteMemeDeleteGatewayData
+    type: Class
+  - uid: Fluxer.Net.Gateway.Data.Users.FavoriteMemeGatewayData
+    name: FavoriteMemeGatewayData
+    type: Class
+  - uid: Fluxer.Net.Gateway.Data.Users.PresenceGatewayData
+    name: PresenceGatewayData
+    type: Class
+  - uid: Fluxer.Net.Gateway.Data.Users.PresenceUpdateGatewayData
+    name: PresenceUpdateGatewayData
+    type: Class
+  - uid: Fluxer.Net.Gateway.Data.Users.RelationshipGatewayData
+    name: RelationshipGatewayData
+    type: Class
+  - uid: Fluxer.Net.Gateway.Data.Users.RelationshipRemoveGatewayData
+    name: RelationshipRemoveGatewayData
+    type: Class
+  - uid: Fluxer.Net.Gateway.Data.Users.SavedMessageGatewayData
+    name: SavedMessageGatewayData
+    type: Class
+  - uid: Fluxer.Net.Gateway.Data.Users.UserGatewayData
+    name: UserGatewayData
+    type: Class
+  - uid: Fluxer.Net.Gateway.Data.Users.UserGuildSettingsUpdateGatewayData
+    name: UserGuildSettingsUpdateGatewayData
+    type: Class
+  - uid: Fluxer.Net.Gateway.Data.Users.UserNoteUpdateGatewayData
+    name: UserNoteUpdateGatewayData
+    type: Class
+  - uid: Fluxer.Net.Gateway.Data.Users.UserPinnedDmsUpdateGatewayData
+    name: UserPinnedDmsUpdateGatewayData
+    type: Class
+  - uid: Fluxer.Net.Gateway.Data.Users.UserSettingsUpdateGatewayData
+    name: UserSettingsUpdateGatewayData
+    type: Class
+- uid: Fluxer.Net.Gateway.Data.Voice
+  name: Fluxer.Net.Gateway.Data.Voice
+  type: Namespace
+  items:
+  - uid: Fluxer.Net.Gateway.Data.Voice.CallGatewayData
+    name: CallGatewayData
+    type: Class
+  - uid: Fluxer.Net.Gateway.Data.Voice.VoiceServerUpdateGatewayData
+    name: VoiceServerUpdateGatewayData
+    type: Class
+  - uid: Fluxer.Net.Gateway.Data.Voice.VoiceStateGatewayData
+    name: VoiceStateGatewayData
+    type: Class
+  - uid: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload
+    name: VoiceStateUpdatePayload
+    type: Class
+- uid: Fluxer.Net.Gateway.Data.Webhooks
+  name: Fluxer.Net.Gateway.Data.Webhooks
+  type: Namespace
+  items:
+  - uid: Fluxer.Net.Gateway.Data.Webhooks.WebhooksUpdateGatewayData
+    name: WebhooksUpdateGatewayData
+    type: Class
+- uid: Fluxer.Net.Gateway.Packets
+  name: Fluxer.Net.Gateway.Packets
+  type: Namespace
+  items:
+  - uid: Fluxer.Net.Gateway.Packets.FluxerCloseCode
+    name: FluxerCloseCode
+    type: Enum
+  - uid: Fluxer.Net.Gateway.Packets.FluxerOpCode
+    name: FluxerOpCode
+    type: Enum
+  - uid: Fluxer.Net.Gateway.Packets.GatewayPacket
+    name: GatewayPacket
+    type: Class
+  - uid: Fluxer.Net.Gateway.Packets.HeartbeatPacket
+    name: HeartbeatPacket
+    type: Class
+  - uid: Fluxer.Net.Gateway.Packets.RequestMembersPacket
+    name: RequestMembersPacket
+    type: Class
+- uid: Fluxer.Net.OAuth
+  name: Fluxer.Net.OAuth
+  type: Namespace
+  items:
+  - uid: Fluxer.Net.OAuth.FluxerOAuthClient
+    name: FluxerOAuthClient
+    type: Class
+  - uid: Fluxer.Net.OAuth.FluxerOAuthConstants
+    name: FluxerOAuthConstants
+    type: Class
+  - uid: Fluxer.Net.OAuth.FluxerOAuthConstants.Claims
+    name: FluxerOAuthConstants.Claims
+    type: Class
+  - uid: Fluxer.Net.OAuth.FluxerOAuthDefaults
+    name: FluxerOAuthDefaults
+    type: Class
+  - uid: Fluxer.Net.OAuth.FluxerOAuthExtensions
+    name: FluxerOAuthExtensions
+    type: Class
+  - uid: Fluxer.Net.OAuth.FluxerOAuthHandler
+    name: FluxerOAuthHandler
+    type: Class
+  - uid: Fluxer.Net.OAuth.FluxerOAuthOptions
+    name: FluxerOAuthOptions
+    type: Class
+- uid: Fluxer.Net.RateLimiting
+  name: Fluxer.Net.RateLimiting
+  type: Namespace
+  items:
+  - uid: Fluxer.Net.RateLimiting.RateLimitBucket
+    name: RateLimitBucket
+    type: Class
+  - uid: Fluxer.Net.RateLimiting.RateLimitConfig
+    name: RateLimitConfig
+    type: Class
+  - uid: Fluxer.Net.RateLimiting.RateLimitConfigs
+    name: RateLimitConfigs
+    type: Class
+  - uid: Fluxer.Net.RateLimiting.RateLimitManager
+    name: RateLimitManager
+    type: Class
+  - uid: Fluxer.Net.RateLimiting.RateLimitMappings
+    name: RateLimitMappings
+    type: Class
+- uid: Fluxer.Net.Rest
+  name: Fluxer.Net.Rest
+  type: Namespace
+  items:
+  - uid: Fluxer.Net.Rest.AttachmentRequest
+    name: AttachmentRequest
+    type: Class
+  - uid: Fluxer.Net.Rest.QueryParams
+    name: QueryParams
+    type: Class
+  - uid: Fluxer.Net.Rest.RestClientQueryParams
+    name: RestClientQueryParams
+    type: Class
+- uid: Fluxer.Net.Rest.Requests
+  name: Fluxer.Net.Rest.Requests
+  type: Namespace
+  items:
+  - uid: Fluxer.Net.Rest.Requests.CreateInviteRequest
+    name: CreateInviteRequest
+    type: Class
+  - uid: Fluxer.Net.Rest.Requests.EmbedAuthorRequest
+    name: EmbedAuthorRequest
+    type: Class
+  - uid: Fluxer.Net.Rest.Requests.EmbedFieldRequest
+    name: EmbedFieldRequest
+    type: Class
+  - uid: Fluxer.Net.Rest.Requests.EmbedFooterRequest
+    name: EmbedFooterRequest
+    type: Class
+  - uid: Fluxer.Net.Rest.Requests.EmbedMediaRequest
+    name: EmbedMediaRequest
+    type: Class
+  - uid: Fluxer.Net.Rest.Requests.EmbedRequest
+    name: EmbedRequest
+    type: Class
+memberLayout: SamePage

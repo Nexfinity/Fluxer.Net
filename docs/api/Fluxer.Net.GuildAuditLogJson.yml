@@ -1,0 +1,929 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.GuildAuditLogJson
+  commentId: T:Fluxer.Net.GuildAuditLogJson
+  id: GuildAuditLogJson
+  parent: Fluxer.Net
+  children:
+  - Fluxer.Net.GuildAuditLogJson.Action
+  - Fluxer.Net.GuildAuditLogJson.AuditLogReason
+  - Fluxer.Net.GuildAuditLogJson.Changes
+  - Fluxer.Net.GuildAuditLogJson.CreatedAt
+  - Fluxer.Net.GuildAuditLogJson.GuildId
+  - Fluxer.Net.GuildAuditLogJson.LogId
+  - Fluxer.Net.GuildAuditLogJson.Metadata
+  - Fluxer.Net.GuildAuditLogJson.TargetId
+  - Fluxer.Net.GuildAuditLogJson.TargetType
+  - Fluxer.Net.GuildAuditLogJson.UserId
+  langs:
+  - csharp
+  - vb
+  name: GuildAuditLogJson
+  nameWithType: GuildAuditLogJson
+  fullName: Fluxer.Net.GuildAuditLogJson
+  type: Class
+  source:
+    remote:
+      path: Fluxer.Net/Data/AuditLogs/GuildAuditLogJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: GuildAuditLogJson
+    path: ../Fluxer.Net/Data/AuditLogs/GuildAuditLogJson.cs
+    startLine: 4
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: public class GuildAuditLogJson
+    content.vb: Public Class GuildAuditLogJson
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: Fluxer.Net.GuildAuditLogJson.GuildId
+  commentId: P:Fluxer.Net.GuildAuditLogJson.GuildId
+  id: GuildId
+  parent: Fluxer.Net.GuildAuditLogJson
+  langs:
+  - csharp
+  - vb
+  name: GuildId
+  nameWithType: GuildAuditLogJson.GuildId
+  fullName: Fluxer.Net.GuildAuditLogJson.GuildId
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/AuditLogs/GuildAuditLogJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: GuildId
+    path: ../Fluxer.Net/Data/AuditLogs/GuildAuditLogJson.cs
+    startLine: 6
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: >-
+      [JsonProperty("guild_id")]
+
+      public ulong GuildId { get; set; }
+    parameters: []
+    return:
+      type: System.UInt64
+    content.vb: >-
+      <JsonProperty("guild_id")>
+
+      Public Property GuildId As ULong
+  overload: Fluxer.Net.GuildAuditLogJson.GuildId*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: guild_id
+- uid: Fluxer.Net.GuildAuditLogJson.LogId
+  commentId: P:Fluxer.Net.GuildAuditLogJson.LogId
+  id: LogId
+  parent: Fluxer.Net.GuildAuditLogJson
+  langs:
+  - csharp
+  - vb
+  name: LogId
+  nameWithType: GuildAuditLogJson.LogId
+  fullName: Fluxer.Net.GuildAuditLogJson.LogId
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/AuditLogs/GuildAuditLogJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: LogId
+    path: ../Fluxer.Net/Data/AuditLogs/GuildAuditLogJson.cs
+    startLine: 9
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: >-
+      [JsonProperty("log_id")]
+
+      public ulong LogId { get; set; }
+    parameters: []
+    return:
+      type: System.UInt64
+    content.vb: >-
+      <JsonProperty("log_id")>
+
+      Public Property LogId As ULong
+  overload: Fluxer.Net.GuildAuditLogJson.LogId*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: log_id
+- uid: Fluxer.Net.GuildAuditLogJson.UserId
+  commentId: P:Fluxer.Net.GuildAuditLogJson.UserId
+  id: UserId
+  parent: Fluxer.Net.GuildAuditLogJson
+  langs:
+  - csharp
+  - vb
+  name: UserId
+  nameWithType: GuildAuditLogJson.UserId
+  fullName: Fluxer.Net.GuildAuditLogJson.UserId
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/AuditLogs/GuildAuditLogJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: UserId
+    path: ../Fluxer.Net/Data/AuditLogs/GuildAuditLogJson.cs
+    startLine: 12
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: >-
+      [JsonProperty("user_id")]
+
+      public ulong UserId { get; set; }
+    parameters: []
+    return:
+      type: System.UInt64
+    content.vb: >-
+      <JsonProperty("user_id")>
+
+      Public Property UserId As ULong
+  overload: Fluxer.Net.GuildAuditLogJson.UserId*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: user_id
+- uid: Fluxer.Net.GuildAuditLogJson.TargetType
+  commentId: P:Fluxer.Net.GuildAuditLogJson.TargetType
+  id: TargetType
+  parent: Fluxer.Net.GuildAuditLogJson
+  langs:
+  - csharp
+  - vb
+  name: TargetType
+  nameWithType: GuildAuditLogJson.TargetType
+  fullName: Fluxer.Net.GuildAuditLogJson.TargetType
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/AuditLogs/GuildAuditLogJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: TargetType
+    path: ../Fluxer.Net/Data/AuditLogs/GuildAuditLogJson.cs
+    startLine: 15
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: >-
+      [JsonProperty("target_type")]
+
+      public string TargetType { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <JsonProperty("target_type")>
+
+      Public Property TargetType As String
+  overload: Fluxer.Net.GuildAuditLogJson.TargetType*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: target_type
+- uid: Fluxer.Net.GuildAuditLogJson.TargetId
+  commentId: P:Fluxer.Net.GuildAuditLogJson.TargetId
+  id: TargetId
+  parent: Fluxer.Net.GuildAuditLogJson
+  langs:
+  - csharp
+  - vb
+  name: TargetId
+  nameWithType: GuildAuditLogJson.TargetId
+  fullName: Fluxer.Net.GuildAuditLogJson.TargetId
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/AuditLogs/GuildAuditLogJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: TargetId
+    path: ../Fluxer.Net/Data/AuditLogs/GuildAuditLogJson.cs
+    startLine: 18
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: >-
+      [JsonProperty("target_id")]
+
+      public string? TargetId { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <JsonProperty("target_id")>
+
+      Public Property TargetId As String
+  overload: Fluxer.Net.GuildAuditLogJson.TargetId*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: target_id
+- uid: Fluxer.Net.GuildAuditLogJson.Action
+  commentId: P:Fluxer.Net.GuildAuditLogJson.Action
+  id: Action
+  parent: Fluxer.Net.GuildAuditLogJson
+  langs:
+  - csharp
+  - vb
+  name: Action
+  nameWithType: GuildAuditLogJson.Action
+  fullName: Fluxer.Net.GuildAuditLogJson.Action
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/AuditLogs/GuildAuditLogJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Action
+    path: ../Fluxer.Net/Data/AuditLogs/GuildAuditLogJson.cs
+    startLine: 21
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: >-
+      [JsonProperty("action")]
+
+      public string Action { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <JsonProperty("action")>
+
+      Public Property Action As String
+  overload: Fluxer.Net.GuildAuditLogJson.Action*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: action
+- uid: Fluxer.Net.GuildAuditLogJson.AuditLogReason
+  commentId: P:Fluxer.Net.GuildAuditLogJson.AuditLogReason
+  id: AuditLogReason
+  parent: Fluxer.Net.GuildAuditLogJson
+  langs:
+  - csharp
+  - vb
+  name: AuditLogReason
+  nameWithType: GuildAuditLogJson.AuditLogReason
+  fullName: Fluxer.Net.GuildAuditLogJson.AuditLogReason
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/AuditLogs/GuildAuditLogJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: AuditLogReason
+    path: ../Fluxer.Net/Data/AuditLogs/GuildAuditLogJson.cs
+    startLine: 24
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: >-
+      [JsonProperty("audit_log_reason")]
+
+      public string? AuditLogReason { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <JsonProperty("audit_log_reason")>
+
+      Public Property AuditLogReason As String
+  overload: Fluxer.Net.GuildAuditLogJson.AuditLogReason*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: audit_log_reason
+- uid: Fluxer.Net.GuildAuditLogJson.Metadata
+  commentId: P:Fluxer.Net.GuildAuditLogJson.Metadata
+  id: Metadata
+  parent: Fluxer.Net.GuildAuditLogJson
+  langs:
+  - csharp
+  - vb
+  name: Metadata
+  nameWithType: GuildAuditLogJson.Metadata
+  fullName: Fluxer.Net.GuildAuditLogJson.Metadata
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/AuditLogs/GuildAuditLogJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Metadata
+    path: ../Fluxer.Net/Data/AuditLogs/GuildAuditLogJson.cs
+    startLine: 27
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: >-
+      [JsonProperty("metadata")]
+
+      public Dictionary<string, string>? Metadata { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.Dictionary{System.String,System.String}
+    content.vb: >-
+      <JsonProperty("metadata")>
+
+      Public Property Metadata As Dictionary(Of String, String)
+  overload: Fluxer.Net.GuildAuditLogJson.Metadata*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: metadata
+- uid: Fluxer.Net.GuildAuditLogJson.Changes
+  commentId: P:Fluxer.Net.GuildAuditLogJson.Changes
+  id: Changes
+  parent: Fluxer.Net.GuildAuditLogJson
+  langs:
+  - csharp
+  - vb
+  name: Changes
+  nameWithType: GuildAuditLogJson.Changes
+  fullName: Fluxer.Net.GuildAuditLogJson.Changes
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/AuditLogs/GuildAuditLogJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Changes
+    path: ../Fluxer.Net/Data/AuditLogs/GuildAuditLogJson.cs
+    startLine: 30
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: >-
+      [JsonProperty("changes")]
+
+      public object? Changes { get; set; }
+    parameters: []
+    return:
+      type: System.Object
+    content.vb: >-
+      <JsonProperty("changes")>
+
+      Public Property Changes As Object
+  overload: Fluxer.Net.GuildAuditLogJson.Changes*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: changes
+- uid: Fluxer.Net.GuildAuditLogJson.CreatedAt
+  commentId: P:Fluxer.Net.GuildAuditLogJson.CreatedAt
+  id: CreatedAt
+  parent: Fluxer.Net.GuildAuditLogJson
+  langs:
+  - csharp
+  - vb
+  name: CreatedAt
+  nameWithType: GuildAuditLogJson.CreatedAt
+  fullName: Fluxer.Net.GuildAuditLogJson.CreatedAt
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/AuditLogs/GuildAuditLogJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: CreatedAt
+    path: ../Fluxer.Net/Data/AuditLogs/GuildAuditLogJson.cs
+    startLine: 33
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: >-
+      [JsonProperty("created_at")]
+
+      public DateTime CreatedAt { get; set; }
+    parameters: []
+    return:
+      type: System.DateTime
+    content.vb: >-
+      <JsonProperty("created_at")>
+
+      Public Property CreatedAt As Date
+  overload: Fluxer.Net.GuildAuditLogJson.CreatedAt*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: created_at
+references:
+- uid: Fluxer.Net
+  commentId: N:Fluxer.Net
+  href: Fluxer.html
+  name: Fluxer.Net
+  nameWithType: Fluxer.Net
+  fullName: Fluxer.Net
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Fluxer.Net.GuildAuditLogJson.GuildId*
+  commentId: Overload:Fluxer.Net.GuildAuditLogJson.GuildId
+  href: Fluxer.Net.GuildAuditLogJson.html#Fluxer_Net_GuildAuditLogJson_GuildId
+  name: GuildId
+  nameWithType: GuildAuditLogJson.GuildId
+  fullName: Fluxer.Net.GuildAuditLogJson.GuildId
+- uid: System.UInt64
+  commentId: T:System.UInt64
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.uint64
+  name: ulong
+  nameWithType: ulong
+  fullName: ulong
+  nameWithType.vb: ULong
+  fullName.vb: ULong
+  name.vb: ULong
+- uid: Fluxer.Net.GuildAuditLogJson.LogId*
+  commentId: Overload:Fluxer.Net.GuildAuditLogJson.LogId
+  href: Fluxer.Net.GuildAuditLogJson.html#Fluxer_Net_GuildAuditLogJson_LogId
+  name: LogId
+  nameWithType: GuildAuditLogJson.LogId
+  fullName: Fluxer.Net.GuildAuditLogJson.LogId
+- uid: Fluxer.Net.GuildAuditLogJson.UserId*
+  commentId: Overload:Fluxer.Net.GuildAuditLogJson.UserId
+  href: Fluxer.Net.GuildAuditLogJson.html#Fluxer_Net_GuildAuditLogJson_UserId
+  name: UserId
+  nameWithType: GuildAuditLogJson.UserId
+  fullName: Fluxer.Net.GuildAuditLogJson.UserId
+- uid: Fluxer.Net.GuildAuditLogJson.TargetType*
+  commentId: Overload:Fluxer.Net.GuildAuditLogJson.TargetType
+  href: Fluxer.Net.GuildAuditLogJson.html#Fluxer_Net_GuildAuditLogJson_TargetType
+  name: TargetType
+  nameWithType: GuildAuditLogJson.TargetType
+  fullName: Fluxer.Net.GuildAuditLogJson.TargetType
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: Fluxer.Net.GuildAuditLogJson.TargetId*
+  commentId: Overload:Fluxer.Net.GuildAuditLogJson.TargetId
+  href: Fluxer.Net.GuildAuditLogJson.html#Fluxer_Net_GuildAuditLogJson_TargetId
+  name: TargetId
+  nameWithType: GuildAuditLogJson.TargetId
+  fullName: Fluxer.Net.GuildAuditLogJson.TargetId
+- uid: Fluxer.Net.GuildAuditLogJson.Action*
+  commentId: Overload:Fluxer.Net.GuildAuditLogJson.Action
+  href: Fluxer.Net.GuildAuditLogJson.html#Fluxer_Net_GuildAuditLogJson_Action
+  name: Action
+  nameWithType: GuildAuditLogJson.Action
+  fullName: Fluxer.Net.GuildAuditLogJson.Action
+- uid: Fluxer.Net.GuildAuditLogJson.AuditLogReason*
+  commentId: Overload:Fluxer.Net.GuildAuditLogJson.AuditLogReason
+  href: Fluxer.Net.GuildAuditLogJson.html#Fluxer_Net_GuildAuditLogJson_AuditLogReason
+  name: AuditLogReason
+  nameWithType: GuildAuditLogJson.AuditLogReason
+  fullName: Fluxer.Net.GuildAuditLogJson.AuditLogReason
+- uid: Fluxer.Net.GuildAuditLogJson.Metadata*
+  commentId: Overload:Fluxer.Net.GuildAuditLogJson.Metadata
+  href: Fluxer.Net.GuildAuditLogJson.html#Fluxer_Net_GuildAuditLogJson_Metadata
+  name: Metadata
+  nameWithType: GuildAuditLogJson.Metadata
+  fullName: Fluxer.Net.GuildAuditLogJson.Metadata
+- uid: System.Collections.Generic.Dictionary{System.String,System.String}
+  commentId: T:System.Collections.Generic.Dictionary{System.String,System.String}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.Dictionary`2
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  name: Dictionary<string, string>
+  nameWithType: Dictionary<string, string>
+  fullName: System.Collections.Generic.Dictionary<string, string>
+  nameWithType.vb: Dictionary(Of String, String)
+  fullName.vb: System.Collections.Generic.Dictionary(Of String, String)
+  name.vb: Dictionary(Of String, String)
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.Collections.Generic.Dictionary`2
+  commentId: T:System.Collections.Generic.Dictionary`2
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  name: Dictionary<TKey, TValue>
+  nameWithType: Dictionary<TKey, TValue>
+  fullName: System.Collections.Generic.Dictionary<TKey, TValue>
+  nameWithType.vb: Dictionary(Of TKey, TValue)
+  fullName.vb: System.Collections.Generic.Dictionary(Of TKey, TValue)
+  name.vb: Dictionary(Of TKey, TValue)
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: <
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: Fluxer.Net.GuildAuditLogJson.Changes*
+  commentId: Overload:Fluxer.Net.GuildAuditLogJson.Changes
+  href: Fluxer.Net.GuildAuditLogJson.html#Fluxer_Net_GuildAuditLogJson_Changes
+  name: Changes
+  nameWithType: GuildAuditLogJson.Changes
+  fullName: Fluxer.Net.GuildAuditLogJson.Changes
+- uid: Fluxer.Net.GuildAuditLogJson.CreatedAt*
+  commentId: Overload:Fluxer.Net.GuildAuditLogJson.CreatedAt
+  href: Fluxer.Net.GuildAuditLogJson.html#Fluxer_Net_GuildAuditLogJson_CreatedAt
+  name: CreatedAt
+  nameWithType: GuildAuditLogJson.CreatedAt
+  fullName: Fluxer.Net.GuildAuditLogJson.CreatedAt
+- uid: System.DateTime
+  commentId: T:System.DateTime
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.datetime
+  name: DateTime
+  nameWithType: DateTime
+  fullName: System.DateTime
+  nameWithType.vb: Date
+  fullName.vb: Date
+  name.vb: Date

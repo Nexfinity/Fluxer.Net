@@ -1,0 +1,1280 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.User
+  commentId: T:Fluxer.Net.User
+  id: User
+  parent: Fluxer.Net
+  children:
+  - Fluxer.Net.User.AvatarColor
+  - Fluxer.Net.User.AvatarHash
+  - Fluxer.Net.User.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.UserJson)
+  - Fluxer.Net.User.Discriminator
+  - Fluxer.Net.User.DisplayName
+  - Fluxer.Net.User.Flags
+  - Fluxer.Net.User.GetAvatarOrDefaultUrl(System.Int32)
+  - Fluxer.Net.User.GetAvatarUrl(System.Int32)
+  - Fluxer.Net.User.GetCurrentName
+  - Fluxer.Net.User.GetDefaultAvatarUrl
+  - Fluxer.Net.User.Id
+  - Fluxer.Net.User.IsBot
+  - Fluxer.Net.User.IsSystem
+  - Fluxer.Net.User.Mention
+  - Fluxer.Net.User.Username
+  langs:
+  - csharp
+  - vb
+  name: User
+  nameWithType: User
+  fullName: Fluxer.Net.User
+  type: Class
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/User.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: User
+    path: ../Fluxer.Net/Data/Users/User.cs
+    startLine: 3
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  example: []
+  syntax:
+    content: 'public class User : Entity, IUser'
+    content.vb: Public Class User Inherits Entity Implements IUser
+  inheritance:
+  - System.Object
+  - Fluxer.Net.Entity
+  derivedClasses:
+  - Fluxer.Net.CurrentUser
+  - Fluxer.Net.FluxerOAuthUser
+  - Fluxer.Net.SocketUser
+  implements:
+  - Fluxer.Net.IUser
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  extensionMethods:
+  - Fluxer.Net.User.Fluxer.Net.UserHelpers.GetOrCreateDMChannelAsync
+- uid: Fluxer.Net.User.Id
+  commentId: P:Fluxer.Net.User.Id
+  id: Id
+  parent: Fluxer.Net.User
+  langs:
+  - csharp
+  - vb
+  name: Id
+  nameWithType: User.Id
+  fullName: Fluxer.Net.User.Id
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/User.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Id
+    path: ../Fluxer.Net/Data/Users/User.cs
+    startLine: 6
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The unique identifier (snowflake) for this user.
+  example: []
+  syntax:
+    content: public ulong Id { get; }
+    parameters: []
+    return:
+      type: System.UInt64
+    content.vb: Public Property Id As ULong
+  overload: Fluxer.Net.User.Id*
+  implements:
+  - Fluxer.Net.IUser.Id
+- uid: Fluxer.Net.User.Mention
+  commentId: P:Fluxer.Net.User.Mention
+  id: Mention
+  parent: Fluxer.Net.User
+  langs:
+  - csharp
+  - vb
+  name: Mention
+  nameWithType: User.Mention
+  fullName: Fluxer.Net.User.Mention
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/User.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Mention
+    path: ../Fluxer.Net/Data/Users/User.cs
+    startLine: 9
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Get the mention for the user.
+  example: []
+  syntax:
+    content: public string Mention { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public ReadOnly Property Mention As String
+  overload: Fluxer.Net.User.Mention*
+  implements:
+  - Fluxer.Net.IUser.Mention
+- uid: Fluxer.Net.User.Username
+  commentId: P:Fluxer.Net.User.Username
+  id: Username
+  parent: Fluxer.Net.User
+  langs:
+  - csharp
+  - vb
+  name: Username
+  nameWithType: User.Username
+  fullName: Fluxer.Net.User.Username
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/User.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Username
+    path: ../Fluxer.Net/Data/Users/User.cs
+    startLine: 12
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The username of the user, not unique across the platform.
+  example: []
+  syntax:
+    content: public string Username { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Username As String
+  overload: Fluxer.Net.User.Username*
+  implements:
+  - Fluxer.Net.IUser.Username
+- uid: Fluxer.Net.User.Discriminator
+  commentId: P:Fluxer.Net.User.Discriminator
+  id: Discriminator
+  parent: Fluxer.Net.User
+  langs:
+  - csharp
+  - vb
+  name: Discriminator
+  nameWithType: User.Discriminator
+  fullName: Fluxer.Net.User.Discriminator
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/User.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Discriminator
+    path: ../Fluxer.Net/Data/Users/User.cs
+    startLine: 15
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The four-digit discriminator tag of the user.
+  example: []
+  syntax:
+    content: public string Discriminator { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Discriminator As String
+  overload: Fluxer.Net.User.Discriminator*
+  implements:
+  - Fluxer.Net.IUser.Discriminator
+- uid: Fluxer.Net.User.DisplayName
+  commentId: P:Fluxer.Net.User.DisplayName
+  id: DisplayName
+  parent: Fluxer.Net.User
+  langs:
+  - csharp
+  - vb
+  name: DisplayName
+  nameWithType: User.DisplayName
+  fullName: Fluxer.Net.User.DisplayName
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/User.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: DisplayName
+    path: ../Fluxer.Net/Data/Users/User.cs
+    startLine: 18
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The display name of the user, if set.
+  example: []
+  syntax:
+    content: public string DisplayName { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property DisplayName As String
+  overload: Fluxer.Net.User.DisplayName*
+  implements:
+  - Fluxer.Net.IUser.DisplayName
+- uid: Fluxer.Net.User.AvatarHash
+  commentId: P:Fluxer.Net.User.AvatarHash
+  id: AvatarHash
+  parent: Fluxer.Net.User
+  langs:
+  - csharp
+  - vb
+  name: AvatarHash
+  nameWithType: User.AvatarHash
+  fullName: Fluxer.Net.User.AvatarHash
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/User.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: AvatarHash
+    path: ../Fluxer.Net/Data/Users/User.cs
+    startLine: 21
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The hash of the user avatar image.
+  example: []
+  syntax:
+    content: public string? AvatarHash { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property AvatarHash As String
+  overload: Fluxer.Net.User.AvatarHash*
+  implements:
+  - Fluxer.Net.IUser.AvatarHash
+- uid: Fluxer.Net.User.AvatarColor
+  commentId: P:Fluxer.Net.User.AvatarColor
+  id: AvatarColor
+  parent: Fluxer.Net.User
+  langs:
+  - csharp
+  - vb
+  name: AvatarColor
+  nameWithType: User.AvatarColor
+  fullName: Fluxer.Net.User.AvatarColor
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/User.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: AvatarColor
+    path: ../Fluxer.Net/Data/Users/User.cs
+    startLine: 24
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The dominant avatar color of the user as an integer.
+  example: []
+  syntax:
+    content: public int? AvatarColor { get; }
+    parameters: []
+    return:
+      type: System.Nullable{System.Int32}
+    content.vb: Public Property AvatarColor As Integer?
+  overload: Fluxer.Net.User.AvatarColor*
+  implements:
+  - Fluxer.Net.IUser.AvatarColor
+- uid: Fluxer.Net.User.Flags
+  commentId: P:Fluxer.Net.User.Flags
+  id: Flags
+  parent: Fluxer.Net.User
+  langs:
+  - csharp
+  - vb
+  name: Flags
+  nameWithType: User.Flags
+  fullName: Fluxer.Net.User.Flags
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/User.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Flags
+    path: ../Fluxer.Net/Data/Users/User.cs
+    startLine: 27
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The public flags on the user account.
+  example: []
+  syntax:
+    content: public UserFlags Flags { get; }
+    parameters: []
+    return:
+      type: Fluxer.Net.UserFlags
+    content.vb: Public Property Flags As UserFlags
+  overload: Fluxer.Net.User.Flags*
+  implements:
+  - Fluxer.Net.IUser.Flags
+- uid: Fluxer.Net.User.IsBot
+  commentId: P:Fluxer.Net.User.IsBot
+  id: IsBot
+  parent: Fluxer.Net.User
+  langs:
+  - csharp
+  - vb
+  name: IsBot
+  nameWithType: User.IsBot
+  fullName: Fluxer.Net.User.IsBot
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/User.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: IsBot
+    path: ../Fluxer.Net/Data/Users/User.cs
+    startLine: 30
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Whether the user is a bot account.
+  example: []
+  syntax:
+    content: public bool IsBot { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property IsBot As Boolean
+  overload: Fluxer.Net.User.IsBot*
+  implements:
+  - Fluxer.Net.IUser.IsBot
+- uid: Fluxer.Net.User.IsSystem
+  commentId: P:Fluxer.Net.User.IsSystem
+  id: IsSystem
+  parent: Fluxer.Net.User
+  langs:
+  - csharp
+  - vb
+  name: IsSystem
+  nameWithType: User.IsSystem
+  fullName: Fluxer.Net.User.IsSystem
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/User.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: IsSystem
+    path: ../Fluxer.Net/Data/Users/User.cs
+    startLine: 33
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Whether the user is an official system user.
+  example: []
+  syntax:
+    content: public bool IsSystem { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property IsSystem As Boolean
+  overload: Fluxer.Net.User.IsSystem*
+  implements:
+  - Fluxer.Net.IUser.IsSystem
+- uid: Fluxer.Net.User.GetCurrentName
+  commentId: M:Fluxer.Net.User.GetCurrentName
+  id: GetCurrentName
+  parent: Fluxer.Net.User
+  langs:
+  - csharp
+  - vb
+  name: GetCurrentName()
+  nameWithType: User.GetCurrentName()
+  fullName: Fluxer.Net.User.GetCurrentName()
+  type: Method
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/User.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: GetCurrentName
+    path: ../Fluxer.Net/Data/Users/User.cs
+    startLine: 36
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Get the user's current display name or username.
+  example: []
+  syntax:
+    content: public string GetCurrentName()
+    return:
+      type: System.String
+    content.vb: Public Function GetCurrentName() As String
+  overload: Fluxer.Net.User.GetCurrentName*
+  implements:
+  - Fluxer.Net.IUser.GetCurrentName
+- uid: Fluxer.Net.User.GetDefaultAvatarUrl
+  commentId: M:Fluxer.Net.User.GetDefaultAvatarUrl
+  id: GetDefaultAvatarUrl
+  parent: Fluxer.Net.User
+  langs:
+  - csharp
+  - vb
+  name: GetDefaultAvatarUrl()
+  nameWithType: User.GetDefaultAvatarUrl()
+  fullName: Fluxer.Net.User.GetDefaultAvatarUrl()
+  type: Method
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/User.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: GetDefaultAvatarUrl
+    path: ../Fluxer.Net/Data/Users/User.cs
+    startLine: 42
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Get the default avatar for the user.
+  example: []
+  syntax:
+    content: public string GetDefaultAvatarUrl()
+    return:
+      type: System.String
+    content.vb: Public Function GetDefaultAvatarUrl() As String
+  overload: Fluxer.Net.User.GetDefaultAvatarUrl*
+  implements:
+  - Fluxer.Net.IUser.GetDefaultAvatarUrl
+- uid: Fluxer.Net.User.GetAvatarUrl(System.Int32)
+  commentId: M:Fluxer.Net.User.GetAvatarUrl(System.Int32)
+  id: GetAvatarUrl(System.Int32)
+  parent: Fluxer.Net.User
+  langs:
+  - csharp
+  - vb
+  name: GetAvatarUrl(int)
+  nameWithType: User.GetAvatarUrl(int)
+  fullName: Fluxer.Net.User.GetAvatarUrl(int)
+  type: Method
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/User.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: GetAvatarUrl
+    path: ../Fluxer.Net/Data/Users/User.cs
+    startLine: 48
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Get the user's avatar.
+  example: []
+  syntax:
+    content: public string? GetAvatarUrl(int size = 160)
+    parameters:
+    - id: size
+      type: System.Int32
+    return:
+      type: System.String
+    content.vb: Public Function GetAvatarUrl(size As Integer = 160) As String
+  overload: Fluxer.Net.User.GetAvatarUrl*
+  implements:
+  - Fluxer.Net.IUser.GetAvatarUrl(System.Int32)
+  nameWithType.vb: User.GetAvatarUrl(Integer)
+  fullName.vb: Fluxer.Net.User.GetAvatarUrl(Integer)
+  name.vb: GetAvatarUrl(Integer)
+- uid: Fluxer.Net.User.GetAvatarOrDefaultUrl(System.Int32)
+  commentId: M:Fluxer.Net.User.GetAvatarOrDefaultUrl(System.Int32)
+  id: GetAvatarOrDefaultUrl(System.Int32)
+  parent: Fluxer.Net.User
+  langs:
+  - csharp
+  - vb
+  name: GetAvatarOrDefaultUrl(int)
+  nameWithType: User.GetAvatarOrDefaultUrl(int)
+  fullName: Fluxer.Net.User.GetAvatarOrDefaultUrl(int)
+  type: Method
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/User.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: GetAvatarOrDefaultUrl
+    path: ../Fluxer.Net/Data/Users/User.cs
+    startLine: 57
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Get the user's avatar or fallback to default.
+  example: []
+  syntax:
+    content: public string GetAvatarOrDefaultUrl(int size = 160)
+    parameters:
+    - id: size
+      type: System.Int32
+    return:
+      type: System.String
+    content.vb: Public Function GetAvatarOrDefaultUrl(size As Integer = 160) As String
+  overload: Fluxer.Net.User.GetAvatarOrDefaultUrl*
+  implements:
+  - Fluxer.Net.IUser.GetAvatarOrDefaultUrl(System.Int32)
+  nameWithType.vb: User.GetAvatarOrDefaultUrl(Integer)
+  fullName.vb: Fluxer.Net.User.GetAvatarOrDefaultUrl(Integer)
+  name.vb: GetAvatarOrDefaultUrl(Integer)
+- uid: Fluxer.Net.User.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.UserJson)
+  commentId: M:Fluxer.Net.User.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.UserJson)
+  id: Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.UserJson)
+  parent: Fluxer.Net.User
+  langs:
+  - csharp
+  - vb
+  name: Create(FluxerBaseClient, UserJson)
+  nameWithType: User.Create(FluxerBaseClient, UserJson)
+  fullName: Fluxer.Net.User.Create(Fluxer.Net.FluxerBaseClient, Fluxer.Net.UserJson)
+  type: Method
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/User.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Create
+    path: ../Fluxer.Net/Data/Users/User.cs
+    startLine: 70
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: public static User Create(FluxerBaseClient client, UserJson json)
+    parameters:
+    - id: client
+      type: Fluxer.Net.FluxerBaseClient
+    - id: json
+      type: Fluxer.Net.UserJson
+    return:
+      type: Fluxer.Net.User
+    content.vb: Public Shared Function Create(client As FluxerBaseClient, json As UserJson) As User
+  overload: Fluxer.Net.User.Create*
+references:
+- uid: Fluxer.Net
+  commentId: N:Fluxer.Net
+  href: Fluxer.html
+  name: Fluxer.Net
+  nameWithType: Fluxer.Net
+  fullName: Fluxer.Net
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Fluxer.Net.Entity
+  commentId: T:Fluxer.Net.Entity
+  parent: Fluxer.Net
+  href: Fluxer.Net.Entity.html
+  name: Entity
+  nameWithType: Entity
+  fullName: Fluxer.Net.Entity
+- uid: Fluxer.Net.IUser
+  commentId: T:Fluxer.Net.IUser
+  parent: Fluxer.Net
+  href: Fluxer.Net.IUser.html
+  name: IUser
+  nameWithType: IUser
+  fullName: Fluxer.Net.IUser
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: Fluxer.Net.User.Fluxer.Net.UserHelpers.GetOrCreateDMChannelAsync
+  commentId: M:Fluxer.Net.UserHelpers.GetOrCreateDMChannelAsync(Fluxer.Net.User)
+  parent: Fluxer.Net.UserHelpers
+  definition: Fluxer.Net.UserHelpers.GetOrCreateDMChannelAsync(Fluxer.Net.User)
+  href: Fluxer.Net.UserHelpers.html#Fluxer_Net_UserHelpers_GetOrCreateDMChannelAsync_Fluxer_Net_User_
+  name: GetOrCreateDMChannelAsync(User)
+  nameWithType: UserHelpers.GetOrCreateDMChannelAsync(User)
+  fullName: Fluxer.Net.UserHelpers.GetOrCreateDMChannelAsync(Fluxer.Net.User)
+  spec.csharp:
+  - uid: Fluxer.Net.UserHelpers.GetOrCreateDMChannelAsync(Fluxer.Net.User)
+    name: GetOrCreateDMChannelAsync
+    href: Fluxer.Net.UserHelpers.html#Fluxer_Net_UserHelpers_GetOrCreateDMChannelAsync_Fluxer_Net_User_
+  - name: (
+  - uid: Fluxer.Net.User
+    name: User
+    href: Fluxer.Net.User.html
+  - name: )
+  spec.vb:
+  - uid: Fluxer.Net.UserHelpers.GetOrCreateDMChannelAsync(Fluxer.Net.User)
+    name: GetOrCreateDMChannelAsync
+    href: Fluxer.Net.UserHelpers.html#Fluxer_Net_UserHelpers_GetOrCreateDMChannelAsync_Fluxer_Net_User_
+  - name: (
+  - uid: Fluxer.Net.User
+    name: User
+    href: Fluxer.Net.User.html
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Fluxer.Net.UserHelpers.GetOrCreateDMChannelAsync(Fluxer.Net.User)
+  commentId: M:Fluxer.Net.UserHelpers.GetOrCreateDMChannelAsync(Fluxer.Net.User)
+  href: Fluxer.Net.UserHelpers.html#Fluxer_Net_UserHelpers_GetOrCreateDMChannelAsync_Fluxer_Net_User_
+  name: GetOrCreateDMChannelAsync(User)
+  nameWithType: UserHelpers.GetOrCreateDMChannelAsync(User)
+  fullName: Fluxer.Net.UserHelpers.GetOrCreateDMChannelAsync(Fluxer.Net.User)
+  spec.csharp:
+  - uid: Fluxer.Net.UserHelpers.GetOrCreateDMChannelAsync(Fluxer.Net.User)
+    name: GetOrCreateDMChannelAsync
+    href: Fluxer.Net.UserHelpers.html#Fluxer_Net_UserHelpers_GetOrCreateDMChannelAsync_Fluxer_Net_User_
+  - name: (
+  - uid: Fluxer.Net.User
+    name: User
+    href: Fluxer.Net.User.html
+  - name: )
+  spec.vb:
+  - uid: Fluxer.Net.UserHelpers.GetOrCreateDMChannelAsync(Fluxer.Net.User)
+    name: GetOrCreateDMChannelAsync
+    href: Fluxer.Net.UserHelpers.html#Fluxer_Net_UserHelpers_GetOrCreateDMChannelAsync_Fluxer_Net_User_
+  - name: (
+  - uid: Fluxer.Net.User
+    name: User
+    href: Fluxer.Net.User.html
+  - name: )
+- uid: Fluxer.Net.UserHelpers
+  commentId: T:Fluxer.Net.UserHelpers
+  parent: Fluxer.Net
+  href: Fluxer.Net.UserHelpers.html
+  name: UserHelpers
+  nameWithType: UserHelpers
+  fullName: Fluxer.Net.UserHelpers
+- uid: Fluxer.Net.User.Id*
+  commentId: Overload:Fluxer.Net.User.Id
+  href: Fluxer.Net.User.html#Fluxer_Net_User_Id
+  name: Id
+  nameWithType: User.Id
+  fullName: Fluxer.Net.User.Id
+- uid: Fluxer.Net.IUser.Id
+  commentId: P:Fluxer.Net.IUser.Id
+  parent: Fluxer.Net.IUser
+  href: Fluxer.Net.IUser.html#Fluxer_Net_IUser_Id
+  name: Id
+  nameWithType: IUser.Id
+  fullName: Fluxer.Net.IUser.Id
+- uid: System.UInt64
+  commentId: T:System.UInt64
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.uint64
+  name: ulong
+  nameWithType: ulong
+  fullName: ulong
+  nameWithType.vb: ULong
+  fullName.vb: ULong
+  name.vb: ULong
+- uid: Fluxer.Net.User.Mention*
+  commentId: Overload:Fluxer.Net.User.Mention
+  href: Fluxer.Net.User.html#Fluxer_Net_User_Mention
+  name: Mention
+  nameWithType: User.Mention
+  fullName: Fluxer.Net.User.Mention
+- uid: Fluxer.Net.IUser.Mention
+  commentId: P:Fluxer.Net.IUser.Mention
+  parent: Fluxer.Net.IUser
+  href: Fluxer.Net.IUser.html#Fluxer_Net_IUser_Mention
+  name: Mention
+  nameWithType: IUser.Mention
+  fullName: Fluxer.Net.IUser.Mention
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: Fluxer.Net.User.Username*
+  commentId: Overload:Fluxer.Net.User.Username
+  href: Fluxer.Net.User.html#Fluxer_Net_User_Username
+  name: Username
+  nameWithType: User.Username
+  fullName: Fluxer.Net.User.Username
+- uid: Fluxer.Net.IUser.Username
+  commentId: P:Fluxer.Net.IUser.Username
+  parent: Fluxer.Net.IUser
+  href: Fluxer.Net.IUser.html#Fluxer_Net_IUser_Username
+  name: Username
+  nameWithType: IUser.Username
+  fullName: Fluxer.Net.IUser.Username
+- uid: Fluxer.Net.User.Discriminator*
+  commentId: Overload:Fluxer.Net.User.Discriminator
+  href: Fluxer.Net.User.html#Fluxer_Net_User_Discriminator
+  name: Discriminator
+  nameWithType: User.Discriminator
+  fullName: Fluxer.Net.User.Discriminator
+- uid: Fluxer.Net.IUser.Discriminator
+  commentId: P:Fluxer.Net.IUser.Discriminator
+  parent: Fluxer.Net.IUser
+  href: Fluxer.Net.IUser.html#Fluxer_Net_IUser_Discriminator
+  name: Discriminator
+  nameWithType: IUser.Discriminator
+  fullName: Fluxer.Net.IUser.Discriminator
+- uid: Fluxer.Net.User.DisplayName*
+  commentId: Overload:Fluxer.Net.User.DisplayName
+  href: Fluxer.Net.User.html#Fluxer_Net_User_DisplayName
+  name: DisplayName
+  nameWithType: User.DisplayName
+  fullName: Fluxer.Net.User.DisplayName
+- uid: Fluxer.Net.IUser.DisplayName
+  commentId: P:Fluxer.Net.IUser.DisplayName
+  parent: Fluxer.Net.IUser
+  href: Fluxer.Net.IUser.html#Fluxer_Net_IUser_DisplayName
+  name: DisplayName
+  nameWithType: IUser.DisplayName
+  fullName: Fluxer.Net.IUser.DisplayName
+- uid: Fluxer.Net.User.AvatarHash*
+  commentId: Overload:Fluxer.Net.User.AvatarHash
+  href: Fluxer.Net.User.html#Fluxer_Net_User_AvatarHash
+  name: AvatarHash
+  nameWithType: User.AvatarHash
+  fullName: Fluxer.Net.User.AvatarHash
+- uid: Fluxer.Net.IUser.AvatarHash
+  commentId: P:Fluxer.Net.IUser.AvatarHash
+  parent: Fluxer.Net.IUser
+  href: Fluxer.Net.IUser.html#Fluxer_Net_IUser_AvatarHash
+  name: AvatarHash
+  nameWithType: IUser.AvatarHash
+  fullName: Fluxer.Net.IUser.AvatarHash
+- uid: Fluxer.Net.User.AvatarColor*
+  commentId: Overload:Fluxer.Net.User.AvatarColor
+  href: Fluxer.Net.User.html#Fluxer_Net_User_AvatarColor
+  name: AvatarColor
+  nameWithType: User.AvatarColor
+  fullName: Fluxer.Net.User.AvatarColor
+- uid: Fluxer.Net.IUser.AvatarColor
+  commentId: P:Fluxer.Net.IUser.AvatarColor
+  parent: Fluxer.Net.IUser
+  href: Fluxer.Net.IUser.html#Fluxer_Net_IUser_AvatarColor
+  name: AvatarColor
+  nameWithType: IUser.AvatarColor
+  fullName: Fluxer.Net.IUser.AvatarColor
+- uid: System.Nullable{System.Int32}
+  commentId: T:System.Nullable{System.Int32}
+  parent: System
+  definition: System.Nullable`1
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int?
+  nameWithType: int?
+  fullName: int?
+  nameWithType.vb: Integer?
+  fullName.vb: Integer?
+  name.vb: Integer?
+  spec.csharp:
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
+  spec.vb:
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: Fluxer.Net.User.Flags*
+  commentId: Overload:Fluxer.Net.User.Flags
+  href: Fluxer.Net.User.html#Fluxer_Net_User_Flags
+  name: Flags
+  nameWithType: User.Flags
+  fullName: Fluxer.Net.User.Flags
+- uid: Fluxer.Net.IUser.Flags
+  commentId: P:Fluxer.Net.IUser.Flags
+  parent: Fluxer.Net.IUser
+  href: Fluxer.Net.IUser.html#Fluxer_Net_IUser_Flags
+  name: Flags
+  nameWithType: IUser.Flags
+  fullName: Fluxer.Net.IUser.Flags
+- uid: Fluxer.Net.UserFlags
+  commentId: T:Fluxer.Net.UserFlags
+  parent: Fluxer.Net
+  href: Fluxer.Net.UserFlags.html
+  name: UserFlags
+  nameWithType: UserFlags
+  fullName: Fluxer.Net.UserFlags
+- uid: Fluxer.Net.User.IsBot*
+  commentId: Overload:Fluxer.Net.User.IsBot
+  href: Fluxer.Net.User.html#Fluxer_Net_User_IsBot
+  name: IsBot
+  nameWithType: User.IsBot
+  fullName: Fluxer.Net.User.IsBot
+- uid: Fluxer.Net.IUser.IsBot
+  commentId: P:Fluxer.Net.IUser.IsBot
+  parent: Fluxer.Net.IUser
+  href: Fluxer.Net.IUser.html#Fluxer_Net_IUser_IsBot
+  name: IsBot
+  nameWithType: IUser.IsBot
+  fullName: Fluxer.Net.IUser.IsBot
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: Fluxer.Net.User.IsSystem*
+  commentId: Overload:Fluxer.Net.User.IsSystem
+  href: Fluxer.Net.User.html#Fluxer_Net_User_IsSystem
+  name: IsSystem
+  nameWithType: User.IsSystem
+  fullName: Fluxer.Net.User.IsSystem
+- uid: Fluxer.Net.IUser.IsSystem
+  commentId: P:Fluxer.Net.IUser.IsSystem
+  parent: Fluxer.Net.IUser
+  href: Fluxer.Net.IUser.html#Fluxer_Net_IUser_IsSystem
+  name: IsSystem
+  nameWithType: IUser.IsSystem
+  fullName: Fluxer.Net.IUser.IsSystem
+- uid: Fluxer.Net.User.GetCurrentName*
+  commentId: Overload:Fluxer.Net.User.GetCurrentName
+  href: Fluxer.Net.User.html#Fluxer_Net_User_GetCurrentName
+  name: GetCurrentName
+  nameWithType: User.GetCurrentName
+  fullName: Fluxer.Net.User.GetCurrentName
+- uid: Fluxer.Net.IUser.GetCurrentName
+  commentId: M:Fluxer.Net.IUser.GetCurrentName
+  parent: Fluxer.Net.IUser
+  href: Fluxer.Net.IUser.html#Fluxer_Net_IUser_GetCurrentName
+  name: GetCurrentName()
+  nameWithType: IUser.GetCurrentName()
+  fullName: Fluxer.Net.IUser.GetCurrentName()
+  spec.csharp:
+  - uid: Fluxer.Net.IUser.GetCurrentName
+    name: GetCurrentName
+    href: Fluxer.Net.IUser.html#Fluxer_Net_IUser_GetCurrentName
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Fluxer.Net.IUser.GetCurrentName
+    name: GetCurrentName
+    href: Fluxer.Net.IUser.html#Fluxer_Net_IUser_GetCurrentName
+  - name: (
+  - name: )
+- uid: Fluxer.Net.User.GetDefaultAvatarUrl*
+  commentId: Overload:Fluxer.Net.User.GetDefaultAvatarUrl
+  href: Fluxer.Net.User.html#Fluxer_Net_User_GetDefaultAvatarUrl
+  name: GetDefaultAvatarUrl
+  nameWithType: User.GetDefaultAvatarUrl
+  fullName: Fluxer.Net.User.GetDefaultAvatarUrl
+- uid: Fluxer.Net.IUser.GetDefaultAvatarUrl
+  commentId: M:Fluxer.Net.IUser.GetDefaultAvatarUrl
+  parent: Fluxer.Net.IUser
+  href: Fluxer.Net.IUser.html#Fluxer_Net_IUser_GetDefaultAvatarUrl
+  name: GetDefaultAvatarUrl()
+  nameWithType: IUser.GetDefaultAvatarUrl()
+  fullName: Fluxer.Net.IUser.GetDefaultAvatarUrl()
+  spec.csharp:
+  - uid: Fluxer.Net.IUser.GetDefaultAvatarUrl
+    name: GetDefaultAvatarUrl
+    href: Fluxer.Net.IUser.html#Fluxer_Net_IUser_GetDefaultAvatarUrl
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Fluxer.Net.IUser.GetDefaultAvatarUrl
+    name: GetDefaultAvatarUrl
+    href: Fluxer.Net.IUser.html#Fluxer_Net_IUser_GetDefaultAvatarUrl
+  - name: (
+  - name: )
+- uid: Fluxer.Net.User.GetAvatarUrl*
+  commentId: Overload:Fluxer.Net.User.GetAvatarUrl
+  href: Fluxer.Net.User.html#Fluxer_Net_User_GetAvatarUrl_System_Int32_
+  name: GetAvatarUrl
+  nameWithType: User.GetAvatarUrl
+  fullName: Fluxer.Net.User.GetAvatarUrl
+- uid: Fluxer.Net.IUser.GetAvatarUrl(System.Int32)
+  commentId: M:Fluxer.Net.IUser.GetAvatarUrl(System.Int32)
+  parent: Fluxer.Net.IUser
+  isExternal: true
+  href: Fluxer.Net.IUser.html#Fluxer_Net_IUser_GetAvatarUrl_System_Int32_
+  name: GetAvatarUrl(int)
+  nameWithType: IUser.GetAvatarUrl(int)
+  fullName: Fluxer.Net.IUser.GetAvatarUrl(int)
+  nameWithType.vb: IUser.GetAvatarUrl(Integer)
+  fullName.vb: Fluxer.Net.IUser.GetAvatarUrl(Integer)
+  name.vb: GetAvatarUrl(Integer)
+  spec.csharp:
+  - uid: Fluxer.Net.IUser.GetAvatarUrl(System.Int32)
+    name: GetAvatarUrl
+    href: Fluxer.Net.IUser.html#Fluxer_Net_IUser_GetAvatarUrl_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Fluxer.Net.IUser.GetAvatarUrl(System.Int32)
+    name: GetAvatarUrl
+    href: Fluxer.Net.IUser.html#Fluxer_Net_IUser_GetAvatarUrl_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: Fluxer.Net.User.GetAvatarOrDefaultUrl*
+  commentId: Overload:Fluxer.Net.User.GetAvatarOrDefaultUrl
+  href: Fluxer.Net.User.html#Fluxer_Net_User_GetAvatarOrDefaultUrl_System_Int32_
+  name: GetAvatarOrDefaultUrl
+  nameWithType: User.GetAvatarOrDefaultUrl
+  fullName: Fluxer.Net.User.GetAvatarOrDefaultUrl
+- uid: Fluxer.Net.IUser.GetAvatarOrDefaultUrl(System.Int32)
+  commentId: M:Fluxer.Net.IUser.GetAvatarOrDefaultUrl(System.Int32)
+  parent: Fluxer.Net.IUser
+  isExternal: true
+  href: Fluxer.Net.IUser.html#Fluxer_Net_IUser_GetAvatarOrDefaultUrl_System_Int32_
+  name: GetAvatarOrDefaultUrl(int)
+  nameWithType: IUser.GetAvatarOrDefaultUrl(int)
+  fullName: Fluxer.Net.IUser.GetAvatarOrDefaultUrl(int)
+  nameWithType.vb: IUser.GetAvatarOrDefaultUrl(Integer)
+  fullName.vb: Fluxer.Net.IUser.GetAvatarOrDefaultUrl(Integer)
+  name.vb: GetAvatarOrDefaultUrl(Integer)
+  spec.csharp:
+  - uid: Fluxer.Net.IUser.GetAvatarOrDefaultUrl(System.Int32)
+    name: GetAvatarOrDefaultUrl
+    href: Fluxer.Net.IUser.html#Fluxer_Net_IUser_GetAvatarOrDefaultUrl_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Fluxer.Net.IUser.GetAvatarOrDefaultUrl(System.Int32)
+    name: GetAvatarOrDefaultUrl
+    href: Fluxer.Net.IUser.html#Fluxer_Net_IUser_GetAvatarOrDefaultUrl_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Fluxer.Net.User.Create*
+  commentId: Overload:Fluxer.Net.User.Create
+  href: Fluxer.Net.User.html#Fluxer_Net_User_Create_Fluxer_Net_FluxerBaseClient_Fluxer_Net_UserJson_
+  name: Create
+  nameWithType: User.Create
+  fullName: Fluxer.Net.User.Create
+- uid: Fluxer.Net.FluxerBaseClient
+  commentId: T:Fluxer.Net.FluxerBaseClient
+  parent: Fluxer.Net
+  href: Fluxer.Net.FluxerBaseClient.html
+  name: FluxerBaseClient
+  nameWithType: FluxerBaseClient
+  fullName: Fluxer.Net.FluxerBaseClient
+- uid: Fluxer.Net.UserJson
+  commentId: T:Fluxer.Net.UserJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.UserJson.html
+  name: UserJson
+  nameWithType: UserJson
+  fullName: Fluxer.Net.UserJson
+- uid: Fluxer.Net.User
+  commentId: T:Fluxer.Net.User
+  parent: Fluxer.Net
+  href: Fluxer.Net.User.html
+  name: User
+  nameWithType: User
+  fullName: Fluxer.Net.User

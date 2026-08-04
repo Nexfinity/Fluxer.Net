@@ -1,0 +1,211 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.IGuildEmoji
+  commentId: T:Fluxer.Net.IGuildEmoji
+  id: IGuildEmoji
+  parent: Fluxer.Net
+  children:
+  - Fluxer.Net.IGuildEmoji.Creator
+  - Fluxer.Net.IGuildEmoji.GetEmojiUrl(System.Int32)
+  langs:
+  - csharp
+  - vb
+  name: IGuildEmoji
+  nameWithType: IGuildEmoji
+  fullName: Fluxer.Net.IGuildEmoji
+  type: Interface
+  source:
+    remote:
+      path: Fluxer.Net/Data/Expressions/IGuildEmoji.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: IGuildEmoji
+    path: ../Fluxer.Net/Data/Expressions/IGuildEmoji.cs
+    startLine: 2
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: 'public interface IGuildEmoji : IEmoji'
+    content.vb: Public Interface IGuildEmoji Inherits IEmoji
+  derivedClasses:
+  - Fluxer.Net.GuildEmoji
+  - Fluxer.Net.GuildEmojiJson
+  inheritedMembers:
+  - Fluxer.Net.IEmoji.Id
+  - Fluxer.Net.IEmoji.Name
+  - Fluxer.Net.IEmoji.IsAnimated
+  - Fluxer.Net.IEmoji.AllowCloning
+- uid: Fluxer.Net.IGuildEmoji.Creator
+  commentId: P:Fluxer.Net.IGuildEmoji.Creator
+  id: Creator
+  parent: Fluxer.Net.IGuildEmoji
+  langs:
+  - csharp
+  - vb
+  name: Creator
+  nameWithType: IGuildEmoji.Creator
+  fullName: Fluxer.Net.IGuildEmoji.Creator
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Expressions/IGuildEmoji.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Creator
+    path: ../Fluxer.Net/Data/Expressions/IGuildEmoji.cs
+    startLine: 7
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The user that created the emoji.
+  example: []
+  syntax:
+    content: IUser? Creator { get; }
+    parameters: []
+    return:
+      type: Fluxer.Net.IUser
+    content.vb: ReadOnly Property Creator As IUser
+  overload: Fluxer.Net.IGuildEmoji.Creator*
+- uid: Fluxer.Net.IGuildEmoji.GetEmojiUrl(System.Int32)
+  commentId: M:Fluxer.Net.IGuildEmoji.GetEmojiUrl(System.Int32)
+  id: GetEmojiUrl(System.Int32)
+  parent: Fluxer.Net.IGuildEmoji
+  langs:
+  - csharp
+  - vb
+  name: GetEmojiUrl(int)
+  nameWithType: IGuildEmoji.GetEmojiUrl(int)
+  fullName: Fluxer.Net.IGuildEmoji.GetEmojiUrl(int)
+  type: Method
+  source:
+    remote:
+      path: Fluxer.Net/Data/Expressions/IGuildEmoji.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: GetEmojiUrl
+    path: ../Fluxer.Net/Data/Expressions/IGuildEmoji.cs
+    startLine: 12
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Get the emoji's image.
+  example: []
+  syntax:
+    content: string GetEmojiUrl(int size)
+    parameters:
+    - id: size
+      type: System.Int32
+    return:
+      type: System.String
+    content.vb: Function GetEmojiUrl(size As Integer) As String
+  overload: Fluxer.Net.IGuildEmoji.GetEmojiUrl*
+  nameWithType.vb: IGuildEmoji.GetEmojiUrl(Integer)
+  fullName.vb: Fluxer.Net.IGuildEmoji.GetEmojiUrl(Integer)
+  name.vb: GetEmojiUrl(Integer)
+references:
+- uid: Fluxer.Net
+  commentId: N:Fluxer.Net
+  href: Fluxer.html
+  name: Fluxer.Net
+  nameWithType: Fluxer.Net
+  fullName: Fluxer.Net
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+- uid: Fluxer.Net.IEmoji.Id
+  commentId: P:Fluxer.Net.IEmoji.Id
+  parent: Fluxer.Net.IEmoji
+  href: Fluxer.Net.IEmoji.html#Fluxer_Net_IEmoji_Id
+  name: Id
+  nameWithType: IEmoji.Id
+  fullName: Fluxer.Net.IEmoji.Id
+- uid: Fluxer.Net.IEmoji.Name
+  commentId: P:Fluxer.Net.IEmoji.Name
+  parent: Fluxer.Net.IEmoji
+  href: Fluxer.Net.IEmoji.html#Fluxer_Net_IEmoji_Name
+  name: Name
+  nameWithType: IEmoji.Name
+  fullName: Fluxer.Net.IEmoji.Name
+- uid: Fluxer.Net.IEmoji.IsAnimated
+  commentId: P:Fluxer.Net.IEmoji.IsAnimated
+  parent: Fluxer.Net.IEmoji
+  href: Fluxer.Net.IEmoji.html#Fluxer_Net_IEmoji_IsAnimated
+  name: IsAnimated
+  nameWithType: IEmoji.IsAnimated
+  fullName: Fluxer.Net.IEmoji.IsAnimated
+- uid: Fluxer.Net.IEmoji.AllowCloning
+  commentId: P:Fluxer.Net.IEmoji.AllowCloning
+  parent: Fluxer.Net.IEmoji
+  href: Fluxer.Net.IEmoji.html#Fluxer_Net_IEmoji_AllowCloning
+  name: AllowCloning
+  nameWithType: IEmoji.AllowCloning
+  fullName: Fluxer.Net.IEmoji.AllowCloning
+- uid: Fluxer.Net.IEmoji
+  commentId: T:Fluxer.Net.IEmoji
+  parent: Fluxer.Net
+  href: Fluxer.Net.IEmoji.html
+  name: IEmoji
+  nameWithType: IEmoji
+  fullName: Fluxer.Net.IEmoji
+- uid: Fluxer.Net.IGuildEmoji.Creator*
+  commentId: Overload:Fluxer.Net.IGuildEmoji.Creator
+  href: Fluxer.Net.IGuildEmoji.html#Fluxer_Net_IGuildEmoji_Creator
+  name: Creator
+  nameWithType: IGuildEmoji.Creator
+  fullName: Fluxer.Net.IGuildEmoji.Creator
+- uid: Fluxer.Net.IUser
+  commentId: T:Fluxer.Net.IUser
+  parent: Fluxer.Net
+  href: Fluxer.Net.IUser.html
+  name: IUser
+  nameWithType: IUser
+  fullName: Fluxer.Net.IUser
+- uid: Fluxer.Net.IGuildEmoji.GetEmojiUrl*
+  commentId: Overload:Fluxer.Net.IGuildEmoji.GetEmojiUrl
+  href: Fluxer.Net.IGuildEmoji.html#Fluxer_Net_IGuildEmoji_GetEmojiUrl_System_Int32_
+  name: GetEmojiUrl
+  nameWithType: IGuildEmoji.GetEmojiUrl
+  fullName: Fluxer.Net.IGuildEmoji.GetEmojiUrl
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System

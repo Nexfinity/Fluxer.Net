@@ -1,0 +1,1031 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.UserFlags
+  commentId: T:Fluxer.Net.UserFlags
+  id: UserFlags
+  parent: Fluxer.Net
+  children:
+  - Fluxer.Net.UserFlags.AppStoreReviewer
+  - Fluxer.Net.UserFlags.BotSanitized
+  - Fluxer.Net.UserFlags.BugHunter
+  - Fluxer.Net.UserFlags.CtpMember
+  - Fluxer.Net.UserFlags.Deleted
+  - Fluxer.Net.UserFlags.Disabled
+  - Fluxer.Net.UserFlags.DisabledSuspiciousActivity
+  - Fluxer.Net.UserFlags.DmHistoryBackfilled
+  - Fluxer.Net.UserFlags.FriendlyBot
+  - Fluxer.Net.UserFlags.FriendlyBotManualApproval
+  - Fluxer.Net.UserFlags.HasDismissedPremiumOnboarding
+  - Fluxer.Net.UserFlags.HasRelationshipsIndexed
+  - Fluxer.Net.UserFlags.HasSessionStarted
+  - Fluxer.Net.UserFlags.HighGlobalRateLimit
+  - Fluxer.Net.UserFlags.MessagesByAuthorBackfilled
+  - Fluxer.Net.UserFlags.None
+  - Fluxer.Net.UserFlags.Partner
+  - Fluxer.Net.UserFlags.PendingManualVerification
+  - Fluxer.Net.UserFlags.PremiumBadgeHidden
+  - Fluxer.Net.UserFlags.PremiumBadgeMasked
+  - Fluxer.Net.UserFlags.PremiumBadgeSequenceHidden
+  - Fluxer.Net.UserFlags.PremiumBadgeTimestampHidden
+  - Fluxer.Net.UserFlags.PremiumDiscriminator
+  - Fluxer.Net.UserFlags.PremiumEnabledOverride
+  - Fluxer.Net.UserFlags.PremiumPerksSanitized
+  - Fluxer.Net.UserFlags.PremiumPurchaseDisabled
+  - Fluxer.Net.UserFlags.RateLimitBypass
+  - Fluxer.Net.UserFlags.ReportBanned
+  - Fluxer.Net.UserFlags.SelfDeleted
+  - Fluxer.Net.UserFlags.Staff
+  - Fluxer.Net.UserFlags.StaffHidden
+  - Fluxer.Net.UserFlags.UsedMobileClient
+  - Fluxer.Net.UserFlags.VerifiedNotUnderage
+  langs:
+  - csharp
+  - vb
+  name: UserFlags
+  nameWithType: UserFlags
+  fullName: Fluxer.Net.UserFlags
+  type: Enum
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/UserFlags.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: UserFlags
+    path: ../Fluxer.Net/Data/Users/UserFlags.cs
+    startLine: 9
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Represents user account flags and badges in Fluxer. Multiple flags can be combined using bitwise OR.
+  remarks: >-
+    User flags indicate special properties, badges, or statuses associated with a user account.
+
+    These are typically set by the Fluxer platform and not directly modifiable by users.
+  example: []
+  syntax:
+    content: >-
+      [Flags]
+
+      public enum UserFlags : ulong
+    content.vb: >-
+      <Flags>
+
+      Public Enum UserFlags As ULong
+  attributes:
+  - type: System.FlagsAttribute
+    ctor: System.FlagsAttribute.#ctor
+    arguments: []
+- uid: Fluxer.Net.UserFlags.None
+  commentId: F:Fluxer.Net.UserFlags.None
+  id: None
+  parent: Fluxer.Net.UserFlags
+  langs:
+  - csharp
+  - vb
+  name: None
+  nameWithType: UserFlags.None
+  fullName: Fluxer.Net.UserFlags.None
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/UserFlags.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: None
+    path: ../Fluxer.Net/Data/Users/UserFlags.cs
+    startLine: 15
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: No flags set.
+  example: []
+  syntax:
+    content: None = 0
+    return:
+      type: Fluxer.Net.UserFlags
+- uid: Fluxer.Net.UserFlags.Staff
+  commentId: F:Fluxer.Net.UserFlags.Staff
+  id: Staff
+  parent: Fluxer.Net.UserFlags
+  langs:
+  - csharp
+  - vb
+  name: Staff
+  nameWithType: UserFlags.Staff
+  fullName: Fluxer.Net.UserFlags.Staff
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/UserFlags.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Staff
+    path: ../Fluxer.Net/Data/Users/UserFlags.cs
+    startLine: 20
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Fluxer staff member badge.
+  example: []
+  syntax:
+    content: Staff = 1
+    return:
+      type: Fluxer.Net.UserFlags
+- uid: Fluxer.Net.UserFlags.CtpMember
+  commentId: F:Fluxer.Net.UserFlags.CtpMember
+  id: CtpMember
+  parent: Fluxer.Net.UserFlags
+  langs:
+  - csharp
+  - vb
+  name: CtpMember
+  nameWithType: UserFlags.CtpMember
+  fullName: Fluxer.Net.UserFlags.CtpMember
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/UserFlags.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: CtpMember
+    path: ../Fluxer.Net/Data/Users/UserFlags.cs
+    startLine: 25
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Community Testing Program (CTP) member badge.
+  example: []
+  syntax:
+    content: CtpMember = 2
+    return:
+      type: Fluxer.Net.UserFlags
+- uid: Fluxer.Net.UserFlags.Partner
+  commentId: F:Fluxer.Net.UserFlags.Partner
+  id: Partner
+  parent: Fluxer.Net.UserFlags
+  langs:
+  - csharp
+  - vb
+  name: Partner
+  nameWithType: UserFlags.Partner
+  fullName: Fluxer.Net.UserFlags.Partner
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/UserFlags.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Partner
+    path: ../Fluxer.Net/Data/Users/UserFlags.cs
+    startLine: 30
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Fluxer partner badge.
+  example: []
+  syntax:
+    content: Partner = 4
+    return:
+      type: Fluxer.Net.UserFlags
+- uid: Fluxer.Net.UserFlags.BugHunter
+  commentId: F:Fluxer.Net.UserFlags.BugHunter
+  id: BugHunter
+  parent: Fluxer.Net.UserFlags
+  langs:
+  - csharp
+  - vb
+  name: BugHunter
+  nameWithType: UserFlags.BugHunter
+  fullName: Fluxer.Net.UserFlags.BugHunter
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/UserFlags.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: BugHunter
+    path: ../Fluxer.Net/Data/Users/UserFlags.cs
+    startLine: 35
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Bug hunter badge (found and reported bugs).
+  example: []
+  syntax:
+    content: BugHunter = 8
+    return:
+      type: Fluxer.Net.UserFlags
+- uid: Fluxer.Net.UserFlags.FriendlyBot
+  commentId: F:Fluxer.Net.UserFlags.FriendlyBot
+  id: FriendlyBot
+  parent: Fluxer.Net.UserFlags
+  langs:
+  - csharp
+  - vb
+  name: FriendlyBot
+  nameWithType: UserFlags.FriendlyBot
+  fullName: Fluxer.Net.UserFlags.FriendlyBot
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/UserFlags.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: FriendlyBot
+    path: ../Fluxer.Net/Data/Users/UserFlags.cs
+    startLine: 40
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Bot accepts friend requests from users.
+  example: []
+  syntax:
+    content: FriendlyBot = 16
+    return:
+      type: Fluxer.Net.UserFlags
+- uid: Fluxer.Net.UserFlags.FriendlyBotManualApproval
+  commentId: F:Fluxer.Net.UserFlags.FriendlyBotManualApproval
+  id: FriendlyBotManualApproval
+  parent: Fluxer.Net.UserFlags
+  langs:
+  - csharp
+  - vb
+  name: FriendlyBotManualApproval
+  nameWithType: UserFlags.FriendlyBotManualApproval
+  fullName: Fluxer.Net.UserFlags.FriendlyBotManualApproval
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/UserFlags.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: FriendlyBotManualApproval
+    path: ../Fluxer.Net/Data/Users/UserFlags.cs
+    startLine: 45
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Bot requires manual approval for friend requests.
+  example: []
+  syntax:
+    content: FriendlyBotManualApproval = 32
+    return:
+      type: Fluxer.Net.UserFlags
+- uid: Fluxer.Net.UserFlags.HighGlobalRateLimit
+  commentId: F:Fluxer.Net.UserFlags.HighGlobalRateLimit
+  id: HighGlobalRateLimit
+  parent: Fluxer.Net.UserFlags
+  langs:
+  - csharp
+  - vb
+  name: HighGlobalRateLimit
+  nameWithType: UserFlags.HighGlobalRateLimit
+  fullName: Fluxer.Net.UserFlags.HighGlobalRateLimit
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/UserFlags.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: HighGlobalRateLimit
+    path: ../Fluxer.Net/Data/Users/UserFlags.cs
+    startLine: 50
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: User has a higher global rate limit (internal flag).
+  example: []
+  syntax:
+    content: HighGlobalRateLimit = 8589934592
+    return:
+      type: Fluxer.Net.UserFlags
+- uid: Fluxer.Net.UserFlags.Deleted
+  commentId: F:Fluxer.Net.UserFlags.Deleted
+  id: Deleted
+  parent: Fluxer.Net.UserFlags
+  langs:
+  - csharp
+  - vb
+  name: Deleted
+  nameWithType: UserFlags.Deleted
+  fullName: Fluxer.Net.UserFlags.Deleted
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/UserFlags.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Deleted
+    path: ../Fluxer.Net/Data/Users/UserFlags.cs
+    startLine: 55
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: User account has been deleted (internal flag).
+  example: []
+  syntax:
+    content: Deleted = 17179869184
+    return:
+      type: Fluxer.Net.UserFlags
+- uid: Fluxer.Net.UserFlags.DisabledSuspiciousActivity
+  commentId: F:Fluxer.Net.UserFlags.DisabledSuspiciousActivity
+  id: DisabledSuspiciousActivity
+  parent: Fluxer.Net.UserFlags
+  langs:
+  - csharp
+  - vb
+  name: DisabledSuspiciousActivity
+  nameWithType: UserFlags.DisabledSuspiciousActivity
+  fullName: Fluxer.Net.UserFlags.DisabledSuspiciousActivity
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/UserFlags.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: DisabledSuspiciousActivity
+    path: ../Fluxer.Net/Data/Users/UserFlags.cs
+    startLine: 60
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Account disabled due to suspicious activity (internal flag).
+  example: []
+  syntax:
+    content: DisabledSuspiciousActivity = 34359738368
+    return:
+      type: Fluxer.Net.UserFlags
+- uid: Fluxer.Net.UserFlags.SelfDeleted
+  commentId: F:Fluxer.Net.UserFlags.SelfDeleted
+  id: SelfDeleted
+  parent: Fluxer.Net.UserFlags
+  langs:
+  - csharp
+  - vb
+  name: SelfDeleted
+  nameWithType: UserFlags.SelfDeleted
+  fullName: Fluxer.Net.UserFlags.SelfDeleted
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/UserFlags.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: SelfDeleted
+    path: ../Fluxer.Net/Data/Users/UserFlags.cs
+    startLine: 65
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: User self-deleted their account (internal flag).
+  example: []
+  syntax:
+    content: SelfDeleted = 68719476736
+    return:
+      type: Fluxer.Net.UserFlags
+- uid: Fluxer.Net.UserFlags.PremiumDiscriminator
+  commentId: F:Fluxer.Net.UserFlags.PremiumDiscriminator
+  id: PremiumDiscriminator
+  parent: Fluxer.Net.UserFlags
+  langs:
+  - csharp
+  - vb
+  name: PremiumDiscriminator
+  nameWithType: UserFlags.PremiumDiscriminator
+  fullName: Fluxer.Net.UserFlags.PremiumDiscriminator
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/UserFlags.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: PremiumDiscriminator
+    path: ../Fluxer.Net/Data/Users/UserFlags.cs
+    startLine: 70
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: User has a premium discriminator (custom tag number).
+  example: []
+  syntax:
+    content: PremiumDiscriminator = 137438953472
+    return:
+      type: Fluxer.Net.UserFlags
+- uid: Fluxer.Net.UserFlags.Disabled
+  commentId: F:Fluxer.Net.UserFlags.Disabled
+  id: Disabled
+  parent: Fluxer.Net.UserFlags
+  langs:
+  - csharp
+  - vb
+  name: Disabled
+  nameWithType: UserFlags.Disabled
+  fullName: Fluxer.Net.UserFlags.Disabled
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/UserFlags.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Disabled
+    path: ../Fluxer.Net/Data/Users/UserFlags.cs
+    startLine: 75
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: User account is disabled (internal flag).
+  example: []
+  syntax:
+    content: Disabled = 274877906944
+    return:
+      type: Fluxer.Net.UserFlags
+- uid: Fluxer.Net.UserFlags.HasSessionStarted
+  commentId: F:Fluxer.Net.UserFlags.HasSessionStarted
+  id: HasSessionStarted
+  parent: Fluxer.Net.UserFlags
+  langs:
+  - csharp
+  - vb
+  name: HasSessionStarted
+  nameWithType: UserFlags.HasSessionStarted
+  fullName: Fluxer.Net.UserFlags.HasSessionStarted
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/UserFlags.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: HasSessionStarted
+    path: ../Fluxer.Net/Data/Users/UserFlags.cs
+    startLine: 80
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: User has started a session (internal flag).
+  example: []
+  syntax:
+    content: HasSessionStarted = 549755813888
+    return:
+      type: Fluxer.Net.UserFlags
+- uid: Fluxer.Net.UserFlags.PremiumBadgeHidden
+  commentId: F:Fluxer.Net.UserFlags.PremiumBadgeHidden
+  id: PremiumBadgeHidden
+  parent: Fluxer.Net.UserFlags
+  langs:
+  - csharp
+  - vb
+  name: PremiumBadgeHidden
+  nameWithType: UserFlags.PremiumBadgeHidden
+  fullName: Fluxer.Net.UserFlags.PremiumBadgeHidden
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/UserFlags.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: PremiumBadgeHidden
+    path: ../Fluxer.Net/Data/Users/UserFlags.cs
+    startLine: 85
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Premium badge is hidden in user profile (user preference).
+  example: []
+  syntax:
+    content: PremiumBadgeHidden = 1099511627776
+    return:
+      type: Fluxer.Net.UserFlags
+- uid: Fluxer.Net.UserFlags.PremiumBadgeMasked
+  commentId: F:Fluxer.Net.UserFlags.PremiumBadgeMasked
+  id: PremiumBadgeMasked
+  parent: Fluxer.Net.UserFlags
+  langs:
+  - csharp
+  - vb
+  name: PremiumBadgeMasked
+  nameWithType: UserFlags.PremiumBadgeMasked
+  fullName: Fluxer.Net.UserFlags.PremiumBadgeMasked
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/UserFlags.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: PremiumBadgeMasked
+    path: ../Fluxer.Net/Data/Users/UserFlags.cs
+    startLine: 90
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Premium badge is masked/anonymized (internal flag).
+  example: []
+  syntax:
+    content: PremiumBadgeMasked = 2199023255552
+    return:
+      type: Fluxer.Net.UserFlags
+- uid: Fluxer.Net.UserFlags.PremiumBadgeTimestampHidden
+  commentId: F:Fluxer.Net.UserFlags.PremiumBadgeTimestampHidden
+  id: PremiumBadgeTimestampHidden
+  parent: Fluxer.Net.UserFlags
+  langs:
+  - csharp
+  - vb
+  name: PremiumBadgeTimestampHidden
+  nameWithType: UserFlags.PremiumBadgeTimestampHidden
+  fullName: Fluxer.Net.UserFlags.PremiumBadgeTimestampHidden
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/UserFlags.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: PremiumBadgeTimestampHidden
+    path: ../Fluxer.Net/Data/Users/UserFlags.cs
+    startLine: 95
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Premium badge timestamp is hidden (user preference).
+  example: []
+  syntax:
+    content: PremiumBadgeTimestampHidden = 4398046511104
+    return:
+      type: Fluxer.Net.UserFlags
+- uid: Fluxer.Net.UserFlags.PremiumBadgeSequenceHidden
+  commentId: F:Fluxer.Net.UserFlags.PremiumBadgeSequenceHidden
+  id: PremiumBadgeSequenceHidden
+  parent: Fluxer.Net.UserFlags
+  langs:
+  - csharp
+  - vb
+  name: PremiumBadgeSequenceHidden
+  nameWithType: UserFlags.PremiumBadgeSequenceHidden
+  fullName: Fluxer.Net.UserFlags.PremiumBadgeSequenceHidden
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/UserFlags.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: PremiumBadgeSequenceHidden
+    path: ../Fluxer.Net/Data/Users/UserFlags.cs
+    startLine: 100
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Premium badge sequence/tier is hidden (user preference).
+  example: []
+  syntax:
+    content: PremiumBadgeSequenceHidden = 8796093022208
+    return:
+      type: Fluxer.Net.UserFlags
+- uid: Fluxer.Net.UserFlags.PremiumPerksSanitized
+  commentId: F:Fluxer.Net.UserFlags.PremiumPerksSanitized
+  id: PremiumPerksSanitized
+  parent: Fluxer.Net.UserFlags
+  langs:
+  - csharp
+  - vb
+  name: PremiumPerksSanitized
+  nameWithType: UserFlags.PremiumPerksSanitized
+  fullName: Fluxer.Net.UserFlags.PremiumPerksSanitized
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/UserFlags.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: PremiumPerksSanitized
+    path: ../Fluxer.Net/Data/Users/UserFlags.cs
+    startLine: 105
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Premium perks information is sanitized/filtered (internal flag).
+  example: []
+  syntax:
+    content: PremiumPerksSanitized = 17592186044416
+    return:
+      type: Fluxer.Net.UserFlags
+- uid: Fluxer.Net.UserFlags.PremiumPurchaseDisabled
+  commentId: F:Fluxer.Net.UserFlags.PremiumPurchaseDisabled
+  id: PremiumPurchaseDisabled
+  parent: Fluxer.Net.UserFlags
+  langs:
+  - csharp
+  - vb
+  name: PremiumPurchaseDisabled
+  nameWithType: UserFlags.PremiumPurchaseDisabled
+  fullName: Fluxer.Net.UserFlags.PremiumPurchaseDisabled
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/UserFlags.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: PremiumPurchaseDisabled
+    path: ../Fluxer.Net/Data/Users/UserFlags.cs
+    startLine: 110
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Premium purchase is disabled for this user (internal flag).
+  example: []
+  syntax:
+    content: PremiumPurchaseDisabled = 35184372088832
+    return:
+      type: Fluxer.Net.UserFlags
+- uid: Fluxer.Net.UserFlags.PremiumEnabledOverride
+  commentId: F:Fluxer.Net.UserFlags.PremiumEnabledOverride
+  id: PremiumEnabledOverride
+  parent: Fluxer.Net.UserFlags
+  langs:
+  - csharp
+  - vb
+  name: PremiumEnabledOverride
+  nameWithType: UserFlags.PremiumEnabledOverride
+  fullName: Fluxer.Net.UserFlags.PremiumEnabledOverride
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/UserFlags.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: PremiumEnabledOverride
+    path: ../Fluxer.Net/Data/Users/UserFlags.cs
+    startLine: 115
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Premium enabled via override (admin/staff action, internal flag).
+  example: []
+  syntax:
+    content: PremiumEnabledOverride = 70368744177664
+    return:
+      type: Fluxer.Net.UserFlags
+- uid: Fluxer.Net.UserFlags.RateLimitBypass
+  commentId: F:Fluxer.Net.UserFlags.RateLimitBypass
+  id: RateLimitBypass
+  parent: Fluxer.Net.UserFlags
+  langs:
+  - csharp
+  - vb
+  name: RateLimitBypass
+  nameWithType: UserFlags.RateLimitBypass
+  fullName: Fluxer.Net.UserFlags.RateLimitBypass
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/UserFlags.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: RateLimitBypass
+    path: ../Fluxer.Net/Data/Users/UserFlags.cs
+    startLine: 120
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: User can bypass rate limits (staff/special accounts, internal flag).
+  example: []
+  syntax:
+    content: RateLimitBypass = 140737488355328
+    return:
+      type: Fluxer.Net.UserFlags
+- uid: Fluxer.Net.UserFlags.ReportBanned
+  commentId: F:Fluxer.Net.UserFlags.ReportBanned
+  id: ReportBanned
+  parent: Fluxer.Net.UserFlags
+  langs:
+  - csharp
+  - vb
+  name: ReportBanned
+  nameWithType: UserFlags.ReportBanned
+  fullName: Fluxer.Net.UserFlags.ReportBanned
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/UserFlags.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: ReportBanned
+    path: ../Fluxer.Net/Data/Users/UserFlags.cs
+    startLine: 125
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: User is banned from submitting reports (internal flag).
+  example: []
+  syntax:
+    content: ReportBanned = 281474976710656
+    return:
+      type: Fluxer.Net.UserFlags
+- uid: Fluxer.Net.UserFlags.VerifiedNotUnderage
+  commentId: F:Fluxer.Net.UserFlags.VerifiedNotUnderage
+  id: VerifiedNotUnderage
+  parent: Fluxer.Net.UserFlags
+  langs:
+  - csharp
+  - vb
+  name: VerifiedNotUnderage
+  nameWithType: UserFlags.VerifiedNotUnderage
+  fullName: Fluxer.Net.UserFlags.VerifiedNotUnderage
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/UserFlags.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: VerifiedNotUnderage
+    path: ../Fluxer.Net/Data/Users/UserFlags.cs
+    startLine: 130
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: User is verified as not underage (internal flag).
+  example: []
+  syntax:
+    content: VerifiedNotUnderage = 562949953421312
+    return:
+      type: Fluxer.Net.UserFlags
+- uid: Fluxer.Net.UserFlags.PendingManualVerification
+  commentId: F:Fluxer.Net.UserFlags.PendingManualVerification
+  id: PendingManualVerification
+  parent: Fluxer.Net.UserFlags
+  langs:
+  - csharp
+  - vb
+  name: PendingManualVerification
+  nameWithType: UserFlags.PendingManualVerification
+  fullName: Fluxer.Net.UserFlags.PendingManualVerification
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/UserFlags.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: PendingManualVerification
+    path: ../Fluxer.Net/Data/Users/UserFlags.cs
+    startLine: 135
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: User account pending manual verification (internal flag).
+  example: []
+  syntax:
+    content: PendingManualVerification = 1125899906842624
+    return:
+      type: Fluxer.Net.UserFlags
+- uid: Fluxer.Net.UserFlags.HasDismissedPremiumOnboarding
+  commentId: F:Fluxer.Net.UserFlags.HasDismissedPremiumOnboarding
+  id: HasDismissedPremiumOnboarding
+  parent: Fluxer.Net.UserFlags
+  langs:
+  - csharp
+  - vb
+  name: HasDismissedPremiumOnboarding
+  nameWithType: UserFlags.HasDismissedPremiumOnboarding
+  fullName: Fluxer.Net.UserFlags.HasDismissedPremiumOnboarding
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/UserFlags.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: HasDismissedPremiumOnboarding
+    path: ../Fluxer.Net/Data/Users/UserFlags.cs
+    startLine: 140
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: User has dismissed the premium onboarding flow (user preference).
+  example: []
+  syntax:
+    content: HasDismissedPremiumOnboarding = 2251799813685248
+    return:
+      type: Fluxer.Net.UserFlags
+- uid: Fluxer.Net.UserFlags.UsedMobileClient
+  commentId: F:Fluxer.Net.UserFlags.UsedMobileClient
+  id: UsedMobileClient
+  parent: Fluxer.Net.UserFlags
+  langs:
+  - csharp
+  - vb
+  name: UsedMobileClient
+  nameWithType: UserFlags.UsedMobileClient
+  fullName: Fluxer.Net.UserFlags.UsedMobileClient
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/UserFlags.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: UsedMobileClient
+    path: ../Fluxer.Net/Data/Users/UserFlags.cs
+    startLine: 145
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: User has used a mobile client (internal flag)
+  example: []
+  syntax:
+    content: UsedMobileClient = 4503599627370496
+    return:
+      type: Fluxer.Net.UserFlags
+- uid: Fluxer.Net.UserFlags.AppStoreReviewer
+  commentId: F:Fluxer.Net.UserFlags.AppStoreReviewer
+  id: AppStoreReviewer
+  parent: Fluxer.Net.UserFlags
+  langs:
+  - csharp
+  - vb
+  name: AppStoreReviewer
+  nameWithType: UserFlags.AppStoreReviewer
+  fullName: Fluxer.Net.UserFlags.AppStoreReviewer
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/UserFlags.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: AppStoreReviewer
+    path: ../Fluxer.Net/Data/Users/UserFlags.cs
+    startLine: 150
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: User is an app store reviewer (internal flag)
+  example: []
+  syntax:
+    content: AppStoreReviewer = 9007199254740992
+    return:
+      type: Fluxer.Net.UserFlags
+- uid: Fluxer.Net.UserFlags.DmHistoryBackfilled
+  commentId: F:Fluxer.Net.UserFlags.DmHistoryBackfilled
+  id: DmHistoryBackfilled
+  parent: Fluxer.Net.UserFlags
+  langs:
+  - csharp
+  - vb
+  name: DmHistoryBackfilled
+  nameWithType: UserFlags.DmHistoryBackfilled
+  fullName: Fluxer.Net.UserFlags.DmHistoryBackfilled
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/UserFlags.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: DmHistoryBackfilled
+    path: ../Fluxer.Net/Data/Users/UserFlags.cs
+    startLine: 155
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: User DM history has been backfilled (internal flag)
+  example: []
+  syntax:
+    content: DmHistoryBackfilled = 18014398509481984
+    return:
+      type: Fluxer.Net.UserFlags
+- uid: Fluxer.Net.UserFlags.HasRelationshipsIndexed
+  commentId: F:Fluxer.Net.UserFlags.HasRelationshipsIndexed
+  id: HasRelationshipsIndexed
+  parent: Fluxer.Net.UserFlags
+  langs:
+  - csharp
+  - vb
+  name: HasRelationshipsIndexed
+  nameWithType: UserFlags.HasRelationshipsIndexed
+  fullName: Fluxer.Net.UserFlags.HasRelationshipsIndexed
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/UserFlags.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: HasRelationshipsIndexed
+    path: ../Fluxer.Net/Data/Users/UserFlags.cs
+    startLine: 160
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: User relationships have been indexed (internal flag)
+  example: []
+  syntax:
+    content: HasRelationshipsIndexed = 36028797018963968
+    return:
+      type: Fluxer.Net.UserFlags
+- uid: Fluxer.Net.UserFlags.MessagesByAuthorBackfilled
+  commentId: F:Fluxer.Net.UserFlags.MessagesByAuthorBackfilled
+  id: MessagesByAuthorBackfilled
+  parent: Fluxer.Net.UserFlags
+  langs:
+  - csharp
+  - vb
+  name: MessagesByAuthorBackfilled
+  nameWithType: UserFlags.MessagesByAuthorBackfilled
+  fullName: Fluxer.Net.UserFlags.MessagesByAuthorBackfilled
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/UserFlags.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: MessagesByAuthorBackfilled
+    path: ../Fluxer.Net/Data/Users/UserFlags.cs
+    startLine: 165
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Messages by this author have been backfilled (internal flag)
+  example: []
+  syntax:
+    content: MessagesByAuthorBackfilled = 72057594037927936
+    return:
+      type: Fluxer.Net.UserFlags
+- uid: Fluxer.Net.UserFlags.StaffHidden
+  commentId: F:Fluxer.Net.UserFlags.StaffHidden
+  id: StaffHidden
+  parent: Fluxer.Net.UserFlags
+  langs:
+  - csharp
+  - vb
+  name: StaffHidden
+  nameWithType: UserFlags.StaffHidden
+  fullName: Fluxer.Net.UserFlags.StaffHidden
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/UserFlags.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: StaffHidden
+    path: ../Fluxer.Net/Data/Users/UserFlags.cs
+    startLine: 170
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: User staff status is hidden from public flags (internal flag)
+  example: []
+  syntax:
+    content: StaffHidden = 144115188075855872
+    return:
+      type: Fluxer.Net.UserFlags
+- uid: Fluxer.Net.UserFlags.BotSanitized
+  commentId: F:Fluxer.Net.UserFlags.BotSanitized
+  id: BotSanitized
+  parent: Fluxer.Net.UserFlags
+  langs:
+  - csharp
+  - vb
+  name: BotSanitized
+  nameWithType: UserFlags.BotSanitized
+  fullName: Fluxer.Net.UserFlags.BotSanitized
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/UserFlags.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: BotSanitized
+    path: ../Fluxer.Net/Data/Users/UserFlags.cs
+    startLine: 175
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: User's owned bot discriminators have been sanitized (internal flag)
+  example: []
+  syntax:
+    content: BotSanitized = 288230376151711744
+    return:
+      type: Fluxer.Net.UserFlags
+references:
+- uid: Fluxer.Net
+  commentId: N:Fluxer.Net
+  href: Fluxer.html
+  name: Fluxer.Net
+  nameWithType: Fluxer.Net
+  fullName: Fluxer.Net
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+- uid: Fluxer.Net.UserFlags
+  commentId: T:Fluxer.Net.UserFlags
+  parent: Fluxer.Net
+  href: Fluxer.Net.UserFlags.html
+  name: UserFlags
+  nameWithType: UserFlags
+  fullName: Fluxer.Net.UserFlags

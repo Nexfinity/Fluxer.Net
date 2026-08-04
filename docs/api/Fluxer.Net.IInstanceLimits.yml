@@ -1,0 +1,167 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.IInstanceLimits
+  commentId: T:Fluxer.Net.IInstanceLimits
+  id: IInstanceLimits
+  parent: Fluxer.Net
+  children:
+  - Fluxer.Net.IInstanceLimits.Traits
+  - Fluxer.Net.IInstanceLimits.Version
+  langs:
+  - csharp
+  - vb
+  name: IInstanceLimits
+  nameWithType: IInstanceLimits
+  fullName: Fluxer.Net.IInstanceLimits
+  type: Interface
+  source:
+    remote:
+      path: Fluxer.Net/Data/Misc/IInstance.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: IInstanceLimits
+    path: ../Fluxer.Net/Data/Misc/IInstance.cs
+    startLine: 112
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: public interface IInstanceLimits
+    content.vb: Public Interface IInstanceLimits
+  derivedClasses:
+  - Fluxer.Net.InstanceLimits
+  - Fluxer.Net.InstanceLimitsJson
+- uid: Fluxer.Net.IInstanceLimits.Version
+  commentId: P:Fluxer.Net.IInstanceLimits.Version
+  id: Version
+  parent: Fluxer.Net.IInstanceLimits
+  langs:
+  - csharp
+  - vb
+  name: Version
+  nameWithType: IInstanceLimits.Version
+  fullName: Fluxer.Net.IInstanceLimits.Version
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Misc/IInstance.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Version
+    path: ../Fluxer.Net/Data/Misc/IInstance.cs
+    startLine: 114
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: int Version { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: ReadOnly Property Version As Integer
+  overload: Fluxer.Net.IInstanceLimits.Version*
+- uid: Fluxer.Net.IInstanceLimits.Traits
+  commentId: P:Fluxer.Net.IInstanceLimits.Traits
+  id: Traits
+  parent: Fluxer.Net.IInstanceLimits
+  langs:
+  - csharp
+  - vb
+  name: Traits
+  nameWithType: IInstanceLimits.Traits
+  fullName: Fluxer.Net.IInstanceLimits.Traits
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Misc/IInstance.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Traits
+    path: ../Fluxer.Net/Data/Misc/IInstance.cs
+    startLine: 116
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: string[] Traits { get; }
+    parameters: []
+    return:
+      type: System.String[]
+    content.vb: ReadOnly Property Traits As String()
+  overload: Fluxer.Net.IInstanceLimits.Traits*
+references:
+- uid: Fluxer.Net
+  commentId: N:Fluxer.Net
+  href: Fluxer.html
+  name: Fluxer.Net
+  nameWithType: Fluxer.Net
+  fullName: Fluxer.Net
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+- uid: Fluxer.Net.IInstanceLimits.Version*
+  commentId: Overload:Fluxer.Net.IInstanceLimits.Version
+  href: Fluxer.Net.IInstanceLimits.html#Fluxer_Net_IInstanceLimits_Version
+  name: Version
+  nameWithType: IInstanceLimits.Version
+  fullName: Fluxer.Net.IInstanceLimits.Version
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Fluxer.Net.IInstanceLimits.Traits*
+  commentId: Overload:Fluxer.Net.IInstanceLimits.Traits
+  href: Fluxer.Net.IInstanceLimits.html#Fluxer_Net_IInstanceLimits_Traits
+  name: Traits
+  nameWithType: IInstanceLimits.Traits
+  fullName: Fluxer.Net.IInstanceLimits.Traits
+- uid: System.String[]
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string[]
+  nameWithType: string[]
+  fullName: string[]
+  nameWithType.vb: String()
+  fullName.vb: String()
+  name.vb: String()
+  spec.csharp:
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: (
+  - name: )

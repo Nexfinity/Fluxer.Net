@@ -1,0 +1,377 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.IUserGuildFolder
+  commentId: T:Fluxer.Net.IUserGuildFolder
+  id: IUserGuildFolder
+  parent: Fluxer.Net
+  children:
+  - Fluxer.Net.IUserGuildFolder.Color
+  - Fluxer.Net.IUserGuildFolder.GuildIds
+  - Fluxer.Net.IUserGuildFolder.Id
+  - Fluxer.Net.IUserGuildFolder.Name
+  langs:
+  - csharp
+  - vb
+  name: IUserGuildFolder
+  nameWithType: IUserGuildFolder
+  fullName: Fluxer.Net.IUserGuildFolder
+  type: Interface
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/IUserGuildFolder.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: IUserGuildFolder
+    path: ../Fluxer.Net/Data/Users/IUserGuildFolder.cs
+    startLine: 2
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: public interface IUserGuildFolder
+    content.vb: Public Interface IUserGuildFolder
+  derivedClasses:
+  - Fluxer.Net.UserGuildFolderJson
+- uid: Fluxer.Net.IUserGuildFolder.Id
+  commentId: P:Fluxer.Net.IUserGuildFolder.Id
+  id: Id
+  parent: Fluxer.Net.IUserGuildFolder
+  langs:
+  - csharp
+  - vb
+  name: Id
+  nameWithType: IUserGuildFolder.Id
+  fullName: Fluxer.Net.IUserGuildFolder.Id
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/IUserGuildFolder.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Id
+    path: ../Fluxer.Net/Data/Users/IUserGuildFolder.cs
+    startLine: 4
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: int Id { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: ReadOnly Property Id As Integer
+  overload: Fluxer.Net.IUserGuildFolder.Id*
+- uid: Fluxer.Net.IUserGuildFolder.Name
+  commentId: P:Fluxer.Net.IUserGuildFolder.Name
+  id: Name
+  parent: Fluxer.Net.IUserGuildFolder
+  langs:
+  - csharp
+  - vb
+  name: Name
+  nameWithType: IUserGuildFolder.Name
+  fullName: Fluxer.Net.IUserGuildFolder.Name
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/IUserGuildFolder.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Name
+    path: ../Fluxer.Net/Data/Users/IUserGuildFolder.cs
+    startLine: 6
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: string? Name { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: ReadOnly Property Name As String
+  overload: Fluxer.Net.IUserGuildFolder.Name*
+- uid: Fluxer.Net.IUserGuildFolder.Color
+  commentId: P:Fluxer.Net.IUserGuildFolder.Color
+  id: Color
+  parent: Fluxer.Net.IUserGuildFolder
+  langs:
+  - csharp
+  - vb
+  name: Color
+  nameWithType: IUserGuildFolder.Color
+  fullName: Fluxer.Net.IUserGuildFolder.Color
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/IUserGuildFolder.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Color
+    path: ../Fluxer.Net/Data/Users/IUserGuildFolder.cs
+    startLine: 8
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: int? Color { get; }
+    parameters: []
+    return:
+      type: System.Nullable{System.Int32}
+    content.vb: ReadOnly Property Color As Integer?
+  overload: Fluxer.Net.IUserGuildFolder.Color*
+- uid: Fluxer.Net.IUserGuildFolder.GuildIds
+  commentId: P:Fluxer.Net.IUserGuildFolder.GuildIds
+  id: GuildIds
+  parent: Fluxer.Net.IUserGuildFolder
+  langs:
+  - csharp
+  - vb
+  name: GuildIds
+  nameWithType: IUserGuildFolder.GuildIds
+  fullName: Fluxer.Net.IUserGuildFolder.GuildIds
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/IUserGuildFolder.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: GuildIds
+    path: ../Fluxer.Net/Data/Users/IUserGuildFolder.cs
+    startLine: 10
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: List<ulong>? GuildIds { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.List{System.UInt64}
+    content.vb: ReadOnly Property GuildIds As List(Of ULong)
+  overload: Fluxer.Net.IUserGuildFolder.GuildIds*
+references:
+- uid: Fluxer.Net
+  commentId: N:Fluxer.Net
+  href: Fluxer.html
+  name: Fluxer.Net
+  nameWithType: Fluxer.Net
+  fullName: Fluxer.Net
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+- uid: Fluxer.Net.IUserGuildFolder.Id*
+  commentId: Overload:Fluxer.Net.IUserGuildFolder.Id
+  href: Fluxer.Net.IUserGuildFolder.html#Fluxer_Net_IUserGuildFolder_Id
+  name: Id
+  nameWithType: IUserGuildFolder.Id
+  fullName: Fluxer.Net.IUserGuildFolder.Id
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Fluxer.Net.IUserGuildFolder.Name*
+  commentId: Overload:Fluxer.Net.IUserGuildFolder.Name
+  href: Fluxer.Net.IUserGuildFolder.html#Fluxer_Net_IUserGuildFolder_Name
+  name: Name
+  nameWithType: IUserGuildFolder.Name
+  fullName: Fluxer.Net.IUserGuildFolder.Name
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: Fluxer.Net.IUserGuildFolder.Color*
+  commentId: Overload:Fluxer.Net.IUserGuildFolder.Color
+  href: Fluxer.Net.IUserGuildFolder.html#Fluxer_Net_IUserGuildFolder_Color
+  name: Color
+  nameWithType: IUserGuildFolder.Color
+  fullName: Fluxer.Net.IUserGuildFolder.Color
+- uid: System.Nullable{System.Int32}
+  commentId: T:System.Nullable{System.Int32}
+  parent: System
+  definition: System.Nullable`1
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int?
+  nameWithType: int?
+  fullName: int?
+  nameWithType.vb: Integer?
+  fullName.vb: Integer?
+  name.vb: Integer?
+  spec.csharp:
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
+  spec.vb:
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: Fluxer.Net.IUserGuildFolder.GuildIds*
+  commentId: Overload:Fluxer.Net.IUserGuildFolder.GuildIds
+  href: Fluxer.Net.IUserGuildFolder.html#Fluxer_Net_IUserGuildFolder_GuildIds
+  name: GuildIds
+  nameWithType: IUserGuildFolder.GuildIds
+  fullName: Fluxer.Net.IUserGuildFolder.GuildIds
+- uid: System.Collections.Generic.List{System.UInt64}
+  commentId: T:System.Collections.Generic.List{System.UInt64}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<ulong>
+  nameWithType: List<ulong>
+  fullName: System.Collections.Generic.List<ulong>
+  nameWithType.vb: List(Of ULong)
+  fullName.vb: System.Collections.Generic.List(Of ULong)
+  name.vb: List(Of ULong)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: System.UInt64
+    name: ulong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.UInt64
+    name: ULong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic

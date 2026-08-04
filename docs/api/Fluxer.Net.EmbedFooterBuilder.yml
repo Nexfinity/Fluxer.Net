@@ -1,0 +1,643 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.EmbedFooterBuilder
+  commentId: T:Fluxer.Net.EmbedFooterBuilder
+  id: EmbedFooterBuilder
+  parent: Fluxer.Net
+  children:
+  - Fluxer.Net.EmbedFooterBuilder.Build
+  - Fluxer.Net.EmbedFooterBuilder.IconUrl
+  - Fluxer.Net.EmbedFooterBuilder.MaxFooterTextLength
+  - Fluxer.Net.EmbedFooterBuilder.Text
+  - Fluxer.Net.EmbedFooterBuilder.WithIconUrl(System.String)
+  - Fluxer.Net.EmbedFooterBuilder.WithText(System.String)
+  langs:
+  - csharp
+  - vb
+  name: EmbedFooterBuilder
+  nameWithType: EmbedFooterBuilder
+  fullName: Fluxer.Net.EmbedFooterBuilder
+  type: Class
+  source:
+    remote:
+      path: Fluxer.Net/Data/Embeds/EmbedFooterBuilder.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: EmbedFooterBuilder
+    path: ../Fluxer.Net/Data/Embeds/EmbedFooterBuilder.cs
+    startLine: 8
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: >-
+    A builder for creating embed footers with validation.
+
+    Based on Discord.Net's EmbedFooterBuilder implementation.
+  example: []
+  syntax:
+    content: public class EmbedFooterBuilder
+    content.vb: Public Class EmbedFooterBuilder
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: Fluxer.Net.EmbedFooterBuilder.MaxFooterTextLength
+  commentId: P:Fluxer.Net.EmbedFooterBuilder.MaxFooterTextLength
+  id: MaxFooterTextLength
+  parent: Fluxer.Net.EmbedFooterBuilder
+  langs:
+  - csharp
+  - vb
+  name: MaxFooterTextLength
+  nameWithType: EmbedFooterBuilder.MaxFooterTextLength
+  fullName: Fluxer.Net.EmbedFooterBuilder.MaxFooterTextLength
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Embeds/EmbedFooterBuilder.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: MaxFooterTextLength
+    path: ../Fluxer.Net/Data/Embeds/EmbedFooterBuilder.cs
+    startLine: 13
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Maximum length of the footer text.
+  example: []
+  syntax:
+    content: public static int MaxFooterTextLength { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Shared ReadOnly Property MaxFooterTextLength As Integer
+  overload: Fluxer.Net.EmbedFooterBuilder.MaxFooterTextLength*
+- uid: Fluxer.Net.EmbedFooterBuilder.Text
+  commentId: P:Fluxer.Net.EmbedFooterBuilder.Text
+  id: Text
+  parent: Fluxer.Net.EmbedFooterBuilder
+  langs:
+  - csharp
+  - vb
+  name: Text
+  nameWithType: EmbedFooterBuilder.Text
+  fullName: Fluxer.Net.EmbedFooterBuilder.Text
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Embeds/EmbedFooterBuilder.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Text
+    path: ../Fluxer.Net/Data/Embeds/EmbedFooterBuilder.cs
+    startLine: 21
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Gets or sets the text of the footer.
+  example: []
+  syntax:
+    content: public string? Text { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Text As String
+  overload: Fluxer.Net.EmbedFooterBuilder.Text*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: Text length exceeds <xref href="Fluxer.Net.EmbedFooterBuilder.MaxFooterTextLength" data-throw-if-not-resolved="false"></xref>.
+- uid: Fluxer.Net.EmbedFooterBuilder.IconUrl
+  commentId: P:Fluxer.Net.EmbedFooterBuilder.IconUrl
+  id: IconUrl
+  parent: Fluxer.Net.EmbedFooterBuilder
+  langs:
+  - csharp
+  - vb
+  name: IconUrl
+  nameWithType: EmbedFooterBuilder.IconUrl
+  fullName: Fluxer.Net.EmbedFooterBuilder.IconUrl
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Embeds/EmbedFooterBuilder.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: IconUrl
+    path: ../Fluxer.Net/Data/Embeds/EmbedFooterBuilder.cs
+    startLine: 35
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Gets or sets the icon URL of the footer.
+  example: []
+  syntax:
+    content: public string? IconUrl { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property IconUrl As String
+  overload: Fluxer.Net.EmbedFooterBuilder.IconUrl*
+- uid: Fluxer.Net.EmbedFooterBuilder.WithText(System.String)
+  commentId: M:Fluxer.Net.EmbedFooterBuilder.WithText(System.String)
+  id: WithText(System.String)
+  parent: Fluxer.Net.EmbedFooterBuilder
+  langs:
+  - csharp
+  - vb
+  name: WithText(string)
+  nameWithType: EmbedFooterBuilder.WithText(string)
+  fullName: Fluxer.Net.EmbedFooterBuilder.WithText(string)
+  type: Method
+  source:
+    remote:
+      path: Fluxer.Net/Data/Embeds/EmbedFooterBuilder.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: WithText
+    path: ../Fluxer.Net/Data/Embeds/EmbedFooterBuilder.cs
+    startLine: 42
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Sets the text of the footer.
+  example: []
+  syntax:
+    content: public EmbedFooterBuilder WithText(string text)
+    parameters:
+    - id: text
+      type: System.String
+      description: The text to set.
+    return:
+      type: Fluxer.Net.EmbedFooterBuilder
+      description: The current builder.
+    content.vb: Public Function WithText(text As String) As EmbedFooterBuilder
+  overload: Fluxer.Net.EmbedFooterBuilder.WithText*
+  nameWithType.vb: EmbedFooterBuilder.WithText(String)
+  fullName.vb: Fluxer.Net.EmbedFooterBuilder.WithText(String)
+  name.vb: WithText(String)
+- uid: Fluxer.Net.EmbedFooterBuilder.WithIconUrl(System.String)
+  commentId: M:Fluxer.Net.EmbedFooterBuilder.WithIconUrl(System.String)
+  id: WithIconUrl(System.String)
+  parent: Fluxer.Net.EmbedFooterBuilder
+  langs:
+  - csharp
+  - vb
+  name: WithIconUrl(string)
+  nameWithType: EmbedFooterBuilder.WithIconUrl(string)
+  fullName: Fluxer.Net.EmbedFooterBuilder.WithIconUrl(string)
+  type: Method
+  source:
+    remote:
+      path: Fluxer.Net/Data/Embeds/EmbedFooterBuilder.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: WithIconUrl
+    path: ../Fluxer.Net/Data/Embeds/EmbedFooterBuilder.cs
+    startLine: 53
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Sets the icon URL of the footer.
+  example: []
+  syntax:
+    content: public EmbedFooterBuilder WithIconUrl(string iconUrl)
+    parameters:
+    - id: iconUrl
+      type: System.String
+      description: The icon URL to set.
+    return:
+      type: Fluxer.Net.EmbedFooterBuilder
+      description: The current builder.
+    content.vb: Public Function WithIconUrl(iconUrl As String) As EmbedFooterBuilder
+  overload: Fluxer.Net.EmbedFooterBuilder.WithIconUrl*
+  nameWithType.vb: EmbedFooterBuilder.WithIconUrl(String)
+  fullName.vb: Fluxer.Net.EmbedFooterBuilder.WithIconUrl(String)
+  name.vb: WithIconUrl(String)
+- uid: Fluxer.Net.EmbedFooterBuilder.Build
+  commentId: M:Fluxer.Net.EmbedFooterBuilder.Build
+  id: Build
+  parent: Fluxer.Net.EmbedFooterBuilder
+  langs:
+  - csharp
+  - vb
+  name: Build()
+  nameWithType: EmbedFooterBuilder.Build()
+  fullName: Fluxer.Net.EmbedFooterBuilder.Build()
+  type: Method
+  source:
+    remote:
+      path: Fluxer.Net/Data/Embeds/EmbedFooterBuilder.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Build
+    path: ../Fluxer.Net/Data/Embeds/EmbedFooterBuilder.cs
+    startLine: 63
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Builds the embed footer.
+  example: []
+  syntax:
+    content: public EmbedFooterRequest Build()
+    return:
+      type: Fluxer.Net.Rest.Requests.EmbedFooterRequest
+      description: A new <xref href="Fluxer.Net.EmbedFooterJson" data-throw-if-not-resolved="false"></xref> object.
+    content.vb: Public Function Build() As EmbedFooterRequest
+  overload: Fluxer.Net.EmbedFooterBuilder.Build*
+references:
+- uid: Fluxer.Net
+  commentId: N:Fluxer.Net
+  href: Fluxer.html
+  name: Fluxer.Net
+  nameWithType: Fluxer.Net
+  fullName: Fluxer.Net
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Fluxer.Net.EmbedFooterBuilder.MaxFooterTextLength*
+  commentId: Overload:Fluxer.Net.EmbedFooterBuilder.MaxFooterTextLength
+  href: Fluxer.Net.EmbedFooterBuilder.html#Fluxer_Net_EmbedFooterBuilder_MaxFooterTextLength
+  name: MaxFooterTextLength
+  nameWithType: EmbedFooterBuilder.MaxFooterTextLength
+  fullName: Fluxer.Net.EmbedFooterBuilder.MaxFooterTextLength
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: Fluxer.Net.EmbedFooterBuilder.MaxFooterTextLength
+  commentId: P:Fluxer.Net.EmbedFooterBuilder.MaxFooterTextLength
+  href: Fluxer.Net.EmbedFooterBuilder.html#Fluxer_Net_EmbedFooterBuilder_MaxFooterTextLength
+  name: MaxFooterTextLength
+  nameWithType: EmbedFooterBuilder.MaxFooterTextLength
+  fullName: Fluxer.Net.EmbedFooterBuilder.MaxFooterTextLength
+- uid: System.ArgumentException
+  commentId: T:System.ArgumentException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.argumentexception
+  name: ArgumentException
+  nameWithType: ArgumentException
+  fullName: System.ArgumentException
+- uid: Fluxer.Net.EmbedFooterBuilder.Text*
+  commentId: Overload:Fluxer.Net.EmbedFooterBuilder.Text
+  href: Fluxer.Net.EmbedFooterBuilder.html#Fluxer_Net_EmbedFooterBuilder_Text
+  name: Text
+  nameWithType: EmbedFooterBuilder.Text
+  fullName: Fluxer.Net.EmbedFooterBuilder.Text
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: Fluxer.Net.EmbedFooterBuilder.IconUrl*
+  commentId: Overload:Fluxer.Net.EmbedFooterBuilder.IconUrl
+  href: Fluxer.Net.EmbedFooterBuilder.html#Fluxer_Net_EmbedFooterBuilder_IconUrl
+  name: IconUrl
+  nameWithType: EmbedFooterBuilder.IconUrl
+  fullName: Fluxer.Net.EmbedFooterBuilder.IconUrl
+- uid: Fluxer.Net.EmbedFooterBuilder.WithText*
+  commentId: Overload:Fluxer.Net.EmbedFooterBuilder.WithText
+  href: Fluxer.Net.EmbedFooterBuilder.html#Fluxer_Net_EmbedFooterBuilder_WithText_System_String_
+  name: WithText
+  nameWithType: EmbedFooterBuilder.WithText
+  fullName: Fluxer.Net.EmbedFooterBuilder.WithText
+- uid: Fluxer.Net.EmbedFooterBuilder
+  commentId: T:Fluxer.Net.EmbedFooterBuilder
+  parent: Fluxer.Net
+  href: Fluxer.Net.EmbedFooterBuilder.html
+  name: EmbedFooterBuilder
+  nameWithType: EmbedFooterBuilder
+  fullName: Fluxer.Net.EmbedFooterBuilder
+- uid: Fluxer.Net.EmbedFooterBuilder.WithIconUrl*
+  commentId: Overload:Fluxer.Net.EmbedFooterBuilder.WithIconUrl
+  href: Fluxer.Net.EmbedFooterBuilder.html#Fluxer_Net_EmbedFooterBuilder_WithIconUrl_System_String_
+  name: WithIconUrl
+  nameWithType: EmbedFooterBuilder.WithIconUrl
+  fullName: Fluxer.Net.EmbedFooterBuilder.WithIconUrl
+- uid: Fluxer.Net.EmbedFooterJson
+  commentId: T:Fluxer.Net.EmbedFooterJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.EmbedFooterJson.html
+  name: EmbedFooterJson
+  nameWithType: EmbedFooterJson
+  fullName: Fluxer.Net.EmbedFooterJson
+- uid: Fluxer.Net.EmbedFooterBuilder.Build*
+  commentId: Overload:Fluxer.Net.EmbedFooterBuilder.Build
+  href: Fluxer.Net.EmbedFooterBuilder.html#Fluxer_Net_EmbedFooterBuilder_Build
+  name: Build
+  nameWithType: EmbedFooterBuilder.Build
+  fullName: Fluxer.Net.EmbedFooterBuilder.Build
+- uid: Fluxer.Net.Rest.Requests.EmbedFooterRequest
+  commentId: T:Fluxer.Net.Rest.Requests.EmbedFooterRequest
+  parent: Fluxer.Net.Rest.Requests
+  href: Fluxer.Net.Rest.Requests.EmbedFooterRequest.html
+  name: EmbedFooterRequest
+  nameWithType: EmbedFooterRequest
+  fullName: Fluxer.Net.Rest.Requests.EmbedFooterRequest
+- uid: Fluxer.Net.Rest.Requests
+  commentId: N:Fluxer.Net.Rest.Requests
+  href: Fluxer.html
+  name: Fluxer.Net.Rest.Requests
+  nameWithType: Fluxer.Net.Rest.Requests
+  fullName: Fluxer.Net.Rest.Requests
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  - name: .
+  - uid: Fluxer.Net.Rest
+    name: Rest
+    href: Fluxer.Net.Rest.html
+  - name: .
+  - uid: Fluxer.Net.Rest.Requests
+    name: Requests
+    href: Fluxer.Net.Rest.Requests.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  - name: .
+  - uid: Fluxer.Net.Rest
+    name: Rest
+    href: Fluxer.Net.Rest.html
+  - name: .
+  - uid: Fluxer.Net.Rest.Requests
+    name: Requests
+    href: Fluxer.Net.Rest.Requests.html

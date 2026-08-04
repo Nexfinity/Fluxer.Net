@@ -1,0 +1,334 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.IUserConnection
+  commentId: T:Fluxer.Net.IUserConnection
+  id: IUserConnection
+  parent: Fluxer.Net
+  children:
+  - Fluxer.Net.IUserConnection.Id
+  - Fluxer.Net.IUserConnection.IsVerified
+  - Fluxer.Net.IUserConnection.Name
+  - Fluxer.Net.IUserConnection.SortOrder
+  - Fluxer.Net.IUserConnection.Type
+  - Fluxer.Net.IUserConnection.VisibilityFlags
+  langs:
+  - csharp
+  - vb
+  name: IUserConnection
+  nameWithType: IUserConnection
+  fullName: Fluxer.Net.IUserConnection
+  type: Interface
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/IUserConnection.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: IUserConnection
+    path: ../Fluxer.Net/Data/Users/IUserConnection.cs
+    startLine: 2
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: public interface IUserConnection
+    content.vb: Public Interface IUserConnection
+  derivedClasses:
+  - Fluxer.Net.UserConnection
+  - Fluxer.Net.UserConnectionJson
+- uid: Fluxer.Net.IUserConnection.Id
+  commentId: P:Fluxer.Net.IUserConnection.Id
+  id: Id
+  parent: Fluxer.Net.IUserConnection
+  langs:
+  - csharp
+  - vb
+  name: Id
+  nameWithType: IUserConnection.Id
+  fullName: Fluxer.Net.IUserConnection.Id
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/IUserConnection.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Id
+    path: ../Fluxer.Net/Data/Users/IUserConnection.cs
+    startLine: 7
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The unique identifier for this connection.
+  example: []
+  syntax:
+    content: string Id { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: ReadOnly Property Id As String
+  overload: Fluxer.Net.IUserConnection.Id*
+- uid: Fluxer.Net.IUserConnection.Type
+  commentId: P:Fluxer.Net.IUserConnection.Type
+  id: Type
+  parent: Fluxer.Net.IUserConnection
+  langs:
+  - csharp
+  - vb
+  name: Type
+  nameWithType: IUserConnection.Type
+  fullName: Fluxer.Net.IUserConnection.Type
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/IUserConnection.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Type
+    path: ../Fluxer.Net/Data/Users/IUserConnection.cs
+    startLine: 15
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The type of connection.
+  remarks: bsky or domain
+  example: []
+  syntax:
+    content: string Type { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: ReadOnly Property Type As String
+  overload: Fluxer.Net.IUserConnection.Type*
+- uid: Fluxer.Net.IUserConnection.Name
+  commentId: P:Fluxer.Net.IUserConnection.Name
+  id: Name
+  parent: Fluxer.Net.IUserConnection
+  langs:
+  - csharp
+  - vb
+  name: Name
+  nameWithType: IUserConnection.Name
+  fullName: Fluxer.Net.IUserConnection.Name
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/IUserConnection.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Name
+    path: ../Fluxer.Net/Data/Users/IUserConnection.cs
+    startLine: 20
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The display name of the connection. (handle or domain)
+  example: []
+  syntax:
+    content: string Name { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: ReadOnly Property Name As String
+  overload: Fluxer.Net.IUserConnection.Name*
+- uid: Fluxer.Net.IUserConnection.IsVerified
+  commentId: P:Fluxer.Net.IUserConnection.IsVerified
+  id: IsVerified
+  parent: Fluxer.Net.IUserConnection
+  langs:
+  - csharp
+  - vb
+  name: IsVerified
+  nameWithType: IUserConnection.IsVerified
+  fullName: Fluxer.Net.IUserConnection.IsVerified
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/IUserConnection.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: IsVerified
+    path: ../Fluxer.Net/Data/Users/IUserConnection.cs
+    startLine: 25
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Whether the connection has been verified.
+  example: []
+  syntax:
+    content: bool IsVerified { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: ReadOnly Property IsVerified As Boolean
+  overload: Fluxer.Net.IUserConnection.IsVerified*
+- uid: Fluxer.Net.IUserConnection.VisibilityFlags
+  commentId: P:Fluxer.Net.IUserConnection.VisibilityFlags
+  id: VisibilityFlags
+  parent: Fluxer.Net.IUserConnection
+  langs:
+  - csharp
+  - vb
+  name: VisibilityFlags
+  nameWithType: IUserConnection.VisibilityFlags
+  fullName: Fluxer.Net.IUserConnection.VisibilityFlags
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/IUserConnection.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: VisibilityFlags
+    path: ../Fluxer.Net/Data/Users/IUserConnection.cs
+    startLine: 30
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Bitfield controlling who can see this connection.
+  example: []
+  syntax:
+    content: ulong VisibilityFlags { get; }
+    parameters: []
+    return:
+      type: System.UInt64
+    content.vb: ReadOnly Property VisibilityFlags As ULong
+  overload: Fluxer.Net.IUserConnection.VisibilityFlags*
+- uid: Fluxer.Net.IUserConnection.SortOrder
+  commentId: P:Fluxer.Net.IUserConnection.SortOrder
+  id: SortOrder
+  parent: Fluxer.Net.IUserConnection
+  langs:
+  - csharp
+  - vb
+  name: SortOrder
+  nameWithType: IUserConnection.SortOrder
+  fullName: Fluxer.Net.IUserConnection.SortOrder
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/IUserConnection.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: SortOrder
+    path: ../Fluxer.Net/Data/Users/IUserConnection.cs
+    startLine: 35
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The display order of this connection.
+  example: []
+  syntax:
+    content: int SortOrder { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: ReadOnly Property SortOrder As Integer
+  overload: Fluxer.Net.IUserConnection.SortOrder*
+references:
+- uid: Fluxer.Net
+  commentId: N:Fluxer.Net
+  href: Fluxer.html
+  name: Fluxer.Net
+  nameWithType: Fluxer.Net
+  fullName: Fluxer.Net
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+- uid: Fluxer.Net.IUserConnection.Id*
+  commentId: Overload:Fluxer.Net.IUserConnection.Id
+  href: Fluxer.Net.IUserConnection.html#Fluxer_Net_IUserConnection_Id
+  name: Id
+  nameWithType: IUserConnection.Id
+  fullName: Fluxer.Net.IUserConnection.Id
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Fluxer.Net.IUserConnection.Type*
+  commentId: Overload:Fluxer.Net.IUserConnection.Type
+  href: Fluxer.Net.IUserConnection.html#Fluxer_Net_IUserConnection_Type
+  name: Type
+  nameWithType: IUserConnection.Type
+  fullName: Fluxer.Net.IUserConnection.Type
+- uid: Fluxer.Net.IUserConnection.Name*
+  commentId: Overload:Fluxer.Net.IUserConnection.Name
+  href: Fluxer.Net.IUserConnection.html#Fluxer_Net_IUserConnection_Name
+  name: Name
+  nameWithType: IUserConnection.Name
+  fullName: Fluxer.Net.IUserConnection.Name
+- uid: Fluxer.Net.IUserConnection.IsVerified*
+  commentId: Overload:Fluxer.Net.IUserConnection.IsVerified
+  href: Fluxer.Net.IUserConnection.html#Fluxer_Net_IUserConnection_IsVerified
+  name: IsVerified
+  nameWithType: IUserConnection.IsVerified
+  fullName: Fluxer.Net.IUserConnection.IsVerified
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: Fluxer.Net.IUserConnection.VisibilityFlags*
+  commentId: Overload:Fluxer.Net.IUserConnection.VisibilityFlags
+  href: Fluxer.Net.IUserConnection.html#Fluxer_Net_IUserConnection_VisibilityFlags
+  name: VisibilityFlags
+  nameWithType: IUserConnection.VisibilityFlags
+  fullName: Fluxer.Net.IUserConnection.VisibilityFlags
+- uid: System.UInt64
+  commentId: T:System.UInt64
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.uint64
+  name: ulong
+  nameWithType: ulong
+  fullName: ulong
+  nameWithType.vb: ULong
+  fullName.vb: ULong
+  name.vb: ULong
+- uid: Fluxer.Net.IUserConnection.SortOrder*
+  commentId: Overload:Fluxer.Net.IUserConnection.SortOrder
+  href: Fluxer.Net.IUserConnection.html#Fluxer_Net_IUserConnection_SortOrder
+  name: SortOrder
+  nameWithType: IUserConnection.SortOrder
+  fullName: Fluxer.Net.IUserConnection.SortOrder
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer

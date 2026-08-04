@@ -1,0 +1,70 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.Gateway.Data.Auth
+  commentId: N:Fluxer.Net.Gateway.Data.Auth
+  id: Fluxer.Net.Gateway.Data.Auth
+  children:
+  - Fluxer.Net.Gateway.Data.Auth.AuthSessionChangeGatewayData
+  langs:
+  - csharp
+  - vb
+  name: Fluxer.Net.Gateway.Data.Auth
+  nameWithType: Fluxer.Net.Gateway.Data.Auth
+  fullName: Fluxer.Net.Gateway.Data.Auth
+  type: Namespace
+  assemblies:
+  - Fluxer.Net
+references:
+- uid: Fluxer.Net.Gateway.Data.Auth.AuthSessionChangeGatewayData
+  commentId: T:Fluxer.Net.Gateway.Data.Auth.AuthSessionChangeGatewayData
+  parent: Fluxer.Net.Gateway.Data.Auth
+  href: Fluxer.Net.Gateway.Data.Auth.AuthSessionChangeGatewayData.html
+  name: AuthSessionChangeGatewayData
+  nameWithType: AuthSessionChangeGatewayData
+  fullName: Fluxer.Net.Gateway.Data.Auth.AuthSessionChangeGatewayData
+- uid: Fluxer.Net.Gateway.Data.Auth
+  commentId: N:Fluxer.Net.Gateway.Data.Auth
+  href: Fluxer.html
+  name: Fluxer.Net.Gateway.Data.Auth
+  nameWithType: Fluxer.Net.Gateway.Data.Auth
+  fullName: Fluxer.Net.Gateway.Data.Auth
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  - name: .
+  - uid: Fluxer.Net.Gateway
+    name: Gateway
+    href: Fluxer.Net.Gateway.html
+  - name: .
+  - uid: Fluxer.Net.Gateway.Data
+    name: Data
+    href: Fluxer.Net.Gateway.Data.html
+  - name: .
+  - uid: Fluxer.Net.Gateway.Data.Auth
+    name: Auth
+    href: Fluxer.Net.Gateway.Data.Auth.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  - name: .
+  - uid: Fluxer.Net.Gateway
+    name: Gateway
+    href: Fluxer.Net.Gateway.html
+  - name: .
+  - uid: Fluxer.Net.Gateway.Data
+    name: Data
+    href: Fluxer.Net.Gateway.Data.html
+  - name: .
+  - uid: Fluxer.Net.Gateway.Data.Auth
+    name: Auth
+    href: Fluxer.Net.Gateway.Data.Auth.html

@@ -1,0 +1,670 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.IVoiceState
+  commentId: T:Fluxer.Net.IVoiceState
+  id: IVoiceState
+  parent: Fluxer.Net
+  children:
+  - Fluxer.Net.IVoiceState.ChannelId
+  - Fluxer.Net.IVoiceState.ConnectionId
+  - Fluxer.Net.IVoiceState.GuildId
+  - Fluxer.Net.IVoiceState.IsDeaf
+  - Fluxer.Net.IVoiceState.IsMobile
+  - Fluxer.Net.IVoiceState.IsMute
+  - Fluxer.Net.IVoiceState.IsSelfDeaf
+  - Fluxer.Net.IVoiceState.IsSelfMute
+  - Fluxer.Net.IVoiceState.IsSelfStream
+  - Fluxer.Net.IVoiceState.IsSelfVideo
+  - Fluxer.Net.IVoiceState.Member
+  - Fluxer.Net.IVoiceState.SessionId
+  - Fluxer.Net.IVoiceState.UserId
+  - Fluxer.Net.IVoiceState.ViewerStreamKeys
+  langs:
+  - csharp
+  - vb
+  name: IVoiceState
+  nameWithType: IVoiceState
+  fullName: Fluxer.Net.IVoiceState
+  type: Interface
+  source:
+    remote:
+      path: Fluxer.Net/Data/Voice/IVoiceState.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: IVoiceState
+    path: ../Fluxer.Net/Data/Voice/IVoiceState.cs
+    startLine: 2
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: public interface IVoiceState
+    content.vb: Public Interface IVoiceState
+  derivedClasses:
+  - Fluxer.Net.Gateway.Data.Voice.VoiceStateGatewayData
+  - Fluxer.Net.SocketVoiceState
+  - Fluxer.Net.VoiceState
+  - Fluxer.Net.VoiceStateJson
+- uid: Fluxer.Net.IVoiceState.SessionId
+  commentId: P:Fluxer.Net.IVoiceState.SessionId
+  id: SessionId
+  parent: Fluxer.Net.IVoiceState
+  langs:
+  - csharp
+  - vb
+  name: SessionId
+  nameWithType: IVoiceState.SessionId
+  fullName: Fluxer.Net.IVoiceState.SessionId
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Voice/IVoiceState.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: SessionId
+    path: ../Fluxer.Net/Data/Voice/IVoiceState.cs
+    startLine: 4
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: string SessionId { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: ReadOnly Property SessionId As String
+  overload: Fluxer.Net.IVoiceState.SessionId*
+- uid: Fluxer.Net.IVoiceState.UserId
+  commentId: P:Fluxer.Net.IVoiceState.UserId
+  id: UserId
+  parent: Fluxer.Net.IVoiceState
+  langs:
+  - csharp
+  - vb
+  name: UserId
+  nameWithType: IVoiceState.UserId
+  fullName: Fluxer.Net.IVoiceState.UserId
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Voice/IVoiceState.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: UserId
+    path: ../Fluxer.Net/Data/Voice/IVoiceState.cs
+    startLine: 6
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: bool UserId { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: ReadOnly Property UserId As Boolean
+  overload: Fluxer.Net.IVoiceState.UserId*
+- uid: Fluxer.Net.IVoiceState.ChannelId
+  commentId: P:Fluxer.Net.IVoiceState.ChannelId
+  id: ChannelId
+  parent: Fluxer.Net.IVoiceState
+  langs:
+  - csharp
+  - vb
+  name: ChannelId
+  nameWithType: IVoiceState.ChannelId
+  fullName: Fluxer.Net.IVoiceState.ChannelId
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Voice/IVoiceState.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: ChannelId
+    path: ../Fluxer.Net/Data/Voice/IVoiceState.cs
+    startLine: 8
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: ulong? ChannelId { get; }
+    parameters: []
+    return:
+      type: System.Nullable{System.UInt64}
+    content.vb: ReadOnly Property ChannelId As ULong?
+  overload: Fluxer.Net.IVoiceState.ChannelId*
+- uid: Fluxer.Net.IVoiceState.ConnectionId
+  commentId: P:Fluxer.Net.IVoiceState.ConnectionId
+  id: ConnectionId
+  parent: Fluxer.Net.IVoiceState
+  langs:
+  - csharp
+  - vb
+  name: ConnectionId
+  nameWithType: IVoiceState.ConnectionId
+  fullName: Fluxer.Net.IVoiceState.ConnectionId
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Voice/IVoiceState.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: ConnectionId
+    path: ../Fluxer.Net/Data/Voice/IVoiceState.cs
+    startLine: 10
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: string? ConnectionId { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: ReadOnly Property ConnectionId As String
+  overload: Fluxer.Net.IVoiceState.ConnectionId*
+- uid: Fluxer.Net.IVoiceState.IsDeaf
+  commentId: P:Fluxer.Net.IVoiceState.IsDeaf
+  id: IsDeaf
+  parent: Fluxer.Net.IVoiceState
+  langs:
+  - csharp
+  - vb
+  name: IsDeaf
+  nameWithType: IVoiceState.IsDeaf
+  fullName: Fluxer.Net.IVoiceState.IsDeaf
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Voice/IVoiceState.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: IsDeaf
+    path: ../Fluxer.Net/Data/Voice/IVoiceState.cs
+    startLine: 12
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: bool IsDeaf { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: ReadOnly Property IsDeaf As Boolean
+  overload: Fluxer.Net.IVoiceState.IsDeaf*
+- uid: Fluxer.Net.IVoiceState.IsMute
+  commentId: P:Fluxer.Net.IVoiceState.IsMute
+  id: IsMute
+  parent: Fluxer.Net.IVoiceState
+  langs:
+  - csharp
+  - vb
+  name: IsMute
+  nameWithType: IVoiceState.IsMute
+  fullName: Fluxer.Net.IVoiceState.IsMute
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Voice/IVoiceState.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: IsMute
+    path: ../Fluxer.Net/Data/Voice/IVoiceState.cs
+    startLine: 14
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: bool IsMute { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: ReadOnly Property IsMute As Boolean
+  overload: Fluxer.Net.IVoiceState.IsMute*
+- uid: Fluxer.Net.IVoiceState.GuildId
+  commentId: P:Fluxer.Net.IVoiceState.GuildId
+  id: GuildId
+  parent: Fluxer.Net.IVoiceState
+  langs:
+  - csharp
+  - vb
+  name: GuildId
+  nameWithType: IVoiceState.GuildId
+  fullName: Fluxer.Net.IVoiceState.GuildId
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Voice/IVoiceState.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: GuildId
+    path: ../Fluxer.Net/Data/Voice/IVoiceState.cs
+    startLine: 16
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: ulong? GuildId { get; }
+    parameters: []
+    return:
+      type: System.Nullable{System.UInt64}
+    content.vb: ReadOnly Property GuildId As ULong?
+  overload: Fluxer.Net.IVoiceState.GuildId*
+- uid: Fluxer.Net.IVoiceState.IsMobile
+  commentId: P:Fluxer.Net.IVoiceState.IsMobile
+  id: IsMobile
+  parent: Fluxer.Net.IVoiceState
+  langs:
+  - csharp
+  - vb
+  name: IsMobile
+  nameWithType: IVoiceState.IsMobile
+  fullName: Fluxer.Net.IVoiceState.IsMobile
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Voice/IVoiceState.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: IsMobile
+    path: ../Fluxer.Net/Data/Voice/IVoiceState.cs
+    startLine: 18
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: bool IsMobile { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: ReadOnly Property IsMobile As Boolean
+  overload: Fluxer.Net.IVoiceState.IsMobile*
+- uid: Fluxer.Net.IVoiceState.IsSelfDeaf
+  commentId: P:Fluxer.Net.IVoiceState.IsSelfDeaf
+  id: IsSelfDeaf
+  parent: Fluxer.Net.IVoiceState
+  langs:
+  - csharp
+  - vb
+  name: IsSelfDeaf
+  nameWithType: IVoiceState.IsSelfDeaf
+  fullName: Fluxer.Net.IVoiceState.IsSelfDeaf
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Voice/IVoiceState.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: IsSelfDeaf
+    path: ../Fluxer.Net/Data/Voice/IVoiceState.cs
+    startLine: 20
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: bool IsSelfDeaf { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: ReadOnly Property IsSelfDeaf As Boolean
+  overload: Fluxer.Net.IVoiceState.IsSelfDeaf*
+- uid: Fluxer.Net.IVoiceState.IsSelfMute
+  commentId: P:Fluxer.Net.IVoiceState.IsSelfMute
+  id: IsSelfMute
+  parent: Fluxer.Net.IVoiceState
+  langs:
+  - csharp
+  - vb
+  name: IsSelfMute
+  nameWithType: IVoiceState.IsSelfMute
+  fullName: Fluxer.Net.IVoiceState.IsSelfMute
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Voice/IVoiceState.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: IsSelfMute
+    path: ../Fluxer.Net/Data/Voice/IVoiceState.cs
+    startLine: 22
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: bool IsSelfMute { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: ReadOnly Property IsSelfMute As Boolean
+  overload: Fluxer.Net.IVoiceState.IsSelfMute*
+- uid: Fluxer.Net.IVoiceState.IsSelfStream
+  commentId: P:Fluxer.Net.IVoiceState.IsSelfStream
+  id: IsSelfStream
+  parent: Fluxer.Net.IVoiceState
+  langs:
+  - csharp
+  - vb
+  name: IsSelfStream
+  nameWithType: IVoiceState.IsSelfStream
+  fullName: Fluxer.Net.IVoiceState.IsSelfStream
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Voice/IVoiceState.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: IsSelfStream
+    path: ../Fluxer.Net/Data/Voice/IVoiceState.cs
+    startLine: 24
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: bool IsSelfStream { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: ReadOnly Property IsSelfStream As Boolean
+  overload: Fluxer.Net.IVoiceState.IsSelfStream*
+- uid: Fluxer.Net.IVoiceState.IsSelfVideo
+  commentId: P:Fluxer.Net.IVoiceState.IsSelfVideo
+  id: IsSelfVideo
+  parent: Fluxer.Net.IVoiceState
+  langs:
+  - csharp
+  - vb
+  name: IsSelfVideo
+  nameWithType: IVoiceState.IsSelfVideo
+  fullName: Fluxer.Net.IVoiceState.IsSelfVideo
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Voice/IVoiceState.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: IsSelfVideo
+    path: ../Fluxer.Net/Data/Voice/IVoiceState.cs
+    startLine: 26
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: bool IsSelfVideo { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: ReadOnly Property IsSelfVideo As Boolean
+  overload: Fluxer.Net.IVoiceState.IsSelfVideo*
+- uid: Fluxer.Net.IVoiceState.ViewerStreamKeys
+  commentId: P:Fluxer.Net.IVoiceState.ViewerStreamKeys
+  id: ViewerStreamKeys
+  parent: Fluxer.Net.IVoiceState
+  langs:
+  - csharp
+  - vb
+  name: ViewerStreamKeys
+  nameWithType: IVoiceState.ViewerStreamKeys
+  fullName: Fluxer.Net.IVoiceState.ViewerStreamKeys
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Voice/IVoiceState.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: ViewerStreamKeys
+    path: ../Fluxer.Net/Data/Voice/IVoiceState.cs
+    startLine: 28
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: string[] ViewerStreamKeys { get; }
+    parameters: []
+    return:
+      type: System.String[]
+    content.vb: ReadOnly Property ViewerStreamKeys As String()
+  overload: Fluxer.Net.IVoiceState.ViewerStreamKeys*
+- uid: Fluxer.Net.IVoiceState.Member
+  commentId: P:Fluxer.Net.IVoiceState.Member
+  id: Member
+  parent: Fluxer.Net.IVoiceState
+  langs:
+  - csharp
+  - vb
+  name: Member
+  nameWithType: IVoiceState.Member
+  fullName: Fluxer.Net.IVoiceState.Member
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Voice/IVoiceState.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Member
+    path: ../Fluxer.Net/Data/Voice/IVoiceState.cs
+    startLine: 30
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: IGuildMember Member { get; }
+    parameters: []
+    return:
+      type: Fluxer.Net.IGuildMember
+    content.vb: ReadOnly Property Member As IGuildMember
+  overload: Fluxer.Net.IVoiceState.Member*
+references:
+- uid: Fluxer.Net
+  commentId: N:Fluxer.Net
+  href: Fluxer.html
+  name: Fluxer.Net
+  nameWithType: Fluxer.Net
+  fullName: Fluxer.Net
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+- uid: Fluxer.Net.IVoiceState.SessionId*
+  commentId: Overload:Fluxer.Net.IVoiceState.SessionId
+  href: Fluxer.Net.IVoiceState.html#Fluxer_Net_IVoiceState_SessionId
+  name: SessionId
+  nameWithType: IVoiceState.SessionId
+  fullName: Fluxer.Net.IVoiceState.SessionId
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Fluxer.Net.IVoiceState.UserId*
+  commentId: Overload:Fluxer.Net.IVoiceState.UserId
+  href: Fluxer.Net.IVoiceState.html#Fluxer_Net_IVoiceState_UserId
+  name: UserId
+  nameWithType: IVoiceState.UserId
+  fullName: Fluxer.Net.IVoiceState.UserId
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: Fluxer.Net.IVoiceState.ChannelId*
+  commentId: Overload:Fluxer.Net.IVoiceState.ChannelId
+  href: Fluxer.Net.IVoiceState.html#Fluxer_Net_IVoiceState_ChannelId
+  name: ChannelId
+  nameWithType: IVoiceState.ChannelId
+  fullName: Fluxer.Net.IVoiceState.ChannelId
+- uid: System.Nullable{System.UInt64}
+  commentId: T:System.Nullable{System.UInt64}
+  parent: System
+  definition: System.Nullable`1
+  href: https://learn.microsoft.com/dotnet/api/system.uint64
+  name: ulong?
+  nameWithType: ulong?
+  fullName: ulong?
+  nameWithType.vb: ULong?
+  fullName.vb: ULong?
+  name.vb: ULong?
+  spec.csharp:
+  - uid: System.UInt64
+    name: ulong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: '?'
+  spec.vb:
+  - uid: System.UInt64
+    name: ULong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: '?'
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: Fluxer.Net.IVoiceState.ConnectionId*
+  commentId: Overload:Fluxer.Net.IVoiceState.ConnectionId
+  href: Fluxer.Net.IVoiceState.html#Fluxer_Net_IVoiceState_ConnectionId
+  name: ConnectionId
+  nameWithType: IVoiceState.ConnectionId
+  fullName: Fluxer.Net.IVoiceState.ConnectionId
+- uid: Fluxer.Net.IVoiceState.IsDeaf*
+  commentId: Overload:Fluxer.Net.IVoiceState.IsDeaf
+  href: Fluxer.Net.IVoiceState.html#Fluxer_Net_IVoiceState_IsDeaf
+  name: IsDeaf
+  nameWithType: IVoiceState.IsDeaf
+  fullName: Fluxer.Net.IVoiceState.IsDeaf
+- uid: Fluxer.Net.IVoiceState.IsMute*
+  commentId: Overload:Fluxer.Net.IVoiceState.IsMute
+  href: Fluxer.Net.IVoiceState.html#Fluxer_Net_IVoiceState_IsMute
+  name: IsMute
+  nameWithType: IVoiceState.IsMute
+  fullName: Fluxer.Net.IVoiceState.IsMute
+- uid: Fluxer.Net.IVoiceState.GuildId*
+  commentId: Overload:Fluxer.Net.IVoiceState.GuildId
+  href: Fluxer.Net.IVoiceState.html#Fluxer_Net_IVoiceState_GuildId
+  name: GuildId
+  nameWithType: IVoiceState.GuildId
+  fullName: Fluxer.Net.IVoiceState.GuildId
+- uid: Fluxer.Net.IVoiceState.IsMobile*
+  commentId: Overload:Fluxer.Net.IVoiceState.IsMobile
+  href: Fluxer.Net.IVoiceState.html#Fluxer_Net_IVoiceState_IsMobile
+  name: IsMobile
+  nameWithType: IVoiceState.IsMobile
+  fullName: Fluxer.Net.IVoiceState.IsMobile
+- uid: Fluxer.Net.IVoiceState.IsSelfDeaf*
+  commentId: Overload:Fluxer.Net.IVoiceState.IsSelfDeaf
+  href: Fluxer.Net.IVoiceState.html#Fluxer_Net_IVoiceState_IsSelfDeaf
+  name: IsSelfDeaf
+  nameWithType: IVoiceState.IsSelfDeaf
+  fullName: Fluxer.Net.IVoiceState.IsSelfDeaf
+- uid: Fluxer.Net.IVoiceState.IsSelfMute*
+  commentId: Overload:Fluxer.Net.IVoiceState.IsSelfMute
+  href: Fluxer.Net.IVoiceState.html#Fluxer_Net_IVoiceState_IsSelfMute
+  name: IsSelfMute
+  nameWithType: IVoiceState.IsSelfMute
+  fullName: Fluxer.Net.IVoiceState.IsSelfMute
+- uid: Fluxer.Net.IVoiceState.IsSelfStream*
+  commentId: Overload:Fluxer.Net.IVoiceState.IsSelfStream
+  href: Fluxer.Net.IVoiceState.html#Fluxer_Net_IVoiceState_IsSelfStream
+  name: IsSelfStream
+  nameWithType: IVoiceState.IsSelfStream
+  fullName: Fluxer.Net.IVoiceState.IsSelfStream
+- uid: Fluxer.Net.IVoiceState.IsSelfVideo*
+  commentId: Overload:Fluxer.Net.IVoiceState.IsSelfVideo
+  href: Fluxer.Net.IVoiceState.html#Fluxer_Net_IVoiceState_IsSelfVideo
+  name: IsSelfVideo
+  nameWithType: IVoiceState.IsSelfVideo
+  fullName: Fluxer.Net.IVoiceState.IsSelfVideo
+- uid: Fluxer.Net.IVoiceState.ViewerStreamKeys*
+  commentId: Overload:Fluxer.Net.IVoiceState.ViewerStreamKeys
+  href: Fluxer.Net.IVoiceState.html#Fluxer_Net_IVoiceState_ViewerStreamKeys
+  name: ViewerStreamKeys
+  nameWithType: IVoiceState.ViewerStreamKeys
+  fullName: Fluxer.Net.IVoiceState.ViewerStreamKeys
+- uid: System.String[]
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string[]
+  nameWithType: string[]
+  fullName: string[]
+  nameWithType.vb: String()
+  fullName.vb: String()
+  name.vb: String()
+  spec.csharp:
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: (
+  - name: )
+- uid: Fluxer.Net.IVoiceState.Member*
+  commentId: Overload:Fluxer.Net.IVoiceState.Member
+  href: Fluxer.Net.IVoiceState.html#Fluxer_Net_IVoiceState_Member
+  name: Member
+  nameWithType: IVoiceState.Member
+  fullName: Fluxer.Net.IVoiceState.Member
+- uid: Fluxer.Net.IGuildMember
+  commentId: T:Fluxer.Net.IGuildMember
+  parent: Fluxer.Net
+  href: Fluxer.Net.IGuildMember.html
+  name: IGuildMember
+  nameWithType: IGuildMember
+  fullName: Fluxer.Net.IGuildMember

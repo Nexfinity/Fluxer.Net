@@ -1,0 +1,757 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.Gateway.Data.Channels.TypingGatewayData
+  commentId: T:Fluxer.Net.Gateway.Data.Channels.TypingGatewayData
+  id: TypingGatewayData
+  parent: Fluxer.Net.Gateway.Data.Channels
+  children:
+  - Fluxer.Net.Gateway.Data.Channels.TypingGatewayData.ChannelId
+  - Fluxer.Net.Gateway.Data.Channels.TypingGatewayData.GuildId
+  - Fluxer.Net.Gateway.Data.Channels.TypingGatewayData.Member
+  - Fluxer.Net.Gateway.Data.Channels.TypingGatewayData.Timestamp
+  - Fluxer.Net.Gateway.Data.Channels.TypingGatewayData.TimestampUtc
+  - Fluxer.Net.Gateway.Data.Channels.TypingGatewayData.UserId
+  langs:
+  - csharp
+  - vb
+  name: TypingGatewayData
+  nameWithType: TypingGatewayData
+  fullName: Fluxer.Net.Gateway.Data.Channels.TypingGatewayData
+  type: Class
+  source:
+    remote:
+      path: Fluxer.Net/Gateway/Data/Channels/TypingGatewayData.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: TypingGatewayData
+    path: ../Fluxer.Net/Gateway/Data/Channels/TypingGatewayData.cs
+    startLine: 5
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net.Gateway.Data.Channels
+  syntax:
+    content: public class TypingGatewayData
+    content.vb: Public Class TypingGatewayData
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: Fluxer.Net.Gateway.Data.Channels.TypingGatewayData.ChannelId
+  commentId: P:Fluxer.Net.Gateway.Data.Channels.TypingGatewayData.ChannelId
+  id: ChannelId
+  parent: Fluxer.Net.Gateway.Data.Channels.TypingGatewayData
+  langs:
+  - csharp
+  - vb
+  name: ChannelId
+  nameWithType: TypingGatewayData.ChannelId
+  fullName: Fluxer.Net.Gateway.Data.Channels.TypingGatewayData.ChannelId
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Gateway/Data/Channels/TypingGatewayData.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: ChannelId
+    path: ../Fluxer.Net/Gateway/Data/Channels/TypingGatewayData.cs
+    startLine: 7
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net.Gateway.Data.Channels
+  syntax:
+    content: >-
+      [JsonProperty("channel_id")]
+
+      public ulong ChannelId { get; set; }
+    parameters: []
+    return:
+      type: System.UInt64
+    content.vb: >-
+      <JsonProperty("channel_id")>
+
+      Public Property ChannelId As ULong
+  overload: Fluxer.Net.Gateway.Data.Channels.TypingGatewayData.ChannelId*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: channel_id
+- uid: Fluxer.Net.Gateway.Data.Channels.TypingGatewayData.GuildId
+  commentId: P:Fluxer.Net.Gateway.Data.Channels.TypingGatewayData.GuildId
+  id: GuildId
+  parent: Fluxer.Net.Gateway.Data.Channels.TypingGatewayData
+  langs:
+  - csharp
+  - vb
+  name: GuildId
+  nameWithType: TypingGatewayData.GuildId
+  fullName: Fluxer.Net.Gateway.Data.Channels.TypingGatewayData.GuildId
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Gateway/Data/Channels/TypingGatewayData.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: GuildId
+    path: ../Fluxer.Net/Gateway/Data/Channels/TypingGatewayData.cs
+    startLine: 10
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net.Gateway.Data.Channels
+  syntax:
+    content: >-
+      [JsonProperty("guild_id")]
+
+      public ulong? GuildId { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{System.UInt64}
+    content.vb: >-
+      <JsonProperty("guild_id")>
+
+      Public Property GuildId As ULong?
+  overload: Fluxer.Net.Gateway.Data.Channels.TypingGatewayData.GuildId*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: guild_id
+- uid: Fluxer.Net.Gateway.Data.Channels.TypingGatewayData.UserId
+  commentId: P:Fluxer.Net.Gateway.Data.Channels.TypingGatewayData.UserId
+  id: UserId
+  parent: Fluxer.Net.Gateway.Data.Channels.TypingGatewayData
+  langs:
+  - csharp
+  - vb
+  name: UserId
+  nameWithType: TypingGatewayData.UserId
+  fullName: Fluxer.Net.Gateway.Data.Channels.TypingGatewayData.UserId
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Gateway/Data/Channels/TypingGatewayData.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: UserId
+    path: ../Fluxer.Net/Gateway/Data/Channels/TypingGatewayData.cs
+    startLine: 13
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net.Gateway.Data.Channels
+  syntax:
+    content: >-
+      [JsonProperty("user_id")]
+
+      public ulong UserId { get; set; }
+    parameters: []
+    return:
+      type: System.UInt64
+    content.vb: >-
+      <JsonProperty("user_id")>
+
+      Public Property UserId As ULong
+  overload: Fluxer.Net.Gateway.Data.Channels.TypingGatewayData.UserId*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: user_id
+- uid: Fluxer.Net.Gateway.Data.Channels.TypingGatewayData.Timestamp
+  commentId: P:Fluxer.Net.Gateway.Data.Channels.TypingGatewayData.Timestamp
+  id: Timestamp
+  parent: Fluxer.Net.Gateway.Data.Channels.TypingGatewayData
+  langs:
+  - csharp
+  - vb
+  name: Timestamp
+  nameWithType: TypingGatewayData.Timestamp
+  fullName: Fluxer.Net.Gateway.Data.Channels.TypingGatewayData.Timestamp
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Gateway/Data/Channels/TypingGatewayData.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Timestamp
+    path: ../Fluxer.Net/Gateway/Data/Channels/TypingGatewayData.cs
+    startLine: 19
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net.Gateway.Data.Channels
+  summary: Unix timestamp in milliseconds when the user started typing.
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("timestamp")]
+
+      public long Timestamp { get; set; }
+    parameters: []
+    return:
+      type: System.Int64
+    content.vb: >-
+      <JsonProperty("timestamp")>
+
+      Public Property Timestamp As Long
+  overload: Fluxer.Net.Gateway.Data.Channels.TypingGatewayData.Timestamp*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: timestamp
+- uid: Fluxer.Net.Gateway.Data.Channels.TypingGatewayData.TimestampUtc
+  commentId: P:Fluxer.Net.Gateway.Data.Channels.TypingGatewayData.TimestampUtc
+  id: TimestampUtc
+  parent: Fluxer.Net.Gateway.Data.Channels.TypingGatewayData
+  langs:
+  - csharp
+  - vb
+  name: TimestampUtc
+  nameWithType: TypingGatewayData.TimestampUtc
+  fullName: Fluxer.Net.Gateway.Data.Channels.TypingGatewayData.TimestampUtc
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Gateway/Data/Channels/TypingGatewayData.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: TimestampUtc
+    path: ../Fluxer.Net/Gateway/Data/Channels/TypingGatewayData.cs
+    startLine: 25
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net.Gateway.Data.Channels
+  summary: The <xref href="Fluxer.Net.Gateway.Data.Channels.TypingGatewayData.Timestamp" data-throw-if-not-resolved="false"></xref> value converted to a UTC <xref href="System.DateTime" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: >-
+      [JsonIgnore]
+
+      public DateTime TimestampUtc { get; }
+    parameters: []
+    return:
+      type: System.DateTime
+    content.vb: >-
+      <JsonIgnore>
+
+      Public ReadOnly Property TimestampUtc As Date
+  overload: Fluxer.Net.Gateway.Data.Channels.TypingGatewayData.TimestampUtc*
+  attributes:
+  - type: Newtonsoft.Json.JsonIgnoreAttribute
+    ctor: Newtonsoft.Json.JsonIgnoreAttribute.#ctor
+    arguments: []
+- uid: Fluxer.Net.Gateway.Data.Channels.TypingGatewayData.Member
+  commentId: P:Fluxer.Net.Gateway.Data.Channels.TypingGatewayData.Member
+  id: Member
+  parent: Fluxer.Net.Gateway.Data.Channels.TypingGatewayData
+  langs:
+  - csharp
+  - vb
+  name: Member
+  nameWithType: TypingGatewayData.Member
+  fullName: Fluxer.Net.Gateway.Data.Channels.TypingGatewayData.Member
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Gateway/Data/Channels/TypingGatewayData.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Member
+    path: ../Fluxer.Net/Gateway/Data/Channels/TypingGatewayData.cs
+    startLine: 31
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net.Gateway.Data.Channels
+  summary: Guild member data for the typing user (only present in guild channels).
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("member")]
+
+      public GuildMemberGatewayData? Member { get; set; }
+    parameters: []
+    return:
+      type: Fluxer.Net.Gateway.Data.Guilds.GuildMemberGatewayData
+    content.vb: >-
+      <JsonProperty("member")>
+
+      Public Property Member As GuildMemberGatewayData
+  overload: Fluxer.Net.Gateway.Data.Channels.TypingGatewayData.Member*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: member
+references:
+- uid: Fluxer.Net.Gateway.Data.Channels
+  commentId: N:Fluxer.Net.Gateway.Data.Channels
+  href: Fluxer.html
+  name: Fluxer.Net.Gateway.Data.Channels
+  nameWithType: Fluxer.Net.Gateway.Data.Channels
+  fullName: Fluxer.Net.Gateway.Data.Channels
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  - name: .
+  - uid: Fluxer.Net.Gateway
+    name: Gateway
+    href: Fluxer.Net.Gateway.html
+  - name: .
+  - uid: Fluxer.Net.Gateway.Data
+    name: Data
+    href: Fluxer.Net.Gateway.Data.html
+  - name: .
+  - uid: Fluxer.Net.Gateway.Data.Channels
+    name: Channels
+    href: Fluxer.Net.Gateway.Data.Channels.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  - name: .
+  - uid: Fluxer.Net.Gateway
+    name: Gateway
+    href: Fluxer.Net.Gateway.html
+  - name: .
+  - uid: Fluxer.Net.Gateway.Data
+    name: Data
+    href: Fluxer.Net.Gateway.Data.html
+  - name: .
+  - uid: Fluxer.Net.Gateway.Data.Channels
+    name: Channels
+    href: Fluxer.Net.Gateway.Data.Channels.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Fluxer.Net.Gateway.Data.Channels.TypingGatewayData.ChannelId*
+  commentId: Overload:Fluxer.Net.Gateway.Data.Channels.TypingGatewayData.ChannelId
+  href: Fluxer.Net.Gateway.Data.Channels.TypingGatewayData.html#Fluxer_Net_Gateway_Data_Channels_TypingGatewayData_ChannelId
+  name: ChannelId
+  nameWithType: TypingGatewayData.ChannelId
+  fullName: Fluxer.Net.Gateway.Data.Channels.TypingGatewayData.ChannelId
+- uid: System.UInt64
+  commentId: T:System.UInt64
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.uint64
+  name: ulong
+  nameWithType: ulong
+  fullName: ulong
+  nameWithType.vb: ULong
+  fullName.vb: ULong
+  name.vb: ULong
+- uid: Fluxer.Net.Gateway.Data.Channels.TypingGatewayData.GuildId*
+  commentId: Overload:Fluxer.Net.Gateway.Data.Channels.TypingGatewayData.GuildId
+  href: Fluxer.Net.Gateway.Data.Channels.TypingGatewayData.html#Fluxer_Net_Gateway_Data_Channels_TypingGatewayData_GuildId
+  name: GuildId
+  nameWithType: TypingGatewayData.GuildId
+  fullName: Fluxer.Net.Gateway.Data.Channels.TypingGatewayData.GuildId
+- uid: System.Nullable{System.UInt64}
+  commentId: T:System.Nullable{System.UInt64}
+  parent: System
+  definition: System.Nullable`1
+  href: https://learn.microsoft.com/dotnet/api/system.uint64
+  name: ulong?
+  nameWithType: ulong?
+  fullName: ulong?
+  nameWithType.vb: ULong?
+  fullName.vb: ULong?
+  name.vb: ULong?
+  spec.csharp:
+  - uid: System.UInt64
+    name: ulong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: '?'
+  spec.vb:
+  - uid: System.UInt64
+    name: ULong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: '?'
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: Fluxer.Net.Gateway.Data.Channels.TypingGatewayData.UserId*
+  commentId: Overload:Fluxer.Net.Gateway.Data.Channels.TypingGatewayData.UserId
+  href: Fluxer.Net.Gateway.Data.Channels.TypingGatewayData.html#Fluxer_Net_Gateway_Data_Channels_TypingGatewayData_UserId
+  name: UserId
+  nameWithType: TypingGatewayData.UserId
+  fullName: Fluxer.Net.Gateway.Data.Channels.TypingGatewayData.UserId
+- uid: Fluxer.Net.Gateway.Data.Channels.TypingGatewayData.Timestamp*
+  commentId: Overload:Fluxer.Net.Gateway.Data.Channels.TypingGatewayData.Timestamp
+  href: Fluxer.Net.Gateway.Data.Channels.TypingGatewayData.html#Fluxer_Net_Gateway_Data_Channels_TypingGatewayData_Timestamp
+  name: Timestamp
+  nameWithType: TypingGatewayData.Timestamp
+  fullName: Fluxer.Net.Gateway.Data.Channels.TypingGatewayData.Timestamp
+- uid: System.Int64
+  commentId: T:System.Int64
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int64
+  name: long
+  nameWithType: long
+  fullName: long
+  nameWithType.vb: Long
+  fullName.vb: Long
+  name.vb: Long
+- uid: Fluxer.Net.Gateway.Data.Channels.TypingGatewayData.Timestamp
+  commentId: P:Fluxer.Net.Gateway.Data.Channels.TypingGatewayData.Timestamp
+  href: Fluxer.Net.Gateway.Data.Channels.TypingGatewayData.html#Fluxer_Net_Gateway_Data_Channels_TypingGatewayData_Timestamp
+  name: Timestamp
+  nameWithType: TypingGatewayData.Timestamp
+  fullName: Fluxer.Net.Gateway.Data.Channels.TypingGatewayData.Timestamp
+- uid: System.DateTime
+  commentId: T:System.DateTime
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.datetime
+  name: DateTime
+  nameWithType: DateTime
+  fullName: System.DateTime
+  nameWithType.vb: Date
+  fullName.vb: Date
+  name.vb: Date
+- uid: Fluxer.Net.Gateway.Data.Channels.TypingGatewayData.TimestampUtc*
+  commentId: Overload:Fluxer.Net.Gateway.Data.Channels.TypingGatewayData.TimestampUtc
+  href: Fluxer.Net.Gateway.Data.Channels.TypingGatewayData.html#Fluxer_Net_Gateway_Data_Channels_TypingGatewayData_TimestampUtc
+  name: TimestampUtc
+  nameWithType: TypingGatewayData.TimestampUtc
+  fullName: Fluxer.Net.Gateway.Data.Channels.TypingGatewayData.TimestampUtc
+- uid: Fluxer.Net.Gateway.Data.Channels.TypingGatewayData.Member*
+  commentId: Overload:Fluxer.Net.Gateway.Data.Channels.TypingGatewayData.Member
+  href: Fluxer.Net.Gateway.Data.Channels.TypingGatewayData.html#Fluxer_Net_Gateway_Data_Channels_TypingGatewayData_Member
+  name: Member
+  nameWithType: TypingGatewayData.Member
+  fullName: Fluxer.Net.Gateway.Data.Channels.TypingGatewayData.Member
+- uid: Fluxer.Net.Gateway.Data.Guilds.GuildMemberGatewayData
+  commentId: T:Fluxer.Net.Gateway.Data.Guilds.GuildMemberGatewayData
+  parent: Fluxer.Net.Gateway.Data.Guilds
+  href: Fluxer.Net.Gateway.Data.Guilds.GuildMemberGatewayData.html
+  name: GuildMemberGatewayData
+  nameWithType: GuildMemberGatewayData
+  fullName: Fluxer.Net.Gateway.Data.Guilds.GuildMemberGatewayData
+- uid: Fluxer.Net.Gateway.Data.Guilds
+  commentId: N:Fluxer.Net.Gateway.Data.Guilds
+  href: Fluxer.html
+  name: Fluxer.Net.Gateway.Data.Guilds
+  nameWithType: Fluxer.Net.Gateway.Data.Guilds
+  fullName: Fluxer.Net.Gateway.Data.Guilds
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  - name: .
+  - uid: Fluxer.Net.Gateway
+    name: Gateway
+    href: Fluxer.Net.Gateway.html
+  - name: .
+  - uid: Fluxer.Net.Gateway.Data
+    name: Data
+    href: Fluxer.Net.Gateway.Data.html
+  - name: .
+  - uid: Fluxer.Net.Gateway.Data.Guilds
+    name: Guilds
+    href: Fluxer.Net.Gateway.Data.Guilds.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  - name: .
+  - uid: Fluxer.Net.Gateway
+    name: Gateway
+    href: Fluxer.Net.Gateway.html
+  - name: .
+  - uid: Fluxer.Net.Gateway.Data
+    name: Data
+    href: Fluxer.Net.Gateway.Data.html
+  - name: .
+  - uid: Fluxer.Net.Gateway.Data.Guilds
+    name: Guilds
+    href: Fluxer.Net.Gateway.Data.Guilds.html

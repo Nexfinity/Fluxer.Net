@@ -1,0 +1,159 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.IGuildVanityUrl
+  commentId: T:Fluxer.Net.IGuildVanityUrl
+  id: IGuildVanityUrl
+  parent: Fluxer.Net
+  children:
+  - Fluxer.Net.IGuildVanityUrl.Code
+  - Fluxer.Net.IGuildVanityUrl.Uses
+  langs:
+  - csharp
+  - vb
+  name: IGuildVanityUrl
+  nameWithType: IGuildVanityUrl
+  fullName: Fluxer.Net.IGuildVanityUrl
+  type: Interface
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/Settings/IGuildVanityUrl.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: IGuildVanityUrl
+    path: ../Fluxer.Net/Data/Guilds/Settings/IGuildVanityUrl.cs
+    startLine: 2
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: public interface IGuildVanityUrl
+    content.vb: Public Interface IGuildVanityUrl
+  derivedClasses:
+  - Fluxer.Net.GuildVanityUrl
+  - Fluxer.Net.GuildVanityUrlJson
+- uid: Fluxer.Net.IGuildVanityUrl.Code
+  commentId: P:Fluxer.Net.IGuildVanityUrl.Code
+  id: Code
+  parent: Fluxer.Net.IGuildVanityUrl
+  langs:
+  - csharp
+  - vb
+  name: Code
+  nameWithType: IGuildVanityUrl.Code
+  fullName: Fluxer.Net.IGuildVanityUrl.Code
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/Settings/IGuildVanityUrl.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Code
+    path: ../Fluxer.Net/Data/Guilds/Settings/IGuildVanityUrl.cs
+    startLine: 7
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The vanity URL code for the guild.
+  example: []
+  syntax:
+    content: string? Code { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: ReadOnly Property Code As String
+  overload: Fluxer.Net.IGuildVanityUrl.Code*
+- uid: Fluxer.Net.IGuildVanityUrl.Uses
+  commentId: P:Fluxer.Net.IGuildVanityUrl.Uses
+  id: Uses
+  parent: Fluxer.Net.IGuildVanityUrl
+  langs:
+  - csharp
+  - vb
+  name: Uses
+  nameWithType: IGuildVanityUrl.Uses
+  fullName: Fluxer.Net.IGuildVanityUrl.Uses
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/Settings/IGuildVanityUrl.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Uses
+    path: ../Fluxer.Net/Data/Guilds/Settings/IGuildVanityUrl.cs
+    startLine: 12
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The number of times this vanity URL has been used.
+  example: []
+  syntax:
+    content: int Uses { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: ReadOnly Property Uses As Integer
+  overload: Fluxer.Net.IGuildVanityUrl.Uses*
+references:
+- uid: Fluxer.Net
+  commentId: N:Fluxer.Net
+  href: Fluxer.html
+  name: Fluxer.Net
+  nameWithType: Fluxer.Net
+  fullName: Fluxer.Net
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+- uid: Fluxer.Net.IGuildVanityUrl.Code*
+  commentId: Overload:Fluxer.Net.IGuildVanityUrl.Code
+  href: Fluxer.Net.IGuildVanityUrl.html#Fluxer_Net_IGuildVanityUrl_Code
+  name: Code
+  nameWithType: IGuildVanityUrl.Code
+  fullName: Fluxer.Net.IGuildVanityUrl.Code
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Fluxer.Net.IGuildVanityUrl.Uses*
+  commentId: Overload:Fluxer.Net.IGuildVanityUrl.Uses
+  href: Fluxer.Net.IGuildVanityUrl.html#Fluxer_Net_IGuildVanityUrl_Uses
+  name: Uses
+  nameWithType: IGuildVanityUrl.Uses
+  fullName: Fluxer.Net.IGuildVanityUrl.Uses
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer

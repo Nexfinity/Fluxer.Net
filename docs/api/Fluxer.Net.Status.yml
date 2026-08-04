@@ -1,0 +1,176 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.Status
+  commentId: T:Fluxer.Net.Status
+  id: Status
+  parent: Fluxer.Net
+  children:
+  - Fluxer.Net.Status.Dnd
+  - Fluxer.Net.Status.Idle
+  - Fluxer.Net.Status.Invisible
+  - Fluxer.Net.Status.Online
+  langs:
+  - csharp
+  - vb
+  name: Status
+  nameWithType: Status
+  fullName: Fluxer.Net.Status
+  type: Enum
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/Status.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Status
+    path: ../Fluxer.Net/Data/Users/Status.cs
+    startLine: 5
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Represents a user's online status/presence.
+  example: []
+  syntax:
+    content: public enum Status
+    content.vb: Public Enum Status
+- uid: Fluxer.Net.Status.Online
+  commentId: F:Fluxer.Net.Status.Online
+  id: Online
+  parent: Fluxer.Net.Status
+  langs:
+  - csharp
+  - vb
+  name: Online
+  nameWithType: Status.Online
+  fullName: Fluxer.Net.Status.Online
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/Status.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Online
+    path: ../Fluxer.Net/Data/Users/Status.cs
+    startLine: 10
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: User is online and active.
+  example: []
+  syntax:
+    content: Online = 0
+    return:
+      type: Fluxer.Net.Status
+- uid: Fluxer.Net.Status.Dnd
+  commentId: F:Fluxer.Net.Status.Dnd
+  id: Dnd
+  parent: Fluxer.Net.Status
+  langs:
+  - csharp
+  - vb
+  name: Dnd
+  nameWithType: Status.Dnd
+  fullName: Fluxer.Net.Status.Dnd
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/Status.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Dnd
+    path: ../Fluxer.Net/Data/Users/Status.cs
+    startLine: 15
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: User is in "Do Not Disturb" mode (busy, notifications suppressed).
+  example: []
+  syntax:
+    content: Dnd = 1
+    return:
+      type: Fluxer.Net.Status
+- uid: Fluxer.Net.Status.Idle
+  commentId: F:Fluxer.Net.Status.Idle
+  id: Idle
+  parent: Fluxer.Net.Status
+  langs:
+  - csharp
+  - vb
+  name: Idle
+  nameWithType: Status.Idle
+  fullName: Fluxer.Net.Status.Idle
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/Status.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Idle
+    path: ../Fluxer.Net/Data/Users/Status.cs
+    startLine: 20
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: User is idle/away from keyboard.
+  example: []
+  syntax:
+    content: Idle = 2
+    return:
+      type: Fluxer.Net.Status
+- uid: Fluxer.Net.Status.Invisible
+  commentId: F:Fluxer.Net.Status.Invisible
+  id: Invisible
+  parent: Fluxer.Net.Status
+  langs:
+  - csharp
+  - vb
+  name: Invisible
+  nameWithType: Status.Invisible
+  fullName: Fluxer.Net.Status.Invisible
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/Status.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Invisible
+    path: ../Fluxer.Net/Data/Users/Status.cs
+    startLine: 25
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: User appears offline to others (invisible mode).
+  example: []
+  syntax:
+    content: Invisible = 3
+    return:
+      type: Fluxer.Net.Status
+references:
+- uid: Fluxer.Net
+  commentId: N:Fluxer.Net
+  href: Fluxer.html
+  name: Fluxer.Net
+  nameWithType: Fluxer.Net
+  fullName: Fluxer.Net
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+- uid: Fluxer.Net.Status
+  commentId: T:Fluxer.Net.Status
+  parent: Fluxer.Net
+  href: Fluxer.Net.Status.html
+  name: Status
+  nameWithType: Status
+  fullName: Fluxer.Net.Status

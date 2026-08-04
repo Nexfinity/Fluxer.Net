@@ -1,0 +1,126 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.Commands.RunMode
+  commentId: T:Fluxer.Net.Commands.RunMode
+  id: RunMode
+  parent: Fluxer.Net.Commands
+  children:
+  - Fluxer.Net.Commands.RunMode.Async
+  - Fluxer.Net.Commands.RunMode.Sync
+  langs:
+  - csharp
+  - vb
+  name: RunMode
+  nameWithType: RunMode
+  fullName: Fluxer.Net.Commands.RunMode
+  type: Enum
+  source:
+    remote:
+      path: Fluxer.Net/Commands/RunMode.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: RunMode
+    path: ../Fluxer.Net/Commands/RunMode.cs
+    startLine: 5
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net.Commands
+  summary: Specifies the execution mode of a command.
+  example: []
+  syntax:
+    content: public enum RunMode
+    content.vb: Public Enum RunMode
+- uid: Fluxer.Net.Commands.RunMode.Sync
+  commentId: F:Fluxer.Net.Commands.RunMode.Sync
+  id: Sync
+  parent: Fluxer.Net.Commands.RunMode
+  langs:
+  - csharp
+  - vb
+  name: Sync
+  nameWithType: RunMode.Sync
+  fullName: Fluxer.Net.Commands.RunMode.Sync
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Commands/RunMode.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Sync
+    path: ../Fluxer.Net/Commands/RunMode.cs
+    startLine: 10
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net.Commands
+  summary: The command will run synchronously on the gateway thread.
+  example: []
+  syntax:
+    content: Sync = 0
+    return:
+      type: Fluxer.Net.Commands.RunMode
+- uid: Fluxer.Net.Commands.RunMode.Async
+  commentId: F:Fluxer.Net.Commands.RunMode.Async
+  id: Async
+  parent: Fluxer.Net.Commands.RunMode
+  langs:
+  - csharp
+  - vb
+  name: Async
+  nameWithType: RunMode.Async
+  fullName: Fluxer.Net.Commands.RunMode.Async
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Commands/RunMode.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Async
+    path: ../Fluxer.Net/Commands/RunMode.cs
+    startLine: 15
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net.Commands
+  summary: The command will run asynchronously on a separate thread.
+  example: []
+  syntax:
+    content: Async = 1
+    return:
+      type: Fluxer.Net.Commands.RunMode
+references:
+- uid: Fluxer.Net.Commands
+  commentId: N:Fluxer.Net.Commands
+  href: Fluxer.html
+  name: Fluxer.Net.Commands
+  nameWithType: Fluxer.Net.Commands
+  fullName: Fluxer.Net.Commands
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  - name: .
+  - uid: Fluxer.Net.Commands
+    name: Commands
+    href: Fluxer.Net.Commands.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  - name: .
+  - uid: Fluxer.Net.Commands
+    name: Commands
+    href: Fluxer.Net.Commands.html
+- uid: Fluxer.Net.Commands.RunMode
+  commentId: T:Fluxer.Net.Commands.RunMode
+  parent: Fluxer.Net.Commands
+  href: Fluxer.Net.Commands.RunMode.html
+  name: RunMode
+  nameWithType: RunMode
+  fullName: Fluxer.Net.Commands.RunMode

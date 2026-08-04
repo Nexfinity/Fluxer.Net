@@ -1,0 +1,118 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.GuildMfaLevel
+  commentId: T:Fluxer.Net.GuildMfaLevel
+  id: GuildMfaLevel
+  parent: Fluxer.Net
+  children:
+  - Fluxer.Net.GuildMfaLevel.Elevated
+  - Fluxer.Net.GuildMfaLevel.None
+  langs:
+  - csharp
+  - vb
+  name: GuildMfaLevel
+  nameWithType: GuildMfaLevel
+  fullName: Fluxer.Net.GuildMfaLevel
+  type: Enum
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/Settings/GuildMfaLevel.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: GuildMfaLevel
+    path: ../Fluxer.Net/Data/Guilds/Settings/GuildMfaLevel.cs
+    startLine: 5
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Represents the multi-factor authentication (MFA) requirement level for a guild.
+  example: []
+  syntax:
+    content: public enum GuildMfaLevel
+    content.vb: Public Enum GuildMfaLevel
+- uid: Fluxer.Net.GuildMfaLevel.None
+  commentId: F:Fluxer.Net.GuildMfaLevel.None
+  id: None
+  parent: Fluxer.Net.GuildMfaLevel
+  langs:
+  - csharp
+  - vb
+  name: None
+  nameWithType: GuildMfaLevel.None
+  fullName: Fluxer.Net.GuildMfaLevel.None
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/Settings/GuildMfaLevel.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: None
+    path: ../Fluxer.Net/Data/Guilds/Settings/GuildMfaLevel.cs
+    startLine: 10
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: No MFA requirement for moderator actions.
+  example: []
+  syntax:
+    content: None = 0
+    return:
+      type: Fluxer.Net.GuildMfaLevel
+- uid: Fluxer.Net.GuildMfaLevel.Elevated
+  commentId: F:Fluxer.Net.GuildMfaLevel.Elevated
+  id: Elevated
+  parent: Fluxer.Net.GuildMfaLevel
+  langs:
+  - csharp
+  - vb
+  name: Elevated
+  nameWithType: GuildMfaLevel.Elevated
+  fullName: Fluxer.Net.GuildMfaLevel.Elevated
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/Settings/GuildMfaLevel.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Elevated
+    path: ../Fluxer.Net/Data/Guilds/Settings/GuildMfaLevel.cs
+    startLine: 15
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: MFA required for moderator actions (elevated security).
+  example: []
+  syntax:
+    content: Elevated = 1
+    return:
+      type: Fluxer.Net.GuildMfaLevel
+references:
+- uid: Fluxer.Net
+  commentId: N:Fluxer.Net
+  href: Fluxer.html
+  name: Fluxer.Net
+  nameWithType: Fluxer.Net
+  fullName: Fluxer.Net
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+- uid: Fluxer.Net.GuildMfaLevel
+  commentId: T:Fluxer.Net.GuildMfaLevel
+  parent: Fluxer.Net
+  href: Fluxer.Net.GuildMfaLevel.html
+  name: GuildMfaLevel
+  nameWithType: GuildMfaLevel
+  fullName: Fluxer.Net.GuildMfaLevel

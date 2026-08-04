@@ -1,0 +1,110 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.GatewayClient.ChannelPinsUpdateEvent
+  commentId: T:Fluxer.Net.GatewayClient.ChannelPinsUpdateEvent
+  id: GatewayClient.ChannelPinsUpdateEvent
+  parent: Fluxer.Net
+  children: []
+  langs:
+  - csharp
+  - vb
+  name: GatewayClient.ChannelPinsUpdateEvent
+  nameWithType: GatewayClient.ChannelPinsUpdateEvent
+  fullName: Fluxer.Net.GatewayClient.ChannelPinsUpdateEvent
+  type: Delegate
+  source:
+    remote:
+      path: Fluxer.Net/Gateway/GatewayClient.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: ChannelPinsUpdateEvent
+    path: ../Fluxer.Net/Gateway/GatewayClient.cs
+    startLine: 2064
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Delegate for CHANNEL_PINS_UPDATE events when channel pins are updated.
+  example: []
+  syntax:
+    content: public delegate void GatewayClient.ChannelPinsUpdateEvent(ChannelPinsUpdateGatewayData data)
+    parameters:
+    - id: data
+      type: Fluxer.Net.Gateway.Data.Channels.ChannelPinsUpdateGatewayData
+      description: The pins update data.
+    content.vb: Public Delegate Sub GatewayClient.ChannelPinsUpdateEvent(data As ChannelPinsUpdateGatewayData)
+references:
+- uid: Fluxer.Net
+  commentId: N:Fluxer.Net
+  href: Fluxer.html
+  name: Fluxer.Net
+  nameWithType: Fluxer.Net
+  fullName: Fluxer.Net
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+- uid: Fluxer.Net.Gateway.Data.Channels.ChannelPinsUpdateGatewayData
+  commentId: T:Fluxer.Net.Gateway.Data.Channels.ChannelPinsUpdateGatewayData
+  parent: Fluxer.Net.Gateway.Data.Channels
+  href: Fluxer.Net.Gateway.Data.Channels.ChannelPinsUpdateGatewayData.html
+  name: ChannelPinsUpdateGatewayData
+  nameWithType: ChannelPinsUpdateGatewayData
+  fullName: Fluxer.Net.Gateway.Data.Channels.ChannelPinsUpdateGatewayData
+- uid: Fluxer.Net.Gateway.Data.Channels
+  commentId: N:Fluxer.Net.Gateway.Data.Channels
+  href: Fluxer.html
+  name: Fluxer.Net.Gateway.Data.Channels
+  nameWithType: Fluxer.Net.Gateway.Data.Channels
+  fullName: Fluxer.Net.Gateway.Data.Channels
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  - name: .
+  - uid: Fluxer.Net.Gateway
+    name: Gateway
+    href: Fluxer.Net.Gateway.html
+  - name: .
+  - uid: Fluxer.Net.Gateway.Data
+    name: Data
+    href: Fluxer.Net.Gateway.Data.html
+  - name: .
+  - uid: Fluxer.Net.Gateway.Data.Channels
+    name: Channels
+    href: Fluxer.Net.Gateway.Data.Channels.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  - name: .
+  - uid: Fluxer.Net.Gateway
+    name: Gateway
+    href: Fluxer.Net.Gateway.html
+  - name: .
+  - uid: Fluxer.Net.Gateway.Data
+    name: Data
+    href: Fluxer.Net.Gateway.Data.html
+  - name: .
+  - uid: Fluxer.Net.Gateway.Data.Channels
+    name: Channels
+    href: Fluxer.Net.Gateway.Data.Channels.html

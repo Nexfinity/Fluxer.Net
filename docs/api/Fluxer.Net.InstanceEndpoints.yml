@@ -1,0 +1,826 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.InstanceEndpoints
+  commentId: T:Fluxer.Net.InstanceEndpoints
+  id: InstanceEndpoints
+  parent: Fluxer.Net
+  children:
+  - Fluxer.Net.InstanceEndpoints.Admin
+  - Fluxer.Net.InstanceEndpoints.Api
+  - Fluxer.Net.InstanceEndpoints.ApiClient
+  - Fluxer.Net.InstanceEndpoints.ApiPublic
+  - Fluxer.Net.InstanceEndpoints.Gateway
+  - Fluxer.Net.InstanceEndpoints.Gift
+  - Fluxer.Net.InstanceEndpoints.Invite
+  - Fluxer.Net.InstanceEndpoints.Marketing
+  - Fluxer.Net.InstanceEndpoints.Media
+  - Fluxer.Net.InstanceEndpoints.Static
+  - Fluxer.Net.InstanceEndpoints.WebApp
+  langs:
+  - csharp
+  - vb
+  name: InstanceEndpoints
+  nameWithType: InstanceEndpoints
+  fullName: Fluxer.Net.InstanceEndpoints
+  type: Class
+  source:
+    remote:
+      path: Fluxer.Net/Data/Misc/Instance.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: InstanceEndpoints
+    path: ../Fluxer.Net/Data/Misc/Instance.cs
+    startLine: 164
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Supports all classes in the .NET class hierarchy and provides low-level services to derived classes. This is the ultimate base class of all .NET classes; it is the root of the type hierarchy.
+  example: []
+  syntax:
+    content: 'public class InstanceEndpoints : IInstanceEndpoints'
+    content.vb: Public Class InstanceEndpoints Implements IInstanceEndpoints
+  inheritance:
+  - System.Object
+  implements:
+  - Fluxer.Net.IInstanceEndpoints
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: Fluxer.Net.InstanceEndpoints.Api
+  commentId: P:Fluxer.Net.InstanceEndpoints.Api
+  id: Api
+  parent: Fluxer.Net.InstanceEndpoints
+  langs:
+  - csharp
+  - vb
+  name: Api
+  nameWithType: InstanceEndpoints.Api
+  fullName: Fluxer.Net.InstanceEndpoints.Api
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Misc/Instance.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Api
+    path: ../Fluxer.Net/Data/Misc/Instance.cs
+    startLine: 167
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  example: []
+  syntax:
+    content: public string Api { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Api As String
+  overload: Fluxer.Net.InstanceEndpoints.Api*
+  implements:
+  - Fluxer.Net.IInstanceEndpoints.Api
+- uid: Fluxer.Net.InstanceEndpoints.ApiClient
+  commentId: P:Fluxer.Net.InstanceEndpoints.ApiClient
+  id: ApiClient
+  parent: Fluxer.Net.InstanceEndpoints
+  langs:
+  - csharp
+  - vb
+  name: ApiClient
+  nameWithType: InstanceEndpoints.ApiClient
+  fullName: Fluxer.Net.InstanceEndpoints.ApiClient
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Misc/Instance.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: ApiClient
+    path: ../Fluxer.Net/Data/Misc/Instance.cs
+    startLine: 170
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  example: []
+  syntax:
+    content: public string ApiClient { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property ApiClient As String
+  overload: Fluxer.Net.InstanceEndpoints.ApiClient*
+  implements:
+  - Fluxer.Net.IInstanceEndpoints.ApiClient
+- uid: Fluxer.Net.InstanceEndpoints.ApiPublic
+  commentId: P:Fluxer.Net.InstanceEndpoints.ApiPublic
+  id: ApiPublic
+  parent: Fluxer.Net.InstanceEndpoints
+  langs:
+  - csharp
+  - vb
+  name: ApiPublic
+  nameWithType: InstanceEndpoints.ApiPublic
+  fullName: Fluxer.Net.InstanceEndpoints.ApiPublic
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Misc/Instance.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: ApiPublic
+    path: ../Fluxer.Net/Data/Misc/Instance.cs
+    startLine: 173
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  example: []
+  syntax:
+    content: public string ApiPublic { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property ApiPublic As String
+  overload: Fluxer.Net.InstanceEndpoints.ApiPublic*
+  implements:
+  - Fluxer.Net.IInstanceEndpoints.ApiPublic
+- uid: Fluxer.Net.InstanceEndpoints.Gateway
+  commentId: P:Fluxer.Net.InstanceEndpoints.Gateway
+  id: Gateway
+  parent: Fluxer.Net.InstanceEndpoints
+  langs:
+  - csharp
+  - vb
+  name: Gateway
+  nameWithType: InstanceEndpoints.Gateway
+  fullName: Fluxer.Net.InstanceEndpoints.Gateway
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Misc/Instance.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Gateway
+    path: ../Fluxer.Net/Data/Misc/Instance.cs
+    startLine: 176
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  example: []
+  syntax:
+    content: public string Gateway { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Gateway As String
+  overload: Fluxer.Net.InstanceEndpoints.Gateway*
+  implements:
+  - Fluxer.Net.IInstanceEndpoints.Gateway
+- uid: Fluxer.Net.InstanceEndpoints.Media
+  commentId: P:Fluxer.Net.InstanceEndpoints.Media
+  id: Media
+  parent: Fluxer.Net.InstanceEndpoints
+  langs:
+  - csharp
+  - vb
+  name: Media
+  nameWithType: InstanceEndpoints.Media
+  fullName: Fluxer.Net.InstanceEndpoints.Media
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Misc/Instance.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Media
+    path: ../Fluxer.Net/Data/Misc/Instance.cs
+    startLine: 179
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  example: []
+  syntax:
+    content: public string Media { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Media As String
+  overload: Fluxer.Net.InstanceEndpoints.Media*
+  implements:
+  - Fluxer.Net.IInstanceEndpoints.Media
+- uid: Fluxer.Net.InstanceEndpoints.Static
+  commentId: P:Fluxer.Net.InstanceEndpoints.Static
+  id: Static
+  parent: Fluxer.Net.InstanceEndpoints
+  langs:
+  - csharp
+  - vb
+  name: Static
+  nameWithType: InstanceEndpoints.Static
+  fullName: Fluxer.Net.InstanceEndpoints.Static
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Misc/Instance.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Static
+    path: ../Fluxer.Net/Data/Misc/Instance.cs
+    startLine: 182
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  example: []
+  syntax:
+    content: public string Static { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property [Static] As String
+  overload: Fluxer.Net.InstanceEndpoints.Static*
+  implements:
+  - Fluxer.Net.IInstanceEndpoints.Static
+- uid: Fluxer.Net.InstanceEndpoints.Marketing
+  commentId: P:Fluxer.Net.InstanceEndpoints.Marketing
+  id: Marketing
+  parent: Fluxer.Net.InstanceEndpoints
+  langs:
+  - csharp
+  - vb
+  name: Marketing
+  nameWithType: InstanceEndpoints.Marketing
+  fullName: Fluxer.Net.InstanceEndpoints.Marketing
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Misc/Instance.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Marketing
+    path: ../Fluxer.Net/Data/Misc/Instance.cs
+    startLine: 185
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  example: []
+  syntax:
+    content: public string Marketing { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Marketing As String
+  overload: Fluxer.Net.InstanceEndpoints.Marketing*
+  implements:
+  - Fluxer.Net.IInstanceEndpoints.Marketing
+- uid: Fluxer.Net.InstanceEndpoints.Admin
+  commentId: P:Fluxer.Net.InstanceEndpoints.Admin
+  id: Admin
+  parent: Fluxer.Net.InstanceEndpoints
+  langs:
+  - csharp
+  - vb
+  name: Admin
+  nameWithType: InstanceEndpoints.Admin
+  fullName: Fluxer.Net.InstanceEndpoints.Admin
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Misc/Instance.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Admin
+    path: ../Fluxer.Net/Data/Misc/Instance.cs
+    startLine: 188
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  example: []
+  syntax:
+    content: public string Admin { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Admin As String
+  overload: Fluxer.Net.InstanceEndpoints.Admin*
+  implements:
+  - Fluxer.Net.IInstanceEndpoints.Admin
+- uid: Fluxer.Net.InstanceEndpoints.Invite
+  commentId: P:Fluxer.Net.InstanceEndpoints.Invite
+  id: Invite
+  parent: Fluxer.Net.InstanceEndpoints
+  langs:
+  - csharp
+  - vb
+  name: Invite
+  nameWithType: InstanceEndpoints.Invite
+  fullName: Fluxer.Net.InstanceEndpoints.Invite
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Misc/Instance.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Invite
+    path: ../Fluxer.Net/Data/Misc/Instance.cs
+    startLine: 191
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  example: []
+  syntax:
+    content: public string Invite { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Invite As String
+  overload: Fluxer.Net.InstanceEndpoints.Invite*
+  implements:
+  - Fluxer.Net.IInstanceEndpoints.Invite
+- uid: Fluxer.Net.InstanceEndpoints.Gift
+  commentId: P:Fluxer.Net.InstanceEndpoints.Gift
+  id: Gift
+  parent: Fluxer.Net.InstanceEndpoints
+  langs:
+  - csharp
+  - vb
+  name: Gift
+  nameWithType: InstanceEndpoints.Gift
+  fullName: Fluxer.Net.InstanceEndpoints.Gift
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Misc/Instance.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Gift
+    path: ../Fluxer.Net/Data/Misc/Instance.cs
+    startLine: 194
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  example: []
+  syntax:
+    content: public string Gift { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Gift As String
+  overload: Fluxer.Net.InstanceEndpoints.Gift*
+  implements:
+  - Fluxer.Net.IInstanceEndpoints.Gift
+- uid: Fluxer.Net.InstanceEndpoints.WebApp
+  commentId: P:Fluxer.Net.InstanceEndpoints.WebApp
+  id: WebApp
+  parent: Fluxer.Net.InstanceEndpoints
+  langs:
+  - csharp
+  - vb
+  name: WebApp
+  nameWithType: InstanceEndpoints.WebApp
+  fullName: Fluxer.Net.InstanceEndpoints.WebApp
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Misc/Instance.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: WebApp
+    path: ../Fluxer.Net/Data/Misc/Instance.cs
+    startLine: 197
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  example: []
+  syntax:
+    content: public string WebApp { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property WebApp As String
+  overload: Fluxer.Net.InstanceEndpoints.WebApp*
+  implements:
+  - Fluxer.Net.IInstanceEndpoints.WebApp
+references:
+- uid: Fluxer.Net
+  commentId: N:Fluxer.Net
+  href: Fluxer.html
+  name: Fluxer.Net
+  nameWithType: Fluxer.Net
+  fullName: Fluxer.Net
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Fluxer.Net.IInstanceEndpoints
+  commentId: T:Fluxer.Net.IInstanceEndpoints
+  parent: Fluxer.Net
+  href: Fluxer.Net.IInstanceEndpoints.html
+  name: IInstanceEndpoints
+  nameWithType: IInstanceEndpoints
+  fullName: Fluxer.Net.IInstanceEndpoints
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Fluxer.Net.InstanceEndpoints.Api*
+  commentId: Overload:Fluxer.Net.InstanceEndpoints.Api
+  href: Fluxer.Net.InstanceEndpoints.html#Fluxer_Net_InstanceEndpoints_Api
+  name: Api
+  nameWithType: InstanceEndpoints.Api
+  fullName: Fluxer.Net.InstanceEndpoints.Api
+- uid: Fluxer.Net.IInstanceEndpoints.Api
+  commentId: P:Fluxer.Net.IInstanceEndpoints.Api
+  parent: Fluxer.Net.IInstanceEndpoints
+  href: Fluxer.Net.IInstanceEndpoints.html#Fluxer_Net_IInstanceEndpoints_Api
+  name: Api
+  nameWithType: IInstanceEndpoints.Api
+  fullName: Fluxer.Net.IInstanceEndpoints.Api
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: Fluxer.Net.InstanceEndpoints.ApiClient*
+  commentId: Overload:Fluxer.Net.InstanceEndpoints.ApiClient
+  href: Fluxer.Net.InstanceEndpoints.html#Fluxer_Net_InstanceEndpoints_ApiClient
+  name: ApiClient
+  nameWithType: InstanceEndpoints.ApiClient
+  fullName: Fluxer.Net.InstanceEndpoints.ApiClient
+- uid: Fluxer.Net.IInstanceEndpoints.ApiClient
+  commentId: P:Fluxer.Net.IInstanceEndpoints.ApiClient
+  parent: Fluxer.Net.IInstanceEndpoints
+  href: Fluxer.Net.IInstanceEndpoints.html#Fluxer_Net_IInstanceEndpoints_ApiClient
+  name: ApiClient
+  nameWithType: IInstanceEndpoints.ApiClient
+  fullName: Fluxer.Net.IInstanceEndpoints.ApiClient
+- uid: Fluxer.Net.InstanceEndpoints.ApiPublic*
+  commentId: Overload:Fluxer.Net.InstanceEndpoints.ApiPublic
+  href: Fluxer.Net.InstanceEndpoints.html#Fluxer_Net_InstanceEndpoints_ApiPublic
+  name: ApiPublic
+  nameWithType: InstanceEndpoints.ApiPublic
+  fullName: Fluxer.Net.InstanceEndpoints.ApiPublic
+- uid: Fluxer.Net.IInstanceEndpoints.ApiPublic
+  commentId: P:Fluxer.Net.IInstanceEndpoints.ApiPublic
+  parent: Fluxer.Net.IInstanceEndpoints
+  href: Fluxer.Net.IInstanceEndpoints.html#Fluxer_Net_IInstanceEndpoints_ApiPublic
+  name: ApiPublic
+  nameWithType: IInstanceEndpoints.ApiPublic
+  fullName: Fluxer.Net.IInstanceEndpoints.ApiPublic
+- uid: Fluxer.Net.InstanceEndpoints.Gateway*
+  commentId: Overload:Fluxer.Net.InstanceEndpoints.Gateway
+  href: Fluxer.Net.InstanceEndpoints.html#Fluxer_Net_InstanceEndpoints_Gateway
+  name: Gateway
+  nameWithType: InstanceEndpoints.Gateway
+  fullName: Fluxer.Net.InstanceEndpoints.Gateway
+- uid: Fluxer.Net.IInstanceEndpoints.Gateway
+  commentId: P:Fluxer.Net.IInstanceEndpoints.Gateway
+  parent: Fluxer.Net.IInstanceEndpoints
+  href: Fluxer.Net.IInstanceEndpoints.html#Fluxer_Net_IInstanceEndpoints_Gateway
+  name: Gateway
+  nameWithType: IInstanceEndpoints.Gateway
+  fullName: Fluxer.Net.IInstanceEndpoints.Gateway
+- uid: Fluxer.Net.InstanceEndpoints.Media*
+  commentId: Overload:Fluxer.Net.InstanceEndpoints.Media
+  href: Fluxer.Net.InstanceEndpoints.html#Fluxer_Net_InstanceEndpoints_Media
+  name: Media
+  nameWithType: InstanceEndpoints.Media
+  fullName: Fluxer.Net.InstanceEndpoints.Media
+- uid: Fluxer.Net.IInstanceEndpoints.Media
+  commentId: P:Fluxer.Net.IInstanceEndpoints.Media
+  parent: Fluxer.Net.IInstanceEndpoints
+  href: Fluxer.Net.IInstanceEndpoints.html#Fluxer_Net_IInstanceEndpoints_Media
+  name: Media
+  nameWithType: IInstanceEndpoints.Media
+  fullName: Fluxer.Net.IInstanceEndpoints.Media
+- uid: Fluxer.Net.InstanceEndpoints.Static*
+  commentId: Overload:Fluxer.Net.InstanceEndpoints.Static
+  href: Fluxer.Net.InstanceEndpoints.html#Fluxer_Net_InstanceEndpoints_Static
+  name: Static
+  nameWithType: InstanceEndpoints.Static
+  fullName: Fluxer.Net.InstanceEndpoints.Static
+- uid: Fluxer.Net.IInstanceEndpoints.Static
+  commentId: P:Fluxer.Net.IInstanceEndpoints.Static
+  parent: Fluxer.Net.IInstanceEndpoints
+  href: Fluxer.Net.IInstanceEndpoints.html#Fluxer_Net_IInstanceEndpoints_Static
+  name: Static
+  nameWithType: IInstanceEndpoints.Static
+  fullName: Fluxer.Net.IInstanceEndpoints.Static
+- uid: Fluxer.Net.InstanceEndpoints.Marketing*
+  commentId: Overload:Fluxer.Net.InstanceEndpoints.Marketing
+  href: Fluxer.Net.InstanceEndpoints.html#Fluxer_Net_InstanceEndpoints_Marketing
+  name: Marketing
+  nameWithType: InstanceEndpoints.Marketing
+  fullName: Fluxer.Net.InstanceEndpoints.Marketing
+- uid: Fluxer.Net.IInstanceEndpoints.Marketing
+  commentId: P:Fluxer.Net.IInstanceEndpoints.Marketing
+  parent: Fluxer.Net.IInstanceEndpoints
+  href: Fluxer.Net.IInstanceEndpoints.html#Fluxer_Net_IInstanceEndpoints_Marketing
+  name: Marketing
+  nameWithType: IInstanceEndpoints.Marketing
+  fullName: Fluxer.Net.IInstanceEndpoints.Marketing
+- uid: Fluxer.Net.InstanceEndpoints.Admin*
+  commentId: Overload:Fluxer.Net.InstanceEndpoints.Admin
+  href: Fluxer.Net.InstanceEndpoints.html#Fluxer_Net_InstanceEndpoints_Admin
+  name: Admin
+  nameWithType: InstanceEndpoints.Admin
+  fullName: Fluxer.Net.InstanceEndpoints.Admin
+- uid: Fluxer.Net.IInstanceEndpoints.Admin
+  commentId: P:Fluxer.Net.IInstanceEndpoints.Admin
+  parent: Fluxer.Net.IInstanceEndpoints
+  href: Fluxer.Net.IInstanceEndpoints.html#Fluxer_Net_IInstanceEndpoints_Admin
+  name: Admin
+  nameWithType: IInstanceEndpoints.Admin
+  fullName: Fluxer.Net.IInstanceEndpoints.Admin
+- uid: Fluxer.Net.InstanceEndpoints.Invite*
+  commentId: Overload:Fluxer.Net.InstanceEndpoints.Invite
+  href: Fluxer.Net.InstanceEndpoints.html#Fluxer_Net_InstanceEndpoints_Invite
+  name: Invite
+  nameWithType: InstanceEndpoints.Invite
+  fullName: Fluxer.Net.InstanceEndpoints.Invite
+- uid: Fluxer.Net.IInstanceEndpoints.Invite
+  commentId: P:Fluxer.Net.IInstanceEndpoints.Invite
+  parent: Fluxer.Net.IInstanceEndpoints
+  href: Fluxer.Net.IInstanceEndpoints.html#Fluxer_Net_IInstanceEndpoints_Invite
+  name: Invite
+  nameWithType: IInstanceEndpoints.Invite
+  fullName: Fluxer.Net.IInstanceEndpoints.Invite
+- uid: Fluxer.Net.InstanceEndpoints.Gift*
+  commentId: Overload:Fluxer.Net.InstanceEndpoints.Gift
+  href: Fluxer.Net.InstanceEndpoints.html#Fluxer_Net_InstanceEndpoints_Gift
+  name: Gift
+  nameWithType: InstanceEndpoints.Gift
+  fullName: Fluxer.Net.InstanceEndpoints.Gift
+- uid: Fluxer.Net.IInstanceEndpoints.Gift
+  commentId: P:Fluxer.Net.IInstanceEndpoints.Gift
+  parent: Fluxer.Net.IInstanceEndpoints
+  href: Fluxer.Net.IInstanceEndpoints.html#Fluxer_Net_IInstanceEndpoints_Gift
+  name: Gift
+  nameWithType: IInstanceEndpoints.Gift
+  fullName: Fluxer.Net.IInstanceEndpoints.Gift
+- uid: Fluxer.Net.InstanceEndpoints.WebApp*
+  commentId: Overload:Fluxer.Net.InstanceEndpoints.WebApp
+  href: Fluxer.Net.InstanceEndpoints.html#Fluxer_Net_InstanceEndpoints_WebApp
+  name: WebApp
+  nameWithType: InstanceEndpoints.WebApp
+  fullName: Fluxer.Net.InstanceEndpoints.WebApp
+- uid: Fluxer.Net.IInstanceEndpoints.WebApp
+  commentId: P:Fluxer.Net.IInstanceEndpoints.WebApp
+  parent: Fluxer.Net.IInstanceEndpoints
+  href: Fluxer.Net.IInstanceEndpoints.html#Fluxer_Net_IInstanceEndpoints_WebApp
+  name: WebApp
+  nameWithType: IInstanceEndpoints.WebApp
+  fullName: Fluxer.Net.IInstanceEndpoints.WebApp

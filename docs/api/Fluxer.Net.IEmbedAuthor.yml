@@ -1,0 +1,224 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.IEmbedAuthor
+  commentId: T:Fluxer.Net.IEmbedAuthor
+  id: IEmbedAuthor
+  parent: Fluxer.Net
+  children:
+  - Fluxer.Net.IEmbedAuthor.IconUrl
+  - Fluxer.Net.IEmbedAuthor.Name
+  - Fluxer.Net.IEmbedAuthor.ProxyIconUrl
+  - Fluxer.Net.IEmbedAuthor.Url
+  langs:
+  - csharp
+  - vb
+  name: IEmbedAuthor
+  nameWithType: IEmbedAuthor
+  fullName: Fluxer.Net.IEmbedAuthor
+  type: Interface
+  source:
+    remote:
+      path: Fluxer.Net/Data/Embeds/IEmbed.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: IEmbedAuthor
+    path: ../Fluxer.Net/Data/Embeds/IEmbed.cs
+    startLine: 96
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: public interface IEmbedAuthor
+    content.vb: Public Interface IEmbedAuthor
+  derivedClasses:
+  - Fluxer.Net.EmbedAuthor
+  - Fluxer.Net.EmbedAuthorJson
+- uid: Fluxer.Net.IEmbedAuthor.Name
+  commentId: P:Fluxer.Net.IEmbedAuthor.Name
+  id: Name
+  parent: Fluxer.Net.IEmbedAuthor
+  langs:
+  - csharp
+  - vb
+  name: Name
+  nameWithType: IEmbedAuthor.Name
+  fullName: Fluxer.Net.IEmbedAuthor.Name
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Embeds/IEmbed.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Name
+    path: ../Fluxer.Net/Data/Embeds/IEmbed.cs
+    startLine: 101
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The name of the author.
+  example: []
+  syntax:
+    content: string? Name { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: ReadOnly Property Name As String
+  overload: Fluxer.Net.IEmbedAuthor.Name*
+- uid: Fluxer.Net.IEmbedAuthor.Url
+  commentId: P:Fluxer.Net.IEmbedAuthor.Url
+  id: Url
+  parent: Fluxer.Net.IEmbedAuthor
+  langs:
+  - csharp
+  - vb
+  name: Url
+  nameWithType: IEmbedAuthor.Url
+  fullName: Fluxer.Net.IEmbedAuthor.Url
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Embeds/IEmbed.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Url
+    path: ../Fluxer.Net/Data/Embeds/IEmbed.cs
+    startLine: 106
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The URL of the author.
+  example: []
+  syntax:
+    content: string? Url { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: ReadOnly Property Url As String
+  overload: Fluxer.Net.IEmbedAuthor.Url*
+- uid: Fluxer.Net.IEmbedAuthor.IconUrl
+  commentId: P:Fluxer.Net.IEmbedAuthor.IconUrl
+  id: IconUrl
+  parent: Fluxer.Net.IEmbedAuthor
+  langs:
+  - csharp
+  - vb
+  name: IconUrl
+  nameWithType: IEmbedAuthor.IconUrl
+  fullName: Fluxer.Net.IEmbedAuthor.IconUrl
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Embeds/IEmbed.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: IconUrl
+    path: ../Fluxer.Net/Data/Embeds/IEmbed.cs
+    startLine: 111
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The URL of the author icon.
+  example: []
+  syntax:
+    content: string? IconUrl { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: ReadOnly Property IconUrl As String
+  overload: Fluxer.Net.IEmbedAuthor.IconUrl*
+- uid: Fluxer.Net.IEmbedAuthor.ProxyIconUrl
+  commentId: P:Fluxer.Net.IEmbedAuthor.ProxyIconUrl
+  id: ProxyIconUrl
+  parent: Fluxer.Net.IEmbedAuthor
+  langs:
+  - csharp
+  - vb
+  name: ProxyIconUrl
+  nameWithType: IEmbedAuthor.ProxyIconUrl
+  fullName: Fluxer.Net.IEmbedAuthor.ProxyIconUrl
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Embeds/IEmbed.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: ProxyIconUrl
+    path: ../Fluxer.Net/Data/Embeds/IEmbed.cs
+    startLine: 116
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The proxied URL of the author icon.
+  example: []
+  syntax:
+    content: string? ProxyIconUrl { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: ReadOnly Property ProxyIconUrl As String
+  overload: Fluxer.Net.IEmbedAuthor.ProxyIconUrl*
+references:
+- uid: Fluxer.Net
+  commentId: N:Fluxer.Net
+  href: Fluxer.html
+  name: Fluxer.Net
+  nameWithType: Fluxer.Net
+  fullName: Fluxer.Net
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+- uid: Fluxer.Net.IEmbedAuthor.Name*
+  commentId: Overload:Fluxer.Net.IEmbedAuthor.Name
+  href: Fluxer.Net.IEmbedAuthor.html#Fluxer_Net_IEmbedAuthor_Name
+  name: Name
+  nameWithType: IEmbedAuthor.Name
+  fullName: Fluxer.Net.IEmbedAuthor.Name
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Fluxer.Net.IEmbedAuthor.Url*
+  commentId: Overload:Fluxer.Net.IEmbedAuthor.Url
+  href: Fluxer.Net.IEmbedAuthor.html#Fluxer_Net_IEmbedAuthor_Url
+  name: Url
+  nameWithType: IEmbedAuthor.Url
+  fullName: Fluxer.Net.IEmbedAuthor.Url
+- uid: Fluxer.Net.IEmbedAuthor.IconUrl*
+  commentId: Overload:Fluxer.Net.IEmbedAuthor.IconUrl
+  href: Fluxer.Net.IEmbedAuthor.html#Fluxer_Net_IEmbedAuthor_IconUrl
+  name: IconUrl
+  nameWithType: IEmbedAuthor.IconUrl
+  fullName: Fluxer.Net.IEmbedAuthor.IconUrl
+- uid: Fluxer.Net.IEmbedAuthor.ProxyIconUrl*
+  commentId: Overload:Fluxer.Net.IEmbedAuthor.ProxyIconUrl
+  href: Fluxer.Net.IEmbedAuthor.html#Fluxer_Net_IEmbedAuthor_ProxyIconUrl
+  name: ProxyIconUrl
+  nameWithType: IEmbedAuthor.ProxyIconUrl
+  fullName: Fluxer.Net.IEmbedAuthor.ProxyIconUrl
