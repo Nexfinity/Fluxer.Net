@@ -7,7 +7,7 @@ public class GuildFeatures
         Raw = features ??= new string[0];
         if (features != null)
         {
-            foreach (var feature in features)
+            foreach (string feature in features)
             {
                 switch (feature)
                 {

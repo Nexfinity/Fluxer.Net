@@ -101,7 +101,7 @@ public class InstanceEndpointsJson : IInstanceEndpoints
 
     /// <inheritdoc />
     [JsonProperty("static_cdn")]
-    public string Cdn { get; set; }
+    public string Static { get; set; }
 
     /// <inheritdoc />
     [JsonProperty("marketing")]

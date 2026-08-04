@@ -18,7 +18,7 @@ public class GuildSticker : Sticker, IGuildSticker
     /// <inheritdoc />
     public string? GetStickerUrl(int size = 320)
     {
-        return $"https://fluxerusercontent.com/stickers/{Id}.webp?size={size}";
+        return $"{Client.Config.MediaUrl}/stickers/{Id}.webp?size={size}";
     }
 
     IUser? IGuildSticker.Creator => Creator;

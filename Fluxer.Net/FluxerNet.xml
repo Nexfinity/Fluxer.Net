@@ -378,6 +378,60 @@
             </summary>
             <param name="name">The command name or alias.</param>
         </member>
+        <member name="T:Fluxer.Net.Commands.CommandService2">
+            <summary>
+            Provides a framework for creating and executing text-based commands.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Commands.CommandService2.Modules">
+            <summary>
+            Gets all registered modules.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Commands.CommandService2.Commands">
+            <summary>
+            Gets all registered commands across all modules.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Commands.CommandService2.#ctor(Serilog.ILogger,System.IServiceProvider)">
+            <summary>
+            Creates a new command service.
+            </summary>
+            <param name="prefixChar">The prefix character for commands (e.g., '!' or '/').</param>
+            <param name="logger">Optional logger for command execution.</param>
+            <param name="services">Optional service provider for dependency injection.</param>
+        </member>
+        <member name="M:Fluxer.Net.Commands.CommandService2.AddModulesAsync(System.Reflection.Assembly)">
+            <summary>
+            Registers all command modules from the specified assembly.
+            </summary>
+            <param name="assembly">The assembly to search for modules.</param>
+        </member>
+        <member name="M:Fluxer.Net.Commands.CommandService2.AddModuleAsync``1">
+            <summary>
+            Registers a specific command module type.
+            </summary>
+            <typeparam name="T">The module type.</typeparam>
+        </member>
+        <member name="M:Fluxer.Net.Commands.CommandService2.AddModuleAsync(System.Type)">
+            <summary>
+            Registers a specific command module type.
+            </summary>
+            <param name="type">The module type.</param>
+        </member>
+        <member name="M:Fluxer.Net.Commands.CommandService2.ExecuteAsync(Fluxer.Net.Commands.CommandContext,System.Int32)">
+            <summary>
+            Executes a command from a message.
+            </summary>
+            <param name="context">The command context.</param>
+            <param name="argPos">The position in the message where arguments begin.</param>
+        </member>
+        <member name="M:Fluxer.Net.Commands.CommandService2.SearchCommand(Fluxer.Net.Commands.ModuleInfo,System.String)">
+            <summary>
+            Searches for a command by name or alias.
+            </summary>
+            <param name="name">The command name or alias.</param>
+        </member>
         <member name="T:Fluxer.Net.Commands.ExecuteResult">
             <summary>
             Represents the result of a command execution.
@@ -499,6 +553,11 @@
         <member name="P:Fluxer.Net.Commands.ModuleInfo.Commands">
             <summary>
             Gets the commands in this module.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Commands.ModuleInfo.Modules">
+            <summary>
+            Gets all registered modules.
             </summary>
         </member>
         <member name="P:Fluxer.Net.Commands.ModuleInfo.Type">
@@ -8850,7 +8909,58 @@
         </member>
         <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.AddFluxer(Microsoft.AspNetCore.Authentication.AuthenticationBuilder,System.Action{Fluxer.Net.OAuth.FluxerOAuthOptions})">
             <Summary>
-            Add Fluxer oauth client on dn for a rate limit bucket
+            Add Fluxer oauth client on dependency injection service.
+            </Summary>
+        </member>
+        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.AddFluxer(Microsoft.AspNetCore.Authentication.AuthenticationBuilder,System.String,System.Action{Fluxer.Net.OAuth.FluxerOAuthOptions})">
+            <Summary>
+            Add Fluxer oauth client on dependency injection service.
+            </Summary>
+        </member>
+        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.AddFluxer(Microsoft.AspNetCore.Authentication.AuthenticationBuilder,System.String,System.String,System.Action{Fluxer.Net.OAuth.FluxerOAuthOptions})">
+            <Summary>
+            Add Fluxer oauth client on dependency injection service.
+            </Summary>
+        </member>
+        <member name="T:Fluxer.Net.OAuth.FluxerOAuthHandler">
+            <Summary>
+            Asp.net oauth handler for Fluxer.
+            </Summary>
+        </member>
+        <member name="M:Fluxer.Net.OAuth.FluxerOAuthHandler.#ctor(Microsoft.Extensions.Options.IOptionsMonitor{Fluxer.Net.OAuth.FluxerOAuthOptions},Microsoft.Extensions.Logging.ILoggerFactory,System.Text.Encodings.Web.UrlEncoder,Microsoft.AspNetCore.Authentication.ISystemClock)">
+            <Summary>
+            Create asp.net oauth handler for Fluxer.
+            </Summary>
+        </member>
+        <member name="T:Fluxer.Net.RateLimiting.RateLimitBucket">
+            <summary>
+            Represents a sliding window rate limit bucket for API requests
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.RateLimiting.RateLimitBucket.AcquireAsync">
+            <summary>
+            Attempts to acquire a rate limit slot, waiting if necessary
+            </summary>
+            <returns>Time in milliseconds until the request can proceed (0 if immediate)</returns>
+        </member>
+        <member name="M:Fluxer.Net.RateLimiting.RateLimitBucket.GetRemainingAsync">
+            <summary>
+            Gets the number of available requests in the current window
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.RateLimiting.RateLimitBucket.GetResetTimeAsync">
+            <summary>
+            Gets the time in milliseconds until the next slot becomes available
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.RateLimiting.RateLimitBucket.ResetAsync">
+            <summary>
+            Clears all tracked timestamps (useful for testing or manual reset)
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.RateLimiting.RateLimitConfig">
+            <summary>
+            Configuration for a rate limit bucket
             </summary>
         </member>
         <member name="T:Fluxer.Net.RateLimiting.RateLimitConfigs">
@@ -8972,7 +9082,7 @@
             <param name="webhookId">Optional webhook ID for webhook-specific rate limits.</param>
             <param name="inviteCode">Optional invite code for invite-specific rate limits.</param>
         </member>
-        <member name="M:Fluxer.Net.ApiClient.MakeFluxerApiRequestAsync``2(System.Net.Http.HttpMethod,System.String,``1,System.Boolean,System.Boolean,System.Collections.Generic.ICollection{System.Collections.Generic.KeyValuePair{System.String,System.ValueTuple{System.Net.Http.HttpContent,System.String}}})">
+        <member name="M:Fluxer.Net.ApiClient.SendRequestAsync``2(System.Net.Http.HttpMethod,System.String,``1,System.Boolean,System.Boolean,System.Collections.Generic.ICollection{System.Collections.Generic.KeyValuePair{System.String,System.ValueTuple{System.Net.Http.HttpContent,System.String}}})">
             <summary>
             Makes an HTTP request with both request and response bodies.
             </summary>
@@ -8986,7 +9096,7 @@
             <returns>The deserialized response object.</returns>
             <exception cref="T:Fluxer.Net.Extensions.FluxerApiException">Thrown when <paramref name="throwOnNonSuccess"/> is true and the API returns a non-success status code.</exception>
         </member>
-        <member name="M:Fluxer.Net.ApiClient.MakeFluxerApiRequestAsync``1(System.Net.Http.HttpMethod,System.String,``0,System.Boolean,System.Boolean)">
+        <member name="M:Fluxer.Net.ApiClient.SendRequestAsync``1(System.Net.Http.HttpMethod,System.String,``0,System.Boolean,System.Boolean)">
             <summary>
             Makes an HTTP request with a request body but no response body (returns status code only).
             </summary>
@@ -8999,7 +9109,7 @@
             <returns>The HTTP status code of the response.</returns>
             <exception cref="T:Fluxer.Net.Extensions.FluxerApiException">Thrown when <paramref name="throwOnNonSuccess"/> is true and the API returns a non-success status code.</exception>
         </member>
-        <member name="M:Fluxer.Net.ApiClient.MakeFluxerApiRequestAsync``1(System.Net.Http.HttpMethod,System.String,System.Boolean,System.Boolean)">
+        <member name="M:Fluxer.Net.ApiClient.SendRequestAsync``1(System.Net.Http.HttpMethod,System.String,System.Boolean,System.Boolean)">
             <summary>
             Makes an HTTP request with no request body but expects a response body.
             </summary>
@@ -9011,7 +9121,7 @@
             <returns>The deserialized response object.</returns>
             <exception cref="T:Fluxer.Net.Extensions.FluxerApiException">Thrown when <paramref name="throwOnNonSuccess"/> is true and the API returns a non-success status code.</exception>
         </member>
-        <member name="M:Fluxer.Net.ApiClient.MakeFluxerApiRequestAsyncWithQueryParams``1(System.Net.Http.HttpMethod,Fluxer.Net.Rest.RestClientQueryParams,System.String,System.Boolean,System.Boolean)">
+        <member name="M:Fluxer.Net.ApiClient.SendRequestQueryParamsAsync``1(System.Net.Http.HttpMethod,Fluxer.Net.Rest.RestClientQueryParams,System.String,System.Boolean,System.Boolean)">
             <summary>
             Makes an HTTP request with no request body but expects a response body.
             </summary>
@@ -9024,7 +9134,7 @@
             <returns>The deserialized response object.</returns>
             <exception cref="T:Fluxer.Net.Extensions.FluxerApiException">Thrown when <paramref name="throwOnNonSuccess"/> is true and the API returns a non-success status code.</exception>
         </member>
-        <member name="M:Fluxer.Net.ApiClient.MakeFluxerApiRequestRawAsync(System.Net.Http.HttpMethod,System.String,System.Boolean,System.Boolean)">
+        <member name="M:Fluxer.Net.ApiClient.SendRequestRawAsync(System.Net.Http.HttpMethod,System.String,System.Boolean,System.Boolean)">
             <summary>
             Makes an HTTP request with no request or response body (returns status code only).
             </summary>
@@ -9591,69 +9701,6 @@
             </summary>
         </member>
         <member name="P:Fluxer.Net.MessageSearchRequest.ExcludeAttachmentExtensions">
-            <summary>
-            File extensions to exclude
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.MessageSearchRequest.SortBy">
-            <summary>
-            Field to sort results by
-            </summary>
-            <remarks>
-            <see href="https://github.com/fluxerapp/fluxer/blob/d843d6f3f8a0bd850673ba55036354093977109f/packages/schema/src/domains/message/MessageRequestSchemas.tsx#L134"/>
-            </remarks>
-        </member>
-        <member name="P:Fluxer.Net.MessageSearchRequest.SortOrder">
-            <summary>
-            Sort order for results
-            </summary>
-            <remarks>
-            <see href="https://github.com/fluxerapp/fluxer/blob/d843d6f3f8a0bd850673ba55036354093977109f/packages/schema/src/domains/message/MessageRequestSchemas.tsx#L147"/>
-            </remarks>
-        </member>
-        <member name="P:Fluxer.Net.MessageSearchRequest.IncludeNsfw">
-            <summary>
-            Whether to include NSFW channel results
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.MessageSearchRequest.MessageSearchScope">
-            <remarks>
-            <see href="https://github.com/fluxerapp/fluxer/blob/d843d6f3f8a0bd850673ba55036354093977109f/packages/schema/src/domains/message/MessageRequestSchemas.tsx#L160"/>
-            </remarks>
-        </member>
-        <member name="T:Fluxer.Net.UpdateMessageRequest">
-            <remarks>
-            <see href="https://github.com/fluxerapp/fluxer/blob/848269a4d4df7349acfc861ff926b17fe4c4a548/packages/api/src/channel/MessageTypes.tsx#L32"/>
-            </remarks>
-        </member>
-        <member name="P:Fluxer.Net.UpdateMessageRequest.Content">
-            <summary>
-            The message content (up to 2000 characters)
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.UpdateMessageRequest.Embeds">
-            <summary>
-            Array of embed objects to include in the message
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.UpdateMessageRequest.AllowedMentions">
-            <summary>
-            Controls which mentions trigger notifications
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.UpdateMessageRequest.Flags">
-            <summary>
-            Message flags bitfield
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.UpdateMessageRequest.Attachments">
-            <summary>
-            Array of attachment objects to keep or add
-            </summary>
-        </member>
-    </members>
-</doc>
-ions">
             <summary>
             File extensions to exclude
             </summary>

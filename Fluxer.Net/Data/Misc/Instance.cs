@@ -90,7 +90,7 @@ public class Instance : Entity, IInstance
                 ApiClient = json.Endpoints.ApiClient,
                 ApiPublic = json.Endpoints.ApiPublic,
                 WebApp = json.Endpoints.WebApp,
-                Cdn = json.Endpoints.Cdn,
+                Static = json.Endpoints.Static,
                 Gateway = json.Endpoints.Gateway,
                 Gift = json.Endpoints.Gift,
                 Invite = json.Endpoints.Invite,
@@ -180,7 +180,7 @@ public class InstanceEndpoints : IInstanceEndpoints
     public string Media { get; internal set; }
 
     /// <inheritdoc />
-    public string Cdn { get; internal set; }
+    public string Static { get; internal set; }
 
     /// <inheritdoc />
     public string Marketing { get; internal set; }

@@ -51,7 +51,7 @@ public class GuildMember : Entity, IGuildMember
     /// <inheritdoc />
     public string GetDefaultAvatarUrl()
     {
-        return $"https://fluxerstatic.com/avatars/{UserId % 6}.png";
+        return $"{Client.Config.StaticUrl}/avatars/{UserId % 6}.png";
     }
 
     /// <inheritdoc />
@@ -78,7 +78,7 @@ public class GuildMember : Entity, IGuildMember
         if (string.IsNullOrEmpty(BannerHash))
             return null;
 
-        return $"https://fluxerusercontent.com/guilds/{GuildId}/users/{UserId}/banners/{BannerHash}.webp?size={size}";
+        return $"{Client.Config.MediaUrl}/guilds/{GuildId}/users/{UserId}/banners/{BannerHash}.webp?size={size}";
     }
 
     IUser IGuildMember.User => User;

@@ -1,4 +1,4 @@
-﻿using Serilog;
+using Serilog;
 using System.Reflection;
 
 namespace Fluxer.Net.Commands;
@@ -6,10 +6,10 @@ namespace Fluxer.Net.Commands;
 /// <summary>
 /// Provides a framework for creating and executing text-based commands.
 /// </summary>
-public class CommandService
+public class CommandService2
 {
     private readonly List<ModuleInfo> _modules = new();
-    private readonly ILogger? _logger;
+    internal readonly ILogger? _logger;
     private readonly IServiceProvider? _services;
 
     /// <summary>
@@ -28,7 +28,7 @@ public class CommandService
     /// <param name="prefixChar">The prefix character for commands (e.g., '!' or '/').</param>
     /// <param name="logger">Optional logger for command execution.</param>
     /// <param name="services">Optional service provider for dependency injection.</param>
-    public CommandService(ILogger? logger = null, IServiceProvider? services = null)
+    public CommandService2(ILogger? logger = null, IServiceProvider? services = null)
     {
         _logger = logger;
         _services = services;
@@ -41,7 +41,7 @@ public class CommandService
     public async Task AddModulesAsync(Assembly assembly)
     {
         IEnumerable<Type> moduleTypes = assembly.GetTypes()
-            .Where(t => t.IsClass && !t.IsAbstract && t.IsSubclassOf(typeof(ModuleBase)));
+            .Where(t => t.IsClass && !t.IsNested && !t.IsAbstract && t.IsSubclassOf(typeof(ModuleBase)));
 
         foreach (Type type in moduleTypes)
         {
@@ -68,7 +68,12 @@ public class CommandService
             throw new ArgumentException($"Type {type.Name} must inherit from ModuleBase", nameof(type));
 
         ModuleInfo module = new ModuleInfo(type);
-        module.Build(this);
+
+        //
+        //
+        //module.Build(this);
+        //
+        //
 
         _modules.Add(module);
         _logger?.Information("Registered command module {ModuleName} with {CommandCount} commands",
@@ -84,62 +89,24 @@ public class CommandService
     /// <param name="argPos">The position in the message where arguments begin.</param>
     public async Task<IResult> ExecuteAsync(CommandContext context, int argPos)
     {
-        var input = context.Message.Content?.Substring(argPos);
+        string input = context.Message.Content?.Substring(argPos);
         if (string.IsNullOrWhiteSpace(input))
             return ExecuteResult.FromError(CommandError.ParseFailed, "No input provided");
 
         // Split input into command name and arguments
-        var parts = input.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+        string[] parts = input.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
         if (parts.Length == 0)
             return ExecuteResult.FromError(CommandError.ParseFailed, "No command specified");
 
-        var commandName = parts[0].ToLowerInvariant();
-        List<string> argList = parts.Skip(1).ToList();
+        string commandName = parts[0].ToLowerInvariant();
+        int argIndex = 1;
+
+        Console.WriteLine($"Parts: " + string.Join(", ", parts));
 
         // Find matching command
-        CommandInfo? matchedCommand = null;
-
-        foreach (ModuleInfo module in _modules)
-        {
-            if (!string.IsNullOrEmpty(module.Group) && module.Group.Equals(commandName, StringComparison.OrdinalIgnoreCase))
-            {
-                CommandInfo? GroupCommand = module.Commands.FirstOrDefault(x => string.IsNullOrEmpty(x.Name));
-                if (GroupCommand != null)
-                    matchedCommand = GroupCommand;
-                else
-                {
-                    if (parts.Length < 2)
-                        continue;
-
-                    commandName = parts[1].ToLowerInvariant();
-                    argList = parts.Skip(2).ToList();
-
-                    foreach (CommandInfo command in module.Commands)
-                    {
-                        if (command.Name.Equals(commandName, StringComparison.OrdinalIgnoreCase) ||
-                            command.Aliases.Any(a => a.Equals(commandName, StringComparison.OrdinalIgnoreCase)))
-                        {
-                            matchedCommand = command;
-                            break;
-                        }
-                    }
-                }
-            }
-            else
-            {
-                foreach (CommandInfo command in module.Commands)
-                {
-                    if (command.Name.Equals(commandName, StringComparison.OrdinalIgnoreCase) ||
-                        command.Aliases.Any(a => a.Equals(commandName, StringComparison.OrdinalIgnoreCase)))
-                    {
-                        matchedCommand = command;
-                        break;
-                    }
-                }
-            }
-
-            if (matchedCommand != null) break;
-        }
+        CommandInfo? matchedCommand = MatchCommand(ref commandName, parts, ref argIndex);
+        List<string> argList = parts.Skip(argIndex).ToList();
+        Console.WriteLine("Use index: " + argIndex);
 
         if (matchedCommand == null)
         {
@@ -148,11 +115,11 @@ public class CommandService
         }
 
         // Parse arguments
-        var parseResult = ParseArguments(matchedCommand, argList);
+        object parseResult = ParseArguments(matchedCommand, argList);
         if (parseResult is IResult result && !result.IsSuccess)
             return result;
 
-        var args = (object[])parseResult;
+        object[] args = (object[])parseResult;
 
         // Execute command
         _logger?.Debug("Executing command {CommandName} with {ArgCount} arguments", commandName, args.Length);
@@ -168,23 +135,78 @@ public class CommandService
         }
     }
 
+    private CommandInfo? MatchCommand(ref string commandName, string[] parts, ref int argIndex)
+    {
+        Console.WriteLine($"Match: {commandName} - {argIndex}");
+
+
+        foreach (ModuleInfo module in _modules)
+        {
+            if (!string.IsNullOrEmpty(module.Group) && module.Group.Equals(commandName, StringComparison.OrdinalIgnoreCase))
+            {
+                if (argIndex != parts.Length)
+                {
+                    commandName = parts[argIndex].ToLowerInvariant();
+                    Console.WriteLine("Find sub command: " + commandName);
+                    CommandInfo? FoundCommand = SearchCommand(module, commandName);
+                    if (FoundCommand != null)
+                    {
+                        argIndex += 1;
+                        Console.WriteLine("Use sub command");
+                        return FoundCommand;
+                    }
+
+                    CommandInfo Match = null;
+                    if (parts.Length != argIndex)
+                    {
+                        Console.WriteLine("Find other match");
+                        Console.WriteLine("+1");
+                        argIndex += 1;
+                        Match = MatchCommand(ref commandName, parts, ref argIndex);
+                    }
+
+                    if (Match != null)
+                    {
+                        Console.WriteLine("Use Match");
+                        return Match;
+                    }
+                }
+
+                CommandInfo? GroupCommand = module.Commands.FirstOrDefault(x => string.IsNullOrEmpty(x.Name));
+                if (GroupCommand != null)
+                {
+                    Console.WriteLine("Use Group Command");
+                    return GroupCommand;
+                }
+            }
+            else
+            {
+                string cmd = commandName;
+                foreach (CommandInfo command in module.Commands)
+                {
+                    if (command.Name.Equals(cmd, StringComparison.OrdinalIgnoreCase) ||
+                        command.Aliases.Any(a => a.Equals(cmd, StringComparison.OrdinalIgnoreCase)))
+                    {
+                        return command;
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
     /// <summary>
     /// Searches for a command by name or alias.
     /// </summary>
     /// <param name="name">The command name or alias.</param>
-    public CommandInfo? Search(string name)
+    private CommandInfo? SearchCommand(ModuleInfo module, string name)
     {
-        var lowerName = name.ToLowerInvariant();
-
-        foreach (ModuleInfo module in _modules)
+        foreach (CommandInfo command in module.Commands)
         {
-            foreach (CommandInfo command in module.Commands)
+            if (command.Name.Equals(name, StringComparison.OrdinalIgnoreCase) ||
+                command.Aliases.Any(a => a.Equals(name, StringComparison.OrdinalIgnoreCase)))
             {
-                if (command.Name.Equals(lowerName, StringComparison.OrdinalIgnoreCase) ||
-                    command.Aliases.Any(a => a.Equals(lowerName, StringComparison.OrdinalIgnoreCase)))
-                {
-                    return command;
-                }
+                return command;
             }
         }
 
@@ -194,7 +216,7 @@ public class CommandService
     private object ParseArguments(CommandInfo command, List<string> argList)
     {
         IReadOnlyList<ParameterInfo> parameters = command.Parameters;
-        var args = new object[parameters.Count];
+        object[] args = new object[parameters.Count];
 
         int argIndex = 0;
         for (int i = 0; i < parameters.Count; i++)
@@ -224,7 +246,7 @@ public class CommandService
             }
 
             // Parse argument
-            var argString = argList[argIndex];
+            string argString = argList[argIndex];
             try
             {
                 args[i] = ParseArgument(argString, param.Type);

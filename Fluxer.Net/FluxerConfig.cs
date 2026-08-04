@@ -32,11 +32,11 @@ public class FluxerConfig
     /// Base URL for the Fluxer REST API. The {v} placeholder is replaced with <see cref="Version"/>.
     /// Defaults to "https://api.fluxer.app/v{v}/".
     /// </summary>
-    public string FluxerApiBaseUrl { get; set; } = "https://api.fluxer.app/v{v}";
+    public string ApiBaseUrl { get; set; } = "https://api.fluxer.app/v{v}";
 
     /// <summary>
     /// API version number to use. Defaults to 1, which is currently the only supported version.
-    /// This value replaces the {v} placeholder in <see cref="FluxerApiBaseUrl"/>.
+    /// This value replaces the {v} placeholder in <see cref="ApiBaseUrl"/>.
     /// </summary>
     public int Version { get; set; } = 1;
 
@@ -44,7 +44,7 @@ public class FluxerConfig
     /// WebSocket gateway URL for real-time event streaming. Must use JSON encoding.
     /// Compression is not currently supported. Defaults to "wss://gateway.fluxer.app/?v=1&amp;encoding=json".
     /// </summary>
-    public string FluxerGatewayUrl { get; set; } = "wss://gateway.fluxer.app/?v=1&encoding=json";
+    public string GatewayUrl { get; set; } = "wss://gateway.fluxer.app/?v=1&encoding=json";
 
     /// <summary>
     /// Optional HttpClient instance to use for API requests. If null, a new HttpClient will be created.
@@ -75,10 +75,36 @@ public class FluxerConfig
     /// Gets the fully resolved API base URL with the version number substituted.
     /// This is the actual URL used for API requests.
     /// </summary>
-    public string RealApiBaseUrl { get => FluxerApiBaseUrl.Replace("{v}", Version.ToString()); }
+    public string RealApiBaseUrl { get => ApiBaseUrl.Replace("{v}", Version.ToString()); }
 
     /// <summary>
     /// Get the media/user content url.
     /// </summary>
     public string MediaUrl { get; set; } = "https://fluxerusercontent.com";
+
+    /// <summary>
+    /// Get the static content url.
+    /// </summary>
+    public string StaticUrl { get; set; } = "https://fluxerstatic.com";
+
+    /// <summary>
+    /// Get the admin url.
+    /// </summary>
+    public string AdminUrl { get; set; } = "https://admin.fluxer.app";
+
+    /// <summary>
+    /// Get the invite url.
+    /// </summary>
+    public string InviteUrl { get; set; } = "https://fluxer.gg";
+
+    /// <summary>
+    /// Get the gift url.
+    /// </summary>
+    public string GiftUrl { get; set; } = "https://fluxer.gift";
+
+    /// <summary>
+    /// Get the web url.
+    /// </summary>
+    public string WebUrl { get; set; } = "https://web.fluxer.app";
+
 }

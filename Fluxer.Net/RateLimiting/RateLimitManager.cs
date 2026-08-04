@@ -38,7 +38,7 @@ public class RateLimitManager
             return null;
 
         // Build the actual bucket key by replacing placeholders
-        var bucketKey = config.Bucket;
+        string bucketKey = config.Bucket;
 
         if (channelId.HasValue && bucketKey.Contains("::channel_id"))
             bucketKey = bucketKey.Replace("::channel_id", $"::{channelId.Value}");
@@ -76,7 +76,7 @@ public class RateLimitManager
         if (!_enableRateLimiting || bucket == null)
             return;
 
-        var waitTime = await bucket.AcquireAsync();
+        int waitTime = await bucket.AcquireAsync();
 
         if (waitTime > 0)
         {
@@ -84,7 +84,7 @@ public class RateLimitManager
             await Task.Delay(waitTime);
 
             // Try again after waiting
-            var retryWaitTime = await bucket.AcquireAsync();
+            int retryWaitTime = await bucket.AcquireAsync();
             if (retryWaitTime > 0)
             {
                 Log.Warning("Rate limit still active for bucket {Bucket}. Waiting additional {WaitTime}ms", bucket.BucketKey, retryWaitTime);
@@ -101,8 +101,8 @@ public class RateLimitManager
         if (!_enableRateLimiting || bucket == null)
             return (int.MaxValue, 0);
 
-        var remaining = await bucket.GetRemainingAsync();
-        var resetMs = await bucket.GetResetTimeAsync();
+        int remaining = await bucket.GetRemainingAsync();
+        int resetMs = await bucket.GetResetTimeAsync();
 
         return (remaining, resetMs);
     }

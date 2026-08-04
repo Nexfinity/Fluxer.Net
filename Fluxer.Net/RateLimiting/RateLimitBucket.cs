@@ -34,8 +34,8 @@ public class RateLimitBucket
         await _semaphore.WaitAsync();
         try
         {
-            var now = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
-            var windowStart = now - _windowMs;
+            long now = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
+            long windowStart = now - _windowMs;
 
             // Remove timestamps outside the current window
             _requestTimestamps.RemoveAll(ts => ts < windowStart);
@@ -43,8 +43,8 @@ public class RateLimitBucket
             if (_requestTimestamps.Count >= _limit)
             {
                 // Calculate how long to wait
-                var oldestInWindow = _requestTimestamps.Min();
-                var waitTime = (int)(oldestInWindow + _windowMs - now);
+                long oldestInWindow = _requestTimestamps.Min();
+                int waitTime = (int)(oldestInWindow + _windowMs - now);
                 return waitTime > 0 ? waitTime : 0;
             }
 
@@ -66,8 +66,8 @@ public class RateLimitBucket
         await _semaphore.WaitAsync();
         try
         {
-            var now = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
-            var windowStart = now - _windowMs;
+            long now = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
+            long windowStart = now - _windowMs;
 
             // Remove timestamps outside the current window
             _requestTimestamps.RemoveAll(ts => ts < windowStart);
@@ -91,9 +91,9 @@ public class RateLimitBucket
             if (_requestTimestamps.Count == 0)
                 return 0;
 
-            var now = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
-            var oldestInWindow = _requestTimestamps.Min();
-            var resetTime = oldestInWindow + _windowMs - now;
+            long now = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
+            long oldestInWindow = _requestTimestamps.Min();
+            long resetTime = oldestInWindow + _windowMs - now;
 
             return resetTime > 0 ? (int)resetTime : 0;
         }

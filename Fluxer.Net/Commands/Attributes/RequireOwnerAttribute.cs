@@ -15,9 +15,9 @@ public class RequireOwnerAttribute : PreconditionAttribute
         IServiceProvider? services)
     {
         // Get owner ID from service provider or environment
-        var ownerIdString = Environment.GetEnvironmentVariable("BOT_OWNER_ID");
+        string ownerIdString = Environment.GetEnvironmentVariable("BOT_OWNER_ID");
 
-        if (string.IsNullOrWhiteSpace(ownerIdString) || !ulong.TryParse(ownerIdString, out var ownerId))
+        if (string.IsNullOrWhiteSpace(ownerIdString) || !ulong.TryParse(ownerIdString, out ulong ownerId))
         {
             return Task.FromResult(PreconditionResult.FromError(
                 "Bot owner ID not configured. Set BOT_OWNER_ID environment variable."));

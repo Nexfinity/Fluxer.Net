@@ -83,7 +83,7 @@ public class PartialGuild : Entity, IPartialGuild
         if (string.IsNullOrEmpty(IconHash))
             return null;
 
-        return $"https://fluxerusercontent.com/icons/{Id}/{IconHash}.png?size={size}";
+        return $"{Client.Config.MediaUrl}/icons/{Id}/{IconHash}.png?size={size}";
     }
 
     /// <inheritdoc />
@@ -92,7 +92,7 @@ public class PartialGuild : Entity, IPartialGuild
         if (string.IsNullOrEmpty(BannerHash))
             return null;
 
-        return $"https://fluxerusercontent.com/banners/{Id}/{BannerHash}.webp?size={size}";
+        return $"{Client.Config.MediaUrl}/banners/{Id}/{BannerHash}.webp?size={size}";
     }
 
     /// <inheritdoc />
@@ -101,7 +101,7 @@ public class PartialGuild : Entity, IPartialGuild
         if (string.IsNullOrEmpty(InviteSplashHash))
             return null;
 
-        return $"https://fluxerusercontent.com/splashes/{Id}/{InviteSplashHash}.webp?size={size}";
+        return $"{Client.Config.MediaUrl}/splashes/{Id}/{InviteSplashHash}.webp?size={size}";
     }
 
     /// <inheritdoc />
@@ -110,6 +110,6 @@ public class PartialGuild : Entity, IPartialGuild
         if (string.IsNullOrEmpty(EmbedSplashHash))
             return null;
 
-        return $"https://fluxerusercontent.com/embed-splashes/{Id}/{EmbedSplashHash}.webp?size={size}";
+        return $"{Client.Config.MediaUrl}/embed-splashes/{Id}/{EmbedSplashHash}.webp?size={size}";
     }
 }

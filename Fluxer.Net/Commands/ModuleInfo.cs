@@ -28,6 +28,11 @@ public class ModuleInfo
     public IReadOnlyList<CommandInfo> Commands { get; internal set; } = Array.Empty<CommandInfo>();
 
     /// <summary>
+    /// Gets all registered modules.
+    /// </summary>
+    public IReadOnlyList<ModuleInfo> Modules { get; internal set; } = Array.Empty<ModuleInfo>();
+
+    /// <summary>
     /// Gets the module type.
     /// </summary>
     internal Type Type { get; }
@@ -45,7 +50,7 @@ public class ModuleInfo
             Group = groupAttr.Prefix;
     }
 
-    internal void Build()
+    internal void Build(CommandService service)
     {
         List<CommandInfo> commands = new List<CommandInfo>();
 
@@ -58,6 +63,22 @@ public class ModuleInfo
             }
         }
 
+        //List<ModuleInfo> modules = new List<ModuleInfo>();
+
+        //foreach (var i in Type.GetNestedTypes())
+        //{
+        //    if (i.IsClass && i.DeclaringType == Type && !i.IsAbstract && i.IsSubclassOf(typeof(ModuleBase)))
+        //    {
+        //        ModuleInfo module = new ModuleInfo(i);
+        //        module.Build(service);
+        //        modules.Add(module);
+
+        //        service._logger?.Information("Registered sub command module {ModuleName} from {ParentModule} with {CommandCount} commands",
+        //            module.Name, Name, module.Commands.Count);
+        //    }
+        //}
+
         Commands = commands.AsReadOnly();
+        //Modules = modules.AsReadOnly();
     }
 }
