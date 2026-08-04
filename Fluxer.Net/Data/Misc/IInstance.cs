@@ -38,7 +38,7 @@ public interface IInstanceEndpoints
 
     string Media { get; }
 
-    string Cdn { get; }
+    string Static { get; }
 
     string Marketing { get; }
 

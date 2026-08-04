@@ -9082,7 +9082,7 @@
             <param name="webhookId">Optional webhook ID for webhook-specific rate limits.</param>
             <param name="inviteCode">Optional invite code for invite-specific rate limits.</param>
         </member>
-        <member name="M:Fluxer.Net.ApiClient.MakeFluxerApiRequestAsync``2(System.Net.Http.HttpMethod,System.String,``1,System.Boolean,System.Boolean,System.Collections.Generic.ICollection{System.Collections.Generic.KeyValuePair{System.String,System.ValueTuple{System.Net.Http.HttpContent,System.String}}})">
+        <member name="M:Fluxer.Net.ApiClient.SendRequestAsync``2(System.Net.Http.HttpMethod,System.String,``1,System.Boolean,System.Boolean,System.Collections.Generic.ICollection{System.Collections.Generic.KeyValuePair{System.String,System.ValueTuple{System.Net.Http.HttpContent,System.String}}})">
             <summary>
             Makes an HTTP request with both request and response bodies.
             </summary>
@@ -9096,7 +9096,7 @@
             <returns>The deserialized response object.</returns>
             <exception cref="T:Fluxer.Net.Extensions.FluxerApiException">Thrown when <paramref name="throwOnNonSuccess"/> is true and the API returns a non-success status code.</exception>
         </member>
-        <member name="M:Fluxer.Net.ApiClient.MakeFluxerApiRequestAsync``1(System.Net.Http.HttpMethod,System.String,``0,System.Boolean,System.Boolean)">
+        <member name="M:Fluxer.Net.ApiClient.SendRequestAsync``1(System.Net.Http.HttpMethod,System.String,``0,System.Boolean,System.Boolean)">
             <summary>
             Makes an HTTP request with a request body but no response body (returns status code only).
             </summary>
@@ -9109,7 +9109,7 @@
             <returns>The HTTP status code of the response.</returns>
             <exception cref="T:Fluxer.Net.Extensions.FluxerApiException">Thrown when <paramref name="throwOnNonSuccess"/> is true and the API returns a non-success status code.</exception>
         </member>
-        <member name="M:Fluxer.Net.ApiClient.MakeFluxerApiRequestAsync``1(System.Net.Http.HttpMethod,System.String,System.Boolean,System.Boolean)">
+        <member name="M:Fluxer.Net.ApiClient.SendRequestAsync``1(System.Net.Http.HttpMethod,System.String,System.Boolean,System.Boolean)">
             <summary>
             Makes an HTTP request with no request body but expects a response body.
             </summary>
@@ -9121,7 +9121,7 @@
             <returns>The deserialized response object.</returns>
             <exception cref="T:Fluxer.Net.Extensions.FluxerApiException">Thrown when <paramref name="throwOnNonSuccess"/> is true and the API returns a non-success status code.</exception>
         </member>
-        <member name="M:Fluxer.Net.ApiClient.MakeFluxerApiRequestAsyncWithQueryParams``1(System.Net.Http.HttpMethod,Fluxer.Net.Rest.RestClientQueryParams,System.String,System.Boolean,System.Boolean)">
+        <member name="M:Fluxer.Net.ApiClient.SendRequestQueryParamsAsync``1(System.Net.Http.HttpMethod,Fluxer.Net.Rest.RestClientQueryParams,System.String,System.Boolean,System.Boolean)">
             <summary>
             Makes an HTTP request with no request body but expects a response body.
             </summary>
@@ -9134,7 +9134,7 @@
             <returns>The deserialized response object.</returns>
             <exception cref="T:Fluxer.Net.Extensions.FluxerApiException">Thrown when <paramref name="throwOnNonSuccess"/> is true and the API returns a non-success status code.</exception>
         </member>
-        <member name="M:Fluxer.Net.ApiClient.MakeFluxerApiRequestRawAsync(System.Net.Http.HttpMethod,System.String,System.Boolean,System.Boolean)">
+        <member name="M:Fluxer.Net.ApiClient.SendRequestRawAsync(System.Net.Http.HttpMethod,System.String,System.Boolean,System.Boolean)">
             <summary>
             Makes an HTTP request with no request or response body (returns status code only).
             </summary>

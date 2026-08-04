@@ -66,6 +66,34 @@ public class FluxerClient : FluxerBaseClient
 
     internal static JsonSerializer _serializer { get; set; } = CreateGatewaySerializer();
 
+    /// <summary>
+    /// This will update your config urls to use the instance.
+    /// </summary>
+    /// <param name="apiUrl"></param>
+    /// <returns></returns>
+    /// <exception cref="ArgumentNullException"></exception>
+    /// <exception cref="Exception"></exception>
+    public async Task LoginAsync(string apiUrl = null)
+    {
+        if (string.IsNullOrEmpty(apiUrl))
+            apiUrl = Config.RealApiBaseUrl;
+
+        if (!Uri.TryCreate(apiUrl, UriKind.Absolute, out Uri apiUri))
+            throw new ArgumentNullException(nameof(apiUrl), "API url is invalid.");
+
+        InstanceJson? instance = await Rest.InternalSendRequestAsync<InstanceJson>(HttpMethod.Get, new Uri(apiUri, $"/v{Config.Version}/.well-known/fluxer").AbsoluteUri, throwOnNonSuccess: true, authorize: false, useConfigUrl: false);
+        if (instance == null)
+            throw new Exception("Failed to get instance data.");
+
+        Config.FluxerApiBaseUrl = $"{instance.Endpoints.ApiPublic}/v{Config.Version}";
+        Config.FluxerGatewayUrl = $"{instance.Endpoints.Gateway}/?v=1&encoding=json";
+        Config.MediaUrl = instance.Endpoints.Media;
+        Config.StaticUrl = instance.Endpoints.Static;
+        Config.AdminUrl = instance.Endpoints.Admin;
+        Config.InviteUrl = instance.Endpoints.Invite;
+        Config.GiftUrl = instance.Endpoints.Gift;
+    }
+
     internal static JsonSerializer CreateGatewaySerializer()
     {
         var serializer = new JsonSerializer

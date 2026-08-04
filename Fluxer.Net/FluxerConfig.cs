@@ -81,4 +81,25 @@ public class FluxerConfig
     /// Get the media/user content url.
     /// </summary>
     public string MediaUrl { get; set; } = "https://fluxerusercontent.com";
+
+    /// <summary>
+    /// Get the static content url.
+    /// </summary>
+    public string StaticUrl { get; set; } = "https://fluxerstatic.com";
+
+    /// <summary>
+    /// Get the admin url.
+    /// </summary>
+    public string AdminUrl { get; set; } = "https://admin.fluxer.app";
+
+    /// <summary>
+    /// Get the invite url.
+    /// </summary>
+    public string InviteUrl { get; set; } = "https://fluxer.gg";
+
+    /// <summary>
+    /// Get the gift url.
+    /// </summary>
+    public string GiftUrl { get; set; } = "https://fluxer.gift";
+
 }
