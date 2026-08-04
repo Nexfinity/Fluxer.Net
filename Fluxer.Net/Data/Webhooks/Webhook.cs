@@ -29,7 +29,7 @@ public class Webhook : Entity, IWebhook
     /// <inheritdoc />
     public string GetDefaultAvatarUrl()
     {
-        return $"https://fluxerstatic.com/avatars/{Id % 6}.png";
+        return $"{Client.Config.StaticUrl}/avatars/{Id % 6}.png";
     }
 
     /// <inheritdoc />

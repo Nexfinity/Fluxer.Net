@@ -176,7 +176,7 @@ public partial class GatewayClient : IDisposable
                 }
             }
 
-            _webSocket = new WebsocketClient(new(_client.Config.FluxerGatewayUrl))
+            _webSocket = new WebsocketClient(new(_client.Config.GatewayUrl))
             {
                 // IMPORTANT: Do not set ReconnectTimeout here - we manage reconnection manually through the gateway protocol
                 IsReconnectionEnabled = false  // Completely disable automatic reconnection
@@ -185,7 +185,7 @@ public partial class GatewayClient : IDisposable
             _webSocket.DisconnectionHappened.Subscribe(HandleGatewayDisconnect);
             Stopwatch.StartNew();
 
-            _logger.Information("Starting WebSocket connection to {GatewayUrl}", _client.Config.FluxerGatewayUrl);
+            _logger.Information("Starting WebSocket connection to {GatewayUrl}", _client.Config.GatewayUrl);
             await _webSocket.Start();
 
             // Wait a moment for connection to establish before sending IDENTIFY
@@ -1378,7 +1378,7 @@ public partial class GatewayClient : IDisposable
             }
 
             // Create NEW transport
-            _webSocket = new WebsocketClient(new(_client.Config.FluxerGatewayUrl))
+            _webSocket = new WebsocketClient(new(_client.Config.GatewayUrl))
             {
                 IsReconnectionEnabled = false
             };
@@ -1388,7 +1388,7 @@ public partial class GatewayClient : IDisposable
 
             _logger.Information(
                 "Starting new WebSocket connection to {GatewayUrl}",
-                _client.Config.FluxerGatewayUrl);
+                _client.Config.GatewayUrl);
 
             await _webSocket.Start();
 

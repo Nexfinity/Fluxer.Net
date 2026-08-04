@@ -15,7 +15,7 @@ public class GuildEmoji : Emoji, IGuildEmoji
     /// <inheritdoc />
     public string? GetEmojiUrl(int size = 160)
     {
-        return $"https://fluxerusercontent.com/emojis/{Id}.webp?size={size}";
+        return $"{Client.Config.MediaUrl}/emojis/{Id}.webp?size={size}";
     }
 
     IUser? IGuildEmoji.Creator => Creator;

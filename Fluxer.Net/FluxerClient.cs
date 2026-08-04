@@ -85,13 +85,14 @@ public class FluxerClient : FluxerBaseClient
         if (instance == null)
             throw new Exception("Failed to get instance data.");
 
-        Config.FluxerApiBaseUrl = $"{instance.Endpoints.ApiPublic}/v{Config.Version}";
-        Config.FluxerGatewayUrl = $"{instance.Endpoints.Gateway}/?v=1&encoding=json";
+        Config.ApiBaseUrl = $"{instance.Endpoints.ApiPublic}/v{Config.Version}";
+        Config.GatewayUrl = $"{instance.Endpoints.Gateway}/?v=1&encoding=json";
         Config.MediaUrl = instance.Endpoints.Media;
         Config.StaticUrl = instance.Endpoints.Static;
         Config.AdminUrl = instance.Endpoints.Admin;
         Config.InviteUrl = instance.Endpoints.Invite;
         Config.GiftUrl = instance.Endpoints.Gift;
+        Config.WebUrl = instance.Endpoints.WebApp;
     }
 
     internal static JsonSerializer CreateGatewaySerializer()

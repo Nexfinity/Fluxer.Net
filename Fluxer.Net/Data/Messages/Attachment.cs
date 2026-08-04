@@ -64,7 +64,7 @@ public class Attachment : Entity, IAttachment
     /// </summary>
     public string? GetAttachmentUrl()
     {
-        return $"https://fluxerusercontent.com/attachments/{ChannelId}/{Id}/{Filename}";
+        return $"{Client.Config.MediaUrl}/attachments/{ChannelId}/{Id}/{Filename}";
     }
 
     internal Attachment(FluxerBaseClient client) : base(client)
