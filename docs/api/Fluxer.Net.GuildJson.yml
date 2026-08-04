@@ -1,0 +1,1819 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.GuildJson
+  commentId: T:Fluxer.Net.GuildJson
+  id: GuildJson
+  parent: Fluxer.Net
+  children:
+  - Fluxer.Net.GuildJson.AfkChannelId
+  - Fluxer.Net.GuildJson.AfkTimeout
+  - Fluxer.Net.GuildJson.ContentWarningText
+  - Fluxer.Net.GuildJson.DefaultMessageNotifications
+  - Fluxer.Net.GuildJson.DisabledOperations
+  - Fluxer.Net.GuildJson.ExplicitContentFilter
+  - Fluxer.Net.GuildJson.IsNsfw
+  - Fluxer.Net.GuildJson.MemberCount
+  - Fluxer.Net.GuildJson.MessageHistoryCutoff
+  - Fluxer.Net.GuildJson.MfaLevel
+  - Fluxer.Net.GuildJson.NsfwLevel
+  - Fluxer.Net.GuildJson.OnlineCount
+  - Fluxer.Net.GuildJson.OwnerId
+  - Fluxer.Net.GuildJson.RulesChannelId
+  - Fluxer.Net.GuildJson.SystemChannelFlags
+  - Fluxer.Net.GuildJson.SystemChannelId
+  - Fluxer.Net.GuildJson.VanityUrlCode
+  - Fluxer.Net.GuildJson.VerificationLevel
+  langs:
+  - csharp
+  - vb
+  name: GuildJson
+  nameWithType: GuildJson
+  fullName: Fluxer.Net.GuildJson
+  type: Class
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/GuildJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: GuildJson
+    path: ../Fluxer.Net/Data/Guilds/GuildJson.cs
+    startLine: 5
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Supports all classes in the .NET class hierarchy and provides low-level services to derived classes. This is the ultimate base class of all .NET classes; it is the root of the type hierarchy.
+  example: []
+  syntax:
+    content: 'public class GuildJson : PartialGuildJson, IPartialGuild, IGuild'
+    content.vb: Public Class GuildJson Inherits PartialGuildJson Implements IPartialGuild, IGuild
+  inheritance:
+  - System.Object
+  - Fluxer.Net.PartialGuildJson
+  implements:
+  - Fluxer.Net.IPartialGuild
+  - Fluxer.Net.IGuild
+  inheritedMembers:
+  - Fluxer.Net.PartialGuildJson.Id
+  - Fluxer.Net.PartialGuildJson.Name
+  - Fluxer.Net.PartialGuildJson.IconHash
+  - Fluxer.Net.PartialGuildJson.BannerHash
+  - Fluxer.Net.PartialGuildJson.BannerWidth
+  - Fluxer.Net.PartialGuildJson.BannerHeight
+  - Fluxer.Net.PartialGuildJson.EmbedSplashHash
+  - Fluxer.Net.PartialGuildJson.EmbedSplashWidth
+  - Fluxer.Net.PartialGuildJson.EmbedSplashHeight
+  - Fluxer.Net.PartialGuildJson.InviteSplashHash
+  - Fluxer.Net.PartialGuildJson.InviteSplashWidth
+  - Fluxer.Net.PartialGuildJson.InviteSplashHeight
+  - Fluxer.Net.PartialGuildJson.SplashCardAligment
+  - Fluxer.Net.PartialGuildJson.Features
+  - Fluxer.Net.PartialGuildJson.GetIconUrl(System.Int32)
+  - Fluxer.Net.PartialGuildJson.GetBannerUrl(System.Int32)
+  - Fluxer.Net.PartialGuildJson.GetInviteSplashUrl(System.Int32)
+  - Fluxer.Net.PartialGuildJson.GetEmbedSplashUrl(System.Int32)
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: Fluxer.Net.GuildJson.OwnerId
+  commentId: P:Fluxer.Net.GuildJson.OwnerId
+  id: OwnerId
+  parent: Fluxer.Net.GuildJson
+  langs:
+  - csharp
+  - vb
+  name: OwnerId
+  nameWithType: GuildJson.OwnerId
+  fullName: Fluxer.Net.GuildJson.OwnerId
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/GuildJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: OwnerId
+    path: ../Fluxer.Net/Data/Guilds/GuildJson.cs
+    startLine: 8
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The ID of the guild owner.
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("owner_id")]
+
+      public ulong OwnerId { get; set; }
+    parameters: []
+    return:
+      type: System.UInt64
+    content.vb: >-
+      <JsonProperty("owner_id")>
+
+      Public Property OwnerId As ULong
+  overload: Fluxer.Net.GuildJson.OwnerId*
+  implements:
+  - Fluxer.Net.IGuild.OwnerId
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: owner_id
+- uid: Fluxer.Net.GuildJson.VanityUrlCode
+  commentId: P:Fluxer.Net.GuildJson.VanityUrlCode
+  id: VanityUrlCode
+  parent: Fluxer.Net.GuildJson
+  langs:
+  - csharp
+  - vb
+  name: VanityUrlCode
+  nameWithType: GuildJson.VanityUrlCode
+  fullName: Fluxer.Net.GuildJson.VanityUrlCode
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/GuildJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: VanityUrlCode
+    path: ../Fluxer.Net/Data/Guilds/GuildJson.cs
+    startLine: 12
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The vanity URL code for the guild.
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("vanity_url_code")]
+
+      public string? VanityUrlCode { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <JsonProperty("vanity_url_code")>
+
+      Public Property VanityUrlCode As String
+  overload: Fluxer.Net.GuildJson.VanityUrlCode*
+  implements:
+  - Fluxer.Net.IGuild.VanityUrlCode
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: vanity_url_code
+- uid: Fluxer.Net.GuildJson.VerificationLevel
+  commentId: P:Fluxer.Net.GuildJson.VerificationLevel
+  id: VerificationLevel
+  parent: Fluxer.Net.GuildJson
+  langs:
+  - csharp
+  - vb
+  name: VerificationLevel
+  nameWithType: GuildJson.VerificationLevel
+  fullName: Fluxer.Net.GuildJson.VerificationLevel
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/GuildJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: VerificationLevel
+    path: ../Fluxer.Net/Data/Guilds/GuildJson.cs
+    startLine: 16
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Required verification level for members to participate.
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("verification_level")]
+
+      public GuildVerificationLevel VerificationLevel { get; set; }
+    parameters: []
+    return:
+      type: Fluxer.Net.GuildVerificationLevel
+    content.vb: >-
+      <JsonProperty("verification_level")>
+
+      Public Property VerificationLevel As GuildVerificationLevel
+  overload: Fluxer.Net.GuildJson.VerificationLevel*
+  implements:
+  - Fluxer.Net.IGuild.VerificationLevel
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: verification_level
+- uid: Fluxer.Net.GuildJson.MfaLevel
+  commentId: P:Fluxer.Net.GuildJson.MfaLevel
+  id: MfaLevel
+  parent: Fluxer.Net.GuildJson
+  langs:
+  - csharp
+  - vb
+  name: MfaLevel
+  nameWithType: GuildJson.MfaLevel
+  fullName: Fluxer.Net.GuildJson.MfaLevel
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/GuildJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: MfaLevel
+    path: ../Fluxer.Net/Data/Guilds/GuildJson.cs
+    startLine: 20
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Required MFA level for moderation actions.
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("mfa_level")]
+
+      public GuildMfaLevel MfaLevel { get; set; }
+    parameters: []
+    return:
+      type: Fluxer.Net.GuildMfaLevel
+    content.vb: >-
+      <JsonProperty("mfa_level")>
+
+      Public Property MfaLevel As GuildMfaLevel
+  overload: Fluxer.Net.GuildJson.MfaLevel*
+  implements:
+  - Fluxer.Net.IGuild.MfaLevel
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: mfa_level
+- uid: Fluxer.Net.GuildJson.NsfwLevel
+  commentId: P:Fluxer.Net.GuildJson.NsfwLevel
+  id: NsfwLevel
+  parent: Fluxer.Net.GuildJson
+  langs:
+  - csharp
+  - vb
+  name: NsfwLevel
+  nameWithType: GuildJson.NsfwLevel
+  fullName: Fluxer.Net.GuildJson.NsfwLevel
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/GuildJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: NsfwLevel
+    path: ../Fluxer.Net/Data/Guilds/GuildJson.cs
+    startLine: 24
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The NSFW level of the guild.
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("nsfw_level")]
+
+      public GuildNsfwLevel NsfwLevel { get; set; }
+    parameters: []
+    return:
+      type: Fluxer.Net.GuildNsfwLevel
+    content.vb: >-
+      <JsonProperty("nsfw_level")>
+
+      Public Property NsfwLevel As GuildNsfwLevel
+  overload: Fluxer.Net.GuildJson.NsfwLevel*
+  implements:
+  - Fluxer.Net.IGuild.NsfwLevel
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: nsfw_level
+- uid: Fluxer.Net.GuildJson.ExplicitContentFilter
+  commentId: P:Fluxer.Net.GuildJson.ExplicitContentFilter
+  id: ExplicitContentFilter
+  parent: Fluxer.Net.GuildJson
+  langs:
+  - csharp
+  - vb
+  name: ExplicitContentFilter
+  nameWithType: GuildJson.ExplicitContentFilter
+  fullName: Fluxer.Net.GuildJson.ExplicitContentFilter
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/GuildJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: ExplicitContentFilter
+    path: ../Fluxer.Net/Data/Guilds/GuildJson.cs
+    startLine: 28
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Level of content filtering for explicit media.
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("explicit_content_filter")]
+
+      public GuildContentFilter ExplicitContentFilter { get; set; }
+    parameters: []
+    return:
+      type: Fluxer.Net.GuildContentFilter
+    content.vb: >-
+      <JsonProperty("explicit_content_filter")>
+
+      Public Property ExplicitContentFilter As GuildContentFilter
+  overload: Fluxer.Net.GuildJson.ExplicitContentFilter*
+  implements:
+  - Fluxer.Net.IGuild.ExplicitContentFilter
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: explicit_content_filter
+- uid: Fluxer.Net.GuildJson.DefaultMessageNotifications
+  commentId: P:Fluxer.Net.GuildJson.DefaultMessageNotifications
+  id: DefaultMessageNotifications
+  parent: Fluxer.Net.GuildJson
+  langs:
+  - csharp
+  - vb
+  name: DefaultMessageNotifications
+  nameWithType: GuildJson.DefaultMessageNotifications
+  fullName: Fluxer.Net.GuildJson.DefaultMessageNotifications
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/GuildJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: DefaultMessageNotifications
+    path: ../Fluxer.Net/Data/Guilds/GuildJson.cs
+    startLine: 32
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Default notification level for new members.
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("default_message_notifications")]
+
+      public GuildDefaultNotifications DefaultMessageNotifications { get; set; }
+    parameters: []
+    return:
+      type: Fluxer.Net.GuildDefaultNotifications
+    content.vb: >-
+      <JsonProperty("default_message_notifications")>
+
+      Public Property DefaultMessageNotifications As GuildDefaultNotifications
+  overload: Fluxer.Net.GuildJson.DefaultMessageNotifications*
+  implements:
+  - Fluxer.Net.IGuild.DefaultMessageNotifications
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: default_message_notifications
+- uid: Fluxer.Net.GuildJson.SystemChannelId
+  commentId: P:Fluxer.Net.GuildJson.SystemChannelId
+  id: SystemChannelId
+  parent: Fluxer.Net.GuildJson
+  langs:
+  - csharp
+  - vb
+  name: SystemChannelId
+  nameWithType: GuildJson.SystemChannelId
+  fullName: Fluxer.Net.GuildJson.SystemChannelId
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/GuildJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: SystemChannelId
+    path: ../Fluxer.Net/Data/Guilds/GuildJson.cs
+    startLine: 36
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The ID of the channel where system messages are sent.
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("system_channel_id")]
+
+      public ulong? SystemChannelId { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{System.UInt64}
+    content.vb: >-
+      <JsonProperty("system_channel_id")>
+
+      Public Property SystemChannelId As ULong?
+  overload: Fluxer.Net.GuildJson.SystemChannelId*
+  implements:
+  - Fluxer.Net.IGuild.SystemChannelId
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: system_channel_id
+- uid: Fluxer.Net.GuildJson.SystemChannelFlags
+  commentId: P:Fluxer.Net.GuildJson.SystemChannelFlags
+  id: SystemChannelFlags
+  parent: Fluxer.Net.GuildJson
+  langs:
+  - csharp
+  - vb
+  name: SystemChannelFlags
+  nameWithType: GuildJson.SystemChannelFlags
+  fullName: Fluxer.Net.GuildJson.SystemChannelFlags
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/GuildJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: SystemChannelFlags
+    path: ../Fluxer.Net/Data/Guilds/GuildJson.cs
+    startLine: 40
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: System channel message flags.
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("system_channel_flags")]
+
+      public SystemChannelFlags SystemChannelFlags { get; set; }
+    parameters: []
+    return:
+      type: Fluxer.Net.SystemChannelFlags
+    content.vb: >-
+      <JsonProperty("system_channel_flags")>
+
+      Public Property SystemChannelFlags As SystemChannelFlags
+  overload: Fluxer.Net.GuildJson.SystemChannelFlags*
+  implements:
+  - Fluxer.Net.IGuild.SystemChannelFlags
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: system_channel_flags
+- uid: Fluxer.Net.GuildJson.RulesChannelId
+  commentId: P:Fluxer.Net.GuildJson.RulesChannelId
+  id: RulesChannelId
+  parent: Fluxer.Net.GuildJson
+  langs:
+  - csharp
+  - vb
+  name: RulesChannelId
+  nameWithType: GuildJson.RulesChannelId
+  fullName: Fluxer.Net.GuildJson.RulesChannelId
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/GuildJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: RulesChannelId
+    path: ../Fluxer.Net/Data/Guilds/GuildJson.cs
+    startLine: 44
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The ID of the rules channel.
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("rules_channel_id")]
+
+      public ulong? RulesChannelId { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{System.UInt64}
+    content.vb: >-
+      <JsonProperty("rules_channel_id")>
+
+      Public Property RulesChannelId As ULong?
+  overload: Fluxer.Net.GuildJson.RulesChannelId*
+  implements:
+  - Fluxer.Net.IGuild.RulesChannelId
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: rules_channel_id
+- uid: Fluxer.Net.GuildJson.AfkChannelId
+  commentId: P:Fluxer.Net.GuildJson.AfkChannelId
+  id: AfkChannelId
+  parent: Fluxer.Net.GuildJson
+  langs:
+  - csharp
+  - vb
+  name: AfkChannelId
+  nameWithType: GuildJson.AfkChannelId
+  fullName: Fluxer.Net.GuildJson.AfkChannelId
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/GuildJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: AfkChannelId
+    path: ../Fluxer.Net/Data/Guilds/GuildJson.cs
+    startLine: 48
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The ID of the AFK voice channel.
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("afk_channel_id")]
+
+      public ulong? AfkChannelId { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{System.UInt64}
+    content.vb: >-
+      <JsonProperty("afk_channel_id")>
+
+      Public Property AfkChannelId As ULong?
+  overload: Fluxer.Net.GuildJson.AfkChannelId*
+  implements:
+  - Fluxer.Net.IGuild.AfkChannelId
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: afk_channel_id
+- uid: Fluxer.Net.GuildJson.AfkTimeout
+  commentId: P:Fluxer.Net.GuildJson.AfkTimeout
+  id: AfkTimeout
+  parent: Fluxer.Net.GuildJson
+  langs:
+  - csharp
+  - vb
+  name: AfkTimeout
+  nameWithType: GuildJson.AfkTimeout
+  fullName: Fluxer.Net.GuildJson.AfkTimeout
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/GuildJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: AfkTimeout
+    path: ../Fluxer.Net/Data/Guilds/GuildJson.cs
+    startLine: 52
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: AFK timeout in seconds before moving users to the AFK channel.
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("afk_timeout")]
+
+      public int AfkTimeout { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: >-
+      <JsonProperty("afk_timeout")>
+
+      Public Property AfkTimeout As Integer
+  overload: Fluxer.Net.GuildJson.AfkTimeout*
+  implements:
+  - Fluxer.Net.IGuild.AfkTimeout
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: afk_timeout
+- uid: Fluxer.Net.GuildJson.DisabledOperations
+  commentId: P:Fluxer.Net.GuildJson.DisabledOperations
+  id: DisabledOperations
+  parent: Fluxer.Net.GuildJson
+  langs:
+  - csharp
+  - vb
+  name: DisabledOperations
+  nameWithType: GuildJson.DisabledOperations
+  fullName: Fluxer.Net.GuildJson.DisabledOperations
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/GuildJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: DisabledOperations
+    path: ../Fluxer.Net/Data/Guilds/GuildJson.cs
+    startLine: 56
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Bitmask of disabled guild operations.
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("disabled_operations")]
+
+      public GuildOperations DisabledOperations { get; set; }
+    parameters: []
+    return:
+      type: Fluxer.Net.GuildOperations
+    content.vb: >-
+      <JsonProperty("disabled_operations")>
+
+      Public Property DisabledOperations As GuildOperations
+  overload: Fluxer.Net.GuildJson.DisabledOperations*
+  implements:
+  - Fluxer.Net.IGuild.DisabledOperations
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: disabled_operations
+- uid: Fluxer.Net.GuildJson.MessageHistoryCutoff
+  commentId: P:Fluxer.Net.GuildJson.MessageHistoryCutoff
+  id: MessageHistoryCutoff
+  parent: Fluxer.Net.GuildJson
+  langs:
+  - csharp
+  - vb
+  name: MessageHistoryCutoff
+  nameWithType: GuildJson.MessageHistoryCutoff
+  fullName: Fluxer.Net.GuildJson.MessageHistoryCutoff
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/GuildJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: MessageHistoryCutoff
+    path: ../Fluxer.Net/Data/Guilds/GuildJson.cs
+    startLine: 60
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: ISO8601 timestamp controlling how far back members without Read Message History can access messages. When null, no historical access is allowed.
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("message_history_cutoff")]
+
+      public DateTime? MessageHistoryCutoff { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{System.DateTime}
+    content.vb: >-
+      <JsonProperty("message_history_cutoff")>
+
+      Public Property MessageHistoryCutoff As Date?
+  overload: Fluxer.Net.GuildJson.MessageHistoryCutoff*
+  implements:
+  - Fluxer.Net.IGuild.MessageHistoryCutoff
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: message_history_cutoff
+- uid: Fluxer.Net.GuildJson.IsNsfw
+  commentId: P:Fluxer.Net.GuildJson.IsNsfw
+  id: IsNsfw
+  parent: Fluxer.Net.GuildJson
+  langs:
+  - csharp
+  - vb
+  name: IsNsfw
+  nameWithType: GuildJson.IsNsfw
+  fullName: Fluxer.Net.GuildJson.IsNsfw
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/GuildJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: IsNsfw
+    path: ../Fluxer.Net/Data/Guilds/GuildJson.cs
+    startLine: 64
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Is the guild nsfw.
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("nsfw")]
+
+      public bool IsNsfw { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: >-
+      <JsonProperty("nsfw")>
+
+      Public Property IsNsfw As Boolean
+  overload: Fluxer.Net.GuildJson.IsNsfw*
+  implements:
+  - Fluxer.Net.IGuild.IsNsfw
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: nsfw
+- uid: Fluxer.Net.GuildJson.ContentWarningText
+  commentId: P:Fluxer.Net.GuildJson.ContentWarningText
+  id: ContentWarningText
+  parent: Fluxer.Net.GuildJson
+  langs:
+  - csharp
+  - vb
+  name: ContentWarningText
+  nameWithType: GuildJson.ContentWarningText
+  fullName: Fluxer.Net.GuildJson.ContentWarningText
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/GuildJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: ContentWarningText
+    path: ../Fluxer.Net/Data/Guilds/GuildJson.cs
+    startLine: 68
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Show a custom warning to new members.
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("content_warning_text")]
+
+      public string ContentWarningText { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <JsonProperty("content_warning_text")>
+
+      Public Property ContentWarningText As String
+  overload: Fluxer.Net.GuildJson.ContentWarningText*
+  implements:
+  - Fluxer.Net.IGuild.ContentWarningText
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: content_warning_text
+- uid: Fluxer.Net.GuildJson.OnlineCount
+  commentId: P:Fluxer.Net.GuildJson.OnlineCount
+  id: OnlineCount
+  parent: Fluxer.Net.GuildJson
+  langs:
+  - csharp
+  - vb
+  name: OnlineCount
+  nameWithType: GuildJson.OnlineCount
+  fullName: Fluxer.Net.GuildJson.OnlineCount
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/GuildJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: OnlineCount
+    path: ../Fluxer.Net/Data/Guilds/GuildJson.cs
+    startLine: 72
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Current ammount of online members in the guild.
+  remarks: Only available from rest get guild not socket guild.
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("online_count")]
+
+      public int? OnlineCount { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{System.Int32}
+    content.vb: >-
+      <JsonProperty("online_count")>
+
+      Public Property OnlineCount As Integer?
+  overload: Fluxer.Net.GuildJson.OnlineCount*
+  implements:
+  - Fluxer.Net.IGuild.OnlineCount
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: online_count
+- uid: Fluxer.Net.GuildJson.MemberCount
+  commentId: P:Fluxer.Net.GuildJson.MemberCount
+  id: MemberCount
+  parent: Fluxer.Net.GuildJson
+  langs:
+  - csharp
+  - vb
+  name: MemberCount
+  nameWithType: GuildJson.MemberCount
+  fullName: Fluxer.Net.GuildJson.MemberCount
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/GuildJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: MemberCount
+    path: ../Fluxer.Net/Data/Guilds/GuildJson.cs
+    startLine: 76
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Total ammount of members in the guild.
+  remarks: Only available from rest get guild not socket guild.
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("member_count")]
+
+      public int? MemberCount { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{System.Int32}
+    content.vb: >-
+      <JsonProperty("member_count")>
+
+      Public Property MemberCount As Integer?
+  overload: Fluxer.Net.GuildJson.MemberCount*
+  implements:
+  - Fluxer.Net.IGuild.MemberCount
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: member_count
+references:
+- uid: Fluxer.Net
+  commentId: N:Fluxer.Net
+  href: Fluxer.html
+  name: Fluxer.Net
+  nameWithType: Fluxer.Net
+  fullName: Fluxer.Net
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Fluxer.Net.PartialGuildJson
+  commentId: T:Fluxer.Net.PartialGuildJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.PartialGuildJson.html
+  name: PartialGuildJson
+  nameWithType: PartialGuildJson
+  fullName: Fluxer.Net.PartialGuildJson
+- uid: Fluxer.Net.IPartialGuild
+  commentId: T:Fluxer.Net.IPartialGuild
+  parent: Fluxer.Net
+  href: Fluxer.Net.IPartialGuild.html
+  name: IPartialGuild
+  nameWithType: IPartialGuild
+  fullName: Fluxer.Net.IPartialGuild
+- uid: Fluxer.Net.IGuild
+  commentId: T:Fluxer.Net.IGuild
+  parent: Fluxer.Net
+  href: Fluxer.Net.IGuild.html
+  name: IGuild
+  nameWithType: IGuild
+  fullName: Fluxer.Net.IGuild
+- uid: Fluxer.Net.PartialGuildJson.Id
+  commentId: P:Fluxer.Net.PartialGuildJson.Id
+  parent: Fluxer.Net.PartialGuildJson
+  href: Fluxer.Net.PartialGuildJson.html#Fluxer_Net_PartialGuildJson_Id
+  name: Id
+  nameWithType: PartialGuildJson.Id
+  fullName: Fluxer.Net.PartialGuildJson.Id
+- uid: Fluxer.Net.PartialGuildJson.Name
+  commentId: P:Fluxer.Net.PartialGuildJson.Name
+  parent: Fluxer.Net.PartialGuildJson
+  href: Fluxer.Net.PartialGuildJson.html#Fluxer_Net_PartialGuildJson_Name
+  name: Name
+  nameWithType: PartialGuildJson.Name
+  fullName: Fluxer.Net.PartialGuildJson.Name
+- uid: Fluxer.Net.PartialGuildJson.IconHash
+  commentId: P:Fluxer.Net.PartialGuildJson.IconHash
+  parent: Fluxer.Net.PartialGuildJson
+  href: Fluxer.Net.PartialGuildJson.html#Fluxer_Net_PartialGuildJson_IconHash
+  name: IconHash
+  nameWithType: PartialGuildJson.IconHash
+  fullName: Fluxer.Net.PartialGuildJson.IconHash
+- uid: Fluxer.Net.PartialGuildJson.BannerHash
+  commentId: P:Fluxer.Net.PartialGuildJson.BannerHash
+  parent: Fluxer.Net.PartialGuildJson
+  href: Fluxer.Net.PartialGuildJson.html#Fluxer_Net_PartialGuildJson_BannerHash
+  name: BannerHash
+  nameWithType: PartialGuildJson.BannerHash
+  fullName: Fluxer.Net.PartialGuildJson.BannerHash
+- uid: Fluxer.Net.PartialGuildJson.BannerWidth
+  commentId: P:Fluxer.Net.PartialGuildJson.BannerWidth
+  parent: Fluxer.Net.PartialGuildJson
+  href: Fluxer.Net.PartialGuildJson.html#Fluxer_Net_PartialGuildJson_BannerWidth
+  name: BannerWidth
+  nameWithType: PartialGuildJson.BannerWidth
+  fullName: Fluxer.Net.PartialGuildJson.BannerWidth
+- uid: Fluxer.Net.PartialGuildJson.BannerHeight
+  commentId: P:Fluxer.Net.PartialGuildJson.BannerHeight
+  parent: Fluxer.Net.PartialGuildJson
+  href: Fluxer.Net.PartialGuildJson.html#Fluxer_Net_PartialGuildJson_BannerHeight
+  name: BannerHeight
+  nameWithType: PartialGuildJson.BannerHeight
+  fullName: Fluxer.Net.PartialGuildJson.BannerHeight
+- uid: Fluxer.Net.PartialGuildJson.EmbedSplashHash
+  commentId: P:Fluxer.Net.PartialGuildJson.EmbedSplashHash
+  parent: Fluxer.Net.PartialGuildJson
+  href: Fluxer.Net.PartialGuildJson.html#Fluxer_Net_PartialGuildJson_EmbedSplashHash
+  name: EmbedSplashHash
+  nameWithType: PartialGuildJson.EmbedSplashHash
+  fullName: Fluxer.Net.PartialGuildJson.EmbedSplashHash
+- uid: Fluxer.Net.PartialGuildJson.EmbedSplashWidth
+  commentId: P:Fluxer.Net.PartialGuildJson.EmbedSplashWidth
+  parent: Fluxer.Net.PartialGuildJson
+  href: Fluxer.Net.PartialGuildJson.html#Fluxer_Net_PartialGuildJson_EmbedSplashWidth
+  name: EmbedSplashWidth
+  nameWithType: PartialGuildJson.EmbedSplashWidth
+  fullName: Fluxer.Net.PartialGuildJson.EmbedSplashWidth
+- uid: Fluxer.Net.PartialGuildJson.EmbedSplashHeight
+  commentId: P:Fluxer.Net.PartialGuildJson.EmbedSplashHeight
+  parent: Fluxer.Net.PartialGuildJson
+  href: Fluxer.Net.PartialGuildJson.html#Fluxer_Net_PartialGuildJson_EmbedSplashHeight
+  name: EmbedSplashHeight
+  nameWithType: PartialGuildJson.EmbedSplashHeight
+  fullName: Fluxer.Net.PartialGuildJson.EmbedSplashHeight
+- uid: Fluxer.Net.PartialGuildJson.InviteSplashHash
+  commentId: P:Fluxer.Net.PartialGuildJson.InviteSplashHash
+  parent: Fluxer.Net.PartialGuildJson
+  href: Fluxer.Net.PartialGuildJson.html#Fluxer_Net_PartialGuildJson_InviteSplashHash
+  name: InviteSplashHash
+  nameWithType: PartialGuildJson.InviteSplashHash
+  fullName: Fluxer.Net.PartialGuildJson.InviteSplashHash
+- uid: Fluxer.Net.PartialGuildJson.InviteSplashWidth
+  commentId: P:Fluxer.Net.PartialGuildJson.InviteSplashWidth
+  parent: Fluxer.Net.PartialGuildJson
+  href: Fluxer.Net.PartialGuildJson.html#Fluxer_Net_PartialGuildJson_InviteSplashWidth
+  name: InviteSplashWidth
+  nameWithType: PartialGuildJson.InviteSplashWidth
+  fullName: Fluxer.Net.PartialGuildJson.InviteSplashWidth
+- uid: Fluxer.Net.PartialGuildJson.InviteSplashHeight
+  commentId: P:Fluxer.Net.PartialGuildJson.InviteSplashHeight
+  parent: Fluxer.Net.PartialGuildJson
+  href: Fluxer.Net.PartialGuildJson.html#Fluxer_Net_PartialGuildJson_InviteSplashHeight
+  name: InviteSplashHeight
+  nameWithType: PartialGuildJson.InviteSplashHeight
+  fullName: Fluxer.Net.PartialGuildJson.InviteSplashHeight
+- uid: Fluxer.Net.PartialGuildJson.SplashCardAligment
+  commentId: P:Fluxer.Net.PartialGuildJson.SplashCardAligment
+  parent: Fluxer.Net.PartialGuildJson
+  href: Fluxer.Net.PartialGuildJson.html#Fluxer_Net_PartialGuildJson_SplashCardAligment
+  name: SplashCardAligment
+  nameWithType: PartialGuildJson.SplashCardAligment
+  fullName: Fluxer.Net.PartialGuildJson.SplashCardAligment
+- uid: Fluxer.Net.PartialGuildJson.Features
+  commentId: P:Fluxer.Net.PartialGuildJson.Features
+  parent: Fluxer.Net.PartialGuildJson
+  href: Fluxer.Net.PartialGuildJson.html#Fluxer_Net_PartialGuildJson_Features
+  name: Features
+  nameWithType: PartialGuildJson.Features
+  fullName: Fluxer.Net.PartialGuildJson.Features
+- uid: Fluxer.Net.PartialGuildJson.GetIconUrl(System.Int32)
+  commentId: M:Fluxer.Net.PartialGuildJson.GetIconUrl(System.Int32)
+  parent: Fluxer.Net.PartialGuildJson
+  isExternal: true
+  href: Fluxer.Net.PartialGuildJson.html#Fluxer_Net_PartialGuildJson_GetIconUrl_System_Int32_
+  name: GetIconUrl(int)
+  nameWithType: PartialGuildJson.GetIconUrl(int)
+  fullName: Fluxer.Net.PartialGuildJson.GetIconUrl(int)
+  nameWithType.vb: PartialGuildJson.GetIconUrl(Integer)
+  fullName.vb: Fluxer.Net.PartialGuildJson.GetIconUrl(Integer)
+  name.vb: GetIconUrl(Integer)
+  spec.csharp:
+  - uid: Fluxer.Net.PartialGuildJson.GetIconUrl(System.Int32)
+    name: GetIconUrl
+    href: Fluxer.Net.PartialGuildJson.html#Fluxer_Net_PartialGuildJson_GetIconUrl_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Fluxer.Net.PartialGuildJson.GetIconUrl(System.Int32)
+    name: GetIconUrl
+    href: Fluxer.Net.PartialGuildJson.html#Fluxer_Net_PartialGuildJson_GetIconUrl_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Fluxer.Net.PartialGuildJson.GetBannerUrl(System.Int32)
+  commentId: M:Fluxer.Net.PartialGuildJson.GetBannerUrl(System.Int32)
+  parent: Fluxer.Net.PartialGuildJson
+  isExternal: true
+  href: Fluxer.Net.PartialGuildJson.html#Fluxer_Net_PartialGuildJson_GetBannerUrl_System_Int32_
+  name: GetBannerUrl(int)
+  nameWithType: PartialGuildJson.GetBannerUrl(int)
+  fullName: Fluxer.Net.PartialGuildJson.GetBannerUrl(int)
+  nameWithType.vb: PartialGuildJson.GetBannerUrl(Integer)
+  fullName.vb: Fluxer.Net.PartialGuildJson.GetBannerUrl(Integer)
+  name.vb: GetBannerUrl(Integer)
+  spec.csharp:
+  - uid: Fluxer.Net.PartialGuildJson.GetBannerUrl(System.Int32)
+    name: GetBannerUrl
+    href: Fluxer.Net.PartialGuildJson.html#Fluxer_Net_PartialGuildJson_GetBannerUrl_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Fluxer.Net.PartialGuildJson.GetBannerUrl(System.Int32)
+    name: GetBannerUrl
+    href: Fluxer.Net.PartialGuildJson.html#Fluxer_Net_PartialGuildJson_GetBannerUrl_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Fluxer.Net.PartialGuildJson.GetInviteSplashUrl(System.Int32)
+  commentId: M:Fluxer.Net.PartialGuildJson.GetInviteSplashUrl(System.Int32)
+  parent: Fluxer.Net.PartialGuildJson
+  isExternal: true
+  href: Fluxer.Net.PartialGuildJson.html#Fluxer_Net_PartialGuildJson_GetInviteSplashUrl_System_Int32_
+  name: GetInviteSplashUrl(int)
+  nameWithType: PartialGuildJson.GetInviteSplashUrl(int)
+  fullName: Fluxer.Net.PartialGuildJson.GetInviteSplashUrl(int)
+  nameWithType.vb: PartialGuildJson.GetInviteSplashUrl(Integer)
+  fullName.vb: Fluxer.Net.PartialGuildJson.GetInviteSplashUrl(Integer)
+  name.vb: GetInviteSplashUrl(Integer)
+  spec.csharp:
+  - uid: Fluxer.Net.PartialGuildJson.GetInviteSplashUrl(System.Int32)
+    name: GetInviteSplashUrl
+    href: Fluxer.Net.PartialGuildJson.html#Fluxer_Net_PartialGuildJson_GetInviteSplashUrl_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Fluxer.Net.PartialGuildJson.GetInviteSplashUrl(System.Int32)
+    name: GetInviteSplashUrl
+    href: Fluxer.Net.PartialGuildJson.html#Fluxer_Net_PartialGuildJson_GetInviteSplashUrl_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Fluxer.Net.PartialGuildJson.GetEmbedSplashUrl(System.Int32)
+  commentId: M:Fluxer.Net.PartialGuildJson.GetEmbedSplashUrl(System.Int32)
+  parent: Fluxer.Net.PartialGuildJson
+  isExternal: true
+  href: Fluxer.Net.PartialGuildJson.html#Fluxer_Net_PartialGuildJson_GetEmbedSplashUrl_System_Int32_
+  name: GetEmbedSplashUrl(int)
+  nameWithType: PartialGuildJson.GetEmbedSplashUrl(int)
+  fullName: Fluxer.Net.PartialGuildJson.GetEmbedSplashUrl(int)
+  nameWithType.vb: PartialGuildJson.GetEmbedSplashUrl(Integer)
+  fullName.vb: Fluxer.Net.PartialGuildJson.GetEmbedSplashUrl(Integer)
+  name.vb: GetEmbedSplashUrl(Integer)
+  spec.csharp:
+  - uid: Fluxer.Net.PartialGuildJson.GetEmbedSplashUrl(System.Int32)
+    name: GetEmbedSplashUrl
+    href: Fluxer.Net.PartialGuildJson.html#Fluxer_Net_PartialGuildJson_GetEmbedSplashUrl_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Fluxer.Net.PartialGuildJson.GetEmbedSplashUrl(System.Int32)
+    name: GetEmbedSplashUrl
+    href: Fluxer.Net.PartialGuildJson.html#Fluxer_Net_PartialGuildJson_GetEmbedSplashUrl_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Fluxer.Net.GuildJson.OwnerId*
+  commentId: Overload:Fluxer.Net.GuildJson.OwnerId
+  href: Fluxer.Net.GuildJson.html#Fluxer_Net_GuildJson_OwnerId
+  name: OwnerId
+  nameWithType: GuildJson.OwnerId
+  fullName: Fluxer.Net.GuildJson.OwnerId
+- uid: Fluxer.Net.IGuild.OwnerId
+  commentId: P:Fluxer.Net.IGuild.OwnerId
+  parent: Fluxer.Net.IGuild
+  href: Fluxer.Net.IGuild.html#Fluxer_Net_IGuild_OwnerId
+  name: OwnerId
+  nameWithType: IGuild.OwnerId
+  fullName: Fluxer.Net.IGuild.OwnerId
+- uid: System.UInt64
+  commentId: T:System.UInt64
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.uint64
+  name: ulong
+  nameWithType: ulong
+  fullName: ulong
+  nameWithType.vb: ULong
+  fullName.vb: ULong
+  name.vb: ULong
+- uid: Fluxer.Net.GuildJson.VanityUrlCode*
+  commentId: Overload:Fluxer.Net.GuildJson.VanityUrlCode
+  href: Fluxer.Net.GuildJson.html#Fluxer_Net_GuildJson_VanityUrlCode
+  name: VanityUrlCode
+  nameWithType: GuildJson.VanityUrlCode
+  fullName: Fluxer.Net.GuildJson.VanityUrlCode
+- uid: Fluxer.Net.IGuild.VanityUrlCode
+  commentId: P:Fluxer.Net.IGuild.VanityUrlCode
+  parent: Fluxer.Net.IGuild
+  href: Fluxer.Net.IGuild.html#Fluxer_Net_IGuild_VanityUrlCode
+  name: VanityUrlCode
+  nameWithType: IGuild.VanityUrlCode
+  fullName: Fluxer.Net.IGuild.VanityUrlCode
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: Fluxer.Net.GuildJson.VerificationLevel*
+  commentId: Overload:Fluxer.Net.GuildJson.VerificationLevel
+  href: Fluxer.Net.GuildJson.html#Fluxer_Net_GuildJson_VerificationLevel
+  name: VerificationLevel
+  nameWithType: GuildJson.VerificationLevel
+  fullName: Fluxer.Net.GuildJson.VerificationLevel
+- uid: Fluxer.Net.IGuild.VerificationLevel
+  commentId: P:Fluxer.Net.IGuild.VerificationLevel
+  parent: Fluxer.Net.IGuild
+  href: Fluxer.Net.IGuild.html#Fluxer_Net_IGuild_VerificationLevel
+  name: VerificationLevel
+  nameWithType: IGuild.VerificationLevel
+  fullName: Fluxer.Net.IGuild.VerificationLevel
+- uid: Fluxer.Net.GuildVerificationLevel
+  commentId: T:Fluxer.Net.GuildVerificationLevel
+  parent: Fluxer.Net
+  href: Fluxer.Net.GuildVerificationLevel.html
+  name: GuildVerificationLevel
+  nameWithType: GuildVerificationLevel
+  fullName: Fluxer.Net.GuildVerificationLevel
+- uid: Fluxer.Net.GuildJson.MfaLevel*
+  commentId: Overload:Fluxer.Net.GuildJson.MfaLevel
+  href: Fluxer.Net.GuildJson.html#Fluxer_Net_GuildJson_MfaLevel
+  name: MfaLevel
+  nameWithType: GuildJson.MfaLevel
+  fullName: Fluxer.Net.GuildJson.MfaLevel
+- uid: Fluxer.Net.IGuild.MfaLevel
+  commentId: P:Fluxer.Net.IGuild.MfaLevel
+  parent: Fluxer.Net.IGuild
+  href: Fluxer.Net.IGuild.html#Fluxer_Net_IGuild_MfaLevel
+  name: MfaLevel
+  nameWithType: IGuild.MfaLevel
+  fullName: Fluxer.Net.IGuild.MfaLevel
+- uid: Fluxer.Net.GuildMfaLevel
+  commentId: T:Fluxer.Net.GuildMfaLevel
+  parent: Fluxer.Net
+  href: Fluxer.Net.GuildMfaLevel.html
+  name: GuildMfaLevel
+  nameWithType: GuildMfaLevel
+  fullName: Fluxer.Net.GuildMfaLevel
+- uid: Fluxer.Net.GuildJson.NsfwLevel*
+  commentId: Overload:Fluxer.Net.GuildJson.NsfwLevel
+  href: Fluxer.Net.GuildJson.html#Fluxer_Net_GuildJson_NsfwLevel
+  name: NsfwLevel
+  nameWithType: GuildJson.NsfwLevel
+  fullName: Fluxer.Net.GuildJson.NsfwLevel
+- uid: Fluxer.Net.IGuild.NsfwLevel
+  commentId: P:Fluxer.Net.IGuild.NsfwLevel
+  parent: Fluxer.Net.IGuild
+  href: Fluxer.Net.IGuild.html#Fluxer_Net_IGuild_NsfwLevel
+  name: NsfwLevel
+  nameWithType: IGuild.NsfwLevel
+  fullName: Fluxer.Net.IGuild.NsfwLevel
+- uid: Fluxer.Net.GuildNsfwLevel
+  commentId: T:Fluxer.Net.GuildNsfwLevel
+  parent: Fluxer.Net
+  href: Fluxer.Net.GuildNsfwLevel.html
+  name: GuildNsfwLevel
+  nameWithType: GuildNsfwLevel
+  fullName: Fluxer.Net.GuildNsfwLevel
+- uid: Fluxer.Net.GuildJson.ExplicitContentFilter*
+  commentId: Overload:Fluxer.Net.GuildJson.ExplicitContentFilter
+  href: Fluxer.Net.GuildJson.html#Fluxer_Net_GuildJson_ExplicitContentFilter
+  name: ExplicitContentFilter
+  nameWithType: GuildJson.ExplicitContentFilter
+  fullName: Fluxer.Net.GuildJson.ExplicitContentFilter
+- uid: Fluxer.Net.IGuild.ExplicitContentFilter
+  commentId: P:Fluxer.Net.IGuild.ExplicitContentFilter
+  parent: Fluxer.Net.IGuild
+  href: Fluxer.Net.IGuild.html#Fluxer_Net_IGuild_ExplicitContentFilter
+  name: ExplicitContentFilter
+  nameWithType: IGuild.ExplicitContentFilter
+  fullName: Fluxer.Net.IGuild.ExplicitContentFilter
+- uid: Fluxer.Net.GuildContentFilter
+  commentId: T:Fluxer.Net.GuildContentFilter
+  parent: Fluxer.Net
+  href: Fluxer.Net.GuildContentFilter.html
+  name: GuildContentFilter
+  nameWithType: GuildContentFilter
+  fullName: Fluxer.Net.GuildContentFilter
+- uid: Fluxer.Net.GuildJson.DefaultMessageNotifications*
+  commentId: Overload:Fluxer.Net.GuildJson.DefaultMessageNotifications
+  href: Fluxer.Net.GuildJson.html#Fluxer_Net_GuildJson_DefaultMessageNotifications
+  name: DefaultMessageNotifications
+  nameWithType: GuildJson.DefaultMessageNotifications
+  fullName: Fluxer.Net.GuildJson.DefaultMessageNotifications
+- uid: Fluxer.Net.IGuild.DefaultMessageNotifications
+  commentId: P:Fluxer.Net.IGuild.DefaultMessageNotifications
+  parent: Fluxer.Net.IGuild
+  href: Fluxer.Net.IGuild.html#Fluxer_Net_IGuild_DefaultMessageNotifications
+  name: DefaultMessageNotifications
+  nameWithType: IGuild.DefaultMessageNotifications
+  fullName: Fluxer.Net.IGuild.DefaultMessageNotifications
+- uid: Fluxer.Net.GuildDefaultNotifications
+  commentId: T:Fluxer.Net.GuildDefaultNotifications
+  parent: Fluxer.Net
+  href: Fluxer.Net.GuildDefaultNotifications.html
+  name: GuildDefaultNotifications
+  nameWithType: GuildDefaultNotifications
+  fullName: Fluxer.Net.GuildDefaultNotifications
+- uid: Fluxer.Net.GuildJson.SystemChannelId*
+  commentId: Overload:Fluxer.Net.GuildJson.SystemChannelId
+  href: Fluxer.Net.GuildJson.html#Fluxer_Net_GuildJson_SystemChannelId
+  name: SystemChannelId
+  nameWithType: GuildJson.SystemChannelId
+  fullName: Fluxer.Net.GuildJson.SystemChannelId
+- uid: Fluxer.Net.IGuild.SystemChannelId
+  commentId: P:Fluxer.Net.IGuild.SystemChannelId
+  parent: Fluxer.Net.IGuild
+  href: Fluxer.Net.IGuild.html#Fluxer_Net_IGuild_SystemChannelId
+  name: SystemChannelId
+  nameWithType: IGuild.SystemChannelId
+  fullName: Fluxer.Net.IGuild.SystemChannelId
+- uid: System.Nullable{System.UInt64}
+  commentId: T:System.Nullable{System.UInt64}
+  parent: System
+  definition: System.Nullable`1
+  href: https://learn.microsoft.com/dotnet/api/system.uint64
+  name: ulong?
+  nameWithType: ulong?
+  fullName: ulong?
+  nameWithType.vb: ULong?
+  fullName.vb: ULong?
+  name.vb: ULong?
+  spec.csharp:
+  - uid: System.UInt64
+    name: ulong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: '?'
+  spec.vb:
+  - uid: System.UInt64
+    name: ULong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: '?'
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: Fluxer.Net.GuildJson.SystemChannelFlags*
+  commentId: Overload:Fluxer.Net.GuildJson.SystemChannelFlags
+  href: Fluxer.Net.GuildJson.html#Fluxer_Net_GuildJson_SystemChannelFlags
+  name: SystemChannelFlags
+  nameWithType: GuildJson.SystemChannelFlags
+  fullName: Fluxer.Net.GuildJson.SystemChannelFlags
+- uid: Fluxer.Net.IGuild.SystemChannelFlags
+  commentId: P:Fluxer.Net.IGuild.SystemChannelFlags
+  parent: Fluxer.Net.IGuild
+  href: Fluxer.Net.IGuild.html#Fluxer_Net_IGuild_SystemChannelFlags
+  name: SystemChannelFlags
+  nameWithType: IGuild.SystemChannelFlags
+  fullName: Fluxer.Net.IGuild.SystemChannelFlags
+- uid: Fluxer.Net.SystemChannelFlags
+  commentId: T:Fluxer.Net.SystemChannelFlags
+  parent: Fluxer.Net
+  href: Fluxer.Net.SystemChannelFlags.html
+  name: SystemChannelFlags
+  nameWithType: SystemChannelFlags
+  fullName: Fluxer.Net.SystemChannelFlags
+- uid: Fluxer.Net.GuildJson.RulesChannelId*
+  commentId: Overload:Fluxer.Net.GuildJson.RulesChannelId
+  href: Fluxer.Net.GuildJson.html#Fluxer_Net_GuildJson_RulesChannelId
+  name: RulesChannelId
+  nameWithType: GuildJson.RulesChannelId
+  fullName: Fluxer.Net.GuildJson.RulesChannelId
+- uid: Fluxer.Net.IGuild.RulesChannelId
+  commentId: P:Fluxer.Net.IGuild.RulesChannelId
+  parent: Fluxer.Net.IGuild
+  href: Fluxer.Net.IGuild.html#Fluxer_Net_IGuild_RulesChannelId
+  name: RulesChannelId
+  nameWithType: IGuild.RulesChannelId
+  fullName: Fluxer.Net.IGuild.RulesChannelId
+- uid: Fluxer.Net.GuildJson.AfkChannelId*
+  commentId: Overload:Fluxer.Net.GuildJson.AfkChannelId
+  href: Fluxer.Net.GuildJson.html#Fluxer_Net_GuildJson_AfkChannelId
+  name: AfkChannelId
+  nameWithType: GuildJson.AfkChannelId
+  fullName: Fluxer.Net.GuildJson.AfkChannelId
+- uid: Fluxer.Net.IGuild.AfkChannelId
+  commentId: P:Fluxer.Net.IGuild.AfkChannelId
+  parent: Fluxer.Net.IGuild
+  href: Fluxer.Net.IGuild.html#Fluxer_Net_IGuild_AfkChannelId
+  name: AfkChannelId
+  nameWithType: IGuild.AfkChannelId
+  fullName: Fluxer.Net.IGuild.AfkChannelId
+- uid: Fluxer.Net.GuildJson.AfkTimeout*
+  commentId: Overload:Fluxer.Net.GuildJson.AfkTimeout
+  href: Fluxer.Net.GuildJson.html#Fluxer_Net_GuildJson_AfkTimeout
+  name: AfkTimeout
+  nameWithType: GuildJson.AfkTimeout
+  fullName: Fluxer.Net.GuildJson.AfkTimeout
+- uid: Fluxer.Net.IGuild.AfkTimeout
+  commentId: P:Fluxer.Net.IGuild.AfkTimeout
+  parent: Fluxer.Net.IGuild
+  href: Fluxer.Net.IGuild.html#Fluxer_Net_IGuild_AfkTimeout
+  name: AfkTimeout
+  nameWithType: IGuild.AfkTimeout
+  fullName: Fluxer.Net.IGuild.AfkTimeout
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: Fluxer.Net.GuildJson.DisabledOperations*
+  commentId: Overload:Fluxer.Net.GuildJson.DisabledOperations
+  href: Fluxer.Net.GuildJson.html#Fluxer_Net_GuildJson_DisabledOperations
+  name: DisabledOperations
+  nameWithType: GuildJson.DisabledOperations
+  fullName: Fluxer.Net.GuildJson.DisabledOperations
+- uid: Fluxer.Net.IGuild.DisabledOperations
+  commentId: P:Fluxer.Net.IGuild.DisabledOperations
+  parent: Fluxer.Net.IGuild
+  href: Fluxer.Net.IGuild.html#Fluxer_Net_IGuild_DisabledOperations
+  name: DisabledOperations
+  nameWithType: IGuild.DisabledOperations
+  fullName: Fluxer.Net.IGuild.DisabledOperations
+- uid: Fluxer.Net.GuildOperations
+  commentId: T:Fluxer.Net.GuildOperations
+  parent: Fluxer.Net
+  href: Fluxer.Net.GuildOperations.html
+  name: GuildOperations
+  nameWithType: GuildOperations
+  fullName: Fluxer.Net.GuildOperations
+- uid: Fluxer.Net.GuildJson.MessageHistoryCutoff*
+  commentId: Overload:Fluxer.Net.GuildJson.MessageHistoryCutoff
+  href: Fluxer.Net.GuildJson.html#Fluxer_Net_GuildJson_MessageHistoryCutoff
+  name: MessageHistoryCutoff
+  nameWithType: GuildJson.MessageHistoryCutoff
+  fullName: Fluxer.Net.GuildJson.MessageHistoryCutoff
+- uid: Fluxer.Net.IGuild.MessageHistoryCutoff
+  commentId: P:Fluxer.Net.IGuild.MessageHistoryCutoff
+  parent: Fluxer.Net.IGuild
+  href: Fluxer.Net.IGuild.html#Fluxer_Net_IGuild_MessageHistoryCutoff
+  name: MessageHistoryCutoff
+  nameWithType: IGuild.MessageHistoryCutoff
+  fullName: Fluxer.Net.IGuild.MessageHistoryCutoff
+- uid: System.Nullable{System.DateTime}
+  commentId: T:System.Nullable{System.DateTime}
+  parent: System
+  definition: System.Nullable`1
+  href: https://learn.microsoft.com/dotnet/api/system.datetime
+  name: DateTime?
+  nameWithType: DateTime?
+  fullName: System.DateTime?
+  nameWithType.vb: Date?
+  fullName.vb: Date?
+  name.vb: Date?
+  spec.csharp:
+  - uid: System.DateTime
+    name: DateTime
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.datetime
+  - name: '?'
+  spec.vb:
+  - uid: System.DateTime
+    name: Date
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.datetime
+  - name: '?'
+- uid: Fluxer.Net.GuildJson.IsNsfw*
+  commentId: Overload:Fluxer.Net.GuildJson.IsNsfw
+  href: Fluxer.Net.GuildJson.html#Fluxer_Net_GuildJson_IsNsfw
+  name: IsNsfw
+  nameWithType: GuildJson.IsNsfw
+  fullName: Fluxer.Net.GuildJson.IsNsfw
+- uid: Fluxer.Net.IGuild.IsNsfw
+  commentId: P:Fluxer.Net.IGuild.IsNsfw
+  parent: Fluxer.Net.IGuild
+  href: Fluxer.Net.IGuild.html#Fluxer_Net_IGuild_IsNsfw
+  name: IsNsfw
+  nameWithType: IGuild.IsNsfw
+  fullName: Fluxer.Net.IGuild.IsNsfw
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: Fluxer.Net.GuildJson.ContentWarningText*
+  commentId: Overload:Fluxer.Net.GuildJson.ContentWarningText
+  href: Fluxer.Net.GuildJson.html#Fluxer_Net_GuildJson_ContentWarningText
+  name: ContentWarningText
+  nameWithType: GuildJson.ContentWarningText
+  fullName: Fluxer.Net.GuildJson.ContentWarningText
+- uid: Fluxer.Net.IGuild.ContentWarningText
+  commentId: P:Fluxer.Net.IGuild.ContentWarningText
+  parent: Fluxer.Net.IGuild
+  href: Fluxer.Net.IGuild.html#Fluxer_Net_IGuild_ContentWarningText
+  name: ContentWarningText
+  nameWithType: IGuild.ContentWarningText
+  fullName: Fluxer.Net.IGuild.ContentWarningText
+- uid: Fluxer.Net.GuildJson.OnlineCount*
+  commentId: Overload:Fluxer.Net.GuildJson.OnlineCount
+  href: Fluxer.Net.GuildJson.html#Fluxer_Net_GuildJson_OnlineCount
+  name: OnlineCount
+  nameWithType: GuildJson.OnlineCount
+  fullName: Fluxer.Net.GuildJson.OnlineCount
+- uid: Fluxer.Net.IGuild.OnlineCount
+  commentId: P:Fluxer.Net.IGuild.OnlineCount
+  parent: Fluxer.Net.IGuild
+  href: Fluxer.Net.IGuild.html#Fluxer_Net_IGuild_OnlineCount
+  name: OnlineCount
+  nameWithType: IGuild.OnlineCount
+  fullName: Fluxer.Net.IGuild.OnlineCount
+- uid: System.Nullable{System.Int32}
+  commentId: T:System.Nullable{System.Int32}
+  parent: System
+  definition: System.Nullable`1
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int?
+  nameWithType: int?
+  fullName: int?
+  nameWithType.vb: Integer?
+  fullName.vb: Integer?
+  name.vb: Integer?
+  spec.csharp:
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
+  spec.vb:
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
+- uid: Fluxer.Net.GuildJson.MemberCount*
+  commentId: Overload:Fluxer.Net.GuildJson.MemberCount
+  href: Fluxer.Net.GuildJson.html#Fluxer_Net_GuildJson_MemberCount
+  name: MemberCount
+  nameWithType: GuildJson.MemberCount
+  fullName: Fluxer.Net.GuildJson.MemberCount
+- uid: Fluxer.Net.IGuild.MemberCount
+  commentId: P:Fluxer.Net.IGuild.MemberCount
+  parent: Fluxer.Net.IGuild
+  href: Fluxer.Net.IGuild.html#Fluxer_Net_IGuild_MemberCount
+  name: MemberCount
+  nameWithType: IGuild.MemberCount
+  fullName: Fluxer.Net.IGuild.MemberCount

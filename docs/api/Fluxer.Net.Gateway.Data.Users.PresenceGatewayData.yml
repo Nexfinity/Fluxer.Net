@@ -1,0 +1,886 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.Gateway.Data.Users.PresenceGatewayData
+  commentId: T:Fluxer.Net.Gateway.Data.Users.PresenceGatewayData
+  id: PresenceGatewayData
+  parent: Fluxer.Net.Gateway.Data.Users
+  children:
+  - Fluxer.Net.Gateway.Data.Users.PresenceGatewayData.Activities
+  - Fluxer.Net.Gateway.Data.Users.PresenceGatewayData.Afk
+  - Fluxer.Net.Gateway.Data.Users.PresenceGatewayData.ClientStatus
+  - Fluxer.Net.Gateway.Data.Users.PresenceGatewayData.GuildId
+  - Fluxer.Net.Gateway.Data.Users.PresenceGatewayData.Mobile
+  - Fluxer.Net.Gateway.Data.Users.PresenceGatewayData.Status
+  - Fluxer.Net.Gateway.Data.Users.PresenceGatewayData.User
+  langs:
+  - csharp
+  - vb
+  name: PresenceGatewayData
+  nameWithType: PresenceGatewayData
+  fullName: Fluxer.Net.Gateway.Data.Users.PresenceGatewayData
+  type: Class
+  source:
+    remote:
+      path: Fluxer.Net/Gateway/Data/Users/PresenceUpdatedGatewayData.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: PresenceGatewayData
+    path: ../Fluxer.Net/Gateway/Data/Users/PresenceUpdatedGatewayData.cs
+    startLine: 8
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net.Gateway.Data.Users
+  summary: >-
+    Gateway event data for PRESENCE_UPDATE events.
+
+    This differs from the base Presence class by including a full User object instead of just a user_id.
+  example: []
+  syntax:
+    content: public class PresenceGatewayData
+    content.vb: Public Class PresenceGatewayData
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: Fluxer.Net.Gateway.Data.Users.PresenceGatewayData.GuildId
+  commentId: P:Fluxer.Net.Gateway.Data.Users.PresenceGatewayData.GuildId
+  id: GuildId
+  parent: Fluxer.Net.Gateway.Data.Users.PresenceGatewayData
+  langs:
+  - csharp
+  - vb
+  name: GuildId
+  nameWithType: PresenceGatewayData.GuildId
+  fullName: Fluxer.Net.Gateway.Data.Users.PresenceGatewayData.GuildId
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Gateway/Data/Users/PresenceUpdatedGatewayData.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: GuildId
+    path: ../Fluxer.Net/Gateway/Data/Users/PresenceUpdatedGatewayData.cs
+    startLine: 10
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net.Gateway.Data.Users
+  syntax:
+    content: >-
+      [JsonProperty("guild_id")]
+
+      public ulong? GuildId { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{System.UInt64}
+    content.vb: >-
+      <JsonProperty("guild_id")>
+
+      Public Property GuildId As ULong?
+  overload: Fluxer.Net.Gateway.Data.Users.PresenceGatewayData.GuildId*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: guild_id
+- uid: Fluxer.Net.Gateway.Data.Users.PresenceGatewayData.User
+  commentId: P:Fluxer.Net.Gateway.Data.Users.PresenceGatewayData.User
+  id: User
+  parent: Fluxer.Net.Gateway.Data.Users.PresenceGatewayData
+  langs:
+  - csharp
+  - vb
+  name: User
+  nameWithType: PresenceGatewayData.User
+  fullName: Fluxer.Net.Gateway.Data.Users.PresenceGatewayData.User
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Gateway/Data/Users/PresenceUpdatedGatewayData.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: User
+    path: ../Fluxer.Net/Gateway/Data/Users/PresenceUpdatedGatewayData.cs
+    startLine: 13
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net.Gateway.Data.Users
+  syntax:
+    content: >-
+      [JsonProperty("user")]
+
+      public UserJson User { get; set; }
+    parameters: []
+    return:
+      type: Fluxer.Net.UserJson
+    content.vb: >-
+      <JsonProperty("user")>
+
+      Public Property User As UserJson
+  overload: Fluxer.Net.Gateway.Data.Users.PresenceGatewayData.User*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: user
+- uid: Fluxer.Net.Gateway.Data.Users.PresenceGatewayData.Status
+  commentId: P:Fluxer.Net.Gateway.Data.Users.PresenceGatewayData.Status
+  id: Status
+  parent: Fluxer.Net.Gateway.Data.Users.PresenceGatewayData
+  langs:
+  - csharp
+  - vb
+  name: Status
+  nameWithType: PresenceGatewayData.Status
+  fullName: Fluxer.Net.Gateway.Data.Users.PresenceGatewayData.Status
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Gateway/Data/Users/PresenceUpdatedGatewayData.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Status
+    path: ../Fluxer.Net/Gateway/Data/Users/PresenceUpdatedGatewayData.cs
+    startLine: 16
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net.Gateway.Data.Users
+  syntax:
+    content: >-
+      [JsonProperty("status")]
+
+      public string Status { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <JsonProperty("status")>
+
+      Public Property Status As String
+  overload: Fluxer.Net.Gateway.Data.Users.PresenceGatewayData.Status*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: status
+- uid: Fluxer.Net.Gateway.Data.Users.PresenceGatewayData.Activities
+  commentId: P:Fluxer.Net.Gateway.Data.Users.PresenceGatewayData.Activities
+  id: Activities
+  parent: Fluxer.Net.Gateway.Data.Users.PresenceGatewayData
+  langs:
+  - csharp
+  - vb
+  name: Activities
+  nameWithType: PresenceGatewayData.Activities
+  fullName: Fluxer.Net.Gateway.Data.Users.PresenceGatewayData.Activities
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Gateway/Data/Users/PresenceUpdatedGatewayData.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Activities
+    path: ../Fluxer.Net/Gateway/Data/Users/PresenceUpdatedGatewayData.cs
+    startLine: 19
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net.Gateway.Data.Users
+  syntax:
+    content: >-
+      [JsonProperty("activities")]
+
+      public List<ActivityJson>? Activities { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.List{Fluxer.Net.ActivityJson}
+    content.vb: >-
+      <JsonProperty("activities")>
+
+      Public Property Activities As List(Of ActivityJson)
+  overload: Fluxer.Net.Gateway.Data.Users.PresenceGatewayData.Activities*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: activities
+- uid: Fluxer.Net.Gateway.Data.Users.PresenceGatewayData.ClientStatus
+  commentId: P:Fluxer.Net.Gateway.Data.Users.PresenceGatewayData.ClientStatus
+  id: ClientStatus
+  parent: Fluxer.Net.Gateway.Data.Users.PresenceGatewayData
+  langs:
+  - csharp
+  - vb
+  name: ClientStatus
+  nameWithType: PresenceGatewayData.ClientStatus
+  fullName: Fluxer.Net.Gateway.Data.Users.PresenceGatewayData.ClientStatus
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Gateway/Data/Users/PresenceUpdatedGatewayData.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: ClientStatus
+    path: ../Fluxer.Net/Gateway/Data/Users/PresenceUpdatedGatewayData.cs
+    startLine: 22
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net.Gateway.Data.Users
+  syntax:
+    content: >-
+      [JsonProperty("client_status")]
+
+      public ClientStatusJson? ClientStatus { get; set; }
+    parameters: []
+    return:
+      type: Fluxer.Net.ClientStatusJson
+    content.vb: >-
+      <JsonProperty("client_status")>
+
+      Public Property ClientStatus As ClientStatusJson
+  overload: Fluxer.Net.Gateway.Data.Users.PresenceGatewayData.ClientStatus*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: client_status
+- uid: Fluxer.Net.Gateway.Data.Users.PresenceGatewayData.Afk
+  commentId: P:Fluxer.Net.Gateway.Data.Users.PresenceGatewayData.Afk
+  id: Afk
+  parent: Fluxer.Net.Gateway.Data.Users.PresenceGatewayData
+  langs:
+  - csharp
+  - vb
+  name: Afk
+  nameWithType: PresenceGatewayData.Afk
+  fullName: Fluxer.Net.Gateway.Data.Users.PresenceGatewayData.Afk
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Gateway/Data/Users/PresenceUpdatedGatewayData.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Afk
+    path: ../Fluxer.Net/Gateway/Data/Users/PresenceUpdatedGatewayData.cs
+    startLine: 28
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net.Gateway.Data.Users
+  summary: Whether the user is AFK.
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("afk")]
+
+      public bool? Afk { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{System.Boolean}
+    content.vb: >-
+      <JsonProperty("afk")>
+
+      Public Property Afk As Boolean?
+  overload: Fluxer.Net.Gateway.Data.Users.PresenceGatewayData.Afk*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: afk
+- uid: Fluxer.Net.Gateway.Data.Users.PresenceGatewayData.Mobile
+  commentId: P:Fluxer.Net.Gateway.Data.Users.PresenceGatewayData.Mobile
+  id: Mobile
+  parent: Fluxer.Net.Gateway.Data.Users.PresenceGatewayData
+  langs:
+  - csharp
+  - vb
+  name: Mobile
+  nameWithType: PresenceGatewayData.Mobile
+  fullName: Fluxer.Net.Gateway.Data.Users.PresenceGatewayData.Mobile
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Gateway/Data/Users/PresenceUpdatedGatewayData.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Mobile
+    path: ../Fluxer.Net/Gateway/Data/Users/PresenceUpdatedGatewayData.cs
+    startLine: 34
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net.Gateway.Data.Users
+  summary: Whether the user is on mobile.
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("mobile")]
+
+      public bool? Mobile { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{System.Boolean}
+    content.vb: >-
+      <JsonProperty("mobile")>
+
+      Public Property Mobile As Boolean?
+  overload: Fluxer.Net.Gateway.Data.Users.PresenceGatewayData.Mobile*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: mobile
+references:
+- uid: Fluxer.Net.Gateway.Data.Users
+  commentId: N:Fluxer.Net.Gateway.Data.Users
+  href: Fluxer.html
+  name: Fluxer.Net.Gateway.Data.Users
+  nameWithType: Fluxer.Net.Gateway.Data.Users
+  fullName: Fluxer.Net.Gateway.Data.Users
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  - name: .
+  - uid: Fluxer.Net.Gateway
+    name: Gateway
+    href: Fluxer.Net.Gateway.html
+  - name: .
+  - uid: Fluxer.Net.Gateway.Data
+    name: Data
+    href: Fluxer.Net.Gateway.Data.html
+  - name: .
+  - uid: Fluxer.Net.Gateway.Data.Users
+    name: Users
+    href: Fluxer.Net.Gateway.Data.Users.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  - name: .
+  - uid: Fluxer.Net.Gateway
+    name: Gateway
+    href: Fluxer.Net.Gateway.html
+  - name: .
+  - uid: Fluxer.Net.Gateway.Data
+    name: Data
+    href: Fluxer.Net.Gateway.Data.html
+  - name: .
+  - uid: Fluxer.Net.Gateway.Data.Users
+    name: Users
+    href: Fluxer.Net.Gateway.Data.Users.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Fluxer.Net.Gateway.Data.Users.PresenceGatewayData.GuildId*
+  commentId: Overload:Fluxer.Net.Gateway.Data.Users.PresenceGatewayData.GuildId
+  href: Fluxer.Net.Gateway.Data.Users.PresenceGatewayData.html#Fluxer_Net_Gateway_Data_Users_PresenceGatewayData_GuildId
+  name: GuildId
+  nameWithType: PresenceGatewayData.GuildId
+  fullName: Fluxer.Net.Gateway.Data.Users.PresenceGatewayData.GuildId
+- uid: System.Nullable{System.UInt64}
+  commentId: T:System.Nullable{System.UInt64}
+  parent: System
+  definition: System.Nullable`1
+  href: https://learn.microsoft.com/dotnet/api/system.uint64
+  name: ulong?
+  nameWithType: ulong?
+  fullName: ulong?
+  nameWithType.vb: ULong?
+  fullName.vb: ULong?
+  name.vb: ULong?
+  spec.csharp:
+  - uid: System.UInt64
+    name: ulong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: '?'
+  spec.vb:
+  - uid: System.UInt64
+    name: ULong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: '?'
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: Fluxer.Net.Gateway.Data.Users.PresenceGatewayData.User*
+  commentId: Overload:Fluxer.Net.Gateway.Data.Users.PresenceGatewayData.User
+  href: Fluxer.Net.Gateway.Data.Users.PresenceGatewayData.html#Fluxer_Net_Gateway_Data_Users_PresenceGatewayData_User
+  name: User
+  nameWithType: PresenceGatewayData.User
+  fullName: Fluxer.Net.Gateway.Data.Users.PresenceGatewayData.User
+- uid: Fluxer.Net.UserJson
+  commentId: T:Fluxer.Net.UserJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.UserJson.html
+  name: UserJson
+  nameWithType: UserJson
+  fullName: Fluxer.Net.UserJson
+- uid: Fluxer.Net
+  commentId: N:Fluxer.Net
+  href: Fluxer.html
+  name: Fluxer.Net
+  nameWithType: Fluxer.Net
+  fullName: Fluxer.Net
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+- uid: Fluxer.Net.Gateway.Data.Users.PresenceGatewayData.Status*
+  commentId: Overload:Fluxer.Net.Gateway.Data.Users.PresenceGatewayData.Status
+  href: Fluxer.Net.Gateway.Data.Users.PresenceGatewayData.html#Fluxer_Net_Gateway_Data_Users_PresenceGatewayData_Status
+  name: Status
+  nameWithType: PresenceGatewayData.Status
+  fullName: Fluxer.Net.Gateway.Data.Users.PresenceGatewayData.Status
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: Fluxer.Net.Gateway.Data.Users.PresenceGatewayData.Activities*
+  commentId: Overload:Fluxer.Net.Gateway.Data.Users.PresenceGatewayData.Activities
+  href: Fluxer.Net.Gateway.Data.Users.PresenceGatewayData.html#Fluxer_Net_Gateway_Data_Users_PresenceGatewayData_Activities
+  name: Activities
+  nameWithType: PresenceGatewayData.Activities
+  fullName: Fluxer.Net.Gateway.Data.Users.PresenceGatewayData.Activities
+- uid: System.Collections.Generic.List{Fluxer.Net.ActivityJson}
+  commentId: T:System.Collections.Generic.List{Fluxer.Net.ActivityJson}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<ActivityJson>
+  nameWithType: List<ActivityJson>
+  fullName: System.Collections.Generic.List<Fluxer.Net.ActivityJson>
+  nameWithType.vb: List(Of ActivityJson)
+  fullName.vb: System.Collections.Generic.List(Of Fluxer.Net.ActivityJson)
+  name.vb: List(Of ActivityJson)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: Fluxer.Net.ActivityJson
+    name: ActivityJson
+    href: Fluxer.Net.ActivityJson.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Fluxer.Net.ActivityJson
+    name: ActivityJson
+    href: Fluxer.Net.ActivityJson.html
+  - name: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: Fluxer.Net.Gateway.Data.Users.PresenceGatewayData.ClientStatus*
+  commentId: Overload:Fluxer.Net.Gateway.Data.Users.PresenceGatewayData.ClientStatus
+  href: Fluxer.Net.Gateway.Data.Users.PresenceGatewayData.html#Fluxer_Net_Gateway_Data_Users_PresenceGatewayData_ClientStatus
+  name: ClientStatus
+  nameWithType: PresenceGatewayData.ClientStatus
+  fullName: Fluxer.Net.Gateway.Data.Users.PresenceGatewayData.ClientStatus
+- uid: Fluxer.Net.ClientStatusJson
+  commentId: T:Fluxer.Net.ClientStatusJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.ClientStatusJson.html
+  name: ClientStatusJson
+  nameWithType: ClientStatusJson
+  fullName: Fluxer.Net.ClientStatusJson
+- uid: Fluxer.Net.Gateway.Data.Users.PresenceGatewayData.Afk*
+  commentId: Overload:Fluxer.Net.Gateway.Data.Users.PresenceGatewayData.Afk
+  href: Fluxer.Net.Gateway.Data.Users.PresenceGatewayData.html#Fluxer_Net_Gateway_Data_Users_PresenceGatewayData_Afk
+  name: Afk
+  nameWithType: PresenceGatewayData.Afk
+  fullName: Fluxer.Net.Gateway.Data.Users.PresenceGatewayData.Afk
+- uid: System.Nullable{System.Boolean}
+  commentId: T:System.Nullable{System.Boolean}
+  parent: System
+  definition: System.Nullable`1
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool?
+  nameWithType: bool?
+  fullName: bool?
+  nameWithType.vb: Boolean?
+  fullName.vb: Boolean?
+  name.vb: Boolean?
+  spec.csharp:
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '?'
+  spec.vb:
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '?'
+- uid: Fluxer.Net.Gateway.Data.Users.PresenceGatewayData.Mobile*
+  commentId: Overload:Fluxer.Net.Gateway.Data.Users.PresenceGatewayData.Mobile
+  href: Fluxer.Net.Gateway.Data.Users.PresenceGatewayData.html#Fluxer_Net_Gateway_Data_Users_PresenceGatewayData_Mobile
+  name: Mobile
+  nameWithType: PresenceGatewayData.Mobile
+  fullName: Fluxer.Net.Gateway.Data.Users.PresenceGatewayData.Mobile

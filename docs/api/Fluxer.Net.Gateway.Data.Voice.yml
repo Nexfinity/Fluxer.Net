@@ -1,0 +1,93 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.Gateway.Data.Voice
+  commentId: N:Fluxer.Net.Gateway.Data.Voice
+  id: Fluxer.Net.Gateway.Data.Voice
+  children:
+  - Fluxer.Net.Gateway.Data.Voice.CallGatewayData
+  - Fluxer.Net.Gateway.Data.Voice.VoiceServerUpdateGatewayData
+  - Fluxer.Net.Gateway.Data.Voice.VoiceStateGatewayData
+  - Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload
+  langs:
+  - csharp
+  - vb
+  name: Fluxer.Net.Gateway.Data.Voice
+  nameWithType: Fluxer.Net.Gateway.Data.Voice
+  fullName: Fluxer.Net.Gateway.Data.Voice
+  type: Namespace
+  assemblies:
+  - Fluxer.Net
+references:
+- uid: Fluxer.Net.Gateway.Data.Voice.CallGatewayData
+  commentId: T:Fluxer.Net.Gateway.Data.Voice.CallGatewayData
+  parent: Fluxer.Net.Gateway.Data.Voice
+  href: Fluxer.Net.Gateway.Data.Voice.CallGatewayData.html
+  name: CallGatewayData
+  nameWithType: CallGatewayData
+  fullName: Fluxer.Net.Gateway.Data.Voice.CallGatewayData
+- uid: Fluxer.Net.Gateway.Data.Voice.VoiceServerUpdateGatewayData
+  commentId: T:Fluxer.Net.Gateway.Data.Voice.VoiceServerUpdateGatewayData
+  parent: Fluxer.Net.Gateway.Data.Voice
+  href: Fluxer.Net.Gateway.Data.Voice.VoiceServerUpdateGatewayData.html
+  name: VoiceServerUpdateGatewayData
+  nameWithType: VoiceServerUpdateGatewayData
+  fullName: Fluxer.Net.Gateway.Data.Voice.VoiceServerUpdateGatewayData
+- uid: Fluxer.Net.Gateway.Data.Voice.VoiceStateGatewayData
+  commentId: T:Fluxer.Net.Gateway.Data.Voice.VoiceStateGatewayData
+  parent: Fluxer.Net.Gateway.Data.Voice
+  href: Fluxer.Net.Gateway.Data.Voice.VoiceStateGatewayData.html
+  name: VoiceStateGatewayData
+  nameWithType: VoiceStateGatewayData
+  fullName: Fluxer.Net.Gateway.Data.Voice.VoiceStateGatewayData
+- uid: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload
+  commentId: T:Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload
+  href: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload.html
+  name: VoiceStateUpdatePayload
+  nameWithType: VoiceStateUpdatePayload
+  fullName: Fluxer.Net.Gateway.Data.Voice.VoiceStateUpdatePayload
+- uid: Fluxer.Net.Gateway.Data.Voice
+  commentId: N:Fluxer.Net.Gateway.Data.Voice
+  href: Fluxer.html
+  name: Fluxer.Net.Gateway.Data.Voice
+  nameWithType: Fluxer.Net.Gateway.Data.Voice
+  fullName: Fluxer.Net.Gateway.Data.Voice
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  - name: .
+  - uid: Fluxer.Net.Gateway
+    name: Gateway
+    href: Fluxer.Net.Gateway.html
+  - name: .
+  - uid: Fluxer.Net.Gateway.Data
+    name: Data
+    href: Fluxer.Net.Gateway.Data.html
+  - name: .
+  - uid: Fluxer.Net.Gateway.Data.Voice
+    name: Voice
+    href: Fluxer.Net.Gateway.Data.Voice.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  - name: .
+  - uid: Fluxer.Net.Gateway
+    name: Gateway
+    href: Fluxer.Net.Gateway.html
+  - name: .
+  - uid: Fluxer.Net.Gateway.Data
+    name: Data
+    href: Fluxer.Net.Gateway.Data.html
+  - name: .
+  - uid: Fluxer.Net.Gateway.Data.Voice
+    name: Voice
+    href: Fluxer.Net.Gateway.Data.Voice.html

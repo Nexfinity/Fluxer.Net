@@ -1,0 +1,114 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.OverwriteRequestType
+  commentId: T:Fluxer.Net.OverwriteRequestType
+  id: OverwriteRequestType
+  parent: Fluxer.Net
+  children:
+  - Fluxer.Net.OverwriteRequestType.Member
+  - Fluxer.Net.OverwriteRequestType.Role
+  langs:
+  - csharp
+  - vb
+  name: OverwriteRequestType
+  nameWithType: OverwriteRequestType
+  fullName: Fluxer.Net.OverwriteRequestType
+  type: Enum
+  source:
+    remote:
+      path: Fluxer.Net/Data/Channels/OverwriteRequestType.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: OverwriteRequestType
+    path: ../Fluxer.Net/Data/Channels/OverwriteRequestType.cs
+    startLine: 5
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  remarks: <a href="https://github.com/fluxerapp/fluxer/blob/38146cc2babb504bfa9e71f61a60dd57ab2c1b67/packages/schema/src/domains/channel/ChannelRequestSchemas.tsx#L50">https://github.com/fluxerapp/fluxer/blob/38146cc2babb504bfa9e71f61a60dd57ab2c1b67/packages/schema/src/domains/channel/ChannelRequestSchemas.tsx#L50</a>
+  example: []
+  syntax:
+    content: public enum OverwriteRequestType
+    content.vb: Public Enum OverwriteRequestType
+- uid: Fluxer.Net.OverwriteRequestType.Role
+  commentId: F:Fluxer.Net.OverwriteRequestType.Role
+  id: Role
+  parent: Fluxer.Net.OverwriteRequestType
+  langs:
+  - csharp
+  - vb
+  name: Role
+  nameWithType: OverwriteRequestType.Role
+  fullName: Fluxer.Net.OverwriteRequestType.Role
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/Channels/OverwriteRequestType.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Role
+    path: ../Fluxer.Net/Data/Channels/OverwriteRequestType.cs
+    startLine: 7
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: Role = 0
+    return:
+      type: Fluxer.Net.OverwriteRequestType
+- uid: Fluxer.Net.OverwriteRequestType.Member
+  commentId: F:Fluxer.Net.OverwriteRequestType.Member
+  id: Member
+  parent: Fluxer.Net.OverwriteRequestType
+  langs:
+  - csharp
+  - vb
+  name: Member
+  nameWithType: OverwriteRequestType.Member
+  fullName: Fluxer.Net.OverwriteRequestType.Member
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/Channels/OverwriteRequestType.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Member
+    path: ../Fluxer.Net/Data/Channels/OverwriteRequestType.cs
+    startLine: 8
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: Member = 1
+    return:
+      type: Fluxer.Net.OverwriteRequestType
+references:
+- uid: Fluxer.Net
+  commentId: N:Fluxer.Net
+  href: Fluxer.html
+  name: Fluxer.Net
+  nameWithType: Fluxer.Net
+  fullName: Fluxer.Net
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+- uid: Fluxer.Net.OverwriteRequestType
+  commentId: T:Fluxer.Net.OverwriteRequestType
+  parent: Fluxer.Net
+  href: Fluxer.Net.OverwriteRequestType.html
+  name: OverwriteRequestType
+  nameWithType: OverwriteRequestType
+  fullName: Fluxer.Net.OverwriteRequestType

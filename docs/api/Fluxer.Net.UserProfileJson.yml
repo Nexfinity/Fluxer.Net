@@ -1,0 +1,666 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.UserProfileJson
+  commentId: T:Fluxer.Net.UserProfileJson
+  id: UserProfileJson
+  parent: Fluxer.Net
+  children:
+  - Fluxer.Net.UserProfileJson.AccentColor
+  - Fluxer.Net.UserProfileJson.BannerColor
+  - Fluxer.Net.UserProfileJson.BannerHash
+  - Fluxer.Net.UserProfileJson.Bio
+  - Fluxer.Net.UserProfileJson.Pronouns
+  langs:
+  - csharp
+  - vb
+  name: UserProfileJson
+  nameWithType: UserProfileJson
+  fullName: Fluxer.Net.UserProfileJson
+  type: Class
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/UserProfileJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: UserProfileJson
+    path: ../Fluxer.Net/Data/Users/UserProfileJson.cs
+    startLine: 5
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Supports all classes in the .NET class hierarchy and provides low-level services to derived classes. This is the ultimate base class of all .NET classes; it is the root of the type hierarchy.
+  example: []
+  syntax:
+    content: 'public class UserProfileJson : IUserProfile'
+    content.vb: Public Class UserProfileJson Implements IUserProfile
+  inheritance:
+  - System.Object
+  implements:
+  - Fluxer.Net.IUserProfile
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: Fluxer.Net.UserProfileJson.Bio
+  commentId: P:Fluxer.Net.UserProfileJson.Bio
+  id: Bio
+  parent: Fluxer.Net.UserProfileJson
+  langs:
+  - csharp
+  - vb
+  name: Bio
+  nameWithType: UserProfileJson.Bio
+  fullName: Fluxer.Net.UserProfileJson.Bio
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/UserProfileJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Bio
+    path: ../Fluxer.Net/Data/Users/UserProfileJson.cs
+    startLine: 8
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The user biography text.
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("bio")]
+
+      public string? Bio { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <JsonProperty("bio")>
+
+      Public Property Bio As String
+  overload: Fluxer.Net.UserProfileJson.Bio*
+  implements:
+  - Fluxer.Net.IUserProfile.Bio
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: bio
+- uid: Fluxer.Net.UserProfileJson.Pronouns
+  commentId: P:Fluxer.Net.UserProfileJson.Pronouns
+  id: Pronouns
+  parent: Fluxer.Net.UserProfileJson
+  langs:
+  - csharp
+  - vb
+  name: Pronouns
+  nameWithType: UserProfileJson.Pronouns
+  fullName: Fluxer.Net.UserProfileJson.Pronouns
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/UserProfileJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Pronouns
+    path: ../Fluxer.Net/Data/Users/UserProfileJson.cs
+    startLine: 12
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The preferred pronouns of the user.
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("pronouns")]
+
+      public string? Pronouns { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <JsonProperty("pronouns")>
+
+      Public Property Pronouns As String
+  overload: Fluxer.Net.UserProfileJson.Pronouns*
+  implements:
+  - Fluxer.Net.IUserProfile.Pronouns
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: pronouns
+- uid: Fluxer.Net.UserProfileJson.AccentColor
+  commentId: P:Fluxer.Net.UserProfileJson.AccentColor
+  id: AccentColor
+  parent: Fluxer.Net.UserProfileJson
+  langs:
+  - csharp
+  - vb
+  name: AccentColor
+  nameWithType: UserProfileJson.AccentColor
+  fullName: Fluxer.Net.UserProfileJson.AccentColor
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/UserProfileJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: AccentColor
+    path: ../Fluxer.Net/Data/Users/UserProfileJson.cs
+    startLine: 16
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The user-selected accent color as an integer.
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("accent_color")]
+
+      public int? AccentColor { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{System.Int32}
+    content.vb: >-
+      <JsonProperty("accent_color")>
+
+      Public Property AccentColor As Integer?
+  overload: Fluxer.Net.UserProfileJson.AccentColor*
+  implements:
+  - Fluxer.Net.IUserProfile.AccentColor
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: accent_color
+- uid: Fluxer.Net.UserProfileJson.BannerHash
+  commentId: P:Fluxer.Net.UserProfileJson.BannerHash
+  id: BannerHash
+  parent: Fluxer.Net.UserProfileJson
+  langs:
+  - csharp
+  - vb
+  name: BannerHash
+  nameWithType: UserProfileJson.BannerHash
+  fullName: Fluxer.Net.UserProfileJson.BannerHash
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/UserProfileJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: BannerHash
+    path: ../Fluxer.Net/Data/Users/UserProfileJson.cs
+    startLine: 20
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The hash of the user profile banner image.
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("banner")]
+
+      public string? BannerHash { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <JsonProperty("banner")>
+
+      Public Property BannerHash As String
+  overload: Fluxer.Net.UserProfileJson.BannerHash*
+  implements:
+  - Fluxer.Net.IUserProfile.BannerHash
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: banner
+- uid: Fluxer.Net.UserProfileJson.BannerColor
+  commentId: P:Fluxer.Net.UserProfileJson.BannerColor
+  id: BannerColor
+  parent: Fluxer.Net.UserProfileJson
+  langs:
+  - csharp
+  - vb
+  name: BannerColor
+  nameWithType: UserProfileJson.BannerColor
+  fullName: Fluxer.Net.UserProfileJson.BannerColor
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/UserProfileJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: BannerColor
+    path: ../Fluxer.Net/Data/Users/UserProfileJson.cs
+    startLine: 24
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Default banner color if no custom banner.
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("banner_color")]
+
+      public int? BannerColor { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{System.Int32}
+    content.vb: >-
+      <JsonProperty("banner_color")>
+
+      Public Property BannerColor As Integer?
+  overload: Fluxer.Net.UserProfileJson.BannerColor*
+  implements:
+  - Fluxer.Net.IUserProfile.BannerColor
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: banner_color
+references:
+- uid: Fluxer.Net
+  commentId: N:Fluxer.Net
+  href: Fluxer.html
+  name: Fluxer.Net
+  nameWithType: Fluxer.Net
+  fullName: Fluxer.Net
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Fluxer.Net.IUserProfile
+  commentId: T:Fluxer.Net.IUserProfile
+  parent: Fluxer.Net
+  href: Fluxer.Net.IUserProfile.html
+  name: IUserProfile
+  nameWithType: IUserProfile
+  fullName: Fluxer.Net.IUserProfile
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Fluxer.Net.UserProfileJson.Bio*
+  commentId: Overload:Fluxer.Net.UserProfileJson.Bio
+  href: Fluxer.Net.UserProfileJson.html#Fluxer_Net_UserProfileJson_Bio
+  name: Bio
+  nameWithType: UserProfileJson.Bio
+  fullName: Fluxer.Net.UserProfileJson.Bio
+- uid: Fluxer.Net.IUserProfile.Bio
+  commentId: P:Fluxer.Net.IUserProfile.Bio
+  parent: Fluxer.Net.IUserProfile
+  href: Fluxer.Net.IUserProfile.html#Fluxer_Net_IUserProfile_Bio
+  name: Bio
+  nameWithType: IUserProfile.Bio
+  fullName: Fluxer.Net.IUserProfile.Bio
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: Fluxer.Net.UserProfileJson.Pronouns*
+  commentId: Overload:Fluxer.Net.UserProfileJson.Pronouns
+  href: Fluxer.Net.UserProfileJson.html#Fluxer_Net_UserProfileJson_Pronouns
+  name: Pronouns
+  nameWithType: UserProfileJson.Pronouns
+  fullName: Fluxer.Net.UserProfileJson.Pronouns
+- uid: Fluxer.Net.IUserProfile.Pronouns
+  commentId: P:Fluxer.Net.IUserProfile.Pronouns
+  parent: Fluxer.Net.IUserProfile
+  href: Fluxer.Net.IUserProfile.html#Fluxer_Net_IUserProfile_Pronouns
+  name: Pronouns
+  nameWithType: IUserProfile.Pronouns
+  fullName: Fluxer.Net.IUserProfile.Pronouns
+- uid: Fluxer.Net.UserProfileJson.AccentColor*
+  commentId: Overload:Fluxer.Net.UserProfileJson.AccentColor
+  href: Fluxer.Net.UserProfileJson.html#Fluxer_Net_UserProfileJson_AccentColor
+  name: AccentColor
+  nameWithType: UserProfileJson.AccentColor
+  fullName: Fluxer.Net.UserProfileJson.AccentColor
+- uid: Fluxer.Net.IUserProfile.AccentColor
+  commentId: P:Fluxer.Net.IUserProfile.AccentColor
+  parent: Fluxer.Net.IUserProfile
+  href: Fluxer.Net.IUserProfile.html#Fluxer_Net_IUserProfile_AccentColor
+  name: AccentColor
+  nameWithType: IUserProfile.AccentColor
+  fullName: Fluxer.Net.IUserProfile.AccentColor
+- uid: System.Nullable{System.Int32}
+  commentId: T:System.Nullable{System.Int32}
+  parent: System
+  definition: System.Nullable`1
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int?
+  nameWithType: int?
+  fullName: int?
+  nameWithType.vb: Integer?
+  fullName.vb: Integer?
+  name.vb: Integer?
+  spec.csharp:
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
+  spec.vb:
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: Fluxer.Net.UserProfileJson.BannerHash*
+  commentId: Overload:Fluxer.Net.UserProfileJson.BannerHash
+  href: Fluxer.Net.UserProfileJson.html#Fluxer_Net_UserProfileJson_BannerHash
+  name: BannerHash
+  nameWithType: UserProfileJson.BannerHash
+  fullName: Fluxer.Net.UserProfileJson.BannerHash
+- uid: Fluxer.Net.IUserProfile.BannerHash
+  commentId: P:Fluxer.Net.IUserProfile.BannerHash
+  parent: Fluxer.Net.IUserProfile
+  href: Fluxer.Net.IUserProfile.html#Fluxer_Net_IUserProfile_BannerHash
+  name: BannerHash
+  nameWithType: IUserProfile.BannerHash
+  fullName: Fluxer.Net.IUserProfile.BannerHash
+- uid: Fluxer.Net.UserProfileJson.BannerColor*
+  commentId: Overload:Fluxer.Net.UserProfileJson.BannerColor
+  href: Fluxer.Net.UserProfileJson.html#Fluxer_Net_UserProfileJson_BannerColor
+  name: BannerColor
+  nameWithType: UserProfileJson.BannerColor
+  fullName: Fluxer.Net.UserProfileJson.BannerColor
+- uid: Fluxer.Net.IUserProfile.BannerColor
+  commentId: P:Fluxer.Net.IUserProfile.BannerColor
+  parent: Fluxer.Net.IUserProfile
+  href: Fluxer.Net.IUserProfile.html#Fluxer_Net_IUserProfile_BannerColor
+  name: BannerColor
+  nameWithType: IUserProfile.BannerColor
+  fullName: Fluxer.Net.IUserProfile.BannerColor

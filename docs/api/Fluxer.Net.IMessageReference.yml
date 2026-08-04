@@ -1,0 +1,282 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.IMessageReference
+  commentId: T:Fluxer.Net.IMessageReference
+  id: IMessageReference
+  parent: Fluxer.Net
+  children:
+  - Fluxer.Net.IMessageReference.ChannelId
+  - Fluxer.Net.IMessageReference.GuildId
+  - Fluxer.Net.IMessageReference.MessageId
+  - Fluxer.Net.IMessageReference.Type
+  langs:
+  - csharp
+  - vb
+  name: IMessageReference
+  nameWithType: IMessageReference
+  fullName: Fluxer.Net.IMessageReference
+  type: Interface
+  source:
+    remote:
+      path: Fluxer.Net/Data/Messages/IMessageReference.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: IMessageReference
+    path: ../Fluxer.Net/Data/Messages/IMessageReference.cs
+    startLine: 2
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: public interface IMessageReference
+    content.vb: Public Interface IMessageReference
+  derivedClasses:
+  - Fluxer.Net.MessageReference
+  - Fluxer.Net.MessageReferenceJson
+- uid: Fluxer.Net.IMessageReference.ChannelId
+  commentId: P:Fluxer.Net.IMessageReference.ChannelId
+  id: ChannelId
+  parent: Fluxer.Net.IMessageReference
+  langs:
+  - csharp
+  - vb
+  name: ChannelId
+  nameWithType: IMessageReference.ChannelId
+  fullName: Fluxer.Net.IMessageReference.ChannelId
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Messages/IMessageReference.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: ChannelId
+    path: ../Fluxer.Net/Data/Messages/IMessageReference.cs
+    startLine: 7
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The ID of the channel containing the referenced message
+  example: []
+  syntax:
+    content: ulong ChannelId { get; }
+    parameters: []
+    return:
+      type: System.UInt64
+    content.vb: ReadOnly Property ChannelId As ULong
+  overload: Fluxer.Net.IMessageReference.ChannelId*
+- uid: Fluxer.Net.IMessageReference.MessageId
+  commentId: P:Fluxer.Net.IMessageReference.MessageId
+  id: MessageId
+  parent: Fluxer.Net.IMessageReference
+  langs:
+  - csharp
+  - vb
+  name: MessageId
+  nameWithType: IMessageReference.MessageId
+  fullName: Fluxer.Net.IMessageReference.MessageId
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Messages/IMessageReference.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: MessageId
+    path: ../Fluxer.Net/Data/Messages/IMessageReference.cs
+    startLine: 12
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The ID of the referenced message
+  example: []
+  syntax:
+    content: ulong MessageId { get; }
+    parameters: []
+    return:
+      type: System.UInt64
+    content.vb: ReadOnly Property MessageId As ULong
+  overload: Fluxer.Net.IMessageReference.MessageId*
+- uid: Fluxer.Net.IMessageReference.GuildId
+  commentId: P:Fluxer.Net.IMessageReference.GuildId
+  id: GuildId
+  parent: Fluxer.Net.IMessageReference
+  langs:
+  - csharp
+  - vb
+  name: GuildId
+  nameWithType: IMessageReference.GuildId
+  fullName: Fluxer.Net.IMessageReference.GuildId
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Messages/IMessageReference.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: GuildId
+    path: ../Fluxer.Net/Data/Messages/IMessageReference.cs
+    startLine: 17
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The ID of the guild containing the referenced message
+  example: []
+  syntax:
+    content: ulong? GuildId { get; }
+    parameters: []
+    return:
+      type: System.Nullable{System.UInt64}
+    content.vb: ReadOnly Property GuildId As ULong?
+  overload: Fluxer.Net.IMessageReference.GuildId*
+- uid: Fluxer.Net.IMessageReference.Type
+  commentId: P:Fluxer.Net.IMessageReference.Type
+  id: Type
+  parent: Fluxer.Net.IMessageReference
+  langs:
+  - csharp
+  - vb
+  name: Type
+  nameWithType: IMessageReference.Type
+  fullName: Fluxer.Net.IMessageReference.Type
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Messages/IMessageReference.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Type
+    path: ../Fluxer.Net/Data/Messages/IMessageReference.cs
+    startLine: 22
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The type of message reference.
+  example: []
+  syntax:
+    content: MessageReferenceType Type { get; }
+    parameters: []
+    return:
+      type: Fluxer.Net.MessageReferenceType
+    content.vb: ReadOnly Property Type As MessageReferenceType
+  overload: Fluxer.Net.IMessageReference.Type*
+references:
+- uid: Fluxer.Net
+  commentId: N:Fluxer.Net
+  href: Fluxer.html
+  name: Fluxer.Net
+  nameWithType: Fluxer.Net
+  fullName: Fluxer.Net
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+- uid: Fluxer.Net.IMessageReference.ChannelId*
+  commentId: Overload:Fluxer.Net.IMessageReference.ChannelId
+  href: Fluxer.Net.IMessageReference.html#Fluxer_Net_IMessageReference_ChannelId
+  name: ChannelId
+  nameWithType: IMessageReference.ChannelId
+  fullName: Fluxer.Net.IMessageReference.ChannelId
+- uid: System.UInt64
+  commentId: T:System.UInt64
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.uint64
+  name: ulong
+  nameWithType: ulong
+  fullName: ulong
+  nameWithType.vb: ULong
+  fullName.vb: ULong
+  name.vb: ULong
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Fluxer.Net.IMessageReference.MessageId*
+  commentId: Overload:Fluxer.Net.IMessageReference.MessageId
+  href: Fluxer.Net.IMessageReference.html#Fluxer_Net_IMessageReference_MessageId
+  name: MessageId
+  nameWithType: IMessageReference.MessageId
+  fullName: Fluxer.Net.IMessageReference.MessageId
+- uid: Fluxer.Net.IMessageReference.GuildId*
+  commentId: Overload:Fluxer.Net.IMessageReference.GuildId
+  href: Fluxer.Net.IMessageReference.html#Fluxer_Net_IMessageReference_GuildId
+  name: GuildId
+  nameWithType: IMessageReference.GuildId
+  fullName: Fluxer.Net.IMessageReference.GuildId
+- uid: System.Nullable{System.UInt64}
+  commentId: T:System.Nullable{System.UInt64}
+  parent: System
+  definition: System.Nullable`1
+  href: https://learn.microsoft.com/dotnet/api/system.uint64
+  name: ulong?
+  nameWithType: ulong?
+  fullName: ulong?
+  nameWithType.vb: ULong?
+  fullName.vb: ULong?
+  name.vb: ULong?
+  spec.csharp:
+  - uid: System.UInt64
+    name: ulong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: '?'
+  spec.vb:
+  - uid: System.UInt64
+    name: ULong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: '?'
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: Fluxer.Net.IMessageReference.Type*
+  commentId: Overload:Fluxer.Net.IMessageReference.Type
+  href: Fluxer.Net.IMessageReference.html#Fluxer_Net_IMessageReference_Type
+  name: Type
+  nameWithType: IMessageReference.Type
+  fullName: Fluxer.Net.IMessageReference.Type
+- uid: Fluxer.Net.MessageReferenceType
+  commentId: T:Fluxer.Net.MessageReferenceType
+  parent: Fluxer.Net
+  href: Fluxer.Net.MessageReferenceType.html
+  name: MessageReferenceType
+  nameWithType: MessageReferenceType
+  fullName: Fluxer.Net.MessageReferenceType

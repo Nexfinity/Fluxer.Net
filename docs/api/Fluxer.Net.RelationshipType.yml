@@ -1,0 +1,176 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.RelationshipType
+  commentId: T:Fluxer.Net.RelationshipType
+  id: RelationshipType
+  parent: Fluxer.Net
+  children:
+  - Fluxer.Net.RelationshipType.Blocked
+  - Fluxer.Net.RelationshipType.Friend
+  - Fluxer.Net.RelationshipType.IncomingRequest
+  - Fluxer.Net.RelationshipType.OutgoingRequest
+  langs:
+  - csharp
+  - vb
+  name: RelationshipType
+  nameWithType: RelationshipType
+  fullName: Fluxer.Net.RelationshipType
+  type: Enum
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/RelationshipType.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: RelationshipType
+    path: ../Fluxer.Net/Data/Users/RelationshipType.cs
+    startLine: 5
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Represents the type of relationship between the current user and another user.
+  example: []
+  syntax:
+    content: public enum RelationshipType
+    content.vb: Public Enum RelationshipType
+- uid: Fluxer.Net.RelationshipType.Friend
+  commentId: F:Fluxer.Net.RelationshipType.Friend
+  id: Friend
+  parent: Fluxer.Net.RelationshipType
+  langs:
+  - csharp
+  - vb
+  name: Friend
+  nameWithType: RelationshipType.Friend
+  fullName: Fluxer.Net.RelationshipType.Friend
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/RelationshipType.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Friend
+    path: ../Fluxer.Net/Data/Users/RelationshipType.cs
+    startLine: 10
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The user is a friend.
+  example: []
+  syntax:
+    content: Friend = 1
+    return:
+      type: Fluxer.Net.RelationshipType
+- uid: Fluxer.Net.RelationshipType.Blocked
+  commentId: F:Fluxer.Net.RelationshipType.Blocked
+  id: Blocked
+  parent: Fluxer.Net.RelationshipType
+  langs:
+  - csharp
+  - vb
+  name: Blocked
+  nameWithType: RelationshipType.Blocked
+  fullName: Fluxer.Net.RelationshipType.Blocked
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/RelationshipType.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Blocked
+    path: ../Fluxer.Net/Data/Users/RelationshipType.cs
+    startLine: 15
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The user is blocked.
+  example: []
+  syntax:
+    content: Blocked = 2
+    return:
+      type: Fluxer.Net.RelationshipType
+- uid: Fluxer.Net.RelationshipType.IncomingRequest
+  commentId: F:Fluxer.Net.RelationshipType.IncomingRequest
+  id: IncomingRequest
+  parent: Fluxer.Net.RelationshipType
+  langs:
+  - csharp
+  - vb
+  name: IncomingRequest
+  nameWithType: RelationshipType.IncomingRequest
+  fullName: Fluxer.Net.RelationshipType.IncomingRequest
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/RelationshipType.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: IncomingRequest
+    path: ../Fluxer.Net/Data/Users/RelationshipType.cs
+    startLine: 20
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Incoming friend request from the user.
+  example: []
+  syntax:
+    content: IncomingRequest = 3
+    return:
+      type: Fluxer.Net.RelationshipType
+- uid: Fluxer.Net.RelationshipType.OutgoingRequest
+  commentId: F:Fluxer.Net.RelationshipType.OutgoingRequest
+  id: OutgoingRequest
+  parent: Fluxer.Net.RelationshipType
+  langs:
+  - csharp
+  - vb
+  name: OutgoingRequest
+  nameWithType: RelationshipType.OutgoingRequest
+  fullName: Fluxer.Net.RelationshipType.OutgoingRequest
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/RelationshipType.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: OutgoingRequest
+    path: ../Fluxer.Net/Data/Users/RelationshipType.cs
+    startLine: 25
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Outgoing friend request sent to the user.
+  example: []
+  syntax:
+    content: OutgoingRequest = 4
+    return:
+      type: Fluxer.Net.RelationshipType
+references:
+- uid: Fluxer.Net
+  commentId: N:Fluxer.Net
+  href: Fluxer.html
+  name: Fluxer.Net
+  nameWithType: Fluxer.Net
+  fullName: Fluxer.Net
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+- uid: Fluxer.Net.RelationshipType
+  commentId: T:Fluxer.Net.RelationshipType
+  parent: Fluxer.Net
+  href: Fluxer.Net.RelationshipType.html
+  name: RelationshipType
+  nameWithType: RelationshipType
+  fullName: Fluxer.Net.RelationshipType

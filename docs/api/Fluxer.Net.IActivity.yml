@@ -1,0 +1,396 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.IActivity
+  commentId: T:Fluxer.Net.IActivity
+  id: IActivity
+  parent: Fluxer.Net
+  children:
+  - Fluxer.Net.IActivity.CreatedAt
+  - Fluxer.Net.IActivity.Details
+  - Fluxer.Net.IActivity.Emoji
+  - Fluxer.Net.IActivity.Name
+  - Fluxer.Net.IActivity.State
+  - Fluxer.Net.IActivity.Timestamps
+  - Fluxer.Net.IActivity.Type
+  - Fluxer.Net.IActivity.Url
+  langs:
+  - csharp
+  - vb
+  name: IActivity
+  nameWithType: IActivity
+  fullName: Fluxer.Net.IActivity
+  type: Interface
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/IActivity.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: IActivity
+    path: ../Fluxer.Net/Data/Users/IActivity.cs
+    startLine: 2
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: public interface IActivity
+    content.vb: Public Interface IActivity
+  derivedClasses:
+  - Fluxer.Net.Activity
+  - Fluxer.Net.ActivityJson
+- uid: Fluxer.Net.IActivity.Name
+  commentId: P:Fluxer.Net.IActivity.Name
+  id: Name
+  parent: Fluxer.Net.IActivity
+  langs:
+  - csharp
+  - vb
+  name: Name
+  nameWithType: IActivity.Name
+  fullName: Fluxer.Net.IActivity.Name
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/IActivity.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Name
+    path: ../Fluxer.Net/Data/Users/IActivity.cs
+    startLine: 4
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: string Name { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: ReadOnly Property Name As String
+  overload: Fluxer.Net.IActivity.Name*
+- uid: Fluxer.Net.IActivity.Type
+  commentId: P:Fluxer.Net.IActivity.Type
+  id: Type
+  parent: Fluxer.Net.IActivity
+  langs:
+  - csharp
+  - vb
+  name: Type
+  nameWithType: IActivity.Type
+  fullName: Fluxer.Net.IActivity.Type
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/IActivity.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Type
+    path: ../Fluxer.Net/Data/Users/IActivity.cs
+    startLine: 6
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: int Type { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: ReadOnly Property Type As Integer
+  overload: Fluxer.Net.IActivity.Type*
+- uid: Fluxer.Net.IActivity.Url
+  commentId: P:Fluxer.Net.IActivity.Url
+  id: Url
+  parent: Fluxer.Net.IActivity
+  langs:
+  - csharp
+  - vb
+  name: Url
+  nameWithType: IActivity.Url
+  fullName: Fluxer.Net.IActivity.Url
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/IActivity.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Url
+    path: ../Fluxer.Net/Data/Users/IActivity.cs
+    startLine: 8
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: string? Url { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: ReadOnly Property Url As String
+  overload: Fluxer.Net.IActivity.Url*
+- uid: Fluxer.Net.IActivity.CreatedAt
+  commentId: P:Fluxer.Net.IActivity.CreatedAt
+  id: CreatedAt
+  parent: Fluxer.Net.IActivity
+  langs:
+  - csharp
+  - vb
+  name: CreatedAt
+  nameWithType: IActivity.CreatedAt
+  fullName: Fluxer.Net.IActivity.CreatedAt
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/IActivity.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: CreatedAt
+    path: ../Fluxer.Net/Data/Users/IActivity.cs
+    startLine: 10
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: long CreatedAt { get; }
+    parameters: []
+    return:
+      type: System.Int64
+    content.vb: ReadOnly Property CreatedAt As Long
+  overload: Fluxer.Net.IActivity.CreatedAt*
+- uid: Fluxer.Net.IActivity.Timestamps
+  commentId: P:Fluxer.Net.IActivity.Timestamps
+  id: Timestamps
+  parent: Fluxer.Net.IActivity
+  langs:
+  - csharp
+  - vb
+  name: Timestamps
+  nameWithType: IActivity.Timestamps
+  fullName: Fluxer.Net.IActivity.Timestamps
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/IActivity.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Timestamps
+    path: ../Fluxer.Net/Data/Users/IActivity.cs
+    startLine: 12
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: IActivityTimestamps? Timestamps { get; }
+    parameters: []
+    return:
+      type: Fluxer.Net.IActivityTimestamps
+    content.vb: ReadOnly Property Timestamps As IActivityTimestamps
+  overload: Fluxer.Net.IActivity.Timestamps*
+- uid: Fluxer.Net.IActivity.Details
+  commentId: P:Fluxer.Net.IActivity.Details
+  id: Details
+  parent: Fluxer.Net.IActivity
+  langs:
+  - csharp
+  - vb
+  name: Details
+  nameWithType: IActivity.Details
+  fullName: Fluxer.Net.IActivity.Details
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/IActivity.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Details
+    path: ../Fluxer.Net/Data/Users/IActivity.cs
+    startLine: 14
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: string? Details { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: ReadOnly Property Details As String
+  overload: Fluxer.Net.IActivity.Details*
+- uid: Fluxer.Net.IActivity.State
+  commentId: P:Fluxer.Net.IActivity.State
+  id: State
+  parent: Fluxer.Net.IActivity
+  langs:
+  - csharp
+  - vb
+  name: State
+  nameWithType: IActivity.State
+  fullName: Fluxer.Net.IActivity.State
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/IActivity.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: State
+    path: ../Fluxer.Net/Data/Users/IActivity.cs
+    startLine: 16
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: string? State { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: ReadOnly Property State As String
+  overload: Fluxer.Net.IActivity.State*
+- uid: Fluxer.Net.IActivity.Emoji
+  commentId: P:Fluxer.Net.IActivity.Emoji
+  id: Emoji
+  parent: Fluxer.Net.IActivity
+  langs:
+  - csharp
+  - vb
+  name: Emoji
+  nameWithType: IActivity.Emoji
+  fullName: Fluxer.Net.IActivity.Emoji
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/IActivity.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Emoji
+    path: ../Fluxer.Net/Data/Users/IActivity.cs
+    startLine: 18
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: IEmoji? Emoji { get; }
+    parameters: []
+    return:
+      type: Fluxer.Net.IEmoji
+    content.vb: ReadOnly Property Emoji As IEmoji
+  overload: Fluxer.Net.IActivity.Emoji*
+references:
+- uid: Fluxer.Net
+  commentId: N:Fluxer.Net
+  href: Fluxer.html
+  name: Fluxer.Net
+  nameWithType: Fluxer.Net
+  fullName: Fluxer.Net
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+- uid: Fluxer.Net.IActivity.Name*
+  commentId: Overload:Fluxer.Net.IActivity.Name
+  href: Fluxer.Net.IActivity.html#Fluxer_Net_IActivity_Name
+  name: Name
+  nameWithType: IActivity.Name
+  fullName: Fluxer.Net.IActivity.Name
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Fluxer.Net.IActivity.Type*
+  commentId: Overload:Fluxer.Net.IActivity.Type
+  href: Fluxer.Net.IActivity.html#Fluxer_Net_IActivity_Type
+  name: Type
+  nameWithType: IActivity.Type
+  fullName: Fluxer.Net.IActivity.Type
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: Fluxer.Net.IActivity.Url*
+  commentId: Overload:Fluxer.Net.IActivity.Url
+  href: Fluxer.Net.IActivity.html#Fluxer_Net_IActivity_Url
+  name: Url
+  nameWithType: IActivity.Url
+  fullName: Fluxer.Net.IActivity.Url
+- uid: Fluxer.Net.IActivity.CreatedAt*
+  commentId: Overload:Fluxer.Net.IActivity.CreatedAt
+  href: Fluxer.Net.IActivity.html#Fluxer_Net_IActivity_CreatedAt
+  name: CreatedAt
+  nameWithType: IActivity.CreatedAt
+  fullName: Fluxer.Net.IActivity.CreatedAt
+- uid: System.Int64
+  commentId: T:System.Int64
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int64
+  name: long
+  nameWithType: long
+  fullName: long
+  nameWithType.vb: Long
+  fullName.vb: Long
+  name.vb: Long
+- uid: Fluxer.Net.IActivity.Timestamps*
+  commentId: Overload:Fluxer.Net.IActivity.Timestamps
+  href: Fluxer.Net.IActivity.html#Fluxer_Net_IActivity_Timestamps
+  name: Timestamps
+  nameWithType: IActivity.Timestamps
+  fullName: Fluxer.Net.IActivity.Timestamps
+- uid: Fluxer.Net.IActivityTimestamps
+  commentId: T:Fluxer.Net.IActivityTimestamps
+  parent: Fluxer.Net
+  href: Fluxer.Net.IActivityTimestamps.html
+  name: IActivityTimestamps
+  nameWithType: IActivityTimestamps
+  fullName: Fluxer.Net.IActivityTimestamps
+- uid: Fluxer.Net.IActivity.Details*
+  commentId: Overload:Fluxer.Net.IActivity.Details
+  href: Fluxer.Net.IActivity.html#Fluxer_Net_IActivity_Details
+  name: Details
+  nameWithType: IActivity.Details
+  fullName: Fluxer.Net.IActivity.Details
+- uid: Fluxer.Net.IActivity.State*
+  commentId: Overload:Fluxer.Net.IActivity.State
+  href: Fluxer.Net.IActivity.html#Fluxer_Net_IActivity_State
+  name: State
+  nameWithType: IActivity.State
+  fullName: Fluxer.Net.IActivity.State
+- uid: Fluxer.Net.IActivity.Emoji*
+  commentId: Overload:Fluxer.Net.IActivity.Emoji
+  href: Fluxer.Net.IActivity.html#Fluxer_Net_IActivity_Emoji
+  name: Emoji
+  nameWithType: IActivity.Emoji
+  fullName: Fluxer.Net.IActivity.Emoji
+- uid: Fluxer.Net.IEmoji
+  commentId: T:Fluxer.Net.IEmoji
+  parent: Fluxer.Net
+  href: Fluxer.Net.IEmoji.html
+  name: IEmoji
+  nameWithType: IEmoji
+  fullName: Fluxer.Net.IEmoji

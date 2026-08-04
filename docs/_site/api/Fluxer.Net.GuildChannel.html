@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class GuildChannel | Fluxer.net </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class GuildChannel | Fluxer.net ">
+      
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Nexfinity/Fluxer.Net/new/release/apiSpec/new?filename=Fluxer_Net_GuildChannel.md&amp;value=---%0Auid%3A%20Fluxer.Net.GuildChannel%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="Fluxer.net">
+            Fluxer.net
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="Fluxer.Net.GuildChannel">
+
+
+
+  <h1 id="Fluxer_Net_GuildChannel" data-uid="Fluxer.Net.GuildChannel" class="text-break">
+Class GuildChannel  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Data/Channels/GuildChannel.cs/#L3"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="Fluxer.html">Fluxer</a>.<a class="xref" href="Fluxer.Net.html">Net</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>Fluxer.Net.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"></div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class GuildChannel : Channel, IChannel, IGuildChannel</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="Fluxer.Net.Entity.html">Entity</a></div>
+      <div><a class="xref" href="Fluxer.Net.Channel.html">Channel</a></div>
+      <div><span class="xref">GuildChannel</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="Fluxer.Net.IChannel.html">IChannel</a></div>
+      <div><a class="xref" href="Fluxer.Net.IGuildChannel.html">IGuildChannel</a></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist derived">
+    <dt>Derived</dt>
+    <dd>
+      <div><a class="xref" href="Fluxer.Net.CategoryChannel.html">CategoryChannel</a></div>
+      <div><a class="xref" href="Fluxer.Net.LinkChannel.html">LinkChannel</a></div>
+      <div><a class="xref" href="Fluxer.Net.SocketUnknownGuildChannel.html">SocketUnknownGuildChannel</a></div>
+      <div><a class="xref" href="Fluxer.Net.TextChannel.html">TextChannel</a></div>
+      <div><a class="xref" href="Fluxer.Net.VoiceChannel.html">VoiceChannel</a></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="Fluxer.Net.Channel.html#Fluxer_Net_Channel_Id">Channel.Id</a>
+    </div>
+    <div>
+      <a class="xref" href="Fluxer.Net.Channel.html#Fluxer_Net_Channel_Mention">Channel.Mention</a>
+    </div>
+    <div>
+      <a class="xref" href="Fluxer.Net.Channel.html#Fluxer_Net_Channel_GuildId">Channel.GuildId</a>
+    </div>
+    <div>
+      <a class="xref" href="Fluxer.Net.Channel.html#Fluxer_Net_Channel_Type">Channel.Type</a>
+    </div>
+    <div>
+      <a class="xref" href="Fluxer.Net.Channel.html#Fluxer_Net_Channel_Name">Channel.Name</a>
+    </div>
+    <div>
+      <a class="xref" href="Fluxer.Net.Channel.html#Fluxer_Net_Channel_Topic">Channel.Topic</a>
+    </div>
+    <div>
+      <a class="xref" href="Fluxer.Net.Channel.html#Fluxer_Net_Channel_IconHash">Channel.IconHash</a>
+    </div>
+    <div>
+      <a class="xref" href="Fluxer.Net.Channel.html#Fluxer_Net_Channel_Url">Channel.Url</a>
+    </div>
+    <div>
+      <a class="xref" href="Fluxer.Net.Channel.html#Fluxer_Net_Channel_ParentId">Channel.ParentId</a>
+    </div>
+    <div>
+      <a class="xref" href="Fluxer.Net.Channel.html#Fluxer_Net_Channel_Position">Channel.Position</a>
+    </div>
+    <div>
+      <a class="xref" href="Fluxer.Net.Channel.html#Fluxer_Net_Channel_OwnerId">Channel.OwnerId</a>
+    </div>
+    <div>
+      <a class="xref" href="Fluxer.Net.Channel.html#Fluxer_Net_Channel_RecipientIds">Channel.RecipientIds</a>
+    </div>
+    <div>
+      <a class="xref" href="Fluxer.Net.Channel.html#Fluxer_Net_Channel_IsNsfw">Channel.IsNsfw</a>
+    </div>
+    <div>
+      <a class="xref" href="Fluxer.Net.Channel.html#Fluxer_Net_Channel_RateLimitPerUser">Channel.RateLimitPerUser</a>
+    </div>
+    <div>
+      <a class="xref" href="Fluxer.Net.Channel.html#Fluxer_Net_Channel_Bitrate">Channel.Bitrate</a>
+    </div>
+    <div>
+      <a class="xref" href="Fluxer.Net.Channel.html#Fluxer_Net_Channel_UserLimit">Channel.UserLimit</a>
+    </div>
+    <div>
+      <a class="xref" href="Fluxer.Net.Channel.html#Fluxer_Net_Channel_RtcRegion">Channel.RtcRegion</a>
+    </div>
+    <div>
+      <a class="xref" href="Fluxer.Net.Channel.html#Fluxer_Net_Channel_LastMessageId">Channel.LastMessageId</a>
+    </div>
+    <div>
+      <a class="xref" href="Fluxer.Net.Channel.html#Fluxer_Net_Channel_LastPinAt">Channel.LastPinAt</a>
+    </div>
+    <div>
+      <a class="xref" href="Fluxer.Net.Channel.html#Fluxer_Net_Channel_PermissionOverwrites">Channel.PermissionOverwrites</a>
+    </div>
+    <div>
+      <a class="xref" href="Fluxer.Net.Channel.html#Fluxer_Net_Channel_Nicknames">Channel.Nicknames</a>
+    </div>
+    <div>
+      <a class="xref" href="Fluxer.Net.Channel.html#Fluxer_Net_Channel_IsSoftDeleted">Channel.IsSoftDeleted</a>
+    </div>
+    <div>
+      <a class="xref" href="Fluxer.Net.Channel.html#Fluxer_Net_Channel_IndexedAt">Channel.IndexedAt</a>
+    </div>
+    <div>
+      <a class="xref" href="Fluxer.Net.Channel.html#Fluxer_Net_Channel_IsTextable">Channel.IsTextable</a>
+    </div>
+    <div>
+      <a class="xref" href="Fluxer.Net.Channel.html#Fluxer_Net_Channel_Create_Fluxer_Net_FluxerBaseClient_Fluxer_Net_ChannelJson_">Channel.Create(FluxerBaseClient, ChannelJson)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+  <dl class="typelist extensionMethods">
+    <dt>Extension Methods</dt>
+    <dd>
+  <div>
+      <a class="xref" href="Fluxer.Net.ChannelHelpers.html#Fluxer_Net_ChannelHelpers_AcknowledgeMessageAsync_Fluxer_Net_Channel_Fluxer_Net_Message_Fluxer_Net_MessageAckJson_">ChannelHelpers.AcknowledgeMessageAsync(Channel, Message, MessageAckJson)</a>
+  </div>
+  <div>
+      <a class="xref" href="Fluxer.Net.ChannelHelpers.html#Fluxer_Net_ChannelHelpers_AcknowledgeMessageAsync_Fluxer_Net_Channel_System_UInt64_Fluxer_Net_MessageAckJson_">ChannelHelpers.AcknowledgeMessageAsync(Channel, ulong, MessageAckJson)</a>
+  </div>
+  <div>
+      <a class="xref" href="Fluxer.Net.ChannelHelpers.html#Fluxer_Net_ChannelHelpers_AddReactionAsync_Fluxer_Net_Channel_Fluxer_Net_Message_System_String_">ChannelHelpers.AddReactionAsync(Channel, Message, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Fluxer.Net.ChannelHelpers.html#Fluxer_Net_ChannelHelpers_AddReactionAsync_Fluxer_Net_Channel_System_UInt64_System_String_">ChannelHelpers.AddReactionAsync(Channel, ulong, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Fluxer.Net.ChannelHelpers.html#Fluxer_Net_ChannelHelpers_BulkDeleteMessagesAsync_Fluxer_Net_Channel_Fluxer_Net_BulkDeleteMessagesRequest_">ChannelHelpers.BulkDeleteMessagesAsync(Channel, BulkDeleteMessagesRequest)</a>
+  </div>
+  <div>
+      <a class="xref" href="Fluxer.Net.ChannelHelpers.html#Fluxer_Net_ChannelHelpers_ClearMessageAcknowledgementAsync_Fluxer_Net_Channel_">ChannelHelpers.ClearMessageAcknowledgementAsync(Channel)</a>
+  </div>
+  <div>
+      <a class="xref" href="Fluxer.Net.ChannelHelpers.html#Fluxer_Net_ChannelHelpers_CreateWebhookAsync_Fluxer_Net_Channel_System_String_System_String_">ChannelHelpers.CreateWebhookAsync(Channel, string, string?)</a>
+  </div>
+  <div>
+      <a class="xref" href="Fluxer.Net.ChannelHelpers.html#Fluxer_Net_ChannelHelpers_DeleteAsync_Fluxer_Net_Channel_">ChannelHelpers.DeleteAsync(Channel)</a>
+  </div>
+  <div>
+      <a class="xref" href="Fluxer.Net.ChannelHelpers.html#Fluxer_Net_ChannelHelpers_DeleteMessageAsync_Fluxer_Net_Channel_Fluxer_Net_Message_">ChannelHelpers.DeleteMessageAsync(Channel, Message)</a>
+  </div>
+  <div>
+      <a class="xref" href="Fluxer.Net.ChannelHelpers.html#Fluxer_Net_ChannelHelpers_DeleteMessageAsync_Fluxer_Net_Channel_System_UInt64_">ChannelHelpers.DeleteMessageAsync(Channel, ulong)</a>
+  </div>
+  <div>
+      <a class="xref" href="Fluxer.Net.ChannelHelpers.html#Fluxer_Net_ChannelHelpers_DeleteMessageAttachmentAsync_Fluxer_Net_Channel_Fluxer_Net_Message_System_UInt64_">ChannelHelpers.DeleteMessageAttachmentAsync(Channel, Message, ulong)</a>
+  </div>
+  <div>
+      <a class="xref" href="Fluxer.Net.ChannelHelpers.html#Fluxer_Net_ChannelHelpers_DeleteMessageAttachmentAsync_Fluxer_Net_Channel_System_UInt64_System_UInt64_">ChannelHelpers.DeleteMessageAttachmentAsync(Channel, ulong, ulong)</a>
+  </div>
+  <div>
+      <a class="xref" href="Fluxer.Net.ChannelHelpers.html#Fluxer_Net_ChannelHelpers_EditMessageAsync_Fluxer_Net_Channel_Fluxer_Net_Message_Fluxer_Net_UpdateMessageRequest_">ChannelHelpers.EditMessageAsync(Channel, Message, UpdateMessageRequest)</a>
+  </div>
+  <div>
+      <a class="xref" href="Fluxer.Net.ChannelHelpers.html#Fluxer_Net_ChannelHelpers_EditMessageAsync_Fluxer_Net_Channel_System_UInt64_Fluxer_Net_UpdateMessageRequest_">ChannelHelpers.EditMessageAsync(Channel, ulong, UpdateMessageRequest)</a>
+  </div>
+  <div>
+      <a class="xref" href="Fluxer.Net.ChannelHelpers.html#Fluxer_Net_ChannelHelpers_GetInvitesAsync_Fluxer_Net_Channel_">ChannelHelpers.GetInvitesAsync(Channel)</a>
+  </div>
+  <div>
+      <a class="xref" href="Fluxer.Net.ChannelHelpers.html#Fluxer_Net_ChannelHelpers_GetMessageAsync_Fluxer_Net_Channel_System_UInt64_">ChannelHelpers.GetMessageAsync(Channel, ulong)</a>
+  </div>
+  <div>
+      <a class="xref" href="Fluxer.Net.ChannelHelpers.html#Fluxer_Net_ChannelHelpers_GetMessagesAsync_Fluxer_Net_Channel_System_Int32_System_Nullable_System_UInt64__System_Nullable_System_UInt64__System_Nullable_System_UInt64__Fluxer_Net_Rest_RestClientQueryParams_">ChannelHelpers.GetMessagesAsync(Channel, int, ulong?, ulong?, ulong?, RestClientQueryParams?)</a>
+  </div>
+  <div>
+      <a class="xref" href="Fluxer.Net.ChannelHelpers.html#Fluxer_Net_ChannelHelpers_GetPinnedMessagesAsync_Fluxer_Net_Channel_Fluxer_Net_ChannelPinsQuery_">ChannelHelpers.GetPinnedMessagesAsync(Channel, ChannelPinsQuery?)</a>
+  </div>
+  <div>
+      <a class="xref" href="Fluxer.Net.ChannelHelpers.html#Fluxer_Net_ChannelHelpers_GetReactionsForEmojiAsync_Fluxer_Net_Channel_Fluxer_Net_Message_System_String_">ChannelHelpers.GetReactionsForEmojiAsync(Channel, Message, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Fluxer.Net.ChannelHelpers.html#Fluxer_Net_ChannelHelpers_GetReactionsForEmojiAsync_Fluxer_Net_Channel_System_UInt64_System_String_">ChannelHelpers.GetReactionsForEmojiAsync(Channel, ulong, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Fluxer.Net.ChannelHelpers.html#Fluxer_Net_ChannelHelpers_GetVoiceEligibilityAsync_Fluxer_Net_Channel_">ChannelHelpers.GetVoiceEligibilityAsync(Channel)</a>
+  </div>
+  <div>
+      <a class="xref" href="Fluxer.Net.ChannelHelpers.html#Fluxer_Net_ChannelHelpers_GetWebhooksAsync_Fluxer_Net_Channel_">ChannelHelpers.GetWebhooksAsync(Channel)</a>
+  </div>
+  <div>
+      <a class="xref" href="Fluxer.Net.ChannelHelpers.html#Fluxer_Net_ChannelHelpers_ModifyAsync_Fluxer_Net_Channel_Fluxer_Net_ChannelJson_">ChannelHelpers.ModifyAsync(Channel, ChannelJson)</a>
+  </div>
+  <div>
+      <a class="xref" href="Fluxer.Net.ChannelHelpers.html#Fluxer_Net_ChannelHelpers_PinMessageAsync_Fluxer_Net_Channel_Fluxer_Net_Message_">ChannelHelpers.PinMessageAsync(Channel, Message)</a>
+  </div>
+  <div>
+      <a class="xref" href="Fluxer.Net.ChannelHelpers.html#Fluxer_Net_ChannelHelpers_PinMessageAsync_Fluxer_Net_Channel_System_UInt64_">ChannelHelpers.PinMessageAsync(Channel, ulong)</a>
+  </div>
+  <div>
+      <a class="xref" href="Fluxer.Net.ChannelHelpers.html#Fluxer_Net_ChannelHelpers_RemoveAllReactionsAsync_Fluxer_Net_Channel_Fluxer_Net_Message_">ChannelHelpers.RemoveAllReactionsAsync(Channel, Message)</a>
+  </div>
+  <div>
+      <a class="xref" href="Fluxer.Net.ChannelHelpers.html#Fluxer_Net_ChannelHelpers_RemoveAllReactionsAsync_Fluxer_Net_Channel_System_UInt64_">ChannelHelpers.RemoveAllReactionsAsync(Channel, ulong)</a>
+  </div>
+  <div>
+      <a class="xref" href="Fluxer.Net.ChannelHelpers.html#Fluxer_Net_ChannelHelpers_RemoveAllReactionsForEmojiAsync_Fluxer_Net_Channel_Fluxer_Net_Message_System_String_">ChannelHelpers.RemoveAllReactionsForEmojiAsync(Channel, Message, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Fluxer.Net.ChannelHelpers.html#Fluxer_Net_ChannelHelpers_RemoveAllReactionsForEmojiAsync_Fluxer_Net_Channel_System_UInt64_System_String_">ChannelHelpers.RemoveAllReactionsForEmojiAsync(Channel, ulong, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Fluxer.Net.ChannelHelpers.html#Fluxer_Net_ChannelHelpers_RemoveOwnReactionAsync_Fluxer_Net_Channel_Fluxer_Net_Message_System_String_">ChannelHelpers.RemoveOwnReactionAsync(Channel, Message, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Fluxer.Net.ChannelHelpers.html#Fluxer_Net_ChannelHelpers_RemoveOwnReactionAsync_Fluxer_Net_Channel_System_UInt64_System_String_">ChannelHelpers.RemoveOwnReactionAsync(Channel, ulong, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Fluxer.Net.ChannelHelpers.html#Fluxer_Net_ChannelHelpers_RemoveUserReactionAsync_Fluxer_Net_Channel_Fluxer_Net_Message_System_String_Fluxer_Net_User_">ChannelHelpers.RemoveUserReactionAsync(Channel, Message, string, User)</a>
+  </div>
+  <div>
+      <a class="xref" href="Fluxer.Net.ChannelHelpers.html#Fluxer_Net_ChannelHelpers_RemoveUserReactionAsync_Fluxer_Net_Channel_Fluxer_Net_Message_System_String_System_UInt64_">ChannelHelpers.RemoveUserReactionAsync(Channel, Message, string, ulong)</a>
+  </div>
+  <div>
+      <a class="xref" href="Fluxer.Net.ChannelHelpers.html#Fluxer_Net_ChannelHelpers_RemoveUserReactionAsync_Fluxer_Net_Channel_System_UInt64_System_String_System_UInt64_">ChannelHelpers.RemoveUserReactionAsync(Channel, ulong, string, ulong)</a>
+  </div>
+  <div>
+      <a class="xref" href="Fluxer.Net.ChannelHelpers.html#Fluxer_Net_ChannelHelpers_RingCallAsync_Fluxer_Net_Channel_System_UInt64___">ChannelHelpers.RingCallAsync(Channel, ulong[])</a>
+  </div>
+  <div>
+      <a class="xref" href="Fluxer.Net.ChannelHelpers.html#Fluxer_Net_ChannelHelpers_SendFilesAsync_Fluxer_Net_Channel_System_Collections_Generic_List_Fluxer_Net_Rest_AttachmentRequest__System_String_">ChannelHelpers.SendFilesAsync(Channel, List&lt;AttachmentRequest&gt;?, string?)</a>
+  </div>
+  <div>
+      <a class="xref" href="Fluxer.Net.ChannelHelpers.html#Fluxer_Net_ChannelHelpers_SendMessageAsync_Fluxer_Net_Channel_System_String_System_Collections_Generic_List_Fluxer_Net_Rest_Requests_EmbedRequest__Fluxer_Net_MessageReferenceRequest_Fluxer_Net_AllowedMentionsRequest_Fluxer_Net_MessageFlag_System_String_System_Nullable_System_UInt64__System_Nullable_System_Boolean__System_Collections_Generic_List_System_UInt64__System_Collections_Generic_List_Fluxer_Net_Rest_AttachmentRequest__">ChannelHelpers.SendMessageAsync(Channel, string?, List&lt;EmbedRequest&gt;?, MessageReferenceRequest?, AllowedMentionsRequest?, MessageFlag, string?, ulong?, bool?, List&lt;ulong&gt;?, List&lt;AttachmentRequest&gt;?)</a>
+  </div>
+  <div>
+      <a class="xref" href="Fluxer.Net.ChannelHelpers.html#Fluxer_Net_ChannelHelpers_TriggerTypingIndicatorAsync_Fluxer_Net_Channel_">ChannelHelpers.TriggerTypingIndicatorAsync(Channel)</a>
+  </div>
+  <div>
+      <a class="xref" href="Fluxer.Net.ChannelHelpers.html#Fluxer_Net_ChannelHelpers_UnPinMessageAsync_Fluxer_Net_Channel_Fluxer_Net_Message_">ChannelHelpers.UnPinMessageAsync(Channel, Message)</a>
+  </div>
+  <div>
+      <a class="xref" href="Fluxer.Net.ChannelHelpers.html#Fluxer_Net_ChannelHelpers_UnPinMessageAsync_Fluxer_Net_Channel_System_UInt64_">ChannelHelpers.UnPinMessageAsync(Channel, ulong)</a>
+  </div>
+  <div>
+      <a class="xref" href="Fluxer.Net.ChannelHelpers.html#Fluxer_Net_ChannelHelpers_UpdateVoiceRegionAsync_Fluxer_Net_Channel_System_String_">ChannelHelpers.UpdateVoiceRegionAsync(Channel, string)</a>
+  </div>
+  </dd></dl>
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Data/Channels/GuildChannel.cs/#L3" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,480 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.Gateway.Data.ReconnectGatewayData
+  commentId: T:Fluxer.Net.Gateway.Data.ReconnectGatewayData
+  id: ReconnectGatewayData
+  parent: Fluxer.Net.Gateway.Data
+  children:
+  - Fluxer.Net.Gateway.Data.ReconnectGatewayData.Sequence
+  - Fluxer.Net.Gateway.Data.ReconnectGatewayData.SessionId
+  - Fluxer.Net.Gateway.Data.ReconnectGatewayData.Token
+  langs:
+  - csharp
+  - vb
+  name: ReconnectGatewayData
+  nameWithType: ReconnectGatewayData
+  fullName: Fluxer.Net.Gateway.Data.ReconnectGatewayData
+  type: Class
+  source:
+    remote:
+      path: Fluxer.Net/Gateway/Data/ReconnectGatewayData.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: ReconnectGatewayData
+    path: ../Fluxer.Net/Gateway/Data/ReconnectGatewayData.cs
+    startLine: 4
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net.Gateway.Data
+  syntax:
+    content: public class ReconnectGatewayData
+    content.vb: Public Class ReconnectGatewayData
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: Fluxer.Net.Gateway.Data.ReconnectGatewayData.Token
+  commentId: P:Fluxer.Net.Gateway.Data.ReconnectGatewayData.Token
+  id: Token
+  parent: Fluxer.Net.Gateway.Data.ReconnectGatewayData
+  langs:
+  - csharp
+  - vb
+  name: Token
+  nameWithType: ReconnectGatewayData.Token
+  fullName: Fluxer.Net.Gateway.Data.ReconnectGatewayData.Token
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Gateway/Data/ReconnectGatewayData.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Token
+    path: ../Fluxer.Net/Gateway/Data/ReconnectGatewayData.cs
+    startLine: 6
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net.Gateway.Data
+  syntax:
+    content: >-
+      [JsonProperty("token")]
+
+      public string Token { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <JsonProperty("token")>
+
+      Public Property Token As String
+  overload: Fluxer.Net.Gateway.Data.ReconnectGatewayData.Token*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: token
+- uid: Fluxer.Net.Gateway.Data.ReconnectGatewayData.SessionId
+  commentId: P:Fluxer.Net.Gateway.Data.ReconnectGatewayData.SessionId
+  id: SessionId
+  parent: Fluxer.Net.Gateway.Data.ReconnectGatewayData
+  langs:
+  - csharp
+  - vb
+  name: SessionId
+  nameWithType: ReconnectGatewayData.SessionId
+  fullName: Fluxer.Net.Gateway.Data.ReconnectGatewayData.SessionId
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Gateway/Data/ReconnectGatewayData.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: SessionId
+    path: ../Fluxer.Net/Gateway/Data/ReconnectGatewayData.cs
+    startLine: 9
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net.Gateway.Data
+  syntax:
+    content: >-
+      [JsonProperty("session_id")]
+
+      public string SessionId { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <JsonProperty("session_id")>
+
+      Public Property SessionId As String
+  overload: Fluxer.Net.Gateway.Data.ReconnectGatewayData.SessionId*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: session_id
+- uid: Fluxer.Net.Gateway.Data.ReconnectGatewayData.Sequence
+  commentId: P:Fluxer.Net.Gateway.Data.ReconnectGatewayData.Sequence
+  id: Sequence
+  parent: Fluxer.Net.Gateway.Data.ReconnectGatewayData
+  langs:
+  - csharp
+  - vb
+  name: Sequence
+  nameWithType: ReconnectGatewayData.Sequence
+  fullName: Fluxer.Net.Gateway.Data.ReconnectGatewayData.Sequence
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Gateway/Data/ReconnectGatewayData.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Sequence
+    path: ../Fluxer.Net/Gateway/Data/ReconnectGatewayData.cs
+    startLine: 12
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net.Gateway.Data
+  syntax:
+    content: >-
+      [JsonProperty("seq")]
+
+      public int Sequence { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: >-
+      <JsonProperty("seq")>
+
+      Public Property Sequence As Integer
+  overload: Fluxer.Net.Gateway.Data.ReconnectGatewayData.Sequence*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: seq
+references:
+- uid: Fluxer.Net.Gateway.Data
+  commentId: N:Fluxer.Net.Gateway.Data
+  href: Fluxer.html
+  name: Fluxer.Net.Gateway.Data
+  nameWithType: Fluxer.Net.Gateway.Data
+  fullName: Fluxer.Net.Gateway.Data
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  - name: .
+  - uid: Fluxer.Net.Gateway
+    name: Gateway
+    href: Fluxer.Net.Gateway.html
+  - name: .
+  - uid: Fluxer.Net.Gateway.Data
+    name: Data
+    href: Fluxer.Net.Gateway.Data.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  - name: .
+  - uid: Fluxer.Net.Gateway
+    name: Gateway
+    href: Fluxer.Net.Gateway.html
+  - name: .
+  - uid: Fluxer.Net.Gateway.Data
+    name: Data
+    href: Fluxer.Net.Gateway.Data.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Fluxer.Net.Gateway.Data.ReconnectGatewayData.Token*
+  commentId: Overload:Fluxer.Net.Gateway.Data.ReconnectGatewayData.Token
+  href: Fluxer.Net.Gateway.Data.ReconnectGatewayData.html#Fluxer_Net_Gateway_Data_ReconnectGatewayData_Token
+  name: Token
+  nameWithType: ReconnectGatewayData.Token
+  fullName: Fluxer.Net.Gateway.Data.ReconnectGatewayData.Token
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: Fluxer.Net.Gateway.Data.ReconnectGatewayData.SessionId*
+  commentId: Overload:Fluxer.Net.Gateway.Data.ReconnectGatewayData.SessionId
+  href: Fluxer.Net.Gateway.Data.ReconnectGatewayData.html#Fluxer_Net_Gateway_Data_ReconnectGatewayData_SessionId
+  name: SessionId
+  nameWithType: ReconnectGatewayData.SessionId
+  fullName: Fluxer.Net.Gateway.Data.ReconnectGatewayData.SessionId
+- uid: Fluxer.Net.Gateway.Data.ReconnectGatewayData.Sequence*
+  commentId: Overload:Fluxer.Net.Gateway.Data.ReconnectGatewayData.Sequence
+  href: Fluxer.Net.Gateway.Data.ReconnectGatewayData.html#Fluxer_Net_Gateway_Data_ReconnectGatewayData_Sequence
+  name: Sequence
+  nameWithType: ReconnectGatewayData.Sequence
+  fullName: Fluxer.Net.Gateway.Data.ReconnectGatewayData.Sequence
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer

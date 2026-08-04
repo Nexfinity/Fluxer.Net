@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class CurrentUserJson | Fluxer.net </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class CurrentUserJson | Fluxer.net ">
+      
+      <meta name="description" content="Supports all classes in the .NET class hierarchy and provides low-level services to derived classes. This is the ultimate base class of all .NET classes; it is the root of the type hierarchy.">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Nexfinity/Fluxer.Net/new/release/apiSpec/new?filename=Fluxer_Net_CurrentUserJson.md&amp;value=---%0Auid%3A%20Fluxer.Net.CurrentUserJson%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="Fluxer.net">
+            Fluxer.net
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="Fluxer.Net.CurrentUserJson">
+
+
+
+  <h1 id="Fluxer_Net_CurrentUserJson" data-uid="Fluxer.Net.CurrentUserJson" class="text-break">
+Class CurrentUserJson  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Data/Users/CurrentUserJson.cs/#L6"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="Fluxer.html">Fluxer</a>.<a class="xref" href="Fluxer.Net.html">Net</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>Fluxer.Net.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Supports all classes in the .NET class hierarchy and provides low-level services to derived classes. This is the ultimate base class of all .NET classes; it is the root of the type hierarchy.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class CurrentUserJson : UserJson, IUser, IUserProfile</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="Fluxer.Net.UserJson.html">UserJson</a></div>
+      <div><span class="xref">CurrentUserJson</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="Fluxer.Net.IUser.html">IUser</a></div>
+      <div><a class="xref" href="Fluxer.Net.IUserProfile.html">IUserProfile</a></div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="Fluxer.Net.UserJson.html#Fluxer_Net_UserJson_Id">UserJson.Id</a>
+    </div>
+    <div>
+      <a class="xref" href="Fluxer.Net.UserJson.html#Fluxer_Net_UserJson_Mention">UserJson.Mention</a>
+    </div>
+    <div>
+      <a class="xref" href="Fluxer.Net.UserJson.html#Fluxer_Net_UserJson_Username">UserJson.Username</a>
+    </div>
+    <div>
+      <a class="xref" href="Fluxer.Net.UserJson.html#Fluxer_Net_UserJson_Discriminator">UserJson.Discriminator</a>
+    </div>
+    <div>
+      <a class="xref" href="Fluxer.Net.UserJson.html#Fluxer_Net_UserJson_DisplayName">UserJson.DisplayName</a>
+    </div>
+    <div>
+      <a class="xref" href="Fluxer.Net.UserJson.html#Fluxer_Net_UserJson_AvatarHash">UserJson.AvatarHash</a>
+    </div>
+    <div>
+      <a class="xref" href="Fluxer.Net.UserJson.html#Fluxer_Net_UserJson_AvatarColor">UserJson.AvatarColor</a>
+    </div>
+    <div>
+      <a class="xref" href="Fluxer.Net.UserJson.html#Fluxer_Net_UserJson_Flags">UserJson.Flags</a>
+    </div>
+    <div>
+      <a class="xref" href="Fluxer.Net.UserJson.html#Fluxer_Net_UserJson_IsBot">UserJson.IsBot</a>
+    </div>
+    <div>
+      <a class="xref" href="Fluxer.Net.UserJson.html#Fluxer_Net_UserJson_IsSystem">UserJson.IsSystem</a>
+    </div>
+    <div>
+      <a class="xref" href="Fluxer.Net.UserJson.html#Fluxer_Net_UserJson_GetCurrentName">UserJson.GetCurrentName()</a>
+    </div>
+    <div>
+      <a class="xref" href="Fluxer.Net.UserJson.html#Fluxer_Net_UserJson_GetDefaultAvatarUrl">UserJson.GetDefaultAvatarUrl()</a>
+    </div>
+    <div>
+      <a class="xref" href="Fluxer.Net.UserJson.html#Fluxer_Net_UserJson_GetAvatarUrl_System_Int32_">UserJson.GetAvatarUrl(int)</a>
+    </div>
+    <div>
+      <a class="xref" href="Fluxer.Net.UserJson.html#Fluxer_Net_UserJson_GetAvatarOrDefaultUrl_System_Int32_">UserJson.GetAvatarOrDefaultUrl(int)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="Fluxer_Net_CurrentUserJson_AccentColor_" data-uid="Fluxer.Net.CurrentUserJson.AccentColor*"></a>
+
+  <h3 id="Fluxer_Net_CurrentUserJson_AccentColor" data-uid="Fluxer.Net.CurrentUserJson.AccentColor">
+  AccentColor
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Data/Users/CurrentUserJson.cs/#L37"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The user-selected accent color as an integer.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonProperty(&quot;accent_color&quot;)]
+public int? AccentColor { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="Fluxer_Net_CurrentUserJson_Acls_" data-uid="Fluxer.Net.CurrentUserJson.Acls*"></a>
+
+  <h3 id="Fluxer_Net_CurrentUserJson_Acls" data-uid="Fluxer.Net.CurrentUserJson.Acls">
+  Acls
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Data/Users/CurrentUserJson.cs/#L13"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonProperty(&quot;acls&quot;)]
+public HashSet&lt;string&gt;? Acls { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1">HashSet</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="Fluxer_Net_CurrentUserJson_AuthenticatorTypes_" data-uid="Fluxer.Net.CurrentUserJson.AuthenticatorTypes*"></a>
+
+  <h3 id="Fluxer_Net_CurrentUserJson_AuthenticatorTypes" data-uid="Fluxer.Net.CurrentUserJson.AuthenticatorTypes">
+  AuthenticatorTypes
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Data/Users/CurrentUserJson.cs/#L93"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonProperty(&quot;authenticator_types&quot;)]
+public HashSet&lt;int&gt;? AuthenticatorTypes { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1">HashSet</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="Fluxer_Net_CurrentUserJson_BannerColor_" data-uid="Fluxer.Net.CurrentUserJson.BannerColor*"></a>
+
+  <h3 id="Fluxer_Net_CurrentUserJson_BannerColor" data-uid="Fluxer.Net.CurrentUserJson.BannerColor">
+  BannerColor
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Data/Users/CurrentUserJson.cs/#L45"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Default banner color if no custom banner.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonProperty(&quot;banner_color&quot;)]
+public int? BannerColor { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="Fluxer_Net_CurrentUserJson_BannerHash_" data-uid="Fluxer.Net.CurrentUserJson.BannerHash*"></a>
+
+  <h3 id="Fluxer_Net_CurrentUserJson_BannerHash" data-uid="Fluxer.Net.CurrentUserJson.BannerHash">
+  BannerHash
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Data/Users/CurrentUserJson.cs/#L41"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The hash of the user profile banner image.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonProperty(&quot;banner&quot;)]
+public string? BannerHash { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="Fluxer_Net_CurrentUserJson_Bio_" data-uid="Fluxer.Net.CurrentUserJson.Bio*"></a>
+
+  <h3 id="Fluxer_Net_CurrentUserJson_Bio" data-uid="Fluxer.Net.CurrentUserJson.Bio">
+  Bio
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Data/Users/CurrentUserJson.cs/#L29"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The user biography text.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonProperty(&quot;bio&quot;)]
+public string? Bio { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="Fluxer_Net_CurrentUserJson_Email_" data-uid="Fluxer.Net.CurrentUserJson.Email*"></a>
+
+  <h3 id="Fluxer_Net_CurrentUserJson_Email" data-uid="Fluxer.Net.CurrentUserJson.Email">
+  Email
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Data/Users/CurrentUserJson.cs/#L21"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonProperty(&quot;email&quot;)]
+public string? Email { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="Fluxer_Net_CurrentUserJson_EmailBounced_" data-uid="Fluxer.Net.CurrentUserJson.EmailBounced*"></a>
+
+  <h3 id="Fluxer_Net_CurrentUserJson_EmailBounced" data-uid="Fluxer.Net.CurrentUserJson.EmailBounced">
+  EmailBounced
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Data/Users/CurrentUserJson.cs/#L89"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonProperty(&quot;email_bounced&quot;)]
+public bool EmailBounced { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="Fluxer_Net_CurrentUserJson_HasEverPurchased_" data-uid="Fluxer.Net.CurrentUserJson.HasEverPurchased*"></a>
+
+  <h3 id="Fluxer_Net_CurrentUserJson_HasEverPurchased" data-uid="Fluxer.Net.CurrentUserJson.HasEverPurchased">
+  HasEverPurchased
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Data/Users/CurrentUserJson.cs/#L85"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonProperty(&quot;has_ever_purchased&quot;)]
+public bool HasEverPurchased { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="Fluxer_Net_CurrentUserJson_IsEmailVerified_" data-uid="Fluxer.Net.CurrentUserJson.IsEmailVerified*"></a>
+
+  <h3 id="Fluxer_Net_CurrentUserJson_IsEmailVerified" data-uid="Fluxer.Net.CurrentUserJson.IsEmailVerified">
+  IsEmailVerified
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Data/Users/CurrentUserJson.cs/#L53"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonProperty(&quot;email_verified&quot;)]
+public bool IsEmailVerified { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="Fluxer_Net_CurrentUserJson_IsMfaEnabled_" data-uid="Fluxer.Net.CurrentUserJson.IsMfaEnabled*"></a>
+
+  <h3 id="Fluxer_Net_CurrentUserJson_IsMfaEnabled" data-uid="Fluxer.Net.CurrentUserJson.IsMfaEnabled">
+  IsMfaEnabled
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Data/Users/CurrentUserJson.cs/#L49"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonProperty(&quot;mfa_enabled&quot;)]
+public bool IsMfaEnabled { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="Fluxer_Net_CurrentUserJson_IsStaff_" data-uid="Fluxer.Net.CurrentUserJson.IsStaff*"></a>
+
+  <h3 id="Fluxer_Net_CurrentUserJson_IsStaff" data-uid="Fluxer.Net.CurrentUserJson.IsStaff">
+  IsStaff
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Data/Users/CurrentUserJson.cs/#L9"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonProperty(&quot;is_staff&quot;)]
+public bool IsStaff { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="Fluxer_Net_CurrentUserJson_PasswordLastChangedAt_" data-uid="Fluxer.Net.CurrentUserJson.PasswordLastChangedAt*"></a>
+
+  <h3 id="Fluxer_Net_CurrentUserJson_PasswordLastChangedAt" data-uid="Fluxer.Net.CurrentUserJson.PasswordLastChangedAt">
+  PasswordLastChangedAt
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Data/Users/CurrentUserJson.cs/#L81"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonProperty(&quot;password_last_changed_at&quot;)]
+public DateTime? PasswordLastChangedAt { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="Fluxer_Net_CurrentUserJson_Phone_" data-uid="Fluxer.Net.CurrentUserJson.Phone*"></a>
+
+  <h3 id="Fluxer_Net_CurrentUserJson_Phone" data-uid="Fluxer.Net.CurrentUserJson.Phone">
+  Phone
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Data/Users/CurrentUserJson.cs/#L25"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonProperty(&quot;phone&quot;)]
+public string? Phone { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="Fluxer_Net_CurrentUserJson_PremiumBillingCycle_" data-uid="Fluxer.Net.CurrentUserJson.PremiumBillingCycle*"></a>
+
+  <h3 id="Fluxer_Net_CurrentUserJson_PremiumBillingCycle" data-uid="Fluxer.Net.CurrentUserJson.PremiumBillingCycle">
+  PremiumBillingCycle
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Data/Users/CurrentUserJson.cs/#L73"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonProperty(&quot;premium_billing_cycle&quot;)]
+public string? PremiumBillingCycle { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="Fluxer_Net_CurrentUserJson_PremiumLifetimeSequence_" data-uid="Fluxer.Net.CurrentUserJson.PremiumLifetimeSequence*"></a>
+
+  <h3 id="Fluxer_Net_CurrentUserJson_PremiumLifetimeSequence" data-uid="Fluxer.Net.CurrentUserJson.PremiumLifetimeSequence">
+  PremiumLifetimeSequence
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Data/Users/CurrentUserJson.cs/#L77"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonProperty(&quot;premium_lifetime_sequence&quot;)]
+public int? PremiumLifetimeSequence { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="Fluxer_Net_CurrentUserJson_PremiumSince_" data-uid="Fluxer.Net.CurrentUserJson.PremiumSince*"></a>
+
+  <h3 id="Fluxer_Net_CurrentUserJson_PremiumSince" data-uid="Fluxer.Net.CurrentUserJson.PremiumSince">
+  PremiumSince
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Data/Users/CurrentUserJson.cs/#L61"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonProperty(&quot;premium_since&quot;)]
+public DateTime? PremiumSince { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="Fluxer_Net_CurrentUserJson_PremiumType_" data-uid="Fluxer.Net.CurrentUserJson.PremiumType*"></a>
+
+  <h3 id="Fluxer_Net_CurrentUserJson_PremiumType" data-uid="Fluxer.Net.CurrentUserJson.PremiumType">
+  PremiumType
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Data/Users/CurrentUserJson.cs/#L57"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonProperty(&quot;premium_type&quot;)]
+public PremiumType PremiumType { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Fluxer.Net.PremiumType.html">PremiumType</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="Fluxer_Net_CurrentUserJson_PremiumUntil_" data-uid="Fluxer.Net.CurrentUserJson.PremiumUntil*"></a>
+
+  <h3 id="Fluxer_Net_CurrentUserJson_PremiumUntil" data-uid="Fluxer.Net.CurrentUserJson.PremiumUntil">
+  PremiumUntil
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Data/Users/CurrentUserJson.cs/#L65"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonProperty(&quot;premium_until&quot;)]
+public DateTime? PremiumUntil { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="Fluxer_Net_CurrentUserJson_PremiumWillCancel_" data-uid="Fluxer.Net.CurrentUserJson.PremiumWillCancel*"></a>
+
+  <h3 id="Fluxer_Net_CurrentUserJson_PremiumWillCancel" data-uid="Fluxer.Net.CurrentUserJson.PremiumWillCancel">
+  PremiumWillCancel
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Data/Users/CurrentUserJson.cs/#L69"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonProperty(&quot;premium_will_cancel&quot;)]
+public bool PremiumWillCancel { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="Fluxer_Net_CurrentUserJson_Pronouns_" data-uid="Fluxer.Net.CurrentUserJson.Pronouns*"></a>
+
+  <h3 id="Fluxer_Net_CurrentUserJson_Pronouns" data-uid="Fluxer.Net.CurrentUserJson.Pronouns">
+  Pronouns
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Data/Users/CurrentUserJson.cs/#L33"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The preferred pronouns of the user.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonProperty(&quot;pronouns&quot;)]
+public string? Pronouns { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="Fluxer_Net_CurrentUserJson_Traits_" data-uid="Fluxer.Net.CurrentUserJson.Traits*"></a>
+
+  <h3 id="Fluxer_Net_CurrentUserJson_Traits" data-uid="Fluxer.Net.CurrentUserJson.Traits">
+  Traits
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Data/Users/CurrentUserJson.cs/#L17"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonProperty(&quot;traits&quot;)]
+public HashSet&lt;string&gt;? Traits { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1">HashSet</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="Fluxer_Net_CurrentUserJson_GetBannerUrl_" data-uid="Fluxer.Net.CurrentUserJson.GetBannerUrl*"></a>
+
+  <h3 id="Fluxer_Net_CurrentUserJson_GetBannerUrl_System_Int32_" data-uid="Fluxer.Net.CurrentUserJson.GetBannerUrl(System.Int32)">
+  GetBannerUrl(int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Data/Users/CurrentUserJson.cs/#L97"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string? GetBannerUrl(int size = 600)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>size</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Data/Users/CurrentUserJson.cs/#L6" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

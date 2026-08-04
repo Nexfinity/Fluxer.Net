@@ -1,0 +1,158 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.Gateway.Data.Users
+  commentId: N:Fluxer.Net.Gateway.Data.Users
+  id: Fluxer.Net.Gateway.Data.Users
+  children:
+  - Fluxer.Net.Gateway.Data.Users.FavoriteMemeDeleteGatewayData
+  - Fluxer.Net.Gateway.Data.Users.FavoriteMemeGatewayData
+  - Fluxer.Net.Gateway.Data.Users.PresenceGatewayData
+  - Fluxer.Net.Gateway.Data.Users.PresenceUpdateGatewayData
+  - Fluxer.Net.Gateway.Data.Users.RelationshipGatewayData
+  - Fluxer.Net.Gateway.Data.Users.RelationshipRemoveGatewayData
+  - Fluxer.Net.Gateway.Data.Users.SavedMessageGatewayData
+  - Fluxer.Net.Gateway.Data.Users.UserGatewayData
+  - Fluxer.Net.Gateway.Data.Users.UserGuildSettingsUpdateGatewayData
+  - Fluxer.Net.Gateway.Data.Users.UserNoteUpdateGatewayData
+  - Fluxer.Net.Gateway.Data.Users.UserPinnedDmsUpdateGatewayData
+  - Fluxer.Net.Gateway.Data.Users.UserSettingsUpdateGatewayData
+  langs:
+  - csharp
+  - vb
+  name: Fluxer.Net.Gateway.Data.Users
+  nameWithType: Fluxer.Net.Gateway.Data.Users
+  fullName: Fluxer.Net.Gateway.Data.Users
+  type: Namespace
+  assemblies:
+  - Fluxer.Net
+references:
+- uid: Fluxer.Net.Gateway.Data.Users.FavoriteMemeGatewayData
+  commentId: T:Fluxer.Net.Gateway.Data.Users.FavoriteMemeGatewayData
+  parent: Fluxer.Net.Gateway.Data.Users
+  href: Fluxer.Net.Gateway.Data.Users.FavoriteMemeGatewayData.html
+  name: FavoriteMemeGatewayData
+  nameWithType: FavoriteMemeGatewayData
+  fullName: Fluxer.Net.Gateway.Data.Users.FavoriteMemeGatewayData
+- uid: Fluxer.Net.Gateway.Data.Users.FavoriteMemeDeleteGatewayData
+  commentId: T:Fluxer.Net.Gateway.Data.Users.FavoriteMemeDeleteGatewayData
+  parent: Fluxer.Net.Gateway.Data.Users
+  href: Fluxer.Net.Gateway.Data.Users.FavoriteMemeDeleteGatewayData.html
+  name: FavoriteMemeDeleteGatewayData
+  nameWithType: FavoriteMemeDeleteGatewayData
+  fullName: Fluxer.Net.Gateway.Data.Users.FavoriteMemeDeleteGatewayData
+- uid: Fluxer.Net.Gateway.Data.Users.PresenceGatewayData
+  commentId: T:Fluxer.Net.Gateway.Data.Users.PresenceGatewayData
+  parent: Fluxer.Net.Gateway.Data.Users
+  href: Fluxer.Net.Gateway.Data.Users.PresenceGatewayData.html
+  name: PresenceGatewayData
+  nameWithType: PresenceGatewayData
+  fullName: Fluxer.Net.Gateway.Data.Users.PresenceGatewayData
+- uid: Fluxer.Net.Gateway.Data.Users.PresenceUpdateGatewayData
+  commentId: T:Fluxer.Net.Gateway.Data.Users.PresenceUpdateGatewayData
+  parent: Fluxer.Net.Gateway.Data.Users
+  href: Fluxer.Net.Gateway.Data.Users.PresenceUpdateGatewayData.html
+  name: PresenceUpdateGatewayData
+  nameWithType: PresenceUpdateGatewayData
+  fullName: Fluxer.Net.Gateway.Data.Users.PresenceUpdateGatewayData
+- uid: Fluxer.Net.Gateway.Data.Users.RelationshipGatewayData
+  commentId: T:Fluxer.Net.Gateway.Data.Users.RelationshipGatewayData
+  parent: Fluxer.Net.Gateway.Data.Users
+  href: Fluxer.Net.Gateway.Data.Users.RelationshipGatewayData.html
+  name: RelationshipGatewayData
+  nameWithType: RelationshipGatewayData
+  fullName: Fluxer.Net.Gateway.Data.Users.RelationshipGatewayData
+- uid: Fluxer.Net.Gateway.Data.Users.RelationshipRemoveGatewayData
+  commentId: T:Fluxer.Net.Gateway.Data.Users.RelationshipRemoveGatewayData
+  parent: Fluxer.Net.Gateway.Data.Users
+  href: Fluxer.Net.Gateway.Data.Users.RelationshipRemoveGatewayData.html
+  name: RelationshipRemoveGatewayData
+  nameWithType: RelationshipRemoveGatewayData
+  fullName: Fluxer.Net.Gateway.Data.Users.RelationshipRemoveGatewayData
+- uid: Fluxer.Net.Gateway.Data.Users.SavedMessageGatewayData
+  commentId: T:Fluxer.Net.Gateway.Data.Users.SavedMessageGatewayData
+  parent: Fluxer.Net.Gateway.Data.Users
+  href: Fluxer.Net.Gateway.Data.Users.SavedMessageGatewayData.html
+  name: SavedMessageGatewayData
+  nameWithType: SavedMessageGatewayData
+  fullName: Fluxer.Net.Gateway.Data.Users.SavedMessageGatewayData
+- uid: Fluxer.Net.Gateway.Data.Users.UserGatewayData
+  commentId: T:Fluxer.Net.Gateway.Data.Users.UserGatewayData
+  parent: Fluxer.Net.Gateway.Data.Users
+  href: Fluxer.Net.Gateway.Data.Users.UserGatewayData.html
+  name: UserGatewayData
+  nameWithType: UserGatewayData
+  fullName: Fluxer.Net.Gateway.Data.Users.UserGatewayData
+- uid: Fluxer.Net.Gateway.Data.Users.UserGuildSettingsUpdateGatewayData
+  commentId: T:Fluxer.Net.Gateway.Data.Users.UserGuildSettingsUpdateGatewayData
+  parent: Fluxer.Net.Gateway.Data.Users
+  href: Fluxer.Net.Gateway.Data.Users.UserGuildSettingsUpdateGatewayData.html
+  name: UserGuildSettingsUpdateGatewayData
+  nameWithType: UserGuildSettingsUpdateGatewayData
+  fullName: Fluxer.Net.Gateway.Data.Users.UserGuildSettingsUpdateGatewayData
+- uid: Fluxer.Net.Gateway.Data.Users.UserNoteUpdateGatewayData
+  commentId: T:Fluxer.Net.Gateway.Data.Users.UserNoteUpdateGatewayData
+  parent: Fluxer.Net.Gateway.Data.Users
+  href: Fluxer.Net.Gateway.Data.Users.UserNoteUpdateGatewayData.html
+  name: UserNoteUpdateGatewayData
+  nameWithType: UserNoteUpdateGatewayData
+  fullName: Fluxer.Net.Gateway.Data.Users.UserNoteUpdateGatewayData
+- uid: Fluxer.Net.Gateway.Data.Users.UserPinnedDmsUpdateGatewayData
+  commentId: T:Fluxer.Net.Gateway.Data.Users.UserPinnedDmsUpdateGatewayData
+  parent: Fluxer.Net.Gateway.Data.Users
+  href: Fluxer.Net.Gateway.Data.Users.UserPinnedDmsUpdateGatewayData.html
+  name: UserPinnedDmsUpdateGatewayData
+  nameWithType: UserPinnedDmsUpdateGatewayData
+  fullName: Fluxer.Net.Gateway.Data.Users.UserPinnedDmsUpdateGatewayData
+- uid: Fluxer.Net.Gateway.Data.Users.UserSettingsUpdateGatewayData
+  commentId: T:Fluxer.Net.Gateway.Data.Users.UserSettingsUpdateGatewayData
+  parent: Fluxer.Net.Gateway.Data.Users
+  href: Fluxer.Net.Gateway.Data.Users.UserSettingsUpdateGatewayData.html
+  name: UserSettingsUpdateGatewayData
+  nameWithType: UserSettingsUpdateGatewayData
+  fullName: Fluxer.Net.Gateway.Data.Users.UserSettingsUpdateGatewayData
+- uid: Fluxer.Net.Gateway.Data.Users
+  commentId: N:Fluxer.Net.Gateway.Data.Users
+  href: Fluxer.html
+  name: Fluxer.Net.Gateway.Data.Users
+  nameWithType: Fluxer.Net.Gateway.Data.Users
+  fullName: Fluxer.Net.Gateway.Data.Users
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  - name: .
+  - uid: Fluxer.Net.Gateway
+    name: Gateway
+    href: Fluxer.Net.Gateway.html
+  - name: .
+  - uid: Fluxer.Net.Gateway.Data
+    name: Data
+    href: Fluxer.Net.Gateway.Data.html
+  - name: .
+  - uid: Fluxer.Net.Gateway.Data.Users
+    name: Users
+    href: Fluxer.Net.Gateway.Data.Users.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  - name: .
+  - uid: Fluxer.Net.Gateway
+    name: Gateway
+    href: Fluxer.Net.Gateway.html
+  - name: .
+  - uid: Fluxer.Net.Gateway.Data
+    name: Data
+    href: Fluxer.Net.Gateway.Data.html
+  - name: .
+  - uid: Fluxer.Net.Gateway.Data.Users
+    name: Users
+    href: Fluxer.Net.Gateway.Data.Users.html

@@ -1,0 +1,242 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.IPermissionOverwrite
+  commentId: T:Fluxer.Net.IPermissionOverwrite
+  id: IPermissionOverwrite
+  parent: Fluxer.Net
+  children:
+  - Fluxer.Net.IPermissionOverwrite.Allow
+  - Fluxer.Net.IPermissionOverwrite.Deny
+  - Fluxer.Net.IPermissionOverwrite.Id
+  - Fluxer.Net.IPermissionOverwrite.Type
+  langs:
+  - csharp
+  - vb
+  name: IPermissionOverwrite
+  nameWithType: IPermissionOverwrite
+  fullName: Fluxer.Net.IPermissionOverwrite
+  type: Interface
+  source:
+    remote:
+      path: Fluxer.Net/Data/Channels/IPermissionOverwrite.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: IPermissionOverwrite
+    path: ../Fluxer.Net/Data/Channels/IPermissionOverwrite.cs
+    startLine: 2
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: public interface IPermissionOverwrite
+    content.vb: Public Interface IPermissionOverwrite
+  derivedClasses:
+  - Fluxer.Net.PermissionOverwrite
+  - Fluxer.Net.PermissionOverwriteJson
+- uid: Fluxer.Net.IPermissionOverwrite.Id
+  commentId: P:Fluxer.Net.IPermissionOverwrite.Id
+  id: Id
+  parent: Fluxer.Net.IPermissionOverwrite
+  langs:
+  - csharp
+  - vb
+  name: Id
+  nameWithType: IPermissionOverwrite.Id
+  fullName: Fluxer.Net.IPermissionOverwrite.Id
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Channels/IPermissionOverwrite.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Id
+    path: ../Fluxer.Net/Data/Channels/IPermissionOverwrite.cs
+    startLine: 7
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The unique identifier for the role or user this overwrite applies to.
+  example: []
+  syntax:
+    content: ulong Id { get; }
+    parameters: []
+    return:
+      type: System.UInt64
+    content.vb: ReadOnly Property Id As ULong
+  overload: Fluxer.Net.IPermissionOverwrite.Id*
+- uid: Fluxer.Net.IPermissionOverwrite.Type
+  commentId: P:Fluxer.Net.IPermissionOverwrite.Type
+  id: Type
+  parent: Fluxer.Net.IPermissionOverwrite
+  langs:
+  - csharp
+  - vb
+  name: Type
+  nameWithType: IPermissionOverwrite.Type
+  fullName: Fluxer.Net.IPermissionOverwrite.Type
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Channels/IPermissionOverwrite.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Type
+    path: ../Fluxer.Net/Data/Channels/IPermissionOverwrite.cs
+    startLine: 12
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The type of overwrite (0 = role, 1 = member)
+  example: []
+  syntax:
+    content: int Type { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: ReadOnly Property Type As Integer
+  overload: Fluxer.Net.IPermissionOverwrite.Type*
+- uid: Fluxer.Net.IPermissionOverwrite.Allow
+  commentId: P:Fluxer.Net.IPermissionOverwrite.Allow
+  id: Allow
+  parent: Fluxer.Net.IPermissionOverwrite
+  langs:
+  - csharp
+  - vb
+  name: Allow
+  nameWithType: IPermissionOverwrite.Allow
+  fullName: Fluxer.Net.IPermissionOverwrite.Allow
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Channels/IPermissionOverwrite.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Allow
+    path: ../Fluxer.Net/Data/Channels/IPermissionOverwrite.cs
+    startLine: 17
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The bitwise value of allowed permissions.
+  example: []
+  syntax:
+    content: ChannelPermissions Allow { get; }
+    parameters: []
+    return:
+      type: Fluxer.Net.ChannelPermissions
+    content.vb: ReadOnly Property Allow As ChannelPermissions
+  overload: Fluxer.Net.IPermissionOverwrite.Allow*
+- uid: Fluxer.Net.IPermissionOverwrite.Deny
+  commentId: P:Fluxer.Net.IPermissionOverwrite.Deny
+  id: Deny
+  parent: Fluxer.Net.IPermissionOverwrite
+  langs:
+  - csharp
+  - vb
+  name: Deny
+  nameWithType: IPermissionOverwrite.Deny
+  fullName: Fluxer.Net.IPermissionOverwrite.Deny
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Channels/IPermissionOverwrite.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Deny
+    path: ../Fluxer.Net/Data/Channels/IPermissionOverwrite.cs
+    startLine: 22
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The bitwise value of denied permissions.
+  example: []
+  syntax:
+    content: ChannelPermissions Deny { get; }
+    parameters: []
+    return:
+      type: Fluxer.Net.ChannelPermissions
+    content.vb: ReadOnly Property Deny As ChannelPermissions
+  overload: Fluxer.Net.IPermissionOverwrite.Deny*
+references:
+- uid: Fluxer.Net
+  commentId: N:Fluxer.Net
+  href: Fluxer.html
+  name: Fluxer.Net
+  nameWithType: Fluxer.Net
+  fullName: Fluxer.Net
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+- uid: Fluxer.Net.IPermissionOverwrite.Id*
+  commentId: Overload:Fluxer.Net.IPermissionOverwrite.Id
+  href: Fluxer.Net.IPermissionOverwrite.html#Fluxer_Net_IPermissionOverwrite_Id
+  name: Id
+  nameWithType: IPermissionOverwrite.Id
+  fullName: Fluxer.Net.IPermissionOverwrite.Id
+- uid: System.UInt64
+  commentId: T:System.UInt64
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.uint64
+  name: ulong
+  nameWithType: ulong
+  fullName: ulong
+  nameWithType.vb: ULong
+  fullName.vb: ULong
+  name.vb: ULong
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Fluxer.Net.IPermissionOverwrite.Type*
+  commentId: Overload:Fluxer.Net.IPermissionOverwrite.Type
+  href: Fluxer.Net.IPermissionOverwrite.html#Fluxer_Net_IPermissionOverwrite_Type
+  name: Type
+  nameWithType: IPermissionOverwrite.Type
+  fullName: Fluxer.Net.IPermissionOverwrite.Type
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: Fluxer.Net.IPermissionOverwrite.Allow*
+  commentId: Overload:Fluxer.Net.IPermissionOverwrite.Allow
+  href: Fluxer.Net.IPermissionOverwrite.html#Fluxer_Net_IPermissionOverwrite_Allow
+  name: Allow
+  nameWithType: IPermissionOverwrite.Allow
+  fullName: Fluxer.Net.IPermissionOverwrite.Allow
+- uid: Fluxer.Net.ChannelPermissions
+  commentId: T:Fluxer.Net.ChannelPermissions
+  parent: Fluxer.Net
+  href: Fluxer.Net.ChannelPermissions.html
+  name: ChannelPermissions
+  nameWithType: ChannelPermissions
+  fullName: Fluxer.Net.ChannelPermissions
+- uid: Fluxer.Net.IPermissionOverwrite.Deny*
+  commentId: Overload:Fluxer.Net.IPermissionOverwrite.Deny
+  href: Fluxer.Net.IPermissionOverwrite.html#Fluxer_Net_IPermissionOverwrite_Deny
+  name: Deny
+  nameWithType: IPermissionOverwrite.Deny
+  fullName: Fluxer.Net.IPermissionOverwrite.Deny

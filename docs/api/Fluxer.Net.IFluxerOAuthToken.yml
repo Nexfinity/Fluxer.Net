@@ -1,0 +1,261 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.IFluxerOAuthToken
+  commentId: T:Fluxer.Net.IFluxerOAuthToken
+  id: IFluxerOAuthToken
+  parent: Fluxer.Net
+  children:
+  - Fluxer.Net.IFluxerOAuthToken.Application
+  - Fluxer.Net.IFluxerOAuthToken.Expires
+  - Fluxer.Net.IFluxerOAuthToken.Scopes
+  - Fluxer.Net.IFluxerOAuthToken.User
+  langs:
+  - csharp
+  - vb
+  name: IFluxerOAuthToken
+  nameWithType: IFluxerOAuthToken
+  fullName: Fluxer.Net.IFluxerOAuthToken
+  type: Interface
+  source:
+    remote:
+      path: Fluxer.Net/Data/OAuth/IFluxerOAuthToken.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: IFluxerOAuthToken
+    path: ../Fluxer.Net/Data/OAuth/IFluxerOAuthToken.cs
+    startLine: 2
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: public interface IFluxerOAuthToken
+    content.vb: Public Interface IFluxerOAuthToken
+  derivedClasses:
+  - Fluxer.Net.FluxerOAuthToken
+  - Fluxer.Net.FluxerOAuthTokenJson
+- uid: Fluxer.Net.IFluxerOAuthToken.Application
+  commentId: P:Fluxer.Net.IFluxerOAuthToken.Application
+  id: Application
+  parent: Fluxer.Net.IFluxerOAuthToken
+  langs:
+  - csharp
+  - vb
+  name: Application
+  nameWithType: IFluxerOAuthToken.Application
+  fullName: Fluxer.Net.IFluxerOAuthToken.Application
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/OAuth/IFluxerOAuthToken.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Application
+    path: ../Fluxer.Net/Data/OAuth/IFluxerOAuthToken.cs
+    startLine: 7
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The application associated with the token.
+  example: []
+  syntax:
+    content: IPartialApplication Application { get; }
+    parameters: []
+    return:
+      type: Fluxer.Net.IPartialApplication
+    content.vb: ReadOnly Property Application As IPartialApplication
+  overload: Fluxer.Net.IFluxerOAuthToken.Application*
+- uid: Fluxer.Net.IFluxerOAuthToken.Scopes
+  commentId: P:Fluxer.Net.IFluxerOAuthToken.Scopes
+  id: Scopes
+  parent: Fluxer.Net.IFluxerOAuthToken
+  langs:
+  - csharp
+  - vb
+  name: Scopes
+  nameWithType: IFluxerOAuthToken.Scopes
+  fullName: Fluxer.Net.IFluxerOAuthToken.Scopes
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/OAuth/IFluxerOAuthToken.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Scopes
+    path: ../Fluxer.Net/Data/OAuth/IFluxerOAuthToken.cs
+    startLine: 12
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The list of granted OAuth2 scopes.
+  example: []
+  syntax:
+    content: string[] Scopes { get; }
+    parameters: []
+    return:
+      type: System.String[]
+    content.vb: ReadOnly Property Scopes As String()
+  overload: Fluxer.Net.IFluxerOAuthToken.Scopes*
+- uid: Fluxer.Net.IFluxerOAuthToken.Expires
+  commentId: P:Fluxer.Net.IFluxerOAuthToken.Expires
+  id: Expires
+  parent: Fluxer.Net.IFluxerOAuthToken
+  langs:
+  - csharp
+  - vb
+  name: Expires
+  nameWithType: IFluxerOAuthToken.Expires
+  fullName: Fluxer.Net.IFluxerOAuthToken.Expires
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/OAuth/IFluxerOAuthToken.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Expires
+    path: ../Fluxer.Net/Data/OAuth/IFluxerOAuthToken.cs
+    startLine: 17
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The expiration timestamp of the token.
+  example: []
+  syntax:
+    content: DateTime Expires { get; }
+    parameters: []
+    return:
+      type: System.DateTime
+    content.vb: ReadOnly Property Expires As Date
+  overload: Fluxer.Net.IFluxerOAuthToken.Expires*
+- uid: Fluxer.Net.IFluxerOAuthToken.User
+  commentId: P:Fluxer.Net.IFluxerOAuthToken.User
+  id: User
+  parent: Fluxer.Net.IFluxerOAuthToken
+  langs:
+  - csharp
+  - vb
+  name: User
+  nameWithType: IFluxerOAuthToken.User
+  fullName: Fluxer.Net.IFluxerOAuthToken.User
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/OAuth/IFluxerOAuthToken.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: User
+    path: ../Fluxer.Net/Data/OAuth/IFluxerOAuthToken.cs
+    startLine: 22
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The user associated with the token.
+  example: []
+  syntax:
+    content: IFluxerOAuthUser User { get; }
+    parameters: []
+    return:
+      type: Fluxer.Net.IFluxerOAuthUser
+    content.vb: ReadOnly Property User As IFluxerOAuthUser
+  overload: Fluxer.Net.IFluxerOAuthToken.User*
+references:
+- uid: Fluxer.Net
+  commentId: N:Fluxer.Net
+  href: Fluxer.html
+  name: Fluxer.Net
+  nameWithType: Fluxer.Net
+  fullName: Fluxer.Net
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+- uid: Fluxer.Net.IFluxerOAuthToken.Application*
+  commentId: Overload:Fluxer.Net.IFluxerOAuthToken.Application
+  href: Fluxer.Net.IFluxerOAuthToken.html#Fluxer_Net_IFluxerOAuthToken_Application
+  name: Application
+  nameWithType: IFluxerOAuthToken.Application
+  fullName: Fluxer.Net.IFluxerOAuthToken.Application
+- uid: Fluxer.Net.IPartialApplication
+  commentId: T:Fluxer.Net.IPartialApplication
+  parent: Fluxer.Net
+  href: Fluxer.Net.IPartialApplication.html
+  name: IPartialApplication
+  nameWithType: IPartialApplication
+  fullName: Fluxer.Net.IPartialApplication
+- uid: Fluxer.Net.IFluxerOAuthToken.Scopes*
+  commentId: Overload:Fluxer.Net.IFluxerOAuthToken.Scopes
+  href: Fluxer.Net.IFluxerOAuthToken.html#Fluxer_Net_IFluxerOAuthToken_Scopes
+  name: Scopes
+  nameWithType: IFluxerOAuthToken.Scopes
+  fullName: Fluxer.Net.IFluxerOAuthToken.Scopes
+- uid: System.String[]
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string[]
+  nameWithType: string[]
+  fullName: string[]
+  nameWithType.vb: String()
+  fullName.vb: String()
+  name.vb: String()
+  spec.csharp:
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: (
+  - name: )
+- uid: Fluxer.Net.IFluxerOAuthToken.Expires*
+  commentId: Overload:Fluxer.Net.IFluxerOAuthToken.Expires
+  href: Fluxer.Net.IFluxerOAuthToken.html#Fluxer_Net_IFluxerOAuthToken_Expires
+  name: Expires
+  nameWithType: IFluxerOAuthToken.Expires
+  fullName: Fluxer.Net.IFluxerOAuthToken.Expires
+- uid: System.DateTime
+  commentId: T:System.DateTime
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.datetime
+  name: DateTime
+  nameWithType: DateTime
+  fullName: System.DateTime
+  nameWithType.vb: Date
+  fullName.vb: Date
+  name.vb: Date
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Fluxer.Net.IFluxerOAuthToken.User*
+  commentId: Overload:Fluxer.Net.IFluxerOAuthToken.User
+  href: Fluxer.Net.IFluxerOAuthToken.html#Fluxer_Net_IFluxerOAuthToken_User
+  name: User
+  nameWithType: IFluxerOAuthToken.User
+  fullName: Fluxer.Net.IFluxerOAuthToken.User
+- uid: Fluxer.Net.IFluxerOAuthUser
+  commentId: T:Fluxer.Net.IFluxerOAuthUser
+  parent: Fluxer.Net
+  href: Fluxer.Net.IFluxerOAuthUser.html
+  name: IFluxerOAuthUser
+  nameWithType: IFluxerOAuthUser
+  fullName: Fluxer.Net.IFluxerOAuthUser

@@ -1,0 +1,1665 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.ChannelPermissions
+  commentId: T:Fluxer.Net.ChannelPermissions
+  id: ChannelPermissions
+  parent: Fluxer.Net
+  children:
+  - Fluxer.Net.ChannelPermissions.#ctor(Fluxer.Net.Permissions)
+  - Fluxer.Net.ChannelPermissions.AddReactions
+  - Fluxer.Net.ChannelPermissions.AttachFiles
+  - Fluxer.Net.ChannelPermissions.BypassSlowmode
+  - Fluxer.Net.ChannelPermissions.Connect
+  - Fluxer.Net.ChannelPermissions.CreateInstantInvite
+  - Fluxer.Net.ChannelPermissions.DeafenMembers
+  - Fluxer.Net.ChannelPermissions.EmbedLinks
+  - Fluxer.Net.ChannelPermissions.ManageChannels
+  - Fluxer.Net.ChannelPermissions.ManageMessages
+  - Fluxer.Net.ChannelPermissions.ManagePermissions
+  - Fluxer.Net.ChannelPermissions.ManageWebhooks
+  - Fluxer.Net.ChannelPermissions.MentionEveryone
+  - Fluxer.Net.ChannelPermissions.MoveMembers
+  - Fluxer.Net.ChannelPermissions.MuteMembers
+  - Fluxer.Net.ChannelPermissions.PinMessages
+  - Fluxer.Net.ChannelPermissions.PrioritySpeaker
+  - Fluxer.Net.ChannelPermissions.RawValue
+  - Fluxer.Net.ChannelPermissions.ReadMessageHistory
+  - Fluxer.Net.ChannelPermissions.SendMessages
+  - Fluxer.Net.ChannelPermissions.SendTtsMessages
+  - Fluxer.Net.ChannelPermissions.Speak
+  - Fluxer.Net.ChannelPermissions.Stream
+  - Fluxer.Net.ChannelPermissions.UpdateRtcRegion
+  - Fluxer.Net.ChannelPermissions.UseExternalEmojis
+  - Fluxer.Net.ChannelPermissions.UseExternalStickers
+  - Fluxer.Net.ChannelPermissions.UseVad
+  - Fluxer.Net.ChannelPermissions.ViewChannel
+  - Fluxer.Net.ChannelPermissions.ViewChannelMembers
+  langs:
+  - csharp
+  - vb
+  name: ChannelPermissions
+  nameWithType: ChannelPermissions
+  fullName: Fluxer.Net.ChannelPermissions
+  type: Class
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/ChannelPermissions.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: ChannelPermissions
+    path: ../Fluxer.Net/Data/Guilds/ChannelPermissions.cs
+    startLine: 2
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: 'public class ChannelPermissions : IChannelPermissions'
+    content.vb: Public Class ChannelPermissions Implements IChannelPermissions
+  inheritance:
+  - System.Object
+  implements:
+  - Fluxer.Net.IChannelPermissions
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: Fluxer.Net.ChannelPermissions.#ctor(Fluxer.Net.Permissions)
+  commentId: M:Fluxer.Net.ChannelPermissions.#ctor(Fluxer.Net.Permissions)
+  id: '#ctor(Fluxer.Net.Permissions)'
+  parent: Fluxer.Net.ChannelPermissions
+  langs:
+  - csharp
+  - vb
+  name: ChannelPermissions(Permissions)
+  nameWithType: ChannelPermissions.ChannelPermissions(Permissions)
+  fullName: Fluxer.Net.ChannelPermissions.ChannelPermissions(Fluxer.Net.Permissions)
+  type: Constructor
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/ChannelPermissions.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: .ctor
+    path: ../Fluxer.Net/Data/Guilds/ChannelPermissions.cs
+    startLine: 4
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: public ChannelPermissions(Permissions perms)
+    parameters:
+    - id: perms
+      type: Fluxer.Net.Permissions
+    content.vb: Public Sub New(perms As Permissions)
+  overload: Fluxer.Net.ChannelPermissions.#ctor*
+  nameWithType.vb: ChannelPermissions.New(Permissions)
+  fullName.vb: Fluxer.Net.ChannelPermissions.New(Fluxer.Net.Permissions)
+  name.vb: New(Permissions)
+- uid: Fluxer.Net.ChannelPermissions.RawValue
+  commentId: P:Fluxer.Net.ChannelPermissions.RawValue
+  id: RawValue
+  parent: Fluxer.Net.ChannelPermissions
+  langs:
+  - csharp
+  - vb
+  name: RawValue
+  nameWithType: ChannelPermissions.RawValue
+  fullName: Fluxer.Net.ChannelPermissions.RawValue
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/ChannelPermissions.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: RawValue
+    path: ../Fluxer.Net/Data/Guilds/ChannelPermissions.cs
+    startLine: 11
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Raw permissions flag for the guild.
+  example: []
+  syntax:
+    content: public Permissions RawValue { get; }
+    parameters: []
+    return:
+      type: Fluxer.Net.Permissions
+    content.vb: Public Property RawValue As Permissions
+  overload: Fluxer.Net.ChannelPermissions.RawValue*
+- uid: Fluxer.Net.ChannelPermissions.ManagePermissions
+  commentId: P:Fluxer.Net.ChannelPermissions.ManagePermissions
+  id: ManagePermissions
+  parent: Fluxer.Net.ChannelPermissions
+  langs:
+  - csharp
+  - vb
+  name: ManagePermissions
+  nameWithType: ChannelPermissions.ManagePermissions
+  fullName: Fluxer.Net.ChannelPermissions.ManagePermissions
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/ChannelPermissions.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: ManagePermissions
+    path: ../Fluxer.Net/Data/Guilds/ChannelPermissions.cs
+    startLine: 16
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Edit overwrites for roles and members in this channel.
+  example: []
+  syntax:
+    content: public bool ManagePermissions { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property ManagePermissions As Boolean
+  overload: Fluxer.Net.ChannelPermissions.ManagePermissions*
+- uid: Fluxer.Net.ChannelPermissions.ManageChannels
+  commentId: P:Fluxer.Net.ChannelPermissions.ManageChannels
+  id: ManageChannels
+  parent: Fluxer.Net.ChannelPermissions
+  langs:
+  - csharp
+  - vb
+  name: ManageChannels
+  nameWithType: ChannelPermissions.ManageChannels
+  fullName: Fluxer.Net.ChannelPermissions.ManageChannels
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/ChannelPermissions.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: ManageChannels
+    path: ../Fluxer.Net/Data/Guilds/ChannelPermissions.cs
+    startLine: 19
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Create, edit, or delete channels and categories.
+  example: []
+  syntax:
+    content: public bool ManageChannels { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property ManageChannels As Boolean
+  overload: Fluxer.Net.ChannelPermissions.ManageChannels*
+  implements:
+  - Fluxer.Net.IChannelPermissions.ManageChannels
+- uid: Fluxer.Net.ChannelPermissions.CreateInstantInvite
+  commentId: P:Fluxer.Net.ChannelPermissions.CreateInstantInvite
+  id: CreateInstantInvite
+  parent: Fluxer.Net.ChannelPermissions
+  langs:
+  - csharp
+  - vb
+  name: CreateInstantInvite
+  nameWithType: ChannelPermissions.CreateInstantInvite
+  fullName: Fluxer.Net.ChannelPermissions.CreateInstantInvite
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/ChannelPermissions.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: CreateInstantInvite
+    path: ../Fluxer.Net/Data/Guilds/ChannelPermissions.cs
+    startLine: 22
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Create invites to invite other users to the guild.
+  example: []
+  syntax:
+    content: public bool CreateInstantInvite { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property CreateInstantInvite As Boolean
+  overload: Fluxer.Net.ChannelPermissions.CreateInstantInvite*
+  implements:
+  - Fluxer.Net.IChannelPermissions.CreateInstantInvite
+- uid: Fluxer.Net.ChannelPermissions.ManageWebhooks
+  commentId: P:Fluxer.Net.ChannelPermissions.ManageWebhooks
+  id: ManageWebhooks
+  parent: Fluxer.Net.ChannelPermissions
+  langs:
+  - csharp
+  - vb
+  name: ManageWebhooks
+  nameWithType: ChannelPermissions.ManageWebhooks
+  fullName: Fluxer.Net.ChannelPermissions.ManageWebhooks
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/ChannelPermissions.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: ManageWebhooks
+    path: ../Fluxer.Net/Data/Guilds/ChannelPermissions.cs
+    startLine: 25
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Create, edit, or delete webhooks.
+  example: []
+  syntax:
+    content: public bool ManageWebhooks { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property ManageWebhooks As Boolean
+  overload: Fluxer.Net.ChannelPermissions.ManageWebhooks*
+  implements:
+  - Fluxer.Net.IChannelPermissions.ManageWebhooks
+- uid: Fluxer.Net.ChannelPermissions.ViewChannel
+  commentId: P:Fluxer.Net.ChannelPermissions.ViewChannel
+  id: ViewChannel
+  parent: Fluxer.Net.ChannelPermissions
+  langs:
+  - csharp
+  - vb
+  name: ViewChannel
+  nameWithType: ChannelPermissions.ViewChannel
+  fullName: Fluxer.Net.ChannelPermissions.ViewChannel
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/ChannelPermissions.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: ViewChannel
+    path: ../Fluxer.Net/Data/Guilds/ChannelPermissions.cs
+    startLine: 28
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: View this channel.
+  example: []
+  syntax:
+    content: public bool ViewChannel { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property ViewChannel As Boolean
+  overload: Fluxer.Net.ChannelPermissions.ViewChannel*
+  implements:
+  - Fluxer.Net.IChannelPermissions.ViewChannel
+- uid: Fluxer.Net.ChannelPermissions.SendMessages
+  commentId: P:Fluxer.Net.ChannelPermissions.SendMessages
+  id: SendMessages
+  parent: Fluxer.Net.ChannelPermissions
+  langs:
+  - csharp
+  - vb
+  name: SendMessages
+  nameWithType: ChannelPermissions.SendMessages
+  fullName: Fluxer.Net.ChannelPermissions.SendMessages
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/ChannelPermissions.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: SendMessages
+    path: ../Fluxer.Net/Data/Guilds/ChannelPermissions.cs
+    startLine: 31
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Send messages in this channel.
+  example: []
+  syntax:
+    content: public bool SendMessages { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property SendMessages As Boolean
+  overload: Fluxer.Net.ChannelPermissions.SendMessages*
+  implements:
+  - Fluxer.Net.IChannelPermissions.SendMessages
+- uid: Fluxer.Net.ChannelPermissions.SendTtsMessages
+  commentId: P:Fluxer.Net.ChannelPermissions.SendTtsMessages
+  id: SendTtsMessages
+  parent: Fluxer.Net.ChannelPermissions
+  langs:
+  - csharp
+  - vb
+  name: SendTtsMessages
+  nameWithType: ChannelPermissions.SendTtsMessages
+  fullName: Fluxer.Net.ChannelPermissions.SendTtsMessages
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/ChannelPermissions.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: SendTtsMessages
+    path: ../Fluxer.Net/Data/Guilds/ChannelPermissions.cs
+    startLine: 34
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Send text-to-speech messages.
+  example: []
+  syntax:
+    content: public bool SendTtsMessages { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property SendTtsMessages As Boolean
+  overload: Fluxer.Net.ChannelPermissions.SendTtsMessages*
+  implements:
+  - Fluxer.Net.IChannelPermissions.SendTtsMessages
+- uid: Fluxer.Net.ChannelPermissions.ManageMessages
+  commentId: P:Fluxer.Net.ChannelPermissions.ManageMessages
+  id: ManageMessages
+  parent: Fluxer.Net.ChannelPermissions
+  langs:
+  - csharp
+  - vb
+  name: ManageMessages
+  nameWithType: ChannelPermissions.ManageMessages
+  fullName: Fluxer.Net.ChannelPermissions.ManageMessages
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/ChannelPermissions.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: ManageMessages
+    path: ../Fluxer.Net/Data/Guilds/ChannelPermissions.cs
+    startLine: 37
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Delete messages from other users.
+  example: []
+  syntax:
+    content: public bool ManageMessages { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property ManageMessages As Boolean
+  overload: Fluxer.Net.ChannelPermissions.ManageMessages*
+  implements:
+  - Fluxer.Net.IChannelPermissions.ManageMessages
+- uid: Fluxer.Net.ChannelPermissions.PinMessages
+  commentId: P:Fluxer.Net.ChannelPermissions.PinMessages
+  id: PinMessages
+  parent: Fluxer.Net.ChannelPermissions
+  langs:
+  - csharp
+  - vb
+  name: PinMessages
+  nameWithType: ChannelPermissions.PinMessages
+  fullName: Fluxer.Net.ChannelPermissions.PinMessages
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/ChannelPermissions.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: PinMessages
+    path: ../Fluxer.Net/Data/Guilds/ChannelPermissions.cs
+    startLine: 40
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Pin messages in the channel.
+  example: []
+  syntax:
+    content: public bool PinMessages { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property PinMessages As Boolean
+  overload: Fluxer.Net.ChannelPermissions.PinMessages*
+  implements:
+  - Fluxer.Net.IChannelPermissions.PinMessages
+- uid: Fluxer.Net.ChannelPermissions.EmbedLinks
+  commentId: P:Fluxer.Net.ChannelPermissions.EmbedLinks
+  id: EmbedLinks
+  parent: Fluxer.Net.ChannelPermissions
+  langs:
+  - csharp
+  - vb
+  name: EmbedLinks
+  nameWithType: ChannelPermissions.EmbedLinks
+  fullName: Fluxer.Net.ChannelPermissions.EmbedLinks
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/ChannelPermissions.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: EmbedLinks
+    path: ../Fluxer.Net/Data/Guilds/ChannelPermissions.cs
+    startLine: 43
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Embed links in the channel.
+  example: []
+  syntax:
+    content: public bool EmbedLinks { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property EmbedLinks As Boolean
+  overload: Fluxer.Net.ChannelPermissions.EmbedLinks*
+  implements:
+  - Fluxer.Net.IChannelPermissions.EmbedLinks
+- uid: Fluxer.Net.ChannelPermissions.AttachFiles
+  commentId: P:Fluxer.Net.ChannelPermissions.AttachFiles
+  id: AttachFiles
+  parent: Fluxer.Net.ChannelPermissions
+  langs:
+  - csharp
+  - vb
+  name: AttachFiles
+  nameWithType: ChannelPermissions.AttachFiles
+  fullName: Fluxer.Net.ChannelPermissions.AttachFiles
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/ChannelPermissions.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: AttachFiles
+    path: ../Fluxer.Net/Data/Guilds/ChannelPermissions.cs
+    startLine: 46
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Upload files in the channel.
+  example: []
+  syntax:
+    content: public bool AttachFiles { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property AttachFiles As Boolean
+  overload: Fluxer.Net.ChannelPermissions.AttachFiles*
+  implements:
+  - Fluxer.Net.IChannelPermissions.AttachFiles
+- uid: Fluxer.Net.ChannelPermissions.ReadMessageHistory
+  commentId: P:Fluxer.Net.ChannelPermissions.ReadMessageHistory
+  id: ReadMessageHistory
+  parent: Fluxer.Net.ChannelPermissions
+  langs:
+  - csharp
+  - vb
+  name: ReadMessageHistory
+  nameWithType: ChannelPermissions.ReadMessageHistory
+  fullName: Fluxer.Net.ChannelPermissions.ReadMessageHistory
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/ChannelPermissions.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: ReadMessageHistory
+    path: ../Fluxer.Net/Data/Guilds/ChannelPermissions.cs
+    startLine: 49
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Read all messages in the channel.
+  example: []
+  syntax:
+    content: public bool ReadMessageHistory { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property ReadMessageHistory As Boolean
+  overload: Fluxer.Net.ChannelPermissions.ReadMessageHistory*
+  implements:
+  - Fluxer.Net.IChannelPermissions.ReadMessageHistory
+- uid: Fluxer.Net.ChannelPermissions.MentionEveryone
+  commentId: P:Fluxer.Net.ChannelPermissions.MentionEveryone
+  id: MentionEveryone
+  parent: Fluxer.Net.ChannelPermissions
+  langs:
+  - csharp
+  - vb
+  name: MentionEveryone
+  nameWithType: ChannelPermissions.MentionEveryone
+  fullName: Fluxer.Net.ChannelPermissions.MentionEveryone
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/ChannelPermissions.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: MentionEveryone
+    path: ../Fluxer.Net/Data/Guilds/ChannelPermissions.cs
+    startLine: 52
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Mention everyone or any role (even if the role isn't set to be mentionable)
+  example: []
+  syntax:
+    content: public bool MentionEveryone { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property MentionEveryone As Boolean
+  overload: Fluxer.Net.ChannelPermissions.MentionEveryone*
+  implements:
+  - Fluxer.Net.IChannelPermissions.MentionEveryone
+- uid: Fluxer.Net.ChannelPermissions.UseExternalEmojis
+  commentId: P:Fluxer.Net.ChannelPermissions.UseExternalEmojis
+  id: UseExternalEmojis
+  parent: Fluxer.Net.ChannelPermissions
+  langs:
+  - csharp
+  - vb
+  name: UseExternalEmojis
+  nameWithType: ChannelPermissions.UseExternalEmojis
+  fullName: Fluxer.Net.ChannelPermissions.UseExternalEmojis
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/ChannelPermissions.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: UseExternalEmojis
+    path: ../Fluxer.Net/Data/Guilds/ChannelPermissions.cs
+    startLine: 55
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Use emojis from other guilds.
+  example: []
+  syntax:
+    content: public bool UseExternalEmojis { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property UseExternalEmojis As Boolean
+  overload: Fluxer.Net.ChannelPermissions.UseExternalEmojis*
+  implements:
+  - Fluxer.Net.IChannelPermissions.UseExternalEmojis
+- uid: Fluxer.Net.ChannelPermissions.UseExternalStickers
+  commentId: P:Fluxer.Net.ChannelPermissions.UseExternalStickers
+  id: UseExternalStickers
+  parent: Fluxer.Net.ChannelPermissions
+  langs:
+  - csharp
+  - vb
+  name: UseExternalStickers
+  nameWithType: ChannelPermissions.UseExternalStickers
+  fullName: Fluxer.Net.ChannelPermissions.UseExternalStickers
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/ChannelPermissions.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: UseExternalStickers
+    path: ../Fluxer.Net/Data/Guilds/ChannelPermissions.cs
+    startLine: 58
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Use stickers from other guilds.
+  example: []
+  syntax:
+    content: public bool UseExternalStickers { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property UseExternalStickers As Boolean
+  overload: Fluxer.Net.ChannelPermissions.UseExternalStickers*
+  implements:
+  - Fluxer.Net.IChannelPermissions.UseExternalStickers
+- uid: Fluxer.Net.ChannelPermissions.AddReactions
+  commentId: P:Fluxer.Net.ChannelPermissions.AddReactions
+  id: AddReactions
+  parent: Fluxer.Net.ChannelPermissions
+  langs:
+  - csharp
+  - vb
+  name: AddReactions
+  nameWithType: ChannelPermissions.AddReactions
+  fullName: Fluxer.Net.ChannelPermissions.AddReactions
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/ChannelPermissions.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: AddReactions
+    path: ../Fluxer.Net/Data/Guilds/ChannelPermissions.cs
+    startLine: 61
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Add new reactions to messages.
+  example: []
+  syntax:
+    content: public bool AddReactions { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property AddReactions As Boolean
+  overload: Fluxer.Net.ChannelPermissions.AddReactions*
+  implements:
+  - Fluxer.Net.IChannelPermissions.AddReactions
+- uid: Fluxer.Net.ChannelPermissions.BypassSlowmode
+  commentId: P:Fluxer.Net.ChannelPermissions.BypassSlowmode
+  id: BypassSlowmode
+  parent: Fluxer.Net.ChannelPermissions
+  langs:
+  - csharp
+  - vb
+  name: BypassSlowmode
+  nameWithType: ChannelPermissions.BypassSlowmode
+  fullName: Fluxer.Net.ChannelPermissions.BypassSlowmode
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/ChannelPermissions.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: BypassSlowmode
+    path: ../Fluxer.Net/Data/Guilds/ChannelPermissions.cs
+    startLine: 64
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Ignore per-channel message rate limits..
+  example: []
+  syntax:
+    content: public bool BypassSlowmode { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property BypassSlowmode As Boolean
+  overload: Fluxer.Net.ChannelPermissions.BypassSlowmode*
+  implements:
+  - Fluxer.Net.IChannelPermissions.BypassSlowmode
+- uid: Fluxer.Net.ChannelPermissions.Connect
+  commentId: P:Fluxer.Net.ChannelPermissions.Connect
+  id: Connect
+  parent: Fluxer.Net.ChannelPermissions
+  langs:
+  - csharp
+  - vb
+  name: Connect
+  nameWithType: ChannelPermissions.Connect
+  fullName: Fluxer.Net.ChannelPermissions.Connect
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/ChannelPermissions.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Connect
+    path: ../Fluxer.Net/Data/Guilds/ChannelPermissions.cs
+    startLine: 67
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Connect to the voice channel.
+  example: []
+  syntax:
+    content: public bool Connect { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property Connect As Boolean
+  overload: Fluxer.Net.ChannelPermissions.Connect*
+  implements:
+  - Fluxer.Net.IChannelPermissions.Connect
+- uid: Fluxer.Net.ChannelPermissions.Speak
+  commentId: P:Fluxer.Net.ChannelPermissions.Speak
+  id: Speak
+  parent: Fluxer.Net.ChannelPermissions
+  langs:
+  - csharp
+  - vb
+  name: Speak
+  nameWithType: ChannelPermissions.Speak
+  fullName: Fluxer.Net.ChannelPermissions.Speak
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/ChannelPermissions.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Speak
+    path: ../Fluxer.Net/Data/Guilds/ChannelPermissions.cs
+    startLine: 70
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Speak in the voice channel.
+  example: []
+  syntax:
+    content: public bool Speak { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property Speak As Boolean
+  overload: Fluxer.Net.ChannelPermissions.Speak*
+  implements:
+  - Fluxer.Net.IChannelPermissions.Speak
+- uid: Fluxer.Net.ChannelPermissions.Stream
+  commentId: P:Fluxer.Net.ChannelPermissions.Stream
+  id: Stream
+  parent: Fluxer.Net.ChannelPermissions
+  langs:
+  - csharp
+  - vb
+  name: Stream
+  nameWithType: ChannelPermissions.Stream
+  fullName: Fluxer.Net.ChannelPermissions.Stream
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/ChannelPermissions.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Stream
+    path: ../Fluxer.Net/Data/Guilds/ChannelPermissions.cs
+    startLine: 73
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Allow video and screenshare in the voice channel.
+  example: []
+  syntax:
+    content: public bool Stream { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property Stream As Boolean
+  overload: Fluxer.Net.ChannelPermissions.Stream*
+  implements:
+  - Fluxer.Net.IChannelPermissions.Stream
+- uid: Fluxer.Net.ChannelPermissions.UseVad
+  commentId: P:Fluxer.Net.ChannelPermissions.UseVad
+  id: UseVad
+  parent: Fluxer.Net.ChannelPermissions
+  langs:
+  - csharp
+  - vb
+  name: UseVad
+  nameWithType: ChannelPermissions.UseVad
+  fullName: Fluxer.Net.ChannelPermissions.UseVad
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/ChannelPermissions.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: UseVad
+    path: ../Fluxer.Net/Data/Guilds/ChannelPermissions.cs
+    startLine: 76
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Denied if push to talk is required in the voice channel.
+  example: []
+  syntax:
+    content: public bool UseVad { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property UseVad As Boolean
+  overload: Fluxer.Net.ChannelPermissions.UseVad*
+  implements:
+  - Fluxer.Net.IChannelPermissions.UseVad
+- uid: Fluxer.Net.ChannelPermissions.PrioritySpeaker
+  commentId: P:Fluxer.Net.ChannelPermissions.PrioritySpeaker
+  id: PrioritySpeaker
+  parent: Fluxer.Net.ChannelPermissions
+  langs:
+  - csharp
+  - vb
+  name: PrioritySpeaker
+  nameWithType: ChannelPermissions.PrioritySpeaker
+  fullName: Fluxer.Net.ChannelPermissions.PrioritySpeaker
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/ChannelPermissions.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: PrioritySpeaker
+    path: ../Fluxer.Net/Data/Guilds/ChannelPermissions.cs
+    startLine: 79
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Prioritize your voice in the voice channel.
+  example: []
+  syntax:
+    content: public bool PrioritySpeaker { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property PrioritySpeaker As Boolean
+  overload: Fluxer.Net.ChannelPermissions.PrioritySpeaker*
+  implements:
+  - Fluxer.Net.IChannelPermissions.PrioritySpeaker
+- uid: Fluxer.Net.ChannelPermissions.MuteMembers
+  commentId: P:Fluxer.Net.ChannelPermissions.MuteMembers
+  id: MuteMembers
+  parent: Fluxer.Net.ChannelPermissions
+  langs:
+  - csharp
+  - vb
+  name: MuteMembers
+  nameWithType: ChannelPermissions.MuteMembers
+  fullName: Fluxer.Net.ChannelPermissions.MuteMembers
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/ChannelPermissions.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: MuteMembers
+    path: ../Fluxer.Net/Data/Guilds/ChannelPermissions.cs
+    startLine: 82
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Mute users in the voice channel.
+  example: []
+  syntax:
+    content: public bool MuteMembers { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property MuteMembers As Boolean
+  overload: Fluxer.Net.ChannelPermissions.MuteMembers*
+  implements:
+  - Fluxer.Net.IChannelPermissions.MuteMembers
+- uid: Fluxer.Net.ChannelPermissions.DeafenMembers
+  commentId: P:Fluxer.Net.ChannelPermissions.DeafenMembers
+  id: DeafenMembers
+  parent: Fluxer.Net.ChannelPermissions
+  langs:
+  - csharp
+  - vb
+  name: DeafenMembers
+  nameWithType: ChannelPermissions.DeafenMembers
+  fullName: Fluxer.Net.ChannelPermissions.DeafenMembers
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/ChannelPermissions.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: DeafenMembers
+    path: ../Fluxer.Net/Data/Guilds/ChannelPermissions.cs
+    startLine: 85
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Deafen users in the voice channel.
+  example: []
+  syntax:
+    content: public bool DeafenMembers { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property DeafenMembers As Boolean
+  overload: Fluxer.Net.ChannelPermissions.DeafenMembers*
+  implements:
+  - Fluxer.Net.IChannelPermissions.DeafenMembers
+- uid: Fluxer.Net.ChannelPermissions.MoveMembers
+  commentId: P:Fluxer.Net.ChannelPermissions.MoveMembers
+  id: MoveMembers
+  parent: Fluxer.Net.ChannelPermissions
+  langs:
+  - csharp
+  - vb
+  name: MoveMembers
+  nameWithType: ChannelPermissions.MoveMembers
+  fullName: Fluxer.Net.ChannelPermissions.MoveMembers
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/ChannelPermissions.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: MoveMembers
+    path: ../Fluxer.Net/Data/Guilds/ChannelPermissions.cs
+    startLine: 88
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Drag members between voice channels they can access.
+  example: []
+  syntax:
+    content: public bool MoveMembers { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property MoveMembers As Boolean
+  overload: Fluxer.Net.ChannelPermissions.MoveMembers*
+  implements:
+  - Fluxer.Net.IChannelPermissions.MoveMembers
+- uid: Fluxer.Net.ChannelPermissions.UpdateRtcRegion
+  commentId: P:Fluxer.Net.ChannelPermissions.UpdateRtcRegion
+  id: UpdateRtcRegion
+  parent: Fluxer.Net.ChannelPermissions
+  langs:
+  - csharp
+  - vb
+  name: UpdateRtcRegion
+  nameWithType: ChannelPermissions.UpdateRtcRegion
+  fullName: Fluxer.Net.ChannelPermissions.UpdateRtcRegion
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/ChannelPermissions.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: UpdateRtcRegion
+    path: ../Fluxer.Net/Data/Guilds/ChannelPermissions.cs
+    startLine: 91
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Update the voice region for this voice channel.
+  example: []
+  syntax:
+    content: public bool UpdateRtcRegion { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property UpdateRtcRegion As Boolean
+  overload: Fluxer.Net.ChannelPermissions.UpdateRtcRegion*
+  implements:
+  - Fluxer.Net.IChannelPermissions.UpdateRtcRegion
+- uid: Fluxer.Net.ChannelPermissions.ViewChannelMembers
+  commentId: P:Fluxer.Net.ChannelPermissions.ViewChannelMembers
+  id: ViewChannelMembers
+  parent: Fluxer.Net.ChannelPermissions
+  langs:
+  - csharp
+  - vb
+  name: ViewChannelMembers
+  nameWithType: ChannelPermissions.ViewChannelMembers
+  fullName: Fluxer.Net.ChannelPermissions.ViewChannelMembers
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/ChannelPermissions.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: ViewChannelMembers
+    path: ../Fluxer.Net/Data/Guilds/ChannelPermissions.cs
+    startLine: 94
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Allows you to view members in the channel.
+  example: []
+  syntax:
+    content: public bool ViewChannelMembers { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property ViewChannelMembers As Boolean
+  overload: Fluxer.Net.ChannelPermissions.ViewChannelMembers*
+  implements:
+  - Fluxer.Net.IChannelPermissions.ViewChannelMembers
+references:
+- uid: Fluxer.Net
+  commentId: N:Fluxer.Net
+  href: Fluxer.html
+  name: Fluxer.Net
+  nameWithType: Fluxer.Net
+  fullName: Fluxer.Net
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Fluxer.Net.IChannelPermissions
+  commentId: T:Fluxer.Net.IChannelPermissions
+  parent: Fluxer.Net
+  href: Fluxer.Net.IChannelPermissions.html
+  name: IChannelPermissions
+  nameWithType: IChannelPermissions
+  fullName: Fluxer.Net.IChannelPermissions
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Fluxer.Net.ChannelPermissions.#ctor*
+  commentId: Overload:Fluxer.Net.ChannelPermissions.#ctor
+  href: Fluxer.Net.ChannelPermissions.html#Fluxer_Net_ChannelPermissions__ctor_Fluxer_Net_Permissions_
+  name: ChannelPermissions
+  nameWithType: ChannelPermissions.ChannelPermissions
+  fullName: Fluxer.Net.ChannelPermissions.ChannelPermissions
+  nameWithType.vb: ChannelPermissions.New
+  fullName.vb: Fluxer.Net.ChannelPermissions.New
+  name.vb: New
+- uid: Fluxer.Net.Permissions
+  commentId: T:Fluxer.Net.Permissions
+  parent: Fluxer.Net
+  href: Fluxer.Net.Permissions.html
+  name: Permissions
+  nameWithType: Permissions
+  fullName: Fluxer.Net.Permissions
+- uid: Fluxer.Net.ChannelPermissions.RawValue*
+  commentId: Overload:Fluxer.Net.ChannelPermissions.RawValue
+  href: Fluxer.Net.ChannelPermissions.html#Fluxer_Net_ChannelPermissions_RawValue
+  name: RawValue
+  nameWithType: ChannelPermissions.RawValue
+  fullName: Fluxer.Net.ChannelPermissions.RawValue
+- uid: Fluxer.Net.ChannelPermissions.ManagePermissions*
+  commentId: Overload:Fluxer.Net.ChannelPermissions.ManagePermissions
+  href: Fluxer.Net.ChannelPermissions.html#Fluxer_Net_ChannelPermissions_ManagePermissions
+  name: ManagePermissions
+  nameWithType: ChannelPermissions.ManagePermissions
+  fullName: Fluxer.Net.ChannelPermissions.ManagePermissions
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: Fluxer.Net.ChannelPermissions.ManageChannels*
+  commentId: Overload:Fluxer.Net.ChannelPermissions.ManageChannels
+  href: Fluxer.Net.ChannelPermissions.html#Fluxer_Net_ChannelPermissions_ManageChannels
+  name: ManageChannels
+  nameWithType: ChannelPermissions.ManageChannels
+  fullName: Fluxer.Net.ChannelPermissions.ManageChannels
+- uid: Fluxer.Net.IChannelPermissions.ManageChannels
+  commentId: P:Fluxer.Net.IChannelPermissions.ManageChannels
+  parent: Fluxer.Net.IChannelPermissions
+  href: Fluxer.Net.IChannelPermissions.html#Fluxer_Net_IChannelPermissions_ManageChannels
+  name: ManageChannels
+  nameWithType: IChannelPermissions.ManageChannels
+  fullName: Fluxer.Net.IChannelPermissions.ManageChannels
+- uid: Fluxer.Net.ChannelPermissions.CreateInstantInvite*
+  commentId: Overload:Fluxer.Net.ChannelPermissions.CreateInstantInvite
+  href: Fluxer.Net.ChannelPermissions.html#Fluxer_Net_ChannelPermissions_CreateInstantInvite
+  name: CreateInstantInvite
+  nameWithType: ChannelPermissions.CreateInstantInvite
+  fullName: Fluxer.Net.ChannelPermissions.CreateInstantInvite
+- uid: Fluxer.Net.IChannelPermissions.CreateInstantInvite
+  commentId: P:Fluxer.Net.IChannelPermissions.CreateInstantInvite
+  parent: Fluxer.Net.IChannelPermissions
+  href: Fluxer.Net.IChannelPermissions.html#Fluxer_Net_IChannelPermissions_CreateInstantInvite
+  name: CreateInstantInvite
+  nameWithType: IChannelPermissions.CreateInstantInvite
+  fullName: Fluxer.Net.IChannelPermissions.CreateInstantInvite
+- uid: Fluxer.Net.ChannelPermissions.ManageWebhooks*
+  commentId: Overload:Fluxer.Net.ChannelPermissions.ManageWebhooks
+  href: Fluxer.Net.ChannelPermissions.html#Fluxer_Net_ChannelPermissions_ManageWebhooks
+  name: ManageWebhooks
+  nameWithType: ChannelPermissions.ManageWebhooks
+  fullName: Fluxer.Net.ChannelPermissions.ManageWebhooks
+- uid: Fluxer.Net.IChannelPermissions.ManageWebhooks
+  commentId: P:Fluxer.Net.IChannelPermissions.ManageWebhooks
+  parent: Fluxer.Net.IChannelPermissions
+  href: Fluxer.Net.IChannelPermissions.html#Fluxer_Net_IChannelPermissions_ManageWebhooks
+  name: ManageWebhooks
+  nameWithType: IChannelPermissions.ManageWebhooks
+  fullName: Fluxer.Net.IChannelPermissions.ManageWebhooks
+- uid: Fluxer.Net.ChannelPermissions.ViewChannel*
+  commentId: Overload:Fluxer.Net.ChannelPermissions.ViewChannel
+  href: Fluxer.Net.ChannelPermissions.html#Fluxer_Net_ChannelPermissions_ViewChannel
+  name: ViewChannel
+  nameWithType: ChannelPermissions.ViewChannel
+  fullName: Fluxer.Net.ChannelPermissions.ViewChannel
+- uid: Fluxer.Net.IChannelPermissions.ViewChannel
+  commentId: P:Fluxer.Net.IChannelPermissions.ViewChannel
+  parent: Fluxer.Net.IChannelPermissions
+  href: Fluxer.Net.IChannelPermissions.html#Fluxer_Net_IChannelPermissions_ViewChannel
+  name: ViewChannel
+  nameWithType: IChannelPermissions.ViewChannel
+  fullName: Fluxer.Net.IChannelPermissions.ViewChannel
+- uid: Fluxer.Net.ChannelPermissions.SendMessages*
+  commentId: Overload:Fluxer.Net.ChannelPermissions.SendMessages
+  href: Fluxer.Net.ChannelPermissions.html#Fluxer_Net_ChannelPermissions_SendMessages
+  name: SendMessages
+  nameWithType: ChannelPermissions.SendMessages
+  fullName: Fluxer.Net.ChannelPermissions.SendMessages
+- uid: Fluxer.Net.IChannelPermissions.SendMessages
+  commentId: P:Fluxer.Net.IChannelPermissions.SendMessages
+  parent: Fluxer.Net.IChannelPermissions
+  href: Fluxer.Net.IChannelPermissions.html#Fluxer_Net_IChannelPermissions_SendMessages
+  name: SendMessages
+  nameWithType: IChannelPermissions.SendMessages
+  fullName: Fluxer.Net.IChannelPermissions.SendMessages
+- uid: Fluxer.Net.ChannelPermissions.SendTtsMessages*
+  commentId: Overload:Fluxer.Net.ChannelPermissions.SendTtsMessages
+  href: Fluxer.Net.ChannelPermissions.html#Fluxer_Net_ChannelPermissions_SendTtsMessages
+  name: SendTtsMessages
+  nameWithType: ChannelPermissions.SendTtsMessages
+  fullName: Fluxer.Net.ChannelPermissions.SendTtsMessages
+- uid: Fluxer.Net.IChannelPermissions.SendTtsMessages
+  commentId: P:Fluxer.Net.IChannelPermissions.SendTtsMessages
+  parent: Fluxer.Net.IChannelPermissions
+  href: Fluxer.Net.IChannelPermissions.html#Fluxer_Net_IChannelPermissions_SendTtsMessages
+  name: SendTtsMessages
+  nameWithType: IChannelPermissions.SendTtsMessages
+  fullName: Fluxer.Net.IChannelPermissions.SendTtsMessages
+- uid: Fluxer.Net.ChannelPermissions.ManageMessages*
+  commentId: Overload:Fluxer.Net.ChannelPermissions.ManageMessages
+  href: Fluxer.Net.ChannelPermissions.html#Fluxer_Net_ChannelPermissions_ManageMessages
+  name: ManageMessages
+  nameWithType: ChannelPermissions.ManageMessages
+  fullName: Fluxer.Net.ChannelPermissions.ManageMessages
+- uid: Fluxer.Net.IChannelPermissions.ManageMessages
+  commentId: P:Fluxer.Net.IChannelPermissions.ManageMessages
+  parent: Fluxer.Net.IChannelPermissions
+  href: Fluxer.Net.IChannelPermissions.html#Fluxer_Net_IChannelPermissions_ManageMessages
+  name: ManageMessages
+  nameWithType: IChannelPermissions.ManageMessages
+  fullName: Fluxer.Net.IChannelPermissions.ManageMessages
+- uid: Fluxer.Net.ChannelPermissions.PinMessages*
+  commentId: Overload:Fluxer.Net.ChannelPermissions.PinMessages
+  href: Fluxer.Net.ChannelPermissions.html#Fluxer_Net_ChannelPermissions_PinMessages
+  name: PinMessages
+  nameWithType: ChannelPermissions.PinMessages
+  fullName: Fluxer.Net.ChannelPermissions.PinMessages
+- uid: Fluxer.Net.IChannelPermissions.PinMessages
+  commentId: P:Fluxer.Net.IChannelPermissions.PinMessages
+  parent: Fluxer.Net.IChannelPermissions
+  href: Fluxer.Net.IChannelPermissions.html#Fluxer_Net_IChannelPermissions_PinMessages
+  name: PinMessages
+  nameWithType: IChannelPermissions.PinMessages
+  fullName: Fluxer.Net.IChannelPermissions.PinMessages
+- uid: Fluxer.Net.ChannelPermissions.EmbedLinks*
+  commentId: Overload:Fluxer.Net.ChannelPermissions.EmbedLinks
+  href: Fluxer.Net.ChannelPermissions.html#Fluxer_Net_ChannelPermissions_EmbedLinks
+  name: EmbedLinks
+  nameWithType: ChannelPermissions.EmbedLinks
+  fullName: Fluxer.Net.ChannelPermissions.EmbedLinks
+- uid: Fluxer.Net.IChannelPermissions.EmbedLinks
+  commentId: P:Fluxer.Net.IChannelPermissions.EmbedLinks
+  parent: Fluxer.Net.IChannelPermissions
+  href: Fluxer.Net.IChannelPermissions.html#Fluxer_Net_IChannelPermissions_EmbedLinks
+  name: EmbedLinks
+  nameWithType: IChannelPermissions.EmbedLinks
+  fullName: Fluxer.Net.IChannelPermissions.EmbedLinks
+- uid: Fluxer.Net.ChannelPermissions.AttachFiles*
+  commentId: Overload:Fluxer.Net.ChannelPermissions.AttachFiles
+  href: Fluxer.Net.ChannelPermissions.html#Fluxer_Net_ChannelPermissions_AttachFiles
+  name: AttachFiles
+  nameWithType: ChannelPermissions.AttachFiles
+  fullName: Fluxer.Net.ChannelPermissions.AttachFiles
+- uid: Fluxer.Net.IChannelPermissions.AttachFiles
+  commentId: P:Fluxer.Net.IChannelPermissions.AttachFiles
+  parent: Fluxer.Net.IChannelPermissions
+  href: Fluxer.Net.IChannelPermissions.html#Fluxer_Net_IChannelPermissions_AttachFiles
+  name: AttachFiles
+  nameWithType: IChannelPermissions.AttachFiles
+  fullName: Fluxer.Net.IChannelPermissions.AttachFiles
+- uid: Fluxer.Net.ChannelPermissions.ReadMessageHistory*
+  commentId: Overload:Fluxer.Net.ChannelPermissions.ReadMessageHistory
+  href: Fluxer.Net.ChannelPermissions.html#Fluxer_Net_ChannelPermissions_ReadMessageHistory
+  name: ReadMessageHistory
+  nameWithType: ChannelPermissions.ReadMessageHistory
+  fullName: Fluxer.Net.ChannelPermissions.ReadMessageHistory
+- uid: Fluxer.Net.IChannelPermissions.ReadMessageHistory
+  commentId: P:Fluxer.Net.IChannelPermissions.ReadMessageHistory
+  parent: Fluxer.Net.IChannelPermissions
+  href: Fluxer.Net.IChannelPermissions.html#Fluxer_Net_IChannelPermissions_ReadMessageHistory
+  name: ReadMessageHistory
+  nameWithType: IChannelPermissions.ReadMessageHistory
+  fullName: Fluxer.Net.IChannelPermissions.ReadMessageHistory
+- uid: Fluxer.Net.ChannelPermissions.MentionEveryone*
+  commentId: Overload:Fluxer.Net.ChannelPermissions.MentionEveryone
+  href: Fluxer.Net.ChannelPermissions.html#Fluxer_Net_ChannelPermissions_MentionEveryone
+  name: MentionEveryone
+  nameWithType: ChannelPermissions.MentionEveryone
+  fullName: Fluxer.Net.ChannelPermissions.MentionEveryone
+- uid: Fluxer.Net.IChannelPermissions.MentionEveryone
+  commentId: P:Fluxer.Net.IChannelPermissions.MentionEveryone
+  parent: Fluxer.Net.IChannelPermissions
+  href: Fluxer.Net.IChannelPermissions.html#Fluxer_Net_IChannelPermissions_MentionEveryone
+  name: MentionEveryone
+  nameWithType: IChannelPermissions.MentionEveryone
+  fullName: Fluxer.Net.IChannelPermissions.MentionEveryone
+- uid: Fluxer.Net.ChannelPermissions.UseExternalEmojis*
+  commentId: Overload:Fluxer.Net.ChannelPermissions.UseExternalEmojis
+  href: Fluxer.Net.ChannelPermissions.html#Fluxer_Net_ChannelPermissions_UseExternalEmojis
+  name: UseExternalEmojis
+  nameWithType: ChannelPermissions.UseExternalEmojis
+  fullName: Fluxer.Net.ChannelPermissions.UseExternalEmojis
+- uid: Fluxer.Net.IChannelPermissions.UseExternalEmojis
+  commentId: P:Fluxer.Net.IChannelPermissions.UseExternalEmojis
+  parent: Fluxer.Net.IChannelPermissions
+  href: Fluxer.Net.IChannelPermissions.html#Fluxer_Net_IChannelPermissions_UseExternalEmojis
+  name: UseExternalEmojis
+  nameWithType: IChannelPermissions.UseExternalEmojis
+  fullName: Fluxer.Net.IChannelPermissions.UseExternalEmojis
+- uid: Fluxer.Net.ChannelPermissions.UseExternalStickers*
+  commentId: Overload:Fluxer.Net.ChannelPermissions.UseExternalStickers
+  href: Fluxer.Net.ChannelPermissions.html#Fluxer_Net_ChannelPermissions_UseExternalStickers
+  name: UseExternalStickers
+  nameWithType: ChannelPermissions.UseExternalStickers
+  fullName: Fluxer.Net.ChannelPermissions.UseExternalStickers
+- uid: Fluxer.Net.IChannelPermissions.UseExternalStickers
+  commentId: P:Fluxer.Net.IChannelPermissions.UseExternalStickers
+  parent: Fluxer.Net.IChannelPermissions
+  href: Fluxer.Net.IChannelPermissions.html#Fluxer_Net_IChannelPermissions_UseExternalStickers
+  name: UseExternalStickers
+  nameWithType: IChannelPermissions.UseExternalStickers
+  fullName: Fluxer.Net.IChannelPermissions.UseExternalStickers
+- uid: Fluxer.Net.ChannelPermissions.AddReactions*
+  commentId: Overload:Fluxer.Net.ChannelPermissions.AddReactions
+  href: Fluxer.Net.ChannelPermissions.html#Fluxer_Net_ChannelPermissions_AddReactions
+  name: AddReactions
+  nameWithType: ChannelPermissions.AddReactions
+  fullName: Fluxer.Net.ChannelPermissions.AddReactions
+- uid: Fluxer.Net.IChannelPermissions.AddReactions
+  commentId: P:Fluxer.Net.IChannelPermissions.AddReactions
+  parent: Fluxer.Net.IChannelPermissions
+  href: Fluxer.Net.IChannelPermissions.html#Fluxer_Net_IChannelPermissions_AddReactions
+  name: AddReactions
+  nameWithType: IChannelPermissions.AddReactions
+  fullName: Fluxer.Net.IChannelPermissions.AddReactions
+- uid: Fluxer.Net.ChannelPermissions.BypassSlowmode*
+  commentId: Overload:Fluxer.Net.ChannelPermissions.BypassSlowmode
+  href: Fluxer.Net.ChannelPermissions.html#Fluxer_Net_ChannelPermissions_BypassSlowmode
+  name: BypassSlowmode
+  nameWithType: ChannelPermissions.BypassSlowmode
+  fullName: Fluxer.Net.ChannelPermissions.BypassSlowmode
+- uid: Fluxer.Net.IChannelPermissions.BypassSlowmode
+  commentId: P:Fluxer.Net.IChannelPermissions.BypassSlowmode
+  parent: Fluxer.Net.IChannelPermissions
+  href: Fluxer.Net.IChannelPermissions.html#Fluxer_Net_IChannelPermissions_BypassSlowmode
+  name: BypassSlowmode
+  nameWithType: IChannelPermissions.BypassSlowmode
+  fullName: Fluxer.Net.IChannelPermissions.BypassSlowmode
+- uid: Fluxer.Net.ChannelPermissions.Connect*
+  commentId: Overload:Fluxer.Net.ChannelPermissions.Connect
+  href: Fluxer.Net.ChannelPermissions.html#Fluxer_Net_ChannelPermissions_Connect
+  name: Connect
+  nameWithType: ChannelPermissions.Connect
+  fullName: Fluxer.Net.ChannelPermissions.Connect
+- uid: Fluxer.Net.IChannelPermissions.Connect
+  commentId: P:Fluxer.Net.IChannelPermissions.Connect
+  parent: Fluxer.Net.IChannelPermissions
+  href: Fluxer.Net.IChannelPermissions.html#Fluxer_Net_IChannelPermissions_Connect
+  name: Connect
+  nameWithType: IChannelPermissions.Connect
+  fullName: Fluxer.Net.IChannelPermissions.Connect
+- uid: Fluxer.Net.ChannelPermissions.Speak*
+  commentId: Overload:Fluxer.Net.ChannelPermissions.Speak
+  href: Fluxer.Net.ChannelPermissions.html#Fluxer_Net_ChannelPermissions_Speak
+  name: Speak
+  nameWithType: ChannelPermissions.Speak
+  fullName: Fluxer.Net.ChannelPermissions.Speak
+- uid: Fluxer.Net.IChannelPermissions.Speak
+  commentId: P:Fluxer.Net.IChannelPermissions.Speak
+  parent: Fluxer.Net.IChannelPermissions
+  href: Fluxer.Net.IChannelPermissions.html#Fluxer_Net_IChannelPermissions_Speak
+  name: Speak
+  nameWithType: IChannelPermissions.Speak
+  fullName: Fluxer.Net.IChannelPermissions.Speak
+- uid: Fluxer.Net.ChannelPermissions.Stream*
+  commentId: Overload:Fluxer.Net.ChannelPermissions.Stream
+  href: Fluxer.Net.ChannelPermissions.html#Fluxer_Net_ChannelPermissions_Stream
+  name: Stream
+  nameWithType: ChannelPermissions.Stream
+  fullName: Fluxer.Net.ChannelPermissions.Stream
+- uid: Fluxer.Net.IChannelPermissions.Stream
+  commentId: P:Fluxer.Net.IChannelPermissions.Stream
+  parent: Fluxer.Net.IChannelPermissions
+  href: Fluxer.Net.IChannelPermissions.html#Fluxer_Net_IChannelPermissions_Stream
+  name: Stream
+  nameWithType: IChannelPermissions.Stream
+  fullName: Fluxer.Net.IChannelPermissions.Stream
+- uid: Fluxer.Net.ChannelPermissions.UseVad*
+  commentId: Overload:Fluxer.Net.ChannelPermissions.UseVad
+  href: Fluxer.Net.ChannelPermissions.html#Fluxer_Net_ChannelPermissions_UseVad
+  name: UseVad
+  nameWithType: ChannelPermissions.UseVad
+  fullName: Fluxer.Net.ChannelPermissions.UseVad
+- uid: Fluxer.Net.IChannelPermissions.UseVad
+  commentId: P:Fluxer.Net.IChannelPermissions.UseVad
+  parent: Fluxer.Net.IChannelPermissions
+  href: Fluxer.Net.IChannelPermissions.html#Fluxer_Net_IChannelPermissions_UseVad
+  name: UseVad
+  nameWithType: IChannelPermissions.UseVad
+  fullName: Fluxer.Net.IChannelPermissions.UseVad
+- uid: Fluxer.Net.ChannelPermissions.PrioritySpeaker*
+  commentId: Overload:Fluxer.Net.ChannelPermissions.PrioritySpeaker
+  href: Fluxer.Net.ChannelPermissions.html#Fluxer_Net_ChannelPermissions_PrioritySpeaker
+  name: PrioritySpeaker
+  nameWithType: ChannelPermissions.PrioritySpeaker
+  fullName: Fluxer.Net.ChannelPermissions.PrioritySpeaker
+- uid: Fluxer.Net.IChannelPermissions.PrioritySpeaker
+  commentId: P:Fluxer.Net.IChannelPermissions.PrioritySpeaker
+  parent: Fluxer.Net.IChannelPermissions
+  href: Fluxer.Net.IChannelPermissions.html#Fluxer_Net_IChannelPermissions_PrioritySpeaker
+  name: PrioritySpeaker
+  nameWithType: IChannelPermissions.PrioritySpeaker
+  fullName: Fluxer.Net.IChannelPermissions.PrioritySpeaker
+- uid: Fluxer.Net.ChannelPermissions.MuteMembers*
+  commentId: Overload:Fluxer.Net.ChannelPermissions.MuteMembers
+  href: Fluxer.Net.ChannelPermissions.html#Fluxer_Net_ChannelPermissions_MuteMembers
+  name: MuteMembers
+  nameWithType: ChannelPermissions.MuteMembers
+  fullName: Fluxer.Net.ChannelPermissions.MuteMembers
+- uid: Fluxer.Net.IChannelPermissions.MuteMembers
+  commentId: P:Fluxer.Net.IChannelPermissions.MuteMembers
+  parent: Fluxer.Net.IChannelPermissions
+  href: Fluxer.Net.IChannelPermissions.html#Fluxer_Net_IChannelPermissions_MuteMembers
+  name: MuteMembers
+  nameWithType: IChannelPermissions.MuteMembers
+  fullName: Fluxer.Net.IChannelPermissions.MuteMembers
+- uid: Fluxer.Net.ChannelPermissions.DeafenMembers*
+  commentId: Overload:Fluxer.Net.ChannelPermissions.DeafenMembers
+  href: Fluxer.Net.ChannelPermissions.html#Fluxer_Net_ChannelPermissions_DeafenMembers
+  name: DeafenMembers
+  nameWithType: ChannelPermissions.DeafenMembers
+  fullName: Fluxer.Net.ChannelPermissions.DeafenMembers
+- uid: Fluxer.Net.IChannelPermissions.DeafenMembers
+  commentId: P:Fluxer.Net.IChannelPermissions.DeafenMembers
+  parent: Fluxer.Net.IChannelPermissions
+  href: Fluxer.Net.IChannelPermissions.html#Fluxer_Net_IChannelPermissions_DeafenMembers
+  name: DeafenMembers
+  nameWithType: IChannelPermissions.DeafenMembers
+  fullName: Fluxer.Net.IChannelPermissions.DeafenMembers
+- uid: Fluxer.Net.ChannelPermissions.MoveMembers*
+  commentId: Overload:Fluxer.Net.ChannelPermissions.MoveMembers
+  href: Fluxer.Net.ChannelPermissions.html#Fluxer_Net_ChannelPermissions_MoveMembers
+  name: MoveMembers
+  nameWithType: ChannelPermissions.MoveMembers
+  fullName: Fluxer.Net.ChannelPermissions.MoveMembers
+- uid: Fluxer.Net.IChannelPermissions.MoveMembers
+  commentId: P:Fluxer.Net.IChannelPermissions.MoveMembers
+  parent: Fluxer.Net.IChannelPermissions
+  href: Fluxer.Net.IChannelPermissions.html#Fluxer_Net_IChannelPermissions_MoveMembers
+  name: MoveMembers
+  nameWithType: IChannelPermissions.MoveMembers
+  fullName: Fluxer.Net.IChannelPermissions.MoveMembers
+- uid: Fluxer.Net.ChannelPermissions.UpdateRtcRegion*
+  commentId: Overload:Fluxer.Net.ChannelPermissions.UpdateRtcRegion
+  href: Fluxer.Net.ChannelPermissions.html#Fluxer_Net_ChannelPermissions_UpdateRtcRegion
+  name: UpdateRtcRegion
+  nameWithType: ChannelPermissions.UpdateRtcRegion
+  fullName: Fluxer.Net.ChannelPermissions.UpdateRtcRegion
+- uid: Fluxer.Net.IChannelPermissions.UpdateRtcRegion
+  commentId: P:Fluxer.Net.IChannelPermissions.UpdateRtcRegion
+  parent: Fluxer.Net.IChannelPermissions
+  href: Fluxer.Net.IChannelPermissions.html#Fluxer_Net_IChannelPermissions_UpdateRtcRegion
+  name: UpdateRtcRegion
+  nameWithType: IChannelPermissions.UpdateRtcRegion
+  fullName: Fluxer.Net.IChannelPermissions.UpdateRtcRegion
+- uid: Fluxer.Net.ChannelPermissions.ViewChannelMembers*
+  commentId: Overload:Fluxer.Net.ChannelPermissions.ViewChannelMembers
+  href: Fluxer.Net.ChannelPermissions.html#Fluxer_Net_ChannelPermissions_ViewChannelMembers
+  name: ViewChannelMembers
+  nameWithType: ChannelPermissions.ViewChannelMembers
+  fullName: Fluxer.Net.ChannelPermissions.ViewChannelMembers
+- uid: Fluxer.Net.IChannelPermissions.ViewChannelMembers
+  commentId: P:Fluxer.Net.IChannelPermissions.ViewChannelMembers
+  parent: Fluxer.Net.IChannelPermissions
+  href: Fluxer.Net.IChannelPermissions.html#Fluxer_Net_IChannelPermissions_ViewChannelMembers
+  name: ViewChannelMembers
+  nameWithType: IChannelPermissions.ViewChannelMembers
+  fullName: Fluxer.Net.IChannelPermissions.ViewChannelMembers

@@ -1,0 +1,205 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.GuildVerificationLevel
+  commentId: T:Fluxer.Net.GuildVerificationLevel
+  id: GuildVerificationLevel
+  parent: Fluxer.Net
+  children:
+  - Fluxer.Net.GuildVerificationLevel.High
+  - Fluxer.Net.GuildVerificationLevel.Low
+  - Fluxer.Net.GuildVerificationLevel.Medium
+  - Fluxer.Net.GuildVerificationLevel.None
+  - Fluxer.Net.GuildVerificationLevel.VeryHigh
+  langs:
+  - csharp
+  - vb
+  name: GuildVerificationLevel
+  nameWithType: GuildVerificationLevel
+  fullName: Fluxer.Net.GuildVerificationLevel
+  type: Enum
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/Settings/GuildVerificationLevel.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: GuildVerificationLevel
+    path: ../Fluxer.Net/Data/Guilds/Settings/GuildVerificationLevel.cs
+    startLine: 5
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Represents the verification level required for members to participate in a guild.
+  example: []
+  syntax:
+    content: public enum GuildVerificationLevel
+    content.vb: Public Enum GuildVerificationLevel
+- uid: Fluxer.Net.GuildVerificationLevel.None
+  commentId: F:Fluxer.Net.GuildVerificationLevel.None
+  id: None
+  parent: Fluxer.Net.GuildVerificationLevel
+  langs:
+  - csharp
+  - vb
+  name: None
+  nameWithType: GuildVerificationLevel.None
+  fullName: Fluxer.Net.GuildVerificationLevel.None
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/Settings/GuildVerificationLevel.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: None
+    path: ../Fluxer.Net/Data/Guilds/Settings/GuildVerificationLevel.cs
+    startLine: 10
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Unrestricted - no verification required.
+  example: []
+  syntax:
+    content: None = 0
+    return:
+      type: Fluxer.Net.GuildVerificationLevel
+- uid: Fluxer.Net.GuildVerificationLevel.Low
+  commentId: F:Fluxer.Net.GuildVerificationLevel.Low
+  id: Low
+  parent: Fluxer.Net.GuildVerificationLevel
+  langs:
+  - csharp
+  - vb
+  name: Low
+  nameWithType: GuildVerificationLevel.Low
+  fullName: Fluxer.Net.GuildVerificationLevel.Low
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/Settings/GuildVerificationLevel.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Low
+    path: ../Fluxer.Net/Data/Guilds/Settings/GuildVerificationLevel.cs
+    startLine: 15
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Low - members must have a verified email on their account.
+  example: []
+  syntax:
+    content: Low = 1
+    return:
+      type: Fluxer.Net.GuildVerificationLevel
+- uid: Fluxer.Net.GuildVerificationLevel.Medium
+  commentId: F:Fluxer.Net.GuildVerificationLevel.Medium
+  id: Medium
+  parent: Fluxer.Net.GuildVerificationLevel
+  langs:
+  - csharp
+  - vb
+  name: Medium
+  nameWithType: GuildVerificationLevel.Medium
+  fullName: Fluxer.Net.GuildVerificationLevel.Medium
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/Settings/GuildVerificationLevel.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Medium
+    path: ../Fluxer.Net/Data/Guilds/Settings/GuildVerificationLevel.cs
+    startLine: 20
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Medium - members must be registered on Fluxer for longer than 5 minutes.
+  example: []
+  syntax:
+    content: Medium = 2
+    return:
+      type: Fluxer.Net.GuildVerificationLevel
+- uid: Fluxer.Net.GuildVerificationLevel.High
+  commentId: F:Fluxer.Net.GuildVerificationLevel.High
+  id: High
+  parent: Fluxer.Net.GuildVerificationLevel
+  langs:
+  - csharp
+  - vb
+  name: High
+  nameWithType: GuildVerificationLevel.High
+  fullName: Fluxer.Net.GuildVerificationLevel.High
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/Settings/GuildVerificationLevel.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: High
+    path: ../Fluxer.Net/Data/Guilds/Settings/GuildVerificationLevel.cs
+    startLine: 25
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: High - members must be a member of the guild for longer than 10 minutes.
+  example: []
+  syntax:
+    content: High = 3
+    return:
+      type: Fluxer.Net.GuildVerificationLevel
+- uid: Fluxer.Net.GuildVerificationLevel.VeryHigh
+  commentId: F:Fluxer.Net.GuildVerificationLevel.VeryHigh
+  id: VeryHigh
+  parent: Fluxer.Net.GuildVerificationLevel
+  langs:
+  - csharp
+  - vb
+  name: VeryHigh
+  nameWithType: GuildVerificationLevel.VeryHigh
+  fullName: Fluxer.Net.GuildVerificationLevel.VeryHigh
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/Settings/GuildVerificationLevel.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: VeryHigh
+    path: ../Fluxer.Net/Data/Guilds/Settings/GuildVerificationLevel.cs
+    startLine: 30
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Very High - members must have a verified phone number.
+  example: []
+  syntax:
+    content: VeryHigh = 4
+    return:
+      type: Fluxer.Net.GuildVerificationLevel
+references:
+- uid: Fluxer.Net
+  commentId: N:Fluxer.Net
+  href: Fluxer.html
+  name: Fluxer.Net
+  nameWithType: Fluxer.Net
+  fullName: Fluxer.Net
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+- uid: Fluxer.Net.GuildVerificationLevel
+  commentId: T:Fluxer.Net.GuildVerificationLevel
+  parent: Fluxer.Net
+  href: Fluxer.Net.GuildVerificationLevel.html
+  name: GuildVerificationLevel
+  nameWithType: GuildVerificationLevel
+  fullName: Fluxer.Net.GuildVerificationLevel

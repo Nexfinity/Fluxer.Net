@@ -1,0 +1,1522 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.AttachmentJson
+  commentId: T:Fluxer.Net.AttachmentJson
+  id: AttachmentJson
+  parent: Fluxer.Net
+  children:
+  - Fluxer.Net.AttachmentJson.ContentHash
+  - Fluxer.Net.AttachmentJson.ContentType
+  - Fluxer.Net.AttachmentJson.Description
+  - Fluxer.Net.AttachmentJson.Duration
+  - Fluxer.Net.AttachmentJson.ExpiresAt
+  - Fluxer.Net.AttachmentJson.Filename
+  - Fluxer.Net.AttachmentJson.Flags
+  - Fluxer.Net.AttachmentJson.Height
+  - Fluxer.Net.AttachmentJson.Id
+  - Fluxer.Net.AttachmentJson.IsExpired
+  - Fluxer.Net.AttachmentJson.IsNsfw
+  - Fluxer.Net.AttachmentJson.Placeholder
+  - Fluxer.Net.AttachmentJson.ProxyUrl
+  - Fluxer.Net.AttachmentJson.Size
+  - Fluxer.Net.AttachmentJson.Title
+  - Fluxer.Net.AttachmentJson.Url
+  - Fluxer.Net.AttachmentJson.Waveform
+  - Fluxer.Net.AttachmentJson.Width
+  langs:
+  - csharp
+  - vb
+  name: AttachmentJson
+  nameWithType: AttachmentJson
+  fullName: Fluxer.Net.AttachmentJson
+  type: Class
+  source:
+    remote:
+      path: Fluxer.Net/Data/Messages/AttachmentJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: AttachmentJson
+    path: ../Fluxer.Net/Data/Messages/AttachmentJson.cs
+    startLine: 5
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Supports all classes in the .NET class hierarchy and provides low-level services to derived classes. This is the ultimate base class of all .NET classes; it is the root of the type hierarchy.
+  example: []
+  syntax:
+    content: 'public class AttachmentJson : IAttachment'
+    content.vb: Public Class AttachmentJson Implements IAttachment
+  inheritance:
+  - System.Object
+  derivedClasses:
+  - Fluxer.Net.Rest.AttachmentRequest
+  implements:
+  - Fluxer.Net.IAttachment
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: Fluxer.Net.AttachmentJson.Id
+  commentId: P:Fluxer.Net.AttachmentJson.Id
+  id: Id
+  parent: Fluxer.Net.AttachmentJson
+  langs:
+  - csharp
+  - vb
+  name: Id
+  nameWithType: AttachmentJson.Id
+  fullName: Fluxer.Net.AttachmentJson.Id
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Messages/AttachmentJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Id
+    path: ../Fluxer.Net/Data/Messages/AttachmentJson.cs
+    startLine: 8
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The unique identifier for this attachment.
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("id")]
+
+      public ulong Id { get; set; }
+    parameters: []
+    return:
+      type: System.UInt64
+    content.vb: >-
+      <JsonProperty("id")>
+
+      Public Property Id As ULong
+  overload: Fluxer.Net.AttachmentJson.Id*
+  implements:
+  - Fluxer.Net.IAttachment.Id
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: id
+- uid: Fluxer.Net.AttachmentJson.Filename
+  commentId: P:Fluxer.Net.AttachmentJson.Filename
+  id: Filename
+  parent: Fluxer.Net.AttachmentJson
+  langs:
+  - csharp
+  - vb
+  name: Filename
+  nameWithType: AttachmentJson.Filename
+  fullName: Fluxer.Net.AttachmentJson.Filename
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Messages/AttachmentJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Filename
+    path: ../Fluxer.Net/Data/Messages/AttachmentJson.cs
+    startLine: 12
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The name of the attached file.
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("filename")]
+
+      public string Filename { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <JsonProperty("filename")>
+
+      Public Property Filename As String
+  overload: Fluxer.Net.AttachmentJson.Filename*
+  implements:
+  - Fluxer.Net.IAttachment.Filename
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: filename
+- uid: Fluxer.Net.AttachmentJson.Size
+  commentId: P:Fluxer.Net.AttachmentJson.Size
+  id: Size
+  parent: Fluxer.Net.AttachmentJson
+  langs:
+  - csharp
+  - vb
+  name: Size
+  nameWithType: AttachmentJson.Size
+  fullName: Fluxer.Net.AttachmentJson.Size
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Messages/AttachmentJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Size
+    path: ../Fluxer.Net/Data/Messages/AttachmentJson.cs
+    startLine: 16
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The size of the attachment in bytes.
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("size")]
+
+      public ulong Size { get; set; }
+    parameters: []
+    return:
+      type: System.UInt64
+    content.vb: >-
+      <JsonProperty("size")>
+
+      Public Property Size As ULong
+  overload: Fluxer.Net.AttachmentJson.Size*
+  implements:
+  - Fluxer.Net.IAttachment.Size
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: size
+- uid: Fluxer.Net.AttachmentJson.Title
+  commentId: P:Fluxer.Net.AttachmentJson.Title
+  id: Title
+  parent: Fluxer.Net.AttachmentJson
+  langs:
+  - csharp
+  - vb
+  name: Title
+  nameWithType: AttachmentJson.Title
+  fullName: Fluxer.Net.AttachmentJson.Title
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Messages/AttachmentJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Title
+    path: ../Fluxer.Net/Data/Messages/AttachmentJson.cs
+    startLine: 20
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The title of the attachment.
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("title")]
+
+      public string? Title { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <JsonProperty("title")>
+
+      Public Property Title As String
+  overload: Fluxer.Net.AttachmentJson.Title*
+  implements:
+  - Fluxer.Net.IAttachment.Title
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: title
+- uid: Fluxer.Net.AttachmentJson.Description
+  commentId: P:Fluxer.Net.AttachmentJson.Description
+  id: Description
+  parent: Fluxer.Net.AttachmentJson
+  langs:
+  - csharp
+  - vb
+  name: Description
+  nameWithType: AttachmentJson.Description
+  fullName: Fluxer.Net.AttachmentJson.Description
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Messages/AttachmentJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Description
+    path: ../Fluxer.Net/Data/Messages/AttachmentJson.cs
+    startLine: 24
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The description of the attachment.
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("description")]
+
+      public string? Description { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <JsonProperty("description")>
+
+      Public Property Description As String
+  overload: Fluxer.Net.AttachmentJson.Description*
+  implements:
+  - Fluxer.Net.IAttachment.Description
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: description
+- uid: Fluxer.Net.AttachmentJson.Width
+  commentId: P:Fluxer.Net.AttachmentJson.Width
+  id: Width
+  parent: Fluxer.Net.AttachmentJson
+  langs:
+  - csharp
+  - vb
+  name: Width
+  nameWithType: AttachmentJson.Width
+  fullName: Fluxer.Net.AttachmentJson.Width
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Messages/AttachmentJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Width
+    path: ../Fluxer.Net/Data/Messages/AttachmentJson.cs
+    startLine: 28
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The width of the attachment in pixels (for images/videos).
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("width")]
+
+      public int? Width { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{System.Int32}
+    content.vb: >-
+      <JsonProperty("width")>
+
+      Public Property Width As Integer?
+  overload: Fluxer.Net.AttachmentJson.Width*
+  implements:
+  - Fluxer.Net.IAttachment.Width
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: width
+- uid: Fluxer.Net.AttachmentJson.Height
+  commentId: P:Fluxer.Net.AttachmentJson.Height
+  id: Height
+  parent: Fluxer.Net.AttachmentJson
+  langs:
+  - csharp
+  - vb
+  name: Height
+  nameWithType: AttachmentJson.Height
+  fullName: Fluxer.Net.AttachmentJson.Height
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Messages/AttachmentJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Height
+    path: ../Fluxer.Net/Data/Messages/AttachmentJson.cs
+    startLine: 32
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The height of the attachment in pixels (for images/videos).
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("height")]
+
+      public int? Height { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{System.Int32}
+    content.vb: >-
+      <JsonProperty("height")>
+
+      Public Property Height As Integer?
+  overload: Fluxer.Net.AttachmentJson.Height*
+  implements:
+  - Fluxer.Net.IAttachment.Height
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: height
+- uid: Fluxer.Net.AttachmentJson.ContentType
+  commentId: P:Fluxer.Net.AttachmentJson.ContentType
+  id: ContentType
+  parent: Fluxer.Net.AttachmentJson
+  langs:
+  - csharp
+  - vb
+  name: ContentType
+  nameWithType: AttachmentJson.ContentType
+  fullName: Fluxer.Net.AttachmentJson.ContentType
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Messages/AttachmentJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: ContentType
+    path: ../Fluxer.Net/Data/Messages/AttachmentJson.cs
+    startLine: 36
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The MIME type of the attachment.
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("content_type")]
+
+      public string ContentType { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <JsonProperty("content_type")>
+
+      Public Property ContentType As String
+  overload: Fluxer.Net.AttachmentJson.ContentType*
+  implements:
+  - Fluxer.Net.IAttachment.ContentType
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: content_type
+- uid: Fluxer.Net.AttachmentJson.ContentHash
+  commentId: P:Fluxer.Net.AttachmentJson.ContentHash
+  id: ContentHash
+  parent: Fluxer.Net.AttachmentJson
+  langs:
+  - csharp
+  - vb
+  name: ContentHash
+  nameWithType: AttachmentJson.ContentHash
+  fullName: Fluxer.Net.AttachmentJson.ContentHash
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Messages/AttachmentJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: ContentHash
+    path: ../Fluxer.Net/Data/Messages/AttachmentJson.cs
+    startLine: 40
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The hash of the attachment content.
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("content_hash")]
+
+      public string? ContentHash { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <JsonProperty("content_hash")>
+
+      Public Property ContentHash As String
+  overload: Fluxer.Net.AttachmentJson.ContentHash*
+  implements:
+  - Fluxer.Net.IAttachment.ContentHash
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: content_hash
+- uid: Fluxer.Net.AttachmentJson.Placeholder
+  commentId: P:Fluxer.Net.AttachmentJson.Placeholder
+  id: Placeholder
+  parent: Fluxer.Net.AttachmentJson
+  langs:
+  - csharp
+  - vb
+  name: Placeholder
+  nameWithType: AttachmentJson.Placeholder
+  fullName: Fluxer.Net.AttachmentJson.Placeholder
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Messages/AttachmentJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Placeholder
+    path: ../Fluxer.Net/Data/Messages/AttachmentJson.cs
+    startLine: 44
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The base64 encoded placeholder image for lazy loading.
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("placeholder")]
+
+      public string? Placeholder { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <JsonProperty("placeholder")>
+
+      Public Property Placeholder As String
+  overload: Fluxer.Net.AttachmentJson.Placeholder*
+  implements:
+  - Fluxer.Net.IAttachment.Placeholder
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: placeholder
+- uid: Fluxer.Net.AttachmentJson.Flags
+  commentId: P:Fluxer.Net.AttachmentJson.Flags
+  id: Flags
+  parent: Fluxer.Net.AttachmentJson
+  langs:
+  - csharp
+  - vb
+  name: Flags
+  nameWithType: AttachmentJson.Flags
+  fullName: Fluxer.Net.AttachmentJson.Flags
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Messages/AttachmentJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Flags
+    path: ../Fluxer.Net/Data/Messages/AttachmentJson.cs
+    startLine: 48
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Attachment flags.
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("flags")]
+
+      public AttachmentFlag Flags { get; set; }
+    parameters: []
+    return:
+      type: Fluxer.Net.AttachmentFlag
+    content.vb: >-
+      <JsonProperty("flags")>
+
+      Public Property Flags As AttachmentFlag
+  overload: Fluxer.Net.AttachmentJson.Flags*
+  implements:
+  - Fluxer.Net.IAttachment.Flags
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: flags
+- uid: Fluxer.Net.AttachmentJson.Duration
+  commentId: P:Fluxer.Net.AttachmentJson.Duration
+  id: Duration
+  parent: Fluxer.Net.AttachmentJson
+  langs:
+  - csharp
+  - vb
+  name: Duration
+  nameWithType: AttachmentJson.Duration
+  fullName: Fluxer.Net.AttachmentJson.Duration
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Messages/AttachmentJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Duration
+    path: ../Fluxer.Net/Data/Messages/AttachmentJson.cs
+    startLine: 52
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The duration of the media in seconds.
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("duration")]
+
+      public ulong? Duration { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{System.UInt64}
+    content.vb: >-
+      <JsonProperty("duration")>
+
+      Public Property Duration As ULong?
+  overload: Fluxer.Net.AttachmentJson.Duration*
+  implements:
+  - Fluxer.Net.IAttachment.Duration
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: duration
+- uid: Fluxer.Net.AttachmentJson.Url
+  commentId: P:Fluxer.Net.AttachmentJson.Url
+  id: Url
+  parent: Fluxer.Net.AttachmentJson
+  langs:
+  - csharp
+  - vb
+  name: Url
+  nameWithType: AttachmentJson.Url
+  fullName: Fluxer.Net.AttachmentJson.Url
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Messages/AttachmentJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Url
+    path: ../Fluxer.Net/Data/Messages/AttachmentJson.cs
+    startLine: 56
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The URL of the attachment.
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("url")]
+
+      public string? Url { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <JsonProperty("url")>
+
+      Public Property Url As String
+  overload: Fluxer.Net.AttachmentJson.Url*
+  implements:
+  - Fluxer.Net.IAttachment.Url
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: url
+- uid: Fluxer.Net.AttachmentJson.ProxyUrl
+  commentId: P:Fluxer.Net.AttachmentJson.ProxyUrl
+  id: ProxyUrl
+  parent: Fluxer.Net.AttachmentJson
+  langs:
+  - csharp
+  - vb
+  name: ProxyUrl
+  nameWithType: AttachmentJson.ProxyUrl
+  fullName: Fluxer.Net.AttachmentJson.ProxyUrl
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Messages/AttachmentJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: ProxyUrl
+    path: ../Fluxer.Net/Data/Messages/AttachmentJson.cs
+    startLine: 60
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The proxied URL of the attachment.
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("proxy_url")]
+
+      public string? ProxyUrl { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <JsonProperty("proxy_url")>
+
+      Public Property ProxyUrl As String
+  overload: Fluxer.Net.AttachmentJson.ProxyUrl*
+  implements:
+  - Fluxer.Net.IAttachment.ProxyUrl
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: proxy_url
+- uid: Fluxer.Net.AttachmentJson.IsNsfw
+  commentId: P:Fluxer.Net.AttachmentJson.IsNsfw
+  id: IsNsfw
+  parent: Fluxer.Net.AttachmentJson
+  langs:
+  - csharp
+  - vb
+  name: IsNsfw
+  nameWithType: AttachmentJson.IsNsfw
+  fullName: Fluxer.Net.AttachmentJson.IsNsfw
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Messages/AttachmentJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: IsNsfw
+    path: ../Fluxer.Net/Data/Messages/AttachmentJson.cs
+    startLine: 64
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Whether the attachment is flagged as NSFW.
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("nsfw")]
+
+      public bool? IsNsfw { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{System.Boolean}
+    content.vb: >-
+      <JsonProperty("nsfw")>
+
+      Public Property IsNsfw As Boolean?
+  overload: Fluxer.Net.AttachmentJson.IsNsfw*
+  implements:
+  - Fluxer.Net.IAttachment.IsNsfw
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: nsfw
+- uid: Fluxer.Net.AttachmentJson.Waveform
+  commentId: P:Fluxer.Net.AttachmentJson.Waveform
+  id: Waveform
+  parent: Fluxer.Net.AttachmentJson
+  langs:
+  - csharp
+  - vb
+  name: Waveform
+  nameWithType: AttachmentJson.Waveform
+  fullName: Fluxer.Net.AttachmentJson.Waveform
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Messages/AttachmentJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Waveform
+    path: ../Fluxer.Net/Data/Messages/AttachmentJson.cs
+    startLine: 68
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The base64 encoded audio waveform data.
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("waveform")]
+
+      public string? Waveform { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <JsonProperty("waveform")>
+
+      Public Property Waveform As String
+  overload: Fluxer.Net.AttachmentJson.Waveform*
+  implements:
+  - Fluxer.Net.IAttachment.Waveform
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: waveform
+- uid: Fluxer.Net.AttachmentJson.ExpiresAt
+  commentId: P:Fluxer.Net.AttachmentJson.ExpiresAt
+  id: ExpiresAt
+  parent: Fluxer.Net.AttachmentJson
+  langs:
+  - csharp
+  - vb
+  name: ExpiresAt
+  nameWithType: AttachmentJson.ExpiresAt
+  fullName: Fluxer.Net.AttachmentJson.ExpiresAt
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Messages/AttachmentJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: ExpiresAt
+    path: ../Fluxer.Net/Data/Messages/AttachmentJson.cs
+    startLine: 72
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The ISO 8601 timestamp when the attachment URL expires.
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("expires_at")]
+
+      public DateTime? ExpiresAt { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{System.DateTime}
+    content.vb: >-
+      <JsonProperty("expires_at")>
+
+      Public Property ExpiresAt As Date?
+  overload: Fluxer.Net.AttachmentJson.ExpiresAt*
+  implements:
+  - Fluxer.Net.IAttachment.ExpiresAt
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: expires_at
+- uid: Fluxer.Net.AttachmentJson.IsExpired
+  commentId: P:Fluxer.Net.AttachmentJson.IsExpired
+  id: IsExpired
+  parent: Fluxer.Net.AttachmentJson
+  langs:
+  - csharp
+  - vb
+  name: IsExpired
+  nameWithType: AttachmentJson.IsExpired
+  fullName: Fluxer.Net.AttachmentJson.IsExpired
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Messages/AttachmentJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: IsExpired
+    path: ../Fluxer.Net/Data/Messages/AttachmentJson.cs
+    startLine: 76
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Whether the attachment URL has expired.
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("expired")]
+
+      public bool? IsExpired { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{System.Boolean}
+    content.vb: >-
+      <JsonProperty("expired")>
+
+      Public Property IsExpired As Boolean?
+  overload: Fluxer.Net.AttachmentJson.IsExpired*
+  implements:
+  - Fluxer.Net.IAttachment.IsExpired
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: expired
+references:
+- uid: Fluxer.Net
+  commentId: N:Fluxer.Net
+  href: Fluxer.html
+  name: Fluxer.Net
+  nameWithType: Fluxer.Net
+  fullName: Fluxer.Net
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Fluxer.Net.IAttachment
+  commentId: T:Fluxer.Net.IAttachment
+  parent: Fluxer.Net
+  href: Fluxer.Net.IAttachment.html
+  name: IAttachment
+  nameWithType: IAttachment
+  fullName: Fluxer.Net.IAttachment
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Fluxer.Net.AttachmentJson.Id*
+  commentId: Overload:Fluxer.Net.AttachmentJson.Id
+  href: Fluxer.Net.AttachmentJson.html#Fluxer_Net_AttachmentJson_Id
+  name: Id
+  nameWithType: AttachmentJson.Id
+  fullName: Fluxer.Net.AttachmentJson.Id
+- uid: Fluxer.Net.IAttachment.Id
+  commentId: P:Fluxer.Net.IAttachment.Id
+  parent: Fluxer.Net.IAttachment
+  href: Fluxer.Net.IAttachment.html#Fluxer_Net_IAttachment_Id
+  name: Id
+  nameWithType: IAttachment.Id
+  fullName: Fluxer.Net.IAttachment.Id
+- uid: System.UInt64
+  commentId: T:System.UInt64
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.uint64
+  name: ulong
+  nameWithType: ulong
+  fullName: ulong
+  nameWithType.vb: ULong
+  fullName.vb: ULong
+  name.vb: ULong
+- uid: Fluxer.Net.AttachmentJson.Filename*
+  commentId: Overload:Fluxer.Net.AttachmentJson.Filename
+  href: Fluxer.Net.AttachmentJson.html#Fluxer_Net_AttachmentJson_Filename
+  name: Filename
+  nameWithType: AttachmentJson.Filename
+  fullName: Fluxer.Net.AttachmentJson.Filename
+- uid: Fluxer.Net.IAttachment.Filename
+  commentId: P:Fluxer.Net.IAttachment.Filename
+  parent: Fluxer.Net.IAttachment
+  href: Fluxer.Net.IAttachment.html#Fluxer_Net_IAttachment_Filename
+  name: Filename
+  nameWithType: IAttachment.Filename
+  fullName: Fluxer.Net.IAttachment.Filename
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: Fluxer.Net.AttachmentJson.Size*
+  commentId: Overload:Fluxer.Net.AttachmentJson.Size
+  href: Fluxer.Net.AttachmentJson.html#Fluxer_Net_AttachmentJson_Size
+  name: Size
+  nameWithType: AttachmentJson.Size
+  fullName: Fluxer.Net.AttachmentJson.Size
+- uid: Fluxer.Net.IAttachment.Size
+  commentId: P:Fluxer.Net.IAttachment.Size
+  parent: Fluxer.Net.IAttachment
+  href: Fluxer.Net.IAttachment.html#Fluxer_Net_IAttachment_Size
+  name: Size
+  nameWithType: IAttachment.Size
+  fullName: Fluxer.Net.IAttachment.Size
+- uid: Fluxer.Net.AttachmentJson.Title*
+  commentId: Overload:Fluxer.Net.AttachmentJson.Title
+  href: Fluxer.Net.AttachmentJson.html#Fluxer_Net_AttachmentJson_Title
+  name: Title
+  nameWithType: AttachmentJson.Title
+  fullName: Fluxer.Net.AttachmentJson.Title
+- uid: Fluxer.Net.IAttachment.Title
+  commentId: P:Fluxer.Net.IAttachment.Title
+  parent: Fluxer.Net.IAttachment
+  href: Fluxer.Net.IAttachment.html#Fluxer_Net_IAttachment_Title
+  name: Title
+  nameWithType: IAttachment.Title
+  fullName: Fluxer.Net.IAttachment.Title
+- uid: Fluxer.Net.AttachmentJson.Description*
+  commentId: Overload:Fluxer.Net.AttachmentJson.Description
+  href: Fluxer.Net.AttachmentJson.html#Fluxer_Net_AttachmentJson_Description
+  name: Description
+  nameWithType: AttachmentJson.Description
+  fullName: Fluxer.Net.AttachmentJson.Description
+- uid: Fluxer.Net.IAttachment.Description
+  commentId: P:Fluxer.Net.IAttachment.Description
+  parent: Fluxer.Net.IAttachment
+  href: Fluxer.Net.IAttachment.html#Fluxer_Net_IAttachment_Description
+  name: Description
+  nameWithType: IAttachment.Description
+  fullName: Fluxer.Net.IAttachment.Description
+- uid: Fluxer.Net.AttachmentJson.Width*
+  commentId: Overload:Fluxer.Net.AttachmentJson.Width
+  href: Fluxer.Net.AttachmentJson.html#Fluxer_Net_AttachmentJson_Width
+  name: Width
+  nameWithType: AttachmentJson.Width
+  fullName: Fluxer.Net.AttachmentJson.Width
+- uid: Fluxer.Net.IAttachment.Width
+  commentId: P:Fluxer.Net.IAttachment.Width
+  parent: Fluxer.Net.IAttachment
+  href: Fluxer.Net.IAttachment.html#Fluxer_Net_IAttachment_Width
+  name: Width
+  nameWithType: IAttachment.Width
+  fullName: Fluxer.Net.IAttachment.Width
+- uid: System.Nullable{System.Int32}
+  commentId: T:System.Nullable{System.Int32}
+  parent: System
+  definition: System.Nullable`1
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int?
+  nameWithType: int?
+  fullName: int?
+  nameWithType.vb: Integer?
+  fullName.vb: Integer?
+  name.vb: Integer?
+  spec.csharp:
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
+  spec.vb:
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: Fluxer.Net.AttachmentJson.Height*
+  commentId: Overload:Fluxer.Net.AttachmentJson.Height
+  href: Fluxer.Net.AttachmentJson.html#Fluxer_Net_AttachmentJson_Height
+  name: Height
+  nameWithType: AttachmentJson.Height
+  fullName: Fluxer.Net.AttachmentJson.Height
+- uid: Fluxer.Net.IAttachment.Height
+  commentId: P:Fluxer.Net.IAttachment.Height
+  parent: Fluxer.Net.IAttachment
+  href: Fluxer.Net.IAttachment.html#Fluxer_Net_IAttachment_Height
+  name: Height
+  nameWithType: IAttachment.Height
+  fullName: Fluxer.Net.IAttachment.Height
+- uid: Fluxer.Net.AttachmentJson.ContentType*
+  commentId: Overload:Fluxer.Net.AttachmentJson.ContentType
+  href: Fluxer.Net.AttachmentJson.html#Fluxer_Net_AttachmentJson_ContentType
+  name: ContentType
+  nameWithType: AttachmentJson.ContentType
+  fullName: Fluxer.Net.AttachmentJson.ContentType
+- uid: Fluxer.Net.IAttachment.ContentType
+  commentId: P:Fluxer.Net.IAttachment.ContentType
+  parent: Fluxer.Net.IAttachment
+  href: Fluxer.Net.IAttachment.html#Fluxer_Net_IAttachment_ContentType
+  name: ContentType
+  nameWithType: IAttachment.ContentType
+  fullName: Fluxer.Net.IAttachment.ContentType
+- uid: Fluxer.Net.AttachmentJson.ContentHash*
+  commentId: Overload:Fluxer.Net.AttachmentJson.ContentHash
+  href: Fluxer.Net.AttachmentJson.html#Fluxer_Net_AttachmentJson_ContentHash
+  name: ContentHash
+  nameWithType: AttachmentJson.ContentHash
+  fullName: Fluxer.Net.AttachmentJson.ContentHash
+- uid: Fluxer.Net.IAttachment.ContentHash
+  commentId: P:Fluxer.Net.IAttachment.ContentHash
+  parent: Fluxer.Net.IAttachment
+  href: Fluxer.Net.IAttachment.html#Fluxer_Net_IAttachment_ContentHash
+  name: ContentHash
+  nameWithType: IAttachment.ContentHash
+  fullName: Fluxer.Net.IAttachment.ContentHash
+- uid: Fluxer.Net.AttachmentJson.Placeholder*
+  commentId: Overload:Fluxer.Net.AttachmentJson.Placeholder
+  href: Fluxer.Net.AttachmentJson.html#Fluxer_Net_AttachmentJson_Placeholder
+  name: Placeholder
+  nameWithType: AttachmentJson.Placeholder
+  fullName: Fluxer.Net.AttachmentJson.Placeholder
+- uid: Fluxer.Net.IAttachment.Placeholder
+  commentId: P:Fluxer.Net.IAttachment.Placeholder
+  parent: Fluxer.Net.IAttachment
+  href: Fluxer.Net.IAttachment.html#Fluxer_Net_IAttachment_Placeholder
+  name: Placeholder
+  nameWithType: IAttachment.Placeholder
+  fullName: Fluxer.Net.IAttachment.Placeholder
+- uid: Fluxer.Net.AttachmentJson.Flags*
+  commentId: Overload:Fluxer.Net.AttachmentJson.Flags
+  href: Fluxer.Net.AttachmentJson.html#Fluxer_Net_AttachmentJson_Flags
+  name: Flags
+  nameWithType: AttachmentJson.Flags
+  fullName: Fluxer.Net.AttachmentJson.Flags
+- uid: Fluxer.Net.IAttachment.Flags
+  commentId: P:Fluxer.Net.IAttachment.Flags
+  parent: Fluxer.Net.IAttachment
+  href: Fluxer.Net.IAttachment.html#Fluxer_Net_IAttachment_Flags
+  name: Flags
+  nameWithType: IAttachment.Flags
+  fullName: Fluxer.Net.IAttachment.Flags
+- uid: Fluxer.Net.AttachmentFlag
+  commentId: T:Fluxer.Net.AttachmentFlag
+  parent: Fluxer.Net
+  href: Fluxer.Net.AttachmentFlag.html
+  name: AttachmentFlag
+  nameWithType: AttachmentFlag
+  fullName: Fluxer.Net.AttachmentFlag
+- uid: Fluxer.Net.AttachmentJson.Duration*
+  commentId: Overload:Fluxer.Net.AttachmentJson.Duration
+  href: Fluxer.Net.AttachmentJson.html#Fluxer_Net_AttachmentJson_Duration
+  name: Duration
+  nameWithType: AttachmentJson.Duration
+  fullName: Fluxer.Net.AttachmentJson.Duration
+- uid: Fluxer.Net.IAttachment.Duration
+  commentId: P:Fluxer.Net.IAttachment.Duration
+  parent: Fluxer.Net.IAttachment
+  href: Fluxer.Net.IAttachment.html#Fluxer_Net_IAttachment_Duration
+  name: Duration
+  nameWithType: IAttachment.Duration
+  fullName: Fluxer.Net.IAttachment.Duration
+- uid: System.Nullable{System.UInt64}
+  commentId: T:System.Nullable{System.UInt64}
+  parent: System
+  definition: System.Nullable`1
+  href: https://learn.microsoft.com/dotnet/api/system.uint64
+  name: ulong?
+  nameWithType: ulong?
+  fullName: ulong?
+  nameWithType.vb: ULong?
+  fullName.vb: ULong?
+  name.vb: ULong?
+  spec.csharp:
+  - uid: System.UInt64
+    name: ulong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: '?'
+  spec.vb:
+  - uid: System.UInt64
+    name: ULong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: '?'
+- uid: Fluxer.Net.AttachmentJson.Url*
+  commentId: Overload:Fluxer.Net.AttachmentJson.Url
+  href: Fluxer.Net.AttachmentJson.html#Fluxer_Net_AttachmentJson_Url
+  name: Url
+  nameWithType: AttachmentJson.Url
+  fullName: Fluxer.Net.AttachmentJson.Url
+- uid: Fluxer.Net.IAttachment.Url
+  commentId: P:Fluxer.Net.IAttachment.Url
+  parent: Fluxer.Net.IAttachment
+  href: Fluxer.Net.IAttachment.html#Fluxer_Net_IAttachment_Url
+  name: Url
+  nameWithType: IAttachment.Url
+  fullName: Fluxer.Net.IAttachment.Url
+- uid: Fluxer.Net.AttachmentJson.ProxyUrl*
+  commentId: Overload:Fluxer.Net.AttachmentJson.ProxyUrl
+  href: Fluxer.Net.AttachmentJson.html#Fluxer_Net_AttachmentJson_ProxyUrl
+  name: ProxyUrl
+  nameWithType: AttachmentJson.ProxyUrl
+  fullName: Fluxer.Net.AttachmentJson.ProxyUrl
+- uid: Fluxer.Net.IAttachment.ProxyUrl
+  commentId: P:Fluxer.Net.IAttachment.ProxyUrl
+  parent: Fluxer.Net.IAttachment
+  href: Fluxer.Net.IAttachment.html#Fluxer_Net_IAttachment_ProxyUrl
+  name: ProxyUrl
+  nameWithType: IAttachment.ProxyUrl
+  fullName: Fluxer.Net.IAttachment.ProxyUrl
+- uid: Fluxer.Net.AttachmentJson.IsNsfw*
+  commentId: Overload:Fluxer.Net.AttachmentJson.IsNsfw
+  href: Fluxer.Net.AttachmentJson.html#Fluxer_Net_AttachmentJson_IsNsfw
+  name: IsNsfw
+  nameWithType: AttachmentJson.IsNsfw
+  fullName: Fluxer.Net.AttachmentJson.IsNsfw
+- uid: Fluxer.Net.IAttachment.IsNsfw
+  commentId: P:Fluxer.Net.IAttachment.IsNsfw
+  parent: Fluxer.Net.IAttachment
+  href: Fluxer.Net.IAttachment.html#Fluxer_Net_IAttachment_IsNsfw
+  name: IsNsfw
+  nameWithType: IAttachment.IsNsfw
+  fullName: Fluxer.Net.IAttachment.IsNsfw
+- uid: System.Nullable{System.Boolean}
+  commentId: T:System.Nullable{System.Boolean}
+  parent: System
+  definition: System.Nullable`1
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool?
+  nameWithType: bool?
+  fullName: bool?
+  nameWithType.vb: Boolean?
+  fullName.vb: Boolean?
+  name.vb: Boolean?
+  spec.csharp:
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '?'
+  spec.vb:
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '?'
+- uid: Fluxer.Net.AttachmentJson.Waveform*
+  commentId: Overload:Fluxer.Net.AttachmentJson.Waveform
+  href: Fluxer.Net.AttachmentJson.html#Fluxer_Net_AttachmentJson_Waveform
+  name: Waveform
+  nameWithType: AttachmentJson.Waveform
+  fullName: Fluxer.Net.AttachmentJson.Waveform
+- uid: Fluxer.Net.IAttachment.Waveform
+  commentId: P:Fluxer.Net.IAttachment.Waveform
+  parent: Fluxer.Net.IAttachment
+  href: Fluxer.Net.IAttachment.html#Fluxer_Net_IAttachment_Waveform
+  name: Waveform
+  nameWithType: IAttachment.Waveform
+  fullName: Fluxer.Net.IAttachment.Waveform
+- uid: Fluxer.Net.AttachmentJson.ExpiresAt*
+  commentId: Overload:Fluxer.Net.AttachmentJson.ExpiresAt
+  href: Fluxer.Net.AttachmentJson.html#Fluxer_Net_AttachmentJson_ExpiresAt
+  name: ExpiresAt
+  nameWithType: AttachmentJson.ExpiresAt
+  fullName: Fluxer.Net.AttachmentJson.ExpiresAt
+- uid: Fluxer.Net.IAttachment.ExpiresAt
+  commentId: P:Fluxer.Net.IAttachment.ExpiresAt
+  parent: Fluxer.Net.IAttachment
+  href: Fluxer.Net.IAttachment.html#Fluxer_Net_IAttachment_ExpiresAt
+  name: ExpiresAt
+  nameWithType: IAttachment.ExpiresAt
+  fullName: Fluxer.Net.IAttachment.ExpiresAt
+- uid: System.Nullable{System.DateTime}
+  commentId: T:System.Nullable{System.DateTime}
+  parent: System
+  definition: System.Nullable`1
+  href: https://learn.microsoft.com/dotnet/api/system.datetime
+  name: DateTime?
+  nameWithType: DateTime?
+  fullName: System.DateTime?
+  nameWithType.vb: Date?
+  fullName.vb: Date?
+  name.vb: Date?
+  spec.csharp:
+  - uid: System.DateTime
+    name: DateTime
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.datetime
+  - name: '?'
+  spec.vb:
+  - uid: System.DateTime
+    name: Date
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.datetime
+  - name: '?'
+- uid: Fluxer.Net.AttachmentJson.IsExpired*
+  commentId: Overload:Fluxer.Net.AttachmentJson.IsExpired
+  href: Fluxer.Net.AttachmentJson.html#Fluxer_Net_AttachmentJson_IsExpired
+  name: IsExpired
+  nameWithType: AttachmentJson.IsExpired
+  fullName: Fluxer.Net.AttachmentJson.IsExpired
+- uid: Fluxer.Net.IAttachment.IsExpired
+  commentId: P:Fluxer.Net.IAttachment.IsExpired
+  parent: Fluxer.Net.IAttachment
+  href: Fluxer.Net.IAttachment.html#Fluxer_Net_IAttachment_IsExpired
+  name: IsExpired
+  nameWithType: IAttachment.IsExpired
+  fullName: Fluxer.Net.IAttachment.IsExpired

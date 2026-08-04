@@ -1,0 +1,436 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.ChannelPinJson
+  commentId: T:Fluxer.Net.ChannelPinJson
+  id: ChannelPinJson
+  parent: Fluxer.Net
+  children:
+  - Fluxer.Net.ChannelPinJson.Message
+  - Fluxer.Net.ChannelPinJson.PinnedAt
+  langs:
+  - csharp
+  - vb
+  name: ChannelPinJson
+  nameWithType: ChannelPinJson
+  fullName: Fluxer.Net.ChannelPinJson
+  type: Class
+  source:
+    remote:
+      path: Fluxer.Net/Data/Channels/ChannelPinJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: ChannelPinJson
+    path: ../Fluxer.Net/Data/Channels/ChannelPinJson.cs
+    startLine: 8
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Supports all classes in the .NET class hierarchy and provides low-level services to derived classes. This is the ultimate base class of all .NET classes; it is the root of the type hierarchy.
+  remarks: <a href="https://github.com/fluxerapp/fluxer/blob/848269a4d4df7349acfc861ff926b17fe4c4a548/packages/schema/src/domains/message/MessageResponseSchemas.tsx#L185">https://github.com/fluxerapp/fluxer/blob/848269a4d4df7349acfc861ff926b17fe4c4a548/packages/schema/src/domains/message/MessageResponseSchemas.tsx#L185</a>
+  example: []
+  syntax:
+    content: 'public class ChannelPinJson : IChannelPin'
+    content.vb: Public Class ChannelPinJson Implements IChannelPin
+  inheritance:
+  - System.Object
+  implements:
+  - Fluxer.Net.IChannelPin
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: Fluxer.Net.ChannelPinJson.Message
+  commentId: P:Fluxer.Net.ChannelPinJson.Message
+  id: Message
+  parent: Fluxer.Net.ChannelPinJson
+  langs:
+  - csharp
+  - vb
+  name: Message
+  nameWithType: ChannelPinJson.Message
+  fullName: Fluxer.Net.ChannelPinJson.Message
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Channels/ChannelPinJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Message
+    path: ../Fluxer.Net/Data/Channels/ChannelPinJson.cs
+    startLine: 11
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("message")]
+
+      public MessageJson Message { get; set; }
+    parameters: []
+    return:
+      type: Fluxer.Net.MessageJson
+    content.vb: >-
+      <JsonProperty("message")>
+
+      Public Property Message As MessageJson
+  overload: Fluxer.Net.ChannelPinJson.Message*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: message
+- uid: Fluxer.Net.ChannelPinJson.PinnedAt
+  commentId: P:Fluxer.Net.ChannelPinJson.PinnedAt
+  id: PinnedAt
+  parent: Fluxer.Net.ChannelPinJson
+  langs:
+  - csharp
+  - vb
+  name: PinnedAt
+  nameWithType: ChannelPinJson.PinnedAt
+  fullName: Fluxer.Net.ChannelPinJson.PinnedAt
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Channels/ChannelPinJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: PinnedAt
+    path: ../Fluxer.Net/Data/Channels/ChannelPinJson.cs
+    startLine: 15
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The ISO 8601 timestamp of when the message was pinned
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("pinned_at")]
+
+      public DateTime PinnedAt { get; set; }
+    parameters: []
+    return:
+      type: System.DateTime
+    content.vb: >-
+      <JsonProperty("pinned_at")>
+
+      Public Property PinnedAt As Date
+  overload: Fluxer.Net.ChannelPinJson.PinnedAt*
+  implements:
+  - Fluxer.Net.IChannelPin.PinnedAt
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: pinned_at
+references:
+- uid: Fluxer.Net
+  commentId: N:Fluxer.Net
+  href: Fluxer.html
+  name: Fluxer.Net
+  nameWithType: Fluxer.Net
+  fullName: Fluxer.Net
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Fluxer.Net.IChannelPin
+  commentId: T:Fluxer.Net.IChannelPin
+  parent: Fluxer.Net
+  href: Fluxer.Net.IChannelPin.html
+  name: IChannelPin
+  nameWithType: IChannelPin
+  fullName: Fluxer.Net.IChannelPin
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Fluxer.Net.ChannelPinJson.Message*
+  commentId: Overload:Fluxer.Net.ChannelPinJson.Message
+  href: Fluxer.Net.ChannelPinJson.html#Fluxer_Net_ChannelPinJson_Message
+  name: Message
+  nameWithType: ChannelPinJson.Message
+  fullName: Fluxer.Net.ChannelPinJson.Message
+- uid: Fluxer.Net.MessageJson
+  commentId: T:Fluxer.Net.MessageJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.MessageJson.html
+  name: MessageJson
+  nameWithType: MessageJson
+  fullName: Fluxer.Net.MessageJson
+- uid: Fluxer.Net.ChannelPinJson.PinnedAt*
+  commentId: Overload:Fluxer.Net.ChannelPinJson.PinnedAt
+  href: Fluxer.Net.ChannelPinJson.html#Fluxer_Net_ChannelPinJson_PinnedAt
+  name: PinnedAt
+  nameWithType: ChannelPinJson.PinnedAt
+  fullName: Fluxer.Net.ChannelPinJson.PinnedAt
+- uid: Fluxer.Net.IChannelPin.PinnedAt
+  commentId: P:Fluxer.Net.IChannelPin.PinnedAt
+  parent: Fluxer.Net.IChannelPin
+  href: Fluxer.Net.IChannelPin.html#Fluxer_Net_IChannelPin_PinnedAt
+  name: PinnedAt
+  nameWithType: IChannelPin.PinnedAt
+  fullName: Fluxer.Net.IChannelPin.PinnedAt
+- uid: System.DateTime
+  commentId: T:System.DateTime
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.datetime
+  name: DateTime
+  nameWithType: DateTime
+  fullName: System.DateTime
+  nameWithType.vb: Date
+  fullName.vb: Date
+  name.vb: Date

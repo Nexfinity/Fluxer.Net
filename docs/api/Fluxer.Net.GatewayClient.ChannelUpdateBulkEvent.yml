@@ -1,0 +1,110 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.GatewayClient.ChannelUpdateBulkEvent
+  commentId: T:Fluxer.Net.GatewayClient.ChannelUpdateBulkEvent
+  id: GatewayClient.ChannelUpdateBulkEvent
+  parent: Fluxer.Net
+  children: []
+  langs:
+  - csharp
+  - vb
+  name: GatewayClient.ChannelUpdateBulkEvent
+  nameWithType: GatewayClient.ChannelUpdateBulkEvent
+  fullName: Fluxer.Net.GatewayClient.ChannelUpdateBulkEvent
+  type: Delegate
+  source:
+    remote:
+      path: Fluxer.Net/Gateway/GatewayClient.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: ChannelUpdateBulkEvent
+    path: ../Fluxer.Net/Gateway/GatewayClient.cs
+    startLine: 2086
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Delegate for CHANNEL_UPDATE_BULK events when multiple channels are updated.
+  example: []
+  syntax:
+    content: public delegate void GatewayClient.ChannelUpdateBulkEvent(ChannelUpdateBulkGatewayData data)
+    parameters:
+    - id: data
+      type: Fluxer.Net.Gateway.Data.Channels.ChannelUpdateBulkGatewayData
+      description: The bulk channel update data.
+    content.vb: Public Delegate Sub GatewayClient.ChannelUpdateBulkEvent(data As ChannelUpdateBulkGatewayData)
+references:
+- uid: Fluxer.Net
+  commentId: N:Fluxer.Net
+  href: Fluxer.html
+  name: Fluxer.Net
+  nameWithType: Fluxer.Net
+  fullName: Fluxer.Net
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+- uid: Fluxer.Net.Gateway.Data.Channels.ChannelUpdateBulkGatewayData
+  commentId: T:Fluxer.Net.Gateway.Data.Channels.ChannelUpdateBulkGatewayData
+  parent: Fluxer.Net.Gateway.Data.Channels
+  href: Fluxer.Net.Gateway.Data.Channels.ChannelUpdateBulkGatewayData.html
+  name: ChannelUpdateBulkGatewayData
+  nameWithType: ChannelUpdateBulkGatewayData
+  fullName: Fluxer.Net.Gateway.Data.Channels.ChannelUpdateBulkGatewayData
+- uid: Fluxer.Net.Gateway.Data.Channels
+  commentId: N:Fluxer.Net.Gateway.Data.Channels
+  href: Fluxer.html
+  name: Fluxer.Net.Gateway.Data.Channels
+  nameWithType: Fluxer.Net.Gateway.Data.Channels
+  fullName: Fluxer.Net.Gateway.Data.Channels
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  - name: .
+  - uid: Fluxer.Net.Gateway
+    name: Gateway
+    href: Fluxer.Net.Gateway.html
+  - name: .
+  - uid: Fluxer.Net.Gateway.Data
+    name: Data
+    href: Fluxer.Net.Gateway.Data.html
+  - name: .
+  - uid: Fluxer.Net.Gateway.Data.Channels
+    name: Channels
+    href: Fluxer.Net.Gateway.Data.Channels.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  - name: .
+  - uid: Fluxer.Net.Gateway
+    name: Gateway
+    href: Fluxer.Net.Gateway.html
+  - name: .
+  - uid: Fluxer.Net.Gateway.Data
+    name: Data
+    href: Fluxer.Net.Gateway.Data.html
+  - name: .
+  - uid: Fluxer.Net.Gateway.Data.Channels
+    name: Channels
+    href: Fluxer.Net.Gateway.Data.Channels.html

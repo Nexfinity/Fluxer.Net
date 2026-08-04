@@ -1,0 +1,184 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.IActivityTimestamps
+  commentId: T:Fluxer.Net.IActivityTimestamps
+  id: IActivityTimestamps
+  parent: Fluxer.Net
+  children:
+  - Fluxer.Net.IActivityTimestamps.End
+  - Fluxer.Net.IActivityTimestamps.Start
+  langs:
+  - csharp
+  - vb
+  name: IActivityTimestamps
+  nameWithType: IActivityTimestamps
+  fullName: Fluxer.Net.IActivityTimestamps
+  type: Interface
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/IActivity.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: IActivityTimestamps
+    path: ../Fluxer.Net/Data/Users/IActivity.cs
+    startLine: 21
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: public interface IActivityTimestamps
+    content.vb: Public Interface IActivityTimestamps
+  derivedClasses:
+  - Fluxer.Net.ActivityTimestamps
+  - Fluxer.Net.ActivityTimestampsJson
+- uid: Fluxer.Net.IActivityTimestamps.Start
+  commentId: P:Fluxer.Net.IActivityTimestamps.Start
+  id: Start
+  parent: Fluxer.Net.IActivityTimestamps
+  langs:
+  - csharp
+  - vb
+  name: Start
+  nameWithType: IActivityTimestamps.Start
+  fullName: Fluxer.Net.IActivityTimestamps.Start
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/IActivity.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Start
+    path: ../Fluxer.Net/Data/Users/IActivity.cs
+    startLine: 23
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: long? Start { get; }
+    parameters: []
+    return:
+      type: System.Nullable{System.Int64}
+    content.vb: ReadOnly Property Start As Long?
+  overload: Fluxer.Net.IActivityTimestamps.Start*
+- uid: Fluxer.Net.IActivityTimestamps.End
+  commentId: P:Fluxer.Net.IActivityTimestamps.End
+  id: End
+  parent: Fluxer.Net.IActivityTimestamps
+  langs:
+  - csharp
+  - vb
+  name: End
+  nameWithType: IActivityTimestamps.End
+  fullName: Fluxer.Net.IActivityTimestamps.End
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/IActivity.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: End
+    path: ../Fluxer.Net/Data/Users/IActivity.cs
+    startLine: 25
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: long? End { get; }
+    parameters: []
+    return:
+      type: System.Nullable{System.Int64}
+    content.vb: ReadOnly Property [End] As Long?
+  overload: Fluxer.Net.IActivityTimestamps.End*
+references:
+- uid: Fluxer.Net
+  commentId: N:Fluxer.Net
+  href: Fluxer.html
+  name: Fluxer.Net
+  nameWithType: Fluxer.Net
+  fullName: Fluxer.Net
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+- uid: Fluxer.Net.IActivityTimestamps.Start*
+  commentId: Overload:Fluxer.Net.IActivityTimestamps.Start
+  href: Fluxer.Net.IActivityTimestamps.html#Fluxer_Net_IActivityTimestamps_Start
+  name: Start
+  nameWithType: IActivityTimestamps.Start
+  fullName: Fluxer.Net.IActivityTimestamps.Start
+- uid: System.Nullable{System.Int64}
+  commentId: T:System.Nullable{System.Int64}
+  parent: System
+  definition: System.Nullable`1
+  href: https://learn.microsoft.com/dotnet/api/system.int64
+  name: long?
+  nameWithType: long?
+  fullName: long?
+  nameWithType.vb: Long?
+  fullName.vb: Long?
+  name.vb: Long?
+  spec.csharp:
+  - uid: System.Int64
+    name: long
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int64
+  - name: '?'
+  spec.vb:
+  - uid: System.Int64
+    name: Long
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int64
+  - name: '?'
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Fluxer.Net.IActivityTimestamps.End*
+  commentId: Overload:Fluxer.Net.IActivityTimestamps.End
+  href: Fluxer.Net.IActivityTimestamps.html#Fluxer_Net_IActivityTimestamps_End
+  name: End
+  nameWithType: IActivityTimestamps.End
+  fullName: Fluxer.Net.IActivityTimestamps.End

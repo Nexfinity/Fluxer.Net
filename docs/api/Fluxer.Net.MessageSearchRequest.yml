@@ -1,0 +1,2200 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.MessageSearchRequest
+  commentId: T:Fluxer.Net.MessageSearchRequest
+  id: MessageSearchRequest
+  parent: Fluxer.Net
+  children:
+  - Fluxer.Net.MessageSearchRequest.AttachmentExtensions
+  - Fluxer.Net.MessageSearchRequest.AttachmentFilenames
+  - Fluxer.Net.MessageSearchRequest.AuthorId
+  - Fluxer.Net.MessageSearchRequest.AuthorTypes
+  - Fluxer.Net.MessageSearchRequest.ChannelIds
+  - Fluxer.Net.MessageSearchRequest.Content
+  - Fluxer.Net.MessageSearchRequest.Contents
+  - Fluxer.Net.MessageSearchRequest.EmbedProvider
+  - Fluxer.Net.MessageSearchRequest.EmbedType
+  - Fluxer.Net.MessageSearchRequest.ExactPhrases
+  - Fluxer.Net.MessageSearchRequest.ExcludeAttachmentExtensions
+  - Fluxer.Net.MessageSearchRequest.ExcludeAttachmentFilenames
+  - Fluxer.Net.MessageSearchRequest.ExcludeAuthorId
+  - Fluxer.Net.MessageSearchRequest.ExcludeAuthorTypes
+  - Fluxer.Net.MessageSearchRequest.ExcludeChannelIds
+  - Fluxer.Net.MessageSearchRequest.ExcludeContentType
+  - Fluxer.Net.MessageSearchRequest.ExcludeEmbedProvider
+  - Fluxer.Net.MessageSearchRequest.ExcludeEmbedType
+  - Fluxer.Net.MessageSearchRequest.ExcludeLinkHostnames
+  - Fluxer.Net.MessageSearchRequest.ExcludeMentionUserIds
+  - Fluxer.Net.MessageSearchRequest.HasContentType
+  - Fluxer.Net.MessageSearchRequest.HitsPerPage
+  - Fluxer.Net.MessageSearchRequest.IncludeNsfw
+  - Fluxer.Net.MessageSearchRequest.LinkHostnames
+  - Fluxer.Net.MessageSearchRequest.MaxId
+  - Fluxer.Net.MessageSearchRequest.MentionEveryone
+  - Fluxer.Net.MessageSearchRequest.MentionUserIds
+  - Fluxer.Net.MessageSearchRequest.MessageSearchScope
+  - Fluxer.Net.MessageSearchRequest.MinId
+  - Fluxer.Net.MessageSearchRequest.Page
+  - Fluxer.Net.MessageSearchRequest.Pinned
+  - Fluxer.Net.MessageSearchRequest.SortBy
+  - Fluxer.Net.MessageSearchRequest.SortOrder
+  langs:
+  - csharp
+  - vb
+  name: MessageSearchRequest
+  nameWithType: MessageSearchRequest
+  fullName: Fluxer.Net.MessageSearchRequest
+  type: Class
+  source:
+    remote:
+      path: Fluxer.Net/Rest/Requests/Messages/MessageSearchRequest.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: MessageSearchRequest
+    path: ../Fluxer.Net/Rest/Requests/Messages/MessageSearchRequest.cs
+    startLine: 8
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  remarks: <a href="https://github.com/fluxerapp/fluxer/blob/d843d6f3f8a0bd850673ba55036354093977109f/packages/schema/src/domains/message/MessageRequestSchemas.tsx#L181">https://github.com/fluxerapp/fluxer/blob/d843d6f3f8a0bd850673ba55036354093977109f/packages/schema/src/domains/message/MessageRequestSchemas.tsx#L181</a>
+  example: []
+  syntax:
+    content: public class MessageSearchRequest
+    content.vb: Public Class MessageSearchRequest
+  inheritance:
+  - System.Object
+  derivedClasses:
+  - Fluxer.Net.GlobalSearchMessagesRequest
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: Fluxer.Net.MessageSearchRequest.HitsPerPage
+  commentId: P:Fluxer.Net.MessageSearchRequest.HitsPerPage
+  id: HitsPerPage
+  parent: Fluxer.Net.MessageSearchRequest
+  langs:
+  - csharp
+  - vb
+  name: HitsPerPage
+  nameWithType: MessageSearchRequest.HitsPerPage
+  fullName: Fluxer.Net.MessageSearchRequest.HitsPerPage
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Rest/Requests/Messages/MessageSearchRequest.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: HitsPerPage
+    path: ../Fluxer.Net/Rest/Requests/Messages/MessageSearchRequest.cs
+    startLine: 13
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Number of results per page (1-25)
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("hits_per_page")]
+
+      public int HitsPerPage { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: >-
+      <JsonProperty("hits_per_page")>
+
+      Public Property HitsPerPage As Integer
+  overload: Fluxer.Net.MessageSearchRequest.HitsPerPage*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: hits_per_page
+- uid: Fluxer.Net.MessageSearchRequest.Page
+  commentId: P:Fluxer.Net.MessageSearchRequest.Page
+  id: Page
+  parent: Fluxer.Net.MessageSearchRequest
+  langs:
+  - csharp
+  - vb
+  name: Page
+  nameWithType: MessageSearchRequest.Page
+  fullName: Fluxer.Net.MessageSearchRequest.Page
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Rest/Requests/Messages/MessageSearchRequest.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Page
+    path: ../Fluxer.Net/Rest/Requests/Messages/MessageSearchRequest.cs
+    startLine: 19
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Page number for pagination
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("page")]
+
+      public int Page { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: >-
+      <JsonProperty("page")>
+
+      Public Property Page As Integer
+  overload: Fluxer.Net.MessageSearchRequest.Page*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: page
+- uid: Fluxer.Net.MessageSearchRequest.MaxId
+  commentId: P:Fluxer.Net.MessageSearchRequest.MaxId
+  id: MaxId
+  parent: Fluxer.Net.MessageSearchRequest
+  langs:
+  - csharp
+  - vb
+  name: MaxId
+  nameWithType: MessageSearchRequest.MaxId
+  fullName: Fluxer.Net.MessageSearchRequest.MaxId
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Rest/Requests/Messages/MessageSearchRequest.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: MaxId
+    path: ../Fluxer.Net/Rest/Requests/Messages/MessageSearchRequest.cs
+    startLine: 25
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Maximum message ID to include in results
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("max_id")]
+
+      public ulong? MaxId { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{System.UInt64}
+    content.vb: >-
+      <JsonProperty("max_id")>
+
+      Public Property MaxId As ULong?
+  overload: Fluxer.Net.MessageSearchRequest.MaxId*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: max_id
+- uid: Fluxer.Net.MessageSearchRequest.MinId
+  commentId: P:Fluxer.Net.MessageSearchRequest.MinId
+  id: MinId
+  parent: Fluxer.Net.MessageSearchRequest
+  langs:
+  - csharp
+  - vb
+  name: MinId
+  nameWithType: MessageSearchRequest.MinId
+  fullName: Fluxer.Net.MessageSearchRequest.MinId
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Rest/Requests/Messages/MessageSearchRequest.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: MinId
+    path: ../Fluxer.Net/Rest/Requests/Messages/MessageSearchRequest.cs
+    startLine: 31
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Minimum message ID to include in results
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("min_id")]
+
+      public ulong? MinId { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{System.UInt64}
+    content.vb: >-
+      <JsonProperty("min_id")>
+
+      Public Property MinId As ULong?
+  overload: Fluxer.Net.MessageSearchRequest.MinId*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: min_id
+- uid: Fluxer.Net.MessageSearchRequest.Content
+  commentId: P:Fluxer.Net.MessageSearchRequest.Content
+  id: Content
+  parent: Fluxer.Net.MessageSearchRequest
+  langs:
+  - csharp
+  - vb
+  name: Content
+  nameWithType: MessageSearchRequest.Content
+  fullName: Fluxer.Net.MessageSearchRequest.Content
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Rest/Requests/Messages/MessageSearchRequest.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Content
+    path: ../Fluxer.Net/Rest/Requests/Messages/MessageSearchRequest.cs
+    startLine: 37
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Text content to search for
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("content")]
+
+      public string? Content { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <JsonProperty("content")>
+
+      Public Property Content As String
+  overload: Fluxer.Net.MessageSearchRequest.Content*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: content
+- uid: Fluxer.Net.MessageSearchRequest.Contents
+  commentId: P:Fluxer.Net.MessageSearchRequest.Contents
+  id: Contents
+  parent: Fluxer.Net.MessageSearchRequest
+  langs:
+  - csharp
+  - vb
+  name: Contents
+  nameWithType: MessageSearchRequest.Contents
+  fullName: Fluxer.Net.MessageSearchRequest.Contents
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Rest/Requests/Messages/MessageSearchRequest.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Contents
+    path: ../Fluxer.Net/Rest/Requests/Messages/MessageSearchRequest.cs
+    startLine: 43
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Multiple content queries to search for
+  example: []
+  syntax:
+    content: >-
+      [MaxLength(100)]
+
+      [JsonProperty("Multiple content queries to search for")]
+
+      public HashSet<string>? Contents { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.HashSet{System.String}
+    content.vb: >-
+      <MaxLength(100)>
+
+      <JsonProperty("Multiple content queries to search for")>
+
+      Public Property Contents As HashSet(Of String)
+  overload: Fluxer.Net.MessageSearchRequest.Contents*
+  attributes:
+  - type: System.ComponentModel.DataAnnotations.MaxLengthAttribute
+    ctor: System.ComponentModel.DataAnnotations.MaxLengthAttribute.#ctor(System.Int32)
+    arguments:
+    - type: System.Int32
+      value: 100
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: Multiple content queries to search for
+- uid: Fluxer.Net.MessageSearchRequest.ExactPhrases
+  commentId: P:Fluxer.Net.MessageSearchRequest.ExactPhrases
+  id: ExactPhrases
+  parent: Fluxer.Net.MessageSearchRequest
+  langs:
+  - csharp
+  - vb
+  name: ExactPhrases
+  nameWithType: MessageSearchRequest.ExactPhrases
+  fullName: Fluxer.Net.MessageSearchRequest.ExactPhrases
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Rest/Requests/Messages/MessageSearchRequest.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: ExactPhrases
+    path: ../Fluxer.Net/Rest/Requests/Messages/MessageSearchRequest.cs
+    startLine: 50
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Exact phrases that must appear contiguously in message content
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("exact_phrases")]
+
+      public HashSet<string>? ExactPhrases { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.HashSet{System.String}
+    content.vb: >-
+      <JsonProperty("exact_phrases")>
+
+      Public Property ExactPhrases As HashSet(Of String)
+  overload: Fluxer.Net.MessageSearchRequest.ExactPhrases*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: exact_phrases
+- uid: Fluxer.Net.MessageSearchRequest.ChannelIds
+  commentId: P:Fluxer.Net.MessageSearchRequest.ChannelIds
+  id: ChannelIds
+  parent: Fluxer.Net.MessageSearchRequest
+  langs:
+  - csharp
+  - vb
+  name: ChannelIds
+  nameWithType: MessageSearchRequest.ChannelIds
+  fullName: Fluxer.Net.MessageSearchRequest.ChannelIds
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Rest/Requests/Messages/MessageSearchRequest.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: ChannelIds
+    path: ../Fluxer.Net/Rest/Requests/Messages/MessageSearchRequest.cs
+    startLine: 56
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Channel IDs to search in
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("channel_id")]
+
+      public HashSet<ulong>? ChannelIds { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.HashSet{System.UInt64}
+    content.vb: >-
+      <JsonProperty("channel_id")>
+
+      Public Property ChannelIds As HashSet(Of ULong)
+  overload: Fluxer.Net.MessageSearchRequest.ChannelIds*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: channel_id
+- uid: Fluxer.Net.MessageSearchRequest.ExcludeChannelIds
+  commentId: P:Fluxer.Net.MessageSearchRequest.ExcludeChannelIds
+  id: ExcludeChannelIds
+  parent: Fluxer.Net.MessageSearchRequest
+  langs:
+  - csharp
+  - vb
+  name: ExcludeChannelIds
+  nameWithType: MessageSearchRequest.ExcludeChannelIds
+  fullName: Fluxer.Net.MessageSearchRequest.ExcludeChannelIds
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Rest/Requests/Messages/MessageSearchRequest.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: ExcludeChannelIds
+    path: ../Fluxer.Net/Rest/Requests/Messages/MessageSearchRequest.cs
+    startLine: 62
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Channel IDs to exclude from search
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("exclude_channel_id")]
+
+      public HashSet<ulong>? ExcludeChannelIds { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.HashSet{System.UInt64}
+    content.vb: >-
+      <JsonProperty("exclude_channel_id")>
+
+      Public Property ExcludeChannelIds As HashSet(Of ULong)
+  overload: Fluxer.Net.MessageSearchRequest.ExcludeChannelIds*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: exclude_channel_id
+- uid: Fluxer.Net.MessageSearchRequest.AuthorTypes
+  commentId: P:Fluxer.Net.MessageSearchRequest.AuthorTypes
+  id: AuthorTypes
+  parent: Fluxer.Net.MessageSearchRequest
+  langs:
+  - csharp
+  - vb
+  name: AuthorTypes
+  nameWithType: MessageSearchRequest.AuthorTypes
+  fullName: Fluxer.Net.MessageSearchRequest.AuthorTypes
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Rest/Requests/Messages/MessageSearchRequest.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: AuthorTypes
+    path: ../Fluxer.Net/Rest/Requests/Messages/MessageSearchRequest.cs
+    startLine: 71
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Author types to filter by
+  remarks: 'values: <a href="https://github.com/fluxerapp/fluxer/blob/d843d6f3f8a0bd850673ba55036354093977109f/packages/schema/src/domains/message/MessageRequestSchemas.tsx#L85">https://github.com/fluxerapp/fluxer/blob/d843d6f3f8a0bd850673ba55036354093977109f/packages/schema/src/domains/message/MessageRequestSchemas.tsx#L85</a>'
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("author_type")]
+
+      public HashSet<string>? AuthorTypes { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.HashSet{System.String}
+    content.vb: >-
+      <JsonProperty("author_type")>
+
+      Public Property AuthorTypes As HashSet(Of String)
+  overload: Fluxer.Net.MessageSearchRequest.AuthorTypes*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: author_type
+- uid: Fluxer.Net.MessageSearchRequest.ExcludeAuthorTypes
+  commentId: P:Fluxer.Net.MessageSearchRequest.ExcludeAuthorTypes
+  id: ExcludeAuthorTypes
+  parent: Fluxer.Net.MessageSearchRequest
+  langs:
+  - csharp
+  - vb
+  name: ExcludeAuthorTypes
+  nameWithType: MessageSearchRequest.ExcludeAuthorTypes
+  fullName: Fluxer.Net.MessageSearchRequest.ExcludeAuthorTypes
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Rest/Requests/Messages/MessageSearchRequest.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: ExcludeAuthorTypes
+    path: ../Fluxer.Net/Rest/Requests/Messages/MessageSearchRequest.cs
+    startLine: 80
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Author types to exclude
+  remarks: 'values: <a href="https://github.com/fluxerapp/fluxer/blob/d843d6f3f8a0bd850673ba55036354093977109f/packages/schema/src/domains/message/MessageRequestSchemas.tsx#L85">https://github.com/fluxerapp/fluxer/blob/d843d6f3f8a0bd850673ba55036354093977109f/packages/schema/src/domains/message/MessageRequestSchemas.tsx#L85</a>'
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("exclude_author_type")]
+
+      public HashSet<string>? ExcludeAuthorTypes { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.HashSet{System.String}
+    content.vb: >-
+      <JsonProperty("exclude_author_type")>
+
+      Public Property ExcludeAuthorTypes As HashSet(Of String)
+  overload: Fluxer.Net.MessageSearchRequest.ExcludeAuthorTypes*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: exclude_author_type
+- uid: Fluxer.Net.MessageSearchRequest.AuthorId
+  commentId: P:Fluxer.Net.MessageSearchRequest.AuthorId
+  id: AuthorId
+  parent: Fluxer.Net.MessageSearchRequest
+  langs:
+  - csharp
+  - vb
+  name: AuthorId
+  nameWithType: MessageSearchRequest.AuthorId
+  fullName: Fluxer.Net.MessageSearchRequest.AuthorId
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Rest/Requests/Messages/MessageSearchRequest.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: AuthorId
+    path: ../Fluxer.Net/Rest/Requests/Messages/MessageSearchRequest.cs
+    startLine: 86
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Author user IDs to filter by
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("author_id")]
+
+      public HashSet<ulong>? AuthorId { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.HashSet{System.UInt64}
+    content.vb: >-
+      <JsonProperty("author_id")>
+
+      Public Property AuthorId As HashSet(Of ULong)
+  overload: Fluxer.Net.MessageSearchRequest.AuthorId*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: author_id
+- uid: Fluxer.Net.MessageSearchRequest.ExcludeAuthorId
+  commentId: P:Fluxer.Net.MessageSearchRequest.ExcludeAuthorId
+  id: ExcludeAuthorId
+  parent: Fluxer.Net.MessageSearchRequest
+  langs:
+  - csharp
+  - vb
+  name: ExcludeAuthorId
+  nameWithType: MessageSearchRequest.ExcludeAuthorId
+  fullName: Fluxer.Net.MessageSearchRequest.ExcludeAuthorId
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Rest/Requests/Messages/MessageSearchRequest.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: ExcludeAuthorId
+    path: ../Fluxer.Net/Rest/Requests/Messages/MessageSearchRequest.cs
+    startLine: 92
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Author user IDs to exclude
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("exclude_author_id")]
+
+      public HashSet<ulong>? ExcludeAuthorId { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.HashSet{System.UInt64}
+    content.vb: >-
+      <JsonProperty("exclude_author_id")>
+
+      Public Property ExcludeAuthorId As HashSet(Of ULong)
+  overload: Fluxer.Net.MessageSearchRequest.ExcludeAuthorId*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: exclude_author_id
+- uid: Fluxer.Net.MessageSearchRequest.MentionUserIds
+  commentId: P:Fluxer.Net.MessageSearchRequest.MentionUserIds
+  id: MentionUserIds
+  parent: Fluxer.Net.MessageSearchRequest
+  langs:
+  - csharp
+  - vb
+  name: MentionUserIds
+  nameWithType: MessageSearchRequest.MentionUserIds
+  fullName: Fluxer.Net.MessageSearchRequest.MentionUserIds
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Rest/Requests/Messages/MessageSearchRequest.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: MentionUserIds
+    path: ../Fluxer.Net/Rest/Requests/Messages/MessageSearchRequest.cs
+    startLine: 98
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: User IDs that must be mentioned
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("mentions")]
+
+      public HashSet<ulong>? MentionUserIds { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.HashSet{System.UInt64}
+    content.vb: >-
+      <JsonProperty("mentions")>
+
+      Public Property MentionUserIds As HashSet(Of ULong)
+  overload: Fluxer.Net.MessageSearchRequest.MentionUserIds*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: mentions
+- uid: Fluxer.Net.MessageSearchRequest.ExcludeMentionUserIds
+  commentId: P:Fluxer.Net.MessageSearchRequest.ExcludeMentionUserIds
+  id: ExcludeMentionUserIds
+  parent: Fluxer.Net.MessageSearchRequest
+  langs:
+  - csharp
+  - vb
+  name: ExcludeMentionUserIds
+  nameWithType: MessageSearchRequest.ExcludeMentionUserIds
+  fullName: Fluxer.Net.MessageSearchRequest.ExcludeMentionUserIds
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Rest/Requests/Messages/MessageSearchRequest.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: ExcludeMentionUserIds
+    path: ../Fluxer.Net/Rest/Requests/Messages/MessageSearchRequest.cs
+    startLine: 104
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: User IDs that must not be mentioned
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("exclude_mentions")]
+
+      public HashSet<ulong>? ExcludeMentionUserIds { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.HashSet{System.UInt64}
+    content.vb: >-
+      <JsonProperty("exclude_mentions")>
+
+      Public Property ExcludeMentionUserIds As HashSet(Of ULong)
+  overload: Fluxer.Net.MessageSearchRequest.ExcludeMentionUserIds*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: exclude_mentions
+- uid: Fluxer.Net.MessageSearchRequest.MentionEveryone
+  commentId: P:Fluxer.Net.MessageSearchRequest.MentionEveryone
+  id: MentionEveryone
+  parent: Fluxer.Net.MessageSearchRequest
+  langs:
+  - csharp
+  - vb
+  name: MentionEveryone
+  nameWithType: MessageSearchRequest.MentionEveryone
+  fullName: Fluxer.Net.MessageSearchRequest.MentionEveryone
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Rest/Requests/Messages/MessageSearchRequest.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: MentionEveryone
+    path: ../Fluxer.Net/Rest/Requests/Messages/MessageSearchRequest.cs
+    startLine: 110
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Filter by whether message mentions everyone
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("mention_everyone")]
+
+      public bool? MentionEveryone { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{System.Boolean}
+    content.vb: >-
+      <JsonProperty("mention_everyone")>
+
+      Public Property MentionEveryone As Boolean?
+  overload: Fluxer.Net.MessageSearchRequest.MentionEveryone*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: mention_everyone
+- uid: Fluxer.Net.MessageSearchRequest.Pinned
+  commentId: P:Fluxer.Net.MessageSearchRequest.Pinned
+  id: Pinned
+  parent: Fluxer.Net.MessageSearchRequest
+  langs:
+  - csharp
+  - vb
+  name: Pinned
+  nameWithType: MessageSearchRequest.Pinned
+  fullName: Fluxer.Net.MessageSearchRequest.Pinned
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Rest/Requests/Messages/MessageSearchRequest.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Pinned
+    path: ../Fluxer.Net/Rest/Requests/Messages/MessageSearchRequest.cs
+    startLine: 116
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Filter by pinned status
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("pinned")]
+
+      public bool? Pinned { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{System.Boolean}
+    content.vb: >-
+      <JsonProperty("pinned")>
+
+      Public Property Pinned As Boolean?
+  overload: Fluxer.Net.MessageSearchRequest.Pinned*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: pinned
+- uid: Fluxer.Net.MessageSearchRequest.HasContentType
+  commentId: P:Fluxer.Net.MessageSearchRequest.HasContentType
+  id: HasContentType
+  parent: Fluxer.Net.MessageSearchRequest
+  langs:
+  - csharp
+  - vb
+  name: HasContentType
+  nameWithType: MessageSearchRequest.HasContentType
+  fullName: Fluxer.Net.MessageSearchRequest.HasContentType
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Rest/Requests/Messages/MessageSearchRequest.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: HasContentType
+    path: ../Fluxer.Net/Rest/Requests/Messages/MessageSearchRequest.cs
+    startLine: 125
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Content types the message must have
+  remarks: 'Values: <a href="https://github.com/fluxerapp/fluxer/blob/d843d6f3f8a0bd850673ba55036354093977109f/packages/schema/src/domains/message/MessageRequestSchemas.tsx#L99">https://github.com/fluxerapp/fluxer/blob/d843d6f3f8a0bd850673ba55036354093977109f/packages/schema/src/domains/message/MessageRequestSchemas.tsx#L99</a>'
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("has")]
+
+      public HashSet<string>? HasContentType { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.HashSet{System.String}
+    content.vb: >-
+      <JsonProperty("has")>
+
+      Public Property HasContentType As HashSet(Of String)
+  overload: Fluxer.Net.MessageSearchRequest.HasContentType*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: has
+- uid: Fluxer.Net.MessageSearchRequest.ExcludeContentType
+  commentId: P:Fluxer.Net.MessageSearchRequest.ExcludeContentType
+  id: ExcludeContentType
+  parent: Fluxer.Net.MessageSearchRequest
+  langs:
+  - csharp
+  - vb
+  name: ExcludeContentType
+  nameWithType: MessageSearchRequest.ExcludeContentType
+  fullName: Fluxer.Net.MessageSearchRequest.ExcludeContentType
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Rest/Requests/Messages/MessageSearchRequest.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: ExcludeContentType
+    path: ../Fluxer.Net/Rest/Requests/Messages/MessageSearchRequest.cs
+    startLine: 134
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Content types the message must not have
+  remarks: 'Values: <a href="https://github.com/fluxerapp/fluxer/blob/d843d6f3f8a0bd850673ba55036354093977109f/packages/schema/src/domains/message/MessageRequestSchemas.tsx#L99">https://github.com/fluxerapp/fluxer/blob/d843d6f3f8a0bd850673ba55036354093977109f/packages/schema/src/domains/message/MessageRequestSchemas.tsx#L99</a>'
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("exclude_has")]
+
+      public HashSet<string>? ExcludeContentType { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.HashSet{System.String}
+    content.vb: >-
+      <JsonProperty("exclude_has")>
+
+      Public Property ExcludeContentType As HashSet(Of String)
+  overload: Fluxer.Net.MessageSearchRequest.ExcludeContentType*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: exclude_has
+- uid: Fluxer.Net.MessageSearchRequest.EmbedType
+  commentId: P:Fluxer.Net.MessageSearchRequest.EmbedType
+  id: EmbedType
+  parent: Fluxer.Net.MessageSearchRequest
+  langs:
+  - csharp
+  - vb
+  name: EmbedType
+  nameWithType: MessageSearchRequest.EmbedType
+  fullName: Fluxer.Net.MessageSearchRequest.EmbedType
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Rest/Requests/Messages/MessageSearchRequest.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: EmbedType
+    path: ../Fluxer.Net/Rest/Requests/Messages/MessageSearchRequest.cs
+    startLine: 143
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Embed types to filter by
+  remarks: 'Values: <a href="https://github.com/fluxerapp/fluxer/blob/d843d6f3f8a0bd850673ba55036354093977109f/packages/schema/src/domains/message/MessageRequestSchemas.tsx#L119">https://github.com/fluxerapp/fluxer/blob/d843d6f3f8a0bd850673ba55036354093977109f/packages/schema/src/domains/message/MessageRequestSchemas.tsx#L119</a>'
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("embed_type")]
+
+      public HashSet<string>? EmbedType { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.HashSet{System.String}
+    content.vb: >-
+      <JsonProperty("embed_type")>
+
+      Public Property EmbedType As HashSet(Of String)
+  overload: Fluxer.Net.MessageSearchRequest.EmbedType*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: embed_type
+- uid: Fluxer.Net.MessageSearchRequest.ExcludeEmbedType
+  commentId: P:Fluxer.Net.MessageSearchRequest.ExcludeEmbedType
+  id: ExcludeEmbedType
+  parent: Fluxer.Net.MessageSearchRequest
+  langs:
+  - csharp
+  - vb
+  name: ExcludeEmbedType
+  nameWithType: MessageSearchRequest.ExcludeEmbedType
+  fullName: Fluxer.Net.MessageSearchRequest.ExcludeEmbedType
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Rest/Requests/Messages/MessageSearchRequest.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: ExcludeEmbedType
+    path: ../Fluxer.Net/Rest/Requests/Messages/MessageSearchRequest.cs
+    startLine: 152
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Embed types to exclude
+  remarks: 'Values: <a href="https://github.com/fluxerapp/fluxer/blob/d843d6f3f8a0bd850673ba55036354093977109f/packages/schema/src/domains/message/MessageRequestSchemas.tsx#L119">https://github.com/fluxerapp/fluxer/blob/d843d6f3f8a0bd850673ba55036354093977109f/packages/schema/src/domains/message/MessageRequestSchemas.tsx#L119</a>'
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("exclude_embed_type")]
+
+      public HashSet<string>? ExcludeEmbedType { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.HashSet{System.String}
+    content.vb: >-
+      <JsonProperty("exclude_embed_type")>
+
+      Public Property ExcludeEmbedType As HashSet(Of String)
+  overload: Fluxer.Net.MessageSearchRequest.ExcludeEmbedType*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: exclude_embed_type
+- uid: Fluxer.Net.MessageSearchRequest.EmbedProvider
+  commentId: P:Fluxer.Net.MessageSearchRequest.EmbedProvider
+  id: EmbedProvider
+  parent: Fluxer.Net.MessageSearchRequest
+  langs:
+  - csharp
+  - vb
+  name: EmbedProvider
+  nameWithType: MessageSearchRequest.EmbedProvider
+  fullName: Fluxer.Net.MessageSearchRequest.EmbedProvider
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Rest/Requests/Messages/MessageSearchRequest.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: EmbedProvider
+    path: ../Fluxer.Net/Rest/Requests/Messages/MessageSearchRequest.cs
+    startLine: 158
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Embed providers to filter by
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("embed_provider")]
+
+      public HashSet<string>? EmbedProvider { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.HashSet{System.String}
+    content.vb: >-
+      <JsonProperty("embed_provider")>
+
+      Public Property EmbedProvider As HashSet(Of String)
+  overload: Fluxer.Net.MessageSearchRequest.EmbedProvider*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: embed_provider
+- uid: Fluxer.Net.MessageSearchRequest.ExcludeEmbedProvider
+  commentId: P:Fluxer.Net.MessageSearchRequest.ExcludeEmbedProvider
+  id: ExcludeEmbedProvider
+  parent: Fluxer.Net.MessageSearchRequest
+  langs:
+  - csharp
+  - vb
+  name: ExcludeEmbedProvider
+  nameWithType: MessageSearchRequest.ExcludeEmbedProvider
+  fullName: Fluxer.Net.MessageSearchRequest.ExcludeEmbedProvider
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Rest/Requests/Messages/MessageSearchRequest.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: ExcludeEmbedProvider
+    path: ../Fluxer.Net/Rest/Requests/Messages/MessageSearchRequest.cs
+    startLine: 164
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Embed providers to exclude
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("exclude_embed_provider")]
+
+      public HashSet<string>? ExcludeEmbedProvider { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.HashSet{System.String}
+    content.vb: >-
+      <JsonProperty("exclude_embed_provider")>
+
+      Public Property ExcludeEmbedProvider As HashSet(Of String)
+  overload: Fluxer.Net.MessageSearchRequest.ExcludeEmbedProvider*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: exclude_embed_provider
+- uid: Fluxer.Net.MessageSearchRequest.LinkHostnames
+  commentId: P:Fluxer.Net.MessageSearchRequest.LinkHostnames
+  id: LinkHostnames
+  parent: Fluxer.Net.MessageSearchRequest
+  langs:
+  - csharp
+  - vb
+  name: LinkHostnames
+  nameWithType: MessageSearchRequest.LinkHostnames
+  fullName: Fluxer.Net.MessageSearchRequest.LinkHostnames
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Rest/Requests/Messages/MessageSearchRequest.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: LinkHostnames
+    path: ../Fluxer.Net/Rest/Requests/Messages/MessageSearchRequest.cs
+    startLine: 170
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Link hostnames to filter by
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("link_hostname")]
+
+      public HashSet<string>? LinkHostnames { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.HashSet{System.String}
+    content.vb: >-
+      <JsonProperty("link_hostname")>
+
+      Public Property LinkHostnames As HashSet(Of String)
+  overload: Fluxer.Net.MessageSearchRequest.LinkHostnames*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: link_hostname
+- uid: Fluxer.Net.MessageSearchRequest.ExcludeLinkHostnames
+  commentId: P:Fluxer.Net.MessageSearchRequest.ExcludeLinkHostnames
+  id: ExcludeLinkHostnames
+  parent: Fluxer.Net.MessageSearchRequest
+  langs:
+  - csharp
+  - vb
+  name: ExcludeLinkHostnames
+  nameWithType: MessageSearchRequest.ExcludeLinkHostnames
+  fullName: Fluxer.Net.MessageSearchRequest.ExcludeLinkHostnames
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Rest/Requests/Messages/MessageSearchRequest.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: ExcludeLinkHostnames
+    path: ../Fluxer.Net/Rest/Requests/Messages/MessageSearchRequest.cs
+    startLine: 176
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Link hostnames to exclude
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("exclude_link_hostname")]
+
+      public HashSet<string>? ExcludeLinkHostnames { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.HashSet{System.String}
+    content.vb: >-
+      <JsonProperty("exclude_link_hostname")>
+
+      Public Property ExcludeLinkHostnames As HashSet(Of String)
+  overload: Fluxer.Net.MessageSearchRequest.ExcludeLinkHostnames*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: exclude_link_hostname
+- uid: Fluxer.Net.MessageSearchRequest.AttachmentFilenames
+  commentId: P:Fluxer.Net.MessageSearchRequest.AttachmentFilenames
+  id: AttachmentFilenames
+  parent: Fluxer.Net.MessageSearchRequest
+  langs:
+  - csharp
+  - vb
+  name: AttachmentFilenames
+  nameWithType: MessageSearchRequest.AttachmentFilenames
+  fullName: Fluxer.Net.MessageSearchRequest.AttachmentFilenames
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Rest/Requests/Messages/MessageSearchRequest.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: AttachmentFilenames
+    path: ../Fluxer.Net/Rest/Requests/Messages/MessageSearchRequest.cs
+    startLine: 182
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Attachment filenames to filter by
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("attachment_filename")]
+
+      public HashSet<string>? AttachmentFilenames { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.HashSet{System.String}
+    content.vb: >-
+      <JsonProperty("attachment_filename")>
+
+      Public Property AttachmentFilenames As HashSet(Of String)
+  overload: Fluxer.Net.MessageSearchRequest.AttachmentFilenames*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: attachment_filename
+- uid: Fluxer.Net.MessageSearchRequest.ExcludeAttachmentFilenames
+  commentId: P:Fluxer.Net.MessageSearchRequest.ExcludeAttachmentFilenames
+  id: ExcludeAttachmentFilenames
+  parent: Fluxer.Net.MessageSearchRequest
+  langs:
+  - csharp
+  - vb
+  name: ExcludeAttachmentFilenames
+  nameWithType: MessageSearchRequest.ExcludeAttachmentFilenames
+  fullName: Fluxer.Net.MessageSearchRequest.ExcludeAttachmentFilenames
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Rest/Requests/Messages/MessageSearchRequest.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: ExcludeAttachmentFilenames
+    path: ../Fluxer.Net/Rest/Requests/Messages/MessageSearchRequest.cs
+    startLine: 188
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Attachment filenames to exclude
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("exclude_attachment_filename")]
+
+      public HashSet<string>? ExcludeAttachmentFilenames { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.HashSet{System.String}
+    content.vb: >-
+      <JsonProperty("exclude_attachment_filename")>
+
+      Public Property ExcludeAttachmentFilenames As HashSet(Of String)
+  overload: Fluxer.Net.MessageSearchRequest.ExcludeAttachmentFilenames*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: exclude_attachment_filename
+- uid: Fluxer.Net.MessageSearchRequest.AttachmentExtensions
+  commentId: P:Fluxer.Net.MessageSearchRequest.AttachmentExtensions
+  id: AttachmentExtensions
+  parent: Fluxer.Net.MessageSearchRequest
+  langs:
+  - csharp
+  - vb
+  name: AttachmentExtensions
+  nameWithType: MessageSearchRequest.AttachmentExtensions
+  fullName: Fluxer.Net.MessageSearchRequest.AttachmentExtensions
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Rest/Requests/Messages/MessageSearchRequest.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: AttachmentExtensions
+    path: ../Fluxer.Net/Rest/Requests/Messages/MessageSearchRequest.cs
+    startLine: 194
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: File extensions to filter by
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("attachment_extension")]
+
+      public HashSet<string>? AttachmentExtensions { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.HashSet{System.String}
+    content.vb: >-
+      <JsonProperty("attachment_extension")>
+
+      Public Property AttachmentExtensions As HashSet(Of String)
+  overload: Fluxer.Net.MessageSearchRequest.AttachmentExtensions*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: attachment_extension
+- uid: Fluxer.Net.MessageSearchRequest.ExcludeAttachmentExtensions
+  commentId: P:Fluxer.Net.MessageSearchRequest.ExcludeAttachmentExtensions
+  id: ExcludeAttachmentExtensions
+  parent: Fluxer.Net.MessageSearchRequest
+  langs:
+  - csharp
+  - vb
+  name: ExcludeAttachmentExtensions
+  nameWithType: MessageSearchRequest.ExcludeAttachmentExtensions
+  fullName: Fluxer.Net.MessageSearchRequest.ExcludeAttachmentExtensions
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Rest/Requests/Messages/MessageSearchRequest.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: ExcludeAttachmentExtensions
+    path: ../Fluxer.Net/Rest/Requests/Messages/MessageSearchRequest.cs
+    startLine: 200
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: File extensions to exclude
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("exclude_attachment_extension")]
+
+      public HashSet<string>? ExcludeAttachmentExtensions { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.HashSet{System.String}
+    content.vb: >-
+      <JsonProperty("exclude_attachment_extension")>
+
+      Public Property ExcludeAttachmentExtensions As HashSet(Of String)
+  overload: Fluxer.Net.MessageSearchRequest.ExcludeAttachmentExtensions*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: exclude_attachment_extension
+- uid: Fluxer.Net.MessageSearchRequest.SortBy
+  commentId: P:Fluxer.Net.MessageSearchRequest.SortBy
+  id: SortBy
+  parent: Fluxer.Net.MessageSearchRequest
+  langs:
+  - csharp
+  - vb
+  name: SortBy
+  nameWithType: MessageSearchRequest.SortBy
+  fullName: Fluxer.Net.MessageSearchRequest.SortBy
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Rest/Requests/Messages/MessageSearchRequest.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: SortBy
+    path: ../Fluxer.Net/Rest/Requests/Messages/MessageSearchRequest.cs
+    startLine: 209
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Field to sort results by
+  remarks: <a href="https://github.com/fluxerapp/fluxer/blob/d843d6f3f8a0bd850673ba55036354093977109f/packages/schema/src/domains/message/MessageRequestSchemas.tsx#L134">https://github.com/fluxerapp/fluxer/blob/d843d6f3f8a0bd850673ba55036354093977109f/packages/schema/src/domains/message/MessageRequestSchemas.tsx#L134</a>
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("sort_by")]
+
+      public string? SortBy { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <JsonProperty("sort_by")>
+
+      Public Property SortBy As String
+  overload: Fluxer.Net.MessageSearchRequest.SortBy*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: sort_by
+- uid: Fluxer.Net.MessageSearchRequest.SortOrder
+  commentId: P:Fluxer.Net.MessageSearchRequest.SortOrder
+  id: SortOrder
+  parent: Fluxer.Net.MessageSearchRequest
+  langs:
+  - csharp
+  - vb
+  name: SortOrder
+  nameWithType: MessageSearchRequest.SortOrder
+  fullName: Fluxer.Net.MessageSearchRequest.SortOrder
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Rest/Requests/Messages/MessageSearchRequest.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: SortOrder
+    path: ../Fluxer.Net/Rest/Requests/Messages/MessageSearchRequest.cs
+    startLine: 218
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Sort order for results
+  remarks: <a href="https://github.com/fluxerapp/fluxer/blob/d843d6f3f8a0bd850673ba55036354093977109f/packages/schema/src/domains/message/MessageRequestSchemas.tsx#L147">https://github.com/fluxerapp/fluxer/blob/d843d6f3f8a0bd850673ba55036354093977109f/packages/schema/src/domains/message/MessageRequestSchemas.tsx#L147</a>
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("sort_order")]
+
+      public string? SortOrder { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <JsonProperty("sort_order")>
+
+      Public Property SortOrder As String
+  overload: Fluxer.Net.MessageSearchRequest.SortOrder*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: sort_order
+- uid: Fluxer.Net.MessageSearchRequest.IncludeNsfw
+  commentId: P:Fluxer.Net.MessageSearchRequest.IncludeNsfw
+  id: IncludeNsfw
+  parent: Fluxer.Net.MessageSearchRequest
+  langs:
+  - csharp
+  - vb
+  name: IncludeNsfw
+  nameWithType: MessageSearchRequest.IncludeNsfw
+  fullName: Fluxer.Net.MessageSearchRequest.IncludeNsfw
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Rest/Requests/Messages/MessageSearchRequest.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: IncludeNsfw
+    path: ../Fluxer.Net/Rest/Requests/Messages/MessageSearchRequest.cs
+    startLine: 224
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Whether to include NSFW channel results
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("include_nsfw")]
+
+      public bool? IncludeNsfw { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{System.Boolean}
+    content.vb: >-
+      <JsonProperty("include_nsfw")>
+
+      Public Property IncludeNsfw As Boolean?
+  overload: Fluxer.Net.MessageSearchRequest.IncludeNsfw*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: include_nsfw
+- uid: Fluxer.Net.MessageSearchRequest.MessageSearchScope
+  commentId: P:Fluxer.Net.MessageSearchRequest.MessageSearchScope
+  id: MessageSearchScope
+  parent: Fluxer.Net.MessageSearchRequest
+  langs:
+  - csharp
+  - vb
+  name: MessageSearchScope
+  nameWithType: MessageSearchRequest.MessageSearchScope
+  fullName: Fluxer.Net.MessageSearchRequest.MessageSearchScope
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Rest/Requests/Messages/MessageSearchRequest.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: MessageSearchScope
+    path: ../Fluxer.Net/Rest/Requests/Messages/MessageSearchRequest.cs
+    startLine: 230
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  remarks: <a href="https://github.com/fluxerapp/fluxer/blob/d843d6f3f8a0bd850673ba55036354093977109f/packages/schema/src/domains/message/MessageRequestSchemas.tsx#L160">https://github.com/fluxerapp/fluxer/blob/d843d6f3f8a0bd850673ba55036354093977109f/packages/schema/src/domains/message/MessageRequestSchemas.tsx#L160</a>
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("scope")]
+
+      public string? MessageSearchScope { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <JsonProperty("scope")>
+
+      Public Property MessageSearchScope As String
+  overload: Fluxer.Net.MessageSearchRequest.MessageSearchScope*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: scope
+references:
+- uid: Fluxer.Net
+  commentId: N:Fluxer.Net
+  href: Fluxer.html
+  name: Fluxer.Net
+  nameWithType: Fluxer.Net
+  fullName: Fluxer.Net
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Fluxer.Net.MessageSearchRequest.HitsPerPage*
+  commentId: Overload:Fluxer.Net.MessageSearchRequest.HitsPerPage
+  href: Fluxer.Net.MessageSearchRequest.html#Fluxer_Net_MessageSearchRequest_HitsPerPage
+  name: HitsPerPage
+  nameWithType: MessageSearchRequest.HitsPerPage
+  fullName: Fluxer.Net.MessageSearchRequest.HitsPerPage
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: Fluxer.Net.MessageSearchRequest.Page*
+  commentId: Overload:Fluxer.Net.MessageSearchRequest.Page
+  href: Fluxer.Net.MessageSearchRequest.html#Fluxer_Net_MessageSearchRequest_Page
+  name: Page
+  nameWithType: MessageSearchRequest.Page
+  fullName: Fluxer.Net.MessageSearchRequest.Page
+- uid: Fluxer.Net.MessageSearchRequest.MaxId*
+  commentId: Overload:Fluxer.Net.MessageSearchRequest.MaxId
+  href: Fluxer.Net.MessageSearchRequest.html#Fluxer_Net_MessageSearchRequest_MaxId
+  name: MaxId
+  nameWithType: MessageSearchRequest.MaxId
+  fullName: Fluxer.Net.MessageSearchRequest.MaxId
+- uid: System.Nullable{System.UInt64}
+  commentId: T:System.Nullable{System.UInt64}
+  parent: System
+  definition: System.Nullable`1
+  href: https://learn.microsoft.com/dotnet/api/system.uint64
+  name: ulong?
+  nameWithType: ulong?
+  fullName: ulong?
+  nameWithType.vb: ULong?
+  fullName.vb: ULong?
+  name.vb: ULong?
+  spec.csharp:
+  - uid: System.UInt64
+    name: ulong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: '?'
+  spec.vb:
+  - uid: System.UInt64
+    name: ULong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: '?'
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: Fluxer.Net.MessageSearchRequest.MinId*
+  commentId: Overload:Fluxer.Net.MessageSearchRequest.MinId
+  href: Fluxer.Net.MessageSearchRequest.html#Fluxer_Net_MessageSearchRequest_MinId
+  name: MinId
+  nameWithType: MessageSearchRequest.MinId
+  fullName: Fluxer.Net.MessageSearchRequest.MinId
+- uid: Fluxer.Net.MessageSearchRequest.Content*
+  commentId: Overload:Fluxer.Net.MessageSearchRequest.Content
+  href: Fluxer.Net.MessageSearchRequest.html#Fluxer_Net_MessageSearchRequest_Content
+  name: Content
+  nameWithType: MessageSearchRequest.Content
+  fullName: Fluxer.Net.MessageSearchRequest.Content
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: Fluxer.Net.MessageSearchRequest.Contents*
+  commentId: Overload:Fluxer.Net.MessageSearchRequest.Contents
+  href: Fluxer.Net.MessageSearchRequest.html#Fluxer_Net_MessageSearchRequest_Contents
+  name: Contents
+  nameWithType: MessageSearchRequest.Contents
+  fullName: Fluxer.Net.MessageSearchRequest.Contents
+- uid: System.Collections.Generic.HashSet{System.String}
+  commentId: T:System.Collections.Generic.HashSet{System.String}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.HashSet`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  name: HashSet<string>
+  nameWithType: HashSet<string>
+  fullName: System.Collections.Generic.HashSet<string>
+  nameWithType.vb: HashSet(Of String)
+  fullName.vb: System.Collections.Generic.HashSet(Of String)
+  name.vb: HashSet(Of String)
+  spec.csharp:
+  - uid: System.Collections.Generic.HashSet`1
+    name: HashSet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.HashSet`1
+    name: HashSet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.Collections.Generic.HashSet`1
+  commentId: T:System.Collections.Generic.HashSet`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  name: HashSet<T>
+  nameWithType: HashSet<T>
+  fullName: System.Collections.Generic.HashSet<T>
+  nameWithType.vb: HashSet(Of T)
+  fullName.vb: System.Collections.Generic.HashSet(Of T)
+  name.vb: HashSet(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.HashSet`1
+    name: HashSet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.HashSet`1
+    name: HashSet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: Fluxer.Net.MessageSearchRequest.ExactPhrases*
+  commentId: Overload:Fluxer.Net.MessageSearchRequest.ExactPhrases
+  href: Fluxer.Net.MessageSearchRequest.html#Fluxer_Net_MessageSearchRequest_ExactPhrases
+  name: ExactPhrases
+  nameWithType: MessageSearchRequest.ExactPhrases
+  fullName: Fluxer.Net.MessageSearchRequest.ExactPhrases
+- uid: Fluxer.Net.MessageSearchRequest.ChannelIds*
+  commentId: Overload:Fluxer.Net.MessageSearchRequest.ChannelIds
+  href: Fluxer.Net.MessageSearchRequest.html#Fluxer_Net_MessageSearchRequest_ChannelIds
+  name: ChannelIds
+  nameWithType: MessageSearchRequest.ChannelIds
+  fullName: Fluxer.Net.MessageSearchRequest.ChannelIds
+- uid: System.Collections.Generic.HashSet{System.UInt64}
+  commentId: T:System.Collections.Generic.HashSet{System.UInt64}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.HashSet`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  name: HashSet<ulong>
+  nameWithType: HashSet<ulong>
+  fullName: System.Collections.Generic.HashSet<ulong>
+  nameWithType.vb: HashSet(Of ULong)
+  fullName.vb: System.Collections.Generic.HashSet(Of ULong)
+  name.vb: HashSet(Of ULong)
+  spec.csharp:
+  - uid: System.Collections.Generic.HashSet`1
+    name: HashSet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  - name: <
+  - uid: System.UInt64
+    name: ulong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.HashSet`1
+    name: HashSet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.UInt64
+    name: ULong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: )
+- uid: Fluxer.Net.MessageSearchRequest.ExcludeChannelIds*
+  commentId: Overload:Fluxer.Net.MessageSearchRequest.ExcludeChannelIds
+  href: Fluxer.Net.MessageSearchRequest.html#Fluxer_Net_MessageSearchRequest_ExcludeChannelIds
+  name: ExcludeChannelIds
+  nameWithType: MessageSearchRequest.ExcludeChannelIds
+  fullName: Fluxer.Net.MessageSearchRequest.ExcludeChannelIds
+- uid: Fluxer.Net.MessageSearchRequest.AuthorTypes*
+  commentId: Overload:Fluxer.Net.MessageSearchRequest.AuthorTypes
+  href: Fluxer.Net.MessageSearchRequest.html#Fluxer_Net_MessageSearchRequest_AuthorTypes
+  name: AuthorTypes
+  nameWithType: MessageSearchRequest.AuthorTypes
+  fullName: Fluxer.Net.MessageSearchRequest.AuthorTypes
+- uid: Fluxer.Net.MessageSearchRequest.ExcludeAuthorTypes*
+  commentId: Overload:Fluxer.Net.MessageSearchRequest.ExcludeAuthorTypes
+  href: Fluxer.Net.MessageSearchRequest.html#Fluxer_Net_MessageSearchRequest_ExcludeAuthorTypes
+  name: ExcludeAuthorTypes
+  nameWithType: MessageSearchRequest.ExcludeAuthorTypes
+  fullName: Fluxer.Net.MessageSearchRequest.ExcludeAuthorTypes
+- uid: Fluxer.Net.MessageSearchRequest.AuthorId*
+  commentId: Overload:Fluxer.Net.MessageSearchRequest.AuthorId
+  href: Fluxer.Net.MessageSearchRequest.html#Fluxer_Net_MessageSearchRequest_AuthorId
+  name: AuthorId
+  nameWithType: MessageSearchRequest.AuthorId
+  fullName: Fluxer.Net.MessageSearchRequest.AuthorId
+- uid: Fluxer.Net.MessageSearchRequest.ExcludeAuthorId*
+  commentId: Overload:Fluxer.Net.MessageSearchRequest.ExcludeAuthorId
+  href: Fluxer.Net.MessageSearchRequest.html#Fluxer_Net_MessageSearchRequest_ExcludeAuthorId
+  name: ExcludeAuthorId
+  nameWithType: MessageSearchRequest.ExcludeAuthorId
+  fullName: Fluxer.Net.MessageSearchRequest.ExcludeAuthorId
+- uid: Fluxer.Net.MessageSearchRequest.MentionUserIds*
+  commentId: Overload:Fluxer.Net.MessageSearchRequest.MentionUserIds
+  href: Fluxer.Net.MessageSearchRequest.html#Fluxer_Net_MessageSearchRequest_MentionUserIds
+  name: MentionUserIds
+  nameWithType: MessageSearchRequest.MentionUserIds
+  fullName: Fluxer.Net.MessageSearchRequest.MentionUserIds
+- uid: Fluxer.Net.MessageSearchRequest.ExcludeMentionUserIds*
+  commentId: Overload:Fluxer.Net.MessageSearchRequest.ExcludeMentionUserIds
+  href: Fluxer.Net.MessageSearchRequest.html#Fluxer_Net_MessageSearchRequest_ExcludeMentionUserIds
+  name: ExcludeMentionUserIds
+  nameWithType: MessageSearchRequest.ExcludeMentionUserIds
+  fullName: Fluxer.Net.MessageSearchRequest.ExcludeMentionUserIds
+- uid: Fluxer.Net.MessageSearchRequest.MentionEveryone*
+  commentId: Overload:Fluxer.Net.MessageSearchRequest.MentionEveryone
+  href: Fluxer.Net.MessageSearchRequest.html#Fluxer_Net_MessageSearchRequest_MentionEveryone
+  name: MentionEveryone
+  nameWithType: MessageSearchRequest.MentionEveryone
+  fullName: Fluxer.Net.MessageSearchRequest.MentionEveryone
+- uid: System.Nullable{System.Boolean}
+  commentId: T:System.Nullable{System.Boolean}
+  parent: System
+  definition: System.Nullable`1
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool?
+  nameWithType: bool?
+  fullName: bool?
+  nameWithType.vb: Boolean?
+  fullName.vb: Boolean?
+  name.vb: Boolean?
+  spec.csharp:
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '?'
+  spec.vb:
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '?'
+- uid: Fluxer.Net.MessageSearchRequest.Pinned*
+  commentId: Overload:Fluxer.Net.MessageSearchRequest.Pinned
+  href: Fluxer.Net.MessageSearchRequest.html#Fluxer_Net_MessageSearchRequest_Pinned
+  name: Pinned
+  nameWithType: MessageSearchRequest.Pinned
+  fullName: Fluxer.Net.MessageSearchRequest.Pinned
+- uid: Fluxer.Net.MessageSearchRequest.HasContentType*
+  commentId: Overload:Fluxer.Net.MessageSearchRequest.HasContentType
+  href: Fluxer.Net.MessageSearchRequest.html#Fluxer_Net_MessageSearchRequest_HasContentType
+  name: HasContentType
+  nameWithType: MessageSearchRequest.HasContentType
+  fullName: Fluxer.Net.MessageSearchRequest.HasContentType
+- uid: Fluxer.Net.MessageSearchRequest.ExcludeContentType*
+  commentId: Overload:Fluxer.Net.MessageSearchRequest.ExcludeContentType
+  href: Fluxer.Net.MessageSearchRequest.html#Fluxer_Net_MessageSearchRequest_ExcludeContentType
+  name: ExcludeContentType
+  nameWithType: MessageSearchRequest.ExcludeContentType
+  fullName: Fluxer.Net.MessageSearchRequest.ExcludeContentType
+- uid: Fluxer.Net.MessageSearchRequest.EmbedType*
+  commentId: Overload:Fluxer.Net.MessageSearchRequest.EmbedType
+  href: Fluxer.Net.MessageSearchRequest.html#Fluxer_Net_MessageSearchRequest_EmbedType
+  name: EmbedType
+  nameWithType: MessageSearchRequest.EmbedType
+  fullName: Fluxer.Net.MessageSearchRequest.EmbedType
+- uid: Fluxer.Net.MessageSearchRequest.ExcludeEmbedType*
+  commentId: Overload:Fluxer.Net.MessageSearchRequest.ExcludeEmbedType
+  href: Fluxer.Net.MessageSearchRequest.html#Fluxer_Net_MessageSearchRequest_ExcludeEmbedType
+  name: ExcludeEmbedType
+  nameWithType: MessageSearchRequest.ExcludeEmbedType
+  fullName: Fluxer.Net.MessageSearchRequest.ExcludeEmbedType
+- uid: Fluxer.Net.MessageSearchRequest.EmbedProvider*
+  commentId: Overload:Fluxer.Net.MessageSearchRequest.EmbedProvider
+  href: Fluxer.Net.MessageSearchRequest.html#Fluxer_Net_MessageSearchRequest_EmbedProvider
+  name: EmbedProvider
+  nameWithType: MessageSearchRequest.EmbedProvider
+  fullName: Fluxer.Net.MessageSearchRequest.EmbedProvider
+- uid: Fluxer.Net.MessageSearchRequest.ExcludeEmbedProvider*
+  commentId: Overload:Fluxer.Net.MessageSearchRequest.ExcludeEmbedProvider
+  href: Fluxer.Net.MessageSearchRequest.html#Fluxer_Net_MessageSearchRequest_ExcludeEmbedProvider
+  name: ExcludeEmbedProvider
+  nameWithType: MessageSearchRequest.ExcludeEmbedProvider
+  fullName: Fluxer.Net.MessageSearchRequest.ExcludeEmbedProvider
+- uid: Fluxer.Net.MessageSearchRequest.LinkHostnames*
+  commentId: Overload:Fluxer.Net.MessageSearchRequest.LinkHostnames
+  href: Fluxer.Net.MessageSearchRequest.html#Fluxer_Net_MessageSearchRequest_LinkHostnames
+  name: LinkHostnames
+  nameWithType: MessageSearchRequest.LinkHostnames
+  fullName: Fluxer.Net.MessageSearchRequest.LinkHostnames
+- uid: Fluxer.Net.MessageSearchRequest.ExcludeLinkHostnames*
+  commentId: Overload:Fluxer.Net.MessageSearchRequest.ExcludeLinkHostnames
+  href: Fluxer.Net.MessageSearchRequest.html#Fluxer_Net_MessageSearchRequest_ExcludeLinkHostnames
+  name: ExcludeLinkHostnames
+  nameWithType: MessageSearchRequest.ExcludeLinkHostnames
+  fullName: Fluxer.Net.MessageSearchRequest.ExcludeLinkHostnames
+- uid: Fluxer.Net.MessageSearchRequest.AttachmentFilenames*
+  commentId: Overload:Fluxer.Net.MessageSearchRequest.AttachmentFilenames
+  href: Fluxer.Net.MessageSearchRequest.html#Fluxer_Net_MessageSearchRequest_AttachmentFilenames
+  name: AttachmentFilenames
+  nameWithType: MessageSearchRequest.AttachmentFilenames
+  fullName: Fluxer.Net.MessageSearchRequest.AttachmentFilenames
+- uid: Fluxer.Net.MessageSearchRequest.ExcludeAttachmentFilenames*
+  commentId: Overload:Fluxer.Net.MessageSearchRequest.ExcludeAttachmentFilenames
+  href: Fluxer.Net.MessageSearchRequest.html#Fluxer_Net_MessageSearchRequest_ExcludeAttachmentFilenames
+  name: ExcludeAttachmentFilenames
+  nameWithType: MessageSearchRequest.ExcludeAttachmentFilenames
+  fullName: Fluxer.Net.MessageSearchRequest.ExcludeAttachmentFilenames
+- uid: Fluxer.Net.MessageSearchRequest.AttachmentExtensions*
+  commentId: Overload:Fluxer.Net.MessageSearchRequest.AttachmentExtensions
+  href: Fluxer.Net.MessageSearchRequest.html#Fluxer_Net_MessageSearchRequest_AttachmentExtensions
+  name: AttachmentExtensions
+  nameWithType: MessageSearchRequest.AttachmentExtensions
+  fullName: Fluxer.Net.MessageSearchRequest.AttachmentExtensions
+- uid: Fluxer.Net.MessageSearchRequest.ExcludeAttachmentExtensions*
+  commentId: Overload:Fluxer.Net.MessageSearchRequest.ExcludeAttachmentExtensions
+  href: Fluxer.Net.MessageSearchRequest.html#Fluxer_Net_MessageSearchRequest_ExcludeAttachmentExtensions
+  name: ExcludeAttachmentExtensions
+  nameWithType: MessageSearchRequest.ExcludeAttachmentExtensions
+  fullName: Fluxer.Net.MessageSearchRequest.ExcludeAttachmentExtensions
+- uid: Fluxer.Net.MessageSearchRequest.SortBy*
+  commentId: Overload:Fluxer.Net.MessageSearchRequest.SortBy
+  href: Fluxer.Net.MessageSearchRequest.html#Fluxer_Net_MessageSearchRequest_SortBy
+  name: SortBy
+  nameWithType: MessageSearchRequest.SortBy
+  fullName: Fluxer.Net.MessageSearchRequest.SortBy
+- uid: Fluxer.Net.MessageSearchRequest.SortOrder*
+  commentId: Overload:Fluxer.Net.MessageSearchRequest.SortOrder
+  href: Fluxer.Net.MessageSearchRequest.html#Fluxer_Net_MessageSearchRequest_SortOrder
+  name: SortOrder
+  nameWithType: MessageSearchRequest.SortOrder
+  fullName: Fluxer.Net.MessageSearchRequest.SortOrder
+- uid: Fluxer.Net.MessageSearchRequest.IncludeNsfw*
+  commentId: Overload:Fluxer.Net.MessageSearchRequest.IncludeNsfw
+  href: Fluxer.Net.MessageSearchRequest.html#Fluxer_Net_MessageSearchRequest_IncludeNsfw
+  name: IncludeNsfw
+  nameWithType: MessageSearchRequest.IncludeNsfw
+  fullName: Fluxer.Net.MessageSearchRequest.IncludeNsfw
+- uid: Fluxer.Net.MessageSearchRequest.MessageSearchScope*
+  commentId: Overload:Fluxer.Net.MessageSearchRequest.MessageSearchScope
+  href: Fluxer.Net.MessageSearchRequest.html#Fluxer_Net_MessageSearchRequest_MessageSearchScope
+  name: MessageSearchScope
+  nameWithType: MessageSearchRequest.MessageSearchScope
+  fullName: Fluxer.Net.MessageSearchRequest.MessageSearchScope

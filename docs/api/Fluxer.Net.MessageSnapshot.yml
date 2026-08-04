@@ -1,0 +1,1083 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.MessageSnapshot
+  commentId: T:Fluxer.Net.MessageSnapshot
+  id: MessageSnapshot
+  parent: Fluxer.Net
+  children:
+  - Fluxer.Net.MessageSnapshot.Attachments
+  - Fluxer.Net.MessageSnapshot.Content
+  - Fluxer.Net.MessageSnapshot.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.MessageSnapshotJson,System.UInt64)
+  - Fluxer.Net.MessageSnapshot.CreatedAt
+  - Fluxer.Net.MessageSnapshot.EditedAt
+  - Fluxer.Net.MessageSnapshot.Embeds
+  - Fluxer.Net.MessageSnapshot.Flags
+  - Fluxer.Net.MessageSnapshot.MentionedRoleIds
+  - Fluxer.Net.MessageSnapshot.MentionedUserIds
+  - Fluxer.Net.MessageSnapshot.Stickers
+  - Fluxer.Net.MessageSnapshot.Type
+  langs:
+  - csharp
+  - vb
+  name: MessageSnapshot
+  nameWithType: MessageSnapshot
+  fullName: Fluxer.Net.MessageSnapshot
+  type: Class
+  source:
+    remote:
+      path: Fluxer.Net/Data/Messages/MessageSnapshot.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: MessageSnapshot
+    path: ../Fluxer.Net/Data/Messages/MessageSnapshot.cs
+    startLine: 3
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  example: []
+  syntax:
+    content: 'public class MessageSnapshot : Entity, IMessageSnapshot'
+    content.vb: Public Class MessageSnapshot Inherits Entity Implements IMessageSnapshot
+  inheritance:
+  - System.Object
+  - Fluxer.Net.Entity
+  implements:
+  - Fluxer.Net.IMessageSnapshot
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: Fluxer.Net.MessageSnapshot.Content
+  commentId: P:Fluxer.Net.MessageSnapshot.Content
+  id: Content
+  parent: Fluxer.Net.MessageSnapshot
+  langs:
+  - csharp
+  - vb
+  name: Content
+  nameWithType: MessageSnapshot.Content
+  fullName: Fluxer.Net.MessageSnapshot.Content
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Messages/MessageSnapshot.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Content
+    path: ../Fluxer.Net/Data/Messages/MessageSnapshot.cs
+    startLine: 6
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The text content of the snapshot.
+  example: []
+  syntax:
+    content: public string? Content { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Content As String
+  overload: Fluxer.Net.MessageSnapshot.Content*
+  implements:
+  - Fluxer.Net.IMessageSnapshot.Content
+- uid: Fluxer.Net.MessageSnapshot.CreatedAt
+  commentId: P:Fluxer.Net.MessageSnapshot.CreatedAt
+  id: CreatedAt
+  parent: Fluxer.Net.MessageSnapshot
+  langs:
+  - csharp
+  - vb
+  name: CreatedAt
+  nameWithType: MessageSnapshot.CreatedAt
+  fullName: Fluxer.Net.MessageSnapshot.CreatedAt
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Messages/MessageSnapshot.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: CreatedAt
+    path: ../Fluxer.Net/Data/Messages/MessageSnapshot.cs
+    startLine: 9
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The ISO 8601 timestamp of when the original message was created.
+  example: []
+  syntax:
+    content: public DateTime CreatedAt { get; }
+    parameters: []
+    return:
+      type: System.DateTime
+    content.vb: Public Property CreatedAt As Date
+  overload: Fluxer.Net.MessageSnapshot.CreatedAt*
+  implements:
+  - Fluxer.Net.IMessageSnapshot.CreatedAt
+- uid: Fluxer.Net.MessageSnapshot.EditedAt
+  commentId: P:Fluxer.Net.MessageSnapshot.EditedAt
+  id: EditedAt
+  parent: Fluxer.Net.MessageSnapshot
+  langs:
+  - csharp
+  - vb
+  name: EditedAt
+  nameWithType: MessageSnapshot.EditedAt
+  fullName: Fluxer.Net.MessageSnapshot.EditedAt
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Messages/MessageSnapshot.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: EditedAt
+    path: ../Fluxer.Net/Data/Messages/MessageSnapshot.cs
+    startLine: 12
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The ISO 8601 timestamp of when the original message was last edited
+  example: []
+  syntax:
+    content: public DateTime? EditedAt { get; }
+    parameters: []
+    return:
+      type: System.Nullable{System.DateTime}
+    content.vb: Public Property EditedAt As Date?
+  overload: Fluxer.Net.MessageSnapshot.EditedAt*
+  implements:
+  - Fluxer.Net.IMessageSnapshot.EditedAt
+- uid: Fluxer.Net.MessageSnapshot.MentionedUserIds
+  commentId: P:Fluxer.Net.MessageSnapshot.MentionedUserIds
+  id: MentionedUserIds
+  parent: Fluxer.Net.MessageSnapshot
+  langs:
+  - csharp
+  - vb
+  name: MentionedUserIds
+  nameWithType: MessageSnapshot.MentionedUserIds
+  fullName: Fluxer.Net.MessageSnapshot.MentionedUserIds
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Messages/MessageSnapshot.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: MentionedUserIds
+    path: ../Fluxer.Net/Data/Messages/MessageSnapshot.cs
+    startLine: 15
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The user IDs mentioned in the snapshot.
+  example: []
+  syntax:
+    content: public HashSet<ulong>? MentionedUserIds { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.HashSet{System.UInt64}
+    content.vb: Public Property MentionedUserIds As HashSet(Of ULong)
+  overload: Fluxer.Net.MessageSnapshot.MentionedUserIds*
+  implements:
+  - Fluxer.Net.IMessageSnapshot.MentionedUserIds
+- uid: Fluxer.Net.MessageSnapshot.MentionedRoleIds
+  commentId: P:Fluxer.Net.MessageSnapshot.MentionedRoleIds
+  id: MentionedRoleIds
+  parent: Fluxer.Net.MessageSnapshot
+  langs:
+  - csharp
+  - vb
+  name: MentionedRoleIds
+  nameWithType: MessageSnapshot.MentionedRoleIds
+  fullName: Fluxer.Net.MessageSnapshot.MentionedRoleIds
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Messages/MessageSnapshot.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: MentionedRoleIds
+    path: ../Fluxer.Net/Data/Messages/MessageSnapshot.cs
+    startLine: 18
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The role IDs mentioned in the snapshot.
+  example: []
+  syntax:
+    content: public HashSet<ulong>? MentionedRoleIds { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.HashSet{System.UInt64}
+    content.vb: Public Property MentionedRoleIds As HashSet(Of ULong)
+  overload: Fluxer.Net.MessageSnapshot.MentionedRoleIds*
+  implements:
+  - Fluxer.Net.IMessageSnapshot.MentionedRoleIds
+- uid: Fluxer.Net.MessageSnapshot.Embeds
+  commentId: P:Fluxer.Net.MessageSnapshot.Embeds
+  id: Embeds
+  parent: Fluxer.Net.MessageSnapshot
+  langs:
+  - csharp
+  - vb
+  name: Embeds
+  nameWithType: MessageSnapshot.Embeds
+  fullName: Fluxer.Net.MessageSnapshot.Embeds
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Messages/MessageSnapshot.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Embeds
+    path: ../Fluxer.Net/Data/Messages/MessageSnapshot.cs
+    startLine: 21
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  example: []
+  syntax:
+    content: public Embed[]? Embeds { get; }
+    parameters: []
+    return:
+      type: Fluxer.Net.Embed[]
+    content.vb: Public Property Embeds As Embed()
+  overload: Fluxer.Net.MessageSnapshot.Embeds*
+- uid: Fluxer.Net.MessageSnapshot.Attachments
+  commentId: P:Fluxer.Net.MessageSnapshot.Attachments
+  id: Attachments
+  parent: Fluxer.Net.MessageSnapshot
+  langs:
+  - csharp
+  - vb
+  name: Attachments
+  nameWithType: MessageSnapshot.Attachments
+  fullName: Fluxer.Net.MessageSnapshot.Attachments
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Messages/MessageSnapshot.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Attachments
+    path: ../Fluxer.Net/Data/Messages/MessageSnapshot.cs
+    startLine: 24
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  example: []
+  syntax:
+    content: public Attachment[]? Attachments { get; }
+    parameters: []
+    return:
+      type: Fluxer.Net.Attachment[]
+    content.vb: Public Property Attachments As Attachment()
+  overload: Fluxer.Net.MessageSnapshot.Attachments*
+- uid: Fluxer.Net.MessageSnapshot.Stickers
+  commentId: P:Fluxer.Net.MessageSnapshot.Stickers
+  id: Stickers
+  parent: Fluxer.Net.MessageSnapshot
+  langs:
+  - csharp
+  - vb
+  name: Stickers
+  nameWithType: MessageSnapshot.Stickers
+  fullName: Fluxer.Net.MessageSnapshot.Stickers
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Messages/MessageSnapshot.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Stickers
+    path: ../Fluxer.Net/Data/Messages/MessageSnapshot.cs
+    startLine: 27
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  example: []
+  syntax:
+    content: public Sticker[]? Stickers { get; }
+    parameters: []
+    return:
+      type: Fluxer.Net.Sticker[]
+    content.vb: Public Property Stickers As Sticker()
+  overload: Fluxer.Net.MessageSnapshot.Stickers*
+- uid: Fluxer.Net.MessageSnapshot.Type
+  commentId: P:Fluxer.Net.MessageSnapshot.Type
+  id: Type
+  parent: Fluxer.Net.MessageSnapshot
+  langs:
+  - csharp
+  - vb
+  name: Type
+  nameWithType: MessageSnapshot.Type
+  fullName: Fluxer.Net.MessageSnapshot.Type
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Messages/MessageSnapshot.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Type
+    path: ../Fluxer.Net/Data/Messages/MessageSnapshot.cs
+    startLine: 30
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The type of message.
+  example: []
+  syntax:
+    content: public MessageType Type { get; }
+    parameters: []
+    return:
+      type: Fluxer.Net.MessageType
+    content.vb: Public Property Type As MessageType
+  overload: Fluxer.Net.MessageSnapshot.Type*
+  implements:
+  - Fluxer.Net.IMessageSnapshot.Type
+- uid: Fluxer.Net.MessageSnapshot.Flags
+  commentId: P:Fluxer.Net.MessageSnapshot.Flags
+  id: Flags
+  parent: Fluxer.Net.MessageSnapshot
+  langs:
+  - csharp
+  - vb
+  name: Flags
+  nameWithType: MessageSnapshot.Flags
+  fullName: Fluxer.Net.MessageSnapshot.Flags
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Messages/MessageSnapshot.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Flags
+    path: ../Fluxer.Net/Data/Messages/MessageSnapshot.cs
+    startLine: 33
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Message flags bitfield.
+  example: []
+  syntax:
+    content: public MessageFlag Flags { get; }
+    parameters: []
+    return:
+      type: Fluxer.Net.MessageFlag
+    content.vb: Public Property Flags As MessageFlag
+  overload: Fluxer.Net.MessageSnapshot.Flags*
+  implements:
+  - Fluxer.Net.IMessageSnapshot.Flags
+- uid: Fluxer.Net.MessageSnapshot.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.MessageSnapshotJson,System.UInt64)
+  commentId: M:Fluxer.Net.MessageSnapshot.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.MessageSnapshotJson,System.UInt64)
+  id: Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.MessageSnapshotJson,System.UInt64)
+  parent: Fluxer.Net.MessageSnapshot
+  langs:
+  - csharp
+  - vb
+  name: Create(FluxerBaseClient, MessageSnapshotJson, ulong)
+  nameWithType: MessageSnapshot.Create(FluxerBaseClient, MessageSnapshotJson, ulong)
+  fullName: Fluxer.Net.MessageSnapshot.Create(Fluxer.Net.FluxerBaseClient, Fluxer.Net.MessageSnapshotJson, ulong)
+  type: Method
+  source:
+    remote:
+      path: Fluxer.Net/Data/Messages/MessageSnapshot.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Create
+    path: ../Fluxer.Net/Data/Messages/MessageSnapshot.cs
+    startLine: 48
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: public static MessageSnapshot Create(FluxerBaseClient client, MessageSnapshotJson json, ulong channelId)
+    parameters:
+    - id: client
+      type: Fluxer.Net.FluxerBaseClient
+    - id: json
+      type: Fluxer.Net.MessageSnapshotJson
+    - id: channelId
+      type: System.UInt64
+    return:
+      type: Fluxer.Net.MessageSnapshot
+    content.vb: Public Shared Function Create(client As FluxerBaseClient, json As MessageSnapshotJson, channelId As ULong) As MessageSnapshot
+  overload: Fluxer.Net.MessageSnapshot.Create*
+  nameWithType.vb: MessageSnapshot.Create(FluxerBaseClient, MessageSnapshotJson, ULong)
+  fullName.vb: Fluxer.Net.MessageSnapshot.Create(Fluxer.Net.FluxerBaseClient, Fluxer.Net.MessageSnapshotJson, ULong)
+  name.vb: Create(FluxerBaseClient, MessageSnapshotJson, ULong)
+references:
+- uid: Fluxer.Net
+  commentId: N:Fluxer.Net
+  href: Fluxer.html
+  name: Fluxer.Net
+  nameWithType: Fluxer.Net
+  fullName: Fluxer.Net
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Fluxer.Net.Entity
+  commentId: T:Fluxer.Net.Entity
+  parent: Fluxer.Net
+  href: Fluxer.Net.Entity.html
+  name: Entity
+  nameWithType: Entity
+  fullName: Fluxer.Net.Entity
+- uid: Fluxer.Net.IMessageSnapshot
+  commentId: T:Fluxer.Net.IMessageSnapshot
+  parent: Fluxer.Net
+  href: Fluxer.Net.IMessageSnapshot.html
+  name: IMessageSnapshot
+  nameWithType: IMessageSnapshot
+  fullName: Fluxer.Net.IMessageSnapshot
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Fluxer.Net.MessageSnapshot.Content*
+  commentId: Overload:Fluxer.Net.MessageSnapshot.Content
+  href: Fluxer.Net.MessageSnapshot.html#Fluxer_Net_MessageSnapshot_Content
+  name: Content
+  nameWithType: MessageSnapshot.Content
+  fullName: Fluxer.Net.MessageSnapshot.Content
+- uid: Fluxer.Net.IMessageSnapshot.Content
+  commentId: P:Fluxer.Net.IMessageSnapshot.Content
+  parent: Fluxer.Net.IMessageSnapshot
+  href: Fluxer.Net.IMessageSnapshot.html#Fluxer_Net_IMessageSnapshot_Content
+  name: Content
+  nameWithType: IMessageSnapshot.Content
+  fullName: Fluxer.Net.IMessageSnapshot.Content
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: Fluxer.Net.MessageSnapshot.CreatedAt*
+  commentId: Overload:Fluxer.Net.MessageSnapshot.CreatedAt
+  href: Fluxer.Net.MessageSnapshot.html#Fluxer_Net_MessageSnapshot_CreatedAt
+  name: CreatedAt
+  nameWithType: MessageSnapshot.CreatedAt
+  fullName: Fluxer.Net.MessageSnapshot.CreatedAt
+- uid: Fluxer.Net.IMessageSnapshot.CreatedAt
+  commentId: P:Fluxer.Net.IMessageSnapshot.CreatedAt
+  parent: Fluxer.Net.IMessageSnapshot
+  href: Fluxer.Net.IMessageSnapshot.html#Fluxer_Net_IMessageSnapshot_CreatedAt
+  name: CreatedAt
+  nameWithType: IMessageSnapshot.CreatedAt
+  fullName: Fluxer.Net.IMessageSnapshot.CreatedAt
+- uid: System.DateTime
+  commentId: T:System.DateTime
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.datetime
+  name: DateTime
+  nameWithType: DateTime
+  fullName: System.DateTime
+  nameWithType.vb: Date
+  fullName.vb: Date
+  name.vb: Date
+- uid: Fluxer.Net.MessageSnapshot.EditedAt*
+  commentId: Overload:Fluxer.Net.MessageSnapshot.EditedAt
+  href: Fluxer.Net.MessageSnapshot.html#Fluxer_Net_MessageSnapshot_EditedAt
+  name: EditedAt
+  nameWithType: MessageSnapshot.EditedAt
+  fullName: Fluxer.Net.MessageSnapshot.EditedAt
+- uid: Fluxer.Net.IMessageSnapshot.EditedAt
+  commentId: P:Fluxer.Net.IMessageSnapshot.EditedAt
+  parent: Fluxer.Net.IMessageSnapshot
+  href: Fluxer.Net.IMessageSnapshot.html#Fluxer_Net_IMessageSnapshot_EditedAt
+  name: EditedAt
+  nameWithType: IMessageSnapshot.EditedAt
+  fullName: Fluxer.Net.IMessageSnapshot.EditedAt
+- uid: System.Nullable{System.DateTime}
+  commentId: T:System.Nullable{System.DateTime}
+  parent: System
+  definition: System.Nullable`1
+  href: https://learn.microsoft.com/dotnet/api/system.datetime
+  name: DateTime?
+  nameWithType: DateTime?
+  fullName: System.DateTime?
+  nameWithType.vb: Date?
+  fullName.vb: Date?
+  name.vb: Date?
+  spec.csharp:
+  - uid: System.DateTime
+    name: DateTime
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.datetime
+  - name: '?'
+  spec.vb:
+  - uid: System.DateTime
+    name: Date
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.datetime
+  - name: '?'
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: Fluxer.Net.MessageSnapshot.MentionedUserIds*
+  commentId: Overload:Fluxer.Net.MessageSnapshot.MentionedUserIds
+  href: Fluxer.Net.MessageSnapshot.html#Fluxer_Net_MessageSnapshot_MentionedUserIds
+  name: MentionedUserIds
+  nameWithType: MessageSnapshot.MentionedUserIds
+  fullName: Fluxer.Net.MessageSnapshot.MentionedUserIds
+- uid: Fluxer.Net.IMessageSnapshot.MentionedUserIds
+  commentId: P:Fluxer.Net.IMessageSnapshot.MentionedUserIds
+  parent: Fluxer.Net.IMessageSnapshot
+  href: Fluxer.Net.IMessageSnapshot.html#Fluxer_Net_IMessageSnapshot_MentionedUserIds
+  name: MentionedUserIds
+  nameWithType: IMessageSnapshot.MentionedUserIds
+  fullName: Fluxer.Net.IMessageSnapshot.MentionedUserIds
+- uid: System.Collections.Generic.HashSet{System.UInt64}
+  commentId: T:System.Collections.Generic.HashSet{System.UInt64}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.HashSet`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  name: HashSet<ulong>
+  nameWithType: HashSet<ulong>
+  fullName: System.Collections.Generic.HashSet<ulong>
+  nameWithType.vb: HashSet(Of ULong)
+  fullName.vb: System.Collections.Generic.HashSet(Of ULong)
+  name.vb: HashSet(Of ULong)
+  spec.csharp:
+  - uid: System.Collections.Generic.HashSet`1
+    name: HashSet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  - name: <
+  - uid: System.UInt64
+    name: ulong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.HashSet`1
+    name: HashSet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.UInt64
+    name: ULong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: )
+- uid: System.Collections.Generic.HashSet`1
+  commentId: T:System.Collections.Generic.HashSet`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  name: HashSet<T>
+  nameWithType: HashSet<T>
+  fullName: System.Collections.Generic.HashSet<T>
+  nameWithType.vb: HashSet(Of T)
+  fullName.vb: System.Collections.Generic.HashSet(Of T)
+  name.vb: HashSet(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.HashSet`1
+    name: HashSet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.HashSet`1
+    name: HashSet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: Fluxer.Net.MessageSnapshot.MentionedRoleIds*
+  commentId: Overload:Fluxer.Net.MessageSnapshot.MentionedRoleIds
+  href: Fluxer.Net.MessageSnapshot.html#Fluxer_Net_MessageSnapshot_MentionedRoleIds
+  name: MentionedRoleIds
+  nameWithType: MessageSnapshot.MentionedRoleIds
+  fullName: Fluxer.Net.MessageSnapshot.MentionedRoleIds
+- uid: Fluxer.Net.IMessageSnapshot.MentionedRoleIds
+  commentId: P:Fluxer.Net.IMessageSnapshot.MentionedRoleIds
+  parent: Fluxer.Net.IMessageSnapshot
+  href: Fluxer.Net.IMessageSnapshot.html#Fluxer_Net_IMessageSnapshot_MentionedRoleIds
+  name: MentionedRoleIds
+  nameWithType: IMessageSnapshot.MentionedRoleIds
+  fullName: Fluxer.Net.IMessageSnapshot.MentionedRoleIds
+- uid: Fluxer.Net.MessageSnapshot.Embeds*
+  commentId: Overload:Fluxer.Net.MessageSnapshot.Embeds
+  href: Fluxer.Net.MessageSnapshot.html#Fluxer_Net_MessageSnapshot_Embeds
+  name: Embeds
+  nameWithType: MessageSnapshot.Embeds
+  fullName: Fluxer.Net.MessageSnapshot.Embeds
+- uid: Fluxer.Net.Embed[]
+  isExternal: true
+  href: Fluxer.Net.Embed.html
+  name: Embed[]
+  nameWithType: Embed[]
+  fullName: Fluxer.Net.Embed[]
+  nameWithType.vb: Embed()
+  fullName.vb: Fluxer.Net.Embed()
+  name.vb: Embed()
+  spec.csharp:
+  - uid: Fluxer.Net.Embed
+    name: Embed
+    href: Fluxer.Net.Embed.html
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: Fluxer.Net.Embed
+    name: Embed
+    href: Fluxer.Net.Embed.html
+  - name: (
+  - name: )
+- uid: Fluxer.Net.MessageSnapshot.Attachments*
+  commentId: Overload:Fluxer.Net.MessageSnapshot.Attachments
+  href: Fluxer.Net.MessageSnapshot.html#Fluxer_Net_MessageSnapshot_Attachments
+  name: Attachments
+  nameWithType: MessageSnapshot.Attachments
+  fullName: Fluxer.Net.MessageSnapshot.Attachments
+- uid: Fluxer.Net.Attachment[]
+  isExternal: true
+  href: Fluxer.Net.Attachment.html
+  name: Attachment[]
+  nameWithType: Attachment[]
+  fullName: Fluxer.Net.Attachment[]
+  nameWithType.vb: Attachment()
+  fullName.vb: Fluxer.Net.Attachment()
+  name.vb: Attachment()
+  spec.csharp:
+  - uid: Fluxer.Net.Attachment
+    name: Attachment
+    href: Fluxer.Net.Attachment.html
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: Fluxer.Net.Attachment
+    name: Attachment
+    href: Fluxer.Net.Attachment.html
+  - name: (
+  - name: )
+- uid: Fluxer.Net.MessageSnapshot.Stickers*
+  commentId: Overload:Fluxer.Net.MessageSnapshot.Stickers
+  href: Fluxer.Net.MessageSnapshot.html#Fluxer_Net_MessageSnapshot_Stickers
+  name: Stickers
+  nameWithType: MessageSnapshot.Stickers
+  fullName: Fluxer.Net.MessageSnapshot.Stickers
+- uid: Fluxer.Net.Sticker[]
+  isExternal: true
+  href: Fluxer.Net.Sticker.html
+  name: Sticker[]
+  nameWithType: Sticker[]
+  fullName: Fluxer.Net.Sticker[]
+  nameWithType.vb: Sticker()
+  fullName.vb: Fluxer.Net.Sticker()
+  name.vb: Sticker()
+  spec.csharp:
+  - uid: Fluxer.Net.Sticker
+    name: Sticker
+    href: Fluxer.Net.Sticker.html
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: Fluxer.Net.Sticker
+    name: Sticker
+    href: Fluxer.Net.Sticker.html
+  - name: (
+  - name: )
+- uid: Fluxer.Net.MessageSnapshot.Type*
+  commentId: Overload:Fluxer.Net.MessageSnapshot.Type
+  href: Fluxer.Net.MessageSnapshot.html#Fluxer_Net_MessageSnapshot_Type
+  name: Type
+  nameWithType: MessageSnapshot.Type
+  fullName: Fluxer.Net.MessageSnapshot.Type
+- uid: Fluxer.Net.IMessageSnapshot.Type
+  commentId: P:Fluxer.Net.IMessageSnapshot.Type
+  parent: Fluxer.Net.IMessageSnapshot
+  href: Fluxer.Net.IMessageSnapshot.html#Fluxer_Net_IMessageSnapshot_Type
+  name: Type
+  nameWithType: IMessageSnapshot.Type
+  fullName: Fluxer.Net.IMessageSnapshot.Type
+- uid: Fluxer.Net.MessageType
+  commentId: T:Fluxer.Net.MessageType
+  parent: Fluxer.Net
+  href: Fluxer.Net.MessageType.html
+  name: MessageType
+  nameWithType: MessageType
+  fullName: Fluxer.Net.MessageType
+- uid: Fluxer.Net.MessageSnapshot.Flags*
+  commentId: Overload:Fluxer.Net.MessageSnapshot.Flags
+  href: Fluxer.Net.MessageSnapshot.html#Fluxer_Net_MessageSnapshot_Flags
+  name: Flags
+  nameWithType: MessageSnapshot.Flags
+  fullName: Fluxer.Net.MessageSnapshot.Flags
+- uid: Fluxer.Net.IMessageSnapshot.Flags
+  commentId: P:Fluxer.Net.IMessageSnapshot.Flags
+  parent: Fluxer.Net.IMessageSnapshot
+  href: Fluxer.Net.IMessageSnapshot.html#Fluxer_Net_IMessageSnapshot_Flags
+  name: Flags
+  nameWithType: IMessageSnapshot.Flags
+  fullName: Fluxer.Net.IMessageSnapshot.Flags
+- uid: Fluxer.Net.MessageFlag
+  commentId: T:Fluxer.Net.MessageFlag
+  parent: Fluxer.Net
+  href: Fluxer.Net.MessageFlag.html
+  name: MessageFlag
+  nameWithType: MessageFlag
+  fullName: Fluxer.Net.MessageFlag
+- uid: Fluxer.Net.MessageSnapshot.Create*
+  commentId: Overload:Fluxer.Net.MessageSnapshot.Create
+  href: Fluxer.Net.MessageSnapshot.html#Fluxer_Net_MessageSnapshot_Create_Fluxer_Net_FluxerBaseClient_Fluxer_Net_MessageSnapshotJson_System_UInt64_
+  name: Create
+  nameWithType: MessageSnapshot.Create
+  fullName: Fluxer.Net.MessageSnapshot.Create
+- uid: Fluxer.Net.FluxerBaseClient
+  commentId: T:Fluxer.Net.FluxerBaseClient
+  parent: Fluxer.Net
+  href: Fluxer.Net.FluxerBaseClient.html
+  name: FluxerBaseClient
+  nameWithType: FluxerBaseClient
+  fullName: Fluxer.Net.FluxerBaseClient
+- uid: Fluxer.Net.MessageSnapshotJson
+  commentId: T:Fluxer.Net.MessageSnapshotJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.MessageSnapshotJson.html
+  name: MessageSnapshotJson
+  nameWithType: MessageSnapshotJson
+  fullName: Fluxer.Net.MessageSnapshotJson
+- uid: System.UInt64
+  commentId: T:System.UInt64
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.uint64
+  name: ulong
+  nameWithType: ulong
+  fullName: ulong
+  nameWithType.vb: ULong
+  fullName.vb: ULong
+  name.vb: ULong
+- uid: Fluxer.Net.MessageSnapshot
+  commentId: T:Fluxer.Net.MessageSnapshot
+  parent: Fluxer.Net
+  href: Fluxer.Net.MessageSnapshot.html
+  name: MessageSnapshot
+  nameWithType: MessageSnapshot
+  fullName: Fluxer.Net.MessageSnapshot

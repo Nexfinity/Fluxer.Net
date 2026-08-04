@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class PartialGuild | Fluxer.net </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class PartialGuild | Fluxer.net ">
+      
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Nexfinity/Fluxer.Net/new/release/apiSpec/new?filename=Fluxer_Net_PartialGuild.md&amp;value=---%0Auid%3A%20Fluxer.Net.PartialGuild%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="Fluxer.net">
+            Fluxer.net
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="Fluxer.Net.PartialGuild">
+
+
+
+  <h1 id="Fluxer_Net_PartialGuild" data-uid="Fluxer.Net.PartialGuild" class="text-break">
+Class PartialGuild  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Data/Guilds/PartialGuild.cs/#L4"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="Fluxer.html">Fluxer</a>.<a class="xref" href="Fluxer.Net.html">Net</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>Fluxer.Net.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"></div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class PartialGuild : Entity, IPartialGuild</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="Fluxer.Net.Entity.html">Entity</a></div>
+      <div><span class="xref">PartialGuild</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="Fluxer.Net.IPartialGuild.html">IPartialGuild</a></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist derived">
+    <dt>Derived</dt>
+    <dd>
+      <div><a class="xref" href="Fluxer.Net.Guild.html">Guild</a></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="Fluxer_Net_PartialGuild_BannerHash_" data-uid="Fluxer.Net.PartialGuild.BannerHash*"></a>
+
+  <h3 id="Fluxer_Net_PartialGuild_BannerHash" data-uid="Fluxer.Net.PartialGuild.BannerHash">
+  BannerHash
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Data/Guilds/PartialGuild.cs/#L16"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The hash of the guild banner.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string? BannerHash { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="Fluxer_Net_PartialGuild_BannerHeight_" data-uid="Fluxer.Net.PartialGuild.BannerHeight*"></a>
+
+  <h3 id="Fluxer_Net_PartialGuild_BannerHeight" data-uid="Fluxer.Net.PartialGuild.BannerHeight">
+  BannerHeight
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Data/Guilds/PartialGuild.cs/#L22"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The height of the guild banner in pixels.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int? BannerHeight { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="Fluxer_Net_PartialGuild_BannerWidth_" data-uid="Fluxer.Net.PartialGuild.BannerWidth*"></a>
+
+  <h3 id="Fluxer_Net_PartialGuild_BannerWidth" data-uid="Fluxer.Net.PartialGuild.BannerWidth">
+  BannerWidth
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Data/Guilds/PartialGuild.cs/#L19"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The width of the guild banner in pixels.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int? BannerWidth { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="Fluxer_Net_PartialGuild_EmbedSplashHash_" data-uid="Fluxer.Net.PartialGuild.EmbedSplashHash*"></a>
+
+  <h3 id="Fluxer_Net_PartialGuild_EmbedSplashHash" data-uid="Fluxer.Net.PartialGuild.EmbedSplashHash">
+  EmbedSplashHash
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Data/Guilds/PartialGuild.cs/#L25"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The hash of the embedded invite splash.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string? EmbedSplashHash { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="Fluxer_Net_PartialGuild_EmbedSplashHeight_" data-uid="Fluxer.Net.PartialGuild.EmbedSplashHeight*"></a>
+
+  <h3 id="Fluxer_Net_PartialGuild_EmbedSplashHeight" data-uid="Fluxer.Net.PartialGuild.EmbedSplashHeight">
+  EmbedSplashHeight
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Data/Guilds/PartialGuild.cs/#L31"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The height of the embedded invite splash in pixels</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int? EmbedSplashHeight { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="Fluxer_Net_PartialGuild_EmbedSplashWidth_" data-uid="Fluxer.Net.PartialGuild.EmbedSplashWidth*"></a>
+
+  <h3 id="Fluxer_Net_PartialGuild_EmbedSplashWidth" data-uid="Fluxer.Net.PartialGuild.EmbedSplashWidth">
+  EmbedSplashWidth
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Data/Guilds/PartialGuild.cs/#L28"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The width of the embedded invite splash in pixels.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int? EmbedSplashWidth { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="Fluxer_Net_PartialGuild_Features_" data-uid="Fluxer.Net.PartialGuild.Features*"></a>
+
+  <h3 id="Fluxer_Net_PartialGuild_Features" data-uid="Fluxer.Net.PartialGuild.Features">
+  Features
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Data/Guilds/PartialGuild.cs/#L46"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GuildFeatures Features { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Fluxer.Net.GuildFeatures.html">GuildFeatures</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="Fluxer_Net_PartialGuild_IconHash_" data-uid="Fluxer.Net.PartialGuild.IconHash*"></a>
+
+  <h3 id="Fluxer_Net_PartialGuild_IconHash" data-uid="Fluxer.Net.PartialGuild.IconHash">
+  IconHash
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Data/Guilds/PartialGuild.cs/#L13"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The hash of the guild icon.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string? IconHash { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="Fluxer_Net_PartialGuild_Id_" data-uid="Fluxer.Net.PartialGuild.Id*"></a>
+
+  <h3 id="Fluxer_Net_PartialGuild_Id" data-uid="Fluxer.Net.PartialGuild.Id">
+  Id
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Data/Guilds/PartialGuild.cs/#L7"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The unique identifier for this guild.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ulong Id { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="Fluxer_Net_PartialGuild_InviteSplashHash_" data-uid="Fluxer.Net.PartialGuild.InviteSplashHash*"></a>
+
+  <h3 id="Fluxer_Net_PartialGuild_InviteSplashHash" data-uid="Fluxer.Net.PartialGuild.InviteSplashHash">
+  InviteSplashHash
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Data/Guilds/PartialGuild.cs/#L34"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The hash of the guild splash screen.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string? InviteSplashHash { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="Fluxer_Net_PartialGuild_InviteSplashHeight_" data-uid="Fluxer.Net.PartialGuild.InviteSplashHeight*"></a>
+
+  <h3 id="Fluxer_Net_PartialGuild_InviteSplashHeight" data-uid="Fluxer.Net.PartialGuild.InviteSplashHeight">
+  InviteSplashHeight
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Data/Guilds/PartialGuild.cs/#L40"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The height of the guild splash in pixels</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int? InviteSplashHeight { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="Fluxer_Net_PartialGuild_InviteSplashWidth_" data-uid="Fluxer.Net.PartialGuild.InviteSplashWidth*"></a>
+
+  <h3 id="Fluxer_Net_PartialGuild_InviteSplashWidth" data-uid="Fluxer.Net.PartialGuild.InviteSplashWidth">
+  InviteSplashWidth
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Data/Guilds/PartialGuild.cs/#L37"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The width of the guild splash in pixels.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int? InviteSplashWidth { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="Fluxer_Net_PartialGuild_Name_" data-uid="Fluxer.Net.PartialGuild.Name*"></a>
+
+  <h3 id="Fluxer_Net_PartialGuild_Name" data-uid="Fluxer.Net.PartialGuild.Name">
+  Name
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Data/Guilds/PartialGuild.cs/#L10"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The name of the guild.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Name { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="Fluxer_Net_PartialGuild_SplashCardAligment_" data-uid="Fluxer.Net.PartialGuild.SplashCardAligment*"></a>
+
+  <h3 id="Fluxer_Net_PartialGuild_SplashCardAligment" data-uid="Fluxer.Net.PartialGuild.SplashCardAligment">
+  SplashCardAligment
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Data/Guilds/PartialGuild.cs/#L43"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The alignment of the splash card.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GuildSplashCardAlignment SplashCardAligment { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Fluxer.Net.GuildSplashCardAlignment.html">GuildSplashCardAlignment</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="Fluxer_Net_PartialGuild_Create_" data-uid="Fluxer.Net.PartialGuild.Create*"></a>
+
+  <h3 id="Fluxer_Net_PartialGuild_Create_Fluxer_Net_FluxerBaseClient_Fluxer_Net_PartialGuildJson_" data-uid="Fluxer.Net.PartialGuild.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.PartialGuildJson)">
+  Create(FluxerBaseClient, PartialGuildJson)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Data/Guilds/PartialGuild.cs/#L55"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static PartialGuild Create(FluxerBaseClient client, PartialGuildJson json)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>client</code> <a class="xref" href="Fluxer.Net.FluxerBaseClient.html">FluxerBaseClient</a></dt>
+    <dd></dd>
+    <dt><code>json</code> <a class="xref" href="Fluxer.Net.PartialGuildJson.html">PartialGuildJson</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Fluxer.Net.PartialGuild.html">PartialGuild</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Fluxer_Net_PartialGuild_GetBannerUrl_" data-uid="Fluxer.Net.PartialGuild.GetBannerUrl*"></a>
+
+  <h3 id="Fluxer_Net_PartialGuild_GetBannerUrl_System_Int32_" data-uid="Fluxer.Net.PartialGuild.GetBannerUrl(System.Int32)">
+  GetBannerUrl(int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Data/Guilds/PartialGuild.cs/#L90"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Get the guild's banner.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string? GetBannerUrl(int size = 1024)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>size</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Fluxer_Net_PartialGuild_GetEmbedSplashUrl_" data-uid="Fluxer.Net.PartialGuild.GetEmbedSplashUrl*"></a>
+
+  <h3 id="Fluxer_Net_PartialGuild_GetEmbedSplashUrl_System_Int32_" data-uid="Fluxer.Net.PartialGuild.GetEmbedSplashUrl(System.Int32)">
+  GetEmbedSplashUrl(int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Data/Guilds/PartialGuild.cs/#L108"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Get the guild's embed splash.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string? GetEmbedSplashUrl(int size = 1024)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>size</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Fluxer_Net_PartialGuild_GetIconUrl_" data-uid="Fluxer.Net.PartialGuild.GetIconUrl*"></a>
+
+  <h3 id="Fluxer_Net_PartialGuild_GetIconUrl_System_Int32_" data-uid="Fluxer.Net.PartialGuild.GetIconUrl(System.Int32)">
+  GetIconUrl(int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Data/Guilds/PartialGuild.cs/#L81"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Get the guild's icon.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string? GetIconUrl(int size = 160)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>size</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Fluxer_Net_PartialGuild_GetInviteSplashUrl_" data-uid="Fluxer.Net.PartialGuild.GetInviteSplashUrl*"></a>
+
+  <h3 id="Fluxer_Net_PartialGuild_GetInviteSplashUrl_System_Int32_" data-uid="Fluxer.Net.PartialGuild.GetInviteSplashUrl(System.Int32)">
+  GetInviteSplashUrl(int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Data/Guilds/PartialGuild.cs/#L99"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Get the guild's invite splash.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string? GetInviteSplashUrl(int size = 1024)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>size</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Data/Guilds/PartialGuild.cs/#L4" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

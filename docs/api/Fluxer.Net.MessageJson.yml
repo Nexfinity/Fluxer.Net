@@ -1,0 +1,1898 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.MessageJson
+  commentId: T:Fluxer.Net.MessageJson
+  id: MessageJson
+  parent: Fluxer.Net
+  children:
+  - Fluxer.Net.MessageJson.Attachments
+  - Fluxer.Net.MessageJson.Author
+  - Fluxer.Net.MessageJson.Call
+  - Fluxer.Net.MessageJson.ChannelId
+  - Fluxer.Net.MessageJson.Content
+  - Fluxer.Net.MessageJson.CreatedAt
+  - Fluxer.Net.MessageJson.EditedAt
+  - Fluxer.Net.MessageJson.Embeds
+  - Fluxer.Net.MessageJson.Flags
+  - Fluxer.Net.MessageJson.Id
+  - Fluxer.Net.MessageJson.IsPinned
+  - Fluxer.Net.MessageJson.IsTts
+  - Fluxer.Net.MessageJson.MentionEveryone
+  - Fluxer.Net.MessageJson.MentionRoles
+  - Fluxer.Net.MessageJson.Mentions
+  - Fluxer.Net.MessageJson.MessageReference
+  - Fluxer.Net.MessageJson.MessageSnapshots
+  - Fluxer.Net.MessageJson.Nonce
+  - Fluxer.Net.MessageJson.Reactions
+  - Fluxer.Net.MessageJson.Stickers
+  - Fluxer.Net.MessageJson.Type
+  - Fluxer.Net.MessageJson.WebhookId
+  langs:
+  - csharp
+  - vb
+  name: MessageJson
+  nameWithType: MessageJson
+  fullName: Fluxer.Net.MessageJson
+  type: Class
+  source:
+    remote:
+      path: Fluxer.Net/Data/Messages/MessageJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: MessageJson
+    path: ../Fluxer.Net/Data/Messages/MessageJson.cs
+    startLine: 5
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Supports all classes in the .NET class hierarchy and provides low-level services to derived classes. This is the ultimate base class of all .NET classes; it is the root of the type hierarchy.
+  example: []
+  syntax:
+    content: 'public class MessageJson : IMessage'
+    content.vb: Public Class MessageJson Implements IMessage
+  inheritance:
+  - System.Object
+  derivedClasses:
+  - Fluxer.Net.Gateway.Data.Messages.MessageGatewayData
+  implements:
+  - Fluxer.Net.IMessage
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: Fluxer.Net.MessageJson.Id
+  commentId: P:Fluxer.Net.MessageJson.Id
+  id: Id
+  parent: Fluxer.Net.MessageJson
+  langs:
+  - csharp
+  - vb
+  name: Id
+  nameWithType: MessageJson.Id
+  fullName: Fluxer.Net.MessageJson.Id
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Messages/MessageJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Id
+    path: ../Fluxer.Net/Data/Messages/MessageJson.cs
+    startLine: 8
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The unique identifier (snowflake) for this message.
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("id")]
+
+      public ulong Id { get; set; }
+    parameters: []
+    return:
+      type: System.UInt64
+    content.vb: >-
+      <JsonProperty("id")>
+
+      Public Property Id As ULong
+  overload: Fluxer.Net.MessageJson.Id*
+  implements:
+  - Fluxer.Net.IMessage.Id
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: id
+- uid: Fluxer.Net.MessageJson.ChannelId
+  commentId: P:Fluxer.Net.MessageJson.ChannelId
+  id: ChannelId
+  parent: Fluxer.Net.MessageJson
+  langs:
+  - csharp
+  - vb
+  name: ChannelId
+  nameWithType: MessageJson.ChannelId
+  fullName: Fluxer.Net.MessageJson.ChannelId
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Messages/MessageJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: ChannelId
+    path: ../Fluxer.Net/Data/Messages/MessageJson.cs
+    startLine: 12
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The ID of the channel this message was sent in.
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("channel_id")]
+
+      public ulong ChannelId { get; set; }
+    parameters: []
+    return:
+      type: System.UInt64
+    content.vb: >-
+      <JsonProperty("channel_id")>
+
+      Public Property ChannelId As ULong
+  overload: Fluxer.Net.MessageJson.ChannelId*
+  implements:
+  - Fluxer.Net.IMessage.ChannelId
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: channel_id
+- uid: Fluxer.Net.MessageJson.Author
+  commentId: P:Fluxer.Net.MessageJson.Author
+  id: Author
+  parent: Fluxer.Net.MessageJson
+  langs:
+  - csharp
+  - vb
+  name: Author
+  nameWithType: MessageJson.Author
+  fullName: Fluxer.Net.MessageJson.Author
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Messages/MessageJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Author
+    path: ../Fluxer.Net/Data/Messages/MessageJson.cs
+    startLine: 16
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("author")]
+
+      public UserJson Author { get; set; }
+    parameters: []
+    return:
+      type: Fluxer.Net.UserJson
+    content.vb: >-
+      <JsonProperty("author")>
+
+      Public Property Author As UserJson
+  overload: Fluxer.Net.MessageJson.Author*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: author
+- uid: Fluxer.Net.MessageJson.WebhookId
+  commentId: P:Fluxer.Net.MessageJson.WebhookId
+  id: WebhookId
+  parent: Fluxer.Net.MessageJson
+  langs:
+  - csharp
+  - vb
+  name: WebhookId
+  nameWithType: MessageJson.WebhookId
+  fullName: Fluxer.Net.MessageJson.WebhookId
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Messages/MessageJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: WebhookId
+    path: ../Fluxer.Net/Data/Messages/MessageJson.cs
+    startLine: 20
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The ID of the webhook that sent this message.
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("webhook_id")]
+
+      public ulong? WebhookId { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{System.UInt64}
+    content.vb: >-
+      <JsonProperty("webhook_id")>
+
+      Public Property WebhookId As ULong?
+  overload: Fluxer.Net.MessageJson.WebhookId*
+  implements:
+  - Fluxer.Net.IMessage.WebhookId
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: webhook_id
+- uid: Fluxer.Net.MessageJson.Type
+  commentId: P:Fluxer.Net.MessageJson.Type
+  id: Type
+  parent: Fluxer.Net.MessageJson
+  langs:
+  - csharp
+  - vb
+  name: Type
+  nameWithType: MessageJson.Type
+  fullName: Fluxer.Net.MessageJson.Type
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Messages/MessageJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Type
+    path: ../Fluxer.Net/Data/Messages/MessageJson.cs
+    startLine: 24
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The type of message.
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("type")]
+
+      public MessageType Type { get; set; }
+    parameters: []
+    return:
+      type: Fluxer.Net.MessageType
+    content.vb: >-
+      <JsonProperty("type")>
+
+      Public Property Type As MessageType
+  overload: Fluxer.Net.MessageJson.Type*
+  implements:
+  - Fluxer.Net.IMessage.Type
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: type
+- uid: Fluxer.Net.MessageJson.Flags
+  commentId: P:Fluxer.Net.MessageJson.Flags
+  id: Flags
+  parent: Fluxer.Net.MessageJson
+  langs:
+  - csharp
+  - vb
+  name: Flags
+  nameWithType: MessageJson.Flags
+  fullName: Fluxer.Net.MessageJson.Flags
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Messages/MessageJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Flags
+    path: ../Fluxer.Net/Data/Messages/MessageJson.cs
+    startLine: 28
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Message flags bitfield.
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("flags")]
+
+      public MessageFlag Flags { get; set; }
+    parameters: []
+    return:
+      type: Fluxer.Net.MessageFlag
+    content.vb: >-
+      <JsonProperty("flags")>
+
+      Public Property Flags As MessageFlag
+  overload: Fluxer.Net.MessageJson.Flags*
+  implements:
+  - Fluxer.Net.IMessage.Flags
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: flags
+- uid: Fluxer.Net.MessageJson.Content
+  commentId: P:Fluxer.Net.MessageJson.Content
+  id: Content
+  parent: Fluxer.Net.MessageJson
+  langs:
+  - csharp
+  - vb
+  name: Content
+  nameWithType: MessageJson.Content
+  fullName: Fluxer.Net.MessageJson.Content
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Messages/MessageJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Content
+    path: ../Fluxer.Net/Data/Messages/MessageJson.cs
+    startLine: 32
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The text content of the message.
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("content")]
+
+      public string Content { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <JsonProperty("content")>
+
+      Public Property Content As String
+  overload: Fluxer.Net.MessageJson.Content*
+  implements:
+  - Fluxer.Net.IMessage.Content
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: content
+- uid: Fluxer.Net.MessageJson.CreatedAt
+  commentId: P:Fluxer.Net.MessageJson.CreatedAt
+  id: CreatedAt
+  parent: Fluxer.Net.MessageJson
+  langs:
+  - csharp
+  - vb
+  name: CreatedAt
+  nameWithType: MessageJson.CreatedAt
+  fullName: Fluxer.Net.MessageJson.CreatedAt
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Messages/MessageJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: CreatedAt
+    path: ../Fluxer.Net/Data/Messages/MessageJson.cs
+    startLine: 36
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The ISO 8601 timestamp of when the message was created.
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("timestamp")]
+
+      public DateTime CreatedAt { get; set; }
+    parameters: []
+    return:
+      type: System.DateTime
+    content.vb: >-
+      <JsonProperty("timestamp")>
+
+      Public Property CreatedAt As Date
+  overload: Fluxer.Net.MessageJson.CreatedAt*
+  implements:
+  - Fluxer.Net.IMessage.CreatedAt
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: timestamp
+- uid: Fluxer.Net.MessageJson.EditedAt
+  commentId: P:Fluxer.Net.MessageJson.EditedAt
+  id: EditedAt
+  parent: Fluxer.Net.MessageJson
+  langs:
+  - csharp
+  - vb
+  name: EditedAt
+  nameWithType: MessageJson.EditedAt
+  fullName: Fluxer.Net.MessageJson.EditedAt
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Messages/MessageJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: EditedAt
+    path: ../Fluxer.Net/Data/Messages/MessageJson.cs
+    startLine: 40
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The ISO 8601 timestamp of when the message was last edited.
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("edited_timestamp")]
+
+      public DateTime? EditedAt { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{System.DateTime}
+    content.vb: >-
+      <JsonProperty("edited_timestamp")>
+
+      Public Property EditedAt As Date?
+  overload: Fluxer.Net.MessageJson.EditedAt*
+  implements:
+  - Fluxer.Net.IMessage.EditedAt
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: edited_timestamp
+- uid: Fluxer.Net.MessageJson.IsPinned
+  commentId: P:Fluxer.Net.MessageJson.IsPinned
+  id: IsPinned
+  parent: Fluxer.Net.MessageJson
+  langs:
+  - csharp
+  - vb
+  name: IsPinned
+  nameWithType: MessageJson.IsPinned
+  fullName: Fluxer.Net.MessageJson.IsPinned
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Messages/MessageJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: IsPinned
+    path: ../Fluxer.Net/Data/Messages/MessageJson.cs
+    startLine: 44
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Whether the message is pinned.
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("pinned")]
+
+      public bool IsPinned { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: >-
+      <JsonProperty("pinned")>
+
+      Public Property IsPinned As Boolean
+  overload: Fluxer.Net.MessageJson.IsPinned*
+  implements:
+  - Fluxer.Net.IMessage.IsPinned
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: pinned
+- uid: Fluxer.Net.MessageJson.MentionEveryone
+  commentId: P:Fluxer.Net.MessageJson.MentionEveryone
+  id: MentionEveryone
+  parent: Fluxer.Net.MessageJson
+  langs:
+  - csharp
+  - vb
+  name: MentionEveryone
+  nameWithType: MessageJson.MentionEveryone
+  fullName: Fluxer.Net.MessageJson.MentionEveryone
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Messages/MessageJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: MentionEveryone
+    path: ../Fluxer.Net/Data/Messages/MessageJson.cs
+    startLine: 48
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Whether the message mentions @everyone.
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("mention_everyone")]
+
+      public bool MentionEveryone { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: >-
+      <JsonProperty("mention_everyone")>
+
+      Public Property MentionEveryone As Boolean
+  overload: Fluxer.Net.MessageJson.MentionEveryone*
+  implements:
+  - Fluxer.Net.IMessage.MentionEveryone
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: mention_everyone
+- uid: Fluxer.Net.MessageJson.IsTts
+  commentId: P:Fluxer.Net.MessageJson.IsTts
+  id: IsTts
+  parent: Fluxer.Net.MessageJson
+  langs:
+  - csharp
+  - vb
+  name: IsTts
+  nameWithType: MessageJson.IsTts
+  fullName: Fluxer.Net.MessageJson.IsTts
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Messages/MessageJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: IsTts
+    path: ../Fluxer.Net/Data/Messages/MessageJson.cs
+    startLine: 52
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Whether the message was sent as text-to-speech.
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("tts")]
+
+      public bool IsTts { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: >-
+      <JsonProperty("tts")>
+
+      Public Property IsTts As Boolean
+  overload: Fluxer.Net.MessageJson.IsTts*
+  implements:
+  - Fluxer.Net.IMessage.IsTts
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: tts
+- uid: Fluxer.Net.MessageJson.Mentions
+  commentId: P:Fluxer.Net.MessageJson.Mentions
+  id: Mentions
+  parent: Fluxer.Net.MessageJson
+  langs:
+  - csharp
+  - vb
+  name: Mentions
+  nameWithType: MessageJson.Mentions
+  fullName: Fluxer.Net.MessageJson.Mentions
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Messages/MessageJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Mentions
+    path: ../Fluxer.Net/Data/Messages/MessageJson.cs
+    startLine: 56
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("mentions")]
+
+      public UserJson[]? Mentions { get; set; }
+    parameters: []
+    return:
+      type: Fluxer.Net.UserJson[]
+    content.vb: >-
+      <JsonProperty("mentions")>
+
+      Public Property Mentions As UserJson()
+  overload: Fluxer.Net.MessageJson.Mentions*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: mentions
+- uid: Fluxer.Net.MessageJson.MentionRoles
+  commentId: P:Fluxer.Net.MessageJson.MentionRoles
+  id: MentionRoles
+  parent: Fluxer.Net.MessageJson
+  langs:
+  - csharp
+  - vb
+  name: MentionRoles
+  nameWithType: MessageJson.MentionRoles
+  fullName: Fluxer.Net.MessageJson.MentionRoles
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Messages/MessageJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: MentionRoles
+    path: ../Fluxer.Net/Data/Messages/MessageJson.cs
+    startLine: 60
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The role IDs mentioned in the message.
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("mention_roles")]
+
+      public ulong[]? MentionRoles { get; set; }
+    parameters: []
+    return:
+      type: System.UInt64[]
+    content.vb: >-
+      <JsonProperty("mention_roles")>
+
+      Public Property MentionRoles As ULong()
+  overload: Fluxer.Net.MessageJson.MentionRoles*
+  implements:
+  - Fluxer.Net.IMessage.MentionRoles
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: mention_roles
+- uid: Fluxer.Net.MessageJson.Embeds
+  commentId: P:Fluxer.Net.MessageJson.Embeds
+  id: Embeds
+  parent: Fluxer.Net.MessageJson
+  langs:
+  - csharp
+  - vb
+  name: Embeds
+  nameWithType: MessageJson.Embeds
+  fullName: Fluxer.Net.MessageJson.Embeds
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Messages/MessageJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Embeds
+    path: ../Fluxer.Net/Data/Messages/MessageJson.cs
+    startLine: 64
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("embeds")]
+
+      public List<EmbedJson>? Embeds { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.List{Fluxer.Net.EmbedJson}
+    content.vb: >-
+      <JsonProperty("embeds")>
+
+      Public Property Embeds As List(Of EmbedJson)
+  overload: Fluxer.Net.MessageJson.Embeds*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: embeds
+- uid: Fluxer.Net.MessageJson.Attachments
+  commentId: P:Fluxer.Net.MessageJson.Attachments
+  id: Attachments
+  parent: Fluxer.Net.MessageJson
+  langs:
+  - csharp
+  - vb
+  name: Attachments
+  nameWithType: MessageJson.Attachments
+  fullName: Fluxer.Net.MessageJson.Attachments
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Messages/MessageJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Attachments
+    path: ../Fluxer.Net/Data/Messages/MessageJson.cs
+    startLine: 68
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("attachments")]
+
+      public AttachmentJson[]? Attachments { get; set; }
+    parameters: []
+    return:
+      type: Fluxer.Net.AttachmentJson[]
+    content.vb: >-
+      <JsonProperty("attachments")>
+
+      Public Property Attachments As AttachmentJson()
+  overload: Fluxer.Net.MessageJson.Attachments*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: attachments
+- uid: Fluxer.Net.MessageJson.Stickers
+  commentId: P:Fluxer.Net.MessageJson.Stickers
+  id: Stickers
+  parent: Fluxer.Net.MessageJson
+  langs:
+  - csharp
+  - vb
+  name: Stickers
+  nameWithType: MessageJson.Stickers
+  fullName: Fluxer.Net.MessageJson.Stickers
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Messages/MessageJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Stickers
+    path: ../Fluxer.Net/Data/Messages/MessageJson.cs
+    startLine: 72
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("stickers")]
+
+      public StickerJson[]? Stickers { get; set; }
+    parameters: []
+    return:
+      type: Fluxer.Net.StickerJson[]
+    content.vb: >-
+      <JsonProperty("stickers")>
+
+      Public Property Stickers As StickerJson()
+  overload: Fluxer.Net.MessageJson.Stickers*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: stickers
+- uid: Fluxer.Net.MessageJson.Reactions
+  commentId: P:Fluxer.Net.MessageJson.Reactions
+  id: Reactions
+  parent: Fluxer.Net.MessageJson
+  langs:
+  - csharp
+  - vb
+  name: Reactions
+  nameWithType: MessageJson.Reactions
+  fullName: Fluxer.Net.MessageJson.Reactions
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Messages/MessageJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Reactions
+    path: ../Fluxer.Net/Data/Messages/MessageJson.cs
+    startLine: 76
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("reactions")]
+
+      public MessageReactionJson[]? Reactions { get; set; }
+    parameters: []
+    return:
+      type: Fluxer.Net.MessageReactionJson[]
+    content.vb: >-
+      <JsonProperty("reactions")>
+
+      Public Property Reactions As MessageReactionJson()
+  overload: Fluxer.Net.MessageJson.Reactions*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: reactions
+- uid: Fluxer.Net.MessageJson.MessageReference
+  commentId: P:Fluxer.Net.MessageJson.MessageReference
+  id: MessageReference
+  parent: Fluxer.Net.MessageJson
+  langs:
+  - csharp
+  - vb
+  name: MessageReference
+  nameWithType: MessageJson.MessageReference
+  fullName: Fluxer.Net.MessageJson.MessageReference
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Messages/MessageJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: MessageReference
+    path: ../Fluxer.Net/Data/Messages/MessageJson.cs
+    startLine: 80
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("message_reference")]
+
+      public MessageReferenceJson? MessageReference { get; set; }
+    parameters: []
+    return:
+      type: Fluxer.Net.MessageReferenceJson
+    content.vb: >-
+      <JsonProperty("message_reference")>
+
+      Public Property MessageReference As MessageReferenceJson
+  overload: Fluxer.Net.MessageJson.MessageReference*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: message_reference
+- uid: Fluxer.Net.MessageJson.MessageSnapshots
+  commentId: P:Fluxer.Net.MessageJson.MessageSnapshots
+  id: MessageSnapshots
+  parent: Fluxer.Net.MessageJson
+  langs:
+  - csharp
+  - vb
+  name: MessageSnapshots
+  nameWithType: MessageJson.MessageSnapshots
+  fullName: Fluxer.Net.MessageJson.MessageSnapshots
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Messages/MessageJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: MessageSnapshots
+    path: ../Fluxer.Net/Data/Messages/MessageJson.cs
+    startLine: 84
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("message_snapshots")]
+
+      public MessageSnapshotJson[]? MessageSnapshots { get; set; }
+    parameters: []
+    return:
+      type: Fluxer.Net.MessageSnapshotJson[]
+    content.vb: >-
+      <JsonProperty("message_snapshots")>
+
+      Public Property MessageSnapshots As MessageSnapshotJson()
+  overload: Fluxer.Net.MessageJson.MessageSnapshots*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: message_snapshots
+- uid: Fluxer.Net.MessageJson.Nonce
+  commentId: P:Fluxer.Net.MessageJson.Nonce
+  id: Nonce
+  parent: Fluxer.Net.MessageJson
+  langs:
+  - csharp
+  - vb
+  name: Nonce
+  nameWithType: MessageJson.Nonce
+  fullName: Fluxer.Net.MessageJson.Nonce
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Messages/MessageJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Nonce
+    path: ../Fluxer.Net/Data/Messages/MessageJson.cs
+    startLine: 88
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: A client-provided value for message deduplication.
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("nonce")]
+
+      public string? Nonce { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <JsonProperty("nonce")>
+
+      Public Property Nonce As String
+  overload: Fluxer.Net.MessageJson.Nonce*
+  implements:
+  - Fluxer.Net.IMessage.Nonce
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: nonce
+- uid: Fluxer.Net.MessageJson.Call
+  commentId: P:Fluxer.Net.MessageJson.Call
+  id: Call
+  parent: Fluxer.Net.MessageJson
+  langs:
+  - csharp
+  - vb
+  name: Call
+  nameWithType: MessageJson.Call
+  fullName: Fluxer.Net.MessageJson.Call
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Messages/MessageJson.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Call
+    path: ../Fluxer.Net/Data/Messages/MessageJson.cs
+    startLine: 92
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("call")]
+
+      public MessageCallJson? Call { get; set; }
+    parameters: []
+    return:
+      type: Fluxer.Net.MessageCallJson
+    content.vb: >-
+      <JsonProperty("call")>
+
+      Public Property [Call] As MessageCallJson
+  overload: Fluxer.Net.MessageJson.Call*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: call
+references:
+- uid: Fluxer.Net
+  commentId: N:Fluxer.Net
+  href: Fluxer.html
+  name: Fluxer.Net
+  nameWithType: Fluxer.Net
+  fullName: Fluxer.Net
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Fluxer.Net.IMessage
+  commentId: T:Fluxer.Net.IMessage
+  parent: Fluxer.Net
+  href: Fluxer.Net.IMessage.html
+  name: IMessage
+  nameWithType: IMessage
+  fullName: Fluxer.Net.IMessage
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Fluxer.Net.MessageJson.Id*
+  commentId: Overload:Fluxer.Net.MessageJson.Id
+  href: Fluxer.Net.MessageJson.html#Fluxer_Net_MessageJson_Id
+  name: Id
+  nameWithType: MessageJson.Id
+  fullName: Fluxer.Net.MessageJson.Id
+- uid: Fluxer.Net.IMessage.Id
+  commentId: P:Fluxer.Net.IMessage.Id
+  parent: Fluxer.Net.IMessage
+  href: Fluxer.Net.IMessage.html#Fluxer_Net_IMessage_Id
+  name: Id
+  nameWithType: IMessage.Id
+  fullName: Fluxer.Net.IMessage.Id
+- uid: System.UInt64
+  commentId: T:System.UInt64
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.uint64
+  name: ulong
+  nameWithType: ulong
+  fullName: ulong
+  nameWithType.vb: ULong
+  fullName.vb: ULong
+  name.vb: ULong
+- uid: Fluxer.Net.MessageJson.ChannelId*
+  commentId: Overload:Fluxer.Net.MessageJson.ChannelId
+  href: Fluxer.Net.MessageJson.html#Fluxer_Net_MessageJson_ChannelId
+  name: ChannelId
+  nameWithType: MessageJson.ChannelId
+  fullName: Fluxer.Net.MessageJson.ChannelId
+- uid: Fluxer.Net.IMessage.ChannelId
+  commentId: P:Fluxer.Net.IMessage.ChannelId
+  parent: Fluxer.Net.IMessage
+  href: Fluxer.Net.IMessage.html#Fluxer_Net_IMessage_ChannelId
+  name: ChannelId
+  nameWithType: IMessage.ChannelId
+  fullName: Fluxer.Net.IMessage.ChannelId
+- uid: Fluxer.Net.MessageJson.Author*
+  commentId: Overload:Fluxer.Net.MessageJson.Author
+  href: Fluxer.Net.MessageJson.html#Fluxer_Net_MessageJson_Author
+  name: Author
+  nameWithType: MessageJson.Author
+  fullName: Fluxer.Net.MessageJson.Author
+- uid: Fluxer.Net.UserJson
+  commentId: T:Fluxer.Net.UserJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.UserJson.html
+  name: UserJson
+  nameWithType: UserJson
+  fullName: Fluxer.Net.UserJson
+- uid: Fluxer.Net.MessageJson.WebhookId*
+  commentId: Overload:Fluxer.Net.MessageJson.WebhookId
+  href: Fluxer.Net.MessageJson.html#Fluxer_Net_MessageJson_WebhookId
+  name: WebhookId
+  nameWithType: MessageJson.WebhookId
+  fullName: Fluxer.Net.MessageJson.WebhookId
+- uid: Fluxer.Net.IMessage.WebhookId
+  commentId: P:Fluxer.Net.IMessage.WebhookId
+  parent: Fluxer.Net.IMessage
+  href: Fluxer.Net.IMessage.html#Fluxer_Net_IMessage_WebhookId
+  name: WebhookId
+  nameWithType: IMessage.WebhookId
+  fullName: Fluxer.Net.IMessage.WebhookId
+- uid: System.Nullable{System.UInt64}
+  commentId: T:System.Nullable{System.UInt64}
+  parent: System
+  definition: System.Nullable`1
+  href: https://learn.microsoft.com/dotnet/api/system.uint64
+  name: ulong?
+  nameWithType: ulong?
+  fullName: ulong?
+  nameWithType.vb: ULong?
+  fullName.vb: ULong?
+  name.vb: ULong?
+  spec.csharp:
+  - uid: System.UInt64
+    name: ulong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: '?'
+  spec.vb:
+  - uid: System.UInt64
+    name: ULong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: '?'
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: Fluxer.Net.MessageJson.Type*
+  commentId: Overload:Fluxer.Net.MessageJson.Type
+  href: Fluxer.Net.MessageJson.html#Fluxer_Net_MessageJson_Type
+  name: Type
+  nameWithType: MessageJson.Type
+  fullName: Fluxer.Net.MessageJson.Type
+- uid: Fluxer.Net.IMessage.Type
+  commentId: P:Fluxer.Net.IMessage.Type
+  parent: Fluxer.Net.IMessage
+  href: Fluxer.Net.IMessage.html#Fluxer_Net_IMessage_Type
+  name: Type
+  nameWithType: IMessage.Type
+  fullName: Fluxer.Net.IMessage.Type
+- uid: Fluxer.Net.MessageType
+  commentId: T:Fluxer.Net.MessageType
+  parent: Fluxer.Net
+  href: Fluxer.Net.MessageType.html
+  name: MessageType
+  nameWithType: MessageType
+  fullName: Fluxer.Net.MessageType
+- uid: Fluxer.Net.MessageJson.Flags*
+  commentId: Overload:Fluxer.Net.MessageJson.Flags
+  href: Fluxer.Net.MessageJson.html#Fluxer_Net_MessageJson_Flags
+  name: Flags
+  nameWithType: MessageJson.Flags
+  fullName: Fluxer.Net.MessageJson.Flags
+- uid: Fluxer.Net.IMessage.Flags
+  commentId: P:Fluxer.Net.IMessage.Flags
+  parent: Fluxer.Net.IMessage
+  href: Fluxer.Net.IMessage.html#Fluxer_Net_IMessage_Flags
+  name: Flags
+  nameWithType: IMessage.Flags
+  fullName: Fluxer.Net.IMessage.Flags
+- uid: Fluxer.Net.MessageFlag
+  commentId: T:Fluxer.Net.MessageFlag
+  parent: Fluxer.Net
+  href: Fluxer.Net.MessageFlag.html
+  name: MessageFlag
+  nameWithType: MessageFlag
+  fullName: Fluxer.Net.MessageFlag
+- uid: Fluxer.Net.MessageJson.Content*
+  commentId: Overload:Fluxer.Net.MessageJson.Content
+  href: Fluxer.Net.MessageJson.html#Fluxer_Net_MessageJson_Content
+  name: Content
+  nameWithType: MessageJson.Content
+  fullName: Fluxer.Net.MessageJson.Content
+- uid: Fluxer.Net.IMessage.Content
+  commentId: P:Fluxer.Net.IMessage.Content
+  parent: Fluxer.Net.IMessage
+  href: Fluxer.Net.IMessage.html#Fluxer_Net_IMessage_Content
+  name: Content
+  nameWithType: IMessage.Content
+  fullName: Fluxer.Net.IMessage.Content
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: Fluxer.Net.MessageJson.CreatedAt*
+  commentId: Overload:Fluxer.Net.MessageJson.CreatedAt
+  href: Fluxer.Net.MessageJson.html#Fluxer_Net_MessageJson_CreatedAt
+  name: CreatedAt
+  nameWithType: MessageJson.CreatedAt
+  fullName: Fluxer.Net.MessageJson.CreatedAt
+- uid: Fluxer.Net.IMessage.CreatedAt
+  commentId: P:Fluxer.Net.IMessage.CreatedAt
+  parent: Fluxer.Net.IMessage
+  href: Fluxer.Net.IMessage.html#Fluxer_Net_IMessage_CreatedAt
+  name: CreatedAt
+  nameWithType: IMessage.CreatedAt
+  fullName: Fluxer.Net.IMessage.CreatedAt
+- uid: System.DateTime
+  commentId: T:System.DateTime
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.datetime
+  name: DateTime
+  nameWithType: DateTime
+  fullName: System.DateTime
+  nameWithType.vb: Date
+  fullName.vb: Date
+  name.vb: Date
+- uid: Fluxer.Net.MessageJson.EditedAt*
+  commentId: Overload:Fluxer.Net.MessageJson.EditedAt
+  href: Fluxer.Net.MessageJson.html#Fluxer_Net_MessageJson_EditedAt
+  name: EditedAt
+  nameWithType: MessageJson.EditedAt
+  fullName: Fluxer.Net.MessageJson.EditedAt
+- uid: Fluxer.Net.IMessage.EditedAt
+  commentId: P:Fluxer.Net.IMessage.EditedAt
+  parent: Fluxer.Net.IMessage
+  href: Fluxer.Net.IMessage.html#Fluxer_Net_IMessage_EditedAt
+  name: EditedAt
+  nameWithType: IMessage.EditedAt
+  fullName: Fluxer.Net.IMessage.EditedAt
+- uid: System.Nullable{System.DateTime}
+  commentId: T:System.Nullable{System.DateTime}
+  parent: System
+  definition: System.Nullable`1
+  href: https://learn.microsoft.com/dotnet/api/system.datetime
+  name: DateTime?
+  nameWithType: DateTime?
+  fullName: System.DateTime?
+  nameWithType.vb: Date?
+  fullName.vb: Date?
+  name.vb: Date?
+  spec.csharp:
+  - uid: System.DateTime
+    name: DateTime
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.datetime
+  - name: '?'
+  spec.vb:
+  - uid: System.DateTime
+    name: Date
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.datetime
+  - name: '?'
+- uid: Fluxer.Net.MessageJson.IsPinned*
+  commentId: Overload:Fluxer.Net.MessageJson.IsPinned
+  href: Fluxer.Net.MessageJson.html#Fluxer_Net_MessageJson_IsPinned
+  name: IsPinned
+  nameWithType: MessageJson.IsPinned
+  fullName: Fluxer.Net.MessageJson.IsPinned
+- uid: Fluxer.Net.IMessage.IsPinned
+  commentId: P:Fluxer.Net.IMessage.IsPinned
+  parent: Fluxer.Net.IMessage
+  href: Fluxer.Net.IMessage.html#Fluxer_Net_IMessage_IsPinned
+  name: IsPinned
+  nameWithType: IMessage.IsPinned
+  fullName: Fluxer.Net.IMessage.IsPinned
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: Fluxer.Net.MessageJson.MentionEveryone*
+  commentId: Overload:Fluxer.Net.MessageJson.MentionEveryone
+  href: Fluxer.Net.MessageJson.html#Fluxer_Net_MessageJson_MentionEveryone
+  name: MentionEveryone
+  nameWithType: MessageJson.MentionEveryone
+  fullName: Fluxer.Net.MessageJson.MentionEveryone
+- uid: Fluxer.Net.IMessage.MentionEveryone
+  commentId: P:Fluxer.Net.IMessage.MentionEveryone
+  parent: Fluxer.Net.IMessage
+  href: Fluxer.Net.IMessage.html#Fluxer_Net_IMessage_MentionEveryone
+  name: MentionEveryone
+  nameWithType: IMessage.MentionEveryone
+  fullName: Fluxer.Net.IMessage.MentionEveryone
+- uid: Fluxer.Net.MessageJson.IsTts*
+  commentId: Overload:Fluxer.Net.MessageJson.IsTts
+  href: Fluxer.Net.MessageJson.html#Fluxer_Net_MessageJson_IsTts
+  name: IsTts
+  nameWithType: MessageJson.IsTts
+  fullName: Fluxer.Net.MessageJson.IsTts
+- uid: Fluxer.Net.IMessage.IsTts
+  commentId: P:Fluxer.Net.IMessage.IsTts
+  parent: Fluxer.Net.IMessage
+  href: Fluxer.Net.IMessage.html#Fluxer_Net_IMessage_IsTts
+  name: IsTts
+  nameWithType: IMessage.IsTts
+  fullName: Fluxer.Net.IMessage.IsTts
+- uid: Fluxer.Net.MessageJson.Mentions*
+  commentId: Overload:Fluxer.Net.MessageJson.Mentions
+  href: Fluxer.Net.MessageJson.html#Fluxer_Net_MessageJson_Mentions
+  name: Mentions
+  nameWithType: MessageJson.Mentions
+  fullName: Fluxer.Net.MessageJson.Mentions
+- uid: Fluxer.Net.UserJson[]
+  isExternal: true
+  href: Fluxer.Net.UserJson.html
+  name: UserJson[]
+  nameWithType: UserJson[]
+  fullName: Fluxer.Net.UserJson[]
+  nameWithType.vb: UserJson()
+  fullName.vb: Fluxer.Net.UserJson()
+  name.vb: UserJson()
+  spec.csharp:
+  - uid: Fluxer.Net.UserJson
+    name: UserJson
+    href: Fluxer.Net.UserJson.html
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: Fluxer.Net.UserJson
+    name: UserJson
+    href: Fluxer.Net.UserJson.html
+  - name: (
+  - name: )
+- uid: Fluxer.Net.MessageJson.MentionRoles*
+  commentId: Overload:Fluxer.Net.MessageJson.MentionRoles
+  href: Fluxer.Net.MessageJson.html#Fluxer_Net_MessageJson_MentionRoles
+  name: MentionRoles
+  nameWithType: MessageJson.MentionRoles
+  fullName: Fluxer.Net.MessageJson.MentionRoles
+- uid: Fluxer.Net.IMessage.MentionRoles
+  commentId: P:Fluxer.Net.IMessage.MentionRoles
+  parent: Fluxer.Net.IMessage
+  href: Fluxer.Net.IMessage.html#Fluxer_Net_IMessage_MentionRoles
+  name: MentionRoles
+  nameWithType: IMessage.MentionRoles
+  fullName: Fluxer.Net.IMessage.MentionRoles
+- uid: System.UInt64[]
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.uint64
+  name: ulong[]
+  nameWithType: ulong[]
+  fullName: ulong[]
+  nameWithType.vb: ULong()
+  fullName.vb: ULong()
+  name.vb: ULong()
+  spec.csharp:
+  - uid: System.UInt64
+    name: ulong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: System.UInt64
+    name: ULong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: (
+  - name: )
+- uid: Fluxer.Net.MessageJson.Embeds*
+  commentId: Overload:Fluxer.Net.MessageJson.Embeds
+  href: Fluxer.Net.MessageJson.html#Fluxer_Net_MessageJson_Embeds
+  name: Embeds
+  nameWithType: MessageJson.Embeds
+  fullName: Fluxer.Net.MessageJson.Embeds
+- uid: System.Collections.Generic.List{Fluxer.Net.EmbedJson}
+  commentId: T:System.Collections.Generic.List{Fluxer.Net.EmbedJson}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<EmbedJson>
+  nameWithType: List<EmbedJson>
+  fullName: System.Collections.Generic.List<Fluxer.Net.EmbedJson>
+  nameWithType.vb: List(Of EmbedJson)
+  fullName.vb: System.Collections.Generic.List(Of Fluxer.Net.EmbedJson)
+  name.vb: List(Of EmbedJson)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: Fluxer.Net.EmbedJson
+    name: EmbedJson
+    href: Fluxer.Net.EmbedJson.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Fluxer.Net.EmbedJson
+    name: EmbedJson
+    href: Fluxer.Net.EmbedJson.html
+  - name: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: Fluxer.Net.MessageJson.Attachments*
+  commentId: Overload:Fluxer.Net.MessageJson.Attachments
+  href: Fluxer.Net.MessageJson.html#Fluxer_Net_MessageJson_Attachments
+  name: Attachments
+  nameWithType: MessageJson.Attachments
+  fullName: Fluxer.Net.MessageJson.Attachments
+- uid: Fluxer.Net.AttachmentJson[]
+  isExternal: true
+  href: Fluxer.Net.AttachmentJson.html
+  name: AttachmentJson[]
+  nameWithType: AttachmentJson[]
+  fullName: Fluxer.Net.AttachmentJson[]
+  nameWithType.vb: AttachmentJson()
+  fullName.vb: Fluxer.Net.AttachmentJson()
+  name.vb: AttachmentJson()
+  spec.csharp:
+  - uid: Fluxer.Net.AttachmentJson
+    name: AttachmentJson
+    href: Fluxer.Net.AttachmentJson.html
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: Fluxer.Net.AttachmentJson
+    name: AttachmentJson
+    href: Fluxer.Net.AttachmentJson.html
+  - name: (
+  - name: )
+- uid: Fluxer.Net.MessageJson.Stickers*
+  commentId: Overload:Fluxer.Net.MessageJson.Stickers
+  href: Fluxer.Net.MessageJson.html#Fluxer_Net_MessageJson_Stickers
+  name: Stickers
+  nameWithType: MessageJson.Stickers
+  fullName: Fluxer.Net.MessageJson.Stickers
+- uid: Fluxer.Net.StickerJson[]
+  isExternal: true
+  href: Fluxer.Net.StickerJson.html
+  name: StickerJson[]
+  nameWithType: StickerJson[]
+  fullName: Fluxer.Net.StickerJson[]
+  nameWithType.vb: StickerJson()
+  fullName.vb: Fluxer.Net.StickerJson()
+  name.vb: StickerJson()
+  spec.csharp:
+  - uid: Fluxer.Net.StickerJson
+    name: StickerJson
+    href: Fluxer.Net.StickerJson.html
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: Fluxer.Net.StickerJson
+    name: StickerJson
+    href: Fluxer.Net.StickerJson.html
+  - name: (
+  - name: )
+- uid: Fluxer.Net.MessageJson.Reactions*
+  commentId: Overload:Fluxer.Net.MessageJson.Reactions
+  href: Fluxer.Net.MessageJson.html#Fluxer_Net_MessageJson_Reactions
+  name: Reactions
+  nameWithType: MessageJson.Reactions
+  fullName: Fluxer.Net.MessageJson.Reactions
+- uid: Fluxer.Net.MessageReactionJson[]
+  isExternal: true
+  href: Fluxer.Net.MessageReactionJson.html
+  name: MessageReactionJson[]
+  nameWithType: MessageReactionJson[]
+  fullName: Fluxer.Net.MessageReactionJson[]
+  nameWithType.vb: MessageReactionJson()
+  fullName.vb: Fluxer.Net.MessageReactionJson()
+  name.vb: MessageReactionJson()
+  spec.csharp:
+  - uid: Fluxer.Net.MessageReactionJson
+    name: MessageReactionJson
+    href: Fluxer.Net.MessageReactionJson.html
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: Fluxer.Net.MessageReactionJson
+    name: MessageReactionJson
+    href: Fluxer.Net.MessageReactionJson.html
+  - name: (
+  - name: )
+- uid: Fluxer.Net.MessageJson.MessageReference*
+  commentId: Overload:Fluxer.Net.MessageJson.MessageReference
+  href: Fluxer.Net.MessageJson.html#Fluxer_Net_MessageJson_MessageReference
+  name: MessageReference
+  nameWithType: MessageJson.MessageReference
+  fullName: Fluxer.Net.MessageJson.MessageReference
+- uid: Fluxer.Net.MessageReferenceJson
+  commentId: T:Fluxer.Net.MessageReferenceJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.MessageReferenceJson.html
+  name: MessageReferenceJson
+  nameWithType: MessageReferenceJson
+  fullName: Fluxer.Net.MessageReferenceJson
+- uid: Fluxer.Net.MessageJson.MessageSnapshots*
+  commentId: Overload:Fluxer.Net.MessageJson.MessageSnapshots
+  href: Fluxer.Net.MessageJson.html#Fluxer_Net_MessageJson_MessageSnapshots
+  name: MessageSnapshots
+  nameWithType: MessageJson.MessageSnapshots
+  fullName: Fluxer.Net.MessageJson.MessageSnapshots
+- uid: Fluxer.Net.MessageSnapshotJson[]
+  isExternal: true
+  href: Fluxer.Net.MessageSnapshotJson.html
+  name: MessageSnapshotJson[]
+  nameWithType: MessageSnapshotJson[]
+  fullName: Fluxer.Net.MessageSnapshotJson[]
+  nameWithType.vb: MessageSnapshotJson()
+  fullName.vb: Fluxer.Net.MessageSnapshotJson()
+  name.vb: MessageSnapshotJson()
+  spec.csharp:
+  - uid: Fluxer.Net.MessageSnapshotJson
+    name: MessageSnapshotJson
+    href: Fluxer.Net.MessageSnapshotJson.html
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: Fluxer.Net.MessageSnapshotJson
+    name: MessageSnapshotJson
+    href: Fluxer.Net.MessageSnapshotJson.html
+  - name: (
+  - name: )
+- uid: Fluxer.Net.MessageJson.Nonce*
+  commentId: Overload:Fluxer.Net.MessageJson.Nonce
+  href: Fluxer.Net.MessageJson.html#Fluxer_Net_MessageJson_Nonce
+  name: Nonce
+  nameWithType: MessageJson.Nonce
+  fullName: Fluxer.Net.MessageJson.Nonce
+- uid: Fluxer.Net.IMessage.Nonce
+  commentId: P:Fluxer.Net.IMessage.Nonce
+  parent: Fluxer.Net.IMessage
+  href: Fluxer.Net.IMessage.html#Fluxer_Net_IMessage_Nonce
+  name: Nonce
+  nameWithType: IMessage.Nonce
+  fullName: Fluxer.Net.IMessage.Nonce
+- uid: Fluxer.Net.MessageJson.Call*
+  commentId: Overload:Fluxer.Net.MessageJson.Call
+  href: Fluxer.Net.MessageJson.html#Fluxer_Net_MessageJson_Call
+  name: Call
+  nameWithType: MessageJson.Call
+  fullName: Fluxer.Net.MessageJson.Call
+- uid: Fluxer.Net.MessageCallJson
+  commentId: T:Fluxer.Net.MessageCallJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.MessageCallJson.html
+  name: MessageCallJson
+  nameWithType: MessageCallJson
+  fullName: Fluxer.Net.MessageCallJson

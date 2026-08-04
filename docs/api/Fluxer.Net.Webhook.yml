@@ -1,0 +1,2613 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.Webhook
+  commentId: T:Fluxer.Net.Webhook
+  id: Webhook
+  parent: Fluxer.Net
+  children:
+  - Fluxer.Net.Webhook.AvatarHash
+  - Fluxer.Net.Webhook.ChannelId
+  - Fluxer.Net.Webhook.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.WebhookJson)
+  - Fluxer.Net.Webhook.Creator
+  - Fluxer.Net.Webhook.GetAvatarOrDefaultUrl(System.Int32)
+  - Fluxer.Net.Webhook.GetAvatarUrl(System.Int32)
+  - Fluxer.Net.Webhook.GetDefaultAvatarUrl
+  - Fluxer.Net.Webhook.GuildId
+  - Fluxer.Net.Webhook.Id
+  - Fluxer.Net.Webhook.Name
+  - Fluxer.Net.Webhook.Token
+  langs:
+  - csharp
+  - vb
+  name: Webhook
+  nameWithType: Webhook
+  fullName: Fluxer.Net.Webhook
+  type: Class
+  source:
+    remote:
+      path: Fluxer.Net/Data/Webhooks/Webhook.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Webhook
+    path: ../Fluxer.Net/Data/Webhooks/Webhook.cs
+    startLine: 3
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  example: []
+  syntax:
+    content: 'public class Webhook : Entity, IWebhook'
+    content.vb: Public Class Webhook Inherits Entity Implements IWebhook
+  inheritance:
+  - System.Object
+  - Fluxer.Net.Entity
+  implements:
+  - Fluxer.Net.IWebhook
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  extensionMethods:
+  - Fluxer.Net.Webhook.Fluxer.Net.WebhookHelpers.DeleteAsync
+  - Fluxer.Net.Webhook.Fluxer.Net.WebhookHelpers.DeleteMessageAsync(Fluxer.Net.Message)
+  - Fluxer.Net.Webhook.Fluxer.Net.WebhookHelpers.DeleteMessageAsync(System.UInt64)
+  - Fluxer.Net.Webhook.Fluxer.Net.WebhookHelpers.EditMessageAsync(Fluxer.Net.Message,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.Requests.EmbedRequest},Fluxer.Net.MessageReferenceRequest,Fluxer.Net.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64})
+  - Fluxer.Net.Webhook.Fluxer.Net.WebhookHelpers.EditMessageAsync(System.UInt64,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.Requests.EmbedRequest},Fluxer.Net.MessageReferenceRequest,Fluxer.Net.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64})
+  - Fluxer.Net.Webhook.Fluxer.Net.WebhookHelpers.ModifyAsync(Fluxer.Net.WebhookJson)
+  - Fluxer.Net.Webhook.Fluxer.Net.WebhookHelpers.SendMessageAsync(System.String,System.Collections.Generic.List{Fluxer.Net.Rest.Requests.EmbedRequest},Fluxer.Net.MessageReferenceRequest,Fluxer.Net.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64})
+  - Fluxer.Net.Webhook.Fluxer.Net.WebhookHelpers.SendMessageWaitAsync(System.String,System.Collections.Generic.List{Fluxer.Net.Rest.Requests.EmbedRequest},Fluxer.Net.MessageReferenceRequest,Fluxer.Net.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64})
+- uid: Fluxer.Net.Webhook.Id
+  commentId: P:Fluxer.Net.Webhook.Id
+  id: Id
+  parent: Fluxer.Net.Webhook
+  langs:
+  - csharp
+  - vb
+  name: Id
+  nameWithType: Webhook.Id
+  fullName: Fluxer.Net.Webhook.Id
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Webhooks/Webhook.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Id
+    path: ../Fluxer.Net/Data/Webhooks/Webhook.cs
+    startLine: 6
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The unique identifier (snowflake) for the webhook.
+  example: []
+  syntax:
+    content: public ulong Id { get; }
+    parameters: []
+    return:
+      type: System.UInt64
+    content.vb: Public Property Id As ULong
+  overload: Fluxer.Net.Webhook.Id*
+  implements:
+  - Fluxer.Net.IWebhook.Id
+- uid: Fluxer.Net.Webhook.Token
+  commentId: P:Fluxer.Net.Webhook.Token
+  id: Token
+  parent: Fluxer.Net.Webhook
+  langs:
+  - csharp
+  - vb
+  name: Token
+  nameWithType: Webhook.Token
+  fullName: Fluxer.Net.Webhook.Token
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Webhooks/Webhook.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Token
+    path: ../Fluxer.Net/Data/Webhooks/Webhook.cs
+    startLine: 9
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The secure token used to execute the webhook.
+  remarks: Will be missing if you don't have access.
+  example: []
+  syntax:
+    content: public string? Token { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Token As String
+  overload: Fluxer.Net.Webhook.Token*
+  implements:
+  - Fluxer.Net.IWebhook.Token
+- uid: Fluxer.Net.Webhook.GuildId
+  commentId: P:Fluxer.Net.Webhook.GuildId
+  id: GuildId
+  parent: Fluxer.Net.Webhook
+  langs:
+  - csharp
+  - vb
+  name: GuildId
+  nameWithType: Webhook.GuildId
+  fullName: Fluxer.Net.Webhook.GuildId
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Webhooks/Webhook.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: GuildId
+    path: ../Fluxer.Net/Data/Webhooks/Webhook.cs
+    startLine: 12
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The ID of the guild this webhook belongs to.
+  example: []
+  syntax:
+    content: public ulong? GuildId { get; }
+    parameters: []
+    return:
+      type: System.Nullable{System.UInt64}
+    content.vb: Public Property GuildId As ULong?
+  overload: Fluxer.Net.Webhook.GuildId*
+  implements:
+  - Fluxer.Net.IWebhook.GuildId
+- uid: Fluxer.Net.Webhook.ChannelId
+  commentId: P:Fluxer.Net.Webhook.ChannelId
+  id: ChannelId
+  parent: Fluxer.Net.Webhook
+  langs:
+  - csharp
+  - vb
+  name: ChannelId
+  nameWithType: Webhook.ChannelId
+  fullName: Fluxer.Net.Webhook.ChannelId
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Webhooks/Webhook.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: ChannelId
+    path: ../Fluxer.Net/Data/Webhooks/Webhook.cs
+    startLine: 15
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The ID of the channel this webhook posts to.
+  example: []
+  syntax:
+    content: public ulong? ChannelId { get; }
+    parameters: []
+    return:
+      type: System.Nullable{System.UInt64}
+    content.vb: Public Property ChannelId As ULong?
+  overload: Fluxer.Net.Webhook.ChannelId*
+  implements:
+  - Fluxer.Net.IWebhook.ChannelId
+- uid: Fluxer.Net.Webhook.Creator
+  commentId: P:Fluxer.Net.Webhook.Creator
+  id: Creator
+  parent: Fluxer.Net.Webhook
+  langs:
+  - csharp
+  - vb
+  name: Creator
+  nameWithType: Webhook.Creator
+  fullName: Fluxer.Net.Webhook.Creator
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Webhooks/Webhook.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Creator
+    path: ../Fluxer.Net/Data/Webhooks/Webhook.cs
+    startLine: 18
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  example: []
+  syntax:
+    content: public User? Creator { get; }
+    parameters: []
+    return:
+      type: Fluxer.Net.User
+    content.vb: Public Property Creator As User
+  overload: Fluxer.Net.Webhook.Creator*
+- uid: Fluxer.Net.Webhook.Name
+  commentId: P:Fluxer.Net.Webhook.Name
+  id: Name
+  parent: Fluxer.Net.Webhook
+  langs:
+  - csharp
+  - vb
+  name: Name
+  nameWithType: Webhook.Name
+  fullName: Fluxer.Net.Webhook.Name
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Webhooks/Webhook.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Name
+    path: ../Fluxer.Net/Data/Webhooks/Webhook.cs
+    startLine: 21
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The display name of the webhook.
+  example: []
+  syntax:
+    content: public string Name { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Name As String
+  overload: Fluxer.Net.Webhook.Name*
+  implements:
+  - Fluxer.Net.IWebhook.Name
+- uid: Fluxer.Net.Webhook.AvatarHash
+  commentId: P:Fluxer.Net.Webhook.AvatarHash
+  id: AvatarHash
+  parent: Fluxer.Net.Webhook
+  langs:
+  - csharp
+  - vb
+  name: AvatarHash
+  nameWithType: Webhook.AvatarHash
+  fullName: Fluxer.Net.Webhook.AvatarHash
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Webhooks/Webhook.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: AvatarHash
+    path: ../Fluxer.Net/Data/Webhooks/Webhook.cs
+    startLine: 24
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The hash of the webhook avatar image.
+  example: []
+  syntax:
+    content: public string? AvatarHash { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property AvatarHash As String
+  overload: Fluxer.Net.Webhook.AvatarHash*
+  implements:
+  - Fluxer.Net.IWebhook.AvatarHash
+- uid: Fluxer.Net.Webhook.GetDefaultAvatarUrl
+  commentId: M:Fluxer.Net.Webhook.GetDefaultAvatarUrl
+  id: GetDefaultAvatarUrl
+  parent: Fluxer.Net.Webhook
+  langs:
+  - csharp
+  - vb
+  name: GetDefaultAvatarUrl()
+  nameWithType: Webhook.GetDefaultAvatarUrl()
+  fullName: Fluxer.Net.Webhook.GetDefaultAvatarUrl()
+  type: Method
+  source:
+    remote:
+      path: Fluxer.Net/Data/Webhooks/Webhook.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: GetDefaultAvatarUrl
+    path: ../Fluxer.Net/Data/Webhooks/Webhook.cs
+    startLine: 29
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Get the default avatar for the user.
+  example: []
+  syntax:
+    content: public string GetDefaultAvatarUrl()
+    return:
+      type: System.String
+    content.vb: Public Function GetDefaultAvatarUrl() As String
+  overload: Fluxer.Net.Webhook.GetDefaultAvatarUrl*
+  implements:
+  - Fluxer.Net.IWebhook.GetDefaultAvatarUrl
+- uid: Fluxer.Net.Webhook.GetAvatarUrl(System.Int32)
+  commentId: M:Fluxer.Net.Webhook.GetAvatarUrl(System.Int32)
+  id: GetAvatarUrl(System.Int32)
+  parent: Fluxer.Net.Webhook
+  langs:
+  - csharp
+  - vb
+  name: GetAvatarUrl(int)
+  nameWithType: Webhook.GetAvatarUrl(int)
+  fullName: Fluxer.Net.Webhook.GetAvatarUrl(int)
+  type: Method
+  source:
+    remote:
+      path: Fluxer.Net/Data/Webhooks/Webhook.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: GetAvatarUrl
+    path: ../Fluxer.Net/Data/Webhooks/Webhook.cs
+    startLine: 35
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Get the webhooks's avatar.
+  example: []
+  syntax:
+    content: public string? GetAvatarUrl(int size = 160)
+    parameters:
+    - id: size
+      type: System.Int32
+    return:
+      type: System.String
+    content.vb: Public Function GetAvatarUrl(size As Integer = 160) As String
+  overload: Fluxer.Net.Webhook.GetAvatarUrl*
+  implements:
+  - Fluxer.Net.IWebhook.GetAvatarUrl(System.Int32)
+  nameWithType.vb: Webhook.GetAvatarUrl(Integer)
+  fullName.vb: Fluxer.Net.Webhook.GetAvatarUrl(Integer)
+  name.vb: GetAvatarUrl(Integer)
+- uid: Fluxer.Net.Webhook.GetAvatarOrDefaultUrl(System.Int32)
+  commentId: M:Fluxer.Net.Webhook.GetAvatarOrDefaultUrl(System.Int32)
+  id: GetAvatarOrDefaultUrl(System.Int32)
+  parent: Fluxer.Net.Webhook
+  langs:
+  - csharp
+  - vb
+  name: GetAvatarOrDefaultUrl(int)
+  nameWithType: Webhook.GetAvatarOrDefaultUrl(int)
+  fullName: Fluxer.Net.Webhook.GetAvatarOrDefaultUrl(int)
+  type: Method
+  source:
+    remote:
+      path: Fluxer.Net/Data/Webhooks/Webhook.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: GetAvatarOrDefaultUrl
+    path: ../Fluxer.Net/Data/Webhooks/Webhook.cs
+    startLine: 44
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Get the webhooks's avatar or fallback to default.
+  example: []
+  syntax:
+    content: public string GetAvatarOrDefaultUrl(int size = 160)
+    parameters:
+    - id: size
+      type: System.Int32
+    return:
+      type: System.String
+    content.vb: Public Function GetAvatarOrDefaultUrl(size As Integer = 160) As String
+  overload: Fluxer.Net.Webhook.GetAvatarOrDefaultUrl*
+  implements:
+  - Fluxer.Net.IWebhook.GetAvatarOrDefaultUrl(System.Int32)
+  nameWithType.vb: Webhook.GetAvatarOrDefaultUrl(Integer)
+  fullName.vb: Fluxer.Net.Webhook.GetAvatarOrDefaultUrl(Integer)
+  name.vb: GetAvatarOrDefaultUrl(Integer)
+- uid: Fluxer.Net.Webhook.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.WebhookJson)
+  commentId: M:Fluxer.Net.Webhook.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.WebhookJson)
+  id: Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.WebhookJson)
+  parent: Fluxer.Net.Webhook
+  langs:
+  - csharp
+  - vb
+  name: Create(FluxerBaseClient, WebhookJson)
+  nameWithType: Webhook.Create(FluxerBaseClient, WebhookJson)
+  fullName: Fluxer.Net.Webhook.Create(Fluxer.Net.FluxerBaseClient, Fluxer.Net.WebhookJson)
+  type: Method
+  source:
+    remote:
+      path: Fluxer.Net/Data/Webhooks/Webhook.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Create
+    path: ../Fluxer.Net/Data/Webhooks/Webhook.cs
+    startLine: 57
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: public static Webhook Create(FluxerBaseClient client, WebhookJson json)
+    parameters:
+    - id: client
+      type: Fluxer.Net.FluxerBaseClient
+    - id: json
+      type: Fluxer.Net.WebhookJson
+    return:
+      type: Fluxer.Net.Webhook
+    content.vb: Public Shared Function Create(client As FluxerBaseClient, json As WebhookJson) As Webhook
+  overload: Fluxer.Net.Webhook.Create*
+references:
+- uid: Fluxer.Net
+  commentId: N:Fluxer.Net
+  href: Fluxer.html
+  name: Fluxer.Net
+  nameWithType: Fluxer.Net
+  fullName: Fluxer.Net
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Fluxer.Net.Entity
+  commentId: T:Fluxer.Net.Entity
+  parent: Fluxer.Net
+  href: Fluxer.Net.Entity.html
+  name: Entity
+  nameWithType: Entity
+  fullName: Fluxer.Net.Entity
+- uid: Fluxer.Net.IWebhook
+  commentId: T:Fluxer.Net.IWebhook
+  parent: Fluxer.Net
+  href: Fluxer.Net.IWebhook.html
+  name: IWebhook
+  nameWithType: IWebhook
+  fullName: Fluxer.Net.IWebhook
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: Fluxer.Net.Webhook.Fluxer.Net.WebhookHelpers.DeleteAsync
+  commentId: M:Fluxer.Net.WebhookHelpers.DeleteAsync(Fluxer.Net.Webhook)
+  parent: Fluxer.Net.WebhookHelpers
+  definition: Fluxer.Net.WebhookHelpers.DeleteAsync(Fluxer.Net.Webhook)
+  href: Fluxer.Net.WebhookHelpers.html#Fluxer_Net_WebhookHelpers_DeleteAsync_Fluxer_Net_Webhook_
+  name: DeleteAsync(Webhook)
+  nameWithType: WebhookHelpers.DeleteAsync(Webhook)
+  fullName: Fluxer.Net.WebhookHelpers.DeleteAsync(Fluxer.Net.Webhook)
+  spec.csharp:
+  - uid: Fluxer.Net.WebhookHelpers.DeleteAsync(Fluxer.Net.Webhook)
+    name: DeleteAsync
+    href: Fluxer.Net.WebhookHelpers.html#Fluxer_Net_WebhookHelpers_DeleteAsync_Fluxer_Net_Webhook_
+  - name: (
+  - uid: Fluxer.Net.Webhook
+    name: Webhook
+    href: Fluxer.Net.Webhook.html
+  - name: )
+  spec.vb:
+  - uid: Fluxer.Net.WebhookHelpers.DeleteAsync(Fluxer.Net.Webhook)
+    name: DeleteAsync
+    href: Fluxer.Net.WebhookHelpers.html#Fluxer_Net_WebhookHelpers_DeleteAsync_Fluxer_Net_Webhook_
+  - name: (
+  - uid: Fluxer.Net.Webhook
+    name: Webhook
+    href: Fluxer.Net.Webhook.html
+  - name: )
+- uid: Fluxer.Net.Webhook.Fluxer.Net.WebhookHelpers.DeleteMessageAsync(Fluxer.Net.Message)
+  commentId: M:Fluxer.Net.WebhookHelpers.DeleteMessageAsync(Fluxer.Net.Webhook,Fluxer.Net.Message)
+  parent: Fluxer.Net.WebhookHelpers
+  definition: Fluxer.Net.WebhookHelpers.DeleteMessageAsync(Fluxer.Net.Webhook,Fluxer.Net.Message)
+  href: Fluxer.Net.WebhookHelpers.html#Fluxer_Net_WebhookHelpers_DeleteMessageAsync_Fluxer_Net_Webhook_Fluxer_Net_Message_
+  name: DeleteMessageAsync(Webhook, Message)
+  nameWithType: WebhookHelpers.DeleteMessageAsync(Webhook, Message)
+  fullName: Fluxer.Net.WebhookHelpers.DeleteMessageAsync(Fluxer.Net.Webhook, Fluxer.Net.Message)
+  spec.csharp:
+  - uid: Fluxer.Net.WebhookHelpers.DeleteMessageAsync(Fluxer.Net.Webhook,Fluxer.Net.Message)
+    name: DeleteMessageAsync
+    href: Fluxer.Net.WebhookHelpers.html#Fluxer_Net_WebhookHelpers_DeleteMessageAsync_Fluxer_Net_Webhook_Fluxer_Net_Message_
+  - name: (
+  - uid: Fluxer.Net.Webhook
+    name: Webhook
+    href: Fluxer.Net.Webhook.html
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.Message
+    name: Message
+    href: Fluxer.Net.Message.html
+  - name: )
+  spec.vb:
+  - uid: Fluxer.Net.WebhookHelpers.DeleteMessageAsync(Fluxer.Net.Webhook,Fluxer.Net.Message)
+    name: DeleteMessageAsync
+    href: Fluxer.Net.WebhookHelpers.html#Fluxer_Net_WebhookHelpers_DeleteMessageAsync_Fluxer_Net_Webhook_Fluxer_Net_Message_
+  - name: (
+  - uid: Fluxer.Net.Webhook
+    name: Webhook
+    href: Fluxer.Net.Webhook.html
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.Message
+    name: Message
+    href: Fluxer.Net.Message.html
+  - name: )
+- uid: Fluxer.Net.Webhook.Fluxer.Net.WebhookHelpers.DeleteMessageAsync(System.UInt64)
+  commentId: M:Fluxer.Net.WebhookHelpers.DeleteMessageAsync(Fluxer.Net.Webhook,System.UInt64)
+  parent: Fluxer.Net.WebhookHelpers
+  definition: Fluxer.Net.WebhookHelpers.DeleteMessageAsync(Fluxer.Net.Webhook,System.UInt64)
+  href: Fluxer.Net.WebhookHelpers.html#Fluxer_Net_WebhookHelpers_DeleteMessageAsync_Fluxer_Net_Webhook_System_UInt64_
+  name: DeleteMessageAsync(Webhook, ulong)
+  nameWithType: WebhookHelpers.DeleteMessageAsync(Webhook, ulong)
+  fullName: Fluxer.Net.WebhookHelpers.DeleteMessageAsync(Fluxer.Net.Webhook, ulong)
+  nameWithType.vb: WebhookHelpers.DeleteMessageAsync(Webhook, ULong)
+  fullName.vb: Fluxer.Net.WebhookHelpers.DeleteMessageAsync(Fluxer.Net.Webhook, ULong)
+  name.vb: DeleteMessageAsync(Webhook, ULong)
+  spec.csharp:
+  - uid: Fluxer.Net.WebhookHelpers.DeleteMessageAsync(Fluxer.Net.Webhook,System.UInt64)
+    name: DeleteMessageAsync
+    href: Fluxer.Net.WebhookHelpers.html#Fluxer_Net_WebhookHelpers_DeleteMessageAsync_Fluxer_Net_Webhook_System_UInt64_
+  - name: (
+  - uid: Fluxer.Net.Webhook
+    name: Webhook
+    href: Fluxer.Net.Webhook.html
+  - name: ','
+  - name: " "
+  - uid: System.UInt64
+    name: ulong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: )
+  spec.vb:
+  - uid: Fluxer.Net.WebhookHelpers.DeleteMessageAsync(Fluxer.Net.Webhook,System.UInt64)
+    name: DeleteMessageAsync
+    href: Fluxer.Net.WebhookHelpers.html#Fluxer_Net_WebhookHelpers_DeleteMessageAsync_Fluxer_Net_Webhook_System_UInt64_
+  - name: (
+  - uid: Fluxer.Net.Webhook
+    name: Webhook
+    href: Fluxer.Net.Webhook.html
+  - name: ','
+  - name: " "
+  - uid: System.UInt64
+    name: ULong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: )
+- uid: Fluxer.Net.Webhook.Fluxer.Net.WebhookHelpers.EditMessageAsync(Fluxer.Net.Message,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.Requests.EmbedRequest},Fluxer.Net.MessageReferenceRequest,Fluxer.Net.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64})
+  commentId: M:Fluxer.Net.WebhookHelpers.EditMessageAsync(Fluxer.Net.Webhook,Fluxer.Net.Message,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.Requests.EmbedRequest},Fluxer.Net.MessageReferenceRequest,Fluxer.Net.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64})
+  parent: Fluxer.Net.WebhookHelpers
+  definition: Fluxer.Net.WebhookHelpers.EditMessageAsync(Fluxer.Net.Webhook,Fluxer.Net.Message,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.Requests.EmbedRequest},Fluxer.Net.MessageReferenceRequest,Fluxer.Net.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64})
+  href: Fluxer.Net.WebhookHelpers.html#Fluxer_Net_WebhookHelpers_EditMessageAsync_Fluxer_Net_Webhook_Fluxer_Net_Message_System_String_System_Collections_Generic_List_Fluxer_Net_Rest_Requests_EmbedRequest__Fluxer_Net_MessageReferenceRequest_Fluxer_Net_AllowedMentionsRequest_Fluxer_Net_MessageFlag_System_String_System_Nullable_System_UInt64__System_Nullable_System_Boolean__System_Collections_Generic_List_System_UInt64__
+  name: EditMessageAsync(Webhook, Message, string, List<EmbedRequest>, MessageReferenceRequest, AllowedMentionsRequest, MessageFlag, string, ulong?, bool?, List<ulong>)
+  nameWithType: WebhookHelpers.EditMessageAsync(Webhook, Message, string, List<EmbedRequest>, MessageReferenceRequest, AllowedMentionsRequest, MessageFlag, string, ulong?, bool?, List<ulong>)
+  fullName: Fluxer.Net.WebhookHelpers.EditMessageAsync(Fluxer.Net.Webhook, Fluxer.Net.Message, string, System.Collections.Generic.List<Fluxer.Net.Rest.Requests.EmbedRequest>, Fluxer.Net.MessageReferenceRequest, Fluxer.Net.AllowedMentionsRequest, Fluxer.Net.MessageFlag, string, ulong?, bool?, System.Collections.Generic.List<ulong>)
+  nameWithType.vb: WebhookHelpers.EditMessageAsync(Webhook, Message, String, List(Of EmbedRequest), MessageReferenceRequest, AllowedMentionsRequest, MessageFlag, String, ULong?, Boolean?, List(Of ULong))
+  fullName.vb: Fluxer.Net.WebhookHelpers.EditMessageAsync(Fluxer.Net.Webhook, Fluxer.Net.Message, String, System.Collections.Generic.List(Of Fluxer.Net.Rest.Requests.EmbedRequest), Fluxer.Net.MessageReferenceRequest, Fluxer.Net.AllowedMentionsRequest, Fluxer.Net.MessageFlag, String, ULong?, Boolean?, System.Collections.Generic.List(Of ULong))
+  name.vb: EditMessageAsync(Webhook, Message, String, List(Of EmbedRequest), MessageReferenceRequest, AllowedMentionsRequest, MessageFlag, String, ULong?, Boolean?, List(Of ULong))
+  spec.csharp:
+  - uid: Fluxer.Net.WebhookHelpers.EditMessageAsync(Fluxer.Net.Webhook,Fluxer.Net.Message,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.Requests.EmbedRequest},Fluxer.Net.MessageReferenceRequest,Fluxer.Net.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64})
+    name: EditMessageAsync
+    href: Fluxer.Net.WebhookHelpers.html#Fluxer_Net_WebhookHelpers_EditMessageAsync_Fluxer_Net_Webhook_Fluxer_Net_Message_System_String_System_Collections_Generic_List_Fluxer_Net_Rest_Requests_EmbedRequest__Fluxer_Net_MessageReferenceRequest_Fluxer_Net_AllowedMentionsRequest_Fluxer_Net_MessageFlag_System_String_System_Nullable_System_UInt64__System_Nullable_System_Boolean__System_Collections_Generic_List_System_UInt64__
+  - name: (
+  - uid: Fluxer.Net.Webhook
+    name: Webhook
+    href: Fluxer.Net.Webhook.html
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.Message
+    name: Message
+    href: Fluxer.Net.Message.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: Fluxer.Net.Rest.Requests.EmbedRequest
+    name: EmbedRequest
+    href: Fluxer.Net.Rest.Requests.EmbedRequest.html
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.MessageReferenceRequest
+    name: MessageReferenceRequest
+    href: Fluxer.Net.MessageReferenceRequest.html
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.AllowedMentionsRequest
+    name: AllowedMentionsRequest
+    href: Fluxer.Net.AllowedMentionsRequest.html
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.MessageFlag
+    name: MessageFlag
+    href: Fluxer.Net.MessageFlag.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.UInt64
+    name: ulong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: '?'
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '?'
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: System.UInt64
+    name: ulong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: Fluxer.Net.WebhookHelpers.EditMessageAsync(Fluxer.Net.Webhook,Fluxer.Net.Message,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.Requests.EmbedRequest},Fluxer.Net.MessageReferenceRequest,Fluxer.Net.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64})
+    name: EditMessageAsync
+    href: Fluxer.Net.WebhookHelpers.html#Fluxer_Net_WebhookHelpers_EditMessageAsync_Fluxer_Net_Webhook_Fluxer_Net_Message_System_String_System_Collections_Generic_List_Fluxer_Net_Rest_Requests_EmbedRequest__Fluxer_Net_MessageReferenceRequest_Fluxer_Net_AllowedMentionsRequest_Fluxer_Net_MessageFlag_System_String_System_Nullable_System_UInt64__System_Nullable_System_Boolean__System_Collections_Generic_List_System_UInt64__
+  - name: (
+  - uid: Fluxer.Net.Webhook
+    name: Webhook
+    href: Fluxer.Net.Webhook.html
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.Message
+    name: Message
+    href: Fluxer.Net.Message.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Fluxer.Net.Rest.Requests.EmbedRequest
+    name: EmbedRequest
+    href: Fluxer.Net.Rest.Requests.EmbedRequest.html
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.MessageReferenceRequest
+    name: MessageReferenceRequest
+    href: Fluxer.Net.MessageReferenceRequest.html
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.AllowedMentionsRequest
+    name: AllowedMentionsRequest
+    href: Fluxer.Net.AllowedMentionsRequest.html
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.MessageFlag
+    name: MessageFlag
+    href: Fluxer.Net.MessageFlag.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.UInt64
+    name: ULong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: '?'
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '?'
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.UInt64
+    name: ULong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: )
+  - name: )
+- uid: Fluxer.Net.Webhook.Fluxer.Net.WebhookHelpers.EditMessageAsync(System.UInt64,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.Requests.EmbedRequest},Fluxer.Net.MessageReferenceRequest,Fluxer.Net.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64})
+  commentId: M:Fluxer.Net.WebhookHelpers.EditMessageAsync(Fluxer.Net.Webhook,System.UInt64,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.Requests.EmbedRequest},Fluxer.Net.MessageReferenceRequest,Fluxer.Net.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64})
+  parent: Fluxer.Net.WebhookHelpers
+  definition: Fluxer.Net.WebhookHelpers.EditMessageAsync(Fluxer.Net.Webhook,System.UInt64,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.Requests.EmbedRequest},Fluxer.Net.MessageReferenceRequest,Fluxer.Net.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64})
+  href: Fluxer.Net.WebhookHelpers.html#Fluxer_Net_WebhookHelpers_EditMessageAsync_Fluxer_Net_Webhook_System_UInt64_System_String_System_Collections_Generic_List_Fluxer_Net_Rest_Requests_EmbedRequest__Fluxer_Net_MessageReferenceRequest_Fluxer_Net_AllowedMentionsRequest_Fluxer_Net_MessageFlag_System_String_System_Nullable_System_UInt64__System_Nullable_System_Boolean__System_Collections_Generic_List_System_UInt64__
+  name: EditMessageAsync(Webhook, ulong, string, List<EmbedRequest>, MessageReferenceRequest, AllowedMentionsRequest, MessageFlag, string, ulong?, bool?, List<ulong>)
+  nameWithType: WebhookHelpers.EditMessageAsync(Webhook, ulong, string, List<EmbedRequest>, MessageReferenceRequest, AllowedMentionsRequest, MessageFlag, string, ulong?, bool?, List<ulong>)
+  fullName: Fluxer.Net.WebhookHelpers.EditMessageAsync(Fluxer.Net.Webhook, ulong, string, System.Collections.Generic.List<Fluxer.Net.Rest.Requests.EmbedRequest>, Fluxer.Net.MessageReferenceRequest, Fluxer.Net.AllowedMentionsRequest, Fluxer.Net.MessageFlag, string, ulong?, bool?, System.Collections.Generic.List<ulong>)
+  nameWithType.vb: WebhookHelpers.EditMessageAsync(Webhook, ULong, String, List(Of EmbedRequest), MessageReferenceRequest, AllowedMentionsRequest, MessageFlag, String, ULong?, Boolean?, List(Of ULong))
+  fullName.vb: Fluxer.Net.WebhookHelpers.EditMessageAsync(Fluxer.Net.Webhook, ULong, String, System.Collections.Generic.List(Of Fluxer.Net.Rest.Requests.EmbedRequest), Fluxer.Net.MessageReferenceRequest, Fluxer.Net.AllowedMentionsRequest, Fluxer.Net.MessageFlag, String, ULong?, Boolean?, System.Collections.Generic.List(Of ULong))
+  name.vb: EditMessageAsync(Webhook, ULong, String, List(Of EmbedRequest), MessageReferenceRequest, AllowedMentionsRequest, MessageFlag, String, ULong?, Boolean?, List(Of ULong))
+  spec.csharp:
+  - uid: Fluxer.Net.WebhookHelpers.EditMessageAsync(Fluxer.Net.Webhook,System.UInt64,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.Requests.EmbedRequest},Fluxer.Net.MessageReferenceRequest,Fluxer.Net.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64})
+    name: EditMessageAsync
+    href: Fluxer.Net.WebhookHelpers.html#Fluxer_Net_WebhookHelpers_EditMessageAsync_Fluxer_Net_Webhook_System_UInt64_System_String_System_Collections_Generic_List_Fluxer_Net_Rest_Requests_EmbedRequest__Fluxer_Net_MessageReferenceRequest_Fluxer_Net_AllowedMentionsRequest_Fluxer_Net_MessageFlag_System_String_System_Nullable_System_UInt64__System_Nullable_System_Boolean__System_Collections_Generic_List_System_UInt64__
+  - name: (
+  - uid: Fluxer.Net.Webhook
+    name: Webhook
+    href: Fluxer.Net.Webhook.html
+  - name: ','
+  - name: " "
+  - uid: System.UInt64
+    name: ulong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: Fluxer.Net.Rest.Requests.EmbedRequest
+    name: EmbedRequest
+    href: Fluxer.Net.Rest.Requests.EmbedRequest.html
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.MessageReferenceRequest
+    name: MessageReferenceRequest
+    href: Fluxer.Net.MessageReferenceRequest.html
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.AllowedMentionsRequest
+    name: AllowedMentionsRequest
+    href: Fluxer.Net.AllowedMentionsRequest.html
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.MessageFlag
+    name: MessageFlag
+    href: Fluxer.Net.MessageFlag.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.UInt64
+    name: ulong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: '?'
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '?'
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: System.UInt64
+    name: ulong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: Fluxer.Net.WebhookHelpers.EditMessageAsync(Fluxer.Net.Webhook,System.UInt64,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.Requests.EmbedRequest},Fluxer.Net.MessageReferenceRequest,Fluxer.Net.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64})
+    name: EditMessageAsync
+    href: Fluxer.Net.WebhookHelpers.html#Fluxer_Net_WebhookHelpers_EditMessageAsync_Fluxer_Net_Webhook_System_UInt64_System_String_System_Collections_Generic_List_Fluxer_Net_Rest_Requests_EmbedRequest__Fluxer_Net_MessageReferenceRequest_Fluxer_Net_AllowedMentionsRequest_Fluxer_Net_MessageFlag_System_String_System_Nullable_System_UInt64__System_Nullable_System_Boolean__System_Collections_Generic_List_System_UInt64__
+  - name: (
+  - uid: Fluxer.Net.Webhook
+    name: Webhook
+    href: Fluxer.Net.Webhook.html
+  - name: ','
+  - name: " "
+  - uid: System.UInt64
+    name: ULong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Fluxer.Net.Rest.Requests.EmbedRequest
+    name: EmbedRequest
+    href: Fluxer.Net.Rest.Requests.EmbedRequest.html
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.MessageReferenceRequest
+    name: MessageReferenceRequest
+    href: Fluxer.Net.MessageReferenceRequest.html
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.AllowedMentionsRequest
+    name: AllowedMentionsRequest
+    href: Fluxer.Net.AllowedMentionsRequest.html
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.MessageFlag
+    name: MessageFlag
+    href: Fluxer.Net.MessageFlag.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.UInt64
+    name: ULong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: '?'
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '?'
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.UInt64
+    name: ULong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: )
+  - name: )
+- uid: Fluxer.Net.Webhook.Fluxer.Net.WebhookHelpers.ModifyAsync(Fluxer.Net.WebhookJson)
+  commentId: M:Fluxer.Net.WebhookHelpers.ModifyAsync(Fluxer.Net.Webhook,Fluxer.Net.WebhookJson)
+  parent: Fluxer.Net.WebhookHelpers
+  definition: Fluxer.Net.WebhookHelpers.ModifyAsync(Fluxer.Net.Webhook,Fluxer.Net.WebhookJson)
+  href: Fluxer.Net.WebhookHelpers.html#Fluxer_Net_WebhookHelpers_ModifyAsync_Fluxer_Net_Webhook_Fluxer_Net_WebhookJson_
+  name: ModifyAsync(Webhook, WebhookJson)
+  nameWithType: WebhookHelpers.ModifyAsync(Webhook, WebhookJson)
+  fullName: Fluxer.Net.WebhookHelpers.ModifyAsync(Fluxer.Net.Webhook, Fluxer.Net.WebhookJson)
+  spec.csharp:
+  - uid: Fluxer.Net.WebhookHelpers.ModifyAsync(Fluxer.Net.Webhook,Fluxer.Net.WebhookJson)
+    name: ModifyAsync
+    href: Fluxer.Net.WebhookHelpers.html#Fluxer_Net_WebhookHelpers_ModifyAsync_Fluxer_Net_Webhook_Fluxer_Net_WebhookJson_
+  - name: (
+  - uid: Fluxer.Net.Webhook
+    name: Webhook
+    href: Fluxer.Net.Webhook.html
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.WebhookJson
+    name: WebhookJson
+    href: Fluxer.Net.WebhookJson.html
+  - name: )
+  spec.vb:
+  - uid: Fluxer.Net.WebhookHelpers.ModifyAsync(Fluxer.Net.Webhook,Fluxer.Net.WebhookJson)
+    name: ModifyAsync
+    href: Fluxer.Net.WebhookHelpers.html#Fluxer_Net_WebhookHelpers_ModifyAsync_Fluxer_Net_Webhook_Fluxer_Net_WebhookJson_
+  - name: (
+  - uid: Fluxer.Net.Webhook
+    name: Webhook
+    href: Fluxer.Net.Webhook.html
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.WebhookJson
+    name: WebhookJson
+    href: Fluxer.Net.WebhookJson.html
+  - name: )
+- uid: Fluxer.Net.Webhook.Fluxer.Net.WebhookHelpers.SendMessageAsync(System.String,System.Collections.Generic.List{Fluxer.Net.Rest.Requests.EmbedRequest},Fluxer.Net.MessageReferenceRequest,Fluxer.Net.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64})
+  commentId: M:Fluxer.Net.WebhookHelpers.SendMessageAsync(Fluxer.Net.Webhook,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.Requests.EmbedRequest},Fluxer.Net.MessageReferenceRequest,Fluxer.Net.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64})
+  parent: Fluxer.Net.WebhookHelpers
+  definition: Fluxer.Net.WebhookHelpers.SendMessageAsync(Fluxer.Net.Webhook,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.Requests.EmbedRequest},Fluxer.Net.MessageReferenceRequest,Fluxer.Net.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64})
+  href: Fluxer.Net.WebhookHelpers.html#Fluxer_Net_WebhookHelpers_SendMessageAsync_Fluxer_Net_Webhook_System_String_System_Collections_Generic_List_Fluxer_Net_Rest_Requests_EmbedRequest__Fluxer_Net_MessageReferenceRequest_Fluxer_Net_AllowedMentionsRequest_Fluxer_Net_MessageFlag_System_String_System_Nullable_System_UInt64__System_Nullable_System_Boolean__System_Collections_Generic_List_System_UInt64__
+  name: SendMessageAsync(Webhook, string, List<EmbedRequest>, MessageReferenceRequest, AllowedMentionsRequest, MessageFlag, string, ulong?, bool?, List<ulong>)
+  nameWithType: WebhookHelpers.SendMessageAsync(Webhook, string, List<EmbedRequest>, MessageReferenceRequest, AllowedMentionsRequest, MessageFlag, string, ulong?, bool?, List<ulong>)
+  fullName: Fluxer.Net.WebhookHelpers.SendMessageAsync(Fluxer.Net.Webhook, string, System.Collections.Generic.List<Fluxer.Net.Rest.Requests.EmbedRequest>, Fluxer.Net.MessageReferenceRequest, Fluxer.Net.AllowedMentionsRequest, Fluxer.Net.MessageFlag, string, ulong?, bool?, System.Collections.Generic.List<ulong>)
+  nameWithType.vb: WebhookHelpers.SendMessageAsync(Webhook, String, List(Of EmbedRequest), MessageReferenceRequest, AllowedMentionsRequest, MessageFlag, String, ULong?, Boolean?, List(Of ULong))
+  fullName.vb: Fluxer.Net.WebhookHelpers.SendMessageAsync(Fluxer.Net.Webhook, String, System.Collections.Generic.List(Of Fluxer.Net.Rest.Requests.EmbedRequest), Fluxer.Net.MessageReferenceRequest, Fluxer.Net.AllowedMentionsRequest, Fluxer.Net.MessageFlag, String, ULong?, Boolean?, System.Collections.Generic.List(Of ULong))
+  name.vb: SendMessageAsync(Webhook, String, List(Of EmbedRequest), MessageReferenceRequest, AllowedMentionsRequest, MessageFlag, String, ULong?, Boolean?, List(Of ULong))
+  spec.csharp:
+  - uid: Fluxer.Net.WebhookHelpers.SendMessageAsync(Fluxer.Net.Webhook,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.Requests.EmbedRequest},Fluxer.Net.MessageReferenceRequest,Fluxer.Net.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64})
+    name: SendMessageAsync
+    href: Fluxer.Net.WebhookHelpers.html#Fluxer_Net_WebhookHelpers_SendMessageAsync_Fluxer_Net_Webhook_System_String_System_Collections_Generic_List_Fluxer_Net_Rest_Requests_EmbedRequest__Fluxer_Net_MessageReferenceRequest_Fluxer_Net_AllowedMentionsRequest_Fluxer_Net_MessageFlag_System_String_System_Nullable_System_UInt64__System_Nullable_System_Boolean__System_Collections_Generic_List_System_UInt64__
+  - name: (
+  - uid: Fluxer.Net.Webhook
+    name: Webhook
+    href: Fluxer.Net.Webhook.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: Fluxer.Net.Rest.Requests.EmbedRequest
+    name: EmbedRequest
+    href: Fluxer.Net.Rest.Requests.EmbedRequest.html
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.MessageReferenceRequest
+    name: MessageReferenceRequest
+    href: Fluxer.Net.MessageReferenceRequest.html
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.AllowedMentionsRequest
+    name: AllowedMentionsRequest
+    href: Fluxer.Net.AllowedMentionsRequest.html
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.MessageFlag
+    name: MessageFlag
+    href: Fluxer.Net.MessageFlag.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.UInt64
+    name: ulong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: '?'
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '?'
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: System.UInt64
+    name: ulong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: Fluxer.Net.WebhookHelpers.SendMessageAsync(Fluxer.Net.Webhook,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.Requests.EmbedRequest},Fluxer.Net.MessageReferenceRequest,Fluxer.Net.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64})
+    name: SendMessageAsync
+    href: Fluxer.Net.WebhookHelpers.html#Fluxer_Net_WebhookHelpers_SendMessageAsync_Fluxer_Net_Webhook_System_String_System_Collections_Generic_List_Fluxer_Net_Rest_Requests_EmbedRequest__Fluxer_Net_MessageReferenceRequest_Fluxer_Net_AllowedMentionsRequest_Fluxer_Net_MessageFlag_System_String_System_Nullable_System_UInt64__System_Nullable_System_Boolean__System_Collections_Generic_List_System_UInt64__
+  - name: (
+  - uid: Fluxer.Net.Webhook
+    name: Webhook
+    href: Fluxer.Net.Webhook.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Fluxer.Net.Rest.Requests.EmbedRequest
+    name: EmbedRequest
+    href: Fluxer.Net.Rest.Requests.EmbedRequest.html
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.MessageReferenceRequest
+    name: MessageReferenceRequest
+    href: Fluxer.Net.MessageReferenceRequest.html
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.AllowedMentionsRequest
+    name: AllowedMentionsRequest
+    href: Fluxer.Net.AllowedMentionsRequest.html
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.MessageFlag
+    name: MessageFlag
+    href: Fluxer.Net.MessageFlag.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.UInt64
+    name: ULong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: '?'
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '?'
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.UInt64
+    name: ULong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: )
+  - name: )
+- uid: Fluxer.Net.Webhook.Fluxer.Net.WebhookHelpers.SendMessageWaitAsync(System.String,System.Collections.Generic.List{Fluxer.Net.Rest.Requests.EmbedRequest},Fluxer.Net.MessageReferenceRequest,Fluxer.Net.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64})
+  commentId: M:Fluxer.Net.WebhookHelpers.SendMessageWaitAsync(Fluxer.Net.Webhook,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.Requests.EmbedRequest},Fluxer.Net.MessageReferenceRequest,Fluxer.Net.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64})
+  parent: Fluxer.Net.WebhookHelpers
+  definition: Fluxer.Net.WebhookHelpers.SendMessageWaitAsync(Fluxer.Net.Webhook,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.Requests.EmbedRequest},Fluxer.Net.MessageReferenceRequest,Fluxer.Net.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64})
+  href: Fluxer.Net.WebhookHelpers.html#Fluxer_Net_WebhookHelpers_SendMessageWaitAsync_Fluxer_Net_Webhook_System_String_System_Collections_Generic_List_Fluxer_Net_Rest_Requests_EmbedRequest__Fluxer_Net_MessageReferenceRequest_Fluxer_Net_AllowedMentionsRequest_Fluxer_Net_MessageFlag_System_String_System_Nullable_System_UInt64__System_Nullable_System_Boolean__System_Collections_Generic_List_System_UInt64__
+  name: SendMessageWaitAsync(Webhook, string, List<EmbedRequest>, MessageReferenceRequest, AllowedMentionsRequest, MessageFlag, string, ulong?, bool?, List<ulong>)
+  nameWithType: WebhookHelpers.SendMessageWaitAsync(Webhook, string, List<EmbedRequest>, MessageReferenceRequest, AllowedMentionsRequest, MessageFlag, string, ulong?, bool?, List<ulong>)
+  fullName: Fluxer.Net.WebhookHelpers.SendMessageWaitAsync(Fluxer.Net.Webhook, string, System.Collections.Generic.List<Fluxer.Net.Rest.Requests.EmbedRequest>, Fluxer.Net.MessageReferenceRequest, Fluxer.Net.AllowedMentionsRequest, Fluxer.Net.MessageFlag, string, ulong?, bool?, System.Collections.Generic.List<ulong>)
+  nameWithType.vb: WebhookHelpers.SendMessageWaitAsync(Webhook, String, List(Of EmbedRequest), MessageReferenceRequest, AllowedMentionsRequest, MessageFlag, String, ULong?, Boolean?, List(Of ULong))
+  fullName.vb: Fluxer.Net.WebhookHelpers.SendMessageWaitAsync(Fluxer.Net.Webhook, String, System.Collections.Generic.List(Of Fluxer.Net.Rest.Requests.EmbedRequest), Fluxer.Net.MessageReferenceRequest, Fluxer.Net.AllowedMentionsRequest, Fluxer.Net.MessageFlag, String, ULong?, Boolean?, System.Collections.Generic.List(Of ULong))
+  name.vb: SendMessageWaitAsync(Webhook, String, List(Of EmbedRequest), MessageReferenceRequest, AllowedMentionsRequest, MessageFlag, String, ULong?, Boolean?, List(Of ULong))
+  spec.csharp:
+  - uid: Fluxer.Net.WebhookHelpers.SendMessageWaitAsync(Fluxer.Net.Webhook,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.Requests.EmbedRequest},Fluxer.Net.MessageReferenceRequest,Fluxer.Net.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64})
+    name: SendMessageWaitAsync
+    href: Fluxer.Net.WebhookHelpers.html#Fluxer_Net_WebhookHelpers_SendMessageWaitAsync_Fluxer_Net_Webhook_System_String_System_Collections_Generic_List_Fluxer_Net_Rest_Requests_EmbedRequest__Fluxer_Net_MessageReferenceRequest_Fluxer_Net_AllowedMentionsRequest_Fluxer_Net_MessageFlag_System_String_System_Nullable_System_UInt64__System_Nullable_System_Boolean__System_Collections_Generic_List_System_UInt64__
+  - name: (
+  - uid: Fluxer.Net.Webhook
+    name: Webhook
+    href: Fluxer.Net.Webhook.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: Fluxer.Net.Rest.Requests.EmbedRequest
+    name: EmbedRequest
+    href: Fluxer.Net.Rest.Requests.EmbedRequest.html
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.MessageReferenceRequest
+    name: MessageReferenceRequest
+    href: Fluxer.Net.MessageReferenceRequest.html
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.AllowedMentionsRequest
+    name: AllowedMentionsRequest
+    href: Fluxer.Net.AllowedMentionsRequest.html
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.MessageFlag
+    name: MessageFlag
+    href: Fluxer.Net.MessageFlag.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.UInt64
+    name: ulong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: '?'
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '?'
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: System.UInt64
+    name: ulong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: Fluxer.Net.WebhookHelpers.SendMessageWaitAsync(Fluxer.Net.Webhook,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.Requests.EmbedRequest},Fluxer.Net.MessageReferenceRequest,Fluxer.Net.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64})
+    name: SendMessageWaitAsync
+    href: Fluxer.Net.WebhookHelpers.html#Fluxer_Net_WebhookHelpers_SendMessageWaitAsync_Fluxer_Net_Webhook_System_String_System_Collections_Generic_List_Fluxer_Net_Rest_Requests_EmbedRequest__Fluxer_Net_MessageReferenceRequest_Fluxer_Net_AllowedMentionsRequest_Fluxer_Net_MessageFlag_System_String_System_Nullable_System_UInt64__System_Nullable_System_Boolean__System_Collections_Generic_List_System_UInt64__
+  - name: (
+  - uid: Fluxer.Net.Webhook
+    name: Webhook
+    href: Fluxer.Net.Webhook.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Fluxer.Net.Rest.Requests.EmbedRequest
+    name: EmbedRequest
+    href: Fluxer.Net.Rest.Requests.EmbedRequest.html
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.MessageReferenceRequest
+    name: MessageReferenceRequest
+    href: Fluxer.Net.MessageReferenceRequest.html
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.AllowedMentionsRequest
+    name: AllowedMentionsRequest
+    href: Fluxer.Net.AllowedMentionsRequest.html
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.MessageFlag
+    name: MessageFlag
+    href: Fluxer.Net.MessageFlag.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.UInt64
+    name: ULong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: '?'
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '?'
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.UInt64
+    name: ULong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: )
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Fluxer.Net.WebhookHelpers.DeleteAsync(Fluxer.Net.Webhook)
+  commentId: M:Fluxer.Net.WebhookHelpers.DeleteAsync(Fluxer.Net.Webhook)
+  href: Fluxer.Net.WebhookHelpers.html#Fluxer_Net_WebhookHelpers_DeleteAsync_Fluxer_Net_Webhook_
+  name: DeleteAsync(Webhook)
+  nameWithType: WebhookHelpers.DeleteAsync(Webhook)
+  fullName: Fluxer.Net.WebhookHelpers.DeleteAsync(Fluxer.Net.Webhook)
+  spec.csharp:
+  - uid: Fluxer.Net.WebhookHelpers.DeleteAsync(Fluxer.Net.Webhook)
+    name: DeleteAsync
+    href: Fluxer.Net.WebhookHelpers.html#Fluxer_Net_WebhookHelpers_DeleteAsync_Fluxer_Net_Webhook_
+  - name: (
+  - uid: Fluxer.Net.Webhook
+    name: Webhook
+    href: Fluxer.Net.Webhook.html
+  - name: )
+  spec.vb:
+  - uid: Fluxer.Net.WebhookHelpers.DeleteAsync(Fluxer.Net.Webhook)
+    name: DeleteAsync
+    href: Fluxer.Net.WebhookHelpers.html#Fluxer_Net_WebhookHelpers_DeleteAsync_Fluxer_Net_Webhook_
+  - name: (
+  - uid: Fluxer.Net.Webhook
+    name: Webhook
+    href: Fluxer.Net.Webhook.html
+  - name: )
+- uid: Fluxer.Net.WebhookHelpers
+  commentId: T:Fluxer.Net.WebhookHelpers
+  parent: Fluxer.Net
+  href: Fluxer.Net.WebhookHelpers.html
+  name: WebhookHelpers
+  nameWithType: WebhookHelpers
+  fullName: Fluxer.Net.WebhookHelpers
+- uid: Fluxer.Net.WebhookHelpers.DeleteMessageAsync(Fluxer.Net.Webhook,Fluxer.Net.Message)
+  commentId: M:Fluxer.Net.WebhookHelpers.DeleteMessageAsync(Fluxer.Net.Webhook,Fluxer.Net.Message)
+  href: Fluxer.Net.WebhookHelpers.html#Fluxer_Net_WebhookHelpers_DeleteMessageAsync_Fluxer_Net_Webhook_Fluxer_Net_Message_
+  name: DeleteMessageAsync(Webhook, Message)
+  nameWithType: WebhookHelpers.DeleteMessageAsync(Webhook, Message)
+  fullName: Fluxer.Net.WebhookHelpers.DeleteMessageAsync(Fluxer.Net.Webhook, Fluxer.Net.Message)
+  spec.csharp:
+  - uid: Fluxer.Net.WebhookHelpers.DeleteMessageAsync(Fluxer.Net.Webhook,Fluxer.Net.Message)
+    name: DeleteMessageAsync
+    href: Fluxer.Net.WebhookHelpers.html#Fluxer_Net_WebhookHelpers_DeleteMessageAsync_Fluxer_Net_Webhook_Fluxer_Net_Message_
+  - name: (
+  - uid: Fluxer.Net.Webhook
+    name: Webhook
+    href: Fluxer.Net.Webhook.html
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.Message
+    name: Message
+    href: Fluxer.Net.Message.html
+  - name: )
+  spec.vb:
+  - uid: Fluxer.Net.WebhookHelpers.DeleteMessageAsync(Fluxer.Net.Webhook,Fluxer.Net.Message)
+    name: DeleteMessageAsync
+    href: Fluxer.Net.WebhookHelpers.html#Fluxer_Net_WebhookHelpers_DeleteMessageAsync_Fluxer_Net_Webhook_Fluxer_Net_Message_
+  - name: (
+  - uid: Fluxer.Net.Webhook
+    name: Webhook
+    href: Fluxer.Net.Webhook.html
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.Message
+    name: Message
+    href: Fluxer.Net.Message.html
+  - name: )
+- uid: Fluxer.Net.WebhookHelpers.DeleteMessageAsync(Fluxer.Net.Webhook,System.UInt64)
+  commentId: M:Fluxer.Net.WebhookHelpers.DeleteMessageAsync(Fluxer.Net.Webhook,System.UInt64)
+  isExternal: true
+  href: Fluxer.Net.WebhookHelpers.html#Fluxer_Net_WebhookHelpers_DeleteMessageAsync_Fluxer_Net_Webhook_System_UInt64_
+  name: DeleteMessageAsync(Webhook, ulong)
+  nameWithType: WebhookHelpers.DeleteMessageAsync(Webhook, ulong)
+  fullName: Fluxer.Net.WebhookHelpers.DeleteMessageAsync(Fluxer.Net.Webhook, ulong)
+  nameWithType.vb: WebhookHelpers.DeleteMessageAsync(Webhook, ULong)
+  fullName.vb: Fluxer.Net.WebhookHelpers.DeleteMessageAsync(Fluxer.Net.Webhook, ULong)
+  name.vb: DeleteMessageAsync(Webhook, ULong)
+  spec.csharp:
+  - uid: Fluxer.Net.WebhookHelpers.DeleteMessageAsync(Fluxer.Net.Webhook,System.UInt64)
+    name: DeleteMessageAsync
+    href: Fluxer.Net.WebhookHelpers.html#Fluxer_Net_WebhookHelpers_DeleteMessageAsync_Fluxer_Net_Webhook_System_UInt64_
+  - name: (
+  - uid: Fluxer.Net.Webhook
+    name: Webhook
+    href: Fluxer.Net.Webhook.html
+  - name: ','
+  - name: " "
+  - uid: System.UInt64
+    name: ulong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: )
+  spec.vb:
+  - uid: Fluxer.Net.WebhookHelpers.DeleteMessageAsync(Fluxer.Net.Webhook,System.UInt64)
+    name: DeleteMessageAsync
+    href: Fluxer.Net.WebhookHelpers.html#Fluxer_Net_WebhookHelpers_DeleteMessageAsync_Fluxer_Net_Webhook_System_UInt64_
+  - name: (
+  - uid: Fluxer.Net.Webhook
+    name: Webhook
+    href: Fluxer.Net.Webhook.html
+  - name: ','
+  - name: " "
+  - uid: System.UInt64
+    name: ULong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: )
+- uid: Fluxer.Net.WebhookHelpers.EditMessageAsync(Fluxer.Net.Webhook,Fluxer.Net.Message,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.Requests.EmbedRequest},Fluxer.Net.MessageReferenceRequest,Fluxer.Net.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64})
+  commentId: M:Fluxer.Net.WebhookHelpers.EditMessageAsync(Fluxer.Net.Webhook,Fluxer.Net.Message,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.Requests.EmbedRequest},Fluxer.Net.MessageReferenceRequest,Fluxer.Net.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64})
+  isExternal: true
+  href: Fluxer.Net.WebhookHelpers.html#Fluxer_Net_WebhookHelpers_EditMessageAsync_Fluxer_Net_Webhook_Fluxer_Net_Message_System_String_System_Collections_Generic_List_Fluxer_Net_Rest_Requests_EmbedRequest__Fluxer_Net_MessageReferenceRequest_Fluxer_Net_AllowedMentionsRequest_Fluxer_Net_MessageFlag_System_String_System_Nullable_System_UInt64__System_Nullable_System_Boolean__System_Collections_Generic_List_System_UInt64__
+  name: EditMessageAsync(Webhook, Message, string, List<EmbedRequest>, MessageReferenceRequest, AllowedMentionsRequest, MessageFlag, string, ulong?, bool?, List<ulong>)
+  nameWithType: WebhookHelpers.EditMessageAsync(Webhook, Message, string, List<EmbedRequest>, MessageReferenceRequest, AllowedMentionsRequest, MessageFlag, string, ulong?, bool?, List<ulong>)
+  fullName: Fluxer.Net.WebhookHelpers.EditMessageAsync(Fluxer.Net.Webhook, Fluxer.Net.Message, string, System.Collections.Generic.List<Fluxer.Net.Rest.Requests.EmbedRequest>, Fluxer.Net.MessageReferenceRequest, Fluxer.Net.AllowedMentionsRequest, Fluxer.Net.MessageFlag, string, ulong?, bool?, System.Collections.Generic.List<ulong>)
+  nameWithType.vb: WebhookHelpers.EditMessageAsync(Webhook, Message, String, List(Of EmbedRequest), MessageReferenceRequest, AllowedMentionsRequest, MessageFlag, String, ULong?, Boolean?, List(Of ULong))
+  fullName.vb: Fluxer.Net.WebhookHelpers.EditMessageAsync(Fluxer.Net.Webhook, Fluxer.Net.Message, String, System.Collections.Generic.List(Of Fluxer.Net.Rest.Requests.EmbedRequest), Fluxer.Net.MessageReferenceRequest, Fluxer.Net.AllowedMentionsRequest, Fluxer.Net.MessageFlag, String, ULong?, Boolean?, System.Collections.Generic.List(Of ULong))
+  name.vb: EditMessageAsync(Webhook, Message, String, List(Of EmbedRequest), MessageReferenceRequest, AllowedMentionsRequest, MessageFlag, String, ULong?, Boolean?, List(Of ULong))
+  spec.csharp:
+  - uid: Fluxer.Net.WebhookHelpers.EditMessageAsync(Fluxer.Net.Webhook,Fluxer.Net.Message,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.Requests.EmbedRequest},Fluxer.Net.MessageReferenceRequest,Fluxer.Net.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64})
+    name: EditMessageAsync
+    href: Fluxer.Net.WebhookHelpers.html#Fluxer_Net_WebhookHelpers_EditMessageAsync_Fluxer_Net_Webhook_Fluxer_Net_Message_System_String_System_Collections_Generic_List_Fluxer_Net_Rest_Requests_EmbedRequest__Fluxer_Net_MessageReferenceRequest_Fluxer_Net_AllowedMentionsRequest_Fluxer_Net_MessageFlag_System_String_System_Nullable_System_UInt64__System_Nullable_System_Boolean__System_Collections_Generic_List_System_UInt64__
+  - name: (
+  - uid: Fluxer.Net.Webhook
+    name: Webhook
+    href: Fluxer.Net.Webhook.html
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.Message
+    name: Message
+    href: Fluxer.Net.Message.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: Fluxer.Net.Rest.Requests.EmbedRequest
+    name: EmbedRequest
+    href: Fluxer.Net.Rest.Requests.EmbedRequest.html
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.MessageReferenceRequest
+    name: MessageReferenceRequest
+    href: Fluxer.Net.MessageReferenceRequest.html
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.AllowedMentionsRequest
+    name: AllowedMentionsRequest
+    href: Fluxer.Net.AllowedMentionsRequest.html
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.MessageFlag
+    name: MessageFlag
+    href: Fluxer.Net.MessageFlag.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.UInt64
+    name: ulong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: '?'
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '?'
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: System.UInt64
+    name: ulong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: Fluxer.Net.WebhookHelpers.EditMessageAsync(Fluxer.Net.Webhook,Fluxer.Net.Message,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.Requests.EmbedRequest},Fluxer.Net.MessageReferenceRequest,Fluxer.Net.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64})
+    name: EditMessageAsync
+    href: Fluxer.Net.WebhookHelpers.html#Fluxer_Net_WebhookHelpers_EditMessageAsync_Fluxer_Net_Webhook_Fluxer_Net_Message_System_String_System_Collections_Generic_List_Fluxer_Net_Rest_Requests_EmbedRequest__Fluxer_Net_MessageReferenceRequest_Fluxer_Net_AllowedMentionsRequest_Fluxer_Net_MessageFlag_System_String_System_Nullable_System_UInt64__System_Nullable_System_Boolean__System_Collections_Generic_List_System_UInt64__
+  - name: (
+  - uid: Fluxer.Net.Webhook
+    name: Webhook
+    href: Fluxer.Net.Webhook.html
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.Message
+    name: Message
+    href: Fluxer.Net.Message.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Fluxer.Net.Rest.Requests.EmbedRequest
+    name: EmbedRequest
+    href: Fluxer.Net.Rest.Requests.EmbedRequest.html
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.MessageReferenceRequest
+    name: MessageReferenceRequest
+    href: Fluxer.Net.MessageReferenceRequest.html
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.AllowedMentionsRequest
+    name: AllowedMentionsRequest
+    href: Fluxer.Net.AllowedMentionsRequest.html
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.MessageFlag
+    name: MessageFlag
+    href: Fluxer.Net.MessageFlag.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.UInt64
+    name: ULong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: '?'
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '?'
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.UInt64
+    name: ULong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: )
+  - name: )
+- uid: Fluxer.Net.WebhookHelpers.EditMessageAsync(Fluxer.Net.Webhook,System.UInt64,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.Requests.EmbedRequest},Fluxer.Net.MessageReferenceRequest,Fluxer.Net.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64})
+  commentId: M:Fluxer.Net.WebhookHelpers.EditMessageAsync(Fluxer.Net.Webhook,System.UInt64,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.Requests.EmbedRequest},Fluxer.Net.MessageReferenceRequest,Fluxer.Net.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64})
+  isExternal: true
+  href: Fluxer.Net.WebhookHelpers.html#Fluxer_Net_WebhookHelpers_EditMessageAsync_Fluxer_Net_Webhook_System_UInt64_System_String_System_Collections_Generic_List_Fluxer_Net_Rest_Requests_EmbedRequest__Fluxer_Net_MessageReferenceRequest_Fluxer_Net_AllowedMentionsRequest_Fluxer_Net_MessageFlag_System_String_System_Nullable_System_UInt64__System_Nullable_System_Boolean__System_Collections_Generic_List_System_UInt64__
+  name: EditMessageAsync(Webhook, ulong, string, List<EmbedRequest>, MessageReferenceRequest, AllowedMentionsRequest, MessageFlag, string, ulong?, bool?, List<ulong>)
+  nameWithType: WebhookHelpers.EditMessageAsync(Webhook, ulong, string, List<EmbedRequest>, MessageReferenceRequest, AllowedMentionsRequest, MessageFlag, string, ulong?, bool?, List<ulong>)
+  fullName: Fluxer.Net.WebhookHelpers.EditMessageAsync(Fluxer.Net.Webhook, ulong, string, System.Collections.Generic.List<Fluxer.Net.Rest.Requests.EmbedRequest>, Fluxer.Net.MessageReferenceRequest, Fluxer.Net.AllowedMentionsRequest, Fluxer.Net.MessageFlag, string, ulong?, bool?, System.Collections.Generic.List<ulong>)
+  nameWithType.vb: WebhookHelpers.EditMessageAsync(Webhook, ULong, String, List(Of EmbedRequest), MessageReferenceRequest, AllowedMentionsRequest, MessageFlag, String, ULong?, Boolean?, List(Of ULong))
+  fullName.vb: Fluxer.Net.WebhookHelpers.EditMessageAsync(Fluxer.Net.Webhook, ULong, String, System.Collections.Generic.List(Of Fluxer.Net.Rest.Requests.EmbedRequest), Fluxer.Net.MessageReferenceRequest, Fluxer.Net.AllowedMentionsRequest, Fluxer.Net.MessageFlag, String, ULong?, Boolean?, System.Collections.Generic.List(Of ULong))
+  name.vb: EditMessageAsync(Webhook, ULong, String, List(Of EmbedRequest), MessageReferenceRequest, AllowedMentionsRequest, MessageFlag, String, ULong?, Boolean?, List(Of ULong))
+  spec.csharp:
+  - uid: Fluxer.Net.WebhookHelpers.EditMessageAsync(Fluxer.Net.Webhook,System.UInt64,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.Requests.EmbedRequest},Fluxer.Net.MessageReferenceRequest,Fluxer.Net.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64})
+    name: EditMessageAsync
+    href: Fluxer.Net.WebhookHelpers.html#Fluxer_Net_WebhookHelpers_EditMessageAsync_Fluxer_Net_Webhook_System_UInt64_System_String_System_Collections_Generic_List_Fluxer_Net_Rest_Requests_EmbedRequest__Fluxer_Net_MessageReferenceRequest_Fluxer_Net_AllowedMentionsRequest_Fluxer_Net_MessageFlag_System_String_System_Nullable_System_UInt64__System_Nullable_System_Boolean__System_Collections_Generic_List_System_UInt64__
+  - name: (
+  - uid: Fluxer.Net.Webhook
+    name: Webhook
+    href: Fluxer.Net.Webhook.html
+  - name: ','
+  - name: " "
+  - uid: System.UInt64
+    name: ulong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: Fluxer.Net.Rest.Requests.EmbedRequest
+    name: EmbedRequest
+    href: Fluxer.Net.Rest.Requests.EmbedRequest.html
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.MessageReferenceRequest
+    name: MessageReferenceRequest
+    href: Fluxer.Net.MessageReferenceRequest.html
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.AllowedMentionsRequest
+    name: AllowedMentionsRequest
+    href: Fluxer.Net.AllowedMentionsRequest.html
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.MessageFlag
+    name: MessageFlag
+    href: Fluxer.Net.MessageFlag.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.UInt64
+    name: ulong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: '?'
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '?'
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: System.UInt64
+    name: ulong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: Fluxer.Net.WebhookHelpers.EditMessageAsync(Fluxer.Net.Webhook,System.UInt64,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.Requests.EmbedRequest},Fluxer.Net.MessageReferenceRequest,Fluxer.Net.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64})
+    name: EditMessageAsync
+    href: Fluxer.Net.WebhookHelpers.html#Fluxer_Net_WebhookHelpers_EditMessageAsync_Fluxer_Net_Webhook_System_UInt64_System_String_System_Collections_Generic_List_Fluxer_Net_Rest_Requests_EmbedRequest__Fluxer_Net_MessageReferenceRequest_Fluxer_Net_AllowedMentionsRequest_Fluxer_Net_MessageFlag_System_String_System_Nullable_System_UInt64__System_Nullable_System_Boolean__System_Collections_Generic_List_System_UInt64__
+  - name: (
+  - uid: Fluxer.Net.Webhook
+    name: Webhook
+    href: Fluxer.Net.Webhook.html
+  - name: ','
+  - name: " "
+  - uid: System.UInt64
+    name: ULong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Fluxer.Net.Rest.Requests.EmbedRequest
+    name: EmbedRequest
+    href: Fluxer.Net.Rest.Requests.EmbedRequest.html
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.MessageReferenceRequest
+    name: MessageReferenceRequest
+    href: Fluxer.Net.MessageReferenceRequest.html
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.AllowedMentionsRequest
+    name: AllowedMentionsRequest
+    href: Fluxer.Net.AllowedMentionsRequest.html
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.MessageFlag
+    name: MessageFlag
+    href: Fluxer.Net.MessageFlag.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.UInt64
+    name: ULong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: '?'
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '?'
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.UInt64
+    name: ULong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: )
+  - name: )
+- uid: Fluxer.Net.WebhookHelpers.ModifyAsync(Fluxer.Net.Webhook,Fluxer.Net.WebhookJson)
+  commentId: M:Fluxer.Net.WebhookHelpers.ModifyAsync(Fluxer.Net.Webhook,Fluxer.Net.WebhookJson)
+  href: Fluxer.Net.WebhookHelpers.html#Fluxer_Net_WebhookHelpers_ModifyAsync_Fluxer_Net_Webhook_Fluxer_Net_WebhookJson_
+  name: ModifyAsync(Webhook, WebhookJson)
+  nameWithType: WebhookHelpers.ModifyAsync(Webhook, WebhookJson)
+  fullName: Fluxer.Net.WebhookHelpers.ModifyAsync(Fluxer.Net.Webhook, Fluxer.Net.WebhookJson)
+  spec.csharp:
+  - uid: Fluxer.Net.WebhookHelpers.ModifyAsync(Fluxer.Net.Webhook,Fluxer.Net.WebhookJson)
+    name: ModifyAsync
+    href: Fluxer.Net.WebhookHelpers.html#Fluxer_Net_WebhookHelpers_ModifyAsync_Fluxer_Net_Webhook_Fluxer_Net_WebhookJson_
+  - name: (
+  - uid: Fluxer.Net.Webhook
+    name: Webhook
+    href: Fluxer.Net.Webhook.html
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.WebhookJson
+    name: WebhookJson
+    href: Fluxer.Net.WebhookJson.html
+  - name: )
+  spec.vb:
+  - uid: Fluxer.Net.WebhookHelpers.ModifyAsync(Fluxer.Net.Webhook,Fluxer.Net.WebhookJson)
+    name: ModifyAsync
+    href: Fluxer.Net.WebhookHelpers.html#Fluxer_Net_WebhookHelpers_ModifyAsync_Fluxer_Net_Webhook_Fluxer_Net_WebhookJson_
+  - name: (
+  - uid: Fluxer.Net.Webhook
+    name: Webhook
+    href: Fluxer.Net.Webhook.html
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.WebhookJson
+    name: WebhookJson
+    href: Fluxer.Net.WebhookJson.html
+  - name: )
+- uid: Fluxer.Net.WebhookHelpers.SendMessageAsync(Fluxer.Net.Webhook,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.Requests.EmbedRequest},Fluxer.Net.MessageReferenceRequest,Fluxer.Net.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64})
+  commentId: M:Fluxer.Net.WebhookHelpers.SendMessageAsync(Fluxer.Net.Webhook,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.Requests.EmbedRequest},Fluxer.Net.MessageReferenceRequest,Fluxer.Net.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64})
+  isExternal: true
+  href: Fluxer.Net.WebhookHelpers.html#Fluxer_Net_WebhookHelpers_SendMessageAsync_Fluxer_Net_Webhook_System_String_System_Collections_Generic_List_Fluxer_Net_Rest_Requests_EmbedRequest__Fluxer_Net_MessageReferenceRequest_Fluxer_Net_AllowedMentionsRequest_Fluxer_Net_MessageFlag_System_String_System_Nullable_System_UInt64__System_Nullable_System_Boolean__System_Collections_Generic_List_System_UInt64__
+  name: SendMessageAsync(Webhook, string, List<EmbedRequest>, MessageReferenceRequest, AllowedMentionsRequest, MessageFlag, string, ulong?, bool?, List<ulong>)
+  nameWithType: WebhookHelpers.SendMessageAsync(Webhook, string, List<EmbedRequest>, MessageReferenceRequest, AllowedMentionsRequest, MessageFlag, string, ulong?, bool?, List<ulong>)
+  fullName: Fluxer.Net.WebhookHelpers.SendMessageAsync(Fluxer.Net.Webhook, string, System.Collections.Generic.List<Fluxer.Net.Rest.Requests.EmbedRequest>, Fluxer.Net.MessageReferenceRequest, Fluxer.Net.AllowedMentionsRequest, Fluxer.Net.MessageFlag, string, ulong?, bool?, System.Collections.Generic.List<ulong>)
+  nameWithType.vb: WebhookHelpers.SendMessageAsync(Webhook, String, List(Of EmbedRequest), MessageReferenceRequest, AllowedMentionsRequest, MessageFlag, String, ULong?, Boolean?, List(Of ULong))
+  fullName.vb: Fluxer.Net.WebhookHelpers.SendMessageAsync(Fluxer.Net.Webhook, String, System.Collections.Generic.List(Of Fluxer.Net.Rest.Requests.EmbedRequest), Fluxer.Net.MessageReferenceRequest, Fluxer.Net.AllowedMentionsRequest, Fluxer.Net.MessageFlag, String, ULong?, Boolean?, System.Collections.Generic.List(Of ULong))
+  name.vb: SendMessageAsync(Webhook, String, List(Of EmbedRequest), MessageReferenceRequest, AllowedMentionsRequest, MessageFlag, String, ULong?, Boolean?, List(Of ULong))
+  spec.csharp:
+  - uid: Fluxer.Net.WebhookHelpers.SendMessageAsync(Fluxer.Net.Webhook,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.Requests.EmbedRequest},Fluxer.Net.MessageReferenceRequest,Fluxer.Net.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64})
+    name: SendMessageAsync
+    href: Fluxer.Net.WebhookHelpers.html#Fluxer_Net_WebhookHelpers_SendMessageAsync_Fluxer_Net_Webhook_System_String_System_Collections_Generic_List_Fluxer_Net_Rest_Requests_EmbedRequest__Fluxer_Net_MessageReferenceRequest_Fluxer_Net_AllowedMentionsRequest_Fluxer_Net_MessageFlag_System_String_System_Nullable_System_UInt64__System_Nullable_System_Boolean__System_Collections_Generic_List_System_UInt64__
+  - name: (
+  - uid: Fluxer.Net.Webhook
+    name: Webhook
+    href: Fluxer.Net.Webhook.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: Fluxer.Net.Rest.Requests.EmbedRequest
+    name: EmbedRequest
+    href: Fluxer.Net.Rest.Requests.EmbedRequest.html
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.MessageReferenceRequest
+    name: MessageReferenceRequest
+    href: Fluxer.Net.MessageReferenceRequest.html
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.AllowedMentionsRequest
+    name: AllowedMentionsRequest
+    href: Fluxer.Net.AllowedMentionsRequest.html
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.MessageFlag
+    name: MessageFlag
+    href: Fluxer.Net.MessageFlag.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.UInt64
+    name: ulong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: '?'
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '?'
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: System.UInt64
+    name: ulong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: Fluxer.Net.WebhookHelpers.SendMessageAsync(Fluxer.Net.Webhook,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.Requests.EmbedRequest},Fluxer.Net.MessageReferenceRequest,Fluxer.Net.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64})
+    name: SendMessageAsync
+    href: Fluxer.Net.WebhookHelpers.html#Fluxer_Net_WebhookHelpers_SendMessageAsync_Fluxer_Net_Webhook_System_String_System_Collections_Generic_List_Fluxer_Net_Rest_Requests_EmbedRequest__Fluxer_Net_MessageReferenceRequest_Fluxer_Net_AllowedMentionsRequest_Fluxer_Net_MessageFlag_System_String_System_Nullable_System_UInt64__System_Nullable_System_Boolean__System_Collections_Generic_List_System_UInt64__
+  - name: (
+  - uid: Fluxer.Net.Webhook
+    name: Webhook
+    href: Fluxer.Net.Webhook.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Fluxer.Net.Rest.Requests.EmbedRequest
+    name: EmbedRequest
+    href: Fluxer.Net.Rest.Requests.EmbedRequest.html
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.MessageReferenceRequest
+    name: MessageReferenceRequest
+    href: Fluxer.Net.MessageReferenceRequest.html
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.AllowedMentionsRequest
+    name: AllowedMentionsRequest
+    href: Fluxer.Net.AllowedMentionsRequest.html
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.MessageFlag
+    name: MessageFlag
+    href: Fluxer.Net.MessageFlag.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.UInt64
+    name: ULong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: '?'
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '?'
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.UInt64
+    name: ULong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: )
+  - name: )
+- uid: Fluxer.Net.WebhookHelpers.SendMessageWaitAsync(Fluxer.Net.Webhook,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.Requests.EmbedRequest},Fluxer.Net.MessageReferenceRequest,Fluxer.Net.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64})
+  commentId: M:Fluxer.Net.WebhookHelpers.SendMessageWaitAsync(Fluxer.Net.Webhook,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.Requests.EmbedRequest},Fluxer.Net.MessageReferenceRequest,Fluxer.Net.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64})
+  isExternal: true
+  href: Fluxer.Net.WebhookHelpers.html#Fluxer_Net_WebhookHelpers_SendMessageWaitAsync_Fluxer_Net_Webhook_System_String_System_Collections_Generic_List_Fluxer_Net_Rest_Requests_EmbedRequest__Fluxer_Net_MessageReferenceRequest_Fluxer_Net_AllowedMentionsRequest_Fluxer_Net_MessageFlag_System_String_System_Nullable_System_UInt64__System_Nullable_System_Boolean__System_Collections_Generic_List_System_UInt64__
+  name: SendMessageWaitAsync(Webhook, string, List<EmbedRequest>, MessageReferenceRequest, AllowedMentionsRequest, MessageFlag, string, ulong?, bool?, List<ulong>)
+  nameWithType: WebhookHelpers.SendMessageWaitAsync(Webhook, string, List<EmbedRequest>, MessageReferenceRequest, AllowedMentionsRequest, MessageFlag, string, ulong?, bool?, List<ulong>)
+  fullName: Fluxer.Net.WebhookHelpers.SendMessageWaitAsync(Fluxer.Net.Webhook, string, System.Collections.Generic.List<Fluxer.Net.Rest.Requests.EmbedRequest>, Fluxer.Net.MessageReferenceRequest, Fluxer.Net.AllowedMentionsRequest, Fluxer.Net.MessageFlag, string, ulong?, bool?, System.Collections.Generic.List<ulong>)
+  nameWithType.vb: WebhookHelpers.SendMessageWaitAsync(Webhook, String, List(Of EmbedRequest), MessageReferenceRequest, AllowedMentionsRequest, MessageFlag, String, ULong?, Boolean?, List(Of ULong))
+  fullName.vb: Fluxer.Net.WebhookHelpers.SendMessageWaitAsync(Fluxer.Net.Webhook, String, System.Collections.Generic.List(Of Fluxer.Net.Rest.Requests.EmbedRequest), Fluxer.Net.MessageReferenceRequest, Fluxer.Net.AllowedMentionsRequest, Fluxer.Net.MessageFlag, String, ULong?, Boolean?, System.Collections.Generic.List(Of ULong))
+  name.vb: SendMessageWaitAsync(Webhook, String, List(Of EmbedRequest), MessageReferenceRequest, AllowedMentionsRequest, MessageFlag, String, ULong?, Boolean?, List(Of ULong))
+  spec.csharp:
+  - uid: Fluxer.Net.WebhookHelpers.SendMessageWaitAsync(Fluxer.Net.Webhook,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.Requests.EmbedRequest},Fluxer.Net.MessageReferenceRequest,Fluxer.Net.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64})
+    name: SendMessageWaitAsync
+    href: Fluxer.Net.WebhookHelpers.html#Fluxer_Net_WebhookHelpers_SendMessageWaitAsync_Fluxer_Net_Webhook_System_String_System_Collections_Generic_List_Fluxer_Net_Rest_Requests_EmbedRequest__Fluxer_Net_MessageReferenceRequest_Fluxer_Net_AllowedMentionsRequest_Fluxer_Net_MessageFlag_System_String_System_Nullable_System_UInt64__System_Nullable_System_Boolean__System_Collections_Generic_List_System_UInt64__
+  - name: (
+  - uid: Fluxer.Net.Webhook
+    name: Webhook
+    href: Fluxer.Net.Webhook.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: Fluxer.Net.Rest.Requests.EmbedRequest
+    name: EmbedRequest
+    href: Fluxer.Net.Rest.Requests.EmbedRequest.html
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.MessageReferenceRequest
+    name: MessageReferenceRequest
+    href: Fluxer.Net.MessageReferenceRequest.html
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.AllowedMentionsRequest
+    name: AllowedMentionsRequest
+    href: Fluxer.Net.AllowedMentionsRequest.html
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.MessageFlag
+    name: MessageFlag
+    href: Fluxer.Net.MessageFlag.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.UInt64
+    name: ulong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: '?'
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '?'
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: System.UInt64
+    name: ulong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: Fluxer.Net.WebhookHelpers.SendMessageWaitAsync(Fluxer.Net.Webhook,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.Requests.EmbedRequest},Fluxer.Net.MessageReferenceRequest,Fluxer.Net.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64})
+    name: SendMessageWaitAsync
+    href: Fluxer.Net.WebhookHelpers.html#Fluxer_Net_WebhookHelpers_SendMessageWaitAsync_Fluxer_Net_Webhook_System_String_System_Collections_Generic_List_Fluxer_Net_Rest_Requests_EmbedRequest__Fluxer_Net_MessageReferenceRequest_Fluxer_Net_AllowedMentionsRequest_Fluxer_Net_MessageFlag_System_String_System_Nullable_System_UInt64__System_Nullable_System_Boolean__System_Collections_Generic_List_System_UInt64__
+  - name: (
+  - uid: Fluxer.Net.Webhook
+    name: Webhook
+    href: Fluxer.Net.Webhook.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Fluxer.Net.Rest.Requests.EmbedRequest
+    name: EmbedRequest
+    href: Fluxer.Net.Rest.Requests.EmbedRequest.html
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.MessageReferenceRequest
+    name: MessageReferenceRequest
+    href: Fluxer.Net.MessageReferenceRequest.html
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.AllowedMentionsRequest
+    name: AllowedMentionsRequest
+    href: Fluxer.Net.AllowedMentionsRequest.html
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.MessageFlag
+    name: MessageFlag
+    href: Fluxer.Net.MessageFlag.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.UInt64
+    name: ULong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: '?'
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '?'
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.UInt64
+    name: ULong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: )
+  - name: )
+- uid: Fluxer.Net.Webhook.Id*
+  commentId: Overload:Fluxer.Net.Webhook.Id
+  href: Fluxer.Net.Webhook.html#Fluxer_Net_Webhook_Id
+  name: Id
+  nameWithType: Webhook.Id
+  fullName: Fluxer.Net.Webhook.Id
+- uid: Fluxer.Net.IWebhook.Id
+  commentId: P:Fluxer.Net.IWebhook.Id
+  parent: Fluxer.Net.IWebhook
+  href: Fluxer.Net.IWebhook.html#Fluxer_Net_IWebhook_Id
+  name: Id
+  nameWithType: IWebhook.Id
+  fullName: Fluxer.Net.IWebhook.Id
+- uid: System.UInt64
+  commentId: T:System.UInt64
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.uint64
+  name: ulong
+  nameWithType: ulong
+  fullName: ulong
+  nameWithType.vb: ULong
+  fullName.vb: ULong
+  name.vb: ULong
+- uid: Fluxer.Net.Webhook.Token*
+  commentId: Overload:Fluxer.Net.Webhook.Token
+  href: Fluxer.Net.Webhook.html#Fluxer_Net_Webhook_Token
+  name: Token
+  nameWithType: Webhook.Token
+  fullName: Fluxer.Net.Webhook.Token
+- uid: Fluxer.Net.IWebhook.Token
+  commentId: P:Fluxer.Net.IWebhook.Token
+  parent: Fluxer.Net.IWebhook
+  href: Fluxer.Net.IWebhook.html#Fluxer_Net_IWebhook_Token
+  name: Token
+  nameWithType: IWebhook.Token
+  fullName: Fluxer.Net.IWebhook.Token
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: Fluxer.Net.Webhook.GuildId*
+  commentId: Overload:Fluxer.Net.Webhook.GuildId
+  href: Fluxer.Net.Webhook.html#Fluxer_Net_Webhook_GuildId
+  name: GuildId
+  nameWithType: Webhook.GuildId
+  fullName: Fluxer.Net.Webhook.GuildId
+- uid: Fluxer.Net.IWebhook.GuildId
+  commentId: P:Fluxer.Net.IWebhook.GuildId
+  parent: Fluxer.Net.IWebhook
+  href: Fluxer.Net.IWebhook.html#Fluxer_Net_IWebhook_GuildId
+  name: GuildId
+  nameWithType: IWebhook.GuildId
+  fullName: Fluxer.Net.IWebhook.GuildId
+- uid: System.Nullable{System.UInt64}
+  commentId: T:System.Nullable{System.UInt64}
+  parent: System
+  definition: System.Nullable`1
+  href: https://learn.microsoft.com/dotnet/api/system.uint64
+  name: ulong?
+  nameWithType: ulong?
+  fullName: ulong?
+  nameWithType.vb: ULong?
+  fullName.vb: ULong?
+  name.vb: ULong?
+  spec.csharp:
+  - uid: System.UInt64
+    name: ulong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: '?'
+  spec.vb:
+  - uid: System.UInt64
+    name: ULong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: '?'
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: Fluxer.Net.Webhook.ChannelId*
+  commentId: Overload:Fluxer.Net.Webhook.ChannelId
+  href: Fluxer.Net.Webhook.html#Fluxer_Net_Webhook_ChannelId
+  name: ChannelId
+  nameWithType: Webhook.ChannelId
+  fullName: Fluxer.Net.Webhook.ChannelId
+- uid: Fluxer.Net.IWebhook.ChannelId
+  commentId: P:Fluxer.Net.IWebhook.ChannelId
+  parent: Fluxer.Net.IWebhook
+  href: Fluxer.Net.IWebhook.html#Fluxer_Net_IWebhook_ChannelId
+  name: ChannelId
+  nameWithType: IWebhook.ChannelId
+  fullName: Fluxer.Net.IWebhook.ChannelId
+- uid: Fluxer.Net.Webhook.Creator*
+  commentId: Overload:Fluxer.Net.Webhook.Creator
+  href: Fluxer.Net.Webhook.html#Fluxer_Net_Webhook_Creator
+  name: Creator
+  nameWithType: Webhook.Creator
+  fullName: Fluxer.Net.Webhook.Creator
+- uid: Fluxer.Net.User
+  commentId: T:Fluxer.Net.User
+  parent: Fluxer.Net
+  href: Fluxer.Net.User.html
+  name: User
+  nameWithType: User
+  fullName: Fluxer.Net.User
+- uid: Fluxer.Net.Webhook.Name*
+  commentId: Overload:Fluxer.Net.Webhook.Name
+  href: Fluxer.Net.Webhook.html#Fluxer_Net_Webhook_Name
+  name: Name
+  nameWithType: Webhook.Name
+  fullName: Fluxer.Net.Webhook.Name
+- uid: Fluxer.Net.IWebhook.Name
+  commentId: P:Fluxer.Net.IWebhook.Name
+  parent: Fluxer.Net.IWebhook
+  href: Fluxer.Net.IWebhook.html#Fluxer_Net_IWebhook_Name
+  name: Name
+  nameWithType: IWebhook.Name
+  fullName: Fluxer.Net.IWebhook.Name
+- uid: Fluxer.Net.Webhook.AvatarHash*
+  commentId: Overload:Fluxer.Net.Webhook.AvatarHash
+  href: Fluxer.Net.Webhook.html#Fluxer_Net_Webhook_AvatarHash
+  name: AvatarHash
+  nameWithType: Webhook.AvatarHash
+  fullName: Fluxer.Net.Webhook.AvatarHash
+- uid: Fluxer.Net.IWebhook.AvatarHash
+  commentId: P:Fluxer.Net.IWebhook.AvatarHash
+  parent: Fluxer.Net.IWebhook
+  href: Fluxer.Net.IWebhook.html#Fluxer_Net_IWebhook_AvatarHash
+  name: AvatarHash
+  nameWithType: IWebhook.AvatarHash
+  fullName: Fluxer.Net.IWebhook.AvatarHash
+- uid: Fluxer.Net.Webhook.GetDefaultAvatarUrl*
+  commentId: Overload:Fluxer.Net.Webhook.GetDefaultAvatarUrl
+  href: Fluxer.Net.Webhook.html#Fluxer_Net_Webhook_GetDefaultAvatarUrl
+  name: GetDefaultAvatarUrl
+  nameWithType: Webhook.GetDefaultAvatarUrl
+  fullName: Fluxer.Net.Webhook.GetDefaultAvatarUrl
+- uid: Fluxer.Net.IWebhook.GetDefaultAvatarUrl
+  commentId: M:Fluxer.Net.IWebhook.GetDefaultAvatarUrl
+  parent: Fluxer.Net.IWebhook
+  href: Fluxer.Net.IWebhook.html#Fluxer_Net_IWebhook_GetDefaultAvatarUrl
+  name: GetDefaultAvatarUrl()
+  nameWithType: IWebhook.GetDefaultAvatarUrl()
+  fullName: Fluxer.Net.IWebhook.GetDefaultAvatarUrl()
+  spec.csharp:
+  - uid: Fluxer.Net.IWebhook.GetDefaultAvatarUrl
+    name: GetDefaultAvatarUrl
+    href: Fluxer.Net.IWebhook.html#Fluxer_Net_IWebhook_GetDefaultAvatarUrl
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Fluxer.Net.IWebhook.GetDefaultAvatarUrl
+    name: GetDefaultAvatarUrl
+    href: Fluxer.Net.IWebhook.html#Fluxer_Net_IWebhook_GetDefaultAvatarUrl
+  - name: (
+  - name: )
+- uid: Fluxer.Net.Webhook.GetAvatarUrl*
+  commentId: Overload:Fluxer.Net.Webhook.GetAvatarUrl
+  href: Fluxer.Net.Webhook.html#Fluxer_Net_Webhook_GetAvatarUrl_System_Int32_
+  name: GetAvatarUrl
+  nameWithType: Webhook.GetAvatarUrl
+  fullName: Fluxer.Net.Webhook.GetAvatarUrl
+- uid: Fluxer.Net.IWebhook.GetAvatarUrl(System.Int32)
+  commentId: M:Fluxer.Net.IWebhook.GetAvatarUrl(System.Int32)
+  parent: Fluxer.Net.IWebhook
+  isExternal: true
+  href: Fluxer.Net.IWebhook.html#Fluxer_Net_IWebhook_GetAvatarUrl_System_Int32_
+  name: GetAvatarUrl(int)
+  nameWithType: IWebhook.GetAvatarUrl(int)
+  fullName: Fluxer.Net.IWebhook.GetAvatarUrl(int)
+  nameWithType.vb: IWebhook.GetAvatarUrl(Integer)
+  fullName.vb: Fluxer.Net.IWebhook.GetAvatarUrl(Integer)
+  name.vb: GetAvatarUrl(Integer)
+  spec.csharp:
+  - uid: Fluxer.Net.IWebhook.GetAvatarUrl(System.Int32)
+    name: GetAvatarUrl
+    href: Fluxer.Net.IWebhook.html#Fluxer_Net_IWebhook_GetAvatarUrl_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Fluxer.Net.IWebhook.GetAvatarUrl(System.Int32)
+    name: GetAvatarUrl
+    href: Fluxer.Net.IWebhook.html#Fluxer_Net_IWebhook_GetAvatarUrl_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: Fluxer.Net.Webhook.GetAvatarOrDefaultUrl*
+  commentId: Overload:Fluxer.Net.Webhook.GetAvatarOrDefaultUrl
+  href: Fluxer.Net.Webhook.html#Fluxer_Net_Webhook_GetAvatarOrDefaultUrl_System_Int32_
+  name: GetAvatarOrDefaultUrl
+  nameWithType: Webhook.GetAvatarOrDefaultUrl
+  fullName: Fluxer.Net.Webhook.GetAvatarOrDefaultUrl
+- uid: Fluxer.Net.IWebhook.GetAvatarOrDefaultUrl(System.Int32)
+  commentId: M:Fluxer.Net.IWebhook.GetAvatarOrDefaultUrl(System.Int32)
+  parent: Fluxer.Net.IWebhook
+  isExternal: true
+  href: Fluxer.Net.IWebhook.html#Fluxer_Net_IWebhook_GetAvatarOrDefaultUrl_System_Int32_
+  name: GetAvatarOrDefaultUrl(int)
+  nameWithType: IWebhook.GetAvatarOrDefaultUrl(int)
+  fullName: Fluxer.Net.IWebhook.GetAvatarOrDefaultUrl(int)
+  nameWithType.vb: IWebhook.GetAvatarOrDefaultUrl(Integer)
+  fullName.vb: Fluxer.Net.IWebhook.GetAvatarOrDefaultUrl(Integer)
+  name.vb: GetAvatarOrDefaultUrl(Integer)
+  spec.csharp:
+  - uid: Fluxer.Net.IWebhook.GetAvatarOrDefaultUrl(System.Int32)
+    name: GetAvatarOrDefaultUrl
+    href: Fluxer.Net.IWebhook.html#Fluxer_Net_IWebhook_GetAvatarOrDefaultUrl_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Fluxer.Net.IWebhook.GetAvatarOrDefaultUrl(System.Int32)
+    name: GetAvatarOrDefaultUrl
+    href: Fluxer.Net.IWebhook.html#Fluxer_Net_IWebhook_GetAvatarOrDefaultUrl_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Fluxer.Net.Webhook.Create*
+  commentId: Overload:Fluxer.Net.Webhook.Create
+  href: Fluxer.Net.Webhook.html#Fluxer_Net_Webhook_Create_Fluxer_Net_FluxerBaseClient_Fluxer_Net_WebhookJson_
+  name: Create
+  nameWithType: Webhook.Create
+  fullName: Fluxer.Net.Webhook.Create
+- uid: Fluxer.Net.FluxerBaseClient
+  commentId: T:Fluxer.Net.FluxerBaseClient
+  parent: Fluxer.Net
+  href: Fluxer.Net.FluxerBaseClient.html
+  name: FluxerBaseClient
+  nameWithType: FluxerBaseClient
+  fullName: Fluxer.Net.FluxerBaseClient
+- uid: Fluxer.Net.WebhookJson
+  commentId: T:Fluxer.Net.WebhookJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.WebhookJson.html
+  name: WebhookJson
+  nameWithType: WebhookJson
+  fullName: Fluxer.Net.WebhookJson
+- uid: Fluxer.Net.Webhook
+  commentId: T:Fluxer.Net.Webhook
+  parent: Fluxer.Net
+  href: Fluxer.Net.Webhook.html
+  name: Webhook
+  nameWithType: Webhook
+  fullName: Fluxer.Net.Webhook

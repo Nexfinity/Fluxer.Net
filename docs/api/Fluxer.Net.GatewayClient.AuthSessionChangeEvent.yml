@@ -1,0 +1,110 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.GatewayClient.AuthSessionChangeEvent
+  commentId: T:Fluxer.Net.GatewayClient.AuthSessionChangeEvent
+  id: GatewayClient.AuthSessionChangeEvent
+  parent: Fluxer.Net
+  children: []
+  langs:
+  - csharp
+  - vb
+  name: GatewayClient.AuthSessionChangeEvent
+  nameWithType: GatewayClient.AuthSessionChangeEvent
+  fullName: Fluxer.Net.GatewayClient.AuthSessionChangeEvent
+  type: Delegate
+  source:
+    remote:
+      path: Fluxer.Net/Gateway/GatewayClient.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: AuthSessionChangeEvent
+    path: ../Fluxer.Net/Gateway/GatewayClient.cs
+    startLine: 1808
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Delegate for AUTH_SESSION_CHANGE events when an auth session changes.
+  example: []
+  syntax:
+    content: public delegate void GatewayClient.AuthSessionChangeEvent(AuthSessionChangeGatewayData data)
+    parameters:
+    - id: data
+      type: Fluxer.Net.Gateway.Data.Auth.AuthSessionChangeGatewayData
+      description: The auth session data.
+    content.vb: Public Delegate Sub GatewayClient.AuthSessionChangeEvent(data As AuthSessionChangeGatewayData)
+references:
+- uid: Fluxer.Net
+  commentId: N:Fluxer.Net
+  href: Fluxer.html
+  name: Fluxer.Net
+  nameWithType: Fluxer.Net
+  fullName: Fluxer.Net
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+- uid: Fluxer.Net.Gateway.Data.Auth.AuthSessionChangeGatewayData
+  commentId: T:Fluxer.Net.Gateway.Data.Auth.AuthSessionChangeGatewayData
+  parent: Fluxer.Net.Gateway.Data.Auth
+  href: Fluxer.Net.Gateway.Data.Auth.AuthSessionChangeGatewayData.html
+  name: AuthSessionChangeGatewayData
+  nameWithType: AuthSessionChangeGatewayData
+  fullName: Fluxer.Net.Gateway.Data.Auth.AuthSessionChangeGatewayData
+- uid: Fluxer.Net.Gateway.Data.Auth
+  commentId: N:Fluxer.Net.Gateway.Data.Auth
+  href: Fluxer.html
+  name: Fluxer.Net.Gateway.Data.Auth
+  nameWithType: Fluxer.Net.Gateway.Data.Auth
+  fullName: Fluxer.Net.Gateway.Data.Auth
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  - name: .
+  - uid: Fluxer.Net.Gateway
+    name: Gateway
+    href: Fluxer.Net.Gateway.html
+  - name: .
+  - uid: Fluxer.Net.Gateway.Data
+    name: Data
+    href: Fluxer.Net.Gateway.Data.html
+  - name: .
+  - uid: Fluxer.Net.Gateway.Data.Auth
+    name: Auth
+    href: Fluxer.Net.Gateway.Data.Auth.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  - name: .
+  - uid: Fluxer.Net.Gateway
+    name: Gateway
+    href: Fluxer.Net.Gateway.html
+  - name: .
+  - uid: Fluxer.Net.Gateway.Data
+    name: Data
+    href: Fluxer.Net.Gateway.Data.html
+  - name: .
+  - uid: Fluxer.Net.Gateway.Data.Auth
+    name: Auth
+    href: Fluxer.Net.Gateway.Data.Auth.html

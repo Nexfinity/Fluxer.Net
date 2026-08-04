@@ -1,0 +1,1294 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.FavoriteGif
+  commentId: T:Fluxer.Net.FavoriteGif
+  id: FavoriteGif
+  parent: Fluxer.Net
+  children:
+  - Fluxer.Net.FavoriteGif.AltText
+  - Fluxer.Net.FavoriteGif.AttachmentId
+  - Fluxer.Net.FavoriteGif.ContentHash
+  - Fluxer.Net.FavoriteGif.ContentType
+  - Fluxer.Net.FavoriteGif.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.FavoriteGifJson)
+  - Fluxer.Net.FavoriteGif.Duration
+  - Fluxer.Net.FavoriteGif.Filename
+  - Fluxer.Net.FavoriteGif.Height
+  - Fluxer.Net.FavoriteGif.Id
+  - Fluxer.Net.FavoriteGif.IsGifVideo
+  - Fluxer.Net.FavoriteGif.KlipySlug
+  - Fluxer.Net.FavoriteGif.Name
+  - Fluxer.Net.FavoriteGif.Size
+  - Fluxer.Net.FavoriteGif.Tags
+  - Fluxer.Net.FavoriteGif.TenorSlugId
+  - Fluxer.Net.FavoriteGif.Url
+  - Fluxer.Net.FavoriteGif.UserId
+  - Fluxer.Net.FavoriteGif.Width
+  langs:
+  - csharp
+  - vb
+  name: FavoriteGif
+  nameWithType: FavoriteGif
+  fullName: Fluxer.Net.FavoriteGif
+  type: Class
+  source:
+    remote:
+      path: Fluxer.Net/Data/Gifs/FavoriteGif.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: FavoriteGif
+    path: ../Fluxer.Net/Data/Gifs/FavoriteGif.cs
+    startLine: 3
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  example: []
+  syntax:
+    content: 'public class FavoriteGif : Entity, IFavoriteGif'
+    content.vb: Public Class FavoriteGif Inherits Entity Implements IFavoriteGif
+  inheritance:
+  - System.Object
+  - Fluxer.Net.Entity
+  implements:
+  - Fluxer.Net.IFavoriteGif
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: Fluxer.Net.FavoriteGif.Id
+  commentId: P:Fluxer.Net.FavoriteGif.Id
+  id: Id
+  parent: Fluxer.Net.FavoriteGif
+  langs:
+  - csharp
+  - vb
+  name: Id
+  nameWithType: FavoriteGif.Id
+  fullName: Fluxer.Net.FavoriteGif.Id
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Gifs/FavoriteGif.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Id
+    path: ../Fluxer.Net/Data/Gifs/FavoriteGif.cs
+    startLine: 6
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Unique identifier for the favorite gif.
+  example: []
+  syntax:
+    content: public string Id { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Id As String
+  overload: Fluxer.Net.FavoriteGif.Id*
+  implements:
+  - Fluxer.Net.IFavoriteGif.Id
+- uid: Fluxer.Net.FavoriteGif.UserId
+  commentId: P:Fluxer.Net.FavoriteGif.UserId
+  id: UserId
+  parent: Fluxer.Net.FavoriteGif
+  langs:
+  - csharp
+  - vb
+  name: UserId
+  nameWithType: FavoriteGif.UserId
+  fullName: Fluxer.Net.FavoriteGif.UserId
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Gifs/FavoriteGif.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: UserId
+    path: ../Fluxer.Net/Data/Gifs/FavoriteGif.cs
+    startLine: 9
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: ID of the user who owns this favorite gif.
+  example: []
+  syntax:
+    content: public ulong UserId { get; }
+    parameters: []
+    return:
+      type: System.UInt64
+    content.vb: Public Property UserId As ULong
+  overload: Fluxer.Net.FavoriteGif.UserId*
+  implements:
+  - Fluxer.Net.IFavoriteGif.UserId
+- uid: Fluxer.Net.FavoriteGif.Name
+  commentId: P:Fluxer.Net.FavoriteGif.Name
+  id: Name
+  parent: Fluxer.Net.FavoriteGif
+  langs:
+  - csharp
+  - vb
+  name: Name
+  nameWithType: FavoriteGif.Name
+  fullName: Fluxer.Net.FavoriteGif.Name
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Gifs/FavoriteGif.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Name
+    path: ../Fluxer.Net/Data/Gifs/FavoriteGif.cs
+    startLine: 12
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Display name of the gif.
+  example: []
+  syntax:
+    content: public string Name { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Name As String
+  overload: Fluxer.Net.FavoriteGif.Name*
+  implements:
+  - Fluxer.Net.IFavoriteGif.Name
+- uid: Fluxer.Net.FavoriteGif.Tags
+  commentId: P:Fluxer.Net.FavoriteGif.Tags
+  id: Tags
+  parent: Fluxer.Net.FavoriteGif
+  langs:
+  - csharp
+  - vb
+  name: Tags
+  nameWithType: FavoriteGif.Tags
+  fullName: Fluxer.Net.FavoriteGif.Tags
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Gifs/FavoriteGif.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Tags
+    path: ../Fluxer.Net/Data/Gifs/FavoriteGif.cs
+    startLine: 15
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Tags for categorizing and searching the gif.
+  example: []
+  syntax:
+    content: public string[] Tags { get; }
+    parameters: []
+    return:
+      type: System.String[]
+    content.vb: Public Property Tags As String()
+  overload: Fluxer.Net.FavoriteGif.Tags*
+  implements:
+  - Fluxer.Net.IFavoriteGif.Tags
+- uid: Fluxer.Net.FavoriteGif.AttachmentId
+  commentId: P:Fluxer.Net.FavoriteGif.AttachmentId
+  id: AttachmentId
+  parent: Fluxer.Net.FavoriteGif
+  langs:
+  - csharp
+  - vb
+  name: AttachmentId
+  nameWithType: FavoriteGif.AttachmentId
+  fullName: Fluxer.Net.FavoriteGif.AttachmentId
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Gifs/FavoriteGif.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: AttachmentId
+    path: ../Fluxer.Net/Data/Gifs/FavoriteGif.cs
+    startLine: 18
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: ID of the attachment storing the gif.
+  example: []
+  syntax:
+    content: public ulong AttachmentId { get; }
+    parameters: []
+    return:
+      type: System.UInt64
+    content.vb: Public Property AttachmentId As ULong
+  overload: Fluxer.Net.FavoriteGif.AttachmentId*
+  implements:
+  - Fluxer.Net.IFavoriteGif.AttachmentId
+- uid: Fluxer.Net.FavoriteGif.Filename
+  commentId: P:Fluxer.Net.FavoriteGif.Filename
+  id: Filename
+  parent: Fluxer.Net.FavoriteGif
+  langs:
+  - csharp
+  - vb
+  name: Filename
+  nameWithType: FavoriteGif.Filename
+  fullName: Fluxer.Net.FavoriteGif.Filename
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Gifs/FavoriteGif.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Filename
+    path: ../Fluxer.Net/Data/Gifs/FavoriteGif.cs
+    startLine: 21
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Original filename of the gif.
+  example: []
+  syntax:
+    content: public string Filename { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Filename As String
+  overload: Fluxer.Net.FavoriteGif.Filename*
+  implements:
+  - Fluxer.Net.IFavoriteGif.Filename
+- uid: Fluxer.Net.FavoriteGif.ContentType
+  commentId: P:Fluxer.Net.FavoriteGif.ContentType
+  id: ContentType
+  parent: Fluxer.Net.FavoriteGif
+  langs:
+  - csharp
+  - vb
+  name: ContentType
+  nameWithType: FavoriteGif.ContentType
+  fullName: Fluxer.Net.FavoriteGif.ContentType
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Gifs/FavoriteGif.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: ContentType
+    path: ../Fluxer.Net/Data/Gifs/FavoriteGif.cs
+    startLine: 24
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: MIME type of the gif file.
+  example: []
+  syntax:
+    content: public string ContentType { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property ContentType As String
+  overload: Fluxer.Net.FavoriteGif.ContentType*
+  implements:
+  - Fluxer.Net.IFavoriteGif.ContentType
+- uid: Fluxer.Net.FavoriteGif.Size
+  commentId: P:Fluxer.Net.FavoriteGif.Size
+  id: Size
+  parent: Fluxer.Net.FavoriteGif
+  langs:
+  - csharp
+  - vb
+  name: Size
+  nameWithType: FavoriteGif.Size
+  fullName: Fluxer.Net.FavoriteGif.Size
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Gifs/FavoriteGif.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Size
+    path: ../Fluxer.Net/Data/Gifs/FavoriteGif.cs
+    startLine: 27
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: File size in bytes.
+  example: []
+  syntax:
+    content: public int Size { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property Size As Integer
+  overload: Fluxer.Net.FavoriteGif.Size*
+  implements:
+  - Fluxer.Net.IFavoriteGif.Size
+- uid: Fluxer.Net.FavoriteGif.Url
+  commentId: P:Fluxer.Net.FavoriteGif.Url
+  id: Url
+  parent: Fluxer.Net.FavoriteGif
+  langs:
+  - csharp
+  - vb
+  name: Url
+  nameWithType: FavoriteGif.Url
+  fullName: Fluxer.Net.FavoriteGif.Url
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Gifs/FavoriteGif.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Url
+    path: ../Fluxer.Net/Data/Gifs/FavoriteGif.cs
+    startLine: 30
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: CDN URL to access the meme.
+  example: []
+  syntax:
+    content: public string Url { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Url As String
+  overload: Fluxer.Net.FavoriteGif.Url*
+  implements:
+  - Fluxer.Net.IFavoriteGif.Url
+- uid: Fluxer.Net.FavoriteGif.AltText
+  commentId: P:Fluxer.Net.FavoriteGif.AltText
+  id: AltText
+  parent: Fluxer.Net.FavoriteGif
+  langs:
+  - csharp
+  - vb
+  name: AltText
+  nameWithType: FavoriteGif.AltText
+  fullName: Fluxer.Net.FavoriteGif.AltText
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Gifs/FavoriteGif.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: AltText
+    path: ../Fluxer.Net/Data/Gifs/FavoriteGif.cs
+    startLine: 33
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Alternative text description for accessibility.
+  example: []
+  syntax:
+    content: public string? AltText { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property AltText As String
+  overload: Fluxer.Net.FavoriteGif.AltText*
+  implements:
+  - Fluxer.Net.IFavoriteGif.AltText
+- uid: Fluxer.Net.FavoriteGif.ContentHash
+  commentId: P:Fluxer.Net.FavoriteGif.ContentHash
+  id: ContentHash
+  parent: Fluxer.Net.FavoriteGif
+  langs:
+  - csharp
+  - vb
+  name: ContentHash
+  nameWithType: FavoriteGif.ContentHash
+  fullName: Fluxer.Net.FavoriteGif.ContentHash
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Gifs/FavoriteGif.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: ContentHash
+    path: ../Fluxer.Net/Data/Gifs/FavoriteGif.cs
+    startLine: 36
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Hash of the file content for deduplication.
+  example: []
+  syntax:
+    content: public string? ContentHash { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property ContentHash As String
+  overload: Fluxer.Net.FavoriteGif.ContentHash*
+  implements:
+  - Fluxer.Net.IFavoriteGif.ContentHash
+- uid: Fluxer.Net.FavoriteGif.Width
+  commentId: P:Fluxer.Net.FavoriteGif.Width
+  id: Width
+  parent: Fluxer.Net.FavoriteGif
+  langs:
+  - csharp
+  - vb
+  name: Width
+  nameWithType: FavoriteGif.Width
+  fullName: Fluxer.Net.FavoriteGif.Width
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Gifs/FavoriteGif.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Width
+    path: ../Fluxer.Net/Data/Gifs/FavoriteGif.cs
+    startLine: 39
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Width of the image or video in pixels.
+  example: []
+  syntax:
+    content: public int? Width { get; }
+    parameters: []
+    return:
+      type: System.Nullable{System.Int32}
+    content.vb: Public Property Width As Integer?
+  overload: Fluxer.Net.FavoriteGif.Width*
+  implements:
+  - Fluxer.Net.IFavoriteGif.Width
+- uid: Fluxer.Net.FavoriteGif.Height
+  commentId: P:Fluxer.Net.FavoriteGif.Height
+  id: Height
+  parent: Fluxer.Net.FavoriteGif
+  langs:
+  - csharp
+  - vb
+  name: Height
+  nameWithType: FavoriteGif.Height
+  fullName: Fluxer.Net.FavoriteGif.Height
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Gifs/FavoriteGif.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Height
+    path: ../Fluxer.Net/Data/Gifs/FavoriteGif.cs
+    startLine: 42
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Height of the image or video in pixels.
+  example: []
+  syntax:
+    content: public int? Height { get; }
+    parameters: []
+    return:
+      type: System.Nullable{System.Int32}
+    content.vb: Public Property Height As Integer?
+  overload: Fluxer.Net.FavoriteGif.Height*
+  implements:
+  - Fluxer.Net.IFavoriteGif.Height
+- uid: Fluxer.Net.FavoriteGif.Duration
+  commentId: P:Fluxer.Net.FavoriteGif.Duration
+  id: Duration
+  parent: Fluxer.Net.FavoriteGif
+  langs:
+  - csharp
+  - vb
+  name: Duration
+  nameWithType: FavoriteGif.Duration
+  fullName: Fluxer.Net.FavoriteGif.Duration
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Gifs/FavoriteGif.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Duration
+    path: ../Fluxer.Net/Data/Gifs/FavoriteGif.cs
+    startLine: 45
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Duration of the video in seconds
+  example: []
+  syntax:
+    content: public int? Duration { get; }
+    parameters: []
+    return:
+      type: System.Nullable{System.Int32}
+    content.vb: Public Property Duration As Integer?
+  overload: Fluxer.Net.FavoriteGif.Duration*
+  implements:
+  - Fluxer.Net.IFavoriteGif.Duration
+- uid: Fluxer.Net.FavoriteGif.IsGifVideo
+  commentId: P:Fluxer.Net.FavoriteGif.IsGifVideo
+  id: IsGifVideo
+  parent: Fluxer.Net.FavoriteGif
+  langs:
+  - csharp
+  - vb
+  name: IsGifVideo
+  nameWithType: FavoriteGif.IsGifVideo
+  fullName: Fluxer.Net.FavoriteGif.IsGifVideo
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Gifs/FavoriteGif.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: IsGifVideo
+    path: ../Fluxer.Net/Data/Gifs/FavoriteGif.cs
+    startLine: 48
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Whether the gif is a video converted from GIF
+  example: []
+  syntax:
+    content: public bool IsGifVideo { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property IsGifVideo As Boolean
+  overload: Fluxer.Net.FavoriteGif.IsGifVideo*
+  implements:
+  - Fluxer.Net.IFavoriteGif.IsGifVideo
+- uid: Fluxer.Net.FavoriteGif.KlipySlug
+  commentId: P:Fluxer.Net.FavoriteGif.KlipySlug
+  id: KlipySlug
+  parent: Fluxer.Net.FavoriteGif
+  langs:
+  - csharp
+  - vb
+  name: KlipySlug
+  nameWithType: FavoriteGif.KlipySlug
+  fullName: Fluxer.Net.FavoriteGif.KlipySlug
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Gifs/FavoriteGif.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: KlipySlug
+    path: ../Fluxer.Net/Data/Gifs/FavoriteGif.cs
+    startLine: 51
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Klipy clip slug if the meme was sourced from Klipy.
+  example: []
+  syntax:
+    content: public string? KlipySlug { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property KlipySlug As String
+  overload: Fluxer.Net.FavoriteGif.KlipySlug*
+  implements:
+  - Fluxer.Net.IFavoriteGif.KlipySlug
+- uid: Fluxer.Net.FavoriteGif.TenorSlugId
+  commentId: P:Fluxer.Net.FavoriteGif.TenorSlugId
+  id: TenorSlugId
+  parent: Fluxer.Net.FavoriteGif
+  langs:
+  - csharp
+  - vb
+  name: TenorSlugId
+  nameWithType: FavoriteGif.TenorSlugId
+  fullName: Fluxer.Net.FavoriteGif.TenorSlugId
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Gifs/FavoriteGif.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: TenorSlugId
+    path: ../Fluxer.Net/Data/Gifs/FavoriteGif.cs
+    startLine: 54
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Tenor view/- identifier if the meme was sourced from Tenor.
+  example: []
+  syntax:
+    content: public string? TenorSlugId { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property TenorSlugId As String
+  overload: Fluxer.Net.FavoriteGif.TenorSlugId*
+  implements:
+  - Fluxer.Net.IFavoriteGif.TenorSlugId
+- uid: Fluxer.Net.FavoriteGif.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.FavoriteGifJson)
+  commentId: M:Fluxer.Net.FavoriteGif.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.FavoriteGifJson)
+  id: Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.FavoriteGifJson)
+  parent: Fluxer.Net.FavoriteGif
+  langs:
+  - csharp
+  - vb
+  name: Create(FluxerBaseClient, FavoriteGifJson)
+  nameWithType: FavoriteGif.Create(FluxerBaseClient, FavoriteGifJson)
+  fullName: Fluxer.Net.FavoriteGif.Create(Fluxer.Net.FluxerBaseClient, Fluxer.Net.FavoriteGifJson)
+  type: Method
+  source:
+    remote:
+      path: Fluxer.Net/Data/Gifs/FavoriteGif.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Create
+    path: ../Fluxer.Net/Data/Gifs/FavoriteGif.cs
+    startLine: 61
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: public static FavoriteGif Create(FluxerBaseClient client, FavoriteGifJson json)
+    parameters:
+    - id: client
+      type: Fluxer.Net.FluxerBaseClient
+    - id: json
+      type: Fluxer.Net.FavoriteGifJson
+    return:
+      type: Fluxer.Net.FavoriteGif
+    content.vb: Public Shared Function Create(client As FluxerBaseClient, json As FavoriteGifJson) As FavoriteGif
+  overload: Fluxer.Net.FavoriteGif.Create*
+references:
+- uid: Fluxer.Net
+  commentId: N:Fluxer.Net
+  href: Fluxer.html
+  name: Fluxer.Net
+  nameWithType: Fluxer.Net
+  fullName: Fluxer.Net
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Fluxer.Net.Entity
+  commentId: T:Fluxer.Net.Entity
+  parent: Fluxer.Net
+  href: Fluxer.Net.Entity.html
+  name: Entity
+  nameWithType: Entity
+  fullName: Fluxer.Net.Entity
+- uid: Fluxer.Net.IFavoriteGif
+  commentId: T:Fluxer.Net.IFavoriteGif
+  parent: Fluxer.Net
+  href: Fluxer.Net.IFavoriteGif.html
+  name: IFavoriteGif
+  nameWithType: IFavoriteGif
+  fullName: Fluxer.Net.IFavoriteGif
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Fluxer.Net.FavoriteGif.Id*
+  commentId: Overload:Fluxer.Net.FavoriteGif.Id
+  href: Fluxer.Net.FavoriteGif.html#Fluxer_Net_FavoriteGif_Id
+  name: Id
+  nameWithType: FavoriteGif.Id
+  fullName: Fluxer.Net.FavoriteGif.Id
+- uid: Fluxer.Net.IFavoriteGif.Id
+  commentId: P:Fluxer.Net.IFavoriteGif.Id
+  parent: Fluxer.Net.IFavoriteGif
+  href: Fluxer.Net.IFavoriteGif.html#Fluxer_Net_IFavoriteGif_Id
+  name: Id
+  nameWithType: IFavoriteGif.Id
+  fullName: Fluxer.Net.IFavoriteGif.Id
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: Fluxer.Net.FavoriteGif.UserId*
+  commentId: Overload:Fluxer.Net.FavoriteGif.UserId
+  href: Fluxer.Net.FavoriteGif.html#Fluxer_Net_FavoriteGif_UserId
+  name: UserId
+  nameWithType: FavoriteGif.UserId
+  fullName: Fluxer.Net.FavoriteGif.UserId
+- uid: Fluxer.Net.IFavoriteGif.UserId
+  commentId: P:Fluxer.Net.IFavoriteGif.UserId
+  parent: Fluxer.Net.IFavoriteGif
+  href: Fluxer.Net.IFavoriteGif.html#Fluxer_Net_IFavoriteGif_UserId
+  name: UserId
+  nameWithType: IFavoriteGif.UserId
+  fullName: Fluxer.Net.IFavoriteGif.UserId
+- uid: System.UInt64
+  commentId: T:System.UInt64
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.uint64
+  name: ulong
+  nameWithType: ulong
+  fullName: ulong
+  nameWithType.vb: ULong
+  fullName.vb: ULong
+  name.vb: ULong
+- uid: Fluxer.Net.FavoriteGif.Name*
+  commentId: Overload:Fluxer.Net.FavoriteGif.Name
+  href: Fluxer.Net.FavoriteGif.html#Fluxer_Net_FavoriteGif_Name
+  name: Name
+  nameWithType: FavoriteGif.Name
+  fullName: Fluxer.Net.FavoriteGif.Name
+- uid: Fluxer.Net.IFavoriteGif.Name
+  commentId: P:Fluxer.Net.IFavoriteGif.Name
+  parent: Fluxer.Net.IFavoriteGif
+  href: Fluxer.Net.IFavoriteGif.html#Fluxer_Net_IFavoriteGif_Name
+  name: Name
+  nameWithType: IFavoriteGif.Name
+  fullName: Fluxer.Net.IFavoriteGif.Name
+- uid: Fluxer.Net.FavoriteGif.Tags*
+  commentId: Overload:Fluxer.Net.FavoriteGif.Tags
+  href: Fluxer.Net.FavoriteGif.html#Fluxer_Net_FavoriteGif_Tags
+  name: Tags
+  nameWithType: FavoriteGif.Tags
+  fullName: Fluxer.Net.FavoriteGif.Tags
+- uid: Fluxer.Net.IFavoriteGif.Tags
+  commentId: P:Fluxer.Net.IFavoriteGif.Tags
+  parent: Fluxer.Net.IFavoriteGif
+  href: Fluxer.Net.IFavoriteGif.html#Fluxer_Net_IFavoriteGif_Tags
+  name: Tags
+  nameWithType: IFavoriteGif.Tags
+  fullName: Fluxer.Net.IFavoriteGif.Tags
+- uid: System.String[]
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string[]
+  nameWithType: string[]
+  fullName: string[]
+  nameWithType.vb: String()
+  fullName.vb: String()
+  name.vb: String()
+  spec.csharp:
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: (
+  - name: )
+- uid: Fluxer.Net.FavoriteGif.AttachmentId*
+  commentId: Overload:Fluxer.Net.FavoriteGif.AttachmentId
+  href: Fluxer.Net.FavoriteGif.html#Fluxer_Net_FavoriteGif_AttachmentId
+  name: AttachmentId
+  nameWithType: FavoriteGif.AttachmentId
+  fullName: Fluxer.Net.FavoriteGif.AttachmentId
+- uid: Fluxer.Net.IFavoriteGif.AttachmentId
+  commentId: P:Fluxer.Net.IFavoriteGif.AttachmentId
+  parent: Fluxer.Net.IFavoriteGif
+  href: Fluxer.Net.IFavoriteGif.html#Fluxer_Net_IFavoriteGif_AttachmentId
+  name: AttachmentId
+  nameWithType: IFavoriteGif.AttachmentId
+  fullName: Fluxer.Net.IFavoriteGif.AttachmentId
+- uid: Fluxer.Net.FavoriteGif.Filename*
+  commentId: Overload:Fluxer.Net.FavoriteGif.Filename
+  href: Fluxer.Net.FavoriteGif.html#Fluxer_Net_FavoriteGif_Filename
+  name: Filename
+  nameWithType: FavoriteGif.Filename
+  fullName: Fluxer.Net.FavoriteGif.Filename
+- uid: Fluxer.Net.IFavoriteGif.Filename
+  commentId: P:Fluxer.Net.IFavoriteGif.Filename
+  parent: Fluxer.Net.IFavoriteGif
+  href: Fluxer.Net.IFavoriteGif.html#Fluxer_Net_IFavoriteGif_Filename
+  name: Filename
+  nameWithType: IFavoriteGif.Filename
+  fullName: Fluxer.Net.IFavoriteGif.Filename
+- uid: Fluxer.Net.FavoriteGif.ContentType*
+  commentId: Overload:Fluxer.Net.FavoriteGif.ContentType
+  href: Fluxer.Net.FavoriteGif.html#Fluxer_Net_FavoriteGif_ContentType
+  name: ContentType
+  nameWithType: FavoriteGif.ContentType
+  fullName: Fluxer.Net.FavoriteGif.ContentType
+- uid: Fluxer.Net.IFavoriteGif.ContentType
+  commentId: P:Fluxer.Net.IFavoriteGif.ContentType
+  parent: Fluxer.Net.IFavoriteGif
+  href: Fluxer.Net.IFavoriteGif.html#Fluxer_Net_IFavoriteGif_ContentType
+  name: ContentType
+  nameWithType: IFavoriteGif.ContentType
+  fullName: Fluxer.Net.IFavoriteGif.ContentType
+- uid: Fluxer.Net.FavoriteGif.Size*
+  commentId: Overload:Fluxer.Net.FavoriteGif.Size
+  href: Fluxer.Net.FavoriteGif.html#Fluxer_Net_FavoriteGif_Size
+  name: Size
+  nameWithType: FavoriteGif.Size
+  fullName: Fluxer.Net.FavoriteGif.Size
+- uid: Fluxer.Net.IFavoriteGif.Size
+  commentId: P:Fluxer.Net.IFavoriteGif.Size
+  parent: Fluxer.Net.IFavoriteGif
+  href: Fluxer.Net.IFavoriteGif.html#Fluxer_Net_IFavoriteGif_Size
+  name: Size
+  nameWithType: IFavoriteGif.Size
+  fullName: Fluxer.Net.IFavoriteGif.Size
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: Fluxer.Net.FavoriteGif.Url*
+  commentId: Overload:Fluxer.Net.FavoriteGif.Url
+  href: Fluxer.Net.FavoriteGif.html#Fluxer_Net_FavoriteGif_Url
+  name: Url
+  nameWithType: FavoriteGif.Url
+  fullName: Fluxer.Net.FavoriteGif.Url
+- uid: Fluxer.Net.IFavoriteGif.Url
+  commentId: P:Fluxer.Net.IFavoriteGif.Url
+  parent: Fluxer.Net.IFavoriteGif
+  href: Fluxer.Net.IFavoriteGif.html#Fluxer_Net_IFavoriteGif_Url
+  name: Url
+  nameWithType: IFavoriteGif.Url
+  fullName: Fluxer.Net.IFavoriteGif.Url
+- uid: Fluxer.Net.FavoriteGif.AltText*
+  commentId: Overload:Fluxer.Net.FavoriteGif.AltText
+  href: Fluxer.Net.FavoriteGif.html#Fluxer_Net_FavoriteGif_AltText
+  name: AltText
+  nameWithType: FavoriteGif.AltText
+  fullName: Fluxer.Net.FavoriteGif.AltText
+- uid: Fluxer.Net.IFavoriteGif.AltText
+  commentId: P:Fluxer.Net.IFavoriteGif.AltText
+  parent: Fluxer.Net.IFavoriteGif
+  href: Fluxer.Net.IFavoriteGif.html#Fluxer_Net_IFavoriteGif_AltText
+  name: AltText
+  nameWithType: IFavoriteGif.AltText
+  fullName: Fluxer.Net.IFavoriteGif.AltText
+- uid: Fluxer.Net.FavoriteGif.ContentHash*
+  commentId: Overload:Fluxer.Net.FavoriteGif.ContentHash
+  href: Fluxer.Net.FavoriteGif.html#Fluxer_Net_FavoriteGif_ContentHash
+  name: ContentHash
+  nameWithType: FavoriteGif.ContentHash
+  fullName: Fluxer.Net.FavoriteGif.ContentHash
+- uid: Fluxer.Net.IFavoriteGif.ContentHash
+  commentId: P:Fluxer.Net.IFavoriteGif.ContentHash
+  parent: Fluxer.Net.IFavoriteGif
+  href: Fluxer.Net.IFavoriteGif.html#Fluxer_Net_IFavoriteGif_ContentHash
+  name: ContentHash
+  nameWithType: IFavoriteGif.ContentHash
+  fullName: Fluxer.Net.IFavoriteGif.ContentHash
+- uid: Fluxer.Net.FavoriteGif.Width*
+  commentId: Overload:Fluxer.Net.FavoriteGif.Width
+  href: Fluxer.Net.FavoriteGif.html#Fluxer_Net_FavoriteGif_Width
+  name: Width
+  nameWithType: FavoriteGif.Width
+  fullName: Fluxer.Net.FavoriteGif.Width
+- uid: Fluxer.Net.IFavoriteGif.Width
+  commentId: P:Fluxer.Net.IFavoriteGif.Width
+  parent: Fluxer.Net.IFavoriteGif
+  href: Fluxer.Net.IFavoriteGif.html#Fluxer_Net_IFavoriteGif_Width
+  name: Width
+  nameWithType: IFavoriteGif.Width
+  fullName: Fluxer.Net.IFavoriteGif.Width
+- uid: System.Nullable{System.Int32}
+  commentId: T:System.Nullable{System.Int32}
+  parent: System
+  definition: System.Nullable`1
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int?
+  nameWithType: int?
+  fullName: int?
+  nameWithType.vb: Integer?
+  fullName.vb: Integer?
+  name.vb: Integer?
+  spec.csharp:
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
+  spec.vb:
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: Fluxer.Net.FavoriteGif.Height*
+  commentId: Overload:Fluxer.Net.FavoriteGif.Height
+  href: Fluxer.Net.FavoriteGif.html#Fluxer_Net_FavoriteGif_Height
+  name: Height
+  nameWithType: FavoriteGif.Height
+  fullName: Fluxer.Net.FavoriteGif.Height
+- uid: Fluxer.Net.IFavoriteGif.Height
+  commentId: P:Fluxer.Net.IFavoriteGif.Height
+  parent: Fluxer.Net.IFavoriteGif
+  href: Fluxer.Net.IFavoriteGif.html#Fluxer_Net_IFavoriteGif_Height
+  name: Height
+  nameWithType: IFavoriteGif.Height
+  fullName: Fluxer.Net.IFavoriteGif.Height
+- uid: Fluxer.Net.FavoriteGif.Duration*
+  commentId: Overload:Fluxer.Net.FavoriteGif.Duration
+  href: Fluxer.Net.FavoriteGif.html#Fluxer_Net_FavoriteGif_Duration
+  name: Duration
+  nameWithType: FavoriteGif.Duration
+  fullName: Fluxer.Net.FavoriteGif.Duration
+- uid: Fluxer.Net.IFavoriteGif.Duration
+  commentId: P:Fluxer.Net.IFavoriteGif.Duration
+  parent: Fluxer.Net.IFavoriteGif
+  href: Fluxer.Net.IFavoriteGif.html#Fluxer_Net_IFavoriteGif_Duration
+  name: Duration
+  nameWithType: IFavoriteGif.Duration
+  fullName: Fluxer.Net.IFavoriteGif.Duration
+- uid: Fluxer.Net.FavoriteGif.IsGifVideo*
+  commentId: Overload:Fluxer.Net.FavoriteGif.IsGifVideo
+  href: Fluxer.Net.FavoriteGif.html#Fluxer_Net_FavoriteGif_IsGifVideo
+  name: IsGifVideo
+  nameWithType: FavoriteGif.IsGifVideo
+  fullName: Fluxer.Net.FavoriteGif.IsGifVideo
+- uid: Fluxer.Net.IFavoriteGif.IsGifVideo
+  commentId: P:Fluxer.Net.IFavoriteGif.IsGifVideo
+  parent: Fluxer.Net.IFavoriteGif
+  href: Fluxer.Net.IFavoriteGif.html#Fluxer_Net_IFavoriteGif_IsGifVideo
+  name: IsGifVideo
+  nameWithType: IFavoriteGif.IsGifVideo
+  fullName: Fluxer.Net.IFavoriteGif.IsGifVideo
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: Fluxer.Net.FavoriteGif.KlipySlug*
+  commentId: Overload:Fluxer.Net.FavoriteGif.KlipySlug
+  href: Fluxer.Net.FavoriteGif.html#Fluxer_Net_FavoriteGif_KlipySlug
+  name: KlipySlug
+  nameWithType: FavoriteGif.KlipySlug
+  fullName: Fluxer.Net.FavoriteGif.KlipySlug
+- uid: Fluxer.Net.IFavoriteGif.KlipySlug
+  commentId: P:Fluxer.Net.IFavoriteGif.KlipySlug
+  parent: Fluxer.Net.IFavoriteGif
+  href: Fluxer.Net.IFavoriteGif.html#Fluxer_Net_IFavoriteGif_KlipySlug
+  name: KlipySlug
+  nameWithType: IFavoriteGif.KlipySlug
+  fullName: Fluxer.Net.IFavoriteGif.KlipySlug
+- uid: Fluxer.Net.FavoriteGif.TenorSlugId*
+  commentId: Overload:Fluxer.Net.FavoriteGif.TenorSlugId
+  href: Fluxer.Net.FavoriteGif.html#Fluxer_Net_FavoriteGif_TenorSlugId
+  name: TenorSlugId
+  nameWithType: FavoriteGif.TenorSlugId
+  fullName: Fluxer.Net.FavoriteGif.TenorSlugId
+- uid: Fluxer.Net.IFavoriteGif.TenorSlugId
+  commentId: P:Fluxer.Net.IFavoriteGif.TenorSlugId
+  parent: Fluxer.Net.IFavoriteGif
+  href: Fluxer.Net.IFavoriteGif.html#Fluxer_Net_IFavoriteGif_TenorSlugId
+  name: TenorSlugId
+  nameWithType: IFavoriteGif.TenorSlugId
+  fullName: Fluxer.Net.IFavoriteGif.TenorSlugId
+- uid: Fluxer.Net.FavoriteGif.Create*
+  commentId: Overload:Fluxer.Net.FavoriteGif.Create
+  href: Fluxer.Net.FavoriteGif.html#Fluxer_Net_FavoriteGif_Create_Fluxer_Net_FluxerBaseClient_Fluxer_Net_FavoriteGifJson_
+  name: Create
+  nameWithType: FavoriteGif.Create
+  fullName: Fluxer.Net.FavoriteGif.Create
+- uid: Fluxer.Net.FluxerBaseClient
+  commentId: T:Fluxer.Net.FluxerBaseClient
+  parent: Fluxer.Net
+  href: Fluxer.Net.FluxerBaseClient.html
+  name: FluxerBaseClient
+  nameWithType: FluxerBaseClient
+  fullName: Fluxer.Net.FluxerBaseClient
+- uid: Fluxer.Net.FavoriteGifJson
+  commentId: T:Fluxer.Net.FavoriteGifJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.FavoriteGifJson.html
+  name: FavoriteGifJson
+  nameWithType: FavoriteGifJson
+  fullName: Fluxer.Net.FavoriteGifJson
+- uid: Fluxer.Net.FavoriteGif
+  commentId: T:Fluxer.Net.FavoriteGif
+  parent: Fluxer.Net
+  href: Fluxer.Net.FavoriteGif.html
+  name: FavoriteGif
+  nameWithType: FavoriteGif
+  fullName: Fluxer.Net.FavoriteGif

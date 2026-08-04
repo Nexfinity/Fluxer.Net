@@ -1,0 +1,387 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.IGuildSticker
+  commentId: T:Fluxer.Net.IGuildSticker
+  id: IGuildSticker
+  parent: Fluxer.Net
+  children:
+  - Fluxer.Net.IGuildSticker.Creator
+  - Fluxer.Net.IGuildSticker.Description
+  - Fluxer.Net.IGuildSticker.GetStickerUrl(System.Int32)
+  - Fluxer.Net.IGuildSticker.Tags
+  langs:
+  - csharp
+  - vb
+  name: IGuildSticker
+  nameWithType: IGuildSticker
+  fullName: Fluxer.Net.IGuildSticker
+  type: Interface
+  source:
+    remote:
+      path: Fluxer.Net/Data/Expressions/IGuildSticker.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: IGuildSticker
+    path: ../Fluxer.Net/Data/Expressions/IGuildSticker.cs
+    startLine: 2
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: 'public interface IGuildSticker : ISticker'
+    content.vb: Public Interface IGuildSticker Inherits ISticker
+  derivedClasses:
+  - Fluxer.Net.GuildSticker
+  - Fluxer.Net.GuildStickerJson
+  inheritedMembers:
+  - Fluxer.Net.ISticker.Id
+  - Fluxer.Net.ISticker.Name
+  - Fluxer.Net.ISticker.IsAnimated
+  - Fluxer.Net.ISticker.AllowCloning
+- uid: Fluxer.Net.IGuildSticker.Description
+  commentId: P:Fluxer.Net.IGuildSticker.Description
+  id: Description
+  parent: Fluxer.Net.IGuildSticker
+  langs:
+  - csharp
+  - vb
+  name: Description
+  nameWithType: IGuildSticker.Description
+  fullName: Fluxer.Net.IGuildSticker.Description
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Expressions/IGuildSticker.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Description
+    path: ../Fluxer.Net/Data/Expressions/IGuildSticker.cs
+    startLine: 7
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The description of the sticker.
+  example: []
+  syntax:
+    content: string? Description { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: ReadOnly Property Description As String
+  overload: Fluxer.Net.IGuildSticker.Description*
+- uid: Fluxer.Net.IGuildSticker.Tags
+  commentId: P:Fluxer.Net.IGuildSticker.Tags
+  id: Tags
+  parent: Fluxer.Net.IGuildSticker
+  langs:
+  - csharp
+  - vb
+  name: Tags
+  nameWithType: IGuildSticker.Tags
+  fullName: Fluxer.Net.IGuildSticker.Tags
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Expressions/IGuildSticker.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Tags
+    path: ../Fluxer.Net/Data/Expressions/IGuildSticker.cs
+    startLine: 12
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Autocomplete/suggestion tags for the sticker.
+  example: []
+  syntax:
+    content: List<string>? Tags { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.List{System.String}
+    content.vb: ReadOnly Property Tags As List(Of String)
+  overload: Fluxer.Net.IGuildSticker.Tags*
+- uid: Fluxer.Net.IGuildSticker.Creator
+  commentId: P:Fluxer.Net.IGuildSticker.Creator
+  id: Creator
+  parent: Fluxer.Net.IGuildSticker
+  langs:
+  - csharp
+  - vb
+  name: Creator
+  nameWithType: IGuildSticker.Creator
+  fullName: Fluxer.Net.IGuildSticker.Creator
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Expressions/IGuildSticker.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Creator
+    path: ../Fluxer.Net/Data/Expressions/IGuildSticker.cs
+    startLine: 17
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The user that created the sticker.
+  example: []
+  syntax:
+    content: IUser? Creator { get; }
+    parameters: []
+    return:
+      type: Fluxer.Net.IUser
+    content.vb: ReadOnly Property Creator As IUser
+  overload: Fluxer.Net.IGuildSticker.Creator*
+- uid: Fluxer.Net.IGuildSticker.GetStickerUrl(System.Int32)
+  commentId: M:Fluxer.Net.IGuildSticker.GetStickerUrl(System.Int32)
+  id: GetStickerUrl(System.Int32)
+  parent: Fluxer.Net.IGuildSticker
+  langs:
+  - csharp
+  - vb
+  name: GetStickerUrl(int)
+  nameWithType: IGuildSticker.GetStickerUrl(int)
+  fullName: Fluxer.Net.IGuildSticker.GetStickerUrl(int)
+  type: Method
+  source:
+    remote:
+      path: Fluxer.Net/Data/Expressions/IGuildSticker.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: GetStickerUrl
+    path: ../Fluxer.Net/Data/Expressions/IGuildSticker.cs
+    startLine: 22
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Get the sticker's image.
+  example: []
+  syntax:
+    content: string GetStickerUrl(int size)
+    parameters:
+    - id: size
+      type: System.Int32
+    return:
+      type: System.String
+    content.vb: Function GetStickerUrl(size As Integer) As String
+  overload: Fluxer.Net.IGuildSticker.GetStickerUrl*
+  nameWithType.vb: IGuildSticker.GetStickerUrl(Integer)
+  fullName.vb: Fluxer.Net.IGuildSticker.GetStickerUrl(Integer)
+  name.vb: GetStickerUrl(Integer)
+references:
+- uid: Fluxer.Net
+  commentId: N:Fluxer.Net
+  href: Fluxer.html
+  name: Fluxer.Net
+  nameWithType: Fluxer.Net
+  fullName: Fluxer.Net
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+- uid: Fluxer.Net.ISticker.Id
+  commentId: P:Fluxer.Net.ISticker.Id
+  parent: Fluxer.Net.ISticker
+  href: Fluxer.Net.ISticker.html#Fluxer_Net_ISticker_Id
+  name: Id
+  nameWithType: ISticker.Id
+  fullName: Fluxer.Net.ISticker.Id
+- uid: Fluxer.Net.ISticker.Name
+  commentId: P:Fluxer.Net.ISticker.Name
+  parent: Fluxer.Net.ISticker
+  href: Fluxer.Net.ISticker.html#Fluxer_Net_ISticker_Name
+  name: Name
+  nameWithType: ISticker.Name
+  fullName: Fluxer.Net.ISticker.Name
+- uid: Fluxer.Net.ISticker.IsAnimated
+  commentId: P:Fluxer.Net.ISticker.IsAnimated
+  parent: Fluxer.Net.ISticker
+  href: Fluxer.Net.ISticker.html#Fluxer_Net_ISticker_IsAnimated
+  name: IsAnimated
+  nameWithType: ISticker.IsAnimated
+  fullName: Fluxer.Net.ISticker.IsAnimated
+- uid: Fluxer.Net.ISticker.AllowCloning
+  commentId: P:Fluxer.Net.ISticker.AllowCloning
+  parent: Fluxer.Net.ISticker
+  href: Fluxer.Net.ISticker.html#Fluxer_Net_ISticker_AllowCloning
+  name: AllowCloning
+  nameWithType: ISticker.AllowCloning
+  fullName: Fluxer.Net.ISticker.AllowCloning
+- uid: Fluxer.Net.ISticker
+  commentId: T:Fluxer.Net.ISticker
+  parent: Fluxer.Net
+  href: Fluxer.Net.ISticker.html
+  name: ISticker
+  nameWithType: ISticker
+  fullName: Fluxer.Net.ISticker
+- uid: Fluxer.Net.IGuildSticker.Description*
+  commentId: Overload:Fluxer.Net.IGuildSticker.Description
+  href: Fluxer.Net.IGuildSticker.html#Fluxer_Net_IGuildSticker_Description
+  name: Description
+  nameWithType: IGuildSticker.Description
+  fullName: Fluxer.Net.IGuildSticker.Description
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Fluxer.Net.IGuildSticker.Tags*
+  commentId: Overload:Fluxer.Net.IGuildSticker.Tags
+  href: Fluxer.Net.IGuildSticker.html#Fluxer_Net_IGuildSticker_Tags
+  name: Tags
+  nameWithType: IGuildSticker.Tags
+  fullName: Fluxer.Net.IGuildSticker.Tags
+- uid: System.Collections.Generic.List{System.String}
+  commentId: T:System.Collections.Generic.List{System.String}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<string>
+  nameWithType: List<string>
+  fullName: System.Collections.Generic.List<string>
+  nameWithType.vb: List(Of String)
+  fullName.vb: System.Collections.Generic.List(Of String)
+  name.vb: List(Of String)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: Fluxer.Net.IGuildSticker.Creator*
+  commentId: Overload:Fluxer.Net.IGuildSticker.Creator
+  href: Fluxer.Net.IGuildSticker.html#Fluxer_Net_IGuildSticker_Creator
+  name: Creator
+  nameWithType: IGuildSticker.Creator
+  fullName: Fluxer.Net.IGuildSticker.Creator
+- uid: Fluxer.Net.IUser
+  commentId: T:Fluxer.Net.IUser
+  parent: Fluxer.Net
+  href: Fluxer.Net.IUser.html
+  name: IUser
+  nameWithType: IUser
+  fullName: Fluxer.Net.IUser
+- uid: Fluxer.Net.IGuildSticker.GetStickerUrl*
+  commentId: Overload:Fluxer.Net.IGuildSticker.GetStickerUrl
+  href: Fluxer.Net.IGuildSticker.html#Fluxer_Net_IGuildSticker_GetStickerUrl_System_Int32_
+  name: GetStickerUrl
+  nameWithType: IGuildSticker.GetStickerUrl
+  fullName: Fluxer.Net.IGuildSticker.GetStickerUrl
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer

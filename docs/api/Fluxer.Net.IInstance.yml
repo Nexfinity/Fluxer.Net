@@ -1,0 +1,581 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.IInstance
+  commentId: T:Fluxer.Net.IInstance
+  id: IInstance
+  parent: Fluxer.Net
+  children:
+  - Fluxer.Net.IInstance.ApiVersion
+  - Fluxer.Net.IInstance.App
+  - Fluxer.Net.IInstance.Captcha
+  - Fluxer.Net.IInstance.Community
+  - Fluxer.Net.IInstance.Endpoints
+  - Fluxer.Net.IInstance.Features
+  - Fluxer.Net.IInstance.Gifs
+  - Fluxer.Net.IInstance.Limits
+  - Fluxer.Net.IInstance.Push
+  - Fluxer.Net.IInstance.Registration
+  - Fluxer.Net.IInstance.SSO
+  - Fluxer.Net.IInstance.Services
+  langs:
+  - csharp
+  - vb
+  name: IInstance
+  nameWithType: IInstance
+  fullName: Fluxer.Net.IInstance
+  type: Interface
+  source:
+    remote:
+      path: Fluxer.Net/Data/Misc/IInstance.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: IInstance
+    path: ../Fluxer.Net/Data/Misc/IInstance.cs
+    startLine: 2
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: public interface IInstance
+    content.vb: Public Interface IInstance
+  derivedClasses:
+  - Fluxer.Net.Instance
+  - Fluxer.Net.InstanceJson
+- uid: Fluxer.Net.IInstance.ApiVersion
+  commentId: P:Fluxer.Net.IInstance.ApiVersion
+  id: ApiVersion
+  parent: Fluxer.Net.IInstance
+  langs:
+  - csharp
+  - vb
+  name: ApiVersion
+  nameWithType: IInstance.ApiVersion
+  fullName: Fluxer.Net.IInstance.ApiVersion
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Misc/IInstance.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: ApiVersion
+    path: ../Fluxer.Net/Data/Misc/IInstance.cs
+    startLine: 4
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: int ApiVersion { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: ReadOnly Property ApiVersion As Integer
+  overload: Fluxer.Net.IInstance.ApiVersion*
+- uid: Fluxer.Net.IInstance.Endpoints
+  commentId: P:Fluxer.Net.IInstance.Endpoints
+  id: Endpoints
+  parent: Fluxer.Net.IInstance
+  langs:
+  - csharp
+  - vb
+  name: Endpoints
+  nameWithType: IInstance.Endpoints
+  fullName: Fluxer.Net.IInstance.Endpoints
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Misc/IInstance.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Endpoints
+    path: ../Fluxer.Net/Data/Misc/IInstance.cs
+    startLine: 6
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: IInstanceEndpoints Endpoints { get; }
+    parameters: []
+    return:
+      type: Fluxer.Net.IInstanceEndpoints
+    content.vb: ReadOnly Property Endpoints As IInstanceEndpoints
+  overload: Fluxer.Net.IInstance.Endpoints*
+- uid: Fluxer.Net.IInstance.Captcha
+  commentId: P:Fluxer.Net.IInstance.Captcha
+  id: Captcha
+  parent: Fluxer.Net.IInstance
+  langs:
+  - csharp
+  - vb
+  name: Captcha
+  nameWithType: IInstance.Captcha
+  fullName: Fluxer.Net.IInstance.Captcha
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Misc/IInstance.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Captcha
+    path: ../Fluxer.Net/Data/Misc/IInstance.cs
+    startLine: 8
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: IInstanceCaptcha Captcha { get; }
+    parameters: []
+    return:
+      type: Fluxer.Net.IInstanceCaptcha
+    content.vb: ReadOnly Property Captcha As IInstanceCaptcha
+  overload: Fluxer.Net.IInstance.Captcha*
+- uid: Fluxer.Net.IInstance.Features
+  commentId: P:Fluxer.Net.IInstance.Features
+  id: Features
+  parent: Fluxer.Net.IInstance
+  langs:
+  - csharp
+  - vb
+  name: Features
+  nameWithType: IInstance.Features
+  fullName: Fluxer.Net.IInstance.Features
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Misc/IInstance.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Features
+    path: ../Fluxer.Net/Data/Misc/IInstance.cs
+    startLine: 10
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: IInstanceFeatures Features { get; }
+    parameters: []
+    return:
+      type: Fluxer.Net.IInstanceFeatures
+    content.vb: ReadOnly Property Features As IInstanceFeatures
+  overload: Fluxer.Net.IInstance.Features*
+- uid: Fluxer.Net.IInstance.Gifs
+  commentId: P:Fluxer.Net.IInstance.Gifs
+  id: Gifs
+  parent: Fluxer.Net.IInstance
+  langs:
+  - csharp
+  - vb
+  name: Gifs
+  nameWithType: IInstance.Gifs
+  fullName: Fluxer.Net.IInstance.Gifs
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Misc/IInstance.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Gifs
+    path: ../Fluxer.Net/Data/Misc/IInstance.cs
+    startLine: 12
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: IInstanceGifs Gifs { get; }
+    parameters: []
+    return:
+      type: Fluxer.Net.IInstanceGifs
+    content.vb: ReadOnly Property Gifs As IInstanceGifs
+  overload: Fluxer.Net.IInstance.Gifs*
+- uid: Fluxer.Net.IInstance.SSO
+  commentId: P:Fluxer.Net.IInstance.SSO
+  id: SSO
+  parent: Fluxer.Net.IInstance
+  langs:
+  - csharp
+  - vb
+  name: SSO
+  nameWithType: IInstance.SSO
+  fullName: Fluxer.Net.IInstance.SSO
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Misc/IInstance.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: SSO
+    path: ../Fluxer.Net/Data/Misc/IInstance.cs
+    startLine: 14
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: IInstanceSSO SSO { get; }
+    parameters: []
+    return:
+      type: Fluxer.Net.IInstanceSSO
+    content.vb: ReadOnly Property SSO As IInstanceSSO
+  overload: Fluxer.Net.IInstance.SSO*
+- uid: Fluxer.Net.IInstance.Registration
+  commentId: P:Fluxer.Net.IInstance.Registration
+  id: Registration
+  parent: Fluxer.Net.IInstance
+  langs:
+  - csharp
+  - vb
+  name: Registration
+  nameWithType: IInstance.Registration
+  fullName: Fluxer.Net.IInstance.Registration
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Misc/IInstance.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Registration
+    path: ../Fluxer.Net/Data/Misc/IInstance.cs
+    startLine: 16
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: IInstanceRegistration Registration { get; }
+    parameters: []
+    return:
+      type: Fluxer.Net.IInstanceRegistration
+    content.vb: ReadOnly Property Registration As IInstanceRegistration
+  overload: Fluxer.Net.IInstance.Registration*
+- uid: Fluxer.Net.IInstance.Community
+  commentId: P:Fluxer.Net.IInstance.Community
+  id: Community
+  parent: Fluxer.Net.IInstance
+  langs:
+  - csharp
+  - vb
+  name: Community
+  nameWithType: IInstance.Community
+  fullName: Fluxer.Net.IInstance.Community
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Misc/IInstance.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Community
+    path: ../Fluxer.Net/Data/Misc/IInstance.cs
+    startLine: 18
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: IInstanceCommunity Community { get; }
+    parameters: []
+    return:
+      type: Fluxer.Net.IInstanceCommunity
+    content.vb: ReadOnly Property Community As IInstanceCommunity
+  overload: Fluxer.Net.IInstance.Community*
+- uid: Fluxer.Net.IInstance.Services
+  commentId: P:Fluxer.Net.IInstance.Services
+  id: Services
+  parent: Fluxer.Net.IInstance
+  langs:
+  - csharp
+  - vb
+  name: Services
+  nameWithType: IInstance.Services
+  fullName: Fluxer.Net.IInstance.Services
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Misc/IInstance.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Services
+    path: ../Fluxer.Net/Data/Misc/IInstance.cs
+    startLine: 20
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: IInstanceServices Services { get; }
+    parameters: []
+    return:
+      type: Fluxer.Net.IInstanceServices
+    content.vb: ReadOnly Property Services As IInstanceServices
+  overload: Fluxer.Net.IInstance.Services*
+- uid: Fluxer.Net.IInstance.Limits
+  commentId: P:Fluxer.Net.IInstance.Limits
+  id: Limits
+  parent: Fluxer.Net.IInstance
+  langs:
+  - csharp
+  - vb
+  name: Limits
+  nameWithType: IInstance.Limits
+  fullName: Fluxer.Net.IInstance.Limits
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Misc/IInstance.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Limits
+    path: ../Fluxer.Net/Data/Misc/IInstance.cs
+    startLine: 22
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: IInstanceLimits Limits { get; }
+    parameters: []
+    return:
+      type: Fluxer.Net.IInstanceLimits
+    content.vb: ReadOnly Property Limits As IInstanceLimits
+  overload: Fluxer.Net.IInstance.Limits*
+- uid: Fluxer.Net.IInstance.Push
+  commentId: P:Fluxer.Net.IInstance.Push
+  id: Push
+  parent: Fluxer.Net.IInstance
+  langs:
+  - csharp
+  - vb
+  name: Push
+  nameWithType: IInstance.Push
+  fullName: Fluxer.Net.IInstance.Push
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Misc/IInstance.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Push
+    path: ../Fluxer.Net/Data/Misc/IInstance.cs
+    startLine: 24
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: IInstancePush Push { get; }
+    parameters: []
+    return:
+      type: Fluxer.Net.IInstancePush
+    content.vb: ReadOnly Property Push As IInstancePush
+  overload: Fluxer.Net.IInstance.Push*
+- uid: Fluxer.Net.IInstance.App
+  commentId: P:Fluxer.Net.IInstance.App
+  id: App
+  parent: Fluxer.Net.IInstance
+  langs:
+  - csharp
+  - vb
+  name: App
+  nameWithType: IInstance.App
+  fullName: Fluxer.Net.IInstance.App
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Misc/IInstance.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: App
+    path: ../Fluxer.Net/Data/Misc/IInstance.cs
+    startLine: 26
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: IInstanceApp App { get; }
+    parameters: []
+    return:
+      type: Fluxer.Net.IInstanceApp
+    content.vb: ReadOnly Property App As IInstanceApp
+  overload: Fluxer.Net.IInstance.App*
+references:
+- uid: Fluxer.Net
+  commentId: N:Fluxer.Net
+  href: Fluxer.html
+  name: Fluxer.Net
+  nameWithType: Fluxer.Net
+  fullName: Fluxer.Net
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+- uid: Fluxer.Net.IInstance.ApiVersion*
+  commentId: Overload:Fluxer.Net.IInstance.ApiVersion
+  href: Fluxer.Net.IInstance.html#Fluxer_Net_IInstance_ApiVersion
+  name: ApiVersion
+  nameWithType: IInstance.ApiVersion
+  fullName: Fluxer.Net.IInstance.ApiVersion
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Fluxer.Net.IInstance.Endpoints*
+  commentId: Overload:Fluxer.Net.IInstance.Endpoints
+  href: Fluxer.Net.IInstance.html#Fluxer_Net_IInstance_Endpoints
+  name: Endpoints
+  nameWithType: IInstance.Endpoints
+  fullName: Fluxer.Net.IInstance.Endpoints
+- uid: Fluxer.Net.IInstanceEndpoints
+  commentId: T:Fluxer.Net.IInstanceEndpoints
+  parent: Fluxer.Net
+  href: Fluxer.Net.IInstanceEndpoints.html
+  name: IInstanceEndpoints
+  nameWithType: IInstanceEndpoints
+  fullName: Fluxer.Net.IInstanceEndpoints
+- uid: Fluxer.Net.IInstance.Captcha*
+  commentId: Overload:Fluxer.Net.IInstance.Captcha
+  href: Fluxer.Net.IInstance.html#Fluxer_Net_IInstance_Captcha
+  name: Captcha
+  nameWithType: IInstance.Captcha
+  fullName: Fluxer.Net.IInstance.Captcha
+- uid: Fluxer.Net.IInstanceCaptcha
+  commentId: T:Fluxer.Net.IInstanceCaptcha
+  parent: Fluxer.Net
+  href: Fluxer.Net.IInstanceCaptcha.html
+  name: IInstanceCaptcha
+  nameWithType: IInstanceCaptcha
+  fullName: Fluxer.Net.IInstanceCaptcha
+- uid: Fluxer.Net.IInstance.Features*
+  commentId: Overload:Fluxer.Net.IInstance.Features
+  href: Fluxer.Net.IInstance.html#Fluxer_Net_IInstance_Features
+  name: Features
+  nameWithType: IInstance.Features
+  fullName: Fluxer.Net.IInstance.Features
+- uid: Fluxer.Net.IInstanceFeatures
+  commentId: T:Fluxer.Net.IInstanceFeatures
+  parent: Fluxer.Net
+  href: Fluxer.Net.IInstanceFeatures.html
+  name: IInstanceFeatures
+  nameWithType: IInstanceFeatures
+  fullName: Fluxer.Net.IInstanceFeatures
+- uid: Fluxer.Net.IInstance.Gifs*
+  commentId: Overload:Fluxer.Net.IInstance.Gifs
+  href: Fluxer.Net.IInstance.html#Fluxer_Net_IInstance_Gifs
+  name: Gifs
+  nameWithType: IInstance.Gifs
+  fullName: Fluxer.Net.IInstance.Gifs
+- uid: Fluxer.Net.IInstanceGifs
+  commentId: T:Fluxer.Net.IInstanceGifs
+  parent: Fluxer.Net
+  href: Fluxer.Net.IInstanceGifs.html
+  name: IInstanceGifs
+  nameWithType: IInstanceGifs
+  fullName: Fluxer.Net.IInstanceGifs
+- uid: Fluxer.Net.IInstance.SSO*
+  commentId: Overload:Fluxer.Net.IInstance.SSO
+  href: Fluxer.Net.IInstance.html#Fluxer_Net_IInstance_SSO
+  name: SSO
+  nameWithType: IInstance.SSO
+  fullName: Fluxer.Net.IInstance.SSO
+- uid: Fluxer.Net.IInstanceSSO
+  commentId: T:Fluxer.Net.IInstanceSSO
+  parent: Fluxer.Net
+  href: Fluxer.Net.IInstanceSSO.html
+  name: IInstanceSSO
+  nameWithType: IInstanceSSO
+  fullName: Fluxer.Net.IInstanceSSO
+- uid: Fluxer.Net.IInstance.Registration*
+  commentId: Overload:Fluxer.Net.IInstance.Registration
+  href: Fluxer.Net.IInstance.html#Fluxer_Net_IInstance_Registration
+  name: Registration
+  nameWithType: IInstance.Registration
+  fullName: Fluxer.Net.IInstance.Registration
+- uid: Fluxer.Net.IInstanceRegistration
+  commentId: T:Fluxer.Net.IInstanceRegistration
+  parent: Fluxer.Net
+  href: Fluxer.Net.IInstanceRegistration.html
+  name: IInstanceRegistration
+  nameWithType: IInstanceRegistration
+  fullName: Fluxer.Net.IInstanceRegistration
+- uid: Fluxer.Net.IInstance.Community*
+  commentId: Overload:Fluxer.Net.IInstance.Community
+  href: Fluxer.Net.IInstance.html#Fluxer_Net_IInstance_Community
+  name: Community
+  nameWithType: IInstance.Community
+  fullName: Fluxer.Net.IInstance.Community
+- uid: Fluxer.Net.IInstanceCommunity
+  commentId: T:Fluxer.Net.IInstanceCommunity
+  parent: Fluxer.Net
+  href: Fluxer.Net.IInstanceCommunity.html
+  name: IInstanceCommunity
+  nameWithType: IInstanceCommunity
+  fullName: Fluxer.Net.IInstanceCommunity
+- uid: Fluxer.Net.IInstance.Services*
+  commentId: Overload:Fluxer.Net.IInstance.Services
+  href: Fluxer.Net.IInstance.html#Fluxer_Net_IInstance_Services
+  name: Services
+  nameWithType: IInstance.Services
+  fullName: Fluxer.Net.IInstance.Services
+- uid: Fluxer.Net.IInstanceServices
+  commentId: T:Fluxer.Net.IInstanceServices
+  parent: Fluxer.Net
+  href: Fluxer.Net.IInstanceServices.html
+  name: IInstanceServices
+  nameWithType: IInstanceServices
+  fullName: Fluxer.Net.IInstanceServices
+- uid: Fluxer.Net.IInstance.Limits*
+  commentId: Overload:Fluxer.Net.IInstance.Limits
+  href: Fluxer.Net.IInstance.html#Fluxer_Net_IInstance_Limits
+  name: Limits
+  nameWithType: IInstance.Limits
+  fullName: Fluxer.Net.IInstance.Limits
+- uid: Fluxer.Net.IInstanceLimits
+  commentId: T:Fluxer.Net.IInstanceLimits
+  parent: Fluxer.Net
+  href: Fluxer.Net.IInstanceLimits.html
+  name: IInstanceLimits
+  nameWithType: IInstanceLimits
+  fullName: Fluxer.Net.IInstanceLimits
+- uid: Fluxer.Net.IInstance.Push*
+  commentId: Overload:Fluxer.Net.IInstance.Push
+  href: Fluxer.Net.IInstance.html#Fluxer_Net_IInstance_Push
+  name: Push
+  nameWithType: IInstance.Push
+  fullName: Fluxer.Net.IInstance.Push
+- uid: Fluxer.Net.IInstancePush
+  commentId: T:Fluxer.Net.IInstancePush
+  parent: Fluxer.Net
+  href: Fluxer.Net.IInstancePush.html
+  name: IInstancePush
+  nameWithType: IInstancePush
+  fullName: Fluxer.Net.IInstancePush
+- uid: Fluxer.Net.IInstance.App*
+  commentId: Overload:Fluxer.Net.IInstance.App
+  href: Fluxer.Net.IInstance.html#Fluxer_Net_IInstance_App
+  name: App
+  nameWithType: IInstance.App
+  fullName: Fluxer.Net.IInstance.App
+- uid: Fluxer.Net.IInstanceApp
+  commentId: T:Fluxer.Net.IInstanceApp
+  parent: Fluxer.Net
+  href: Fluxer.Net.IInstanceApp.html
+  name: IInstanceApp
+  nameWithType: IInstanceApp
+  fullName: Fluxer.Net.IInstanceApp

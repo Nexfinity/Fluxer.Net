@@ -1,0 +1,594 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.PermissionOverwrite
+  commentId: T:Fluxer.Net.PermissionOverwrite
+  id: PermissionOverwrite
+  parent: Fluxer.Net
+  children:
+  - Fluxer.Net.PermissionOverwrite.Allow
+  - Fluxer.Net.PermissionOverwrite.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.PermissionOverwriteJson)
+  - Fluxer.Net.PermissionOverwrite.Deny
+  - Fluxer.Net.PermissionOverwrite.Id
+  - Fluxer.Net.PermissionOverwrite.Type
+  langs:
+  - csharp
+  - vb
+  name: PermissionOverwrite
+  nameWithType: PermissionOverwrite
+  fullName: Fluxer.Net.PermissionOverwrite
+  type: Class
+  source:
+    remote:
+      path: Fluxer.Net/Data/Channels/PermissionOverwrite.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: PermissionOverwrite
+    path: ../Fluxer.Net/Data/Channels/PermissionOverwrite.cs
+    startLine: 3
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  example: []
+  syntax:
+    content: 'public class PermissionOverwrite : Entity, IPermissionOverwrite'
+    content.vb: Public Class PermissionOverwrite Inherits Entity Implements IPermissionOverwrite
+  inheritance:
+  - System.Object
+  - Fluxer.Net.Entity
+  implements:
+  - Fluxer.Net.IPermissionOverwrite
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: Fluxer.Net.PermissionOverwrite.Id
+  commentId: P:Fluxer.Net.PermissionOverwrite.Id
+  id: Id
+  parent: Fluxer.Net.PermissionOverwrite
+  langs:
+  - csharp
+  - vb
+  name: Id
+  nameWithType: PermissionOverwrite.Id
+  fullName: Fluxer.Net.PermissionOverwrite.Id
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Channels/PermissionOverwrite.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Id
+    path: ../Fluxer.Net/Data/Channels/PermissionOverwrite.cs
+    startLine: 6
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The unique identifier for the role or user this overwrite applies to.
+  example: []
+  syntax:
+    content: public ulong Id { get; }
+    parameters: []
+    return:
+      type: System.UInt64
+    content.vb: Public Property Id As ULong
+  overload: Fluxer.Net.PermissionOverwrite.Id*
+  implements:
+  - Fluxer.Net.IPermissionOverwrite.Id
+- uid: Fluxer.Net.PermissionOverwrite.Type
+  commentId: P:Fluxer.Net.PermissionOverwrite.Type
+  id: Type
+  parent: Fluxer.Net.PermissionOverwrite
+  langs:
+  - csharp
+  - vb
+  name: Type
+  nameWithType: PermissionOverwrite.Type
+  fullName: Fluxer.Net.PermissionOverwrite.Type
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Channels/PermissionOverwrite.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Type
+    path: ../Fluxer.Net/Data/Channels/PermissionOverwrite.cs
+    startLine: 9
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The type of overwrite (0 = role, 1 = member)
+  example: []
+  syntax:
+    content: public int Type { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property Type As Integer
+  overload: Fluxer.Net.PermissionOverwrite.Type*
+  implements:
+  - Fluxer.Net.IPermissionOverwrite.Type
+- uid: Fluxer.Net.PermissionOverwrite.Allow
+  commentId: P:Fluxer.Net.PermissionOverwrite.Allow
+  id: Allow
+  parent: Fluxer.Net.PermissionOverwrite
+  langs:
+  - csharp
+  - vb
+  name: Allow
+  nameWithType: PermissionOverwrite.Allow
+  fullName: Fluxer.Net.PermissionOverwrite.Allow
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Channels/PermissionOverwrite.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Allow
+    path: ../Fluxer.Net/Data/Channels/PermissionOverwrite.cs
+    startLine: 12
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The bitwise value of allowed permissions.
+  example: []
+  syntax:
+    content: public ChannelPermissions Allow { get; }
+    parameters: []
+    return:
+      type: Fluxer.Net.ChannelPermissions
+    content.vb: Public Property Allow As ChannelPermissions
+  overload: Fluxer.Net.PermissionOverwrite.Allow*
+  implements:
+  - Fluxer.Net.IPermissionOverwrite.Allow
+- uid: Fluxer.Net.PermissionOverwrite.Deny
+  commentId: P:Fluxer.Net.PermissionOverwrite.Deny
+  id: Deny
+  parent: Fluxer.Net.PermissionOverwrite
+  langs:
+  - csharp
+  - vb
+  name: Deny
+  nameWithType: PermissionOverwrite.Deny
+  fullName: Fluxer.Net.PermissionOverwrite.Deny
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Channels/PermissionOverwrite.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Deny
+    path: ../Fluxer.Net/Data/Channels/PermissionOverwrite.cs
+    startLine: 15
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The bitwise value of denied permissions.
+  example: []
+  syntax:
+    content: public ChannelPermissions Deny { get; }
+    parameters: []
+    return:
+      type: Fluxer.Net.ChannelPermissions
+    content.vb: Public Property Deny As ChannelPermissions
+  overload: Fluxer.Net.PermissionOverwrite.Deny*
+  implements:
+  - Fluxer.Net.IPermissionOverwrite.Deny
+- uid: Fluxer.Net.PermissionOverwrite.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.PermissionOverwriteJson)
+  commentId: M:Fluxer.Net.PermissionOverwrite.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.PermissionOverwriteJson)
+  id: Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.PermissionOverwriteJson)
+  parent: Fluxer.Net.PermissionOverwrite
+  langs:
+  - csharp
+  - vb
+  name: Create(FluxerBaseClient, PermissionOverwriteJson)
+  nameWithType: PermissionOverwrite.Create(FluxerBaseClient, PermissionOverwriteJson)
+  fullName: Fluxer.Net.PermissionOverwrite.Create(Fluxer.Net.FluxerBaseClient, Fluxer.Net.PermissionOverwriteJson)
+  type: Method
+  source:
+    remote:
+      path: Fluxer.Net/Data/Channels/PermissionOverwrite.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Create
+    path: ../Fluxer.Net/Data/Channels/PermissionOverwrite.cs
+    startLine: 22
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: public static PermissionOverwrite Create(FluxerBaseClient client, PermissionOverwriteJson json)
+    parameters:
+    - id: client
+      type: Fluxer.Net.FluxerBaseClient
+    - id: json
+      type: Fluxer.Net.PermissionOverwriteJson
+    return:
+      type: Fluxer.Net.PermissionOverwrite
+    content.vb: Public Shared Function Create(client As FluxerBaseClient, json As PermissionOverwriteJson) As PermissionOverwrite
+  overload: Fluxer.Net.PermissionOverwrite.Create*
+references:
+- uid: Fluxer.Net
+  commentId: N:Fluxer.Net
+  href: Fluxer.html
+  name: Fluxer.Net
+  nameWithType: Fluxer.Net
+  fullName: Fluxer.Net
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Fluxer.Net.Entity
+  commentId: T:Fluxer.Net.Entity
+  parent: Fluxer.Net
+  href: Fluxer.Net.Entity.html
+  name: Entity
+  nameWithType: Entity
+  fullName: Fluxer.Net.Entity
+- uid: Fluxer.Net.IPermissionOverwrite
+  commentId: T:Fluxer.Net.IPermissionOverwrite
+  parent: Fluxer.Net
+  href: Fluxer.Net.IPermissionOverwrite.html
+  name: IPermissionOverwrite
+  nameWithType: IPermissionOverwrite
+  fullName: Fluxer.Net.IPermissionOverwrite
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Fluxer.Net.PermissionOverwrite.Id*
+  commentId: Overload:Fluxer.Net.PermissionOverwrite.Id
+  href: Fluxer.Net.PermissionOverwrite.html#Fluxer_Net_PermissionOverwrite_Id
+  name: Id
+  nameWithType: PermissionOverwrite.Id
+  fullName: Fluxer.Net.PermissionOverwrite.Id
+- uid: Fluxer.Net.IPermissionOverwrite.Id
+  commentId: P:Fluxer.Net.IPermissionOverwrite.Id
+  parent: Fluxer.Net.IPermissionOverwrite
+  href: Fluxer.Net.IPermissionOverwrite.html#Fluxer_Net_IPermissionOverwrite_Id
+  name: Id
+  nameWithType: IPermissionOverwrite.Id
+  fullName: Fluxer.Net.IPermissionOverwrite.Id
+- uid: System.UInt64
+  commentId: T:System.UInt64
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.uint64
+  name: ulong
+  nameWithType: ulong
+  fullName: ulong
+  nameWithType.vb: ULong
+  fullName.vb: ULong
+  name.vb: ULong
+- uid: Fluxer.Net.PermissionOverwrite.Type*
+  commentId: Overload:Fluxer.Net.PermissionOverwrite.Type
+  href: Fluxer.Net.PermissionOverwrite.html#Fluxer_Net_PermissionOverwrite_Type
+  name: Type
+  nameWithType: PermissionOverwrite.Type
+  fullName: Fluxer.Net.PermissionOverwrite.Type
+- uid: Fluxer.Net.IPermissionOverwrite.Type
+  commentId: P:Fluxer.Net.IPermissionOverwrite.Type
+  parent: Fluxer.Net.IPermissionOverwrite
+  href: Fluxer.Net.IPermissionOverwrite.html#Fluxer_Net_IPermissionOverwrite_Type
+  name: Type
+  nameWithType: IPermissionOverwrite.Type
+  fullName: Fluxer.Net.IPermissionOverwrite.Type
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: Fluxer.Net.PermissionOverwrite.Allow*
+  commentId: Overload:Fluxer.Net.PermissionOverwrite.Allow
+  href: Fluxer.Net.PermissionOverwrite.html#Fluxer_Net_PermissionOverwrite_Allow
+  name: Allow
+  nameWithType: PermissionOverwrite.Allow
+  fullName: Fluxer.Net.PermissionOverwrite.Allow
+- uid: Fluxer.Net.IPermissionOverwrite.Allow
+  commentId: P:Fluxer.Net.IPermissionOverwrite.Allow
+  parent: Fluxer.Net.IPermissionOverwrite
+  href: Fluxer.Net.IPermissionOverwrite.html#Fluxer_Net_IPermissionOverwrite_Allow
+  name: Allow
+  nameWithType: IPermissionOverwrite.Allow
+  fullName: Fluxer.Net.IPermissionOverwrite.Allow
+- uid: Fluxer.Net.ChannelPermissions
+  commentId: T:Fluxer.Net.ChannelPermissions
+  parent: Fluxer.Net
+  href: Fluxer.Net.ChannelPermissions.html
+  name: ChannelPermissions
+  nameWithType: ChannelPermissions
+  fullName: Fluxer.Net.ChannelPermissions
+- uid: Fluxer.Net.PermissionOverwrite.Deny*
+  commentId: Overload:Fluxer.Net.PermissionOverwrite.Deny
+  href: Fluxer.Net.PermissionOverwrite.html#Fluxer_Net_PermissionOverwrite_Deny
+  name: Deny
+  nameWithType: PermissionOverwrite.Deny
+  fullName: Fluxer.Net.PermissionOverwrite.Deny
+- uid: Fluxer.Net.IPermissionOverwrite.Deny
+  commentId: P:Fluxer.Net.IPermissionOverwrite.Deny
+  parent: Fluxer.Net.IPermissionOverwrite
+  href: Fluxer.Net.IPermissionOverwrite.html#Fluxer_Net_IPermissionOverwrite_Deny
+  name: Deny
+  nameWithType: IPermissionOverwrite.Deny
+  fullName: Fluxer.Net.IPermissionOverwrite.Deny
+- uid: Fluxer.Net.PermissionOverwrite.Create*
+  commentId: Overload:Fluxer.Net.PermissionOverwrite.Create
+  href: Fluxer.Net.PermissionOverwrite.html#Fluxer_Net_PermissionOverwrite_Create_Fluxer_Net_FluxerBaseClient_Fluxer_Net_PermissionOverwriteJson_
+  name: Create
+  nameWithType: PermissionOverwrite.Create
+  fullName: Fluxer.Net.PermissionOverwrite.Create
+- uid: Fluxer.Net.FluxerBaseClient
+  commentId: T:Fluxer.Net.FluxerBaseClient
+  parent: Fluxer.Net
+  href: Fluxer.Net.FluxerBaseClient.html
+  name: FluxerBaseClient
+  nameWithType: FluxerBaseClient
+  fullName: Fluxer.Net.FluxerBaseClient
+- uid: Fluxer.Net.PermissionOverwriteJson
+  commentId: T:Fluxer.Net.PermissionOverwriteJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.PermissionOverwriteJson.html
+  name: PermissionOverwriteJson
+  nameWithType: PermissionOverwriteJson
+  fullName: Fluxer.Net.PermissionOverwriteJson
+- uid: Fluxer.Net.PermissionOverwrite
+  commentId: T:Fluxer.Net.PermissionOverwrite
+  parent: Fluxer.Net
+  href: Fluxer.Net.PermissionOverwrite.html
+  name: PermissionOverwrite
+  nameWithType: PermissionOverwrite
+  fullName: Fluxer.Net.PermissionOverwrite

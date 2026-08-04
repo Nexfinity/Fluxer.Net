@@ -1,0 +1,642 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.InstanceAppBranding
+  commentId: T:Fluxer.Net.InstanceAppBranding
+  id: InstanceAppBranding
+  parent: Fluxer.Net
+  children:
+  - Fluxer.Net.InstanceAppBranding.FaviconUrl
+  - Fluxer.Net.InstanceAppBranding.IconUrl
+  - Fluxer.Net.InstanceAppBranding.LogoUrl
+  - Fluxer.Net.InstanceAppBranding.ProductName
+  - Fluxer.Net.InstanceAppBranding.SymbolUrl
+  - Fluxer.Net.InstanceAppBranding.ThemeColor
+  - Fluxer.Net.InstanceAppBranding.WordmarkUrl
+  langs:
+  - csharp
+  - vb
+  name: InstanceAppBranding
+  nameWithType: InstanceAppBranding
+  fullName: Fluxer.Net.InstanceAppBranding
+  type: Class
+  source:
+    remote:
+      path: Fluxer.Net/Data/Misc/Instance.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: InstanceAppBranding
+    path: ../Fluxer.Net/Data/Misc/Instance.cs
+    startLine: 340
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Supports all classes in the .NET class hierarchy and provides low-level services to derived classes. This is the ultimate base class of all .NET classes; it is the root of the type hierarchy.
+  example: []
+  syntax:
+    content: 'public class InstanceAppBranding : IInstanceAppBranding'
+    content.vb: Public Class InstanceAppBranding Implements IInstanceAppBranding
+  inheritance:
+  - System.Object
+  implements:
+  - Fluxer.Net.IInstanceAppBranding
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: Fluxer.Net.InstanceAppBranding.ProductName
+  commentId: P:Fluxer.Net.InstanceAppBranding.ProductName
+  id: ProductName
+  parent: Fluxer.Net.InstanceAppBranding
+  langs:
+  - csharp
+  - vb
+  name: ProductName
+  nameWithType: InstanceAppBranding.ProductName
+  fullName: Fluxer.Net.InstanceAppBranding.ProductName
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Misc/Instance.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: ProductName
+    path: ../Fluxer.Net/Data/Misc/Instance.cs
+    startLine: 343
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  example: []
+  syntax:
+    content: public string ProductName { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property ProductName As String
+  overload: Fluxer.Net.InstanceAppBranding.ProductName*
+  implements:
+  - Fluxer.Net.IInstanceAppBranding.ProductName
+- uid: Fluxer.Net.InstanceAppBranding.IconUrl
+  commentId: P:Fluxer.Net.InstanceAppBranding.IconUrl
+  id: IconUrl
+  parent: Fluxer.Net.InstanceAppBranding
+  langs:
+  - csharp
+  - vb
+  name: IconUrl
+  nameWithType: InstanceAppBranding.IconUrl
+  fullName: Fluxer.Net.InstanceAppBranding.IconUrl
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Misc/Instance.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: IconUrl
+    path: ../Fluxer.Net/Data/Misc/Instance.cs
+    startLine: 346
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  example: []
+  syntax:
+    content: public string? IconUrl { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property IconUrl As String
+  overload: Fluxer.Net.InstanceAppBranding.IconUrl*
+  implements:
+  - Fluxer.Net.IInstanceAppBranding.IconUrl
+- uid: Fluxer.Net.InstanceAppBranding.SymbolUrl
+  commentId: P:Fluxer.Net.InstanceAppBranding.SymbolUrl
+  id: SymbolUrl
+  parent: Fluxer.Net.InstanceAppBranding
+  langs:
+  - csharp
+  - vb
+  name: SymbolUrl
+  nameWithType: InstanceAppBranding.SymbolUrl
+  fullName: Fluxer.Net.InstanceAppBranding.SymbolUrl
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Misc/Instance.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: SymbolUrl
+    path: ../Fluxer.Net/Data/Misc/Instance.cs
+    startLine: 349
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  example: []
+  syntax:
+    content: public string? SymbolUrl { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property SymbolUrl As String
+  overload: Fluxer.Net.InstanceAppBranding.SymbolUrl*
+  implements:
+  - Fluxer.Net.IInstanceAppBranding.SymbolUrl
+- uid: Fluxer.Net.InstanceAppBranding.LogoUrl
+  commentId: P:Fluxer.Net.InstanceAppBranding.LogoUrl
+  id: LogoUrl
+  parent: Fluxer.Net.InstanceAppBranding
+  langs:
+  - csharp
+  - vb
+  name: LogoUrl
+  nameWithType: InstanceAppBranding.LogoUrl
+  fullName: Fluxer.Net.InstanceAppBranding.LogoUrl
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Misc/Instance.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: LogoUrl
+    path: ../Fluxer.Net/Data/Misc/Instance.cs
+    startLine: 352
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  example: []
+  syntax:
+    content: public string? LogoUrl { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property LogoUrl As String
+  overload: Fluxer.Net.InstanceAppBranding.LogoUrl*
+  implements:
+  - Fluxer.Net.IInstanceAppBranding.LogoUrl
+- uid: Fluxer.Net.InstanceAppBranding.WordmarkUrl
+  commentId: P:Fluxer.Net.InstanceAppBranding.WordmarkUrl
+  id: WordmarkUrl
+  parent: Fluxer.Net.InstanceAppBranding
+  langs:
+  - csharp
+  - vb
+  name: WordmarkUrl
+  nameWithType: InstanceAppBranding.WordmarkUrl
+  fullName: Fluxer.Net.InstanceAppBranding.WordmarkUrl
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Misc/Instance.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: WordmarkUrl
+    path: ../Fluxer.Net/Data/Misc/Instance.cs
+    startLine: 355
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  example: []
+  syntax:
+    content: public string? WordmarkUrl { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property WordmarkUrl As String
+  overload: Fluxer.Net.InstanceAppBranding.WordmarkUrl*
+  implements:
+  - Fluxer.Net.IInstanceAppBranding.WordmarkUrl
+- uid: Fluxer.Net.InstanceAppBranding.FaviconUrl
+  commentId: P:Fluxer.Net.InstanceAppBranding.FaviconUrl
+  id: FaviconUrl
+  parent: Fluxer.Net.InstanceAppBranding
+  langs:
+  - csharp
+  - vb
+  name: FaviconUrl
+  nameWithType: InstanceAppBranding.FaviconUrl
+  fullName: Fluxer.Net.InstanceAppBranding.FaviconUrl
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Misc/Instance.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: FaviconUrl
+    path: ../Fluxer.Net/Data/Misc/Instance.cs
+    startLine: 358
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  example: []
+  syntax:
+    content: public string? FaviconUrl { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property FaviconUrl As String
+  overload: Fluxer.Net.InstanceAppBranding.FaviconUrl*
+  implements:
+  - Fluxer.Net.IInstanceAppBranding.FaviconUrl
+- uid: Fluxer.Net.InstanceAppBranding.ThemeColor
+  commentId: P:Fluxer.Net.InstanceAppBranding.ThemeColor
+  id: ThemeColor
+  parent: Fluxer.Net.InstanceAppBranding
+  langs:
+  - csharp
+  - vb
+  name: ThemeColor
+  nameWithType: InstanceAppBranding.ThemeColor
+  fullName: Fluxer.Net.InstanceAppBranding.ThemeColor
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Misc/Instance.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: ThemeColor
+    path: ../Fluxer.Net/Data/Misc/Instance.cs
+    startLine: 361
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  example: []
+  syntax:
+    content: public string ThemeColor { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property ThemeColor As String
+  overload: Fluxer.Net.InstanceAppBranding.ThemeColor*
+  implements:
+  - Fluxer.Net.IInstanceAppBranding.ThemeColor
+references:
+- uid: Fluxer.Net
+  commentId: N:Fluxer.Net
+  href: Fluxer.html
+  name: Fluxer.Net
+  nameWithType: Fluxer.Net
+  fullName: Fluxer.Net
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Fluxer.Net.IInstanceAppBranding
+  commentId: T:Fluxer.Net.IInstanceAppBranding
+  parent: Fluxer.Net
+  href: Fluxer.Net.IInstanceAppBranding.html
+  name: IInstanceAppBranding
+  nameWithType: IInstanceAppBranding
+  fullName: Fluxer.Net.IInstanceAppBranding
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Fluxer.Net.InstanceAppBranding.ProductName*
+  commentId: Overload:Fluxer.Net.InstanceAppBranding.ProductName
+  href: Fluxer.Net.InstanceAppBranding.html#Fluxer_Net_InstanceAppBranding_ProductName
+  name: ProductName
+  nameWithType: InstanceAppBranding.ProductName
+  fullName: Fluxer.Net.InstanceAppBranding.ProductName
+- uid: Fluxer.Net.IInstanceAppBranding.ProductName
+  commentId: P:Fluxer.Net.IInstanceAppBranding.ProductName
+  parent: Fluxer.Net.IInstanceAppBranding
+  href: Fluxer.Net.IInstanceAppBranding.html#Fluxer_Net_IInstanceAppBranding_ProductName
+  name: ProductName
+  nameWithType: IInstanceAppBranding.ProductName
+  fullName: Fluxer.Net.IInstanceAppBranding.ProductName
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: Fluxer.Net.InstanceAppBranding.IconUrl*
+  commentId: Overload:Fluxer.Net.InstanceAppBranding.IconUrl
+  href: Fluxer.Net.InstanceAppBranding.html#Fluxer_Net_InstanceAppBranding_IconUrl
+  name: IconUrl
+  nameWithType: InstanceAppBranding.IconUrl
+  fullName: Fluxer.Net.InstanceAppBranding.IconUrl
+- uid: Fluxer.Net.IInstanceAppBranding.IconUrl
+  commentId: P:Fluxer.Net.IInstanceAppBranding.IconUrl
+  parent: Fluxer.Net.IInstanceAppBranding
+  href: Fluxer.Net.IInstanceAppBranding.html#Fluxer_Net_IInstanceAppBranding_IconUrl
+  name: IconUrl
+  nameWithType: IInstanceAppBranding.IconUrl
+  fullName: Fluxer.Net.IInstanceAppBranding.IconUrl
+- uid: Fluxer.Net.InstanceAppBranding.SymbolUrl*
+  commentId: Overload:Fluxer.Net.InstanceAppBranding.SymbolUrl
+  href: Fluxer.Net.InstanceAppBranding.html#Fluxer_Net_InstanceAppBranding_SymbolUrl
+  name: SymbolUrl
+  nameWithType: InstanceAppBranding.SymbolUrl
+  fullName: Fluxer.Net.InstanceAppBranding.SymbolUrl
+- uid: Fluxer.Net.IInstanceAppBranding.SymbolUrl
+  commentId: P:Fluxer.Net.IInstanceAppBranding.SymbolUrl
+  parent: Fluxer.Net.IInstanceAppBranding
+  href: Fluxer.Net.IInstanceAppBranding.html#Fluxer_Net_IInstanceAppBranding_SymbolUrl
+  name: SymbolUrl
+  nameWithType: IInstanceAppBranding.SymbolUrl
+  fullName: Fluxer.Net.IInstanceAppBranding.SymbolUrl
+- uid: Fluxer.Net.InstanceAppBranding.LogoUrl*
+  commentId: Overload:Fluxer.Net.InstanceAppBranding.LogoUrl
+  href: Fluxer.Net.InstanceAppBranding.html#Fluxer_Net_InstanceAppBranding_LogoUrl
+  name: LogoUrl
+  nameWithType: InstanceAppBranding.LogoUrl
+  fullName: Fluxer.Net.InstanceAppBranding.LogoUrl
+- uid: Fluxer.Net.IInstanceAppBranding.LogoUrl
+  commentId: P:Fluxer.Net.IInstanceAppBranding.LogoUrl
+  parent: Fluxer.Net.IInstanceAppBranding
+  href: Fluxer.Net.IInstanceAppBranding.html#Fluxer_Net_IInstanceAppBranding_LogoUrl
+  name: LogoUrl
+  nameWithType: IInstanceAppBranding.LogoUrl
+  fullName: Fluxer.Net.IInstanceAppBranding.LogoUrl
+- uid: Fluxer.Net.InstanceAppBranding.WordmarkUrl*
+  commentId: Overload:Fluxer.Net.InstanceAppBranding.WordmarkUrl
+  href: Fluxer.Net.InstanceAppBranding.html#Fluxer_Net_InstanceAppBranding_WordmarkUrl
+  name: WordmarkUrl
+  nameWithType: InstanceAppBranding.WordmarkUrl
+  fullName: Fluxer.Net.InstanceAppBranding.WordmarkUrl
+- uid: Fluxer.Net.IInstanceAppBranding.WordmarkUrl
+  commentId: P:Fluxer.Net.IInstanceAppBranding.WordmarkUrl
+  parent: Fluxer.Net.IInstanceAppBranding
+  href: Fluxer.Net.IInstanceAppBranding.html#Fluxer_Net_IInstanceAppBranding_WordmarkUrl
+  name: WordmarkUrl
+  nameWithType: IInstanceAppBranding.WordmarkUrl
+  fullName: Fluxer.Net.IInstanceAppBranding.WordmarkUrl
+- uid: Fluxer.Net.InstanceAppBranding.FaviconUrl*
+  commentId: Overload:Fluxer.Net.InstanceAppBranding.FaviconUrl
+  href: Fluxer.Net.InstanceAppBranding.html#Fluxer_Net_InstanceAppBranding_FaviconUrl
+  name: FaviconUrl
+  nameWithType: InstanceAppBranding.FaviconUrl
+  fullName: Fluxer.Net.InstanceAppBranding.FaviconUrl
+- uid: Fluxer.Net.IInstanceAppBranding.FaviconUrl
+  commentId: P:Fluxer.Net.IInstanceAppBranding.FaviconUrl
+  parent: Fluxer.Net.IInstanceAppBranding
+  href: Fluxer.Net.IInstanceAppBranding.html#Fluxer_Net_IInstanceAppBranding_FaviconUrl
+  name: FaviconUrl
+  nameWithType: IInstanceAppBranding.FaviconUrl
+  fullName: Fluxer.Net.IInstanceAppBranding.FaviconUrl
+- uid: Fluxer.Net.InstanceAppBranding.ThemeColor*
+  commentId: Overload:Fluxer.Net.InstanceAppBranding.ThemeColor
+  href: Fluxer.Net.InstanceAppBranding.html#Fluxer_Net_InstanceAppBranding_ThemeColor
+  name: ThemeColor
+  nameWithType: InstanceAppBranding.ThemeColor
+  fullName: Fluxer.Net.InstanceAppBranding.ThemeColor
+- uid: Fluxer.Net.IInstanceAppBranding.ThemeColor
+  commentId: P:Fluxer.Net.IInstanceAppBranding.ThemeColor
+  parent: Fluxer.Net.IInstanceAppBranding
+  href: Fluxer.Net.IInstanceAppBranding.html#Fluxer_Net_IInstanceAppBranding_ThemeColor
+  name: ThemeColor
+  nameWithType: IInstanceAppBranding.ThemeColor
+  fullName: Fluxer.Net.IInstanceAppBranding.ThemeColor

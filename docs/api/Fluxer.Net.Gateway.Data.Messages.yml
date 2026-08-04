@@ -1,0 +1,102 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.Gateway.Data.Messages
+  commentId: N:Fluxer.Net.Gateway.Data.Messages
+  id: Fluxer.Net.Gateway.Data.Messages
+  children:
+  - Fluxer.Net.Gateway.Data.Messages.MessageAckGatewayData
+  - Fluxer.Net.Gateway.Data.Messages.MessageBulkDeleteGatewayData
+  - Fluxer.Net.Gateway.Data.Messages.MessageGatewayData
+  - Fluxer.Net.Gateway.Data.Messages.MessageReactionGatewayData
+  - Fluxer.Net.Gateway.Data.Messages.MessageReactionRemoveEmojiGatewayData
+  langs:
+  - csharp
+  - vb
+  name: Fluxer.Net.Gateway.Data.Messages
+  nameWithType: Fluxer.Net.Gateway.Data.Messages
+  fullName: Fluxer.Net.Gateway.Data.Messages
+  type: Namespace
+  assemblies:
+  - Fluxer.Net
+references:
+- uid: Fluxer.Net.Gateway.Data.Messages.MessageAckGatewayData
+  commentId: T:Fluxer.Net.Gateway.Data.Messages.MessageAckGatewayData
+  parent: Fluxer.Net.Gateway.Data.Messages
+  href: Fluxer.Net.Gateway.Data.Messages.MessageAckGatewayData.html
+  name: MessageAckGatewayData
+  nameWithType: MessageAckGatewayData
+  fullName: Fluxer.Net.Gateway.Data.Messages.MessageAckGatewayData
+- uid: Fluxer.Net.Gateway.Data.Messages.MessageBulkDeleteGatewayData
+  commentId: T:Fluxer.Net.Gateway.Data.Messages.MessageBulkDeleteGatewayData
+  parent: Fluxer.Net.Gateway.Data.Messages
+  href: Fluxer.Net.Gateway.Data.Messages.MessageBulkDeleteGatewayData.html
+  name: MessageBulkDeleteGatewayData
+  nameWithType: MessageBulkDeleteGatewayData
+  fullName: Fluxer.Net.Gateway.Data.Messages.MessageBulkDeleteGatewayData
+- uid: Fluxer.Net.Gateway.Data.Messages.MessageGatewayData
+  commentId: T:Fluxer.Net.Gateway.Data.Messages.MessageGatewayData
+  parent: Fluxer.Net.Gateway.Data.Messages
+  href: Fluxer.Net.Gateway.Data.Messages.MessageGatewayData.html
+  name: MessageGatewayData
+  nameWithType: MessageGatewayData
+  fullName: Fluxer.Net.Gateway.Data.Messages.MessageGatewayData
+- uid: Fluxer.Net.Gateway.Data.Messages.MessageReactionGatewayData
+  commentId: T:Fluxer.Net.Gateway.Data.Messages.MessageReactionGatewayData
+  parent: Fluxer.Net.Gateway.Data.Messages
+  href: Fluxer.Net.Gateway.Data.Messages.MessageReactionGatewayData.html
+  name: MessageReactionGatewayData
+  nameWithType: MessageReactionGatewayData
+  fullName: Fluxer.Net.Gateway.Data.Messages.MessageReactionGatewayData
+- uid: Fluxer.Net.Gateway.Data.Messages.MessageReactionRemoveEmojiGatewayData
+  commentId: T:Fluxer.Net.Gateway.Data.Messages.MessageReactionRemoveEmojiGatewayData
+  parent: Fluxer.Net.Gateway.Data.Messages
+  href: Fluxer.Net.Gateway.Data.Messages.MessageReactionRemoveEmojiGatewayData.html
+  name: MessageReactionRemoveEmojiGatewayData
+  nameWithType: MessageReactionRemoveEmojiGatewayData
+  fullName: Fluxer.Net.Gateway.Data.Messages.MessageReactionRemoveEmojiGatewayData
+- uid: Fluxer.Net.Gateway.Data.Messages
+  commentId: N:Fluxer.Net.Gateway.Data.Messages
+  href: Fluxer.html
+  name: Fluxer.Net.Gateway.Data.Messages
+  nameWithType: Fluxer.Net.Gateway.Data.Messages
+  fullName: Fluxer.Net.Gateway.Data.Messages
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  - name: .
+  - uid: Fluxer.Net.Gateway
+    name: Gateway
+    href: Fluxer.Net.Gateway.html
+  - name: .
+  - uid: Fluxer.Net.Gateway.Data
+    name: Data
+    href: Fluxer.Net.Gateway.Data.html
+  - name: .
+  - uid: Fluxer.Net.Gateway.Data.Messages
+    name: Messages
+    href: Fluxer.Net.Gateway.Data.Messages.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  - name: .
+  - uid: Fluxer.Net.Gateway
+    name: Gateway
+    href: Fluxer.Net.Gateway.html
+  - name: .
+  - uid: Fluxer.Net.Gateway.Data
+    name: Data
+    href: Fluxer.Net.Gateway.Data.html
+  - name: .
+  - uid: Fluxer.Net.Gateway.Data.Messages
+    name: Messages
+    href: Fluxer.Net.Gateway.Data.Messages.html

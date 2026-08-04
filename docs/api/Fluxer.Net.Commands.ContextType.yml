@@ -1,0 +1,155 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.Commands.ContextType
+  commentId: T:Fluxer.Net.Commands.ContextType
+  id: ContextType
+  parent: Fluxer.Net.Commands
+  children:
+  - Fluxer.Net.Commands.ContextType.DM
+  - Fluxer.Net.Commands.ContextType.Group
+  - Fluxer.Net.Commands.ContextType.Guild
+  langs:
+  - csharp
+  - vb
+  name: ContextType
+  nameWithType: ContextType
+  fullName: Fluxer.Net.Commands.ContextType
+  type: Enum
+  source:
+    remote:
+      path: Fluxer.Net/Commands/Attributes/RequireContextAttribute.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: ContextType
+    path: ../Fluxer.Net/Commands/Attributes/RequireContextAttribute.cs
+    startLine: 5
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net.Commands
+  summary: Specifies where a command can be executed.
+  example: []
+  syntax:
+    content: public enum ContextType
+    content.vb: Public Enum ContextType
+- uid: Fluxer.Net.Commands.ContextType.Guild
+  commentId: F:Fluxer.Net.Commands.ContextType.Guild
+  id: Guild
+  parent: Fluxer.Net.Commands.ContextType
+  langs:
+  - csharp
+  - vb
+  name: Guild
+  nameWithType: ContextType.Guild
+  fullName: Fluxer.Net.Commands.ContextType.Guild
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Commands/Attributes/RequireContextAttribute.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Guild
+    path: ../Fluxer.Net/Commands/Attributes/RequireContextAttribute.cs
+    startLine: 10
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net.Commands
+  summary: Command can only be executed in a guild.
+  example: []
+  syntax:
+    content: Guild = 1
+    return:
+      type: Fluxer.Net.Commands.ContextType
+- uid: Fluxer.Net.Commands.ContextType.DM
+  commentId: F:Fluxer.Net.Commands.ContextType.DM
+  id: DM
+  parent: Fluxer.Net.Commands.ContextType
+  langs:
+  - csharp
+  - vb
+  name: DM
+  nameWithType: ContextType.DM
+  fullName: Fluxer.Net.Commands.ContextType.DM
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Commands/Attributes/RequireContextAttribute.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: DM
+    path: ../Fluxer.Net/Commands/Attributes/RequireContextAttribute.cs
+    startLine: 15
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net.Commands
+  summary: Command can only be executed in a DM.
+  example: []
+  syntax:
+    content: DM = 2
+    return:
+      type: Fluxer.Net.Commands.ContextType
+- uid: Fluxer.Net.Commands.ContextType.Group
+  commentId: F:Fluxer.Net.Commands.ContextType.Group
+  id: Group
+  parent: Fluxer.Net.Commands.ContextType
+  langs:
+  - csharp
+  - vb
+  name: Group
+  nameWithType: ContextType.Group
+  fullName: Fluxer.Net.Commands.ContextType.Group
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Commands/Attributes/RequireContextAttribute.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Group
+    path: ../Fluxer.Net/Commands/Attributes/RequireContextAttribute.cs
+    startLine: 20
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net.Commands
+  summary: Command can only be executed in a group DM.
+  example: []
+  syntax:
+    content: Group = 4
+    return:
+      type: Fluxer.Net.Commands.ContextType
+references:
+- uid: Fluxer.Net.Commands
+  commentId: N:Fluxer.Net.Commands
+  href: Fluxer.html
+  name: Fluxer.Net.Commands
+  nameWithType: Fluxer.Net.Commands
+  fullName: Fluxer.Net.Commands
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  - name: .
+  - uid: Fluxer.Net.Commands
+    name: Commands
+    href: Fluxer.Net.Commands.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  - name: .
+  - uid: Fluxer.Net.Commands
+    name: Commands
+    href: Fluxer.Net.Commands.html
+- uid: Fluxer.Net.Commands.ContextType
+  commentId: T:Fluxer.Net.Commands.ContextType
+  parent: Fluxer.Net.Commands
+  href: Fluxer.Net.Commands.ContextType.html
+  name: ContextType
+  nameWithType: ContextType
+  fullName: Fluxer.Net.Commands.ContextType

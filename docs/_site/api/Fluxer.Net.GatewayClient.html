@@ -1,0 +1,2754 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class GatewayClient | Fluxer.net </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class GatewayClient | Fluxer.net ">
+      
+      <meta name="description" content="WebSocket gateway client for real-time events from the Fluxer platform. Handles bidirectional communication, automatic heartbeats, and reconnection with resume capability.">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Nexfinity/Fluxer.Net/new/release/apiSpec/new?filename=Fluxer_Net_GatewayClient.md&amp;value=---%0Auid%3A%20Fluxer.Net.GatewayClient%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="Fluxer.net">
+            Fluxer.net
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="Fluxer.Net.GatewayClient">
+
+
+
+  <h1 id="Fluxer_Net_GatewayClient" data-uid="Fluxer.Net.GatewayClient" class="text-break">
+Class GatewayClient  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L45"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="Fluxer.html">Fluxer</a>.<a class="xref" href="Fluxer.Net.html">Net</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>Fluxer.Net.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>WebSocket gateway client for real-time events from the Fluxer platform.
+Handles bidirectional communication, automatic heartbeats, and reconnection with resume capability.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class GatewayClient : IDisposable</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">GatewayClient</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+  <h2 id="Fluxer_Net_GatewayClient_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>
+The GatewayClient provides an event-driven architecture for receiving real-time updates
+from Fluxer, including messages, user presence, guild changes, and more. It implements
+the Fluxer Gateway protocol with support for:
+</p>
+<ul><li>Automatic heartbeat mechanism to maintain connection</li><li>Sequence tracking for ordered event processing</li><li>Session-based reconnection with resume capability (no event loss)</li><li>Event filtering via <a class="xref" href="Fluxer.Net.FluxerConfig.html#Fluxer_Net_FluxerConfig_IgnoredGatewayEvents">IgnoredGatewayEvents</a></li></ul>
+<p>
+This client should be paired with <a class="xref" href="Fluxer.Net.ApiClient.html">ApiClient</a> for full Fluxer functionality.
+</p>
+</div>
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="Fluxer_Net_GatewayClient_RtcRegions" data-uid="Fluxer.Net.GatewayClient.RtcRegions">
+  RtcRegions
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L111"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public RtcRegion[] RtcRegions</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Fluxer.Net.RtcRegion.html">RtcRegion</a>[]</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="Fluxer_Net_GatewayClient_Channels_" data-uid="Fluxer.Net.GatewayClient.Channels*"></a>
+
+  <h3 id="Fluxer_Net_GatewayClient_Channels" data-uid="Fluxer.Net.GatewayClient.Channels">
+  Channels
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L108"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ConcurrentDictionary&lt;ulong, Channel&gt; Channels { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.concurrent.concurrentdictionary-2">ConcurrentDictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a>, <a class="xref" href="Fluxer.Net.Channel.html">Channel</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="Fluxer_Net_GatewayClient_CurrentMembers_" data-uid="Fluxer.Net.GatewayClient.CurrentMembers*"></a>
+
+  <h3 id="Fluxer_Net_GatewayClient_CurrentMembers" data-uid="Fluxer.Net.GatewayClient.CurrentMembers">
+  CurrentMembers
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L110"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ConcurrentDictionary&lt;ulong, SocketGuildMember&gt; CurrentMembers { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.concurrent.concurrentdictionary-2">ConcurrentDictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a>, <a class="xref" href="Fluxer.Net.SocketGuildMember.html">SocketGuildMember</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="Fluxer_Net_GatewayClient_CurrentUser_" data-uid="Fluxer.Net.GatewayClient.CurrentUser*"></a>
+
+  <h3 id="Fluxer_Net_GatewayClient_CurrentUser" data-uid="Fluxer.Net.GatewayClient.CurrentUser">
+  CurrentUser
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L106"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CurrentUser? CurrentUser { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Fluxer.Net.CurrentUser.html">CurrentUser</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="Fluxer_Net_GatewayClient_GuildIds_" data-uid="Fluxer.Net.GatewayClient.GuildIds*"></a>
+
+  <h3 id="Fluxer_Net_GatewayClient_GuildIds" data-uid="Fluxer.Net.GatewayClient.GuildIds">
+  GuildIds
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L52"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public HashSet&lt;ulong&gt; GuildIds { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1">HashSet</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="Fluxer_Net_GatewayClient_Guilds_" data-uid="Fluxer.Net.GatewayClient.Guilds*"></a>
+
+  <h3 id="Fluxer_Net_GatewayClient_Guilds" data-uid="Fluxer.Net.GatewayClient.Guilds">
+  Guilds
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L107"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ConcurrentDictionary&lt;ulong, SocketGuild&gt; Guilds { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.concurrent.concurrentdictionary-2">ConcurrentDictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a>, <a class="xref" href="Fluxer.Net.SocketGuild.html">SocketGuild</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="Fluxer_Net_GatewayClient_Roles_" data-uid="Fluxer.Net.GatewayClient.Roles*"></a>
+
+  <h3 id="Fluxer_Net_GatewayClient_Roles" data-uid="Fluxer.Net.GatewayClient.Roles">
+  Roles
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L109"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ConcurrentDictionary&lt;ulong, SocketRole&gt; Roles { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.concurrent.concurrentdictionary-2">ConcurrentDictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a>, <a class="xref" href="Fluxer.Net.SocketRole.html">SocketRole</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="Fluxer_Net_GatewayClient_ConnectAsync_" data-uid="Fluxer.Net.GatewayClient.ConnectAsync*"></a>
+
+  <h3 id="Fluxer_Net_GatewayClient_ConnectAsync" data-uid="Fluxer.Net.GatewayClient.ConnectAsync">
+  ConnectAsync()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L154"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Establishes a WebSocket connection to the Fluxer gateway and sends the IDENTIFY packet.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task ConnectAsync()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd><p>A task that represents the asynchronous connection operation.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="Fluxer_Net_GatewayClient_ConnectAsync_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>
+This method:
+</p>
+<ol><li>Creates a WebSocket connection to the gateway URL specified in configuration</li><li>Sets up message and reconnection handlers</li><li>Sends an IDENTIFY packet with authentication token and presence</li><li>Waits for HELLO event to begin heartbeat mechanism</li></ol>
+<p>
+The connection will automatically reconnect on disconnect and attempt to resume the session.
+</p>
+</div>
+
+
+
+
+  <a id="Fluxer_Net_GatewayClient_Dispose_" data-uid="Fluxer.Net.GatewayClient.Dispose*"></a>
+
+  <h3 id="Fluxer_Net_GatewayClient_Dispose" data-uid="Fluxer.Net.GatewayClient.Dispose">
+  Dispose()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L2501"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Fluxer_Net_GatewayClient_Dispose_" data-uid="Fluxer.Net.GatewayClient.Dispose*"></a>
+
+  <h3 id="Fluxer_Net_GatewayClient_Dispose_System_Boolean_" data-uid="Fluxer.Net.GatewayClient.Dispose(System.Boolean)">
+  Dispose(bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L2507"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void Dispose(bool disposing)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>disposing</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Fluxer_Net_GatewayClient_DownloadMembersAsync_" data-uid="Fluxer.Net.GatewayClient.DownloadMembersAsync*"></a>
+
+  <h3 id="Fluxer_Net_GatewayClient_DownloadMembersAsync_Fluxer_Net_SocketGuild_" data-uid="Fluxer.Net.GatewayClient.DownloadMembersAsync(Fluxer.Net.SocketGuild)">
+  DownloadMembersAsync(SocketGuild)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L226"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;bool&gt; DownloadMembersAsync(SocketGuild guild)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>guild</code> <a class="xref" href="Fluxer.Net.SocketGuild.html">SocketGuild</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Fluxer_Net_GatewayClient_Finalize_" data-uid="Fluxer.Net.GatewayClient.Finalize*"></a>
+
+  <h3 id="Fluxer_Net_GatewayClient_Finalize" data-uid="Fluxer.Net.GatewayClient.Finalize">
+  ~GatewayClient()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L2551"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected ~GatewayClient()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Fluxer_Net_GatewayClient_GetChannel_" data-uid="Fluxer.Net.GatewayClient.GetChannel*"></a>
+
+  <h3 id="Fluxer_Net_GatewayClient_GetChannel_System_UInt64_" data-uid="Fluxer.Net.GatewayClient.GetChannel(System.UInt64)">
+  GetChannel(ulong)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L128"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Channel? GetChannel(ulong channelId)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>channelId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Fluxer.Net.Channel.html">Channel</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Fluxer_Net_GatewayClient_GetCurrentMember_" data-uid="Fluxer.Net.GatewayClient.GetCurrentMember*"></a>
+
+  <h3 id="Fluxer_Net_GatewayClient_GetCurrentMember_System_UInt64_" data-uid="Fluxer.Net.GatewayClient.GetCurrentMember(System.UInt64)">
+  GetCurrentMember(ulong)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L113"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SocketGuildMember? GetCurrentMember(ulong userId)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>userId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Fluxer.Net.SocketGuildMember.html">SocketGuildMember</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Fluxer_Net_GatewayClient_GetGuild_" data-uid="Fluxer.Net.GatewayClient.GetGuild*"></a>
+
+  <h3 id="Fluxer_Net_GatewayClient_GetGuild_System_UInt64_" data-uid="Fluxer.Net.GatewayClient.GetGuild(System.UInt64)">
+  GetGuild(ulong)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L118"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SocketGuild? GetGuild(ulong guildId)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>guildId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Fluxer.Net.SocketGuild.html">SocketGuild</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Fluxer_Net_GatewayClient_GetRole_" data-uid="Fluxer.Net.GatewayClient.GetRole*"></a>
+
+  <h3 id="Fluxer_Net_GatewayClient_GetRole_System_UInt64_" data-uid="Fluxer.Net.GatewayClient.GetRole(System.UInt64)">
+  GetRole(ulong)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L123"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SocketRole? GetRole(ulong roleId)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>roleId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Fluxer.Net.SocketRole.html">SocketRole</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Fluxer_Net_GatewayClient_SendGatewayPacket_" data-uid="Fluxer.Net.GatewayClient.SendGatewayPacket*"></a>
+
+  <h3 id="Fluxer_Net_GatewayClient_SendGatewayPacket__1___0_" data-uid="Fluxer.Net.GatewayClient.SendGatewayPacket``1(``0)">
+  SendGatewayPacket&lt;T&gt;(T)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L258"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Sends a gateway packet to the Fluxer WebSocket server.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SendGatewayPacket&lt;T&gt;(T Data)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>Data</code> <span class="xref">T</span></dt>
+    <dd><p>The packet data to serialize and send.</p>
+</dd>
+  </dl>
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The type of the gateway packet data.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="Fluxer_Net_GatewayClient_SendGatewayPacket__1___0__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This method automatically schedules reconnection if sending fails. Packets may be dropped
+during reconnection attempts. For critical operations, use the REST API via <a class="xref" href="Fluxer.Net.ApiClient.html">ApiClient</a>.</p>
+</div>
+
+
+
+
+  <a id="Fluxer_Net_GatewayClient_SetStatus_" data-uid="Fluxer.Net.GatewayClient.SetStatus*"></a>
+
+  <h3 id="Fluxer_Net_GatewayClient_SetStatus_Fluxer_Net_Status_Fluxer_Net_UserCustomStatusJson_" data-uid="Fluxer.Net.GatewayClient.SetStatus(Fluxer.Net.Status,Fluxer.Net.UserCustomStatusJson)">
+  SetStatus(Status, UserCustomStatusJson?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L1697"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Updates the current user's presence status on the gateway.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetStatus(Status status, UserCustomStatusJson? custom)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>status</code> <a class="xref" href="Fluxer.Net.Status.html">Status</a></dt>
+    <dd><p>The new status to set (Online, Idle, DoNotDisturb, Invisible).</p>
+</dd>
+    <dt><code>custom</code> <a class="xref" href="Fluxer.Net.UserCustomStatusJson.html">UserCustomStatusJson</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section" id="Fluxer_Net_GatewayClient_SetStatus_Fluxer_Net_Status_Fluxer_Net_UserCustomStatusJson__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This sends a PRESENCE_UPDATE packet to the gateway. Other users will see the status change
+in real-time through PRESENCE_UPDATE events.</p>
+</div>
+
+
+
+
+  <a id="Fluxer_Net_GatewayClient_UpdateVoiceState_" data-uid="Fluxer.Net.GatewayClient.UpdateVoiceState*"></a>
+
+  <h3 id="Fluxer_Net_GatewayClient_UpdateVoiceState_System_Nullable_System_UInt64__System_Nullable_System_UInt64__System_Boolean_System_Boolean_" data-uid="Fluxer.Net.GatewayClient.UpdateVoiceState(System.Nullable{System.UInt64},System.Nullable{System.UInt64},System.Boolean,System.Boolean)">
+  UpdateVoiceState(ulong?, ulong?, bool, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L2486"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Updates the current user's voice state (join/leave voice channels, mute, deafen).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void UpdateVoiceState(ulong? guildId, ulong? channelId, bool selfMute, bool selfDeaf)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>guildId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a>?</dt>
+    <dd><p>The guild ID containing the voice channel.</p>
+</dd>
+    <dt><code>channelId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a>?</dt>
+    <dd><p>The voice channel ID to join, or null to disconnect.</p>
+</dd>
+    <dt><code>selfMute</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Whether the user should be self-muted.</p>
+</dd>
+    <dt><code>selfDeaf</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Whether the user should be self-deafened.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section" id="Fluxer_Net_GatewayClient_UpdateVoiceState_System_Nullable_System_UInt64__System_Nullable_System_UInt64__System_Boolean_System_Boolean__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This sends a VOICE_STATE_UPDATE packet to the gateway. The server will respond with
+VOICE_STATE_UPDATE and VOICE_SERVER_UPDATE events containing connection information.</p>
+</div>
+
+
+
+
+  <h2 class="section" id="events">Events
+</h2>
+
+
+
+  <h3 id="Fluxer_Net_GatewayClient_AuthSessionChange" data-uid="Fluxer.Net.GatewayClient.AuthSessionChange">
+  AuthSessionChange
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L1814"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Occurs when an auth session changes.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GatewayClient.AuthSessionChangeEvent AuthSessionChange</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Fluxer.Net.GatewayClient.html">GatewayClient</a>.<a class="xref" href="Fluxer.Net.GatewayClient.AuthSessionChangeEvent.html">AuthSessionChangeEvent</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="Fluxer_Net_GatewayClient_CallCreate" data-uid="Fluxer.Net.GatewayClient.CallCreate">
+  CallCreate
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L2419"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Occurs when a call is created.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GatewayClient.CallCreateEvent CallCreate</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Fluxer.Net.GatewayClient.html">GatewayClient</a>.<a class="xref" href="Fluxer.Net.GatewayClient.CallCreateEvent.html">CallCreateEvent</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="Fluxer_Net_GatewayClient_CallDelete" data-uid="Fluxer.Net.GatewayClient.CallDelete">
+  CallDelete
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L2441"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Occurs when a call is deleted.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GatewayClient.CallDeleteEvent CallDelete</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Fluxer.Net.GatewayClient.html">GatewayClient</a>.<a class="xref" href="Fluxer.Net.GatewayClient.CallDeleteEvent.html">CallDeleteEvent</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="Fluxer_Net_GatewayClient_CallUpdate" data-uid="Fluxer.Net.GatewayClient.CallUpdate">
+  CallUpdate
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L2430"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Occurs when a call is updated.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GatewayClient.CallUpdateEvent CallUpdate</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Fluxer.Net.GatewayClient.html">GatewayClient</a>.<a class="xref" href="Fluxer.Net.GatewayClient.CallUpdateEvent.html">CallUpdateEvent</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="Fluxer_Net_GatewayClient_ChannelCreate" data-uid="Fluxer.Net.GatewayClient.ChannelCreate">
+  ChannelCreate
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L1866"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Occurs when a channel is created in a guild.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GatewayClient.ChannelCreateEvent ChannelCreate</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Fluxer.Net.GatewayClient.html">GatewayClient</a>.<a class="xref" href="Fluxer.Net.GatewayClient.ChannelCreateEvent.html">ChannelCreateEvent</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="Fluxer_Net_GatewayClient_ChannelDelete" data-uid="Fluxer.Net.GatewayClient.ChannelDelete">
+  ChannelDelete
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L1888"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Occurs when a channel is deleted.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GatewayClient.ChannelDeleteEvent ChannelDelete</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Fluxer.Net.GatewayClient.html">GatewayClient</a>.<a class="xref" href="Fluxer.Net.GatewayClient.ChannelDeleteEvent.html">ChannelDeleteEvent</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="Fluxer_Net_GatewayClient_ChannelPinsAck" data-uid="Fluxer.Net.GatewayClient.ChannelPinsAck">
+  ChannelPinsAck
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L2081"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Occurs when channel pins are acknowledged.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GatewayClient.ChannelPinsAckEvent ChannelPinsAck</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Fluxer.Net.GatewayClient.html">GatewayClient</a>.<a class="xref" href="Fluxer.Net.GatewayClient.ChannelPinsAckEvent.html">ChannelPinsAckEvent</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="Fluxer_Net_GatewayClient_ChannelPinsUpdate" data-uid="Fluxer.Net.GatewayClient.ChannelPinsUpdate">
+  ChannelPinsUpdate
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L2070"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Occurs when a message is pinned or unpinned in a channel.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GatewayClient.ChannelPinsUpdateEvent ChannelPinsUpdate</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Fluxer.Net.GatewayClient.html">GatewayClient</a>.<a class="xref" href="Fluxer.Net.GatewayClient.ChannelPinsUpdateEvent.html">ChannelPinsUpdateEvent</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="Fluxer_Net_GatewayClient_ChannelRecipientAdd" data-uid="Fluxer.Net.GatewayClient.ChannelRecipientAdd">
+  ChannelRecipientAdd
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L2103"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Occurs when a recipient is added to a group DM or channel.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GatewayClient.ChannelRecipientAddEvent ChannelRecipientAdd</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Fluxer.Net.GatewayClient.html">GatewayClient</a>.<a class="xref" href="Fluxer.Net.GatewayClient.ChannelRecipientAddEvent.html">ChannelRecipientAddEvent</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="Fluxer_Net_GatewayClient_ChannelRecipientRemove" data-uid="Fluxer.Net.GatewayClient.ChannelRecipientRemove">
+  ChannelRecipientRemove
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L2114"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Occurs when a recipient is removed from a group DM or channel.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GatewayClient.ChannelRecipientRemoveEvent ChannelRecipientRemove</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Fluxer.Net.GatewayClient.html">GatewayClient</a>.<a class="xref" href="Fluxer.Net.GatewayClient.ChannelRecipientRemoveEvent.html">ChannelRecipientRemoveEvent</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="Fluxer_Net_GatewayClient_ChannelUpdate" data-uid="Fluxer.Net.GatewayClient.ChannelUpdate">
+  ChannelUpdate
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L1877"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Occurs when a channel is updated.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GatewayClient.ChannelUpdateEvent ChannelUpdate</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Fluxer.Net.GatewayClient.html">GatewayClient</a>.<a class="xref" href="Fluxer.Net.GatewayClient.ChannelUpdateEvent.html">ChannelUpdateEvent</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="Fluxer_Net_GatewayClient_ChannelUpdateBulk" data-uid="Fluxer.Net.GatewayClient.ChannelUpdateBulk">
+  ChannelUpdateBulk
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L2092"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Occurs when multiple channels are updated at once.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GatewayClient.ChannelUpdateBulkEvent ChannelUpdateBulk</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Fluxer.Net.GatewayClient.html">GatewayClient</a>.<a class="xref" href="Fluxer.Net.GatewayClient.ChannelUpdateBulkEvent.html">ChannelUpdateBulkEvent</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="Fluxer_Net_GatewayClient_FavoriteMemeCreate" data-uid="Fluxer.Net.GatewayClient.FavoriteMemeCreate">
+  FavoriteMemeCreate
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L2382"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Occurs when a favorite meme is created.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GatewayClient.FavoriteMemeCreateEvent FavoriteMemeCreate</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Fluxer.Net.GatewayClient.html">GatewayClient</a>.<a class="xref" href="Fluxer.Net.GatewayClient.FavoriteMemeCreateEvent.html">FavoriteMemeCreateEvent</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="Fluxer_Net_GatewayClient_FavoriteMemeDelete" data-uid="Fluxer.Net.GatewayClient.FavoriteMemeDelete">
+  FavoriteMemeDelete
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L2404"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Occurs when a favorite meme is deleted.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GatewayClient.FavoriteMemeDeleteEvent FavoriteMemeDelete</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Fluxer.Net.GatewayClient.html">GatewayClient</a>.<a class="xref" href="Fluxer.Net.GatewayClient.FavoriteMemeDeleteEvent.html">FavoriteMemeDeleteEvent</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="Fluxer_Net_GatewayClient_FavoriteMemeUpdate" data-uid="Fluxer.Net.GatewayClient.FavoriteMemeUpdate">
+  FavoriteMemeUpdate
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L2393"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Occurs when a favorite meme is updated.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GatewayClient.FavoriteMemeUpdateEvent FavoriteMemeUpdate</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Fluxer.Net.GatewayClient.html">GatewayClient</a>.<a class="xref" href="Fluxer.Net.GatewayClient.FavoriteMemeUpdateEvent.html">FavoriteMemeUpdateEvent</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="Fluxer_Net_GatewayClient_GuildBanAdd" data-uid="Fluxer.Net.GatewayClient.GuildBanAdd">
+  GuildBanAdd
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L2155"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Occurs when a user is banned from a guild.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GatewayClient.GuildBanAddEvent GuildBanAdd</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Fluxer.Net.GatewayClient.html">GatewayClient</a>.<a class="xref" href="Fluxer.Net.GatewayClient.GuildBanAddEvent.html">GuildBanAddEvent</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="Fluxer_Net_GatewayClient_GuildBanRemove" data-uid="Fluxer.Net.GatewayClient.GuildBanRemove">
+  GuildBanRemove
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L2166"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Occurs when a user is unbanned from a guild.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GatewayClient.GuildBanRemoveEvent GuildBanRemove</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Fluxer.Net.GatewayClient.html">GatewayClient</a>.<a class="xref" href="Fluxer.Net.GatewayClient.GuildBanRemoveEvent.html">GuildBanRemoveEvent</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="Fluxer_Net_GatewayClient_GuildCreate" data-uid="Fluxer.Net.GatewayClient.GuildCreate">
+  GuildCreate
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L2196"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Occurs when the bot joins a guild or when a guild becomes available after an outage.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GatewayClient.GuildCreateEvent GuildCreate</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Fluxer.Net.GatewayClient.html">GatewayClient</a>.<a class="xref" href="Fluxer.Net.GatewayClient.GuildCreateEvent.html">GuildCreateEvent</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="Fluxer_Net_GatewayClient_GuildDelete" data-uid="Fluxer.Net.GatewayClient.GuildDelete">
+  GuildDelete
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L2219"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Occurs when the bot is removed from a guild or when a guild becomes unavailable.
+Check the Unavailable property to distinguish between guild outages (true) and the user being removed (false/null).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GatewayClient.GuildDeleteEvent GuildDelete</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Fluxer.Net.GatewayClient.html">GatewayClient</a>.<a class="xref" href="Fluxer.Net.GatewayClient.GuildDeleteEvent.html">GuildDeleteEvent</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="Fluxer_Net_GatewayClient_GuildEmojisUpdate" data-uid="Fluxer.Net.GatewayClient.GuildEmojisUpdate">
+  GuildEmojisUpdate
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L2308"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Occurs when the list of emojis in a guild is updated (added, removed, or modified).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GatewayClient.GuildEmojisUpdateEvent GuildEmojisUpdate</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Fluxer.Net.GatewayClient.html">GatewayClient</a>.<a class="xref" href="Fluxer.Net.GatewayClient.GuildEmojisUpdateEvent.html">GuildEmojisUpdateEvent</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="Fluxer_Net_GatewayClient_GuildMemberAdd" data-uid="Fluxer.Net.GatewayClient.GuildMemberAdd">
+  GuildMemberAdd
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L2234"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Occurs when a new member joins a guild.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GatewayClient.GuildMemberAddEvent GuildMemberAdd</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Fluxer.Net.GatewayClient.html">GatewayClient</a>.<a class="xref" href="Fluxer.Net.GatewayClient.GuildMemberAddEvent.html">GuildMemberAddEvent</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="Fluxer_Net_GatewayClient_GuildMemberRemove" data-uid="Fluxer.Net.GatewayClient.GuildMemberRemove">
+  GuildMemberRemove
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L2256"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Occurs when a member leaves a guild or is kicked/banned.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GatewayClient.GuildMemberRemoveEvent GuildMemberRemove</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Fluxer.Net.GatewayClient.html">GatewayClient</a>.<a class="xref" href="Fluxer.Net.GatewayClient.GuildMemberRemoveEvent.html">GuildMemberRemoveEvent</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="Fluxer_Net_GatewayClient_GuildMemberUpdate" data-uid="Fluxer.Net.GatewayClient.GuildMemberUpdate">
+  GuildMemberUpdate
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L2245"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Occurs when a guild member is updated (roles, nickname, avatar, etc.).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GatewayClient.GuildMemberUpdateEvent GuildMemberUpdate</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Fluxer.Net.GatewayClient.html">GatewayClient</a>.<a class="xref" href="Fluxer.Net.GatewayClient.GuildMemberUpdateEvent.html">GuildMemberUpdateEvent</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="Fluxer_Net_GatewayClient_GuildRoleCreate" data-uid="Fluxer.Net.GatewayClient.GuildRoleCreate">
+  GuildRoleCreate
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L2271"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Occurs when a new role is created in a guild.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GatewayClient.GuildRoleCreateEvent GuildRoleCreate</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Fluxer.Net.GatewayClient.html">GatewayClient</a>.<a class="xref" href="Fluxer.Net.GatewayClient.GuildRoleCreateEvent.html">GuildRoleCreateEvent</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="Fluxer_Net_GatewayClient_GuildRoleDelete" data-uid="Fluxer.Net.GatewayClient.GuildRoleDelete">
+  GuildRoleDelete
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L2293"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Occurs when a role is deleted from a guild.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GatewayClient.GuildRoleDeleteEvent GuildRoleDelete</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Fluxer.Net.GatewayClient.html">GatewayClient</a>.<a class="xref" href="Fluxer.Net.GatewayClient.GuildRoleDeleteEvent.html">GuildRoleDeleteEvent</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="Fluxer_Net_GatewayClient_GuildRoleUpdate" data-uid="Fluxer.Net.GatewayClient.GuildRoleUpdate">
+  GuildRoleUpdate
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L2282"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Occurs when a role is updated (name, color, permissions, etc.).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GatewayClient.GuildRoleUpdateEvent GuildRoleUpdate</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Fluxer.Net.GatewayClient.html">GatewayClient</a>.<a class="xref" href="Fluxer.Net.GatewayClient.GuildRoleUpdateEvent.html">GuildRoleUpdateEvent</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="Fluxer_Net_GatewayClient_GuildRoleUpdateBulk" data-uid="Fluxer.Net.GatewayClient.GuildRoleUpdateBulk">
+  GuildRoleUpdateBulk
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L2319"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Occurs when multiple roles are updated at once in a guild.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GatewayClient.GuildRoleUpdateBulkEvent GuildRoleUpdateBulk</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Fluxer.Net.GatewayClient.html">GatewayClient</a>.<a class="xref" href="Fluxer.Net.GatewayClient.GuildRoleUpdateBulkEvent.html">GuildRoleUpdateBulkEvent</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="Fluxer_Net_GatewayClient_GuildStickersUpdate" data-uid="Fluxer.Net.GatewayClient.GuildStickersUpdate">
+  GuildStickersUpdate
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L2330"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Occurs when the list of stickers in a guild is updated (added, removed, or modified).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GatewayClient.GuildStickersUpdateEvent GuildStickersUpdate</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Fluxer.Net.GatewayClient.html">GatewayClient</a>.<a class="xref" href="Fluxer.Net.GatewayClient.GuildStickersUpdateEvent.html">GuildStickersUpdateEvent</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="Fluxer_Net_GatewayClient_GuildUpdate" data-uid="Fluxer.Net.GatewayClient.GuildUpdate">
+  GuildUpdate
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L2207"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Occurs when a guild is updated (name, icon, settings, etc.).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GatewayClient.GuildUpdateEvent GuildUpdate</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Fluxer.Net.GatewayClient.html">GatewayClient</a>.<a class="xref" href="Fluxer.Net.GatewayClient.GuildUpdateEvent.html">GuildUpdateEvent</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="Fluxer_Net_GatewayClient_HeartbeatAck" data-uid="Fluxer.Net.GatewayClient.HeartbeatAck">
+  HeartbeatAck
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L1722"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Occurs when the gateway acknowledges a heartbeat packet.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GatewayClient.HeartbeatAckEvent HeartbeatAck</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Fluxer.Net.GatewayClient.html">GatewayClient</a>.<a class="xref" href="Fluxer.Net.GatewayClient.HeartbeatAckEvent.html">HeartbeatAckEvent</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="Fluxer_Net_GatewayClient_InviteCreate" data-uid="Fluxer.Net.GatewayClient.InviteCreate">
+  InviteCreate
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L2456"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Occurs when a new invite is created for a guild or group DM.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GatewayClient.InviteCreateEvent InviteCreate</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Fluxer.Net.GatewayClient.html">GatewayClient</a>.<a class="xref" href="Fluxer.Net.GatewayClient.InviteCreateEvent.html">InviteCreateEvent</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="Fluxer_Net_GatewayClient_InviteDelete" data-uid="Fluxer.Net.GatewayClient.InviteDelete">
+  InviteDelete
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L2467"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Occurs when an invite is deleted or expires.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GatewayClient.InviteDeleteEvent InviteDelete</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Fluxer.Net.GatewayClient.html">GatewayClient</a>.<a class="xref" href="Fluxer.Net.GatewayClient.InviteDeleteEvent.html">InviteDeleteEvent</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="Fluxer_Net_GatewayClient_MessageAck" data-uid="Fluxer.Net.GatewayClient.MessageAck">
+  MessageAck
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L2055"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Occurs when a message is acknowledged as read by the current user.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GatewayClient.MessageAckEvent MessageAck</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Fluxer.Net.GatewayClient.html">GatewayClient</a>.<a class="xref" href="Fluxer.Net.GatewayClient.MessageAckEvent.html">MessageAckEvent</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="Fluxer_Net_GatewayClient_MessageCreate" data-uid="Fluxer.Net.GatewayClient.MessageCreate">
+  MessageCreate
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L1829"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Occurs when a new message is created in any channel the user has access to.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GatewayClient.MessageCreateEvent MessageCreate</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Fluxer.Net.GatewayClient.html">GatewayClient</a>.<a class="xref" href="Fluxer.Net.GatewayClient.MessageCreateEvent.html">MessageCreateEvent</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="Fluxer_Net_GatewayClient_MessageDelete" data-uid="Fluxer.Net.GatewayClient.MessageDelete">
+  MessageDelete
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L1851"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Occurs when a message is deleted.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GatewayClient.MessageDeleteEvent MessageDelete</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Fluxer.Net.GatewayClient.html">GatewayClient</a>.<a class="xref" href="Fluxer.Net.GatewayClient.MessageDeleteEvent.html">MessageDeleteEvent</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="Fluxer_Net_GatewayClient_MessageDeleteBulk" data-uid="Fluxer.Net.GatewayClient.MessageDeleteBulk">
+  MessageDeleteBulk
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L2044"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Occurs when multiple messages are deleted in bulk (e.g., purge operation).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GatewayClient.MessageDeleteBulkEvent MessageDeleteBulk</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Fluxer.Net.GatewayClient.html">GatewayClient</a>.<a class="xref" href="Fluxer.Net.GatewayClient.MessageDeleteBulkEvent.html">MessageDeleteBulkEvent</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="Fluxer_Net_GatewayClient_MessageReactionAdd" data-uid="Fluxer.Net.GatewayClient.MessageReactionAdd">
+  MessageReactionAdd
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L1959"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Occurs when a user adds a reaction to a message.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GatewayClient.MessageReactionAddEvent MessageReactionAdd</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Fluxer.Net.GatewayClient.html">GatewayClient</a>.<a class="xref" href="Fluxer.Net.GatewayClient.MessageReactionAddEvent.html">MessageReactionAddEvent</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="Fluxer_Net_GatewayClient_MessageReactionRemove" data-uid="Fluxer.Net.GatewayClient.MessageReactionRemove">
+  MessageReactionRemove
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L1970"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Occurs when a user removes a reaction from a message.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GatewayClient.MessageReactionRemoveEvent MessageReactionRemove</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Fluxer.Net.GatewayClient.html">GatewayClient</a>.<a class="xref" href="Fluxer.Net.GatewayClient.MessageReactionRemoveEvent.html">MessageReactionRemoveEvent</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="Fluxer_Net_GatewayClient_MessageReactionRemoveAll" data-uid="Fluxer.Net.GatewayClient.MessageReactionRemoveAll">
+  MessageReactionRemoveAll
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L1981"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Occurs when all reactions are removed from a message.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GatewayClient.MessageReactionRemoveAllEvent MessageReactionRemoveAll</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Fluxer.Net.GatewayClient.html">GatewayClient</a>.<a class="xref" href="Fluxer.Net.GatewayClient.MessageReactionRemoveAllEvent.html">MessageReactionRemoveAllEvent</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="Fluxer_Net_GatewayClient_MessageReactionRemoveEmoji" data-uid="Fluxer.Net.GatewayClient.MessageReactionRemoveEmoji">
+  MessageReactionRemoveEmoji
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L1992"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Occurs when all instances of a specific emoji are removed from a message.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GatewayClient.MessageReactionRemoveEmojiEvent MessageReactionRemoveEmoji</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Fluxer.Net.GatewayClient.html">GatewayClient</a>.<a class="xref" href="Fluxer.Net.GatewayClient.MessageReactionRemoveEmojiEvent.html">MessageReactionRemoveEmojiEvent</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="Fluxer_Net_GatewayClient_MessageUpdate" data-uid="Fluxer.Net.GatewayClient.MessageUpdate">
+  MessageUpdate
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L1840"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Occurs when a message is edited.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GatewayClient.MessageUpdateEvent MessageUpdate</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Fluxer.Net.GatewayClient.html">GatewayClient</a>.<a class="xref" href="Fluxer.Net.GatewayClient.MessageUpdateEvent.html">MessageUpdateEvent</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="Fluxer_Net_GatewayClient_PresenceUpdate" data-uid="Fluxer.Net.GatewayClient.PresenceUpdate">
+  PresenceUpdate
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L1918"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Occurs when a user's presence (online status) changes.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GatewayClient.PresenceUpdateEvent PresenceUpdate</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Fluxer.Net.GatewayClient.html">GatewayClient</a>.<a class="xref" href="Fluxer.Net.GatewayClient.PresenceUpdateEvent.html">PresenceUpdateEvent</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="Fluxer_Net_GatewayClient_Ready" data-uid="Fluxer.Net.GatewayClient.Ready">
+  Ready
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L1734"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Occurs when the gateway connection is established and initial data is received.
+Contains session ID, current user information, and initial guilds/channels/DMs.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GatewayClient.ReadyEvent Ready</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Fluxer.Net.GatewayClient.html">GatewayClient</a>.<a class="xref" href="Fluxer.Net.GatewayClient.ReadyEvent.html">ReadyEvent</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="Fluxer_Net_GatewayClient_RecentMentionDelete" data-uid="Fluxer.Net.GatewayClient.RecentMentionDelete">
+  RecentMentionDelete
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L2029"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Occurs when a recent mention is deleted.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GatewayClient.RecentMentionDeleteEvent RecentMentionDelete</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Fluxer.Net.GatewayClient.html">GatewayClient</a>.<a class="xref" href="Fluxer.Net.GatewayClient.RecentMentionDeleteEvent.html">RecentMentionDeleteEvent</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="Fluxer_Net_GatewayClient_RelationshipAdd" data-uid="Fluxer.Net.GatewayClient.RelationshipAdd">
+  RelationshipAdd
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L2345"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Occurs when a relationship (friend, blocked user, etc.) is added.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GatewayClient.RelationshipAddEvent RelationshipAdd</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Fluxer.Net.GatewayClient.html">GatewayClient</a>.<a class="xref" href="Fluxer.Net.GatewayClient.RelationshipAddEvent.html">RelationshipAddEvent</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="Fluxer_Net_GatewayClient_RelationshipRemove" data-uid="Fluxer.Net.GatewayClient.RelationshipRemove">
+  RelationshipRemove
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L2367"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Occurs when a relationship is removed.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GatewayClient.RelationshipRemoveEvent RelationshipRemove</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Fluxer.Net.GatewayClient.html">GatewayClient</a>.<a class="xref" href="Fluxer.Net.GatewayClient.RelationshipRemoveEvent.html">RelationshipRemoveEvent</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="Fluxer_Net_GatewayClient_RelationshipUpdate" data-uid="Fluxer.Net.GatewayClient.RelationshipUpdate">
+  RelationshipUpdate
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L2356"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Occurs when a relationship is updated.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GatewayClient.RelationshipUpdateEvent RelationshipUpdate</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Fluxer.Net.GatewayClient.html">GatewayClient</a>.<a class="xref" href="Fluxer.Net.GatewayClient.RelationshipUpdateEvent.html">RelationshipUpdateEvent</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="Fluxer_Net_GatewayClient_Resumed" data-uid="Fluxer.Net.GatewayClient.Resumed">
+  Resumed
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L1744"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Occurs when a disconnected session is successfully resumed without data loss.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GatewayClient.ResumedEvent Resumed</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Fluxer.Net.GatewayClient.html">GatewayClient</a>.<a class="xref" href="Fluxer.Net.GatewayClient.ResumedEvent.html">ResumedEvent</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="Fluxer_Net_GatewayClient_SavedMessageCreate" data-uid="Fluxer.Net.GatewayClient.SavedMessageCreate">
+  SavedMessageCreate
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L2007"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Occurs when a message is saved.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GatewayClient.SavedMessageCreateEvent SavedMessageCreate</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Fluxer.Net.GatewayClient.html">GatewayClient</a>.<a class="xref" href="Fluxer.Net.GatewayClient.SavedMessageCreateEvent.html">SavedMessageCreateEvent</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="Fluxer_Net_GatewayClient_SavedMessageDelete" data-uid="Fluxer.Net.GatewayClient.SavedMessageDelete">
+  SavedMessageDelete
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L2018"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Occurs when a saved message is deleted.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GatewayClient.SavedMessageDeleteEvent SavedMessageDelete</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Fluxer.Net.GatewayClient.html">GatewayClient</a>.<a class="xref" href="Fluxer.Net.GatewayClient.SavedMessageDeleteEvent.html">SavedMessageDeleteEvent</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="Fluxer_Net_GatewayClient_SessionsReplace" data-uid="Fluxer.Net.GatewayClient.SessionsReplace">
+  SessionsReplace
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L1755"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Occurs when auth sessions are replaced.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GatewayClient.SessionsReplaceEvent SessionsReplace</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Fluxer.Net.GatewayClient.html">GatewayClient</a>.<a class="xref" href="Fluxer.Net.GatewayClient.SessionsReplaceEvent.html">SessionsReplaceEvent</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="Fluxer_Net_GatewayClient_TypingStart" data-uid="Fluxer.Net.GatewayClient.TypingStart">
+  TypingStart
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L1933"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Occurs when a user starts typing in a channel.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GatewayClient.TypingStartEvent TypingStart</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Fluxer.Net.GatewayClient.html">GatewayClient</a>.<a class="xref" href="Fluxer.Net.GatewayClient.TypingStartEvent.html">TypingStartEvent</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="Fluxer_Net_GatewayClient_TypingStop" data-uid="Fluxer.Net.GatewayClient.TypingStop">
+  TypingStop
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L1944"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Occurs when a user stops typing in a channel.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GatewayClient.TypingStopEvent TypingStop</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Fluxer.Net.GatewayClient.html">GatewayClient</a>.<a class="xref" href="Fluxer.Net.GatewayClient.TypingStopEvent.html">TypingStopEvent</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="Fluxer_Net_GatewayClient_UserGuildSettingsUpdate" data-uid="Fluxer.Net.GatewayClient.UserGuildSettingsUpdate">
+  UserGuildSettingsUpdate
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L1781"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Occurs when user guild settings are updated.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GatewayClient.UserGuildSettingsUpdateEvent UserGuildSettingsUpdate</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Fluxer.Net.GatewayClient.html">GatewayClient</a>.<a class="xref" href="Fluxer.Net.GatewayClient.UserGuildSettingsUpdateEvent.html">UserGuildSettingsUpdateEvent</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="Fluxer_Net_GatewayClient_UserNoteUpdate" data-uid="Fluxer.Net.GatewayClient.UserNoteUpdate">
+  UserNoteUpdate
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L1803"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Occurs when a user note is updated.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GatewayClient.UserNoteUpdateEvent UserNoteUpdate</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Fluxer.Net.GatewayClient.html">GatewayClient</a>.<a class="xref" href="Fluxer.Net.GatewayClient.UserNoteUpdateEvent.html">UserNoteUpdateEvent</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="Fluxer_Net_GatewayClient_UserPinnedDmsUpdate" data-uid="Fluxer.Net.GatewayClient.UserPinnedDmsUpdate">
+  UserPinnedDmsUpdate
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L1792"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Occurs when pinned DMs are updated.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GatewayClient.UserPinnedDmsUpdateEvent UserPinnedDmsUpdate</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Fluxer.Net.GatewayClient.html">GatewayClient</a>.<a class="xref" href="Fluxer.Net.GatewayClient.UserPinnedDmsUpdateEvent.html">UserPinnedDmsUpdateEvent</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="Fluxer_Net_GatewayClient_UserSettingsUpdate" data-uid="Fluxer.Net.GatewayClient.UserSettingsUpdate">
+  UserSettingsUpdate
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L1770"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Occurs when user settings are updated.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GatewayClient.UserSettingsUpdateEvent UserSettingsUpdate</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Fluxer.Net.GatewayClient.html">GatewayClient</a>.<a class="xref" href="Fluxer.Net.GatewayClient.UserSettingsUpdateEvent.html">UserSettingsUpdateEvent</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="Fluxer_Net_GatewayClient_UserUpdate" data-uid="Fluxer.Net.GatewayClient.UserUpdate">
+  UserUpdate
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L1903"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Occurs when the current user's account is updated.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GatewayClient.UserUpdateEvent UserUpdate</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Fluxer.Net.GatewayClient.html">GatewayClient</a>.<a class="xref" href="Fluxer.Net.GatewayClient.UserUpdateEvent.html">UserUpdateEvent</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="Fluxer_Net_GatewayClient_VoiceServerUpdate" data-uid="Fluxer.Net.GatewayClient.VoiceServerUpdate">
+  VoiceServerUpdate
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L2140"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Occurs when voice server information is updated (used for establishing voice connections).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GatewayClient.VoiceServerUpdateEvent VoiceServerUpdate</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Fluxer.Net.GatewayClient.html">GatewayClient</a>.<a class="xref" href="Fluxer.Net.GatewayClient.VoiceServerUpdateEvent.html">VoiceServerUpdateEvent</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="Fluxer_Net_GatewayClient_VoiceStateUpdate" data-uid="Fluxer.Net.GatewayClient.VoiceStateUpdate">
+  VoiceStateUpdate
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L2129"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Occurs when a user joins, leaves, or updates their state in a voice channel.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GatewayClient.VoiceStateUpdateEvent VoiceStateUpdate</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Fluxer.Net.GatewayClient.html">GatewayClient</a>.<a class="xref" href="Fluxer.Net.GatewayClient.VoiceStateUpdateEvent.html">VoiceStateUpdateEvent</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="Fluxer_Net_GatewayClient_WebhooksUpdate" data-uid="Fluxer.Net.GatewayClient.WebhooksUpdate">
+  WebhooksUpdate
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L2181"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Occurs when webhooks are created, updated, or deleted in a channel.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GatewayClient.WebhooksUpdateEvent WebhooksUpdate</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Fluxer.Net.GatewayClient.html">GatewayClient</a>.<a class="xref" href="Fluxer.Net.GatewayClient.WebhooksUpdateEvent.html">WebhooksUpdateEvent</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Nexfinity/Fluxer.Net/blob/release/Fluxer.Net/Gateway/GatewayClient.cs/#L45" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

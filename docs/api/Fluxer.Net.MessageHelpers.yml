@@ -1,0 +1,1411 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.MessageHelpers
+  commentId: T:Fluxer.Net.MessageHelpers
+  id: MessageHelpers
+  parent: Fluxer.Net
+  children:
+  - Fluxer.Net.MessageHelpers.AcknowledgeAsync(Fluxer.Net.Message,Fluxer.Net.MessageAckJson)
+  - Fluxer.Net.MessageHelpers.AddReactionAsync(Fluxer.Net.Message,System.String)
+  - Fluxer.Net.MessageHelpers.DeleteAsync(Fluxer.Net.Message)
+  - Fluxer.Net.MessageHelpers.DeleteAttachmentAsync(Fluxer.Net.Message,System.UInt64)
+  - Fluxer.Net.MessageHelpers.ForwardAsync(Fluxer.Net.Message,Fluxer.Net.Channel,Fluxer.Net.MessageFlag,System.String)
+  - Fluxer.Net.MessageHelpers.GetReactionsForEmojiAsync(Fluxer.Net.Message,System.String)
+  - Fluxer.Net.MessageHelpers.ModifyAsync(Fluxer.Net.Message,Fluxer.Net.UpdateMessageRequest)
+  - Fluxer.Net.MessageHelpers.PinAsync(Fluxer.Net.Message)
+  - Fluxer.Net.MessageHelpers.RemoveAllReactionsAsync(Fluxer.Net.Message)
+  - Fluxer.Net.MessageHelpers.RemoveAllReactionsForEmojiAsync(Fluxer.Net.Message,System.String)
+  - Fluxer.Net.MessageHelpers.RemoveOwnReactionAsync(Fluxer.Net.Message,System.String)
+  - Fluxer.Net.MessageHelpers.RemoveUserReactionAsync(Fluxer.Net.Message,System.String,System.UInt64)
+  - Fluxer.Net.MessageHelpers.ReplyAsync(Fluxer.Net.Message,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.Requests.EmbedRequest},Fluxer.Net.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64},System.Collections.Generic.List{Fluxer.Net.Rest.AttachmentRequest})
+  - Fluxer.Net.MessageHelpers.SuppressEmbedsAsync(Fluxer.Net.Message,Fluxer.Net.AllowedMentionsRequest)
+  - Fluxer.Net.MessageHelpers.UnPinAsync(Fluxer.Net.Message)
+  langs:
+  - csharp
+  - vb
+  name: MessageHelpers
+  nameWithType: MessageHelpers
+  fullName: Fluxer.Net.MessageHelpers
+  type: Class
+  source:
+    remote:
+      path: Fluxer.Net/Rest/Helpers/MessageHelpers.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: MessageHelpers
+    path: ../Fluxer.Net/Rest/Helpers/MessageHelpers.cs
+    startLine: 5
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: public static class MessageHelpers
+    content.vb: Public Module MessageHelpers
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: Fluxer.Net.MessageHelpers.DeleteAsync(Fluxer.Net.Message)
+  commentId: M:Fluxer.Net.MessageHelpers.DeleteAsync(Fluxer.Net.Message)
+  id: DeleteAsync(Fluxer.Net.Message)
+  isExtensionMethod: true
+  parent: Fluxer.Net.MessageHelpers
+  langs:
+  - csharp
+  - vb
+  name: DeleteAsync(Message)
+  nameWithType: MessageHelpers.DeleteAsync(Message)
+  fullName: Fluxer.Net.MessageHelpers.DeleteAsync(Fluxer.Net.Message)
+  type: Method
+  source:
+    remote:
+      path: Fluxer.Net/Rest/Helpers/MessageHelpers.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: DeleteAsync
+    path: ../Fluxer.Net/Rest/Helpers/MessageHelpers.cs
+    startLine: 7
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: public static Task DeleteAsync(this Message message)
+    parameters:
+    - id: message
+      type: Fluxer.Net.Message
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Public Shared Function DeleteAsync(message As Message) As Task
+  overload: Fluxer.Net.MessageHelpers.DeleteAsync*
+- uid: Fluxer.Net.MessageHelpers.ModifyAsync(Fluxer.Net.Message,Fluxer.Net.UpdateMessageRequest)
+  commentId: M:Fluxer.Net.MessageHelpers.ModifyAsync(Fluxer.Net.Message,Fluxer.Net.UpdateMessageRequest)
+  id: ModifyAsync(Fluxer.Net.Message,Fluxer.Net.UpdateMessageRequest)
+  isExtensionMethod: true
+  parent: Fluxer.Net.MessageHelpers
+  langs:
+  - csharp
+  - vb
+  name: ModifyAsync(Message, UpdateMessageRequest)
+  nameWithType: MessageHelpers.ModifyAsync(Message, UpdateMessageRequest)
+  fullName: Fluxer.Net.MessageHelpers.ModifyAsync(Fluxer.Net.Message, Fluxer.Net.UpdateMessageRequest)
+  type: Method
+  source:
+    remote:
+      path: Fluxer.Net/Rest/Helpers/MessageHelpers.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: ModifyAsync
+    path: ../Fluxer.Net/Rest/Helpers/MessageHelpers.cs
+    startLine: 10
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: public static Task<Message> ModifyAsync(this Message message, UpdateMessageRequest req)
+    parameters:
+    - id: message
+      type: Fluxer.Net.Message
+    - id: req
+      type: Fluxer.Net.UpdateMessageRequest
+    return:
+      type: System.Threading.Tasks.Task{Fluxer.Net.Message}
+    content.vb: Public Shared Function ModifyAsync(message As Message, req As UpdateMessageRequest) As Task(Of Message)
+  overload: Fluxer.Net.MessageHelpers.ModifyAsync*
+- uid: Fluxer.Net.MessageHelpers.AcknowledgeAsync(Fluxer.Net.Message,Fluxer.Net.MessageAckJson)
+  commentId: M:Fluxer.Net.MessageHelpers.AcknowledgeAsync(Fluxer.Net.Message,Fluxer.Net.MessageAckJson)
+  id: AcknowledgeAsync(Fluxer.Net.Message,Fluxer.Net.MessageAckJson)
+  isExtensionMethod: true
+  parent: Fluxer.Net.MessageHelpers
+  langs:
+  - csharp
+  - vb
+  name: AcknowledgeAsync(Message, MessageAckJson)
+  nameWithType: MessageHelpers.AcknowledgeAsync(Message, MessageAckJson)
+  fullName: Fluxer.Net.MessageHelpers.AcknowledgeAsync(Fluxer.Net.Message, Fluxer.Net.MessageAckJson)
+  type: Method
+  source:
+    remote:
+      path: Fluxer.Net/Rest/Helpers/MessageHelpers.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: AcknowledgeAsync
+    path: ../Fluxer.Net/Rest/Helpers/MessageHelpers.cs
+    startLine: 13
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: public static Task AcknowledgeAsync(this Message message, MessageAckJson json)
+    parameters:
+    - id: message
+      type: Fluxer.Net.Message
+    - id: json
+      type: Fluxer.Net.MessageAckJson
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Public Shared Function AcknowledgeAsync(message As Message, json As MessageAckJson) As Task
+  overload: Fluxer.Net.MessageHelpers.AcknowledgeAsync*
+- uid: Fluxer.Net.MessageHelpers.DeleteAttachmentAsync(Fluxer.Net.Message,System.UInt64)
+  commentId: M:Fluxer.Net.MessageHelpers.DeleteAttachmentAsync(Fluxer.Net.Message,System.UInt64)
+  id: DeleteAttachmentAsync(Fluxer.Net.Message,System.UInt64)
+  isExtensionMethod: true
+  parent: Fluxer.Net.MessageHelpers
+  langs:
+  - csharp
+  - vb
+  name: DeleteAttachmentAsync(Message, ulong)
+  nameWithType: MessageHelpers.DeleteAttachmentAsync(Message, ulong)
+  fullName: Fluxer.Net.MessageHelpers.DeleteAttachmentAsync(Fluxer.Net.Message, ulong)
+  type: Method
+  source:
+    remote:
+      path: Fluxer.Net/Rest/Helpers/MessageHelpers.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: DeleteAttachmentAsync
+    path: ../Fluxer.Net/Rest/Helpers/MessageHelpers.cs
+    startLine: 16
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: public static Task DeleteAttachmentAsync(this Message message, ulong attachmentId)
+    parameters:
+    - id: message
+      type: Fluxer.Net.Message
+    - id: attachmentId
+      type: System.UInt64
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Public Shared Function DeleteAttachmentAsync(message As Message, attachmentId As ULong) As Task
+  overload: Fluxer.Net.MessageHelpers.DeleteAttachmentAsync*
+  nameWithType.vb: MessageHelpers.DeleteAttachmentAsync(Message, ULong)
+  fullName.vb: Fluxer.Net.MessageHelpers.DeleteAttachmentAsync(Fluxer.Net.Message, ULong)
+  name.vb: DeleteAttachmentAsync(Message, ULong)
+- uid: Fluxer.Net.MessageHelpers.PinAsync(Fluxer.Net.Message)
+  commentId: M:Fluxer.Net.MessageHelpers.PinAsync(Fluxer.Net.Message)
+  id: PinAsync(Fluxer.Net.Message)
+  isExtensionMethod: true
+  parent: Fluxer.Net.MessageHelpers
+  langs:
+  - csharp
+  - vb
+  name: PinAsync(Message)
+  nameWithType: MessageHelpers.PinAsync(Message)
+  fullName: Fluxer.Net.MessageHelpers.PinAsync(Fluxer.Net.Message)
+  type: Method
+  source:
+    remote:
+      path: Fluxer.Net/Rest/Helpers/MessageHelpers.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: PinAsync
+    path: ../Fluxer.Net/Rest/Helpers/MessageHelpers.cs
+    startLine: 19
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: public static Task PinAsync(this Message message)
+    parameters:
+    - id: message
+      type: Fluxer.Net.Message
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Public Shared Function PinAsync(message As Message) As Task
+  overload: Fluxer.Net.MessageHelpers.PinAsync*
+- uid: Fluxer.Net.MessageHelpers.UnPinAsync(Fluxer.Net.Message)
+  commentId: M:Fluxer.Net.MessageHelpers.UnPinAsync(Fluxer.Net.Message)
+  id: UnPinAsync(Fluxer.Net.Message)
+  isExtensionMethod: true
+  parent: Fluxer.Net.MessageHelpers
+  langs:
+  - csharp
+  - vb
+  name: UnPinAsync(Message)
+  nameWithType: MessageHelpers.UnPinAsync(Message)
+  fullName: Fluxer.Net.MessageHelpers.UnPinAsync(Fluxer.Net.Message)
+  type: Method
+  source:
+    remote:
+      path: Fluxer.Net/Rest/Helpers/MessageHelpers.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: UnPinAsync
+    path: ../Fluxer.Net/Rest/Helpers/MessageHelpers.cs
+    startLine: 22
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: public static Task UnPinAsync(this Message message)
+    parameters:
+    - id: message
+      type: Fluxer.Net.Message
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Public Shared Function UnPinAsync(message As Message) As Task
+  overload: Fluxer.Net.MessageHelpers.UnPinAsync*
+- uid: Fluxer.Net.MessageHelpers.AddReactionAsync(Fluxer.Net.Message,System.String)
+  commentId: M:Fluxer.Net.MessageHelpers.AddReactionAsync(Fluxer.Net.Message,System.String)
+  id: AddReactionAsync(Fluxer.Net.Message,System.String)
+  isExtensionMethod: true
+  parent: Fluxer.Net.MessageHelpers
+  langs:
+  - csharp
+  - vb
+  name: AddReactionAsync(Message, string)
+  nameWithType: MessageHelpers.AddReactionAsync(Message, string)
+  fullName: Fluxer.Net.MessageHelpers.AddReactionAsync(Fluxer.Net.Message, string)
+  type: Method
+  source:
+    remote:
+      path: Fluxer.Net/Rest/Helpers/MessageHelpers.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: AddReactionAsync
+    path: ../Fluxer.Net/Rest/Helpers/MessageHelpers.cs
+    startLine: 25
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: public static Task AddReactionAsync(this Message message, string emoji)
+    parameters:
+    - id: message
+      type: Fluxer.Net.Message
+    - id: emoji
+      type: System.String
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Public Shared Function AddReactionAsync(message As Message, emoji As String) As Task
+  overload: Fluxer.Net.MessageHelpers.AddReactionAsync*
+  nameWithType.vb: MessageHelpers.AddReactionAsync(Message, String)
+  fullName.vb: Fluxer.Net.MessageHelpers.AddReactionAsync(Fluxer.Net.Message, String)
+  name.vb: AddReactionAsync(Message, String)
+- uid: Fluxer.Net.MessageHelpers.GetReactionsForEmojiAsync(Fluxer.Net.Message,System.String)
+  commentId: M:Fluxer.Net.MessageHelpers.GetReactionsForEmojiAsync(Fluxer.Net.Message,System.String)
+  id: GetReactionsForEmojiAsync(Fluxer.Net.Message,System.String)
+  isExtensionMethod: true
+  parent: Fluxer.Net.MessageHelpers
+  langs:
+  - csharp
+  - vb
+  name: GetReactionsForEmojiAsync(Message, string)
+  nameWithType: MessageHelpers.GetReactionsForEmojiAsync(Message, string)
+  fullName: Fluxer.Net.MessageHelpers.GetReactionsForEmojiAsync(Fluxer.Net.Message, string)
+  type: Method
+  source:
+    remote:
+      path: Fluxer.Net/Rest/Helpers/MessageHelpers.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: GetReactionsForEmojiAsync
+    path: ../Fluxer.Net/Rest/Helpers/MessageHelpers.cs
+    startLine: 28
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: public static Task<IEnumerable<User>> GetReactionsForEmojiAsync(this Message message, string emoji)
+    parameters:
+    - id: message
+      type: Fluxer.Net.Message
+    - id: emoji
+      type: System.String
+    return:
+      type: System.Threading.Tasks.Task{System.Collections.Generic.IEnumerable{Fluxer.Net.User}}
+    content.vb: Public Shared Function GetReactionsForEmojiAsync(message As Message, emoji As String) As Task(Of IEnumerable(Of User))
+  overload: Fluxer.Net.MessageHelpers.GetReactionsForEmojiAsync*
+  nameWithType.vb: MessageHelpers.GetReactionsForEmojiAsync(Message, String)
+  fullName.vb: Fluxer.Net.MessageHelpers.GetReactionsForEmojiAsync(Fluxer.Net.Message, String)
+  name.vb: GetReactionsForEmojiAsync(Message, String)
+- uid: Fluxer.Net.MessageHelpers.RemoveAllReactionsAsync(Fluxer.Net.Message)
+  commentId: M:Fluxer.Net.MessageHelpers.RemoveAllReactionsAsync(Fluxer.Net.Message)
+  id: RemoveAllReactionsAsync(Fluxer.Net.Message)
+  isExtensionMethod: true
+  parent: Fluxer.Net.MessageHelpers
+  langs:
+  - csharp
+  - vb
+  name: RemoveAllReactionsAsync(Message)
+  nameWithType: MessageHelpers.RemoveAllReactionsAsync(Message)
+  fullName: Fluxer.Net.MessageHelpers.RemoveAllReactionsAsync(Fluxer.Net.Message)
+  type: Method
+  source:
+    remote:
+      path: Fluxer.Net/Rest/Helpers/MessageHelpers.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: RemoveAllReactionsAsync
+    path: ../Fluxer.Net/Rest/Helpers/MessageHelpers.cs
+    startLine: 31
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: public static Task RemoveAllReactionsAsync(this Message message)
+    parameters:
+    - id: message
+      type: Fluxer.Net.Message
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Public Shared Function RemoveAllReactionsAsync(message As Message) As Task
+  overload: Fluxer.Net.MessageHelpers.RemoveAllReactionsAsync*
+- uid: Fluxer.Net.MessageHelpers.RemoveAllReactionsForEmojiAsync(Fluxer.Net.Message,System.String)
+  commentId: M:Fluxer.Net.MessageHelpers.RemoveAllReactionsForEmojiAsync(Fluxer.Net.Message,System.String)
+  id: RemoveAllReactionsForEmojiAsync(Fluxer.Net.Message,System.String)
+  isExtensionMethod: true
+  parent: Fluxer.Net.MessageHelpers
+  langs:
+  - csharp
+  - vb
+  name: RemoveAllReactionsForEmojiAsync(Message, string)
+  nameWithType: MessageHelpers.RemoveAllReactionsForEmojiAsync(Message, string)
+  fullName: Fluxer.Net.MessageHelpers.RemoveAllReactionsForEmojiAsync(Fluxer.Net.Message, string)
+  type: Method
+  source:
+    remote:
+      path: Fluxer.Net/Rest/Helpers/MessageHelpers.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: RemoveAllReactionsForEmojiAsync
+    path: ../Fluxer.Net/Rest/Helpers/MessageHelpers.cs
+    startLine: 34
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: public static Task RemoveAllReactionsForEmojiAsync(this Message message, string emoji)
+    parameters:
+    - id: message
+      type: Fluxer.Net.Message
+    - id: emoji
+      type: System.String
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Public Shared Function RemoveAllReactionsForEmojiAsync(message As Message, emoji As String) As Task
+  overload: Fluxer.Net.MessageHelpers.RemoveAllReactionsForEmojiAsync*
+  nameWithType.vb: MessageHelpers.RemoveAllReactionsForEmojiAsync(Message, String)
+  fullName.vb: Fluxer.Net.MessageHelpers.RemoveAllReactionsForEmojiAsync(Fluxer.Net.Message, String)
+  name.vb: RemoveAllReactionsForEmojiAsync(Message, String)
+- uid: Fluxer.Net.MessageHelpers.RemoveOwnReactionAsync(Fluxer.Net.Message,System.String)
+  commentId: M:Fluxer.Net.MessageHelpers.RemoveOwnReactionAsync(Fluxer.Net.Message,System.String)
+  id: RemoveOwnReactionAsync(Fluxer.Net.Message,System.String)
+  isExtensionMethod: true
+  parent: Fluxer.Net.MessageHelpers
+  langs:
+  - csharp
+  - vb
+  name: RemoveOwnReactionAsync(Message, string)
+  nameWithType: MessageHelpers.RemoveOwnReactionAsync(Message, string)
+  fullName: Fluxer.Net.MessageHelpers.RemoveOwnReactionAsync(Fluxer.Net.Message, string)
+  type: Method
+  source:
+    remote:
+      path: Fluxer.Net/Rest/Helpers/MessageHelpers.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: RemoveOwnReactionAsync
+    path: ../Fluxer.Net/Rest/Helpers/MessageHelpers.cs
+    startLine: 37
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: public static Task RemoveOwnReactionAsync(this Message message, string emoji)
+    parameters:
+    - id: message
+      type: Fluxer.Net.Message
+    - id: emoji
+      type: System.String
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Public Shared Function RemoveOwnReactionAsync(message As Message, emoji As String) As Task
+  overload: Fluxer.Net.MessageHelpers.RemoveOwnReactionAsync*
+  nameWithType.vb: MessageHelpers.RemoveOwnReactionAsync(Message, String)
+  fullName.vb: Fluxer.Net.MessageHelpers.RemoveOwnReactionAsync(Fluxer.Net.Message, String)
+  name.vb: RemoveOwnReactionAsync(Message, String)
+- uid: Fluxer.Net.MessageHelpers.RemoveUserReactionAsync(Fluxer.Net.Message,System.String,System.UInt64)
+  commentId: M:Fluxer.Net.MessageHelpers.RemoveUserReactionAsync(Fluxer.Net.Message,System.String,System.UInt64)
+  id: RemoveUserReactionAsync(Fluxer.Net.Message,System.String,System.UInt64)
+  isExtensionMethod: true
+  parent: Fluxer.Net.MessageHelpers
+  langs:
+  - csharp
+  - vb
+  name: RemoveUserReactionAsync(Message, string, ulong)
+  nameWithType: MessageHelpers.RemoveUserReactionAsync(Message, string, ulong)
+  fullName: Fluxer.Net.MessageHelpers.RemoveUserReactionAsync(Fluxer.Net.Message, string, ulong)
+  type: Method
+  source:
+    remote:
+      path: Fluxer.Net/Rest/Helpers/MessageHelpers.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: RemoveUserReactionAsync
+    path: ../Fluxer.Net/Rest/Helpers/MessageHelpers.cs
+    startLine: 40
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: public static Task RemoveUserReactionAsync(this Message message, string emoji, ulong userId)
+    parameters:
+    - id: message
+      type: Fluxer.Net.Message
+    - id: emoji
+      type: System.String
+    - id: userId
+      type: System.UInt64
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Public Shared Function RemoveUserReactionAsync(message As Message, emoji As String, userId As ULong) As Task
+  overload: Fluxer.Net.MessageHelpers.RemoveUserReactionAsync*
+  nameWithType.vb: MessageHelpers.RemoveUserReactionAsync(Message, String, ULong)
+  fullName.vb: Fluxer.Net.MessageHelpers.RemoveUserReactionAsync(Fluxer.Net.Message, String, ULong)
+  name.vb: RemoveUserReactionAsync(Message, String, ULong)
+- uid: Fluxer.Net.MessageHelpers.ReplyAsync(Fluxer.Net.Message,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.Requests.EmbedRequest},Fluxer.Net.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64},System.Collections.Generic.List{Fluxer.Net.Rest.AttachmentRequest})
+  commentId: M:Fluxer.Net.MessageHelpers.ReplyAsync(Fluxer.Net.Message,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.Requests.EmbedRequest},Fluxer.Net.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64},System.Collections.Generic.List{Fluxer.Net.Rest.AttachmentRequest})
+  id: ReplyAsync(Fluxer.Net.Message,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.Requests.EmbedRequest},Fluxer.Net.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64},System.Collections.Generic.List{Fluxer.Net.Rest.AttachmentRequest})
+  isExtensionMethod: true
+  parent: Fluxer.Net.MessageHelpers
+  langs:
+  - csharp
+  - vb
+  name: ReplyAsync(Message, string?, List<EmbedRequest>?, AllowedMentionsRequest?, MessageFlag, string?, ulong?, bool?, List<ulong>?, List<AttachmentRequest>?)
+  nameWithType: MessageHelpers.ReplyAsync(Message, string?, List<EmbedRequest>?, AllowedMentionsRequest?, MessageFlag, string?, ulong?, bool?, List<ulong>?, List<AttachmentRequest>?)
+  fullName: Fluxer.Net.MessageHelpers.ReplyAsync(Fluxer.Net.Message, string?, System.Collections.Generic.List<Fluxer.Net.Rest.Requests.EmbedRequest>?, Fluxer.Net.AllowedMentionsRequest?, Fluxer.Net.MessageFlag, string?, ulong?, bool?, System.Collections.Generic.List<ulong>?, System.Collections.Generic.List<Fluxer.Net.Rest.AttachmentRequest>?)
+  type: Method
+  source:
+    remote:
+      path: Fluxer.Net/Rest/Helpers/MessageHelpers.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: ReplyAsync
+    path: ../Fluxer.Net/Rest/Helpers/MessageHelpers.cs
+    startLine: 43
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: public static Task<Message> ReplyAsync(this Message message, string? content = null, List<EmbedRequest>? embeds = null, AllowedMentionsRequest? allowedMentions = null, MessageFlag flags = MessageFlag.None, string? nonce = null, ulong? favoruteMemeId = null, bool? tts = null, List<ulong>? stickerIds = null, List<AttachmentRequest>? attachments = null)
+    parameters:
+    - id: message
+      type: Fluxer.Net.Message
+    - id: content
+      type: System.String
+    - id: embeds
+      type: System.Collections.Generic.List{Fluxer.Net.Rest.Requests.EmbedRequest}
+    - id: allowedMentions
+      type: Fluxer.Net.AllowedMentionsRequest
+    - id: flags
+      type: Fluxer.Net.MessageFlag
+    - id: nonce
+      type: System.String
+    - id: favoruteMemeId
+      type: System.Nullable{System.UInt64}
+    - id: tts
+      type: System.Nullable{System.Boolean}
+    - id: stickerIds
+      type: System.Collections.Generic.List{System.UInt64}
+    - id: attachments
+      type: System.Collections.Generic.List{Fluxer.Net.Rest.AttachmentRequest}
+    return:
+      type: System.Threading.Tasks.Task{Fluxer.Net.Message}
+    content.vb: Public Shared Function ReplyAsync(message As Message, content As String = Nothing, embeds As List(Of EmbedRequest) = Nothing, allowedMentions As AllowedMentionsRequest = Nothing, flags As MessageFlag = MessageFlag.None, nonce As String = Nothing, favoruteMemeId As ULong? = Nothing, tts As Boolean? = Nothing, stickerIds As List(Of ULong) = Nothing, attachments As List(Of AttachmentRequest) = Nothing) As Task(Of Message)
+  overload: Fluxer.Net.MessageHelpers.ReplyAsync*
+  nameWithType.vb: MessageHelpers.ReplyAsync(Message, String, List(Of EmbedRequest), AllowedMentionsRequest, MessageFlag, String, ULong?, Boolean?, List(Of ULong), List(Of AttachmentRequest))
+  fullName.vb: Fluxer.Net.MessageHelpers.ReplyAsync(Fluxer.Net.Message, String, System.Collections.Generic.List(Of Fluxer.Net.Rest.Requests.EmbedRequest), Fluxer.Net.AllowedMentionsRequest, Fluxer.Net.MessageFlag, String, ULong?, Boolean?, System.Collections.Generic.List(Of ULong), System.Collections.Generic.List(Of Fluxer.Net.Rest.AttachmentRequest))
+  name.vb: ReplyAsync(Message, String, List(Of EmbedRequest), AllowedMentionsRequest, MessageFlag, String, ULong?, Boolean?, List(Of ULong), List(Of AttachmentRequest))
+- uid: Fluxer.Net.MessageHelpers.ForwardAsync(Fluxer.Net.Message,Fluxer.Net.Channel,Fluxer.Net.MessageFlag,System.String)
+  commentId: M:Fluxer.Net.MessageHelpers.ForwardAsync(Fluxer.Net.Message,Fluxer.Net.Channel,Fluxer.Net.MessageFlag,System.String)
+  id: ForwardAsync(Fluxer.Net.Message,Fluxer.Net.Channel,Fluxer.Net.MessageFlag,System.String)
+  isExtensionMethod: true
+  parent: Fluxer.Net.MessageHelpers
+  langs:
+  - csharp
+  - vb
+  name: ForwardAsync(Message, Channel, MessageFlag, string?)
+  nameWithType: MessageHelpers.ForwardAsync(Message, Channel, MessageFlag, string?)
+  fullName: Fluxer.Net.MessageHelpers.ForwardAsync(Fluxer.Net.Message, Fluxer.Net.Channel, Fluxer.Net.MessageFlag, string?)
+  type: Method
+  source:
+    remote:
+      path: Fluxer.Net/Rest/Helpers/MessageHelpers.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: ForwardAsync
+    path: ../Fluxer.Net/Rest/Helpers/MessageHelpers.cs
+    startLine: 51
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: public static Task<Message> ForwardAsync(this Message message, Channel channel, MessageFlag flags = MessageFlag.None, string? nonce = null)
+    parameters:
+    - id: message
+      type: Fluxer.Net.Message
+    - id: channel
+      type: Fluxer.Net.Channel
+    - id: flags
+      type: Fluxer.Net.MessageFlag
+    - id: nonce
+      type: System.String
+    return:
+      type: System.Threading.Tasks.Task{Fluxer.Net.Message}
+    content.vb: Public Shared Function ForwardAsync(message As Message, channel As Channel, flags As MessageFlag = MessageFlag.None, nonce As String = Nothing) As Task(Of Message)
+  overload: Fluxer.Net.MessageHelpers.ForwardAsync*
+  nameWithType.vb: MessageHelpers.ForwardAsync(Message, Channel, MessageFlag, String)
+  fullName.vb: Fluxer.Net.MessageHelpers.ForwardAsync(Fluxer.Net.Message, Fluxer.Net.Channel, Fluxer.Net.MessageFlag, String)
+  name.vb: ForwardAsync(Message, Channel, MessageFlag, String)
+- uid: Fluxer.Net.MessageHelpers.SuppressEmbedsAsync(Fluxer.Net.Message,Fluxer.Net.AllowedMentionsRequest)
+  commentId: M:Fluxer.Net.MessageHelpers.SuppressEmbedsAsync(Fluxer.Net.Message,Fluxer.Net.AllowedMentionsRequest)
+  id: SuppressEmbedsAsync(Fluxer.Net.Message,Fluxer.Net.AllowedMentionsRequest)
+  isExtensionMethod: true
+  parent: Fluxer.Net.MessageHelpers
+  langs:
+  - csharp
+  - vb
+  name: SuppressEmbedsAsync(Message, AllowedMentionsRequest?)
+  nameWithType: MessageHelpers.SuppressEmbedsAsync(Message, AllowedMentionsRequest?)
+  fullName: Fluxer.Net.MessageHelpers.SuppressEmbedsAsync(Fluxer.Net.Message, Fluxer.Net.AllowedMentionsRequest?)
+  type: Method
+  source:
+    remote:
+      path: Fluxer.Net/Rest/Helpers/MessageHelpers.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: SuppressEmbedsAsync
+    path: ../Fluxer.Net/Rest/Helpers/MessageHelpers.cs
+    startLine: 59
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: public static Task<Message> SuppressEmbedsAsync(this Message message, AllowedMentionsRequest? allowedMentions = null)
+    parameters:
+    - id: message
+      type: Fluxer.Net.Message
+    - id: allowedMentions
+      type: Fluxer.Net.AllowedMentionsRequest
+    return:
+      type: System.Threading.Tasks.Task{Fluxer.Net.Message}
+    content.vb: Public Shared Function SuppressEmbedsAsync(message As Message, allowedMentions As AllowedMentionsRequest = Nothing) As Task(Of Message)
+  overload: Fluxer.Net.MessageHelpers.SuppressEmbedsAsync*
+  nameWithType.vb: MessageHelpers.SuppressEmbedsAsync(Message, AllowedMentionsRequest)
+  fullName.vb: Fluxer.Net.MessageHelpers.SuppressEmbedsAsync(Fluxer.Net.Message, Fluxer.Net.AllowedMentionsRequest)
+  name.vb: SuppressEmbedsAsync(Message, AllowedMentionsRequest)
+references:
+- uid: Fluxer.Net
+  commentId: N:Fluxer.Net
+  href: Fluxer.html
+  name: Fluxer.Net
+  nameWithType: Fluxer.Net
+  fullName: Fluxer.Net
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Fluxer.Net.MessageHelpers.DeleteAsync*
+  commentId: Overload:Fluxer.Net.MessageHelpers.DeleteAsync
+  href: Fluxer.Net.MessageHelpers.html#Fluxer_Net_MessageHelpers_DeleteAsync_Fluxer_Net_Message_
+  name: DeleteAsync
+  nameWithType: MessageHelpers.DeleteAsync
+  fullName: Fluxer.Net.MessageHelpers.DeleteAsync
+- uid: Fluxer.Net.Message
+  commentId: T:Fluxer.Net.Message
+  parent: Fluxer.Net
+  href: Fluxer.Net.Message.html
+  name: Message
+  nameWithType: Message
+  fullName: Fluxer.Net.Message
+- uid: System.Threading.Tasks.Task
+  commentId: T:System.Threading.Tasks.Task
+  parent: System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task
+  name: Task
+  nameWithType: Task
+  fullName: System.Threading.Tasks.Task
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+- uid: Fluxer.Net.MessageHelpers.ModifyAsync*
+  commentId: Overload:Fluxer.Net.MessageHelpers.ModifyAsync
+  href: Fluxer.Net.MessageHelpers.html#Fluxer_Net_MessageHelpers_ModifyAsync_Fluxer_Net_Message_Fluxer_Net_UpdateMessageRequest_
+  name: ModifyAsync
+  nameWithType: MessageHelpers.ModifyAsync
+  fullName: Fluxer.Net.MessageHelpers.ModifyAsync
+- uid: Fluxer.Net.UpdateMessageRequest
+  commentId: T:Fluxer.Net.UpdateMessageRequest
+  parent: Fluxer.Net
+  href: Fluxer.Net.UpdateMessageRequest.html
+  name: UpdateMessageRequest
+  nameWithType: UpdateMessageRequest
+  fullName: Fluxer.Net.UpdateMessageRequest
+- uid: System.Threading.Tasks.Task{Fluxer.Net.Message}
+  commentId: T:System.Threading.Tasks.Task{Fluxer.Net.Message}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<Message>
+  nameWithType: Task<Message>
+  fullName: System.Threading.Tasks.Task<Fluxer.Net.Message>
+  nameWithType.vb: Task(Of Message)
+  fullName.vb: System.Threading.Tasks.Task(Of Fluxer.Net.Message)
+  name.vb: Task(Of Message)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: Fluxer.Net.Message
+    name: Message
+    href: Fluxer.Net.Message.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Fluxer.Net.Message
+    name: Message
+    href: Fluxer.Net.Message.html
+  - name: )
+- uid: System.Threading.Tasks.Task`1
+  commentId: T:System.Threading.Tasks.Task`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<TResult>
+  nameWithType: Task<TResult>
+  fullName: System.Threading.Tasks.Task<TResult>
+  nameWithType.vb: Task(Of TResult)
+  fullName.vb: System.Threading.Tasks.Task(Of TResult)
+  name.vb: Task(Of TResult)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: Fluxer.Net.MessageHelpers.AcknowledgeAsync*
+  commentId: Overload:Fluxer.Net.MessageHelpers.AcknowledgeAsync
+  href: Fluxer.Net.MessageHelpers.html#Fluxer_Net_MessageHelpers_AcknowledgeAsync_Fluxer_Net_Message_Fluxer_Net_MessageAckJson_
+  name: AcknowledgeAsync
+  nameWithType: MessageHelpers.AcknowledgeAsync
+  fullName: Fluxer.Net.MessageHelpers.AcknowledgeAsync
+- uid: Fluxer.Net.MessageAckJson
+  commentId: T:Fluxer.Net.MessageAckJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.MessageAckJson.html
+  name: MessageAckJson
+  nameWithType: MessageAckJson
+  fullName: Fluxer.Net.MessageAckJson
+- uid: Fluxer.Net.MessageHelpers.DeleteAttachmentAsync*
+  commentId: Overload:Fluxer.Net.MessageHelpers.DeleteAttachmentAsync
+  href: Fluxer.Net.MessageHelpers.html#Fluxer_Net_MessageHelpers_DeleteAttachmentAsync_Fluxer_Net_Message_System_UInt64_
+  name: DeleteAttachmentAsync
+  nameWithType: MessageHelpers.DeleteAttachmentAsync
+  fullName: Fluxer.Net.MessageHelpers.DeleteAttachmentAsync
+- uid: System.UInt64
+  commentId: T:System.UInt64
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.uint64
+  name: ulong
+  nameWithType: ulong
+  fullName: ulong
+  nameWithType.vb: ULong
+  fullName.vb: ULong
+  name.vb: ULong
+- uid: Fluxer.Net.MessageHelpers.PinAsync*
+  commentId: Overload:Fluxer.Net.MessageHelpers.PinAsync
+  href: Fluxer.Net.MessageHelpers.html#Fluxer_Net_MessageHelpers_PinAsync_Fluxer_Net_Message_
+  name: PinAsync
+  nameWithType: MessageHelpers.PinAsync
+  fullName: Fluxer.Net.MessageHelpers.PinAsync
+- uid: Fluxer.Net.MessageHelpers.UnPinAsync*
+  commentId: Overload:Fluxer.Net.MessageHelpers.UnPinAsync
+  href: Fluxer.Net.MessageHelpers.html#Fluxer_Net_MessageHelpers_UnPinAsync_Fluxer_Net_Message_
+  name: UnPinAsync
+  nameWithType: MessageHelpers.UnPinAsync
+  fullName: Fluxer.Net.MessageHelpers.UnPinAsync
+- uid: Fluxer.Net.MessageHelpers.AddReactionAsync*
+  commentId: Overload:Fluxer.Net.MessageHelpers.AddReactionAsync
+  href: Fluxer.Net.MessageHelpers.html#Fluxer_Net_MessageHelpers_AddReactionAsync_Fluxer_Net_Message_System_String_
+  name: AddReactionAsync
+  nameWithType: MessageHelpers.AddReactionAsync
+  fullName: Fluxer.Net.MessageHelpers.AddReactionAsync
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: Fluxer.Net.MessageHelpers.GetReactionsForEmojiAsync*
+  commentId: Overload:Fluxer.Net.MessageHelpers.GetReactionsForEmojiAsync
+  href: Fluxer.Net.MessageHelpers.html#Fluxer_Net_MessageHelpers_GetReactionsForEmojiAsync_Fluxer_Net_Message_System_String_
+  name: GetReactionsForEmojiAsync
+  nameWithType: MessageHelpers.GetReactionsForEmojiAsync
+  fullName: Fluxer.Net.MessageHelpers.GetReactionsForEmojiAsync
+- uid: System.Threading.Tasks.Task{System.Collections.Generic.IEnumerable{Fluxer.Net.User}}
+  commentId: T:System.Threading.Tasks.Task{System.Collections.Generic.IEnumerable{Fluxer.Net.User}}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<IEnumerable<User>>
+  nameWithType: Task<IEnumerable<User>>
+  fullName: System.Threading.Tasks.Task<System.Collections.Generic.IEnumerable<Fluxer.Net.User>>
+  nameWithType.vb: Task(Of IEnumerable(Of User))
+  fullName.vb: System.Threading.Tasks.Task(Of System.Collections.Generic.IEnumerable(Of Fluxer.Net.User))
+  name.vb: Task(Of IEnumerable(Of User))
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - uid: Fluxer.Net.User
+    name: User
+    href: Fluxer.Net.User.html
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Fluxer.Net.User
+    name: User
+    href: Fluxer.Net.User.html
+  - name: )
+  - name: )
+- uid: Fluxer.Net.MessageHelpers.RemoveAllReactionsAsync*
+  commentId: Overload:Fluxer.Net.MessageHelpers.RemoveAllReactionsAsync
+  href: Fluxer.Net.MessageHelpers.html#Fluxer_Net_MessageHelpers_RemoveAllReactionsAsync_Fluxer_Net_Message_
+  name: RemoveAllReactionsAsync
+  nameWithType: MessageHelpers.RemoveAllReactionsAsync
+  fullName: Fluxer.Net.MessageHelpers.RemoveAllReactionsAsync
+- uid: Fluxer.Net.MessageHelpers.RemoveAllReactionsForEmojiAsync*
+  commentId: Overload:Fluxer.Net.MessageHelpers.RemoveAllReactionsForEmojiAsync
+  href: Fluxer.Net.MessageHelpers.html#Fluxer_Net_MessageHelpers_RemoveAllReactionsForEmojiAsync_Fluxer_Net_Message_System_String_
+  name: RemoveAllReactionsForEmojiAsync
+  nameWithType: MessageHelpers.RemoveAllReactionsForEmojiAsync
+  fullName: Fluxer.Net.MessageHelpers.RemoveAllReactionsForEmojiAsync
+- uid: Fluxer.Net.MessageHelpers.RemoveOwnReactionAsync*
+  commentId: Overload:Fluxer.Net.MessageHelpers.RemoveOwnReactionAsync
+  href: Fluxer.Net.MessageHelpers.html#Fluxer_Net_MessageHelpers_RemoveOwnReactionAsync_Fluxer_Net_Message_System_String_
+  name: RemoveOwnReactionAsync
+  nameWithType: MessageHelpers.RemoveOwnReactionAsync
+  fullName: Fluxer.Net.MessageHelpers.RemoveOwnReactionAsync
+- uid: Fluxer.Net.MessageHelpers.RemoveUserReactionAsync*
+  commentId: Overload:Fluxer.Net.MessageHelpers.RemoveUserReactionAsync
+  href: Fluxer.Net.MessageHelpers.html#Fluxer_Net_MessageHelpers_RemoveUserReactionAsync_Fluxer_Net_Message_System_String_System_UInt64_
+  name: RemoveUserReactionAsync
+  nameWithType: MessageHelpers.RemoveUserReactionAsync
+  fullName: Fluxer.Net.MessageHelpers.RemoveUserReactionAsync
+- uid: Fluxer.Net.MessageHelpers.ReplyAsync*
+  commentId: Overload:Fluxer.Net.MessageHelpers.ReplyAsync
+  href: Fluxer.Net.MessageHelpers.html#Fluxer_Net_MessageHelpers_ReplyAsync_Fluxer_Net_Message_System_String_System_Collections_Generic_List_Fluxer_Net_Rest_Requests_EmbedRequest__Fluxer_Net_AllowedMentionsRequest_Fluxer_Net_MessageFlag_System_String_System_Nullable_System_UInt64__System_Nullable_System_Boolean__System_Collections_Generic_List_System_UInt64__System_Collections_Generic_List_Fluxer_Net_Rest_AttachmentRequest__
+  name: ReplyAsync
+  nameWithType: MessageHelpers.ReplyAsync
+  fullName: Fluxer.Net.MessageHelpers.ReplyAsync
+- uid: System.Collections.Generic.List{Fluxer.Net.Rest.Requests.EmbedRequest}
+  commentId: T:System.Collections.Generic.List{Fluxer.Net.Rest.Requests.EmbedRequest}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<EmbedRequest>
+  nameWithType: List<EmbedRequest>
+  fullName: System.Collections.Generic.List<Fluxer.Net.Rest.Requests.EmbedRequest>
+  nameWithType.vb: List(Of EmbedRequest)
+  fullName.vb: System.Collections.Generic.List(Of Fluxer.Net.Rest.Requests.EmbedRequest)
+  name.vb: List(Of EmbedRequest)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: Fluxer.Net.Rest.Requests.EmbedRequest
+    name: EmbedRequest
+    href: Fluxer.Net.Rest.Requests.EmbedRequest.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Fluxer.Net.Rest.Requests.EmbedRequest
+    name: EmbedRequest
+    href: Fluxer.Net.Rest.Requests.EmbedRequest.html
+  - name: )
+- uid: Fluxer.Net.AllowedMentionsRequest
+  commentId: T:Fluxer.Net.AllowedMentionsRequest
+  parent: Fluxer.Net
+  href: Fluxer.Net.AllowedMentionsRequest.html
+  name: AllowedMentionsRequest
+  nameWithType: AllowedMentionsRequest
+  fullName: Fluxer.Net.AllowedMentionsRequest
+- uid: Fluxer.Net.MessageFlag
+  commentId: T:Fluxer.Net.MessageFlag
+  parent: Fluxer.Net
+  href: Fluxer.Net.MessageFlag.html
+  name: MessageFlag
+  nameWithType: MessageFlag
+  fullName: Fluxer.Net.MessageFlag
+- uid: System.Nullable{System.UInt64}
+  commentId: T:System.Nullable{System.UInt64}
+  parent: System
+  definition: System.Nullable`1
+  href: https://learn.microsoft.com/dotnet/api/system.uint64
+  name: ulong?
+  nameWithType: ulong?
+  fullName: ulong?
+  nameWithType.vb: ULong?
+  fullName.vb: ULong?
+  name.vb: ULong?
+  spec.csharp:
+  - uid: System.UInt64
+    name: ulong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: '?'
+  spec.vb:
+  - uid: System.UInt64
+    name: ULong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: '?'
+- uid: System.Nullable{System.Boolean}
+  commentId: T:System.Nullable{System.Boolean}
+  parent: System
+  definition: System.Nullable`1
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool?
+  nameWithType: bool?
+  fullName: bool?
+  nameWithType.vb: Boolean?
+  fullName.vb: Boolean?
+  name.vb: Boolean?
+  spec.csharp:
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '?'
+  spec.vb:
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '?'
+- uid: System.Collections.Generic.List{System.UInt64}
+  commentId: T:System.Collections.Generic.List{System.UInt64}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<ulong>
+  nameWithType: List<ulong>
+  fullName: System.Collections.Generic.List<ulong>
+  nameWithType.vb: List(Of ULong)
+  fullName.vb: System.Collections.Generic.List(Of ULong)
+  name.vb: List(Of ULong)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: System.UInt64
+    name: ulong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.UInt64
+    name: ULong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: )
+- uid: System.Collections.Generic.List{Fluxer.Net.Rest.AttachmentRequest}
+  commentId: T:System.Collections.Generic.List{Fluxer.Net.Rest.AttachmentRequest}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<AttachmentRequest>
+  nameWithType: List<AttachmentRequest>
+  fullName: System.Collections.Generic.List<Fluxer.Net.Rest.AttachmentRequest>
+  nameWithType.vb: List(Of AttachmentRequest)
+  fullName.vb: System.Collections.Generic.List(Of Fluxer.Net.Rest.AttachmentRequest)
+  name.vb: List(Of AttachmentRequest)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: Fluxer.Net.Rest.AttachmentRequest
+    name: AttachmentRequest
+    href: Fluxer.Net.Rest.AttachmentRequest.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Fluxer.Net.Rest.AttachmentRequest
+    name: AttachmentRequest
+    href: Fluxer.Net.Rest.AttachmentRequest.html
+  - name: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: Fluxer.Net.MessageHelpers.ForwardAsync*
+  commentId: Overload:Fluxer.Net.MessageHelpers.ForwardAsync
+  href: Fluxer.Net.MessageHelpers.html#Fluxer_Net_MessageHelpers_ForwardAsync_Fluxer_Net_Message_Fluxer_Net_Channel_Fluxer_Net_MessageFlag_System_String_
+  name: ForwardAsync
+  nameWithType: MessageHelpers.ForwardAsync
+  fullName: Fluxer.Net.MessageHelpers.ForwardAsync
+- uid: Fluxer.Net.Channel
+  commentId: T:Fluxer.Net.Channel
+  parent: Fluxer.Net
+  href: Fluxer.Net.Channel.html
+  name: Channel
+  nameWithType: Channel
+  fullName: Fluxer.Net.Channel
+- uid: Fluxer.Net.MessageHelpers.SuppressEmbedsAsync*
+  commentId: Overload:Fluxer.Net.MessageHelpers.SuppressEmbedsAsync
+  href: Fluxer.Net.MessageHelpers.html#Fluxer_Net_MessageHelpers_SuppressEmbedsAsync_Fluxer_Net_Message_Fluxer_Net_AllowedMentionsRequest_
+  name: SuppressEmbedsAsync
+  nameWithType: MessageHelpers.SuppressEmbedsAsync
+  fullName: Fluxer.Net.MessageHelpers.SuppressEmbedsAsync

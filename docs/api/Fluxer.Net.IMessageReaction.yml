@@ -1,0 +1,244 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.IMessageReaction
+  commentId: T:Fluxer.Net.IMessageReaction
+  id: IMessageReaction
+  parent: Fluxer.Net
+  children:
+  - Fluxer.Net.IMessageReaction.Count
+  - Fluxer.Net.IMessageReaction.Emoji
+  - Fluxer.Net.IMessageReaction.Me
+  langs:
+  - csharp
+  - vb
+  name: IMessageReaction
+  nameWithType: IMessageReaction
+  fullName: Fluxer.Net.IMessageReaction
+  type: Interface
+  source:
+    remote:
+      path: Fluxer.Net/Data/Messages/IMessageReaction.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: IMessageReaction
+    path: ../Fluxer.Net/Data/Messages/IMessageReaction.cs
+    startLine: 2
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: public interface IMessageReaction
+    content.vb: Public Interface IMessageReaction
+  derivedClasses:
+  - Fluxer.Net.MessageReaction
+  - Fluxer.Net.MessageReactionJson
+- uid: Fluxer.Net.IMessageReaction.Emoji
+  commentId: P:Fluxer.Net.IMessageReaction.Emoji
+  id: Emoji
+  parent: Fluxer.Net.IMessageReaction
+  langs:
+  - csharp
+  - vb
+  name: Emoji
+  nameWithType: IMessageReaction.Emoji
+  fullName: Fluxer.Net.IMessageReaction.Emoji
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Messages/IMessageReaction.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Emoji
+    path: ../Fluxer.Net/Data/Messages/IMessageReaction.cs
+    startLine: 7
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The emoji used for the reaction.
+  example: []
+  syntax:
+    content: IEmoji Emoji { get; }
+    parameters: []
+    return:
+      type: Fluxer.Net.IEmoji
+    content.vb: ReadOnly Property Emoji As IEmoji
+  overload: Fluxer.Net.IMessageReaction.Emoji*
+- uid: Fluxer.Net.IMessageReaction.Count
+  commentId: P:Fluxer.Net.IMessageReaction.Count
+  id: Count
+  parent: Fluxer.Net.IMessageReaction
+  langs:
+  - csharp
+  - vb
+  name: Count
+  nameWithType: IMessageReaction.Count
+  fullName: Fluxer.Net.IMessageReaction.Count
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Messages/IMessageReaction.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Count
+    path: ../Fluxer.Net/Data/Messages/IMessageReaction.cs
+    startLine: 12
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The total number of times this reaction has been used.
+  example: []
+  syntax:
+    content: int Count { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: ReadOnly Property Count As Integer
+  overload: Fluxer.Net.IMessageReaction.Count*
+- uid: Fluxer.Net.IMessageReaction.Me
+  commentId: P:Fluxer.Net.IMessageReaction.Me
+  id: Me
+  parent: Fluxer.Net.IMessageReaction
+  langs:
+  - csharp
+  - vb
+  name: Me
+  nameWithType: IMessageReaction.Me
+  fullName: Fluxer.Net.IMessageReaction.Me
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Messages/IMessageReaction.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Me
+    path: ../Fluxer.Net/Data/Messages/IMessageReaction.cs
+    startLine: 17
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Whether the current user has reacted with this emoji.
+  example: []
+  syntax:
+    content: bool? Me { get; }
+    parameters: []
+    return:
+      type: System.Nullable{System.Boolean}
+    content.vb: ReadOnly Property [Me] As Boolean?
+  overload: Fluxer.Net.IMessageReaction.Me*
+references:
+- uid: Fluxer.Net
+  commentId: N:Fluxer.Net
+  href: Fluxer.html
+  name: Fluxer.Net
+  nameWithType: Fluxer.Net
+  fullName: Fluxer.Net
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+- uid: Fluxer.Net.IMessageReaction.Emoji*
+  commentId: Overload:Fluxer.Net.IMessageReaction.Emoji
+  href: Fluxer.Net.IMessageReaction.html#Fluxer_Net_IMessageReaction_Emoji
+  name: Emoji
+  nameWithType: IMessageReaction.Emoji
+  fullName: Fluxer.Net.IMessageReaction.Emoji
+- uid: Fluxer.Net.IEmoji
+  commentId: T:Fluxer.Net.IEmoji
+  parent: Fluxer.Net
+  href: Fluxer.Net.IEmoji.html
+  name: IEmoji
+  nameWithType: IEmoji
+  fullName: Fluxer.Net.IEmoji
+- uid: Fluxer.Net.IMessageReaction.Count*
+  commentId: Overload:Fluxer.Net.IMessageReaction.Count
+  href: Fluxer.Net.IMessageReaction.html#Fluxer_Net_IMessageReaction_Count
+  name: Count
+  nameWithType: IMessageReaction.Count
+  fullName: Fluxer.Net.IMessageReaction.Count
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Fluxer.Net.IMessageReaction.Me*
+  commentId: Overload:Fluxer.Net.IMessageReaction.Me
+  href: Fluxer.Net.IMessageReaction.html#Fluxer_Net_IMessageReaction_Me
+  name: Me
+  nameWithType: IMessageReaction.Me
+  fullName: Fluxer.Net.IMessageReaction.Me
+- uid: System.Nullable{System.Boolean}
+  commentId: T:System.Nullable{System.Boolean}
+  parent: System
+  definition: System.Nullable`1
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool?
+  nameWithType: bool?
+  fullName: bool?
+  nameWithType.vb: Boolean?
+  fullName.vb: Boolean?
+  name.vb: Boolean?
+  spec.csharp:
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '?'
+  spec.vb:
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '?'
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )

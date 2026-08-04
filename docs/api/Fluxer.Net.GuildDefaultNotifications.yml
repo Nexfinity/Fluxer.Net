@@ -1,0 +1,112 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.GuildDefaultNotifications
+  commentId: T:Fluxer.Net.GuildDefaultNotifications
+  id: GuildDefaultNotifications
+  parent: Fluxer.Net
+  children:
+  - Fluxer.Net.GuildDefaultNotifications.AllMessages
+  - Fluxer.Net.GuildDefaultNotifications.MentionsOnly
+  langs:
+  - csharp
+  - vb
+  name: GuildDefaultNotifications
+  nameWithType: GuildDefaultNotifications
+  fullName: Fluxer.Net.GuildDefaultNotifications
+  type: Enum
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/Settings/GuildDefaultNotifications.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: GuildDefaultNotifications
+    path: ../Fluxer.Net/Data/Guilds/Settings/GuildDefaultNotifications.cs
+    startLine: 2
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: public enum GuildDefaultNotifications
+    content.vb: Public Enum GuildDefaultNotifications
+- uid: Fluxer.Net.GuildDefaultNotifications.AllMessages
+  commentId: F:Fluxer.Net.GuildDefaultNotifications.AllMessages
+  id: AllMessages
+  parent: Fluxer.Net.GuildDefaultNotifications
+  langs:
+  - csharp
+  - vb
+  name: AllMessages
+  nameWithType: GuildDefaultNotifications.AllMessages
+  fullName: Fluxer.Net.GuildDefaultNotifications.AllMessages
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/Settings/GuildDefaultNotifications.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: AllMessages
+    path: ../Fluxer.Net/Data/Guilds/Settings/GuildDefaultNotifications.cs
+    startLine: 4
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: AllMessages = 0
+    return:
+      type: Fluxer.Net.GuildDefaultNotifications
+- uid: Fluxer.Net.GuildDefaultNotifications.MentionsOnly
+  commentId: F:Fluxer.Net.GuildDefaultNotifications.MentionsOnly
+  id: MentionsOnly
+  parent: Fluxer.Net.GuildDefaultNotifications
+  langs:
+  - csharp
+  - vb
+  name: MentionsOnly
+  nameWithType: GuildDefaultNotifications.MentionsOnly
+  fullName: Fluxer.Net.GuildDefaultNotifications.MentionsOnly
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/Settings/GuildDefaultNotifications.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: MentionsOnly
+    path: ../Fluxer.Net/Data/Guilds/Settings/GuildDefaultNotifications.cs
+    startLine: 6
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: MentionsOnly = 1
+    return:
+      type: Fluxer.Net.GuildDefaultNotifications
+references:
+- uid: Fluxer.Net
+  commentId: N:Fluxer.Net
+  href: Fluxer.html
+  name: Fluxer.Net
+  nameWithType: Fluxer.Net
+  fullName: Fluxer.Net
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+- uid: Fluxer.Net.GuildDefaultNotifications
+  commentId: T:Fluxer.Net.GuildDefaultNotifications
+  parent: Fluxer.Net
+  href: Fluxer.Net.GuildDefaultNotifications.html
+  name: GuildDefaultNotifications
+  nameWithType: GuildDefaultNotifications
+  fullName: Fluxer.Net.GuildDefaultNotifications

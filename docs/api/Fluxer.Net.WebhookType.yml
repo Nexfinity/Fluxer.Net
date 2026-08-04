@@ -1,0 +1,114 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.WebhookType
+  commentId: T:Fluxer.Net.WebhookType
+  id: WebhookType
+  parent: Fluxer.Net
+  children:
+  - Fluxer.Net.WebhookType.CHANNEL_FOLLOWER
+  - Fluxer.Net.WebhookType.INCOMING
+  langs:
+  - csharp
+  - vb
+  name: WebhookType
+  nameWithType: WebhookType
+  fullName: Fluxer.Net.WebhookType
+  type: Enum
+  source:
+    remote:
+      path: Fluxer.Net/Data/Webhooks/WebhookType.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: WebhookType
+    path: ../Fluxer.Net/Data/Webhooks/WebhookType.cs
+    startLine: 5
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  remarks: <a href="https://github.com/fluxerapp/fluxer/blob/c2b69be17d1877c5bb82d10c77fa67cbe4e882d7/packages/schema/src/primitives/WebhookValidators.tsx#L22C14-L22C25">https://github.com/fluxerapp/fluxer/blob/c2b69be17d1877c5bb82d10c77fa67cbe4e882d7/packages/schema/src/primitives/WebhookValidators.tsx#L22C14-L22C25</a>
+  example: []
+  syntax:
+    content: public enum WebhookType
+    content.vb: Public Enum WebhookType
+- uid: Fluxer.Net.WebhookType.INCOMING
+  commentId: F:Fluxer.Net.WebhookType.INCOMING
+  id: INCOMING
+  parent: Fluxer.Net.WebhookType
+  langs:
+  - csharp
+  - vb
+  name: INCOMING
+  nameWithType: WebhookType.INCOMING
+  fullName: Fluxer.Net.WebhookType.INCOMING
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/Webhooks/WebhookType.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: INCOMING
+    path: ../Fluxer.Net/Data/Webhooks/WebhookType.cs
+    startLine: 7
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: INCOMING = 1
+    return:
+      type: Fluxer.Net.WebhookType
+- uid: Fluxer.Net.WebhookType.CHANNEL_FOLLOWER
+  commentId: F:Fluxer.Net.WebhookType.CHANNEL_FOLLOWER
+  id: CHANNEL_FOLLOWER
+  parent: Fluxer.Net.WebhookType
+  langs:
+  - csharp
+  - vb
+  name: CHANNEL_FOLLOWER
+  nameWithType: WebhookType.CHANNEL_FOLLOWER
+  fullName: Fluxer.Net.WebhookType.CHANNEL_FOLLOWER
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/Webhooks/WebhookType.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: CHANNEL_FOLLOWER
+    path: ../Fluxer.Net/Data/Webhooks/WebhookType.cs
+    startLine: 8
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: CHANNEL_FOLLOWER = 2
+    return:
+      type: Fluxer.Net.WebhookType
+references:
+- uid: Fluxer.Net
+  commentId: N:Fluxer.Net
+  href: Fluxer.html
+  name: Fluxer.Net
+  nameWithType: Fluxer.Net
+  fullName: Fluxer.Net
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+- uid: Fluxer.Net.WebhookType
+  commentId: T:Fluxer.Net.WebhookType
+  parent: Fluxer.Net
+  href: Fluxer.Net.WebhookType.html
+  name: WebhookType
+  nameWithType: WebhookType
+  fullName: Fluxer.Net.WebhookType

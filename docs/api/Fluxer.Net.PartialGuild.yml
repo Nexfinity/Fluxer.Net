@@ -1,0 +1,1429 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.PartialGuild
+  commentId: T:Fluxer.Net.PartialGuild
+  id: PartialGuild
+  parent: Fluxer.Net
+  children:
+  - Fluxer.Net.PartialGuild.BannerHash
+  - Fluxer.Net.PartialGuild.BannerHeight
+  - Fluxer.Net.PartialGuild.BannerWidth
+  - Fluxer.Net.PartialGuild.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.PartialGuildJson)
+  - Fluxer.Net.PartialGuild.EmbedSplashHash
+  - Fluxer.Net.PartialGuild.EmbedSplashHeight
+  - Fluxer.Net.PartialGuild.EmbedSplashWidth
+  - Fluxer.Net.PartialGuild.Features
+  - Fluxer.Net.PartialGuild.GetBannerUrl(System.Int32)
+  - Fluxer.Net.PartialGuild.GetEmbedSplashUrl(System.Int32)
+  - Fluxer.Net.PartialGuild.GetIconUrl(System.Int32)
+  - Fluxer.Net.PartialGuild.GetInviteSplashUrl(System.Int32)
+  - Fluxer.Net.PartialGuild.IconHash
+  - Fluxer.Net.PartialGuild.Id
+  - Fluxer.Net.PartialGuild.InviteSplashHash
+  - Fluxer.Net.PartialGuild.InviteSplashHeight
+  - Fluxer.Net.PartialGuild.InviteSplashWidth
+  - Fluxer.Net.PartialGuild.Name
+  - Fluxer.Net.PartialGuild.SplashCardAligment
+  langs:
+  - csharp
+  - vb
+  name: PartialGuild
+  nameWithType: PartialGuild
+  fullName: Fluxer.Net.PartialGuild
+  type: Class
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/PartialGuild.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: PartialGuild
+    path: ../Fluxer.Net/Data/Guilds/PartialGuild.cs
+    startLine: 3
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  example: []
+  syntax:
+    content: 'public class PartialGuild : Entity, IPartialGuild'
+    content.vb: Public Class PartialGuild Inherits Entity Implements IPartialGuild
+  inheritance:
+  - System.Object
+  - Fluxer.Net.Entity
+  derivedClasses:
+  - Fluxer.Net.Guild
+  implements:
+  - Fluxer.Net.IPartialGuild
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: Fluxer.Net.PartialGuild.Id
+  commentId: P:Fluxer.Net.PartialGuild.Id
+  id: Id
+  parent: Fluxer.Net.PartialGuild
+  langs:
+  - csharp
+  - vb
+  name: Id
+  nameWithType: PartialGuild.Id
+  fullName: Fluxer.Net.PartialGuild.Id
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/PartialGuild.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Id
+    path: ../Fluxer.Net/Data/Guilds/PartialGuild.cs
+    startLine: 6
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The unique identifier for this guild.
+  example: []
+  syntax:
+    content: public ulong Id { get; }
+    parameters: []
+    return:
+      type: System.UInt64
+    content.vb: Public Property Id As ULong
+  overload: Fluxer.Net.PartialGuild.Id*
+  implements:
+  - Fluxer.Net.IPartialGuild.Id
+- uid: Fluxer.Net.PartialGuild.Name
+  commentId: P:Fluxer.Net.PartialGuild.Name
+  id: Name
+  parent: Fluxer.Net.PartialGuild
+  langs:
+  - csharp
+  - vb
+  name: Name
+  nameWithType: PartialGuild.Name
+  fullName: Fluxer.Net.PartialGuild.Name
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/PartialGuild.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Name
+    path: ../Fluxer.Net/Data/Guilds/PartialGuild.cs
+    startLine: 9
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The name of the guild.
+  example: []
+  syntax:
+    content: public string Name { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Name As String
+  overload: Fluxer.Net.PartialGuild.Name*
+  implements:
+  - Fluxer.Net.IPartialGuild.Name
+- uid: Fluxer.Net.PartialGuild.IconHash
+  commentId: P:Fluxer.Net.PartialGuild.IconHash
+  id: IconHash
+  parent: Fluxer.Net.PartialGuild
+  langs:
+  - csharp
+  - vb
+  name: IconHash
+  nameWithType: PartialGuild.IconHash
+  fullName: Fluxer.Net.PartialGuild.IconHash
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/PartialGuild.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: IconHash
+    path: ../Fluxer.Net/Data/Guilds/PartialGuild.cs
+    startLine: 12
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The hash of the guild icon.
+  example: []
+  syntax:
+    content: public string? IconHash { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property IconHash As String
+  overload: Fluxer.Net.PartialGuild.IconHash*
+  implements:
+  - Fluxer.Net.IPartialGuild.IconHash
+- uid: Fluxer.Net.PartialGuild.BannerHash
+  commentId: P:Fluxer.Net.PartialGuild.BannerHash
+  id: BannerHash
+  parent: Fluxer.Net.PartialGuild
+  langs:
+  - csharp
+  - vb
+  name: BannerHash
+  nameWithType: PartialGuild.BannerHash
+  fullName: Fluxer.Net.PartialGuild.BannerHash
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/PartialGuild.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: BannerHash
+    path: ../Fluxer.Net/Data/Guilds/PartialGuild.cs
+    startLine: 15
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The hash of the guild banner.
+  example: []
+  syntax:
+    content: public string? BannerHash { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property BannerHash As String
+  overload: Fluxer.Net.PartialGuild.BannerHash*
+  implements:
+  - Fluxer.Net.IPartialGuild.BannerHash
+- uid: Fluxer.Net.PartialGuild.BannerWidth
+  commentId: P:Fluxer.Net.PartialGuild.BannerWidth
+  id: BannerWidth
+  parent: Fluxer.Net.PartialGuild
+  langs:
+  - csharp
+  - vb
+  name: BannerWidth
+  nameWithType: PartialGuild.BannerWidth
+  fullName: Fluxer.Net.PartialGuild.BannerWidth
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/PartialGuild.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: BannerWidth
+    path: ../Fluxer.Net/Data/Guilds/PartialGuild.cs
+    startLine: 18
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The width of the guild banner in pixels.
+  example: []
+  syntax:
+    content: public int? BannerWidth { get; }
+    parameters: []
+    return:
+      type: System.Nullable{System.Int32}
+    content.vb: Public Property BannerWidth As Integer?
+  overload: Fluxer.Net.PartialGuild.BannerWidth*
+  implements:
+  - Fluxer.Net.IPartialGuild.BannerWidth
+- uid: Fluxer.Net.PartialGuild.BannerHeight
+  commentId: P:Fluxer.Net.PartialGuild.BannerHeight
+  id: BannerHeight
+  parent: Fluxer.Net.PartialGuild
+  langs:
+  - csharp
+  - vb
+  name: BannerHeight
+  nameWithType: PartialGuild.BannerHeight
+  fullName: Fluxer.Net.PartialGuild.BannerHeight
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/PartialGuild.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: BannerHeight
+    path: ../Fluxer.Net/Data/Guilds/PartialGuild.cs
+    startLine: 21
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The height of the guild banner in pixels.
+  example: []
+  syntax:
+    content: public int? BannerHeight { get; }
+    parameters: []
+    return:
+      type: System.Nullable{System.Int32}
+    content.vb: Public Property BannerHeight As Integer?
+  overload: Fluxer.Net.PartialGuild.BannerHeight*
+  implements:
+  - Fluxer.Net.IPartialGuild.BannerHeight
+- uid: Fluxer.Net.PartialGuild.EmbedSplashHash
+  commentId: P:Fluxer.Net.PartialGuild.EmbedSplashHash
+  id: EmbedSplashHash
+  parent: Fluxer.Net.PartialGuild
+  langs:
+  - csharp
+  - vb
+  name: EmbedSplashHash
+  nameWithType: PartialGuild.EmbedSplashHash
+  fullName: Fluxer.Net.PartialGuild.EmbedSplashHash
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/PartialGuild.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: EmbedSplashHash
+    path: ../Fluxer.Net/Data/Guilds/PartialGuild.cs
+    startLine: 24
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The hash of the embedded invite splash.
+  example: []
+  syntax:
+    content: public string? EmbedSplashHash { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property EmbedSplashHash As String
+  overload: Fluxer.Net.PartialGuild.EmbedSplashHash*
+  implements:
+  - Fluxer.Net.IPartialGuild.EmbedSplashHash
+- uid: Fluxer.Net.PartialGuild.EmbedSplashWidth
+  commentId: P:Fluxer.Net.PartialGuild.EmbedSplashWidth
+  id: EmbedSplashWidth
+  parent: Fluxer.Net.PartialGuild
+  langs:
+  - csharp
+  - vb
+  name: EmbedSplashWidth
+  nameWithType: PartialGuild.EmbedSplashWidth
+  fullName: Fluxer.Net.PartialGuild.EmbedSplashWidth
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/PartialGuild.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: EmbedSplashWidth
+    path: ../Fluxer.Net/Data/Guilds/PartialGuild.cs
+    startLine: 27
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The width of the embedded invite splash in pixels.
+  example: []
+  syntax:
+    content: public int? EmbedSplashWidth { get; }
+    parameters: []
+    return:
+      type: System.Nullable{System.Int32}
+    content.vb: Public Property EmbedSplashWidth As Integer?
+  overload: Fluxer.Net.PartialGuild.EmbedSplashWidth*
+  implements:
+  - Fluxer.Net.IPartialGuild.EmbedSplashWidth
+- uid: Fluxer.Net.PartialGuild.EmbedSplashHeight
+  commentId: P:Fluxer.Net.PartialGuild.EmbedSplashHeight
+  id: EmbedSplashHeight
+  parent: Fluxer.Net.PartialGuild
+  langs:
+  - csharp
+  - vb
+  name: EmbedSplashHeight
+  nameWithType: PartialGuild.EmbedSplashHeight
+  fullName: Fluxer.Net.PartialGuild.EmbedSplashHeight
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/PartialGuild.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: EmbedSplashHeight
+    path: ../Fluxer.Net/Data/Guilds/PartialGuild.cs
+    startLine: 30
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The height of the embedded invite splash in pixels
+  example: []
+  syntax:
+    content: public int? EmbedSplashHeight { get; }
+    parameters: []
+    return:
+      type: System.Nullable{System.Int32}
+    content.vb: Public Property EmbedSplashHeight As Integer?
+  overload: Fluxer.Net.PartialGuild.EmbedSplashHeight*
+  implements:
+  - Fluxer.Net.IPartialGuild.EmbedSplashHeight
+- uid: Fluxer.Net.PartialGuild.InviteSplashHash
+  commentId: P:Fluxer.Net.PartialGuild.InviteSplashHash
+  id: InviteSplashHash
+  parent: Fluxer.Net.PartialGuild
+  langs:
+  - csharp
+  - vb
+  name: InviteSplashHash
+  nameWithType: PartialGuild.InviteSplashHash
+  fullName: Fluxer.Net.PartialGuild.InviteSplashHash
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/PartialGuild.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: InviteSplashHash
+    path: ../Fluxer.Net/Data/Guilds/PartialGuild.cs
+    startLine: 33
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The hash of the guild splash screen.
+  example: []
+  syntax:
+    content: public string? InviteSplashHash { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property InviteSplashHash As String
+  overload: Fluxer.Net.PartialGuild.InviteSplashHash*
+  implements:
+  - Fluxer.Net.IPartialGuild.InviteSplashHash
+- uid: Fluxer.Net.PartialGuild.InviteSplashWidth
+  commentId: P:Fluxer.Net.PartialGuild.InviteSplashWidth
+  id: InviteSplashWidth
+  parent: Fluxer.Net.PartialGuild
+  langs:
+  - csharp
+  - vb
+  name: InviteSplashWidth
+  nameWithType: PartialGuild.InviteSplashWidth
+  fullName: Fluxer.Net.PartialGuild.InviteSplashWidth
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/PartialGuild.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: InviteSplashWidth
+    path: ../Fluxer.Net/Data/Guilds/PartialGuild.cs
+    startLine: 36
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The width of the guild splash in pixels.
+  example: []
+  syntax:
+    content: public int? InviteSplashWidth { get; }
+    parameters: []
+    return:
+      type: System.Nullable{System.Int32}
+    content.vb: Public Property InviteSplashWidth As Integer?
+  overload: Fluxer.Net.PartialGuild.InviteSplashWidth*
+  implements:
+  - Fluxer.Net.IPartialGuild.InviteSplashWidth
+- uid: Fluxer.Net.PartialGuild.InviteSplashHeight
+  commentId: P:Fluxer.Net.PartialGuild.InviteSplashHeight
+  id: InviteSplashHeight
+  parent: Fluxer.Net.PartialGuild
+  langs:
+  - csharp
+  - vb
+  name: InviteSplashHeight
+  nameWithType: PartialGuild.InviteSplashHeight
+  fullName: Fluxer.Net.PartialGuild.InviteSplashHeight
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/PartialGuild.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: InviteSplashHeight
+    path: ../Fluxer.Net/Data/Guilds/PartialGuild.cs
+    startLine: 39
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The height of the guild splash in pixels
+  example: []
+  syntax:
+    content: public int? InviteSplashHeight { get; }
+    parameters: []
+    return:
+      type: System.Nullable{System.Int32}
+    content.vb: Public Property InviteSplashHeight As Integer?
+  overload: Fluxer.Net.PartialGuild.InviteSplashHeight*
+  implements:
+  - Fluxer.Net.IPartialGuild.InviteSplashHeight
+- uid: Fluxer.Net.PartialGuild.SplashCardAligment
+  commentId: P:Fluxer.Net.PartialGuild.SplashCardAligment
+  id: SplashCardAligment
+  parent: Fluxer.Net.PartialGuild
+  langs:
+  - csharp
+  - vb
+  name: SplashCardAligment
+  nameWithType: PartialGuild.SplashCardAligment
+  fullName: Fluxer.Net.PartialGuild.SplashCardAligment
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/PartialGuild.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: SplashCardAligment
+    path: ../Fluxer.Net/Data/Guilds/PartialGuild.cs
+    startLine: 42
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The alignment of the splash card.
+  example: []
+  syntax:
+    content: public GuildSplashCardAlignment SplashCardAligment { get; }
+    parameters: []
+    return:
+      type: Fluxer.Net.GuildSplashCardAlignment
+    content.vb: Public Property SplashCardAligment As GuildSplashCardAlignment
+  overload: Fluxer.Net.PartialGuild.SplashCardAligment*
+  implements:
+  - Fluxer.Net.IPartialGuild.SplashCardAligment
+- uid: Fluxer.Net.PartialGuild.Features
+  commentId: P:Fluxer.Net.PartialGuild.Features
+  id: Features
+  parent: Fluxer.Net.PartialGuild
+  langs:
+  - csharp
+  - vb
+  name: Features
+  nameWithType: PartialGuild.Features
+  fullName: Fluxer.Net.PartialGuild.Features
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/PartialGuild.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Features
+    path: ../Fluxer.Net/Data/Guilds/PartialGuild.cs
+    startLine: 45
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  example: []
+  syntax:
+    content: public GuildFeatures Features { get; }
+    parameters: []
+    return:
+      type: Fluxer.Net.GuildFeatures
+    content.vb: Public Property Features As GuildFeatures
+  overload: Fluxer.Net.PartialGuild.Features*
+- uid: Fluxer.Net.PartialGuild.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.PartialGuildJson)
+  commentId: M:Fluxer.Net.PartialGuild.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.PartialGuildJson)
+  id: Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.PartialGuildJson)
+  parent: Fluxer.Net.PartialGuild
+  langs:
+  - csharp
+  - vb
+  name: Create(FluxerBaseClient, PartialGuildJson)
+  nameWithType: PartialGuild.Create(FluxerBaseClient, PartialGuildJson)
+  fullName: Fluxer.Net.PartialGuild.Create(Fluxer.Net.FluxerBaseClient, Fluxer.Net.PartialGuildJson)
+  type: Method
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/PartialGuild.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Create
+    path: ../Fluxer.Net/Data/Guilds/PartialGuild.cs
+    startLine: 54
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: public static PartialGuild Create(FluxerBaseClient client, PartialGuildJson json)
+    parameters:
+    - id: client
+      type: Fluxer.Net.FluxerBaseClient
+    - id: json
+      type: Fluxer.Net.PartialGuildJson
+    return:
+      type: Fluxer.Net.PartialGuild
+    content.vb: Public Shared Function Create(client As FluxerBaseClient, json As PartialGuildJson) As PartialGuild
+  overload: Fluxer.Net.PartialGuild.Create*
+- uid: Fluxer.Net.PartialGuild.GetIconUrl(System.Int32)
+  commentId: M:Fluxer.Net.PartialGuild.GetIconUrl(System.Int32)
+  id: GetIconUrl(System.Int32)
+  parent: Fluxer.Net.PartialGuild
+  langs:
+  - csharp
+  - vb
+  name: GetIconUrl(int)
+  nameWithType: PartialGuild.GetIconUrl(int)
+  fullName: Fluxer.Net.PartialGuild.GetIconUrl(int)
+  type: Method
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/PartialGuild.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: GetIconUrl
+    path: ../Fluxer.Net/Data/Guilds/PartialGuild.cs
+    startLine: 80
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Get the guild's icon.
+  example: []
+  syntax:
+    content: public string? GetIconUrl(int size = 160)
+    parameters:
+    - id: size
+      type: System.Int32
+    return:
+      type: System.String
+    content.vb: Public Function GetIconUrl(size As Integer = 160) As String
+  overload: Fluxer.Net.PartialGuild.GetIconUrl*
+  implements:
+  - Fluxer.Net.IPartialGuild.GetIconUrl(System.Int32)
+  nameWithType.vb: PartialGuild.GetIconUrl(Integer)
+  fullName.vb: Fluxer.Net.PartialGuild.GetIconUrl(Integer)
+  name.vb: GetIconUrl(Integer)
+- uid: Fluxer.Net.PartialGuild.GetBannerUrl(System.Int32)
+  commentId: M:Fluxer.Net.PartialGuild.GetBannerUrl(System.Int32)
+  id: GetBannerUrl(System.Int32)
+  parent: Fluxer.Net.PartialGuild
+  langs:
+  - csharp
+  - vb
+  name: GetBannerUrl(int)
+  nameWithType: PartialGuild.GetBannerUrl(int)
+  fullName: Fluxer.Net.PartialGuild.GetBannerUrl(int)
+  type: Method
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/PartialGuild.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: GetBannerUrl
+    path: ../Fluxer.Net/Data/Guilds/PartialGuild.cs
+    startLine: 89
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Get the guild's banner.
+  example: []
+  syntax:
+    content: public string? GetBannerUrl(int size = 1024)
+    parameters:
+    - id: size
+      type: System.Int32
+    return:
+      type: System.String
+    content.vb: Public Function GetBannerUrl(size As Integer = 1024) As String
+  overload: Fluxer.Net.PartialGuild.GetBannerUrl*
+  implements:
+  - Fluxer.Net.IPartialGuild.GetBannerUrl(System.Int32)
+  nameWithType.vb: PartialGuild.GetBannerUrl(Integer)
+  fullName.vb: Fluxer.Net.PartialGuild.GetBannerUrl(Integer)
+  name.vb: GetBannerUrl(Integer)
+- uid: Fluxer.Net.PartialGuild.GetInviteSplashUrl(System.Int32)
+  commentId: M:Fluxer.Net.PartialGuild.GetInviteSplashUrl(System.Int32)
+  id: GetInviteSplashUrl(System.Int32)
+  parent: Fluxer.Net.PartialGuild
+  langs:
+  - csharp
+  - vb
+  name: GetInviteSplashUrl(int)
+  nameWithType: PartialGuild.GetInviteSplashUrl(int)
+  fullName: Fluxer.Net.PartialGuild.GetInviteSplashUrl(int)
+  type: Method
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/PartialGuild.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: GetInviteSplashUrl
+    path: ../Fluxer.Net/Data/Guilds/PartialGuild.cs
+    startLine: 98
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Get the guild's invite splash.
+  example: []
+  syntax:
+    content: public string? GetInviteSplashUrl(int size = 1024)
+    parameters:
+    - id: size
+      type: System.Int32
+    return:
+      type: System.String
+    content.vb: Public Function GetInviteSplashUrl(size As Integer = 1024) As String
+  overload: Fluxer.Net.PartialGuild.GetInviteSplashUrl*
+  implements:
+  - Fluxer.Net.IPartialGuild.GetInviteSplashUrl(System.Int32)
+  nameWithType.vb: PartialGuild.GetInviteSplashUrl(Integer)
+  fullName.vb: Fluxer.Net.PartialGuild.GetInviteSplashUrl(Integer)
+  name.vb: GetInviteSplashUrl(Integer)
+- uid: Fluxer.Net.PartialGuild.GetEmbedSplashUrl(System.Int32)
+  commentId: M:Fluxer.Net.PartialGuild.GetEmbedSplashUrl(System.Int32)
+  id: GetEmbedSplashUrl(System.Int32)
+  parent: Fluxer.Net.PartialGuild
+  langs:
+  - csharp
+  - vb
+  name: GetEmbedSplashUrl(int)
+  nameWithType: PartialGuild.GetEmbedSplashUrl(int)
+  fullName: Fluxer.Net.PartialGuild.GetEmbedSplashUrl(int)
+  type: Method
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/PartialGuild.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: GetEmbedSplashUrl
+    path: ../Fluxer.Net/Data/Guilds/PartialGuild.cs
+    startLine: 107
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Get the guild's embed splash.
+  example: []
+  syntax:
+    content: public string? GetEmbedSplashUrl(int size = 1024)
+    parameters:
+    - id: size
+      type: System.Int32
+    return:
+      type: System.String
+    content.vb: Public Function GetEmbedSplashUrl(size As Integer = 1024) As String
+  overload: Fluxer.Net.PartialGuild.GetEmbedSplashUrl*
+  implements:
+  - Fluxer.Net.IPartialGuild.GetEmbedSplashUrl(System.Int32)
+  nameWithType.vb: PartialGuild.GetEmbedSplashUrl(Integer)
+  fullName.vb: Fluxer.Net.PartialGuild.GetEmbedSplashUrl(Integer)
+  name.vb: GetEmbedSplashUrl(Integer)
+references:
+- uid: Fluxer.Net
+  commentId: N:Fluxer.Net
+  href: Fluxer.html
+  name: Fluxer.Net
+  nameWithType: Fluxer.Net
+  fullName: Fluxer.Net
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Fluxer.Net.Entity
+  commentId: T:Fluxer.Net.Entity
+  parent: Fluxer.Net
+  href: Fluxer.Net.Entity.html
+  name: Entity
+  nameWithType: Entity
+  fullName: Fluxer.Net.Entity
+- uid: Fluxer.Net.IPartialGuild
+  commentId: T:Fluxer.Net.IPartialGuild
+  parent: Fluxer.Net
+  href: Fluxer.Net.IPartialGuild.html
+  name: IPartialGuild
+  nameWithType: IPartialGuild
+  fullName: Fluxer.Net.IPartialGuild
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Fluxer.Net.PartialGuild.Id*
+  commentId: Overload:Fluxer.Net.PartialGuild.Id
+  href: Fluxer.Net.PartialGuild.html#Fluxer_Net_PartialGuild_Id
+  name: Id
+  nameWithType: PartialGuild.Id
+  fullName: Fluxer.Net.PartialGuild.Id
+- uid: Fluxer.Net.IPartialGuild.Id
+  commentId: P:Fluxer.Net.IPartialGuild.Id
+  parent: Fluxer.Net.IPartialGuild
+  href: Fluxer.Net.IPartialGuild.html#Fluxer_Net_IPartialGuild_Id
+  name: Id
+  nameWithType: IPartialGuild.Id
+  fullName: Fluxer.Net.IPartialGuild.Id
+- uid: System.UInt64
+  commentId: T:System.UInt64
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.uint64
+  name: ulong
+  nameWithType: ulong
+  fullName: ulong
+  nameWithType.vb: ULong
+  fullName.vb: ULong
+  name.vb: ULong
+- uid: Fluxer.Net.PartialGuild.Name*
+  commentId: Overload:Fluxer.Net.PartialGuild.Name
+  href: Fluxer.Net.PartialGuild.html#Fluxer_Net_PartialGuild_Name
+  name: Name
+  nameWithType: PartialGuild.Name
+  fullName: Fluxer.Net.PartialGuild.Name
+- uid: Fluxer.Net.IPartialGuild.Name
+  commentId: P:Fluxer.Net.IPartialGuild.Name
+  parent: Fluxer.Net.IPartialGuild
+  href: Fluxer.Net.IPartialGuild.html#Fluxer_Net_IPartialGuild_Name
+  name: Name
+  nameWithType: IPartialGuild.Name
+  fullName: Fluxer.Net.IPartialGuild.Name
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: Fluxer.Net.PartialGuild.IconHash*
+  commentId: Overload:Fluxer.Net.PartialGuild.IconHash
+  href: Fluxer.Net.PartialGuild.html#Fluxer_Net_PartialGuild_IconHash
+  name: IconHash
+  nameWithType: PartialGuild.IconHash
+  fullName: Fluxer.Net.PartialGuild.IconHash
+- uid: Fluxer.Net.IPartialGuild.IconHash
+  commentId: P:Fluxer.Net.IPartialGuild.IconHash
+  parent: Fluxer.Net.IPartialGuild
+  href: Fluxer.Net.IPartialGuild.html#Fluxer_Net_IPartialGuild_IconHash
+  name: IconHash
+  nameWithType: IPartialGuild.IconHash
+  fullName: Fluxer.Net.IPartialGuild.IconHash
+- uid: Fluxer.Net.PartialGuild.BannerHash*
+  commentId: Overload:Fluxer.Net.PartialGuild.BannerHash
+  href: Fluxer.Net.PartialGuild.html#Fluxer_Net_PartialGuild_BannerHash
+  name: BannerHash
+  nameWithType: PartialGuild.BannerHash
+  fullName: Fluxer.Net.PartialGuild.BannerHash
+- uid: Fluxer.Net.IPartialGuild.BannerHash
+  commentId: P:Fluxer.Net.IPartialGuild.BannerHash
+  parent: Fluxer.Net.IPartialGuild
+  href: Fluxer.Net.IPartialGuild.html#Fluxer_Net_IPartialGuild_BannerHash
+  name: BannerHash
+  nameWithType: IPartialGuild.BannerHash
+  fullName: Fluxer.Net.IPartialGuild.BannerHash
+- uid: Fluxer.Net.PartialGuild.BannerWidth*
+  commentId: Overload:Fluxer.Net.PartialGuild.BannerWidth
+  href: Fluxer.Net.PartialGuild.html#Fluxer_Net_PartialGuild_BannerWidth
+  name: BannerWidth
+  nameWithType: PartialGuild.BannerWidth
+  fullName: Fluxer.Net.PartialGuild.BannerWidth
+- uid: Fluxer.Net.IPartialGuild.BannerWidth
+  commentId: P:Fluxer.Net.IPartialGuild.BannerWidth
+  parent: Fluxer.Net.IPartialGuild
+  href: Fluxer.Net.IPartialGuild.html#Fluxer_Net_IPartialGuild_BannerWidth
+  name: BannerWidth
+  nameWithType: IPartialGuild.BannerWidth
+  fullName: Fluxer.Net.IPartialGuild.BannerWidth
+- uid: System.Nullable{System.Int32}
+  commentId: T:System.Nullable{System.Int32}
+  parent: System
+  definition: System.Nullable`1
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int?
+  nameWithType: int?
+  fullName: int?
+  nameWithType.vb: Integer?
+  fullName.vb: Integer?
+  name.vb: Integer?
+  spec.csharp:
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
+  spec.vb:
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: Fluxer.Net.PartialGuild.BannerHeight*
+  commentId: Overload:Fluxer.Net.PartialGuild.BannerHeight
+  href: Fluxer.Net.PartialGuild.html#Fluxer_Net_PartialGuild_BannerHeight
+  name: BannerHeight
+  nameWithType: PartialGuild.BannerHeight
+  fullName: Fluxer.Net.PartialGuild.BannerHeight
+- uid: Fluxer.Net.IPartialGuild.BannerHeight
+  commentId: P:Fluxer.Net.IPartialGuild.BannerHeight
+  parent: Fluxer.Net.IPartialGuild
+  href: Fluxer.Net.IPartialGuild.html#Fluxer_Net_IPartialGuild_BannerHeight
+  name: BannerHeight
+  nameWithType: IPartialGuild.BannerHeight
+  fullName: Fluxer.Net.IPartialGuild.BannerHeight
+- uid: Fluxer.Net.PartialGuild.EmbedSplashHash*
+  commentId: Overload:Fluxer.Net.PartialGuild.EmbedSplashHash
+  href: Fluxer.Net.PartialGuild.html#Fluxer_Net_PartialGuild_EmbedSplashHash
+  name: EmbedSplashHash
+  nameWithType: PartialGuild.EmbedSplashHash
+  fullName: Fluxer.Net.PartialGuild.EmbedSplashHash
+- uid: Fluxer.Net.IPartialGuild.EmbedSplashHash
+  commentId: P:Fluxer.Net.IPartialGuild.EmbedSplashHash
+  parent: Fluxer.Net.IPartialGuild
+  href: Fluxer.Net.IPartialGuild.html#Fluxer_Net_IPartialGuild_EmbedSplashHash
+  name: EmbedSplashHash
+  nameWithType: IPartialGuild.EmbedSplashHash
+  fullName: Fluxer.Net.IPartialGuild.EmbedSplashHash
+- uid: Fluxer.Net.PartialGuild.EmbedSplashWidth*
+  commentId: Overload:Fluxer.Net.PartialGuild.EmbedSplashWidth
+  href: Fluxer.Net.PartialGuild.html#Fluxer_Net_PartialGuild_EmbedSplashWidth
+  name: EmbedSplashWidth
+  nameWithType: PartialGuild.EmbedSplashWidth
+  fullName: Fluxer.Net.PartialGuild.EmbedSplashWidth
+- uid: Fluxer.Net.IPartialGuild.EmbedSplashWidth
+  commentId: P:Fluxer.Net.IPartialGuild.EmbedSplashWidth
+  parent: Fluxer.Net.IPartialGuild
+  href: Fluxer.Net.IPartialGuild.html#Fluxer_Net_IPartialGuild_EmbedSplashWidth
+  name: EmbedSplashWidth
+  nameWithType: IPartialGuild.EmbedSplashWidth
+  fullName: Fluxer.Net.IPartialGuild.EmbedSplashWidth
+- uid: Fluxer.Net.PartialGuild.EmbedSplashHeight*
+  commentId: Overload:Fluxer.Net.PartialGuild.EmbedSplashHeight
+  href: Fluxer.Net.PartialGuild.html#Fluxer_Net_PartialGuild_EmbedSplashHeight
+  name: EmbedSplashHeight
+  nameWithType: PartialGuild.EmbedSplashHeight
+  fullName: Fluxer.Net.PartialGuild.EmbedSplashHeight
+- uid: Fluxer.Net.IPartialGuild.EmbedSplashHeight
+  commentId: P:Fluxer.Net.IPartialGuild.EmbedSplashHeight
+  parent: Fluxer.Net.IPartialGuild
+  href: Fluxer.Net.IPartialGuild.html#Fluxer_Net_IPartialGuild_EmbedSplashHeight
+  name: EmbedSplashHeight
+  nameWithType: IPartialGuild.EmbedSplashHeight
+  fullName: Fluxer.Net.IPartialGuild.EmbedSplashHeight
+- uid: Fluxer.Net.PartialGuild.InviteSplashHash*
+  commentId: Overload:Fluxer.Net.PartialGuild.InviteSplashHash
+  href: Fluxer.Net.PartialGuild.html#Fluxer_Net_PartialGuild_InviteSplashHash
+  name: InviteSplashHash
+  nameWithType: PartialGuild.InviteSplashHash
+  fullName: Fluxer.Net.PartialGuild.InviteSplashHash
+- uid: Fluxer.Net.IPartialGuild.InviteSplashHash
+  commentId: P:Fluxer.Net.IPartialGuild.InviteSplashHash
+  parent: Fluxer.Net.IPartialGuild
+  href: Fluxer.Net.IPartialGuild.html#Fluxer_Net_IPartialGuild_InviteSplashHash
+  name: InviteSplashHash
+  nameWithType: IPartialGuild.InviteSplashHash
+  fullName: Fluxer.Net.IPartialGuild.InviteSplashHash
+- uid: Fluxer.Net.PartialGuild.InviteSplashWidth*
+  commentId: Overload:Fluxer.Net.PartialGuild.InviteSplashWidth
+  href: Fluxer.Net.PartialGuild.html#Fluxer_Net_PartialGuild_InviteSplashWidth
+  name: InviteSplashWidth
+  nameWithType: PartialGuild.InviteSplashWidth
+  fullName: Fluxer.Net.PartialGuild.InviteSplashWidth
+- uid: Fluxer.Net.IPartialGuild.InviteSplashWidth
+  commentId: P:Fluxer.Net.IPartialGuild.InviteSplashWidth
+  parent: Fluxer.Net.IPartialGuild
+  href: Fluxer.Net.IPartialGuild.html#Fluxer_Net_IPartialGuild_InviteSplashWidth
+  name: InviteSplashWidth
+  nameWithType: IPartialGuild.InviteSplashWidth
+  fullName: Fluxer.Net.IPartialGuild.InviteSplashWidth
+- uid: Fluxer.Net.PartialGuild.InviteSplashHeight*
+  commentId: Overload:Fluxer.Net.PartialGuild.InviteSplashHeight
+  href: Fluxer.Net.PartialGuild.html#Fluxer_Net_PartialGuild_InviteSplashHeight
+  name: InviteSplashHeight
+  nameWithType: PartialGuild.InviteSplashHeight
+  fullName: Fluxer.Net.PartialGuild.InviteSplashHeight
+- uid: Fluxer.Net.IPartialGuild.InviteSplashHeight
+  commentId: P:Fluxer.Net.IPartialGuild.InviteSplashHeight
+  parent: Fluxer.Net.IPartialGuild
+  href: Fluxer.Net.IPartialGuild.html#Fluxer_Net_IPartialGuild_InviteSplashHeight
+  name: InviteSplashHeight
+  nameWithType: IPartialGuild.InviteSplashHeight
+  fullName: Fluxer.Net.IPartialGuild.InviteSplashHeight
+- uid: Fluxer.Net.PartialGuild.SplashCardAligment*
+  commentId: Overload:Fluxer.Net.PartialGuild.SplashCardAligment
+  href: Fluxer.Net.PartialGuild.html#Fluxer_Net_PartialGuild_SplashCardAligment
+  name: SplashCardAligment
+  nameWithType: PartialGuild.SplashCardAligment
+  fullName: Fluxer.Net.PartialGuild.SplashCardAligment
+- uid: Fluxer.Net.IPartialGuild.SplashCardAligment
+  commentId: P:Fluxer.Net.IPartialGuild.SplashCardAligment
+  parent: Fluxer.Net.IPartialGuild
+  href: Fluxer.Net.IPartialGuild.html#Fluxer_Net_IPartialGuild_SplashCardAligment
+  name: SplashCardAligment
+  nameWithType: IPartialGuild.SplashCardAligment
+  fullName: Fluxer.Net.IPartialGuild.SplashCardAligment
+- uid: Fluxer.Net.GuildSplashCardAlignment
+  commentId: T:Fluxer.Net.GuildSplashCardAlignment
+  parent: Fluxer.Net
+  href: Fluxer.Net.GuildSplashCardAlignment.html
+  name: GuildSplashCardAlignment
+  nameWithType: GuildSplashCardAlignment
+  fullName: Fluxer.Net.GuildSplashCardAlignment
+- uid: Fluxer.Net.PartialGuild.Features*
+  commentId: Overload:Fluxer.Net.PartialGuild.Features
+  href: Fluxer.Net.PartialGuild.html#Fluxer_Net_PartialGuild_Features
+  name: Features
+  nameWithType: PartialGuild.Features
+  fullName: Fluxer.Net.PartialGuild.Features
+- uid: Fluxer.Net.GuildFeatures
+  commentId: T:Fluxer.Net.GuildFeatures
+  parent: Fluxer.Net
+  href: Fluxer.Net.GuildFeatures.html
+  name: GuildFeatures
+  nameWithType: GuildFeatures
+  fullName: Fluxer.Net.GuildFeatures
+- uid: Fluxer.Net.PartialGuild.Create*
+  commentId: Overload:Fluxer.Net.PartialGuild.Create
+  href: Fluxer.Net.PartialGuild.html#Fluxer_Net_PartialGuild_Create_Fluxer_Net_FluxerBaseClient_Fluxer_Net_PartialGuildJson_
+  name: Create
+  nameWithType: PartialGuild.Create
+  fullName: Fluxer.Net.PartialGuild.Create
+- uid: Fluxer.Net.FluxerBaseClient
+  commentId: T:Fluxer.Net.FluxerBaseClient
+  parent: Fluxer.Net
+  href: Fluxer.Net.FluxerBaseClient.html
+  name: FluxerBaseClient
+  nameWithType: FluxerBaseClient
+  fullName: Fluxer.Net.FluxerBaseClient
+- uid: Fluxer.Net.PartialGuildJson
+  commentId: T:Fluxer.Net.PartialGuildJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.PartialGuildJson.html
+  name: PartialGuildJson
+  nameWithType: PartialGuildJson
+  fullName: Fluxer.Net.PartialGuildJson
+- uid: Fluxer.Net.PartialGuild
+  commentId: T:Fluxer.Net.PartialGuild
+  parent: Fluxer.Net
+  href: Fluxer.Net.PartialGuild.html
+  name: PartialGuild
+  nameWithType: PartialGuild
+  fullName: Fluxer.Net.PartialGuild
+- uid: Fluxer.Net.PartialGuild.GetIconUrl*
+  commentId: Overload:Fluxer.Net.PartialGuild.GetIconUrl
+  href: Fluxer.Net.PartialGuild.html#Fluxer_Net_PartialGuild_GetIconUrl_System_Int32_
+  name: GetIconUrl
+  nameWithType: PartialGuild.GetIconUrl
+  fullName: Fluxer.Net.PartialGuild.GetIconUrl
+- uid: Fluxer.Net.IPartialGuild.GetIconUrl(System.Int32)
+  commentId: M:Fluxer.Net.IPartialGuild.GetIconUrl(System.Int32)
+  parent: Fluxer.Net.IPartialGuild
+  isExternal: true
+  href: Fluxer.Net.IPartialGuild.html#Fluxer_Net_IPartialGuild_GetIconUrl_System_Int32_
+  name: GetIconUrl(int)
+  nameWithType: IPartialGuild.GetIconUrl(int)
+  fullName: Fluxer.Net.IPartialGuild.GetIconUrl(int)
+  nameWithType.vb: IPartialGuild.GetIconUrl(Integer)
+  fullName.vb: Fluxer.Net.IPartialGuild.GetIconUrl(Integer)
+  name.vb: GetIconUrl(Integer)
+  spec.csharp:
+  - uid: Fluxer.Net.IPartialGuild.GetIconUrl(System.Int32)
+    name: GetIconUrl
+    href: Fluxer.Net.IPartialGuild.html#Fluxer_Net_IPartialGuild_GetIconUrl_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Fluxer.Net.IPartialGuild.GetIconUrl(System.Int32)
+    name: GetIconUrl
+    href: Fluxer.Net.IPartialGuild.html#Fluxer_Net_IPartialGuild_GetIconUrl_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: Fluxer.Net.PartialGuild.GetBannerUrl*
+  commentId: Overload:Fluxer.Net.PartialGuild.GetBannerUrl
+  href: Fluxer.Net.PartialGuild.html#Fluxer_Net_PartialGuild_GetBannerUrl_System_Int32_
+  name: GetBannerUrl
+  nameWithType: PartialGuild.GetBannerUrl
+  fullName: Fluxer.Net.PartialGuild.GetBannerUrl
+- uid: Fluxer.Net.IPartialGuild.GetBannerUrl(System.Int32)
+  commentId: M:Fluxer.Net.IPartialGuild.GetBannerUrl(System.Int32)
+  parent: Fluxer.Net.IPartialGuild
+  isExternal: true
+  href: Fluxer.Net.IPartialGuild.html#Fluxer_Net_IPartialGuild_GetBannerUrl_System_Int32_
+  name: GetBannerUrl(int)
+  nameWithType: IPartialGuild.GetBannerUrl(int)
+  fullName: Fluxer.Net.IPartialGuild.GetBannerUrl(int)
+  nameWithType.vb: IPartialGuild.GetBannerUrl(Integer)
+  fullName.vb: Fluxer.Net.IPartialGuild.GetBannerUrl(Integer)
+  name.vb: GetBannerUrl(Integer)
+  spec.csharp:
+  - uid: Fluxer.Net.IPartialGuild.GetBannerUrl(System.Int32)
+    name: GetBannerUrl
+    href: Fluxer.Net.IPartialGuild.html#Fluxer_Net_IPartialGuild_GetBannerUrl_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Fluxer.Net.IPartialGuild.GetBannerUrl(System.Int32)
+    name: GetBannerUrl
+    href: Fluxer.Net.IPartialGuild.html#Fluxer_Net_IPartialGuild_GetBannerUrl_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Fluxer.Net.PartialGuild.GetInviteSplashUrl*
+  commentId: Overload:Fluxer.Net.PartialGuild.GetInviteSplashUrl
+  href: Fluxer.Net.PartialGuild.html#Fluxer_Net_PartialGuild_GetInviteSplashUrl_System_Int32_
+  name: GetInviteSplashUrl
+  nameWithType: PartialGuild.GetInviteSplashUrl
+  fullName: Fluxer.Net.PartialGuild.GetInviteSplashUrl
+- uid: Fluxer.Net.IPartialGuild.GetInviteSplashUrl(System.Int32)
+  commentId: M:Fluxer.Net.IPartialGuild.GetInviteSplashUrl(System.Int32)
+  parent: Fluxer.Net.IPartialGuild
+  isExternal: true
+  href: Fluxer.Net.IPartialGuild.html#Fluxer_Net_IPartialGuild_GetInviteSplashUrl_System_Int32_
+  name: GetInviteSplashUrl(int)
+  nameWithType: IPartialGuild.GetInviteSplashUrl(int)
+  fullName: Fluxer.Net.IPartialGuild.GetInviteSplashUrl(int)
+  nameWithType.vb: IPartialGuild.GetInviteSplashUrl(Integer)
+  fullName.vb: Fluxer.Net.IPartialGuild.GetInviteSplashUrl(Integer)
+  name.vb: GetInviteSplashUrl(Integer)
+  spec.csharp:
+  - uid: Fluxer.Net.IPartialGuild.GetInviteSplashUrl(System.Int32)
+    name: GetInviteSplashUrl
+    href: Fluxer.Net.IPartialGuild.html#Fluxer_Net_IPartialGuild_GetInviteSplashUrl_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Fluxer.Net.IPartialGuild.GetInviteSplashUrl(System.Int32)
+    name: GetInviteSplashUrl
+    href: Fluxer.Net.IPartialGuild.html#Fluxer_Net_IPartialGuild_GetInviteSplashUrl_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Fluxer.Net.PartialGuild.GetEmbedSplashUrl*
+  commentId: Overload:Fluxer.Net.PartialGuild.GetEmbedSplashUrl
+  href: Fluxer.Net.PartialGuild.html#Fluxer_Net_PartialGuild_GetEmbedSplashUrl_System_Int32_
+  name: GetEmbedSplashUrl
+  nameWithType: PartialGuild.GetEmbedSplashUrl
+  fullName: Fluxer.Net.PartialGuild.GetEmbedSplashUrl
+- uid: Fluxer.Net.IPartialGuild.GetEmbedSplashUrl(System.Int32)
+  commentId: M:Fluxer.Net.IPartialGuild.GetEmbedSplashUrl(System.Int32)
+  parent: Fluxer.Net.IPartialGuild
+  isExternal: true
+  href: Fluxer.Net.IPartialGuild.html#Fluxer_Net_IPartialGuild_GetEmbedSplashUrl_System_Int32_
+  name: GetEmbedSplashUrl(int)
+  nameWithType: IPartialGuild.GetEmbedSplashUrl(int)
+  fullName: Fluxer.Net.IPartialGuild.GetEmbedSplashUrl(int)
+  nameWithType.vb: IPartialGuild.GetEmbedSplashUrl(Integer)
+  fullName.vb: Fluxer.Net.IPartialGuild.GetEmbedSplashUrl(Integer)
+  name.vb: GetEmbedSplashUrl(Integer)
+  spec.csharp:
+  - uid: Fluxer.Net.IPartialGuild.GetEmbedSplashUrl(System.Int32)
+    name: GetEmbedSplashUrl
+    href: Fluxer.Net.IPartialGuild.html#Fluxer_Net_IPartialGuild_GetEmbedSplashUrl_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Fluxer.Net.IPartialGuild.GetEmbedSplashUrl(System.Int32)
+    name: GetEmbedSplashUrl
+    href: Fluxer.Net.IPartialGuild.html#Fluxer_Net_IPartialGuild_GetEmbedSplashUrl_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )

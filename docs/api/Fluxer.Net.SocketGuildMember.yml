@@ -1,0 +1,1688 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.SocketGuildMember
+  commentId: T:Fluxer.Net.SocketGuildMember
+  id: SocketGuildMember
+  parent: Fluxer.Net
+  children:
+  - Fluxer.Net.SocketGuildMember.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.GuildMemberJson)
+  - Fluxer.Net.SocketGuildMember.Guild
+  - Fluxer.Net.SocketGuildMember.HasPermission(Fluxer.Net.Permissions)
+  - Fluxer.Net.SocketGuildMember.Roles
+  - Fluxer.Net.SocketGuildMember.VoiceStates
+  langs:
+  - csharp
+  - vb
+  name: SocketGuildMember
+  nameWithType: SocketGuildMember
+  fullName: Fluxer.Net.SocketGuildMember
+  type: Class
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/Members/SocketGuildMember.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: SocketGuildMember
+    path: ../Fluxer.Net/Data/Guilds/Members/SocketGuildMember.cs
+    startLine: 7
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Cached Guild Member.
+  example: []
+  syntax:
+    content: 'public class SocketGuildMember : GuildMember, IGuildMember'
+    content.vb: Public Class SocketGuildMember Inherits GuildMember Implements IGuildMember
+  inheritance:
+  - System.Object
+  - Fluxer.Net.Entity
+  - Fluxer.Net.GuildMember
+  implements:
+  - Fluxer.Net.IGuildMember
+  inheritedMembers:
+  - Fluxer.Net.GuildMember.UserId
+  - Fluxer.Net.GuildMember.Mention
+  - Fluxer.Net.GuildMember.GuildId
+  - Fluxer.Net.GuildMember.User
+  - Fluxer.Net.GuildMember.JoinedAt
+  - Fluxer.Net.GuildMember.Nickname
+  - Fluxer.Net.GuildMember.AvatarHash
+  - Fluxer.Net.GuildMember.BannerHash
+  - Fluxer.Net.GuildMember.AccentColor
+  - Fluxer.Net.GuildMember.IsDeaf
+  - Fluxer.Net.GuildMember.IsMute
+  - Fluxer.Net.GuildMember.CommunicationDisabledUntil
+  - Fluxer.Net.GuildMember.RoleIds
+  - Fluxer.Net.GuildMember.GetCurrentName
+  - Fluxer.Net.GuildMember.GetDefaultAvatarUrl
+  - Fluxer.Net.GuildMember.GetAvatarUrl(System.Int32)
+  - Fluxer.Net.GuildMember.GetAvatarOrDefaultUrl(System.Int32)
+  - Fluxer.Net.GuildMember.GetBannerUrl(System.Int32)
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  extensionMethods:
+  - Fluxer.Net.GuildMember.Fluxer.Net.MemberHelpers.AddRoleAsync(Fluxer.Net.Role)
+  - Fluxer.Net.GuildMember.Fluxer.Net.MemberHelpers.AddRoleAsync(System.UInt64)
+  - Fluxer.Net.GuildMember.Fluxer.Net.MemberHelpers.BanAsync(Fluxer.Net.CreateGuildBanRequest)
+  - Fluxer.Net.GuildMember.Fluxer.Net.MemberHelpers.KickAsync
+  - Fluxer.Net.GuildMember.Fluxer.Net.MemberHelpers.ModifyAsync(Fluxer.Net.GuildMemberJson)
+  - Fluxer.Net.GuildMember.Fluxer.Net.MemberHelpers.RemoveRoleAsync(Fluxer.Net.Role)
+  - Fluxer.Net.GuildMember.Fluxer.Net.MemberHelpers.RemoveRoleAsync(System.UInt64)
+  - Fluxer.Net.GuildMember.Fluxer.Net.MemberHelpers.SetNicknameAsync(System.String)
+  - Fluxer.Net.GuildMember.Fluxer.Net.MemberHelpers.SetTimeoutAsync(System.Nullable{System.DateTime})
+- uid: Fluxer.Net.SocketGuildMember.Guild
+  commentId: P:Fluxer.Net.SocketGuildMember.Guild
+  id: Guild
+  parent: Fluxer.Net.SocketGuildMember
+  langs:
+  - csharp
+  - vb
+  name: Guild
+  nameWithType: SocketGuildMember.Guild
+  fullName: Fluxer.Net.SocketGuildMember.Guild
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/Members/SocketGuildMember.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Guild
+    path: ../Fluxer.Net/Data/Guilds/Members/SocketGuildMember.cs
+    startLine: 12
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Guild that the member is for.
+  example: []
+  syntax:
+    content: public SocketGuild Guild { get; }
+    parameters: []
+    return:
+      type: Fluxer.Net.SocketGuild
+    content.vb: Public Property Guild As SocketGuild
+  overload: Fluxer.Net.SocketGuildMember.Guild*
+- uid: Fluxer.Net.SocketGuildMember.VoiceStates
+  commentId: P:Fluxer.Net.SocketGuildMember.VoiceStates
+  id: VoiceStates
+  parent: Fluxer.Net.SocketGuildMember
+  langs:
+  - csharp
+  - vb
+  name: VoiceStates
+  nameWithType: SocketGuildMember.VoiceStates
+  fullName: Fluxer.Net.SocketGuildMember.VoiceStates
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/Members/SocketGuildMember.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: VoiceStates
+    path: ../Fluxer.Net/Data/Guilds/Members/SocketGuildMember.cs
+    startLine: 14
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: public ConcurrentDictionary<string, SocketVoiceState> VoiceStates { get; }
+    parameters: []
+    return:
+      type: System.Collections.Concurrent.ConcurrentDictionary{System.String,Fluxer.Net.SocketVoiceState}
+    content.vb: Public Property VoiceStates As ConcurrentDictionary(Of String, SocketVoiceState)
+  overload: Fluxer.Net.SocketGuildMember.VoiceStates*
+- uid: Fluxer.Net.SocketGuildMember.Roles
+  commentId: P:Fluxer.Net.SocketGuildMember.Roles
+  id: Roles
+  parent: Fluxer.Net.SocketGuildMember
+  langs:
+  - csharp
+  - vb
+  name: Roles
+  nameWithType: SocketGuildMember.Roles
+  fullName: Fluxer.Net.SocketGuildMember.Roles
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/Members/SocketGuildMember.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Roles
+    path: ../Fluxer.Net/Data/Guilds/Members/SocketGuildMember.cs
+    startLine: 16
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: public IEnumerable<SocketRole> Roles { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IEnumerable{Fluxer.Net.SocketRole}
+    content.vb: Public ReadOnly Property Roles As IEnumerable(Of SocketRole)
+  overload: Fluxer.Net.SocketGuildMember.Roles*
+- uid: Fluxer.Net.SocketGuildMember.HasPermission(Fluxer.Net.Permissions)
+  commentId: M:Fluxer.Net.SocketGuildMember.HasPermission(Fluxer.Net.Permissions)
+  id: HasPermission(Fluxer.Net.Permissions)
+  parent: Fluxer.Net.SocketGuildMember
+  langs:
+  - csharp
+  - vb
+  name: HasPermission(Permissions)
+  nameWithType: SocketGuildMember.HasPermission(Permissions)
+  fullName: Fluxer.Net.SocketGuildMember.HasPermission(Fluxer.Net.Permissions)
+  type: Method
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/Members/SocketGuildMember.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: HasPermission
+    path: ../Fluxer.Net/Data/Guilds/Members/SocketGuildMember.cs
+    startLine: 19
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: public bool HasPermission(Permissions permission)
+    parameters:
+    - id: permission
+      type: Fluxer.Net.Permissions
+    return:
+      type: System.Boolean
+    content.vb: Public Function HasPermission(permission As Permissions) As Boolean
+  overload: Fluxer.Net.SocketGuildMember.HasPermission*
+- uid: Fluxer.Net.SocketGuildMember.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.GuildMemberJson)
+  commentId: M:Fluxer.Net.SocketGuildMember.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.GuildMemberJson)
+  id: Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.GuildMemberJson)
+  parent: Fluxer.Net.SocketGuildMember
+  langs:
+  - csharp
+  - vb
+  name: Create(FluxerBaseClient, GuildMemberJson)
+  nameWithType: SocketGuildMember.Create(FluxerBaseClient, GuildMemberJson)
+  fullName: Fluxer.Net.SocketGuildMember.Create(Fluxer.Net.FluxerBaseClient, Fluxer.Net.GuildMemberJson)
+  type: Method
+  source:
+    remote:
+      path: Fluxer.Net/Data/Guilds/Members/SocketGuildMember.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Create
+    path: ../Fluxer.Net/Data/Guilds/Members/SocketGuildMember.cs
+    startLine: 35
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: public static SocketGuildMember Create(FluxerBaseClient client, GuildMemberJson json)
+    parameters:
+    - id: client
+      type: Fluxer.Net.FluxerBaseClient
+    - id: json
+      type: Fluxer.Net.GuildMemberJson
+    return:
+      type: Fluxer.Net.SocketGuildMember
+    content.vb: Public Shared Function Create(client As FluxerBaseClient, json As GuildMemberJson) As SocketGuildMember
+  overload: Fluxer.Net.SocketGuildMember.Create*
+references:
+- uid: Fluxer.Net
+  commentId: N:Fluxer.Net
+  href: Fluxer.html
+  name: Fluxer.Net
+  nameWithType: Fluxer.Net
+  fullName: Fluxer.Net
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Fluxer.Net.Entity
+  commentId: T:Fluxer.Net.Entity
+  parent: Fluxer.Net
+  href: Fluxer.Net.Entity.html
+  name: Entity
+  nameWithType: Entity
+  fullName: Fluxer.Net.Entity
+- uid: Fluxer.Net.GuildMember
+  commentId: T:Fluxer.Net.GuildMember
+  parent: Fluxer.Net
+  href: Fluxer.Net.GuildMember.html
+  name: GuildMember
+  nameWithType: GuildMember
+  fullName: Fluxer.Net.GuildMember
+- uid: Fluxer.Net.IGuildMember
+  commentId: T:Fluxer.Net.IGuildMember
+  parent: Fluxer.Net
+  href: Fluxer.Net.IGuildMember.html
+  name: IGuildMember
+  nameWithType: IGuildMember
+  fullName: Fluxer.Net.IGuildMember
+- uid: Fluxer.Net.GuildMember.UserId
+  commentId: P:Fluxer.Net.GuildMember.UserId
+  parent: Fluxer.Net.GuildMember
+  href: Fluxer.Net.GuildMember.html#Fluxer_Net_GuildMember_UserId
+  name: UserId
+  nameWithType: GuildMember.UserId
+  fullName: Fluxer.Net.GuildMember.UserId
+- uid: Fluxer.Net.GuildMember.Mention
+  commentId: P:Fluxer.Net.GuildMember.Mention
+  parent: Fluxer.Net.GuildMember
+  href: Fluxer.Net.GuildMember.html#Fluxer_Net_GuildMember_Mention
+  name: Mention
+  nameWithType: GuildMember.Mention
+  fullName: Fluxer.Net.GuildMember.Mention
+- uid: Fluxer.Net.GuildMember.GuildId
+  commentId: P:Fluxer.Net.GuildMember.GuildId
+  parent: Fluxer.Net.GuildMember
+  href: Fluxer.Net.GuildMember.html#Fluxer_Net_GuildMember_GuildId
+  name: GuildId
+  nameWithType: GuildMember.GuildId
+  fullName: Fluxer.Net.GuildMember.GuildId
+- uid: Fluxer.Net.GuildMember.User
+  commentId: P:Fluxer.Net.GuildMember.User
+  parent: Fluxer.Net.GuildMember
+  href: Fluxer.Net.GuildMember.html#Fluxer_Net_GuildMember_User
+  name: User
+  nameWithType: GuildMember.User
+  fullName: Fluxer.Net.GuildMember.User
+- uid: Fluxer.Net.GuildMember.JoinedAt
+  commentId: P:Fluxer.Net.GuildMember.JoinedAt
+  parent: Fluxer.Net.GuildMember
+  href: Fluxer.Net.GuildMember.html#Fluxer_Net_GuildMember_JoinedAt
+  name: JoinedAt
+  nameWithType: GuildMember.JoinedAt
+  fullName: Fluxer.Net.GuildMember.JoinedAt
+- uid: Fluxer.Net.GuildMember.Nickname
+  commentId: P:Fluxer.Net.GuildMember.Nickname
+  parent: Fluxer.Net.GuildMember
+  href: Fluxer.Net.GuildMember.html#Fluxer_Net_GuildMember_Nickname
+  name: Nickname
+  nameWithType: GuildMember.Nickname
+  fullName: Fluxer.Net.GuildMember.Nickname
+- uid: Fluxer.Net.GuildMember.AvatarHash
+  commentId: P:Fluxer.Net.GuildMember.AvatarHash
+  parent: Fluxer.Net.GuildMember
+  href: Fluxer.Net.GuildMember.html#Fluxer_Net_GuildMember_AvatarHash
+  name: AvatarHash
+  nameWithType: GuildMember.AvatarHash
+  fullName: Fluxer.Net.GuildMember.AvatarHash
+- uid: Fluxer.Net.GuildMember.BannerHash
+  commentId: P:Fluxer.Net.GuildMember.BannerHash
+  parent: Fluxer.Net.GuildMember
+  href: Fluxer.Net.GuildMember.html#Fluxer_Net_GuildMember_BannerHash
+  name: BannerHash
+  nameWithType: GuildMember.BannerHash
+  fullName: Fluxer.Net.GuildMember.BannerHash
+- uid: Fluxer.Net.GuildMember.AccentColor
+  commentId: P:Fluxer.Net.GuildMember.AccentColor
+  parent: Fluxer.Net.GuildMember
+  href: Fluxer.Net.GuildMember.html#Fluxer_Net_GuildMember_AccentColor
+  name: AccentColor
+  nameWithType: GuildMember.AccentColor
+  fullName: Fluxer.Net.GuildMember.AccentColor
+- uid: Fluxer.Net.GuildMember.IsDeaf
+  commentId: P:Fluxer.Net.GuildMember.IsDeaf
+  parent: Fluxer.Net.GuildMember
+  href: Fluxer.Net.GuildMember.html#Fluxer_Net_GuildMember_IsDeaf
+  name: IsDeaf
+  nameWithType: GuildMember.IsDeaf
+  fullName: Fluxer.Net.GuildMember.IsDeaf
+- uid: Fluxer.Net.GuildMember.IsMute
+  commentId: P:Fluxer.Net.GuildMember.IsMute
+  parent: Fluxer.Net.GuildMember
+  href: Fluxer.Net.GuildMember.html#Fluxer_Net_GuildMember_IsMute
+  name: IsMute
+  nameWithType: GuildMember.IsMute
+  fullName: Fluxer.Net.GuildMember.IsMute
+- uid: Fluxer.Net.GuildMember.CommunicationDisabledUntil
+  commentId: P:Fluxer.Net.GuildMember.CommunicationDisabledUntil
+  parent: Fluxer.Net.GuildMember
+  href: Fluxer.Net.GuildMember.html#Fluxer_Net_GuildMember_CommunicationDisabledUntil
+  name: CommunicationDisabledUntil
+  nameWithType: GuildMember.CommunicationDisabledUntil
+  fullName: Fluxer.Net.GuildMember.CommunicationDisabledUntil
+- uid: Fluxer.Net.GuildMember.RoleIds
+  commentId: P:Fluxer.Net.GuildMember.RoleIds
+  parent: Fluxer.Net.GuildMember
+  href: Fluxer.Net.GuildMember.html#Fluxer_Net_GuildMember_RoleIds
+  name: RoleIds
+  nameWithType: GuildMember.RoleIds
+  fullName: Fluxer.Net.GuildMember.RoleIds
+- uid: Fluxer.Net.GuildMember.GetCurrentName
+  commentId: M:Fluxer.Net.GuildMember.GetCurrentName
+  parent: Fluxer.Net.GuildMember
+  href: Fluxer.Net.GuildMember.html#Fluxer_Net_GuildMember_GetCurrentName
+  name: GetCurrentName()
+  nameWithType: GuildMember.GetCurrentName()
+  fullName: Fluxer.Net.GuildMember.GetCurrentName()
+  spec.csharp:
+  - uid: Fluxer.Net.GuildMember.GetCurrentName
+    name: GetCurrentName
+    href: Fluxer.Net.GuildMember.html#Fluxer_Net_GuildMember_GetCurrentName
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Fluxer.Net.GuildMember.GetCurrentName
+    name: GetCurrentName
+    href: Fluxer.Net.GuildMember.html#Fluxer_Net_GuildMember_GetCurrentName
+  - name: (
+  - name: )
+- uid: Fluxer.Net.GuildMember.GetDefaultAvatarUrl
+  commentId: M:Fluxer.Net.GuildMember.GetDefaultAvatarUrl
+  parent: Fluxer.Net.GuildMember
+  href: Fluxer.Net.GuildMember.html#Fluxer_Net_GuildMember_GetDefaultAvatarUrl
+  name: GetDefaultAvatarUrl()
+  nameWithType: GuildMember.GetDefaultAvatarUrl()
+  fullName: Fluxer.Net.GuildMember.GetDefaultAvatarUrl()
+  spec.csharp:
+  - uid: Fluxer.Net.GuildMember.GetDefaultAvatarUrl
+    name: GetDefaultAvatarUrl
+    href: Fluxer.Net.GuildMember.html#Fluxer_Net_GuildMember_GetDefaultAvatarUrl
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Fluxer.Net.GuildMember.GetDefaultAvatarUrl
+    name: GetDefaultAvatarUrl
+    href: Fluxer.Net.GuildMember.html#Fluxer_Net_GuildMember_GetDefaultAvatarUrl
+  - name: (
+  - name: )
+- uid: Fluxer.Net.GuildMember.GetAvatarUrl(System.Int32)
+  commentId: M:Fluxer.Net.GuildMember.GetAvatarUrl(System.Int32)
+  parent: Fluxer.Net.GuildMember
+  isExternal: true
+  href: Fluxer.Net.GuildMember.html#Fluxer_Net_GuildMember_GetAvatarUrl_System_Int32_
+  name: GetAvatarUrl(int)
+  nameWithType: GuildMember.GetAvatarUrl(int)
+  fullName: Fluxer.Net.GuildMember.GetAvatarUrl(int)
+  nameWithType.vb: GuildMember.GetAvatarUrl(Integer)
+  fullName.vb: Fluxer.Net.GuildMember.GetAvatarUrl(Integer)
+  name.vb: GetAvatarUrl(Integer)
+  spec.csharp:
+  - uid: Fluxer.Net.GuildMember.GetAvatarUrl(System.Int32)
+    name: GetAvatarUrl
+    href: Fluxer.Net.GuildMember.html#Fluxer_Net_GuildMember_GetAvatarUrl_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Fluxer.Net.GuildMember.GetAvatarUrl(System.Int32)
+    name: GetAvatarUrl
+    href: Fluxer.Net.GuildMember.html#Fluxer_Net_GuildMember_GetAvatarUrl_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Fluxer.Net.GuildMember.GetAvatarOrDefaultUrl(System.Int32)
+  commentId: M:Fluxer.Net.GuildMember.GetAvatarOrDefaultUrl(System.Int32)
+  parent: Fluxer.Net.GuildMember
+  isExternal: true
+  href: Fluxer.Net.GuildMember.html#Fluxer_Net_GuildMember_GetAvatarOrDefaultUrl_System_Int32_
+  name: GetAvatarOrDefaultUrl(int)
+  nameWithType: GuildMember.GetAvatarOrDefaultUrl(int)
+  fullName: Fluxer.Net.GuildMember.GetAvatarOrDefaultUrl(int)
+  nameWithType.vb: GuildMember.GetAvatarOrDefaultUrl(Integer)
+  fullName.vb: Fluxer.Net.GuildMember.GetAvatarOrDefaultUrl(Integer)
+  name.vb: GetAvatarOrDefaultUrl(Integer)
+  spec.csharp:
+  - uid: Fluxer.Net.GuildMember.GetAvatarOrDefaultUrl(System.Int32)
+    name: GetAvatarOrDefaultUrl
+    href: Fluxer.Net.GuildMember.html#Fluxer_Net_GuildMember_GetAvatarOrDefaultUrl_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Fluxer.Net.GuildMember.GetAvatarOrDefaultUrl(System.Int32)
+    name: GetAvatarOrDefaultUrl
+    href: Fluxer.Net.GuildMember.html#Fluxer_Net_GuildMember_GetAvatarOrDefaultUrl_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Fluxer.Net.GuildMember.GetBannerUrl(System.Int32)
+  commentId: M:Fluxer.Net.GuildMember.GetBannerUrl(System.Int32)
+  parent: Fluxer.Net.GuildMember
+  isExternal: true
+  href: Fluxer.Net.GuildMember.html#Fluxer_Net_GuildMember_GetBannerUrl_System_Int32_
+  name: GetBannerUrl(int)
+  nameWithType: GuildMember.GetBannerUrl(int)
+  fullName: Fluxer.Net.GuildMember.GetBannerUrl(int)
+  nameWithType.vb: GuildMember.GetBannerUrl(Integer)
+  fullName.vb: Fluxer.Net.GuildMember.GetBannerUrl(Integer)
+  name.vb: GetBannerUrl(Integer)
+  spec.csharp:
+  - uid: Fluxer.Net.GuildMember.GetBannerUrl(System.Int32)
+    name: GetBannerUrl
+    href: Fluxer.Net.GuildMember.html#Fluxer_Net_GuildMember_GetBannerUrl_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Fluxer.Net.GuildMember.GetBannerUrl(System.Int32)
+    name: GetBannerUrl
+    href: Fluxer.Net.GuildMember.html#Fluxer_Net_GuildMember_GetBannerUrl_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: Fluxer.Net.GuildMember.Fluxer.Net.MemberHelpers.AddRoleAsync(Fluxer.Net.Role)
+  commentId: M:Fluxer.Net.MemberHelpers.AddRoleAsync(Fluxer.Net.GuildMember,Fluxer.Net.Role)
+  parent: Fluxer.Net.MemberHelpers
+  definition: Fluxer.Net.MemberHelpers.AddRoleAsync(Fluxer.Net.GuildMember,Fluxer.Net.Role)
+  href: Fluxer.Net.MemberHelpers.html#Fluxer_Net_MemberHelpers_AddRoleAsync_Fluxer_Net_GuildMember_Fluxer_Net_Role_
+  name: AddRoleAsync(GuildMember, Role)
+  nameWithType: MemberHelpers.AddRoleAsync(GuildMember, Role)
+  fullName: Fluxer.Net.MemberHelpers.AddRoleAsync(Fluxer.Net.GuildMember, Fluxer.Net.Role)
+  spec.csharp:
+  - uid: Fluxer.Net.MemberHelpers.AddRoleAsync(Fluxer.Net.GuildMember,Fluxer.Net.Role)
+    name: AddRoleAsync
+    href: Fluxer.Net.MemberHelpers.html#Fluxer_Net_MemberHelpers_AddRoleAsync_Fluxer_Net_GuildMember_Fluxer_Net_Role_
+  - name: (
+  - uid: Fluxer.Net.GuildMember
+    name: GuildMember
+    href: Fluxer.Net.GuildMember.html
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.Role
+    name: Role
+    href: Fluxer.Net.Role.html
+  - name: )
+  spec.vb:
+  - uid: Fluxer.Net.MemberHelpers.AddRoleAsync(Fluxer.Net.GuildMember,Fluxer.Net.Role)
+    name: AddRoleAsync
+    href: Fluxer.Net.MemberHelpers.html#Fluxer_Net_MemberHelpers_AddRoleAsync_Fluxer_Net_GuildMember_Fluxer_Net_Role_
+  - name: (
+  - uid: Fluxer.Net.GuildMember
+    name: GuildMember
+    href: Fluxer.Net.GuildMember.html
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.Role
+    name: Role
+    href: Fluxer.Net.Role.html
+  - name: )
+- uid: Fluxer.Net.GuildMember.Fluxer.Net.MemberHelpers.AddRoleAsync(System.UInt64)
+  commentId: M:Fluxer.Net.MemberHelpers.AddRoleAsync(Fluxer.Net.GuildMember,System.UInt64)
+  parent: Fluxer.Net.MemberHelpers
+  definition: Fluxer.Net.MemberHelpers.AddRoleAsync(Fluxer.Net.GuildMember,System.UInt64)
+  href: Fluxer.Net.MemberHelpers.html#Fluxer_Net_MemberHelpers_AddRoleAsync_Fluxer_Net_GuildMember_System_UInt64_
+  name: AddRoleAsync(GuildMember, ulong)
+  nameWithType: MemberHelpers.AddRoleAsync(GuildMember, ulong)
+  fullName: Fluxer.Net.MemberHelpers.AddRoleAsync(Fluxer.Net.GuildMember, ulong)
+  nameWithType.vb: MemberHelpers.AddRoleAsync(GuildMember, ULong)
+  fullName.vb: Fluxer.Net.MemberHelpers.AddRoleAsync(Fluxer.Net.GuildMember, ULong)
+  name.vb: AddRoleAsync(GuildMember, ULong)
+  spec.csharp:
+  - uid: Fluxer.Net.MemberHelpers.AddRoleAsync(Fluxer.Net.GuildMember,System.UInt64)
+    name: AddRoleAsync
+    href: Fluxer.Net.MemberHelpers.html#Fluxer_Net_MemberHelpers_AddRoleAsync_Fluxer_Net_GuildMember_System_UInt64_
+  - name: (
+  - uid: Fluxer.Net.GuildMember
+    name: GuildMember
+    href: Fluxer.Net.GuildMember.html
+  - name: ','
+  - name: " "
+  - uid: System.UInt64
+    name: ulong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: )
+  spec.vb:
+  - uid: Fluxer.Net.MemberHelpers.AddRoleAsync(Fluxer.Net.GuildMember,System.UInt64)
+    name: AddRoleAsync
+    href: Fluxer.Net.MemberHelpers.html#Fluxer_Net_MemberHelpers_AddRoleAsync_Fluxer_Net_GuildMember_System_UInt64_
+  - name: (
+  - uid: Fluxer.Net.GuildMember
+    name: GuildMember
+    href: Fluxer.Net.GuildMember.html
+  - name: ','
+  - name: " "
+  - uid: System.UInt64
+    name: ULong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: )
+- uid: Fluxer.Net.GuildMember.Fluxer.Net.MemberHelpers.BanAsync(Fluxer.Net.CreateGuildBanRequest)
+  commentId: M:Fluxer.Net.MemberHelpers.BanAsync(Fluxer.Net.GuildMember,Fluxer.Net.CreateGuildBanRequest)
+  parent: Fluxer.Net.MemberHelpers
+  definition: Fluxer.Net.MemberHelpers.BanAsync(Fluxer.Net.GuildMember,Fluxer.Net.CreateGuildBanRequest)
+  href: Fluxer.Net.MemberHelpers.html#Fluxer_Net_MemberHelpers_BanAsync_Fluxer_Net_GuildMember_Fluxer_Net_CreateGuildBanRequest_
+  name: BanAsync(GuildMember, CreateGuildBanRequest)
+  nameWithType: MemberHelpers.BanAsync(GuildMember, CreateGuildBanRequest)
+  fullName: Fluxer.Net.MemberHelpers.BanAsync(Fluxer.Net.GuildMember, Fluxer.Net.CreateGuildBanRequest)
+  spec.csharp:
+  - uid: Fluxer.Net.MemberHelpers.BanAsync(Fluxer.Net.GuildMember,Fluxer.Net.CreateGuildBanRequest)
+    name: BanAsync
+    href: Fluxer.Net.MemberHelpers.html#Fluxer_Net_MemberHelpers_BanAsync_Fluxer_Net_GuildMember_Fluxer_Net_CreateGuildBanRequest_
+  - name: (
+  - uid: Fluxer.Net.GuildMember
+    name: GuildMember
+    href: Fluxer.Net.GuildMember.html
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.CreateGuildBanRequest
+    name: CreateGuildBanRequest
+    href: Fluxer.Net.CreateGuildBanRequest.html
+  - name: )
+  spec.vb:
+  - uid: Fluxer.Net.MemberHelpers.BanAsync(Fluxer.Net.GuildMember,Fluxer.Net.CreateGuildBanRequest)
+    name: BanAsync
+    href: Fluxer.Net.MemberHelpers.html#Fluxer_Net_MemberHelpers_BanAsync_Fluxer_Net_GuildMember_Fluxer_Net_CreateGuildBanRequest_
+  - name: (
+  - uid: Fluxer.Net.GuildMember
+    name: GuildMember
+    href: Fluxer.Net.GuildMember.html
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.CreateGuildBanRequest
+    name: CreateGuildBanRequest
+    href: Fluxer.Net.CreateGuildBanRequest.html
+  - name: )
+- uid: Fluxer.Net.GuildMember.Fluxer.Net.MemberHelpers.KickAsync
+  commentId: M:Fluxer.Net.MemberHelpers.KickAsync(Fluxer.Net.GuildMember)
+  parent: Fluxer.Net.MemberHelpers
+  definition: Fluxer.Net.MemberHelpers.KickAsync(Fluxer.Net.GuildMember)
+  href: Fluxer.Net.MemberHelpers.html#Fluxer_Net_MemberHelpers_KickAsync_Fluxer_Net_GuildMember_
+  name: KickAsync(GuildMember)
+  nameWithType: MemberHelpers.KickAsync(GuildMember)
+  fullName: Fluxer.Net.MemberHelpers.KickAsync(Fluxer.Net.GuildMember)
+  spec.csharp:
+  - uid: Fluxer.Net.MemberHelpers.KickAsync(Fluxer.Net.GuildMember)
+    name: KickAsync
+    href: Fluxer.Net.MemberHelpers.html#Fluxer_Net_MemberHelpers_KickAsync_Fluxer_Net_GuildMember_
+  - name: (
+  - uid: Fluxer.Net.GuildMember
+    name: GuildMember
+    href: Fluxer.Net.GuildMember.html
+  - name: )
+  spec.vb:
+  - uid: Fluxer.Net.MemberHelpers.KickAsync(Fluxer.Net.GuildMember)
+    name: KickAsync
+    href: Fluxer.Net.MemberHelpers.html#Fluxer_Net_MemberHelpers_KickAsync_Fluxer_Net_GuildMember_
+  - name: (
+  - uid: Fluxer.Net.GuildMember
+    name: GuildMember
+    href: Fluxer.Net.GuildMember.html
+  - name: )
+- uid: Fluxer.Net.GuildMember.Fluxer.Net.MemberHelpers.ModifyAsync(Fluxer.Net.GuildMemberJson)
+  commentId: M:Fluxer.Net.MemberHelpers.ModifyAsync(Fluxer.Net.GuildMember,Fluxer.Net.GuildMemberJson)
+  parent: Fluxer.Net.MemberHelpers
+  definition: Fluxer.Net.MemberHelpers.ModifyAsync(Fluxer.Net.GuildMember,Fluxer.Net.GuildMemberJson)
+  href: Fluxer.Net.MemberHelpers.html#Fluxer_Net_MemberHelpers_ModifyAsync_Fluxer_Net_GuildMember_Fluxer_Net_GuildMemberJson_
+  name: ModifyAsync(GuildMember, GuildMemberJson)
+  nameWithType: MemberHelpers.ModifyAsync(GuildMember, GuildMemberJson)
+  fullName: Fluxer.Net.MemberHelpers.ModifyAsync(Fluxer.Net.GuildMember, Fluxer.Net.GuildMemberJson)
+  spec.csharp:
+  - uid: Fluxer.Net.MemberHelpers.ModifyAsync(Fluxer.Net.GuildMember,Fluxer.Net.GuildMemberJson)
+    name: ModifyAsync
+    href: Fluxer.Net.MemberHelpers.html#Fluxer_Net_MemberHelpers_ModifyAsync_Fluxer_Net_GuildMember_Fluxer_Net_GuildMemberJson_
+  - name: (
+  - uid: Fluxer.Net.GuildMember
+    name: GuildMember
+    href: Fluxer.Net.GuildMember.html
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.GuildMemberJson
+    name: GuildMemberJson
+    href: Fluxer.Net.GuildMemberJson.html
+  - name: )
+  spec.vb:
+  - uid: Fluxer.Net.MemberHelpers.ModifyAsync(Fluxer.Net.GuildMember,Fluxer.Net.GuildMemberJson)
+    name: ModifyAsync
+    href: Fluxer.Net.MemberHelpers.html#Fluxer_Net_MemberHelpers_ModifyAsync_Fluxer_Net_GuildMember_Fluxer_Net_GuildMemberJson_
+  - name: (
+  - uid: Fluxer.Net.GuildMember
+    name: GuildMember
+    href: Fluxer.Net.GuildMember.html
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.GuildMemberJson
+    name: GuildMemberJson
+    href: Fluxer.Net.GuildMemberJson.html
+  - name: )
+- uid: Fluxer.Net.GuildMember.Fluxer.Net.MemberHelpers.RemoveRoleAsync(Fluxer.Net.Role)
+  commentId: M:Fluxer.Net.MemberHelpers.RemoveRoleAsync(Fluxer.Net.GuildMember,Fluxer.Net.Role)
+  parent: Fluxer.Net.MemberHelpers
+  definition: Fluxer.Net.MemberHelpers.RemoveRoleAsync(Fluxer.Net.GuildMember,Fluxer.Net.Role)
+  href: Fluxer.Net.MemberHelpers.html#Fluxer_Net_MemberHelpers_RemoveRoleAsync_Fluxer_Net_GuildMember_Fluxer_Net_Role_
+  name: RemoveRoleAsync(GuildMember, Role)
+  nameWithType: MemberHelpers.RemoveRoleAsync(GuildMember, Role)
+  fullName: Fluxer.Net.MemberHelpers.RemoveRoleAsync(Fluxer.Net.GuildMember, Fluxer.Net.Role)
+  spec.csharp:
+  - uid: Fluxer.Net.MemberHelpers.RemoveRoleAsync(Fluxer.Net.GuildMember,Fluxer.Net.Role)
+    name: RemoveRoleAsync
+    href: Fluxer.Net.MemberHelpers.html#Fluxer_Net_MemberHelpers_RemoveRoleAsync_Fluxer_Net_GuildMember_Fluxer_Net_Role_
+  - name: (
+  - uid: Fluxer.Net.GuildMember
+    name: GuildMember
+    href: Fluxer.Net.GuildMember.html
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.Role
+    name: Role
+    href: Fluxer.Net.Role.html
+  - name: )
+  spec.vb:
+  - uid: Fluxer.Net.MemberHelpers.RemoveRoleAsync(Fluxer.Net.GuildMember,Fluxer.Net.Role)
+    name: RemoveRoleAsync
+    href: Fluxer.Net.MemberHelpers.html#Fluxer_Net_MemberHelpers_RemoveRoleAsync_Fluxer_Net_GuildMember_Fluxer_Net_Role_
+  - name: (
+  - uid: Fluxer.Net.GuildMember
+    name: GuildMember
+    href: Fluxer.Net.GuildMember.html
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.Role
+    name: Role
+    href: Fluxer.Net.Role.html
+  - name: )
+- uid: Fluxer.Net.GuildMember.Fluxer.Net.MemberHelpers.RemoveRoleAsync(System.UInt64)
+  commentId: M:Fluxer.Net.MemberHelpers.RemoveRoleAsync(Fluxer.Net.GuildMember,System.UInt64)
+  parent: Fluxer.Net.MemberHelpers
+  definition: Fluxer.Net.MemberHelpers.RemoveRoleAsync(Fluxer.Net.GuildMember,System.UInt64)
+  href: Fluxer.Net.MemberHelpers.html#Fluxer_Net_MemberHelpers_RemoveRoleAsync_Fluxer_Net_GuildMember_System_UInt64_
+  name: RemoveRoleAsync(GuildMember, ulong)
+  nameWithType: MemberHelpers.RemoveRoleAsync(GuildMember, ulong)
+  fullName: Fluxer.Net.MemberHelpers.RemoveRoleAsync(Fluxer.Net.GuildMember, ulong)
+  nameWithType.vb: MemberHelpers.RemoveRoleAsync(GuildMember, ULong)
+  fullName.vb: Fluxer.Net.MemberHelpers.RemoveRoleAsync(Fluxer.Net.GuildMember, ULong)
+  name.vb: RemoveRoleAsync(GuildMember, ULong)
+  spec.csharp:
+  - uid: Fluxer.Net.MemberHelpers.RemoveRoleAsync(Fluxer.Net.GuildMember,System.UInt64)
+    name: RemoveRoleAsync
+    href: Fluxer.Net.MemberHelpers.html#Fluxer_Net_MemberHelpers_RemoveRoleAsync_Fluxer_Net_GuildMember_System_UInt64_
+  - name: (
+  - uid: Fluxer.Net.GuildMember
+    name: GuildMember
+    href: Fluxer.Net.GuildMember.html
+  - name: ','
+  - name: " "
+  - uid: System.UInt64
+    name: ulong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: )
+  spec.vb:
+  - uid: Fluxer.Net.MemberHelpers.RemoveRoleAsync(Fluxer.Net.GuildMember,System.UInt64)
+    name: RemoveRoleAsync
+    href: Fluxer.Net.MemberHelpers.html#Fluxer_Net_MemberHelpers_RemoveRoleAsync_Fluxer_Net_GuildMember_System_UInt64_
+  - name: (
+  - uid: Fluxer.Net.GuildMember
+    name: GuildMember
+    href: Fluxer.Net.GuildMember.html
+  - name: ','
+  - name: " "
+  - uid: System.UInt64
+    name: ULong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: )
+- uid: Fluxer.Net.GuildMember.Fluxer.Net.MemberHelpers.SetNicknameAsync(System.String)
+  commentId: M:Fluxer.Net.MemberHelpers.SetNicknameAsync(Fluxer.Net.GuildMember,System.String)
+  parent: Fluxer.Net.MemberHelpers
+  definition: Fluxer.Net.MemberHelpers.SetNicknameAsync(Fluxer.Net.GuildMember,System.String)
+  href: Fluxer.Net.MemberHelpers.html#Fluxer_Net_MemberHelpers_SetNicknameAsync_Fluxer_Net_GuildMember_System_String_
+  name: SetNicknameAsync(GuildMember, string)
+  nameWithType: MemberHelpers.SetNicknameAsync(GuildMember, string)
+  fullName: Fluxer.Net.MemberHelpers.SetNicknameAsync(Fluxer.Net.GuildMember, string)
+  nameWithType.vb: MemberHelpers.SetNicknameAsync(GuildMember, String)
+  fullName.vb: Fluxer.Net.MemberHelpers.SetNicknameAsync(Fluxer.Net.GuildMember, String)
+  name.vb: SetNicknameAsync(GuildMember, String)
+  spec.csharp:
+  - uid: Fluxer.Net.MemberHelpers.SetNicknameAsync(Fluxer.Net.GuildMember,System.String)
+    name: SetNicknameAsync
+    href: Fluxer.Net.MemberHelpers.html#Fluxer_Net_MemberHelpers_SetNicknameAsync_Fluxer_Net_GuildMember_System_String_
+  - name: (
+  - uid: Fluxer.Net.GuildMember
+    name: GuildMember
+    href: Fluxer.Net.GuildMember.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: Fluxer.Net.MemberHelpers.SetNicknameAsync(Fluxer.Net.GuildMember,System.String)
+    name: SetNicknameAsync
+    href: Fluxer.Net.MemberHelpers.html#Fluxer_Net_MemberHelpers_SetNicknameAsync_Fluxer_Net_GuildMember_System_String_
+  - name: (
+  - uid: Fluxer.Net.GuildMember
+    name: GuildMember
+    href: Fluxer.Net.GuildMember.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: Fluxer.Net.GuildMember.Fluxer.Net.MemberHelpers.SetTimeoutAsync(System.Nullable{System.DateTime})
+  commentId: M:Fluxer.Net.MemberHelpers.SetTimeoutAsync(Fluxer.Net.GuildMember,System.Nullable{System.DateTime})
+  parent: Fluxer.Net.MemberHelpers
+  definition: Fluxer.Net.MemberHelpers.SetTimeoutAsync(Fluxer.Net.GuildMember,System.Nullable{System.DateTime})
+  href: Fluxer.Net.MemberHelpers.html#Fluxer_Net_MemberHelpers_SetTimeoutAsync_Fluxer_Net_GuildMember_System_Nullable_System_DateTime__
+  name: SetTimeoutAsync(GuildMember, DateTime?)
+  nameWithType: MemberHelpers.SetTimeoutAsync(GuildMember, DateTime?)
+  fullName: Fluxer.Net.MemberHelpers.SetTimeoutAsync(Fluxer.Net.GuildMember, System.DateTime?)
+  nameWithType.vb: MemberHelpers.SetTimeoutAsync(GuildMember, Date?)
+  fullName.vb: Fluxer.Net.MemberHelpers.SetTimeoutAsync(Fluxer.Net.GuildMember, Date?)
+  name.vb: SetTimeoutAsync(GuildMember, Date?)
+  spec.csharp:
+  - uid: Fluxer.Net.MemberHelpers.SetTimeoutAsync(Fluxer.Net.GuildMember,System.Nullable{System.DateTime})
+    name: SetTimeoutAsync
+    href: Fluxer.Net.MemberHelpers.html#Fluxer_Net_MemberHelpers_SetTimeoutAsync_Fluxer_Net_GuildMember_System_Nullable_System_DateTime__
+  - name: (
+  - uid: Fluxer.Net.GuildMember
+    name: GuildMember
+    href: Fluxer.Net.GuildMember.html
+  - name: ','
+  - name: " "
+  - uid: System.DateTime
+    name: DateTime
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.datetime
+  - name: '?'
+  - name: )
+  spec.vb:
+  - uid: Fluxer.Net.MemberHelpers.SetTimeoutAsync(Fluxer.Net.GuildMember,System.Nullable{System.DateTime})
+    name: SetTimeoutAsync
+    href: Fluxer.Net.MemberHelpers.html#Fluxer_Net_MemberHelpers_SetTimeoutAsync_Fluxer_Net_GuildMember_System_Nullable_System_DateTime__
+  - name: (
+  - uid: Fluxer.Net.GuildMember
+    name: GuildMember
+    href: Fluxer.Net.GuildMember.html
+  - name: ','
+  - name: " "
+  - uid: System.DateTime
+    name: Date
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.datetime
+  - name: '?'
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Fluxer.Net.MemberHelpers.AddRoleAsync(Fluxer.Net.GuildMember,Fluxer.Net.Role)
+  commentId: M:Fluxer.Net.MemberHelpers.AddRoleAsync(Fluxer.Net.GuildMember,Fluxer.Net.Role)
+  href: Fluxer.Net.MemberHelpers.html#Fluxer_Net_MemberHelpers_AddRoleAsync_Fluxer_Net_GuildMember_Fluxer_Net_Role_
+  name: AddRoleAsync(GuildMember, Role)
+  nameWithType: MemberHelpers.AddRoleAsync(GuildMember, Role)
+  fullName: Fluxer.Net.MemberHelpers.AddRoleAsync(Fluxer.Net.GuildMember, Fluxer.Net.Role)
+  spec.csharp:
+  - uid: Fluxer.Net.MemberHelpers.AddRoleAsync(Fluxer.Net.GuildMember,Fluxer.Net.Role)
+    name: AddRoleAsync
+    href: Fluxer.Net.MemberHelpers.html#Fluxer_Net_MemberHelpers_AddRoleAsync_Fluxer_Net_GuildMember_Fluxer_Net_Role_
+  - name: (
+  - uid: Fluxer.Net.GuildMember
+    name: GuildMember
+    href: Fluxer.Net.GuildMember.html
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.Role
+    name: Role
+    href: Fluxer.Net.Role.html
+  - name: )
+  spec.vb:
+  - uid: Fluxer.Net.MemberHelpers.AddRoleAsync(Fluxer.Net.GuildMember,Fluxer.Net.Role)
+    name: AddRoleAsync
+    href: Fluxer.Net.MemberHelpers.html#Fluxer_Net_MemberHelpers_AddRoleAsync_Fluxer_Net_GuildMember_Fluxer_Net_Role_
+  - name: (
+  - uid: Fluxer.Net.GuildMember
+    name: GuildMember
+    href: Fluxer.Net.GuildMember.html
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.Role
+    name: Role
+    href: Fluxer.Net.Role.html
+  - name: )
+- uid: Fluxer.Net.MemberHelpers
+  commentId: T:Fluxer.Net.MemberHelpers
+  parent: Fluxer.Net
+  href: Fluxer.Net.MemberHelpers.html
+  name: MemberHelpers
+  nameWithType: MemberHelpers
+  fullName: Fluxer.Net.MemberHelpers
+- uid: Fluxer.Net.MemberHelpers.AddRoleAsync(Fluxer.Net.GuildMember,System.UInt64)
+  commentId: M:Fluxer.Net.MemberHelpers.AddRoleAsync(Fluxer.Net.GuildMember,System.UInt64)
+  isExternal: true
+  href: Fluxer.Net.MemberHelpers.html#Fluxer_Net_MemberHelpers_AddRoleAsync_Fluxer_Net_GuildMember_System_UInt64_
+  name: AddRoleAsync(GuildMember, ulong)
+  nameWithType: MemberHelpers.AddRoleAsync(GuildMember, ulong)
+  fullName: Fluxer.Net.MemberHelpers.AddRoleAsync(Fluxer.Net.GuildMember, ulong)
+  nameWithType.vb: MemberHelpers.AddRoleAsync(GuildMember, ULong)
+  fullName.vb: Fluxer.Net.MemberHelpers.AddRoleAsync(Fluxer.Net.GuildMember, ULong)
+  name.vb: AddRoleAsync(GuildMember, ULong)
+  spec.csharp:
+  - uid: Fluxer.Net.MemberHelpers.AddRoleAsync(Fluxer.Net.GuildMember,System.UInt64)
+    name: AddRoleAsync
+    href: Fluxer.Net.MemberHelpers.html#Fluxer_Net_MemberHelpers_AddRoleAsync_Fluxer_Net_GuildMember_System_UInt64_
+  - name: (
+  - uid: Fluxer.Net.GuildMember
+    name: GuildMember
+    href: Fluxer.Net.GuildMember.html
+  - name: ','
+  - name: " "
+  - uid: System.UInt64
+    name: ulong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: )
+  spec.vb:
+  - uid: Fluxer.Net.MemberHelpers.AddRoleAsync(Fluxer.Net.GuildMember,System.UInt64)
+    name: AddRoleAsync
+    href: Fluxer.Net.MemberHelpers.html#Fluxer_Net_MemberHelpers_AddRoleAsync_Fluxer_Net_GuildMember_System_UInt64_
+  - name: (
+  - uid: Fluxer.Net.GuildMember
+    name: GuildMember
+    href: Fluxer.Net.GuildMember.html
+  - name: ','
+  - name: " "
+  - uid: System.UInt64
+    name: ULong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: )
+- uid: Fluxer.Net.MemberHelpers.BanAsync(Fluxer.Net.GuildMember,Fluxer.Net.CreateGuildBanRequest)
+  commentId: M:Fluxer.Net.MemberHelpers.BanAsync(Fluxer.Net.GuildMember,Fluxer.Net.CreateGuildBanRequest)
+  href: Fluxer.Net.MemberHelpers.html#Fluxer_Net_MemberHelpers_BanAsync_Fluxer_Net_GuildMember_Fluxer_Net_CreateGuildBanRequest_
+  name: BanAsync(GuildMember, CreateGuildBanRequest)
+  nameWithType: MemberHelpers.BanAsync(GuildMember, CreateGuildBanRequest)
+  fullName: Fluxer.Net.MemberHelpers.BanAsync(Fluxer.Net.GuildMember, Fluxer.Net.CreateGuildBanRequest)
+  spec.csharp:
+  - uid: Fluxer.Net.MemberHelpers.BanAsync(Fluxer.Net.GuildMember,Fluxer.Net.CreateGuildBanRequest)
+    name: BanAsync
+    href: Fluxer.Net.MemberHelpers.html#Fluxer_Net_MemberHelpers_BanAsync_Fluxer_Net_GuildMember_Fluxer_Net_CreateGuildBanRequest_
+  - name: (
+  - uid: Fluxer.Net.GuildMember
+    name: GuildMember
+    href: Fluxer.Net.GuildMember.html
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.CreateGuildBanRequest
+    name: CreateGuildBanRequest
+    href: Fluxer.Net.CreateGuildBanRequest.html
+  - name: )
+  spec.vb:
+  - uid: Fluxer.Net.MemberHelpers.BanAsync(Fluxer.Net.GuildMember,Fluxer.Net.CreateGuildBanRequest)
+    name: BanAsync
+    href: Fluxer.Net.MemberHelpers.html#Fluxer_Net_MemberHelpers_BanAsync_Fluxer_Net_GuildMember_Fluxer_Net_CreateGuildBanRequest_
+  - name: (
+  - uid: Fluxer.Net.GuildMember
+    name: GuildMember
+    href: Fluxer.Net.GuildMember.html
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.CreateGuildBanRequest
+    name: CreateGuildBanRequest
+    href: Fluxer.Net.CreateGuildBanRequest.html
+  - name: )
+- uid: Fluxer.Net.MemberHelpers.KickAsync(Fluxer.Net.GuildMember)
+  commentId: M:Fluxer.Net.MemberHelpers.KickAsync(Fluxer.Net.GuildMember)
+  href: Fluxer.Net.MemberHelpers.html#Fluxer_Net_MemberHelpers_KickAsync_Fluxer_Net_GuildMember_
+  name: KickAsync(GuildMember)
+  nameWithType: MemberHelpers.KickAsync(GuildMember)
+  fullName: Fluxer.Net.MemberHelpers.KickAsync(Fluxer.Net.GuildMember)
+  spec.csharp:
+  - uid: Fluxer.Net.MemberHelpers.KickAsync(Fluxer.Net.GuildMember)
+    name: KickAsync
+    href: Fluxer.Net.MemberHelpers.html#Fluxer_Net_MemberHelpers_KickAsync_Fluxer_Net_GuildMember_
+  - name: (
+  - uid: Fluxer.Net.GuildMember
+    name: GuildMember
+    href: Fluxer.Net.GuildMember.html
+  - name: )
+  spec.vb:
+  - uid: Fluxer.Net.MemberHelpers.KickAsync(Fluxer.Net.GuildMember)
+    name: KickAsync
+    href: Fluxer.Net.MemberHelpers.html#Fluxer_Net_MemberHelpers_KickAsync_Fluxer_Net_GuildMember_
+  - name: (
+  - uid: Fluxer.Net.GuildMember
+    name: GuildMember
+    href: Fluxer.Net.GuildMember.html
+  - name: )
+- uid: Fluxer.Net.MemberHelpers.ModifyAsync(Fluxer.Net.GuildMember,Fluxer.Net.GuildMemberJson)
+  commentId: M:Fluxer.Net.MemberHelpers.ModifyAsync(Fluxer.Net.GuildMember,Fluxer.Net.GuildMemberJson)
+  href: Fluxer.Net.MemberHelpers.html#Fluxer_Net_MemberHelpers_ModifyAsync_Fluxer_Net_GuildMember_Fluxer_Net_GuildMemberJson_
+  name: ModifyAsync(GuildMember, GuildMemberJson)
+  nameWithType: MemberHelpers.ModifyAsync(GuildMember, GuildMemberJson)
+  fullName: Fluxer.Net.MemberHelpers.ModifyAsync(Fluxer.Net.GuildMember, Fluxer.Net.GuildMemberJson)
+  spec.csharp:
+  - uid: Fluxer.Net.MemberHelpers.ModifyAsync(Fluxer.Net.GuildMember,Fluxer.Net.GuildMemberJson)
+    name: ModifyAsync
+    href: Fluxer.Net.MemberHelpers.html#Fluxer_Net_MemberHelpers_ModifyAsync_Fluxer_Net_GuildMember_Fluxer_Net_GuildMemberJson_
+  - name: (
+  - uid: Fluxer.Net.GuildMember
+    name: GuildMember
+    href: Fluxer.Net.GuildMember.html
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.GuildMemberJson
+    name: GuildMemberJson
+    href: Fluxer.Net.GuildMemberJson.html
+  - name: )
+  spec.vb:
+  - uid: Fluxer.Net.MemberHelpers.ModifyAsync(Fluxer.Net.GuildMember,Fluxer.Net.GuildMemberJson)
+    name: ModifyAsync
+    href: Fluxer.Net.MemberHelpers.html#Fluxer_Net_MemberHelpers_ModifyAsync_Fluxer_Net_GuildMember_Fluxer_Net_GuildMemberJson_
+  - name: (
+  - uid: Fluxer.Net.GuildMember
+    name: GuildMember
+    href: Fluxer.Net.GuildMember.html
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.GuildMemberJson
+    name: GuildMemberJson
+    href: Fluxer.Net.GuildMemberJson.html
+  - name: )
+- uid: Fluxer.Net.MemberHelpers.RemoveRoleAsync(Fluxer.Net.GuildMember,Fluxer.Net.Role)
+  commentId: M:Fluxer.Net.MemberHelpers.RemoveRoleAsync(Fluxer.Net.GuildMember,Fluxer.Net.Role)
+  href: Fluxer.Net.MemberHelpers.html#Fluxer_Net_MemberHelpers_RemoveRoleAsync_Fluxer_Net_GuildMember_Fluxer_Net_Role_
+  name: RemoveRoleAsync(GuildMember, Role)
+  nameWithType: MemberHelpers.RemoveRoleAsync(GuildMember, Role)
+  fullName: Fluxer.Net.MemberHelpers.RemoveRoleAsync(Fluxer.Net.GuildMember, Fluxer.Net.Role)
+  spec.csharp:
+  - uid: Fluxer.Net.MemberHelpers.RemoveRoleAsync(Fluxer.Net.GuildMember,Fluxer.Net.Role)
+    name: RemoveRoleAsync
+    href: Fluxer.Net.MemberHelpers.html#Fluxer_Net_MemberHelpers_RemoveRoleAsync_Fluxer_Net_GuildMember_Fluxer_Net_Role_
+  - name: (
+  - uid: Fluxer.Net.GuildMember
+    name: GuildMember
+    href: Fluxer.Net.GuildMember.html
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.Role
+    name: Role
+    href: Fluxer.Net.Role.html
+  - name: )
+  spec.vb:
+  - uid: Fluxer.Net.MemberHelpers.RemoveRoleAsync(Fluxer.Net.GuildMember,Fluxer.Net.Role)
+    name: RemoveRoleAsync
+    href: Fluxer.Net.MemberHelpers.html#Fluxer_Net_MemberHelpers_RemoveRoleAsync_Fluxer_Net_GuildMember_Fluxer_Net_Role_
+  - name: (
+  - uid: Fluxer.Net.GuildMember
+    name: GuildMember
+    href: Fluxer.Net.GuildMember.html
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.Role
+    name: Role
+    href: Fluxer.Net.Role.html
+  - name: )
+- uid: Fluxer.Net.MemberHelpers.RemoveRoleAsync(Fluxer.Net.GuildMember,System.UInt64)
+  commentId: M:Fluxer.Net.MemberHelpers.RemoveRoleAsync(Fluxer.Net.GuildMember,System.UInt64)
+  isExternal: true
+  href: Fluxer.Net.MemberHelpers.html#Fluxer_Net_MemberHelpers_RemoveRoleAsync_Fluxer_Net_GuildMember_System_UInt64_
+  name: RemoveRoleAsync(GuildMember, ulong)
+  nameWithType: MemberHelpers.RemoveRoleAsync(GuildMember, ulong)
+  fullName: Fluxer.Net.MemberHelpers.RemoveRoleAsync(Fluxer.Net.GuildMember, ulong)
+  nameWithType.vb: MemberHelpers.RemoveRoleAsync(GuildMember, ULong)
+  fullName.vb: Fluxer.Net.MemberHelpers.RemoveRoleAsync(Fluxer.Net.GuildMember, ULong)
+  name.vb: RemoveRoleAsync(GuildMember, ULong)
+  spec.csharp:
+  - uid: Fluxer.Net.MemberHelpers.RemoveRoleAsync(Fluxer.Net.GuildMember,System.UInt64)
+    name: RemoveRoleAsync
+    href: Fluxer.Net.MemberHelpers.html#Fluxer_Net_MemberHelpers_RemoveRoleAsync_Fluxer_Net_GuildMember_System_UInt64_
+  - name: (
+  - uid: Fluxer.Net.GuildMember
+    name: GuildMember
+    href: Fluxer.Net.GuildMember.html
+  - name: ','
+  - name: " "
+  - uid: System.UInt64
+    name: ulong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: )
+  spec.vb:
+  - uid: Fluxer.Net.MemberHelpers.RemoveRoleAsync(Fluxer.Net.GuildMember,System.UInt64)
+    name: RemoveRoleAsync
+    href: Fluxer.Net.MemberHelpers.html#Fluxer_Net_MemberHelpers_RemoveRoleAsync_Fluxer_Net_GuildMember_System_UInt64_
+  - name: (
+  - uid: Fluxer.Net.GuildMember
+    name: GuildMember
+    href: Fluxer.Net.GuildMember.html
+  - name: ','
+  - name: " "
+  - uid: System.UInt64
+    name: ULong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: )
+- uid: Fluxer.Net.MemberHelpers.SetNicknameAsync(Fluxer.Net.GuildMember,System.String)
+  commentId: M:Fluxer.Net.MemberHelpers.SetNicknameAsync(Fluxer.Net.GuildMember,System.String)
+  isExternal: true
+  href: Fluxer.Net.MemberHelpers.html#Fluxer_Net_MemberHelpers_SetNicknameAsync_Fluxer_Net_GuildMember_System_String_
+  name: SetNicknameAsync(GuildMember, string)
+  nameWithType: MemberHelpers.SetNicknameAsync(GuildMember, string)
+  fullName: Fluxer.Net.MemberHelpers.SetNicknameAsync(Fluxer.Net.GuildMember, string)
+  nameWithType.vb: MemberHelpers.SetNicknameAsync(GuildMember, String)
+  fullName.vb: Fluxer.Net.MemberHelpers.SetNicknameAsync(Fluxer.Net.GuildMember, String)
+  name.vb: SetNicknameAsync(GuildMember, String)
+  spec.csharp:
+  - uid: Fluxer.Net.MemberHelpers.SetNicknameAsync(Fluxer.Net.GuildMember,System.String)
+    name: SetNicknameAsync
+    href: Fluxer.Net.MemberHelpers.html#Fluxer_Net_MemberHelpers_SetNicknameAsync_Fluxer_Net_GuildMember_System_String_
+  - name: (
+  - uid: Fluxer.Net.GuildMember
+    name: GuildMember
+    href: Fluxer.Net.GuildMember.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: Fluxer.Net.MemberHelpers.SetNicknameAsync(Fluxer.Net.GuildMember,System.String)
+    name: SetNicknameAsync
+    href: Fluxer.Net.MemberHelpers.html#Fluxer_Net_MemberHelpers_SetNicknameAsync_Fluxer_Net_GuildMember_System_String_
+  - name: (
+  - uid: Fluxer.Net.GuildMember
+    name: GuildMember
+    href: Fluxer.Net.GuildMember.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: Fluxer.Net.MemberHelpers.SetTimeoutAsync(Fluxer.Net.GuildMember,System.Nullable{System.DateTime})
+  commentId: M:Fluxer.Net.MemberHelpers.SetTimeoutAsync(Fluxer.Net.GuildMember,System.Nullable{System.DateTime})
+  isExternal: true
+  href: Fluxer.Net.MemberHelpers.html#Fluxer_Net_MemberHelpers_SetTimeoutAsync_Fluxer_Net_GuildMember_System_Nullable_System_DateTime__
+  name: SetTimeoutAsync(GuildMember, DateTime?)
+  nameWithType: MemberHelpers.SetTimeoutAsync(GuildMember, DateTime?)
+  fullName: Fluxer.Net.MemberHelpers.SetTimeoutAsync(Fluxer.Net.GuildMember, System.DateTime?)
+  nameWithType.vb: MemberHelpers.SetTimeoutAsync(GuildMember, Date?)
+  fullName.vb: Fluxer.Net.MemberHelpers.SetTimeoutAsync(Fluxer.Net.GuildMember, Date?)
+  name.vb: SetTimeoutAsync(GuildMember, Date?)
+  spec.csharp:
+  - uid: Fluxer.Net.MemberHelpers.SetTimeoutAsync(Fluxer.Net.GuildMember,System.Nullable{System.DateTime})
+    name: SetTimeoutAsync
+    href: Fluxer.Net.MemberHelpers.html#Fluxer_Net_MemberHelpers_SetTimeoutAsync_Fluxer_Net_GuildMember_System_Nullable_System_DateTime__
+  - name: (
+  - uid: Fluxer.Net.GuildMember
+    name: GuildMember
+    href: Fluxer.Net.GuildMember.html
+  - name: ','
+  - name: " "
+  - uid: System.DateTime
+    name: DateTime
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.datetime
+  - name: '?'
+  - name: )
+  spec.vb:
+  - uid: Fluxer.Net.MemberHelpers.SetTimeoutAsync(Fluxer.Net.GuildMember,System.Nullable{System.DateTime})
+    name: SetTimeoutAsync
+    href: Fluxer.Net.MemberHelpers.html#Fluxer_Net_MemberHelpers_SetTimeoutAsync_Fluxer_Net_GuildMember_System_Nullable_System_DateTime__
+  - name: (
+  - uid: Fluxer.Net.GuildMember
+    name: GuildMember
+    href: Fluxer.Net.GuildMember.html
+  - name: ','
+  - name: " "
+  - uid: System.DateTime
+    name: Date
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.datetime
+  - name: '?'
+  - name: )
+- uid: Fluxer.Net.SocketGuildMember.Guild*
+  commentId: Overload:Fluxer.Net.SocketGuildMember.Guild
+  href: Fluxer.Net.SocketGuildMember.html#Fluxer_Net_SocketGuildMember_Guild
+  name: Guild
+  nameWithType: SocketGuildMember.Guild
+  fullName: Fluxer.Net.SocketGuildMember.Guild
+- uid: Fluxer.Net.SocketGuild
+  commentId: T:Fluxer.Net.SocketGuild
+  parent: Fluxer.Net
+  href: Fluxer.Net.SocketGuild.html
+  name: SocketGuild
+  nameWithType: SocketGuild
+  fullName: Fluxer.Net.SocketGuild
+- uid: Fluxer.Net.SocketGuildMember.VoiceStates*
+  commentId: Overload:Fluxer.Net.SocketGuildMember.VoiceStates
+  href: Fluxer.Net.SocketGuildMember.html#Fluxer_Net_SocketGuildMember_VoiceStates
+  name: VoiceStates
+  nameWithType: SocketGuildMember.VoiceStates
+  fullName: Fluxer.Net.SocketGuildMember.VoiceStates
+- uid: System.Collections.Concurrent.ConcurrentDictionary{System.String,Fluxer.Net.SocketVoiceState}
+  commentId: T:System.Collections.Concurrent.ConcurrentDictionary{System.String,Fluxer.Net.SocketVoiceState}
+  parent: System.Collections.Concurrent
+  definition: System.Collections.Concurrent.ConcurrentDictionary`2
+  href: https://learn.microsoft.com/dotnet/api/system.collections.concurrent.concurrentdictionary-2
+  name: ConcurrentDictionary<string, SocketVoiceState>
+  nameWithType: ConcurrentDictionary<string, SocketVoiceState>
+  fullName: System.Collections.Concurrent.ConcurrentDictionary<string, Fluxer.Net.SocketVoiceState>
+  nameWithType.vb: ConcurrentDictionary(Of String, SocketVoiceState)
+  fullName.vb: System.Collections.Concurrent.ConcurrentDictionary(Of String, Fluxer.Net.SocketVoiceState)
+  name.vb: ConcurrentDictionary(Of String, SocketVoiceState)
+  spec.csharp:
+  - uid: System.Collections.Concurrent.ConcurrentDictionary`2
+    name: ConcurrentDictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.concurrent.concurrentdictionary-2
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.SocketVoiceState
+    name: SocketVoiceState
+    href: Fluxer.Net.SocketVoiceState.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Concurrent.ConcurrentDictionary`2
+    name: ConcurrentDictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.concurrent.concurrentdictionary-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: Fluxer.Net.SocketVoiceState
+    name: SocketVoiceState
+    href: Fluxer.Net.SocketVoiceState.html
+  - name: )
+- uid: System.Collections.Concurrent.ConcurrentDictionary`2
+  commentId: T:System.Collections.Concurrent.ConcurrentDictionary`2
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.concurrent.concurrentdictionary-2
+  name: ConcurrentDictionary<TKey, TValue>
+  nameWithType: ConcurrentDictionary<TKey, TValue>
+  fullName: System.Collections.Concurrent.ConcurrentDictionary<TKey, TValue>
+  nameWithType.vb: ConcurrentDictionary(Of TKey, TValue)
+  fullName.vb: System.Collections.Concurrent.ConcurrentDictionary(Of TKey, TValue)
+  name.vb: ConcurrentDictionary(Of TKey, TValue)
+  spec.csharp:
+  - uid: System.Collections.Concurrent.ConcurrentDictionary`2
+    name: ConcurrentDictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.concurrent.concurrentdictionary-2
+  - name: <
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Concurrent.ConcurrentDictionary`2
+    name: ConcurrentDictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.concurrent.concurrentdictionary-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: )
+- uid: System.Collections.Concurrent
+  commentId: N:System.Collections.Concurrent
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Concurrent
+  nameWithType: System.Collections.Concurrent
+  fullName: System.Collections.Concurrent
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Concurrent
+    name: Concurrent
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.concurrent
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Concurrent
+    name: Concurrent
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.concurrent
+- uid: Fluxer.Net.SocketGuildMember.Roles*
+  commentId: Overload:Fluxer.Net.SocketGuildMember.Roles
+  href: Fluxer.Net.SocketGuildMember.html#Fluxer_Net_SocketGuildMember_Roles
+  name: Roles
+  nameWithType: SocketGuildMember.Roles
+  fullName: Fluxer.Net.SocketGuildMember.Roles
+- uid: System.Collections.Generic.IEnumerable{Fluxer.Net.SocketRole}
+  commentId: T:System.Collections.Generic.IEnumerable{Fluxer.Net.SocketRole}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<SocketRole>
+  nameWithType: IEnumerable<SocketRole>
+  fullName: System.Collections.Generic.IEnumerable<Fluxer.Net.SocketRole>
+  nameWithType.vb: IEnumerable(Of SocketRole)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of Fluxer.Net.SocketRole)
+  name.vb: IEnumerable(Of SocketRole)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - uid: Fluxer.Net.SocketRole
+    name: SocketRole
+    href: Fluxer.Net.SocketRole.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Fluxer.Net.SocketRole
+    name: SocketRole
+    href: Fluxer.Net.SocketRole.html
+  - name: )
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: Fluxer.Net.SocketGuildMember.HasPermission*
+  commentId: Overload:Fluxer.Net.SocketGuildMember.HasPermission
+  href: Fluxer.Net.SocketGuildMember.html#Fluxer_Net_SocketGuildMember_HasPermission_Fluxer_Net_Permissions_
+  name: HasPermission
+  nameWithType: SocketGuildMember.HasPermission
+  fullName: Fluxer.Net.SocketGuildMember.HasPermission
+- uid: Fluxer.Net.Permissions
+  commentId: T:Fluxer.Net.Permissions
+  parent: Fluxer.Net
+  href: Fluxer.Net.Permissions.html
+  name: Permissions
+  nameWithType: Permissions
+  fullName: Fluxer.Net.Permissions
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: Fluxer.Net.SocketGuildMember.Create*
+  commentId: Overload:Fluxer.Net.SocketGuildMember.Create
+  href: Fluxer.Net.SocketGuildMember.html#Fluxer_Net_SocketGuildMember_Create_Fluxer_Net_FluxerBaseClient_Fluxer_Net_GuildMemberJson_
+  name: Create
+  nameWithType: SocketGuildMember.Create
+  fullName: Fluxer.Net.SocketGuildMember.Create
+- uid: Fluxer.Net.FluxerBaseClient
+  commentId: T:Fluxer.Net.FluxerBaseClient
+  parent: Fluxer.Net
+  href: Fluxer.Net.FluxerBaseClient.html
+  name: FluxerBaseClient
+  nameWithType: FluxerBaseClient
+  fullName: Fluxer.Net.FluxerBaseClient
+- uid: Fluxer.Net.GuildMemberJson
+  commentId: T:Fluxer.Net.GuildMemberJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.GuildMemberJson.html
+  name: GuildMemberJson
+  nameWithType: GuildMemberJson
+  fullName: Fluxer.Net.GuildMemberJson
+- uid: Fluxer.Net.SocketGuildMember
+  commentId: T:Fluxer.Net.SocketGuildMember
+  parent: Fluxer.Net
+  href: Fluxer.Net.SocketGuildMember.html
+  name: SocketGuildMember
+  nameWithType: SocketGuildMember
+  fullName: Fluxer.Net.SocketGuildMember

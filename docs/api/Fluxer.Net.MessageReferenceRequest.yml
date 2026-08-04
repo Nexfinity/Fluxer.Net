@@ -1,0 +1,590 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.MessageReferenceRequest
+  commentId: T:Fluxer.Net.MessageReferenceRequest
+  id: MessageReferenceRequest
+  parent: Fluxer.Net
+  children:
+  - Fluxer.Net.MessageReferenceRequest.ChannelId
+  - Fluxer.Net.MessageReferenceRequest.GuildId
+  - Fluxer.Net.MessageReferenceRequest.MessageId
+  - Fluxer.Net.MessageReferenceRequest.Type
+  langs:
+  - csharp
+  - vb
+  name: MessageReferenceRequest
+  nameWithType: MessageReferenceRequest
+  fullName: Fluxer.Net.MessageReferenceRequest
+  type: Class
+  source:
+    remote:
+      path: Fluxer.Net/Rest/Requests/Messages/MessageReferenceRequest.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: MessageReferenceRequest
+    path: ../Fluxer.Net/Rest/Requests/Messages/MessageReferenceRequest.cs
+    startLine: 7
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  remarks: <a href="https://github.com/fluxerapp/fluxer/blob/848269a4d4df7349acfc861ff926b17fe4c4a548/packages/schema/src/domains/message/SharedMessageSchemas.tsx#L43">https://github.com/fluxerapp/fluxer/blob/848269a4d4df7349acfc861ff926b17fe4c4a548/packages/schema/src/domains/message/SharedMessageSchemas.tsx#L43</a>
+  example: []
+  syntax:
+    content: public class MessageReferenceRequest
+    content.vb: Public Class MessageReferenceRequest
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: Fluxer.Net.MessageReferenceRequest.MessageId
+  commentId: P:Fluxer.Net.MessageReferenceRequest.MessageId
+  id: MessageId
+  parent: Fluxer.Net.MessageReferenceRequest
+  langs:
+  - csharp
+  - vb
+  name: MessageId
+  nameWithType: MessageReferenceRequest.MessageId
+  fullName: Fluxer.Net.MessageReferenceRequest.MessageId
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Rest/Requests/Messages/MessageReferenceRequest.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: MessageId
+    path: ../Fluxer.Net/Rest/Requests/Messages/MessageReferenceRequest.cs
+    startLine: 12
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: ID of the message being referenced
+  example: []
+  syntax:
+    content: >-
+      [JsonRequired]
+
+      [JsonProperty("message_id")]
+
+      public ulong MessageId { get; set; }
+    parameters: []
+    return:
+      type: System.UInt64
+    content.vb: >-
+      <JsonRequired>
+
+      <JsonProperty("message_id")>
+
+      Public Property MessageId As ULong
+  overload: Fluxer.Net.MessageReferenceRequest.MessageId*
+  attributes:
+  - type: Newtonsoft.Json.JsonRequiredAttribute
+    ctor: Newtonsoft.Json.JsonRequiredAttribute.#ctor
+    arguments: []
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: message_id
+- uid: Fluxer.Net.MessageReferenceRequest.ChannelId
+  commentId: P:Fluxer.Net.MessageReferenceRequest.ChannelId
+  id: ChannelId
+  parent: Fluxer.Net.MessageReferenceRequest
+  langs:
+  - csharp
+  - vb
+  name: ChannelId
+  nameWithType: MessageReferenceRequest.ChannelId
+  fullName: Fluxer.Net.MessageReferenceRequest.ChannelId
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Rest/Requests/Messages/MessageReferenceRequest.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: ChannelId
+    path: ../Fluxer.Net/Rest/Requests/Messages/MessageReferenceRequest.cs
+    startLine: 19
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: ID of the channel containing the referenced message
+  example: []
+  syntax:
+    content: >-
+      [JsonRequired]
+
+      [JsonProperty("channel_id")]
+
+      public ulong ChannelId { get; set; }
+    parameters: []
+    return:
+      type: System.UInt64
+    content.vb: >-
+      <JsonRequired>
+
+      <JsonProperty("channel_id")>
+
+      Public Property ChannelId As ULong
+  overload: Fluxer.Net.MessageReferenceRequest.ChannelId*
+  attributes:
+  - type: Newtonsoft.Json.JsonRequiredAttribute
+    ctor: Newtonsoft.Json.JsonRequiredAttribute.#ctor
+    arguments: []
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: channel_id
+- uid: Fluxer.Net.MessageReferenceRequest.GuildId
+  commentId: P:Fluxer.Net.MessageReferenceRequest.GuildId
+  id: GuildId
+  parent: Fluxer.Net.MessageReferenceRequest
+  langs:
+  - csharp
+  - vb
+  name: GuildId
+  nameWithType: MessageReferenceRequest.GuildId
+  fullName: Fluxer.Net.MessageReferenceRequest.GuildId
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Rest/Requests/Messages/MessageReferenceRequest.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: GuildId
+    path: ../Fluxer.Net/Rest/Requests/Messages/MessageReferenceRequest.cs
+    startLine: 26
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: ID of the guild containing the referenced message
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("guild_id")]
+
+      public ulong? GuildId { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{System.UInt64}
+    content.vb: >-
+      <JsonProperty("guild_id")>
+
+      Public Property GuildId As ULong?
+  overload: Fluxer.Net.MessageReferenceRequest.GuildId*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: guild_id
+- uid: Fluxer.Net.MessageReferenceRequest.Type
+  commentId: P:Fluxer.Net.MessageReferenceRequest.Type
+  id: Type
+  parent: Fluxer.Net.MessageReferenceRequest
+  langs:
+  - csharp
+  - vb
+  name: Type
+  nameWithType: MessageReferenceRequest.Type
+  fullName: Fluxer.Net.MessageReferenceRequest.Type
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Rest/Requests/Messages/MessageReferenceRequest.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Type
+    path: ../Fluxer.Net/Rest/Requests/Messages/MessageReferenceRequest.cs
+    startLine: 32
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Type of reference
+  example: []
+  syntax:
+    content: >-
+      [JsonRequired]
+
+      [JsonProperty("type")]
+
+      public MessageReferenceType Type { get; set; }
+    parameters: []
+    return:
+      type: Fluxer.Net.MessageReferenceType
+    content.vb: >-
+      <JsonRequired>
+
+      <JsonProperty("type")>
+
+      Public Property Type As MessageReferenceType
+  overload: Fluxer.Net.MessageReferenceRequest.Type*
+  attributes:
+  - type: Newtonsoft.Json.JsonRequiredAttribute
+    ctor: Newtonsoft.Json.JsonRequiredAttribute.#ctor
+    arguments: []
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: type
+references:
+- uid: Fluxer.Net
+  commentId: N:Fluxer.Net
+  href: Fluxer.html
+  name: Fluxer.Net
+  nameWithType: Fluxer.Net
+  fullName: Fluxer.Net
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Fluxer.Net.MessageReferenceRequest.MessageId*
+  commentId: Overload:Fluxer.Net.MessageReferenceRequest.MessageId
+  href: Fluxer.Net.MessageReferenceRequest.html#Fluxer_Net_MessageReferenceRequest_MessageId
+  name: MessageId
+  nameWithType: MessageReferenceRequest.MessageId
+  fullName: Fluxer.Net.MessageReferenceRequest.MessageId
+- uid: System.UInt64
+  commentId: T:System.UInt64
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.uint64
+  name: ulong
+  nameWithType: ulong
+  fullName: ulong
+  nameWithType.vb: ULong
+  fullName.vb: ULong
+  name.vb: ULong
+- uid: Fluxer.Net.MessageReferenceRequest.ChannelId*
+  commentId: Overload:Fluxer.Net.MessageReferenceRequest.ChannelId
+  href: Fluxer.Net.MessageReferenceRequest.html#Fluxer_Net_MessageReferenceRequest_ChannelId
+  name: ChannelId
+  nameWithType: MessageReferenceRequest.ChannelId
+  fullName: Fluxer.Net.MessageReferenceRequest.ChannelId
+- uid: Fluxer.Net.MessageReferenceRequest.GuildId*
+  commentId: Overload:Fluxer.Net.MessageReferenceRequest.GuildId
+  href: Fluxer.Net.MessageReferenceRequest.html#Fluxer_Net_MessageReferenceRequest_GuildId
+  name: GuildId
+  nameWithType: MessageReferenceRequest.GuildId
+  fullName: Fluxer.Net.MessageReferenceRequest.GuildId
+- uid: System.Nullable{System.UInt64}
+  commentId: T:System.Nullable{System.UInt64}
+  parent: System
+  definition: System.Nullable`1
+  href: https://learn.microsoft.com/dotnet/api/system.uint64
+  name: ulong?
+  nameWithType: ulong?
+  fullName: ulong?
+  nameWithType.vb: ULong?
+  fullName.vb: ULong?
+  name.vb: ULong?
+  spec.csharp:
+  - uid: System.UInt64
+    name: ulong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: '?'
+  spec.vb:
+  - uid: System.UInt64
+    name: ULong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: '?'
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: Fluxer.Net.MessageReferenceRequest.Type*
+  commentId: Overload:Fluxer.Net.MessageReferenceRequest.Type
+  href: Fluxer.Net.MessageReferenceRequest.html#Fluxer_Net_MessageReferenceRequest_Type
+  name: Type
+  nameWithType: MessageReferenceRequest.Type
+  fullName: Fluxer.Net.MessageReferenceRequest.Type
+- uid: Fluxer.Net.MessageReferenceType
+  commentId: T:Fluxer.Net.MessageReferenceType
+  parent: Fluxer.Net
+  href: Fluxer.Net.MessageReferenceType.html
+  name: MessageReferenceType
+  nameWithType: MessageReferenceType
+  fullName: Fluxer.Net.MessageReferenceType

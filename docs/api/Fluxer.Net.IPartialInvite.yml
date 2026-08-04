@@ -1,0 +1,510 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.IPartialInvite
+  commentId: T:Fluxer.Net.IPartialInvite
+  id: IPartialInvite
+  parent: Fluxer.Net
+  children:
+  - Fluxer.Net.IPartialInvite.Channel
+  - Fluxer.Net.IPartialInvite.Code
+  - Fluxer.Net.IPartialInvite.ExpiresAt
+  - Fluxer.Net.IPartialInvite.Guild
+  - Fluxer.Net.IPartialInvite.Inviter
+  - Fluxer.Net.IPartialInvite.MemberCount
+  - Fluxer.Net.IPartialInvite.PresenceCount
+  - Fluxer.Net.IPartialInvite.Temporary
+  - Fluxer.Net.IPartialInvite.Type
+  langs:
+  - csharp
+  - vb
+  name: IPartialInvite
+  nameWithType: IPartialInvite
+  fullName: Fluxer.Net.IPartialInvite
+  type: Interface
+  source:
+    remote:
+      path: Fluxer.Net/Data/Invites/IPartialInvite.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: IPartialInvite
+    path: ../Fluxer.Net/Data/Invites/IPartialInvite.cs
+    startLine: 2
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: public interface IPartialInvite
+    content.vb: Public Interface IPartialInvite
+  derivedClasses:
+  - Fluxer.Net.Invite
+  - Fluxer.Net.InviteJson
+  - Fluxer.Net.PartialInvite
+  - Fluxer.Net.PartialInviteJson
+- uid: Fluxer.Net.IPartialInvite.Code
+  commentId: P:Fluxer.Net.IPartialInvite.Code
+  id: Code
+  parent: Fluxer.Net.IPartialInvite
+  langs:
+  - csharp
+  - vb
+  name: Code
+  nameWithType: IPartialInvite.Code
+  fullName: Fluxer.Net.IPartialInvite.Code
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Invites/IPartialInvite.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Code
+    path: ../Fluxer.Net/Data/Invites/IPartialInvite.cs
+    startLine: 7
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The unique invite code.
+  example: []
+  syntax:
+    content: string Code { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: ReadOnly Property Code As String
+  overload: Fluxer.Net.IPartialInvite.Code*
+- uid: Fluxer.Net.IPartialInvite.Type
+  commentId: P:Fluxer.Net.IPartialInvite.Type
+  id: Type
+  parent: Fluxer.Net.IPartialInvite
+  langs:
+  - csharp
+  - vb
+  name: Type
+  nameWithType: IPartialInvite.Type
+  fullName: Fluxer.Net.IPartialInvite.Type
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Invites/IPartialInvite.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Type
+    path: ../Fluxer.Net/Data/Invites/IPartialInvite.cs
+    startLine: 12
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The type of invite (guild).
+  example: []
+  syntax:
+    content: int Type { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: ReadOnly Property Type As Integer
+  overload: Fluxer.Net.IPartialInvite.Type*
+- uid: Fluxer.Net.IPartialInvite.Guild
+  commentId: P:Fluxer.Net.IPartialInvite.Guild
+  id: Guild
+  parent: Fluxer.Net.IPartialInvite
+  langs:
+  - csharp
+  - vb
+  name: Guild
+  nameWithType: IPartialInvite.Guild
+  fullName: Fluxer.Net.IPartialInvite.Guild
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Invites/IPartialInvite.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Guild
+    path: ../Fluxer.Net/Data/Invites/IPartialInvite.cs
+    startLine: 17
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The guild this invite is for
+  example: []
+  syntax:
+    content: IPartialGuild? Guild { get; }
+    parameters: []
+    return:
+      type: Fluxer.Net.IPartialGuild
+    content.vb: ReadOnly Property Guild As IPartialGuild
+  overload: Fluxer.Net.IPartialInvite.Guild*
+- uid: Fluxer.Net.IPartialInvite.Channel
+  commentId: P:Fluxer.Net.IPartialInvite.Channel
+  id: Channel
+  parent: Fluxer.Net.IPartialInvite
+  langs:
+  - csharp
+  - vb
+  name: Channel
+  nameWithType: IPartialInvite.Channel
+  fullName: Fluxer.Net.IPartialInvite.Channel
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Invites/IPartialInvite.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Channel
+    path: ../Fluxer.Net/Data/Invites/IPartialInvite.cs
+    startLine: 22
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The channel this invite is for.
+  example: []
+  syntax:
+    content: InviteChannelJson? Channel { get; }
+    parameters: []
+    return:
+      type: Fluxer.Net.InviteChannelJson
+    content.vb: ReadOnly Property Channel As InviteChannelJson
+  overload: Fluxer.Net.IPartialInvite.Channel*
+- uid: Fluxer.Net.IPartialInvite.Inviter
+  commentId: P:Fluxer.Net.IPartialInvite.Inviter
+  id: Inviter
+  parent: Fluxer.Net.IPartialInvite
+  langs:
+  - csharp
+  - vb
+  name: Inviter
+  nameWithType: IPartialInvite.Inviter
+  fullName: Fluxer.Net.IPartialInvite.Inviter
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Invites/IPartialInvite.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Inviter
+    path: ../Fluxer.Net/Data/Invites/IPartialInvite.cs
+    startLine: 27
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The user who created the invite.
+  example: []
+  syntax:
+    content: InviteUserJson Inviter { get; }
+    parameters: []
+    return:
+      type: Fluxer.Net.InviteUserJson
+    content.vb: ReadOnly Property Inviter As InviteUserJson
+  overload: Fluxer.Net.IPartialInvite.Inviter*
+- uid: Fluxer.Net.IPartialInvite.MemberCount
+  commentId: P:Fluxer.Net.IPartialInvite.MemberCount
+  id: MemberCount
+  parent: Fluxer.Net.IPartialInvite
+  langs:
+  - csharp
+  - vb
+  name: MemberCount
+  nameWithType: IPartialInvite.MemberCount
+  fullName: Fluxer.Net.IPartialInvite.MemberCount
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Invites/IPartialInvite.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: MemberCount
+    path: ../Fluxer.Net/Data/Invites/IPartialInvite.cs
+    startLine: 32
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The approximate total member count of the guild
+  example: []
+  syntax:
+    content: int MemberCount { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: ReadOnly Property MemberCount As Integer
+  overload: Fluxer.Net.IPartialInvite.MemberCount*
+- uid: Fluxer.Net.IPartialInvite.PresenceCount
+  commentId: P:Fluxer.Net.IPartialInvite.PresenceCount
+  id: PresenceCount
+  parent: Fluxer.Net.IPartialInvite
+  langs:
+  - csharp
+  - vb
+  name: PresenceCount
+  nameWithType: IPartialInvite.PresenceCount
+  fullName: Fluxer.Net.IPartialInvite.PresenceCount
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Invites/IPartialInvite.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: PresenceCount
+    path: ../Fluxer.Net/Data/Invites/IPartialInvite.cs
+    startLine: 37
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The approximate online member count of the guild.
+  example: []
+  syntax:
+    content: int PresenceCount { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: ReadOnly Property PresenceCount As Integer
+  overload: Fluxer.Net.IPartialInvite.PresenceCount*
+- uid: Fluxer.Net.IPartialInvite.ExpiresAt
+  commentId: P:Fluxer.Net.IPartialInvite.ExpiresAt
+  id: ExpiresAt
+  parent: Fluxer.Net.IPartialInvite
+  langs:
+  - csharp
+  - vb
+  name: ExpiresAt
+  nameWithType: IPartialInvite.ExpiresAt
+  fullName: Fluxer.Net.IPartialInvite.ExpiresAt
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Invites/IPartialInvite.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: ExpiresAt
+    path: ../Fluxer.Net/Data/Invites/IPartialInvite.cs
+    startLine: 42
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: ISO8601 timestamp of when the invite expires.
+  example: []
+  syntax:
+    content: DateTime? ExpiresAt { get; }
+    parameters: []
+    return:
+      type: System.Nullable{System.DateTime}
+    content.vb: ReadOnly Property ExpiresAt As Date?
+  overload: Fluxer.Net.IPartialInvite.ExpiresAt*
+- uid: Fluxer.Net.IPartialInvite.Temporary
+  commentId: P:Fluxer.Net.IPartialInvite.Temporary
+  id: Temporary
+  parent: Fluxer.Net.IPartialInvite
+  langs:
+  - csharp
+  - vb
+  name: Temporary
+  nameWithType: IPartialInvite.Temporary
+  fullName: Fluxer.Net.IPartialInvite.Temporary
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Invites/IPartialInvite.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Temporary
+    path: ../Fluxer.Net/Data/Invites/IPartialInvite.cs
+    startLine: 47
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Whether the invite grants temporary membership
+  example: []
+  syntax:
+    content: bool Temporary { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: ReadOnly Property Temporary As Boolean
+  overload: Fluxer.Net.IPartialInvite.Temporary*
+references:
+- uid: Fluxer.Net
+  commentId: N:Fluxer.Net
+  href: Fluxer.html
+  name: Fluxer.Net
+  nameWithType: Fluxer.Net
+  fullName: Fluxer.Net
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+- uid: Fluxer.Net.IPartialInvite.Code*
+  commentId: Overload:Fluxer.Net.IPartialInvite.Code
+  href: Fluxer.Net.IPartialInvite.html#Fluxer_Net_IPartialInvite_Code
+  name: Code
+  nameWithType: IPartialInvite.Code
+  fullName: Fluxer.Net.IPartialInvite.Code
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Fluxer.Net.IPartialInvite.Type*
+  commentId: Overload:Fluxer.Net.IPartialInvite.Type
+  href: Fluxer.Net.IPartialInvite.html#Fluxer_Net_IPartialInvite_Type
+  name: Type
+  nameWithType: IPartialInvite.Type
+  fullName: Fluxer.Net.IPartialInvite.Type
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: Fluxer.Net.IPartialInvite.Guild*
+  commentId: Overload:Fluxer.Net.IPartialInvite.Guild
+  href: Fluxer.Net.IPartialInvite.html#Fluxer_Net_IPartialInvite_Guild
+  name: Guild
+  nameWithType: IPartialInvite.Guild
+  fullName: Fluxer.Net.IPartialInvite.Guild
+- uid: Fluxer.Net.IPartialGuild
+  commentId: T:Fluxer.Net.IPartialGuild
+  parent: Fluxer.Net
+  href: Fluxer.Net.IPartialGuild.html
+  name: IPartialGuild
+  nameWithType: IPartialGuild
+  fullName: Fluxer.Net.IPartialGuild
+- uid: Fluxer.Net.IPartialInvite.Channel*
+  commentId: Overload:Fluxer.Net.IPartialInvite.Channel
+  href: Fluxer.Net.IPartialInvite.html#Fluxer_Net_IPartialInvite_Channel
+  name: Channel
+  nameWithType: IPartialInvite.Channel
+  fullName: Fluxer.Net.IPartialInvite.Channel
+- uid: Fluxer.Net.InviteChannelJson
+  commentId: T:Fluxer.Net.InviteChannelJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.InviteChannelJson.html
+  name: InviteChannelJson
+  nameWithType: InviteChannelJson
+  fullName: Fluxer.Net.InviteChannelJson
+- uid: Fluxer.Net.IPartialInvite.Inviter*
+  commentId: Overload:Fluxer.Net.IPartialInvite.Inviter
+  href: Fluxer.Net.IPartialInvite.html#Fluxer_Net_IPartialInvite_Inviter
+  name: Inviter
+  nameWithType: IPartialInvite.Inviter
+  fullName: Fluxer.Net.IPartialInvite.Inviter
+- uid: Fluxer.Net.InviteUserJson
+  commentId: T:Fluxer.Net.InviteUserJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.InviteUserJson.html
+  name: InviteUserJson
+  nameWithType: InviteUserJson
+  fullName: Fluxer.Net.InviteUserJson
+- uid: Fluxer.Net.IPartialInvite.MemberCount*
+  commentId: Overload:Fluxer.Net.IPartialInvite.MemberCount
+  href: Fluxer.Net.IPartialInvite.html#Fluxer_Net_IPartialInvite_MemberCount
+  name: MemberCount
+  nameWithType: IPartialInvite.MemberCount
+  fullName: Fluxer.Net.IPartialInvite.MemberCount
+- uid: Fluxer.Net.IPartialInvite.PresenceCount*
+  commentId: Overload:Fluxer.Net.IPartialInvite.PresenceCount
+  href: Fluxer.Net.IPartialInvite.html#Fluxer_Net_IPartialInvite_PresenceCount
+  name: PresenceCount
+  nameWithType: IPartialInvite.PresenceCount
+  fullName: Fluxer.Net.IPartialInvite.PresenceCount
+- uid: Fluxer.Net.IPartialInvite.ExpiresAt*
+  commentId: Overload:Fluxer.Net.IPartialInvite.ExpiresAt
+  href: Fluxer.Net.IPartialInvite.html#Fluxer_Net_IPartialInvite_ExpiresAt
+  name: ExpiresAt
+  nameWithType: IPartialInvite.ExpiresAt
+  fullName: Fluxer.Net.IPartialInvite.ExpiresAt
+- uid: System.Nullable{System.DateTime}
+  commentId: T:System.Nullable{System.DateTime}
+  parent: System
+  definition: System.Nullable`1
+  href: https://learn.microsoft.com/dotnet/api/system.datetime
+  name: DateTime?
+  nameWithType: DateTime?
+  fullName: System.DateTime?
+  nameWithType.vb: Date?
+  fullName.vb: Date?
+  name.vb: Date?
+  spec.csharp:
+  - uid: System.DateTime
+    name: DateTime
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.datetime
+  - name: '?'
+  spec.vb:
+  - uid: System.DateTime
+    name: Date
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.datetime
+  - name: '?'
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: Fluxer.Net.IPartialInvite.Temporary*
+  commentId: Overload:Fluxer.Net.IPartialInvite.Temporary
+  href: Fluxer.Net.IPartialInvite.html#Fluxer_Net_IPartialInvite_Temporary
+  name: Temporary
+  nameWithType: IPartialInvite.Temporary
+  fullName: Fluxer.Net.IPartialInvite.Temporary
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean

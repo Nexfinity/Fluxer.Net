@@ -1,0 +1,704 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.UserConnection
+  commentId: T:Fluxer.Net.UserConnection
+  id: UserConnection
+  parent: Fluxer.Net
+  children:
+  - Fluxer.Net.UserConnection.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.UserConnectionJson)
+  - Fluxer.Net.UserConnection.Id
+  - Fluxer.Net.UserConnection.IsVerified
+  - Fluxer.Net.UserConnection.Name
+  - Fluxer.Net.UserConnection.SortOrder
+  - Fluxer.Net.UserConnection.Type
+  - Fluxer.Net.UserConnection.VisibilityFlags
+  langs:
+  - csharp
+  - vb
+  name: UserConnection
+  nameWithType: UserConnection
+  fullName: Fluxer.Net.UserConnection
+  type: Class
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/UserConnection.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: UserConnection
+    path: ../Fluxer.Net/Data/Users/UserConnection.cs
+    startLine: 3
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  example: []
+  syntax:
+    content: 'public class UserConnection : Entity, IUserConnection'
+    content.vb: Public Class UserConnection Inherits Entity Implements IUserConnection
+  inheritance:
+  - System.Object
+  - Fluxer.Net.Entity
+  implements:
+  - Fluxer.Net.IUserConnection
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: Fluxer.Net.UserConnection.Id
+  commentId: P:Fluxer.Net.UserConnection.Id
+  id: Id
+  parent: Fluxer.Net.UserConnection
+  langs:
+  - csharp
+  - vb
+  name: Id
+  nameWithType: UserConnection.Id
+  fullName: Fluxer.Net.UserConnection.Id
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/UserConnection.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Id
+    path: ../Fluxer.Net/Data/Users/UserConnection.cs
+    startLine: 6
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The unique identifier for this connection.
+  example: []
+  syntax:
+    content: public string Id { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Id As String
+  overload: Fluxer.Net.UserConnection.Id*
+  implements:
+  - Fluxer.Net.IUserConnection.Id
+- uid: Fluxer.Net.UserConnection.Type
+  commentId: P:Fluxer.Net.UserConnection.Type
+  id: Type
+  parent: Fluxer.Net.UserConnection
+  langs:
+  - csharp
+  - vb
+  name: Type
+  nameWithType: UserConnection.Type
+  fullName: Fluxer.Net.UserConnection.Type
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/UserConnection.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Type
+    path: ../Fluxer.Net/Data/Users/UserConnection.cs
+    startLine: 9
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The type of connection.
+  remarks: bsky or domain
+  example: []
+  syntax:
+    content: public string Type { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Type As String
+  overload: Fluxer.Net.UserConnection.Type*
+  implements:
+  - Fluxer.Net.IUserConnection.Type
+- uid: Fluxer.Net.UserConnection.Name
+  commentId: P:Fluxer.Net.UserConnection.Name
+  id: Name
+  parent: Fluxer.Net.UserConnection
+  langs:
+  - csharp
+  - vb
+  name: Name
+  nameWithType: UserConnection.Name
+  fullName: Fluxer.Net.UserConnection.Name
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/UserConnection.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Name
+    path: ../Fluxer.Net/Data/Users/UserConnection.cs
+    startLine: 12
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The display name of the connection. (handle or domain)
+  example: []
+  syntax:
+    content: public string Name { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Name As String
+  overload: Fluxer.Net.UserConnection.Name*
+  implements:
+  - Fluxer.Net.IUserConnection.Name
+- uid: Fluxer.Net.UserConnection.IsVerified
+  commentId: P:Fluxer.Net.UserConnection.IsVerified
+  id: IsVerified
+  parent: Fluxer.Net.UserConnection
+  langs:
+  - csharp
+  - vb
+  name: IsVerified
+  nameWithType: UserConnection.IsVerified
+  fullName: Fluxer.Net.UserConnection.IsVerified
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/UserConnection.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: IsVerified
+    path: ../Fluxer.Net/Data/Users/UserConnection.cs
+    startLine: 15
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Whether the connection has been verified.
+  example: []
+  syntax:
+    content: public bool IsVerified { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property IsVerified As Boolean
+  overload: Fluxer.Net.UserConnection.IsVerified*
+  implements:
+  - Fluxer.Net.IUserConnection.IsVerified
+- uid: Fluxer.Net.UserConnection.VisibilityFlags
+  commentId: P:Fluxer.Net.UserConnection.VisibilityFlags
+  id: VisibilityFlags
+  parent: Fluxer.Net.UserConnection
+  langs:
+  - csharp
+  - vb
+  name: VisibilityFlags
+  nameWithType: UserConnection.VisibilityFlags
+  fullName: Fluxer.Net.UserConnection.VisibilityFlags
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/UserConnection.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: VisibilityFlags
+    path: ../Fluxer.Net/Data/Users/UserConnection.cs
+    startLine: 18
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Bitfield controlling who can see this connection.
+  example: []
+  syntax:
+    content: public ulong VisibilityFlags { get; }
+    parameters: []
+    return:
+      type: System.UInt64
+    content.vb: Public Property VisibilityFlags As ULong
+  overload: Fluxer.Net.UserConnection.VisibilityFlags*
+  implements:
+  - Fluxer.Net.IUserConnection.VisibilityFlags
+- uid: Fluxer.Net.UserConnection.SortOrder
+  commentId: P:Fluxer.Net.UserConnection.SortOrder
+  id: SortOrder
+  parent: Fluxer.Net.UserConnection
+  langs:
+  - csharp
+  - vb
+  name: SortOrder
+  nameWithType: UserConnection.SortOrder
+  fullName: Fluxer.Net.UserConnection.SortOrder
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/UserConnection.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: SortOrder
+    path: ../Fluxer.Net/Data/Users/UserConnection.cs
+    startLine: 21
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The display order of this connection.
+  example: []
+  syntax:
+    content: public int SortOrder { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property SortOrder As Integer
+  overload: Fluxer.Net.UserConnection.SortOrder*
+  implements:
+  - Fluxer.Net.IUserConnection.SortOrder
+- uid: Fluxer.Net.UserConnection.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.UserConnectionJson)
+  commentId: M:Fluxer.Net.UserConnection.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.UserConnectionJson)
+  id: Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.UserConnectionJson)
+  parent: Fluxer.Net.UserConnection
+  langs:
+  - csharp
+  - vb
+  name: Create(FluxerBaseClient, UserConnectionJson)
+  nameWithType: UserConnection.Create(FluxerBaseClient, UserConnectionJson)
+  fullName: Fluxer.Net.UserConnection.Create(Fluxer.Net.FluxerBaseClient, Fluxer.Net.UserConnectionJson)
+  type: Method
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/UserConnection.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Create
+    path: ../Fluxer.Net/Data/Users/UserConnection.cs
+    startLine: 28
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: public static UserConnection Create(FluxerBaseClient client, UserConnectionJson json)
+    parameters:
+    - id: client
+      type: Fluxer.Net.FluxerBaseClient
+    - id: json
+      type: Fluxer.Net.UserConnectionJson
+    return:
+      type: Fluxer.Net.UserConnection
+    content.vb: Public Shared Function Create(client As FluxerBaseClient, json As UserConnectionJson) As UserConnection
+  overload: Fluxer.Net.UserConnection.Create*
+references:
+- uid: Fluxer.Net
+  commentId: N:Fluxer.Net
+  href: Fluxer.html
+  name: Fluxer.Net
+  nameWithType: Fluxer.Net
+  fullName: Fluxer.Net
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Fluxer.Net.Entity
+  commentId: T:Fluxer.Net.Entity
+  parent: Fluxer.Net
+  href: Fluxer.Net.Entity.html
+  name: Entity
+  nameWithType: Entity
+  fullName: Fluxer.Net.Entity
+- uid: Fluxer.Net.IUserConnection
+  commentId: T:Fluxer.Net.IUserConnection
+  parent: Fluxer.Net
+  href: Fluxer.Net.IUserConnection.html
+  name: IUserConnection
+  nameWithType: IUserConnection
+  fullName: Fluxer.Net.IUserConnection
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Fluxer.Net.UserConnection.Id*
+  commentId: Overload:Fluxer.Net.UserConnection.Id
+  href: Fluxer.Net.UserConnection.html#Fluxer_Net_UserConnection_Id
+  name: Id
+  nameWithType: UserConnection.Id
+  fullName: Fluxer.Net.UserConnection.Id
+- uid: Fluxer.Net.IUserConnection.Id
+  commentId: P:Fluxer.Net.IUserConnection.Id
+  parent: Fluxer.Net.IUserConnection
+  href: Fluxer.Net.IUserConnection.html#Fluxer_Net_IUserConnection_Id
+  name: Id
+  nameWithType: IUserConnection.Id
+  fullName: Fluxer.Net.IUserConnection.Id
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: Fluxer.Net.UserConnection.Type*
+  commentId: Overload:Fluxer.Net.UserConnection.Type
+  href: Fluxer.Net.UserConnection.html#Fluxer_Net_UserConnection_Type
+  name: Type
+  nameWithType: UserConnection.Type
+  fullName: Fluxer.Net.UserConnection.Type
+- uid: Fluxer.Net.IUserConnection.Type
+  commentId: P:Fluxer.Net.IUserConnection.Type
+  parent: Fluxer.Net.IUserConnection
+  href: Fluxer.Net.IUserConnection.html#Fluxer_Net_IUserConnection_Type
+  name: Type
+  nameWithType: IUserConnection.Type
+  fullName: Fluxer.Net.IUserConnection.Type
+- uid: Fluxer.Net.UserConnection.Name*
+  commentId: Overload:Fluxer.Net.UserConnection.Name
+  href: Fluxer.Net.UserConnection.html#Fluxer_Net_UserConnection_Name
+  name: Name
+  nameWithType: UserConnection.Name
+  fullName: Fluxer.Net.UserConnection.Name
+- uid: Fluxer.Net.IUserConnection.Name
+  commentId: P:Fluxer.Net.IUserConnection.Name
+  parent: Fluxer.Net.IUserConnection
+  href: Fluxer.Net.IUserConnection.html#Fluxer_Net_IUserConnection_Name
+  name: Name
+  nameWithType: IUserConnection.Name
+  fullName: Fluxer.Net.IUserConnection.Name
+- uid: Fluxer.Net.UserConnection.IsVerified*
+  commentId: Overload:Fluxer.Net.UserConnection.IsVerified
+  href: Fluxer.Net.UserConnection.html#Fluxer_Net_UserConnection_IsVerified
+  name: IsVerified
+  nameWithType: UserConnection.IsVerified
+  fullName: Fluxer.Net.UserConnection.IsVerified
+- uid: Fluxer.Net.IUserConnection.IsVerified
+  commentId: P:Fluxer.Net.IUserConnection.IsVerified
+  parent: Fluxer.Net.IUserConnection
+  href: Fluxer.Net.IUserConnection.html#Fluxer_Net_IUserConnection_IsVerified
+  name: IsVerified
+  nameWithType: IUserConnection.IsVerified
+  fullName: Fluxer.Net.IUserConnection.IsVerified
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: Fluxer.Net.UserConnection.VisibilityFlags*
+  commentId: Overload:Fluxer.Net.UserConnection.VisibilityFlags
+  href: Fluxer.Net.UserConnection.html#Fluxer_Net_UserConnection_VisibilityFlags
+  name: VisibilityFlags
+  nameWithType: UserConnection.VisibilityFlags
+  fullName: Fluxer.Net.UserConnection.VisibilityFlags
+- uid: Fluxer.Net.IUserConnection.VisibilityFlags
+  commentId: P:Fluxer.Net.IUserConnection.VisibilityFlags
+  parent: Fluxer.Net.IUserConnection
+  href: Fluxer.Net.IUserConnection.html#Fluxer_Net_IUserConnection_VisibilityFlags
+  name: VisibilityFlags
+  nameWithType: IUserConnection.VisibilityFlags
+  fullName: Fluxer.Net.IUserConnection.VisibilityFlags
+- uid: System.UInt64
+  commentId: T:System.UInt64
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.uint64
+  name: ulong
+  nameWithType: ulong
+  fullName: ulong
+  nameWithType.vb: ULong
+  fullName.vb: ULong
+  name.vb: ULong
+- uid: Fluxer.Net.UserConnection.SortOrder*
+  commentId: Overload:Fluxer.Net.UserConnection.SortOrder
+  href: Fluxer.Net.UserConnection.html#Fluxer_Net_UserConnection_SortOrder
+  name: SortOrder
+  nameWithType: UserConnection.SortOrder
+  fullName: Fluxer.Net.UserConnection.SortOrder
+- uid: Fluxer.Net.IUserConnection.SortOrder
+  commentId: P:Fluxer.Net.IUserConnection.SortOrder
+  parent: Fluxer.Net.IUserConnection
+  href: Fluxer.Net.IUserConnection.html#Fluxer_Net_IUserConnection_SortOrder
+  name: SortOrder
+  nameWithType: IUserConnection.SortOrder
+  fullName: Fluxer.Net.IUserConnection.SortOrder
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: Fluxer.Net.UserConnection.Create*
+  commentId: Overload:Fluxer.Net.UserConnection.Create
+  href: Fluxer.Net.UserConnection.html#Fluxer_Net_UserConnection_Create_Fluxer_Net_FluxerBaseClient_Fluxer_Net_UserConnectionJson_
+  name: Create
+  nameWithType: UserConnection.Create
+  fullName: Fluxer.Net.UserConnection.Create
+- uid: Fluxer.Net.FluxerBaseClient
+  commentId: T:Fluxer.Net.FluxerBaseClient
+  parent: Fluxer.Net
+  href: Fluxer.Net.FluxerBaseClient.html
+  name: FluxerBaseClient
+  nameWithType: FluxerBaseClient
+  fullName: Fluxer.Net.FluxerBaseClient
+- uid: Fluxer.Net.UserConnectionJson
+  commentId: T:Fluxer.Net.UserConnectionJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.UserConnectionJson.html
+  name: UserConnectionJson
+  nameWithType: UserConnectionJson
+  fullName: Fluxer.Net.UserConnectionJson
+- uid: Fluxer.Net.UserConnection
+  commentId: T:Fluxer.Net.UserConnection
+  parent: Fluxer.Net
+  href: Fluxer.Net.UserConnection.html
+  name: UserConnection
+  nameWithType: UserConnection
+  fullName: Fluxer.Net.UserConnection

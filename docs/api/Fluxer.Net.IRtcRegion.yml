@@ -1,0 +1,189 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.IRtcRegion
+  commentId: T:Fluxer.Net.IRtcRegion
+  id: IRtcRegion
+  parent: Fluxer.Net
+  children:
+  - Fluxer.Net.IRtcRegion.Emoji
+  - Fluxer.Net.IRtcRegion.Id
+  - Fluxer.Net.IRtcRegion.Name
+  langs:
+  - csharp
+  - vb
+  name: IRtcRegion
+  nameWithType: IRtcRegion
+  fullName: Fluxer.Net.IRtcRegion
+  type: Interface
+  source:
+    remote:
+      path: Fluxer.Net/Data/Voice/IRtcRegion.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: IRtcRegion
+    path: ../Fluxer.Net/Data/Voice/IRtcRegion.cs
+    startLine: 8
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Returns available voice and video calling regions for the channel, used to optimise connection quality.
+  remarks: Requires Call permission.
+  example: []
+  syntax:
+    content: public interface IRtcRegion
+    content.vb: Public Interface IRtcRegion
+  derivedClasses:
+  - Fluxer.Net.RtcRegion
+  - Fluxer.Net.RtcRegionJson
+- uid: Fluxer.Net.IRtcRegion.Id
+  commentId: P:Fluxer.Net.IRtcRegion.Id
+  id: Id
+  parent: Fluxer.Net.IRtcRegion
+  langs:
+  - csharp
+  - vb
+  name: Id
+  nameWithType: IRtcRegion.Id
+  fullName: Fluxer.Net.IRtcRegion.Id
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Voice/IRtcRegion.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Id
+    path: ../Fluxer.Net/Data/Voice/IRtcRegion.cs
+    startLine: 13
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The unique identifier for this RTC region.
+  example: []
+  syntax:
+    content: string Id { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: ReadOnly Property Id As String
+  overload: Fluxer.Net.IRtcRegion.Id*
+- uid: Fluxer.Net.IRtcRegion.Name
+  commentId: P:Fluxer.Net.IRtcRegion.Name
+  id: Name
+  parent: Fluxer.Net.IRtcRegion
+  langs:
+  - csharp
+  - vb
+  name: Name
+  nameWithType: IRtcRegion.Name
+  fullName: Fluxer.Net.IRtcRegion.Name
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Voice/IRtcRegion.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Name
+    path: ../Fluxer.Net/Data/Voice/IRtcRegion.cs
+    startLine: 18
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The display name of the RTC region.
+  example: []
+  syntax:
+    content: string Name { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: ReadOnly Property Name As String
+  overload: Fluxer.Net.IRtcRegion.Name*
+- uid: Fluxer.Net.IRtcRegion.Emoji
+  commentId: P:Fluxer.Net.IRtcRegion.Emoji
+  id: Emoji
+  parent: Fluxer.Net.IRtcRegion
+  langs:
+  - csharp
+  - vb
+  name: Emoji
+  nameWithType: IRtcRegion.Emoji
+  fullName: Fluxer.Net.IRtcRegion.Emoji
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Voice/IRtcRegion.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Emoji
+    path: ../Fluxer.Net/Data/Voice/IRtcRegion.cs
+    startLine: 23
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: The emoji associated with this RTC region
+  example: []
+  syntax:
+    content: string Emoji { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: ReadOnly Property Emoji As String
+  overload: Fluxer.Net.IRtcRegion.Emoji*
+references:
+- uid: Fluxer.Net
+  commentId: N:Fluxer.Net
+  href: Fluxer.html
+  name: Fluxer.Net
+  nameWithType: Fluxer.Net
+  fullName: Fluxer.Net
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+- uid: Fluxer.Net.IRtcRegion.Id*
+  commentId: Overload:Fluxer.Net.IRtcRegion.Id
+  href: Fluxer.Net.IRtcRegion.html#Fluxer_Net_IRtcRegion_Id
+  name: Id
+  nameWithType: IRtcRegion.Id
+  fullName: Fluxer.Net.IRtcRegion.Id
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Fluxer.Net.IRtcRegion.Name*
+  commentId: Overload:Fluxer.Net.IRtcRegion.Name
+  href: Fluxer.Net.IRtcRegion.html#Fluxer_Net_IRtcRegion_Name
+  name: Name
+  nameWithType: IRtcRegion.Name
+  fullName: Fluxer.Net.IRtcRegion.Name
+- uid: Fluxer.Net.IRtcRegion.Emoji*
+  commentId: Overload:Fluxer.Net.IRtcRegion.Emoji
+  href: Fluxer.Net.IRtcRegion.html#Fluxer_Net_IRtcRegion_Emoji
+  name: Emoji
+  nameWithType: IRtcRegion.Emoji
+  fullName: Fluxer.Net.IRtcRegion.Emoji

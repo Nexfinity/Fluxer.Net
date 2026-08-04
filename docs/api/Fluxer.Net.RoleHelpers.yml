@@ -1,0 +1,613 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.RoleHelpers
+  commentId: T:Fluxer.Net.RoleHelpers
+  id: RoleHelpers
+  parent: Fluxer.Net
+  children:
+  - Fluxer.Net.RoleHelpers.AddMemberAsync(Fluxer.Net.Role,Fluxer.Net.GuildMember)
+  - Fluxer.Net.RoleHelpers.AddMemberAsync(Fluxer.Net.Role,System.UInt64)
+  - Fluxer.Net.RoleHelpers.DeleteAsync(Fluxer.Net.Role)
+  - Fluxer.Net.RoleHelpers.ModifyAsync(Fluxer.Net.Role,Fluxer.Net.UpdateGuildRoleRequest)
+  - Fluxer.Net.RoleHelpers.RemoveMemberAsync(Fluxer.Net.Role,Fluxer.Net.GuildMember)
+  - Fluxer.Net.RoleHelpers.RemoveMemberAsync(Fluxer.Net.Role,System.UInt64)
+  langs:
+  - csharp
+  - vb
+  name: RoleHelpers
+  nameWithType: RoleHelpers
+  fullName: Fluxer.Net.RoleHelpers
+  type: Class
+  source:
+    remote:
+      path: Fluxer.Net/Rest/Helpers/RoleHelpers.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: RoleHelpers
+    path: ../Fluxer.Net/Rest/Helpers/RoleHelpers.cs
+    startLine: 2
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: public static class RoleHelpers
+    content.vb: Public Module RoleHelpers
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: Fluxer.Net.RoleHelpers.DeleteAsync(Fluxer.Net.Role)
+  commentId: M:Fluxer.Net.RoleHelpers.DeleteAsync(Fluxer.Net.Role)
+  id: DeleteAsync(Fluxer.Net.Role)
+  isExtensionMethod: true
+  parent: Fluxer.Net.RoleHelpers
+  langs:
+  - csharp
+  - vb
+  name: DeleteAsync(Role)
+  nameWithType: RoleHelpers.DeleteAsync(Role)
+  fullName: Fluxer.Net.RoleHelpers.DeleteAsync(Fluxer.Net.Role)
+  type: Method
+  source:
+    remote:
+      path: Fluxer.Net/Rest/Helpers/RoleHelpers.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: DeleteAsync
+    path: ../Fluxer.Net/Rest/Helpers/RoleHelpers.cs
+    startLine: 4
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: public static Task DeleteAsync(this Role role)
+    parameters:
+    - id: role
+      type: Fluxer.Net.Role
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Public Shared Function DeleteAsync(role As Role) As Task
+  overload: Fluxer.Net.RoleHelpers.DeleteAsync*
+- uid: Fluxer.Net.RoleHelpers.ModifyAsync(Fluxer.Net.Role,Fluxer.Net.UpdateGuildRoleRequest)
+  commentId: M:Fluxer.Net.RoleHelpers.ModifyAsync(Fluxer.Net.Role,Fluxer.Net.UpdateGuildRoleRequest)
+  id: ModifyAsync(Fluxer.Net.Role,Fluxer.Net.UpdateGuildRoleRequest)
+  isExtensionMethod: true
+  parent: Fluxer.Net.RoleHelpers
+  langs:
+  - csharp
+  - vb
+  name: ModifyAsync(Role, UpdateGuildRoleRequest)
+  nameWithType: RoleHelpers.ModifyAsync(Role, UpdateGuildRoleRequest)
+  fullName: Fluxer.Net.RoleHelpers.ModifyAsync(Fluxer.Net.Role, Fluxer.Net.UpdateGuildRoleRequest)
+  type: Method
+  source:
+    remote:
+      path: Fluxer.Net/Rest/Helpers/RoleHelpers.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: ModifyAsync
+    path: ../Fluxer.Net/Rest/Helpers/RoleHelpers.cs
+    startLine: 7
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: public static Task ModifyAsync(this Role role, UpdateGuildRoleRequest request)
+    parameters:
+    - id: role
+      type: Fluxer.Net.Role
+    - id: request
+      type: Fluxer.Net.UpdateGuildRoleRequest
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Public Shared Function ModifyAsync(role As Role, request As UpdateGuildRoleRequest) As Task
+  overload: Fluxer.Net.RoleHelpers.ModifyAsync*
+- uid: Fluxer.Net.RoleHelpers.AddMemberAsync(Fluxer.Net.Role,System.UInt64)
+  commentId: M:Fluxer.Net.RoleHelpers.AddMemberAsync(Fluxer.Net.Role,System.UInt64)
+  id: AddMemberAsync(Fluxer.Net.Role,System.UInt64)
+  isExtensionMethod: true
+  parent: Fluxer.Net.RoleHelpers
+  langs:
+  - csharp
+  - vb
+  name: AddMemberAsync(Role, ulong)
+  nameWithType: RoleHelpers.AddMemberAsync(Role, ulong)
+  fullName: Fluxer.Net.RoleHelpers.AddMemberAsync(Fluxer.Net.Role, ulong)
+  type: Method
+  source:
+    remote:
+      path: Fluxer.Net/Rest/Helpers/RoleHelpers.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: AddMemberAsync
+    path: ../Fluxer.Net/Rest/Helpers/RoleHelpers.cs
+    startLine: 10
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: public static Task AddMemberAsync(this Role role, ulong userId)
+    parameters:
+    - id: role
+      type: Fluxer.Net.Role
+    - id: userId
+      type: System.UInt64
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Public Shared Function AddMemberAsync(role As Role, userId As ULong) As Task
+  overload: Fluxer.Net.RoleHelpers.AddMemberAsync*
+  nameWithType.vb: RoleHelpers.AddMemberAsync(Role, ULong)
+  fullName.vb: Fluxer.Net.RoleHelpers.AddMemberAsync(Fluxer.Net.Role, ULong)
+  name.vb: AddMemberAsync(Role, ULong)
+- uid: Fluxer.Net.RoleHelpers.AddMemberAsync(Fluxer.Net.Role,Fluxer.Net.GuildMember)
+  commentId: M:Fluxer.Net.RoleHelpers.AddMemberAsync(Fluxer.Net.Role,Fluxer.Net.GuildMember)
+  id: AddMemberAsync(Fluxer.Net.Role,Fluxer.Net.GuildMember)
+  isExtensionMethod: true
+  parent: Fluxer.Net.RoleHelpers
+  langs:
+  - csharp
+  - vb
+  name: AddMemberAsync(Role, GuildMember)
+  nameWithType: RoleHelpers.AddMemberAsync(Role, GuildMember)
+  fullName: Fluxer.Net.RoleHelpers.AddMemberAsync(Fluxer.Net.Role, Fluxer.Net.GuildMember)
+  type: Method
+  source:
+    remote:
+      path: Fluxer.Net/Rest/Helpers/RoleHelpers.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: AddMemberAsync
+    path: ../Fluxer.Net/Rest/Helpers/RoleHelpers.cs
+    startLine: 13
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: public static Task AddMemberAsync(this Role role, GuildMember member)
+    parameters:
+    - id: role
+      type: Fluxer.Net.Role
+    - id: member
+      type: Fluxer.Net.GuildMember
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Public Shared Function AddMemberAsync(role As Role, member As GuildMember) As Task
+  overload: Fluxer.Net.RoleHelpers.AddMemberAsync*
+- uid: Fluxer.Net.RoleHelpers.RemoveMemberAsync(Fluxer.Net.Role,System.UInt64)
+  commentId: M:Fluxer.Net.RoleHelpers.RemoveMemberAsync(Fluxer.Net.Role,System.UInt64)
+  id: RemoveMemberAsync(Fluxer.Net.Role,System.UInt64)
+  isExtensionMethod: true
+  parent: Fluxer.Net.RoleHelpers
+  langs:
+  - csharp
+  - vb
+  name: RemoveMemberAsync(Role, ulong)
+  nameWithType: RoleHelpers.RemoveMemberAsync(Role, ulong)
+  fullName: Fluxer.Net.RoleHelpers.RemoveMemberAsync(Fluxer.Net.Role, ulong)
+  type: Method
+  source:
+    remote:
+      path: Fluxer.Net/Rest/Helpers/RoleHelpers.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: RemoveMemberAsync
+    path: ../Fluxer.Net/Rest/Helpers/RoleHelpers.cs
+    startLine: 16
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: public static Task RemoveMemberAsync(this Role role, ulong userId)
+    parameters:
+    - id: role
+      type: Fluxer.Net.Role
+    - id: userId
+      type: System.UInt64
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Public Shared Function RemoveMemberAsync(role As Role, userId As ULong) As Task
+  overload: Fluxer.Net.RoleHelpers.RemoveMemberAsync*
+  nameWithType.vb: RoleHelpers.RemoveMemberAsync(Role, ULong)
+  fullName.vb: Fluxer.Net.RoleHelpers.RemoveMemberAsync(Fluxer.Net.Role, ULong)
+  name.vb: RemoveMemberAsync(Role, ULong)
+- uid: Fluxer.Net.RoleHelpers.RemoveMemberAsync(Fluxer.Net.Role,Fluxer.Net.GuildMember)
+  commentId: M:Fluxer.Net.RoleHelpers.RemoveMemberAsync(Fluxer.Net.Role,Fluxer.Net.GuildMember)
+  id: RemoveMemberAsync(Fluxer.Net.Role,Fluxer.Net.GuildMember)
+  isExtensionMethod: true
+  parent: Fluxer.Net.RoleHelpers
+  langs:
+  - csharp
+  - vb
+  name: RemoveMemberAsync(Role, GuildMember)
+  nameWithType: RoleHelpers.RemoveMemberAsync(Role, GuildMember)
+  fullName: Fluxer.Net.RoleHelpers.RemoveMemberAsync(Fluxer.Net.Role, Fluxer.Net.GuildMember)
+  type: Method
+  source:
+    remote:
+      path: Fluxer.Net/Rest/Helpers/RoleHelpers.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: RemoveMemberAsync
+    path: ../Fluxer.Net/Rest/Helpers/RoleHelpers.cs
+    startLine: 19
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: public static Task RemoveMemberAsync(this Role role, GuildMember member)
+    parameters:
+    - id: role
+      type: Fluxer.Net.Role
+    - id: member
+      type: Fluxer.Net.GuildMember
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Public Shared Function RemoveMemberAsync(role As Role, member As GuildMember) As Task
+  overload: Fluxer.Net.RoleHelpers.RemoveMemberAsync*
+references:
+- uid: Fluxer.Net
+  commentId: N:Fluxer.Net
+  href: Fluxer.html
+  name: Fluxer.Net
+  nameWithType: Fluxer.Net
+  fullName: Fluxer.Net
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Fluxer.Net.RoleHelpers.DeleteAsync*
+  commentId: Overload:Fluxer.Net.RoleHelpers.DeleteAsync
+  href: Fluxer.Net.RoleHelpers.html#Fluxer_Net_RoleHelpers_DeleteAsync_Fluxer_Net_Role_
+  name: DeleteAsync
+  nameWithType: RoleHelpers.DeleteAsync
+  fullName: Fluxer.Net.RoleHelpers.DeleteAsync
+- uid: Fluxer.Net.Role
+  commentId: T:Fluxer.Net.Role
+  parent: Fluxer.Net
+  href: Fluxer.Net.Role.html
+  name: Role
+  nameWithType: Role
+  fullName: Fluxer.Net.Role
+- uid: System.Threading.Tasks.Task
+  commentId: T:System.Threading.Tasks.Task
+  parent: System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task
+  name: Task
+  nameWithType: Task
+  fullName: System.Threading.Tasks.Task
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+- uid: Fluxer.Net.RoleHelpers.ModifyAsync*
+  commentId: Overload:Fluxer.Net.RoleHelpers.ModifyAsync
+  href: Fluxer.Net.RoleHelpers.html#Fluxer_Net_RoleHelpers_ModifyAsync_Fluxer_Net_Role_Fluxer_Net_UpdateGuildRoleRequest_
+  name: ModifyAsync
+  nameWithType: RoleHelpers.ModifyAsync
+  fullName: Fluxer.Net.RoleHelpers.ModifyAsync
+- uid: Fluxer.Net.UpdateGuildRoleRequest
+  commentId: T:Fluxer.Net.UpdateGuildRoleRequest
+  parent: Fluxer.Net
+  href: Fluxer.Net.UpdateGuildRoleRequest.html
+  name: UpdateGuildRoleRequest
+  nameWithType: UpdateGuildRoleRequest
+  fullName: Fluxer.Net.UpdateGuildRoleRequest
+- uid: Fluxer.Net.RoleHelpers.AddMemberAsync*
+  commentId: Overload:Fluxer.Net.RoleHelpers.AddMemberAsync
+  href: Fluxer.Net.RoleHelpers.html#Fluxer_Net_RoleHelpers_AddMemberAsync_Fluxer_Net_Role_System_UInt64_
+  name: AddMemberAsync
+  nameWithType: RoleHelpers.AddMemberAsync
+  fullName: Fluxer.Net.RoleHelpers.AddMemberAsync
+- uid: System.UInt64
+  commentId: T:System.UInt64
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.uint64
+  name: ulong
+  nameWithType: ulong
+  fullName: ulong
+  nameWithType.vb: ULong
+  fullName.vb: ULong
+  name.vb: ULong
+- uid: Fluxer.Net.GuildMember
+  commentId: T:Fluxer.Net.GuildMember
+  parent: Fluxer.Net
+  href: Fluxer.Net.GuildMember.html
+  name: GuildMember
+  nameWithType: GuildMember
+  fullName: Fluxer.Net.GuildMember
+- uid: Fluxer.Net.RoleHelpers.RemoveMemberAsync*
+  commentId: Overload:Fluxer.Net.RoleHelpers.RemoveMemberAsync
+  href: Fluxer.Net.RoleHelpers.html#Fluxer_Net_RoleHelpers_RemoveMemberAsync_Fluxer_Net_Role_System_UInt64_
+  name: RemoveMemberAsync
+  nameWithType: RoleHelpers.RemoveMemberAsync
+  fullName: Fluxer.Net.RoleHelpers.RemoveMemberAsync

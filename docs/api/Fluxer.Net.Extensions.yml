@@ -1,0 +1,44 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.Extensions
+  commentId: N:Fluxer.Net.Extensions
+  id: Fluxer.Net.Extensions
+  children:
+  - Fluxer.Net.Extensions.ChannelPermissionsConverter
+  - Fluxer.Net.Extensions.FluxerApiException
+  - Fluxer.Net.Extensions.GuildPermissionsConverter
+  - Fluxer.Net.Extensions.StringUInt64Converter
+  langs:
+  - csharp
+  - vb
+  name: Fluxer.Net.Extensions
+  nameWithType: Fluxer.Net.Extensions
+  fullName: Fluxer.Net.Extensions
+  type: Namespace
+  assemblies:
+  - Fluxer.Net
+references:
+- uid: Fluxer.Net.Extensions.ChannelPermissionsConverter
+  commentId: T:Fluxer.Net.Extensions.ChannelPermissionsConverter
+  href: Fluxer.Net.Extensions.ChannelPermissionsConverter.html
+  name: ChannelPermissionsConverter
+  nameWithType: ChannelPermissionsConverter
+  fullName: Fluxer.Net.Extensions.ChannelPermissionsConverter
+- uid: Fluxer.Net.Extensions.FluxerApiException
+  commentId: T:Fluxer.Net.Extensions.FluxerApiException
+  href: Fluxer.Net.Extensions.FluxerApiException.html
+  name: FluxerApiException
+  nameWithType: FluxerApiException
+  fullName: Fluxer.Net.Extensions.FluxerApiException
+- uid: Fluxer.Net.Extensions.GuildPermissionsConverter
+  commentId: T:Fluxer.Net.Extensions.GuildPermissionsConverter
+  href: Fluxer.Net.Extensions.GuildPermissionsConverter.html
+  name: GuildPermissionsConverter
+  nameWithType: GuildPermissionsConverter
+  fullName: Fluxer.Net.Extensions.GuildPermissionsConverter
+- uid: Fluxer.Net.Extensions.StringUInt64Converter
+  commentId: T:Fluxer.Net.Extensions.StringUInt64Converter
+  href: Fluxer.Net.Extensions.StringUInt64Converter.html
+  name: StringUInt64Converter
+  nameWithType: StringUInt64Converter
+  fullName: Fluxer.Net.Extensions.StringUInt64Converter

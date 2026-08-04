@@ -1,0 +1,68 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.Rest
+  commentId: N:Fluxer.Net.Rest
+  id: Fluxer.Net.Rest
+  children:
+  - Fluxer.Net.Rest.AttachmentRequest
+  - Fluxer.Net.Rest.QueryParams
+  - Fluxer.Net.Rest.RestClientQueryParams
+  langs:
+  - csharp
+  - vb
+  name: Fluxer.Net.Rest
+  nameWithType: Fluxer.Net.Rest
+  fullName: Fluxer.Net.Rest
+  type: Namespace
+  assemblies:
+  - Fluxer.Net
+references:
+- uid: Fluxer.Net.Rest.QueryParams
+  commentId: T:Fluxer.Net.Rest.QueryParams
+  href: Fluxer.Net.Rest.QueryParams.html
+  name: QueryParams
+  nameWithType: QueryParams
+  fullName: Fluxer.Net.Rest.QueryParams
+- uid: Fluxer.Net.Rest.AttachmentRequest
+  commentId: T:Fluxer.Net.Rest.AttachmentRequest
+  href: Fluxer.Net.Rest.AttachmentRequest.html
+  name: AttachmentRequest
+  nameWithType: AttachmentRequest
+  fullName: Fluxer.Net.Rest.AttachmentRequest
+- uid: Fluxer.Net.Rest.RestClientQueryParams
+  commentId: T:Fluxer.Net.Rest.RestClientQueryParams
+  parent: Fluxer.Net.Rest
+  href: Fluxer.Net.Rest.RestClientQueryParams.html
+  name: RestClientQueryParams
+  nameWithType: RestClientQueryParams
+  fullName: Fluxer.Net.Rest.RestClientQueryParams
+- uid: Fluxer.Net.Rest
+  commentId: N:Fluxer.Net.Rest
+  href: Fluxer.html
+  name: Fluxer.Net.Rest
+  nameWithType: Fluxer.Net.Rest
+  fullName: Fluxer.Net.Rest
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  - name: .
+  - uid: Fluxer.Net.Rest
+    name: Rest
+    href: Fluxer.Net.Rest.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  - name: .
+  - uid: Fluxer.Net.Rest
+    name: Rest
+    href: Fluxer.Net.Rest.html

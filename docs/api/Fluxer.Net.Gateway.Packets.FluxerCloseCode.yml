@@ -1,0 +1,485 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.Gateway.Packets.FluxerCloseCode
+  commentId: T:Fluxer.Net.Gateway.Packets.FluxerCloseCode
+  id: FluxerCloseCode
+  parent: Fluxer.Net.Gateway.Packets
+  children:
+  - Fluxer.Net.Gateway.Packets.FluxerCloseCode.AlreadyAuthenticated
+  - Fluxer.Net.Gateway.Packets.FluxerCloseCode.AuthenticationFailed
+  - Fluxer.Net.Gateway.Packets.FluxerCloseCode.DecodeError
+  - Fluxer.Net.Gateway.Packets.FluxerCloseCode.DisallowedIntents
+  - Fluxer.Net.Gateway.Packets.FluxerCloseCode.InvalidApiVersion
+  - Fluxer.Net.Gateway.Packets.FluxerCloseCode.InvalidIntents
+  - Fluxer.Net.Gateway.Packets.FluxerCloseCode.InvalidSequence
+  - Fluxer.Net.Gateway.Packets.FluxerCloseCode.InvalidShard
+  - Fluxer.Net.Gateway.Packets.FluxerCloseCode.NotAuthenticated
+  - Fluxer.Net.Gateway.Packets.FluxerCloseCode.RateLimited
+  - Fluxer.Net.Gateway.Packets.FluxerCloseCode.SessionTimeout
+  - Fluxer.Net.Gateway.Packets.FluxerCloseCode.ShardingRequired
+  - Fluxer.Net.Gateway.Packets.FluxerCloseCode.UnknownError
+  - Fluxer.Net.Gateway.Packets.FluxerCloseCode.UnknownOpcode
+  langs:
+  - csharp
+  - vb
+  name: FluxerCloseCode
+  nameWithType: FluxerCloseCode
+  fullName: Fluxer.Net.Gateway.Packets.FluxerCloseCode
+  type: Enum
+  source:
+    remote:
+      path: Fluxer.Net/Gateway/Packets/FluxerCloseCode.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: FluxerCloseCode
+    path: ../Fluxer.Net/Gateway/Packets/FluxerCloseCode.cs
+    startLine: 6
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net.Gateway.Packets
+  summary: >-
+    WebSocket close codes specific to the Fluxer Gateway protocol.
+
+    These codes indicate why a gateway connection was closed.
+  example: []
+  syntax:
+    content: public enum FluxerCloseCode
+    content.vb: Public Enum FluxerCloseCode
+- uid: Fluxer.Net.Gateway.Packets.FluxerCloseCode.UnknownError
+  commentId: F:Fluxer.Net.Gateway.Packets.FluxerCloseCode.UnknownError
+  id: UnknownError
+  parent: Fluxer.Net.Gateway.Packets.FluxerCloseCode
+  langs:
+  - csharp
+  - vb
+  name: UnknownError
+  nameWithType: FluxerCloseCode.UnknownError
+  fullName: Fluxer.Net.Gateway.Packets.FluxerCloseCode.UnknownError
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Gateway/Packets/FluxerCloseCode.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: UnknownError
+    path: ../Fluxer.Net/Gateway/Packets/FluxerCloseCode.cs
+    startLine: 11
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net.Gateway.Packets
+  summary: Unknown error occurred. The connection may be retried.
+  example: []
+  syntax:
+    content: UnknownError = 4000
+    return:
+      type: Fluxer.Net.Gateway.Packets.FluxerCloseCode
+- uid: Fluxer.Net.Gateway.Packets.FluxerCloseCode.UnknownOpcode
+  commentId: F:Fluxer.Net.Gateway.Packets.FluxerCloseCode.UnknownOpcode
+  id: UnknownOpcode
+  parent: Fluxer.Net.Gateway.Packets.FluxerCloseCode
+  langs:
+  - csharp
+  - vb
+  name: UnknownOpcode
+  nameWithType: FluxerCloseCode.UnknownOpcode
+  fullName: Fluxer.Net.Gateway.Packets.FluxerCloseCode.UnknownOpcode
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Gateway/Packets/FluxerCloseCode.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: UnknownOpcode
+    path: ../Fluxer.Net/Gateway/Packets/FluxerCloseCode.cs
+    startLine: 16
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net.Gateway.Packets
+  summary: An invalid gateway opcode was sent.
+  example: []
+  syntax:
+    content: UnknownOpcode = 4001
+    return:
+      type: Fluxer.Net.Gateway.Packets.FluxerCloseCode
+- uid: Fluxer.Net.Gateway.Packets.FluxerCloseCode.DecodeError
+  commentId: F:Fluxer.Net.Gateway.Packets.FluxerCloseCode.DecodeError
+  id: DecodeError
+  parent: Fluxer.Net.Gateway.Packets.FluxerCloseCode
+  langs:
+  - csharp
+  - vb
+  name: DecodeError
+  nameWithType: FluxerCloseCode.DecodeError
+  fullName: Fluxer.Net.Gateway.Packets.FluxerCloseCode.DecodeError
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Gateway/Packets/FluxerCloseCode.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: DecodeError
+    path: ../Fluxer.Net/Gateway/Packets/FluxerCloseCode.cs
+    startLine: 21
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net.Gateway.Packets
+  summary: An invalid payload was sent that could not be decoded.
+  example: []
+  syntax:
+    content: DecodeError = 4002
+    return:
+      type: Fluxer.Net.Gateway.Packets.FluxerCloseCode
+- uid: Fluxer.Net.Gateway.Packets.FluxerCloseCode.NotAuthenticated
+  commentId: F:Fluxer.Net.Gateway.Packets.FluxerCloseCode.NotAuthenticated
+  id: NotAuthenticated
+  parent: Fluxer.Net.Gateway.Packets.FluxerCloseCode
+  langs:
+  - csharp
+  - vb
+  name: NotAuthenticated
+  nameWithType: FluxerCloseCode.NotAuthenticated
+  fullName: Fluxer.Net.Gateway.Packets.FluxerCloseCode.NotAuthenticated
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Gateway/Packets/FluxerCloseCode.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: NotAuthenticated
+    path: ../Fluxer.Net/Gateway/Packets/FluxerCloseCode.cs
+    startLine: 26
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net.Gateway.Packets
+  summary: A payload was sent before authenticating with the gateway.
+  example: []
+  syntax:
+    content: NotAuthenticated = 4003
+    return:
+      type: Fluxer.Net.Gateway.Packets.FluxerCloseCode
+- uid: Fluxer.Net.Gateway.Packets.FluxerCloseCode.AuthenticationFailed
+  commentId: F:Fluxer.Net.Gateway.Packets.FluxerCloseCode.AuthenticationFailed
+  id: AuthenticationFailed
+  parent: Fluxer.Net.Gateway.Packets.FluxerCloseCode
+  langs:
+  - csharp
+  - vb
+  name: AuthenticationFailed
+  nameWithType: FluxerCloseCode.AuthenticationFailed
+  fullName: Fluxer.Net.Gateway.Packets.FluxerCloseCode.AuthenticationFailed
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Gateway/Packets/FluxerCloseCode.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: AuthenticationFailed
+    path: ../Fluxer.Net/Gateway/Packets/FluxerCloseCode.cs
+    startLine: 31
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net.Gateway.Packets
+  summary: The authentication token is invalid.
+  example: []
+  syntax:
+    content: AuthenticationFailed = 4004
+    return:
+      type: Fluxer.Net.Gateway.Packets.FluxerCloseCode
+- uid: Fluxer.Net.Gateway.Packets.FluxerCloseCode.AlreadyAuthenticated
+  commentId: F:Fluxer.Net.Gateway.Packets.FluxerCloseCode.AlreadyAuthenticated
+  id: AlreadyAuthenticated
+  parent: Fluxer.Net.Gateway.Packets.FluxerCloseCode
+  langs:
+  - csharp
+  - vb
+  name: AlreadyAuthenticated
+  nameWithType: FluxerCloseCode.AlreadyAuthenticated
+  fullName: Fluxer.Net.Gateway.Packets.FluxerCloseCode.AlreadyAuthenticated
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Gateway/Packets/FluxerCloseCode.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: AlreadyAuthenticated
+    path: ../Fluxer.Net/Gateway/Packets/FluxerCloseCode.cs
+    startLine: 36
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net.Gateway.Packets
+  summary: An authentication payload was sent after already authenticating.
+  example: []
+  syntax:
+    content: AlreadyAuthenticated = 4005
+    return:
+      type: Fluxer.Net.Gateway.Packets.FluxerCloseCode
+- uid: Fluxer.Net.Gateway.Packets.FluxerCloseCode.InvalidSequence
+  commentId: F:Fluxer.Net.Gateway.Packets.FluxerCloseCode.InvalidSequence
+  id: InvalidSequence
+  parent: Fluxer.Net.Gateway.Packets.FluxerCloseCode
+  langs:
+  - csharp
+  - vb
+  name: InvalidSequence
+  nameWithType: FluxerCloseCode.InvalidSequence
+  fullName: Fluxer.Net.Gateway.Packets.FluxerCloseCode.InvalidSequence
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Gateway/Packets/FluxerCloseCode.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: InvalidSequence
+    path: ../Fluxer.Net/Gateway/Packets/FluxerCloseCode.cs
+    startLine: 41
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net.Gateway.Packets
+  summary: The sequence number sent in a RESUME packet was invalid.
+  example: []
+  syntax:
+    content: InvalidSequence = 4007
+    return:
+      type: Fluxer.Net.Gateway.Packets.FluxerCloseCode
+- uid: Fluxer.Net.Gateway.Packets.FluxerCloseCode.RateLimited
+  commentId: F:Fluxer.Net.Gateway.Packets.FluxerCloseCode.RateLimited
+  id: RateLimited
+  parent: Fluxer.Net.Gateway.Packets.FluxerCloseCode
+  langs:
+  - csharp
+  - vb
+  name: RateLimited
+  nameWithType: FluxerCloseCode.RateLimited
+  fullName: Fluxer.Net.Gateway.Packets.FluxerCloseCode.RateLimited
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Gateway/Packets/FluxerCloseCode.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: RateLimited
+    path: ../Fluxer.Net/Gateway/Packets/FluxerCloseCode.cs
+    startLine: 46
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net.Gateway.Packets
+  summary: Payloads are being sent too quickly (rate limited).
+  example: []
+  syntax:
+    content: RateLimited = 4008
+    return:
+      type: Fluxer.Net.Gateway.Packets.FluxerCloseCode
+- uid: Fluxer.Net.Gateway.Packets.FluxerCloseCode.SessionTimeout
+  commentId: F:Fluxer.Net.Gateway.Packets.FluxerCloseCode.SessionTimeout
+  id: SessionTimeout
+  parent: Fluxer.Net.Gateway.Packets.FluxerCloseCode
+  langs:
+  - csharp
+  - vb
+  name: SessionTimeout
+  nameWithType: FluxerCloseCode.SessionTimeout
+  fullName: Fluxer.Net.Gateway.Packets.FluxerCloseCode.SessionTimeout
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Gateway/Packets/FluxerCloseCode.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: SessionTimeout
+    path: ../Fluxer.Net/Gateway/Packets/FluxerCloseCode.cs
+    startLine: 51
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net.Gateway.Packets
+  summary: The session timed out. A new session should be created.
+  example: []
+  syntax:
+    content: SessionTimeout = 4009
+    return:
+      type: Fluxer.Net.Gateway.Packets.FluxerCloseCode
+- uid: Fluxer.Net.Gateway.Packets.FluxerCloseCode.InvalidShard
+  commentId: F:Fluxer.Net.Gateway.Packets.FluxerCloseCode.InvalidShard
+  id: InvalidShard
+  parent: Fluxer.Net.Gateway.Packets.FluxerCloseCode
+  langs:
+  - csharp
+  - vb
+  name: InvalidShard
+  nameWithType: FluxerCloseCode.InvalidShard
+  fullName: Fluxer.Net.Gateway.Packets.FluxerCloseCode.InvalidShard
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Gateway/Packets/FluxerCloseCode.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: InvalidShard
+    path: ../Fluxer.Net/Gateway/Packets/FluxerCloseCode.cs
+    startLine: 56
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net.Gateway.Packets
+  summary: An invalid shard was specified when connecting.
+  example: []
+  syntax:
+    content: InvalidShard = 4010
+    return:
+      type: Fluxer.Net.Gateway.Packets.FluxerCloseCode
+- uid: Fluxer.Net.Gateway.Packets.FluxerCloseCode.ShardingRequired
+  commentId: F:Fluxer.Net.Gateway.Packets.FluxerCloseCode.ShardingRequired
+  id: ShardingRequired
+  parent: Fluxer.Net.Gateway.Packets.FluxerCloseCode
+  langs:
+  - csharp
+  - vb
+  name: ShardingRequired
+  nameWithType: FluxerCloseCode.ShardingRequired
+  fullName: Fluxer.Net.Gateway.Packets.FluxerCloseCode.ShardingRequired
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Gateway/Packets/FluxerCloseCode.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: ShardingRequired
+    path: ../Fluxer.Net/Gateway/Packets/FluxerCloseCode.cs
+    startLine: 61
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net.Gateway.Packets
+  summary: The session requires sharding for this bot to connect.
+  example: []
+  syntax:
+    content: ShardingRequired = 4011
+    return:
+      type: Fluxer.Net.Gateway.Packets.FluxerCloseCode
+- uid: Fluxer.Net.Gateway.Packets.FluxerCloseCode.InvalidApiVersion
+  commentId: F:Fluxer.Net.Gateway.Packets.FluxerCloseCode.InvalidApiVersion
+  id: InvalidApiVersion
+  parent: Fluxer.Net.Gateway.Packets.FluxerCloseCode
+  langs:
+  - csharp
+  - vb
+  name: InvalidApiVersion
+  nameWithType: FluxerCloseCode.InvalidApiVersion
+  fullName: Fluxer.Net.Gateway.Packets.FluxerCloseCode.InvalidApiVersion
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Gateway/Packets/FluxerCloseCode.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: InvalidApiVersion
+    path: ../Fluxer.Net/Gateway/Packets/FluxerCloseCode.cs
+    startLine: 66
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net.Gateway.Packets
+  summary: An invalid API version was specified.
+  example: []
+  syntax:
+    content: InvalidApiVersion = 4012
+    return:
+      type: Fluxer.Net.Gateway.Packets.FluxerCloseCode
+- uid: Fluxer.Net.Gateway.Packets.FluxerCloseCode.InvalidIntents
+  commentId: F:Fluxer.Net.Gateway.Packets.FluxerCloseCode.InvalidIntents
+  id: InvalidIntents
+  parent: Fluxer.Net.Gateway.Packets.FluxerCloseCode
+  langs:
+  - csharp
+  - vb
+  name: InvalidIntents
+  nameWithType: FluxerCloseCode.InvalidIntents
+  fullName: Fluxer.Net.Gateway.Packets.FluxerCloseCode.InvalidIntents
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Gateway/Packets/FluxerCloseCode.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: InvalidIntents
+    path: ../Fluxer.Net/Gateway/Packets/FluxerCloseCode.cs
+    startLine: 71
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net.Gateway.Packets
+  summary: Invalid gateway intents were specified.
+  example: []
+  syntax:
+    content: InvalidIntents = 4013
+    return:
+      type: Fluxer.Net.Gateway.Packets.FluxerCloseCode
+- uid: Fluxer.Net.Gateway.Packets.FluxerCloseCode.DisallowedIntents
+  commentId: F:Fluxer.Net.Gateway.Packets.FluxerCloseCode.DisallowedIntents
+  id: DisallowedIntents
+  parent: Fluxer.Net.Gateway.Packets.FluxerCloseCode
+  langs:
+  - csharp
+  - vb
+  name: DisallowedIntents
+  nameWithType: FluxerCloseCode.DisallowedIntents
+  fullName: Fluxer.Net.Gateway.Packets.FluxerCloseCode.DisallowedIntents
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Gateway/Packets/FluxerCloseCode.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: DisallowedIntents
+    path: ../Fluxer.Net/Gateway/Packets/FluxerCloseCode.cs
+    startLine: 76
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net.Gateway.Packets
+  summary: Disallowed gateway intents were specified (requires verification/approval).
+  example: []
+  syntax:
+    content: DisallowedIntents = 4014
+    return:
+      type: Fluxer.Net.Gateway.Packets.FluxerCloseCode
+references:
+- uid: Fluxer.Net.Gateway.Packets
+  commentId: N:Fluxer.Net.Gateway.Packets
+  href: Fluxer.html
+  name: Fluxer.Net.Gateway.Packets
+  nameWithType: Fluxer.Net.Gateway.Packets
+  fullName: Fluxer.Net.Gateway.Packets
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  - name: .
+  - uid: Fluxer.Net.Gateway
+    name: Gateway
+    href: Fluxer.Net.Gateway.html
+  - name: .
+  - uid: Fluxer.Net.Gateway.Packets
+    name: Packets
+    href: Fluxer.Net.Gateway.Packets.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  - name: .
+  - uid: Fluxer.Net.Gateway
+    name: Gateway
+    href: Fluxer.Net.Gateway.html
+  - name: .
+  - uid: Fluxer.Net.Gateway.Packets
+    name: Packets
+    href: Fluxer.Net.Gateway.Packets.html
+- uid: Fluxer.Net.Gateway.Packets.FluxerCloseCode
+  commentId: T:Fluxer.Net.Gateway.Packets.FluxerCloseCode
+  parent: Fluxer.Net.Gateway.Packets
+  href: Fluxer.Net.Gateway.Packets.FluxerCloseCode.html
+  name: FluxerCloseCode
+  nameWithType: FluxerCloseCode
+  fullName: Fluxer.Net.Gateway.Packets.FluxerCloseCode

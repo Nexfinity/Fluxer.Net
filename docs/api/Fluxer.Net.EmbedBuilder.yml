@@ -1,0 +1,2180 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.EmbedBuilder
+  commentId: T:Fluxer.Net.EmbedBuilder
+  id: EmbedBuilder
+  parent: Fluxer.Net
+  children:
+  - Fluxer.Net.EmbedBuilder.AddField(Fluxer.Net.EmbedFieldBuilder)
+  - Fluxer.Net.EmbedBuilder.AddField(System.Action{Fluxer.Net.EmbedFieldBuilder})
+  - Fluxer.Net.EmbedBuilder.AddField(System.String,System.Object,System.Boolean)
+  - Fluxer.Net.EmbedBuilder.Author
+  - Fluxer.Net.EmbedBuilder.Build
+  - Fluxer.Net.EmbedBuilder.Color
+  - Fluxer.Net.EmbedBuilder.Description
+  - Fluxer.Net.EmbedBuilder.Fields
+  - Fluxer.Net.EmbedBuilder.Footer
+  - Fluxer.Net.EmbedBuilder.ImageUrl
+  - Fluxer.Net.EmbedBuilder.Length
+  - Fluxer.Net.EmbedBuilder.MaxDescriptionLength
+  - Fluxer.Net.EmbedBuilder.MaxEmbedLength
+  - Fluxer.Net.EmbedBuilder.MaxFieldCount
+  - Fluxer.Net.EmbedBuilder.MaxTitleLength
+  - Fluxer.Net.EmbedBuilder.ThumbnailUrl
+  - Fluxer.Net.EmbedBuilder.Timestamp
+  - Fluxer.Net.EmbedBuilder.Title
+  - Fluxer.Net.EmbedBuilder.Url
+  - Fluxer.Net.EmbedBuilder.WithAuthor(Fluxer.Net.EmbedAuthorBuilder)
+  - Fluxer.Net.EmbedBuilder.WithAuthor(System.Action{Fluxer.Net.EmbedAuthorBuilder})
+  - Fluxer.Net.EmbedBuilder.WithAuthor(System.String,System.String,System.String)
+  - Fluxer.Net.EmbedBuilder.WithColor(System.Byte,System.Byte,System.Byte)
+  - Fluxer.Net.EmbedBuilder.WithColor(System.Int32)
+  - Fluxer.Net.EmbedBuilder.WithCurrentTimestamp
+  - Fluxer.Net.EmbedBuilder.WithDescription(System.String)
+  - Fluxer.Net.EmbedBuilder.WithFooter(Fluxer.Net.EmbedFooterBuilder)
+  - Fluxer.Net.EmbedBuilder.WithFooter(System.Action{Fluxer.Net.EmbedFooterBuilder})
+  - Fluxer.Net.EmbedBuilder.WithFooter(System.String,System.String)
+  - Fluxer.Net.EmbedBuilder.WithImageUrl(System.String)
+  - Fluxer.Net.EmbedBuilder.WithThumbnailUrl(System.String)
+  - Fluxer.Net.EmbedBuilder.WithTimestamp(System.DateTime)
+  - Fluxer.Net.EmbedBuilder.WithTitle(System.String)
+  - Fluxer.Net.EmbedBuilder.WithUrl(System.String)
+  langs:
+  - csharp
+  - vb
+  name: EmbedBuilder
+  nameWithType: EmbedBuilder
+  fullName: Fluxer.Net.EmbedBuilder
+  type: Class
+  source:
+    remote:
+      path: Fluxer.Net/Data/Embeds/EmbedBuilder.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: EmbedBuilder
+    path: ../Fluxer.Net/Data/Embeds/EmbedBuilder.cs
+    startLine: 8
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: >-
+    A builder for creating rich embeds with validation and a fluent API.
+
+    Based on Discord.Net's EmbedBuilder implementation.
+  example: []
+  syntax:
+    content: public class EmbedBuilder
+    content.vb: Public Class EmbedBuilder
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: Fluxer.Net.EmbedBuilder.MaxFieldCount
+  commentId: P:Fluxer.Net.EmbedBuilder.MaxFieldCount
+  id: MaxFieldCount
+  parent: Fluxer.Net.EmbedBuilder
+  langs:
+  - csharp
+  - vb
+  name: MaxFieldCount
+  nameWithType: EmbedBuilder.MaxFieldCount
+  fullName: Fluxer.Net.EmbedBuilder.MaxFieldCount
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Embeds/EmbedBuilder.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: MaxFieldCount
+    path: ../Fluxer.Net/Data/Embeds/EmbedBuilder.cs
+    startLine: 13
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Maximum number of fields allowed in an embed.
+  example: []
+  syntax:
+    content: public static int MaxFieldCount { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Shared ReadOnly Property MaxFieldCount As Integer
+  overload: Fluxer.Net.EmbedBuilder.MaxFieldCount*
+- uid: Fluxer.Net.EmbedBuilder.MaxTitleLength
+  commentId: P:Fluxer.Net.EmbedBuilder.MaxTitleLength
+  id: MaxTitleLength
+  parent: Fluxer.Net.EmbedBuilder
+  langs:
+  - csharp
+  - vb
+  name: MaxTitleLength
+  nameWithType: EmbedBuilder.MaxTitleLength
+  fullName: Fluxer.Net.EmbedBuilder.MaxTitleLength
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Embeds/EmbedBuilder.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: MaxTitleLength
+    path: ../Fluxer.Net/Data/Embeds/EmbedBuilder.cs
+    startLine: 18
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Maximum length of the title.
+  example: []
+  syntax:
+    content: public static int MaxTitleLength { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Shared ReadOnly Property MaxTitleLength As Integer
+  overload: Fluxer.Net.EmbedBuilder.MaxTitleLength*
+- uid: Fluxer.Net.EmbedBuilder.MaxDescriptionLength
+  commentId: P:Fluxer.Net.EmbedBuilder.MaxDescriptionLength
+  id: MaxDescriptionLength
+  parent: Fluxer.Net.EmbedBuilder
+  langs:
+  - csharp
+  - vb
+  name: MaxDescriptionLength
+  nameWithType: EmbedBuilder.MaxDescriptionLength
+  fullName: Fluxer.Net.EmbedBuilder.MaxDescriptionLength
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Embeds/EmbedBuilder.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: MaxDescriptionLength
+    path: ../Fluxer.Net/Data/Embeds/EmbedBuilder.cs
+    startLine: 23
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Maximum length of the description.
+  example: []
+  syntax:
+    content: public static int MaxDescriptionLength { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Shared ReadOnly Property MaxDescriptionLength As Integer
+  overload: Fluxer.Net.EmbedBuilder.MaxDescriptionLength*
+- uid: Fluxer.Net.EmbedBuilder.MaxEmbedLength
+  commentId: P:Fluxer.Net.EmbedBuilder.MaxEmbedLength
+  id: MaxEmbedLength
+  parent: Fluxer.Net.EmbedBuilder
+  langs:
+  - csharp
+  - vb
+  name: MaxEmbedLength
+  nameWithType: EmbedBuilder.MaxEmbedLength
+  fullName: Fluxer.Net.EmbedBuilder.MaxEmbedLength
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Embeds/EmbedBuilder.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: MaxEmbedLength
+    path: ../Fluxer.Net/Data/Embeds/EmbedBuilder.cs
+    startLine: 28
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Maximum total length of all embed content.
+  example: []
+  syntax:
+    content: public static int MaxEmbedLength { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Shared ReadOnly Property MaxEmbedLength As Integer
+  overload: Fluxer.Net.EmbedBuilder.MaxEmbedLength*
+- uid: Fluxer.Net.EmbedBuilder.Title
+  commentId: P:Fluxer.Net.EmbedBuilder.Title
+  id: Title
+  parent: Fluxer.Net.EmbedBuilder
+  langs:
+  - csharp
+  - vb
+  name: Title
+  nameWithType: EmbedBuilder.Title
+  fullName: Fluxer.Net.EmbedBuilder.Title
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Embeds/EmbedBuilder.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Title
+    path: ../Fluxer.Net/Data/Embeds/EmbedBuilder.cs
+    startLine: 42
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Gets or sets the title of the embed.
+  example: []
+  syntax:
+    content: public string? Title { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Title As String
+  overload: Fluxer.Net.EmbedBuilder.Title*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: Title length exceeds <xref href="Fluxer.Net.EmbedBuilder.MaxTitleLength" data-throw-if-not-resolved="false"></xref>.
+- uid: Fluxer.Net.EmbedBuilder.Description
+  commentId: P:Fluxer.Net.EmbedBuilder.Description
+  id: Description
+  parent: Fluxer.Net.EmbedBuilder
+  langs:
+  - csharp
+  - vb
+  name: Description
+  nameWithType: EmbedBuilder.Description
+  fullName: Fluxer.Net.EmbedBuilder.Description
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Embeds/EmbedBuilder.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Description
+    path: ../Fluxer.Net/Data/Embeds/EmbedBuilder.cs
+    startLine: 57
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Gets or sets the description of the embed.
+  example: []
+  syntax:
+    content: public string? Description { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Description As String
+  overload: Fluxer.Net.EmbedBuilder.Description*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: Description length exceeds <xref href="Fluxer.Net.EmbedBuilder.MaxDescriptionLength" data-throw-if-not-resolved="false"></xref>.
+- uid: Fluxer.Net.EmbedBuilder.Url
+  commentId: P:Fluxer.Net.EmbedBuilder.Url
+  id: Url
+  parent: Fluxer.Net.EmbedBuilder
+  langs:
+  - csharp
+  - vb
+  name: Url
+  nameWithType: EmbedBuilder.Url
+  fullName: Fluxer.Net.EmbedBuilder.Url
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Embeds/EmbedBuilder.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Url
+    path: ../Fluxer.Net/Data/Embeds/EmbedBuilder.cs
+    startLine: 71
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Gets or sets the URL of the embed.
+  example: []
+  syntax:
+    content: public string? Url { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Url As String
+  overload: Fluxer.Net.EmbedBuilder.Url*
+- uid: Fluxer.Net.EmbedBuilder.ThumbnailUrl
+  commentId: P:Fluxer.Net.EmbedBuilder.ThumbnailUrl
+  id: ThumbnailUrl
+  parent: Fluxer.Net.EmbedBuilder
+  langs:
+  - csharp
+  - vb
+  name: ThumbnailUrl
+  nameWithType: EmbedBuilder.ThumbnailUrl
+  fullName: Fluxer.Net.EmbedBuilder.ThumbnailUrl
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Embeds/EmbedBuilder.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: ThumbnailUrl
+    path: ../Fluxer.Net/Data/Embeds/EmbedBuilder.cs
+    startLine: 80
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Gets or sets the thumbnail URL of the embed.
+  example: []
+  syntax:
+    content: public string? ThumbnailUrl { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property ThumbnailUrl As String
+  overload: Fluxer.Net.EmbedBuilder.ThumbnailUrl*
+- uid: Fluxer.Net.EmbedBuilder.ImageUrl
+  commentId: P:Fluxer.Net.EmbedBuilder.ImageUrl
+  id: ImageUrl
+  parent: Fluxer.Net.EmbedBuilder
+  langs:
+  - csharp
+  - vb
+  name: ImageUrl
+  nameWithType: EmbedBuilder.ImageUrl
+  fullName: Fluxer.Net.EmbedBuilder.ImageUrl
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Embeds/EmbedBuilder.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: ImageUrl
+    path: ../Fluxer.Net/Data/Embeds/EmbedBuilder.cs
+    startLine: 89
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Gets or sets the image URL of the embed.
+  example: []
+  syntax:
+    content: public string? ImageUrl { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property ImageUrl As String
+  overload: Fluxer.Net.EmbedBuilder.ImageUrl*
+- uid: Fluxer.Net.EmbedBuilder.Color
+  commentId: P:Fluxer.Net.EmbedBuilder.Color
+  id: Color
+  parent: Fluxer.Net.EmbedBuilder
+  langs:
+  - csharp
+  - vb
+  name: Color
+  nameWithType: EmbedBuilder.Color
+  fullName: Fluxer.Net.EmbedBuilder.Color
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Embeds/EmbedBuilder.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Color
+    path: ../Fluxer.Net/Data/Embeds/EmbedBuilder.cs
+    startLine: 98
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Gets or sets the color of the embed.
+  example: []
+  syntax:
+    content: public int? Color { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{System.Int32}
+    content.vb: Public Property Color As Integer?
+  overload: Fluxer.Net.EmbedBuilder.Color*
+- uid: Fluxer.Net.EmbedBuilder.Timestamp
+  commentId: P:Fluxer.Net.EmbedBuilder.Timestamp
+  id: Timestamp
+  parent: Fluxer.Net.EmbedBuilder
+  langs:
+  - csharp
+  - vb
+  name: Timestamp
+  nameWithType: EmbedBuilder.Timestamp
+  fullName: Fluxer.Net.EmbedBuilder.Timestamp
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Embeds/EmbedBuilder.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Timestamp
+    path: ../Fluxer.Net/Data/Embeds/EmbedBuilder.cs
+    startLine: 107
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Gets or sets the timestamp of the embed.
+  example: []
+  syntax:
+    content: public DateTime? Timestamp { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{System.DateTime}
+    content.vb: Public Property Timestamp As Date?
+  overload: Fluxer.Net.EmbedBuilder.Timestamp*
+- uid: Fluxer.Net.EmbedBuilder.Author
+  commentId: P:Fluxer.Net.EmbedBuilder.Author
+  id: Author
+  parent: Fluxer.Net.EmbedBuilder
+  langs:
+  - csharp
+  - vb
+  name: Author
+  nameWithType: EmbedBuilder.Author
+  fullName: Fluxer.Net.EmbedBuilder.Author
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Embeds/EmbedBuilder.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Author
+    path: ../Fluxer.Net/Data/Embeds/EmbedBuilder.cs
+    startLine: 116
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Gets or sets the author field of the embed.
+  example: []
+  syntax:
+    content: public EmbedAuthorBuilder? Author { get; set; }
+    parameters: []
+    return:
+      type: Fluxer.Net.EmbedAuthorBuilder
+    content.vb: Public Property Author As EmbedAuthorBuilder
+  overload: Fluxer.Net.EmbedBuilder.Author*
+- uid: Fluxer.Net.EmbedBuilder.Footer
+  commentId: P:Fluxer.Net.EmbedBuilder.Footer
+  id: Footer
+  parent: Fluxer.Net.EmbedBuilder
+  langs:
+  - csharp
+  - vb
+  name: Footer
+  nameWithType: EmbedBuilder.Footer
+  fullName: Fluxer.Net.EmbedBuilder.Footer
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Embeds/EmbedBuilder.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Footer
+    path: ../Fluxer.Net/Data/Embeds/EmbedBuilder.cs
+    startLine: 121
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Gets or sets the footer field of the embed.
+  example: []
+  syntax:
+    content: public EmbedFooterBuilder? Footer { get; set; }
+    parameters: []
+    return:
+      type: Fluxer.Net.EmbedFooterBuilder
+    content.vb: Public Property Footer As EmbedFooterBuilder
+  overload: Fluxer.Net.EmbedBuilder.Footer*
+- uid: Fluxer.Net.EmbedBuilder.Fields
+  commentId: P:Fluxer.Net.EmbedBuilder.Fields
+  id: Fields
+  parent: Fluxer.Net.EmbedBuilder
+  langs:
+  - csharp
+  - vb
+  name: Fields
+  nameWithType: EmbedBuilder.Fields
+  fullName: Fluxer.Net.EmbedBuilder.Fields
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Embeds/EmbedBuilder.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Fields
+    path: ../Fluxer.Net/Data/Embeds/EmbedBuilder.cs
+    startLine: 126
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Gets the list of field builders for the embed.
+  example: []
+  syntax:
+    content: public List<EmbedFieldBuilder> Fields { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.List{Fluxer.Net.EmbedFieldBuilder}
+    content.vb: Public Property Fields As List(Of EmbedFieldBuilder)
+  overload: Fluxer.Net.EmbedBuilder.Fields*
+- uid: Fluxer.Net.EmbedBuilder.Length
+  commentId: P:Fluxer.Net.EmbedBuilder.Length
+  id: Length
+  parent: Fluxer.Net.EmbedBuilder
+  langs:
+  - csharp
+  - vb
+  name: Length
+  nameWithType: EmbedBuilder.Length
+  fullName: Fluxer.Net.EmbedBuilder.Length
+  type: Property
+  source:
+    remote:
+      path: Fluxer.Net/Data/Embeds/EmbedBuilder.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Length
+    path: ../Fluxer.Net/Data/Embeds/EmbedBuilder.cs
+    startLine: 131
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Gets the total length of all embed content.
+  example: []
+  syntax:
+    content: public int Length { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property Length As Integer
+  overload: Fluxer.Net.EmbedBuilder.Length*
+- uid: Fluxer.Net.EmbedBuilder.WithTitle(System.String)
+  commentId: M:Fluxer.Net.EmbedBuilder.WithTitle(System.String)
+  id: WithTitle(System.String)
+  parent: Fluxer.Net.EmbedBuilder
+  langs:
+  - csharp
+  - vb
+  name: WithTitle(string?)
+  nameWithType: EmbedBuilder.WithTitle(string?)
+  fullName: Fluxer.Net.EmbedBuilder.WithTitle(string?)
+  type: Method
+  source:
+    remote:
+      path: Fluxer.Net/Data/Embeds/EmbedBuilder.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: WithTitle
+    path: ../Fluxer.Net/Data/Embeds/EmbedBuilder.cs
+    startLine: 155
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Sets the title of the embed.
+  example: []
+  syntax:
+    content: public EmbedBuilder WithTitle(string? title)
+    parameters:
+    - id: title
+      type: System.String
+      description: The title to set.
+    return:
+      type: Fluxer.Net.EmbedBuilder
+      description: The current builder.
+    content.vb: Public Function WithTitle(title As String) As EmbedBuilder
+  overload: Fluxer.Net.EmbedBuilder.WithTitle*
+  nameWithType.vb: EmbedBuilder.WithTitle(String)
+  fullName.vb: Fluxer.Net.EmbedBuilder.WithTitle(String)
+  name.vb: WithTitle(String)
+- uid: Fluxer.Net.EmbedBuilder.WithDescription(System.String)
+  commentId: M:Fluxer.Net.EmbedBuilder.WithDescription(System.String)
+  id: WithDescription(System.String)
+  parent: Fluxer.Net.EmbedBuilder
+  langs:
+  - csharp
+  - vb
+  name: WithDescription(string?)
+  nameWithType: EmbedBuilder.WithDescription(string?)
+  fullName: Fluxer.Net.EmbedBuilder.WithDescription(string?)
+  type: Method
+  source:
+    remote:
+      path: Fluxer.Net/Data/Embeds/EmbedBuilder.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: WithDescription
+    path: ../Fluxer.Net/Data/Embeds/EmbedBuilder.cs
+    startLine: 166
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Sets the description of the embed.
+  example: []
+  syntax:
+    content: public EmbedBuilder WithDescription(string? description)
+    parameters:
+    - id: description
+      type: System.String
+      description: The description to set.
+    return:
+      type: Fluxer.Net.EmbedBuilder
+      description: The current builder.
+    content.vb: Public Function WithDescription(description As String) As EmbedBuilder
+  overload: Fluxer.Net.EmbedBuilder.WithDescription*
+  nameWithType.vb: EmbedBuilder.WithDescription(String)
+  fullName.vb: Fluxer.Net.EmbedBuilder.WithDescription(String)
+  name.vb: WithDescription(String)
+- uid: Fluxer.Net.EmbedBuilder.WithUrl(System.String)
+  commentId: M:Fluxer.Net.EmbedBuilder.WithUrl(System.String)
+  id: WithUrl(System.String)
+  parent: Fluxer.Net.EmbedBuilder
+  langs:
+  - csharp
+  - vb
+  name: WithUrl(string?)
+  nameWithType: EmbedBuilder.WithUrl(string?)
+  fullName: Fluxer.Net.EmbedBuilder.WithUrl(string?)
+  type: Method
+  source:
+    remote:
+      path: Fluxer.Net/Data/Embeds/EmbedBuilder.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: WithUrl
+    path: ../Fluxer.Net/Data/Embeds/EmbedBuilder.cs
+    startLine: 177
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Sets the URL of the embed.
+  example: []
+  syntax:
+    content: public EmbedBuilder WithUrl(string? url)
+    parameters:
+    - id: url
+      type: System.String
+      description: The URL to set.
+    return:
+      type: Fluxer.Net.EmbedBuilder
+      description: The current builder.
+    content.vb: Public Function WithUrl(url As String) As EmbedBuilder
+  overload: Fluxer.Net.EmbedBuilder.WithUrl*
+  nameWithType.vb: EmbedBuilder.WithUrl(String)
+  fullName.vb: Fluxer.Net.EmbedBuilder.WithUrl(String)
+  name.vb: WithUrl(String)
+- uid: Fluxer.Net.EmbedBuilder.WithThumbnailUrl(System.String)
+  commentId: M:Fluxer.Net.EmbedBuilder.WithThumbnailUrl(System.String)
+  id: WithThumbnailUrl(System.String)
+  parent: Fluxer.Net.EmbedBuilder
+  langs:
+  - csharp
+  - vb
+  name: WithThumbnailUrl(string?)
+  nameWithType: EmbedBuilder.WithThumbnailUrl(string?)
+  fullName: Fluxer.Net.EmbedBuilder.WithThumbnailUrl(string?)
+  type: Method
+  source:
+    remote:
+      path: Fluxer.Net/Data/Embeds/EmbedBuilder.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: WithThumbnailUrl
+    path: ../Fluxer.Net/Data/Embeds/EmbedBuilder.cs
+    startLine: 188
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Sets the thumbnail URL of the embed.
+  example: []
+  syntax:
+    content: public EmbedBuilder WithThumbnailUrl(string? thumbnailUrl)
+    parameters:
+    - id: thumbnailUrl
+      type: System.String
+      description: The thumbnail URL to set.
+    return:
+      type: Fluxer.Net.EmbedBuilder
+      description: The current builder.
+    content.vb: Public Function WithThumbnailUrl(thumbnailUrl As String) As EmbedBuilder
+  overload: Fluxer.Net.EmbedBuilder.WithThumbnailUrl*
+  nameWithType.vb: EmbedBuilder.WithThumbnailUrl(String)
+  fullName.vb: Fluxer.Net.EmbedBuilder.WithThumbnailUrl(String)
+  name.vb: WithThumbnailUrl(String)
+- uid: Fluxer.Net.EmbedBuilder.WithImageUrl(System.String)
+  commentId: M:Fluxer.Net.EmbedBuilder.WithImageUrl(System.String)
+  id: WithImageUrl(System.String)
+  parent: Fluxer.Net.EmbedBuilder
+  langs:
+  - csharp
+  - vb
+  name: WithImageUrl(string?)
+  nameWithType: EmbedBuilder.WithImageUrl(string?)
+  fullName: Fluxer.Net.EmbedBuilder.WithImageUrl(string?)
+  type: Method
+  source:
+    remote:
+      path: Fluxer.Net/Data/Embeds/EmbedBuilder.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: WithImageUrl
+    path: ../Fluxer.Net/Data/Embeds/EmbedBuilder.cs
+    startLine: 199
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Sets the image URL of the embed.
+  example: []
+  syntax:
+    content: public EmbedBuilder WithImageUrl(string? imageUrl)
+    parameters:
+    - id: imageUrl
+      type: System.String
+      description: The image URL to set.
+    return:
+      type: Fluxer.Net.EmbedBuilder
+      description: The current builder.
+    content.vb: Public Function WithImageUrl(imageUrl As String) As EmbedBuilder
+  overload: Fluxer.Net.EmbedBuilder.WithImageUrl*
+  nameWithType.vb: EmbedBuilder.WithImageUrl(String)
+  fullName.vb: Fluxer.Net.EmbedBuilder.WithImageUrl(String)
+  name.vb: WithImageUrl(String)
+- uid: Fluxer.Net.EmbedBuilder.WithColor(System.Int32)
+  commentId: M:Fluxer.Net.EmbedBuilder.WithColor(System.Int32)
+  id: WithColor(System.Int32)
+  parent: Fluxer.Net.EmbedBuilder
+  langs:
+  - csharp
+  - vb
+  name: WithColor(int)
+  nameWithType: EmbedBuilder.WithColor(int)
+  fullName: Fluxer.Net.EmbedBuilder.WithColor(int)
+  type: Method
+  source:
+    remote:
+      path: Fluxer.Net/Data/Embeds/EmbedBuilder.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: WithColor
+    path: ../Fluxer.Net/Data/Embeds/EmbedBuilder.cs
+    startLine: 210
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Sets the color of the embed.
+  example: []
+  syntax:
+    content: public EmbedBuilder WithColor(int color)
+    parameters:
+    - id: color
+      type: System.Int32
+      description: The color to set as an integer (RGB).
+    return:
+      type: Fluxer.Net.EmbedBuilder
+      description: The current builder.
+    content.vb: Public Function WithColor(color As Integer) As EmbedBuilder
+  overload: Fluxer.Net.EmbedBuilder.WithColor*
+  nameWithType.vb: EmbedBuilder.WithColor(Integer)
+  fullName.vb: Fluxer.Net.EmbedBuilder.WithColor(Integer)
+  name.vb: WithColor(Integer)
+- uid: Fluxer.Net.EmbedBuilder.WithColor(System.Byte,System.Byte,System.Byte)
+  commentId: M:Fluxer.Net.EmbedBuilder.WithColor(System.Byte,System.Byte,System.Byte)
+  id: WithColor(System.Byte,System.Byte,System.Byte)
+  parent: Fluxer.Net.EmbedBuilder
+  langs:
+  - csharp
+  - vb
+  name: WithColor(byte, byte, byte)
+  nameWithType: EmbedBuilder.WithColor(byte, byte, byte)
+  fullName: Fluxer.Net.EmbedBuilder.WithColor(byte, byte, byte)
+  type: Method
+  source:
+    remote:
+      path: Fluxer.Net/Data/Embeds/EmbedBuilder.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: WithColor
+    path: ../Fluxer.Net/Data/Embeds/EmbedBuilder.cs
+    startLine: 223
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Sets the color of the embed using RGB values.
+  example: []
+  syntax:
+    content: public EmbedBuilder WithColor(byte r, byte g, byte b)
+    parameters:
+    - id: r
+      type: System.Byte
+      description: Red component (0-255).
+    - id: g
+      type: System.Byte
+      description: Green component (0-255).
+    - id: b
+      type: System.Byte
+      description: Blue component (0-255).
+    return:
+      type: Fluxer.Net.EmbedBuilder
+      description: The current builder.
+    content.vb: Public Function WithColor(r As Byte, g As Byte, b As Byte) As EmbedBuilder
+  overload: Fluxer.Net.EmbedBuilder.WithColor*
+  nameWithType.vb: EmbedBuilder.WithColor(Byte, Byte, Byte)
+  fullName.vb: Fluxer.Net.EmbedBuilder.WithColor(Byte, Byte, Byte)
+  name.vb: WithColor(Byte, Byte, Byte)
+- uid: Fluxer.Net.EmbedBuilder.WithTimestamp(System.DateTime)
+  commentId: M:Fluxer.Net.EmbedBuilder.WithTimestamp(System.DateTime)
+  id: WithTimestamp(System.DateTime)
+  parent: Fluxer.Net.EmbedBuilder
+  langs:
+  - csharp
+  - vb
+  name: WithTimestamp(DateTime)
+  nameWithType: EmbedBuilder.WithTimestamp(DateTime)
+  fullName: Fluxer.Net.EmbedBuilder.WithTimestamp(System.DateTime)
+  type: Method
+  source:
+    remote:
+      path: Fluxer.Net/Data/Embeds/EmbedBuilder.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: WithTimestamp
+    path: ../Fluxer.Net/Data/Embeds/EmbedBuilder.cs
+    startLine: 234
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Sets the timestamp of the embed.
+  example: []
+  syntax:
+    content: public EmbedBuilder WithTimestamp(DateTime timestamp)
+    parameters:
+    - id: timestamp
+      type: System.DateTime
+      description: The timestamp to set.
+    return:
+      type: Fluxer.Net.EmbedBuilder
+      description: The current builder.
+    content.vb: Public Function WithTimestamp(timestamp As Date) As EmbedBuilder
+  overload: Fluxer.Net.EmbedBuilder.WithTimestamp*
+  nameWithType.vb: EmbedBuilder.WithTimestamp(Date)
+  fullName.vb: Fluxer.Net.EmbedBuilder.WithTimestamp(Date)
+  name.vb: WithTimestamp(Date)
+- uid: Fluxer.Net.EmbedBuilder.WithCurrentTimestamp
+  commentId: M:Fluxer.Net.EmbedBuilder.WithCurrentTimestamp
+  id: WithCurrentTimestamp
+  parent: Fluxer.Net.EmbedBuilder
+  langs:
+  - csharp
+  - vb
+  name: WithCurrentTimestamp()
+  nameWithType: EmbedBuilder.WithCurrentTimestamp()
+  fullName: Fluxer.Net.EmbedBuilder.WithCurrentTimestamp()
+  type: Method
+  source:
+    remote:
+      path: Fluxer.Net/Data/Embeds/EmbedBuilder.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: WithCurrentTimestamp
+    path: ../Fluxer.Net/Data/Embeds/EmbedBuilder.cs
+    startLine: 244
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Sets the timestamp of the embed to the current UTC time.
+  example: []
+  syntax:
+    content: public EmbedBuilder WithCurrentTimestamp()
+    return:
+      type: Fluxer.Net.EmbedBuilder
+      description: The current builder.
+    content.vb: Public Function WithCurrentTimestamp() As EmbedBuilder
+  overload: Fluxer.Net.EmbedBuilder.WithCurrentTimestamp*
+- uid: Fluxer.Net.EmbedBuilder.WithAuthor(Fluxer.Net.EmbedAuthorBuilder)
+  commentId: M:Fluxer.Net.EmbedBuilder.WithAuthor(Fluxer.Net.EmbedAuthorBuilder)
+  id: WithAuthor(Fluxer.Net.EmbedAuthorBuilder)
+  parent: Fluxer.Net.EmbedBuilder
+  langs:
+  - csharp
+  - vb
+  name: WithAuthor(EmbedAuthorBuilder)
+  nameWithType: EmbedBuilder.WithAuthor(EmbedAuthorBuilder)
+  fullName: Fluxer.Net.EmbedBuilder.WithAuthor(Fluxer.Net.EmbedAuthorBuilder)
+  type: Method
+  source:
+    remote:
+      path: Fluxer.Net/Data/Embeds/EmbedBuilder.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: WithAuthor
+    path: ../Fluxer.Net/Data/Embeds/EmbedBuilder.cs
+    startLine: 255
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Sets the author field of the embed.
+  example: []
+  syntax:
+    content: public EmbedBuilder WithAuthor(EmbedAuthorBuilder author)
+    parameters:
+    - id: author
+      type: Fluxer.Net.EmbedAuthorBuilder
+      description: The author builder to set.
+    return:
+      type: Fluxer.Net.EmbedBuilder
+      description: The current builder.
+    content.vb: Public Function WithAuthor(author As EmbedAuthorBuilder) As EmbedBuilder
+  overload: Fluxer.Net.EmbedBuilder.WithAuthor*
+- uid: Fluxer.Net.EmbedBuilder.WithAuthor(System.String,System.String,System.String)
+  commentId: M:Fluxer.Net.EmbedBuilder.WithAuthor(System.String,System.String,System.String)
+  id: WithAuthor(System.String,System.String,System.String)
+  parent: Fluxer.Net.EmbedBuilder
+  langs:
+  - csharp
+  - vb
+  name: WithAuthor(string, string?, string?)
+  nameWithType: EmbedBuilder.WithAuthor(string, string?, string?)
+  fullName: Fluxer.Net.EmbedBuilder.WithAuthor(string, string?, string?)
+  type: Method
+  source:
+    remote:
+      path: Fluxer.Net/Data/Embeds/EmbedBuilder.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: WithAuthor
+    path: ../Fluxer.Net/Data/Embeds/EmbedBuilder.cs
+    startLine: 268
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Sets the author field of the embed.
+  example: []
+  syntax:
+    content: public EmbedBuilder WithAuthor(string name, string? iconUrl = null, string? url = null)
+    parameters:
+    - id: name
+      type: System.String
+      description: The name of the author.
+    - id: iconUrl
+      type: System.String
+      description: The icon URL of the author.
+    - id: url
+      type: System.String
+      description: The URL of the author.
+    return:
+      type: Fluxer.Net.EmbedBuilder
+      description: The current builder.
+    content.vb: Public Function WithAuthor(name As String, iconUrl As String = Nothing, url As String = Nothing) As EmbedBuilder
+  overload: Fluxer.Net.EmbedBuilder.WithAuthor*
+  nameWithType.vb: EmbedBuilder.WithAuthor(String, String, String)
+  fullName.vb: Fluxer.Net.EmbedBuilder.WithAuthor(String, String, String)
+  name.vb: WithAuthor(String, String, String)
+- uid: Fluxer.Net.EmbedBuilder.WithAuthor(System.Action{Fluxer.Net.EmbedAuthorBuilder})
+  commentId: M:Fluxer.Net.EmbedBuilder.WithAuthor(System.Action{Fluxer.Net.EmbedAuthorBuilder})
+  id: WithAuthor(System.Action{Fluxer.Net.EmbedAuthorBuilder})
+  parent: Fluxer.Net.EmbedBuilder
+  langs:
+  - csharp
+  - vb
+  name: WithAuthor(Action<EmbedAuthorBuilder>)
+  nameWithType: EmbedBuilder.WithAuthor(Action<EmbedAuthorBuilder>)
+  fullName: Fluxer.Net.EmbedBuilder.WithAuthor(System.Action<Fluxer.Net.EmbedAuthorBuilder>)
+  type: Method
+  source:
+    remote:
+      path: Fluxer.Net/Data/Embeds/EmbedBuilder.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: WithAuthor
+    path: ../Fluxer.Net/Data/Embeds/EmbedBuilder.cs
+    startLine: 285
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Sets the author field of the embed using an action.
+  example: []
+  syntax:
+    content: public EmbedBuilder WithAuthor(Action<EmbedAuthorBuilder> action)
+    parameters:
+    - id: action
+      type: System.Action{Fluxer.Net.EmbedAuthorBuilder}
+      description: The action to configure the author builder.
+    return:
+      type: Fluxer.Net.EmbedBuilder
+      description: The current builder.
+    content.vb: Public Function WithAuthor(action As Action(Of EmbedAuthorBuilder)) As EmbedBuilder
+  overload: Fluxer.Net.EmbedBuilder.WithAuthor*
+  nameWithType.vb: EmbedBuilder.WithAuthor(Action(Of EmbedAuthorBuilder))
+  fullName.vb: Fluxer.Net.EmbedBuilder.WithAuthor(System.Action(Of Fluxer.Net.EmbedAuthorBuilder))
+  name.vb: WithAuthor(Action(Of EmbedAuthorBuilder))
+- uid: Fluxer.Net.EmbedBuilder.WithFooter(Fluxer.Net.EmbedFooterBuilder)
+  commentId: M:Fluxer.Net.EmbedBuilder.WithFooter(Fluxer.Net.EmbedFooterBuilder)
+  id: WithFooter(Fluxer.Net.EmbedFooterBuilder)
+  parent: Fluxer.Net.EmbedBuilder
+  langs:
+  - csharp
+  - vb
+  name: WithFooter(EmbedFooterBuilder)
+  nameWithType: EmbedBuilder.WithFooter(EmbedFooterBuilder)
+  fullName: Fluxer.Net.EmbedBuilder.WithFooter(Fluxer.Net.EmbedFooterBuilder)
+  type: Method
+  source:
+    remote:
+      path: Fluxer.Net/Data/Embeds/EmbedBuilder.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: WithFooter
+    path: ../Fluxer.Net/Data/Embeds/EmbedBuilder.cs
+    startLine: 298
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Sets the footer field of the embed.
+  example: []
+  syntax:
+    content: public EmbedBuilder WithFooter(EmbedFooterBuilder footer)
+    parameters:
+    - id: footer
+      type: Fluxer.Net.EmbedFooterBuilder
+      description: The footer builder to set.
+    return:
+      type: Fluxer.Net.EmbedBuilder
+      description: The current builder.
+    content.vb: Public Function WithFooter(footer As EmbedFooterBuilder) As EmbedBuilder
+  overload: Fluxer.Net.EmbedBuilder.WithFooter*
+- uid: Fluxer.Net.EmbedBuilder.WithFooter(System.String,System.String)
+  commentId: M:Fluxer.Net.EmbedBuilder.WithFooter(System.String,System.String)
+  id: WithFooter(System.String,System.String)
+  parent: Fluxer.Net.EmbedBuilder
+  langs:
+  - csharp
+  - vb
+  name: WithFooter(string, string?)
+  nameWithType: EmbedBuilder.WithFooter(string, string?)
+  fullName: Fluxer.Net.EmbedBuilder.WithFooter(string, string?)
+  type: Method
+  source:
+    remote:
+      path: Fluxer.Net/Data/Embeds/EmbedBuilder.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: WithFooter
+    path: ../Fluxer.Net/Data/Embeds/EmbedBuilder.cs
+    startLine: 310
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Sets the footer field of the embed.
+  example: []
+  syntax:
+    content: public EmbedBuilder WithFooter(string text, string? iconUrl = null)
+    parameters:
+    - id: text
+      type: System.String
+      description: The text of the footer.
+    - id: iconUrl
+      type: System.String
+      description: The icon URL of the footer.
+    return:
+      type: Fluxer.Net.EmbedBuilder
+      description: The current builder.
+    content.vb: Public Function WithFooter(text As String, iconUrl As String = Nothing) As EmbedBuilder
+  overload: Fluxer.Net.EmbedBuilder.WithFooter*
+  nameWithType.vb: EmbedBuilder.WithFooter(String, String)
+  fullName.vb: Fluxer.Net.EmbedBuilder.WithFooter(String, String)
+  name.vb: WithFooter(String, String)
+- uid: Fluxer.Net.EmbedBuilder.WithFooter(System.Action{Fluxer.Net.EmbedFooterBuilder})
+  commentId: M:Fluxer.Net.EmbedBuilder.WithFooter(System.Action{Fluxer.Net.EmbedFooterBuilder})
+  id: WithFooter(System.Action{Fluxer.Net.EmbedFooterBuilder})
+  parent: Fluxer.Net.EmbedBuilder
+  langs:
+  - csharp
+  - vb
+  name: WithFooter(Action<EmbedFooterBuilder>)
+  nameWithType: EmbedBuilder.WithFooter(Action<EmbedFooterBuilder>)
+  fullName: Fluxer.Net.EmbedBuilder.WithFooter(System.Action<Fluxer.Net.EmbedFooterBuilder>)
+  type: Method
+  source:
+    remote:
+      path: Fluxer.Net/Data/Embeds/EmbedBuilder.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: WithFooter
+    path: ../Fluxer.Net/Data/Embeds/EmbedBuilder.cs
+    startLine: 326
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Sets the footer field of the embed using an action.
+  example: []
+  syntax:
+    content: public EmbedBuilder WithFooter(Action<EmbedFooterBuilder> action)
+    parameters:
+    - id: action
+      type: System.Action{Fluxer.Net.EmbedFooterBuilder}
+      description: The action to configure the footer builder.
+    return:
+      type: Fluxer.Net.EmbedBuilder
+      description: The current builder.
+    content.vb: Public Function WithFooter(action As Action(Of EmbedFooterBuilder)) As EmbedBuilder
+  overload: Fluxer.Net.EmbedBuilder.WithFooter*
+  nameWithType.vb: EmbedBuilder.WithFooter(Action(Of EmbedFooterBuilder))
+  fullName.vb: Fluxer.Net.EmbedBuilder.WithFooter(System.Action(Of Fluxer.Net.EmbedFooterBuilder))
+  name.vb: WithFooter(Action(Of EmbedFooterBuilder))
+- uid: Fluxer.Net.EmbedBuilder.AddField(Fluxer.Net.EmbedFieldBuilder)
+  commentId: M:Fluxer.Net.EmbedBuilder.AddField(Fluxer.Net.EmbedFieldBuilder)
+  id: AddField(Fluxer.Net.EmbedFieldBuilder)
+  parent: Fluxer.Net.EmbedBuilder
+  langs:
+  - csharp
+  - vb
+  name: AddField(EmbedFieldBuilder)
+  nameWithType: EmbedBuilder.AddField(EmbedFieldBuilder)
+  fullName: Fluxer.Net.EmbedBuilder.AddField(Fluxer.Net.EmbedFieldBuilder)
+  type: Method
+  source:
+    remote:
+      path: Fluxer.Net/Data/Embeds/EmbedBuilder.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: AddField
+    path: ../Fluxer.Net/Data/Embeds/EmbedBuilder.cs
+    startLine: 340
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Adds a field to the embed.
+  example: []
+  syntax:
+    content: public EmbedBuilder AddField(EmbedFieldBuilder field)
+    parameters:
+    - id: field
+      type: Fluxer.Net.EmbedFieldBuilder
+      description: The field builder to add.
+    return:
+      type: Fluxer.Net.EmbedBuilder
+      description: The current builder.
+    content.vb: Public Function AddField(field As EmbedFieldBuilder) As EmbedBuilder
+  overload: Fluxer.Net.EmbedBuilder.AddField*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: Field count exceeds <xref href="Fluxer.Net.EmbedBuilder.MaxFieldCount" data-throw-if-not-resolved="false"></xref>.
+- uid: Fluxer.Net.EmbedBuilder.AddField(System.String,System.Object,System.Boolean)
+  commentId: M:Fluxer.Net.EmbedBuilder.AddField(System.String,System.Object,System.Boolean)
+  id: AddField(System.String,System.Object,System.Boolean)
+  parent: Fluxer.Net.EmbedBuilder
+  langs:
+  - csharp
+  - vb
+  name: AddField(string, object, bool)
+  nameWithType: EmbedBuilder.AddField(string, object, bool)
+  fullName: Fluxer.Net.EmbedBuilder.AddField(string, object, bool)
+  type: Method
+  source:
+    remote:
+      path: Fluxer.Net/Data/Embeds/EmbedBuilder.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: AddField
+    path: ../Fluxer.Net/Data/Embeds/EmbedBuilder.cs
+    startLine: 357
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Adds a field to the embed.
+  example: []
+  syntax:
+    content: public EmbedBuilder AddField(string name, object value, bool inline = false)
+    parameters:
+    - id: name
+      type: System.String
+      description: The name of the field.
+    - id: value
+      type: System.Object
+      description: The value of the field.
+    - id: inline
+      type: System.Boolean
+      description: Whether the field should be inline.
+    return:
+      type: Fluxer.Net.EmbedBuilder
+      description: The current builder.
+    content.vb: Public Function AddField(name As String, value As Object, inline As Boolean = False) As EmbedBuilder
+  overload: Fluxer.Net.EmbedBuilder.AddField*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: Field count exceeds <xref href="Fluxer.Net.EmbedBuilder.MaxFieldCount" data-throw-if-not-resolved="false"></xref>.
+  nameWithType.vb: EmbedBuilder.AddField(String, Object, Boolean)
+  fullName.vb: Fluxer.Net.EmbedBuilder.AddField(String, Object, Boolean)
+  name.vb: AddField(String, Object, Boolean)
+- uid: Fluxer.Net.EmbedBuilder.AddField(System.Action{Fluxer.Net.EmbedFieldBuilder})
+  commentId: M:Fluxer.Net.EmbedBuilder.AddField(System.Action{Fluxer.Net.EmbedFieldBuilder})
+  id: AddField(System.Action{Fluxer.Net.EmbedFieldBuilder})
+  parent: Fluxer.Net.EmbedBuilder
+  langs:
+  - csharp
+  - vb
+  name: AddField(Action<EmbedFieldBuilder>)
+  nameWithType: EmbedBuilder.AddField(Action<EmbedFieldBuilder>)
+  fullName: Fluxer.Net.EmbedBuilder.AddField(System.Action<Fluxer.Net.EmbedFieldBuilder>)
+  type: Method
+  source:
+    remote:
+      path: Fluxer.Net/Data/Embeds/EmbedBuilder.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: AddField
+    path: ../Fluxer.Net/Data/Embeds/EmbedBuilder.cs
+    startLine: 374
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Adds a field to the embed using an action.
+  example: []
+  syntax:
+    content: public EmbedBuilder AddField(Action<EmbedFieldBuilder> action)
+    parameters:
+    - id: action
+      type: System.Action{Fluxer.Net.EmbedFieldBuilder}
+      description: The action to configure the field builder.
+    return:
+      type: Fluxer.Net.EmbedBuilder
+      description: The current builder.
+    content.vb: Public Function AddField(action As Action(Of EmbedFieldBuilder)) As EmbedBuilder
+  overload: Fluxer.Net.EmbedBuilder.AddField*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: Field count exceeds <xref href="Fluxer.Net.EmbedBuilder.MaxFieldCount" data-throw-if-not-resolved="false"></xref>.
+  nameWithType.vb: EmbedBuilder.AddField(Action(Of EmbedFieldBuilder))
+  fullName.vb: Fluxer.Net.EmbedBuilder.AddField(System.Action(Of Fluxer.Net.EmbedFieldBuilder))
+  name.vb: AddField(Action(Of EmbedFieldBuilder))
+- uid: Fluxer.Net.EmbedBuilder.Build
+  commentId: M:Fluxer.Net.EmbedBuilder.Build
+  id: Build
+  parent: Fluxer.Net.EmbedBuilder
+  langs:
+  - csharp
+  - vb
+  name: Build()
+  nameWithType: EmbedBuilder.Build()
+  fullName: Fluxer.Net.EmbedBuilder.Build()
+  type: Method
+  source:
+    remote:
+      path: Fluxer.Net/Data/Embeds/EmbedBuilder.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: Build
+    path: ../Fluxer.Net/Data/Embeds/EmbedBuilder.cs
+    startLine: 386
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Builds the embed.
+  example: []
+  syntax:
+    content: public EmbedRequest Build()
+    return:
+      type: Fluxer.Net.Rest.Requests.EmbedRequest
+      description: A new <xref href="Fluxer.Net.EmbedJson" data-throw-if-not-resolved="false"></xref> object.
+    content.vb: Public Function Build() As EmbedRequest
+  overload: Fluxer.Net.EmbedBuilder.Build*
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: The embed exceeds <xref href="Fluxer.Net.EmbedBuilder.MaxEmbedLength" data-throw-if-not-resolved="false"></xref>.
+references:
+- uid: Fluxer.Net
+  commentId: N:Fluxer.Net
+  href: Fluxer.html
+  name: Fluxer.Net
+  nameWithType: Fluxer.Net
+  fullName: Fluxer.Net
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Fluxer.Net.EmbedBuilder.MaxFieldCount*
+  commentId: Overload:Fluxer.Net.EmbedBuilder.MaxFieldCount
+  href: Fluxer.Net.EmbedBuilder.html#Fluxer_Net_EmbedBuilder_MaxFieldCount
+  name: MaxFieldCount
+  nameWithType: EmbedBuilder.MaxFieldCount
+  fullName: Fluxer.Net.EmbedBuilder.MaxFieldCount
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: Fluxer.Net.EmbedBuilder.MaxTitleLength*
+  commentId: Overload:Fluxer.Net.EmbedBuilder.MaxTitleLength
+  href: Fluxer.Net.EmbedBuilder.html#Fluxer_Net_EmbedBuilder_MaxTitleLength
+  name: MaxTitleLength
+  nameWithType: EmbedBuilder.MaxTitleLength
+  fullName: Fluxer.Net.EmbedBuilder.MaxTitleLength
+- uid: Fluxer.Net.EmbedBuilder.MaxDescriptionLength*
+  commentId: Overload:Fluxer.Net.EmbedBuilder.MaxDescriptionLength
+  href: Fluxer.Net.EmbedBuilder.html#Fluxer_Net_EmbedBuilder_MaxDescriptionLength
+  name: MaxDescriptionLength
+  nameWithType: EmbedBuilder.MaxDescriptionLength
+  fullName: Fluxer.Net.EmbedBuilder.MaxDescriptionLength
+- uid: Fluxer.Net.EmbedBuilder.MaxEmbedLength*
+  commentId: Overload:Fluxer.Net.EmbedBuilder.MaxEmbedLength
+  href: Fluxer.Net.EmbedBuilder.html#Fluxer_Net_EmbedBuilder_MaxEmbedLength
+  name: MaxEmbedLength
+  nameWithType: EmbedBuilder.MaxEmbedLength
+  fullName: Fluxer.Net.EmbedBuilder.MaxEmbedLength
+- uid: Fluxer.Net.EmbedBuilder.MaxTitleLength
+  commentId: P:Fluxer.Net.EmbedBuilder.MaxTitleLength
+  href: Fluxer.Net.EmbedBuilder.html#Fluxer_Net_EmbedBuilder_MaxTitleLength
+  name: MaxTitleLength
+  nameWithType: EmbedBuilder.MaxTitleLength
+  fullName: Fluxer.Net.EmbedBuilder.MaxTitleLength
+- uid: System.ArgumentException
+  commentId: T:System.ArgumentException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.argumentexception
+  name: ArgumentException
+  nameWithType: ArgumentException
+  fullName: System.ArgumentException
+- uid: Fluxer.Net.EmbedBuilder.Title*
+  commentId: Overload:Fluxer.Net.EmbedBuilder.Title
+  href: Fluxer.Net.EmbedBuilder.html#Fluxer_Net_EmbedBuilder_Title
+  name: Title
+  nameWithType: EmbedBuilder.Title
+  fullName: Fluxer.Net.EmbedBuilder.Title
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: Fluxer.Net.EmbedBuilder.MaxDescriptionLength
+  commentId: P:Fluxer.Net.EmbedBuilder.MaxDescriptionLength
+  href: Fluxer.Net.EmbedBuilder.html#Fluxer_Net_EmbedBuilder_MaxDescriptionLength
+  name: MaxDescriptionLength
+  nameWithType: EmbedBuilder.MaxDescriptionLength
+  fullName: Fluxer.Net.EmbedBuilder.MaxDescriptionLength
+- uid: Fluxer.Net.EmbedBuilder.Description*
+  commentId: Overload:Fluxer.Net.EmbedBuilder.Description
+  href: Fluxer.Net.EmbedBuilder.html#Fluxer_Net_EmbedBuilder_Description
+  name: Description
+  nameWithType: EmbedBuilder.Description
+  fullName: Fluxer.Net.EmbedBuilder.Description
+- uid: Fluxer.Net.EmbedBuilder.Url*
+  commentId: Overload:Fluxer.Net.EmbedBuilder.Url
+  href: Fluxer.Net.EmbedBuilder.html#Fluxer_Net_EmbedBuilder_Url
+  name: Url
+  nameWithType: EmbedBuilder.Url
+  fullName: Fluxer.Net.EmbedBuilder.Url
+- uid: Fluxer.Net.EmbedBuilder.ThumbnailUrl*
+  commentId: Overload:Fluxer.Net.EmbedBuilder.ThumbnailUrl
+  href: Fluxer.Net.EmbedBuilder.html#Fluxer_Net_EmbedBuilder_ThumbnailUrl
+  name: ThumbnailUrl
+  nameWithType: EmbedBuilder.ThumbnailUrl
+  fullName: Fluxer.Net.EmbedBuilder.ThumbnailUrl
+- uid: Fluxer.Net.EmbedBuilder.ImageUrl*
+  commentId: Overload:Fluxer.Net.EmbedBuilder.ImageUrl
+  href: Fluxer.Net.EmbedBuilder.html#Fluxer_Net_EmbedBuilder_ImageUrl
+  name: ImageUrl
+  nameWithType: EmbedBuilder.ImageUrl
+  fullName: Fluxer.Net.EmbedBuilder.ImageUrl
+- uid: Fluxer.Net.EmbedBuilder.Color*
+  commentId: Overload:Fluxer.Net.EmbedBuilder.Color
+  href: Fluxer.Net.EmbedBuilder.html#Fluxer_Net_EmbedBuilder_Color
+  name: Color
+  nameWithType: EmbedBuilder.Color
+  fullName: Fluxer.Net.EmbedBuilder.Color
+- uid: System.Nullable{System.Int32}
+  commentId: T:System.Nullable{System.Int32}
+  parent: System
+  definition: System.Nullable`1
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int?
+  nameWithType: int?
+  fullName: int?
+  nameWithType.vb: Integer?
+  fullName.vb: Integer?
+  name.vb: Integer?
+  spec.csharp:
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
+  spec.vb:
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: Fluxer.Net.EmbedBuilder.Timestamp*
+  commentId: Overload:Fluxer.Net.EmbedBuilder.Timestamp
+  href: Fluxer.Net.EmbedBuilder.html#Fluxer_Net_EmbedBuilder_Timestamp
+  name: Timestamp
+  nameWithType: EmbedBuilder.Timestamp
+  fullName: Fluxer.Net.EmbedBuilder.Timestamp
+- uid: System.Nullable{System.DateTime}
+  commentId: T:System.Nullable{System.DateTime}
+  parent: System
+  definition: System.Nullable`1
+  href: https://learn.microsoft.com/dotnet/api/system.datetime
+  name: DateTime?
+  nameWithType: DateTime?
+  fullName: System.DateTime?
+  nameWithType.vb: Date?
+  fullName.vb: Date?
+  name.vb: Date?
+  spec.csharp:
+  - uid: System.DateTime
+    name: DateTime
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.datetime
+  - name: '?'
+  spec.vb:
+  - uid: System.DateTime
+    name: Date
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.datetime
+  - name: '?'
+- uid: Fluxer.Net.EmbedBuilder.Author*
+  commentId: Overload:Fluxer.Net.EmbedBuilder.Author
+  href: Fluxer.Net.EmbedBuilder.html#Fluxer_Net_EmbedBuilder_Author
+  name: Author
+  nameWithType: EmbedBuilder.Author
+  fullName: Fluxer.Net.EmbedBuilder.Author
+- uid: Fluxer.Net.EmbedAuthorBuilder
+  commentId: T:Fluxer.Net.EmbedAuthorBuilder
+  parent: Fluxer.Net
+  href: Fluxer.Net.EmbedAuthorBuilder.html
+  name: EmbedAuthorBuilder
+  nameWithType: EmbedAuthorBuilder
+  fullName: Fluxer.Net.EmbedAuthorBuilder
+- uid: Fluxer.Net.EmbedBuilder.Footer*
+  commentId: Overload:Fluxer.Net.EmbedBuilder.Footer
+  href: Fluxer.Net.EmbedBuilder.html#Fluxer_Net_EmbedBuilder_Footer
+  name: Footer
+  nameWithType: EmbedBuilder.Footer
+  fullName: Fluxer.Net.EmbedBuilder.Footer
+- uid: Fluxer.Net.EmbedFooterBuilder
+  commentId: T:Fluxer.Net.EmbedFooterBuilder
+  parent: Fluxer.Net
+  href: Fluxer.Net.EmbedFooterBuilder.html
+  name: EmbedFooterBuilder
+  nameWithType: EmbedFooterBuilder
+  fullName: Fluxer.Net.EmbedFooterBuilder
+- uid: Fluxer.Net.EmbedBuilder.Fields*
+  commentId: Overload:Fluxer.Net.EmbedBuilder.Fields
+  href: Fluxer.Net.EmbedBuilder.html#Fluxer_Net_EmbedBuilder_Fields
+  name: Fields
+  nameWithType: EmbedBuilder.Fields
+  fullName: Fluxer.Net.EmbedBuilder.Fields
+- uid: System.Collections.Generic.List{Fluxer.Net.EmbedFieldBuilder}
+  commentId: T:System.Collections.Generic.List{Fluxer.Net.EmbedFieldBuilder}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<EmbedFieldBuilder>
+  nameWithType: List<EmbedFieldBuilder>
+  fullName: System.Collections.Generic.List<Fluxer.Net.EmbedFieldBuilder>
+  nameWithType.vb: List(Of EmbedFieldBuilder)
+  fullName.vb: System.Collections.Generic.List(Of Fluxer.Net.EmbedFieldBuilder)
+  name.vb: List(Of EmbedFieldBuilder)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: Fluxer.Net.EmbedFieldBuilder
+    name: EmbedFieldBuilder
+    href: Fluxer.Net.EmbedFieldBuilder.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Fluxer.Net.EmbedFieldBuilder
+    name: EmbedFieldBuilder
+    href: Fluxer.Net.EmbedFieldBuilder.html
+  - name: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: Fluxer.Net.EmbedBuilder.Length*
+  commentId: Overload:Fluxer.Net.EmbedBuilder.Length
+  href: Fluxer.Net.EmbedBuilder.html#Fluxer_Net_EmbedBuilder_Length
+  name: Length
+  nameWithType: EmbedBuilder.Length
+  fullName: Fluxer.Net.EmbedBuilder.Length
+- uid: Fluxer.Net.EmbedBuilder.WithTitle*
+  commentId: Overload:Fluxer.Net.EmbedBuilder.WithTitle
+  href: Fluxer.Net.EmbedBuilder.html#Fluxer_Net_EmbedBuilder_WithTitle_System_String_
+  name: WithTitle
+  nameWithType: EmbedBuilder.WithTitle
+  fullName: Fluxer.Net.EmbedBuilder.WithTitle
+- uid: Fluxer.Net.EmbedBuilder
+  commentId: T:Fluxer.Net.EmbedBuilder
+  parent: Fluxer.Net
+  href: Fluxer.Net.EmbedBuilder.html
+  name: EmbedBuilder
+  nameWithType: EmbedBuilder
+  fullName: Fluxer.Net.EmbedBuilder
+- uid: Fluxer.Net.EmbedBuilder.WithDescription*
+  commentId: Overload:Fluxer.Net.EmbedBuilder.WithDescription
+  href: Fluxer.Net.EmbedBuilder.html#Fluxer_Net_EmbedBuilder_WithDescription_System_String_
+  name: WithDescription
+  nameWithType: EmbedBuilder.WithDescription
+  fullName: Fluxer.Net.EmbedBuilder.WithDescription
+- uid: Fluxer.Net.EmbedBuilder.WithUrl*
+  commentId: Overload:Fluxer.Net.EmbedBuilder.WithUrl
+  href: Fluxer.Net.EmbedBuilder.html#Fluxer_Net_EmbedBuilder_WithUrl_System_String_
+  name: WithUrl
+  nameWithType: EmbedBuilder.WithUrl
+  fullName: Fluxer.Net.EmbedBuilder.WithUrl
+- uid: Fluxer.Net.EmbedBuilder.WithThumbnailUrl*
+  commentId: Overload:Fluxer.Net.EmbedBuilder.WithThumbnailUrl
+  href: Fluxer.Net.EmbedBuilder.html#Fluxer_Net_EmbedBuilder_WithThumbnailUrl_System_String_
+  name: WithThumbnailUrl
+  nameWithType: EmbedBuilder.WithThumbnailUrl
+  fullName: Fluxer.Net.EmbedBuilder.WithThumbnailUrl
+- uid: Fluxer.Net.EmbedBuilder.WithImageUrl*
+  commentId: Overload:Fluxer.Net.EmbedBuilder.WithImageUrl
+  href: Fluxer.Net.EmbedBuilder.html#Fluxer_Net_EmbedBuilder_WithImageUrl_System_String_
+  name: WithImageUrl
+  nameWithType: EmbedBuilder.WithImageUrl
+  fullName: Fluxer.Net.EmbedBuilder.WithImageUrl
+- uid: Fluxer.Net.EmbedBuilder.WithColor*
+  commentId: Overload:Fluxer.Net.EmbedBuilder.WithColor
+  href: Fluxer.Net.EmbedBuilder.html#Fluxer_Net_EmbedBuilder_WithColor_System_Int32_
+  name: WithColor
+  nameWithType: EmbedBuilder.WithColor
+  fullName: Fluxer.Net.EmbedBuilder.WithColor
+- uid: System.Byte
+  commentId: T:System.Byte
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.byte
+  name: byte
+  nameWithType: byte
+  fullName: byte
+  nameWithType.vb: Byte
+  fullName.vb: Byte
+  name.vb: Byte
+- uid: Fluxer.Net.EmbedBuilder.WithTimestamp*
+  commentId: Overload:Fluxer.Net.EmbedBuilder.WithTimestamp
+  href: Fluxer.Net.EmbedBuilder.html#Fluxer_Net_EmbedBuilder_WithTimestamp_System_DateTime_
+  name: WithTimestamp
+  nameWithType: EmbedBuilder.WithTimestamp
+  fullName: Fluxer.Net.EmbedBuilder.WithTimestamp
+- uid: System.DateTime
+  commentId: T:System.DateTime
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.datetime
+  name: DateTime
+  nameWithType: DateTime
+  fullName: System.DateTime
+  nameWithType.vb: Date
+  fullName.vb: Date
+  name.vb: Date
+- uid: Fluxer.Net.EmbedBuilder.WithCurrentTimestamp*
+  commentId: Overload:Fluxer.Net.EmbedBuilder.WithCurrentTimestamp
+  href: Fluxer.Net.EmbedBuilder.html#Fluxer_Net_EmbedBuilder_WithCurrentTimestamp
+  name: WithCurrentTimestamp
+  nameWithType: EmbedBuilder.WithCurrentTimestamp
+  fullName: Fluxer.Net.EmbedBuilder.WithCurrentTimestamp
+- uid: Fluxer.Net.EmbedBuilder.WithAuthor*
+  commentId: Overload:Fluxer.Net.EmbedBuilder.WithAuthor
+  href: Fluxer.Net.EmbedBuilder.html#Fluxer_Net_EmbedBuilder_WithAuthor_Fluxer_Net_EmbedAuthorBuilder_
+  name: WithAuthor
+  nameWithType: EmbedBuilder.WithAuthor
+  fullName: Fluxer.Net.EmbedBuilder.WithAuthor
+- uid: System.Action{Fluxer.Net.EmbedAuthorBuilder}
+  commentId: T:System.Action{Fluxer.Net.EmbedAuthorBuilder}
+  parent: System
+  definition: System.Action`1
+  href: https://learn.microsoft.com/dotnet/api/system.action-1
+  name: Action<EmbedAuthorBuilder>
+  nameWithType: Action<EmbedAuthorBuilder>
+  fullName: System.Action<Fluxer.Net.EmbedAuthorBuilder>
+  nameWithType.vb: Action(Of EmbedAuthorBuilder)
+  fullName.vb: System.Action(Of Fluxer.Net.EmbedAuthorBuilder)
+  name.vb: Action(Of EmbedAuthorBuilder)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: <
+  - uid: Fluxer.Net.EmbedAuthorBuilder
+    name: EmbedAuthorBuilder
+    href: Fluxer.Net.EmbedAuthorBuilder.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Fluxer.Net.EmbedAuthorBuilder
+    name: EmbedAuthorBuilder
+    href: Fluxer.Net.EmbedAuthorBuilder.html
+  - name: )
+- uid: System.Action`1
+  commentId: T:System.Action`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.action-1
+  name: Action<T>
+  nameWithType: Action<T>
+  fullName: System.Action<T>
+  nameWithType.vb: Action(Of T)
+  fullName.vb: System.Action(Of T)
+  name.vb: Action(Of T)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: Fluxer.Net.EmbedBuilder.WithFooter*
+  commentId: Overload:Fluxer.Net.EmbedBuilder.WithFooter
+  href: Fluxer.Net.EmbedBuilder.html#Fluxer_Net_EmbedBuilder_WithFooter_Fluxer_Net_EmbedFooterBuilder_
+  name: WithFooter
+  nameWithType: EmbedBuilder.WithFooter
+  fullName: Fluxer.Net.EmbedBuilder.WithFooter
+- uid: System.Action{Fluxer.Net.EmbedFooterBuilder}
+  commentId: T:System.Action{Fluxer.Net.EmbedFooterBuilder}
+  parent: System
+  definition: System.Action`1
+  href: https://learn.microsoft.com/dotnet/api/system.action-1
+  name: Action<EmbedFooterBuilder>
+  nameWithType: Action<EmbedFooterBuilder>
+  fullName: System.Action<Fluxer.Net.EmbedFooterBuilder>
+  nameWithType.vb: Action(Of EmbedFooterBuilder)
+  fullName.vb: System.Action(Of Fluxer.Net.EmbedFooterBuilder)
+  name.vb: Action(Of EmbedFooterBuilder)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: <
+  - uid: Fluxer.Net.EmbedFooterBuilder
+    name: EmbedFooterBuilder
+    href: Fluxer.Net.EmbedFooterBuilder.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Fluxer.Net.EmbedFooterBuilder
+    name: EmbedFooterBuilder
+    href: Fluxer.Net.EmbedFooterBuilder.html
+  - name: )
+- uid: Fluxer.Net.EmbedBuilder.MaxFieldCount
+  commentId: P:Fluxer.Net.EmbedBuilder.MaxFieldCount
+  href: Fluxer.Net.EmbedBuilder.html#Fluxer_Net_EmbedBuilder_MaxFieldCount
+  name: MaxFieldCount
+  nameWithType: EmbedBuilder.MaxFieldCount
+  fullName: Fluxer.Net.EmbedBuilder.MaxFieldCount
+- uid: Fluxer.Net.EmbedBuilder.AddField*
+  commentId: Overload:Fluxer.Net.EmbedBuilder.AddField
+  href: Fluxer.Net.EmbedBuilder.html#Fluxer_Net_EmbedBuilder_AddField_Fluxer_Net_EmbedFieldBuilder_
+  name: AddField
+  nameWithType: EmbedBuilder.AddField
+  fullName: Fluxer.Net.EmbedBuilder.AddField
+- uid: Fluxer.Net.EmbedFieldBuilder
+  commentId: T:Fluxer.Net.EmbedFieldBuilder
+  parent: Fluxer.Net
+  href: Fluxer.Net.EmbedFieldBuilder.html
+  name: EmbedFieldBuilder
+  nameWithType: EmbedFieldBuilder
+  fullName: Fluxer.Net.EmbedFieldBuilder
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: System.Action{Fluxer.Net.EmbedFieldBuilder}
+  commentId: T:System.Action{Fluxer.Net.EmbedFieldBuilder}
+  parent: System
+  definition: System.Action`1
+  href: https://learn.microsoft.com/dotnet/api/system.action-1
+  name: Action<EmbedFieldBuilder>
+  nameWithType: Action<EmbedFieldBuilder>
+  fullName: System.Action<Fluxer.Net.EmbedFieldBuilder>
+  nameWithType.vb: Action(Of EmbedFieldBuilder)
+  fullName.vb: System.Action(Of Fluxer.Net.EmbedFieldBuilder)
+  name.vb: Action(Of EmbedFieldBuilder)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: <
+  - uid: Fluxer.Net.EmbedFieldBuilder
+    name: EmbedFieldBuilder
+    href: Fluxer.Net.EmbedFieldBuilder.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Fluxer.Net.EmbedFieldBuilder
+    name: EmbedFieldBuilder
+    href: Fluxer.Net.EmbedFieldBuilder.html
+  - name: )
+- uid: Fluxer.Net.EmbedJson
+  commentId: T:Fluxer.Net.EmbedJson
+  parent: Fluxer.Net
+  href: Fluxer.Net.EmbedJson.html
+  name: EmbedJson
+  nameWithType: EmbedJson
+  fullName: Fluxer.Net.EmbedJson
+- uid: Fluxer.Net.EmbedBuilder.MaxEmbedLength
+  commentId: P:Fluxer.Net.EmbedBuilder.MaxEmbedLength
+  href: Fluxer.Net.EmbedBuilder.html#Fluxer_Net_EmbedBuilder_MaxEmbedLength
+  name: MaxEmbedLength
+  nameWithType: EmbedBuilder.MaxEmbedLength
+  fullName: Fluxer.Net.EmbedBuilder.MaxEmbedLength
+- uid: System.InvalidOperationException
+  commentId: T:System.InvalidOperationException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.invalidoperationexception
+  name: InvalidOperationException
+  nameWithType: InvalidOperationException
+  fullName: System.InvalidOperationException
+- uid: Fluxer.Net.EmbedBuilder.Build*
+  commentId: Overload:Fluxer.Net.EmbedBuilder.Build
+  href: Fluxer.Net.EmbedBuilder.html#Fluxer_Net_EmbedBuilder_Build
+  name: Build
+  nameWithType: EmbedBuilder.Build
+  fullName: Fluxer.Net.EmbedBuilder.Build
+- uid: Fluxer.Net.Rest.Requests.EmbedRequest
+  commentId: T:Fluxer.Net.Rest.Requests.EmbedRequest
+  parent: Fluxer.Net.Rest.Requests
+  href: Fluxer.Net.Rest.Requests.EmbedRequest.html
+  name: EmbedRequest
+  nameWithType: EmbedRequest
+  fullName: Fluxer.Net.Rest.Requests.EmbedRequest
+- uid: Fluxer.Net.Rest.Requests
+  commentId: N:Fluxer.Net.Rest.Requests
+  href: Fluxer.html
+  name: Fluxer.Net.Rest.Requests
+  nameWithType: Fluxer.Net.Rest.Requests
+  fullName: Fluxer.Net.Rest.Requests
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  - name: .
+  - uid: Fluxer.Net.Rest
+    name: Rest
+    href: Fluxer.Net.Rest.html
+  - name: .
+  - uid: Fluxer.Net.Rest.Requests
+    name: Requests
+    href: Fluxer.Net.Rest.Requests.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  - name: .
+  - uid: Fluxer.Net.Rest
+    name: Rest
+    href: Fluxer.Net.Rest.html
+  - name: .
+  - uid: Fluxer.Net.Rest.Requests
+    name: Requests
+    href: Fluxer.Net.Rest.Requests.html

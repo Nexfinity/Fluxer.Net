@@ -1,0 +1,186 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.FriendSourceFlags
+  commentId: T:Fluxer.Net.FriendSourceFlags
+  id: FriendSourceFlags
+  parent: Fluxer.Net
+  children:
+  - Fluxer.Net.FriendSourceFlags.MutualFriends
+  - Fluxer.Net.FriendSourceFlags.MutualGuilds
+  - Fluxer.Net.FriendSourceFlags.NoRelation
+  - Fluxer.Net.FriendSourceFlags.None
+  langs:
+  - csharp
+  - vb
+  name: FriendSourceFlags
+  nameWithType: FriendSourceFlags
+  fullName: Fluxer.Net.FriendSourceFlags
+  type: Enum
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/FriendSourceFlags.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: FriendSourceFlags
+    path: ../Fluxer.Net/Data/Users/FriendSourceFlags.cs
+    startLine: 5
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Flags that control who can send friend requests to a user. Multiple sources can be combined using bitwise OR.
+  example: []
+  syntax:
+    content: >-
+      [Flags]
+
+      public enum FriendSourceFlags
+    content.vb: >-
+      <Flags>
+
+      Public Enum FriendSourceFlags
+  attributes:
+  - type: System.FlagsAttribute
+    ctor: System.FlagsAttribute.#ctor
+    arguments: []
+- uid: Fluxer.Net.FriendSourceFlags.None
+  commentId: F:Fluxer.Net.FriendSourceFlags.None
+  id: None
+  parent: Fluxer.Net.FriendSourceFlags
+  langs:
+  - csharp
+  - vb
+  name: None
+  nameWithType: FriendSourceFlags.None
+  fullName: Fluxer.Net.FriendSourceFlags.None
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/FriendSourceFlags.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: None
+    path: ../Fluxer.Net/Data/Users/FriendSourceFlags.cs
+    startLine: 11
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: No sources enabled (no one can send friend requests).
+  example: []
+  syntax:
+    content: None = 0
+    return:
+      type: Fluxer.Net.FriendSourceFlags
+- uid: Fluxer.Net.FriendSourceFlags.MutualFriends
+  commentId: F:Fluxer.Net.FriendSourceFlags.MutualFriends
+  id: MutualFriends
+  parent: Fluxer.Net.FriendSourceFlags
+  langs:
+  - csharp
+  - vb
+  name: MutualFriends
+  nameWithType: FriendSourceFlags.MutualFriends
+  fullName: Fluxer.Net.FriendSourceFlags.MutualFriends
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/FriendSourceFlags.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: MutualFriends
+    path: ../Fluxer.Net/Data/Users/FriendSourceFlags.cs
+    startLine: 16
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Allow friend requests from users who share mutual friends.
+  example: []
+  syntax:
+    content: MutualFriends = 1
+    return:
+      type: Fluxer.Net.FriendSourceFlags
+- uid: Fluxer.Net.FriendSourceFlags.MutualGuilds
+  commentId: F:Fluxer.Net.FriendSourceFlags.MutualGuilds
+  id: MutualGuilds
+  parent: Fluxer.Net.FriendSourceFlags
+  langs:
+  - csharp
+  - vb
+  name: MutualGuilds
+  nameWithType: FriendSourceFlags.MutualGuilds
+  fullName: Fluxer.Net.FriendSourceFlags.MutualGuilds
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/FriendSourceFlags.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: MutualGuilds
+    path: ../Fluxer.Net/Data/Users/FriendSourceFlags.cs
+    startLine: 21
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Allow friend requests from users who share mutual guilds/servers.
+  example: []
+  syntax:
+    content: MutualGuilds = 2
+    return:
+      type: Fluxer.Net.FriendSourceFlags
+- uid: Fluxer.Net.FriendSourceFlags.NoRelation
+  commentId: F:Fluxer.Net.FriendSourceFlags.NoRelation
+  id: NoRelation
+  parent: Fluxer.Net.FriendSourceFlags
+  langs:
+  - csharp
+  - vb
+  name: NoRelation
+  nameWithType: FriendSourceFlags.NoRelation
+  fullName: Fluxer.Net.FriendSourceFlags.NoRelation
+  type: Field
+  source:
+    remote:
+      path: Fluxer.Net/Data/Users/FriendSourceFlags.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: NoRelation
+    path: ../Fluxer.Net/Data/Users/FriendSourceFlags.cs
+    startLine: 26
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Allow friend requests from users with no relation (anyone).
+  example: []
+  syntax:
+    content: NoRelation = 4
+    return:
+      type: Fluxer.Net.FriendSourceFlags
+references:
+- uid: Fluxer.Net
+  commentId: N:Fluxer.Net
+  href: Fluxer.html
+  name: Fluxer.Net
+  nameWithType: Fluxer.Net
+  fullName: Fluxer.Net
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+- uid: Fluxer.Net.FriendSourceFlags
+  commentId: T:Fluxer.Net.FriendSourceFlags
+  parent: Fluxer.Net
+  href: Fluxer.Net.FriendSourceFlags.html
+  name: FriendSourceFlags
+  nameWithType: FriendSourceFlags
+  fullName: Fluxer.Net.FriendSourceFlags

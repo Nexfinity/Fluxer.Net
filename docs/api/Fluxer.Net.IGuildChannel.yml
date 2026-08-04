@@ -1,0 +1,62 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.IGuildChannel
+  commentId: T:Fluxer.Net.IGuildChannel
+  id: IGuildChannel
+  parent: Fluxer.Net
+  children: []
+  langs:
+  - csharp
+  - vb
+  name: IGuildChannel
+  nameWithType: IGuildChannel
+  fullName: Fluxer.Net.IGuildChannel
+  type: Interface
+  source:
+    remote:
+      path: Fluxer.Net/Data/Channels/IGuildChannel.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: IGuildChannel
+    path: ../Fluxer.Net/Data/Channels/IGuildChannel.cs
+    startLine: 2
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  syntax:
+    content: public interface IGuildChannel
+    content.vb: Public Interface IGuildChannel
+  derivedClasses:
+  - Fluxer.Net.CategoryChannel
+  - Fluxer.Net.GuildChannel
+  - Fluxer.Net.LinkChannel
+  - Fluxer.Net.SocketCategoryChannel
+  - Fluxer.Net.SocketLinkChannel
+  - Fluxer.Net.SocketTextChannel
+  - Fluxer.Net.SocketUnknownGuildChannel
+  - Fluxer.Net.SocketVoiceChannel
+  - Fluxer.Net.TextChannel
+  - Fluxer.Net.VoiceChannel
+references:
+- uid: Fluxer.Net
+  commentId: N:Fluxer.Net
+  href: Fluxer.html
+  name: Fluxer.Net
+  nameWithType: Fluxer.Net
+  fullName: Fluxer.Net
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html

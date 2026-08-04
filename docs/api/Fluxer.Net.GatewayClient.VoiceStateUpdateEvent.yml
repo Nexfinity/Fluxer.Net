@@ -1,0 +1,110 @@
+### YamlMime:ManagedReference
+items:
+- uid: Fluxer.Net.GatewayClient.VoiceStateUpdateEvent
+  commentId: T:Fluxer.Net.GatewayClient.VoiceStateUpdateEvent
+  id: GatewayClient.VoiceStateUpdateEvent
+  parent: Fluxer.Net
+  children: []
+  langs:
+  - csharp
+  - vb
+  name: GatewayClient.VoiceStateUpdateEvent
+  nameWithType: GatewayClient.VoiceStateUpdateEvent
+  fullName: Fluxer.Net.GatewayClient.VoiceStateUpdateEvent
+  type: Delegate
+  source:
+    remote:
+      path: Fluxer.Net/Gateway/GatewayClient.cs
+      branch: release
+      repo: https://github.com/Nexfinity/Fluxer.Net
+    id: VoiceStateUpdateEvent
+    path: ../Fluxer.Net/Gateway/GatewayClient.cs
+    startLine: 2123
+  assemblies:
+  - Fluxer.Net
+  namespace: Fluxer.Net
+  summary: Delegate for VOICE_STATE_UPDATE events when a user's voice state changes.
+  example: []
+  syntax:
+    content: public delegate void GatewayClient.VoiceStateUpdateEvent(VoiceStateGatewayData data)
+    parameters:
+    - id: data
+      type: Fluxer.Net.Gateway.Data.Voice.VoiceStateGatewayData
+      description: The voice state data.
+    content.vb: Public Delegate Sub GatewayClient.VoiceStateUpdateEvent(data As VoiceStateGatewayData)
+references:
+- uid: Fluxer.Net
+  commentId: N:Fluxer.Net
+  href: Fluxer.html
+  name: Fluxer.Net
+  nameWithType: Fluxer.Net
+  fullName: Fluxer.Net
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+- uid: Fluxer.Net.Gateway.Data.Voice.VoiceStateGatewayData
+  commentId: T:Fluxer.Net.Gateway.Data.Voice.VoiceStateGatewayData
+  parent: Fluxer.Net.Gateway.Data.Voice
+  href: Fluxer.Net.Gateway.Data.Voice.VoiceStateGatewayData.html
+  name: VoiceStateGatewayData
+  nameWithType: VoiceStateGatewayData
+  fullName: Fluxer.Net.Gateway.Data.Voice.VoiceStateGatewayData
+- uid: Fluxer.Net.Gateway.Data.Voice
+  commentId: N:Fluxer.Net.Gateway.Data.Voice
+  href: Fluxer.html
+  name: Fluxer.Net.Gateway.Data.Voice
+  nameWithType: Fluxer.Net.Gateway.Data.Voice
+  fullName: Fluxer.Net.Gateway.Data.Voice
+  spec.csharp:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  - name: .
+  - uid: Fluxer.Net.Gateway
+    name: Gateway
+    href: Fluxer.Net.Gateway.html
+  - name: .
+  - uid: Fluxer.Net.Gateway.Data
+    name: Data
+    href: Fluxer.Net.Gateway.Data.html
+  - name: .
+  - uid: Fluxer.Net.Gateway.Data.Voice
+    name: Voice
+    href: Fluxer.Net.Gateway.Data.Voice.html
+  spec.vb:
+  - uid: Fluxer
+    name: Fluxer
+    href: Fluxer.html
+  - name: .
+  - uid: Fluxer.Net
+    name: Net
+    href: Fluxer.Net.html
+  - name: .
+  - uid: Fluxer.Net.Gateway
+    name: Gateway
+    href: Fluxer.Net.Gateway.html
+  - name: .
+  - uid: Fluxer.Net.Gateway.Data
+    name: Data
+    href: Fluxer.Net.Gateway.Data.html
+  - name: .
+  - uid: Fluxer.Net.Gateway.Data.Voice
+    name: Voice
+    href: Fluxer.Net.Gateway.Data.Voice.html
