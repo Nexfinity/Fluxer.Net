@@ -136,7 +136,7 @@ public class ApiClient
     public async Task<TResponse> MakeFluxerApiRequestAsync<TResponse, TSend>(HttpMethod method, string route, TSend data, bool throwOnNonSuccess = false, bool authorize = true,
         ICollection<KeyValuePair<string, (HttpContent content, string? filename)>>? otherFormData = null)
     {
-        var rawContent = JsonConvert.SerializeObject(data, FluxerClient._serializerSettings);
+        string rawContent = JsonConvert.SerializeObject(data, FluxerClient._serializerSettings);
         _logger.Verbose("Sending {@Enums} to {Route}", rawContent, route);
         HttpRequestMessage req = new HttpRequestMessage()
         {
@@ -192,7 +192,7 @@ public class ApiClient
         HttpResponseMessage result = await HttpClient.SendAsync(req);
 
         _logger.Debug("Made {Method} request to {Route}", method, route);
-        var resp = await result.Content.ReadAsStringAsync();
+        string resp = await result.Content.ReadAsStringAsync();
         _logger.Verbose("Received {Code}:{Result} from {Route}", result.StatusCode, resp, route);
 
         if (throwOnNonSuccess && !result.IsSuccessStatusCode)
@@ -224,7 +224,7 @@ public class ApiClient
         HttpResponseMessage result = await HttpClient.SendAsync(req);
 
         _logger.Debug("Made {Method} request to {Route}", method, route);
-        var resp = await result.Content.ReadAsStringAsync();
+        string resp = await result.Content.ReadAsStringAsync();
         _logger.Verbose("Received {Code}:{Result} from {Route}", result.StatusCode, resp, route);
 
         if (throwOnNonSuccess && !result.IsSuccessStatusCode)
@@ -265,7 +265,7 @@ public class ApiClient
         HttpResponseMessage result = await HttpClient.SendAsync(req);
 
         _logger.Debug("Made {Method} request to {Route}", method, route);
-        var resp = await result.Content.ReadAsStringAsync();
+        string resp = await result.Content.ReadAsStringAsync();
         _logger.Verbose("Received {Code}:{Result} from {Route}", result.StatusCode, resp, route);
 
         if (throwOnNonSuccess && !result.IsSuccessStatusCode)
@@ -303,7 +303,7 @@ public class ApiClient
         HttpResponseMessage result = await HttpClient.SendAsync(req);
 
         _logger.Debug("Made {Method} request to {Route}", method, route);
-        var resp = await result.Content.ReadAsStringAsync();
+        string resp = await result.Content.ReadAsStringAsync();
         _logger.Verbose("Received {Code}:{Result} from {Route}", result.StatusCode, resp, route);
 
         if (throwOnNonSuccess && !result.IsSuccessStatusCode)
@@ -333,7 +333,7 @@ public class ApiClient
         bool authorize,
         string accessToken)
     {
-        var uri = _config.RealApiBaseUrl + route;
+        string uri = _config.RealApiBaseUrl + route;
 
         if (queryParams != null)
         {
@@ -357,7 +357,7 @@ public class ApiClient
         HttpResponseMessage result = await HttpClient.SendAsync(req);
 
         _logger.Debug("Made {Method} request to {Route}", method, route);
-        var resp = await result.Content.ReadAsStringAsync();
+        string resp = await result.Content.ReadAsStringAsync();
         _logger.Verbose("Received {Code}:{Result} from {Route}", result.StatusCode, resp, route);
 
         if (throwOnNonSuccess && !result.IsSuccessStatusCode)

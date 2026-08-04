@@ -42,7 +42,7 @@ public partial class FluxerOAuthHandler : OAuthHandler<FluxerOAuthOptions>
         if (Options.ConnectionsScope)
             Options.Scope.Add("connections");
 
-        var challengeUrl = base.BuildChallengeUrl(properties, redirectUri);
+        string challengeUrl = base.BuildChallengeUrl(properties, redirectUri);
 
         if (!string.IsNullOrEmpty(Options.Prompt))
             challengeUrl = QueryHelpers.AddQueryString(challengeUrl, "prompt", Options.Prompt);

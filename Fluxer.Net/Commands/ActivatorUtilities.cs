@@ -10,8 +10,8 @@ internal static class ActivatorUtilities
 	/// </summary>
 	public static object CreateInstance(IServiceProvider provider, Type instanceType, params object[] parameters)
 	{
-		// Try to get from service provider first
-		var service = provider.GetService(instanceType);
+        // Try to get from service provider first
+        object service = provider.GetService(instanceType);
 		if (service != null)
 			return service;
 

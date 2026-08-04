@@ -264,7 +264,7 @@ public partial class GatewayClient : IDisposable
             return;
         }
 
-        var text = JsonConvert.SerializeObject(Data, FluxerClient._serializerSettings);
+        string text = JsonConvert.SerializeObject(Data, FluxerClient._serializerSettings);
         _logger.Debug("Sending serialized gateway packet {Enums}", text);
         try
         {
@@ -314,14 +314,14 @@ public partial class GatewayClient : IDisposable
         _reconnectAttemptCount++;
 
         // Exponential backoff: 1s, 2s, 4s, 8s, 16s, max 60s
-        var baseDelay = Math.Min(Math.Pow(2, _reconnectAttemptCount - 1), 60);
+        double baseDelay = Math.Min(Math.Pow(2, _reconnectAttemptCount - 1), 60);
 #if NET5_0_OR_GREATER
         double random = Random.Shared.NextDouble();
 #else
         SharedRandom ??= new();
         double random = SharedRandom.NextDouble();
 #endif
-        var jitter = random * 0.3 * baseDelay; // Add up to 30% jitter
+        double jitter = random * 0.3 * baseDelay; // Add up to 30% jitter
         TimeSpan totalDelay = TimeSpan.FromSeconds(baseDelay + jitter);
 
         _logger.Information("Reconnection attempt #{Attempt} - waiting {Delay:F1} seconds before reconnecting",
@@ -350,8 +350,8 @@ public partial class GatewayClient : IDisposable
         {
             // Pre-parse to check for InvalidSession opcode (which has a boolean payload instead of an object)
             JObject preCheck = JObject.Parse(message);
-            var opCode = preCheck["op"]?.Value<int>();
-            var dispatch = preCheck["t"]?.Value<string>();
+            int? opCode = preCheck["op"]?.Value<int>();
+            string dispatch = preCheck["t"]?.Value<string>();
 
             // Log READY events specifically
             if (dispatch == "READY")
@@ -362,7 +362,7 @@ public partial class GatewayClient : IDisposable
             if (opCode == (int)FluxerOpCode.InvalidSession)
             {
                 // InvalidSession has a boolean "d" field indicating if session is resumable
-                var canResume = preCheck["d"]?.Value<bool>() ?? false;
+                bool canResume = preCheck["d"]?.Value<bool>() ?? false;
                 _logger.Warning("Received InvalidSession opcode (resumable: {CanResume}). Need to reconnect with new session.", canResume);
 
                 // For non-resumable session, we need to do a fresh IDENTIFY, not a RESUME
@@ -1653,10 +1653,10 @@ public partial class GatewayClient : IDisposable
     {
         // Add jitter between 0-500ms to prevent thundering herd
 #if NET5_0_OR_GREATER
-        var jitter = Random.Shared.Next(0, 500);
+        int jitter = Random.Shared.Next(0, 500);
 #else
         SharedRandom ??= new();
-        var jitter = SharedRandom.Next(0, 500);
+        int jitter = SharedRandom.Next(0, 500);
 #endif
 
         _logger.Debug("Starting heartbeat with interval {Interval}ms and jitter {Jitter}ms", _heartbeatInterval, jitter);

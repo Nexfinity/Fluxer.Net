@@ -96,7 +96,7 @@ public class CommandInfo
 
 		try
 		{
-			var instance = services != null
+            object instance = services != null
 				? ActivatorUtilities.CreateInstance(services, Module.Type)
 				: Activator.CreateInstance(Module.Type);
 
@@ -106,7 +106,7 @@ public class CommandInfo
 				moduleBase.BeforeExecute(this);
 			}
 
-			var result = Method.Invoke(instance, args);
+            object result = Method.Invoke(instance, args);
 
 			if (result is Task<IResult> taskResult)
 			{
