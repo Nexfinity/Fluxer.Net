@@ -5,8 +5,6 @@ VisualStudioVersion = 17.5.2.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fluxer.Net", "Fluxer.Net\Fluxer.Net.csproj", "{99804E8F-C2CD-4A1D-8942-B6154EDBB607}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fluxer.Net.Example", "Fluxer.Net.Example\Fluxer.Net.Example.csproj", "{3C42703F-86B8-4D0E-9422-E83FFB246E94}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fluxer.Net.Test", "Fluxer.Net.Test\Fluxer.Net.Test.csproj", "{398BEF0A-12D2-49EA-9756-70DBCB91049D}"
 EndProject
 Global
