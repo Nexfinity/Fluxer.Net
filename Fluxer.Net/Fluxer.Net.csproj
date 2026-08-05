@@ -10,7 +10,7 @@
 	
 	<!-- NuGet package info -->
     <PackageId>Fluxer.Net</PackageId>
-    <Version>2.2.0</Version>
+    <Version>2.5.0</Version>
     <Authors>Nexfinity</Authors>
     <Company>Nexfinity</Company>
     <Description>A .NET library for Fluxer bot development.</Description>
