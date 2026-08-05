@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace Fluxer.Net.Gateway.Data.Users;
+namespace Fluxer.Net.Gateway;
 
 /// <summary>
 /// Gateway data for USER_NOTE_UPDATE event when a user note is updated.

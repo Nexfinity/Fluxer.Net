@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace Fluxer.Net.Gateway.Data.Guilds;
+namespace Fluxer.Net.Gateway;
 
 /// <summary>
 /// Gateway data for GUILD_EMOJIS_UPDATE event when guild emojis are updated.

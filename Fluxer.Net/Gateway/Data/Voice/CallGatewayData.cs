@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace Fluxer.Net.Gateway.Data.Voice;
+namespace Fluxer.Net.Gateway;
 
 /// <summary>
 /// Gateway data for CALL_CREATE, CALL_UPDATE, and CALL_DELETE events.

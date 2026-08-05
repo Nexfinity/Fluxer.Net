@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Fluxer.Net.Gateway.Data.Users;
+namespace Fluxer.Net.Gateway;
 
 /// <summary>
 /// Gateway event data for PRESENCE_UPDATE events.

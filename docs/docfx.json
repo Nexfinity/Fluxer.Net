@@ -10,7 +10,8 @@
           ]
         }
       ],
-      "dest": "api"
+      "dest": "api",
+      "filter": "filterConfig.yml"
     }
   ],
   "build": {
@@ -34,13 +35,14 @@
     "output": "_site",
     "template": [
       "default",
-      "modern"
+      "modern",
+	  "_template/material"
     ],
     "globalMetadata": {
+	  "_appTitle": "Fluxer.net Documentation",
       "_appName": "Fluxer.net",
       "_appTitle": "Fluxer.net",
-      "_enableSearch": true,
-      "pdf": false
+      "_enableSearch": true
     }
   }
 }

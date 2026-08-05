@@ -1,7 +1,6 @@
-using Fluxer.Net.Gateway.Data.Channels;
 using Newtonsoft.Json;
 
-namespace Fluxer.Net.Gateway.Data.Guilds;
+namespace Fluxer.Net.Gateway;
 
 /// <summary>
 /// Gateway data for GUILD_CREATE and GUILD_UPDATE events.

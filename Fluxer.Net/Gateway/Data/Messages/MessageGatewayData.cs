@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace Fluxer.Net.Gateway.Data.Messages;
+namespace Fluxer.Net.Gateway;
 
 /// <summary>
 /// Gateway message data matching the MessageResponse API model

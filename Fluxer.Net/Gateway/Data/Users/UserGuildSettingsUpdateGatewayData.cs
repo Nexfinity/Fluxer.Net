@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace Fluxer.Net.Gateway.Data.Users;
+namespace Fluxer.Net.Gateway;
 
 /// <summary>
 /// Gateway data for USER_GUILD_SETTINGS_UPDATE event when user guild settings are updated.

@@ -1,7 +1,6 @@
-using Fluxer.Net.Gateway.Data.Guilds;
 using Newtonsoft.Json;
 
-namespace Fluxer.Net.Gateway.Data.Channels;
+namespace Fluxer.Net.Gateway;
 
 public class TypingGatewayData
 {

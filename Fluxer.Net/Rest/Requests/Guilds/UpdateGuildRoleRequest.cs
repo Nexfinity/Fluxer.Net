@@ -3,7 +3,7 @@
 namespace Fluxer.Net;
 
 /// <summary>
-/// <c>PATCH /guilds/{guild_id}/roles/{role_id}</c>
+/// 
 /// </summary>
 public class UpdateGuildRoleRequest
 {

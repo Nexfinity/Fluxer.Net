@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace Fluxer.Net.Gateway.Data.Auth;
+namespace Fluxer.Net.Gateway;
 
 /// <summary>
 /// Gateway data for AUTH_SESSION_CHANGE event when an auth session changes.

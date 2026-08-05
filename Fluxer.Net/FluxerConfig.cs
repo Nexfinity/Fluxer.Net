@@ -1,4 +1,4 @@
-using Fluxer.Net.Gateway.Data.Users;
+using Fluxer.Net.Gateway;
 using Serilog.Core;
 
 namespace Fluxer.Net;
