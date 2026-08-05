@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace Fluxer.Net.Gateway.Data.Channels;
+namespace Fluxer.Net.Gateway;
 
 /// <summary>
 /// Gateway data for CHANNEL_RECIPIENT_ADD and CHANNEL_RECIPIENT_REMOVE events.

@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace Fluxer.Net.Gateway.Data.Users;
+namespace Fluxer.Net.Gateway;
 
 /// <summary>
 /// Gateway data for SAVED_MESSAGE_CREATE and SAVED_MESSAGE_DELETE events.

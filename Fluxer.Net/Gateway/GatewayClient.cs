@@ -1,13 +1,6 @@
 ﻿#undef NOPE
+using Fluxer.Net.Gateway;
 using Fluxer.Net.Gateway.Data;
-using Fluxer.Net.Gateway.Data.Auth;
-using Fluxer.Net.Gateway.Data.Channels;
-using Fluxer.Net.Gateway.Data.Guilds;
-using Fluxer.Net.Gateway.Data.Invites;
-using Fluxer.Net.Gateway.Data.Messages;
-using Fluxer.Net.Gateway.Data.Users;
-using Fluxer.Net.Gateway.Data.Voice;
-using Fluxer.Net.Gateway.Data.Webhooks;
 using Fluxer.Net.Gateway.Packets;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -526,7 +519,7 @@ public partial class GatewayClient : IDisposable
                             {
                                 CurrentMembers.TryAdd(g.Id, SocketGuildMember.Create(_client, g.Members.First(x => x.UserId == CurrentUser.Id)));
                                 SocketGuild guild = SocketGuild.Create(_client, g.Properties, CurrentMembers[g.Id]);
-                                foreach (Gateway.Data.Guilds.GuildMemberGatewayData m in g.Members)
+                                foreach (GuildMemberGatewayData m in g.Members)
                                 {
                                     if (m.UserId != CurrentUser.Id)
                                     {
@@ -950,7 +943,7 @@ public partial class GatewayClient : IDisposable
                         GuildIds.Add(data.Id);
                         if (!data.Unavailable.GetValueOrDefault())
                         {
-                            Gateway.Data.Guilds.GuildMemberGatewayData json = data.Members.First(x => x.UserId == CurrentUser.Id);
+                            GuildMemberGatewayData json = data.Members.First(x => x.UserId == CurrentUser.Id);
                             SocketGuildMember member = SocketGuildMember.Create(_client, json);
 
                             // Add or update current member
@@ -1048,7 +1041,7 @@ public partial class GatewayClient : IDisposable
                 return;
             case "GUILD_MEMBER_ADD":
                 {
-                    Gateway.Data.Guilds.GuildMemberGatewayData? data = p.Data.ToObject<Gateway.Data.Guilds.GuildMemberGatewayData>(FluxerClient._serializer);
+                    GuildMemberGatewayData? data = p.Data.ToObject<GuildMemberGatewayData>(FluxerClient._serializer);
                     if (data != null)
                     {
                         if (Guilds.TryGetValue(data.GuildId, out SocketGuild guild))
@@ -1062,7 +1055,7 @@ public partial class GatewayClient : IDisposable
                 return;
             case "GUILD_MEMBER_UPDATE":
                 {
-                    Gateway.Data.Guilds.GuildMemberGatewayData? data = p.Data.ToObject<Gateway.Data.Guilds.GuildMemberGatewayData>(FluxerClient._serializer);
+                    GuildMemberGatewayData? data = p.Data.ToObject<GuildMemberGatewayData>(FluxerClient._serializer);
                     if (data != null)
                     {
                         if (Guilds.TryGetValue(data.GuildId, out SocketGuild guild) && guild.Members.TryGetValue(data.UserId, out var member))
@@ -2226,7 +2219,7 @@ public partial class GatewayClient : IDisposable
     /// Delegate for GUILD_MEMBER_ADD events when a user joins a guild.
     /// </summary>
     /// <param name="data">The guild member data.</param>
-    public delegate void GuildMemberAddEvent(Gateway.Data.Guilds.GuildMemberGatewayData data);
+    public delegate void GuildMemberAddEvent(GuildMemberGatewayData data);
 
     /// <summary>
     /// Occurs when a new member joins a guild.
@@ -2237,7 +2230,7 @@ public partial class GatewayClient : IDisposable
     /// Delegate for GUILD_MEMBER_UPDATE events when a guild member is updated.
     /// </summary>
     /// <param name="data">The updated guild member data.</param>
-    public delegate void GuildMemberUpdateEvent(Gateway.Data.Guilds.GuildMemberGatewayData data);
+    public delegate void GuildMemberUpdateEvent(GuildMemberGatewayData data);
 
     /// <summary>
     /// Occurs when a guild member is updated (roles, nickname, avatar, etc.).

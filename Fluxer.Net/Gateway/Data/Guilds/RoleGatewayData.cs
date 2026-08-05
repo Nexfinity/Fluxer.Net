@@ -1,3 +1,3 @@
-namespace Fluxer.Net.Gateway.Data.Guilds;
+namespace Fluxer.Net.Gateway;
 
 public class RoleGatewayData : RoleJson { }

@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace Fluxer.Net.Gateway.Data.Invites;
+namespace Fluxer.Net.Gateway;
 
 /// <summary>
 /// Gateway data for invite events (INVITE_CREATE, INVITE_DELETE).

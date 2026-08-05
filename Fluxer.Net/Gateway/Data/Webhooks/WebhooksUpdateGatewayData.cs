@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace Fluxer.Net.Gateway.Data.Webhooks;
+namespace Fluxer.Net.Gateway;
 
 public class WebhooksUpdateGatewayData
 {

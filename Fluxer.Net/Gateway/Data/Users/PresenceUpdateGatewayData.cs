@@ -1,7 +1,7 @@
 using Newtonsoft.Json;
 using StatusEnum = Fluxer.Net.Status;
 
-namespace Fluxer.Net.Gateway.Data.Users;
+namespace Fluxer.Net.Gateway;
 
 public class PresenceUpdateGatewayData
 {

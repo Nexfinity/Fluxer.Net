@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace Fluxer.Net.Gateway.Data.Voice;
+namespace Fluxer.Net.Gateway;
 
 public class VoiceServerUpdateGatewayData
 {

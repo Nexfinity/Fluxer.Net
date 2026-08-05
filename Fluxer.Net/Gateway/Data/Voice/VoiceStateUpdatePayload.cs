@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Fluxer.Net.Gateway.Data.Voice;
+namespace Fluxer.Net.Gateway;
 
 /// <summary>
 /// Gateway data for updating the current user's voice state.

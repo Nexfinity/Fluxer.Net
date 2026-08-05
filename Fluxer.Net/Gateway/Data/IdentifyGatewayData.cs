@@ -1,7 +1,6 @@
-using Fluxer.Net.Gateway.Data.Users;
 using Newtonsoft.Json;
 
-namespace Fluxer.Net.Gateway.Data;
+namespace Fluxer.Net.Gateway;
 
 public class IdentifyGatewayData
 {

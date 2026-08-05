@@ -1,7 +1,6 @@
-using Fluxer.Net.Gateway.Data.Guilds;
 using Newtonsoft.Json;
 
-namespace Fluxer.Net.Gateway.Data;
+namespace Fluxer.Net.Gateway;
 
 public class ReadyGatewayData
 {

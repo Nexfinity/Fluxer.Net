@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace Fluxer.Net.Gateway.Data.Channels;
+namespace Fluxer.Net.Gateway;
 
 /// <summary>
 /// Gateway channel data matching the ChannelResponse API model

@@ -4,7 +4,6 @@ namespace Fluxer.Net;
 
 /// <summary>
 /// <para>Request body for creating a role in a guild.</para>
-/// <c>POST /guilds/{guild_id}/roles</c>
 /// </summary>
 /// <remarks>
 /// <see href="https://docs.fluxer.app/resources/guilds#guildrolecreaterequest"/>
