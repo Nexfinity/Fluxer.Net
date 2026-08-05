@@ -509,12 +509,12 @@
             Called after a command in this module is executed.
             </summary>
         </member>
-        <member name="M:Fluxer.Net.Commands.ModuleBase.ReplyAsync(System.String,System.Collections.Generic.List{Fluxer.Net.Rest.Requests.EmbedRequest},Fluxer.Net.MessageReferenceRequest,Fluxer.Net.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64},System.Collections.Generic.List{Fluxer.Net.Rest.AttachmentRequest})">
+        <member name="M:Fluxer.Net.Commands.ModuleBase.ReplyAsync(System.String,System.Collections.Generic.List{Fluxer.Net.Rest.Requests.EmbedRequest},Fluxer.Net.MessageReferenceRequest,Fluxer.Net.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64},System.Collections.Generic.List{Fluxer.Net.Rest.Requests.AttachmentRequest})">
             <summary>
             Sends a message to the channel the command was executed in.
             </summary>
         </member>
-        <member name="M:Fluxer.Net.Commands.ModuleBase.ReplyAsync(System.Collections.Generic.List{Fluxer.Net.Rest.AttachmentRequest},System.String)">
+        <member name="M:Fluxer.Net.Commands.ModuleBase.ReplyAsync(System.Collections.Generic.List{Fluxer.Net.Rest.Requests.AttachmentRequest},System.String)">
             <summary>
             Sends a message to the channel the command was executed in.
             </summary>
@@ -9375,7 +9375,6 @@
         <member name="T:Fluxer.Net.CreateGuildRoleRequest">
             <summary>
             <para>Request body for creating a role in a guild.</para>
-            <c>POST /guilds/{guild_id}/roles</c>
             </summary>
             <remarks>
             <see href="https://docs.fluxer.app/resources/guilds#guildrolecreaterequest"/>
@@ -9423,7 +9422,7 @@
         </member>
         <member name="T:Fluxer.Net.UpdateGuildRoleRequest">
             <summary>
-            <c>PATCH /guilds/{guild_id}/roles/{role_id}</c>
+            
             </summary>
         </member>
         <member name="P:Fluxer.Net.UpdateGuildRoleRequest.Color">
