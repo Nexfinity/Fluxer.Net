@@ -95,6 +95,8 @@ public class FluxerClient : FluxerBaseClient
         Config.WebUrl = instance.Endpoints.WebApp;
     }
 
+    public Task StartAsync() => Gateway.ConnectAsync();
+
     internal static JsonSerializer CreateGatewaySerializer()
     {
         var serializer = new JsonSerializer

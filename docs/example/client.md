@@ -1,0 +1,1 @@
+[!code-csharp[Client](samples/client.cs)]

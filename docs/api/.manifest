@@ -870,6 +870,7 @@
   "Fluxer.Net.FluxerClient.Gateway": "Fluxer.Net.FluxerClient.yml",
   "Fluxer.Net.FluxerClient.LoginAsync(System.String)": "Fluxer.Net.FluxerClient.yml",
   "Fluxer.Net.FluxerClient.Rest": "Fluxer.Net.FluxerClient.yml",
+  "Fluxer.Net.FluxerClient.StartAsync": "Fluxer.Net.FluxerClient.yml",
   "Fluxer.Net.FluxerClient.Token": "Fluxer.Net.FluxerClient.yml",
   "Fluxer.Net.FluxerClient.ValidateToken(System.String)": "Fluxer.Net.FluxerClient.yml",
   "Fluxer.Net.FluxerConfig": "Fluxer.Net.FluxerConfig.yml",
