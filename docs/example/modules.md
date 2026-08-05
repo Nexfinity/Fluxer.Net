@@ -1,0 +1,1 @@
+[!code-csharp[Modules](samples/module.cs)]
