@@ -2,10 +2,8 @@
 _layout: landing
 ---
 
-# This is the **HOMEPAGE**.
-
-Refer to [Markdown](http://daringfireball.net/projects/markdown/) for how to write markdown files.
-
-## Quick Start Notes:
-
-1. Add images to the *images* folder if the file is referencing an image.
+# Fluxer.Net Docs!
+[![GitHub](https://img.shields.io/github/last-commit/Nexfinity/Fluxer.Net)](https://github.com/Nexfinity/Fluxer.Net)
+[![NuGet](https://img.shields.io/nuget/vpre/Fluxer.Net.svg?maxAge=2592000)](https://www.nuget.org/packages/Fluxer.Net)
+[![Build](https://github.com/Nexfinity/Fluxer.Net/actions/workflows/build.yml/badge.svg)](https://github.com/Nexfinity/Fluxer.Net/actions/workflows/build.yml)
+[![Docs](https://github.com/Nexfinity/Fluxer.Net/actions/workflows/docs.yml/badge.svg)](https://github.com/Nexfinity/Fluxer.Net/actions/workflows/docs.yml)
