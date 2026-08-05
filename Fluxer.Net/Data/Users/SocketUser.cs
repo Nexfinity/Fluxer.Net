@@ -7,7 +7,13 @@ public class SocketUser : User
 
     }
 
-    public static SocketUser Create(FluxerBaseClient client, UserJson json)
+    /// <summary>
+    /// Create a SocketUser object from json.
+    /// </summary>
+    /// <param name="client"></param>
+    /// <param name="json"></param>
+    /// <returns></returns>
+    public static new SocketUser Create(FluxerBaseClient client, UserJson json)
     {
         var data = new SocketUser(client);
         data.Update(json);

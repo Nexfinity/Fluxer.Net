@@ -4311,7 +4311,7 @@
         </member>
         <member name="T:Fluxer.Net.GuildSplashCardAlignment">
             <summary>
-            Splash card alignment types for <see cref="!:GuildJson.SplashCardAligment"/>
+            Splash card alignment types for <see cref="P:Fluxer.Net.PartialGuild.SplashCardAligment"/>
             </summary>
         </member>
         <member name="T:Fluxer.Net.GuildVanityUrl">
@@ -8021,7 +8021,7 @@
             <remarks>
             Contains authentication token, client properties, presence, and event filters.
             Must be sent before any other client packets (except RESUME).
-            See <see cref="!:Data.IdentifyGatewayData"/> for payload structure.
+            See <see cref="T:Fluxer.Net.Gateway.IdentifyGatewayData"/> for payload structure.
             </remarks>
         </member>
         <member name="F:Fluxer.Net.Gateway.Packets.FluxerOpCode.PresenceUpdate">
@@ -8031,7 +8031,7 @@
             </summary>
             <remarks>
             Used to change online status (Online, Idle, Do Not Disturb, Invisible).
-            See <see cref="!:Data.Users.PresenceUpdateGatewayData"/> for payload structure.
+            See <see cref="T:Fluxer.Net.Gateway.PresenceUpdateGatewayData"/> for payload structure.
             </remarks>
         </member>
         <member name="F:Fluxer.Net.Gateway.Packets.FluxerOpCode.VoiceStateUpdate">
@@ -8059,7 +8059,7 @@
             Sent instead of IDENTIFY when reconnecting with a valid session ID.
             Contains session ID, sequence number, and token.
             Server responds with RESUMED event if successful, or INVALID_SESSION if failed.
-            See <see cref="!:Data.ReconnectGatewayData"/> for payload structure.
+            See <see cref="T:Fluxer.Net.Gateway.ReconnectGatewayData"/> for payload structure.
             </remarks>
         </member>
         <member name="F:Fluxer.Net.Gateway.Packets.FluxerOpCode.Reconnect">
@@ -8102,7 +8102,7 @@
             First message received after WebSocket connection is established.
             Contains the heartbeat interval in milliseconds that the client must use.
             Client should begin sending heartbeats and then send IDENTIFY or RESUME.
-            See <see cref="!:Data.HelloGatewayData"/> for payload structure.
+            See <see cref="T:Fluxer.Net.Gateway.HelloGatewayData"/> for payload structure.
             </remarks>
         </member>
         <member name="F:Fluxer.Net.Gateway.Packets.FluxerOpCode.HeartbeatAck">

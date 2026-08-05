@@ -1,5 +1,6 @@
 ---
-uid: API.Docs
+uid: API.Reference
+title: API Reference
 ---
 
 # API Reference

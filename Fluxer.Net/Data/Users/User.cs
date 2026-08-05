@@ -68,6 +68,12 @@ public class User : Entity, IUser
 
     }
 
+    /// <summary>
+    /// Create a User object from json.
+    /// </summary>
+    /// <param name="client"></param>
+    /// <param name="json"></param>
+    /// <returns></returns>
     public static User Create(FluxerBaseClient client, UserJson json)
     {
         User data = new User(client);

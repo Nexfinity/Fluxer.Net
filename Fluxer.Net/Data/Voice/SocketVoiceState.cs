@@ -10,6 +10,13 @@ public class SocketVoiceState : VoiceState
 
     }
 
+    /// <summary>
+    /// Create a SocketVoiceState object from json.
+    /// </summary>
+    /// <param name="client"></param>
+    /// <param name="json"></param>
+    /// <param name="guild"></param>
+    /// <returns></returns>
     public static SocketVoiceState Create(FluxerBaseClient client, VoiceStateJson json, SocketGuild guild)
     {
         var data = new SocketVoiceState(client);

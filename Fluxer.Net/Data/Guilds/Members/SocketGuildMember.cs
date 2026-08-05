@@ -33,7 +33,13 @@ public class SocketGuildMember : GuildMember
 
     }
 
-    public static SocketGuildMember Create(FluxerBaseClient client, GuildMemberJson json)
+    /// <summary>
+    /// Create a SocketGuildMember object from json.
+    /// </summary>
+    /// <param name="client"></param>
+    /// <param name="json"></param>
+    /// <returns></returns>
+    public static new SocketGuildMember Create(FluxerBaseClient client, GuildMemberJson json)
     {
         SocketGuildMember data = new SocketGuildMember(client);
         data.Update(client, json);

@@ -1,5 +1,4 @@
 {
-  "$schema": "https://raw.githubusercontent.com/dotnet/docfx/main/schemas/docfx.schema.json",
   "metadata": [
     {
       "src": [
@@ -28,7 +27,7 @@
     "resource": [
       {
         "files": [
-          "images/**"
+          "**/images/**"
         ]
       }
     ],
@@ -36,12 +35,11 @@
     "template": [
       "default",
       "modern",
-	  "_template/material"
+	    "_template/material"
     ],
     "globalMetadata": {
-	  "_appTitle": "Fluxer.net Documentation",
+	    "_appTitle": "Fluxer.net Documentation",
       "_appName": "Fluxer.net",
-      "_appTitle": "Fluxer.net",
       "_enableSearch": true
     }
   }

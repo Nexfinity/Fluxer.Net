@@ -586,45 +586,129 @@ public class ApiClient
         return Message.Create(_client, json);
     }
 
+    /// <summary>
+    /// Delete a message in a channel.
+    /// </summary>
+    /// <param name="channelId"></param>
+    /// <param name="messageId"></param>
+    /// <returns></returns>
     public async Task DeleteMessageAsync(ulong channelId, ulong messageId)
         => await SendRequestRawAsync(HttpMethod.Delete, $"/channels/{channelId}/messages/{messageId}", true);
 
+    /// <summary>
+    /// Delete a attachment on a message.
+    /// </summary>
+    /// <param name="channelId"></param>
+    /// <param name="messageId"></param>
+    /// <param name="attachmentId"></param>
+    /// <returns></returns>
     public async Task DeleteMessageAttachmentAsync(ulong channelId, ulong messageId, ulong attachmentId)
         => await SendRequestRawAsync(HttpMethod.Delete, $"/channels/{channelId}/messages/{messageId}/attachments/{attachmentId}", true);
 
+    /// <summary>
+    /// Delete many messages in a channel.
+    /// </summary>
+    /// <param name="channelId"></param>
+    /// <param name="data"></param>
+    /// <returns></returns>
     public async Task BulkDeleteMessagesAsync(ulong channelId, BulkDeleteMessagesRequest data)
         => await SendRequestAsync(HttpMethod.Post, $"/channels/{channelId}/messages/bulk-delete", data, true);
 
+    /// <summary>
+    /// Send a user typing status for the channel.
+    /// </summary>
+    /// <param name="channelId"></param>
+    /// <returns></returns>
     public async Task TriggerTypingIndicatorAsync(ulong channelId)
         => await SendRequestRawAsync(HttpMethod.Post, $"/channels/{channelId}/typing", true);
 
+    /// <summary>
+    /// Acknowledge a message has been read for the current user.
+    /// </summary>
+    /// <remarks>
+    /// User accounts only.
+    /// </remarks>
+    /// <param name="channelId"></param>
+    /// <param name="messageId"></param>
+    /// <param name="details"></param>
+    /// <returns></returns>
     public async Task AcknowledgeMessageAsync(ulong channelId, ulong messageId, MessageAckJson details)
         => await SendRequestAsync<MessageAckJson>(HttpMethod.Post, $"/channels/{channelId}/messages/{messageId}/ack", details, true);
 
+    /// <summary>
+    /// Get pinned messages in a channel.
+    /// </summary>
+    /// <param name="channelId"></param>
+    /// <param name="query"></param>
+    /// <returns></returns>
     public async Task<ChannelPins> GetPinnedMessagesAsync(ulong channelId, ChannelPinsQuery? query = null)
     {
         ChannelPinsJson json = await SendRequestAsync<ChannelPinsJson>(HttpMethod.Get, $"/channels/{channelId}/pins?{query?.BuildQuery() ?? string.Empty}", true);
         return ChannelPins.Create(_client, json);
     }
 
+    /// <summary>
+    /// Pin a message in a channel.
+    /// </summary>
+    /// <param name="channelId"></param>
+    /// <param name="messageId"></param>
+    /// <returns></returns>
     public async Task PinMessageAsync(ulong channelId, ulong messageId)
         => await SendRequestRawAsync(HttpMethod.Put, $"/channels/{channelId}/pins/{messageId}", true);
 
+    /// <summary>
+    /// Remove a pinned message in a channel.
+    /// </summary>
+    /// <param name="channelId"></param>
+    /// <param name="messageId"></param>
+    /// <returns></returns>
     public async Task UnpinMessageAsync(ulong channelId, ulong messageId)
         => await SendRequestRawAsync(HttpMethod.Delete, $"/channels/{channelId}/pins/{messageId}", true);
 
+    /// <summary>
+    /// Get reaction users for a certain emoji on a message.
+    /// </summary>
+    /// <param name="channelId"></param>
+    /// <param name="messageId"></param>
+    /// <param name="emoji"></param>
+    /// <returns></returns>
     public async Task<IEnumerable<User>> GetReactionsForEmojiAsync(ulong channelId, ulong messageId, string emoji)
     {
         IEnumerable<UserJson> json = await SendRequestAsync<IEnumerable<UserJson>>(HttpMethod.Get, $"/channels/{channelId}/messages/{messageId}/reactions/{emoji}", true);
         return json.Select(x => User.Create(_client, x));
     }
 
+    /// <summary>
+    /// Add a reaction to a message.
+    /// </summary>
+    /// <param name="channelId"></param>
+    /// <param name="messageId"></param>
+    /// <param name="emoji"></param>
+    /// <returns></returns>
     public async Task AddReactionAsync(ulong channelId, ulong messageId, string emoji)
         => await SendRequestRawAsync(HttpMethod.Put, $"/channels/{channelId}/messages/{messageId}/reactions/{emoji}/@me", true);
 
+    /// <summary>
+    /// Remove a reaction from a message.
+    /// </summary>
+    /// <param name="channelId"></param>
+    /// <param name="messageId"></param>
+    /// <param name="emoji"></param>
+    /// <returns></returns>
     public async Task RemoveOwnReactionAsync(ulong channelId, ulong messageId, string emoji)
         => await SendRequestRawAsync(HttpMethod.Delete, $"/channels/{channelId}/messages/{messageId}/reactions/{emoji}/@me", true);
 
+    /// <summary>
+    /// Remove a user's reaction from a message.
+    /// </summary>
+    /// <remarks>
+    /// Requires <see cref="ChannelPermissions.ManageMessages"/>
+    /// </remarks>
+    /// <param name="channelId"></param>
+    /// <param name="messageId"></param>
+    /// <param name="emoji"></param>
+    /// <param name="targetId"></param>
+    /// <returns></returns>
     public async Task RemoveUserReactionAsync(ulong channelId, ulong messageId, string emoji, ulong targetId)
         => await SendRequestRawAsync(HttpMethod.Delete, $"/channels/{channelId}/messages/{messageId}/reactions/{emoji}/{targetId}", true);
 

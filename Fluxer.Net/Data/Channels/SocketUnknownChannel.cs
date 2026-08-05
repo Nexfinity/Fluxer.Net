@@ -12,7 +12,14 @@ public class SocketUnknownChannel : Channel
 
     }
 
-    public static Channel Create(FluxerBaseClient client, ChannelJson json, ulong guildId)
+    /// <summary>
+    /// Create a SocketChannel object from json.
+    /// </summary>
+    /// <param name="client"></param>
+    /// <param name="json"></param>
+    /// <param name="guildId"></param>
+    /// <returns></returns>
+    public static new Channel Create(FluxerBaseClient client, ChannelJson json, ulong guildId)
     {
         Channel data = null;
 

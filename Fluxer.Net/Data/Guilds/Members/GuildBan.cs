@@ -24,6 +24,12 @@ public class GuildBan : Entity, IGuildBan
 
     }
 
+    /// <summary>
+    /// Create a GuildBan object from json.
+    /// </summary>
+    /// <param name="client"></param>
+    /// <param name="json"></param>
+    /// <returns></returns>
     public static GuildBan Create(FluxerBaseClient client, GuildBanJson json)
     {
         GuildBan data = new GuildBan(client);

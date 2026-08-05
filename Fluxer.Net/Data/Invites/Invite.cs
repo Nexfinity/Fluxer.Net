@@ -20,6 +20,12 @@ public class Invite : PartialInvite, IInvite
 
     }
 
+    /// <summary>
+    /// Create a Invite object from json.
+    /// </summary>
+    /// <param name="client"></param>
+    /// <param name="json"></param>
+    /// <returns></returns>
     public static Invite Create(FluxerBaseClient client, InviteJson json)
     {
         Invite data = new Invite(client);

@@ -1,5 +1,7 @@
-- name: Docs
-  href: docs/
+- name: Get Started
+  href: get_started/
+- name: Guides
+  href: guides/
 - name: Examples
   href: example/
 - name: API
