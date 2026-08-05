@@ -7,10 +7,4 @@ public class SocketSavedNotesChannel : SavedNotesChannel
 
     }
 
-    public static SocketSavedNotesChannel Create(FluxerBaseClient client, ChannelJson json)
-    {
-        var data = new SocketSavedNotesChannel(client);
-        data.Update(client, json);
-        return data;
-    }
 }

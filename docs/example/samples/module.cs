@@ -1,3 +1,4 @@
+// !test
 public class TestModule : ModuleBase
 {
     [Command("test")]

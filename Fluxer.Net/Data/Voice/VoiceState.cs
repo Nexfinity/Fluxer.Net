@@ -51,6 +51,12 @@ public class VoiceState : Entity, IVoiceState
 
     }
 
+    /// <summary>
+    /// Create a VoiceState object from json.
+    /// </summary>
+    /// <param name="client"></param>
+    /// <param name="json"></param>
+    /// <returns></returns>
     public static VoiceState Create(FluxerBaseClient client, VoiceStateJson json)
     {
         var data = new VoiceState(client);

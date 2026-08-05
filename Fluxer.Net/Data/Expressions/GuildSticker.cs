@@ -28,6 +28,13 @@ public class GuildSticker : Sticker, IGuildSticker
 
     }
 
+    /// <summary>
+    /// Create a GuildSticker object from json.
+    /// </summary>
+    /// <param name="client"></param>
+    /// <param name="json"></param>
+    /// <param name="guildId"></param>
+    /// <returns></returns>
     public static GuildSticker Create(FluxerBaseClient client, GuildStickerJson json, ulong guildId)
     {
         GuildSticker data = new GuildSticker(client);

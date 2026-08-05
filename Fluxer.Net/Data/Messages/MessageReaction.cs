@@ -19,6 +19,12 @@ public class MessageReaction : Entity, IMessageReaction
 
     }
 
+    /// <summary>
+    /// Create a MessageReaction object from json.
+    /// </summary>
+    /// <param name="client"></param>
+    /// <param name="json"></param>
+    /// <returns></returns>
     public static MessageReaction Create(FluxerBaseClient client, MessageReactionJson json)
     {
         var data = new MessageReaction(client);

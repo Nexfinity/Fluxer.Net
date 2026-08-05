@@ -59,6 +59,12 @@ public class FavoriteGif : Entity, IFavoriteGif
 
     }
 
+    /// <summary>
+    /// Create a FavoriteGif object from json.
+    /// </summary>
+    /// <param name="client"></param>
+    /// <param name="json"></param>
+    /// <returns></returns>
     public static FavoriteGif Create(FluxerBaseClient client, FavoriteGifJson json)
     {
         FavoriteGif data = new FavoriteGif(client);

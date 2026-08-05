@@ -29,6 +29,12 @@ public class Gif : Entity, IGif
 
     }
 
+    /// <summary>
+    /// Create a Gif object from json.
+    /// </summary>
+    /// <param name="client"></param>
+    /// <param name="json"></param>
+    /// <returns></returns>
     public static Gif Create(FluxerBaseClient client, GifJson json)
     {
         Gif data = new Gif(client);

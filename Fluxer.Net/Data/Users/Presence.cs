@@ -27,6 +27,12 @@ public class Presence : Entity, IPresence
 
     }
 
+    /// <summary>
+    /// Create a Presence object from json.
+    /// </summary>
+    /// <param name="client"></param>
+    /// <param name="json"></param>
+    /// <returns></returns>
     public static Presence Create(FluxerBaseClient client, PresenceJson json)
     {
         Presence data = new Presence(client);

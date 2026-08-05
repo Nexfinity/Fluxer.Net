@@ -7,10 +7,4 @@ public class SocketCategoryChannel : CategoryChannel
 
     }
 
-    public static SocketCategoryChannel Create(FluxerBaseClient client, ChannelJson json)
-    {
-        var data = new SocketCategoryChannel(client);
-        data.Update(client, json);
-        return data;
-    }
 }

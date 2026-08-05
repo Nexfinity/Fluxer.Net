@@ -38,7 +38,7 @@ public enum FluxerOpCode
     /// <remarks>
     /// Contains authentication token, client properties, presence, and event filters.
     /// Must be sent before any other client packets (except RESUME).
-    /// See <see cref="Data.IdentifyGatewayData"/> for payload structure.
+    /// See <see cref="IdentifyGatewayData"/> for payload structure.
     /// </remarks>
     Identify = 2,
 
@@ -48,7 +48,7 @@ public enum FluxerOpCode
     /// </summary>
     /// <remarks>
     /// Used to change online status (Online, Idle, Do Not Disturb, Invisible).
-    /// See <see cref="Data.Users.PresenceUpdateGatewayData"/> for payload structure.
+    /// See <see cref="PresenceUpdateGatewayData"/> for payload structure.
     /// </remarks>
     PresenceUpdate = 3,
 
@@ -76,7 +76,7 @@ public enum FluxerOpCode
     /// Sent instead of IDENTIFY when reconnecting with a valid session ID.
     /// Contains session ID, sequence number, and token.
     /// Server responds with RESUMED event if successful, or INVALID_SESSION if failed.
-    /// See <see cref="Data.ReconnectGatewayData"/> for payload structure.
+    /// See <see cref="ReconnectGatewayData"/> for payload structure.
     /// </remarks>
     Resume = 6,
 
@@ -119,7 +119,7 @@ public enum FluxerOpCode
     /// First message received after WebSocket connection is established.
     /// Contains the heartbeat interval in milliseconds that the client must use.
     /// Client should begin sending heartbeats and then send IDENTIFY or RESUME.
-    /// See <see cref="Data.HelloGatewayData"/> for payload structure.
+    /// See <see cref="HelloGatewayData"/> for payload structure.
     /// </remarks>
     Hello = 10,
 

@@ -3,13 +3,24 @@ using Newtonsoft.Json.Converters;
 
 namespace Fluxer.Net;
 
-/// <remarks>
-/// https://github.com/fluxerapp/fluxer/blob/848269a4d4df7349acfc861ff926b17fe4c4a548/packages/schema/src/primitives/MessageValidators.tsx#L76
-/// </remarks>
+/// <summary>
+/// Which mentions should be used when sending a message.
+/// </summary>
 [JsonConverter(typeof(StringEnumConverter))]
 public enum AllowedMentionParseType
 {
+    /// <summary>
+    /// Allow all user mentions.
+    /// </summary>
     USERS,
+
+    /// <summary>
+    /// Allow all role mentions.
+    /// </summary>
     ROLES,
+
+    /// <summary>
+    /// Allow everyone and here mentions.
+    /// </summary>
     EVERYONE
 }

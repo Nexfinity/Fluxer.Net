@@ -13,5 +13,5 @@ public class FavoriteMemeGatewayData : FavoriteGifJson
 public class FavoriteMemeDeleteGatewayData : FavoriteGifJson
 {
     [JsonProperty("meme_id")]
-    public string Id { get; set; }
+    public new string Id { get; set; }
 }

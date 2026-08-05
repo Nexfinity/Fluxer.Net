@@ -17,6 +17,12 @@ public class RtcRegion : Entity, IRtcRegion
 
     }
 
+    /// <summary>
+    /// Create a RtcRegion object from json.
+    /// </summary>
+    /// <param name="client"></param>
+    /// <param name="json"></param>
+    /// <returns></returns>
     public static RtcRegion Create(FluxerBaseClient client, RtcRegionJson json)
     {
         RtcRegion data = new RtcRegion(client);

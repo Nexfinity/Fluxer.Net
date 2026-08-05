@@ -81,6 +81,12 @@ public class Channel : Entity, IChannel
 
     }
 
+    /// <summary>
+    /// Create a Channel object from json.
+    /// </summary>
+    /// <param name="client"></param>
+    /// <param name="json"></param>
+    /// <returns></returns>
     public static Channel Create(FluxerBaseClient client, ChannelJson json)
     {
         Channel data = null;

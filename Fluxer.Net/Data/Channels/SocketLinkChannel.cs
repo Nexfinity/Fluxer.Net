@@ -7,10 +7,4 @@ public class SocketLinkChannel : LinkChannel
 
     }
 
-    public static SocketLinkChannel Create(FluxerBaseClient client, ChannelJson json)
-    {
-        var data = new SocketLinkChannel(client);
-        data.Update(client, json);
-        return data;
-    }
 }

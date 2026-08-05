@@ -47,6 +47,13 @@ public class SocketGuild : Guild
 
     }
 
+    /// <summary>
+    /// Create a SocketGuild object from json.
+    /// </summary>
+    /// <param name="client"></param>
+    /// <param name="json"></param>
+    /// <param name="member"></param>
+    /// <returns></returns>
     public static SocketGuild Create(FluxerBaseClient client, GuildJson json, SocketGuildMember member)
     {
         SocketGuild data = new SocketGuild(client);

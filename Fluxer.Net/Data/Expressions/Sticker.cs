@@ -20,6 +20,12 @@ public class Sticker : Entity, ISticker
 
     }
 
+    /// <summary>
+    /// Create a Sticker object from json.
+    /// </summary>
+    /// <param name="client"></param>
+    /// <param name="json"></param>
+    /// <returns></returns>
     public static Sticker Create(FluxerBaseClient client, StickerJson json)
     {
         Sticker data = new Sticker(client);

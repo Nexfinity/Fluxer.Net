@@ -24,6 +24,12 @@ public class FluxerOAuthToken : Entity, IFluxerOAuthToken
 
     }
 
+    /// <summary>
+    /// Create a FluxerOAuthToken object from json.
+    /// </summary>
+    /// <param name="client"></param>
+    /// <param name="json"></param>
+    /// <returns></returns>
     public static FluxerOAuthToken Create(FluxerBaseClient client, FluxerOAuthTokenJson json)
     {
         FluxerOAuthToken data = new FluxerOAuthToken(client);

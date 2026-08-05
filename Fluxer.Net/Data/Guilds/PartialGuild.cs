@@ -52,6 +52,12 @@ public class PartialGuild : Entity, IPartialGuild
 
     }
 
+    /// <summary>
+    /// Create a PartialGuild object from json.
+    /// </summary>
+    /// <param name="client"></param>
+    /// <param name="json"></param>
+    /// <returns></returns>
     public static PartialGuild Create(FluxerBaseClient client, PartialGuildJson json)
     {
         PartialGuild data = new PartialGuild(client);

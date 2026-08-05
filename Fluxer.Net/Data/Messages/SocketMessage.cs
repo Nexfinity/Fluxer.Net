@@ -11,6 +11,12 @@ public class SocketMessage : Message
 
     }
 
+    /// <summary>
+    /// Create a SocketMessage object from json.
+    /// </summary>
+    /// <param name="client"></param>
+    /// <param name="json"></param>
+    /// <returns></returns>
     public static SocketMessage Create(FluxerBaseClient client, MessageGatewayData json)
     {
         var data = new SocketMessage(client);

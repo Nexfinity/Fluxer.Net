@@ -83,6 +83,12 @@ public class UserSettings : Entity, IUserSettings
 
     }
 
+    /// <summary>
+    /// Create a UserSettings object from json.
+    /// </summary>
+    /// <param name="client"></param>
+    /// <param name="json"></param>
+    /// <returns></returns>
     public static UserSettings Create(FluxerBaseClient client, UserSettingsJson json)
     {
         UserSettings data = new UserSettings(client);

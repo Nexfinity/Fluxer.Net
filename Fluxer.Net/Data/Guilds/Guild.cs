@@ -62,6 +62,12 @@ public class Guild : PartialGuild, IGuild
 
     }
 
+    /// <summary>
+    /// Create a Guild object from json.
+    /// </summary>
+    /// <param name="client"></param>
+    /// <param name="json"></param>
+    /// <returns></returns>
     public static Guild Create(FluxerBaseClient client, GuildJson json)
     {
         Guild data = new Guild(client);

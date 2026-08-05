@@ -37,6 +37,12 @@ public class PartialInvite : Entity, IPartialInvite
 
     }
 
+    /// <summary>
+    /// Create a PartialInvite object from json.
+    /// </summary>
+    /// <param name="client"></param>
+    /// <param name="json"></param>
+    /// <returns></returns>
     public static PartialInvite Create(FluxerBaseClient client, PartialInviteJson json)
     {
         PartialInvite data = new PartialInvite(client);

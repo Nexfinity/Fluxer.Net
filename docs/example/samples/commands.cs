@@ -18,7 +18,7 @@ public static async Task Main()
     string prefix = "!";
 
     // Listen for messages with the starting prefix and command !test
-    Client.Gateway.MessageCreate += async (data) =>
+    _client.Gateway.MessageCreate += async (data) =>
     {
         // Ignore messages without an author (system messages, webhooks) and exclude bots.
         if (data.Author == null || data.Author.IsBot)
@@ -33,10 +33,10 @@ public static async Task Main()
             return;
         
         // Create a command context
-        CommandContext context = new CommandContext(Client, data);
+        CommandContext context = new CommandContext(_client, data);
 
         // Execute the command
-        IResult result = await commands.ExecuteAsync(context, argPos);
+        IResult result = await _commands.ExecuteAsync(context, argPos);
 
         if (result.IsSuccess)
             return;

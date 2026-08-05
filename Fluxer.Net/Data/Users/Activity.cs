@@ -36,6 +36,12 @@ public class Activity : Entity, IActivity
 
     }
 
+    /// <summary>
+    /// Create a Activity object from json.
+    /// </summary>
+    /// <param name="client"></param>
+    /// <param name="json"></param>
+    /// <returns></returns>
     public static Activity Create(FluxerBaseClient client, ActivityJson json)
     {
         Activity data = new Activity(client);
@@ -70,6 +76,12 @@ public class ActivityTimestamps : IActivityTimestamps
 
     }
 
+    /// <summary>
+    /// Create a ActivityTimestamps object from json.
+    /// </summary>
+    /// <param name="client"></param>
+    /// <param name="json"></param>
+    /// <returns></returns>
     public static ActivityTimestamps? Create(FluxerBaseClient client, ActivityTimestampsJson? json)
     {
         if (json == null)

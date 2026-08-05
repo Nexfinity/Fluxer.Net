@@ -1,7 +1,7 @@
 ﻿namespace Fluxer.Net;
 
 /// <summary>
-/// Splash card alignment types for <see cref="GuildJson.SplashCardAligment"/>
+/// Splash card alignment types for <see cref="PartialGuild.SplashCardAligment"/>
 /// </summary>
 public enum GuildSplashCardAlignment
 {

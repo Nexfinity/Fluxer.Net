@@ -38,6 +38,13 @@ public class Role : Entity, IRole
 
     }
 
+    /// <summary>
+    /// Create a Role object from json.
+    /// </summary>
+    /// <param name="client"></param>
+    /// <param name="json"></param>
+    /// <param name="guildId"></param>
+    /// <returns></returns>
     public static Role Create(FluxerBaseClient client, RoleJson json, ulong guildId)
     {
         Role data = new Role(client);
