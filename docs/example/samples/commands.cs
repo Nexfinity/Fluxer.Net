@@ -26,8 +26,8 @@ public static async Task Main()
 
         // Check if message starts with the prefix
         int argPos = 0;
-        if (data.Content?.StartsWith(Prefix) == true)
-            argPos = Prefix.Length;
+        if (data.Content?.StartsWith(prefix) == true)
+            argPos = prefix.Length;
 
         if (argPos == 0)
             return;
