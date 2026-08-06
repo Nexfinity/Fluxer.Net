@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap');
 
+.navbar-brand > img {
+    height: 38px;
+}
+
 :root {
   --bs-font-sans-serif: 'Roboto';
   --bs-border-radius: 10px;

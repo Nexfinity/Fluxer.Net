@@ -795,31 +795,6 @@
             
             </summary>
         </member>
-        <member name="T:Fluxer.Net.AuditLogResponseItemChangeJson">
-            <remarks>
-            <see href="https://github.com/fluxerapp/fluxer/blob/c2b69be17d1877c5bb82d10c77fa67cbe4e882d7/packages/schema/src/domains/guild/GuildAuditLogSchemas.tsx#L46"/>
-            </remarks>
-        </member>
-        <member name="T:Fluxer.Net.AuditLogWebhookJson">
-            <remarks>
-            <see href="https://github.com/fluxerapp/fluxer/blob/c2b69be17d1877c5bb82d10c77fa67cbe4e882d7/packages/schema/src/domains/guild/GuildAuditLogSchemas.tsx#L83"/>
-            </remarks>
-        </member>
-        <member name="T:Fluxer.Net.GuildAuditLogEntryJson">
-            <remarks>
-            <see href="https://github.com/fluxerapp/fluxer/blob/c2b69be17d1877c5bb82d10c77fa67cbe4e882d7/packages/schema/src/domains/guild/GuildAuditLogSchemas.tsx#L71"/>
-            </remarks>
-        </member>
-        <member name="T:Fluxer.Net.AuditLogResponseItemOptions">
-            <remarks>
-            <see href="https://github.com/fluxerapp/fluxer/blob/c2b69be17d1877c5bb82d10c77fa67cbe4e882d7/packages/schema/src/domains/guild/GuildAuditLogSchemas.tsx#L54C7-L54C28"/>
-            </remarks>
-        </member>
-        <member name="T:Fluxer.Net.GuildAuditLogListJson">
-            <remarks>
-            <see href="https://github.com/fluxerapp/fluxer/blob/c2b69be17d1877c5bb82d10c77fa67cbe4e882d7/packages/schema/src/domains/guild/GuildAuditLogSchemas.tsx#L94"/>
-            </remarks>
-        </member>
         <member name="T:Fluxer.Net.AuthSession">
             <inheritdoc />
         </member>
@@ -1050,9 +1025,6 @@
         </member>
         <member name="T:Fluxer.Net.ChannelJson">
             <inheritdoc />
-            <remarks>
-            <see href="https://github.com/fluxerapp/fluxer/blob/4f5704fa1f6426d65a12ee5fef13c0104669d08e/packages/schema/src/domains/channel/ChannelSchemas.tsx#L51"/>
-            </remarks>
         </member>
         <member name="P:Fluxer.Net.ChannelJson.Id">
             <inheritdoc />
@@ -1142,9 +1114,6 @@
         </member>
         <member name="T:Fluxer.Net.ChannelPinJson">
             <inheritdoc />
-            <remarks>
-            <see href="https://github.com/fluxerapp/fluxer/blob/848269a4d4df7349acfc861ff926b17fe4c4a548/packages/schema/src/domains/message/MessageResponseSchemas.tsx#L185"/>
-            </remarks>
         </member>
         <member name="P:Fluxer.Net.ChannelPinJson.Message">
             <inheritdoc />
@@ -1171,9 +1140,6 @@
         </member>
         <member name="T:Fluxer.Net.ChannelPinsJson">
             <inheritdoc />
-            <remarks>
-            <see href="https://github.com/fluxerapp/fluxer/blob/848269a4d4df7349acfc861ff926b17fe4c4a548/packages/schema/src/domains/message/MessageResponseSchemas.tsx#L192"/>
-            </remarks>
         </member>
         <member name="P:Fluxer.Net.ChannelPinsJson.Items">
             <inheritdoc />
@@ -1416,11 +1382,6 @@
             The bitwise value of denied permissions.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.OverwriteRequestType">
-            <remarks>
-            <see href="https://github.com/fluxerapp/fluxer/blob/38146cc2babb504bfa9e71f61a60dd57ab2c1b67/packages/schema/src/domains/channel/ChannelRequestSchemas.tsx#L50"/>
-            </remarks>
-        </member>
         <member name="T:Fluxer.Net.PermissionOverwrite">
             <inheritdoc />
         </member>
@@ -1446,9 +1407,6 @@
         </member>
         <member name="T:Fluxer.Net.PermissionOverwriteJson">
             <inheritdoc />
-            <remarks>
-            <see href="https://github.com/fluxerapp/fluxer/blob/4f5704fa1f6426d65a12ee5fef13c0104669d08e/packages/schema/src/domains/channel/ChannelSchemas.tsx#L27"/>
-            </remarks>
         </member>
         <member name="P:Fluxer.Net.PermissionOverwriteJson.Id">
             <inheritdoc />
@@ -2413,11 +2371,6 @@
             <param name="json"></param>
             <param name="guildId"></param>
             <returns></returns>
-        </member>
-        <member name="T:Fluxer.Net.GuildStickerBulkCreateJson">
-            <remarks>
-            <see href="https://github.com/fluxerapp/fluxer/blob/38146cc2babb504bfa9e71f61a60dd57ab2c1b67/packages/schema/src/domains/guild/GuildEmojiSchemas.tsx#L77C14-L77C44"/>
-            </remarks>
         </member>
         <member name="T:Fluxer.Net.GuildStickerJson">
             <inheritdoc />
@@ -7932,11 +7885,6 @@
         <member name="M:Fluxer.Net.WebhookJson.GetAvatarOrDefaultUrl(System.Int32)">
             <inheritdoc />
         </member>
-        <member name="T:Fluxer.Net.WebhookType">
-            <remarks>
-            <see href="https://github.com/fluxerapp/fluxer/blob/c2b69be17d1877c5bb82d10c77fa67cbe4e882d7/packages/schema/src/primitives/WebhookValidators.tsx#L22C14-L22C25"/>
-            </remarks>
-        </member>
         <member name="T:Fluxer.Net.Extensions.StringUInt64Converter">
             <summary>
             Deserializes a JSON value as <see cref="T:System.UInt64"/>, accepting both a raw JSON number
@@ -11441,11 +11389,6 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="T:Fluxer.Net.ChannelPinsQuery">
-            <remarks>
-            <see href="https://github.com/fluxerapp/fluxer/blob/848269a4d4df7349acfc861ff926b17fe4c4a548/packages/schema/src/domains/message/MessageRequestSchemas.tsx#L314"/>
-            </remarks>
-        </member>
         <member name="P:Fluxer.Net.ChannelPinsQuery.Limit">
             <summary>
             Maximum number of pinned messages to return (1-50)
@@ -11470,11 +11413,6 @@
             <summary>
             Specific channel IDs to search in
             </summary>
-        </member>
-        <member name="T:Fluxer.Net.BulkCreateGuildStickersRequest">
-            <remarks>
-            <see href="https://github.com/fluxerapp/fluxer/blob/38146cc2babb504bfa9e71f61a60dd57ab2c1b67/packages/schema/src/domains/guild/GuildRequestSchemas.tsx#L235C14-L235C43"/>
-            </remarks>
         </member>
         <member name="P:Fluxer.Net.CreateGuildBanRequest.BanDurationSeconds">
             <summary>
@@ -11509,11 +11447,6 @@
             <summary>
             The name of the role (1-100 characters)
             </summary>
-        </member>
-        <member name="T:Fluxer.Net.CreateGuildStickerRequest">
-            <remarks>
-            <see href="https://github.com/fluxerapp/fluxer/blob/38146cc2babb504bfa9e71f61a60dd57ab2c1b67/packages/schema/src/domains/guild/GuildRequestSchemas.tsx#L210"/>
-            </remarks>
         </member>
         <member name="P:Fluxer.Net.GuildAuditLogListRequest.Limit">
             <summary>
@@ -11570,11 +11503,6 @@
             The name of the role (1-100 characters)
             </summary>
         </member>
-        <member name="T:Fluxer.Net.UpdateGuildStickerRequest">
-            <remarks>
-            <see href="https://github.com/fluxerapp/fluxer/blob/38146cc2babb504bfa9e71f61a60dd57ab2c1b67/packages/schema/src/domains/guild/GuildRequestSchemas.tsx#L227"/>
-            </remarks>
-        </member>
         <member name="T:Fluxer.Net.UpdateGuildVanityUrlRequest">
             <remarks>
             <see href="https://docs.fluxer.app/resources/guilds#guildvanityurlupdaterequest"/>
@@ -11584,11 +11512,6 @@
             <summary>
             The new vanity Url code (2-32 characters, alphanumeric and hyphens)
             </summary>
-        </member>
-        <member name="T:Fluxer.Net.AllowedMentionsRequest">
-            <remarks>
-            <see href="https://github.com/fluxerapp/fluxer/blob/848269a4d4df7349acfc861ff926b17fe4c4a548/packages/schema/src/domains/message/SharedMessageSchemas.tsx#L34"/>
-            </remarks>
         </member>
         <member name="P:Fluxer.Net.AllowedMentionsRequest.Parse">
             <summary>
@@ -11610,11 +11533,6 @@
             Whether to mention the author of the replied message
             </summary>
         </member>
-        <member name="T:Fluxer.Net.MessageReferenceRequest">
-            <remarks>
-            <see href="https://github.com/fluxerapp/fluxer/blob/848269a4d4df7349acfc861ff926b17fe4c4a548/packages/schema/src/domains/message/SharedMessageSchemas.tsx#L43"/>
-            </remarks>
-        </member>
         <member name="P:Fluxer.Net.MessageReferenceRequest.MessageId">
             <summary>
             ID of the message being referenced
@@ -11634,11 +11552,6 @@
             <summary>
             Type of reference
             </summary>
-        </member>
-        <member name="T:Fluxer.Net.MessageRequest">
-            <remarks>
-            <see href="https://github.com/fluxerapp/fluxer/blob/848269a4d4df7349acfc861ff926b17fe4c4a548/packages/schema/src/domains/message/MessageRequestSchemas.tsx#L247"/>
-            </remarks>
         </member>
         <member name="P:Fluxer.Net.MessageRequest.Content">
             <summary>
@@ -11689,11 +11602,6 @@
             <summary>
             Whether this is a text-to-speech message
             </summary>
-        </member>
-        <member name="T:Fluxer.Net.MessageSearchRequest">
-            <remarks>
-            <see href="https://github.com/fluxerapp/fluxer/blob/d843d6f3f8a0bd850673ba55036354093977109f/packages/schema/src/domains/message/MessageRequestSchemas.tsx#L181"/>
-            </remarks>
         </member>
         <member name="P:Fluxer.Net.MessageSearchRequest.HitsPerPage">
             <summary>
@@ -11884,11 +11792,6 @@
             <see href="https://github.com/fluxerapp/fluxer/blob/d843d6f3f8a0bd850673ba55036354093977109f/packages/schema/src/domains/message/MessageRequestSchemas.tsx#L160"/>
             </remarks>
         </member>
-        <member name="T:Fluxer.Net.UpdateMessageRequest">
-            <remarks>
-            <see href="https://github.com/fluxerapp/fluxer/blob/848269a4d4df7349acfc861ff926b17fe4c4a548/packages/api/src/channel/MessageTypes.tsx#L32"/>
-            </remarks>
-        </member>
         <member name="P:Fluxer.Net.UpdateMessageRequest.Content">
             <summary>
             The message content (up to 2000 characters)
@@ -11916,7 +11819,13 @@
         </member>
     </members>
 </doc>
-ions">
+  </member>
+        <member name="P:Fluxer.Net.MessageSearchRequest.AttachmentExtensions">
+            <summary>
+            File extensions to filter by
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.MessageSearchRequest.ExcludeAttachmentExtensions">
             <summary>
             File extensions to exclude
             </summary>
@@ -11945,11 +11854,6 @@ ions">
         <member name="P:Fluxer.Net.MessageSearchRequest.MessageSearchScope">
             <remarks>
             <see href="https://github.com/fluxerapp/fluxer/blob/d843d6f3f8a0bd850673ba55036354093977109f/packages/schema/src/domains/message/MessageRequestSchemas.tsx#L160"/>
-            </remarks>
-        </member>
-        <member name="T:Fluxer.Net.UpdateMessageRequest">
-            <remarks>
-            <see href="https://github.com/fluxerapp/fluxer/blob/848269a4d4df7349acfc861ff926b17fe4c4a548/packages/api/src/channel/MessageTypes.tsx#L32"/>
             </remarks>
         </member>
         <member name="P:Fluxer.Net.UpdateMessageRequest.Content">
