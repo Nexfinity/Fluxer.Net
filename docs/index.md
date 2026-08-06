@@ -18,3 +18,7 @@ New to programming or C# see [Get Started](xref:GetStarted.Intro) section.
 Want to learn the library see [Guides](xref:Guides.Intro) section.
 
 More experienced user can check out the current [Examples](xref:Examples.Client) and [API Reference](xref:API.Reference)
+
+## Contribute
+Want to help improve the library see [Contribute](xref:Contribute.Contribute) section.
+
