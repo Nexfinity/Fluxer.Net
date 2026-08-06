@@ -659,6 +659,14 @@
         <member name="P:Fluxer.Net.Application.Bot">
             <inheritdoc />
         </member>
+        <member name="M:Fluxer.Net.Application.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.ApplicationJson)">
+            <summary>
+            Create a Application object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <returns></returns>
+        </member>
         <member name="T:Fluxer.Net.ApplicationJson">
             <inheritdoc />
         </member>
@@ -750,6 +758,14 @@
         <member name="P:Fluxer.Net.PartialApplication.Flags">
             <inheritdoc />
         </member>
+        <member name="M:Fluxer.Net.PartialApplication.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.PartialApplicationJson)">
+            <summary>
+            Create a PartialApplication object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <returns></returns>
+        </member>
         <member name="T:Fluxer.Net.PartialApplicationJson">
             <inheritdoc />
         </member>
@@ -778,10 +794,6 @@
             <summary>
             
             </summary>
-            <remarks>
-            <see href="https://github.com/fluxerapp/fluxer/blob/c2b69be17d1877c5bb82d10c77fa67cbe4e882d7/packages/schema/src/primitives/AuditLogValidators.tsx#L23C14-L23C32"/>
-            <see href="https://github.com/fluxerapp/fluxer/blob/c2b69be17d1877c5bb82d10c77fa67cbe4e882d7/packages/constants/src/AuditLogActionType.tsx#L20"/>
-            </remarks>
         </member>
         <member name="T:Fluxer.Net.AuditLogResponseItemChangeJson">
             <remarks>
@@ -834,6 +846,14 @@
         </member>
         <member name="P:Fluxer.Net.AuthSession.ClientCountry">
             <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.AuthSession.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.AuthSessionJson)">
+            <summary>
+            Create a AuthSession object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <returns></returns>
         </member>
         <member name="T:Fluxer.Net.AuthSessionJson">
             <inheritdoc />
@@ -931,6 +951,14 @@
         <member name="P:Fluxer.Net.Login.UserId">
             <inheritdoc />
         </member>
+        <member name="M:Fluxer.Net.Login.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.LoginJson)">
+            <summary>
+            Create a Login object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <returns></returns>
+        </member>
         <member name="T:Fluxer.Net.LoginJson">
             <inheritdoc />
         </member>
@@ -1011,6 +1039,14 @@
         </member>
         <member name="P:Fluxer.Net.Channel.IndexedAt">
             <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.Channel.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.ChannelJson)">
+            <summary>
+            Create a Channel object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <returns></returns>
         </member>
         <member name="T:Fluxer.Net.ChannelJson">
             <inheritdoc />
@@ -1096,6 +1132,14 @@
         <member name="P:Fluxer.Net.ChannelPin.PinnedAt">
             <inheritdoc />
         </member>
+        <member name="M:Fluxer.Net.ChannelPin.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.ChannelPinJson)">
+            <summary>
+            Create a ChannelPin object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <returns></returns>
+        </member>
         <member name="T:Fluxer.Net.ChannelPinJson">
             <inheritdoc />
             <remarks>
@@ -1116,6 +1160,14 @@
         </member>
         <member name="P:Fluxer.Net.ChannelPins.HasMore">
             <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.ChannelPins.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.ChannelPinsJson)">
+            <summary>
+            Create a ChannelPins object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <returns></returns>
         </member>
         <member name="T:Fluxer.Net.ChannelPinsJson">
             <inheritdoc />
@@ -1384,6 +1436,14 @@
         <member name="P:Fluxer.Net.PermissionOverwrite.Deny">
             <inheritdoc />
         </member>
+        <member name="M:Fluxer.Net.PermissionOverwrite.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.PermissionOverwriteJson)">
+            <summary>
+            Create a PermissionOverwrite object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <returns></returns>
+        </member>
         <member name="T:Fluxer.Net.PermissionOverwriteJson">
             <inheritdoc />
             <remarks>
@@ -1406,6 +1466,15 @@
             <summary>
             Permissions for the channel.
             </summary>
+        </member>
+        <member name="M:Fluxer.Net.SocketUnknownChannel.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.ChannelJson,System.UInt64)">
+            <summary>
+            Create a SocketChannel object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <param name="guildId"></param>
+            <returns></returns>
         </member>
         <member name="T:Fluxer.Net.SystemChannelFlags">
             <summary>
@@ -1470,6 +1539,14 @@
         <member name="P:Fluxer.Net.Embed.IsNsfw">
             <inheritdoc />
         </member>
+        <member name="M:Fluxer.Net.Embed.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.EmbedJson)">
+            <summary>
+            Create a Embed object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <returns></returns>
+        </member>
         <member name="T:Fluxer.Net.EmbedField">
             <inheritdoc />
         </member>
@@ -1481,6 +1558,14 @@
         </member>
         <member name="P:Fluxer.Net.EmbedField.IsInline">
             <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.EmbedField.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.EmbedFieldJson)">
+            <summary>
+            Create a EmbedField object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <returns></returns>
         </member>
         <member name="P:Fluxer.Net.EmbedAuthor.Name">
             <inheritdoc />
@@ -1494,6 +1579,14 @@
         <member name="P:Fluxer.Net.EmbedAuthor.ProxyIconUrl">
             <inheritdoc />
         </member>
+        <member name="M:Fluxer.Net.EmbedAuthor.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.EmbedAuthorJson)">
+            <summary>
+            Create a EmbedAuthor object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <returns></returns>
+        </member>
         <member name="P:Fluxer.Net.EmbedFooter.Text">
             <inheritdoc />
         </member>
@@ -1502,6 +1595,14 @@
         </member>
         <member name="P:Fluxer.Net.EmbedFooter.ProxyIconUrl">
             <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.EmbedFooter.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.EmbedFooterJson)">
+            <summary>
+            Create a EmbedFooter object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <returns></returns>
         </member>
         <member name="P:Fluxer.Net.EmbedMedia.Url">
             <inheritdoc />
@@ -1532,6 +1633,14 @@
         </member>
         <member name="P:Fluxer.Net.EmbedMedia.Duration">
             <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.EmbedMedia.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.EmbedMediaJson)">
+            <summary>
+            Create a EmbedMedia object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <returns></returns>
         </member>
         <member name="T:Fluxer.Net.EmbedAuthorBuilder">
             <summary>
@@ -2225,6 +2334,14 @@
         <member name="P:Fluxer.Net.Emoji.AllowCloning">
             <inheritdoc />
         </member>
+        <member name="M:Fluxer.Net.Emoji.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.EmojiJson)">
+            <summary>
+            Create a Emoji object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <returns></returns>
+        </member>
         <member name="T:Fluxer.Net.EmojiJson">
             <inheritdoc />
         </member>
@@ -2252,6 +2369,15 @@
         <member name="M:Fluxer.Net.GuildEmoji.GetEmojiUrl(System.Int32)">
             <inheritdoc />
         </member>
+        <member name="M:Fluxer.Net.GuildEmoji.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.GuildEmojiJson,System.UInt64)">
+            <summary>
+            Create a GuildEmoji object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <param name="guildId"></param>
+            <returns></returns>
+        </member>
         <member name="T:Fluxer.Net.GuildEmojiJson">
             <inheritdoc />
         </member>
@@ -2278,6 +2404,15 @@
         </member>
         <member name="M:Fluxer.Net.GuildSticker.GetStickerUrl(System.Int32)">
             <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.GuildSticker.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.GuildStickerJson,System.UInt64)">
+            <summary>
+            Create a GuildSticker object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <param name="guildId"></param>
+            <returns></returns>
         </member>
         <member name="T:Fluxer.Net.GuildStickerBulkCreateJson">
             <remarks>
@@ -2384,6 +2519,14 @@
         <member name="P:Fluxer.Net.Sticker.AllowCloning">
             <inheritdoc />
         </member>
+        <member name="M:Fluxer.Net.Sticker.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.StickerJson)">
+            <summary>
+            Create a Sticker object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <returns></returns>
+        </member>
         <member name="T:Fluxer.Net.StickerJson">
             <inheritdoc />
         </member>
@@ -2452,6 +2595,14 @@
         </member>
         <member name="P:Fluxer.Net.FavoriteGif.TenorSlugId">
             <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.FavoriteGif.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.FavoriteGifJson)">
+            <summary>
+            Create a FavoriteGif object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <returns></returns>
         </member>
         <member name="T:Fluxer.Net.FavoriteGifJson">
             <inheritdoc />
@@ -2531,6 +2682,14 @@
         <member name="P:Fluxer.Net.Gif.Height">
             <inheritdoc />
         </member>
+        <member name="M:Fluxer.Net.Gif.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.GifJson)">
+            <summary>
+            Create a Gif object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <returns></returns>
+        </member>
         <member name="T:Fluxer.Net.GifCategory">
             <inheritdoc />
         </member>
@@ -2542,6 +2701,14 @@
         </member>
         <member name="P:Fluxer.Net.GifCategory.ProxySource">
             <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.GifCategory.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.GifCategoryJson)">
+            <summary>
+            Create a GifCategory object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <returns></returns>
         </member>
         <member name="T:Fluxer.Net.GifCategoryJson">
             <inheritdoc />
@@ -2858,6 +3025,14 @@
         </member>
         <member name="P:Fluxer.Net.Guild.MemberCount">
             <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.Guild.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.GuildJson)">
+            <summary>
+            Create a Guild object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <returns></returns>
         </member>
         <member name="T:Fluxer.Net.GuildJson">
             <inheritdoc />
@@ -3421,6 +3596,14 @@
         <member name="P:Fluxer.Net.GuildBan.User">
             <inheritdoc />
         </member>
+        <member name="M:Fluxer.Net.GuildBan.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.GuildBanJson)">
+            <summary>
+            Create a GuildBan object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <returns></returns>
+        </member>
         <member name="T:Fluxer.Net.GuildBanJson">
             <inheritdoc />
         </member>
@@ -3495,6 +3678,14 @@
         </member>
         <member name="M:Fluxer.Net.GuildMember.GetBannerUrl(System.Int32)">
             <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.GuildMember.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.GuildMemberJson)">
+            <summary>
+            Create a GuildMember object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <returns></returns>
         </member>
         <member name="T:Fluxer.Net.GuildMemberJson">
             <inheritdoc />
@@ -3746,6 +3937,15 @@
         <member name="P:Fluxer.Net.Role.IsMentionable">
             <inheritdoc />
         </member>
+        <member name="M:Fluxer.Net.Role.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.RoleJson,System.UInt64)">
+            <summary>
+            Create a Role object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <param name="guildId"></param>
+            <returns></returns>
+        </member>
         <member name="T:Fluxer.Net.RoleJson">
             <inheritdoc />
         </member>
@@ -3791,6 +3991,23 @@
             Guild that the member is for.
             </summary>
         </member>
+        <member name="M:Fluxer.Net.SocketGuildMember.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.GuildMemberJson)">
+            <summary>
+            Create a SocketGuildMember object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.SocketRole.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.RoleJson,Fluxer.Net.SocketGuild)">
+            <summary>
+            Create a SocketRole object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <param name="guild"></param>
+            <returns></returns>
+        </member>
         <member name="T:Fluxer.Net.PartialGuild">
             <inheritdoc />
         </member>
@@ -3835,6 +4052,14 @@
         </member>
         <member name="P:Fluxer.Net.PartialGuild.Features">
             <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.PartialGuild.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.PartialGuildJson)">
+            <summary>
+            Create a PartialGuild object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <returns></returns>
         </member>
         <member name="M:Fluxer.Net.PartialGuild.GetIconUrl(System.Int32)">
             <inheritdoc />
@@ -4323,6 +4548,14 @@
         <member name="P:Fluxer.Net.GuildVanityUrl.Uses">
             <inheritdoc />
         </member>
+        <member name="M:Fluxer.Net.GuildVanityUrl.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.GuildVanityUrlJson)">
+            <summary>
+            Create a GuildVanityUrl object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <returns></returns>
+        </member>
         <member name="T:Fluxer.Net.GuildVanityUrlJson">
             <inheritdoc />
         </member>
@@ -4392,6 +4625,15 @@
             Permissions for the guild.
             </summary>
         </member>
+        <member name="M:Fluxer.Net.SocketGuild.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.GuildJson,Fluxer.Net.SocketGuildMember)">
+            <summary>
+            Create a SocketGuild object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <param name="member"></param>
+            <returns></returns>
+        </member>
         <member name="P:Fluxer.Net.IInvite.CreatedAt">
             <summary>
             ISO8601 timestamp of when the invite was created.
@@ -4426,6 +4668,14 @@
         </member>
         <member name="P:Fluxer.Net.Invite.MaxAge">
             <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.Invite.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.InviteJson)">
+            <summary>
+            Create a Invite object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <returns></returns>
         </member>
         <member name="T:Fluxer.Net.InviteJson">
             <inheritdoc />
@@ -4532,10 +4782,33 @@
         <member name="P:Fluxer.Net.PartialInvite.Temporary">
             <inheritdoc />
         </member>
+        <member name="M:Fluxer.Net.PartialInvite.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.PartialInviteJson)">
+            <summary>
+            Create a PartialInvite object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <returns></returns>
+        </member>
         <member name="T:Fluxer.Net.AllowedMentionParseType">
-            <remarks>
-            https://github.com/fluxerapp/fluxer/blob/848269a4d4df7349acfc861ff926b17fe4c4a548/packages/schema/src/primitives/MessageValidators.tsx#L76
-            </remarks>
+            <summary>
+            Which mentions should be used when sending a message.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.AllowedMentionParseType.USERS">
+            <summary>
+            Allow all user mentions.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.AllowedMentionParseType.ROLES">
+            <summary>
+            Allow all role mentions.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.AllowedMentionParseType.EVERYONE">
+            <summary>
+            Allow everyone and here mentions.
+            </summary>
         </member>
         <member name="T:Fluxer.Net.Attachment">
             <inheritdoc />
@@ -4598,6 +4871,15 @@
             <summary>
             Get the attachment's url.
             </summary>
+        </member>
+        <member name="M:Fluxer.Net.Attachment.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.AttachmentJson,System.UInt64)">
+            <summary>
+            Create a Attachment object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <param name="channelId"></param>
+            <returns></returns>
         </member>
         <member name="T:Fluxer.Net.AttachmentFlag">
             <summary>
@@ -5045,6 +5327,14 @@
         <member name="P:Fluxer.Net.Message.Call">
             <inheritdoc />
         </member>
+        <member name="M:Fluxer.Net.Message.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.MessageJson)">
+            <summary>
+            Create a Message object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <returns></returns>
+        </member>
         <member name="T:Fluxer.Net.MessageCall">
             <inheritdoc />
         </member>
@@ -5053,6 +5343,14 @@
         </member>
         <member name="P:Fluxer.Net.MessageCall.EndedAt">
             <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.MessageCall.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.MessageCallJson)">
+            <summary>
+            Create a MessageCall object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <returns></returns>
         </member>
         <member name="T:Fluxer.Net.MessageCallJson">
             <inheritdoc />
@@ -5174,6 +5472,14 @@
         <member name="P:Fluxer.Net.MessageReaction.Me">
             <inheritdoc />
         </member>
+        <member name="M:Fluxer.Net.MessageReaction.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.MessageReactionJson)">
+            <summary>
+            Create a MessageReaction object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <returns></returns>
+        </member>
         <member name="T:Fluxer.Net.MessageReactionJson">
             <inheritdoc />
         </member>
@@ -5200,6 +5506,14 @@
         </member>
         <member name="P:Fluxer.Net.MessageReference.Type">
             <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.MessageReference.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.MessageReferenceJson)">
+            <summary>
+            Create a MessageReference object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <returns></returns>
         </member>
         <member name="T:Fluxer.Net.MessageReferenceJson">
             <inheritdoc />
@@ -5263,6 +5577,15 @@
         </member>
         <member name="P:Fluxer.Net.MessageSnapshot.Flags">
             <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.MessageSnapshot.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.MessageSnapshotJson,System.UInt64)">
+            <summary>
+            Create a MessageSnapshot object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <param name="channelId"></param>
+            <returns></returns>
         </member>
         <member name="T:Fluxer.Net.MessageSnapshotJson">
             <inheritdoc />
@@ -5352,6 +5675,14 @@
             System message.
             </summary>
         </member>
+        <member name="M:Fluxer.Net.SocketMessage.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.Gateway.MessageGatewayData)">
+            <summary>
+            Create a SocketMessage object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <returns></returns>
+        </member>
         <member name="T:Fluxer.Net.Instance">
             <inheritdoc />
         </member>
@@ -5390,6 +5721,14 @@
         </member>
         <member name="P:Fluxer.Net.Instance.App">
             <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.Instance.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.InstanceJson)">
+            <summary>
+            Create a Instance object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <returns></returns>
         </member>
         <member name="T:Fluxer.Net.InstanceEndpoints">
             <inheritdoc />
@@ -5853,6 +6192,14 @@
         <member name="P:Fluxer.Net.FluxerOAuthToken.User">
             <inheritdoc />
         </member>
+        <member name="M:Fluxer.Net.FluxerOAuthToken.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.FluxerOAuthTokenJson)">
+            <summary>
+            Create a FluxerOAuthToken object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <returns></returns>
+        </member>
         <member name="T:Fluxer.Net.FluxerOAuthTokenJson">
             <inheritdoc />
         </member>
@@ -5870,6 +6217,14 @@
         </member>
         <member name="T:Fluxer.Net.FluxerOAuthUser">
             <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.FluxerOAuthUser.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.FluxerOAuthUserJson)">
+            <summary>
+            Create a FluxerOAuthUser object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <returns></returns>
         </member>
         <member name="P:Fluxer.Net.FluxerOAuthUser.Email">
             <inheritdoc />
@@ -5943,6 +6298,14 @@
         <member name="P:Fluxer.Net.Activity.Emoji">
             <inheritdoc />
         </member>
+        <member name="M:Fluxer.Net.Activity.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.ActivityJson)">
+            <summary>
+            Create a Activity object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <returns></returns>
+        </member>
         <member name="T:Fluxer.Net.ActivityTimestamps">
             <inheritdoc />
         </member>
@@ -5951,6 +6314,14 @@
         </member>
         <member name="P:Fluxer.Net.ActivityTimestamps.End">
             <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.ActivityTimestamps.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.ActivityTimestampsJson)">
+            <summary>
+            Create a ActivityTimestamps object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <returns></returns>
         </member>
         <member name="T:Fluxer.Net.ActivityJson">
             <inheritdoc />
@@ -5999,6 +6370,14 @@
         </member>
         <member name="P:Fluxer.Net.ClientStatus.Web">
             <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.ClientStatus.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.ClientStatusJson)">
+            <summary>
+            Create a ClientStatus object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <returns></returns>
         </member>
         <member name="T:Fluxer.Net.CurrentUser">
             <inheritdoc />
@@ -6071,6 +6450,14 @@
         </member>
         <member name="M:Fluxer.Net.CurrentUser.GetBannerUrl(System.Int32)">
             <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.CurrentUser.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.CurrentUserJson)">
+            <summary>
+            Create a CurrentUser object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <returns></returns>
         </member>
         <member name="T:Fluxer.Net.CurrentUserJson">
             <inheritdoc />
@@ -6530,6 +6917,14 @@
         <member name="P:Fluxer.Net.Presence.ClientStatus">
             <inheritdoc />
         </member>
+        <member name="M:Fluxer.Net.Presence.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.PresenceJson)">
+            <summary>
+            Create a Presence object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <returns></returns>
+        </member>
         <member name="T:Fluxer.Net.PresenceJson">
             <inheritdoc />
         </member>
@@ -6572,6 +6967,14 @@
             <summary>
             Outgoing friend request sent to the user.
             </summary>
+        </member>
+        <member name="M:Fluxer.Net.SocketUser.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.UserJson)">
+            <summary>
+            Create a SocketUser object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <returns></returns>
         </member>
         <member name="T:Fluxer.Net.Status">
             <summary>
@@ -6643,6 +7046,14 @@
         <member name="M:Fluxer.Net.User.GetAvatarOrDefaultUrl(System.Int32)">
             <inheritdoc />
         </member>
+        <member name="M:Fluxer.Net.User.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.UserJson)">
+            <summary>
+            Create a User object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <returns></returns>
+        </member>
         <member name="T:Fluxer.Net.UserConnection">
             <inheritdoc />
         </member>
@@ -6663,6 +7074,14 @@
         </member>
         <member name="P:Fluxer.Net.UserConnection.SortOrder">
             <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.UserConnection.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.UserConnectionJson)">
+            <summary>
+            Create a UserConnection object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <returns></returns>
         </member>
         <member name="T:Fluxer.Net.UserConnectionJson">
             <inheritdoc />
@@ -7000,6 +7419,15 @@
             Get the user's banner.
             </summary>
         </member>
+        <member name="M:Fluxer.Net.UserProfile.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.UserProfileJson,System.UInt64)">
+            <summary>
+            Create a UserProfile object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <param name="userId"></param>
+            <returns></returns>
+        </member>
         <member name="T:Fluxer.Net.UserProfileJson">
             <inheritdoc />
         </member>
@@ -7096,6 +7524,14 @@
         <member name="P:Fluxer.Net.UserSettings.TimeFormat">
             <inheritdoc />
         </member>
+        <member name="M:Fluxer.Net.UserSettings.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.UserSettingsJson)">
+            <summary>
+            Create a UserSettings object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <returns></returns>
+        </member>
         <member name="T:Fluxer.Net.UserSettingsJson">
             <inheritdoc />
         </member>
@@ -7183,6 +7619,14 @@
         <member name="P:Fluxer.Net.CallEligibility.IsSilent">
             <inheritdoc />
         </member>
+        <member name="M:Fluxer.Net.CallEligibility.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.CallEligibilityJson)">
+            <summary>
+            Create a CallEligibility object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <returns></returns>
+        </member>
         <member name="T:Fluxer.Net.CallEligibilityJson">
             <inheritdoc />
         </member>
@@ -7237,6 +7681,14 @@
         <member name="P:Fluxer.Net.RtcRegion.Emoji">
             <inheritdoc />
         </member>
+        <member name="M:Fluxer.Net.RtcRegion.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.RtcRegionJson)">
+            <summary>
+            Create a RtcRegion object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <returns></returns>
+        </member>
         <member name="T:Fluxer.Net.RtcRegionJson">
             <inheritdoc />
         </member>
@@ -7248,6 +7700,15 @@
         </member>
         <member name="P:Fluxer.Net.RtcRegionJson.Emoji">
             <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.SocketVoiceState.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.VoiceStateJson,Fluxer.Net.SocketGuild)">
+            <summary>
+            Create a SocketVoiceState object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <param name="guild"></param>
+            <returns></returns>
         </member>
         <member name="P:Fluxer.Net.VoiceState.SessionId">
             <inheritdoc />
@@ -7290,6 +7751,14 @@
         </member>
         <member name="P:Fluxer.Net.VoiceState.Member">
             <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.VoiceState.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.VoiceStateJson)">
+            <summary>
+            Create a VoiceState object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <returns></returns>
         </member>
         <member name="T:Fluxer.Net.VoiceStateJson">
             <inheritdoc />
@@ -7421,6 +7890,14 @@
         </member>
         <member name="M:Fluxer.Net.Webhook.GetAvatarOrDefaultUrl(System.Int32)">
             <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.Webhook.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.WebhookJson)">
+            <summary>
+            Create a Webhook object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <returns></returns>
         </member>
         <member name="T:Fluxer.Net.WebhookJson">
             <inheritdoc />
@@ -8921,51 +9398,6 @@
             VOICE_STATE_UPDATE and VOICE_SERVER_UPDATE events containing connection information.
             </remarks>
         </member>
-        <member name="T:Fluxer.Net.OAuth.FluxerOAuthExtensions">
-            <Summary>
-            Extension methods for handling fluxer oauth client.
-            </Summary>
-        </member>
-        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.AddFluxerClient(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,System.String,Fluxer.Net.FluxerConfig)">
-            <Summary>
-            Add Fluxer oauth client on dependency injection service.
-            </Summary>
-        </member>
-        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.GetFluxerClaims(System.Security.Claims.ClaimsPrincipal,Fluxer.Net.FluxerBaseClient)">
-            <Summary>
-            Get Fluxer specific claims for a claim user.
-            </Summary>
-        </member>
-        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.AddFluxer(Microsoft.AspNetCore.Authentication.AuthenticationBuilder)">
-            <Summary>
-            Add Fluxer oauth client on dependency injection service.
-            </Summary>
-        </member>
-        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.AddFluxer(Microsoft.AspNetCore.Authentication.AuthenticationBuilder,System.Action{Fluxer.Net.OAuth.FluxerOAuthOptions})">
-            <Summary>
-            Add Fluxer oauth client on dependency injection service.
-            </Summary>
-        </member>
-        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.AddFluxer(Microsoft.AspNetCore.Authentication.AuthenticationBuilder,System.String,System.Action{Fluxer.Net.OAuth.FluxerOAuthOptions})">
-            <Summary>
-            Add Fluxer oauth client on dependency injection service.
-            </Summary>
-        </member>
-        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.AddFluxer(Microsoft.AspNetCore.Authentication.AuthenticationBuilder,System.String,System.String,System.Action{Fluxer.Net.OAuth.FluxerOAuthOptions})">
-            <Summary>
-            Add Fluxer oauth client on dependency injection service.
-            </Summary>
-        </member>
-        <member name="T:Fluxer.Net.OAuth.FluxerOAuthHandler">
-            <Summary>
-            Asp.net oauth handler for Fluxer.
-            </Summary>
-        </member>
-        <member name="M:Fluxer.Net.OAuth.FluxerOAuthHandler.#ctor(Microsoft.Extensions.Options.IOptionsMonitor{Fluxer.Net.OAuth.FluxerOAuthOptions},Microsoft.Extensions.Logging.ILoggerFactory,System.Text.Encodings.Web.UrlEncoder,Microsoft.AspNetCore.Authentication.ISystemClock)">
-            <Summary>
-            Create asp.net oauth handler for Fluxer.
-            </Summary>
-        </member>
         <member name="T:Fluxer.Net.RateLimiting.RateLimitBucket">
             <summary>
             Represents a sliding window rate limit bucket for API requests
@@ -9179,6 +9611,709 @@
             <returns>The HTTP status code of the response.</returns>
             <exception cref="T:Fluxer.Net.Extensions.FluxerApiException">Thrown when <paramref name="throwOnNonSuccess"/> is true and the API returns a non-success status code.</exception>
         </member>
+        <member name="M:Fluxer.Net.ApiClient.GetInstanceAsync">
+            <summary>
+            Get info and config for the Fluxer instance, useful for self-hosted.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.GetEmojiAsync(System.UInt64)">
+            <summary>
+            Get a custom emoji.
+            </summary>
+            <param name="emojiId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.GetStickerAsync(System.UInt64)">
+            <summary>
+            Get a custom sticker.
+            </summary>
+            <param name="stickerId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.LoginAsync(Fluxer.Net.LoginRequestJson)">
+            <summary>
+            Login with a user account.
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.RegisterAsync``1(``0)">
+            <summary>
+            Create a user account
+            </summary>
+            <typeparam name="TRequest"></typeparam>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.LoginMfaTotpAsync``2(``0)">
+            <summary>
+            Login with a user account that has MFA.
+            </summary>
+            <typeparam name="TRequest"></typeparam>
+            <typeparam name="TResponse"></typeparam>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.SendMfaSmsCodeAsync">
+            <summary>
+            Send a SMS code.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.LoginMfaSmsAsync``2(``0)">
+            <summary>
+            Login with a SMS code.
+            </summary>
+            <typeparam name="TRequest"></typeparam>
+            <typeparam name="TResponse"></typeparam>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.LogoutAsync">
+            <summary>
+            Logout of the current session/auth.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.VerifyEmailAsync``1(``0)">
+            <summary>
+            Verify the user account email.
+            </summary>
+            <typeparam name="TRequest"></typeparam>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.ResendVerificationEmailAsync">
+            <summary>
+            Send an email verification for the user account.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.ForgotPasswordAsync``1(``0)">
+            <summary>
+            Request a password reset for the user account.
+            </summary>
+            <typeparam name="TRequest"></typeparam>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.ResetPasswordAsync``1(``0)">
+            <summary>
+            Reset the password for the user account.
+            </summary>
+            <typeparam name="TRequest"></typeparam>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.GetSessionsAsync(Fluxer.Net.Rest.RestClientQueryParams)">
+            <summary>
+            Get all sessions for the user account.
+            </summary>
+            <param name="queryParams"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.LogoutSessionsAsync``1(``0)">
+            <summary>
+            Logout a specific session for the user account.
+            </summary>
+            <typeparam name="TRequest"></typeparam>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.PostAuthAuthorizeIpAsync``1(``0)">
+            <summary>
+            Authorize and IP for the user account.
+            </summary>
+            <typeparam name="TRequest"></typeparam>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.PostAuthWebauthnAuthenticationOptionsAsync``1">
+            <summary>
+            Setup webauth for the user account.
+            </summary>
+            <typeparam name="TResponse"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.PostAuthWebauthnAuthenticateAsync``2(``0)">
+            <summary>
+            Setup webauth for the user account.
+            </summary>
+            <typeparam name="TRequest"></typeparam>
+            <typeparam name="TResponse"></typeparam>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.PostAuthLoginMfaWebauthnAuthenticationOptionsAsync``1">
+            <summary>
+            Setup webauth for the user account.
+            </summary>
+            <typeparam name="TResponse"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.PostAuthLoginMfaWebauthnAsync``2(``0)">
+            <summary>
+            Setup webauth for the user account.
+            </summary>
+            <typeparam name="TRequest"></typeparam>
+            <typeparam name="TResponse"></typeparam>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.CreatePrivateChannelAsync(Fluxer.Net.CreatePrivateChannelRequest)">
+            <summary>
+            Create a DM or Group channel.
+            </summary>
+            <param name="req"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.GetChannelAsync(System.UInt64)">
+            <summary>
+            Get a channel.
+            </summary>
+            <remarks>
+            Requires <see cref="P:Fluxer.Net.ChannelPermissions.ViewChannel"/> for guild channels.
+            </remarks>
+            <param name="channelId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.GetChannelRtcRegionsAsync(System.UInt64)">
+            <summary>
+            Get voice regions for a channel.
+            </summary>
+            <remarks>
+            Requires <see cref="P:Fluxer.Net.ChannelPermissions.ViewChannel"/> for guild channels.
+            </remarks>
+            <param name="channelId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.UpdateChannelAsync(System.UInt64,Fluxer.Net.ChannelJson)">
+            <summary>
+            Modify a channel.
+            </summary>
+            <remarks>
+            Requires <see cref="P:Fluxer.Net.ChannelPermissions.ManageChannels"/> for guild channels.
+            </remarks>
+            <param name="channelId"></param>
+            <param name="channel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.DeleteChannelAsync(System.UInt64)">
+            <summary>
+            Delete a channel.
+            </summary>
+            <remarks>
+            Requires <see cref="P:Fluxer.Net.ChannelPermissions.ManageChannels"/> for guild channels.
+            </remarks>
+            <param name="channelId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.ClearMessageAcknowledgementAsync(System.UInt64)">
+            <summary>
+            Clear message unreads for a channel.
+            </summary>
+            <param name="channelId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.GetMessagesAsync(System.UInt64,System.Int32,System.Nullable{System.UInt64},System.Nullable{System.UInt64},System.Nullable{System.UInt64},Fluxer.Net.Rest.RestClientQueryParams)">
+            <summary>
+            Get messages in a channel.
+            </summary>
+            <remarks>
+            Requires <see cref="P:Fluxer.Net.ChannelPermissions.ReadMessageHistory"/> for guild channels.
+            </remarks>
+            <param name="channelId"></param>
+            <param name="limit"></param>
+            <param name="beforeId"></param>
+            <param name="afterId"></param>
+            <param name="aroundId"></param>
+            <param name="queryParams"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.GetMessageAsync(System.UInt64,System.UInt64)">
+            <summary>
+            Get a message in a channel.
+            </summary>
+            <remarks>
+            Requires <see cref="P:Fluxer.Net.ChannelPermissions.ViewChannel"/> and <see cref="P:Fluxer.Net.ChannelPermissions.ReadMessageHistory"/> for guild channels.
+            </remarks>
+            <param name="channelId"></param>
+            <param name="messageId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.SearchChannelAsync``2(System.UInt64,``0)">
+            <summary>
+            Search messages in a channel.
+            </summary>
+            <remarks>
+            Not implemented or tested properly.
+            </remarks>
+            <typeparam name="TRequest"></typeparam>
+            <typeparam name="TResponse"></typeparam>
+            <param name="channelId"></param>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.SendMessageAsync(System.UInt64,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.Requests.EmbedRequest},Fluxer.Net.MessageReferenceRequest,Fluxer.Net.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64},System.Collections.Generic.List{Fluxer.Net.Rest.Requests.AttachmentRequest})">
+            <summary>
+            Send a message in the channel.
+            </summary>
+            <remarks>
+            Requires <see cref="P:Fluxer.Net.ChannelPermissions.ViewChannel"/> and <see cref="P:Fluxer.Net.ChannelPermissions.SendMessages"/> for guild channels.
+            </remarks>
+            <param name="channelId"></param>
+            <param name="content"></param>
+            <param name="embeds"></param>
+            <param name="reference"></param>
+            <param name="allowedMentions"></param>
+            <param name="flags"></param>
+            <param name="nonce"></param>
+            <param name="favoruteMemeId"></param>
+            <param name="tts"></param>
+            <param name="stickerIds"></param>
+            <param name="attachments"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.EditMessageAsync(System.UInt64,System.UInt64,Fluxer.Net.UpdateMessageRequest)">
+            <summary>
+            Modify your message in a channel
+            </summary>
+            <remarks>
+            Requires <see cref="P:Fluxer.Net.ChannelPermissions.ViewChannel"/> and <see cref="P:Fluxer.Net.ChannelPermissions.ReadMessageHistory"/> in a guild channel.
+            </remarks>
+            <param name="channelId"></param>
+            <param name="messageId"></param>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.DeleteMessageAsync(System.UInt64,System.UInt64)">
+            <summary>
+            Delete a message in a channel.
+            </summary>
+            <remarks>
+            Requires <see cref="P:Fluxer.Net.ChannelPermissions.ViewChannel"/> and <see cref="P:Fluxer.Net.ChannelPermissions.ReadMessageHistory"/> in a guild channel.
+            <br />
+            <see cref="P:Fluxer.Net.ChannelPermissions.ManageMessages"/> for other user message.
+            </remarks>
+            <param name="channelId"></param>
+            <param name="messageId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.DeleteMessageAttachmentAsync(System.UInt64,System.UInt64,System.UInt64)">
+            <summary>
+            Delete a attachment on a message.
+            </summary>
+            <remarks>
+            Requires <see cref="P:Fluxer.Net.ChannelPermissions.ViewChannel"/> and <see cref="P:Fluxer.Net.ChannelPermissions.ReadMessageHistory"/> in a guild channel.
+            </remarks>
+            <param name="channelId"></param>
+            <param name="messageId"></param>
+            <param name="attachmentId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.BulkDeleteMessagesAsync(System.UInt64,Fluxer.Net.BulkDeleteMessagesRequest)">
+            <summary>
+            Delete many messages in a channel.
+            </summary>
+            <remarks>
+            Requires <see cref="P:Fluxer.Net.ChannelPermissions.ViewChannel"/>, <see cref="P:Fluxer.Net.ChannelPermissions.ReadMessageHistory"/> and <see cref="P:Fluxer.Net.ChannelPermissions.ManageMessages"/> in a guild channel.
+            </remarks>
+            <param name="channelId"></param>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.TriggerTypingIndicatorAsync(System.UInt64)">
+            <summary>
+            Send a user typing status for the channel.
+            </summary>
+            <remarks>
+            Requires <see cref="P:Fluxer.Net.ChannelPermissions.ViewChannel"/> in a guild channel.
+            </remarks>
+            <param name="channelId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.AcknowledgeMessageAsync(System.UInt64,System.UInt64,Fluxer.Net.MessageAckJson)">
+            <summary>
+            Acknowledge a message has been read for the current user.
+            </summary>
+            <remarks>
+            User accounts only.
+            </remarks>
+            <param name="channelId"></param>
+            <param name="messageId"></param>
+            <param name="details"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.GetPinnedMessagesAsync(System.UInt64,Fluxer.Net.ChannelPinsQuery)">
+            <summary>
+            Get pinned messages in a channel.
+            </summary>
+            <remarks>
+            Requires <see cref="P:Fluxer.Net.ChannelPermissions.ViewChannel"/> and <see cref="P:Fluxer.Net.ChannelPermissions.ReadMessageHistory"/> in a guild channel.
+            </remarks>
+            <param name="channelId"></param>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.PinMessageAsync(System.UInt64,System.UInt64)">
+            <summary>
+            Pin a message in a channel.
+            </summary>
+            <remarks>
+            Requires <see cref="P:Fluxer.Net.ChannelPermissions.ViewChannel"/>, <see cref="P:Fluxer.Net.ChannelPermissions.ReadMessageHistory"/> and <see cref="P:Fluxer.Net.ChannelPermissions.PinMessages"/> in a guild channel.
+            </remarks>
+            <param name="channelId"></param>
+            <param name="messageId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.UnpinMessageAsync(System.UInt64,System.UInt64)">
+            <summary>
+            Remove a pinned message in a channel.
+            </summary>
+            <remarks>
+            Requires <see cref="P:Fluxer.Net.ChannelPermissions.ViewChannel"/>, <see cref="P:Fluxer.Net.ChannelPermissions.ReadMessageHistory"/> and <see cref="P:Fluxer.Net.ChannelPermissions.PinMessages"/> in a guild channel.
+            </remarks>
+            <param name="channelId"></param>
+            <param name="messageId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.GetReactionsForEmojiAsync(System.UInt64,System.UInt64,System.String)">
+            <summary>
+            Get reaction users for a certain emoji on a message.
+            </summary>
+            <remarks>
+            Requires <see cref="P:Fluxer.Net.ChannelPermissions.ViewChannel"/> and <see cref="P:Fluxer.Net.ChannelPermissions.ReadMessageHistory"/> in a guild channel.
+            </remarks>
+            <param name="channelId"></param>
+            <param name="messageId"></param>
+            <param name="emoji"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.AddReactionAsync(System.UInt64,System.UInt64,System.String)">
+            <summary>
+            Add a reaction to a message.
+            </summary>
+            <remarks>
+            Requires <see cref="P:Fluxer.Net.ChannelPermissions.ViewChannel"/> and <see cref="P:Fluxer.Net.ChannelPermissions.AddReactions"/> in a guild channel.
+            </remarks>
+            <param name="channelId"></param>
+            <param name="messageId"></param>
+            <param name="emoji"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.RemoveOwnReactionAsync(System.UInt64,System.UInt64,System.String)">
+            <summary>
+            Remove a reaction on a message.
+            </summary>
+            <remarks>
+            Requires <see cref="P:Fluxer.Net.ChannelPermissions.ViewChannel"/> in a guild channel.
+            </remarks>
+            <param name="channelId"></param>
+            <param name="messageId"></param>
+            <param name="emoji"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.RemoveUserReactionAsync(System.UInt64,System.UInt64,System.String,System.UInt64)">
+            <summary>
+            Remove a user's reaction on a message.
+            </summary>
+            <remarks>
+            Requires <see cref="P:Fluxer.Net.ChannelPermissions.ViewChannel"/>, <see cref="P:Fluxer.Net.ChannelPermissions.ReadMessageHistory"/> and <see cref="P:Fluxer.Net.ChannelPermissions.ManageMessages"/> in a guild channel.
+            </remarks>
+            <param name="channelId"></param>
+            <param name="messageId"></param>
+            <param name="emoji"></param>
+            <param name="targetId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.RemoveAllReactionsForEmojiAsync(System.UInt64,System.UInt64,System.String)">
+            <summary>
+            Remove all reactions for a specific emoji on a message.
+            </summary>
+            <remarks>
+            Requires <see cref="P:Fluxer.Net.ChannelPermissions.ViewChannel"/>, <see cref="P:Fluxer.Net.ChannelPermissions.ReadMessageHistory"/> and <see cref="P:Fluxer.Net.ChannelPermissions.ManageMessages"/> in a guild channel.
+            </remarks>
+            <param name="channelId"></param>
+            <param name="messageId"></param>
+            <param name="emoji"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.RemoveAllReactionsAsync(System.UInt64,System.UInt64)">
+            <summary>
+            Remove all reactions on a message.
+            </summary>
+            <remarks>
+            Requires <see cref="P:Fluxer.Net.ChannelPermissions.ViewChannel"/>, <see cref="P:Fluxer.Net.ChannelPermissions.ReadMessageHistory"/> and <see cref="P:Fluxer.Net.ChannelPermissions.ManageMessages"/> in a guild channel.
+            </remarks>
+            <param name="channelId"></param>
+            <param name="messageId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.UploadAttachmentsAsync``2(System.UInt64,``0)">
+            <summary>
+            Upload multiple attachments to a channel.
+            </summary>
+            <remarks>
+            
+            </remarks>
+            <typeparam name="TRequest"></typeparam>
+            <typeparam name="TResponse"></typeparam>
+            <param name="channelId"></param>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.AddRecipientAsync(System.UInt64,System.UInt64)">
+            <summary>
+            Add a user to a group channel.
+            </summary>
+            <remarks>
+            User account only.
+            </remarks>
+            <param name="channelId"></param>
+            <param name="userId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.RemoveRecipientAsync(System.UInt64,System.UInt64)">
+            <summary>
+            Remove a user from the group channel.
+            </summary>
+            <remarks>
+            User account only.
+            </remarks>
+            <param name="channelId"></param>
+            <param name="userId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.GetVoiceEligibilityAsync(System.UInt64)">
+            <summary>
+            Get if you can call a voice channel/group/dm.
+            </summary>
+            <param name="channelId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.UpdateVoiceRegionAsync(System.UInt64,System.String)">
+            <summary>
+            Update the voice region for a voice channel.
+            </summary>
+            <remarks>
+            Requires <see cref="P:Fluxer.Net.ChannelPermissions.ViewChannel"/> and <see cref="P:Fluxer.Net.ChannelPermissions.UpdateRtcRegion"/> in a guild channel.
+            </remarks>
+            <param name="channelId"></param>
+            <param name="region"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.RingCallAsync(System.UInt64,System.UInt64[])">
+            <summary>
+            Voice call users.
+            </summary>
+            <remarks>
+            User account only.
+            </remarks>
+            <param name="channelId"></param>
+            <param name="recipients"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.StopRingingAsync(System.UInt64)">
+            <summary>
+            Stop voice calling user.
+            </summary>
+            <remarks>
+            User account only.
+            </remarks>
+            <param name="channelId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.GetChannelInvitesAsync(System.UInt64)">
+            <summary>
+            Get invites for a guild channel.
+            </summary>
+            <remarks>
+            Requires <see cref="P:Fluxer.Net.ChannelPermissions.ViewChannel"/> and <see cref="P:Fluxer.Net.ChannelPermissions.ManageChannels"/>.
+            </remarks>
+            <param name="channelId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.CreateInviteAsync(System.UInt64,Fluxer.Net.Rest.Requests.CreateInviteRequest)">
+            <summary>
+            Create invite for the guild channel.
+            </summary>
+            <remarks>
+            Requires <see cref="P:Fluxer.Net.ChannelPermissions.ViewChannel"/> and <see cref="P:Fluxer.Net.ChannelPermissions.CreateInstantInvite"/>.
+            </remarks>
+            <param name="channelId"></param>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.GetChannelWebhooksAsync(System.UInt64)">
+            <summary>
+            Get webhooks for a guild channel.
+            </summary>
+            <remarks>
+            Requires <see cref="P:Fluxer.Net.ChannelPermissions.ViewChannel"/> and <see cref="P:Fluxer.Net.ChannelPermissions.ManageWebhooks"/>.
+            </remarks>
+            <param name="channelId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.CreateWebhookAsync(System.UInt64,System.String,System.String)">
+            <summary>
+            Create a webhook for the guild channel.
+            </summary>
+            <remarks>
+            Requires <see cref="P:Fluxer.Net.ChannelPermissions.ViewChannel"/> and <see cref="P:Fluxer.Net.ChannelPermissions.ManageWebhooks"/>.
+            </remarks>
+            <param name="channelId"></param>
+            <param name="name"></param>
+            <param name="avatar"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.DeleteAttachmentAsync(System.String)">
+            <summary>
+            Delete an attachment.
+            </summary>
+            <param name="uploadFilename"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.GetCurrentUserFavoriteGifsAsync">
+            <summary>
+            Get all your favorite gifs.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.PostCurrentUserFavoriteGifAsync``1(``0)">
+            <summary>
+            Add a favorite gif.
+            </summary>
+            <typeparam name="TRequest"></typeparam>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.GetCurrentUserFavoriteGifAsync(System.UInt64)">
+            <summary>
+            Get your favorite gif.
+            </summary>
+            <param name="memeId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.PatchCurrentUserFavoriteGifAsync``1(System.UInt64,``0)">
+            <summary>
+            Update your favorite gif.
+            </summary>
+            <typeparam name="TRequest"></typeparam>
+            <param name="memeId"></param>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.DeleteCurrentUserFavoriteGifAsync(System.UInt64)">
+            <summary>
+            Delete your favorite gif.
+            </summary>
+            <param name="memeId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.GetInviteAsync(System.String)">
+            <summary>
+            Get invite info from invite code.
+            </summary>
+            <param name="inviteCode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.JoinGuildAsync(System.String)">
+            <summary>
+            Join a guild by invite code.
+            </summary>
+            <remarks>
+            User account only.
+            </remarks>
+            <param name="inviteCode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.DeleteInviteAsync(System.String)">
+            <summary>
+            Delete an invite.
+            </summary>
+            Requires <see cref="P:Fluxer.Net.ChannelPermissions.ViewChannel"/> and <see cref="P:Fluxer.Net.ChannelPermissions.ManageChannels"/>.
+            <param name="inviteCode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.PostReadStatesAckBulkAsync``1(``0)">
+            <summary>
+            Clear read message stats for guilds or channels.
+            </summary>
+            <remarks>
+            User account only.
+            </remarks>
+            <typeparam name="TRequest"></typeparam>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.CreateGuildAsync(Fluxer.Net.CreateGuildRequest)">
+            <summary>
+            Create a guild.
+            </summary>
+            <remarks>
+            User account only.
+            </remarks>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.GetCurrentUserGuildsAsync">
+            <summary>
+            Get all guilds for the current user.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.LeaveGuildAsync(System.UInt64)">
+            <summary>
+            Leave a guild for the current user.
+            </summary>
+            <param name="guildId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.GetGuildAsync(System.UInt64)">
+            <summary>
+            Get a guild that the current user is in.
+            </summary>
+            <param name="guildId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.UpdateGuildAsync(System.UInt64,Fluxer.Net.GuildJson)">
+            <summary>
+            Update a guild that you manage.
+            </summary>
+            <remarks>
+            Requires <see cref="P:Fluxer.Net.GuildPermissions.ManageGuild"/>.
+            </remarks>
+            <param name="guildId"></param>
+            <param name="guild"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.DeleteGuildAsync(System.UInt64,Fluxer.Net.DeleteGuildRequest)">
+            <summary>
+            Delete a guild that you own.
+            </summary>
+            <param name="guildId"></param>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.GetGuildVanityUrlAsync(System.UInt64)">
+            <summary>
+            Get vanity url for a guild.
+            </summary>
+            <param name="guildId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.UpdateGuildVanityUrlAsync(System.UInt64,Fluxer.Net.UpdateGuildVanityUrlRequest)">
+            <summary>
+            Update vanity url for a guild.
+            </summary>
+            <remarks>
+            Requires <see cref="P:Fluxer.Net.GuildPermissions.ManageGuild"/>.
+            </remarks>
+            <param name="guildId"></param>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
         <member name="M:Fluxer.Net.ApiClient.GetMembersAsync(System.UInt64,System.Int32,System.Nullable{System.UInt64},Fluxer.Net.Rest.RestClientQueryParams)">
             <summary>
             Get a list of members for a guild, default and maximum 1000.
@@ -9189,10 +10324,995 @@
             <param name="queryParams"></param>
             <returns></returns>
         </member>
+        <member name="M:Fluxer.Net.ApiClient.GetCurrentMemberAsync(System.UInt64)">
+            <summary>
+            Get current member for a guild.
+            </summary>
+            <param name="guildId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.GetMemberAsync(System.UInt64,System.UInt64)">
+            <summary>
+            Get a member in a guild.
+            </summary>
+            <param name="guildId"></param>
+            <param name="userId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.UpdateCurrentMemberAsync(System.UInt64,Fluxer.Net.GuildMemberJson)">
+            <summary>
+            Update current member in a guild.
+            </summary>
+            <remarks>
+            Requires <see cref="P:Fluxer.Net.GuildPermissions.ChangeNickname"/> to change your nickname.
+            </remarks>
+            <param name="guildId"></param>
+            <param name="member"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.UpdateMemberAsync(System.UInt64,System.UInt64,Fluxer.Net.GuildMemberJson)">
+            <summary>
+            Update a member in a guild.
+            </summary>
+            <remarks>
+            Requires either <see cref="P:Fluxer.Net.GuildPermissions.ManageNicknames"/>, <see cref="P:Fluxer.Net.GuildPermissions.DeafenMembers"/>, 
+            <see cref="P:Fluxer.Net.GuildPermissions.ManageRoles"/>, <see cref="P:Fluxer.Net.GuildPermissions.ModerateMembers"/> or
+            <see cref="P:Fluxer.Net.GuildPermissions.MuteMembers"/> depending on property.
+            </remarks>
+            <param name="guildId"></param>
+            <param name="userId"></param>
+            <param name="member"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.KickMemberAsync(System.UInt64,System.UInt64)">
+            <summary>
+            Kick a member from the guild.
+            </summary>
+            <remarks>
+            Requires <see cref="P:Fluxer.Net.GuildPermissions.KickMembers"/>.
+            </remarks>
+            <param name="guildId"></param>
+            <param name="userId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.TransferOwnershipAsync(System.UInt64,Fluxer.Net.GuildTransferOwnershipRequest)">
+            <summary>
+            Change ownership of a guild to another member.
+            </summary>
+            <remarks>
+            Requires guild ownership and user account only.
+            </remarks>
+            <param name="guildId"></param>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.GetBansAsync(System.UInt64)">
+            <summary>
+            Get bans for a guild.
+            </summary>
+            <remarks>
+            Requires <see cref="P:Fluxer.Net.GuildPermissions.BanMembers"/>.
+            </remarks>
+            <param name="guildId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.BanMemberAsync(System.UInt64,System.UInt64,Fluxer.Net.CreateGuildBanRequest)">
+            <summary>
+            Ban a member from the guild.
+            </summary>
+            <remarks>
+            Requires <see cref="P:Fluxer.Net.GuildPermissions.BanMembers"/>.
+            </remarks>
+            <param name="guildId"></param>
+            <param name="userId"></param>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.UnbanMemberAsync(System.UInt64,System.UInt64)">
+            <summary>
+            Unban a user from the guild.
+            </summary>
+            <remarks>
+            Requires <see cref="P:Fluxer.Net.GuildPermissions.BanMembers"/>.
+            </remarks>
+            <param name="guildId"></param>
+            <param name="userId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.AddMemberRoleAsync(System.UInt64,System.UInt64,System.UInt64)">
+            <summary>
+            Give role to a member in the guild.
+            </summary>
+            <remarks>
+            Requires <see cref="P:Fluxer.Net.GuildPermissions.ManageRoles"/>.
+            </remarks>
+            <param name="guildId"></param>
+            <param name="userId"></param>
+            <param name="roleId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.RemoveMemberRoleAsync(System.UInt64,System.UInt64,System.UInt64)">
+            <summary>
+            Remove role from a member in the guild.
+            </summary>
+            <remarks>
+            Requires <see cref="P:Fluxer.Net.GuildPermissions.ManageRoles"/>.
+            </remarks>
+            <param name="guildId"></param>
+            <param name="userId"></param>
+            <param name="roleId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.CreateRoleAsync(System.UInt64,Fluxer.Net.CreateGuildRoleRequest)">
+            <summary>
+            Create a role in the guild.
+            </summary>
+            <remarks>
+            Requires <see cref="P:Fluxer.Net.GuildPermissions.ManageRoles"/>.
+            </remarks>
+            <param name="guildId"></param>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.UpdateRoleAsync(System.UInt64,System.UInt64,Fluxer.Net.UpdateGuildRoleRequest)">
+            <summary>
+            Update a role in the guild.
+            </summary>
+            <remarks>
+            Requires <see cref="P:Fluxer.Net.GuildPermissions.ManageRoles"/>.
+            </remarks>
+            <param name="guildId"></param>
+            <param name="roleId"></param>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.UpdateRolePositionsAsync(System.UInt64,System.Collections.Generic.IEnumerable{Fluxer.Net.RolePositionItemJson})">
+            <summary>
+            Update role positions in the guild.
+            </summary>
+            <remarks>
+            Requires <see cref="P:Fluxer.Net.GuildPermissions.ManageRoles"/>.
+            </remarks>
+            <param name="guildId"></param>
+            <param name="positions"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.DeleteRoleAsync(System.UInt64,System.UInt64)">
+            <summary>
+            Delete a role in the guild.
+            </summary>
+            <remarks>
+            Requires <see cref="P:Fluxer.Net.GuildPermissions.ManageRoles"/>.
+            </remarks>
+            <param name="guildId"></param>
+            <param name="roleId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.GetChannelsAsync(System.UInt64)">
+            <summary>
+            Get all channels in the guild.
+            </summary>
+            <remarks>
+            Requires <see cref="P:Fluxer.Net.ChannelPermissions.ViewChannel"/>.
+            </remarks>
+            <param name="guildId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.CreateGuildChannelAsync(System.UInt64,Fluxer.Net.CreateGuildChannelRequest)">
+            <summary>
+            Create a channel in the guild.
+            </summary>
+            <remarks>
+            Requires <see cref="P:Fluxer.Net.GuildPermissions.ManageChannels"/>.
+            </remarks>
+            <param name="guildId"></param>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.UpdateChannelPositionsAsync(System.UInt64,System.Collections.Generic.IEnumerable{Fluxer.Net.ChannelPositionUpdateRequestItem})">
+            <summary>
+            Update channel positions in a guild.
+            </summary>
+            <remarks>
+            Requires <see cref="P:Fluxer.Net.GuildPermissions.ManageChannels"/>.
+            </remarks>
+            <param name="guildId"></param>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.SearchGuildAsync``2(System.UInt64,``0)">
+            <summary>
+            Search the guild.
+            </summary>
+            <typeparam name="TRequest"></typeparam>
+            <typeparam name="TResponse"></typeparam>
+            <param name="guildId"></param>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.SearchAuditLogAsync(System.UInt64,Fluxer.Net.GuildAuditLogListRequest)">
+            <summary>
+            Search audit logs in the guild.
+            </summary>
+            <remarks>
+            Requires <see cref="P:Fluxer.Net.GuildPermissions.ViewAuditLog"/>.
+            </remarks>
+            <param name="guildId"></param>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.CreateEmojiAsync(System.UInt64,Fluxer.Net.CreateGuildEmojiRequest)">
+            <summary>
+            Create emojis for the guild.
+            </summary>
+            <remarks>
+            Requires either <see cref="P:Fluxer.Net.GuildPermissions.CreateExpressions"/> or <see cref="P:Fluxer.Net.GuildPermissions.ManageExpressions"/>.
+            </remarks>
+            <param name="guildId"></param>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.CreateEmojiBulkAsync(System.UInt64,Fluxer.Net.BulkCreateGuildEmojisRequest)">
+            <summary>
+            Create multiple emojis for a guild.
+            </summary>
+            <remarks>
+            Requires either <see cref="P:Fluxer.Net.GuildPermissions.CreateExpressions"/> or <see cref="P:Fluxer.Net.GuildPermissions.ManageExpressions"/>.
+            </remarks>
+            <param name="guildId"></param>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.GetEmojisAsync(System.UInt64)">
+            <summary>
+            Get all emojis in the guild.
+            </summary>
+            <remarks>
+            Requires either <see cref="P:Fluxer.Net.GuildPermissions.CreateExpressions"/> or <see cref="P:Fluxer.Net.GuildPermissions.ManageExpressions"/>.
+            </remarks>
+            <param name="guildId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.UpdateEmojiAsync(System.UInt64,System.UInt64,Fluxer.Net.UpdateGuildEmojiRequest)">
+            <summary>
+            Update an emoji in the guild.
+            </summary>
+            <remarks>
+            Requires either <see cref="P:Fluxer.Net.GuildPermissions.CreateExpressions"/> or <see cref="P:Fluxer.Net.GuildPermissions.ManageExpressions"/>.
+            </remarks>
+            <param name="guildId"></param>
+            <param name="emojiId"></param>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.DeleteEmojiAsync(System.UInt64,System.UInt64)">
+            <summary>
+            Delete an emoji in the guild.
+            </summary>
+            <remarks>
+            Requires either <see cref="P:Fluxer.Net.GuildPermissions.CreateExpressions"/> or <see cref="P:Fluxer.Net.GuildPermissions.ManageExpressions"/>.
+            </remarks>
+            <param name="guildId"></param>
+            <param name="emojiId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.CreateStickerAsync(System.UInt64,Fluxer.Net.CreateGuildStickerRequest)">
+            <summary>
+            Create stickers for a guild.
+            </summary>
+            <remarks>
+            Requires either <see cref="P:Fluxer.Net.GuildPermissions.CreateExpressions"/> or <see cref="P:Fluxer.Net.GuildPermissions.ManageExpressions"/>.
+            </remarks>
+            <param name="guildId"></param>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.CreateStickerBulkAsync(System.UInt64,Fluxer.Net.BulkCreateGuildStickersRequest)">
+            <summary>
+            Create multiple stickers for a guild.
+            </summary>
+            <remarks>
+            Requires either <see cref="P:Fluxer.Net.GuildPermissions.CreateExpressions"/> or <see cref="P:Fluxer.Net.GuildPermissions.ManageExpressions"/>.
+            </remarks>
+            <param name="guildId"></param>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.GetStickersAsync(System.UInt64)">
+            <summary>
+            Get all stickers in the guild.
+            </summary>
+            <remarks>
+            Requires either <see cref="P:Fluxer.Net.GuildPermissions.CreateExpressions"/> or <see cref="P:Fluxer.Net.GuildPermissions.ManageExpressions"/>.
+            </remarks>
+            <param name="guildId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.UpdateStickerAsync(System.UInt64,System.UInt64,Fluxer.Net.UpdateGuildStickerRequest)">
+            <summary>
+            Update a sticker in the guild.
+            </summary>
+            <remarks>
+            Requires either <see cref="P:Fluxer.Net.GuildPermissions.CreateExpressions"/> or <see cref="P:Fluxer.Net.GuildPermissions.ManageExpressions"/>.
+            </remarks>
+            <param name="guildId"></param>
+            <param name="stickerId"></param>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.DeleteStickerAsync(System.UInt64,System.UInt64)">
+            <summary>
+            Delete a sticker in the guild.
+            </summary>
+            <remarks>
+            Requires either <see cref="P:Fluxer.Net.GuildPermissions.CreateExpressions"/> or <see cref="P:Fluxer.Net.GuildPermissions.ManageExpressions"/>.
+            </remarks>
+            <param name="guildId"></param>
+            <param name="stickerId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.GetGuildInvitesAsync(System.UInt64)">
+            <summary>
+            Get all invites for the guild.
+            </summary>
+            <remarks>
+            Requires <see cref="P:Fluxer.Net.ChannelPermissions.ManageChannels"/>.
+            </remarks>
+            <param name="guildId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.GetGuildWebhooksAsync(System.UInt64)">
+            <summary>
+            Get all webhooks for the guild.
+            </summary>
+            <remarks>
+            Requires <see cref="P:Fluxer.Net.ChannelPermissions.ManageWebhooks"/>.
+            </remarks>
+            <param name="guildId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.SearchKlipyAsync(System.String)">
+            <summary>
+            Search klipy gifs.
+            </summary>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.GetKlipyFeaturedAsync">
+            <summary>
+            Get featured klipy gifs.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.GetKlipyTrendingGifsAsync">
+            <summary>
+            Get trending klipy gifs.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.GetPublicAppAsync(System.UInt64)">
+            <summary>
+            Get a public app.
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.GetCurrentUserAsync">
+            <summary>
+            Get the current user.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.UpdateCurrentUserAsync(Fluxer.Net.UserJson)">
+            <summary>
+            Update the current user.
+            </summary>
+            <param name="user"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.CheckUsernameAvailabilityAsync(System.String,System.String)">
+            <summary>
+            Check if a username is available.
+            </summary>
+            <param name="username"></param>
+            <param name="discriminator"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.GetUserAsync(System.UInt64)">
+            <summary>
+            Get a user.
+            </summary>
+            <param name="userId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.GetUserProfileAsync(System.UInt64,System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Get a user's profile.
+            </summary>
+            <remarks>
+            Requires mutual friend or guild.
+            </remarks>
+            <param name="targetId"></param>
+            <param name="guildId"></param>
+            <param name="mutualFriends"></param>
+            <param name="mutualGuilds"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.GetCurrentUserSettingsAsync">
+            <summary>
+            Get current user settings.
+            </summary>
+            <remarks>
+            User account only.
+            </remarks>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.UpdateCurrentUserSettingsAsync``1(``0)">
+            <summary>
+            Update current user settings.
+            </summary>
+            <remarks>
+            User account only.
+            </remarks>
+            <typeparam name="TRequest"></typeparam>
+            <param name="settings"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.SetCustomStatusAsync(Fluxer.Net.UserCustomStatusJson)">
+            <summary>
+            Set current user status.
+            </summary>
+            <param name="status"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.GetCurrentUserNotesAsync``1">
+            <summary>
+            Get all current user notes.
+            </summary>
+            <typeparam name="TResponse"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.GetCurrentUserNoteAsync``1(System.UInt64)">
+            <summary>
+            Get current user note for target user.
+            </summary>
+            <typeparam name="TResponse"></typeparam>
+            <param name="targetId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.PutCurrentUserNoteAsync``2(System.UInt64,``0)">
+            <summary>
+            Add/update current user note for target user.
+            </summary>
+            <typeparam name="TRequest"></typeparam>
+            <typeparam name="TResponse"></typeparam>
+            <param name="targetId"></param>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.GetCurrentUserMentionsAsync``1">
+            <summary>
+            Get current user mention notifications.
+            </summary>
+            <remarks>
+            User account only.
+            </remarks>
+            <typeparam name="TResponse"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.DeleteCurrentUserMentionAsync(System.UInt64)">
+            <summary>
+            Delete current user mentioned notifications.
+            </summary>
+            <remarks>
+            User account only.
+            </remarks>
+            <param name="messageId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.PostCurrentUserMfaTotpEnableAsync``2(``0)">
+            <summary>
+            Enable MFA for current user.
+            </summary>
+            <remarks>
+            User account only.
+            </remarks>
+            <typeparam name="TRequest"></typeparam>
+            <typeparam name="TResponse"></typeparam>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.PostCurrentUserMfaTotpDisableAsync``1(``0)">
+            <summary>
+            Disable MFA for current user.
+            </summary>
+            <remarks>
+            User account only.
+            </remarks>
+            <typeparam name="TRequest"></typeparam>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.PostCurrentUserMfaBackupCodesAsync``2(``0)">
+            <summary>
+            Get/create MFA backup codes for current user.
+            </summary>
+            <remarks>
+            User account only.
+            </remarks>
+            <typeparam name="TRequest"></typeparam>
+            <typeparam name="TResponse"></typeparam>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.PostCurrentUserPhoneSendVerificationAsync``1(``0)">
+            <summary>
+            Send phone verification for current user.
+            </summary>
+            <remarks>
+            User account only.
+            </remarks>
+            <typeparam name="TRequest"></typeparam>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.PostCurrentUserPhoneVerifyAsync``2(``0)">
+            <summary>
+            Verify phone verification for current user.
+            </summary>
+            <remarks>
+            User account only.
+            </remarks>
+            <typeparam name="TRequest"></typeparam>
+            <typeparam name="TResponse"></typeparam>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.PostCurrentUserPhoneAsync``2(``0)">
+            <summary>
+            Set phone number for current user.
+            </summary>
+            <remarks>
+            User account only.
+            </remarks>
+            <typeparam name="TRequest"></typeparam>
+            <typeparam name="TResponse"></typeparam>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.DeleteCurrentUserPhoneAsync``1(``0)">
+            <summary>
+            Remove phone number for current user.
+            </summary>
+            <remarks>
+            User account only.
+            </remarks>
+            <typeparam name="TRequest"></typeparam>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.PostCurrentUserMfaSmsEnableAsync``1(``0)">
+            <summary>
+            Enable MFA SMS for current user.
+            </summary>
+            <remarks>
+            User account only.
+            </remarks>
+            <typeparam name="TRequest"></typeparam>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.PostCurrentUserMfaSmsDisableAsync``1(``0)">
+            <summary>
+            Disable MFA SMS for current user.
+            </summary>
+            <remarks>
+            User account only.
+            </remarks>
+            <typeparam name="TRequest"></typeparam>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.GetCurrentUserMfaWebauthnCredentialsAsync``1">
+            <summary>
+            Get webauthn MFA for current user.
+            </summary>
+            <remarks>
+            User account only.
+            </remarks>
+            <typeparam name="TResponse"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.PostCurrentUserMfaWebauthnCredentialsRegistrationOptionsAsync``1">
+            <summary>
+            Register webauthn for current user.
+            </summary>
+            <remarks>
+            User account only.
+            </remarks>
+            <typeparam name="TResponse"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.PostCurrentUserMfaWebauthnCredentialsAsync``2(``0)">
+            <summary>
+            Set webauthn MFA for current user.
+            </summary>
+            <remarks>
+            User account only.
+            </remarks>
+            <typeparam name="TRequest"></typeparam>
+            <typeparam name="TResponse"></typeparam>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.PatchCurrentUserMfaWebauthnCredentialAsync``2(System.UInt64,``0)">
+            <summary>
+            Update webauthn MFA for current user.
+            </summary>
+            <remarks>
+            User account only.
+            </remarks>
+            <typeparam name="TRequest"></typeparam>
+            <typeparam name="TResponse"></typeparam>
+            <param name="credentialId"></param>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.GetWebhookAsync(System.UInt64)">
+            <summary>
+            Get webhook in a guild channel.
+            </summary>
+            <remarks>
+            Requires <see cref="P:Fluxer.Net.ChannelPermissions.ManageWebhooks"/>.
+            </remarks>
+            <param name="webhookId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.UpdateWebhookAsync``1(System.UInt64,``0)">
+            <summary>
+            Update webhook in a guild channel.
+            </summary>
+            <remarks>
+            Requires <see cref="P:Fluxer.Net.ChannelPermissions.ManageWebhooks"/>.
+            </remarks>
+            <typeparam name="TRequest"></typeparam>
+            <param name="webhookId"></param>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.DeleteWebhookAsync(System.UInt64)">
+            <summary>
+            Delete webhook in a guild channel.
+            </summary>
+            <remarks>
+            Requires <see cref="P:Fluxer.Net.ChannelPermissions.ManageWebhooks"/>.
+            </remarks>
+            <param name="webhookId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.GetWebhookWithTokenAsync(System.UInt64,System.String)">
+            <summary>
+            Get webhook using the webhook token.
+            </summary>
+            <param name="webhookId"></param>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.UpdateWebhookWithTokenAsync``1(System.UInt64,System.String,``0)">
+            <summary>
+            Update webhook using the webhook token.
+            </summary>
+            <typeparam name="TRequest"></typeparam>
+            <param name="webhookId"></param>
+            <param name="token"></param>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.DeleteWebhookWithTokenAsync(System.UInt64,System.String)">
+            <summary>
+            Delete webhook using the webhook token.
+            </summary>
+            <param name="webhookId"></param>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.ExecuteWebhookAsync(System.UInt64,System.String,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.Requests.EmbedRequest},Fluxer.Net.MessageReferenceRequest,Fluxer.Net.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64})">
+            <summary>
+            Send message using the webhook token in a guild channel.
+            </summary>
+            <param name="webhookId"></param>
+            <param name="token"></param>
+            <param name="content"></param>
+            <param name="embeds"></param>
+            <param name="reference"></param>
+            <param name="allowedMentions"></param>
+            <param name="flags"></param>
+            <param name="nonce"></param>
+            <param name="favoruteMemeId"></param>
+            <param name="tts"></param>
+            <param name="stickerIds"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.DeleteWebhookMessageAsync(System.UInt64,System.String,System.UInt64)">
+            <summary>
+            Delete a webhook message using the webhook token.
+            </summary>
+            <param name="webhookId"></param>
+            <param name="token"></param>
+            <param name="messageId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.EditWebhookMessageAsync(System.UInt64,System.String,System.UInt64,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.Requests.EmbedRequest},Fluxer.Net.MessageReferenceRequest,Fluxer.Net.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64})">
+            <summary>
+            Modify a webhook message using the webhook token.
+            </summary>
+            <param name="webhookId"></param>
+            <param name="token"></param>
+            <param name="messageId"></param>
+            <param name="content"></param>
+            <param name="embeds"></param>
+            <param name="reference"></param>
+            <param name="allowedMentions"></param>
+            <param name="flags"></param>
+            <param name="nonce"></param>
+            <param name="favoruteMemeId"></param>
+            <param name="tts"></param>
+            <param name="stickerIds"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.ExecuteWebhookWaitAsync(System.UInt64,System.String,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.Requests.EmbedRequest},Fluxer.Net.MessageReferenceRequest,Fluxer.Net.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64})">
+            <summary>
+            Send message using the webhook token in a guild channel and wait for response message.
+            </summary>
+            <param name="webhookId"></param>
+            <param name="token"></param>
+            <param name="content"></param>
+            <param name="embeds"></param>
+            <param name="reference"></param>
+            <param name="allowedMentions"></param>
+            <param name="flags"></param>
+            <param name="nonce"></param>
+            <param name="favoruteMemeId"></param>
+            <param name="tts"></param>
+            <param name="stickerIds"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.GetOAuthUserAsync(System.String)">
+            <summary>
+            Get user from access token.
+            </summary>
+            <param name="accessToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.GetOAuthTokenAsync(System.String)">
+            <summary>
+            Get oauth token from access token.
+            </summary>
+            <param name="accessToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.GetOAuthGuildsAsync(System.String)">
+            <summary>
+            Get user guilds from access token.
+            </summary>
+            <param name="accessToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.GetOAuthConnectionsAsync(System.String)">
+            <summary>
+            Get user connections from access token.
+            </summary>
+            <param name="accessToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.GetOAuthValidTokenAsync(System.UInt64,System.String,System.String)">
+            <summary>
+            Check if oauth token is valid.
+            </summary>
+            <param name="clientId"></param>
+            <param name="clientSecret"></param>
+            <param name="accessToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.GetOAuthRefreshTokenAsync(System.UInt64,System.String,System.String)">
+            <summary>
+            Get new access token from refresh token.
+            </summary>
+            <param name="clientId"></param>
+            <param name="clientSecret"></param>
+            <param name="refreshToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.RevokeAccessTokenAsync(System.UInt64,System.String,System.String)">
+            <summary>
+            Remove access for access token.
+            </summary>
+            <param name="clientId"></param>
+            <param name="clientSecret"></param>
+            <param name="accessToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.ApiClient.RevokeRefreshTokenAsync(System.UInt64,System.String,System.String)">
+            <summary>
+            Remove access for refresh token.
+            </summary>
+            <param name="clientId"></param>
+            <param name="clientSecret"></param>
+            <param name="refreshToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Fluxer.Net.ApiLimits">
+            <summary>
+            API limits for the current instance.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ApiLimits.MaxGuilds">
+            <summary>
+            How many guilds you can join.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ApiLimits.MaxGuildsPremium">
+            <summary>
+            How many guilds you can join with premium.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ApiLimits.MaxEmojis">
+            <summary>
+            How many emojis you can create in a guild.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ApiLimits.MaxEmojisAnimated">
+            <summary>
+            How many animated emojis you can create in a guild.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ApiLimits.MaxEmojisMore">
+            <summary>
+            How many more emojis you can create in a guild with <see cref="P:Fluxer.Net.GuildFeatures.HasMoreEmojis"/>.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ApiLimits.MaxEmojisAnimatedMore">
+            <summary>
+            How many more animated emojis you can create in a guild with <see cref="P:Fluxer.Net.GuildFeatures.HasMoreEmojis"/>.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ApiLimits.MaxStickers">
+            <summary>
+            How many stickers you can create in a guild.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ApiLimits.MaxStickersMore">
+            <summary>
+            How many more stickers you can create in a guild with <see cref="P:Fluxer.Net.GuildFeatures.HasMoreStickers"/>.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ApiLimits.MaxGuildMembers">
+            <summary>
+            How many users can join a guild.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ApiLimits.MaxGuildMembersLarge">
+            <summary>
+            How many more users can join a guild with <see cref="P:Fluxer.Net.GuildFeatures.IsLargeGuild"/>.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ApiLimits.MaxChannelsPerCategory">
+            <summary>
+            How many channels a category can have.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ApiLimits.MaxMessageContentLength">
+            <summary>
+            Max length of message text you can send.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ApiLimits.MaxMessageContentLengthPremium">
+            <summary>
+            Max length of message text you can send with premium.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ApiLimits.MaxMessageAttachments">
+            <summary>
+            Max attachments you can send in 1 message.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ApiLimits.MaxMessageEmbeds">
+            <summary>
+            Max embeds you can send in 1 message.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ApiLimits.MaxBookmarks">
+            <summary>
+            Max bookmarks you can have.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ApiLimits.MaxBookmarksPremium">
+            <summary>
+            Max bookmarks you can have with premium.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ApiLimits.MaxFavoriteMemes">
+            <summary>
+            Max favorite gifs you can have.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ApiLimits.MaxFavoriteMemesPremium">
+            <summary>
+            Max favorite gifs you can have with premium.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ApiLimits.MaxFavoriteMemeTags">
+            <summary>
+            Max tags a favorite gif can have.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ApiLimits.MaxBioLength">
+            <summary>
+            Max length of profile bio/text you can set.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ApiLimits.MaxBioLengthPremium">
+            <summary>
+            Max length of profile bio/text you can set with premium.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ApiLimits.FilenameTypeMinLength">
+            <summary>
+            Min length of attachment filename.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ApiLimits.FilenameTypeMaxLength">
+            <summary>
+            Max length of attachment filename.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ApiLimits.UrlTypeMinLength">
+            <summary>
+            Min length of embed url.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ApiLimits.UrlTypeMaxLength">
+            <summary>
+            Max length of embed url.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ApiLimits.MessageNonceMinLength">
+            <summary>
+            Min length of message nonce.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ApiLimits.MessageNonceMaxLength">
+            <summary>
+            Max length of message nonce.
+            </summary>
+        </member>
         <member name="T:Fluxer.Net.Rest.QueryParams">
             <summary>
             Query params for HTTP requests
             </summary>
+        </member>
+        <member name="T:Fluxer.Net.Rest.Requests.AttachmentRequest">
+            <summary>
+            Create an attachment with a request.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Rest.Requests.AttachmentRequest.#ctor(System.IO.Stream)">
+            <summary>
+            Create attachment using file stream.
+            </summary>
+            <param name="stream"></param>
+        </member>
+        <member name="M:Fluxer.Net.Rest.Requests.AttachmentRequest.#ctor(System.String)">
+            <summary>
+            Create attachment using file path.
+            </summary>
+            <param name="file"></param>
+        </member>
+        <member name="M:Fluxer.Net.Rest.Requests.AttachmentRequest.ToJson">
+            <summary>
+            Create json from attachment request.
+            </summary>
+            <returns></returns>
         </member>
         <member name="P:Fluxer.Net.Rest.Requests.EmbedAuthorRequest.Name">
             <summary>
@@ -9734,6 +11854,69 @@
             </summary>
         </member>
         <member name="P:Fluxer.Net.MessageSearchRequest.ExcludeAttachmentExtensions">
+            <summary>
+            File extensions to exclude
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.MessageSearchRequest.SortBy">
+            <summary>
+            Field to sort results by
+            </summary>
+            <remarks>
+            <see href="https://github.com/fluxerapp/fluxer/blob/d843d6f3f8a0bd850673ba55036354093977109f/packages/schema/src/domains/message/MessageRequestSchemas.tsx#L134"/>
+            </remarks>
+        </member>
+        <member name="P:Fluxer.Net.MessageSearchRequest.SortOrder">
+            <summary>
+            Sort order for results
+            </summary>
+            <remarks>
+            <see href="https://github.com/fluxerapp/fluxer/blob/d843d6f3f8a0bd850673ba55036354093977109f/packages/schema/src/domains/message/MessageRequestSchemas.tsx#L147"/>
+            </remarks>
+        </member>
+        <member name="P:Fluxer.Net.MessageSearchRequest.IncludeNsfw">
+            <summary>
+            Whether to include NSFW channel results
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.MessageSearchRequest.MessageSearchScope">
+            <remarks>
+            <see href="https://github.com/fluxerapp/fluxer/blob/d843d6f3f8a0bd850673ba55036354093977109f/packages/schema/src/domains/message/MessageRequestSchemas.tsx#L160"/>
+            </remarks>
+        </member>
+        <member name="T:Fluxer.Net.UpdateMessageRequest">
+            <remarks>
+            <see href="https://github.com/fluxerapp/fluxer/blob/848269a4d4df7349acfc861ff926b17fe4c4a548/packages/api/src/channel/MessageTypes.tsx#L32"/>
+            </remarks>
+        </member>
+        <member name="P:Fluxer.Net.UpdateMessageRequest.Content">
+            <summary>
+            The message content (up to 2000 characters)
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.UpdateMessageRequest.Embeds">
+            <summary>
+            Array of embed objects to include in the message
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.UpdateMessageRequest.AllowedMentions">
+            <summary>
+            Controls which mentions trigger notifications
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.UpdateMessageRequest.Flags">
+            <summary>
+            Message flags bitfield
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.UpdateMessageRequest.Attachments">
+            <summary>
+            Array of attachment objects to keep or add
+            </summary>
+        </member>
+    </members>
+</doc>
+ions">
             <summary>
             File extensions to exclude
             </summary>

@@ -1,12 +1,8 @@
-﻿using Fluxer.Net.Rest;
-using Fluxer.Net.Rest.Requests;
+﻿using Fluxer.Net.Rest.Requests;
 using Newtonsoft.Json;
 
 namespace Fluxer.Net;
 
-/// <remarks>
-/// <see href="https://github.com/fluxerapp/fluxer/blob/848269a4d4df7349acfc861ff926b17fe4c4a548/packages/api/src/channel/MessageTypes.tsx#L32"/>
-/// </remarks>
 public class UpdateMessageRequest
 {
     /// <summary>

@@ -4,6 +4,8 @@
   href: guides/
 - name: Examples
   href: example/
+- name: Contribute
+  href: contribute/
 - name: API
   href: api/
   topicUid: API.Docs

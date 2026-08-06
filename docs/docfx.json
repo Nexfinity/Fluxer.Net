@@ -27,7 +27,8 @@
     "resource": [
       {
         "files": [
-          "**/images/**"
+          "**/images/**",
+          "../logo.png"
         ]
       }
     ],
@@ -40,7 +41,9 @@
     "globalMetadata": {
 	    "_appTitle": "Fluxer.net Documentation",
       "_appName": "Fluxer.net",
-      "_enableSearch": true
+      "_enableSearch": true,
+      "_appLogoPath": "../logo.png",
+      "_appFaviconPath": "../logo.png"
     }
   }
 }
