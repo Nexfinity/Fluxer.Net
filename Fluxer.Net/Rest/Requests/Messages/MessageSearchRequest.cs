@@ -3,9 +3,6 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Fluxer.Net;
 
-/// <remarks>
-/// <see href="https://github.com/fluxerapp/fluxer/blob/d843d6f3f8a0bd850673ba55036354093977109f/packages/schema/src/domains/message/MessageRequestSchemas.tsx#L181"/>
-/// </remarks>
 public class MessageSearchRequest
 {
     /// <summary>
@@ -44,7 +41,7 @@ public class MessageSearchRequest
     [MaxLength(100)]
     [JsonProperty("Multiple content queries to search for")]
     public HashSet<string>? Contents { get; set; }
-    
+
     /// <summary>
     /// Exact phrases that must appear contiguously in message content
     /// </summary>
@@ -98,13 +95,13 @@ public class MessageSearchRequest
     /// </summary>
     [JsonProperty("mentions")]
     public HashSet<ulong>? MentionUserIds { get; set; }
-    
+
     /// <summary>
     /// User IDs that must not be mentioned
     /// </summary>
     [JsonProperty("exclude_mentions")]
     public HashSet<ulong>? ExcludeMentionUserIds { get; set; }
-    
+
     /// <summary>
     /// Filter by whether message mentions everyone
     /// </summary>

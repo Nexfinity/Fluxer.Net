@@ -2,9 +2,6 @@
 
 namespace Fluxer.Net;
 
-/// <remarks>
-/// <see href="https://github.com/fluxerapp/fluxer/blob/c2b69be17d1877c5bb82d10c77fa67cbe4e882d7/packages/schema/src/domains/guild/GuildAuditLogSchemas.tsx#L71"/>
-/// </remarks>
 public class GuildAuditLogEntryJson
 {
     [JsonRequired]
@@ -31,9 +28,6 @@ public class GuildAuditLogEntryJson
     public AuditLogResponseItemChangeJson[]? Changes { get; set; }
 }
 
-/// <remarks>
-/// <see href="https://github.com/fluxerapp/fluxer/blob/c2b69be17d1877c5bb82d10c77fa67cbe4e882d7/packages/schema/src/domains/guild/GuildAuditLogSchemas.tsx#L54C7-L54C28"/>
-/// </remarks>
 public class AuditLogResponseItemOptions
 {
     [JsonProperty("channel_id")]

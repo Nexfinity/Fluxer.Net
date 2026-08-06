@@ -4,9 +4,6 @@ namespace Fluxer.Net;
 
 
 /// <inheritdoc />
-/// <remarks>
-/// <see href="https://github.com/fluxerapp/fluxer/blob/4f5704fa1f6426d65a12ee5fef13c0104669d08e/packages/schema/src/domains/channel/ChannelSchemas.tsx#L51"/>
-/// </remarks>
 public class ChannelJson : IChannel
 {
 

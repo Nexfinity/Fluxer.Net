@@ -3,10 +3,6 @@
 /// <summary>
 /// 
 /// </summary>
-/// <remarks>
-/// <see href="https://github.com/fluxerapp/fluxer/blob/c2b69be17d1877c5bb82d10c77fa67cbe4e882d7/packages/schema/src/primitives/AuditLogValidators.tsx#L23C14-L23C32"/>
-/// <see href="https://github.com/fluxerapp/fluxer/blob/c2b69be17d1877c5bb82d10c77fa67cbe4e882d7/packages/constants/src/AuditLogActionType.tsx#L20"/>
-/// </remarks>
 public enum AuditLogActionType
 {
     GUILD_UPDATE = 1,

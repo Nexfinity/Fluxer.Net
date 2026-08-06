@@ -2,9 +2,6 @@
 
 namespace Fluxer.Net;
 
-/// <remarks>
-/// <see href="https://github.com/fluxerapp/fluxer/blob/38146cc2babb504bfa9e71f61a60dd57ab2c1b67/packages/schema/src/domains/guild/GuildEmojiSchemas.tsx#L77C14-L77C44"/>
-/// </remarks>
 public class GuildStickerBulkCreateJson
 {
     [JsonProperty("success")]
