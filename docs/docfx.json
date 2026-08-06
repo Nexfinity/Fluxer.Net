@@ -28,7 +28,7 @@
       {
         "files": [
           "**/images/**",
-          "../logo.png"
+          "logo.png"
         ]
       }
     ],
@@ -42,8 +42,8 @@
 	    "_appTitle": "Fluxer.net Documentation",
       "_appName": "Fluxer.net",
       "_enableSearch": true,
-      "_appLogoPath": "../logo.png",
-      "_appFaviconPath": "../logo.png"
+      "_appLogoPath": "logo.png",
+      "_appFaviconPath": "logo.png"
     }
   }
 }
