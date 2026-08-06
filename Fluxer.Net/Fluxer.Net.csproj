@@ -15,8 +15,8 @@
     <Company>Nexfinity</Company>
     <Description>A .NET library for Fluxer bot development.</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageProjectUrl>https://github.com/nexfinity/fluxer.net</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/Nexfinity/Fluxer.Net.git</RepositoryUrl>
+    <PackageProjectUrl>https://fluxer.net</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Nexfinity/Fluxer.Net</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
 
     <!-- Optional but good practice -->
