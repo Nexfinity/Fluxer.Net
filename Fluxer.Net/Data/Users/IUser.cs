@@ -1,11 +1,16 @@
 ﻿namespace Fluxer.Net;
 
-public interface IUser
+public interface IUser : ISnowflake
 {
     /// <summary>
     /// The unique identifier (snowflake) for this user.
     /// </summary>
-    ulong Id { get; }
+    new ulong Id { get; }
+
+    /// <summary>
+    /// User created at UTC.
+    /// </summary>
+    new DateTimeOffset CreatedAt { get; }
 
     /// <summary>
     /// Get the mention for the user.

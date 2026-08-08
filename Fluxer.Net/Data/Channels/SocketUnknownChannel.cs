@@ -2,11 +2,6 @@
 
 public class SocketUnknownChannel : Channel
 {
-    /// <summary>
-    /// Permissions for the channel.
-    /// </summary>
-    public ChannelPermissions Permissions { get; internal set; }
-
     internal SocketUnknownChannel(FluxerBaseClient client) : base(client)
     {
 
@@ -82,10 +77,5 @@ public class SocketUnknownChannel : Channel
     internal override void Update(FluxerBaseClient client, ChannelJson json)
     {
         base.Update(client, json);
-        PermissionOverwriteJson? overwrite = json.PermissionOverwrites.FirstOrDefault(x => x.Id == Id);
-        if (overwrite != null)
-            Permissions = overwrite.Allow;
-        else
-            Permissions = new ChannelPermissions(0);
     }
 }

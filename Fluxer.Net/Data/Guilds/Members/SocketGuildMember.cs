@@ -17,15 +17,38 @@ public class SocketGuildMember : GuildMember
     public IEnumerable<SocketRole> Roles
             => RoleIds.Select(id => Guild.Roles[id]).Where(x => x != null);
 
-    public bool HasPermission(Permissions permission)
+    public bool HasPermission(GuildPermission permission)
     {
-        foreach (var r in Roles)
+        if (UserId == Guild.OwnerId)
+            return true;
+
+        foreach (SocketRole r in Roles)
         {
+            if (r.Permissions.Administrator)
+                return true;
+
             if (r.Permissions.RawValue.HasFlag(permission))
                 return true;
         }
 
         return false;
+    }
+
+
+    public ChannelPermissions GetPermissions(Channel channel)
+    {
+        ChannelPermissions perms = new ChannelPermissions(GuildPermission.None);
+
+        foreach (SocketRole r in Roles)
+        {
+            if (r.Permissions.Administrator || UserId == Guild.OwnerId)
+                return new ChannelPermissions((GuildPermission)ulong.MaxValue);
+
+            //if (r.Permissions.RawValue.HasFlag(permission))
+            //    return true;
+        }
+
+        return perms;
     }
 
     internal SocketGuildMember(FluxerBaseClient client) : base(client)

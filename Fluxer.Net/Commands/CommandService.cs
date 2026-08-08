@@ -84,36 +84,51 @@ public class CommandService
     /// <param name="argPos">The position in the message where arguments begin.</param>
     public async Task<IResult> ExecuteAsync(CommandContext context, int argPos)
     {
-        var input = context.Message.Content?.Substring(argPos);
-        if (string.IsNullOrWhiteSpace(input))
-            return ExecuteResult.FromError(CommandError.ParseFailed, "No input provided");
-
-        // Split input into command name and arguments
-        var parts = input.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-        if (parts.Length == 0)
-            return ExecuteResult.FromError(CommandError.ParseFailed, "No command specified");
-
-        var commandName = parts[0].ToLowerInvariant();
-        List<string> argList = parts.Skip(1).ToList();
-
-        // Find matching command
-        CommandInfo? matchedCommand = null;
-
-        foreach (ModuleInfo module in _modules)
+        try
         {
-            if (!string.IsNullOrEmpty(module.Group) && module.Group.Equals(commandName, StringComparison.OrdinalIgnoreCase))
+            var input = context.Message.Content?.Substring(argPos);
+            if (string.IsNullOrWhiteSpace(input))
+                return ExecuteResult.FromError(CommandError.ParseFailed, "No input provided");
+
+            // Split input into command name and arguments
+            var parts = input.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            if (parts.Length == 0)
+                return ExecuteResult.FromError(CommandError.ParseFailed, "No command specified");
+
+            var commandName = parts[0].ToLowerInvariant();
+            List<string> argList = parts.Skip(1).ToList();
+
+            // Find matching command
+            CommandInfo? matchedCommand = null;
+
+            foreach (ModuleInfo module in _modules)
             {
-                CommandInfo? GroupCommand = module.Commands.FirstOrDefault(x => string.IsNullOrEmpty(x.Name));
-                if (GroupCommand != null)
-                    matchedCommand = GroupCommand;
+                if (!string.IsNullOrEmpty(module.Group) && module.Group.Equals(commandName, StringComparison.OrdinalIgnoreCase))
+                {
+                    CommandInfo? GroupCommand = module.Commands.FirstOrDefault(x => string.IsNullOrEmpty(x.Name));
+                    if (GroupCommand != null)
+                        matchedCommand = GroupCommand;
+                    else
+                    {
+                        if (parts.Length < 2)
+                            continue;
+
+                        commandName = parts[1].ToLowerInvariant();
+                        argList = parts.Skip(2).ToList();
+
+                        foreach (CommandInfo command in module.Commands)
+                        {
+                            if (command.Name.Equals(commandName, StringComparison.OrdinalIgnoreCase) ||
+                                command.Aliases.Any(a => a.Equals(commandName, StringComparison.OrdinalIgnoreCase)))
+                            {
+                                matchedCommand = command;
+                                break;
+                            }
+                        }
+                    }
+                }
                 else
                 {
-                    if (parts.Length < 2)
-                        continue;
-
-                    commandName = parts[1].ToLowerInvariant();
-                    argList = parts.Skip(2).ToList();
-
                     foreach (CommandInfo command in module.Commands)
                     {
                         if (command.Name.Equals(commandName, StringComparison.OrdinalIgnoreCase) ||
@@ -124,47 +139,39 @@ public class CommandService
                         }
                     }
                 }
+
+                if (matchedCommand != null) break;
+            }
+
+            if (matchedCommand == null)
+            {
+                _logger?.Debug("Command not found: {CommandName}", commandName);
+                return ExecuteResult.FromError(CommandError.UnknownCommand, $"Unknown command: {commandName}");
+            }
+
+            // Parse arguments
+            var parseResult = ParseArguments(matchedCommand, argList);
+            if (parseResult is IResult result && !result.IsSuccess)
+                return result;
+
+            var args = (object[])parseResult;
+
+            // Execute command
+            _logger?.Debug("Executing command {CommandName} with {ArgCount} arguments", commandName, args.Length);
+
+            if (matchedCommand.RunMode == RunMode.Async)
+            {
+                _ = Task.Run(async () => await matchedCommand.ExecuteAsync(context, args, _services));
+                return ExecuteResult.FromSuccess();
             }
             else
             {
-                foreach (CommandInfo command in module.Commands)
-                {
-                    if (command.Name.Equals(commandName, StringComparison.OrdinalIgnoreCase) ||
-                        command.Aliases.Any(a => a.Equals(commandName, StringComparison.OrdinalIgnoreCase)))
-                    {
-                        matchedCommand = command;
-                        break;
-                    }
-                }
+                return await matchedCommand.ExecuteAsync(context, args, _services);
             }
-
-            if (matchedCommand != null) break;
         }
-
-        if (matchedCommand == null)
+        catch (Exception ex)
         {
-            _logger?.Debug("Command not found: {CommandName}", commandName);
-            return ExecuteResult.FromError(CommandError.UnknownCommand, $"Unknown command: {commandName}");
-        }
-
-        // Parse arguments
-        var parseResult = ParseArguments(matchedCommand, argList);
-        if (parseResult is IResult result && !result.IsSuccess)
-            return result;
-
-        var args = (object[])parseResult;
-
-        // Execute command
-        _logger?.Debug("Executing command {CommandName} with {ArgCount} arguments", commandName, args.Length);
-
-        if (matchedCommand.RunMode == RunMode.Async)
-        {
-            _ = Task.Run(async () => await matchedCommand.ExecuteAsync(context, args, _services));
-            return ExecuteResult.FromSuccess();
-        }
-        else
-        {
-            return await matchedCommand.ExecuteAsync(context, args, _services);
+            return ExecuteResult.FromError(CommandError.Exception, ex.Message);
         }
     }
 

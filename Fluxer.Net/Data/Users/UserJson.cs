@@ -1,3 +1,4 @@
+using Fluxer.Net.Extensions;
 using Newtonsoft.Json;
 
 namespace Fluxer.Net;
@@ -44,6 +45,8 @@ public class UserJson : IUser
     /// <inheritdoc />
     [JsonProperty("system")]
     public bool IsSystem { get; set; }
+
+    public DateTimeOffset CreatedAt => SnowflakeUtils.FromSnowflake(Id);
 
     /// <inheritdoc />
     public string GetCurrentName()

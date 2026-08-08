@@ -1,4 +1,4 @@
-namespace Fluxer.Net;
+﻿namespace Fluxer.Net;
 
 /// <summary>
 /// Represents guild and channel permissions in Fluxer. Multiple permissions can be combined using bitwise OR.
@@ -8,7 +8,7 @@ namespace Fluxer.Net;
 /// Use bitwise operations to check, add, or remove permissions.
 /// </remarks>
 [Flags]
-public enum Permissions : ulong
+public enum ChannelPermission : ulong
 {
     /// <summary>
     /// No permissions granted.
@@ -21,39 +21,14 @@ public enum Permissions : ulong
     CreateInstantInvite = 1UL << 0,
 
     /// <summary>
-    /// Allows kicking members from the guild.
+    /// Allows management and editing of the channel.
     /// </summary>
-    KickMembers = 1UL << 1,
-
-    /// <summary>
-    /// Allows banning members from the guild.
-    /// </summary>
-    BanMembers = 1UL << 2,
-
-    /// <summary>
-    /// Grants all permissions and bypasses channel permission overwrites.
-    /// </summary>
-    Administrator = 1UL << 3,
-
-    /// <summary>
-    /// Allows management and editing of channels.
-    /// </summary>
-    ManageChannels = 1UL << 4,
-
-    /// <summary>
-    /// Allows management and editing of the guild.
-    /// </summary>
-    ManageGuild = 1UL << 5,
+    ManageChannel = 1UL << 4,
 
     /// <summary>
     /// Allows adding reactions to messages.
     /// </summary>
     AddReactions = 1UL << 6,
-
-    /// <summary>
-    /// Allows viewing the guild audit log.
-    /// </summary>
-    ViewAuditLog = 1UL << 7,
 
     /// <summary>
     /// Allows using priority speaker in voice channels.
@@ -111,11 +86,6 @@ public enum Permissions : ulong
     UseExternalEmojis = 1UL << 18,
 
     /// <summary>
-    /// Allows viewing guild insights and analytics.
-    /// </summary>
-    ViewGuildInsights = 1UL << 19,
-
-    /// <summary>
     /// Allows joining voice channels.
     /// </summary>
     Connect = 1UL << 20,
@@ -146,29 +116,9 @@ public enum Permissions : ulong
     UseVad = 1UL << 25,
 
     /// <summary>
-    /// Allows changing own nickname.
-    /// </summary>
-    ChangeNickname = 1UL << 26,
-
-    /// <summary>
-    /// Allows managing nicknames of other members.
-    /// </summary>
-    ManageNicknames = 1UL << 27,
-
-    /// <summary>
-    /// Allows management and editing of roles.
-    /// </summary>
-    ManageRoles = 1UL << 28,
-
-    /// <summary>
     /// Allows management and editing of webhooks.
     /// </summary>
     ManageWebhooks = 1UL << 29,
-
-    /// <summary>
-    /// Allows management and editing of emojis, stickers, and soundboard sounds.
-    /// </summary>
-    ManageExpressions = 1UL << 30,
 
     /// <summary>
     /// Allows using application commands (slash commands, context menu commands).
@@ -179,11 +129,6 @@ public enum Permissions : ulong
     /// Allows requesting to speak in stage channels.
     /// </summary>
     RequestToSpeak = 1UL << 32,
-
-    /// <summary>
-    /// Allows managing guild events.
-    /// </summary>
-    ManageEvents = 1UL << 33,
 
     /// <summary>
     /// Allows management of threads (archiving, locking, deleting).
@@ -216,29 +161,9 @@ public enum Permissions : ulong
     UseEmbeddedActivities = 1UL << 39,
 
     /// <summary>
-    /// Allows timing out members (preventing them from sending messages/joining voice).
-    /// </summary>
-    ModerateMembers = 1UL << 40,
-
-    /// <summary>
-    /// Allows viewing monetization analytics for creators.
-    /// </summary>
-    ViewCreatorMonetizationAnalytics = 1UL << 41,
-
-    /// <summary>
     /// Allows using the soundboard in voice channels.
     /// </summary>
     UseSoundboard = 1UL << 42,
-
-    /// <summary>
-    /// Allows creating custom emojis, stickers, and soundboard sounds.
-    /// </summary>
-    CreateExpressions = 1UL << 43,
-
-    /// <summary>
-    /// Allows creating guild events.
-    /// </summary>
-    CreateEvents = 1UL << 44,
 
     /// <summary>
     /// Allows using soundboard sounds from other guilds.
@@ -283,5 +208,5 @@ public enum Permissions : ulong
     /// <summary>
     /// Allows you to view members in the channel.
     /// </summary>
-    ViewChannelMembers = 1UL << 53,
+    ViewChannelMembers = 1UL << 54,
 }

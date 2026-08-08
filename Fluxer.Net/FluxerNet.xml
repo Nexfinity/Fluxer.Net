@@ -120,6 +120,38 @@
             </summary>
             <param name="text">The remarks text.</param>
         </member>
+        <member name="T:Fluxer.Net.Commands.RequireBotPermissionAttribute">
+            <summary>
+            Requires the bot to have specific permissions to execute the command.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Commands.RequireBotPermissionAttribute.GuildPermissions">
+            <summary>
+            Gets the required guild permissions.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Commands.RequireBotPermissionAttribute.ChannelPermissions">
+            <summary>
+            Gets the required guild permissions.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Commands.RequireBotPermissionAttribute.#ctor(Fluxer.Net.GuildPermission)">
+            <summary>
+            Creates a new bot permission precondition.
+            </summary>
+            <param name="permissions">The permissions required.</param>
+        </member>
+        <member name="M:Fluxer.Net.Commands.RequireBotPermissionAttribute.#ctor(Fluxer.Net.ChannelPermission)">
+            <summary>
+            Creates a new bot permission precondition.
+            </summary>
+            <param name="permissions">The permissions required.</param>
+        </member>
+        <member name="M:Fluxer.Net.Commands.RequireBotPermissionAttribute.CheckPermissionsAsync(Fluxer.Net.Commands.CommandContext,Fluxer.Net.Commands.CommandInfo,System.IServiceProvider)">
+            <summary>
+            Checks if the bot has the required permissions.
+            </summary>
+        </member>
         <member name="T:Fluxer.Net.Commands.ContextType">
             <summary>
             Specifies where a command can be executed.
@@ -2277,6 +2309,26 @@
             The duration of the media in seconds.
             </summary>
         </member>
+        <member name="T:Fluxer.Net.ISnowflake">
+            <summary>
+            Snowflake object with unique ID.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.ISnowflake.Id">
+            <summary>
+            Fluxer unique identifier (snowflake) for the object.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.ISnowflake.CreatedAt">
+            <summary>
+            Object created at UTC.
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.Entity">
+            <summary>
+            Fluxer entity with client attached.
+            </summary>
+        </member>
         <member name="T:Fluxer.Net.Emoji">
             <inheritdoc />
         </member>
@@ -2834,94 +2886,6 @@
             Proxied URL to the category preview image.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.ChannelPermissions.RawValue">
-            <summary>
-            Raw permissions flag for the guild.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.ChannelPermissions.ManagePermissions">
-            <summary>
-            Edit overwrites for roles and members in this channel.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.ChannelPermissions.ManageChannels">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.ChannelPermissions.CreateInstantInvite">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.ChannelPermissions.ManageWebhooks">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.ChannelPermissions.ViewChannel">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.ChannelPermissions.SendMessages">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.ChannelPermissions.SendTtsMessages">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.ChannelPermissions.ManageMessages">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.ChannelPermissions.PinMessages">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.ChannelPermissions.EmbedLinks">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.ChannelPermissions.AttachFiles">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.ChannelPermissions.ReadMessageHistory">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.ChannelPermissions.MentionEveryone">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.ChannelPermissions.UseExternalEmojis">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.ChannelPermissions.UseExternalStickers">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.ChannelPermissions.AddReactions">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.ChannelPermissions.BypassSlowmode">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.ChannelPermissions.Connect">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.ChannelPermissions.Speak">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.ChannelPermissions.Stream">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.ChannelPermissions.UseVad">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.ChannelPermissions.PrioritySpeaker">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.ChannelPermissions.MuteMembers">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.ChannelPermissions.DeafenMembers">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.ChannelPermissions.MoveMembers">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.ChannelPermissions.UpdateRtcRegion">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.ChannelPermissions.ViewChannelMembers">
-            <inheritdoc />
-        </member>
         <member name="T:Fluxer.Net.Guild">
             <inheritdoc />
         </member>
@@ -3044,254 +3008,6 @@
         <member name="P:Fluxer.Net.GuildJson.MemberCount">
             <inheritdoc />
         </member>
-        <member name="P:Fluxer.Net.GuildPermissions.RawValue">
-            <summary>
-            Raw permissions flag for the guild.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.GuildPermissions.Administrator">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildPermissions.ViewAuditLog">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildPermissions.ManageGuild">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildPermissions.ManageRoles">
-            <summary>
-            Create, edit, or delete roles below your highest role. Also allows editing channel permission overwrites.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.GuildPermissions.ManageChannels">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildPermissions.KickMembers">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildPermissions.BanMembers">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildPermissions.CreateInstantInvite">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildPermissions.ChangeNickname">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildPermissions.ManageNicknames">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildPermissions.CreateExpressions">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildPermissions.ManageExpressions">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildPermissions.ManageWebhooks">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildPermissions.ViewChannel">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildPermissions.SendMessages">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildPermissions.SendTtsMessages">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildPermissions.ManageMessages">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildPermissions.PinMessages">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildPermissions.EmbedLinks">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildPermissions.AttachFiles">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildPermissions.ReadMessageHistory">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildPermissions.MentionEveryone">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildPermissions.UseExternalEmojis">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildPermissions.UseExternalStickers">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildPermissions.AddReactions">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildPermissions.BypassSlowmode">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildPermissions.ModerateMembers">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildPermissions.Connect">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildPermissions.Speak">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildPermissions.Stream">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildPermissions.UseVad">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildPermissions.PrioritySpeaker">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildPermissions.MuteMembers">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildPermissions.DeafenMembers">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildPermissions.MoveMembers">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildPermissions.UpdateRtcRegion">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildPermissions.ViewChannelMembers">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.IChannelPermissions.ManageChannels">
-            <summary>
-            Create, edit, or delete channels and categories.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IChannelPermissions.CreateInstantInvite">
-            <summary>
-            Create invites to invite other users to the guild.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IChannelPermissions.ManageWebhooks">
-            <summary>
-            Create, edit, or delete webhooks.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IChannelPermissions.ViewChannel">
-            <summary>
-            View this channel.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IChannelPermissions.SendMessages">
-            <summary>
-            Send messages in this channel.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IChannelPermissions.SendTtsMessages">
-            <summary>
-            Send text-to-speech messages.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IChannelPermissions.ManageMessages">
-            <summary>
-            Delete messages from other users.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IChannelPermissions.PinMessages">
-            <summary>
-            Pin messages in the channel.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IChannelPermissions.EmbedLinks">
-            <summary>
-            Embed links in the channel.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IChannelPermissions.AttachFiles">
-            <summary>
-            Upload files in the channel.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IChannelPermissions.ReadMessageHistory">
-            <summary>
-            Read all messages in the channel.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IChannelPermissions.MentionEveryone">
-            <summary>
-            Mention everyone or any role (even if the role isn't set to be mentionable)
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IChannelPermissions.UseExternalEmojis">
-            <summary>
-            Use emojis from other guilds.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IChannelPermissions.UseExternalStickers">
-            <summary>
-            Use stickers from other guilds.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IChannelPermissions.AddReactions">
-            <summary>
-            Add new reactions to messages.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IChannelPermissions.BypassSlowmode">
-            <summary>
-            Ignore per-channel message rate limits..
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IChannelPermissions.Connect">
-            <summary>
-            Connect to the voice channel.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IChannelPermissions.Speak">
-            <summary>
-            Speak in the voice channel.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IChannelPermissions.Stream">
-            <summary>
-            Allow video and screenshare in the voice channel.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IChannelPermissions.UseVad">
-            <summary>
-            Denied if push to talk is required in the voice channel.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IChannelPermissions.PrioritySpeaker">
-            <summary>
-            Prioritize your voice in the voice channel.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IChannelPermissions.MuteMembers">
-            <summary>
-            Mute users in the voice channel.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IChannelPermissions.DeafenMembers">
-            <summary>
-            Deafen users in the voice channel.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IChannelPermissions.MoveMembers">
-            <summary>
-            Drag members between voice channels they can access.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IChannelPermissions.UpdateRtcRegion">
-            <summary>
-            Update the voice region for this voice channel.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IChannelPermissions.ViewChannelMembers">
-            <summary>
-            Allows you to view members in the channel.
-            </summary>
-        </member>
         <member name="P:Fluxer.Net.IGuild.OwnerId">
             <summary>
             The ID of the guild owner.
@@ -3387,56 +3103,6 @@
             <remarks>
             Only available from rest get guild not socket guild.
             </remarks>
-        </member>
-        <member name="P:Fluxer.Net.IGuildPermissions.Administrator">
-            <summary>
-            Grants all permissions and bypasses channel restrictions. Highly sensitive.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IGuildPermissions.ViewAuditLog">
-            <summary>
-            Read the community's audit log of changes and moderation actions.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IGuildPermissions.ManageGuild">
-            <summary>
-            Edit global settings like name, description, and icon.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IGuildPermissions.KickMembers">
-            <summary>
-            Kick users from the guild.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IGuildPermissions.BanMembers">
-            <summary>
-            Ban users from joining the guild.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IGuildPermissions.ChangeNickname">
-            <summary>
-            Update your own nickname.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IGuildPermissions.ManageNicknames">
-            <summary>
-            Change other members nicknames.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IGuildPermissions.CreateExpressions">
-            <summary>
-            Upload new emojis and stickers, and manage your own creations.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IGuildPermissions.ManageExpressions">
-            <summary>
-            Edit or delete emojis and stickers created by other members.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IGuildPermissions.ModerateMembers">
-            <summary>
-            Prevent members from sending messages, reacting, and joining voice for a duration.
-            </summary>
         </member>
         <member name="P:Fluxer.Net.IPartialGuild.Id">
             <summary>
@@ -4083,7 +3749,7 @@
         <member name="M:Fluxer.Net.PartialGuildJson.GetEmbedSplashUrl(System.Int32)">
             <inheritdoc />
         </member>
-        <member name="T:Fluxer.Net.Permissions">
+        <member name="T:Fluxer.Net.ChannelPermission">
             <summary>
             Represents guild and channel permissions in Fluxer. Multiple permissions can be combined using bitwise OR.
             </summary>
@@ -4092,279 +3758,874 @@
             Use bitwise operations to check, add, or remove permissions.
             </remarks>
         </member>
-        <member name="F:Fluxer.Net.Permissions.None">
+        <member name="F:Fluxer.Net.ChannelPermission.None">
             <summary>
             No permissions granted.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Permissions.CreateInstantInvite">
+        <member name="F:Fluxer.Net.ChannelPermission.CreateInstantInvite">
             <summary>
             Allows creation of instant invites to the guild or channel.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Permissions.KickMembers">
+        <member name="F:Fluxer.Net.ChannelPermission.ManageChannel">
             <summary>
-            Allows kicking members from the guild.
+            Allows management and editing of the channel.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Permissions.BanMembers">
-            <summary>
-            Allows banning members from the guild.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Permissions.Administrator">
-            <summary>
-            Grants all permissions and bypasses channel permission overwrites.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Permissions.ManageChannels">
-            <summary>
-            Allows management and editing of channels.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Permissions.ManageGuild">
-            <summary>
-            Allows management and editing of the guild.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Permissions.AddReactions">
+        <member name="F:Fluxer.Net.ChannelPermission.AddReactions">
             <summary>
             Allows adding reactions to messages.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Permissions.ViewAuditLog">
-            <summary>
-            Allows viewing the guild audit log.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Permissions.PrioritySpeaker">
+        <member name="F:Fluxer.Net.ChannelPermission.PrioritySpeaker">
             <summary>
             Allows using priority speaker in voice channels.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Permissions.Stream">
+        <member name="F:Fluxer.Net.ChannelPermission.Stream">
             <summary>
             Allows streaming video in voice channels.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Permissions.ViewChannel">
+        <member name="F:Fluxer.Net.ChannelPermission.ViewChannel">
             <summary>
             Allows viewing channels (includes reading messages in text channels and joining voice channels).
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Permissions.SendMessages">
+        <member name="F:Fluxer.Net.ChannelPermission.SendMessages">
             <summary>
             Allows sending messages in text channels.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Permissions.SendTtsMessages">
+        <member name="F:Fluxer.Net.ChannelPermission.SendTtsMessages">
             <summary>
             Allows sending text-to-speech messages.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Permissions.ManageMessages">
+        <member name="F:Fluxer.Net.ChannelPermission.ManageMessages">
             <summary>
             Allows deleting and pinning messages from other users.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Permissions.EmbedLinks">
+        <member name="F:Fluxer.Net.ChannelPermission.EmbedLinks">
             <summary>
             Allows links sent by the user to auto-embed.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Permissions.AttachFiles">
+        <member name="F:Fluxer.Net.ChannelPermission.AttachFiles">
             <summary>
             Allows uploading files and media to messages.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Permissions.ReadMessageHistory">
+        <member name="F:Fluxer.Net.ChannelPermission.ReadMessageHistory">
             <summary>
             Allows reading message history in channels.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Permissions.MentionEveryone">
+        <member name="F:Fluxer.Net.ChannelPermission.MentionEveryone">
             <summary>
             Allows using @everyone and @here mentions, and mentioning all roles.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Permissions.UseExternalEmojis">
+        <member name="F:Fluxer.Net.ChannelPermission.UseExternalEmojis">
             <summary>
             Allows using emojis from other guilds.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Permissions.ViewGuildInsights">
-            <summary>
-            Allows viewing guild insights and analytics.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Permissions.Connect">
+        <member name="F:Fluxer.Net.ChannelPermission.Connect">
             <summary>
             Allows joining voice channels.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Permissions.Speak">
+        <member name="F:Fluxer.Net.ChannelPermission.Speak">
             <summary>
             Allows speaking in voice channels.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Permissions.MuteMembers">
+        <member name="F:Fluxer.Net.ChannelPermission.MuteMembers">
             <summary>
             Allows muting members in voice channels.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Permissions.DeafenMembers">
+        <member name="F:Fluxer.Net.ChannelPermission.DeafenMembers">
             <summary>
             Allows deafening members in voice channels.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Permissions.MoveMembers">
+        <member name="F:Fluxer.Net.ChannelPermission.MoveMembers">
             <summary>
             Allows moving members between voice channels.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Permissions.UseVad">
+        <member name="F:Fluxer.Net.ChannelPermission.UseVad">
             <summary>
             Allows using voice activity detection (no push-to-talk required).
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Permissions.ChangeNickname">
-            <summary>
-            Allows changing own nickname.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Permissions.ManageNicknames">
-            <summary>
-            Allows managing nicknames of other members.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Permissions.ManageRoles">
-            <summary>
-            Allows management and editing of roles.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Permissions.ManageWebhooks">
+        <member name="F:Fluxer.Net.ChannelPermission.ManageWebhooks">
             <summary>
             Allows management and editing of webhooks.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Permissions.ManageExpressions">
-            <summary>
-            Allows management and editing of emojis, stickers, and soundboard sounds.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Permissions.UseApplicationCommands">
+        <member name="F:Fluxer.Net.ChannelPermission.UseApplicationCommands">
             <summary>
             Allows using application commands (slash commands, context menu commands).
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Permissions.RequestToSpeak">
+        <member name="F:Fluxer.Net.ChannelPermission.RequestToSpeak">
             <summary>
             Allows requesting to speak in stage channels.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Permissions.ManageEvents">
-            <summary>
-            Allows managing guild events.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Permissions.ManageThreads">
+        <member name="F:Fluxer.Net.ChannelPermission.ManageThreads">
             <summary>
             Allows management of threads (archiving, locking, deleting).
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Permissions.CreatePublicThreads">
+        <member name="F:Fluxer.Net.ChannelPermission.CreatePublicThreads">
             <summary>
             Allows creating public threads.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Permissions.CreatePrivateThreads">
+        <member name="F:Fluxer.Net.ChannelPermission.CreatePrivateThreads">
             <summary>
             Allows creating private threads.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Permissions.UseExternalStickers">
+        <member name="F:Fluxer.Net.ChannelPermission.UseExternalStickers">
             <summary>
             Allows using stickers from other guilds.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Permissions.SendMessagesInThreads">
+        <member name="F:Fluxer.Net.ChannelPermission.SendMessagesInThreads">
             <summary>
             Allows sending messages in threads.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Permissions.UseEmbeddedActivities">
+        <member name="F:Fluxer.Net.ChannelPermission.UseEmbeddedActivities">
             <summary>
             Allows using embedded activities (games, activities) in voice channels.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Permissions.ModerateMembers">
-            <summary>
-            Allows timing out members (preventing them from sending messages/joining voice).
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Permissions.ViewCreatorMonetizationAnalytics">
-            <summary>
-            Allows viewing monetization analytics for creators.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Permissions.UseSoundboard">
+        <member name="F:Fluxer.Net.ChannelPermission.UseSoundboard">
             <summary>
             Allows using the soundboard in voice channels.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Permissions.CreateExpressions">
-            <summary>
-            Allows creating custom emojis, stickers, and soundboard sounds.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Permissions.CreateEvents">
-            <summary>
-            Allows creating guild events.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Permissions.UseExternalSounds">
+        <member name="F:Fluxer.Net.ChannelPermission.UseExternalSounds">
             <summary>
             Allows using soundboard sounds from other guilds.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Permissions.SendVoiceMessages">
+        <member name="F:Fluxer.Net.ChannelPermission.SendVoiceMessages">
             <summary>
             Allows sending voice messages in text channels.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Permissions.SetVoiceChannelStatus">
+        <member name="F:Fluxer.Net.ChannelPermission.SetVoiceChannelStatus">
             <summary>
             Allows setting a custom status for voice channels.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Permissions.SendPolls">
+        <member name="F:Fluxer.Net.ChannelPermission.SendPolls">
             <summary>
             Allows sending polls in text channels.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Permissions.UseExternalApps">
+        <member name="F:Fluxer.Net.ChannelPermission.UseExternalApps">
             <summary>
             Allows using external applications in channels.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Permissions.PinMessages">
+        <member name="F:Fluxer.Net.ChannelPermission.PinMessages">
             <summary>
             Allows pinning messages in channels.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Permissions.BypassSlowmode">
+        <member name="F:Fluxer.Net.ChannelPermission.BypassSlowmode">
             <summary>
             Allows bypassing channel slowmode restrictions.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Permissions.UpdateRtcRegion">
+        <member name="F:Fluxer.Net.ChannelPermission.UpdateRtcRegion">
             <summary>
             Allows updating the RTC (voice) region for a channel.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Permissions.ViewChannelMembers">
+        <member name="F:Fluxer.Net.ChannelPermission.ViewChannelMembers">
             <summary>
             Allows you to view members in the channel.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.RawValue">
+            <summary>
+            Raw permissions flag for the guild.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.ManagePermissions">
+            <summary>
+            Edit overwrites for roles and members in this channel.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.ManageChannels">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.CreateInstantInvite">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.ManageWebhooks">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.ViewChannel">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.SendMessages">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.SendTtsMessages">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.ManageMessages">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.PinMessages">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.EmbedLinks">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.AttachFiles">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.ReadMessageHistory">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.MentionEveryone">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.UseExternalEmojis">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.UseExternalStickers">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.AddReactions">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.BypassSlowmode">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.Connect">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.Speak">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.Stream">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.UseVad">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.PrioritySpeaker">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.MuteMembers">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.DeafenMembers">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.MoveMembers">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.UpdateRtcRegion">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.ViewChannelMembers">
+            <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.GuildPermission">
+            <summary>
+            Represents guild and channel permissions in Fluxer. Multiple permissions can be combined using bitwise OR.
+            </summary>
+            <remarks>
+            Permissions are stored as a 64-bit unsigned integer where each bit represents a specific permission.
+            Use bitwise operations to check, add, or remove permissions.
+            </remarks>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.None">
+            <summary>
+            No permissions granted.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.CreateInstantInvite">
+            <summary>
+            Allows creation of instant invites to the guild or channel.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.KickMembers">
+            <summary>
+            Allows kicking members from the guild.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.BanMembers">
+            <summary>
+            Allows banning members from the guild.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.Administrator">
+            <summary>
+            Grants all permissions and bypasses channel permission overwrites.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.ManageChannels">
+            <summary>
+            Allows management and editing of channels.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.ManageGuild">
+            <summary>
+            Allows management and editing of the guild.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.AddReactions">
+            <summary>
+            Allows adding reactions to messages.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.ViewAuditLog">
+            <summary>
+            Allows viewing the guild audit log.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.PrioritySpeaker">
+            <summary>
+            Allows using priority speaker in voice channels.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.Stream">
+            <summary>
+            Allows streaming video in voice channels.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.ViewChannel">
+            <summary>
+            Allows viewing channels (includes reading messages in text channels and joining voice channels).
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.SendMessages">
+            <summary>
+            Allows sending messages in text channels.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.SendTtsMessages">
+            <summary>
+            Allows sending text-to-speech messages.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.ManageMessages">
+            <summary>
+            Allows deleting and pinning messages from other users.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.EmbedLinks">
+            <summary>
+            Allows links sent by the user to auto-embed.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.AttachFiles">
+            <summary>
+            Allows uploading files and media to messages.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.ReadMessageHistory">
+            <summary>
+            Allows reading message history in channels.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.MentionEveryone">
+            <summary>
+            Allows using @everyone and @here mentions, and mentioning all roles.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.UseExternalEmojis">
+            <summary>
+            Allows using emojis from other guilds.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.ViewGuildInsights">
+            <summary>
+            Allows viewing guild insights and analytics.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.Connect">
+            <summary>
+            Allows joining voice channels.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.Speak">
+            <summary>
+            Allows speaking in voice channels.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.MuteMembers">
+            <summary>
+            Allows muting members in voice channels.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.DeafenMembers">
+            <summary>
+            Allows deafening members in voice channels.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.MoveMembers">
+            <summary>
+            Allows moving members between voice channels.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.UseVad">
+            <summary>
+            Allows using voice activity detection (no push-to-talk required).
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.ChangeNickname">
+            <summary>
+            Allows changing own nickname.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.ManageNicknames">
+            <summary>
+            Allows managing nicknames of other members.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.ManageRoles">
+            <summary>
+            Allows management and editing of roles.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.ManageWebhooks">
+            <summary>
+            Allows management and editing of webhooks.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.ManageExpressions">
+            <summary>
+            Allows management and editing of emojis, stickers, and soundboard sounds.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.UseApplicationCommands">
+            <summary>
+            Allows using application commands (slash commands, context menu commands).
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.RequestToSpeak">
+            <summary>
+            Allows requesting to speak in stage channels.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.ManageEvents">
+            <summary>
+            Allows managing guild events.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.ManageThreads">
+            <summary>
+            Allows management of threads (archiving, locking, deleting).
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.CreatePublicThreads">
+            <summary>
+            Allows creating public threads.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.CreatePrivateThreads">
+            <summary>
+            Allows creating private threads.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.UseExternalStickers">
+            <summary>
+            Allows using stickers from other guilds.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.SendMessagesInThreads">
+            <summary>
+            Allows sending messages in threads.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.UseEmbeddedActivities">
+            <summary>
+            Allows using embedded activities (games, activities) in voice channels.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.ModerateMembers">
+            <summary>
+            Allows timing out members (preventing them from sending messages/joining voice).
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.ViewCreatorMonetizationAnalytics">
+            <summary>
+            Allows viewing monetization analytics for creators.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.UseSoundboard">
+            <summary>
+            Allows using the soundboard in voice channels.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.CreateExpressions">
+            <summary>
+            Allows creating custom emojis, stickers, and soundboard sounds.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.CreateEvents">
+            <summary>
+            Allows creating guild events.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.UseExternalSounds">
+            <summary>
+            Allows using soundboard sounds from other guilds.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.SendVoiceMessages">
+            <summary>
+            Allows sending voice messages in text channels.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.SetVoiceChannelStatus">
+            <summary>
+            Allows setting a custom status for voice channels.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.SendPolls">
+            <summary>
+            Allows sending polls in text channels.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.UseExternalApps">
+            <summary>
+            Allows using external applications in channels.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.PinMessages">
+            <summary>
+            Allows pinning messages in channels.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.BypassSlowmode">
+            <summary>
+            Allows bypassing channel slowmode restrictions.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.UpdateRtcRegion">
+            <summary>
+            Allows updating the RTC (voice) region for a channel.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.ViewChannelMembers">
+            <summary>
+            Allows you to view members in the channel.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.RawValue">
+            <summary>
+            Raw permissions flag for the guild.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.Administrator">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.ViewAuditLog">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.ManageGuild">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.ManageRoles">
+            <summary>
+            Create, edit, or delete roles below your highest role. Also allows editing channel permission overwrites.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.ManageChannels">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.KickMembers">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.BanMembers">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.CreateInstantInvite">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.ChangeNickname">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.ManageNicknames">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.CreateExpressions">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.ManageExpressions">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.ManageWebhooks">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.ViewChannel">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.SendMessages">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.SendTtsMessages">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.ManageMessages">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.PinMessages">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.EmbedLinks">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.AttachFiles">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.ReadMessageHistory">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.MentionEveryone">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.UseExternalEmojis">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.UseExternalStickers">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.AddReactions">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.BypassSlowmode">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.ModerateMembers">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.Connect">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.Speak">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.Stream">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.UseVad">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.PrioritySpeaker">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.MuteMembers">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.DeafenMembers">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.MoveMembers">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.UpdateRtcRegion">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.ViewChannelMembers">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.IChannelPermissions.ManageChannels">
+            <summary>
+            Create, edit, or delete channels and categories.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannelPermissions.CreateInstantInvite">
+            <summary>
+            Create invites to invite other users to the guild.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannelPermissions.ManageWebhooks">
+            <summary>
+            Create, edit, or delete webhooks.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannelPermissions.ViewChannel">
+            <summary>
+            View this channel.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannelPermissions.SendMessages">
+            <summary>
+            Send messages in this channel.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannelPermissions.SendTtsMessages">
+            <summary>
+            Send text-to-speech messages.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannelPermissions.ManageMessages">
+            <summary>
+            Delete messages from other users.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannelPermissions.PinMessages">
+            <summary>
+            Pin messages in the channel.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannelPermissions.EmbedLinks">
+            <summary>
+            Embed links in the channel.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannelPermissions.AttachFiles">
+            <summary>
+            Upload files in the channel.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannelPermissions.ReadMessageHistory">
+            <summary>
+            Read all messages in the channel.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannelPermissions.MentionEveryone">
+            <summary>
+            Mention everyone or any role (even if the role isn't set to be mentionable)
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannelPermissions.UseExternalEmojis">
+            <summary>
+            Use emojis from other guilds.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannelPermissions.UseExternalStickers">
+            <summary>
+            Use stickers from other guilds.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannelPermissions.AddReactions">
+            <summary>
+            Add new reactions to messages.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannelPermissions.BypassSlowmode">
+            <summary>
+            Ignore per-channel message rate limits..
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannelPermissions.Connect">
+            <summary>
+            Connect to the voice channel.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannelPermissions.Speak">
+            <summary>
+            Speak in the voice channel.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannelPermissions.Stream">
+            <summary>
+            Allow video and screenshare in the voice channel.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannelPermissions.UseVad">
+            <summary>
+            Denied if push to talk is required in the voice channel.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannelPermissions.PrioritySpeaker">
+            <summary>
+            Prioritize your voice in the voice channel.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannelPermissions.MuteMembers">
+            <summary>
+            Mute users in the voice channel.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannelPermissions.DeafenMembers">
+            <summary>
+            Deafen users in the voice channel.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannelPermissions.MoveMembers">
+            <summary>
+            Drag members between voice channels they can access.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannelPermissions.UpdateRtcRegion">
+            <summary>
+            Update the voice region for this voice channel.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannelPermissions.ViewChannelMembers">
+            <summary>
+            Allows you to view members in the channel.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IGuildPermissions.Administrator">
+            <summary>
+            Grants all permissions and bypasses channel restrictions. Highly sensitive.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IGuildPermissions.ViewAuditLog">
+            <summary>
+            Read the community's audit log of changes and moderation actions.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IGuildPermissions.ManageGuild">
+            <summary>
+            Edit global settings like name, description, and icon.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IGuildPermissions.KickMembers">
+            <summary>
+            Kick users from the guild.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IGuildPermissions.BanMembers">
+            <summary>
+            Ban users from joining the guild.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IGuildPermissions.ChangeNickname">
+            <summary>
+            Update your own nickname.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IGuildPermissions.ManageNicknames">
+            <summary>
+            Change other members nicknames.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IGuildPermissions.CreateExpressions">
+            <summary>
+            Upload new emojis and stickers, and manage your own creations.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IGuildPermissions.ManageExpressions">
+            <summary>
+            Edit or delete emojis and stickers created by other members.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IGuildPermissions.ModerateMembers">
+            <summary>
+            Prevent members from sending messages, reacting, and joining voice for a duration.
             </summary>
         </member>
         <member name="T:Fluxer.Net.GuildContentFilter">
@@ -6599,6 +6860,11 @@
             The unique identifier (snowflake) for this user.
             </summary>
         </member>
+        <member name="P:Fluxer.Net.IUser.CreatedAt">
+            <summary>
+            User created at UTC.
+            </summary>
+        </member>
         <member name="P:Fluxer.Net.IUser.Mention">
             <summary>
             Get the mention for the user.
@@ -6958,6 +7224,9 @@
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.User.Id">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.User.CreatedAt">
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.User.Mention">
@@ -7884,6 +8153,29 @@
         </member>
         <member name="M:Fluxer.Net.WebhookJson.GetAvatarOrDefaultUrl(System.Int32)">
             <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.Extensions.SnowflakeUtils">
+            <summary>
+            Provides a series of helper methods for handling snowflake identifiers.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Extensions.SnowflakeUtils.FromSnowflake(System.UInt64)">
+            <summary>
+            Resolves the time of which the snowflake is generated.
+            </summary>
+            <param name="value">The snowflake identifier to resolve.</param>
+            <returns>
+            A <see cref="T:System.DateTimeOffset" /> representing the time for when the object is generated.
+            </returns>
+        </member>
+        <member name="M:Fluxer.Net.Extensions.SnowflakeUtils.ToSnowflake(System.DateTimeOffset)">
+            <summary>
+            Generates a pseudo-snowflake identifier with a <see cref="T:System.DateTimeOffset"/>.
+            </summary>
+            <param name="value">The time to be used in the new snowflake.</param>
+            <returns>
+            A <see cref="T:System.UInt64" /> representing the newly generated snowflake identifier.
+            </returns>
         </member>
         <member name="T:Fluxer.Net.Extensions.StringUInt64Converter">
             <summary>
@@ -9345,6 +9637,51 @@
             This sends a VOICE_STATE_UPDATE packet to the gateway. The server will respond with
             VOICE_STATE_UPDATE and VOICE_SERVER_UPDATE events containing connection information.
             </remarks>
+        </member>
+        <member name="T:Fluxer.Net.OAuth.FluxerOAuthExtensions">
+            <Summary>
+            Extension methods for handling fluxer oauth client.
+            </Summary>
+        </member>
+        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.AddFluxerClient(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,System.String,Fluxer.Net.FluxerConfig)">
+            <Summary>
+            Add Fluxer oauth client on dependency injection service.
+            </Summary>
+        </member>
+        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.GetFluxerClaims(System.Security.Claims.ClaimsPrincipal,Fluxer.Net.FluxerBaseClient)">
+            <Summary>
+            Get Fluxer specific claims for a claim user.
+            </Summary>
+        </member>
+        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.AddFluxer(Microsoft.AspNetCore.Authentication.AuthenticationBuilder)">
+            <Summary>
+            Add Fluxer oauth client on dependency injection service.
+            </Summary>
+        </member>
+        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.AddFluxer(Microsoft.AspNetCore.Authentication.AuthenticationBuilder,System.Action{Fluxer.Net.OAuth.FluxerOAuthOptions})">
+            <Summary>
+            Add Fluxer oauth client on dependency injection service.
+            </Summary>
+        </member>
+        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.AddFluxer(Microsoft.AspNetCore.Authentication.AuthenticationBuilder,System.String,System.Action{Fluxer.Net.OAuth.FluxerOAuthOptions})">
+            <Summary>
+            Add Fluxer oauth client on dependency injection service.
+            </Summary>
+        </member>
+        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.AddFluxer(Microsoft.AspNetCore.Authentication.AuthenticationBuilder,System.String,System.String,System.Action{Fluxer.Net.OAuth.FluxerOAuthOptions})">
+            <Summary>
+            Add Fluxer oauth client on dependency injection service.
+            </Summary>
+        </member>
+        <member name="T:Fluxer.Net.OAuth.FluxerOAuthHandler">
+            <Summary>
+            Asp.net oauth handler for Fluxer.
+            </Summary>
+        </member>
+        <member name="M:Fluxer.Net.OAuth.FluxerOAuthHandler.#ctor(Microsoft.Extensions.Options.IOptionsMonitor{Fluxer.Net.OAuth.FluxerOAuthOptions},Microsoft.Extensions.Logging.ILoggerFactory,System.Text.Encodings.Web.UrlEncoder,Microsoft.AspNetCore.Authentication.ISystemClock)">
+            <Summary>
+            Create asp.net oauth handler for Fluxer.
+            </Summary>
         </member>
         <member name="T:Fluxer.Net.RateLimiting.RateLimitBucket">
             <summary>
@@ -11756,70 +12093,6 @@
             Attachment filenames to exclude
             </summary>
         </member>
-        <member name="P:Fluxer.Net.MessageSearchRequest.AttachmentExtensions">
-            <summary>
-            File extensions to filter by
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.MessageSearchRequest.ExcludeAttachmentExtensions">
-            <summary>
-            File extensions to exclude
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.MessageSearchRequest.SortBy">
-            <summary>
-            Field to sort results by
-            </summary>
-            <remarks>
-            <see href="https://github.com/fluxerapp/fluxer/blob/d843d6f3f8a0bd850673ba55036354093977109f/packages/schema/src/domains/message/MessageRequestSchemas.tsx#L134"/>
-            </remarks>
-        </member>
-        <member name="P:Fluxer.Net.MessageSearchRequest.SortOrder">
-            <summary>
-            Sort order for results
-            </summary>
-            <remarks>
-            <see href="https://github.com/fluxerapp/fluxer/blob/d843d6f3f8a0bd850673ba55036354093977109f/packages/schema/src/domains/message/MessageRequestSchemas.tsx#L147"/>
-            </remarks>
-        </member>
-        <member name="P:Fluxer.Net.MessageSearchRequest.IncludeNsfw">
-            <summary>
-            Whether to include NSFW channel results
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.MessageSearchRequest.MessageSearchScope">
-            <remarks>
-            <see href="https://github.com/fluxerapp/fluxer/blob/d843d6f3f8a0bd850673ba55036354093977109f/packages/schema/src/domains/message/MessageRequestSchemas.tsx#L160"/>
-            </remarks>
-        </member>
-        <member name="P:Fluxer.Net.UpdateMessageRequest.Content">
-            <summary>
-            The message content (up to 2000 characters)
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.UpdateMessageRequest.Embeds">
-            <summary>
-            Array of embed objects to include in the message
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.UpdateMessageRequest.AllowedMentions">
-            <summary>
-            Controls which mentions trigger notifications
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.UpdateMessageRequest.Flags">
-            <summary>
-            Message flags bitfield
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.UpdateMessageRequest.Attachments">
-            <summary>
-            Array of attachment objects to keep or add
-            </summary>
-        </member>
-    </members>
-</doc>
-  </member>
         <member name="P:Fluxer.Net.MessageSearchRequest.AttachmentExtensions">
             <summary>
             File extensions to filter by
