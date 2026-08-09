@@ -541,7 +541,7 @@ public partial class GatewayClient : IDisposable
                                     if (m.Id != CurrentUser.Id)
                                     {
                                         SocketGuildMember member = SocketGuildMember.Create(_client, m);
-                                        member.Server = guild;
+                                        member.Guild = guild;
                                         guild.Members.TryAdd(m.Id, member);
                                     }
                                 }

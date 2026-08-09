@@ -10,7 +10,7 @@ public class PartialInvite : Entity, IPartialInvite
     public int Type { get; internal set; }
 
     /// <inheritdoc />
-    public PartialGuild? Server { get; internal set; }
+    public PartialGuild? Guild { get; internal set; }
 
     /// <inheritdoc />
     public InviteChannelJson? Channel { get; internal set; }
@@ -30,7 +30,7 @@ public class PartialInvite : Entity, IPartialInvite
     /// <inheritdoc />
     public bool Temporary { get; internal set; }
 
-    IPartialGuild? IPartialInvite.Server => Server;
+    IPartialGuild? IPartialInvite.Guild => Guild;
 
     internal PartialInvite(FluxerBaseClient client) : base(client)
     {
@@ -54,8 +54,8 @@ public class PartialInvite : Entity, IPartialInvite
     {
         Code = json.Code;
         Type = json.Type;
-        if (json.Server != null)
-            Server = PartialGuild.Create(client, json.Server);
+        if (json.Guild != null)
+            Guild = PartialGuild.Create(client, json.Guild);
 
         Channel = json.Channel;
         Inviter = json.Inviter;

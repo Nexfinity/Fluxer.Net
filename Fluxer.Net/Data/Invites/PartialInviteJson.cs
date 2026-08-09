@@ -11,7 +11,7 @@ public class PartialInviteJson : IPartialInvite
     public int Type { get; set; }
 
     [JsonProperty("guild")]
-    public PartialGuildJson? Server { get; set; }
+    public PartialGuildJson? Guild { get; set; }
 
     [JsonProperty("channel")]
     public InviteChannelJson? Channel { get; set; }
@@ -31,5 +31,5 @@ public class PartialInviteJson : IPartialInvite
     [JsonProperty("temporary")]
     public bool Temporary { get; set; }
 
-    IPartialGuild? IPartialInvite.Server => Server;
+    IPartialGuild? IPartialInvite.Guild => Guild;
 }

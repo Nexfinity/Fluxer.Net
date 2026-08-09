@@ -14,7 +14,7 @@ public class RequireContextAttribute : PreconditionAttribute
     public ContextType Contexts { get; }
 
     /// <inheritdoc />
-    public override Task<PreconditionResult> CheckPermissionsAsync(CommandContext context, CommandInfo command, IServiceProvider services)
+    public override async Task<PreconditionResult> CheckPermissionsAsync(ICommandContext context, CommandInfo command, IServiceProvider services)
     {
         bool isValid = false;
 
@@ -26,9 +26,9 @@ public class RequireContextAttribute : PreconditionAttribute
             isValid = isValid || context.Channel.Type == ChannelType.Group;
 
         if (isValid)
-            return Task.FromResult(PreconditionResult.FromSuccess());
+            return PreconditionResult.FromSuccess();
 
-        return Task.FromResult(PreconditionResult.FromError($"Invalid channel context for command, require contexts are {Contexts}"));
+        return PreconditionResult.FromError($"Invalid channel context for command, require contexts are {Contexts}");
     }
 }
 

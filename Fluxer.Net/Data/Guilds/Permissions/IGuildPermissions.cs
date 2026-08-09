@@ -15,7 +15,7 @@ public interface IGuildPermissions
     /// <summary>
     /// Edit global settings like name, description, and icon.
     /// </summary>
-    bool ManageServer { get; }
+    bool ManageGuild { get; }
 
     /// <summary>
     /// Kick users from the guild.

@@ -1,64 +1,65 @@
-namespace Fluxer.Net.Commands;
-
-
-/// <summary>
-///     Provides extension methods for <see cref="UserMessage" /> that relates to commands.
-/// </summary>
-public static class MessageExtensions
+namespace Fluxer.Net.Commands
 {
     /// <summary>
-    ///     Gets whether the message starts with the provided character.
+    ///     Provides extension methods for <see cref="IUserMessage" /> that relates to commands.
     /// </summary>
-    /// <param name="msg">The message to check against.</param>
-    /// <param name="c">The char prefix.</param>
-    /// <param name="argPos">References where the command starts.</param>
-    /// <returns>
-    ///     <c>true</c> if the message begins with the char <paramref name="c"/>; otherwise <c>false</c>.
-    /// </returns>
-    public static bool HasCharPrefix(this Message msg, char c, ref int argPos)
+    public static class MessageExtensions
     {
-        string text = msg.Content;
-        if (!string.IsNullOrEmpty(text) && text[0] == c)
+        /// <summary>
+        ///     Gets whether the message starts with the provided character.
+        /// </summary>
+        /// <param name="msg">The message to check against.</param>
+        /// <param name="c">The char prefix.</param>
+        /// <param name="argPos">References where the command starts.</param>
+        /// <returns>
+        ///     <see langword="true" /> if the message begins with the char <paramref name="c"/>; otherwise <see langword="false" />.
+        /// </returns>
+        public static bool HasCharPrefix(this SocketMessage msg, char c, ref int argPos)
         {
-            argPos = 1;
-            return true;
-        }
-        return false;
-    }
-    /// <summary>
-    ///     Gets whether the message starts with the provided string.
-    /// </summary>
-    public static bool HasStringPrefix(this Message msg, string str, ref int argPos, StringComparison comparisonType = StringComparison.Ordinal)
-    {
-        string text = msg.Content;
-        if (!string.IsNullOrEmpty(text) && text.StartsWith(str, comparisonType))
-        {
-            argPos = str.Length;
-            return true;
-        }
-        return false;
-    }
-    /// <summary>
-    ///     Gets whether the message starts with the user's mention string.
-    /// </summary>
-    public static bool HasMentionPrefix(this Message msg, CurrentUser user, ref int argPos)
-    {
-        if (user == null)
+            var text = msg.Content;
+            if (!string.IsNullOrEmpty(text) && text[0] == c)
+            {
+                argPos = 1;
+                return true;
+            }
             return false;
-        string text = msg.Content;
-        if (string.IsNullOrEmpty(text) || text.Length <= 3 || text[0] != '<' || text[1] != '@') return false;
-
-        int endPos = text.IndexOf('>');
-        if (endPos == -1) return false;
-        if (text.Length < endPos + 2 || text[endPos + 1] != ' ')
-            return false; //Must end in "> "
-
-        string userId = text.Substring(0, endPos + 1);
-        if (userId == user.Id.ToString())
-        {
-            argPos = endPos + 2;
-            return true;
         }
-        return false;
+        /// <summary>
+        ///     Gets whether the message starts with the provided string.
+        /// </summary>
+        public static bool HasStringPrefix(this SocketMessage msg, string str, ref int argPos, StringComparison comparisonType = StringComparison.Ordinal)
+        {
+            var text = msg.Content;
+            if (!string.IsNullOrEmpty(text) && text.StartsWith(str, comparisonType))
+            {
+                argPos = str.Length;
+                return true;
+            }
+            return false;
+        }
+        // <summary>
+        //     Gets whether the message starts with the user's mention string.
+        // </summary>
+        //public static bool HasMentionPrefix(this SocketMessage msg, IUser user, ref int argPos)
+        //{
+        //    var text = msg.Content;
+        //    if (string.IsNullOrEmpty(text) || text.Length <= 3 || text[0] != '<' || text[1] != '@')
+        //        return false;
+
+        //    int endPos = text.IndexOf('>');
+        //    if (endPos == -1)
+        //        return false;
+        //    if (text.Length < endPos + 2 || text[endPos + 1] != ' ')
+        //        return false; //Must end in "> "
+
+        //    if (!MentionUtils.TryParseUser(text.Substring(0, endPos + 1), out ulong userId))
+        //        return false;
+        //    if (userId == user.Id)
+        //    {
+        //        argPos = endPos + 2;
+        //        return true;
+        //    }
+        //    return false;
+        //}
     }
 }

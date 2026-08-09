@@ -2,14 +2,14 @@
 
 public class SocketRole : Role
 {
-    public SocketGuild Server { get; internal set; }
+    public SocketGuild Guild { get; internal set; }
 
     public bool HasPermission(GuildPermission permission)
     {
         if (Permissions.RawValue.HasFlag(permission))
             return true;
 
-        if (Server.Permissions.RawValue.HasFlag(permission))
+        if (Guild.Permissions.RawValue.HasFlag(permission))
             return true;
 
         return false;
@@ -31,7 +31,7 @@ public class SocketRole : Role
     {
         SocketRole data = new SocketRole(client);
         data.GuildId = guild.Id;
-        data.Server = guild;
+        data.Guild = guild;
         data.Update(client, json);
         return data;
     }

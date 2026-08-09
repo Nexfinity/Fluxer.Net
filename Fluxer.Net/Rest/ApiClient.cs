@@ -1300,7 +1300,7 @@ public class ApiClient
     /// Update a guild that you manage.
     /// </summary>
     /// <remarks>
-    /// Requires <see cref="GuildPermissions.ManageServer"/>.
+    /// Requires <see cref="GuildPermissions.ManageGuild"/>.
     /// </remarks>
     /// <param name="guildId"></param>
     /// <param name="guild"></param>
@@ -1335,7 +1335,7 @@ public class ApiClient
     /// Update vanity url for a guild.
     /// </summary>
     /// <remarks>
-    /// Requires <see cref="GuildPermissions.ManageServer"/>.
+    /// Requires <see cref="GuildPermissions.ManageGuild"/>.
     /// </remarks>
     /// <param name="guildId"></param>
     /// <param name="data"></param>

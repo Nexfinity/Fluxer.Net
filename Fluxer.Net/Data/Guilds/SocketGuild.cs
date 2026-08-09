@@ -59,7 +59,7 @@ public class SocketGuild : Guild
         SocketGuild data = new SocketGuild(client);
         data.CurrentMember = member;
         data.Members.TryAdd(member.Id, member);
-        data.CurrentMember.Server = data;
+        data.CurrentMember.Guild = data;
 
         // Null count data on socket guild.
         data.OnlineCount = null;
@@ -81,7 +81,7 @@ public class SocketGuild : Guild
     internal void AddOrUpdateMember(FluxerClient client, GuildMemberJson member)
     {
         var mem = SocketGuildMember.Create(client, member);
-        mem.Server = this;
+        mem.Guild = this;
         if (!Members.TryAdd(member.Id, mem))
             Members[member.Id].Update(client, member);
     }

@@ -4,14 +4,14 @@ namespace Fluxer.Net.Commands;
 public class RequireServerOwnerAttribute : PreconditionAttribute
 {
     /// <inheritdoc />
-    public override Task<PreconditionResult> CheckPermissionsAsync(CommandContext context, CommandInfo command, IServiceProvider services)
+    public override async Task<PreconditionResult> CheckPermissionsAsync(ICommandContext context, CommandInfo command, IServiceProvider services)
     {
-        if (context.Server == null)
-            return Task.FromResult(PreconditionResult.FromError("You need to run this command in a server."));
+        if (context.Guild == null)
+            return PreconditionResult.FromError("You need to run this command in a server.");
 
-        if (context.User.Id == context.Server.OwnerId)
-            return Task.FromResult(PreconditionResult.FromSuccess());
+        if (context.User.Id == context.Guild.OwnerId)
+            return PreconditionResult.FromSuccess();
 
-        return Task.FromResult(PreconditionResult.FromError("Command can only be run by the server owner."));
+        return PreconditionResult.FromError("Command can only be run by the server owner.");
     }
 }

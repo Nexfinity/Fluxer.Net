@@ -10,16 +10,16 @@ public class SocketGuildMember : GuildMember
     /// <summary>
     /// Guild that the member is for.
     /// </summary>
-    public SocketGuild Server { get; internal set; }
+    public SocketGuild Guild { get; internal set; }
 
     public ConcurrentDictionary<string, SocketVoiceState> VoiceStates { get; internal set; } = new ConcurrentDictionary<string, SocketVoiceState>();
 
     public IEnumerable<SocketRole> Roles
-            => RoleIds.Select(id => Server.Roles[id]).Where(x => x != null);
+            => RoleIds.Select(id => Guild.Roles[id]).Where(x => x != null);
 
     public bool HasPermission(GuildPermission permission)
     {
-        if (Id == Server.OwnerId)
+        if (Id == Guild.OwnerId)
             return true;
 
         foreach (SocketRole r in Roles)
@@ -36,7 +36,7 @@ public class SocketGuildMember : GuildMember
 
     public ChannelPermissions GetPermissions(Channel channel)
     {
-        if (Id == Server.OwnerId)
+        if (Id == Guild.OwnerId)
             return new ChannelPermissions((GuildPermission)ulong.MaxValue);
 
         GuildPermissions guildPerms = GuildPermissions.Resolve(this);
@@ -46,7 +46,7 @@ public class SocketGuildMember : GuildMember
         ulong resolvedPermissions = (ulong)guildPerms.RawValue;
 
         // Check everyone overwrite
-        PermissionOverwrite? everyone = channel.PermissionOverwrites.FirstOrDefault(x => x.Id == Server.Id);
+        PermissionOverwrite? everyone = channel.PermissionOverwrites.FirstOrDefault(x => x.Id == Guild.Id);
         if (everyone != null)
             resolvedPermissions = (resolvedPermissions & ~(ulong)everyone.Deny.RawValue) | (ulong)everyone.Allow.RawValue;
 
@@ -55,7 +55,7 @@ public class SocketGuildMember : GuildMember
         // Check role overwrites
         foreach (var r in Roles)
         {
-            if (r.Id == Server.Id)
+            if (r.Id == Guild.Id)
                 continue;
 
             PermissionOverwrite? role = channel.PermissionOverwrites.FirstOrDefault(x => x.Type == 0 && x.Id == r.Id);

@@ -28,9 +28,7 @@ namespace Fluxer.Net.Commands;
 public class RequireOwnerAttribute : PreconditionAttribute
 {
     /// <inheritdoc />
-#pragma warning disable CS1998
-    public override async Task<PreconditionResult> CheckPermissionsAsync(CommandContext context, CommandInfo command, IServiceProvider services)
-#pragma warning restore CS1998
+    public override async Task<PreconditionResult> CheckPermissionsAsync(ICommandContext context, CommandInfo command, IServiceProvider services)
     {
         ulong? OwnerId = await context.Gateway.GetOwnerIdAsync();
         if (OwnerId.HasValue && OwnerId.Value == context.User.Id)

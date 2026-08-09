@@ -24,26 +24,28 @@ public class RequireBotPermissionAttribute : PreconditionAttribute
     }
 
     /// <inheritdoc />
-    public override Task<PreconditionResult> CheckPermissionsAsync(CommandContext context, CommandInfo command, IServiceProvider services)
+    public override async Task<PreconditionResult> CheckPermissionsAsync(ICommandContext context, CommandInfo command, IServiceProvider services)
     {
-        if (context.Server == null)
-            return Task.FromResult(PreconditionResult.FromError("You need to run this command in a server."));
+        if (context.Guild == null || context.Guild is not SocketGuild guild)
+            return PreconditionResult.FromError("You need to run this command in a server.");
+
+        SocketGuildMember? member = guild.CurrentMember as SocketGuildMember;
 
         if (Server.HasValue)
         {
-            if (context.Server.CurrentMember.HasPermission(Server.Value))
-                return Task.FromResult(PreconditionResult.FromSuccess());
+            if (member != null && member.HasPermission(Server.Value))
+                return PreconditionResult.FromSuccess();
 
-            return Task.FromResult(PreconditionResult.FromError($"Bot needs server permission for **{Server.Value.ToString()}** to use this command."));
+            return PreconditionResult.FromError($"Bot needs server permission for **{Server.Value.ToString()}** to use this command.");
         }
 
         if (Channel == null)
-            return Task.FromResult(PreconditionResult.FromError($"Invalid command precondition for RequireBotPermission."));
+            return PreconditionResult.FromError($"Invalid command precondition for RequireBotPermission.");
 
-        ChannelPermissions perms = context.Server.CurrentMember.GetPermissions(context.Channel);
+        ChannelPermissions perms = member.GetPermissions(context.Channel as Channel);
         if (perms.RawValue.HasFlag(Channel.Value))
-            return Task.FromResult(PreconditionResult.FromSuccess());
+            return PreconditionResult.FromSuccess();
 
-        return Task.FromResult(PreconditionResult.FromError($"Bot needs channel permission for **{Channel.Value.ToString()}** to use this command."));
+        return PreconditionResult.FromError($"Bot needs channel permission for **{Channel.Value.ToString()}** to use this command.");
     }
 }

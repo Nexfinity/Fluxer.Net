@@ -1,7 +1,7 @@
 ﻿namespace Fluxer.Net.Commands;
 
 /// <summary>
-/// The context of a command which may contain the client, user, guild, channel, and message.
+///     Represents a context of a command. This may include the client, guild, channel, user, and message.
 /// </summary>
 public interface ICommandContext
 {
@@ -21,39 +21,29 @@ public interface ICommandContext
     GatewayClient Gateway { get; }
 
     /// <summary>
-    /// Current server for the context.
+    /// Current guild for the context.
     /// </summary>
-    SocketGuild? Server { get; }
+    IGuild Guild { get; }
 
     /// <summary>
     /// Current channel for the context.
     /// </summary>
-    Channel Channel { get; }
+    IChannel Channel { get; }
 
     /// <summary>
     /// Current user for the context.
     /// </summary>
-    SocketUser User { get; }
+    IUser User { get; }
 
     /// <summary>
     /// Current server member for the context.
     /// </summary>
-    SocketGuildMember? Member { get; }
+    IGuildMember? Member { get; }
 
     /// <summary>
     /// Current message for the context.
     /// </summary>
-    SocketMessage Message { get; }
-
-    /// <summary>
-    /// Command that has been run.
-    /// </summary>
-    CommandInfo? Command { get; }
-
-    /// <summary>
-    /// Prefix used for the command.
-    /// </summary>
-    string? Prefix { get; }
+    IMessage Message { get; }
 
     /// <summary>
     /// Channel is a DM.
