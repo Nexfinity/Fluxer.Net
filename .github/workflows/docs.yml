@@ -2,8 +2,8 @@ name: Build Docs
 
 on:
   push:
-    tags:
-      - '*'
+  #  tags:
+  #    - '*'
     paths:
       - 'docs/**'
   workflow_dispatch:
