@@ -3,7 +3,7 @@ using Fluxer.Net.Gateway;
 using Fluxer.Net.Gateway.Packets;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Serilog.Core;
+using Serilog;
 using System.Collections.Concurrent;
 using System.Data;
 using System.Diagnostics;
@@ -58,7 +58,7 @@ public partial class GatewayClient : IDisposable
     /// </summary>
     private string _sessionId = "";
 
-    private Logger _logger;
+    private ILogger _logger;
     private CancellationTokenSource? _heartbeatCancellation;
     private readonly SemaphoreSlim _reconnectLock = new(1, 1);
     private bool _disposed = false;
@@ -96,15 +96,33 @@ public partial class GatewayClient : IDisposable
     #region Cache
 
     public CurrentUser? CurrentUser { get; internal set; }
+
+    internal ulong? OwnerId { get; set; }
+
+    public async Task<ulong?> GetOwnerIdAsync()
+    {
+        if (OwnerId == null)
+        {
+            CurrentApplication app = await _client.Rest.GetCurrentApplicationAsync();
+            OwnerId = app.Owner.Id;
+        }
+
+        return OwnerId;
+    }
+
     public ConcurrentDictionary<ulong, SocketGuild> Guilds { get; internal set; } = new ConcurrentDictionary<ulong, SocketGuild>();
+
     public ConcurrentDictionary<ulong, Channel> Channels { get; internal set; } = new ConcurrentDictionary<ulong, Channel>();
+
     public ConcurrentDictionary<ulong, SocketRole> Roles { get; internal set; } = new ConcurrentDictionary<ulong, SocketRole>();
+
     public ConcurrentDictionary<ulong, SocketGuildMember> CurrentMembers { get; internal set; } = new ConcurrentDictionary<ulong, SocketGuildMember>();
+
     public RtcRegion[] RtcRegions;
 
-    public SocketGuildMember? GetCurrentMember(ulong userId)
+    public SocketGuildMember? GetCurrentMember(ulong guildId)
     {
-        return CurrentMembers.GetValueOrDefault(userId);
+        return CurrentMembers.GetValueOrDefault(guildId);
     }
 
     public SocketGuild? GetGuild(ulong guildId)
@@ -516,15 +534,15 @@ public partial class GatewayClient : IDisposable
                         {
                             foreach (GuildGatewayData g in data.Guilds)
                             {
-                                CurrentMembers.TryAdd(g.Id, SocketGuildMember.Create(_client, g.Members.First(x => x.UserId == CurrentUser.Id)));
+                                CurrentMembers.TryAdd(g.Id, SocketGuildMember.Create(_client, g.Members.First(x => x.Id == CurrentUser.Id)));
                                 SocketGuild guild = SocketGuild.Create(_client, g.Properties, CurrentMembers[g.Id]);
                                 foreach (GuildMemberGatewayData m in g.Members)
                                 {
-                                    if (m.UserId != CurrentUser.Id)
+                                    if (m.Id != CurrentUser.Id)
                                     {
                                         SocketGuildMember member = SocketGuildMember.Create(_client, m);
-                                        member.Guild = guild;
-                                        guild.Members.TryAdd(m.UserId, member);
+                                        member.Server = guild;
+                                        guild.Members.TryAdd(m.Id, member);
                                     }
                                 }
                                 Guilds.TryAdd(g.Id, guild);
@@ -874,7 +892,7 @@ public partial class GatewayClient : IDisposable
                         if (data.GuildId.HasValue && Guilds.TryGetValue(data.GuildId.Value, out SocketGuild guild))
                         {
                             guild.AddOrUpdateMember(_client, data.Member);
-                            SocketGuildMember member = guild.GetMember(data.Member.UserId);
+                            SocketGuildMember member = guild.GetMember(data.Member.Id);
                             if (data.ChannelId.HasValue)
                             {
                                 if (!member.VoiceStates.TryAdd(data.SessionId, SocketVoiceState.Create(_client, data, guild)))
@@ -942,7 +960,7 @@ public partial class GatewayClient : IDisposable
                         GuildIds.Add(data.Id);
                         if (!data.Unavailable.GetValueOrDefault())
                         {
-                            GuildMemberGatewayData json = data.Members.First(x => x.UserId == CurrentUser.Id);
+                            GuildMemberGatewayData json = data.Members.First(x => x.Id == CurrentUser.Id);
                             SocketGuildMember member = SocketGuildMember.Create(_client, json);
 
                             // Add or update current member
@@ -1057,7 +1075,7 @@ public partial class GatewayClient : IDisposable
                     GuildMemberGatewayData? data = p.Data.ToObject<GuildMemberGatewayData>(FluxerClient._serializer);
                     if (data != null)
                     {
-                        if (Guilds.TryGetValue(data.GuildId, out SocketGuild guild) && guild.Members.TryGetValue(data.UserId, out SocketGuildMember member))
+                        if (Guilds.TryGetValue(data.GuildId, out SocketGuild guild) && guild.Members.TryGetValue(data.Id, out SocketGuildMember member))
                             member.Update(_client, data);
 
                         GuildMemberUpdate?.Invoke(data);

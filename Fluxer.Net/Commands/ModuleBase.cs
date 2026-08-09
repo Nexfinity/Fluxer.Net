@@ -1,59 +1,59 @@
-using Fluxer.Net.Rest;
+using Fluxer.Net.Commands.Builders;
 using Fluxer.Net.Rest.Requests;
 
 namespace Fluxer.Net.Commands;
 
 /// <summary>
-/// Base class for command modules.
-/// </summary>
-public abstract class ModuleBase
+///     Provides a base class for a command module to inherit from with a <see cref="CommandContext"/>.
+///  </summary>
+public abstract class ModuleBase : IModuleBase
 {
     /// <summary>
-    /// Gets the command context.
+    ///     The underlying context of the command.
     /// </summary>
-    public CommandContext Context { get; internal set; } = null!;
+    public CommandContext? Context { get; private set; }
 
-    /// <summary>
-    /// Called before a command in this module is executed.
-    /// </summary>
-    protected internal virtual void BeforeExecute(CommandInfo command)
-    {
-    }
-
-    /// <summary>
-    /// Called after a command in this module is executed.
-    /// </summary>
-    protected internal virtual void AfterExecute(CommandInfo command)
-    {
-    }
 
     /// <summary>
     /// Sends a message to the channel the command was executed in.
     /// </summary>
-    protected async Task<Message> ReplyAsync(string? content = null, List<EmbedRequest>? embeds = null,
+    protected virtual async Task<Message> ReplyAsync(string? content = null, List<EmbedRequest>? embeds = null,
         MessageReferenceRequest? reference = null, AllowedMentionsRequest? allowedMentions = null, MessageFlag flags = MessageFlag.None,
         string? nonce = null, ulong? favoruteMemeId = null, bool? tts = null, List<ulong>? stickerIds = null, List<AttachmentRequest>? attachments = null)
     {
-        return await Context.Rest.SendMessageAsync(Context.Channel.Id, content, embeds, reference, allowedMentions, flags, nonce, favoruteMemeId, tts, stickerIds, attachments);
+        return await Context.Client.Rest.SendMessageAsync(Context.Channel.Id, content, embeds, reference, allowedMentions, flags, nonce, favoruteMemeId, tts, stickerIds, attachments);
     }
 
     /// <summary>
-    /// Sends a message to the channel the command was executed in.
+    ///     The method to execute before executing the command.
     /// </summary>
-    protected async Task<Message> ReplyAsync(List<AttachmentRequest> attachments, string? content = null)
+    /// <param name="command">The <see cref="CommandInfo"/> of the command to be executed.</param>
+    protected virtual void BeforeExecute(CommandInfo command)
     {
-        return await Context.Rest.SendMessageAsync(Context.Channel.Id, content, attachments: attachments);
     }
-}
-
-/// <summary>
-/// Base class for command modules with a custom context type.
-/// </summary>
-/// <typeparam name="T">The context type.</typeparam>
-public abstract class ModuleBase<T> : ModuleBase where T : CommandContext
-{
     /// <summary>
-    /// Gets the command context.
+    ///     The method to execute after executing the command.
     /// </summary>
-    public new T Context => (T)base.Context;
+    /// <param name="command">The <see cref="CommandInfo"/> of the command to be executed.</param>
+    protected virtual void AfterExecute(CommandInfo command)
+    {
+    }
+
+    /// <summary>
+    ///     The method to execute when building the module.
+    /// </summary>
+    /// <param name="commandService">The <see cref="CommandService"/> used to create the module.</param>
+    /// <param name="builder">The builder used to build the module.</param>
+    protected virtual void OnModuleBuilding(CommandService commandService, ModuleBuilder builder)
+    {
+    }
+
+    //IModuleBase
+    void IModuleBase.SetContext(CommandContext context)
+    {
+        Context = context;
+    }
+    void IModuleBase.BeforeExecute(CommandInfo command) => BeforeExecute(command);
+    void IModuleBase.AfterExecute(CommandInfo command) => AfterExecute(command);
+    void IModuleBase.OnModuleBuilding(CommandService commandService, ModuleBuilder builder) => OnModuleBuilding(commandService, builder);
 }

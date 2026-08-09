@@ -19,7 +19,7 @@ public class GuildPermissions : IGuildPermissions, IChannelPermissions
     public bool ViewAuditLog => RawValue.HasFlag(GuildPermission.ViewAuditLog);
 
     /// <inheritdoc />
-    public bool ManageGuild => RawValue.HasFlag(GuildPermission.ManageGuild);
+    public bool ManageServer => RawValue.HasFlag(GuildPermission.ManageGuild);
 
     /// <summary>
     /// Create, edit, or delete roles below your highest role. Also allows editing channel permission overwrites.
@@ -124,4 +124,16 @@ public class GuildPermissions : IGuildPermissions, IChannelPermissions
 
     /// <inheritdoc />
     public bool ViewChannelMembers => RawValue.HasFlag(GuildPermission.ViewChannelMembers);
+
+    public static GuildPermissions Resolve(SocketGuildMember member)
+    {
+        GuildPermissions perms = new GuildPermissions(member.Server.EveryoneRole.Permissions.RawValue);
+
+        foreach (var i in member.Roles)
+        {
+            perms.RawValue |= i.Permissions.RawValue;
+        }
+
+        return perms;
+    }
 }

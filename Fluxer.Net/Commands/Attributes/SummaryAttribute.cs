@@ -1,20 +1,14 @@
 namespace Fluxer.Net.Commands;
 
+// Cosmetic Summary, for Groups and Commands
 /// <summary>
-/// Provides a summary description for a command or parameter.
+///     Attaches a summary to your command.
 /// </summary>
-[AttributeUsage(AttributeTargets.Method | AttributeTargets.Parameter, AllowMultiple = false, Inherited = true)]
+[AttributeUsage(AttributeTargets.Method | AttributeTargets.Class | AttributeTargets.Parameter, AllowMultiple = false, Inherited = true)]
 public class SummaryAttribute : Attribute
 {
-    /// <summary>
-    /// Gets the summary text.
-    /// </summary>
     public string Text { get; }
 
-    /// <summary>
-    /// Provides a summary description.
-    /// </summary>
-    /// <param name="text">The summary text.</param>
     public SummaryAttribute(string text)
     {
         Text = text;

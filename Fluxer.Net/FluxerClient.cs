@@ -101,6 +101,7 @@ public class FluxerClient : FluxerBaseClient
     {
         var serializer = new JsonSerializer
         {
+            ContractResolver = new FluxerContractResolver(),
             NullValueHandling = NullValueHandling.Ignore
         };
         serializer.Converters.Add(new StringUInt64Converter());
@@ -116,6 +117,7 @@ public class FluxerClient : FluxerBaseClient
     {
         var serializer = new JsonSerializerSettings
         {
+            ContractResolver = new FluxerContractResolver(),
             NullValueHandling = NullValueHandling.Ignore
         };
         serializer.Converters.Add(new GuildPermissionsConverter());

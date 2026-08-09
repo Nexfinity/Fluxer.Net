@@ -1,5 +1,4 @@
-﻿using Fluxer.Net.Rest;
-using Fluxer.Net.Rest.Requests;
+﻿using Fluxer.Net.Rest.Requests;
 using Serilog;
 
 namespace Fluxer.Net;

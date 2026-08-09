@@ -15,7 +15,7 @@ public interface IPartialInvite
     /// <summary>
     /// The guild this invite is for
     /// </summary>
-    IPartialGuild? Guild { get; }
+    IPartialGuild? Server { get; }
 
     /// <summary>
     /// The channel this invite is for.

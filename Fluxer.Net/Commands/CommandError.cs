@@ -1,37 +1,53 @@
 namespace Fluxer.Net.Commands;
 
-/// <summary>
-/// Defines the types of errors that can occur during command execution.
-/// </summary>
+
+/// <summary> Defines the type of error a command can throw. </summary>
 public enum CommandError
 {
-	/// <summary>
-	/// The command failed to parse.
-	/// </summary>
-	ParseFailed,
+    //Search
+    /// <summary>
+    /// Thrown when the command is unknown.
+    /// </summary>
+    UnknownCommand = 1,
 
-	/// <summary>
-	/// The command was not found.
-	/// </summary>
-	UnknownCommand,
+    //Parse
+    /// <summary>
+    /// Thrown when the command fails to be parsed.
+    /// </summary>
+    ParseFailed,
 
-	/// <summary>
-	/// The user provided too few parameters.
-	/// </summary>
-	BadArgCount,
+    /// <summary>
+    /// Thrown when the input text has too few or too many arguments.
+    /// </summary>
+    BadArgCount,
 
-	/// <summary>
-	/// A precondition failed.
-	/// </summary>
-	UnmetPrecondition,
+    //Parse (Type Reader)
+    //CastFailed,
+    /// <summary>
+    /// Thrown when the object cannot be found by the <see cref="TypeReader"/>.
+    /// </summary>
+    ObjectNotFound,
 
-	/// <summary>
-	/// An exception occurred during execution.
-	/// </summary>
-	Exception,
+    /// <summary>
+    /// Thrown when more than one object is matched by <see cref="TypeReader"/>.
+    /// </summary>
+    MultipleMatches,
 
-	/// <summary>
-	/// The command execution was unsuccessful for an unspecified reason.
-	/// </summary>
-	Unsuccessful
+    //Preconditions
+    /// <summary>
+    /// Thrown when the command fails to meet a <see cref="PreconditionAttribute"/>'s conditions.
+    /// </summary>
+    UnmetPrecondition,
+
+    //Execute
+    /// <summary>
+    /// Thrown when an exception occurs mid-command execution.
+    /// </summary>
+    Exception,
+
+    //Runtime
+    /// <summary>
+    /// Thrown when the command is not successfully executed on runtime.
+    /// </summary>
+    Unsuccessful
 }

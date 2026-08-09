@@ -1,20 +1,21 @@
 namespace Fluxer.Net.Commands;
 
+// Override public name of command/module
 /// <summary>
-/// Specifies a custom name for a command parameter.
+///     Marks the public name of a command, module, or parameter.
 /// </summary>
-[AttributeUsage(AttributeTargets.Parameter, AllowMultiple = false, Inherited = true)]
+[AttributeUsage(AttributeTargets.Method | AttributeTargets.Class | AttributeTargets.Parameter, AllowMultiple = false, Inherited = true)]
 public class NameAttribute : Attribute
 {
     /// <summary>
-    /// Gets the parameter name.
+    ///     Gets the name of the command.
     /// </summary>
     public string Text { get; }
 
     /// <summary>
-    /// Specifies a custom name for a parameter.
+    ///     Marks the public name of a command, module, or parameter with the provided name.
     /// </summary>
-    /// <param name="text">The parameter name.</param>
+    /// <param name="text">The public name of the object.</param>
     public NameAttribute(string text)
     {
         Text = text;

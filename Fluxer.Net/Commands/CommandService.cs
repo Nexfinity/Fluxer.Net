@@ -1,308 +1,617 @@
-﻿using Serilog;
+using Fluxer.Net.Commands.Builders;
+using System.Collections.Concurrent;
+using System.Collections.Immutable;
 using System.Reflection;
 
 namespace Fluxer.Net.Commands;
 
+
 /// <summary>
-/// Provides a framework for creating and executing text-based commands.
+///     Provides a framework for building StoatSharp bot commands.
 /// </summary>
-public class CommandService
+/// <remarks>
+///     <para>
+///         The service provides a framework for building StoatSharp bot commands both dynamically via runtime builders or
+///         statically via compile-time modules. To create a command module at compile-time, see
+///         <see cref="ModuleBase" /> (most common); otherwise, see <see cref="ModuleBuilder" />.
+///     </para>
+///     <para>
+///         This service also provides several events for monitoring command usages; such as
+///         <see cref="OnCommandExecuted" /> for information about commands that have
+///         been successfully executed.
+///     </para>
+/// </remarks>
+public class CommandService : IDisposable
 {
-    private readonly List<ModuleInfo> _modules = new();
-    private readonly ILogger? _logger;
-    private readonly IServiceProvider? _services;
+    /// <summary>
+    /// Version of the current StoatSharp.Commands lib installed.
+    /// </summary>
+    public static string Version => Assembly.GetExecutingAssembly().GetName().Version.ToString(3);
+
+    public delegate void CommandExecutedEvent<CommandInfo, Context, Result>(CommandInfo commandinfo, Context context, Result result);
 
     /// <summary>
-    /// Gets all registered modules.
+    /// A command has been executed and will return back success or failed
     /// </summary>
-    public IReadOnlyList<ModuleInfo> Modules => _modules.AsReadOnly();
-
-    /// <summary>
-    /// Gets all registered commands across all modules.
-    /// </summary>
-    public IEnumerable<CommandInfo> Commands => _modules.SelectMany(m => m.Commands);
-
-    /// <summary>
-    /// Creates a new command service.
-    /// </summary>
-    /// <param name="prefixChar">The prefix character for commands (e.g., '!' or '/').</param>
-    /// <param name="logger">Optional logger for command execution.</param>
-    /// <param name="services">Optional service provider for dependency injection.</param>
-    public CommandService(ILogger? logger = null, IServiceProvider? services = null)
+    public event CommandExecutedEvent<Optional<CommandInfo>, CommandContext, IResult>? OnCommandExecuted;
+    internal void InvokeCommandExecuted(Optional<CommandInfo> command, CommandContext context, IResult result)
     {
-        _logger = logger;
-        _services = services;
+        OnCommandExecuted?.Invoke(command, context, result);
     }
 
-    /// <summary>
-    /// Registers all command modules from the specified assembly.
-    /// </summary>
-    /// <param name="assembly">The assembly to search for modules.</param>
-    public async Task AddModulesAsync(Assembly assembly)
-    {
-        IEnumerable<Type> moduleTypes = assembly.GetTypes()
-            .Where(t => t.IsClass && !t.IsAbstract && t.IsSubclassOf(typeof(ModuleBase)));
+    private readonly SemaphoreSlim _moduleLock;
+    private readonly ConcurrentDictionary<Type, ModuleInfo> _typedModuleDefs;
+    private readonly ConcurrentDictionary<Type, ConcurrentDictionary<Type, TypeReader>> _typeReaders;
+    private readonly ConcurrentDictionary<Type, TypeReader> _defaultTypeReaders;
+    private readonly ImmutableList<(Type EntityType, Type TypeReaderType)> _entityTypeReaders;
+    private readonly HashSet<ModuleInfo> _moduleDefs;
+    private readonly CommandMap _map;
 
-        foreach (Type type in moduleTypes)
+    internal readonly bool _caseSensitive, _ignoreExtraArgs;
+    internal readonly char _separatorChar;
+    internal readonly IReadOnlyDictionary<char, char> _quotationMarkAliasMap;
+
+    internal bool _isDisposed;
+
+    /// <summary>
+    ///     Represents all modules loaded within <see cref="CommandService"/>.
+    /// </summary>
+    public IEnumerable<ModuleInfo> Modules => _moduleDefs.Select(x => x);
+
+    /// <summary>
+    ///     Represents all commands loaded within <see cref="CommandService"/>.
+    /// </summary>
+    public IEnumerable<CommandInfo> Commands => _moduleDefs.SelectMany(x => x.Commands);
+
+    /// <summary>
+    ///     Represents all <see cref="TypeReader" /> loaded within <see cref="CommandService"/>.
+    /// </summary>
+    public ILookup<Type, TypeReader> TypeReaders => _typeReaders.SelectMany(x => x.Value.Select(y => new { y.Key, y.Value })).ToLookup(x => x.Key, x => x.Value);
+
+    /// <summary>
+    ///     Initializes a new <see cref="CommandService"/> class.
+    /// </summary>
+    public CommandService() : this(new CommandServiceConfig()) { }
+
+    /// <summary>
+    ///     Initializes a new <see cref="CommandService"/> class with the provided configuration.
+    /// </summary>
+    /// <param name="config">The configuration class.</param>
+    /// <exception cref="InvalidOperationException">
+    /// </exception>
+    public CommandService(CommandServiceConfig config)
+    {
+        _caseSensitive = config.CaseSensitiveCommands;
+        _ignoreExtraArgs = config.IgnoreExtraArgs;
+        _separatorChar = config.SeparatorChar;
+        _quotationMarkAliasMap = (config.QuotationMarkAliasMap ?? new Dictionary<char, char>()).ToImmutableDictionary();
+
+        _moduleLock = new SemaphoreSlim(1, 1);
+        _typedModuleDefs = new ConcurrentDictionary<Type, ModuleInfo>();
+        _moduleDefs = new HashSet<ModuleInfo>();
+        _map = new CommandMap(this);
+        _typeReaders = new ConcurrentDictionary<Type, ConcurrentDictionary<Type, TypeReader>>();
+
+        _defaultTypeReaders = new ConcurrentDictionary<Type, TypeReader>();
+        foreach (Type type in PrimitiveParsers.SupportedTypes)
         {
-            await AddModuleAsync(type);
+            _defaultTypeReaders[type] = PrimitiveTypeReader.Create(type);
+            _defaultTypeReaders[typeof(Nullable<>).MakeGenericType(type)] = NullableTypeReader.Create(type, _defaultTypeReaders[type]);
         }
+
+        TimeSpanTypeReader tsreader = new TimeSpanTypeReader();
+        _defaultTypeReaders[typeof(TimeSpan)] = tsreader;
+        _defaultTypeReaders[typeof(TimeSpan?)] = NullableTypeReader.Create(typeof(TimeSpan), tsreader);
+
+        _defaultTypeReaders[typeof(string)] =
+            new PrimitiveTypeReader<string>((string x, out string y) => { y = x; return true; }, 0);
+
+        ImmutableList<(Type, Type)>.Builder entityTypeReaders = ImmutableList.CreateBuilder<(Type, Type)>();
+        //entityTypeReaders.Add((typeof(IMessage), typeof(MessageTypeReader<>)));
+        //entityTypeReaders.Add((typeof(IChannel), typeof(ChannelTypeReader<>)));
+        //entityTypeReaders.Add((typeof(IRole), typeof(RoleTypeReader<>)));
+        //entityTypeReaders.Add((typeof(IUser), typeof(UserTypeReader<>)));
+        _entityTypeReaders = entityTypeReaders.ToImmutable();
     }
 
-    /// <summary>
-    /// Registers a specific command module type.
-    /// </summary>
-    /// <typeparam name="T">The module type.</typeparam>
-    public Task<ModuleInfo> AddModuleAsync<T>() where T : ModuleBase
+    //Modules
+    public async Task<ModuleInfo> CreateModuleAsync(string primaryAlias, Action<ModuleBuilder> buildFunc)
     {
-        return AddModuleAsync(typeof(T));
-    }
-
-    /// <summary>
-    /// Registers a specific command module type.
-    /// </summary>
-    /// <param name="type">The module type.</param>
-    public Task<ModuleInfo> AddModuleAsync(Type type)
-    {
-        if (!type.IsSubclassOf(typeof(ModuleBase)))
-            throw new ArgumentException($"Type {type.Name} must inherit from ModuleBase", nameof(type));
-
-        ModuleInfo module = new ModuleInfo(type);
-        module.Build(this);
-
-        _modules.Add(module);
-        _logger?.Information("Registered command module {ModuleName} with {CommandCount} commands",
-            module.Name, module.Commands.Count);
-
-        return Task.FromResult(module);
-    }
-
-    /// <summary>
-    /// Executes a command from a message.
-    /// </summary>
-    /// <param name="context">The command context.</param>
-    /// <param name="argPos">The position in the message where arguments begin.</param>
-    public async Task<IResult> ExecuteAsync(CommandContext context, int argPos)
-    {
+        await _moduleLock.WaitAsync().ConfigureAwait(false);
         try
         {
-            var input = context.Message.Content?.Substring(argPos);
-            if (string.IsNullOrWhiteSpace(input))
-                return ExecuteResult.FromError(CommandError.ParseFailed, "No input provided");
+            ModuleBuilder builder = new ModuleBuilder(this, null, primaryAlias);
+            buildFunc(builder);
 
-            // Split input into command name and arguments
-            var parts = input.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-            if (parts.Length == 0)
-                return ExecuteResult.FromError(CommandError.ParseFailed, "No command specified");
+            ModuleInfo module = builder.Build(this, null);
 
-            var commandName = parts[0].ToLowerInvariant();
-            List<string> argList = parts.Skip(1).ToList();
-
-            // Find matching command
-            CommandInfo? matchedCommand = null;
-
-            foreach (ModuleInfo module in _modules)
-            {
-                if (!string.IsNullOrEmpty(module.Group) && module.Group.Equals(commandName, StringComparison.OrdinalIgnoreCase))
-                {
-                    CommandInfo? GroupCommand = module.Commands.FirstOrDefault(x => string.IsNullOrEmpty(x.Name));
-                    if (GroupCommand != null)
-                        matchedCommand = GroupCommand;
-                    else
-                    {
-                        if (parts.Length < 2)
-                            continue;
-
-                        commandName = parts[1].ToLowerInvariant();
-                        argList = parts.Skip(2).ToList();
-
-                        foreach (CommandInfo command in module.Commands)
-                        {
-                            if (command.Name.Equals(commandName, StringComparison.OrdinalIgnoreCase) ||
-                                command.Aliases.Any(a => a.Equals(commandName, StringComparison.OrdinalIgnoreCase)))
-                            {
-                                matchedCommand = command;
-                                break;
-                            }
-                        }
-                    }
-                }
-                else
-                {
-                    foreach (CommandInfo command in module.Commands)
-                    {
-                        if (command.Name.Equals(commandName, StringComparison.OrdinalIgnoreCase) ||
-                            command.Aliases.Any(a => a.Equals(commandName, StringComparison.OrdinalIgnoreCase)))
-                        {
-                            matchedCommand = command;
-                            break;
-                        }
-                    }
-                }
-
-                if (matchedCommand != null) break;
-            }
-
-            if (matchedCommand == null)
-            {
-                _logger?.Debug("Command not found: {CommandName}", commandName);
-                return ExecuteResult.FromError(CommandError.UnknownCommand, $"Unknown command: {commandName}");
-            }
-
-            // Parse arguments
-            var parseResult = ParseArguments(matchedCommand, argList);
-            if (parseResult is IResult result && !result.IsSuccess)
-                return result;
-
-            var args = (object[])parseResult;
-
-            // Execute command
-            _logger?.Debug("Executing command {CommandName} with {ArgCount} arguments", commandName, args.Length);
-
-            if (matchedCommand.RunMode == RunMode.Async)
-            {
-                _ = Task.Run(async () => await matchedCommand.ExecuteAsync(context, args, _services));
-                return ExecuteResult.FromSuccess();
-            }
-            else
-            {
-                return await matchedCommand.ExecuteAsync(context, args, _services);
-            }
+            return LoadModuleInternal(module);
         }
-        catch (Exception ex)
+        finally
         {
-            return ExecuteResult.FromError(CommandError.Exception, ex.Message);
+            _moduleLock.Release();
         }
     }
 
     /// <summary>
-    /// Searches for a command by name or alias.
+    ///     Add a command module from a <see cref="Type" />.
     /// </summary>
-    /// <param name="name">The command name or alias.</param>
-    public CommandInfo? Search(string name)
-    {
-        var lowerName = name.ToLowerInvariant();
+    /// <example>
+    ///     <para>The following example registers the module <c>MyModule</c> to <c>commandService</c>.</para>
+    ///     <code language="cs">
+    ///     await commandService.AddModuleAsync&lt;MyModule&gt;(serviceProvider);
+    ///     </code>
+    /// </example>
+    /// <typeparam name="T">The type of module.</typeparam>
+    /// <param name="services">The <see cref="IServiceProvider"/> for your dependency injection solution if using one; otherwise, pass <c>null</c>.</param>
+    /// <exception cref="ArgumentException">This module has already been added.</exception>
+    /// <exception cref="InvalidOperationException">
+    /// The <see cref="ModuleInfo"/> fails to be built; an invalid type may have been provided.
+    /// </exception>
+    /// <returns>
+    ///     A task that represents the asynchronous operation for adding the module. The task result contains the
+    ///     built module.
+    /// </returns>
+    public Task<ModuleInfo> AddModuleAsync<T>(IServiceProvider services) => AddModuleAsync(typeof(T), services);
 
-        foreach (ModuleInfo module in _modules)
+    /// <summary>
+    ///     Adds a command module from a <see cref="Type" />.
+    /// </summary>
+    /// <param name="type">The type of module.</param>
+    /// <param name="services">The <see cref="IServiceProvider" /> for your dependency injection solution if using one; otherwise, pass <c>null</c> .</param>
+    /// <exception cref="ArgumentException">This module has already been added.</exception>
+    /// <exception cref="InvalidOperationException">
+    /// The <see cref="ModuleInfo"/> fails to be built; an invalid type may have been provided.
+    /// </exception>
+    /// <returns>
+    ///     A task that represents the asynchronous operation for adding the module. The task result contains the
+    ///     built module.
+    /// </returns>
+    public async Task<ModuleInfo> AddModuleAsync(Type type, IServiceProvider services)
+    {
+        services = services ?? EmptyServiceProvider.Instance;
+
+        await _moduleLock.WaitAsync().ConfigureAwait(false);
+        try
         {
-            foreach (CommandInfo command in module.Commands)
+            TypeInfo typeInfo = type.GetTypeInfo();
+
+            if (_typedModuleDefs.ContainsKey(type))
+                throw new ArgumentException("This module has already been added.");
+
+            KeyValuePair<Type, ModuleInfo> module = ModuleClassBuilder.Build(this, services, typeInfo).FirstOrDefault();
+
+            if (module.Value == default(ModuleInfo))
+                throw new InvalidOperationException($"Could not build the module {type.FullName}, did you pass an invalid type?");
+
+            _typedModuleDefs[module.Key] = module.Value;
+
+            return LoadModuleInternal(module.Value);
+        }
+        finally
+        {
+            _moduleLock.Release();
+        }
+    }
+    /// <summary>
+    ///     Add command modules from an <see cref="Assembly"/>.
+    /// </summary>
+    /// <param name="assembly">The <see cref="Assembly"/> containing command modules.</param>
+    /// <param name="services">The <see cref="IServiceProvider"/> for your dependency injection solution if using one; otherwise, pass <c>null</c>.</param>
+    /// <returns>
+    ///     A task that represents the asynchronous operation for adding the command modules. The task result
+    ///     contains an enumerable collection of modules added.
+    /// </returns>
+    public async Task<IEnumerable<ModuleInfo>> AddModulesAsync(Assembly assembly, IServiceProvider services = null)
+    {
+        services = services ?? EmptyServiceProvider.Instance;
+
+        await _moduleLock.WaitAsync().ConfigureAwait(false);
+        try
+        {
+            IReadOnlyList<TypeInfo> types = ModuleClassBuilder.Search(assembly);
+            Dictionary<Type, ModuleInfo> moduleDefs = ModuleClassBuilder.Build(types, this, services);
+
+            foreach (KeyValuePair<Type, ModuleInfo> info in moduleDefs)
             {
-                if (command.Name.Equals(lowerName, StringComparison.OrdinalIgnoreCase) ||
-                    command.Aliases.Any(a => a.Equals(lowerName, StringComparison.OrdinalIgnoreCase)))
-                {
-                    return command;
-                }
+                _typedModuleDefs[info.Key] = info.Value;
+                LoadModuleInternal(info.Value);
             }
+
+            return moduleDefs.Select(x => x.Value).ToImmutableArray();
+        }
+        finally
+        {
+            _moduleLock.Release();
+        }
+    }
+    private ModuleInfo LoadModuleInternal(ModuleInfo module)
+    {
+        _moduleDefs.Add(module);
+
+        foreach (CommandInfo command in module.Commands)
+            _map.AddCommand(command);
+
+        foreach (ModuleInfo submodule in module.Submodules)
+            LoadModuleInternal(submodule);
+
+        return module;
+    }
+    /// <summary>
+    ///     Removes the command module.
+    /// </summary>
+    /// <param name="module">The <see cref="ModuleInfo" /> to be removed from the service.</param>
+    /// <returns>
+    ///     A task that represents the asynchronous removal operation. The task result contains a value that
+    ///     indicates whether the <paramref name="module"/> is successfully removed.
+    /// </returns>
+    public async Task<bool> RemoveModuleAsync(ModuleInfo module)
+    {
+        await _moduleLock.WaitAsync().ConfigureAwait(false);
+        try
+        {
+            return RemoveModuleInternal(module);
+        }
+        finally
+        {
+            _moduleLock.Release();
+        }
+    }
+    /// <summary>
+    ///     Removes the command module.
+    /// </summary>
+    /// <typeparam name="T">The <see cref="Type"/> of the module.</typeparam>
+    /// <returns>
+    ///     A task that represents the asynchronous removal operation. The task result contains a value that
+    ///     indicates whether the module is successfully removed.
+    /// </returns>
+    public Task<bool> RemoveModuleAsync<T>() => RemoveModuleAsync(typeof(T));
+    /// <summary>
+    ///     Removes the command module.
+    /// </summary>
+    /// <param name="type">The <see cref="Type"/> of the module.</param>
+    /// <returns>
+    ///     A task that represents the asynchronous removal operation. The task result contains a value that
+    ///     indicates whether the module is successfully removed.
+    /// </returns>
+    public async Task<bool> RemoveModuleAsync(Type type)
+    {
+        await _moduleLock.WaitAsync().ConfigureAwait(false);
+        try
+        {
+            if (!_typedModuleDefs.TryRemove(type, out ModuleInfo module))
+                return false;
+
+            return RemoveModuleInternal(module);
+        }
+        finally
+        {
+            _moduleLock.Release();
+        }
+    }
+    private bool RemoveModuleInternal(ModuleInfo module)
+    {
+        if (!_moduleDefs.Remove(module))
+            return false;
+
+        foreach (CommandInfo cmd in module.Commands)
+            _map.RemoveCommand(cmd);
+
+        foreach (ModuleInfo submodule in module.Submodules)
+        {
+            RemoveModuleInternal(submodule);
         }
 
+        return true;
+    }
+
+    //Type Readers
+    /// <summary>
+    ///     Adds a custom <see cref="TypeReader" /> to this <see cref="CommandService" /> for the supplied object
+    ///     type.
+    ///     If <typeparamref name="T" /> is a <see cref="ValueType" />, a nullable <see cref="TypeReader" /> will
+    ///     also be added.
+    ///     If a default <see cref="TypeReader" /> exists for <typeparamref name="T" />, a warning will be logged
+    ///     and the default <see cref="TypeReader" /> will be replaced.
+    /// </summary>
+    /// <typeparam name="T">The object type to be read by the <see cref="TypeReader"/>.</typeparam>
+    /// <param name="reader">An instance of the <see cref="TypeReader" /> to be added.</param>
+    public void AddTypeReader<T>(TypeReader reader)
+        => AddTypeReader(typeof(T), reader);
+    /// <summary>
+    ///     Adds a custom <see cref="TypeReader" /> to this <see cref="CommandService" /> for the supplied object
+    ///     type.
+    ///     If <paramref name="type" /> is a <see cref="ValueType" />, a nullable <see cref="TypeReader" /> for the
+    ///     value type will also be added.
+    ///     If a default <see cref="TypeReader" /> exists for <paramref name="type" />, a warning will be logged and
+    ///     the default <see cref="TypeReader" /> will be replaced.
+    /// </summary>
+    /// <param name="type">A <see cref="Type" /> instance for the type to be read.</param>
+    /// <param name="reader">An instance of the <see cref="TypeReader" /> to be added.</param>
+    public void AddTypeReader(Type type, TypeReader reader)
+    {
+        AddTypeReader(type, reader, true);
+    }
+    /// <summary>
+    ///     Adds a custom <see cref="TypeReader" /> to this <see cref="CommandService" /> for the supplied object
+    ///     type.
+    ///     If <typeparamref name="T" /> is a <see cref="ValueType" />, a nullable <see cref="TypeReader" /> will
+    ///     also be added.
+    /// </summary>
+    /// <typeparam name="T">The object type to be read by the <see cref="TypeReader"/>.</typeparam>
+    /// <param name="reader">An instance of the <see cref="TypeReader" /> to be added.</param>
+    /// <param name="replaceDefault">
+    ///     Defines whether the <see cref="TypeReader"/> should replace the default one for
+    ///     <see cref="Type" /> if it exists.
+    /// </param>
+    public void AddTypeReader<T>(TypeReader reader, bool replaceDefault)
+        => AddTypeReader(typeof(T), reader, replaceDefault);
+    /// <summary>
+    ///     Adds a custom <see cref="TypeReader" /> to this <see cref="CommandService" /> for the supplied object
+    ///     type.
+    ///     If <paramref name="type" /> is a <see cref="ValueType" />, a nullable <see cref="TypeReader" /> for the
+    ///     value type will also be added.
+    /// </summary>
+    /// <param name="type">A <see cref="Type" /> instance for the type to be read.</param>
+    /// <param name="reader">An instance of the <see cref="TypeReader" /> to be added.</param>
+    /// <param name="replaceDefault">
+    ///     Defines whether the <see cref="TypeReader"/> should replace the default one for <see cref="Type" /> if
+    ///     it exists.
+    /// </param>
+    public void AddTypeReader(Type type, TypeReader reader, bool replaceDefault)
+    {
+        if (replaceDefault && HasDefaultTypeReader(type))
+        {
+            _defaultTypeReaders.AddOrUpdate(type, reader, (k, v) => reader);
+            if (type.GetTypeInfo().IsValueType)
+            {
+                Type nullableType = typeof(Nullable<>).MakeGenericType(type);
+                TypeReader nullableReader = NullableTypeReader.Create(type, reader);
+                _defaultTypeReaders.AddOrUpdate(nullableType, nullableReader, (k, v) => nullableReader);
+            }
+        }
+        else
+        {
+            ConcurrentDictionary<Type, TypeReader> readers = _typeReaders.GetOrAdd(type, x => new ConcurrentDictionary<Type, TypeReader>());
+            readers[reader.GetType()] = reader;
+
+            if (type.GetTypeInfo().IsValueType)
+                AddNullableTypeReader(type, reader);
+        }
+    }
+    internal bool HasDefaultTypeReader(Type type)
+    {
+        if (_defaultTypeReaders.ContainsKey(type))
+            return true;
+
+        TypeInfo typeInfo = type.GetTypeInfo();
+        if (typeInfo.IsEnum)
+            return true;
+        return _entityTypeReaders.Any(x => type == x.EntityType || typeInfo.ImplementedInterfaces.Contains(x.EntityType));
+    }
+    internal void AddNullableTypeReader(Type valueType, TypeReader valueTypeReader)
+    {
+        ConcurrentDictionary<Type, TypeReader> readers = _typeReaders.GetOrAdd(typeof(Nullable<>).MakeGenericType(valueType), x => new ConcurrentDictionary<Type, TypeReader>());
+        TypeReader nullableReader = NullableTypeReader.Create(valueType, valueTypeReader);
+        readers[nullableReader.GetType()] = nullableReader;
+    }
+    internal IDictionary<Type, TypeReader>? GetTypeReaders(Type type)
+    {
+        if (_typeReaders.TryGetValue(type, out ConcurrentDictionary<Type, TypeReader> definedTypeReaders))
+            return definedTypeReaders;
+        return null;
+    }
+    internal TypeReader? GetDefaultTypeReader(Type type)
+    {
+        if (_defaultTypeReaders.TryGetValue(type, out TypeReader reader))
+            return reader;
+        TypeInfo typeInfo = type.GetTypeInfo();
+
+        //Is this an enum?
+        if (typeInfo.IsEnum)
+        {
+            reader = EnumTypeReader.GetReader(type);
+            _defaultTypeReaders[type] = reader;
+            return reader;
+        }
+
+        //Is this an entity?
+        for (int i = 0; i < _entityTypeReaders.Count; i++)
+        {
+            if (type == _entityTypeReaders[i].EntityType || typeInfo.ImplementedInterfaces.Contains(_entityTypeReaders[i].EntityType))
+            {
+                reader = Activator.CreateInstance(_entityTypeReaders[i].TypeReaderType.MakeGenericType(type)) as TypeReader;
+                _defaultTypeReaders[type] = reader;
+                return reader;
+            }
+        }
         return null;
     }
 
-    private object ParseArguments(CommandInfo command, List<string> argList)
+    //Execution
+    /// <summary>
+    ///     Searches for the command.
+    /// </summary>
+    /// <param name="context">The context of the command.</param>
+    /// <param name="argPos">The position of which the command starts at.</param>
+    /// <returns>The result containing the matching commands.</returns>
+    public SearchResult Search(CommandContext context, int argPos)
+        => Search(context.Message.Content.Substring(argPos));
+    /// <summary>
+    ///     Searches for the command.
+    /// </summary>
+    /// <param name="context">The context of the command.</param>
+    /// <param name="input">The command string.</param>
+    /// <returns>The result containing the matching commands.</returns>
+    public SearchResult Search(CommandContext context, string input)
+        => Search(input);
+    public SearchResult Search(string input)
     {
-        IReadOnlyList<ParameterInfo> parameters = command.Parameters;
-        var args = new object[parameters.Count];
+        string searchInput = _caseSensitive ? input : input.ToLowerInvariant();
+        ImmutableArray<CommandMatch> matches = _map.GetCommands(searchInput).OrderByDescending(x => x.Command.Priority).ToImmutableArray();
 
-        int argIndex = 0;
-        for (int i = 0; i < parameters.Count; i++)
+        if (matches.Length > 0)
+            return SearchResult.FromSuccess(input, matches);
+        else
+            return SearchResult.FromError(CommandError.UnknownCommand, "Unknown command.");
+    }
+
+    /// <summary>
+    ///     Executes the command.
+    /// </summary>
+    /// <param name="context">The context of the command.</param>
+    /// <param name="argPos">The position of which the command starts at.</param>
+    /// <param name="services">The service to be used in the command's dependency injection.</param>
+    /// <param name="multiMatchHandling">The handling mode when multiple command matches are found.</param>
+    /// <returns>
+    ///     A task that represents the asynchronous execution operation. The task result contains the result of the
+    ///     command execution.
+    /// </returns>
+    public Task<IResult> ExecuteAsync(CommandContext context, int argPos, IServiceProvider services = null, MultiMatchHandling multiMatchHandling = MultiMatchHandling.Exception)
+        => ExecuteAsync(context, context.Message.Content.Substring(argPos), argPos, services, multiMatchHandling);
+
+
+    /// <summary>
+    ///     Executes the command.
+    /// </summary>
+    /// <param name="context">The context of the command.</param>
+    /// <param name="input">The command string.</param>
+    /// <param name="argPos"></param>
+    /// <param name="services">The service to be used in the command's dependency injection.</param>
+    /// <param name="multiMatchHandling">The handling mode when multiple command matches are found.</param>
+    /// <returns>
+    ///     A task that represents the asynchronous execution operation. The task result contains the result of the
+    ///     command execution.
+    /// </returns>
+    internal async Task<IResult> ExecuteAsync(CommandContext context, string input, int argPos, IServiceProvider services, MultiMatchHandling multiMatchHandling = MultiMatchHandling.Exception)
+    {
+        services = services ?? EmptyServiceProvider.Instance;
+        context.Prefix = context.Message.Content.Substring(0, argPos);
+
+        try
         {
-            ParameterInfo param = parameters[i];
-
-            // Handle remainder parameter
-            if (param.IsRemainder && argIndex < argList.Count)
+            SearchResult searchResult = Search(input);
+            if (!searchResult.IsSuccess)
             {
-                args[i] = string.Join(" ", argList.Skip(argIndex));
-                continue;
+                InvokeCommandExecuted(Optional.None<CommandInfo>(), context, searchResult);
+                return searchResult;
             }
 
-            // Handle optional parameter
-            if (argIndex >= argList.Count)
+
+            IReadOnlyList<CommandMatch> commands = searchResult.Commands;
+            Dictionary<CommandMatch, PreconditionResult> preconditionResults = new Dictionary<CommandMatch, PreconditionResult>();
+
+            foreach (CommandMatch match in commands)
             {
-                if (param.IsOptional)
+                preconditionResults[match] = await match.Command.CheckPreconditionsAsync(context, services).ConfigureAwait(false);
+            }
+
+            KeyValuePair<CommandMatch, PreconditionResult>[] successfulPreconditions = preconditionResults
+                .Where(x => x.Value.IsSuccess)
+                .ToArray();
+
+            if (successfulPreconditions.Length == 0)
+            {
+                //All preconditions failed, return the one from the highest priority command
+                KeyValuePair<CommandMatch, PreconditionResult> bestCandidate = preconditionResults
+                    .OrderByDescending(x => x.Key.Command.Priority)
+                    .FirstOrDefault(x => !x.Value.IsSuccess);
+                context.Command = bestCandidate.Key.Command;
+                InvokeCommandExecuted(Optional.Some(bestCandidate.Key.Command), context, bestCandidate.Value);
+                return bestCandidate.Value;
+            }
+
+
+            //If we get this far, at least one precondition was successful.
+
+            Dictionary<CommandMatch, ParseResult> parseResultsDict = new Dictionary<CommandMatch, ParseResult>();
+            foreach (KeyValuePair<CommandMatch, PreconditionResult> pair in successfulPreconditions)
+            {
+                ParseResult parseResult = await pair.Key.ParseAsync(context, searchResult, pair.Value, services).ConfigureAwait(false);
+
+                if (parseResult.Error == CommandError.MultipleMatches)
                 {
-                    args[i] = param.DefaultValue ?? GetDefaultValue(param.Type);
-                    continue;
+                    IReadOnlyList<TypeReaderValue> argList, paramList;
+                    switch (multiMatchHandling)
+                    {
+                        case MultiMatchHandling.Best:
+                            argList = parseResult.ArgValues.Select(x => x.Values.OrderByDescending(y => y.Score).First()).ToImmutableArray();
+                            paramList = parseResult.ParamValues.Select(x => x.Values.OrderByDescending(y => y.Score).First()).ToImmutableArray();
+                            parseResult = ParseResult.FromSuccess(argList, paramList);
+                            break;
+                    }
                 }
-                else
-                {
-                    return ExecuteResult.FromError(CommandError.BadArgCount,
-                        $"Missing required parameter: {param.Name}");
-                }
+
+                parseResultsDict[pair.Key] = parseResult;
             }
 
-            // Parse argument
-            var argString = argList[argIndex];
-            try
+            // Calculates the 'score' of a command given a parse result
+            float CalculateScore(CommandMatch match, ParseResult parseResult)
             {
-                args[i] = ParseArgument(argString, param.Type);
-                argIndex++;
+                float argValuesScore = 0, paramValuesScore = 0;
+
+                if (match.Command.Parameters.Count > 0)
+                {
+                    float argValuesSum = parseResult.ArgValues?.Sum(x => x.Values.OrderByDescending(y => y.Score).FirstOrDefault().Score) ?? 0;
+                    float paramValuesSum = parseResult.ParamValues?.Sum(x => x.Values.OrderByDescending(y => y.Score).FirstOrDefault().Score) ?? 0;
+
+                    argValuesScore = argValuesSum / match.Command.Parameters.Count;
+                    paramValuesScore = paramValuesSum / match.Command.Parameters.Count;
+                }
+
+                float totalArgsScore = (argValuesScore + paramValuesScore) / 2;
+                return match.Command.Priority + totalArgsScore * 0.99f;
             }
-            catch (Exception ex)
+
+            //Order the parse results by their score so that we choose the most likely result to execute
+            IOrderedEnumerable<KeyValuePair<CommandMatch, ParseResult>> parseResults = parseResultsDict
+                .OrderByDescending(x => CalculateScore(x.Key, x.Value));
+
+            KeyValuePair<CommandMatch, ParseResult>[] successfulParses = parseResults
+                .Where(x => x.Value.IsSuccess)
+                .ToArray();
+
+            if (successfulParses.Length == 0)
             {
-                return ExecuteResult.FromError(CommandError.ParseFailed,
-                    $"Failed to parse parameter '{param.Name}': {ex.Message}");
+                //All parses failed, return the one from the highest priority command, using score as a tie breaker
+                KeyValuePair<CommandMatch, ParseResult> bestMatch = parseResults
+                    .FirstOrDefault(x => !x.Value.IsSuccess);
+                context.Command = bestMatch.Key.Command;
+                InvokeCommandExecuted(Optional.Some(bestMatch.Key.Command), context, bestMatch.Value);
+                return bestMatch.Value;
             }
+
+
+            //If we get this far, at least one parse was successful. Execute the most likely overload.
+            KeyValuePair<CommandMatch, ParseResult> chosenOverload = successfulParses[0];
+            context.Command = chosenOverload.Key.Command;
+            IResult result = await chosenOverload.Key.ExecuteAsync(context, chosenOverload.Value, services).ConfigureAwait(false);
+            if (!result.IsSuccess && !(result is RuntimeResult || result is ExecuteResult)) // succesful results raise the event in CommandInfo#ExecuteInternalAsync (have to raise it there b/c deffered execution)
+                InvokeCommandExecuted(Optional.Some(chosenOverload.Key.Command), context, result);
+            return result;
         }
-
-        return args;
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex);
+            return ExecuteResult.FromError(ex);
+        }
     }
 
-    private object ParseArgument(string input, Type targetType)
+    protected virtual void Dispose(bool disposing)
     {
-        // Handle nullable types
-        Type underlyingType = Nullable.GetUnderlyingType(targetType);
-        if (underlyingType != null)
-            targetType = underlyingType;
+        if (!_isDisposed)
+        {
+            if (disposing)
+            {
+                _moduleLock?.Dispose();
+            }
 
-        // String - return as is
-        if (targetType == typeof(string))
-            return input;
-
-        // Boolean
-        if (targetType == typeof(bool))
-            return bool.Parse(input);
-
-        // Numeric types
-        if (targetType == typeof(int))
-            return int.Parse(input);
-        if (targetType == typeof(long))
-            return long.Parse(input);
-        if (targetType == typeof(ulong))
-            return ulong.Parse(input);
-        if (targetType == typeof(uint))
-            return uint.Parse(input);
-        if (targetType == typeof(short))
-            return short.Parse(input);
-        if (targetType == typeof(ushort))
-            return ushort.Parse(input);
-        if (targetType == typeof(byte))
-            return byte.Parse(input);
-        if (targetType == typeof(sbyte))
-            return sbyte.Parse(input);
-        if (targetType == typeof(float))
-            return float.Parse(input);
-        if (targetType == typeof(double))
-            return double.Parse(input);
-        if (targetType == typeof(decimal))
-            return decimal.Parse(input);
-
-        // DateTime
-        if (targetType == typeof(DateTime))
-            return DateTime.Parse(input);
-
-        // TimeSpan
-        if (targetType == typeof(TimeSpan))
-            return TimeSpan.Parse(input);
-
-        // Enum
-        if (targetType.IsEnum)
-            return Enum.Parse(targetType, input, true);
-
-        throw new ArgumentException($"Unsupported parameter type: {targetType.Name}");
+            _isDisposed = true;
+        }
     }
 
-    private static object? GetDefaultValue(Type type)
+    void IDisposable.Dispose()
     {
-        return type.IsValueType ? Activator.CreateInstance(type) : null;
+        Dispose(true);
     }
 }

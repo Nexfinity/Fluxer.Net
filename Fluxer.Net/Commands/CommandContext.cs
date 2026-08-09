@@ -2,75 +2,68 @@ using Fluxer.Net.Gateway;
 
 namespace Fluxer.Net.Commands;
 
-/// <summary>
-/// Represents the context of a command execution.
-/// </summary>
-public class CommandContext
+/// <inheritdoc />
+public class CommandContext : ICommandContext
 {
-    /// <summary>
-    /// Gets the API client.
-    /// </summary>
+    /// <inheritdoc/>
     public FluxerClient Client { get; }
 
-    /// <summary>
-    /// Gets the API client.
-    /// </summary>
-    public ApiClient Rest => Client.Rest;
+    /// <inheritdoc/>
+    public ApiClient Rest { get; }
 
-    /// <summary>
-    /// Gets the gateway client.
-    /// </summary>
-    public GatewayClient Gateway => Client.Gateway;
+    /// <inheritdoc/>
+    public GatewayClient Gateway { get; }
 
-    /// <summary>
-    /// Gets the message that triggered the command.
-    /// </summary>
-    public SocketMessage Message { get; }
+    /// <inheritdoc/>
+    public SocketGuild? Server { get; }
 
-    /// <summary>
-    /// Gets the channel the command was executed in.
-    /// </summary>
-    public Channel Channel => Message.Channel;
+    /// <inheritdoc/>
+    public Channel Channel { get; }
 
-    /// <summary>
-    /// Gets the guild the command was executed in, if any.
-    /// </summary>
-    public SocketGuild? Guild { get; }
+    /// <inheritdoc/>
+    public SocketUser? User { get; }
 
-    /// <summary>
-    /// Gets the user who executed the command.
-    /// </summary>
-    public SocketUser User { get; internal set; }
-
-    /// <summary>
-    /// Gets the member who executed the command.
-    /// </summary>
+    /// <inheritdoc/>
     public SocketGuildMember? Member { get; }
 
+    /// <inheritdoc/>
+    public SocketMessage Message { get; }
+
+    /// <inheritdoc/>
+    public CommandInfo? Command { get; internal set; }
+
+    /// <inheritdoc/>
+    public string? Prefix { get; internal set; }
+
+    /// <inheritdoc/>
+    public bool IsPrivate => Channel.Type == ChannelType.Dm;
+
     /// <summary>
-    /// Creates a new command context.
+    /// Create a new <see cref="CommandContext" /> class with the provided client and message.
     /// </summary>
-    /// <param name="client">The API client.</param>
-    /// <param name="message">The message that triggered the command.</param>
+    /// <param name="client">The underlying client.</param>
+    /// <param name="message">The underlying message.</param>
     public CommandContext(FluxerClient client, MessageGatewayData message)
     {
         Client = client;
+        Rest = client.Rest;
+        Gateway = client.Gateway;
         Message = SocketMessage.Create(client, message);
+        Channel = client.Gateway.GetChannel(message.ChannelId);
         User = SocketUser.Create(client, message.Author);
         if (message.GuildId.HasValue)
         {
-
-            Guild = client.Gateway.GetGuild(message.GuildId.Value);
-            Member = Guild.GetMember(User.Id);
+            Server = client.Gateway.GetGuild(message.GuildId.Value);
+            Member = Server.GetMember(User.Id);
             if (Member == null)
             {
                 message.Member.User = message.Author;
-                Guild.AddOrUpdateMember(Client, message.Member);
-                Member = Guild.GetMember(User.Id);
+                Server.AddOrUpdateMember(Client, message.Member);
+                Member = Server.GetMember(User.Id);
             }
 
-            if (Member.Guild == null)
-                Member.Guild = Guild;
+            if (Member.Server == null)
+                Member.Server = Server;
         }
     }
 }

@@ -5,7 +5,7 @@ using Fluxer.Net.Rest;
 using Fluxer.Net.Rest.Requests;
 using Microsoft.AspNetCore.WebUtilities;
 using Newtonsoft.Json;
-using Serilog.Core;
+using Serilog;
 using System.Net;
 using System.Net.Http.Headers;
 using System.Reflection;
@@ -47,7 +47,7 @@ public class ApiClient
     public ApiLimits Limits { get; set; }
 
 #pragma warning disable CS0169
-    private readonly Logger _logger;
+    private readonly ILogger _logger;
 #pragma warning restore CS0169
     #endregion
 
@@ -1300,7 +1300,7 @@ public class ApiClient
     /// Update a guild that you manage.
     /// </summary>
     /// <remarks>
-    /// Requires <see cref="GuildPermissions.ManageGuild"/>.
+    /// Requires <see cref="GuildPermissions.ManageServer"/>.
     /// </remarks>
     /// <param name="guildId"></param>
     /// <param name="guild"></param>
@@ -1335,7 +1335,7 @@ public class ApiClient
     /// Update vanity url for a guild.
     /// </summary>
     /// <remarks>
-    /// Requires <see cref="GuildPermissions.ManageGuild"/>.
+    /// Requires <see cref="GuildPermissions.ManageServer"/>.
     /// </remarks>
     /// <param name="guildId"></param>
     /// <param name="data"></param>
@@ -1839,14 +1839,24 @@ public class ApiClient
     #endregion
 
     #region Apps API
+
+    public async Task<CurrentApplication> GetCurrentApplicationAsync()
+    {
+        CurrentApplicationJson json = await SendRequestAsync<CurrentApplicationJson>(HttpMethod.Get, $"/oauth2/applications/@me", true);
+        return CurrentApplication.Create(_client, json);
+    }
+
     /// <summary>
     /// Get a public app.
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
-    public async Task<Application> GetPublicAppAsync(ulong id)
+    public async Task<Application?> GetPublicAppAsync(ulong id)
     {
-        ApplicationJson json = await SendRequestAsync<ApplicationJson>(HttpMethod.Get, $"/oauth2/applications/{id}/public", true);
+        ApplicationJson? json = await SendRequestAsync<ApplicationJson>(HttpMethod.Get, $"/oauth2/applications/{id}/public", false);
+        if (json == null)
+            return null;
+
         return Application.Create(_client, json);
     }
 

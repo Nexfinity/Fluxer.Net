@@ -43,7 +43,7 @@ public class SocketUnknownChannel : Channel
                     data.IsTextable = true;
                 }
                 break;
-            case ChannelType.GroupDm:
+            case ChannelType.Group:
                 {
                     data = new SocketGroupChannel(client);
                     data.IsTextable = true;

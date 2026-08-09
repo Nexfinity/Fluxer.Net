@@ -1,7 +1,7 @@
 namespace Fluxer.Net.Commands;
 
 /// <summary>
-/// Marks a parameter to capture all remaining text as a single string.
+///     Marks the input to not be parsed by the parser.
 /// </summary>
 [AttributeUsage(AttributeTargets.Parameter, AllowMultiple = false, Inherited = true)]
 public class RemainderAttribute : Attribute
