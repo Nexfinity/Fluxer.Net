@@ -27,7 +27,7 @@ public class RequireBotPermissionAttribute : PreconditionAttribute
     public override async Task<PreconditionResult> CheckPermissionsAsync(ICommandContext context, CommandInfo command, IServiceProvider services)
     {
         if (context.Guild == null || context.Guild is not SocketGuild guild)
-            return PreconditionResult.FromError("You need to run this command in a server.");
+            return PreconditionResult.FromError("You need to run this command in a community.");
 
         SocketGuildMember? member = guild.CurrentMember as SocketGuildMember;
 
@@ -36,7 +36,7 @@ public class RequireBotPermissionAttribute : PreconditionAttribute
             if (member != null && member.HasPermission(Server.Value))
                 return PreconditionResult.FromSuccess();
 
-            return PreconditionResult.FromError($"Bot needs server permission for **{Server.Value.ToString()}** to use this command.");
+            return PreconditionResult.FromError($"Bot needs community permission for **{Server.Value.ToString()}** to use this command.");
         }
 
         if (Channel == null)
