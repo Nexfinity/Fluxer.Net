@@ -1,5 +1,5 @@
 using Fluxer.Net.Gateway;
-using Serilog.Core;
+using Serilog;
 
 namespace Fluxer.Net;
 
@@ -19,14 +19,14 @@ public class FluxerConfig
     /// application's existing Serilog configuration. Allows for separate log levels and sinks
     /// for Fluxer.Net operations.
     /// </summary>
-    public Logger? RestSerilog { get; set; }
+    public ILogger? RestSerilog { get; set; }
 
     /// <summary>
     /// Custom Serilog logger configuration for the library. If null, the library will use the
     /// application's existing Serilog configuration. Allows for separate log levels and sinks
     /// for Fluxer.Net operations.
     /// </summary>
-    public Logger? GatewaySerilog { get; set; }
+    public ILogger? GatewaySerilog { get; set; }
 
     /// <summary>
     /// Base URL for the Fluxer REST API. The {v} placeholder is replaced with <see cref="Version"/>.

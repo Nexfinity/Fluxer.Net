@@ -1,10 +1,15 @@
-﻿namespace Fluxer.Net;
+﻿using Fluxer.Net.Extensions;
+
+namespace Fluxer.Net;
 
 /// <inheritdoc />
 public class User : Entity, IUser
 {
     /// <inheritdoc />
     public ulong Id { get; internal set; }
+
+    /// <inheritdoc />
+    public DateTimeOffset CreatedAt { get; internal set; }
 
     /// <inheritdoc />
     public string Mention => $"<@{Id}>";
@@ -84,6 +89,7 @@ public class User : Entity, IUser
     internal void Update(UserJson json)
     {
         Id = json.Id;
+        CreatedAt = SnowflakeUtils.FromSnowflake(Id);
         Username = json.Username;
         Discriminator = json.Discriminator;
         DisplayName = json.DisplayName;

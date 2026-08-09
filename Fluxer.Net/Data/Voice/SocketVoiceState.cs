@@ -2,7 +2,7 @@
 
 public class SocketVoiceState : VoiceState
 {
-    public SocketGuild Guild { get; internal set; }
+    public SocketGuild Server { get; internal set; }
     public SocketVoiceChannel? Channel { get; internal set; }
 
     internal SocketVoiceState(FluxerBaseClient client) : base(client)
@@ -21,7 +21,7 @@ public class SocketVoiceState : VoiceState
     {
         var data = new SocketVoiceState(client);
         data.Update(client, json);
-        data.Guild = guild;
+        data.Server = guild;
         return data;
     }
 

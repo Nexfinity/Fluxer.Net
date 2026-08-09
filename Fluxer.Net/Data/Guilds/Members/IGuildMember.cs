@@ -5,7 +5,7 @@ public interface IGuildMember
     /// <summary>
     /// User id for this member.
     /// </summary>
-    ulong UserId { get; }
+    ulong Id { get; }
 
     /// <summary>
     /// Guild id that the user is in.

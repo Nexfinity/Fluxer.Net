@@ -1,6 +1,6 @@
 ﻿namespace Fluxer.Net;
 
-public interface IGuild
+public interface IGuild : IPartialGuild
 {
     /// <summary>
     /// The ID of the guild owner.

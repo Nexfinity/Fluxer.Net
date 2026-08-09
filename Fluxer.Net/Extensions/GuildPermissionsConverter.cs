@@ -10,10 +10,10 @@ public class GuildPermissionsConverter : JsonConverter<GuildPermissions>
             return new GuildPermissions(0);
 
         if (reader.TokenType == JsonToken.String)
-            return new GuildPermissions((Permissions)ulong.Parse((string)reader.Value));
+            return new GuildPermissions((GuildPermission)ulong.Parse((string)reader.Value));
 
         if (reader.TokenType == JsonToken.Integer)
-            return new GuildPermissions((Permissions)Convert.ToUInt64(reader.Value));
+            return new GuildPermissions((GuildPermission)Convert.ToUInt64(reader.Value));
 
         throw new JsonSerializationException(
             $"Unexpected token type '{reader.TokenType}' when deserializing GuildPermissions at path '{reader.Path}'.");

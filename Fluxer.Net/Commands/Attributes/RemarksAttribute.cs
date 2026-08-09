@@ -1,22 +1,17 @@
-namespace Fluxer.Net.Commands;
-
-/// <summary>
-/// Provides additional remarks or detailed information for a command.
-/// </summary>
-[AttributeUsage(AttributeTargets.Method, AllowMultiple = false, Inherited = true)]
-public class RemarksAttribute : Attribute
+namespace Fluxer.Net.Commands
 {
+    // Extension of the Cosmetic Summary, for Groups, Commands, and Parameters
     /// <summary>
-    /// Gets the remarks text.
+    ///     Attaches remarks to your commands.
     /// </summary>
-    public string Text { get; }
-
-    /// <summary>
-    /// Provides additional remarks for a command.
-    /// </summary>
-    /// <param name="text">The remarks text.</param>
-    public RemarksAttribute(string text)
+    [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class, AllowMultiple = false, Inherited = true)]
+    public class RemarksAttribute : Attribute
     {
-        Text = text;
+        public string Text { get; }
+
+        public RemarksAttribute(string text)
+        {
+            Text = text;
+        }
     }
 }

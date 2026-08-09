@@ -1,17 +1,23 @@
-namespace Fluxer.Net.Commands;
-
-/// <summary>
-/// Specifies the execution mode of a command.
-/// </summary>
-public enum RunMode
+namespace Fluxer.Net.Commands
 {
-	/// <summary>
-	/// The command will run synchronously on the gateway thread.
-	/// </summary>
-	Sync,
-
-	/// <summary>
-	/// The command will run asynchronously on a separate thread.
-	/// </summary>
-	Async
+    /// <summary>
+    ///     Specifies the behavior of the command execution workflow.
+    /// </summary>
+    /// <seealso cref="CommandServiceConfig"/>
+    /// <seealso cref="CommandAttribute"/>
+    public enum RunMode
+    {
+        /// <summary>
+        /// The default behavior set in <see cref="CommandServiceConfig"/>.
+        /// </summary>
+        Default,
+        /// <summary>
+        /// Executes the command on the same thread as gateway one.
+        /// </summary>
+        Sync,
+        /// <summary>
+        /// Executes the command on a different thread from the gateway one.
+        /// </summary>
+        Async
+    }
 }

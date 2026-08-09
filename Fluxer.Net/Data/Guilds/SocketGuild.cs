@@ -58,7 +58,7 @@ public class SocketGuild : Guild
     {
         SocketGuild data = new SocketGuild(client);
         data.CurrentMember = member;
-        data.Members.TryAdd(member.UserId, member);
+        data.Members.TryAdd(member.Id, member);
         data.CurrentMember.Guild = data;
 
         // Null count data on socket guild.
@@ -82,7 +82,7 @@ public class SocketGuild : Guild
     {
         var mem = SocketGuildMember.Create(client, member);
         mem.Guild = this;
-        if (!Members.TryAdd(member.UserId, mem))
-            Members[member.UserId].Update(client, member);
+        if (!Members.TryAdd(member.Id, mem))
+            Members[member.Id].Update(client, member);
     }
 }

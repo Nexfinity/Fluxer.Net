@@ -10,10 +10,10 @@ public class ChannelPermissionsConverter : JsonConverter<ChannelPermissions>
             return new ChannelPermissions(0);
 
         if (reader.TokenType == JsonToken.String)
-            return new ChannelPermissions((Permissions)ulong.Parse((string)reader.Value));
+            return new ChannelPermissions((GuildPermission)ulong.Parse((string)reader.Value));
 
         if (reader.TokenType == JsonToken.Integer)
-            return new ChannelPermissions((Permissions)Convert.ToUInt64(reader.Value));
+            return new ChannelPermissions((GuildPermission)Convert.ToUInt64(reader.Value));
 
         throw new JsonSerializationException(
             $"Unexpected token type '{reader.TokenType}' when deserializing GuildPermissions at path '{reader.Path}'.");

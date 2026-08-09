@@ -81,7 +81,7 @@ public class GuildFeatures
                         HasLargeGuildOverride = true;
                         break;
                     case "VERY_LARGE_GUILD":
-                        IsLargeGuild = true;
+                        IsLargeServer = true;
                         break;
                 }
             }
@@ -112,9 +112,9 @@ public class GuildFeatures
     public bool IsOperator { get; }
     public bool BlockUnclaimedAccounts { get; }
     public bool HasLargeGuildOverride { get; }
-    public bool IsLargeGuild { get; }
+    public bool IsLargeServer { get; }
 
-    public static GuildFeatures FromGuild(PartialGuildJson guild)
+    public static GuildFeatures FromServer(PartialGuildJson guild)
     {
         return new GuildFeatures(guild.Features);
     }

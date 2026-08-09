@@ -1,27 +1,73 @@
-namespace Fluxer.Net.Commands;
-
-/// <summary>
-/// Marks a method as a text command.
-/// </summary>
-[AttributeUsage(AttributeTargets.Method, AllowMultiple = false, Inherited = true)]
-public class CommandAttribute : Attribute
+namespace Fluxer.Net.Commands
 {
     /// <summary>
-    /// Gets the name of the command.
+    ///     Marks the execution information for a command.
     /// </summary>
-    public string Name { get; }
-
-    /// <summary>
-    /// Gets or sets whether the command can be invoked while another command is running.
-    /// </summary>
-    public RunMode RunMode { get; set; } = RunMode.Sync;
-
-    /// <summary>
-    /// Marks a method as a command with the specified name.
-    /// </summary>
-    /// <param name="name">The name of the command.</param>
-    public CommandAttribute(string name)
+    [AttributeUsage(AttributeTargets.Method, AllowMultiple = false, Inherited = true)]
+    public class CommandAttribute : Attribute
     {
-        Name = name;
+        /// <summary>
+        ///     Gets the text that has been set to be recognized as a command.
+        /// </summary>
+        public string Text { get; }
+        /// <summary>
+        ///     Specifies the <see cref="RunMode" /> of the command. This affects how the command is executed.
+        /// </summary>
+        public RunMode RunMode { get; set; } = RunMode.Default;
+        public bool? IgnoreExtraArgs { get; }
+
+        /// <summary>
+        ///     Attaches a summary to your command.
+        /// </summary>
+        /// <remarks>
+        ///     <see cref="Summary"/> overrides the value of this property if present.
+        /// </remarks>
+        public string Summary { get; set; }
+
+        /// <summary>
+        ///     Marks the aliases for a command.
+        /// </summary>
+        /// <remarks>
+        ///     <see cref="AliasAttribute"/> extends the base value of this if present.
+        /// </remarks>
+        public string[] Aliases { get; set; }
+
+        /// <summary>
+        ///     Attaches remarks to your commands.
+        /// </summary>
+        /// <remarks>
+        ///     <see cref="RemainderAttribute"/> overrides the value of this property if present.
+        /// </remarks>
+        public string Remarks { get; set; }
+
+        /// <inheritdoc />
+        public CommandAttribute()
+        {
+            Text = null;
+        }
+
+        /// <summary>
+        ///     Initializes a new <see cref="CommandAttribute" /> attribute with the specified name.
+        /// </summary>
+        /// <param name="text">The name of the command.</param>
+        public CommandAttribute(string text)
+        {
+            Text = text;
+        }
+
+        public CommandAttribute(string text, bool ignoreExtraArgs)
+        {
+            Text = text;
+            IgnoreExtraArgs = ignoreExtraArgs;
+        }
+
+        public CommandAttribute(string text, bool ignoreExtraArgs, string summary = default, string[] aliases = default, string remarks = default)
+        {
+            Text = text;
+            IgnoreExtraArgs = ignoreExtraArgs;
+            Summary = summary;
+            Aliases = aliases;
+            Remarks = remarks;
+        }
     }
 }

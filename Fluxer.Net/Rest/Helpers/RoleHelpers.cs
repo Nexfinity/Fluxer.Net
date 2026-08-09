@@ -12,11 +12,11 @@ public static class RoleHelpers
         => role.Client.Rest.AddMemberRoleAsync(role.GuildId, userId, role.Id);
 
     public static Task AddMemberAsync(this Role role, GuildMember member)
-        => role.Client.Rest.AddMemberRoleAsync(role.GuildId, member.UserId, role.Id);
+        => role.Client.Rest.AddMemberRoleAsync(role.GuildId, member.Id, role.Id);
 
     public static Task RemoveMemberAsync(this Role role, ulong userId)
         => role.Client.Rest.RemoveMemberRoleAsync(role.GuildId, userId, role.Id);
 
     public static Task RemoveMemberAsync(this Role role, GuildMember member)
-        => role.Client.Rest.RemoveMemberRoleAsync(role.GuildId, member.UserId, role.Id);
+        => role.Client.Rest.RemoveMemberRoleAsync(role.GuildId, member.Id, role.Id);
 }

@@ -8,6 +8,11 @@ public interface IUser
     ulong Id { get; }
 
     /// <summary>
+    /// User created at UTC.
+    /// </summary>
+    DateTimeOffset CreatedAt { get; }
+
+    /// <summary>
     /// Get the mention for the user.
     /// </summary>
     string Mention { get; }

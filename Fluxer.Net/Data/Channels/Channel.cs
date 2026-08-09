@@ -116,7 +116,7 @@ public class Channel : Entity, IChannel
                     data.IsTextable = true;
                 }
                 break;
-            case ChannelType.GroupDm:
+            case ChannelType.Group:
                 {
                     data = new GroupChannel(client);
                     data.IsTextable = true;

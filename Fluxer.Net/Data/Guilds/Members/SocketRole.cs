@@ -4,7 +4,7 @@ public class SocketRole : Role
 {
     public SocketGuild Guild { get; internal set; }
 
-    public bool HasPermission(Permissions permission)
+    public bool HasPermission(GuildPermission permission)
     {
         if (Permissions.RawValue.HasFlag(permission))
             return true;

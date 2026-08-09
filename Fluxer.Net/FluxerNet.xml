@@ -4,61 +4,128 @@
         <name>Fluxer.Net</name>
     </assembly>
     <members>
-        <member name="T:Fluxer.Net.Commands.ActivatorUtilities">
-            <summary>
-            Helper utilities for activating instances with dependency injection.
-            </summary>
-        </member>
-        <member name="M:Fluxer.Net.Commands.ActivatorUtilities.CreateInstance(System.IServiceProvider,System.Type,System.Object[])">
-            <summary>
-            Creates an instance of the specified type using the service provider.
-            </summary>
-        </member>
         <member name="T:Fluxer.Net.Commands.AliasAttribute">
             <summary>
-            Provides alternative names for a command.
+                Marks the aliases for a command.
             </summary>
+            <remarks>
+                This attribute allows a command to have one or multiple aliases. In other words, the base command can have
+                multiple aliases when triggering the command itself, giving the end-user more freedom of choices when giving
+                hot-words to trigger the desired command. See the example for a better illustration.
+            </remarks>
+            <example>
+                In the following example, the command can be triggered with the base name, "stats", or either "stat" or
+                "info".
+                <code language="cs">
+                [Command("stats")]
+                [Alias("stat", "info")]
+                public <see langword="async"/> Task GetStatsAsync(IUser user)
+                {
+                    // ...pull stats
+                }
+                </code>
+            </example>
         </member>
         <member name="P:Fluxer.Net.Commands.AliasAttribute.Aliases">
             <summary>
-            Gets the aliases for the command or module.
+                Gets the aliases which have been defined for the command.
             </summary>
         </member>
         <member name="M:Fluxer.Net.Commands.AliasAttribute.#ctor(System.String[])">
             <summary>
-            Provides alternative names for a command or module.
+                Creates a new <see cref="T:Fluxer.Net.Commands.AliasAttribute" /> with the given aliases.
             </summary>
-            <param name="aliases">The aliases.</param>
         </member>
         <member name="T:Fluxer.Net.Commands.CommandAttribute">
             <summary>
-            Marks a method as a text command.
+                Marks the execution information for a command.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.Commands.CommandAttribute.Name">
+        <member name="P:Fluxer.Net.Commands.CommandAttribute.Text">
             <summary>
-            Gets the name of the command.
+                Gets the text that has been set to be recognized as a command.
             </summary>
         </member>
         <member name="P:Fluxer.Net.Commands.CommandAttribute.RunMode">
             <summary>
-            Gets or sets whether the command can be invoked while another command is running.
+                Specifies the <see cref="P:Fluxer.Net.Commands.CommandAttribute.RunMode" /> of the command. This affects how the command is executed.
             </summary>
+        </member>
+        <member name="P:Fluxer.Net.Commands.CommandAttribute.Summary">
+            <summary>
+                Attaches a summary to your command.
+            </summary>
+            <remarks>
+                <see cref="P:Fluxer.Net.Commands.CommandAttribute.Summary"/> overrides the value of this property if present.
+            </remarks>
+        </member>
+        <member name="P:Fluxer.Net.Commands.CommandAttribute.Aliases">
+            <summary>
+                Marks the aliases for a command.
+            </summary>
+            <remarks>
+                <see cref="T:Fluxer.Net.Commands.AliasAttribute"/> extends the base value of this if present.
+            </remarks>
+        </member>
+        <member name="P:Fluxer.Net.Commands.CommandAttribute.Remarks">
+            <summary>
+                Attaches remarks to your commands.
+            </summary>
+            <remarks>
+                <see cref="T:Fluxer.Net.Commands.RemainderAttribute"/> overrides the value of this property if present.
+            </remarks>
+        </member>
+        <member name="M:Fluxer.Net.Commands.CommandAttribute.#ctor">
+            <inheritdoc />
         </member>
         <member name="M:Fluxer.Net.Commands.CommandAttribute.#ctor(System.String)">
             <summary>
-            Marks a method as a command with the specified name.
+                Initializes a new <see cref="T:Fluxer.Net.Commands.CommandAttribute" /> attribute with the specified name.
             </summary>
-            <param name="name">The name of the command.</param>
+            <param name="text">The name of the command.</param>
+        </member>
+        <member name="T:Fluxer.Net.Commands.DontAutoLoadAttribute">
+            <summary>
+                Prevents the marked module from being loaded automatically.
+            </summary>
+            <remarks>
+                This attribute tells <see cref="T:Fluxer.Net.Commands.CommandService" /> to ignore the marked module from being loaded
+                automatically (e.g. the <see cref="M:Fluxer.Net.Commands.CommandService.AddModulesAsync(System.Reflection.Assembly,System.IServiceProvider)" /> method). If a non-public module marked
+                with this attribute is attempted to be loaded manually, the loading process will also fail.
+            </remarks>
+        </member>
+        <member name="T:Fluxer.Net.Commands.DontInjectAttribute">
+            <summary>
+                Prevents the marked property from being injected into a module.
+            </summary>
+            <remarks>
+                This attribute prevents the marked member from being injected into its parent module. Useful when you have a
+                public property that you do not wish to invoke the library's dependency injection service.
+            </remarks>
+            <example>
+                In the following example, <c>DatabaseService</c> will not be automatically injected into the module and will
+                not throw an error message if the dependency fails to be resolved.
+                <code language="cs">
+                public class MyModule : ModuleBase
+                {
+                    [DontInject]
+                    public DatabaseService DatabaseService;
+                    public MyModule()
+                    {
+                        DatabaseService = DatabaseFactory.Generate();
+                    }
+                }
+                </code>
+            </example>
         </member>
         <member name="T:Fluxer.Net.Commands.GroupAttribute">
             <summary>
-            Marks the module as a command group.
+                Marks the module as a command group.
             </summary>
         </member>
         <member name="P:Fluxer.Net.Commands.GroupAttribute.Prefix">
             <summary>
-            Gets the prefix set for the module.
+                Gets the prefix set for the module.
             </summary>
         </member>
         <member name="M:Fluxer.Net.Commands.GroupAttribute.#ctor">
@@ -66,589 +133,1347 @@
         </member>
         <member name="M:Fluxer.Net.Commands.GroupAttribute.#ctor(System.String)">
             <summary>
-            Initializes a new <see cref="T:Fluxer.Net.Commands.GroupAttribute" /> with the provided prefix.
+                Initializes a new <see cref="T:Fluxer.Net.Commands.GroupAttribute" /> with the provided prefix.
             </summary>
             <param name="prefix">The prefix of the module group.</param>
         </member>
         <member name="T:Fluxer.Net.Commands.NameAttribute">
             <summary>
-            Specifies a custom name for a command parameter.
+                Marks the public name of a command, module, or parameter.
             </summary>
         </member>
         <member name="P:Fluxer.Net.Commands.NameAttribute.Text">
             <summary>
-            Gets the parameter name.
+                Gets the name of the command.
             </summary>
         </member>
         <member name="M:Fluxer.Net.Commands.NameAttribute.#ctor(System.String)">
             <summary>
-            Specifies a custom name for a parameter.
+                Marks the public name of a command, module, or parameter with the provided name.
             </summary>
-            <param name="text">The parameter name.</param>
+            <param name="text">The public name of the object.</param>
+        </member>
+        <member name="T:Fluxer.Net.Commands.NamedArgumentTypeAttribute">
+            <summary>
+            Instructs the command system to treat command parameters of this type
+            as a collection of named arguments matching to its properties.
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.Commands.OverrideTypeReaderAttribute">
+            <summary>
+                Marks the <see cref="T:System.Type"/> to be read by the specified <see cref="!:Discord.Commands.TypeReader"/>.
+            </summary>
+            <remarks>
+                This attribute will override the <see cref="!:Discord.Commands.TypeReader"/> to be used when parsing for the
+                desired type in the command. This is useful when one wishes to use a particular 
+                <see cref="!:Discord.Commands.TypeReader"/> without affecting other commands that are using the same target
+                type.
+                <note type="warning">
+                    If the given type reader does not inherit from <see cref="!:Discord.Commands.TypeReader"/>, an 
+                    <see cref="T:System.ArgumentException"/> will be thrown.
+                </note>
+            </remarks>
+            <example>
+                In this example, the <see cref="T:System.TimeSpan"/> will be read by a custom 
+                <see cref="!:Discord.Commands.TypeReader"/>, <c>FriendlyTimeSpanTypeReader</c>, instead of the 
+                <see cref="T:Fluxer.Net.Commands.TimeSpanTypeReader"/> shipped by Discord.Net.
+                <code language="cs">
+                [Command("time")]
+                public Task GetTimeAsync([OverrideTypeReader(typeof(FriendlyTimeSpanTypeReader))]TimeSpan time)
+                    => ReplyAsync(time);
+                </code>
+            </example>
+        </member>
+        <member name="P:Fluxer.Net.Commands.OverrideTypeReaderAttribute.TypeReader">
+            <summary> 
+                Gets the specified <see cref="P:Fluxer.Net.Commands.OverrideTypeReaderAttribute.TypeReader"/> of the parameter. 
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Commands.OverrideTypeReaderAttribute.#ctor(System.Type)">
+            <inheritdoc/>
+            <param name="overridenTypeReader">The <see cref="P:Fluxer.Net.Commands.OverrideTypeReaderAttribute.TypeReader"/> to be used with the parameter. </param>
+            <exception cref="T:System.ArgumentException">The given <paramref name="overridenTypeReader"/> does not inherit from <see cref="P:Fluxer.Net.Commands.OverrideTypeReaderAttribute.TypeReader"/>.</exception>
+        </member>
+        <member name="T:Fluxer.Net.Commands.ParameterPreconditionAttribute">
+            <summary>
+                Requires the parameter to pass the specified precondition before execution can begin.
+            </summary>
+            <seealso cref="T:Fluxer.Net.Commands.PreconditionAttribute"/>
+        </member>
+        <member name="M:Fluxer.Net.Commands.ParameterPreconditionAttribute.CheckPermissionsAsync(Fluxer.Net.Commands.ICommandContext,Fluxer.Net.Commands.ParameterInfo,System.Object,System.IServiceProvider)">
+            <summary>
+                Checks whether the condition is met before execution of the command.
+            </summary>
+            <param name="context">The context of the command.</param>
+            <param name="parameter">The parameter of the command being checked against.</param>
+            <param name="value">The raw value of the parameter.</param>
+            <param name="services">The service collection used for dependency injection.</param>
         </member>
         <member name="T:Fluxer.Net.Commands.PreconditionAttribute">
             <summary>
-            Base class for command preconditions that must be satisfied before execution.
+                Requires the module or class to pass the specified precondition before execution can begin.
+            </summary>
+            <seealso cref="T:Fluxer.Net.Commands.ParameterPreconditionAttribute"/>
+        </member>
+        <member name="P:Fluxer.Net.Commands.PreconditionAttribute.Group">
+            <summary>
+                Specifies a group that this precondition belongs to.
+            </summary>
+            <remarks>
+                <see cref="!:Preconditions" /> of the same group require only one of the preconditions to pass in order to
+                be successful (A || B). Specifying <see cref="P:Fluxer.Net.Commands.PreconditionAttribute.Group" /> = <see langword="null" /> or not at all will
+                require *all* preconditions to pass, just like normal (A &amp;&amp; B).
+            </remarks>
+        </member>
+        <member name="P:Fluxer.Net.Commands.PreconditionAttribute.ErrorMessage">
+            <summary>
+            When overridden in a derived class, uses the supplied string
+            as the error message if the precondition doesn't pass.
+            Setting this for a class that doesn't override
+            this property is a no-op.
             </summary>
         </member>
-        <member name="M:Fluxer.Net.Commands.PreconditionAttribute.CheckPermissionsAsync(Fluxer.Net.Commands.CommandContext,Fluxer.Net.Commands.CommandInfo,System.IServiceProvider)">
+        <member name="M:Fluxer.Net.Commands.PreconditionAttribute.CheckPermissionsAsync(Fluxer.Net.Commands.ICommandContext,Fluxer.Net.Commands.CommandInfo,System.IServiceProvider)">
             <summary>
-            Checks if the precondition is met.
+                Checks if the <paramref name="command"/> has the sufficient permission to be executed.
             </summary>
-            <param name="context">The command context.</param>
+            <param name="context">The context of the command.</param>
             <param name="command">The command being executed.</param>
-            <param name="services">The service provider.</param>
+            <param name="services">The service collection used for dependency injection.</param>
+        </member>
+        <member name="F:Fluxer.Net.Commands.RequireBotPermissionAttribute.Server">
+            <summary>
+            Server permission to check for.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.Commands.RequireBotPermissionAttribute.Channel">
+            <summary>
+            Channel permission to check for.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Commands.RequireBotPermissionAttribute.CheckPermissionsAsync(Fluxer.Net.Commands.ICommandContext,Fluxer.Net.Commands.CommandInfo,System.IServiceProvider)">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Commands.RequireContextAttribute.Contexts">
+            <summary>
+            Gets the context required to execute the command.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Commands.RequireContextAttribute.CheckPermissionsAsync(Fluxer.Net.Commands.ICommandContext,Fluxer.Net.Commands.CommandInfo,System.IServiceProvider)">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.Commands.RequireDMttribute.CheckPermissionsAsync(Fluxer.Net.Commands.ICommandContext,Fluxer.Net.Commands.CommandInfo,System.IServiceProvider)">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.Commands.RequireGroupAttribute.CheckPermissionsAsync(Fluxer.Net.Commands.ICommandContext,Fluxer.Net.Commands.CommandInfo,System.IServiceProvider)">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.Commands.RequireGroupOwnerAttribute.CheckPermissionsAsync(Fluxer.Net.Commands.ICommandContext,Fluxer.Net.Commands.CommandInfo,System.IServiceProvider)">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.Commands.Attributes.Preconditions.RequireNsfwAttribute.CheckPermissionsAsync(Fluxer.Net.Commands.ICommandContext,Fluxer.Net.Commands.CommandInfo,System.IServiceProvider)">
+            <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.Commands.RequireOwnerAttribute">
+            <summary>
+                Requires the command to be invoked by the owner of the bot.
+            </summary>
+            <remarks>
+                This precondition will restrict the access of the command or module to the owner of the StoatSharp bot.
+                If the precondition fails to be met, an erroneous <see cref="T:Fluxer.Net.Commands.PreconditionResult"/> will be returned with the
+                message "Command can only be run by the owner of the bot."
+            </remarks>
+            <example>
+                The following example restricts the command to a set of sensitive commands that only the owner of the bot
+                application should be able to access.
+                <code language="cs">
+                [RequireOwner]
+                [Group("admin")]
+                public class AdminModule : ModuleBase
+                {
+                    [Command("exit")]
+                    public async Task ExitAsync()
+                    {
+                        Environment.Exit(0);
+                    }
+                }
+                </code>
+            </example>
+        </member>
+        <member name="M:Fluxer.Net.Commands.RequireOwnerAttribute.CheckPermissionsAsync(Fluxer.Net.Commands.ICommandContext,Fluxer.Net.Commands.CommandInfo,System.IServiceProvider)">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.Commands.RequireServerAttribute.CheckPermissionsAsync(Fluxer.Net.Commands.ICommandContext,Fluxer.Net.Commands.CommandInfo,System.IServiceProvider)">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.Commands.RequireServerOwnerAttribute.CheckPermissionsAsync(Fluxer.Net.Commands.ICommandContext,Fluxer.Net.Commands.CommandInfo,System.IServiceProvider)">
+            <inheritdoc />
+        </member>
+        <member name="F:Fluxer.Net.Commands.RequireUserPermissionAttribute.Server">
+            <summary>
+            Server/group permission to check for.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.Commands.RequireUserPermissionAttribute.Channel">
+            <summary>
+            Channel permission to check for.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Commands.RequireUserPermissionAttribute.CheckPermissionsAsync(Fluxer.Net.Commands.ICommandContext,Fluxer.Net.Commands.CommandInfo,System.IServiceProvider)">
+            <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.Commands.PriorityAttribute">
+            <summary>
+                Sets priority of commands.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Commands.PriorityAttribute.Priority">
+            <summary>
+                Gets the priority which has been set for the command.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Commands.PriorityAttribute.#ctor(System.Int32)">
+            <summary>
+                Initializes a new <see cref="T:Fluxer.Net.Commands.PriorityAttribute" /> attribute with the given priority.
+            </summary>
         </member>
         <member name="T:Fluxer.Net.Commands.RemainderAttribute">
             <summary>
-            Marks a parameter to capture all remaining text as a single string.
+                Marks the input to not be parsed by the parser.
             </summary>
         </member>
         <member name="T:Fluxer.Net.Commands.RemarksAttribute">
             <summary>
-            Provides additional remarks or detailed information for a command.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.Commands.RemarksAttribute.Text">
-            <summary>
-            Gets the remarks text.
-            </summary>
-        </member>
-        <member name="M:Fluxer.Net.Commands.RemarksAttribute.#ctor(System.String)">
-            <summary>
-            Provides additional remarks for a command.
-            </summary>
-            <param name="text">The remarks text.</param>
-        </member>
-        <member name="T:Fluxer.Net.Commands.ContextType">
-            <summary>
-            Specifies where a command can be executed.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Commands.ContextType.Guild">
-            <summary>
-            Command can only be executed in a guild.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Commands.ContextType.DM">
-            <summary>
-            Command can only be executed in a DM.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Commands.ContextType.Group">
-            <summary>
-            Command can only be executed in a group DM.
-            </summary>
-        </member>
-        <member name="T:Fluxer.Net.Commands.RequireContextAttribute">
-            <summary>
-            Requires the command to be executed in a specific context.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.Commands.RequireContextAttribute.Contexts">
-            <summary>
-            Gets the required contexts.
-            </summary>
-        </member>
-        <member name="M:Fluxer.Net.Commands.RequireContextAttribute.#ctor(Fluxer.Net.Commands.ContextType)">
-            <summary>
-            Creates a new context precondition.
-            </summary>
-            <param name="contexts">The allowed contexts.</param>
-        </member>
-        <member name="M:Fluxer.Net.Commands.RequireContextAttribute.CheckPermissionsAsync(Fluxer.Net.Commands.CommandContext,Fluxer.Net.Commands.CommandInfo,System.IServiceProvider)">
-            <summary>
-            Checks if the command is being used in the correct context.
-            </summary>
-        </member>
-        <member name="T:Fluxer.Net.Commands.RequireOwnerAttribute">
-            <summary>
-            Requires the command to be executed by the bot owner.
-            </summary>
-        </member>
-        <member name="M:Fluxer.Net.Commands.RequireOwnerAttribute.CheckPermissionsAsync(Fluxer.Net.Commands.CommandContext,Fluxer.Net.Commands.CommandInfo,System.IServiceProvider)">
-            <summary>
-            Checks if the user is the bot owner.
+                Attaches remarks to your commands.
             </summary>
         </member>
         <member name="T:Fluxer.Net.Commands.SummaryAttribute">
             <summary>
-            Provides a summary description for a command or parameter.
+                Attaches a summary to your command.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.Commands.SummaryAttribute.Text">
-            <summary>
-            Gets the summary text.
-            </summary>
-        </member>
-        <member name="M:Fluxer.Net.Commands.SummaryAttribute.#ctor(System.String)">
-            <summary>
-            Provides a summary description.
-            </summary>
-            <param name="text">The summary text.</param>
+        <member name="M:Fluxer.Net.Commands.Builders.CommandBuilder.Build(Fluxer.Net.Commands.ModuleInfo,Fluxer.Net.Commands.CommandService)">
+            <exception cref="T:System.InvalidOperationException">Only the last parameter in a command may have the Remainder or Multiple flag.</exception>
         </member>
         <member name="T:Fluxer.Net.Commands.CommandContext">
-            <summary>
-            Represents the context of a command execution.
-            </summary>
+            <summary> The context of a command which may contain the client, user, guild, channel, and message. </summary>
         </member>
         <member name="P:Fluxer.Net.Commands.CommandContext.Client">
-            <summary>
-            Gets the API client.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Fluxer.Net.Commands.CommandContext.Rest">
-            <summary>
-            Gets the API client.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Fluxer.Net.Commands.CommandContext.Gateway">
-            <summary>
-            Gets the gateway client.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.Commands.CommandContext.Message">
-            <summary>
-            Gets the message that triggered the command.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.Commands.CommandContext.Channel">
-            <summary>
-            Gets the channel the command was executed in.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Fluxer.Net.Commands.CommandContext.Guild">
-            <summary>
-            Gets the guild the command was executed in, if any.
-            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="P:Fluxer.Net.Commands.CommandContext.Channel">
+            <inheritdoc/>
         </member>
         <member name="P:Fluxer.Net.Commands.CommandContext.User">
-            <summary>
-            Gets the user who executed the command.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Fluxer.Net.Commands.CommandContext.Member">
-            <summary>
-            Gets the member who executed the command.
-            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="P:Fluxer.Net.Commands.CommandContext.Message">
+            <inheritdoc/>
+        </member>
+        <member name="P:Fluxer.Net.Commands.CommandContext.IsPrivate">
+            <summary> Indicates whether the channel that the command is executed in is a private channel. </summary>
         </member>
         <member name="M:Fluxer.Net.Commands.CommandContext.#ctor(Fluxer.Net.FluxerClient,Fluxer.Net.Gateway.MessageGatewayData)">
             <summary>
-            Creates a new command context.
+                Initializes a new <see cref="T:Fluxer.Net.Commands.CommandContext" /> class with the provided client and message.
             </summary>
-            <param name="client">The API client.</param>
-            <param name="message">The message that triggered the command.</param>
+            <param name="client">The underlying client.</param>
+            <param name="msg">The underlying message.</param>
         </member>
         <member name="T:Fluxer.Net.Commands.CommandError">
+            <summary> Defines the type of error a command can throw. </summary>
+        </member>
+        <member name="F:Fluxer.Net.Commands.CommandError.UnknownCommand">
             <summary>
-            Defines the types of errors that can occur during command execution.
+            Thrown when the command is unknown.
             </summary>
         </member>
         <member name="F:Fluxer.Net.Commands.CommandError.ParseFailed">
             <summary>
-            The command failed to parse.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Commands.CommandError.UnknownCommand">
-            <summary>
-            The command was not found.
+            Thrown when the command fails to be parsed.
             </summary>
         </member>
         <member name="F:Fluxer.Net.Commands.CommandError.BadArgCount">
             <summary>
-            The user provided too few parameters.
+            Thrown when the input text has too few or too many arguments.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.Commands.CommandError.ObjectNotFound">
+            <summary>
+            Thrown when the object cannot be found by the <see cref="T:Fluxer.Net.Commands.TypeReader"/>.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.Commands.CommandError.MultipleMatches">
+            <summary>
+            Thrown when more than one object is matched by <see cref="T:Fluxer.Net.Commands.TypeReader"/>.
             </summary>
         </member>
         <member name="F:Fluxer.Net.Commands.CommandError.UnmetPrecondition">
             <summary>
-            A precondition failed.
+            Thrown when the command fails to meet a <see cref="T:Fluxer.Net.Commands.PreconditionAttribute"/>'s conditions.
             </summary>
         </member>
         <member name="F:Fluxer.Net.Commands.CommandError.Exception">
             <summary>
-            An exception occurred during execution.
+            Thrown when an exception occurs mid-command execution.
             </summary>
         </member>
         <member name="F:Fluxer.Net.Commands.CommandError.Unsuccessful">
             <summary>
-            The command execution was unsuccessful for an unspecified reason.
+            Thrown when the command is not successfully executed on runtime.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Commands.CommandInfo">
+        <member name="T:Fluxer.Net.Commands.CommandException">
             <summary>
-            Represents information about a command.
+                The exception that is thrown if another exception occurs during a command execution.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.Commands.CommandInfo.Name">
-            <summary>
-            Gets the command's name.
-            </summary>
+        <member name="P:Fluxer.Net.Commands.CommandException.Command">
+            <summary> Gets the command that caused the exception. </summary>
         </member>
-        <member name="P:Fluxer.Net.Commands.CommandInfo.Aliases">
-            <summary>
-            Gets the command's aliases.
-            </summary>
+        <member name="P:Fluxer.Net.Commands.CommandException.Context">
+            <summary> Gets the command context of the exception. </summary>
         </member>
-        <member name="P:Fluxer.Net.Commands.CommandInfo.Summary">
+        <member name="M:Fluxer.Net.Commands.CommandException.#ctor(Fluxer.Net.Commands.CommandInfo,Fluxer.Net.Commands.ICommandContext,System.Exception)">
             <summary>
-            Gets the command's summary.
+                Initializes a new instance of the <see cref="T:Fluxer.Net.Commands.CommandException" /> class using a
+                <paramref name="command"/> information, a <paramref name="command"/> context, and the exception that
+                interrupted the execution.
             </summary>
+            <param name="command">The command information.</param>
+            <param name="context">The context of the command.</param>
+            <param name="ex">The exception that interrupted the command execution.</param>
         </member>
-        <member name="P:Fluxer.Net.Commands.CommandInfo.Remarks">
-            <summary>
-            Gets the command's remarks.
-            </summary>
+        <member name="P:Fluxer.Net.Commands.CommandMatch.Command">
+            <summary> The command that matches the search result. </summary>
         </member>
-        <member name="P:Fluxer.Net.Commands.CommandInfo.RunMode">
-            <summary>
-            Gets the command's run mode.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.Commands.CommandInfo.Parameters">
-            <summary>
-            Gets the command's parameters.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.Commands.CommandInfo.Module">
-            <summary>
-            Gets the module this command belongs to.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.Commands.CommandInfo.Preconditions">
-            <summary>
-            Gets the preconditions that must be satisfied before executing the command.
-            </summary>
-        </member>
-        <member name="M:Fluxer.Net.Commands.CommandInfo.ExecuteAsync(Fluxer.Net.Commands.CommandContext,System.Object[],System.IServiceProvider)">
-            <summary>
-            Executes the command.
-            </summary>
+        <member name="P:Fluxer.Net.Commands.CommandMatch.Alias">
+            <summary> The alias of the command. </summary>
         </member>
         <member name="T:Fluxer.Net.Commands.CommandService">
             <summary>
-            Provides a framework for creating and executing text-based commands.
+                Provides a framework for building Discord commands.
             </summary>
+            <remarks>
+                <para>
+                    The service provides a framework for building Discord commands both dynamically via runtime builders or
+                    statically via compile-time modules. To create a command module at compile-time, see
+                    <see cref="T:Fluxer.Net.Commands.ModuleBase" /> (most common); otherwise, see <see cref="T:Fluxer.Net.Commands.Builders.ModuleBuilder" />.
+                </para>
+                <para>
+                    This service also provides several events for monitoring command usages; such as
+                    <see cref="!:Discord.Commands.CommandService.Log" /> for any command-related log events, and
+                    <see cref="!:Discord.Commands.CommandService.CommandExecuted" /> for information about commands that have
+                    been successfully executed.
+                </para>
+            </remarks>
+        </member>
+        <member name="F:Fluxer.Net.Commands.CommandService._moduleLock">
+            <summary>
+                Occurs when a command is executed.
+            </summary>
+            <remarks>
+                This event is fired when a command has been executed, successfully or not. When a command fails to
+                execute during parsing or precondition stage, the CommandInfo may not be returned.
+            </remarks>
         </member>
         <member name="P:Fluxer.Net.Commands.CommandService.Modules">
             <summary>
-            Gets all registered modules.
+                Represents all modules loaded within <see cref="T:Fluxer.Net.Commands.CommandService"/>.
             </summary>
         </member>
         <member name="P:Fluxer.Net.Commands.CommandService.Commands">
             <summary>
-            Gets all registered commands across all modules.
+                Represents all commands loaded within <see cref="T:Fluxer.Net.Commands.CommandService"/>.
             </summary>
         </member>
-        <member name="M:Fluxer.Net.Commands.CommandService.#ctor(Serilog.ILogger,System.IServiceProvider)">
+        <member name="P:Fluxer.Net.Commands.CommandService.TypeReaders">
             <summary>
-            Creates a new command service.
-            </summary>
-            <param name="prefixChar">The prefix character for commands (e.g., '!' or '/').</param>
-            <param name="logger">Optional logger for command execution.</param>
-            <param name="services">Optional service provider for dependency injection.</param>
-        </member>
-        <member name="M:Fluxer.Net.Commands.CommandService.AddModulesAsync(System.Reflection.Assembly)">
-            <summary>
-            Registers all command modules from the specified assembly.
-            </summary>
-            <param name="assembly">The assembly to search for modules.</param>
-        </member>
-        <member name="M:Fluxer.Net.Commands.CommandService.AddModuleAsync``1">
-            <summary>
-            Registers a specific command module type.
-            </summary>
-            <typeparam name="T">The module type.</typeparam>
-        </member>
-        <member name="M:Fluxer.Net.Commands.CommandService.AddModuleAsync(System.Type)">
-            <summary>
-            Registers a specific command module type.
-            </summary>
-            <param name="type">The module type.</param>
-        </member>
-        <member name="M:Fluxer.Net.Commands.CommandService.ExecuteAsync(Fluxer.Net.Commands.CommandContext,System.Int32)">
-            <summary>
-            Executes a command from a message.
-            </summary>
-            <param name="context">The command context.</param>
-            <param name="argPos">The position in the message where arguments begin.</param>
-        </member>
-        <member name="M:Fluxer.Net.Commands.CommandService.Search(System.String)">
-            <summary>
-            Searches for a command by name or alias.
-            </summary>
-            <param name="name">The command name or alias.</param>
-        </member>
-        <member name="T:Fluxer.Net.Commands.CommandService2">
-            <summary>
-            Provides a framework for creating and executing text-based commands.
+                Represents all <see cref="T:Fluxer.Net.Commands.TypeReader" /> loaded within <see cref="T:Fluxer.Net.Commands.CommandService"/>.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.Commands.CommandService2.Modules">
+        <member name="M:Fluxer.Net.Commands.CommandService.#ctor">
             <summary>
-            Gets all registered modules.
+                Initializes a new <see cref="T:Fluxer.Net.Commands.CommandService"/> class.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.Commands.CommandService2.Commands">
+        <member name="M:Fluxer.Net.Commands.CommandService.#ctor(Fluxer.Net.Commands.CommandServiceConfig)">
             <summary>
-            Gets all registered commands across all modules.
+                Initializes a new <see cref="T:Fluxer.Net.Commands.CommandService"/> class with the provided configuration.
+            </summary>
+            <param name="config">The configuration class.</param>
+            <exception cref="T:System.InvalidOperationException">
+            The <see cref="T:Fluxer.Net.Commands.RunMode"/> cannot be set to <see cref="F:Fluxer.Net.Commands.RunMode.Default"/>.
+            </exception>
+        </member>
+        <member name="M:Fluxer.Net.Commands.CommandService.AddModuleAsync``1(System.IServiceProvider)">
+            <summary>
+                Add a command module from a <see cref="T:System.Type" />.
+            </summary>
+            <example>
+                <para>The following example registers the module <c>MyModule</c> to <c>commandService</c>.</para>
+                <code language="cs">
+                await commandService.AddModuleAsync&lt;MyModule&gt;(serviceProvider);
+                </code>
+            </example>
+            <typeparam name="T">The type of module.</typeparam>
+            <param name="services">The <see cref="T:System.IServiceProvider"/> for your dependency injection solution if using one; otherwise, pass <see langword="null" />.</param>
+            <exception cref="T:System.ArgumentException">This module has already been added.</exception>
+            <exception cref="T:System.InvalidOperationException">
+            The <see cref="T:Fluxer.Net.Commands.ModuleInfo"/> fails to be built; an invalid type may have been provided.
+            </exception>
+            <returns>
+                A task that represents the asynchronous operation for adding the module. The task result contains the
+                built module.
+            </returns>
+        </member>
+        <member name="M:Fluxer.Net.Commands.CommandService.AddModuleAsync(System.Type,System.IServiceProvider)">
+            <summary>
+                Adds a command module from a <see cref="T:System.Type" />.
+            </summary>
+            <param name="type">The type of module.</param>
+            <param name="services">The <see cref="T:System.IServiceProvider" /> for your dependency injection solution if using one; otherwise, pass <see langword="null" /> .</param>
+            <exception cref="T:System.ArgumentException">This module has already been added.</exception>
+            <exception cref="T:System.InvalidOperationException">
+            The <see cref="T:Fluxer.Net.Commands.ModuleInfo"/> fails to be built; an invalid type may have been provided.
+            </exception>
+            <returns>
+                A task that represents the asynchronous operation for adding the module. The task result contains the
+                built module.
+            </returns>
+        </member>
+        <member name="M:Fluxer.Net.Commands.CommandService.AddModulesAsync(System.Reflection.Assembly,System.IServiceProvider)">
+            <summary>
+                Add command modules from an <see cref="T:System.Reflection.Assembly"/>.
+            </summary>
+            <param name="assembly">The <see cref="T:System.Reflection.Assembly"/> containing command modules.</param>
+            <param name="services">The <see cref="T:System.IServiceProvider"/> for your dependency injection solution if using one; otherwise, pass <see langword="null" />.</param>
+            <returns>
+                A task that represents the asynchronous operation for adding the command modules. The task result
+                contains an enumerable collection of modules added.
+            </returns>
+        </member>
+        <member name="M:Fluxer.Net.Commands.CommandService.RemoveModuleAsync(Fluxer.Net.Commands.ModuleInfo)">
+            <summary>
+                Removes the command module.
+            </summary>
+            <param name="module">The <see cref="T:Fluxer.Net.Commands.ModuleInfo" /> to be removed from the service.</param>
+            <returns>
+                A task that represents the asynchronous removal operation. The task result contains a value that
+                indicates whether the <paramref name="module"/> is successfully removed.
+            </returns>
+        </member>
+        <member name="M:Fluxer.Net.Commands.CommandService.RemoveModuleAsync``1">
+            <summary>
+                Removes the command module.
+            </summary>
+            <typeparam name="T">The <see cref="T:System.Type"/> of the module.</typeparam>
+            <returns>
+                A task that represents the asynchronous removal operation. The task result contains a value that
+                indicates whether the module is successfully removed.
+            </returns>
+        </member>
+        <member name="M:Fluxer.Net.Commands.CommandService.RemoveModuleAsync(System.Type)">
+            <summary>
+                Removes the command module.
+            </summary>
+            <param name="type">The <see cref="T:System.Type"/> of the module.</param>
+            <returns>
+                A task that represents the asynchronous removal operation. The task result contains a value that
+                indicates whether the module is successfully removed.
+            </returns>
+        </member>
+        <member name="M:Fluxer.Net.Commands.CommandService.AddTypeReader``1(Fluxer.Net.Commands.TypeReader)">
+            <summary>
+                Adds a custom <see cref="T:Fluxer.Net.Commands.TypeReader" /> to this <see cref="T:Fluxer.Net.Commands.CommandService" /> for the supplied object
+                type.
+                If <typeparamref name="T" /> is a <see cref="T:System.ValueType" />, a nullable <see cref="T:Fluxer.Net.Commands.TypeReader" /> will
+                also be added.
+                If a default <see cref="T:Fluxer.Net.Commands.TypeReader" /> exists for <typeparamref name="T" />, a warning will be logged
+                and the default <see cref="T:Fluxer.Net.Commands.TypeReader" /> will be replaced.
+            </summary>
+            <typeparam name="T">The object type to be read by the <see cref="T:Fluxer.Net.Commands.TypeReader"/>.</typeparam>
+            <param name="reader">An instance of the <see cref="T:Fluxer.Net.Commands.TypeReader" /> to be added.</param>
+        </member>
+        <member name="M:Fluxer.Net.Commands.CommandService.AddTypeReader(System.Type,Fluxer.Net.Commands.TypeReader)">
+            <summary>
+                Adds a custom <see cref="T:Fluxer.Net.Commands.TypeReader" /> to this <see cref="T:Fluxer.Net.Commands.CommandService" /> for the supplied object
+                type.
+                If <paramref name="type" /> is a <see cref="T:System.ValueType" />, a nullable <see cref="T:Fluxer.Net.Commands.TypeReader" /> for the
+                value type will also be added.
+                If a default <see cref="T:Fluxer.Net.Commands.TypeReader" /> exists for <paramref name="type" />, a warning will be logged and
+                the default <see cref="T:Fluxer.Net.Commands.TypeReader" /> will be replaced.
+            </summary>
+            <param name="type">A <see cref="T:System.Type" /> instance for the type to be read.</param>
+            <param name="reader">An instance of the <see cref="T:Fluxer.Net.Commands.TypeReader" /> to be added.</param>
+        </member>
+        <member name="M:Fluxer.Net.Commands.CommandService.AddTypeReader``1(Fluxer.Net.Commands.TypeReader,System.Boolean)">
+            <summary>
+                Adds a custom <see cref="T:Fluxer.Net.Commands.TypeReader" /> to this <see cref="T:Fluxer.Net.Commands.CommandService" /> for the supplied object
+                type.
+                If <typeparamref name="T" /> is a <see cref="T:System.ValueType" />, a nullable <see cref="T:Fluxer.Net.Commands.TypeReader" /> will
+                also be added.
+            </summary>
+            <typeparam name="T">The object type to be read by the <see cref="T:Fluxer.Net.Commands.TypeReader"/>.</typeparam>
+            <param name="reader">An instance of the <see cref="T:Fluxer.Net.Commands.TypeReader" /> to be added.</param>
+            <param name="replaceDefault">
+                Defines whether the <see cref="T:Fluxer.Net.Commands.TypeReader"/> should replace the default one for
+                <see cref="T:System.Type" /> if it exists.
+            </param>
+        </member>
+        <member name="M:Fluxer.Net.Commands.CommandService.AddTypeReader(System.Type,Fluxer.Net.Commands.TypeReader,System.Boolean)">
+            <summary>
+                Adds a custom <see cref="T:Fluxer.Net.Commands.TypeReader" /> to this <see cref="T:Fluxer.Net.Commands.CommandService" /> for the supplied object
+                type.
+                If <paramref name="type" /> is a <see cref="T:System.ValueType" />, a nullable <see cref="T:Fluxer.Net.Commands.TypeReader" /> for the
+                value type will also be added.
+            </summary>
+            <param name="type">A <see cref="T:System.Type" /> instance for the type to be read.</param>
+            <param name="reader">An instance of the <see cref="T:Fluxer.Net.Commands.TypeReader" /> to be added.</param>
+            <param name="replaceDefault">
+                Defines whether the <see cref="T:Fluxer.Net.Commands.TypeReader"/> should replace the default one for <see cref="T:System.Type" /> if
+                it exists.
+            </param>
+        </member>
+        <member name="M:Fluxer.Net.Commands.CommandService.TryRemoveTypeReader(System.Type,System.Boolean,System.Collections.Generic.IDictionary{System.Type,Fluxer.Net.Commands.TypeReader}@)">
+            <summary>
+                Removes a type reader from the list of type readers.
+            </summary>
+            <remarks>
+                Removing a <see cref="T:Fluxer.Net.Commands.TypeReader"/> from the <see cref="T:Fluxer.Net.Commands.CommandService"/> will not dereference the <see cref="T:Fluxer.Net.Commands.TypeReader"/> from the loaded module/command instances.
+                You need to reload the modules for the changes to take effect.
+            </remarks>
+            <param name="type">The type to remove the readers from.</param>
+            <param name="isDefaultTypeReader"><see langword="true"/> if the default readers for <paramref name="type"/> should be removed; otherwise <see langword="false"/>.</param>
+            <param name="readers">The removed collection of type readers.</param>
+            <returns><see langword="true"/> if the remove operation was successful; otherwise <see langword="false"/>.</returns>
+        </member>
+        <member name="M:Fluxer.Net.Commands.CommandService.Search(Fluxer.Net.Commands.ICommandContext,System.Int32)">
+            <summary>
+                Searches for the command.
+            </summary>
+            <param name="context">The context of the command.</param>
+            <param name="argPos">The position of which the command starts at.</param>
+            <returns>The result containing the matching commands.</returns>
+        </member>
+        <member name="M:Fluxer.Net.Commands.CommandService.Search(Fluxer.Net.Commands.ICommandContext,System.String)">
+            <summary>
+                Searches for the command.
+            </summary>
+            <param name="context">The context of the command.</param>
+            <param name="input">The command string.</param>
+            <returns>The result containing the matching commands.</returns>
+        </member>
+        <member name="M:Fluxer.Net.Commands.CommandService.ExecuteAsync(Fluxer.Net.Commands.ICommandContext,System.Int32,System.IServiceProvider,Fluxer.Net.Commands.MultiMatchHandling)">
+            <summary>
+                Executes the command.
+            </summary>
+            <param name="context">The context of the command.</param>
+            <param name="argPos">The position of which the command starts at.</param>
+            <param name="services">The service to be used in the command's dependency injection.</param>
+            <param name="multiMatchHandling">The handling mode when multiple command matches are found.</param>
+            <returns>
+                A task that represents the asynchronous execution operation. The task result contains the result of the
+                command execution.
+            </returns>
+        </member>
+        <member name="M:Fluxer.Net.Commands.CommandService.ExecuteAsync(Fluxer.Net.Commands.ICommandContext,System.String,System.IServiceProvider,Fluxer.Net.Commands.MultiMatchHandling)">
+            <summary>
+                Executes the command.
+            </summary>
+            <param name="context">The context of the command.</param>
+            <param name="input">The command string.</param>
+            <param name="services">The service to be used in the command's dependency injection.</param>
+            <param name="multiMatchHandling">The handling mode when multiple command matches are found.</param>
+            <returns>
+                A task that represents the asynchronous execution operation. The task result contains the result of the
+                command execution.
+            </returns>
+        </member>
+        <member name="M:Fluxer.Net.Commands.CommandService.ValidateAndGetBestMatch(Fluxer.Net.Commands.SearchResult,Fluxer.Net.Commands.ICommandContext,System.IServiceProvider,Fluxer.Net.Commands.MultiMatchHandling)">
+            <summary>
+            Validates and gets the best <see cref="T:Fluxer.Net.Commands.CommandMatch"/> from a specified <see cref="T:Fluxer.Net.Commands.SearchResult"/>
+            </summary>
+            <param name="matches">The SearchResult.</param>
+            <param name="context">The context of the command.</param>
+            <param name="provider">The service provider to be used on the command's dependency injection.</param>
+            <param name="multiMatchHandling">The handling mode when multiple command matches are found.</param>
+            <returns>A task that represents the asynchronous validation operation. The task result contains the result of the
+                command validation as a <see cref="T:Fluxer.Net.Commands.MatchResult"/> or a <see cref="T:Fluxer.Net.Commands.SearchResult"/> if no matches were found.</returns>
+        </member>
+        <member name="T:Fluxer.Net.Commands.CommandServiceConfig">
+            <summary>
+                Represents a configuration class for <see cref="T:Fluxer.Net.Commands.CommandService"/>.
             </summary>
         </member>
-        <member name="M:Fluxer.Net.Commands.CommandService2.#ctor(Serilog.ILogger,System.IServiceProvider)">
+        <member name="P:Fluxer.Net.Commands.CommandServiceConfig.DefaultRunMode">
             <summary>
-            Creates a new command service.
-            </summary>
-            <param name="prefixChar">The prefix character for commands (e.g., '!' or '/').</param>
-            <param name="logger">Optional logger for command execution.</param>
-            <param name="services">Optional service provider for dependency injection.</param>
-        </member>
-        <member name="M:Fluxer.Net.Commands.CommandService2.AddModulesAsync(System.Reflection.Assembly)">
-            <summary>
-            Registers all command modules from the specified assembly.
-            </summary>
-            <param name="assembly">The assembly to search for modules.</param>
-        </member>
-        <member name="M:Fluxer.Net.Commands.CommandService2.AddModuleAsync``1">
-            <summary>
-            Registers a specific command module type.
-            </summary>
-            <typeparam name="T">The module type.</typeparam>
-        </member>
-        <member name="M:Fluxer.Net.Commands.CommandService2.AddModuleAsync(System.Type)">
-            <summary>
-            Registers a specific command module type.
-            </summary>
-            <param name="type">The module type.</param>
-        </member>
-        <member name="M:Fluxer.Net.Commands.CommandService2.ExecuteAsync(Fluxer.Net.Commands.CommandContext,System.Int32)">
-            <summary>
-            Executes a command from a message.
-            </summary>
-            <param name="context">The command context.</param>
-            <param name="argPos">The position in the message where arguments begin.</param>
-        </member>
-        <member name="M:Fluxer.Net.Commands.CommandService2.SearchCommand(Fluxer.Net.Commands.ModuleInfo,System.String)">
-            <summary>
-            Searches for a command by name or alias.
-            </summary>
-            <param name="name">The command name or alias.</param>
-        </member>
-        <member name="T:Fluxer.Net.Commands.ExecuteResult">
-            <summary>
-            Represents the result of a command execution.
+                Gets or sets the default <see cref="T:Fluxer.Net.Commands.RunMode" /> commands should have, if one is not specified on the
+                Command attribute or builder.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.Commands.ExecuteResult.IsSuccess">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.Commands.ExecuteResult.Error">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.Commands.ExecuteResult.ErrorType">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.Commands.ExecuteResult.Exception">
+        <member name="P:Fluxer.Net.Commands.CommandServiceConfig.SeparatorChar">
             <summary>
-            Gets the exception that occurred during execution, if any.
+                Gets or sets the <see cref="T:System.Char"/> that separates an argument with another.
             </summary>
         </member>
-        <member name="M:Fluxer.Net.Commands.ExecuteResult.FromSuccess">
+        <member name="P:Fluxer.Net.Commands.CommandServiceConfig.CaseSensitiveCommands">
             <summary>
-            Creates a successful result.
+                Gets or sets whether commands should be case-sensitive.
             </summary>
         </member>
-        <member name="M:Fluxer.Net.Commands.ExecuteResult.FromError(Fluxer.Net.Commands.CommandError,System.String)">
+        <member name="P:Fluxer.Net.Commands.CommandServiceConfig.ThrowOnError">
             <summary>
-            Creates an error result.
+                Gets or sets whether <see cref="F:Fluxer.Net.Commands.RunMode.Sync"/> commands should push exceptions up to the caller.
             </summary>
         </member>
-        <member name="M:Fluxer.Net.Commands.ExecuteResult.FromError(System.Exception)">
+        <member name="P:Fluxer.Net.Commands.CommandServiceConfig.QuotationMarkAliasMap">
             <summary>
-            Creates an error result from an exception.
+            Collection of aliases for matching pairs of string delimiters.
+            The dictionary stores the opening delimiter as a key, and the matching closing delimiter as the value.
+            If no value is supplied <see cref="P:Fluxer.Net.Commands.QuotationAliasUtils.GetDefaultAliasMap"/> will be used, which contains
+            many regional equivalents.
+            Only values that are specified in this map will be used as string delimiters, so if " is removed then
+            it won't be used.
+            If this map is set to null or empty, the default delimiter of " will be used.
+            </summary>
+            <example>
+            <code language="cs">
+            QuotationMarkAliasMap = new Dictionary&lt;char, char&gt;()
+            {
+                {'\"', '\"' },
+                {'“', '”' },
+                {'「', '」' },
+            }
+            </code>
+            </example>
+        </member>
+        <member name="P:Fluxer.Net.Commands.CommandServiceConfig.IgnoreExtraArgs">
+            <summary>
+                Gets or sets a value that indicates whether extra parameters should be ignored.
             </summary>
         </member>
-        <member name="M:Fluxer.Net.Commands.ExecuteResult.ToString">
-            <inheritdoc />
-        </member>
-        <member name="T:Fluxer.Net.Commands.IResult">
+        <member name="T:Fluxer.Net.Commands.CommandServiceExtensions">
             <summary>
-            Represents a result from executing a command.
+                Provides extension methods for the <see cref="T:Fluxer.Net.Commands.CommandService"/> class.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.Commands.IResult.IsSuccess">
+        <member name="M:Fluxer.Net.Commands.CommandServiceExtensions.GetExecutableCommandsAsync(System.Collections.Generic.ICollection{Fluxer.Net.Commands.CommandInfo},Fluxer.Net.Commands.ICommandContext,System.IServiceProvider)">
             <summary>
-            Gets whether the command execution was successful.
+                Returns commands that can be executed under the current context.
+            </summary>
+            <param name="commands">The set of commands to be checked against.</param>
+            <param name="context">The current command context.</param>
+            <param name="provider">The service provider used for dependency injection upon precondition check.</param>
+            <returns>
+                A read-only collection of commands that can be executed under the current context.
+            </returns>
+        </member>
+        <member name="M:Fluxer.Net.Commands.CommandServiceExtensions.GetExecutableCommandsAsync(Fluxer.Net.Commands.CommandService,Fluxer.Net.Commands.ICommandContext,System.IServiceProvider)">
+            <summary>
+                Returns commands that can be executed under the current context.
+            </summary>
+            <param name="commandService">The desired command service class to check against.</param>
+            <param name="context">The current command context.</param>
+            <param name="provider">The service provider used for dependency injection upon precondition check.</param>
+            <returns>
+                A read-only collection of commands that can be executed under the current context.
+            </returns>
+        </member>
+        <member name="M:Fluxer.Net.Commands.CommandServiceExtensions.GetExecutableCommandsAsync(Fluxer.Net.Commands.ModuleInfo,Fluxer.Net.Commands.ICommandContext,System.IServiceProvider)">
+            <summary>
+                Returns commands that can be executed under the current context.
+            </summary>
+            <param name="module">The module to be checked against.</param>
+            <param name="context">The current command context.</param>
+            <param name="provider">The service provider used for dependency injection upon precondition check.</param>
+            <returns>
+                A read-only collection of commands that can be executed under the current context.
+            </returns>
+        </member>
+        <member name="T:Fluxer.Net.Commands.MessageExtensions">
+            <summary>
+                Provides extension methods for <see cref="!:IUserMessage" /> that relates to commands.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.Commands.IResult.Error">
+        <member name="M:Fluxer.Net.Commands.MessageExtensions.HasCharPrefix(Fluxer.Net.SocketMessage,System.Char,System.Int32@)">
             <summary>
-            Gets the error reason if the command failed.
+                Gets whether the message starts with the provided character.
+            </summary>
+            <param name="msg">The message to check against.</param>
+            <param name="c">The char prefix.</param>
+            <param name="argPos">References where the command starts.</param>
+            <returns>
+                <see langword="true" /> if the message begins with the char <paramref name="c"/>; otherwise <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:Fluxer.Net.Commands.MessageExtensions.HasStringPrefix(Fluxer.Net.SocketMessage,System.String,System.Int32@,System.StringComparison)">
+            <summary>
+                Gets whether the message starts with the provided string.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.Commands.IResult.ErrorType">
+        <member name="T:Fluxer.Net.Commands.ICommandContext">
             <summary>
-            Gets the error type.
+                Represents a context of a command. This may include the client, guild, channel, user, and message.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Commands.ModuleBase">
+        <member name="P:Fluxer.Net.Commands.ICommandContext.Client">
             <summary>
-            Base class for command modules.
+            Fluxer base client for the context.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.Commands.ModuleBase.Context">
+        <member name="P:Fluxer.Net.Commands.ICommandContext.Rest">
             <summary>
-            Gets the command context.
+            Fluxer http client for the context.
             </summary>
         </member>
-        <member name="M:Fluxer.Net.Commands.ModuleBase.BeforeExecute(Fluxer.Net.Commands.CommandInfo)">
+        <member name="P:Fluxer.Net.Commands.ICommandContext.Gateway">
             <summary>
-            Called before a command in this module is executed.
+            Fluxer gateway client for the context.
             </summary>
         </member>
-        <member name="M:Fluxer.Net.Commands.ModuleBase.AfterExecute(Fluxer.Net.Commands.CommandInfo)">
+        <member name="P:Fluxer.Net.Commands.ICommandContext.Guild">
             <summary>
-            Called after a command in this module is executed.
+            Current guild for the context.
             </summary>
         </member>
-        <member name="M:Fluxer.Net.Commands.ModuleBase.ReplyAsync(System.String,System.Collections.Generic.List{Fluxer.Net.Rest.Requests.EmbedRequest},Fluxer.Net.MessageReferenceRequest,Fluxer.Net.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64},System.Collections.Generic.List{Fluxer.Net.Rest.Requests.AttachmentRequest})">
+        <member name="P:Fluxer.Net.Commands.ICommandContext.Channel">
             <summary>
-            Sends a message to the channel the command was executed in.
+            Current channel for the context.
             </summary>
         </member>
-        <member name="M:Fluxer.Net.Commands.ModuleBase.ReplyAsync(System.Collections.Generic.List{Fluxer.Net.Rest.Requests.AttachmentRequest},System.String)">
+        <member name="P:Fluxer.Net.Commands.ICommandContext.User">
             <summary>
-            Sends a message to the channel the command was executed in.
+            Current user for the context.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Commands.ModuleBase`1">
+        <member name="P:Fluxer.Net.Commands.ICommandContext.Member">
             <summary>
-            Base class for command modules with a custom context type.
+            Current server member for the context.
             </summary>
-            <typeparam name="T">The context type.</typeparam>
         </member>
-        <member name="P:Fluxer.Net.Commands.ModuleBase`1.Context">
+        <member name="P:Fluxer.Net.Commands.ICommandContext.Message">
             <summary>
-            Gets the command context.
+            Current message for the context.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Commands.ICommandContext.IsPrivate">
+            <summary>
+            Channel is a DM.
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.Commands.IModuleBase">
+            <summary>
+                Represents a generic module base.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Commands.IModuleBase.SetContext(Fluxer.Net.Commands.ICommandContext)">
+            <summary>
+                Sets the context of this module base.
+            </summary>
+            <param name="context">The context to set.</param>
+        </member>
+        <member name="M:Fluxer.Net.Commands.IModuleBase.BeforeExecuteAsync(Fluxer.Net.Commands.CommandInfo)">
+            <summary>
+                Executed asynchronously before a command is run in this module base.
+            </summary>
+            <param name="command">The command that's about to run.</param>
+        </member>
+        <member name="M:Fluxer.Net.Commands.IModuleBase.BeforeExecute(Fluxer.Net.Commands.CommandInfo)">
+            <summary>
+                Executed before a command is run in this module base.
+            </summary>
+            <param name="command">The command that's about to run.</param>
+        </member>
+        <member name="M:Fluxer.Net.Commands.IModuleBase.AfterExecuteAsync(Fluxer.Net.Commands.CommandInfo)">
+            <summary>
+                Executed asynchronously after a command is run in this module base.
+            </summary>
+            <param name="command">The command that's about to run.</param>
+        </member>
+        <member name="M:Fluxer.Net.Commands.IModuleBase.AfterExecute(Fluxer.Net.Commands.CommandInfo)">
+            <summary>
+                Executed after a command is ran in this module base.
+            </summary>
+            <param name="command">The command that ran.</param>
+        </member>
+        <member name="M:Fluxer.Net.Commands.IModuleBase.OnModuleBuilding(Fluxer.Net.Commands.CommandService,Fluxer.Net.Commands.Builders.ModuleBuilder)">
+            <summary>
+                Executed when this module is building.
+            </summary>
+            <param name="commandService">The command service that is building this module.</param>
+            <param name="builder">The builder constructing this module.</param>
+        </member>
+        <member name="T:Fluxer.Net.Commands.CommandInfo">
+            <summary>
+                Provides the information of a command.
+            </summary>
+            <remarks>
+                This object contains the information of a command. This can include the module of the command, various
+                descriptions regarding the command, and its <see cref="P:Fluxer.Net.Commands.CommandInfo.RunMode"/>.
+            </remarks>
+        </member>
+        <member name="P:Fluxer.Net.Commands.CommandInfo.Module">
+            <summary>
+                Gets the module that the command belongs in.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Commands.CommandInfo.Name">
+            <summary>
+                Gets the name of the command. If none is set, the first alias is used.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Commands.CommandInfo.Summary">
+            <summary>
+                Gets the summary of the command.
+            </summary>
+            <remarks>
+                This field returns the summary of the command. <see cref="P:Fluxer.Net.Commands.CommandInfo.Summary"/> and <see cref="P:Fluxer.Net.Commands.CommandInfo.Remarks"/> can be
+                useful in help commands and various implementation that fetches details of the command for the user.
+            </remarks>
+        </member>
+        <member name="P:Fluxer.Net.Commands.CommandInfo.Remarks">
+            <summary>
+                Gets the remarks of the command.
+            </summary>
+            <remarks>
+                This field returns the summary of the command. <see cref="P:Fluxer.Net.Commands.CommandInfo.Summary"/> and <see cref="P:Fluxer.Net.Commands.CommandInfo.Remarks"/> can be
+                useful in help commands and various implementation that fetches details of the command for the user.
+            </remarks>
+        </member>
+        <member name="P:Fluxer.Net.Commands.CommandInfo.Priority">
+            <summary>
+                Gets the priority of the command. This is used when there are multiple overloads of the command.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Commands.CommandInfo.HasVarArgs">
+            <summary>
+                Indicates whether the command accepts a <see langword="params"/> <see cref="T:System.Type"/>[] for its
+                parameter.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Commands.CommandInfo.IgnoreExtraArgs">
+            <summary>
+                Indicates whether extra arguments should be ignored for this command.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Commands.CommandInfo.RunMode">
+            <summary>
+                Gets the <see cref="P:Fluxer.Net.Commands.CommandInfo.RunMode" /> that is being used for the command.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Commands.CommandInfo.Aliases">
+            <summary>
+                Gets a list of aliases defined by the <see cref="T:Fluxer.Net.Commands.AliasAttribute" /> of the command.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Commands.CommandInfo.Parameters">
+            <summary>
+                Gets a list of information about the parameters of the command.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Commands.CommandInfo.Preconditions">
+            <summary>
+                Gets a list of preconditions defined by the <see cref="T:Fluxer.Net.Commands.PreconditionAttribute" /> of the command.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Commands.CommandInfo.Attributes">
+            <summary>
+                Gets a list of attributes of the command.
             </summary>
         </member>
         <member name="T:Fluxer.Net.Commands.ModuleInfo">
             <summary>
-            Represents information about a command module.
+                Provides the information of a module.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Commands.ModuleInfo.Service">
+            <summary>
+                Gets the command service associated with this module.
             </summary>
         </member>
         <member name="P:Fluxer.Net.Commands.ModuleInfo.Name">
             <summary>
-            Gets the module's name.
+                Gets the name of this module.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Commands.ModuleInfo.Summary">
+            <summary>
+                Gets the summary of this module.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Commands.ModuleInfo.Remarks">
+            <summary>
+                Gets the remarks of this module.
             </summary>
         </member>
         <member name="P:Fluxer.Net.Commands.ModuleInfo.Group">
             <summary>
-            Gets the module's command group.
+                Gets the group name (main prefix) of this module.
             </summary>
         </member>
         <member name="P:Fluxer.Net.Commands.ModuleInfo.Aliases">
             <summary>
-            Gets the module's aliases.
+                Gets a read-only list of aliases associated with this module.
             </summary>
         </member>
         <member name="P:Fluxer.Net.Commands.ModuleInfo.Commands">
             <summary>
-            Gets the commands in this module.
+                Gets a read-only list of commands associated with this module.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.Commands.ModuleInfo.Modules">
+        <member name="P:Fluxer.Net.Commands.ModuleInfo.Preconditions">
             <summary>
-            Gets all registered modules.
+                Gets a read-only list of preconditions that apply to this module.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.Commands.ModuleInfo.Type">
+        <member name="P:Fluxer.Net.Commands.ModuleInfo.Attributes">
             <summary>
-            Gets the module type.
+                Gets a read-only list of attributes that apply to this module.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Commands.ModuleInfo.Submodules">
+            <summary>
+                Gets a read-only list of submodules associated with this module.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Commands.ModuleInfo.Parent">
+            <summary>
+                Gets the parent module of this submodule if applicable.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Commands.ModuleInfo.IsSubmodule">
+            <summary>
+                Gets a value that indicates whether this module is a submodule or not.
             </summary>
         </member>
         <member name="T:Fluxer.Net.Commands.ParameterInfo">
             <summary>
-            Represents information about a command parameter.
+                Provides the information of a parameter.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Commands.ParameterInfo.Command">
+            <summary>
+                Gets the command that associates with this parameter.
             </summary>
         </member>
         <member name="P:Fluxer.Net.Commands.ParameterInfo.Name">
             <summary>
-            Gets the parameter's name.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.Commands.ParameterInfo.Type">
-            <summary>
-            Gets the parameter's type.
+                Gets the name of this parameter.
             </summary>
         </member>
         <member name="P:Fluxer.Net.Commands.ParameterInfo.Summary">
             <summary>
-            Gets the parameter's summary.
+                Gets the summary of this parameter.
             </summary>
         </member>
         <member name="P:Fluxer.Net.Commands.ParameterInfo.IsOptional">
             <summary>
-            Gets whether this parameter is optional.
+                Gets a value that indicates whether this parameter is optional or not.
             </summary>
         </member>
         <member name="P:Fluxer.Net.Commands.ParameterInfo.IsRemainder">
             <summary>
-            Gets whether this parameter captures the remainder of the input.
+                Gets a value that indicates whether this parameter is a remainder parameter or not.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Commands.ParameterInfo.Type">
+            <summary>
+                Gets the type of the parameter.
             </summary>
         </member>
         <member name="P:Fluxer.Net.Commands.ParameterInfo.DefaultValue">
             <summary>
-            Gets the default value for this parameter if it's optional.
+                Gets the default value for this optional parameter if applicable.
             </summary>
+        </member>
+        <member name="P:Fluxer.Net.Commands.ParameterInfo.Preconditions">
+            <summary>
+                Gets a read-only list of precondition that apply to this parameter.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Commands.ParameterInfo.Attributes">
+            <summary>
+                Gets a read-only list of attributes that apply to this parameter.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Commands.CommandMapNode.AddCommand(Fluxer.Net.Commands.CommandService,System.String,System.Int32,Fluxer.Net.Commands.CommandInfo)">
+            <exception cref="T:System.InvalidOperationException">Cannot add commands to the root node.</exception>
+        </member>
+        <member name="T:Fluxer.Net.Commands.ModuleBase">
+            <summary>
+                Provides a base class for a command module to inherit from.
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.Commands.ModuleBase`1">
+            <summary>
+                Provides a base class for a command module to inherit from.
+            </summary>
+            <typeparam name="T">A class that implements <see cref="T:Fluxer.Net.Commands.ICommandContext"/>.</typeparam>
+        </member>
+        <member name="P:Fluxer.Net.Commands.ModuleBase`1.Context">
+            <summary>
+                The underlying context of the command.
+            </summary>
+            <seealso cref="T:Discord.Commands.ICommandContext" />
+            <seealso cref="T:Discord.Commands.CommandContext" />
+        </member>
+        <member name="M:Fluxer.Net.Commands.ModuleBase`1.ReplyAsync(System.String,System.Collections.Generic.List{Fluxer.Net.Rest.Requests.EmbedRequest},Fluxer.Net.MessageReferenceRequest,Fluxer.Net.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64},System.Collections.Generic.List{Fluxer.Net.Rest.Requests.AttachmentRequest})">
+            <summary>
+            Sends a message to the channel the command was executed in.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Commands.ModuleBase`1.BeforeExecuteAsync(Fluxer.Net.Commands.CommandInfo)">
+            <summary>
+                The method to execute asynchronously before executing the command.
+            </summary>
+            <param name="command">The <see cref="T:Fluxer.Net.Commands.CommandInfo"/> of the command to be executed.</param>
+        </member>
+        <member name="M:Fluxer.Net.Commands.ModuleBase`1.BeforeExecute(Fluxer.Net.Commands.CommandInfo)">
+            <summary>
+                The method to execute before executing the command.
+            </summary>
+            <param name="command">The <see cref="T:Fluxer.Net.Commands.CommandInfo"/> of the command to be executed.</param>
+        </member>
+        <member name="M:Fluxer.Net.Commands.ModuleBase`1.AfterExecuteAsync(Fluxer.Net.Commands.CommandInfo)">
+            <summary>
+                The method to execute asynchronously after executing the command.
+            </summary>
+            <param name="command">The <see cref="T:Fluxer.Net.Commands.CommandInfo"/> of the command to be executed.</param>
+        </member>
+        <member name="M:Fluxer.Net.Commands.ModuleBase`1.AfterExecute(Fluxer.Net.Commands.CommandInfo)">
+            <summary>
+                The method to execute after executing the command.
+            </summary>
+            <param name="command">The <see cref="T:Fluxer.Net.Commands.CommandInfo"/> of the command to be executed.</param>
+        </member>
+        <member name="M:Fluxer.Net.Commands.ModuleBase`1.OnModuleBuilding(Fluxer.Net.Commands.CommandService,Fluxer.Net.Commands.Builders.ModuleBuilder)">
+            <summary>
+                The method to execute when building the module.
+            </summary>
+            <param name="commandService">The <see cref="T:Fluxer.Net.Commands.CommandService"/> used to create the module.</param>
+            <param name="builder">The builder used to build the module.</param>
+        </member>
+        <member name="T:Fluxer.Net.Commands.MultiMatchHandling">
+            <summary>
+            Specifies the behavior when multiple matches are found during the command parsing stage.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.Commands.MultiMatchHandling.Exception">
+            <summary> Indicates that when multiple results are found, an exception should be thrown. </summary>
+        </member>
+        <member name="F:Fluxer.Net.Commands.MultiMatchHandling.Best">
+            <summary> Indicates that when multiple results are found, the best result should be chosen. </summary>
+        </member>
+        <member name="M:Fluxer.Net.Commands.EnumTypeReader`1.ReadAsync(Fluxer.Net.Commands.ICommandContext,System.String,System.IServiceProvider)">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.Commands.NullableTypeReader`1.ReadAsync(Fluxer.Net.Commands.ICommandContext,System.String,System.IServiceProvider)">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.Commands.PrimitiveTypeReader`1.#ctor">
+            <exception cref="T:System.ArgumentOutOfRangeException"><typeparamref name="T"/> must be within the range [0, 1].</exception>
+        </member>
+        <member name="M:Fluxer.Net.Commands.PrimitiveTypeReader`1.#ctor(Fluxer.Net.Commands.TryParseDelegate{`0},System.Single)">
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="score"/> must be within the range [0, 1].</exception>
+        </member>
+        <member name="F:Fluxer.Net.Commands.TimeSpanTypeReader.Formats">
+            <summary>
+            TimeSpan try parse formats.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Commands.TimeSpanTypeReader.ReadAsync(Fluxer.Net.Commands.ICommandContext,System.String,System.IServiceProvider)">
+            <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.Commands.TypeReader">
+            <summary>
+                Defines a reader class that parses user input into a specified type.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Commands.TypeReader.ReadAsync(Fluxer.Net.Commands.ICommandContext,System.String,System.IServiceProvider)">
+            <summary>
+                Attempts to parse the <paramref name="input"/> into the desired type.
+            </summary>
+            <param name="context">The context of the command.</param>
+            <param name="input">The raw input of the command.</param>
+            <param name="services">The service collection used for dependency injection.</param>
+            <returns>
+                A task that represents the asynchronous parsing operation. The task result contains the parsing result.
+            </returns>
+        </member>
+        <member name="T:Fluxer.Net.Commands.ExecuteResult">
+            <summary>
+                Contains information of the command's overall execution result.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Commands.ExecuteResult.Exception">
+            <summary>
+                Gets the exception that may have occurred during the command execution.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Commands.ExecuteResult.Error">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Commands.ExecuteResult.ErrorReason">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Commands.ExecuteResult.IsSuccess">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.Commands.ExecuteResult.FromSuccess">
+            <summary>
+                Initializes a new <see cref="T:Fluxer.Net.Commands.ExecuteResult" /> with no error, indicating a successful execution.
+            </summary>
+            <returns>
+                A <see cref="T:Fluxer.Net.Commands.ExecuteResult" /> that does not contain any errors.
+            </returns>
+        </member>
+        <member name="M:Fluxer.Net.Commands.ExecuteResult.FromError(Fluxer.Net.Commands.CommandError,System.String)">
+            <summary>
+                Initializes a new <see cref="T:Fluxer.Net.Commands.ExecuteResult" /> with a specified <see cref="T:Fluxer.Net.Commands.CommandError" /> and its
+                reason, indicating an unsuccessful execution.
+            </summary>
+            <param name="error">The type of error.</param>
+            <param name="reason">The reason behind the error.</param>
+            <returns>
+                A <see cref="T:Fluxer.Net.Commands.ExecuteResult" /> that contains a <see cref="T:Fluxer.Net.Commands.CommandError" /> and reason.
+            </returns>
+        </member>
+        <member name="M:Fluxer.Net.Commands.ExecuteResult.FromError(System.Exception)">
+            <summary>
+                Initializes a new <see cref="T:Fluxer.Net.Commands.ExecuteResult" /> with a specified exception, indicating an unsuccessful
+                execution.
+            </summary>
+            <param name="ex">The exception that caused the command execution to fail.</param>
+            <returns>
+                A <see cref="T:Fluxer.Net.Commands.ExecuteResult" /> that contains the exception that caused the unsuccessful execution, along
+                with a <see cref="T:Fluxer.Net.Commands.CommandError" /> of type <c>Exception</c> as well as the exception message as the
+                reason.
+            </returns>
+        </member>
+        <member name="M:Fluxer.Net.Commands.ExecuteResult.FromError(Fluxer.Net.Commands.IResult)">
+            <summary>
+                Initializes a new <see cref="T:Fluxer.Net.Commands.ExecuteResult" /> with a specified result; this may or may not be an
+                successful execution depending on the <see cref="!:Discord.Commands.IResult.Error" /> and
+                <see cref="!:Discord.Commands.IResult.ErrorReason" /> specified.
+            </summary>
+            <param name="result">The result to inherit from.</param>
+            <returns>
+                A <see cref="T:Fluxer.Net.Commands.ExecuteResult"/> that inherits the <see cref="T:Fluxer.Net.Commands.IResult"/> error type and reason.
+            </returns>
+        </member>
+        <member name="M:Fluxer.Net.Commands.ExecuteResult.ToString">
+            <summary>
+                Gets a string that indicates the execution result.
+            </summary>
+            <returns>
+                <c>Success</c> if <see cref="P:Fluxer.Net.Commands.ExecuteResult.IsSuccess"/> is <see langword="true" />; otherwise "<see cref="P:Fluxer.Net.Commands.ExecuteResult.Error"/>: 
+                <see cref="P:Fluxer.Net.Commands.ExecuteResult.ErrorReason"/>".
+            </returns>
+        </member>
+        <member name="T:Fluxer.Net.Commands.IResult">
+            <summary>
+                Contains information of the result related to a command.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Commands.IResult.Error">
+            <summary>
+                Describes the error type that may have occurred during the operation.
+            </summary>
+            <returns>
+                A <see cref="T:Fluxer.Net.Commands.CommandError" /> indicating the type of error that may have occurred during the operation; 
+                <see langword="null" /> if the operation was successful.
+            </returns>
+        </member>
+        <member name="P:Fluxer.Net.Commands.IResult.ErrorReason">
+            <summary>
+                Describes the reason for the error.
+            </summary>
+            <returns>
+                A string containing the error reason.
+            </returns>
+        </member>
+        <member name="P:Fluxer.Net.Commands.IResult.IsSuccess">
+            <summary>
+                Indicates whether the operation was successful or not.
+            </summary>
+            <returns>
+                <see langword="true" /> if the result is positive; otherwise <see langword="false" />.
+            </returns>
+        </member>
+        <member name="P:Fluxer.Net.Commands.MatchResult.Match">
+            <summary>
+                Gets the command that may have matched during the command execution.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Commands.MatchResult.Pipeline">
+            <summary>
+                Gets on which pipeline stage the command may have matched or failed.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Commands.MatchResult.Error">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Commands.MatchResult.ErrorReason">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Commands.MatchResult.IsSuccess">
+            <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.Commands.ParseResult">
+            <summary>
+                Contains information for the parsing result from the command service's parser.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Commands.ParseResult.Error">
+            <inheritdoc/>
+        </member>
+        <member name="P:Fluxer.Net.Commands.ParseResult.ErrorReason">
+            <inheritdoc/>
+        </member>
+        <member name="P:Fluxer.Net.Commands.ParseResult.ErrorParameter">
+            <summary>
+                Provides information about the parameter that caused the parsing error.
+            </summary>
+            <returns>
+                A <see cref="T:Fluxer.Net.Commands.ParameterInfo" /> indicating the parameter info of the error that may have occurred during parsing; 
+                <see langword="null" /> if the parsing was successful or the parsing error is not specific to a single parameter.
+            </returns>
+        </member>
+        <member name="P:Fluxer.Net.Commands.ParseResult.IsSuccess">
+            <inheritdoc/>
         </member>
         <member name="T:Fluxer.Net.Commands.PreconditionResult">
             <summary>
-            Represents the result of a precondition check.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.Commands.PreconditionResult.IsSuccess">
-            <summary>
-            Gets whether the precondition check was successful.
+                Represents a result type for command preconditions.
             </summary>
         </member>
         <member name="P:Fluxer.Net.Commands.PreconditionResult.Error">
-            <summary>
-            Gets the error message if the precondition failed.
-            </summary>
+            <inheritdoc/>
         </member>
-        <member name="P:Fluxer.Net.Commands.PreconditionResult.ErrorType">
+        <member name="P:Fluxer.Net.Commands.PreconditionResult.ErrorReason">
+            <inheritdoc/>
+        </member>
+        <member name="P:Fluxer.Net.Commands.PreconditionResult.IsSuccess">
+            <inheritdoc/>
+        </member>
+        <member name="M:Fluxer.Net.Commands.PreconditionResult.#ctor(System.Nullable{Fluxer.Net.Commands.CommandError},System.String)">
             <summary>
-            Gets the error type if the precondition failed.
+                Initializes a new <see cref="T:Fluxer.Net.Commands.PreconditionResult" /> class with the command <paramref name="error"/> type
+                and reason.
             </summary>
+            <param name="error">The type of failure.</param>
+            <param name="errorReason">The reason of failure.</param>
         </member>
         <member name="M:Fluxer.Net.Commands.PreconditionResult.FromSuccess">
             <summary>
-            Creates a successful precondition result.
+                Returns a <see cref="T:Fluxer.Net.Commands.PreconditionResult" /> with no errors.
             </summary>
         </member>
         <member name="M:Fluxer.Net.Commands.PreconditionResult.FromError(System.String)">
             <summary>
-            Creates a failed precondition result.
+                Returns a <see cref="T:Fluxer.Net.Commands.PreconditionResult" /> with <see cref="F:Fluxer.Net.Commands.CommandError.UnmetPrecondition" /> and the
+                specified reason.
+            </summary>
+            <param name="reason">The reason of failure.</param>
+        </member>
+        <member name="M:Fluxer.Net.Commands.PreconditionResult.FromError(Fluxer.Net.Commands.IResult)">
+            <summary>
+                Returns a <see cref="T:Fluxer.Net.Commands.PreconditionResult" /> with the specified <paramref name="result"/> type.
+            </summary>
+            <param name="result">The result of failure.</param>
+        </member>
+        <member name="M:Fluxer.Net.Commands.PreconditionResult.ToString">
+            <summary>
+            Returns a string indicating whether the <see cref="T:Fluxer.Net.Commands.PreconditionResult"/> is successful.
             </summary>
         </member>
-        <member name="M:Fluxer.Net.Commands.PreconditionResult.FromError(System.Exception)">
+        <member name="M:Fluxer.Net.Commands.RuntimeResult.#ctor(System.Nullable{Fluxer.Net.Commands.CommandError},System.String)">
             <summary>
-            Creates a failed precondition result from an exception.
+                Initializes a new <see cref="T:Fluxer.Net.Commands.RuntimeResult" /> class with the type of error and reason.
             </summary>
+            <param name="error">The type of failure, or <see langword="null" /> if none.</param>
+            <param name="reason">The reason of failure.</param>
+        </member>
+        <member name="P:Fluxer.Net.Commands.RuntimeResult.Error">
+            <inheritdoc/>
+        </member>
+        <member name="P:Fluxer.Net.Commands.RuntimeResult.Reason">
+            <summary> Describes the execution reason or result. </summary>
+        </member>
+        <member name="P:Fluxer.Net.Commands.RuntimeResult.IsSuccess">
+            <inheritdoc/>
+        </member>
+        <member name="P:Fluxer.Net.Commands.RuntimeResult.Fluxer#Net#Commands#IResult#ErrorReason">
+            <inheritdoc/>
+        </member>
+        <member name="P:Fluxer.Net.Commands.SearchResult.Error">
+            <inheritdoc/>
+        </member>
+        <member name="P:Fluxer.Net.Commands.SearchResult.ErrorReason">
+            <inheritdoc/>
+        </member>
+        <member name="P:Fluxer.Net.Commands.SearchResult.IsSuccess">
+            <inheritdoc/>
+        </member>
+        <member name="P:Fluxer.Net.Commands.TypeReaderResult.Error">
+            <inheritdoc/>
+        </member>
+        <member name="P:Fluxer.Net.Commands.TypeReaderResult.ErrorReason">
+            <inheritdoc/>
+        </member>
+        <member name="P:Fluxer.Net.Commands.TypeReaderResult.IsSuccess">
+            <inheritdoc/>
+        </member>
+        <member name="P:Fluxer.Net.Commands.TypeReaderResult.BestMatch">
+            <exception cref="T:System.InvalidOperationException">TypeReaderResult was not successful.</exception>
         </member>
         <member name="T:Fluxer.Net.Commands.RunMode">
             <summary>
-            Specifies the execution mode of a command.
+                Specifies the behavior of the command execution workflow.
+            </summary>
+            <seealso cref="T:Fluxer.Net.Commands.CommandServiceConfig"/>
+            <seealso cref="T:Fluxer.Net.Commands.CommandAttribute"/>
+        </member>
+        <member name="F:Fluxer.Net.Commands.RunMode.Default">
+            <summary>
+            The default behavior set in <see cref="T:Fluxer.Net.Commands.CommandServiceConfig"/>.
             </summary>
         </member>
         <member name="F:Fluxer.Net.Commands.RunMode.Sync">
             <summary>
-            The command will run synchronously on the gateway thread.
+            Executes the command on the same thread as gateway one.
             </summary>
         </member>
         <member name="F:Fluxer.Net.Commands.RunMode.Async">
             <summary>
-            The command will run asynchronously on a separate thread.
+            Executes the command on a different thread from the gateway one.
             </summary>
+        </member>
+        <member name="T:Fluxer.Net.Commands.QuotationAliasUtils">
+            <summary>
+            Utility class which contains the default matching pairs of quotation marks for CommandServiceConfig
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Commands.QuotationAliasUtils.GetDefaultAliasMap">
+            <summary>
+            A default map of open-close pairs of quotation marks.
+            Contains many regional and Unicode equivalents.
+            Used in the <see cref="T:Fluxer.Net.Commands.CommandServiceConfig"/>.
+            </summary>
+            <seealso cref="P:Fluxer.Net.Commands.CommandServiceConfig.QuotationMarkAliasMap"/>
         </member>
         <member name="T:Fluxer.Net.Application">
             <inheritdoc />
@@ -674,6 +1499,20 @@
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.ApplicationJson.Bot">
+            <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.CurrentApplication">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.CurrentApplication.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.CurrentApplicationJson)">
+            <summary>
+            Create a Application object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Fluxer.Net.CurrentApplicationJson">
             <inheritdoc />
         </member>
         <member name="T:Fluxer.Net.IApplication">
@@ -1167,9 +2006,9 @@
             A voice channel within a guild/server.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.ChannelType.GroupDm">
+        <member name="F:Fluxer.Net.ChannelType.Group">
             <summary>
-            A direct message channel between multiple users (group DM).
+            A direct message channel between multiple users (group).
             </summary>
         </member>
         <member name="F:Fluxer.Net.ChannelType.GuildCategory">
@@ -1419,11 +2258,6 @@
         </member>
         <member name="P:Fluxer.Net.PermissionOverwriteJson.Deny">
             <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.SocketUnknownChannel.Permissions">
-            <summary>
-            Permissions for the channel.
-            </summary>
         </member>
         <member name="M:Fluxer.Net.SocketUnknownChannel.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.ChannelJson,System.UInt64)">
             <summary>
@@ -2277,6 +3111,26 @@
             The duration of the media in seconds.
             </summary>
         </member>
+        <member name="T:Fluxer.Net.ISnowflake">
+            <summary>
+            Snowflake object with unique ID.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.ISnowflake.Id">
+            <summary>
+            Fluxer unique identifier (snowflake) for the object.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.ISnowflake.CreatedAt">
+            <summary>
+            Object created at UTC.
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.Entity">
+            <summary>
+            Fluxer entity with client attached.
+            </summary>
+        </member>
         <member name="T:Fluxer.Net.Emoji">
             <inheritdoc />
         </member>
@@ -2834,94 +3688,6 @@
             Proxied URL to the category preview image.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.ChannelPermissions.RawValue">
-            <summary>
-            Raw permissions flag for the guild.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.ChannelPermissions.ManagePermissions">
-            <summary>
-            Edit overwrites for roles and members in this channel.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.ChannelPermissions.ManageChannels">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.ChannelPermissions.CreateInstantInvite">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.ChannelPermissions.ManageWebhooks">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.ChannelPermissions.ViewChannel">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.ChannelPermissions.SendMessages">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.ChannelPermissions.SendTtsMessages">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.ChannelPermissions.ManageMessages">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.ChannelPermissions.PinMessages">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.ChannelPermissions.EmbedLinks">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.ChannelPermissions.AttachFiles">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.ChannelPermissions.ReadMessageHistory">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.ChannelPermissions.MentionEveryone">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.ChannelPermissions.UseExternalEmojis">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.ChannelPermissions.UseExternalStickers">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.ChannelPermissions.AddReactions">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.ChannelPermissions.BypassSlowmode">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.ChannelPermissions.Connect">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.ChannelPermissions.Speak">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.ChannelPermissions.Stream">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.ChannelPermissions.UseVad">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.ChannelPermissions.PrioritySpeaker">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.ChannelPermissions.MuteMembers">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.ChannelPermissions.DeafenMembers">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.ChannelPermissions.MoveMembers">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.ChannelPermissions.UpdateRtcRegion">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.ChannelPermissions.ViewChannelMembers">
-            <inheritdoc />
-        </member>
         <member name="T:Fluxer.Net.Guild">
             <inheritdoc />
         </member>
@@ -3044,254 +3810,6 @@
         <member name="P:Fluxer.Net.GuildJson.MemberCount">
             <inheritdoc />
         </member>
-        <member name="P:Fluxer.Net.GuildPermissions.RawValue">
-            <summary>
-            Raw permissions flag for the guild.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.GuildPermissions.Administrator">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildPermissions.ViewAuditLog">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildPermissions.ManageGuild">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildPermissions.ManageRoles">
-            <summary>
-            Create, edit, or delete roles below your highest role. Also allows editing channel permission overwrites.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.GuildPermissions.ManageChannels">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildPermissions.KickMembers">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildPermissions.BanMembers">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildPermissions.CreateInstantInvite">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildPermissions.ChangeNickname">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildPermissions.ManageNicknames">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildPermissions.CreateExpressions">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildPermissions.ManageExpressions">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildPermissions.ManageWebhooks">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildPermissions.ViewChannel">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildPermissions.SendMessages">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildPermissions.SendTtsMessages">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildPermissions.ManageMessages">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildPermissions.PinMessages">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildPermissions.EmbedLinks">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildPermissions.AttachFiles">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildPermissions.ReadMessageHistory">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildPermissions.MentionEveryone">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildPermissions.UseExternalEmojis">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildPermissions.UseExternalStickers">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildPermissions.AddReactions">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildPermissions.BypassSlowmode">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildPermissions.ModerateMembers">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildPermissions.Connect">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildPermissions.Speak">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildPermissions.Stream">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildPermissions.UseVad">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildPermissions.PrioritySpeaker">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildPermissions.MuteMembers">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildPermissions.DeafenMembers">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildPermissions.MoveMembers">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildPermissions.UpdateRtcRegion">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildPermissions.ViewChannelMembers">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.IChannelPermissions.ManageChannels">
-            <summary>
-            Create, edit, or delete channels and categories.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IChannelPermissions.CreateInstantInvite">
-            <summary>
-            Create invites to invite other users to the guild.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IChannelPermissions.ManageWebhooks">
-            <summary>
-            Create, edit, or delete webhooks.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IChannelPermissions.ViewChannel">
-            <summary>
-            View this channel.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IChannelPermissions.SendMessages">
-            <summary>
-            Send messages in this channel.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IChannelPermissions.SendTtsMessages">
-            <summary>
-            Send text-to-speech messages.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IChannelPermissions.ManageMessages">
-            <summary>
-            Delete messages from other users.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IChannelPermissions.PinMessages">
-            <summary>
-            Pin messages in the channel.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IChannelPermissions.EmbedLinks">
-            <summary>
-            Embed links in the channel.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IChannelPermissions.AttachFiles">
-            <summary>
-            Upload files in the channel.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IChannelPermissions.ReadMessageHistory">
-            <summary>
-            Read all messages in the channel.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IChannelPermissions.MentionEveryone">
-            <summary>
-            Mention everyone or any role (even if the role isn't set to be mentionable)
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IChannelPermissions.UseExternalEmojis">
-            <summary>
-            Use emojis from other guilds.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IChannelPermissions.UseExternalStickers">
-            <summary>
-            Use stickers from other guilds.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IChannelPermissions.AddReactions">
-            <summary>
-            Add new reactions to messages.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IChannelPermissions.BypassSlowmode">
-            <summary>
-            Ignore per-channel message rate limits..
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IChannelPermissions.Connect">
-            <summary>
-            Connect to the voice channel.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IChannelPermissions.Speak">
-            <summary>
-            Speak in the voice channel.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IChannelPermissions.Stream">
-            <summary>
-            Allow video and screenshare in the voice channel.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IChannelPermissions.UseVad">
-            <summary>
-            Denied if push to talk is required in the voice channel.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IChannelPermissions.PrioritySpeaker">
-            <summary>
-            Prioritize your voice in the voice channel.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IChannelPermissions.MuteMembers">
-            <summary>
-            Mute users in the voice channel.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IChannelPermissions.DeafenMembers">
-            <summary>
-            Deafen users in the voice channel.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IChannelPermissions.MoveMembers">
-            <summary>
-            Drag members between voice channels they can access.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IChannelPermissions.UpdateRtcRegion">
-            <summary>
-            Update the voice region for this voice channel.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IChannelPermissions.ViewChannelMembers">
-            <summary>
-            Allows you to view members in the channel.
-            </summary>
-        </member>
         <member name="P:Fluxer.Net.IGuild.OwnerId">
             <summary>
             The ID of the guild owner.
@@ -3387,56 +3905,6 @@
             <remarks>
             Only available from rest get guild not socket guild.
             </remarks>
-        </member>
-        <member name="P:Fluxer.Net.IGuildPermissions.Administrator">
-            <summary>
-            Grants all permissions and bypasses channel restrictions. Highly sensitive.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IGuildPermissions.ViewAuditLog">
-            <summary>
-            Read the community's audit log of changes and moderation actions.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IGuildPermissions.ManageGuild">
-            <summary>
-            Edit global settings like name, description, and icon.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IGuildPermissions.KickMembers">
-            <summary>
-            Kick users from the guild.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IGuildPermissions.BanMembers">
-            <summary>
-            Ban users from joining the guild.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IGuildPermissions.ChangeNickname">
-            <summary>
-            Update your own nickname.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IGuildPermissions.ManageNicknames">
-            <summary>
-            Change other members nicknames.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IGuildPermissions.CreateExpressions">
-            <summary>
-            Upload new emojis and stickers, and manage your own creations.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IGuildPermissions.ManageExpressions">
-            <summary>
-            Edit or delete emojis and stickers created by other members.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IGuildPermissions.ModerateMembers">
-            <summary>
-            Prevent members from sending messages, reacting, and joining voice for a duration.
-            </summary>
         </member>
         <member name="P:Fluxer.Net.IPartialGuild.Id">
             <summary>
@@ -3578,7 +4046,7 @@
         <member name="T:Fluxer.Net.GuildMember">
             <inheritdoc />
         </member>
-        <member name="P:Fluxer.Net.GuildMember.UserId">
+        <member name="P:Fluxer.Net.GuildMember.Id">
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.GuildMember.Mention">
@@ -3643,7 +4111,7 @@
         <member name="T:Fluxer.Net.GuildMemberJson">
             <inheritdoc />
         </member>
-        <member name="P:Fluxer.Net.GuildMemberJson.UserId">
+        <member name="P:Fluxer.Net.GuildMemberJson.Id">
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.GuildMemberJson.Mention">
@@ -3722,7 +4190,7 @@
             The user that was banned.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.IGuildMember.UserId">
+        <member name="P:Fluxer.Net.IGuildMember.Id">
             <summary>
             User id for this member.
             </summary>
@@ -4083,7 +4551,7 @@
         <member name="M:Fluxer.Net.PartialGuildJson.GetEmbedSplashUrl(System.Int32)">
             <inheritdoc />
         </member>
-        <member name="T:Fluxer.Net.Permissions">
+        <member name="T:Fluxer.Net.ChannelPermission">
             <summary>
             Represents guild and channel permissions in Fluxer. Multiple permissions can be combined using bitwise OR.
             </summary>
@@ -4092,279 +4560,874 @@
             Use bitwise operations to check, add, or remove permissions.
             </remarks>
         </member>
-        <member name="F:Fluxer.Net.Permissions.None">
+        <member name="F:Fluxer.Net.ChannelPermission.None">
             <summary>
             No permissions granted.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Permissions.CreateInstantInvite">
+        <member name="F:Fluxer.Net.ChannelPermission.CreateInstantInvite">
             <summary>
             Allows creation of instant invites to the guild or channel.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Permissions.KickMembers">
+        <member name="F:Fluxer.Net.ChannelPermission.ManageChannel">
             <summary>
-            Allows kicking members from the guild.
+            Allows management and editing of the channel.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Permissions.BanMembers">
-            <summary>
-            Allows banning members from the guild.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Permissions.Administrator">
-            <summary>
-            Grants all permissions and bypasses channel permission overwrites.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Permissions.ManageChannels">
-            <summary>
-            Allows management and editing of channels.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Permissions.ManageGuild">
-            <summary>
-            Allows management and editing of the guild.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Permissions.AddReactions">
+        <member name="F:Fluxer.Net.ChannelPermission.AddReactions">
             <summary>
             Allows adding reactions to messages.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Permissions.ViewAuditLog">
-            <summary>
-            Allows viewing the guild audit log.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Permissions.PrioritySpeaker">
+        <member name="F:Fluxer.Net.ChannelPermission.PrioritySpeaker">
             <summary>
             Allows using priority speaker in voice channels.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Permissions.Stream">
+        <member name="F:Fluxer.Net.ChannelPermission.Stream">
             <summary>
             Allows streaming video in voice channels.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Permissions.ViewChannel">
+        <member name="F:Fluxer.Net.ChannelPermission.ViewChannel">
             <summary>
             Allows viewing channels (includes reading messages in text channels and joining voice channels).
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Permissions.SendMessages">
+        <member name="F:Fluxer.Net.ChannelPermission.SendMessages">
             <summary>
             Allows sending messages in text channels.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Permissions.SendTtsMessages">
+        <member name="F:Fluxer.Net.ChannelPermission.SendTTSMessages">
             <summary>
             Allows sending text-to-speech messages.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Permissions.ManageMessages">
+        <member name="F:Fluxer.Net.ChannelPermission.ManageMessages">
             <summary>
             Allows deleting and pinning messages from other users.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Permissions.EmbedLinks">
+        <member name="F:Fluxer.Net.ChannelPermission.EmbedLinks">
             <summary>
             Allows links sent by the user to auto-embed.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Permissions.AttachFiles">
+        <member name="F:Fluxer.Net.ChannelPermission.AttachFiles">
             <summary>
             Allows uploading files and media to messages.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Permissions.ReadMessageHistory">
+        <member name="F:Fluxer.Net.ChannelPermission.ReadMessageHistory">
             <summary>
             Allows reading message history in channels.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Permissions.MentionEveryone">
+        <member name="F:Fluxer.Net.ChannelPermission.MentionEveryone">
             <summary>
             Allows using @everyone and @here mentions, and mentioning all roles.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Permissions.UseExternalEmojis">
+        <member name="F:Fluxer.Net.ChannelPermission.UseExternalEmojis">
             <summary>
             Allows using emojis from other guilds.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Permissions.ViewGuildInsights">
-            <summary>
-            Allows viewing guild insights and analytics.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Permissions.Connect">
+        <member name="F:Fluxer.Net.ChannelPermission.Connect">
             <summary>
             Allows joining voice channels.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Permissions.Speak">
+        <member name="F:Fluxer.Net.ChannelPermission.Speak">
             <summary>
             Allows speaking in voice channels.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Permissions.MuteMembers">
+        <member name="F:Fluxer.Net.ChannelPermission.MuteMembers">
             <summary>
             Allows muting members in voice channels.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Permissions.DeafenMembers">
+        <member name="F:Fluxer.Net.ChannelPermission.DeafenMembers">
             <summary>
             Allows deafening members in voice channels.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Permissions.MoveMembers">
+        <member name="F:Fluxer.Net.ChannelPermission.MoveMembers">
             <summary>
             Allows moving members between voice channels.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Permissions.UseVad">
+        <member name="F:Fluxer.Net.ChannelPermission.UseVad">
             <summary>
             Allows using voice activity detection (no push-to-talk required).
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Permissions.ChangeNickname">
-            <summary>
-            Allows changing own nickname.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Permissions.ManageNicknames">
-            <summary>
-            Allows managing nicknames of other members.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Permissions.ManageRoles">
-            <summary>
-            Allows management and editing of roles.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Permissions.ManageWebhooks">
+        <member name="F:Fluxer.Net.ChannelPermission.ManageWebhooks">
             <summary>
             Allows management and editing of webhooks.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Permissions.ManageExpressions">
-            <summary>
-            Allows management and editing of emojis, stickers, and soundboard sounds.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Permissions.UseApplicationCommands">
+        <member name="F:Fluxer.Net.ChannelPermission.UseApplicationCommands">
             <summary>
             Allows using application commands (slash commands, context menu commands).
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Permissions.RequestToSpeak">
+        <member name="F:Fluxer.Net.ChannelPermission.RequestToSpeak">
             <summary>
             Allows requesting to speak in stage channels.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Permissions.ManageEvents">
-            <summary>
-            Allows managing guild events.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Permissions.ManageThreads">
+        <member name="F:Fluxer.Net.ChannelPermission.ManageThreads">
             <summary>
             Allows management of threads (archiving, locking, deleting).
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Permissions.CreatePublicThreads">
+        <member name="F:Fluxer.Net.ChannelPermission.CreatePublicThreads">
             <summary>
             Allows creating public threads.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Permissions.CreatePrivateThreads">
+        <member name="F:Fluxer.Net.ChannelPermission.CreatePrivateThreads">
             <summary>
             Allows creating private threads.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Permissions.UseExternalStickers">
+        <member name="F:Fluxer.Net.ChannelPermission.UseExternalStickers">
             <summary>
             Allows using stickers from other guilds.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Permissions.SendMessagesInThreads">
+        <member name="F:Fluxer.Net.ChannelPermission.SendMessagesInThreads">
             <summary>
             Allows sending messages in threads.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Permissions.UseEmbeddedActivities">
+        <member name="F:Fluxer.Net.ChannelPermission.UseEmbeddedActivities">
             <summary>
             Allows using embedded activities (games, activities) in voice channels.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Permissions.ModerateMembers">
-            <summary>
-            Allows timing out members (preventing them from sending messages/joining voice).
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Permissions.ViewCreatorMonetizationAnalytics">
-            <summary>
-            Allows viewing monetization analytics for creators.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Permissions.UseSoundboard">
+        <member name="F:Fluxer.Net.ChannelPermission.UseSoundboard">
             <summary>
             Allows using the soundboard in voice channels.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Permissions.CreateExpressions">
-            <summary>
-            Allows creating custom emojis, stickers, and soundboard sounds.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Permissions.CreateEvents">
-            <summary>
-            Allows creating guild events.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Permissions.UseExternalSounds">
+        <member name="F:Fluxer.Net.ChannelPermission.UseExternalSounds">
             <summary>
             Allows using soundboard sounds from other guilds.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Permissions.SendVoiceMessages">
+        <member name="F:Fluxer.Net.ChannelPermission.SendVoiceMessages">
             <summary>
             Allows sending voice messages in text channels.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Permissions.SetVoiceChannelStatus">
+        <member name="F:Fluxer.Net.ChannelPermission.SetVoiceChannelStatus">
             <summary>
             Allows setting a custom status for voice channels.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Permissions.SendPolls">
+        <member name="F:Fluxer.Net.ChannelPermission.SendPolls">
             <summary>
             Allows sending polls in text channels.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Permissions.UseExternalApps">
+        <member name="F:Fluxer.Net.ChannelPermission.UseExternalApps">
             <summary>
             Allows using external applications in channels.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Permissions.PinMessages">
+        <member name="F:Fluxer.Net.ChannelPermission.PinMessages">
             <summary>
             Allows pinning messages in channels.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Permissions.BypassSlowmode">
+        <member name="F:Fluxer.Net.ChannelPermission.BypassSlowmode">
             <summary>
             Allows bypassing channel slowmode restrictions.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Permissions.UpdateRtcRegion">
+        <member name="F:Fluxer.Net.ChannelPermission.UpdateRtcRegion">
             <summary>
             Allows updating the RTC (voice) region for a channel.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Permissions.ViewChannelMembers">
+        <member name="F:Fluxer.Net.ChannelPermission.ViewChannelMembers">
             <summary>
             Allows you to view members in the channel.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.RawValue">
+            <summary>
+            Raw permissions flag for the guild.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.ManagePermissions">
+            <summary>
+            Edit overwrites for roles and members in this channel.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.ManageChannels">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.CreateInstantInvite">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.ManageWebhooks">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.ViewChannel">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.SendMessages">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.SendTtsMessages">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.ManageMessages">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.PinMessages">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.EmbedLinks">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.AttachFiles">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.ReadMessageHistory">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.MentionEveryone">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.UseExternalEmojis">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.UseExternalStickers">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.AddReactions">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.BypassSlowmode">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.Connect">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.Speak">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.Stream">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.UseVad">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.PrioritySpeaker">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.MuteMembers">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.DeafenMembers">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.MoveMembers">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.UpdateRtcRegion">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelPermissions.ViewChannelMembers">
+            <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.GuildPermission">
+            <summary>
+            Represents guild and channel permissions in Fluxer. Multiple permissions can be combined using bitwise OR.
+            </summary>
+            <remarks>
+            Permissions are stored as a 64-bit unsigned integer where each bit represents a specific permission.
+            Use bitwise operations to check, add, or remove permissions.
+            </remarks>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.None">
+            <summary>
+            No permissions granted.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.CreateInstantInvite">
+            <summary>
+            Allows creation of instant invites to the guild or channel.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.KickMembers">
+            <summary>
+            Allows kicking members from the guild.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.BanMembers">
+            <summary>
+            Allows banning members from the guild.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.Administrator">
+            <summary>
+            Grants all permissions and bypasses channel permission overwrites.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.ManageChannels">
+            <summary>
+            Allows management and editing of channels.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.ManageGuild">
+            <summary>
+            Allows management and editing of the guild.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.AddReactions">
+            <summary>
+            Allows adding reactions to messages.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.ViewAuditLog">
+            <summary>
+            Allows viewing the guild audit log.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.PrioritySpeaker">
+            <summary>
+            Allows using priority speaker in voice channels.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.Stream">
+            <summary>
+            Allows streaming video in voice channels.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.ViewChannel">
+            <summary>
+            Allows viewing channels (includes reading messages in text channels and joining voice channels).
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.SendMessages">
+            <summary>
+            Allows sending messages in text channels.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.SendTtsMessages">
+            <summary>
+            Allows sending text-to-speech messages.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.ManageMessages">
+            <summary>
+            Allows deleting and pinning messages from other users.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.EmbedLinks">
+            <summary>
+            Allows links sent by the user to auto-embed.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.AttachFiles">
+            <summary>
+            Allows uploading files and media to messages.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.ReadMessageHistory">
+            <summary>
+            Allows reading message history in channels.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.MentionEveryone">
+            <summary>
+            Allows using @everyone and @here mentions, and mentioning all roles.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.UseExternalEmojis">
+            <summary>
+            Allows using emojis from other guilds.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.ViewGuildInsights">
+            <summary>
+            Allows viewing guild insights and analytics.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.Connect">
+            <summary>
+            Allows joining voice channels.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.Speak">
+            <summary>
+            Allows speaking in voice channels.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.MuteMembers">
+            <summary>
+            Allows muting members in voice channels.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.DeafenMembers">
+            <summary>
+            Allows deafening members in voice channels.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.MoveMembers">
+            <summary>
+            Allows moving members between voice channels.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.UseVad">
+            <summary>
+            Allows using voice activity detection (no push-to-talk required).
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.ChangeNickname">
+            <summary>
+            Allows changing own nickname.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.ManageNicknames">
+            <summary>
+            Allows managing nicknames of other members.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.ManageRoles">
+            <summary>
+            Allows management and editing of roles.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.ManageWebhooks">
+            <summary>
+            Allows management and editing of webhooks.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.ManageExpressions">
+            <summary>
+            Allows management and editing of emojis, stickers, and soundboard sounds.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.UseApplicationCommands">
+            <summary>
+            Allows using application commands (slash commands, context menu commands).
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.RequestToSpeak">
+            <summary>
+            Allows requesting to speak in stage channels.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.ManageEvents">
+            <summary>
+            Allows managing guild events.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.ManageThreads">
+            <summary>
+            Allows management of threads (archiving, locking, deleting).
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.CreatePublicThreads">
+            <summary>
+            Allows creating public threads.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.CreatePrivateThreads">
+            <summary>
+            Allows creating private threads.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.UseExternalStickers">
+            <summary>
+            Allows using stickers from other guilds.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.SendMessagesInThreads">
+            <summary>
+            Allows sending messages in threads.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.UseEmbeddedActivities">
+            <summary>
+            Allows using embedded activities (games, activities) in voice channels.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.ModerateMembers">
+            <summary>
+            Allows timing out members (preventing them from sending messages/joining voice).
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.ViewCreatorMonetizationAnalytics">
+            <summary>
+            Allows viewing monetization analytics for creators.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.UseSoundboard">
+            <summary>
+            Allows using the soundboard in voice channels.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.CreateExpressions">
+            <summary>
+            Allows creating custom emojis, stickers, and soundboard sounds.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.CreateEvents">
+            <summary>
+            Allows creating guild events.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.UseExternalSounds">
+            <summary>
+            Allows using soundboard sounds from other guilds.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.SendVoiceMessages">
+            <summary>
+            Allows sending voice messages in text channels.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.SetVoiceChannelStatus">
+            <summary>
+            Allows setting a custom status for voice channels.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.SendPolls">
+            <summary>
+            Allows sending polls in text channels.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.UseExternalApps">
+            <summary>
+            Allows using external applications in channels.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.PinMessages">
+            <summary>
+            Allows pinning messages in channels.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.BypassSlowmode">
+            <summary>
+            Allows bypassing channel slowmode restrictions.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.UpdateRtcRegion">
+            <summary>
+            Allows updating the RTC (voice) region for a channel.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildPermission.ViewChannelMembers">
+            <summary>
+            Allows you to view members in the channel.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.RawValue">
+            <summary>
+            Raw permissions flag for the guild.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.Administrator">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.ViewAuditLog">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.ManageGuild">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.ManageRoles">
+            <summary>
+            Create, edit, or delete roles below your highest role. Also allows editing channel permission overwrites.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.ManageChannels">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.KickMembers">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.BanMembers">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.CreateInstantInvite">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.ChangeNickname">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.ManageNicknames">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.CreateExpressions">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.ManageExpressions">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.ManageWebhooks">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.ViewChannel">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.SendMessages">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.SendTtsMessages">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.ManageMessages">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.PinMessages">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.EmbedLinks">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.AttachFiles">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.ReadMessageHistory">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.MentionEveryone">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.UseExternalEmojis">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.UseExternalStickers">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.AddReactions">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.BypassSlowmode">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.ModerateMembers">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.Connect">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.Speak">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.Stream">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.UseVad">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.PrioritySpeaker">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.MuteMembers">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.DeafenMembers">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.MoveMembers">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.UpdateRtcRegion">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildPermissions.ViewChannelMembers">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.IChannelPermissions.ManageChannels">
+            <summary>
+            Create, edit, or delete channels and categories.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannelPermissions.CreateInstantInvite">
+            <summary>
+            Create invites to invite other users to the guild.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannelPermissions.ManageWebhooks">
+            <summary>
+            Create, edit, or delete webhooks.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannelPermissions.ViewChannel">
+            <summary>
+            View this channel.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannelPermissions.SendMessages">
+            <summary>
+            Send messages in this channel.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannelPermissions.SendTtsMessages">
+            <summary>
+            Send text-to-speech messages.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannelPermissions.ManageMessages">
+            <summary>
+            Delete messages from other users.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannelPermissions.PinMessages">
+            <summary>
+            Pin messages in the channel.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannelPermissions.EmbedLinks">
+            <summary>
+            Embed links in the channel.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannelPermissions.AttachFiles">
+            <summary>
+            Upload files in the channel.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannelPermissions.ReadMessageHistory">
+            <summary>
+            Read all messages in the channel.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannelPermissions.MentionEveryone">
+            <summary>
+            Mention everyone or any role (even if the role isn't set to be mentionable)
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannelPermissions.UseExternalEmojis">
+            <summary>
+            Use emojis from other guilds.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannelPermissions.UseExternalStickers">
+            <summary>
+            Use stickers from other guilds.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannelPermissions.AddReactions">
+            <summary>
+            Add new reactions to messages.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannelPermissions.BypassSlowmode">
+            <summary>
+            Ignore per-channel message rate limits..
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannelPermissions.Connect">
+            <summary>
+            Connect to the voice channel.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannelPermissions.Speak">
+            <summary>
+            Speak in the voice channel.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannelPermissions.Stream">
+            <summary>
+            Allow video and screenshare in the voice channel.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannelPermissions.UseVad">
+            <summary>
+            Denied if push to talk is required in the voice channel.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannelPermissions.PrioritySpeaker">
+            <summary>
+            Prioritize your voice in the voice channel.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannelPermissions.MuteMembers">
+            <summary>
+            Mute users in the voice channel.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannelPermissions.DeafenMembers">
+            <summary>
+            Deafen users in the voice channel.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannelPermissions.MoveMembers">
+            <summary>
+            Drag members between voice channels they can access.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannelPermissions.UpdateRtcRegion">
+            <summary>
+            Update the voice region for this voice channel.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannelPermissions.ViewChannelMembers">
+            <summary>
+            Allows you to view members in the channel.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IGuildPermissions.Administrator">
+            <summary>
+            Grants all permissions and bypasses channel restrictions. Highly sensitive.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IGuildPermissions.ViewAuditLog">
+            <summary>
+            Read the community's audit log of changes and moderation actions.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IGuildPermissions.ManageGuild">
+            <summary>
+            Edit global settings like name, description, and icon.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IGuildPermissions.KickMembers">
+            <summary>
+            Kick users from the guild.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IGuildPermissions.BanMembers">
+            <summary>
+            Ban users from joining the guild.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IGuildPermissions.ChangeNickname">
+            <summary>
+            Update your own nickname.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IGuildPermissions.ManageNicknames">
+            <summary>
+            Change other members nicknames.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IGuildPermissions.CreateExpressions">
+            <summary>
+            Upload new emojis and stickers, and manage your own creations.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IGuildPermissions.ManageExpressions">
+            <summary>
+            Edit or delete emojis and stickers created by other members.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IGuildPermissions.ModerateMembers">
+            <summary>
+            Prevent members from sending messages, reacting, and joining voice for a duration.
             </summary>
         </member>
         <member name="T:Fluxer.Net.GuildContentFilter">
@@ -6599,6 +7662,11 @@
             The unique identifier (snowflake) for this user.
             </summary>
         </member>
+        <member name="P:Fluxer.Net.IUser.CreatedAt">
+            <summary>
+            User created at UTC.
+            </summary>
+        </member>
         <member name="P:Fluxer.Net.IUser.Mention">
             <summary>
             Get the mention for the user.
@@ -6958,6 +8026,9 @@
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.User.Id">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.User.CreatedAt">
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.User.Mention">
@@ -7885,6 +8956,29 @@
         <member name="M:Fluxer.Net.WebhookJson.GetAvatarOrDefaultUrl(System.Int32)">
             <inheritdoc />
         </member>
+        <member name="T:Fluxer.Net.Extensions.SnowflakeUtils">
+            <summary>
+            Provides a series of helper methods for handling snowflake identifiers.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Extensions.SnowflakeUtils.FromSnowflake(System.UInt64)">
+            <summary>
+            Resolves the time of which the snowflake is generated.
+            </summary>
+            <param name="value">The snowflake identifier to resolve.</param>
+            <returns>
+            A <see cref="T:System.DateTimeOffset" /> representing the time for when the object is generated.
+            </returns>
+        </member>
+        <member name="M:Fluxer.Net.Extensions.SnowflakeUtils.ToSnowflake(System.DateTimeOffset)">
+            <summary>
+            Generates a pseudo-snowflake identifier with a <see cref="T:System.DateTimeOffset"/>.
+            </summary>
+            <param name="value">The time to be used in the new snowflake.</param>
+            <returns>
+            A <see cref="T:System.UInt64" /> representing the newly generated snowflake identifier.
+            </returns>
+        </member>
         <member name="T:Fluxer.Net.Extensions.StringUInt64Converter">
             <summary>
             Deserializes a JSON value as <see cref="T:System.UInt64"/>, accepting both a raw JSON number
@@ -7892,6 +8986,41 @@
             The Fluxer gateway sends permission bitfields as quoted strings to avoid JavaScript
             integer precision loss, but the REST API may return them as plain numbers.
             </summary>
+        </member>
+        <member name="T:Fluxer.Net.Optional`1">
+            <summary>
+            Represents an optional value.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Optional`1.HasValue">
+            <summary>
+            Checks if a value is present.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Optional`1.ValueOr(`0)">
+            <summary>
+            Returns the existing value if present, and otherwise an alternative value.
+            </summary>
+            <param name="alternative">The alternative value.</param>
+            <returns>The existing or alternative value.</returns>
+        </member>
+        <member name="T:Fluxer.Net.Optional">
+            <summary>
+            Provides a set of functions for creating optional values.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Optional.Some``1(``0)">
+            <summary>
+            Wraps an existing value in an Option&lt;T&gt; instance.
+            </summary>
+            <param name="value">The value to be wrapped.</param>
+            <returns>An optional containing the specified value.</returns>
+        </member>
+        <member name="M:Fluxer.Net.Optional.None``1">
+            <summary>
+            Creates an empty Option&lt;T&gt; instance.
+            </summary>
+            <returns>An empty optional.</returns>
         </member>
         <member name="T:Fluxer.Net.FluxerClient">
             <summary>
@@ -9345,6 +10474,51 @@
             This sends a VOICE_STATE_UPDATE packet to the gateway. The server will respond with
             VOICE_STATE_UPDATE and VOICE_SERVER_UPDATE events containing connection information.
             </remarks>
+        </member>
+        <member name="T:Fluxer.Net.OAuth.FluxerOAuthExtensions">
+            <Summary>
+            Extension methods for handling fluxer oauth client.
+            </Summary>
+        </member>
+        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.AddFluxerClient(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,System.String,Fluxer.Net.FluxerConfig)">
+            <Summary>
+            Add Fluxer oauth client on dependency injection service.
+            </Summary>
+        </member>
+        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.GetFluxerClaims(System.Security.Claims.ClaimsPrincipal,Fluxer.Net.FluxerBaseClient)">
+            <Summary>
+            Get Fluxer specific claims for a claim user.
+            </Summary>
+        </member>
+        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.AddFluxer(Microsoft.AspNetCore.Authentication.AuthenticationBuilder)">
+            <Summary>
+            Add Fluxer oauth client on dependency injection service.
+            </Summary>
+        </member>
+        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.AddFluxer(Microsoft.AspNetCore.Authentication.AuthenticationBuilder,System.Action{Fluxer.Net.OAuth.FluxerOAuthOptions})">
+            <Summary>
+            Add Fluxer oauth client on dependency injection service.
+            </Summary>
+        </member>
+        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.AddFluxer(Microsoft.AspNetCore.Authentication.AuthenticationBuilder,System.String,System.Action{Fluxer.Net.OAuth.FluxerOAuthOptions})">
+            <Summary>
+            Add Fluxer oauth client on dependency injection service.
+            </Summary>
+        </member>
+        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.AddFluxer(Microsoft.AspNetCore.Authentication.AuthenticationBuilder,System.String,System.String,System.Action{Fluxer.Net.OAuth.FluxerOAuthOptions})">
+            <Summary>
+            Add Fluxer oauth client on dependency injection service.
+            </Summary>
+        </member>
+        <member name="T:Fluxer.Net.OAuth.FluxerOAuthHandler">
+            <Summary>
+            Asp.net oauth handler for Fluxer.
+            </Summary>
+        </member>
+        <member name="M:Fluxer.Net.OAuth.FluxerOAuthHandler.#ctor(Microsoft.Extensions.Options.IOptionsMonitor{Fluxer.Net.OAuth.FluxerOAuthOptions},Microsoft.Extensions.Logging.ILoggerFactory,System.Text.Encodings.Web.UrlEncoder,Microsoft.AspNetCore.Authentication.ISystemClock)">
+            <Summary>
+            Create asp.net oauth handler for Fluxer.
+            </Summary>
         </member>
         <member name="T:Fluxer.Net.RateLimiting.RateLimitBucket">
             <summary>
@@ -11141,7 +12315,7 @@
         </member>
         <member name="F:Fluxer.Net.ApiLimits.MaxGuildMembersLarge">
             <summary>
-            How many more users can join a guild with <see cref="P:Fluxer.Net.GuildFeatures.IsLargeGuild"/>.
+            How many more users can join a guild with <see cref="P:Fluxer.Net.GuildFeatures.IsLargeServer"/>.
             </summary>
         </member>
         <member name="F:Fluxer.Net.ApiLimits.MaxChannelsPerCategory">
@@ -11756,70 +12930,6 @@
             Attachment filenames to exclude
             </summary>
         </member>
-        <member name="P:Fluxer.Net.MessageSearchRequest.AttachmentExtensions">
-            <summary>
-            File extensions to filter by
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.MessageSearchRequest.ExcludeAttachmentExtensions">
-            <summary>
-            File extensions to exclude
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.MessageSearchRequest.SortBy">
-            <summary>
-            Field to sort results by
-            </summary>
-            <remarks>
-            <see href="https://github.com/fluxerapp/fluxer/blob/d843d6f3f8a0bd850673ba55036354093977109f/packages/schema/src/domains/message/MessageRequestSchemas.tsx#L134"/>
-            </remarks>
-        </member>
-        <member name="P:Fluxer.Net.MessageSearchRequest.SortOrder">
-            <summary>
-            Sort order for results
-            </summary>
-            <remarks>
-            <see href="https://github.com/fluxerapp/fluxer/blob/d843d6f3f8a0bd850673ba55036354093977109f/packages/schema/src/domains/message/MessageRequestSchemas.tsx#L147"/>
-            </remarks>
-        </member>
-        <member name="P:Fluxer.Net.MessageSearchRequest.IncludeNsfw">
-            <summary>
-            Whether to include NSFW channel results
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.MessageSearchRequest.MessageSearchScope">
-            <remarks>
-            <see href="https://github.com/fluxerapp/fluxer/blob/d843d6f3f8a0bd850673ba55036354093977109f/packages/schema/src/domains/message/MessageRequestSchemas.tsx#L160"/>
-            </remarks>
-        </member>
-        <member name="P:Fluxer.Net.UpdateMessageRequest.Content">
-            <summary>
-            The message content (up to 2000 characters)
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.UpdateMessageRequest.Embeds">
-            <summary>
-            Array of embed objects to include in the message
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.UpdateMessageRequest.AllowedMentions">
-            <summary>
-            Controls which mentions trigger notifications
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.UpdateMessageRequest.Flags">
-            <summary>
-            Message flags bitfield
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.UpdateMessageRequest.Attachments">
-            <summary>
-            Array of attachment objects to keep or add
-            </summary>
-        </member>
-    </members>
-</doc>
-  </member>
         <member name="P:Fluxer.Net.MessageSearchRequest.AttachmentExtensions">
             <summary>
             File extensions to filter by
