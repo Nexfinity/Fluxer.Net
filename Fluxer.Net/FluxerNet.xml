@@ -271,6 +271,9 @@
         <member name="M:Fluxer.Net.Commands.RequireGroupOwnerAttribute.CheckPermissionsAsync(Fluxer.Net.Commands.ICommandContext,Fluxer.Net.Commands.CommandInfo,System.IServiceProvider)">
             <inheritdoc />
         </member>
+        <member name="M:Fluxer.Net.Commands.Attributes.Preconditions.RequireNsfwAttribute.CheckPermissionsAsync(Fluxer.Net.Commands.ICommandContext,Fluxer.Net.Commands.CommandInfo,System.IServiceProvider)">
+            <inheritdoc />
+        </member>
         <member name="T:Fluxer.Net.Commands.RequireOwnerAttribute">
             <summary>
                 Requires the command to be invoked by the owner of the bot.
