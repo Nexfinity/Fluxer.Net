@@ -95,8 +95,10 @@ public class Channel : Entity, IChannel
         {
             case ChannelType.GuildText:
                 {
-                    data = new TextChannel(client);
-                    data.IsTextable = true;
+                    data = new TextChannel(client)
+                    {
+                        IsTextable = true
+                    };
                 }
                 break;
             case ChannelType.GuildVoice:
@@ -106,20 +108,26 @@ public class Channel : Entity, IChannel
                 break;
             case ChannelType.Dm:
                 {
-                    data = new DMChannel(client);
-                    data.IsTextable = true;
+                    data = new DMChannel(client)
+                    {
+                        IsTextable = true
+                    };
                 }
                 break;
             case ChannelType.DmPersonalNotes:
                 {
-                    data = new SavedNotesChannel(client);
-                    data.IsTextable = true;
+                    data = new SavedNotesChannel(client)
+                    {
+                        IsTextable = true
+                    };
                 }
                 break;
             case ChannelType.Group:
                 {
-                    data = new GroupChannel(client);
-                    data.IsTextable = true;
+                    data = new GroupChannel(client)
+                    {
+                        IsTextable = true
+                    };
                 }
                 break;
             case ChannelType.GuildCategory:

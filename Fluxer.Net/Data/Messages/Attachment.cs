@@ -81,8 +81,10 @@ public class Attachment : Entity, IAttachment
     /// <returns></returns>
     public static Attachment Create(FluxerBaseClient client, AttachmentJson json, ulong channelId)
     {
-        Attachment data = new Attachment(client);
-        data.ChannelId = channelId;
+        Attachment data = new Attachment(client)
+        {
+            ChannelId = channelId
+        };
         data.Update(client, json);
         return data;
     }

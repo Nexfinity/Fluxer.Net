@@ -6,12 +6,12 @@ public class RequireBotPermissionAttribute : PreconditionAttribute
     /// <summary>
     /// Server permission to check for.
     /// </summary>
-    private GuildPermission? Server;
+    private readonly GuildPermission? Server;
 
     /// <summary>
     /// Channel permission to check for.
     /// </summary>
-    private ChannelPermission? Channel;
+    private readonly ChannelPermission? Channel;
 
     public RequireBotPermissionAttribute(GuildPermission perm)
     {

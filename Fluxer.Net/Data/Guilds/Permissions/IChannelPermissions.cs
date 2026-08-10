@@ -30,7 +30,7 @@ public interface IChannelPermissions
     /// <summary>
     /// Send text-to-speech messages.
     /// </summary>
-    bool SendTtsMessages { get; }
+    bool SendTTSMessages { get; }
 
     /// <summary>
     /// Delete messages from other users.

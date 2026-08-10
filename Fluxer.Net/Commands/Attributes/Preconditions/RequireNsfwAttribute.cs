@@ -1,4 +1,4 @@
-﻿namespace Fluxer.Net.Commands.Attributes.Preconditions;
+﻿namespace Fluxer.Net.Commands;
 
 [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = true, Inherited = true)]
 public class RequireNsfwAttribute : PreconditionAttribute

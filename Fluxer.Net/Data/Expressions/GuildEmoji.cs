@@ -34,8 +34,10 @@ public class GuildEmoji : Emoji, IGuildEmoji
     /// <returns></returns>
     public static GuildEmoji Create(FluxerBaseClient client, GuildEmojiJson json, ulong guildId)
     {
-        GuildEmoji data = new GuildEmoji(client);
-        data.GuildId = guildId;
+        GuildEmoji data = new GuildEmoji(client)
+        {
+            GuildId = guildId
+        };
         data.Update(client, json);
         return data;
     }

@@ -80,8 +80,6 @@ public partial class GatewayClient : IDisposable
     /// <summary>
     /// Initializes a new instance of the <see cref="GatewayClient"/> class.
     /// </summary>
-    /// <param name="token">The authentication token for gateway connection.</param>
-    /// <param name="config">Configuration options including gateway URL, event filtering, and reconnection settings.</param>
     /// <remarks>
     /// The client is initialized but not connected. Call <see cref="ConnectAsync"/> to establish the gateway connection.
     /// </remarks>
@@ -1040,7 +1038,7 @@ public partial class GatewayClient : IDisposable
                         {
                             Guilds.TryRemove(data.Id, out _);
                             CurrentMembers.TryRemove(data.Id, out _);
-                            foreach (SocketUnknownChannel c in Channels.Values.Where(x => x.GuildId == data.Id))
+                            foreach (Channel c in Channels.Values.Where(x => x.GuildId == data.Id))
                             {
                                 Channels.TryRemove(c.Id, out _);
                             }
@@ -1756,7 +1754,6 @@ public partial class GatewayClient : IDisposable
     /// <summary>
     /// Delegate for SESSIONS_REPLACE event when auth sessions are replaced.
     /// </summary>
-    /// <param name="data">The sessions replace data.</param>
     public delegate void SessionsReplaceEvent(GatewaySessionJson oldData, GatewaySessionJson newData);
 
     /// <summary>

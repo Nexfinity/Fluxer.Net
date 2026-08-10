@@ -4,7 +4,7 @@ public class GuildFeatures
 {
     private GuildFeatures(string[]? features)
     {
-        Raw = features ??= new string[0];
+        Raw = features ??= [];
         if (features != null)
         {
             foreach (string feature in features)

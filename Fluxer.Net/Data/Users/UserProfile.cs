@@ -48,8 +48,10 @@ public class UserProfile : Entity, IUserProfile
     /// <returns></returns>
     public static UserProfile Create(FluxerBaseClient client, UserProfileJson json, ulong userId)
     {
-        UserProfile data = new UserProfile(client);
-        data.UserId = userId;
+        UserProfile data = new UserProfile(client)
+        {
+            UserId = userId
+        };
         data.Update(client, json);
         return data;
     }

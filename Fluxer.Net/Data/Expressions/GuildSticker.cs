@@ -37,8 +37,10 @@ public class GuildSticker : Sticker, IGuildSticker
     /// <returns></returns>
     public static GuildSticker Create(FluxerBaseClient client, GuildStickerJson json, ulong guildId)
     {
-        GuildSticker data = new GuildSticker(client);
-        data.GuildId = guildId;
+        GuildSticker data = new GuildSticker(client)
+        {
+            GuildId = guildId
+        };
         data.Update(client, json);
         return data;
     }

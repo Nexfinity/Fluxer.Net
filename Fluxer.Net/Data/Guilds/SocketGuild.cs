@@ -56,8 +56,10 @@ public class SocketGuild : Guild
     /// <returns></returns>
     public static SocketGuild Create(FluxerBaseClient client, GuildJson json, SocketGuildMember member)
     {
-        SocketGuild data = new SocketGuild(client);
-        data.CurrentMember = member;
+        SocketGuild data = new SocketGuild(client)
+        {
+            CurrentMember = member
+        };
         data.Members.TryAdd(member.Id, member);
         data.CurrentMember.Guild = data;
 

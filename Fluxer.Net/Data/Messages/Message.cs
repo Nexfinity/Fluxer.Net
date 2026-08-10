@@ -37,7 +37,7 @@ public class Message : Entity, IMessage
     public bool MentionEveryone { get; internal set; }
 
     /// <inheritdoc />
-    public bool IsTts { get; internal set; }
+    public bool IsTTS { get; internal set; }
 
     /// <inheritdoc />
     public IEnumerable<User>? Mentions { get; internal set; }
@@ -118,7 +118,7 @@ public class Message : Entity, IMessage
         EditedAt = json.EditedAt;
         IsPinned = json.IsPinned;
         MentionEveryone = json.MentionEveryone;
-        IsTts = json.IsTts;
+        IsTTS = json.IsTTS;
         if (json.Mentions != null)
             Mentions = json.Mentions.Select(x => User.Create(client, x));
 

@@ -5,18 +5,18 @@ namespace Fluxer.Net;
 /// </summary>
 public enum PremiumType
 {
-	/// <summary>
-	/// No premium subscription.
-	/// </summary>
-	None = 0,
+    /// <summary>
+    /// No premium subscription.
+    /// </summary>
+    None = 0,
 
-	/// <summary>
-	/// Active premium subscription (recurring).
-	/// </summary>
-	Subscription = 1,
+    /// <summary>
+    /// Active premium subscription (recurring).
+    /// </summary>
+    Subscription = 1,
 
-	/// <summary>
-	/// Lifetime premium access (one-time purchase).
-	/// </summary>
-	Lifetime = 2,
+    /// <summary>
+    /// Lifetime premium access (one-time purchase).
+    /// </summary>
+    Lifetime = 2,
 }
