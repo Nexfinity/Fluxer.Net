@@ -23,6 +23,7 @@ public class RestClientQueryParams
     /// <summary>
     /// Add query param
     /// </summary>
+    /// <param name="condition"></param>
     /// <param name="key">Query param name (Ex.: Limit)</param>
     /// <param name="value">Query param value (Ex. 10)</param>
     /// <returns></returns>

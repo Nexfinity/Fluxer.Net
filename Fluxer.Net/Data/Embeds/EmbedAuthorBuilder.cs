@@ -4,7 +4,7 @@ namespace Fluxer.Net;
 
 /// <summary>
 /// A builder for creating embed authors with validation.
-/// Based on Discord.Net's EmbedAuthorBuilder implementation.
+/// Based on Fluxer.Net's EmbedAuthorBuilder implementation.
 /// </summary>
 public class EmbedAuthorBuilder
 {

@@ -161,22 +161,22 @@
         </member>
         <member name="T:Fluxer.Net.Commands.OverrideTypeReaderAttribute">
             <summary>
-                Marks the <see cref="T:System.Type"/> to be read by the specified <see cref="!:Discord.Commands.TypeReader"/>.
+                Marks the <see cref="T:System.Type"/> to be read by the specified <see cref="P:Fluxer.Net.Commands.OverrideTypeReaderAttribute.TypeReader"/>.
             </summary>
             <remarks>
-                This attribute will override the <see cref="!:Discord.Commands.TypeReader"/> to be used when parsing for the
+                This attribute will override the <see cref="P:Fluxer.Net.Commands.OverrideTypeReaderAttribute.TypeReader"/> to be used when parsing for the
                 desired type in the command. This is useful when one wishes to use a particular 
-                <see cref="!:Discord.Commands.TypeReader"/> without affecting other commands that are using the same target
+                <see cref="P:Fluxer.Net.Commands.OverrideTypeReaderAttribute.TypeReader"/> without affecting other commands that are using the same target
                 type.
                 <note type="warning">
-                    If the given type reader does not inherit from <see cref="!:Discord.Commands.TypeReader"/>, an 
+                    If the given type reader does not inherit from <see cref="P:Fluxer.Net.Commands.OverrideTypeReaderAttribute.TypeReader"/>, an 
                     <see cref="T:System.ArgumentException"/> will be thrown.
                 </note>
             </remarks>
             <example>
                 In this example, the <see cref="T:System.TimeSpan"/> will be read by a custom 
-                <see cref="!:Discord.Commands.TypeReader"/>, <c>FriendlyTimeSpanTypeReader</c>, instead of the 
-                <see cref="T:Fluxer.Net.Commands.TimeSpanTypeReader"/> shipped by Discord.Net.
+                <see cref="P:Fluxer.Net.Commands.OverrideTypeReaderAttribute.TypeReader"/>, <c>FriendlyTimeSpanTypeReader</c>, instead of the 
+                <see cref="T:Fluxer.Net.Commands.TimeSpanTypeReader"/>
                 <code language="cs">
                 [Command("time")]
                 public Task GetTimeAsync([OverrideTypeReader(typeof(FriendlyTimeSpanTypeReader))]TimeSpan time)
@@ -257,6 +257,9 @@
         <member name="M:Fluxer.Net.Commands.RequireCommunityAttribute.CheckPermissionsAsync(Fluxer.Net.Commands.ICommandContext,Fluxer.Net.Commands.CommandInfo,System.IServiceProvider)">
             <inheritdoc />
         </member>
+        <member name="M:Fluxer.Net.Commands.RequireCommunityOwnerAttribute.CheckPermissionsAsync(Fluxer.Net.Commands.ICommandContext,Fluxer.Net.Commands.CommandInfo,System.IServiceProvider)">
+            <inheritdoc />
+        </member>
         <member name="P:Fluxer.Net.Commands.RequireContextAttribute.Contexts">
             <summary>
             Gets the context required to execute the command.
@@ -274,7 +277,7 @@
         <member name="M:Fluxer.Net.Commands.RequireGroupOwnerAttribute.CheckPermissionsAsync(Fluxer.Net.Commands.ICommandContext,Fluxer.Net.Commands.CommandInfo,System.IServiceProvider)">
             <inheritdoc />
         </member>
-        <member name="M:Fluxer.Net.Commands.Attributes.Preconditions.RequireNsfwAttribute.CheckPermissionsAsync(Fluxer.Net.Commands.ICommandContext,Fluxer.Net.Commands.CommandInfo,System.IServiceProvider)">
+        <member name="M:Fluxer.Net.Commands.RequireNsfwAttribute.CheckPermissionsAsync(Fluxer.Net.Commands.ICommandContext,Fluxer.Net.Commands.CommandInfo,System.IServiceProvider)">
             <inheritdoc />
         </member>
         <member name="T:Fluxer.Net.Commands.RequireOwnerAttribute">
@@ -304,9 +307,6 @@
             </example>
         </member>
         <member name="M:Fluxer.Net.Commands.RequireOwnerAttribute.CheckPermissionsAsync(Fluxer.Net.Commands.ICommandContext,Fluxer.Net.Commands.CommandInfo,System.IServiceProvider)">
-            <inheritdoc />
-        </member>
-        <member name="M:Fluxer.Net.Commands.RequireServerOwnerAttribute.CheckPermissionsAsync(Fluxer.Net.Commands.ICommandContext,Fluxer.Net.Commands.CommandInfo,System.IServiceProvider)">
             <inheritdoc />
         </member>
         <member name="F:Fluxer.Net.Commands.RequireUserPermissionAttribute.Server">
@@ -352,7 +352,7 @@
                 Attaches a summary to your command.
             </summary>
         </member>
-        <member name="M:Fluxer.Net.Commands.Builders.CommandBuilder.Build(Fluxer.Net.Commands.ModuleInfo,Fluxer.Net.Commands.CommandService)">
+        <member name="M:Fluxer.Net.Commands.CommandBuilder.Build(Fluxer.Net.Commands.ModuleInfo,Fluxer.Net.Commands.CommandService)">
             <exception cref="T:System.InvalidOperationException">Only the last parameter in a command may have the Remainder or Multiple flag.</exception>
         </member>
         <member name="T:Fluxer.Net.Commands.CommandContext">
@@ -464,19 +464,13 @@
         </member>
         <member name="T:Fluxer.Net.Commands.CommandService">
             <summary>
-                Provides a framework for building Discord commands.
+                Provides a framework for building commands.
             </summary>
             <remarks>
                 <para>
-                    The service provides a framework for building Discord commands both dynamically via runtime builders or
+                    The service provides a framework for building commands both dynamically via runtime builders or
                     statically via compile-time modules. To create a command module at compile-time, see
-                    <see cref="T:Fluxer.Net.Commands.ModuleBase" /> (most common); otherwise, see <see cref="T:Fluxer.Net.Commands.Builders.ModuleBuilder" />.
-                </para>
-                <para>
-                    This service also provides several events for monitoring command usages; such as
-                    <see cref="!:Discord.Commands.CommandService.Log" /> for any command-related log events, and
-                    <see cref="!:Discord.Commands.CommandService.CommandExecuted" /> for information about commands that have
-                    been successfully executed.
+                    <see cref="T:Fluxer.Net.Commands.ModuleBase" /> (most common); otherwise, see <see cref="T:Fluxer.Net.Commands.ModuleBuilder" />.
                 </para>
             </remarks>
         </member>
@@ -909,7 +903,7 @@
             </summary>
             <param name="command">The command that ran.</param>
         </member>
-        <member name="M:Fluxer.Net.Commands.IModuleBase.OnModuleBuilding(Fluxer.Net.Commands.CommandService,Fluxer.Net.Commands.Builders.ModuleBuilder)">
+        <member name="M:Fluxer.Net.Commands.IModuleBase.OnModuleBuilding(Fluxer.Net.Commands.CommandService,Fluxer.Net.Commands.ModuleBuilder)">
             <summary>
                 Executed when this module is building.
             </summary>
@@ -1127,8 +1121,8 @@
             <summary>
                 The underlying context of the command.
             </summary>
-            <seealso cref="T:Discord.Commands.ICommandContext" />
-            <seealso cref="T:Discord.Commands.CommandContext" />
+            <seealso cref="T:Fluxer.Net.Commands.ICommandContext" />
+            <seealso cref="T:Fluxer.Net.Commands.CommandContext" />
         </member>
         <member name="M:Fluxer.Net.Commands.ModuleBase`1.ReplyAsync(System.String,System.Collections.Generic.List{Fluxer.Net.Rest.Requests.EmbedRequest},Fluxer.Net.MessageReferenceRequest,Fluxer.Net.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64},System.Collections.Generic.List{Fluxer.Net.Rest.Requests.AttachmentRequest})">
             <summary>
@@ -1159,7 +1153,7 @@
             </summary>
             <param name="command">The <see cref="T:Fluxer.Net.Commands.CommandInfo"/> of the command to be executed.</param>
         </member>
-        <member name="M:Fluxer.Net.Commands.ModuleBase`1.OnModuleBuilding(Fluxer.Net.Commands.CommandService,Fluxer.Net.Commands.Builders.ModuleBuilder)">
+        <member name="M:Fluxer.Net.Commands.ModuleBase`1.OnModuleBuilding(Fluxer.Net.Commands.CommandService,Fluxer.Net.Commands.ModuleBuilder)">
             <summary>
                 The method to execute when building the module.
             </summary>
@@ -1177,7 +1171,31 @@
         <member name="F:Fluxer.Net.Commands.MultiMatchHandling.Best">
             <summary> Indicates that when multiple results are found, the best result should be chosen. </summary>
         </member>
+        <member name="T:Fluxer.Net.Commands.ChannelTypeReader`1">
+            <summary>
+                A <see cref="T:Fluxer.Net.Commands.TypeReader"/> for parsing objects implementing <see cref="T:Fluxer.Net.IChannel"/>.
+            </summary>
+            <remarks>
+                This <see cref="T:Fluxer.Net.Commands.TypeReader"/> is shipped with Fluxer.Net and is used by default to parse any 
+                <see cref="T:Fluxer.Net.IChannel"/> implemented object within a command. The TypeReader will attempt to first parse the
+                input by mention, then the snowflake identifier, then by name; the highest candidate will be chosen as the
+                final output; otherwise, an erroneous <see cref="T:Fluxer.Net.Commands.TypeReaderResult"/> is returned.
+            </remarks>
+            <typeparam name="T">The type to be checked; must implement <see cref="T:Fluxer.Net.IChannel"/>.</typeparam>
+        </member>
+        <member name="M:Fluxer.Net.Commands.ChannelTypeReader`1.ReadAsync(Fluxer.Net.Commands.ICommandContext,System.String,System.IServiceProvider)">
+            <inheritdoc />
+        </member>
         <member name="M:Fluxer.Net.Commands.EnumTypeReader`1.ReadAsync(Fluxer.Net.Commands.ICommandContext,System.String,System.IServiceProvider)">
+            <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.Commands.MessageTypeReader`1">
+            <summary>
+                A <see cref="T:Fluxer.Net.Commands.TypeReader"/> for parsing objects implementing <see cref="T:Fluxer.Net.IMessage"/>.
+            </summary>
+            <typeparam name="T">The type to be checked; must implement <see cref="T:Fluxer.Net.IMessage"/>.</typeparam>
+        </member>
+        <member name="M:Fluxer.Net.Commands.MessageTypeReader`1.ReadAsync(Fluxer.Net.Commands.ICommandContext,System.String,System.IServiceProvider)">
             <inheritdoc />
         </member>
         <member name="M:Fluxer.Net.Commands.NullableTypeReader`1.ReadAsync(Fluxer.Net.Commands.ICommandContext,System.String,System.IServiceProvider)">
@@ -1188,6 +1206,15 @@
         </member>
         <member name="M:Fluxer.Net.Commands.PrimitiveTypeReader`1.#ctor(Fluxer.Net.Commands.TryParseDelegate{`0},System.Single)">
             <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="score"/> must be within the range [0, 1].</exception>
+        </member>
+        <member name="T:Fluxer.Net.Commands.RoleTypeReader`1">
+            <summary>
+                A <see cref="T:Fluxer.Net.Commands.TypeReader"/> for parsing objects implementing <see cref="T:Fluxer.Net.IRole"/>.
+            </summary>
+            <typeparam name="T">The type to be checked; must implement <see cref="T:Fluxer.Net.IRole"/>.</typeparam>
+        </member>
+        <member name="M:Fluxer.Net.Commands.RoleTypeReader`1.ReadAsync(Fluxer.Net.Commands.ICommandContext,System.String,System.IServiceProvider)">
+            <inheritdoc />
         </member>
         <member name="F:Fluxer.Net.Commands.TimeSpanTypeReader.Formats">
             <summary>
@@ -1266,8 +1293,8 @@
         <member name="M:Fluxer.Net.Commands.ExecuteResult.FromError(Fluxer.Net.Commands.IResult)">
             <summary>
                 Initializes a new <see cref="T:Fluxer.Net.Commands.ExecuteResult" /> with a specified result; this may or may not be an
-                successful execution depending on the <see cref="!:Discord.Commands.IResult.Error" /> and
-                <see cref="!:Discord.Commands.IResult.ErrorReason" /> specified.
+                successful execution depending on the <see cref="P:Fluxer.Net.Commands.IResult.Error" /> and
+                <see cref="P:Fluxer.Net.Commands.IResult.ErrorReason" /> specified.
             </summary>
             <param name="result">The result to inherit from.</param>
             <returns>
@@ -2437,7 +2464,7 @@
         <member name="T:Fluxer.Net.EmbedAuthorBuilder">
             <summary>
             A builder for creating embed authors with validation.
-            Based on Discord.Net's EmbedAuthorBuilder implementation.
+            Based on Fluxer.Net's EmbedAuthorBuilder implementation.
             </summary>
         </member>
         <member name="P:Fluxer.Net.EmbedAuthorBuilder.MaxAuthorNameLength">
@@ -2491,7 +2518,7 @@
         <member name="T:Fluxer.Net.EmbedBuilder">
             <summary>
             A builder for creating rich embeds with validation and a fluent API.
-            Based on Discord.Net's EmbedBuilder implementation.
+            Based on Fluxer.Net's EmbedBuilder implementation.
             </summary>
         </member>
         <member name="P:Fluxer.Net.EmbedBuilder.MaxFieldCount">
@@ -2716,7 +2743,7 @@
         <member name="T:Fluxer.Net.EmbedFieldBuilder">
             <summary>
             A builder for creating embed fields with validation.
-            Based on Discord.Net's EmbedFieldBuilder implementation.
+            Based on Fluxer.Net's EmbedFieldBuilder implementation.
             </summary>
         </member>
         <member name="P:Fluxer.Net.EmbedFieldBuilder.MaxFieldNameLength">
@@ -2777,7 +2804,7 @@
         <member name="T:Fluxer.Net.EmbedFooterBuilder">
             <summary>
             A builder for creating embed footers with validation.
-            Based on Discord.Net's EmbedFooterBuilder implementation.
+            Based on Fluxer.Net's EmbedFooterBuilder implementation.
             </summary>
         </member>
         <member name="P:Fluxer.Net.EmbedFooterBuilder.MaxFooterTextLength">

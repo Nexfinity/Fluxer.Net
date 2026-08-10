@@ -6,12 +6,12 @@ public class RequireUserPermissionAttribute : PreconditionAttribute
     /// <summary>
     /// Server/group permission to check for.
     /// </summary>
-    private GuildPermission? Server;
+    private readonly GuildPermission? Server;
 
     /// <summary>
     /// Channel permission to check for.
     /// </summary>
-    private ChannelPermission? Channel;
+    private readonly ChannelPermission? Channel;
 
     public RequireUserPermissionAttribute(GuildPermission perm)
     {

@@ -29,9 +29,11 @@ public class SocketRole : Role
     /// <returns></returns>
     public static SocketRole Create(FluxerBaseClient client, RoleJson json, SocketGuild guild)
     {
-        SocketRole data = new SocketRole(client);
-        data.GuildId = guild.Id;
-        data.Guild = guild;
+        SocketRole data = new SocketRole(client)
+        {
+            GuildId = guild.Id,
+            Guild = guild
+        };
         data.Update(client, json);
         return data;
     }

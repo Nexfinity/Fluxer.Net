@@ -2,44 +2,60 @@
 
 namespace Fluxer.Net;
 
+/// <summary>
+/// Http methods for <see cref="Message"/> class. 
+/// </summary>
 public static class MessageHelpers
 {
+    /// <inheritdoc cref="ApiClient.DeleteMessageAsync(ulong, ulong)" />
     public static Task DeleteAsync(this Message message)
         => message.Client.Rest.DeleteMessageAsync(message.ChannelId, message.Id);
 
+    /// <inheritdoc cref="ApiClient.EditMessageAsync(ulong, ulong, UpdateMessageRequest)" />
     public static Task<Message> ModifyAsync(this Message message, UpdateMessageRequest req)
         => message.Client.Rest.EditMessageAsync(message.ChannelId, message.Id, req);
 
+    /// <inheritdoc cref="ApiClient.AcknowledgeMessageAsync(ulong, ulong, MessageAckJson)" />
     public static Task AcknowledgeAsync(this Message message, MessageAckJson json)
         => message.Client.Rest.AcknowledgeMessageAsync(message.ChannelId, message.Id, json);
 
+    /// <inheritdoc cref="ApiClient.DeleteMessageAttachmentAsync(ulong, ulong, ulong)" />
     public static Task DeleteAttachmentAsync(this Message message, ulong attachmentId)
         => message.Client.Rest.DeleteMessageAttachmentAsync(message.ChannelId, message.Id, attachmentId);
 
+    /// <inheritdoc cref="ApiClient.PinMessageAsync(ulong, ulong)" />
     public static Task PinAsync(this Message message)
         => message.Client.Rest.PinMessageAsync(message.ChannelId, message.Id);
 
+    /// <inheritdoc cref="ApiClient.UnpinMessageAsync(ulong, ulong)" />
     public static Task UnPinAsync(this Message message)
         => message.Client.Rest.UnpinMessageAsync(message.ChannelId, message.Id);
 
+    /// <inheritdoc cref="ApiClient.AddReactionAsync(ulong, ulong, string)" />
     public static Task AddReactionAsync(this Message message, string emoji)
         => message.Client.Rest.AddReactionAsync(message.ChannelId, message.Id, emoji);
 
+    /// <inheritdoc cref="ApiClient.GetReactionsForEmojiAsync(ulong, ulong, string)" />
     public static Task<IEnumerable<User>> GetReactionsForEmojiAsync(this Message message, string emoji)
         => message.Client.Rest.GetReactionsForEmojiAsync(message.ChannelId, message.Id, emoji);
 
+    /// <inheritdoc cref="ApiClient.RemoveAllReactionsAsync(ulong, ulong)" />
     public static Task RemoveAllReactionsAsync(this Message message)
         => message.Client.Rest.RemoveAllReactionsAsync(message.ChannelId, message.Id);
 
+    /// <inheritdoc cref="ApiClient.RemoveAllReactionsForEmojiAsync(ulong, ulong, string)" />
     public static Task RemoveAllReactionsForEmojiAsync(this Message message, string emoji)
         => message.Client.Rest.RemoveAllReactionsForEmojiAsync(message.ChannelId, message.Id, emoji);
 
+    /// <inheritdoc cref="ApiClient.RemoveOwnReactionAsync(ulong, ulong, string)" />
     public static Task RemoveOwnReactionAsync(this Message message, string emoji)
         => message.Client.Rest.RemoveOwnReactionAsync(message.ChannelId, message.Id, emoji);
 
+    /// <inheritdoc cref="ApiClient.RemoveUserReactionAsync(ulong, ulong, string, ulong)" />
     public static Task RemoveUserReactionAsync(this Message message, string emoji, ulong userId)
         => message.Client.Rest.RemoveUserReactionAsync(message.ChannelId, message.Id, emoji, userId);
 
+    /// <inheritdoc cref="ApiClient.SendMessageAsync(ulong, string?, List{EmbedRequest}?, MessageReferenceRequest?, AllowedMentionsRequest?, MessageFlag, string?, ulong?, bool?, List{ulong}?, List{AttachmentRequest}?)" />
     public static Task<Message> ReplyAsync(this Message message, string? content = null, List<EmbedRequest>? embeds = null,
         AllowedMentionsRequest? allowedMentions = null, MessageFlag flags = MessageFlag.None,
         string? nonce = null, ulong? favoruteMemeId = null, bool? tts = null, List<ulong>? stickerIds = null, List<AttachmentRequest>? attachments = null)
@@ -48,6 +64,12 @@ public static class MessageHelpers
             MessageId = message.Id,
         }, allowedMentions, flags, nonce, favoruteMemeId, tts, stickerIds, attachments);
 
+    /// <summary>
+    /// Forward a message to another channel.
+    /// </summary>
+    /// <remarks>
+    /// Requires <see cref="ChannelPermissions.ViewChannel"/> and <see cref="ChannelPermissions.SendMessages"/> in a guild channel.
+    /// </remarks>
     public static Task<Message> ForwardAsync(this Message message, Channel channel, MessageFlag flags = MessageFlag.None, string? nonce = null)
         => message.Client.Rest.SendMessageAsync(channel.Id, null, null, new MessageReferenceRequest
         {
@@ -56,6 +78,12 @@ public static class MessageHelpers
             ChannelId = message.ChannelId,
         }, null, flags, nonce);
 
+    /// <summary>
+    /// Hide embeds on a message.
+    /// </summary>
+    /// <remarks>
+    /// Requires <see cref="ChannelPermissions.ViewChannel"/> and <see cref="ChannelPermissions.ReadMessageHistory"/> in a guild channel.
+    /// </remarks>
     public static Task<Message> SuppressEmbedsAsync(this Message message, AllowedMentionsRequest? allowedMentions = null)
         => message.Client.Rest.EditMessageAsync(message.ChannelId, message.Id, new UpdateMessageRequest
         {

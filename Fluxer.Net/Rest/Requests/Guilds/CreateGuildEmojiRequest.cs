@@ -6,7 +6,7 @@ public class CreateGuildEmojiRequest
 {
     [JsonProperty("name")]
     public string Name { get; set; }
-    
+
     [JsonProperty("image")]
     public string ImageBase64 { get; set; }
 

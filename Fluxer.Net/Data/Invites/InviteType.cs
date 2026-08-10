@@ -5,13 +5,13 @@ namespace Fluxer.Net;
 /// </summary>
 public enum InviteType
 {
-	/// <summary>
-	/// An invite to join a guild/server.
-	/// </summary>
-	Guild = 0,
+    /// <summary>
+    /// An invite to join a guild/server.
+    /// </summary>
+    Guild = 0,
 
-	/// <summary>
-	/// An invite to join a group DM.
-	/// </summary>
-	GroupDm = 1,
+    /// <summary>
+    /// An invite to join a group DM.
+    /// </summary>
+    GroupDm = 1,
 }

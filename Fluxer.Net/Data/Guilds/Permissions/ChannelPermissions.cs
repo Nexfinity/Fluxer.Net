@@ -14,107 +14,83 @@ public class ChannelPermissions : IChannelPermissions
     /// <summary>
     /// Edit overwrites for roles and members in this channel.
     /// </summary>
-    public bool ManagePermissions => RawValue.HasFlag(GuildPermission.ManageRoles);
+    public bool ManagePermissions => RawValue.HasFlag(ChannelPermission.ManagePermissions);
 
     /// <inheritdoc />
-    public bool ManageChannels => RawValue.HasFlag(GuildPermission.ManageChannels);
+    public bool ManageChannels => RawValue.HasFlag(ChannelPermission.ManageChannel);
 
     /// <inheritdoc />
-    public bool CreateInstantInvite => RawValue.HasFlag(GuildPermission.CreateInstantInvite);
+    public bool CreateInstantInvite => RawValue.HasFlag(ChannelPermission.CreateInstantInvite);
 
     /// <inheritdoc />
-    public bool ManageWebhooks => RawValue.HasFlag(GuildPermission.ManageWebhooks);
+    public bool ManageWebhooks => RawValue.HasFlag(ChannelPermission.ManageWebhooks);
 
     /// <inheritdoc />
-    public bool ViewChannel => RawValue.HasFlag(GuildPermission.ViewChannel);
+    public bool ViewChannel => RawValue.HasFlag(ChannelPermission.ViewChannel);
 
     /// <inheritdoc />
-    public bool SendMessages => RawValue.HasFlag(GuildPermission.SendMessages);
+    public bool SendMessages => RawValue.HasFlag(ChannelPermission.SendMessages);
 
     /// <inheritdoc />
-    public bool SendTtsMessages => RawValue.HasFlag(GuildPermission.SendTtsMessages);
+    public bool SendTTSMessages => RawValue.HasFlag(ChannelPermission.SendTTSMessages);
 
     /// <inheritdoc />
-    public bool ManageMessages => RawValue.HasFlag(GuildPermission.ManageMessages);
+    public bool ManageMessages => RawValue.HasFlag(ChannelPermission.ManageMessages);
 
     /// <inheritdoc />
-    public bool PinMessages => RawValue.HasFlag(GuildPermission.PinMessages);
+    public bool PinMessages => RawValue.HasFlag(ChannelPermission.PinMessages);
 
     /// <inheritdoc />
-    public bool EmbedLinks => RawValue.HasFlag(GuildPermission.EmbedLinks);
+    public bool EmbedLinks => RawValue.HasFlag(ChannelPermission.EmbedLinks);
 
     /// <inheritdoc />
-    public bool AttachFiles => RawValue.HasFlag(GuildPermission.AttachFiles);
+    public bool AttachFiles => RawValue.HasFlag(ChannelPermission.AttachFiles);
 
     /// <inheritdoc />
-    public bool ReadMessageHistory => RawValue.HasFlag(GuildPermission.ReadMessageHistory);
+    public bool ReadMessageHistory => RawValue.HasFlag(ChannelPermission.ReadMessageHistory);
 
     /// <inheritdoc />
-    public bool MentionEveryone => RawValue.HasFlag(GuildPermission.MentionEveryone);
+    public bool MentionEveryone => RawValue.HasFlag(ChannelPermission.MentionEveryone);
 
     /// <inheritdoc />
-    public bool UseExternalEmojis => RawValue.HasFlag(GuildPermission.UseExternalEmojis);
+    public bool UseExternalEmojis => RawValue.HasFlag(ChannelPermission.UseExternalEmojis);
 
     /// <inheritdoc />
-    public bool UseExternalStickers => RawValue.HasFlag(GuildPermission.UseExternalStickers);
+    public bool UseExternalStickers => RawValue.HasFlag(ChannelPermission.UseExternalStickers);
 
     /// <inheritdoc />
-    public bool AddReactions => RawValue.HasFlag(GuildPermission.AddReactions);
+    public bool AddReactions => RawValue.HasFlag(ChannelPermission.AddReactions);
 
     /// <inheritdoc />
-    public bool BypassSlowmode => RawValue.HasFlag(GuildPermission.BypassSlowmode);
+    public bool BypassSlowmode => RawValue.HasFlag(ChannelPermission.BypassSlowmode);
 
     /// <inheritdoc />
-    public bool Connect => RawValue.HasFlag(GuildPermission.Connect);
+    public bool Connect => RawValue.HasFlag(ChannelPermission.Connect);
 
     /// <inheritdoc />
-    public bool Speak => RawValue.HasFlag(GuildPermission.Speak);
+    public bool Speak => RawValue.HasFlag(ChannelPermission.Speak);
 
     /// <inheritdoc />
-    public bool Stream => RawValue.HasFlag(GuildPermission.Stream);
+    public bool Stream => RawValue.HasFlag(ChannelPermission.Stream);
 
     /// <inheritdoc />
-    public bool UseVad => RawValue.HasFlag(GuildPermission.UseVad);
+    public bool UseVad => RawValue.HasFlag(ChannelPermission.UseVad);
 
     /// <inheritdoc />
-    public bool PrioritySpeaker => RawValue.HasFlag(GuildPermission.PrioritySpeaker);
+    public bool PrioritySpeaker => RawValue.HasFlag(ChannelPermission.PrioritySpeaker);
 
     /// <inheritdoc />
-    public bool MuteMembers => RawValue.HasFlag(GuildPermission.MuteMembers);
+    public bool MuteMembers => RawValue.HasFlag(ChannelPermission.MuteMembers);
 
     /// <inheritdoc />
-    public bool DeafenMembers => RawValue.HasFlag(GuildPermission.DeafenMembers);
+    public bool DeafenMembers => RawValue.HasFlag(ChannelPermission.DeafenMembers);
 
     /// <inheritdoc />
-    public bool MoveMembers => RawValue.HasFlag(GuildPermission.MoveMembers);
+    public bool MoveMembers => RawValue.HasFlag(ChannelPermission.MoveMembers);
 
     /// <inheritdoc />
-    public bool UpdateRtcRegion => RawValue.HasFlag(GuildPermission.UpdateRtcRegion);
+    public bool UpdateRtcRegion => RawValue.HasFlag(ChannelPermission.UpdateRtcRegion);
 
     /// <inheritdoc />
-    public bool ViewChannelMembers => RawValue.HasFlag(GuildPermission.ViewChannelMembers);
-
-    internal static ulong ResolveChannel(SocketGuild guild, SocketGuildMember member, Channel channel)
-    {
-        ulong resolvedPermissions = 0;
-
-        // Max permissions
-        ulong mask = ulong.MaxValue;
-
-        // Current guild permissions.
-        foreach (SocketRole r in member.Roles)
-        {
-            resolvedPermissions |= (ulong)r.Permissions.RawValue;
-        }
-
-        // Everyone overwrite.
-        PermissionOverwrite? everyoneOverwrite = channel.PermissionOverwrites.FirstOrDefault(x => x.Id == guild.EveryoneRole.Id);
-        if (everyoneOverwrite != null)
-            resolvedPermissions = (resolvedPermissions & ~(ulong)everyoneOverwrite.Deny.RawValue) | (ulong)everyoneOverwrite.Allow.RawValue;
-
-        ulong deniedPermissions = 0, allowedPermissions = 0;
-
-
-        return resolvedPermissions;
-    }
+    public bool ViewChannelMembers => RawValue.HasFlag(ChannelPermission.ViewChannelMembers);
 }

@@ -60,7 +60,7 @@ public interface IMessage
     /// <summary>
     /// Whether the message was sent as text-to-speech.
     /// </summary>
-    bool IsTts { get; }
+    bool IsTTS { get; }
 
     /// <summary>
     /// The users mentioned in the message.

@@ -63,5 +63,5 @@ public class MessageRequest
     /// Whether this is a text-to-speech message
     /// </summary>
     [JsonProperty("tts")]
-    public bool? Tts { get; set; }
+    public bool? IsTTS { get; set; }
 }

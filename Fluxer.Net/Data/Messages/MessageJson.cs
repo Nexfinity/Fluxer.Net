@@ -51,7 +51,7 @@ public class MessageJson : IMessage
 
     /// <inheritdoc />
     [JsonProperty("tts")]
-    public bool IsTts { get; set; }
+    public bool IsTTS { get; set; }
 
     /// <inheritdoc />
     [JsonProperty("mentions")]

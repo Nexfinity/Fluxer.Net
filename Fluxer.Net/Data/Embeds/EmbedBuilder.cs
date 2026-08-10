@@ -4,7 +4,7 @@ namespace Fluxer.Net;
 
 /// <summary>
 /// A builder for creating rich embeds with validation and a fluent API.
-/// Based on Discord.Net's EmbedBuilder implementation.
+/// Based on Fluxer.Net's EmbedBuilder implementation.
 /// </summary>
 public class EmbedBuilder
 {

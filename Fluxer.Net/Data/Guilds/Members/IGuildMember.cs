@@ -65,7 +65,7 @@ public interface IGuildMember
     /// <summary>
     /// Array of role IDs the member has.
     /// </summary>
-    HashSet<ulong>? RoleIds { get; }
+    HashSet<ulong> RoleIds { get; }
 
     /// <summary>
     /// Get the members's current nickname, display name or username.

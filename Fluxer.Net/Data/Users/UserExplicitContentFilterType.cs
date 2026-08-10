@@ -5,18 +5,18 @@ namespace Fluxer.Net;
 /// </summary>
 public enum UserExplicitContentFilterType
 {
-	/// <summary>
-	/// Explicit content filtering is disabled (no scanning).
-	/// </summary>
-	Disabled = 0,
+    /// <summary>
+    /// Explicit content filtering is disabled (no scanning).
+    /// </summary>
+    Disabled = 0,
 
-	/// <summary>
-	/// Scan messages from users who are not friends.
-	/// </summary>
-	NonFriends = 1,
+    /// <summary>
+    /// Scan messages from users who are not friends.
+    /// </summary>
+    NonFriends = 1,
 
-	/// <summary>
-	/// Scan messages from all users (friends and non-friends).
-	/// </summary>
-	FriendsAndNonFriends = 2,
+    /// <summary>
+    /// Scan messages from all users (friends and non-friends).
+    /// </summary>
+    FriendsAndNonFriends = 2,
 }

@@ -78,7 +78,7 @@ public enum GuildPermission : ulong
     /// <summary>
     /// Allows sending text-to-speech messages.
     /// </summary>
-    SendTtsMessages = 1UL << 12,
+    SendTTSMessages = 1UL << 12,
 
     /// <summary>
     /// Allows deleting and pinning messages from other users.

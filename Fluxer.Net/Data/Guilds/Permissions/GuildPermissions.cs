@@ -60,7 +60,7 @@ public class GuildPermissions : IGuildPermissions, IChannelPermissions
     public bool SendMessages => RawValue.HasFlag(GuildPermission.SendMessages);
 
     /// <inheritdoc />
-    public bool SendTtsMessages => RawValue.HasFlag(GuildPermission.SendTtsMessages);
+    public bool SendTTSMessages => RawValue.HasFlag(GuildPermission.SendTTSMessages);
 
     /// <inheritdoc />
     public bool ManageMessages => RawValue.HasFlag(GuildPermission.ManageMessages);

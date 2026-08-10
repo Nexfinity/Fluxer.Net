@@ -4,7 +4,7 @@ namespace Fluxer.Net;
 
 /// <summary>
 /// A builder for creating embed footers with validation.
-/// Based on Discord.Net's EmbedFooterBuilder implementation.
+/// Based on Fluxer.Net's EmbedFooterBuilder implementation.
 /// </summary>
 public class EmbedFooterBuilder
 {

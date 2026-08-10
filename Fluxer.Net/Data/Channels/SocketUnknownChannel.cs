@@ -22,8 +22,10 @@ public class SocketUnknownChannel : Channel
         {
             case ChannelType.GuildText:
                 {
-                    data = new SocketTextChannel(client);
-                    data.IsTextable = true;
+                    data = new SocketTextChannel(client)
+                    {
+                        IsTextable = true
+                    };
                 }
                 break;
             case ChannelType.GuildVoice:
@@ -33,20 +35,26 @@ public class SocketUnknownChannel : Channel
                 break;
             case ChannelType.Dm:
                 {
-                    data = new SocketDMChannel(client);
-                    data.IsTextable = true;
+                    data = new SocketDMChannel(client)
+                    {
+                        IsTextable = true
+                    };
                 }
                 break;
             case ChannelType.DmPersonalNotes:
                 {
-                    data = new SocketSavedNotesChannel(client);
-                    data.IsTextable = true;
+                    data = new SocketSavedNotesChannel(client)
+                    {
+                        IsTextable = true
+                    };
                 }
                 break;
             case ChannelType.Group:
                 {
-                    data = new SocketGroupChannel(client);
-                    data.IsTextable = true;
+                    data = new SocketGroupChannel(client)
+                    {
+                        IsTextable = true
+                    };
                 }
                 break;
             case ChannelType.GuildCategory:

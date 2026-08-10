@@ -24,11 +24,10 @@ namespace Fluxer.Net;
 public class ApiClient
 {
     #region Declares
-    //private FluxerClient? _client;
-    private string _token;
-    private FluxerConfig _config;
-    private FluxerBaseClient _client;
-    private bool _isWebhook;
+    private readonly string _token;
+    private readonly FluxerConfig _config;
+    private readonly FluxerBaseClient _client;
+    private readonly bool _isWebhook;
 
     /// <summary>
     /// The HTTP client used to make requests. Can be shared or injected for connection pooling.
@@ -55,8 +54,6 @@ public class ApiClient
     /// <summary>
     /// Initializes a new instance of the <see cref="ApiClient"/> class.
     /// </summary>
-    /// <param name="token">The authentication token for API requests.</param>
-    /// <param name="config">Configuration options including API endpoints, rate limiting, and logging.</param>
     /// <remarks>
     /// The client is automatically configured with:
     /// <list type="bullet">
@@ -131,6 +128,7 @@ public class ApiClient
     /// <param name="data">The request body data to serialize and send.</param>
     /// <param name="throwOnNonSuccess">Whether to throw an exception on non-2xx status codes.</param>
     /// <param name="authorize">Whether to include the Authorization header.</param>
+    /// <param name="otherFormData"></param>
     /// <returns>The deserialized response object.</returns>
     /// <exception cref="FluxerApiException">Thrown when <paramref name="throwOnNonSuccess"/> is true and the API returns a non-success status code.</exception>
     public async Task<TResponse> SendRequestAsync<TResponse, TSend>(HttpMethod method, string route, TSend data, bool throwOnNonSuccess = false, bool authorize = true,
@@ -753,7 +751,7 @@ public class ApiClient
             Flags = flags,
             Nonce = nonce,
             FavoriteMemeId = favoruteMemeId,
-            Tts = tts,
+            IsTTS = tts,
             StickerIds = stickerIds,
         };
 
@@ -2358,7 +2356,7 @@ public class ApiClient
             Flags = flags,
             Nonce = nonce,
             FavoriteMemeId = favoruteMemeId,
-            Tts = tts,
+            IsTTS = tts,
             StickerIds = stickerIds,
         };
 
@@ -2406,7 +2404,7 @@ public class ApiClient
             Flags = flags,
             Nonce = nonce,
             FavoriteMemeId = favoruteMemeId,
-            Tts = tts,
+            IsTTS = tts,
             StickerIds = stickerIds,
         };
 
@@ -2442,7 +2440,7 @@ public class ApiClient
             Flags = flags,
             Nonce = nonce,
             FavoriteMemeId = favoruteMemeId,
-            Tts = tts,
+            IsTTS = tts,
             StickerIds = stickerIds,
         };
 

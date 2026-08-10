@@ -116,6 +116,11 @@ public enum ChannelPermission : ulong
     UseVad = 1UL << 25,
 
     /// <summary>
+    /// Allows management and editing of permissions.
+    /// </summary>
+    ManagePermissions = 1UL << 28,
+
+    /// <summary>
     /// Allows management and editing of webhooks.
     /// </summary>
     ManageWebhooks = 1UL << 29,

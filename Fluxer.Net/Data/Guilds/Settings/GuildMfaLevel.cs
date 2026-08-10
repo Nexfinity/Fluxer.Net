@@ -5,13 +5,13 @@ namespace Fluxer.Net;
 /// </summary>
 public enum GuildMfaLevel
 {
-	/// <summary>
-	/// No MFA requirement for moderator actions.
-	/// </summary>
-	None = 0,
+    /// <summary>
+    /// No MFA requirement for moderator actions.
+    /// </summary>
+    None = 0,
 
-	/// <summary>
-	/// MFA required for moderator actions (elevated security).
-	/// </summary>
-	Elevated = 1,
+    /// <summary>
+    /// MFA required for moderator actions (elevated security).
+    /// </summary>
+    Elevated = 1,
 }

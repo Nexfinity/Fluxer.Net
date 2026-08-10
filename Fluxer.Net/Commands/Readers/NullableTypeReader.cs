@@ -1,32 +1,31 @@
 using System.Reflection;
 
-namespace Fluxer.Net.Commands
+namespace Fluxer.Net.Commands;
+
+internal static class NullableTypeReader
 {
-    internal static class NullableTypeReader
+    public static TypeReader Create(Type type, TypeReader reader)
     {
-        public static TypeReader Create(Type type, TypeReader reader)
-        {
-            var constructor = typeof(NullableTypeReader<>).MakeGenericType(type).GetTypeInfo().DeclaredConstructors.First();
-            return (TypeReader)constructor.Invoke(new object[] { reader });
-        }
+        var constructor = typeof(NullableTypeReader<>).MakeGenericType(type).GetTypeInfo().DeclaredConstructors.First();
+        return (TypeReader)constructor.Invoke(new object[] { reader });
+    }
+}
+
+internal class NullableTypeReader<T> : TypeReader
+    where T : struct
+{
+    private readonly TypeReader _baseTypeReader;
+
+    public NullableTypeReader(TypeReader baseTypeReader)
+    {
+        _baseTypeReader = baseTypeReader;
     }
 
-    internal class NullableTypeReader<T> : TypeReader
-        where T : struct
+    /// <inheritdoc />
+    public override Task<TypeReaderResult> ReadAsync(ICommandContext context, string input, IServiceProvider services)
     {
-        private readonly TypeReader _baseTypeReader;
-
-        public NullableTypeReader(TypeReader baseTypeReader)
-        {
-            _baseTypeReader = baseTypeReader;
-        }
-
-        /// <inheritdoc />
-        public override Task<TypeReaderResult> ReadAsync(ICommandContext context, string input, IServiceProvider services)
-        {
-            if (string.Equals(input, "null", StringComparison.OrdinalIgnoreCase) || string.Equals(input, "nothing", StringComparison.OrdinalIgnoreCase))
-                return Task.FromResult(TypeReaderResult.FromSuccess(new T?()));
-            return _baseTypeReader.ReadAsync(context, input, services);
-        }
+        if (string.Equals(input, "null", StringComparison.OrdinalIgnoreCase) || string.Equals(input, "nothing", StringComparison.OrdinalIgnoreCase))
+            return Task.FromResult(TypeReaderResult.FromSuccess(new T?()));
+        return _baseTypeReader.ReadAsync(context, input, services);
     }
 }
