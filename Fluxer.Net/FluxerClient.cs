@@ -1,14 +1,30 @@
 ﻿using Fluxer.Net.Extensions;
+using Fluxer.Net.Rest;
 using Newtonsoft.Json;
 using Serilog;
 
 namespace Fluxer.Net;
 
+/// <summary>
+/// Base client used for all Fluxer http requests.
+/// </summary>
 public abstract class FluxerBaseClient
 {
     internal ulong Id { get; set; }
+
+    /// <summary>
+    /// Token for the current user.
+    /// </summary>
     internal string Token { get; set; }
-    internal ApiClient Rest { get; set; }
+
+    /// <summary>
+    /// Http client for Fluxer with requests.
+    /// </summary>
+    internal FluxerApiClient Rest { get; set; }
+
+    /// <summary>
+    /// Client options and settings to configure.
+    /// </summary>
     public FluxerConfig Config { get; internal set; }
 }
 
@@ -17,6 +33,11 @@ public abstract class FluxerBaseClient
 /// </summary>
 public class FluxerClient : FluxerBaseClient
 {
+    /// <summary>
+    /// Create a Fluxer client.
+    /// </summary>
+    /// <param name="token"></param>
+    /// <param name="config"></param>
     public FluxerClient(string token, FluxerConfig? config = null)
     {
         // Load token
@@ -44,10 +65,11 @@ public class FluxerClient : FluxerBaseClient
         }
 
         // Set clients with reference to fluxer client
-        base.Rest = new ApiClient(this);
-        Gateway = new GatewayClient(this);
+        base.Rest = new FluxerApiClient(this);
+        Gateway = new FluxerGatewayClient(this);
     }
 
+    /// <inheritdoc cref="FluxerBaseClient.Token" />
     public new string Token => base.Token;
 
     /// <summary>
@@ -59,12 +81,13 @@ public class FluxerClient : FluxerBaseClient
         : Token;
 
 
+    /// <summary>
+    /// Gateway client for Fluxer with events.
+    /// </summary>
+    public FluxerGatewayClient Gateway { get; }
 
-    public GatewayClient Gateway { get; }
-
-    public new ApiClient Rest => base.Rest;
-
-    internal static JsonSerializer _serializer { get; set; } = CreateGatewaySerializer();
+    /// <inheritdoc cref="FluxerBaseClient.Rest" />
+    public new FluxerApiClient Rest => base.Rest;
 
     /// <summary>
     /// This will update your config urls to use the instance.
@@ -73,13 +96,13 @@ public class FluxerClient : FluxerBaseClient
     /// <returns></returns>
     /// <exception cref="ArgumentNullException"></exception>
     /// <exception cref="Exception"></exception>
-    public async Task LoginAsync(string apiUrl = null)
+    public async Task<Instance> LoginAsync(string apiUrl = null)
     {
         if (string.IsNullOrEmpty(apiUrl))
             apiUrl = Config.RealApiBaseUrl;
 
         if (!Uri.TryCreate(apiUrl, UriKind.Absolute, out Uri apiUri))
-            throw new ArgumentNullException(nameof(apiUrl), "API url is invalid.");
+            throw new ArgumentException(nameof(apiUrl), "API url is invalid.");
 
         InstanceJson? instance = await Rest.InternalSendRequestAsync<InstanceJson>(HttpMethod.Get, new Uri(apiUri, $"/v{Config.Version}/.well-known/fluxer").AbsoluteUri, throwOnNonSuccess: true, authorize: false, useConfigUrl: false);
         if (instance == null)
@@ -93,9 +116,17 @@ public class FluxerClient : FluxerBaseClient
         Config.InviteUrl = instance.Endpoints.Invite;
         Config.GiftUrl = instance.Endpoints.Gift;
         Config.WebUrl = instance.Endpoints.WebApp;
+
+        return Instance.Create(this, instance);
     }
 
+    /// <summary>
+    /// Start the gateway session to recieve events.
+    /// </summary>
+    /// <returns></returns>
     public Task StartAsync() => Gateway.ConnectAsync();
+
+    internal static JsonSerializer _gatewaySerializer { get; set; } = CreateGatewaySerializer();
 
     internal static JsonSerializer CreateGatewaySerializer()
     {
@@ -110,8 +141,8 @@ public class FluxerClient : FluxerBaseClient
         return serializer;
     }
 
-    // Used by both api and gateway
-    internal static JsonSerializerSettings _serializerSettings { get; set; } = CreateRestSerializer();
+
+    internal static JsonSerializerSettings _restSerializer { get; set; } = CreateRestSerializer();
 
     internal static JsonSerializerSettings CreateRestSerializer()
     {
@@ -137,7 +168,7 @@ public class FluxerClient : FluxerBaseClient
     public static void ValidateToken(string token)
     {
         if (string.IsNullOrWhiteSpace(token))
-            throw new ArgumentException(
+            throw new ArgumentNullException(
                 "Token must not be null or empty.", nameof(token));
 
         if (!token.StartsWith("Bot ", StringComparison.Ordinal) &&

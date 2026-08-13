@@ -1,12 +1,9 @@
 ﻿using Newtonsoft.Json;
-using System.ComponentModel.DataAnnotations;
 
-namespace Fluxer.Net;
+namespace Fluxer.Net.Rest;
 
 public class BulkCreateGuildStickersRequest
 {
-    [MinLength(1)]
-    [MaxLength(50)]
     [JsonProperty("stickers")]
     public CreateGuildStickerRequest[] Stickers { get; set; } = Array.Empty<CreateGuildStickerRequest>();
 }

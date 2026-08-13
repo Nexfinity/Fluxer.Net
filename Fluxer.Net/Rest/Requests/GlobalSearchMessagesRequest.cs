@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
-using System.ComponentModel.DataAnnotations;
 
-namespace Fluxer.Net;
+namespace Fluxer.Net.Rest;
 
 public class GlobalSearchMessagesRequest : MessageSearchRequest
 {
@@ -20,7 +19,6 @@ public class GlobalSearchMessagesRequest : MessageSearchRequest
     /// <summary>
     /// Specific channel IDs to search in
     /// </summary>
-    [MaxLength(500)]
     [JsonProperty("channel_ids")]
     public HashSet<ulong>? SpecificChannelIds { get; set; }
 }

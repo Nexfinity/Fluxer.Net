@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Fluxer.Net;
+namespace Fluxer.Net.Rest;
 
 public class UpdateCustomStatus
 {

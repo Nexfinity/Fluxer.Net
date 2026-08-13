@@ -1,35 +1,37 @@
-﻿namespace Fluxer.Net;
+﻿using Fluxer.Net.Rest;
+
+namespace Fluxer.Net;
 
 /// <summary>
 /// Http methods for <see cref="GuildMember"/> class. 
 /// </summary>
 public static class MemberHelpers
 {
-    /// <inheritdoc cref="ApiClient.BanMemberAsync(ulong, ulong, CreateGuildBanRequest)" />
+    /// <inheritdoc cref="FluxerApiClient.BanMemberAsync(ulong, ulong, CreateGuildBanRequest)" />
     public static Task BanAsync(this GuildMember member, CreateGuildBanRequest request)
         => member.Client.Rest.BanMemberAsync(member.GuildId, member.Id, request);
 
-    /// <inheritdoc cref="ApiClient.KickMemberAsync(ulong, ulong)" />
+    /// <inheritdoc cref="FluxerApiClient.KickMemberAsync(ulong, ulong)" />
     public static Task KickAsync(this GuildMember member)
         => member.Client.Rest.KickMemberAsync(member.GuildId, member.Id);
 
-    /// <inheritdoc cref="ApiClient.UpdateMemberAsync(ulong, ulong, GuildMemberJson)" />
+    /// <inheritdoc cref="FluxerApiClient.UpdateMemberAsync(ulong, ulong, GuildMemberJson)" />
     public static Task<GuildMember> ModifyAsync(this GuildMember member, GuildMemberJson request)
         => member.Client.Rest.UpdateMemberAsync(member.GuildId, member.Id, request);
 
-    /// <inheritdoc cref="ApiClient.AddMemberRoleAsync(ulong, ulong, ulong)" />
+    /// <inheritdoc cref="FluxerApiClient.AddMemberRoleAsync(ulong, ulong, ulong)" />
     public static Task AddRoleAsync(this GuildMember member, ulong roleId)
         => member.Client.Rest.AddMemberRoleAsync(member.GuildId, member.Id, roleId);
 
-    /// <inheritdoc cref="ApiClient.AddMemberRoleAsync(ulong, ulong, ulong)" />
+    /// <inheritdoc cref="FluxerApiClient.AddMemberRoleAsync(ulong, ulong, ulong)" />
     public static Task AddRoleAsync(this GuildMember member, Role role)
         => member.Client.Rest.AddMemberRoleAsync(member.GuildId, member.Id, role.Id);
 
-    /// <inheritdoc cref="ApiClient.RemoveMemberRoleAsync(ulong, ulong, ulong)" />
+    /// <inheritdoc cref="FluxerApiClient.RemoveMemberRoleAsync(ulong, ulong, ulong)" />
     public static Task RemoveRoleAsync(this GuildMember member, ulong roleId)
         => member.Client.Rest.RemoveMemberRoleAsync(member.GuildId, member.Id, roleId);
 
-    /// <inheritdoc cref="ApiClient.RemoveMemberRoleAsync(ulong, ulong, ulong)" />
+    /// <inheritdoc cref="FluxerApiClient.RemoveMemberRoleAsync(ulong, ulong, ulong)" />
     public static Task RemoveRoleAsync(this GuildMember member, Role role)
         => member.Client.Rest.RemoveMemberRoleAsync(member.GuildId, member.Id, role.Id);
 

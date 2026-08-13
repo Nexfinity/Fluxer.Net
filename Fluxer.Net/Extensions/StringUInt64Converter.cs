@@ -8,7 +8,7 @@ namespace Fluxer.Net.Extensions;
 /// The Fluxer gateway sends permission bitfields as quoted strings to avoid JavaScript
 /// integer precision loss, but the REST API may return them as plain numbers.
 /// </summary>
-public class StringUInt64Converter : JsonConverter<ulong>
+internal class StringUInt64Converter : JsonConverter<ulong>
 {
     public override ulong ReadJson(JsonReader reader, Type objectType, ulong existingValue, bool hasExistingValue, JsonSerializer serializer)
     {

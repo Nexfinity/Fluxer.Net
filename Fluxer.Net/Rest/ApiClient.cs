@@ -1,8 +1,6 @@
 using Fluxer.Net.Extensions;
 using Fluxer.Net.OAuth;
 using Fluxer.Net.RateLimiting;
-using Fluxer.Net.Rest;
-using Fluxer.Net.Rest.Requests;
 using Microsoft.AspNetCore.WebUtilities;
 using Newtonsoft.Json;
 using Serilog;
@@ -10,7 +8,7 @@ using System.Net;
 using System.Net.Http.Headers;
 using System.Reflection;
 
-namespace Fluxer.Net;
+namespace Fluxer.Net.Rest;
 
 /// <summary>
 /// REST API client for the Fluxer platform. Provides methods for all Fluxer API endpoints
@@ -19,9 +17,9 @@ namespace Fluxer.Net;
 /// <remarks>
 /// This client handles HTTP requests to the Fluxer API with automatic rate limiting,
 /// JSON serialization, and error handling. It supports both synchronous operations via
-/// REST and can be paired with <see cref="GatewayClient"/> for real-time events.
+/// REST and can be paired with <see cref="FluxerGatewayClient"/> for real-time events.
 /// </remarks>
-public class ApiClient
+public class FluxerApiClient
 {
     #region Declares
     private readonly string _token;
@@ -52,7 +50,7 @@ public class ApiClient
 
     #region Meta
     /// <summary>
-    /// Initializes a new instance of the <see cref="ApiClient"/> class.
+    /// Initializes a new instance of the <see cref="FluxerApiClient"/> class.
     /// </summary>
     /// <remarks>
     /// The client is automatically configured with:
@@ -62,7 +60,7 @@ public class ApiClient
     /// <item>HTTP client for connection pooling</item>
     /// </list>
     /// </remarks>
-    internal ApiClient(FluxerClient client)
+    internal FluxerApiClient(FluxerClient client)
     {
         _client = client;
         _token = client.Token;
@@ -71,7 +69,7 @@ public class ApiClient
         Initialize();
     }
 
-    internal ApiClient(FluxerWebhookClient webhook)
+    internal FluxerApiClient(FluxerWebhookClient webhook)
     {
         _isWebhook = true;
         _client = webhook;
@@ -81,7 +79,7 @@ public class ApiClient
         Initialize();
     }
 
-    internal ApiClient(FluxerOAuthClient oauth)
+    internal FluxerApiClient(FluxerOAuthClient oauth)
     {
         _client = oauth;
         _config = oauth.Config;
@@ -134,7 +132,7 @@ public class ApiClient
     public async Task<TResponse> SendRequestAsync<TResponse, TSend>(HttpMethod method, string route, TSend data, bool throwOnNonSuccess = false, bool authorize = true,
         ICollection<KeyValuePair<string, (HttpContent content, string? filename)>>? otherFormData = null)
     {
-        string rawContent = JsonConvert.SerializeObject(data, FluxerClient._serializerSettings);
+        string rawContent = JsonConvert.SerializeObject(data, FluxerClient._restSerializer);
         _logger.Verbose("Sending {@Enums} to {Route}", rawContent, route);
         HttpRequestMessage req = new HttpRequestMessage()
         {
@@ -248,7 +246,7 @@ public class ApiClient
         HttpRequestMessage req = new HttpRequestMessage()
         {
             Method = method,
-            Content = new StringContent(JsonConvert.SerializeObject(data, FluxerClient._serializerSettings),
+            Content = new StringContent(JsonConvert.SerializeObject(data, FluxerClient._restSerializer),
 #if NET5_0_OR_GREATER
             new MediaTypeHeaderValue("application/json")
 #else
@@ -758,7 +756,7 @@ public class ApiClient
         if ((attachments?.Count ?? 0) < 1)
         {
             MessageJson jsonAttach = await SendRequestAsync<MessageJson, MessageRequest>(HttpMethod.Post,
-                _isWebhook ? $"/webhooks/{channelId}/{_token}" : $"/channels/{channelId}/messages",
+                _isWebhook ? $"/webhooks/{channelId}/{_token}?wait=true" : $"/channels/{channelId}/messages",
                 req, true);
             return Message.Create(_client, jsonAttach);
         }
@@ -771,7 +769,7 @@ public class ApiClient
         req.Attachments = attachments.Select(x => x.ToJson()).ToList();
 
         MessageJson json = await SendRequestAsync<MessageJson, MessageRequest>(HttpMethod.Post,
-            _isWebhook ? $"/webhooks/{channelId}/{_token}" : $"/channels/{channelId}/messages",
+            _isWebhook ? $"/webhooks/{channelId}/{_token}?wait=true" : $"/channels/{channelId}/messages",
             req, true);
         return Message.Create(_client, json);
     }
@@ -2537,7 +2535,7 @@ public class ApiClient
     /// <param name="clientSecret"></param>
     /// <param name="accessToken"></param>
     /// <returns></returns>
-    public async Task RevokeAccessTokenAsync(ulong clientId, string clientSecret, string accessToken)
+    public async Task RevokeOAuthAccessTokenAsync(ulong clientId, string clientSecret, string accessToken)
     {
         await InternalSendRequestFormAsync<UserJson>(HttpMethod.Post, "/oauth2/token/revoke", true, new Dictionary<string, string>
         {
@@ -2555,7 +2553,7 @@ public class ApiClient
     /// <param name="clientSecret"></param>
     /// <param name="refreshToken"></param>
     /// <returns></returns>
-    public async Task RevokeRefreshTokenAsync(ulong clientId, string clientSecret, string refreshToken)
+    public async Task RevokeOAuthRefreshTokenAsync(ulong clientId, string clientSecret, string refreshToken)
     {
         await InternalSendRequestFormAsync<UserJson>(HttpMethod.Post, "/oauth2/token/revoke", true, new Dictionary<string, string>
         {

@@ -1,7 +1,6 @@
-﻿using Fluxer.Net.Rest.Requests;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
-namespace Fluxer.Net;
+namespace Fluxer.Net.Rest;
 
 public class MessageRequest
 {

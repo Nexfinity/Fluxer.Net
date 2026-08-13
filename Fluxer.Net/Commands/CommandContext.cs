@@ -1,4 +1,5 @@
 using Fluxer.Net.Gateway;
+using Fluxer.Net.Rest;
 
 namespace Fluxer.Net.Commands;
 
@@ -9,10 +10,10 @@ public class CommandContext : ICommandContext
     public FluxerClient Client { get; }
 
     /// <inheritdoc/>
-    public ApiClient Rest { get; }
+    public FluxerApiClient Rest { get; }
 
     /// <inheritdoc/>
-    public GatewayClient Gateway { get; }
+    public FluxerGatewayClient Gateway { get; }
 
     /// <inheritdoc/>
     public SocketGuild Guild { get; }

@@ -4,6 +4,9 @@ using System.Reflection;
 
 namespace Fluxer.Net;
 
+/// <summary>
+/// Json resolver for Fluxer http and gateway.
+/// </summary>
 public class FluxerContractResolver : DefaultContractResolver
 {
     private static readonly TypeInfo _ienumerable = typeof(IEnumerable<ulong[]>).GetTypeInfo();

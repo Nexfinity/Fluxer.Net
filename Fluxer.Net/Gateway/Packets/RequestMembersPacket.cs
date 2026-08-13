@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Fluxer.Net.Gateway.Packets;
+namespace Fluxer.Net.Gateway;
 
 public class RequestMembersPacket
 {

@@ -1,4 +1,4 @@
-﻿namespace Fluxer.Net;
+﻿namespace Fluxer.Net.Rest;
 
 /// <summary>
 /// API limits for the current instance.

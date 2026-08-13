@@ -1,4 +1,6 @@
-﻿namespace Fluxer.Net.Commands;
+﻿using Fluxer.Net.Rest;
+
+namespace Fluxer.Net.Commands;
 
 /// <summary>
 ///     Represents a context of a command. This may include the client, guild, channel, user, and message.
@@ -13,12 +15,12 @@ public interface ICommandContext
     /// <summary>
     /// Fluxer http client for the context.
     /// </summary>
-    ApiClient Rest { get; }
+    FluxerApiClient Rest { get; }
 
     /// <summary>
     /// Fluxer gateway client for the context.
     /// </summary>
-    GatewayClient Gateway { get; }
+    FluxerGatewayClient Gateway { get; }
 
     /// <summary>
     /// Current guild for the context.

@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Fluxer.Net.Rest.Requests;
+namespace Fluxer.Net.Rest;
 
 /// <summary>
 /// Create an attachment with a request.

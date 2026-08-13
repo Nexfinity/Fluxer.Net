@@ -1,4 +1,6 @@
-﻿namespace Fluxer.Net;
+﻿using Fluxer.Net.Rest;
+
+namespace Fluxer.Net;
 
 /// <summary>
 /// Http methods for <see cref="User"/> class. 

@@ -1,4 +1,4 @@
-namespace Fluxer.Net.Gateway.Packets;
+namespace Fluxer.Net.Gateway;
 
 /// <summary>
 /// WebSocket close codes specific to the Fluxer Gateway protocol.

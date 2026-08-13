@@ -1,4 +1,4 @@
-namespace Fluxer.Net.Gateway.Packets;
+namespace Fluxer.Net.Gateway;
 
 /// <summary>
 /// Operation codes used in the Fluxer Gateway WebSocket protocol.

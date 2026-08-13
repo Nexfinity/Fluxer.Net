@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
-using System.ComponentModel.DataAnnotations;
 
-namespace Fluxer.Net;
+namespace Fluxer.Net.Rest;
 
 public class CreateGuildBanRequest
 {
@@ -21,7 +20,6 @@ public class CreateGuildBanRequest
     /// <summary>
     /// The reason for the ban (max 512 characters)
     /// </summary>
-    [MaxLength(512)]
     [JsonProperty("reason")]
     public string? Reason { get; set; }
 }
