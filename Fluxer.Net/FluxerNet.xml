@@ -10638,6 +10638,51 @@
         <member name="M:Fluxer.Net.OAuth.FluxerOAuthClient.RevokeRefreshTokenAsync(System.String)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.RevokeOAuthRefreshTokenAsync(System.UInt64,System.String,System.String)" />
         </member>
+        <member name="T:Fluxer.Net.OAuth.FluxerOAuthExtensions">
+            <Summary>
+            Extension methods for handling fluxer oauth client.
+            </Summary>
+        </member>
+        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.AddFluxerClient(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,System.String,Fluxer.Net.FluxerConfig)">
+            <Summary>
+            Add Fluxer oauth client on dependency injection service.
+            </Summary>
+        </member>
+        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.GetFluxerClaims(System.Security.Claims.ClaimsPrincipal,Fluxer.Net.FluxerBaseClient)">
+            <Summary>
+            Get Fluxer specific claims for a claim user.
+            </Summary>
+        </member>
+        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.AddFluxer(Microsoft.AspNetCore.Authentication.AuthenticationBuilder)">
+            <Summary>
+            Add Fluxer oauth client on dependency injection service.
+            </Summary>
+        </member>
+        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.AddFluxer(Microsoft.AspNetCore.Authentication.AuthenticationBuilder,System.Action{Fluxer.Net.OAuth.FluxerOAuthOptions})">
+            <Summary>
+            Add Fluxer oauth client on dependency injection service.
+            </Summary>
+        </member>
+        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.AddFluxer(Microsoft.AspNetCore.Authentication.AuthenticationBuilder,System.String,System.Action{Fluxer.Net.OAuth.FluxerOAuthOptions})">
+            <Summary>
+            Add Fluxer oauth client on dependency injection service.
+            </Summary>
+        </member>
+        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.AddFluxer(Microsoft.AspNetCore.Authentication.AuthenticationBuilder,System.String,System.String,System.Action{Fluxer.Net.OAuth.FluxerOAuthOptions})">
+            <Summary>
+            Add Fluxer oauth client on dependency injection service.
+            </Summary>
+        </member>
+        <member name="T:Fluxer.Net.OAuth.FluxerOAuthHandler">
+            <Summary>
+            Asp.net oauth handler for Fluxer.
+            </Summary>
+        </member>
+        <member name="M:Fluxer.Net.OAuth.FluxerOAuthHandler.#ctor(Microsoft.Extensions.Options.IOptionsMonitor{Fluxer.Net.OAuth.FluxerOAuthOptions},Microsoft.Extensions.Logging.ILoggerFactory,System.Text.Encodings.Web.UrlEncoder,Microsoft.AspNetCore.Authentication.ISystemClock)">
+            <Summary>
+            Create asp.net oauth handler for Fluxer.
+            </Summary>
+        </member>
         <member name="T:Fluxer.Net.RateLimiting.RateLimitBucket">
             <summary>
             Represents a sliding window rate limit bucket for API requests
@@ -13478,22 +13523,6 @@
         </member>
         <member name="M:Fluxer.Net.WebhookHelpers.SendMessageWaitAsync(Fluxer.Net.Webhook,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.EmbedRequest},Fluxer.Net.Rest.MessageReferenceRequest,Fluxer.Net.Rest.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64})">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.ExecuteWebhookAsync(System.UInt64,System.String,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.EmbedRequest},Fluxer.Net.Rest.MessageReferenceRequest,Fluxer.Net.Rest.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64})" />
-        </member>
-        <member name="M:Fluxer.Net.WebhookHelpers.DeleteMessageAsync(Fluxer.Net.Webhook,Fluxer.Net.Message)">
-            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.DeleteWebhookMessageAsync(System.UInt64,System.String,System.UInt64)" />
-        </member>
-        <member name="M:Fluxer.Net.WebhookHelpers.DeleteMessageAsync(Fluxer.Net.Webhook,System.UInt64)">
-            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.DeleteWebhookMessageAsync(System.UInt64,System.String,System.UInt64)" />
-        </member>
-        <member name="M:Fluxer.Net.WebhookHelpers.EditMessageAsync(Fluxer.Net.Webhook,System.UInt64,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.EmbedRequest},Fluxer.Net.Rest.MessageReferenceRequest,Fluxer.Net.Rest.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64})">
-            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.EditWebhookMessageAsync(System.UInt64,System.String,System.UInt64,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.EmbedRequest},Fluxer.Net.Rest.MessageReferenceRequest,Fluxer.Net.Rest.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64})" />
-        </member>
-        <member name="M:Fluxer.Net.WebhookHelpers.EditMessageAsync(Fluxer.Net.Webhook,Fluxer.Net.Message,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.EmbedRequest},Fluxer.Net.Rest.MessageReferenceRequest,Fluxer.Net.Rest.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64})">
-            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.EditWebhookMessageAsync(System.UInt64,System.String,System.UInt64,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.EmbedRequest},Fluxer.Net.Rest.MessageReferenceRequest,Fluxer.Net.Rest.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64})" />
-        </member>
-    </members>
-</doc>
-ecuteWebhookAsync(System.UInt64,System.String,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.EmbedRequest},Fluxer.Net.Rest.MessageReferenceRequest,Fluxer.Net.Rest.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64})" />
         </member>
         <member name="M:Fluxer.Net.WebhookHelpers.DeleteMessageAsync(Fluxer.Net.Webhook,Fluxer.Net.Message)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.DeleteWebhookMessageAsync(System.UInt64,System.String,System.UInt64)" />
