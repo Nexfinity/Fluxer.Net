@@ -2,3 +2,12 @@ apiRules:
 - exclude:
     uidRegex: Json$
     type: class
+- exclude:
+    uidRegex: ^System\.Object
+    type: Type
+- exclude:
+    uidRegex: ^Microsoft\.AspNetCore\.Authentication
+    type: Type
+- exclude:
+    uidRegex: ^System\.Attribute
+    type: Type

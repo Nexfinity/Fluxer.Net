@@ -1,4 +1,5 @@
 ﻿using Fluxer.Net.Extensions;
+using Fluxer.Net.Gateway;
 using Fluxer.Net.Rest;
 using Newtonsoft.Json;
 using Serilog;

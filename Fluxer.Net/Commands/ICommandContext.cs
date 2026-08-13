@@ -1,4 +1,5 @@
-﻿using Fluxer.Net.Rest;
+﻿using Fluxer.Net.Gateway;
+using Fluxer.Net.Rest;
 
 namespace Fluxer.Net.Commands;
 
