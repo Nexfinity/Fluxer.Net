@@ -1,5 +1,5 @@
 ﻿#undef NOPE
-using Fluxer.Net.Gateway;
+using Fluxer.Net.Rest;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Serilog;
@@ -9,9 +9,9 @@ using System.Diagnostics;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using Websocket.Client;
-// ReSharper disable ConstantConditionalAccessQualifier
 
-namespace Fluxer.Net;
+// ReSharper disable ConstantConditionalAccessQualifier
+namespace Fluxer.Net.Gateway;
 
 /// <summary>
 /// WebSocket gateway client for real-time events from the Fluxer platform.
