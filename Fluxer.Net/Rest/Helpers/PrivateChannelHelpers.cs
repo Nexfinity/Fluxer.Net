@@ -5,19 +5,19 @@
 /// </summary>
 public static class PrivateChannelHelpers
 {
-    /// <inheritdoc cref="ApiClient.AddRecipientAsync(ulong, ulong)" />
+    /// <inheritdoc cref="FluxerApiClient.AddRecipientAsync(ulong, ulong)" />
     public static Task AddUserAsync(this GroupChannel channel, User user)
         => channel.Client.Rest.AddRecipientAsync(channel.Id, user.Id);
 
-    /// <inheritdoc cref="ApiClient.AddRecipientAsync(ulong, ulong)" />
+    /// <inheritdoc cref="FluxerApiClient.AddRecipientAsync(ulong, ulong)" />
     public static Task AddUserAsync(this GroupChannel channel, ulong userId)
         => channel.Client.Rest.AddRecipientAsync(channel.Id, userId);
 
-    /// <inheritdoc cref="ApiClient.RemoveRecipientAsync(ulong, ulong)" />
+    /// <inheritdoc cref="FluxerApiClient.RemoveRecipientAsync(ulong, ulong)" />
     public static Task RemoveUserAsync(this GroupChannel channel, User user)
         => channel.Client.Rest.RemoveRecipientAsync(channel.Id, user.Id);
 
-    /// <inheritdoc cref="ApiClient.RemoveRecipientAsync(ulong, ulong)" />
+    /// <inheritdoc cref="FluxerApiClient.RemoveRecipientAsync(ulong, ulong)" />
     public static Task RemoveUserAsync(this GroupChannel channel, ulong userId)
         => channel.Client.Rest.RemoveRecipientAsync(channel.Id, userId);
 

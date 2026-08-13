@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
-using System.ComponentModel.DataAnnotations;
 
-namespace Fluxer.Net;
+namespace Fluxer.Net.Rest;
 
 public class CreateGuildRequest
 {
@@ -11,8 +10,6 @@ public class CreateGuildRequest
     [JsonProperty("icon")]
     public string? IconBase64 { get; set; }
 
-    [MinLength(1)]
-    [MaxLength(100)]
     [JsonProperty("name")]
     public string Name { get; set; }
 

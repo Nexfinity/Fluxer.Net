@@ -2,7 +2,7 @@
 
 namespace Fluxer.Net.Extensions;
 
-public class GuildPermissionsConverter : JsonConverter<GuildPermissions>
+internal class GuildPermissionsConverter : JsonConverter<GuildPermissions>
 {
     public override GuildPermissions ReadJson(JsonReader reader, Type objectType, GuildPermissions GuildPermissions, bool hasExistingValue, JsonSerializer serializer)
     {

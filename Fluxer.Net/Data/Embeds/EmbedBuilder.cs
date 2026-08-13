@@ -1,4 +1,4 @@
-using Fluxer.Net.Rest.Requests;
+using Fluxer.Net.Rest;
 
 namespace Fluxer.Net;
 

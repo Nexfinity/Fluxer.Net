@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
-using System.ComponentModel.DataAnnotations;
 
-namespace Fluxer.Net;
+namespace Fluxer.Net.Rest;
 
 public class MessageSearchRequest
 {
@@ -38,7 +37,6 @@ public class MessageSearchRequest
     /// <summary>
     /// Multiple content queries to search for
     /// </summary>
-    [MaxLength(100)]
     [JsonProperty("Multiple content queries to search for")]
     public HashSet<string>? Contents { get; set; }
 
@@ -63,18 +61,12 @@ public class MessageSearchRequest
     /// <summary>
     /// Author types to filter by
     /// </summary>
-    /// <remarks>
-    /// values: <see href="https://github.com/fluxerapp/fluxer/blob/d843d6f3f8a0bd850673ba55036354093977109f/packages/schema/src/domains/message/MessageRequestSchemas.tsx#L85"/>
-    /// </remarks>
     [JsonProperty("author_type")]
     public HashSet<string>? AuthorTypes { get; set; }
 
     /// <summary>
     /// Author types to exclude
     /// </summary>
-    /// <remarks>
-    /// values: <see href="https://github.com/fluxerapp/fluxer/blob/d843d6f3f8a0bd850673ba55036354093977109f/packages/schema/src/domains/message/MessageRequestSchemas.tsx#L85"/>
-    /// </remarks>
     [JsonProperty("exclude_author_type")]
     public HashSet<string>? ExcludeAuthorTypes { get; set; }
 
@@ -117,36 +109,24 @@ public class MessageSearchRequest
     /// <summary>
     /// Content types the message must have
     /// </summary>
-    /// <remarks>
-    /// Values: <see href="https://github.com/fluxerapp/fluxer/blob/d843d6f3f8a0bd850673ba55036354093977109f/packages/schema/src/domains/message/MessageRequestSchemas.tsx#L99"/>
-    /// </remarks>
     [JsonProperty("has")]
     public HashSet<string>? HasContentType { get; set; }
 
     /// <summary>
     /// Content types the message must not have
     /// </summary>
-    /// <remarks>
-    /// Values: <see href="https://github.com/fluxerapp/fluxer/blob/d843d6f3f8a0bd850673ba55036354093977109f/packages/schema/src/domains/message/MessageRequestSchemas.tsx#L99"/>
-    /// </remarks>
     [JsonProperty("exclude_has")]
     public HashSet<string>? ExcludeContentType { get; set; }
 
     /// <summary>
     /// Embed types to filter by
     /// </summary>
-    /// <remarks>
-    /// Values: <see href="https://github.com/fluxerapp/fluxer/blob/d843d6f3f8a0bd850673ba55036354093977109f/packages/schema/src/domains/message/MessageRequestSchemas.tsx#L119"/>
-    /// </remarks>
     [JsonProperty("embed_type")]
     public HashSet<string>? EmbedType { get; set; }
 
     /// <summary>
     /// Embed types to exclude
     /// </summary>
-    /// <remarks>
-    /// Values: <see href="https://github.com/fluxerapp/fluxer/blob/d843d6f3f8a0bd850673ba55036354093977109f/packages/schema/src/domains/message/MessageRequestSchemas.tsx#L119"/>
-    /// </remarks>
     [JsonProperty("exclude_embed_type")]
     public HashSet<string>? ExcludeEmbedType { get; set; }
 
@@ -201,18 +181,12 @@ public class MessageSearchRequest
     /// <summary>
     /// Field to sort results by
     /// </summary>
-    /// <remarks>
-    /// <see href="https://github.com/fluxerapp/fluxer/blob/d843d6f3f8a0bd850673ba55036354093977109f/packages/schema/src/domains/message/MessageRequestSchemas.tsx#L134"/>
-    /// </remarks>
     [JsonProperty("sort_by")]
     public string? SortBy { get; set; }
 
     /// <summary>
     /// Sort order for results
     /// </summary>
-    /// <remarks>
-    /// <see href="https://github.com/fluxerapp/fluxer/blob/d843d6f3f8a0bd850673ba55036354093977109f/packages/schema/src/domains/message/MessageRequestSchemas.tsx#L147"/>
-    /// </remarks>
     [JsonProperty("sort_order")]
     public string? SortOrder { get; set; }
 
@@ -222,9 +196,6 @@ public class MessageSearchRequest
     [JsonProperty("include_nsfw")]
     public bool? IncludeNsfw { get; set; }
 
-    /// <remarks>
-    /// <see href="https://github.com/fluxerapp/fluxer/blob/d843d6f3f8a0bd850673ba55036354093977109f/packages/schema/src/domains/message/MessageRequestSchemas.tsx#L160"/>
-    /// </remarks>
     [JsonProperty("scope")]
     public string? MessageSearchScope { get; set; }
 }

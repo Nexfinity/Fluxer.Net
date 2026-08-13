@@ -2,7 +2,7 @@
 
 namespace Fluxer.Net.Extensions;
 
-public class ChannelPermissionsConverter : JsonConverter<ChannelPermissions>
+internal class ChannelPermissionsConverter : JsonConverter<ChannelPermissions>
 {
     public override ChannelPermissions ReadJson(JsonReader reader, Type objectType, ChannelPermissions GuildPermissions, bool hasExistingValue, JsonSerializer serializer)
     {

@@ -1,4 +1,4 @@
-﻿using Fluxer.Net.Rest.Requests;
+﻿using Fluxer.Net.Rest;
 
 namespace Fluxer.Net;
 
@@ -7,55 +7,55 @@ namespace Fluxer.Net;
 /// </summary>
 public static class MessageHelpers
 {
-    /// <inheritdoc cref="ApiClient.DeleteMessageAsync(ulong, ulong)" />
+    /// <inheritdoc cref="FluxerApiClient.DeleteMessageAsync(ulong, ulong)" />
     public static Task DeleteAsync(this Message message)
         => message.Client.Rest.DeleteMessageAsync(message.ChannelId, message.Id);
 
-    /// <inheritdoc cref="ApiClient.EditMessageAsync(ulong, ulong, UpdateMessageRequest)" />
+    /// <inheritdoc cref="FluxerApiClient.EditMessageAsync(ulong, ulong, UpdateMessageRequest)" />
     public static Task<Message> ModifyAsync(this Message message, UpdateMessageRequest req)
         => message.Client.Rest.EditMessageAsync(message.ChannelId, message.Id, req);
 
-    /// <inheritdoc cref="ApiClient.AcknowledgeMessageAsync(ulong, ulong, MessageAckJson)" />
+    /// <inheritdoc cref="FluxerApiClient.AcknowledgeMessageAsync(ulong, ulong, MessageAckJson)" />
     public static Task AcknowledgeAsync(this Message message, MessageAckJson json)
         => message.Client.Rest.AcknowledgeMessageAsync(message.ChannelId, message.Id, json);
 
-    /// <inheritdoc cref="ApiClient.DeleteMessageAttachmentAsync(ulong, ulong, ulong)" />
+    /// <inheritdoc cref="FluxerApiClient.DeleteMessageAttachmentAsync(ulong, ulong, ulong)" />
     public static Task DeleteAttachmentAsync(this Message message, ulong attachmentId)
         => message.Client.Rest.DeleteMessageAttachmentAsync(message.ChannelId, message.Id, attachmentId);
 
-    /// <inheritdoc cref="ApiClient.PinMessageAsync(ulong, ulong)" />
+    /// <inheritdoc cref="FluxerApiClient.PinMessageAsync(ulong, ulong)" />
     public static Task PinAsync(this Message message)
         => message.Client.Rest.PinMessageAsync(message.ChannelId, message.Id);
 
-    /// <inheritdoc cref="ApiClient.UnpinMessageAsync(ulong, ulong)" />
+    /// <inheritdoc cref="FluxerApiClient.UnpinMessageAsync(ulong, ulong)" />
     public static Task UnPinAsync(this Message message)
         => message.Client.Rest.UnpinMessageAsync(message.ChannelId, message.Id);
 
-    /// <inheritdoc cref="ApiClient.AddReactionAsync(ulong, ulong, string)" />
+    /// <inheritdoc cref="FluxerApiClient.AddReactionAsync(ulong, ulong, string)" />
     public static Task AddReactionAsync(this Message message, string emoji)
         => message.Client.Rest.AddReactionAsync(message.ChannelId, message.Id, emoji);
 
-    /// <inheritdoc cref="ApiClient.GetReactionsForEmojiAsync(ulong, ulong, string)" />
+    /// <inheritdoc cref="FluxerApiClient.GetReactionsForEmojiAsync(ulong, ulong, string)" />
     public static Task<IEnumerable<User>> GetReactionsForEmojiAsync(this Message message, string emoji)
         => message.Client.Rest.GetReactionsForEmojiAsync(message.ChannelId, message.Id, emoji);
 
-    /// <inheritdoc cref="ApiClient.RemoveAllReactionsAsync(ulong, ulong)" />
+    /// <inheritdoc cref="FluxerApiClient.RemoveAllReactionsAsync(ulong, ulong)" />
     public static Task RemoveAllReactionsAsync(this Message message)
         => message.Client.Rest.RemoveAllReactionsAsync(message.ChannelId, message.Id);
 
-    /// <inheritdoc cref="ApiClient.RemoveAllReactionsForEmojiAsync(ulong, ulong, string)" />
+    /// <inheritdoc cref="FluxerApiClient.RemoveAllReactionsForEmojiAsync(ulong, ulong, string)" />
     public static Task RemoveAllReactionsForEmojiAsync(this Message message, string emoji)
         => message.Client.Rest.RemoveAllReactionsForEmojiAsync(message.ChannelId, message.Id, emoji);
 
-    /// <inheritdoc cref="ApiClient.RemoveOwnReactionAsync(ulong, ulong, string)" />
+    /// <inheritdoc cref="FluxerApiClient.RemoveOwnReactionAsync(ulong, ulong, string)" />
     public static Task RemoveOwnReactionAsync(this Message message, string emoji)
         => message.Client.Rest.RemoveOwnReactionAsync(message.ChannelId, message.Id, emoji);
 
-    /// <inheritdoc cref="ApiClient.RemoveUserReactionAsync(ulong, ulong, string, ulong)" />
+    /// <inheritdoc cref="FluxerApiClient.RemoveUserReactionAsync(ulong, ulong, string, ulong)" />
     public static Task RemoveUserReactionAsync(this Message message, string emoji, ulong userId)
         => message.Client.Rest.RemoveUserReactionAsync(message.ChannelId, message.Id, emoji, userId);
 
-    /// <inheritdoc cref="ApiClient.SendMessageAsync(ulong, string?, List{EmbedRequest}?, MessageReferenceRequest?, AllowedMentionsRequest?, MessageFlag, string?, ulong?, bool?, List{ulong}?, List{AttachmentRequest}?)" />
+    /// <inheritdoc cref="FluxerApiClient.SendMessageAsync(ulong, string?, List{EmbedRequest}?, MessageReferenceRequest?, AllowedMentionsRequest?, MessageFlag, string?, ulong?, bool?, List{ulong}?, List{AttachmentRequest}?)" />
     public static Task<Message> ReplyAsync(this Message message, string? content = null, List<EmbedRequest>? embeds = null,
         AllowedMentionsRequest? allowedMentions = null, MessageFlag flags = MessageFlag.None,
         string? nonce = null, ulong? favoruteMemeId = null, bool? tts = null, List<ulong>? stickerIds = null, List<AttachmentRequest>? attachments = null)

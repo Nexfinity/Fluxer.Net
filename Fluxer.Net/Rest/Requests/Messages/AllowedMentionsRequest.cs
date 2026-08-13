@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
-using System.ComponentModel.DataAnnotations;
 
-namespace Fluxer.Net;
+namespace Fluxer.Net.Rest;
 
 public class AllowedMentionsRequest
 {
@@ -14,14 +13,12 @@ public class AllowedMentionsRequest
     /// <summary>
     /// Array of user IDs to mention (max 100)
     /// </summary>
-    [MaxLength(100)]
     [JsonProperty("users")]
     public HashSet<ulong>? Users { get; set; }
 
     /// <summary>
     /// Array of role IDs to mention (max 100)
     /// </summary>
-    [MaxLength(100)]
     [JsonProperty("roles")]
     public HashSet<ulong>? Roles { get; set; }
 

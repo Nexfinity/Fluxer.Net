@@ -1,10 +1,7 @@
 ﻿using Newtonsoft.Json;
 
-namespace Fluxer.Net;
+namespace Fluxer.Net.Rest;
 
-/// <remarks>
-/// <see href="https://docs.fluxer.app/resources/guilds#guildvanityurlupdaterequest"/>
-/// </remarks>
 public class UpdateGuildVanityUrlRequest
 {
     /// <summary>

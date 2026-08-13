@@ -1,6 +1,5 @@
 ﻿#undef NOPE
 using Fluxer.Net.Gateway;
-using Fluxer.Net.Gateway.Packets;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Serilog;
@@ -31,10 +30,10 @@ namespace Fluxer.Net;
 /// <item>Event filtering via <see cref="FluxerConfig.IgnoredGatewayEvents"/></item>
 /// </list>
 /// <para>
-/// This client should be paired with <see cref="ApiClient"/> for full Fluxer functionality.
+/// This client should be paired with <see cref="FluxerApiClient"/> for full Fluxer functionality.
 /// </para>
 /// </remarks>
-public partial class GatewayClient : IDisposable
+public partial class FluxerGatewayClient : IDisposable
 {
     #region Declares
     private FluxerClient _client;
@@ -78,12 +77,12 @@ public partial class GatewayClient : IDisposable
 
     #region Meta
     /// <summary>
-    /// Initializes a new instance of the <see cref="GatewayClient"/> class.
+    /// Initializes a new instance of the <see cref="FluxerGatewayClient"/> class.
     /// </summary>
     /// <remarks>
     /// The client is initialized but not connected. Call <see cref="ConnectAsync"/> to establish the gateway connection.
     /// </remarks>
-    internal GatewayClient(FluxerClient client)
+    internal FluxerGatewayClient(FluxerClient client)
     {
         _client = client;
         _logger = client.Config.GatewaySerilog;
@@ -261,7 +260,7 @@ public partial class GatewayClient : IDisposable
     /// <param name="Data">The packet data to serialize and send.</param>
     /// <remarks>
     /// This method automatically schedules reconnection if sending fails. Packets may be dropped
-    /// during reconnection attempts. For critical operations, use the REST API via <see cref="ApiClient"/>.
+    /// during reconnection attempts. For critical operations, use the REST API via <see cref="FluxerApiClient"/>.
     /// </remarks>
     public void SendGatewayPacket<T>(T Data)
     {
@@ -272,7 +271,7 @@ public partial class GatewayClient : IDisposable
             return;
         }
 
-        string text = JsonConvert.SerializeObject(Data, FluxerClient._serializerSettings);
+        string text = JsonConvert.SerializeObject(Data, FluxerClient._restSerializer);
         _logger.Debug("Sending serialized gateway packet {Enums}", text);
         try
         {
@@ -513,7 +512,7 @@ public partial class GatewayClient : IDisposable
         {
             case "READY":
                 {
-                    ReadyGatewayData? data = p.Data.ToObject<ReadyGatewayData>(FluxerClient._serializer);
+                    ReadyGatewayData? data = p.Data.ToObject<ReadyGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
                     {
                         CurrentUser = CurrentUser.Create(_client, data.User);
@@ -566,7 +565,7 @@ public partial class GatewayClient : IDisposable
                 return;
             case "SESSIONS_REPLACE":
                 {
-                    GatewaySessionJson[]? data = p.Data.ToObject<GatewaySessionJson[]>(FluxerClient._serializer);
+                    GatewaySessionJson[]? data = p.Data.ToObject<GatewaySessionJson[]>(FluxerClient._gatewaySerializer);
                     if (data != null)
                         SessionsReplace?.Invoke(data[0], data[1]);
                     else
@@ -575,7 +574,7 @@ public partial class GatewayClient : IDisposable
                 return;
             case "PASSIVE_UPDATES":
                 {
-                    PassiveGatewayData? data = p.Data.ToObject<PassiveGatewayData>(FluxerClient._serializer);
+                    PassiveGatewayData? data = p.Data.ToObject<PassiveGatewayData>(FluxerClient._gatewaySerializer);
 
                 }
                 return;
@@ -583,7 +582,7 @@ public partial class GatewayClient : IDisposable
             //User settings events
             case "USER_SETTINGS_UPDATE":
                 {
-                    UserSettingsUpdateGatewayData? data = p.Data.ToObject<UserSettingsUpdateGatewayData>(FluxerClient._serializer);
+                    UserSettingsUpdateGatewayData? data = p.Data.ToObject<UserSettingsUpdateGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
                         UserSettingsUpdate?.Invoke(data);
                     else
@@ -592,7 +591,7 @@ public partial class GatewayClient : IDisposable
                 return;
             case "USER_GUILD_SETTINGS_UPDATE":
                 {
-                    UserGuildSettingsUpdateGatewayData? data = p.Data.ToObject<UserGuildSettingsUpdateGatewayData>(FluxerClient._serializer);
+                    UserGuildSettingsUpdateGatewayData? data = p.Data.ToObject<UserGuildSettingsUpdateGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
                         UserGuildSettingsUpdate?.Invoke(data);
                     else
@@ -601,7 +600,7 @@ public partial class GatewayClient : IDisposable
                 return;
             case "USER_PINNED_DMS_UPDATE":
                 {
-                    UserPinnedDmsUpdateGatewayData? data = p.Data.ToObject<UserPinnedDmsUpdateGatewayData>(FluxerClient._serializer);
+                    UserPinnedDmsUpdateGatewayData? data = p.Data.ToObject<UserPinnedDmsUpdateGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
                         UserPinnedDmsUpdate?.Invoke(data);
                     else
@@ -610,7 +609,7 @@ public partial class GatewayClient : IDisposable
                 return;
             case "USER_NOTE_UPDATE":
                 {
-                    UserNoteUpdateGatewayData? data = p.Data.ToObject<UserNoteUpdateGatewayData>(FluxerClient._serializer);
+                    UserNoteUpdateGatewayData? data = p.Data.ToObject<UserNoteUpdateGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
                         UserNoteUpdate?.Invoke(data);
                     else
@@ -619,7 +618,7 @@ public partial class GatewayClient : IDisposable
                 return;
             case "AUTH_SESSION_CHANGE":
                 {
-                    AuthSessionChangeGatewayData? data = p.Data.ToObject<AuthSessionChangeGatewayData>(FluxerClient._serializer);
+                    AuthSessionChangeGatewayData? data = p.Data.ToObject<AuthSessionChangeGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
                         AuthSessionChange?.Invoke(data);
                     else
@@ -630,7 +629,7 @@ public partial class GatewayClient : IDisposable
             //Message events
             case "MESSAGE_CREATE":
                 {
-                    MessageGatewayData? data = p.Data.ToObject<MessageGatewayData>(FluxerClient._serializer);
+                    MessageGatewayData? data = p.Data.ToObject<MessageGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
                     {
                         if (data.Member != null)
@@ -644,7 +643,7 @@ public partial class GatewayClient : IDisposable
                 return;
             case "MESSAGE_UPDATE":
                 {
-                    MessageGatewayData? data = p.Data.ToObject<MessageGatewayData>(FluxerClient._serializer);
+                    MessageGatewayData? data = p.Data.ToObject<MessageGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
                     {
                         if (data.Member != null)
@@ -657,7 +656,7 @@ public partial class GatewayClient : IDisposable
                 return;
             case "MESSAGE_DELETE":
                 {
-                    EntityRemovedGatewayData? data = p.Data.ToObject<EntityRemovedGatewayData>(FluxerClient._serializer);
+                    EntityRemovedGatewayData? data = p.Data.ToObject<EntityRemovedGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
                         MessageDelete?.Invoke(data);
                     else
@@ -666,7 +665,7 @@ public partial class GatewayClient : IDisposable
                 return;
             case "CHANNEL_CREATE":
                 {
-                    ChannelGatewayData? data = p.Data.ToObject<ChannelGatewayData>(FluxerClient._serializer);
+                    ChannelGatewayData? data = p.Data.ToObject<ChannelGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
                     {
                         Channel channel = SocketUnknownChannel.Create(_client, data, data.GuildId.Value);
@@ -686,7 +685,7 @@ public partial class GatewayClient : IDisposable
                 return;
             case "CHANNEL_UPDATE":
                 {
-                    ChannelGatewayData? data = p.Data.ToObject<ChannelGatewayData>(FluxerClient._serializer);
+                    ChannelGatewayData? data = p.Data.ToObject<ChannelGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
                     {
                         if (Channels.TryGetValue(data.Id, out Channel channel))
@@ -700,7 +699,7 @@ public partial class GatewayClient : IDisposable
                 return;
             case "CHANNEL_DELETE":
                 {
-                    ChannelGatewayData? data = p.Data.ToObject<ChannelGatewayData>(FluxerClient._serializer);
+                    ChannelGatewayData? data = p.Data.ToObject<ChannelGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
                     {
                         Channels.TryRemove(data.Id, out _);
@@ -712,7 +711,7 @@ public partial class GatewayClient : IDisposable
                 return;
             case "USER_UPDATE":
                 {
-                    UserGatewayData? data = p.Data.ToObject<UserGatewayData>(FluxerClient._serializer);
+                    UserGatewayData? data = p.Data.ToObject<UserGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
                         UserUpdate?.Invoke(data);
                     else
@@ -721,7 +720,7 @@ public partial class GatewayClient : IDisposable
                 return;
             case "PRESENCE_UPDATE":
                 {
-                    PresenceGatewayData? data = p.Data.ToObject<PresenceGatewayData>(FluxerClient._serializer);
+                    PresenceGatewayData? data = p.Data.ToObject<PresenceGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
                         PresenceUpdate?.Invoke(data);
                     else
@@ -730,7 +729,7 @@ public partial class GatewayClient : IDisposable
                 return;
             case "TYPING_START":
                 {
-                    TypingGatewayData? data = p.Data.ToObject<TypingGatewayData>(FluxerClient._serializer);
+                    TypingGatewayData? data = p.Data.ToObject<TypingGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
                         TypingStart?.Invoke(data);
                     else
@@ -739,7 +738,7 @@ public partial class GatewayClient : IDisposable
                 return;
             case "TYPING_STOP":
                 {
-                    TypingGatewayData? data = p.Data.ToObject<TypingGatewayData>(FluxerClient._serializer);
+                    TypingGatewayData? data = p.Data.ToObject<TypingGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
                         TypingStop?.Invoke(data);
                     else
@@ -750,7 +749,7 @@ public partial class GatewayClient : IDisposable
             //Message reactions
             case "MESSAGE_REACTION_ADD":
                 {
-                    MessageReactionGatewayData? data = p.Data.ToObject<MessageReactionGatewayData>(FluxerClient._serializer);
+                    MessageReactionGatewayData? data = p.Data.ToObject<MessageReactionGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
                         MessageReactionAdd?.Invoke(data);
                     else
@@ -759,7 +758,7 @@ public partial class GatewayClient : IDisposable
                 return;
             case "MESSAGE_REACTION_REMOVE":
                 {
-                    MessageReactionGatewayData? data = p.Data.ToObject<MessageReactionGatewayData>(FluxerClient._serializer);
+                    MessageReactionGatewayData? data = p.Data.ToObject<MessageReactionGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
                         MessageReactionRemove?.Invoke(data);
                     else
@@ -768,7 +767,7 @@ public partial class GatewayClient : IDisposable
                 return;
             case "MESSAGE_REACTION_REMOVE_ALL":
                 {
-                    EntityRemovedGatewayData? data = p.Data.ToObject<EntityRemovedGatewayData>(FluxerClient._serializer);
+                    EntityRemovedGatewayData? data = p.Data.ToObject<EntityRemovedGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
                         MessageReactionRemoveAll?.Invoke(data);
                     else
@@ -777,7 +776,7 @@ public partial class GatewayClient : IDisposable
                 return;
             case "MESSAGE_REACTION_REMOVE_EMOJI":
                 {
-                    MessageReactionRemoveEmojiGatewayData? data = p.Data.ToObject<MessageReactionRemoveEmojiGatewayData>(FluxerClient._serializer);
+                    MessageReactionRemoveEmojiGatewayData? data = p.Data.ToObject<MessageReactionRemoveEmojiGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
                         MessageReactionRemoveEmoji?.Invoke(data);
                     else
@@ -788,7 +787,7 @@ public partial class GatewayClient : IDisposable
             //Saved messages
             case "SAVED_MESSAGE_CREATE":
                 {
-                    SavedMessageGatewayData? data = p.Data.ToObject<SavedMessageGatewayData>(FluxerClient._serializer);
+                    SavedMessageGatewayData? data = p.Data.ToObject<SavedMessageGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
                         SavedMessageCreate?.Invoke(data);
                     else
@@ -797,7 +796,7 @@ public partial class GatewayClient : IDisposable
                 return;
             case "SAVED_MESSAGE_DELETE":
                 {
-                    SavedMessageGatewayData? data = p.Data.ToObject<SavedMessageGatewayData>(FluxerClient._serializer);
+                    SavedMessageGatewayData? data = p.Data.ToObject<SavedMessageGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
                         SavedMessageDelete?.Invoke(data);
                     else
@@ -806,7 +805,7 @@ public partial class GatewayClient : IDisposable
                 return;
             case "RECENT_MENTION_DELETE":
                 {
-                    RecentMentionDeleteGatewayData? data = p.Data.ToObject<RecentMentionDeleteGatewayData>(FluxerClient._serializer);
+                    RecentMentionDeleteGatewayData? data = p.Data.ToObject<RecentMentionDeleteGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
                         RecentMentionDelete?.Invoke(data);
                     else
@@ -817,7 +816,7 @@ public partial class GatewayClient : IDisposable
             //Message bulk operations
             case "MESSAGE_DELETE_BULK":
                 {
-                    MessageBulkDeleteGatewayData? data = p.Data.ToObject<MessageBulkDeleteGatewayData>(FluxerClient._serializer);
+                    MessageBulkDeleteGatewayData? data = p.Data.ToObject<MessageBulkDeleteGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
                         MessageDeleteBulk?.Invoke(data);
                     else
@@ -826,7 +825,7 @@ public partial class GatewayClient : IDisposable
                 return;
             case "MESSAGE_ACK":
                 {
-                    MessageAckGatewayData? data = p.Data.ToObject<MessageAckGatewayData>(FluxerClient._serializer);
+                    MessageAckGatewayData? data = p.Data.ToObject<MessageAckGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
                         MessageAck?.Invoke(data);
                     else
@@ -837,7 +836,7 @@ public partial class GatewayClient : IDisposable
             //Channel updates
             case "CHANNEL_UPDATE_BULK":
                 {
-                    ChannelUpdateBulkGatewayData? data = p.Data.ToObject<ChannelUpdateBulkGatewayData>(FluxerClient._serializer);
+                    ChannelUpdateBulkGatewayData? data = p.Data.ToObject<ChannelUpdateBulkGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
                         ChannelUpdateBulk?.Invoke(data);
                     else
@@ -846,7 +845,7 @@ public partial class GatewayClient : IDisposable
                 return;
             case "CHANNEL_RECIPIENT_ADD":
                 {
-                    ChannelRecipientGatewayData? data = p.Data.ToObject<ChannelRecipientGatewayData>(FluxerClient._serializer);
+                    ChannelRecipientGatewayData? data = p.Data.ToObject<ChannelRecipientGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
                         ChannelRecipientAdd?.Invoke(data);
                     else
@@ -855,7 +854,7 @@ public partial class GatewayClient : IDisposable
                 return;
             case "CHANNEL_RECIPIENT_REMOVE":
                 {
-                    ChannelRecipientGatewayData? data = p.Data.ToObject<ChannelRecipientGatewayData>(FluxerClient._serializer);
+                    ChannelRecipientGatewayData? data = p.Data.ToObject<ChannelRecipientGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
                         ChannelRecipientRemove?.Invoke(data);
                     else
@@ -864,7 +863,7 @@ public partial class GatewayClient : IDisposable
                 return;
             case "CHANNEL_PINS_UPDATE":
                 {
-                    ChannelPinsUpdateGatewayData? data = p.Data.ToObject<ChannelPinsUpdateGatewayData>(FluxerClient._serializer);
+                    ChannelPinsUpdateGatewayData? data = p.Data.ToObject<ChannelPinsUpdateGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
                         ChannelPinsUpdate?.Invoke(data);
                     else
@@ -873,7 +872,7 @@ public partial class GatewayClient : IDisposable
                 return;
             case "CHANNEL_PINS_ACK":
                 {
-                    ChannelPinsAckGatewayData? data = p.Data.ToObject<ChannelPinsAckGatewayData>(FluxerClient._serializer);
+                    ChannelPinsAckGatewayData? data = p.Data.ToObject<ChannelPinsAckGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
                         ChannelPinsAck?.Invoke(data);
                     else
@@ -884,7 +883,7 @@ public partial class GatewayClient : IDisposable
             //Voice events
             case "VOICE_STATE_UPDATE":
                 {
-                    VoiceStateGatewayData? data = p.Data.ToObject<VoiceStateGatewayData>(FluxerClient._serializer);
+                    VoiceStateGatewayData? data = p.Data.ToObject<VoiceStateGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
                     {
                         if (data.GuildId.HasValue && Guilds.TryGetValue(data.GuildId.Value, out SocketGuild guild))
@@ -910,7 +909,7 @@ public partial class GatewayClient : IDisposable
                 return;
             case "VOICE_SERVER_UPDATE":
                 {
-                    VoiceServerUpdateGatewayData? data = p.Data.ToObject<VoiceServerUpdateGatewayData>(FluxerClient._serializer);
+                    VoiceServerUpdateGatewayData? data = p.Data.ToObject<VoiceServerUpdateGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
                         VoiceServerUpdate?.Invoke(data);
                     else
@@ -921,7 +920,7 @@ public partial class GatewayClient : IDisposable
             //Guildban events
             case "GUILD_BAN_ADD":
                 {
-                    GuildBanGatewayData? data = p.Data.ToObject<GuildBanGatewayData>(FluxerClient._serializer);
+                    GuildBanGatewayData? data = p.Data.ToObject<GuildBanGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
                         GuildBanAdd?.Invoke(data);
                     else
@@ -930,7 +929,7 @@ public partial class GatewayClient : IDisposable
                 return;
             case "GUILD_BAN_REMOVE":
                 {
-                    GuildBanGatewayData? data = p.Data.ToObject<GuildBanGatewayData>(FluxerClient._serializer);
+                    GuildBanGatewayData? data = p.Data.ToObject<GuildBanGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
                         GuildBanRemove?.Invoke(data);
                     else
@@ -941,7 +940,7 @@ public partial class GatewayClient : IDisposable
             //Webhooks
             case "WEBHOOKS_UPDATE":
                 {
-                    WebhooksUpdateGatewayData? data = p.Data.ToObject<WebhooksUpdateGatewayData>(FluxerClient._serializer);
+                    WebhooksUpdateGatewayData? data = p.Data.ToObject<WebhooksUpdateGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
                         WebhooksUpdate?.Invoke(data);
                     else
@@ -952,7 +951,7 @@ public partial class GatewayClient : IDisposable
             //Guild events
             case "GUILD_CREATE":
                 {
-                    GuildGatewayData? data = p.Data.ToObject<GuildGatewayData>(FluxerClient._serializer);
+                    GuildGatewayData? data = p.Data.ToObject<GuildGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
                     {
                         GuildIds.Add(data.Id);
@@ -1012,7 +1011,7 @@ public partial class GatewayClient : IDisposable
                 return;
             case "GUILD_UPDATE":
                 {
-                    GuildGatewayData? data = p.Data.ToObject<GuildGatewayData>(FluxerClient._serializer);
+                    GuildGatewayData? data = p.Data.ToObject<GuildGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
                     {
                         if (Guilds.TryGetValue(data.Id, out SocketGuild guild))
@@ -1026,7 +1025,7 @@ public partial class GatewayClient : IDisposable
                 return;
             case "GUILD_DELETE":
                 {
-                    GuildDeleteGatewayData? data = p.Data.ToObject<GuildDeleteGatewayData>(FluxerClient._serializer);
+                    GuildDeleteGatewayData? data = p.Data.ToObject<GuildDeleteGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
                     {
                         if (data.Unavailable.GetValueOrDefault())
@@ -1056,7 +1055,7 @@ public partial class GatewayClient : IDisposable
                 return;
             case "GUILD_MEMBER_ADD":
                 {
-                    GuildMemberGatewayData? data = p.Data.ToObject<GuildMemberGatewayData>(FluxerClient._serializer);
+                    GuildMemberGatewayData? data = p.Data.ToObject<GuildMemberGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
                     {
                         if (Guilds.TryGetValue(data.GuildId, out SocketGuild guild))
@@ -1070,7 +1069,7 @@ public partial class GatewayClient : IDisposable
                 return;
             case "GUILD_MEMBER_UPDATE":
                 {
-                    GuildMemberGatewayData? data = p.Data.ToObject<GuildMemberGatewayData>(FluxerClient._serializer);
+                    GuildMemberGatewayData? data = p.Data.ToObject<GuildMemberGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
                     {
                         if (Guilds.TryGetValue(data.GuildId, out SocketGuild guild) && guild.Members.TryGetValue(data.Id, out SocketGuildMember member))
@@ -1084,7 +1083,7 @@ public partial class GatewayClient : IDisposable
                 return;
             case "GUILD_MEMBER_REMOVE":
                 {
-                    EntityRemovedGatewayData? data = p.Data.ToObject<EntityRemovedGatewayData>(FluxerClient._serializer);
+                    EntityRemovedGatewayData? data = p.Data.ToObject<EntityRemovedGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
                     {
                         if (Guilds.TryGetValue(data.GuildId.Value, out SocketGuild guild))
@@ -1098,7 +1097,7 @@ public partial class GatewayClient : IDisposable
                 return;
             case "GUILD_MEMBERS_CHUNK":
                 {
-                    GuildMembersChunkGatewayData? data = p.Data.ToObject<GuildMembersChunkGatewayData>(FluxerClient._serializer);
+                    GuildMembersChunkGatewayData? data = p.Data.ToObject<GuildMembersChunkGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
                     {
                         if (Guilds.TryGetValue(data.GuildId, out SocketGuild guild))
@@ -1121,7 +1120,7 @@ public partial class GatewayClient : IDisposable
                 return;
             case "GUILD_ROLE_CREATE":
                 {
-                    GuildRoleGatewayData? data = p.Data.ToObject<GuildRoleGatewayData>(FluxerClient._serializer);
+                    GuildRoleGatewayData? data = p.Data.ToObject<GuildRoleGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
                     {
                         if (Guilds.TryGetValue(data.GuildId, out SocketGuild guild))
@@ -1143,7 +1142,7 @@ public partial class GatewayClient : IDisposable
                 return;
             case "GUILD_ROLE_UPDATE":
                 {
-                    GuildRoleGatewayData? data = p.Data.ToObject<GuildRoleGatewayData>(FluxerClient._serializer);
+                    GuildRoleGatewayData? data = p.Data.ToObject<GuildRoleGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
                     {
                         if (Roles.TryGetValue(data.Role.Id, out SocketRole role))
@@ -1160,7 +1159,7 @@ public partial class GatewayClient : IDisposable
                 return;
             case "GUILD_ROLE_DELETE":
                 {
-                    GuildRoleDeleteGatewayData? data = p.Data.ToObject<GuildRoleDeleteGatewayData>(FluxerClient._serializer);
+                    GuildRoleDeleteGatewayData? data = p.Data.ToObject<GuildRoleDeleteGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
                     {
                         Roles.TryRemove(data.RoleId, out _);
@@ -1175,7 +1174,7 @@ public partial class GatewayClient : IDisposable
                 return;
             case "GUILD_ROLE_UPDATE_BULK":
                 {
-                    GuildRoleUpdateBulkGatewayData? data = p.Data.ToObject<GuildRoleUpdateBulkGatewayData>(FluxerClient._serializer);
+                    GuildRoleUpdateBulkGatewayData? data = p.Data.ToObject<GuildRoleUpdateBulkGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
                     {
                         foreach (RoleJson r in data.Roles)
@@ -1194,7 +1193,7 @@ public partial class GatewayClient : IDisposable
                 return;
             case "GUILD_EMOJIS_UPDATE":
                 {
-                    GuildEmojisUpdateGatewayData? data = p.Data.ToObject<GuildEmojisUpdateGatewayData>(FluxerClient._serializer);
+                    GuildEmojisUpdateGatewayData? data = p.Data.ToObject<GuildEmojisUpdateGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
                         GuildEmojisUpdate?.Invoke(data);
                     else
@@ -1203,7 +1202,7 @@ public partial class GatewayClient : IDisposable
                 return;
             case "GUILD_STICKERS_UPDATE":
                 {
-                    GuildStickersUpdateGatewayData? data = p.Data.ToObject<GuildStickersUpdateGatewayData>(FluxerClient._serializer);
+                    GuildStickersUpdateGatewayData? data = p.Data.ToObject<GuildStickersUpdateGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
                         GuildStickersUpdate?.Invoke(data);
                     else
@@ -1214,7 +1213,7 @@ public partial class GatewayClient : IDisposable
             //Relationship events
             case "RELATIONSHIP_ADD":
                 {
-                    RelationshipGatewayData? data = p.Data.ToObject<RelationshipGatewayData>(FluxerClient._serializer);
+                    RelationshipGatewayData? data = p.Data.ToObject<RelationshipGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
                         RelationshipAdd?.Invoke(data);
                     else
@@ -1223,7 +1222,7 @@ public partial class GatewayClient : IDisposable
                 return;
             case "RELATIONSHIP_UPDATE":
                 {
-                    RelationshipGatewayData? data = p.Data.ToObject<RelationshipGatewayData>(FluxerClient._serializer);
+                    RelationshipGatewayData? data = p.Data.ToObject<RelationshipGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
                         RelationshipUpdate?.Invoke(data);
                     else
@@ -1232,7 +1231,7 @@ public partial class GatewayClient : IDisposable
                 return;
             case "RELATIONSHIP_REMOVE":
                 {
-                    RelationshipRemoveGatewayData? data = p.Data.ToObject<RelationshipRemoveGatewayData>(FluxerClient._serializer);
+                    RelationshipRemoveGatewayData? data = p.Data.ToObject<RelationshipRemoveGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
                         RelationshipRemove?.Invoke(data);
                     else
@@ -1243,7 +1242,7 @@ public partial class GatewayClient : IDisposable
             //Favorite meme events
             case "FAVORITE_MEME_CREATE":
                 {
-                    FavoriteMemeGatewayData? data = p.Data.ToObject<FavoriteMemeGatewayData>(FluxerClient._serializer);
+                    FavoriteMemeGatewayData? data = p.Data.ToObject<FavoriteMemeGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
                         FavoriteMemeCreate?.Invoke(data);
                     else
@@ -1252,7 +1251,7 @@ public partial class GatewayClient : IDisposable
                 return;
             case "FAVORITE_MEME_UPDATE":
                 {
-                    FavoriteMemeGatewayData? data = p.Data.ToObject<FavoriteMemeGatewayData>(FluxerClient._serializer);
+                    FavoriteMemeGatewayData? data = p.Data.ToObject<FavoriteMemeGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
                         FavoriteMemeUpdate?.Invoke(data);
                     else
@@ -1261,7 +1260,7 @@ public partial class GatewayClient : IDisposable
                 return;
             case "FAVORITE_MEME_DELETE":
                 {
-                    FavoriteMemeDeleteGatewayData? data = p.Data.ToObject<FavoriteMemeDeleteGatewayData>(FluxerClient._serializer);
+                    FavoriteMemeDeleteGatewayData? data = p.Data.ToObject<FavoriteMemeDeleteGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
                         FavoriteMemeDelete?.Invoke(data);
                     else
@@ -1272,7 +1271,7 @@ public partial class GatewayClient : IDisposable
             //Call events
             case "CALL_CREATE":
                 {
-                    CallGatewayData? data = p.Data.ToObject<CallGatewayData>(FluxerClient._serializer);
+                    CallGatewayData? data = p.Data.ToObject<CallGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
                         CallCreate?.Invoke(data);
                     else
@@ -1281,7 +1280,7 @@ public partial class GatewayClient : IDisposable
                 return;
             case "CALL_UPDATE":
                 {
-                    CallGatewayData? data = p.Data.ToObject<CallGatewayData>(FluxerClient._serializer);
+                    CallGatewayData? data = p.Data.ToObject<CallGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
                         CallUpdate?.Invoke(data);
                     else
@@ -1290,7 +1289,7 @@ public partial class GatewayClient : IDisposable
                 return;
             case "CALL_DELETE":
                 {
-                    CallGatewayData? data = p.Data.ToObject<CallGatewayData>(FluxerClient._serializer);
+                    CallGatewayData? data = p.Data.ToObject<CallGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
                         CallDelete?.Invoke(data);
                     else
@@ -1301,7 +1300,7 @@ public partial class GatewayClient : IDisposable
             //Invite events
             case "INVITE_CREATE":
                 {
-                    InviteGatewayData? data = p.Data.ToObject<InviteGatewayData>(FluxerClient._serializer);
+                    InviteGatewayData? data = p.Data.ToObject<InviteGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
                         InviteCreate?.Invoke(data);
                     else
@@ -1310,7 +1309,7 @@ public partial class GatewayClient : IDisposable
                 return;
             case "INVITE_DELETE":
                 {
-                    InviteGatewayData? data = p.Data.ToObject<InviteGatewayData>(FluxerClient._serializer);
+                    InviteGatewayData? data = p.Data.ToObject<InviteGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
                         InviteDelete?.Invoke(data);
                     else
@@ -1326,7 +1325,7 @@ public partial class GatewayClient : IDisposable
 
     private void HandleHello(GatewayPacket packet)
     {
-        HelloGatewayData? data = packet.Data.ToObject<HelloGatewayData>(FluxerClient._serializer);
+        HelloGatewayData? data = packet.Data.ToObject<HelloGatewayData>(FluxerClient._gatewaySerializer);
         if (data == null)
         {
             _logger.Warning("HELLO event received but data could not be cast to HelloGatewayData");
@@ -2555,7 +2554,7 @@ public partial class GatewayClient : IDisposable
         _disposed = true;
     }
 
-    ~GatewayClient()
+    ~FluxerGatewayClient()
     {
         Dispose(false);
     }
