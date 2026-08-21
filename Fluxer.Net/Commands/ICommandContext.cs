@@ -4,10 +4,12 @@ using Fluxer.Net.Rest;
 namespace Fluxer.Net.Commands;
 
 /// <summary>
-///     Represents a context of a command. This may include the client, guild, channel, user, and message.
+/// The context of a command. This may include the client, guild, channel, user, and message.
 /// </summary>
 public interface ICommandContext
 {
+    CommandInfo Command { get; internal set; }
+
     /// <summary>
     /// Fluxer base client for the context.
     /// </summary>

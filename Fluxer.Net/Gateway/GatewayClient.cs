@@ -262,7 +262,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// This method automatically schedules reconnection if sending fails. Packets may be dropped
     /// during reconnection attempts. For critical operations, use the REST API via <see cref="FluxerApiClient"/>.
     /// </remarks>
-    public void SendGatewayPacket<T>(T Data)
+    public void SendGatewayPacket<T>(T Data) where T : class
     {
         // Check if WebSocket is actually connected before trying to send
         if (_webSocket == null || !_webSocket.IsRunning)
@@ -442,11 +442,20 @@ public partial class FluxerGatewayClient : IDisposable
                 case FluxerOpCode.RequestGuildMembers:
                     _logger.Debug("Received RequestGuildMembers opcode from server (unexpected)");
                     return;
+                case FluxerOpCode.GatewayError:
+                    _logger.Debug("Received GatewayError opcode from server");
+                    return;
                 case FluxerOpCode.CallConnect:
                     _logger.Debug("Received CallConnect opcode from server");
                     return;
                 case FluxerOpCode.GuildSubscriptions:
                     _logger.Debug("Received GuildSubscriptions opcode from server");
+                    return;
+                case FluxerOpCode.RequestGuildMemberCounts:
+                    _logger.Debug("Received RequestGuildMemberCounts opcode from server (unexpected)");
+                    return;
+                case FluxerOpCode.RequestChannelMemberCounts:
+                    _logger.Debug("Received RequestChannelMemberCounts opcode from server (unexpected)");
                     return;
                 case FluxerOpCode.InvalidSession:
                     // Should not reach here due to pre-check above, but handle it anyway
@@ -1316,7 +1325,24 @@ public partial class FluxerGatewayClient : IDisposable
                         _logger.Warning("INVITE_DELETE event received but data could not be cast to InviteGatewayData");
                 }
                 return;
-
+            case "GUILD_COUNTS_UPDATE":
+                {
+                    CountGatewayData<GuildMemberCountGatewayData> data = p.Data.ToObject<CountGatewayData<GuildMemberCountGatewayData>>(FluxerClient._gatewaySerializer);
+                    if (data != null)
+                        GuildMemberCounts?.Invoke(data);
+                    else
+                        _logger.Warning("GUILD_COUNTS_UPDATE event received but data could not be cast to GuildMemberCountGatewayData");
+                }
+                break;
+            case "CHANNEL_MEMBER_COUNTS_UPDATE":
+                {
+                    CountGatewayData<GuildChannelMemberCountGatewayData> data = p.Data.ToObject<CountGatewayData<GuildChannelMemberCountGatewayData>>(FluxerClient._gatewaySerializer);
+                    if (data != null)
+                        ChannelMemberCounts?.Invoke(data);
+                    else
+                        _logger.Warning("CHANNEL_MEMBER_COUNTS_UPDATE event received but data could not be cast to GuildChannelMemberCountGatewayData");
+                }
+                break;
             default:
                 _logger.Warning("Unhandled dispatch {Dispatch}", p.Dispatch);
                 break;
@@ -2471,6 +2497,14 @@ public partial class FluxerGatewayClient : IDisposable
     /// Occurs when an invite is deleted or expires.
     /// </summary>
     public event InviteDeleteEvent InviteDelete;
+
+    public delegate void GuildMemberCountsEvent(CountGatewayData<GuildMemberCountGatewayData> data);
+
+    public event GuildMemberCountsEvent GuildMemberCounts;
+
+    public delegate void ChannelMemberCountsEvent(CountGatewayData<GuildChannelMemberCountGatewayData> data);
+
+    public event ChannelMemberCountsEvent ChannelMemberCounts;
 
     #endregion
 

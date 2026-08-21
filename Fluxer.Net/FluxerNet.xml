@@ -356,7 +356,10 @@
             <exception cref="T:System.InvalidOperationException">Only the last parameter in a command may have the Remainder or Multiple flag.</exception>
         </member>
         <member name="T:Fluxer.Net.Commands.CommandContext">
-            <summary> The context of a command which may contain the client, user, guild, channel, and message. </summary>
+            <inheritdoc/>
+        </member>
+        <member name="P:Fluxer.Net.Commands.CommandContext.Command">
+            <inheritdoc/>
         </member>
         <member name="P:Fluxer.Net.Commands.CommandContext.Client">
             <inheritdoc/>
@@ -383,7 +386,7 @@
             <inheritdoc/>
         </member>
         <member name="P:Fluxer.Net.Commands.CommandContext.IsPrivate">
-            <summary> Indicates whether the channel that the command is executed in is a private channel. </summary>
+            <inheritdoc/>
         </member>
         <member name="M:Fluxer.Net.Commands.CommandContext.#ctor(Fluxer.Net.FluxerClient,Fluxer.Net.Gateway.MessageGatewayData)">
             <summary>
@@ -811,7 +814,7 @@
         </member>
         <member name="T:Fluxer.Net.Commands.ICommandContext">
             <summary>
-                Represents a context of a command. This may include the client, guild, channel, user, and message.
+            The context of a command. This may include the client, guild, channel, user, and message.
             </summary>
         </member>
         <member name="P:Fluxer.Net.Commands.ICommandContext.Client">
@@ -6722,6 +6725,14 @@
             <param name="json"></param>
             <returns></returns>
         </member>
+        <member name="M:Fluxer.Net.GlobalSearch.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.GlobalSearchJson)">
+            <summary>
+            Create a Instance object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <returns></returns>
+        </member>
         <member name="T:Fluxer.Net.Instance">
             <inheritdoc />
         </member>
@@ -6902,6 +6913,15 @@
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.InstanceLimits.Traits">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceLimits.Rules">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceRule.Id">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceRule.Overrides">
             <inheritdoc />
         </member>
         <member name="T:Fluxer.Net.InstancePush">
@@ -7145,6 +7165,15 @@
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.InstanceLimitsJson.Traits">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceLimitsJson.Rules">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceRuleJson.Id">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.InstanceRuleJson.Overrides">
             <inheritdoc />
         </member>
         <member name="T:Fluxer.Net.InstancePushJson">
@@ -9082,6 +9111,12 @@
             <param name="token"></param>
             <param name="config"></param>
         </member>
+        <member name="M:Fluxer.Net.FluxerClient.UseCanary">
+            <summary>
+            Use canary features for the API.
+            </summary>
+            <returns></returns>
+        </member>
         <member name="P:Fluxer.Net.FluxerClient.Token">
             <inheritdoc cref="P:Fluxer.Net.FluxerBaseClient.Token" />
         </member>
@@ -9259,11 +9294,14 @@
         <member name="M:Fluxer.Net.FluxerWebhookClient.DeleteAsync">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.DeleteWebhookWithTokenAsync(System.UInt64,System.String)" />
         </member>
-        <member name="M:Fluxer.Net.FluxerWebhookClient.SendMessageAsync(System.String,System.Collections.Generic.List{Fluxer.Net.Rest.EmbedRequest},Fluxer.Net.Rest.MessageReferenceRequest,Fluxer.Net.Rest.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64},System.Collections.Generic.List{Fluxer.Net.Rest.AttachmentRequest})">
-            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.ExecuteWebhookAsync(System.UInt64,System.String,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.EmbedRequest},Fluxer.Net.Rest.MessageReferenceRequest,Fluxer.Net.Rest.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64})" />
+        <member name="M:Fluxer.Net.FluxerWebhookClient.SendMessageAsync(System.String,System.Collections.Generic.List{Fluxer.Net.Rest.EmbedRequest},System.String,System.String,Fluxer.Net.Rest.MessageReferenceRequest,Fluxer.Net.Rest.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64},System.Collections.Generic.List{Fluxer.Net.Rest.AttachmentRequest})">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.ExecuteWebhookAsync(System.UInt64,System.String,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.EmbedRequest},System.String,System.String,Fluxer.Net.Rest.MessageReferenceRequest,Fluxer.Net.Rest.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64},System.Collections.Generic.List{Fluxer.Net.Rest.AttachmentRequest})" />
         </member>
-        <member name="M:Fluxer.Net.FluxerWebhookClient.EditMessageAsync(System.UInt64,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.EmbedRequest},Fluxer.Net.Rest.MessageReferenceRequest,Fluxer.Net.Rest.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64},System.Collections.Generic.List{Fluxer.Net.Rest.AttachmentRequest})">
-            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.EditWebhookMessageAsync(System.UInt64,System.String,System.UInt64,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.EmbedRequest},Fluxer.Net.Rest.MessageReferenceRequest,Fluxer.Net.Rest.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64})" />
+        <member name="M:Fluxer.Net.FluxerWebhookClient.SendMessageWaitAsync(System.String,System.Collections.Generic.List{Fluxer.Net.Rest.EmbedRequest},System.String,System.String,Fluxer.Net.Rest.MessageReferenceRequest,Fluxer.Net.Rest.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64},System.Collections.Generic.List{Fluxer.Net.Rest.AttachmentRequest})">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.ExecuteWebhookWaitAsync(System.UInt64,System.String,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.EmbedRequest},System.String,System.String,Fluxer.Net.Rest.MessageReferenceRequest,Fluxer.Net.Rest.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64},System.Collections.Generic.List{Fluxer.Net.Rest.AttachmentRequest})" />
+        </member>
+        <member name="M:Fluxer.Net.FluxerWebhookClient.EditMessageAsync(System.UInt64,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.EmbedRequest},Fluxer.Net.Rest.MessageReferenceRequest,Fluxer.Net.Rest.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Collections.Generic.List{System.UInt64},System.Collections.Generic.List{Fluxer.Net.Rest.AttachmentRequest})">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.EditWebhookMessageAsync(System.UInt64,System.String,System.UInt64,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.EmbedRequest},Fluxer.Net.Rest.MessageReferenceRequest,Fluxer.Net.Rest.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Collections.Generic.List{System.UInt64},System.Collections.Generic.List{Fluxer.Net.Rest.AttachmentRequest})" />
         </member>
         <member name="M:Fluxer.Net.FluxerWebhookClient.DeleteMessageAsync(System.UInt64)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.DeleteWebhookMessageAsync(System.UInt64,System.String,System.UInt64)" />
@@ -10562,6 +10600,11 @@
             If client does not receive ACK, the connection may be unhealthy.
             </remarks>
         </member>
+        <member name="F:Fluxer.Net.Gateway.FluxerOpCode.GatewayError">
+            <summary>
+            An error in the gateway has occured.
+            </summary>
+        </member>
         <member name="F:Fluxer.Net.Gateway.FluxerOpCode.CallConnect">
             <summary>
             Connects to a call (voice/video).
@@ -10577,6 +10620,16 @@
             Used to enable or disable events for specific guilds.
             Useful for managing event load in bots that are in many guilds.
             </remarks>
+        </member>
+        <member name="F:Fluxer.Net.Gateway.FluxerOpCode.RequestGuildMemberCounts">
+            <summary>
+            Request guild member count.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.Gateway.FluxerOpCode.RequestChannelMemberCounts">
+            <summary>
+            Request channel member count.
+            </summary>
         </member>
         <member name="P:Fluxer.Net.Gateway.RequestMembersPacket.GuildId">
             <summary>
@@ -10788,7 +10841,7 @@
             <remarks>
             This client handles HTTP requests to the Fluxer API with automatic rate limiting,
             JSON serialization, and error handling. It supports both synchronous operations via
-            REST and can be paired with <see cref="!:FluxerGatewayClient"/> for real-time events.
+            REST and can be paired with <see cref="T:Fluxer.Net.Gateway.FluxerGatewayClient"/> for real-time events.
             </remarks>
         </member>
         <member name="P:Fluxer.Net.Rest.FluxerApiClient.HttpClient">
@@ -11159,7 +11212,7 @@
             <param name="attachments"></param>
             <returns></returns>
         </member>
-        <member name="M:Fluxer.Net.Rest.FluxerApiClient.EditMessageAsync(System.UInt64,System.UInt64,Fluxer.Net.Rest.UpdateMessageRequest)">
+        <member name="M:Fluxer.Net.Rest.FluxerApiClient.EditMessageAsync(System.UInt64,System.UInt64,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.EmbedRequest},Fluxer.Net.Rest.MessageReferenceRequest,Fluxer.Net.Rest.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Collections.Generic.List{System.UInt64},System.Collections.Generic.List{Fluxer.Net.Rest.AttachmentRequest})">
             <summary>
             Modify your message in a channel
             </summary>
@@ -11168,7 +11221,15 @@
             </remarks>
             <param name="channelId"></param>
             <param name="messageId"></param>
-            <param name="message"></param>
+            <param name="content"></param>
+            <param name="embeds"></param>
+            <param name="reference"></param>
+            <param name="allowedMentions"></param>
+            <param name="flags"></param>
+            <param name="nonce"></param>
+            <param name="favoruteMemeId"></param>
+            <param name="stickerIds"></param>
+            <param name="attachments"></param>
             <returns></returns>
         </member>
         <member name="M:Fluxer.Net.Rest.FluxerApiClient.DeleteMessageAsync(System.UInt64,System.UInt64)">
@@ -12300,7 +12361,7 @@
             <param name="token"></param>
             <returns></returns>
         </member>
-        <member name="M:Fluxer.Net.Rest.FluxerApiClient.ExecuteWebhookAsync(System.UInt64,System.String,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.EmbedRequest},Fluxer.Net.Rest.MessageReferenceRequest,Fluxer.Net.Rest.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64})">
+        <member name="M:Fluxer.Net.Rest.FluxerApiClient.ExecuteWebhookAsync(System.UInt64,System.String,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.EmbedRequest},System.String,System.String,Fluxer.Net.Rest.MessageReferenceRequest,Fluxer.Net.Rest.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64},System.Collections.Generic.List{Fluxer.Net.Rest.AttachmentRequest})">
             <summary>
             Send message using the webhook token in a guild channel.
             </summary>
@@ -12308,6 +12369,8 @@
             <param name="token"></param>
             <param name="content"></param>
             <param name="embeds"></param>
+            <param name="username"></param>
+            <param name="avatarUrl"></param>
             <param name="reference"></param>
             <param name="allowedMentions"></param>
             <param name="flags"></param>
@@ -12315,6 +12378,7 @@
             <param name="favoruteMemeId"></param>
             <param name="tts"></param>
             <param name="stickerIds"></param>
+            <param name="attachments"></param>
             <returns></returns>
         </member>
         <member name="M:Fluxer.Net.Rest.FluxerApiClient.DeleteWebhookMessageAsync(System.UInt64,System.String,System.UInt64)">
@@ -12326,7 +12390,7 @@
             <param name="messageId"></param>
             <returns></returns>
         </member>
-        <member name="M:Fluxer.Net.Rest.FluxerApiClient.EditWebhookMessageAsync(System.UInt64,System.String,System.UInt64,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.EmbedRequest},Fluxer.Net.Rest.MessageReferenceRequest,Fluxer.Net.Rest.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64})">
+        <member name="M:Fluxer.Net.Rest.FluxerApiClient.EditWebhookMessageAsync(System.UInt64,System.String,System.UInt64,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.EmbedRequest},Fluxer.Net.Rest.MessageReferenceRequest,Fluxer.Net.Rest.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Collections.Generic.List{System.UInt64},System.Collections.Generic.List{Fluxer.Net.Rest.AttachmentRequest})">
             <summary>
             Modify a webhook message using the webhook token.
             </summary>
@@ -12340,11 +12404,11 @@
             <param name="flags"></param>
             <param name="nonce"></param>
             <param name="favoruteMemeId"></param>
-            <param name="tts"></param>
             <param name="stickerIds"></param>
+            <param name="attachments"></param>
             <returns></returns>
         </member>
-        <member name="M:Fluxer.Net.Rest.FluxerApiClient.ExecuteWebhookWaitAsync(System.UInt64,System.String,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.EmbedRequest},Fluxer.Net.Rest.MessageReferenceRequest,Fluxer.Net.Rest.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64})">
+        <member name="M:Fluxer.Net.Rest.FluxerApiClient.ExecuteWebhookWaitAsync(System.UInt64,System.String,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.EmbedRequest},System.String,System.String,Fluxer.Net.Rest.MessageReferenceRequest,Fluxer.Net.Rest.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64},System.Collections.Generic.List{Fluxer.Net.Rest.AttachmentRequest})">
             <summary>
             Send message using the webhook token in a guild channel and wait for response message.
             </summary>
@@ -12352,6 +12416,8 @@
             <param name="token"></param>
             <param name="content"></param>
             <param name="embeds"></param>
+            <param name="username"></param>
+            <param name="avatarUrl"></param>
             <param name="reference"></param>
             <param name="allowedMentions"></param>
             <param name="flags"></param>
@@ -12430,32 +12496,77 @@
             API limits for the current instance.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxGuilds">
-            <summary>
-            How many guilds you can join.
-            </summary>
-        </member>
         <member name="F:Fluxer.Net.Rest.ApiLimits.MaxGuildsPremium">
             <summary>
             How many guilds you can join with premium.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxEmojis">
+        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxGuilds">
+            <summary>
+            How many guilds you can join.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxGuildChannels">
+            <summary>
+            How many channels a guild can have.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxChannelsPerCategory">
+            <summary>
+            How many channels a category can have.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.Rest.ApiLimits.VoiceChannelBitrateMin">
+            <summary>
+            Minimum bitrate for voice channel.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.Rest.ApiLimits.VoiceChannelBitrateMax">
+            <summary>
+            Maximum bitrate for voice channel.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.Rest.ApiLimits.VoiceChannelUserLimitMax">
+            <summary>
+            Maximum users that can join a voice channel.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.Rest.ApiLimits.VoiceChannelCameraUserLimit">
+            <summary>
+            Maximum users that can use camera in a voice channel.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.Rest.ApiLimits.VoiceChannelConnectionLimitMax">
+            <summary>
+            Maximum connections a user can have in a voice channel.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.Rest.ApiLimits.ChannelTopicMaxLength">
+            <summary>
+            Maximum length a channel topic can have.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.Rest.ApiLimits.RTCRegionIdMaxLength">
+            <summary>
+            Maximum length a region id can have.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxGuildEmojis">
             <summary>
             How many emojis you can create in a guild.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxEmojisAnimated">
+        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxGuildEmojisAnimated">
             <summary>
             How many animated emojis you can create in a guild.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxEmojisMore">
+        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxGuildEmojisMore">
             <summary>
             How many more emojis you can create in a guild with <see cref="P:Fluxer.Net.GuildFeatures.HasMoreEmojis"/>.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxEmojisAnimatedMore">
+        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxGuildEmojisAnimatedMore">
             <summary>
             How many more animated emojis you can create in a guild with <see cref="P:Fluxer.Net.GuildFeatures.HasMoreEmojis"/>.
             </summary>
@@ -12465,9 +12576,14 @@
             How many stickers you can create in a guild.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxStickersMore">
+        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxGuildStickersMore">
             <summary>
             How many more stickers you can create in a guild with <see cref="P:Fluxer.Net.GuildFeatures.HasMoreStickers"/>.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxGuildInvites">
+            <summary>
+            Maximum invites a guild can create.
             </summary>
         </member>
         <member name="F:Fluxer.Net.Rest.ApiLimits.MaxGuildMembers">
@@ -12480,14 +12596,34 @@
             How many more users can join a guild with <see cref="P:Fluxer.Net.GuildFeatures.IsLargeServer"/>.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxChannelsPerCategory">
+        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxInviteUses">
             <summary>
-            How many channels a category can have.
+            Maximum limit a limited invite can be set to.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxMessageContentLength">
+        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxInviteAgeSeconds">
             <summary>
-            Max length of message text you can send.
+            Maximum seconds a limited invite can be set to.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxGuildRoles">
+            <summary>
+            Maximum roles a guild can create.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxAppsPerUser">
+            <summary>
+            Maximum apps a user can create.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxWebhooksPerChannel">
+            <summary>
+            Maximum webhooks a channel can have.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxWebhooksPerGuild">
+            <summary>
+            Maximum webhooks a guild can create.
             </summary>
         </member>
         <member name="F:Fluxer.Net.Rest.ApiLimits.MaxMessageContentLengthPremium">
@@ -12495,7 +12631,12 @@
             Max length of message text you can send with premium.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxMessageAttachments">
+        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxMessageContentLength">
+            <summary>
+            Max length of message text you can send.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxAttachmentsPerMessage">
             <summary>
             Max attachments you can send in 1 message.
             </summary>
@@ -12505,9 +12646,54 @@
             Max embeds you can send in 1 message.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxBookmarks">
+        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxReactionsPerMessage">
             <summary>
-            Max bookmarks you can have.
+            Maximum reactions a message can have.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxUsersPerMessageReaction">
+            <summary>
+            Maximum users each reaction can have.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.Rest.ApiLimits.NaxAttachmentAltTextLength">
+            <summary>
+            Maximum length of attachment alternative text.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxBioLength">
+            <summary>
+            Maximum length of profile bio/text you can set.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxBioLengthPremium">
+            <summary>
+            Maximum length of profile bio/text you can set with premium.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.Rest.ApiLimits.AvatarMaxSize">
+            <summary>
+            Maximum size and avatar upload can be.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxRelationships">
+            <summary>
+            Maximum friends a user can have.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxGroupMembers">
+            <summary>
+            Maximum users a group can have.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxPrivateChannelsPerUser">
+            <summary>
+            Maximum private channels a user can have open.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxGroupsPerUser">
+            <summary>
+            Maximum groups a user can create.
             </summary>
         </member>
         <member name="F:Fluxer.Net.Rest.ApiLimits.MaxBookmarksPremium">
@@ -12515,9 +12701,9 @@
             Max bookmarks you can have with premium.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxFavoriteMemes">
+        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxBookmarks">
             <summary>
-            Max favorite gifs you can have.
+            Max bookmarks you can have.
             </summary>
         </member>
         <member name="F:Fluxer.Net.Rest.ApiLimits.MaxFavoriteMemesPremium">
@@ -12525,19 +12711,19 @@
             Max favorite gifs you can have with premium.
             </summary>
         </member>
+        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxFavoriteMemes">
+            <summary>
+            Max favorite gifs you can have.
+            </summary>
+        </member>
         <member name="F:Fluxer.Net.Rest.ApiLimits.MaxFavoriteMemeTags">
             <summary>
             Max tags a favorite gif can have.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxBioLength">
+        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxFavoriteGifs">
             <summary>
-            Max length of profile bio/text you can set.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxBioLengthPremium">
-            <summary>
-            Max length of profile bio/text you can set with premium.
+            Max favorite gifs saved.
             </summary>
         </member>
         <member name="F:Fluxer.Net.Rest.ApiLimits.FilenameTypeMinLength">
@@ -12689,6 +12875,11 @@
         <member name="P:Fluxer.Net.Rest.UpdateGuildVanityUrlRequest.Code">
             <summary>
             The new vanity Url code (2-32 characters, alphanumeric and hyphens)
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.Rest.AllowedMentionsRequest">
+            <summary>
+            Allowed mentions when sending a message.
             </summary>
         </member>
         <member name="P:Fluxer.Net.Rest.AllowedMentionsRequest.Parse">
@@ -12861,12 +13052,12 @@
         </member>
         <member name="P:Fluxer.Net.Rest.MessageRequest.Embeds">
             <summary>
-            Array of embed objects to include in the message
+            Array of embed objects to include in the message.
             </summary>
         </member>
         <member name="P:Fluxer.Net.Rest.MessageRequest.Attachments">
             <summary>
-            Array of attachment objects
+            Array of attachment objects.
             </summary>
         </member>
         <member name="P:Fluxer.Net.Rest.MessageRequest.MessageReference">
@@ -12876,22 +13067,22 @@
         </member>
         <member name="P:Fluxer.Net.Rest.MessageRequest.AllowedMentions">
             <summary>
-            Controls which mentions trigger notifications
+            Controls which mentions trigger notifications.
             </summary>
         </member>
         <member name="P:Fluxer.Net.Rest.MessageRequest.Flags">
             <summary>
-            Message flags bitfield
+            Message flags bitfield.
             </summary>
         </member>
         <member name="P:Fluxer.Net.Rest.MessageRequest.Nonce">
             <summary>
-            Client-generated identifier for the message
+            Client-generated identifier for the message.
             </summary>
         </member>
         <member name="P:Fluxer.Net.Rest.MessageRequest.FavoriteMemeId">
             <summary>
-            ID of a favorite meme to attach
+            ID of a favorite meme to attach.
             </summary>
         </member>
         <member name="P:Fluxer.Net.Rest.MessageRequest.StickerIds">
@@ -12901,7 +13092,17 @@
         </member>
         <member name="P:Fluxer.Net.Rest.MessageRequest.IsTTS">
             <summary>
-            Whether this is a text-to-speech message
+            Whether this is a text-to-speech message.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.MessageRequest.WebhookUsername">
+            <summary>
+            Custom webhook name for the message.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.MessageRequest.WebhookAvatarUrl">
+            <summary>
+            Custom webhook avatar for the message.
             </summary>
         </member>
         <member name="P:Fluxer.Net.Rest.MessageSearchRequest.HitsPerPage">
@@ -13064,31 +13265,6 @@
             Whether to include NSFW channel results
             </summary>
         </member>
-        <member name="P:Fluxer.Net.Rest.UpdateMessageRequest.Content">
-            <summary>
-            The message content (up to 2000 characters)
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.Rest.UpdateMessageRequest.Embeds">
-            <summary>
-            Array of embed objects to include in the message
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.Rest.UpdateMessageRequest.AllowedMentions">
-            <summary>
-            Controls which mentions trigger notifications
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.Rest.UpdateMessageRequest.Flags">
-            <summary>
-            Message flags bitfield
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.Rest.UpdateMessageRequest.Attachments">
-            <summary>
-            Array of attachment objects to keep or add
-            </summary>
-        </member>
         <member name="T:Fluxer.Net.Rest.RestClientQueryParams">
             <summary>
             Query params for HTTP requests
@@ -13167,11 +13343,11 @@
         <member name="M:Fluxer.Net.ChannelHelpers.DeleteMessageAsync(Fluxer.Net.Channel,Fluxer.Net.Message)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.DeleteMessageAsync(System.UInt64,System.UInt64)" />
         </member>
-        <member name="M:Fluxer.Net.ChannelHelpers.EditMessageAsync(Fluxer.Net.Channel,System.UInt64,Fluxer.Net.Rest.UpdateMessageRequest)">
-            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.EditMessageAsync(System.UInt64,System.UInt64,Fluxer.Net.Rest.UpdateMessageRequest)" />
+        <member name="M:Fluxer.Net.ChannelHelpers.EditMessageAsync(Fluxer.Net.Channel,System.UInt64,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.EmbedRequest},Fluxer.Net.Rest.MessageReferenceRequest,Fluxer.Net.Rest.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Collections.Generic.List{System.UInt64},System.Collections.Generic.List{Fluxer.Net.Rest.AttachmentRequest})">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.EditMessageAsync(System.UInt64,System.UInt64,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.EmbedRequest},Fluxer.Net.Rest.MessageReferenceRequest,Fluxer.Net.Rest.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Collections.Generic.List{System.UInt64},System.Collections.Generic.List{Fluxer.Net.Rest.AttachmentRequest})" />
         </member>
-        <member name="M:Fluxer.Net.ChannelHelpers.EditMessageAsync(Fluxer.Net.Channel,Fluxer.Net.Message,Fluxer.Net.Rest.UpdateMessageRequest)">
-            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.EditMessageAsync(System.UInt64,System.UInt64,Fluxer.Net.Rest.UpdateMessageRequest)" />
+        <member name="M:Fluxer.Net.ChannelHelpers.EditMessageAsync(Fluxer.Net.Channel,Fluxer.Net.Message,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.EmbedRequest},Fluxer.Net.Rest.MessageReferenceRequest,Fluxer.Net.Rest.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Collections.Generic.List{System.UInt64},System.Collections.Generic.List{Fluxer.Net.Rest.AttachmentRequest})">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.EditMessageAsync(System.UInt64,System.UInt64,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.EmbedRequest},Fluxer.Net.Rest.MessageReferenceRequest,Fluxer.Net.Rest.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Collections.Generic.List{System.UInt64},System.Collections.Generic.List{Fluxer.Net.Rest.AttachmentRequest})" />
         </member>
         <member name="M:Fluxer.Net.ChannelHelpers.DeleteMessageAttachmentAsync(Fluxer.Net.Channel,System.UInt64,System.UInt64)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.DeleteMessageAttachmentAsync(System.UInt64,System.UInt64,System.UInt64)" />
@@ -13373,8 +13549,8 @@
         <member name="M:Fluxer.Net.MessageHelpers.DeleteAsync(Fluxer.Net.Message)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.DeleteMessageAsync(System.UInt64,System.UInt64)" />
         </member>
-        <member name="M:Fluxer.Net.MessageHelpers.ModifyAsync(Fluxer.Net.Message,Fluxer.Net.Rest.UpdateMessageRequest)">
-            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.EditMessageAsync(System.UInt64,System.UInt64,Fluxer.Net.Rest.UpdateMessageRequest)" />
+        <member name="M:Fluxer.Net.MessageHelpers.ModifyAsync(Fluxer.Net.Message,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.EmbedRequest},Fluxer.Net.Rest.MessageReferenceRequest,Fluxer.Net.Rest.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Collections.Generic.List{System.UInt64},System.Collections.Generic.List{Fluxer.Net.Rest.AttachmentRequest})">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.EditMessageAsync(System.UInt64,System.UInt64,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.EmbedRequest},Fluxer.Net.Rest.MessageReferenceRequest,Fluxer.Net.Rest.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Collections.Generic.List{System.UInt64},System.Collections.Generic.List{Fluxer.Net.Rest.AttachmentRequest})" />
         </member>
         <member name="M:Fluxer.Net.MessageHelpers.AcknowledgeAsync(Fluxer.Net.Message,Fluxer.Net.MessageAckJson)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.AcknowledgeMessageAsync(System.UInt64,System.UInt64,Fluxer.Net.MessageAckJson)" />
@@ -13417,7 +13593,7 @@
             Requires <see cref="P:Fluxer.Net.ChannelPermissions.ViewChannel"/> and <see cref="P:Fluxer.Net.ChannelPermissions.SendMessages"/> in a guild channel.
             </remarks>
         </member>
-        <member name="M:Fluxer.Net.MessageHelpers.SuppressEmbedsAsync(Fluxer.Net.Message,Fluxer.Net.Rest.AllowedMentionsRequest)">
+        <member name="M:Fluxer.Net.MessageHelpers.SuppressEmbedsAsync(Fluxer.Net.Message)">
             <summary>
             Hide embeds on a message.
             </summary>
@@ -13518,11 +13694,11 @@
         <member name="M:Fluxer.Net.WebhookHelpers.ModifyAsync(Fluxer.Net.Webhook,Fluxer.Net.WebhookJson)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.UpdateWebhookWithTokenAsync``1(System.UInt64,System.String,``0)" />
         </member>
-        <member name="M:Fluxer.Net.WebhookHelpers.SendMessageAsync(Fluxer.Net.Webhook,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.EmbedRequest},Fluxer.Net.Rest.MessageReferenceRequest,Fluxer.Net.Rest.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64})">
-            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.ExecuteWebhookAsync(System.UInt64,System.String,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.EmbedRequest},Fluxer.Net.Rest.MessageReferenceRequest,Fluxer.Net.Rest.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64})" />
+        <member name="M:Fluxer.Net.WebhookHelpers.SendMessageAsync(Fluxer.Net.Webhook,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.EmbedRequest},System.String,System.String,Fluxer.Net.Rest.MessageReferenceRequest,Fluxer.Net.Rest.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64},System.Collections.Generic.List{Fluxer.Net.Rest.AttachmentRequest})">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.ExecuteWebhookAsync(System.UInt64,System.String,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.EmbedRequest},System.String,System.String,Fluxer.Net.Rest.MessageReferenceRequest,Fluxer.Net.Rest.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64},System.Collections.Generic.List{Fluxer.Net.Rest.AttachmentRequest})" />
         </member>
-        <member name="M:Fluxer.Net.WebhookHelpers.SendMessageWaitAsync(Fluxer.Net.Webhook,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.EmbedRequest},Fluxer.Net.Rest.MessageReferenceRequest,Fluxer.Net.Rest.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64})">
-            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.ExecuteWebhookAsync(System.UInt64,System.String,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.EmbedRequest},Fluxer.Net.Rest.MessageReferenceRequest,Fluxer.Net.Rest.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64})" />
+        <member name="M:Fluxer.Net.WebhookHelpers.SendMessageWaitAsync(Fluxer.Net.Webhook,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.EmbedRequest},System.String,System.String,Fluxer.Net.Rest.MessageReferenceRequest,Fluxer.Net.Rest.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64},System.Collections.Generic.List{Fluxer.Net.Rest.AttachmentRequest})">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.ExecuteWebhookWaitAsync(System.UInt64,System.String,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.EmbedRequest},System.String,System.String,Fluxer.Net.Rest.MessageReferenceRequest,Fluxer.Net.Rest.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64},System.Collections.Generic.List{Fluxer.Net.Rest.AttachmentRequest})" />
         </member>
         <member name="M:Fluxer.Net.WebhookHelpers.DeleteMessageAsync(Fluxer.Net.Webhook,Fluxer.Net.Message)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.DeleteWebhookMessageAsync(System.UInt64,System.String,System.UInt64)" />
@@ -13530,11 +13706,11 @@
         <member name="M:Fluxer.Net.WebhookHelpers.DeleteMessageAsync(Fluxer.Net.Webhook,System.UInt64)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.DeleteWebhookMessageAsync(System.UInt64,System.String,System.UInt64)" />
         </member>
-        <member name="M:Fluxer.Net.WebhookHelpers.EditMessageAsync(Fluxer.Net.Webhook,System.UInt64,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.EmbedRequest},Fluxer.Net.Rest.MessageReferenceRequest,Fluxer.Net.Rest.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64})">
-            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.EditWebhookMessageAsync(System.UInt64,System.String,System.UInt64,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.EmbedRequest},Fluxer.Net.Rest.MessageReferenceRequest,Fluxer.Net.Rest.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64})" />
+        <member name="M:Fluxer.Net.WebhookHelpers.EditMessageAsync(Fluxer.Net.Webhook,System.UInt64,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.EmbedRequest},Fluxer.Net.Rest.MessageReferenceRequest,Fluxer.Net.Rest.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Collections.Generic.List{System.UInt64},System.Collections.Generic.List{Fluxer.Net.Rest.AttachmentRequest})">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.EditWebhookMessageAsync(System.UInt64,System.String,System.UInt64,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.EmbedRequest},Fluxer.Net.Rest.MessageReferenceRequest,Fluxer.Net.Rest.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Collections.Generic.List{System.UInt64},System.Collections.Generic.List{Fluxer.Net.Rest.AttachmentRequest})" />
         </member>
-        <member name="M:Fluxer.Net.WebhookHelpers.EditMessageAsync(Fluxer.Net.Webhook,Fluxer.Net.Message,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.EmbedRequest},Fluxer.Net.Rest.MessageReferenceRequest,Fluxer.Net.Rest.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64})">
-            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.EditWebhookMessageAsync(System.UInt64,System.String,System.UInt64,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.EmbedRequest},Fluxer.Net.Rest.MessageReferenceRequest,Fluxer.Net.Rest.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64})" />
+        <member name="M:Fluxer.Net.WebhookHelpers.EditMessageAsync(Fluxer.Net.Webhook,Fluxer.Net.Message,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.EmbedRequest},Fluxer.Net.Rest.MessageReferenceRequest,Fluxer.Net.Rest.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Collections.Generic.List{System.UInt64},System.Collections.Generic.List{Fluxer.Net.Rest.AttachmentRequest})">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.EditWebhookMessageAsync(System.UInt64,System.String,System.UInt64,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.EmbedRequest},Fluxer.Net.Rest.MessageReferenceRequest,Fluxer.Net.Rest.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Collections.Generic.List{System.UInt64},System.Collections.Generic.List{Fluxer.Net.Rest.AttachmentRequest})" />
         </member>
     </members>
 </doc>

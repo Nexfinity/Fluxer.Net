@@ -11,13 +11,13 @@ public class MessageRequest
     public string? Content { get; set; }
 
     /// <summary>
-    /// Array of embed objects to include in the message
+    /// Array of embed objects to include in the message.
     /// </summary>
     [JsonProperty("embeds")]
     public EmbedRequest[]? Embeds { get; set; }
 
     /// <summary>
-    /// Array of attachment objects
+    /// Array of attachment objects.
     /// </summary>
     [JsonProperty("attachments")]
     public List<AttachmentJson>? Attachments { get; set; }
@@ -29,25 +29,25 @@ public class MessageRequest
     public MessageReferenceRequest? MessageReference { get; set; }
 
     /// <summary>
-    /// Controls which mentions trigger notifications
+    /// Controls which mentions trigger notifications.
     /// </summary>
     [JsonProperty("allowed_mentions")]
     public AllowedMentionsRequest? AllowedMentions { get; set; }
 
     /// <summary>
-    /// Message flags bitfield
+    /// Message flags bitfield.
     /// </summary>
     [JsonProperty("flags")]
     public MessageFlag Flags { get; set; }
 
     /// <summary>
-    /// Client-generated identifier for the message
+    /// Client-generated identifier for the message.
     /// </summary>
     [JsonProperty("nonce")]
     public string? Nonce { get; set; }
 
     /// <summary>
-    /// ID of a favorite meme to attach
+    /// ID of a favorite meme to attach.
     /// </summary>
     [JsonProperty("favorite_meme_id")]
     public ulong? FavoriteMemeId { get; set; }
@@ -59,8 +59,20 @@ public class MessageRequest
     public List<ulong>? StickerIds { get; set; }
 
     /// <summary>
-    /// Whether this is a text-to-speech message
+    /// Whether this is a text-to-speech message.
     /// </summary>
     [JsonProperty("tts")]
     public bool? IsTTS { get; set; }
+
+    /// <summary>
+    /// Custom webhook name for the message.
+    /// </summary>
+    [JsonProperty("username")]
+    public string? WebhookUsername { get; set; }
+
+    /// <summary>
+    /// Custom webhook avatar for the message.
+    /// </summary>
+    [JsonProperty("avatar_url")]
+    public string? WebhookAvatarUrl { get; set; }
 }

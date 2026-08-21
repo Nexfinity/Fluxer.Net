@@ -3,9 +3,12 @@ using Fluxer.Net.Rest;
 
 namespace Fluxer.Net.Commands;
 
-/// <summary> The context of a command which may contain the client, user, guild, channel, and message. </summary>
+/// <inheritdoc/>
 public class CommandContext : ICommandContext
 {
+    /// <inheritdoc/>
+    public CommandInfo Command { get; set; }
+
     /// <inheritdoc/>
     public FluxerClient Client { get; }
 
@@ -30,7 +33,7 @@ public class CommandContext : ICommandContext
     /// <inheritdoc/>
     public SocketMessage Message { get; }
 
-    /// <summary> Indicates whether the channel that the command is executed in is a private channel. </summary>
+    /// <inheritdoc/>
     public bool IsPrivate => Channel.Type == ChannelType.Dm;
 
     IGuild ICommandContext.Guild => Guild;

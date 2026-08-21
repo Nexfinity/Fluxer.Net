@@ -134,6 +134,11 @@ public enum FluxerOpCode
     HeartbeatAck = 11,
 
     /// <summary>
+    /// An error in the gateway has occured.
+    /// </summary>
+    GatewayError = 12,
+
+    /// <summary>
     /// Connects to a call (voice/video).
     /// Client → Server. Initiates call connection.
     /// </summary>
@@ -147,5 +152,15 @@ public enum FluxerOpCode
     /// Used to enable or disable events for specific guilds.
     /// Useful for managing event load in bots that are in many guilds.
     /// </remarks>
-    GuildSubscriptions = 14
+    GuildSubscriptions = 14,
+
+    /// <summary>
+    /// Request guild member count.
+    /// </summary>
+    RequestGuildMemberCounts = 15,
+
+    /// <summary>
+    /// Request channel member count.
+    /// </summary>
+    RequestChannelMemberCounts = 16
 }

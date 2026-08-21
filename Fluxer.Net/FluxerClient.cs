@@ -70,6 +70,16 @@ public class FluxerClient : FluxerBaseClient
         Gateway = new FluxerGatewayClient(this);
     }
 
+    /// <summary>
+    /// Use canary features for the API.
+    /// </summary>
+    /// <returns></returns>
+    public FluxerClient UseCanary()
+    {
+        Config.ApiBaseUrl = "https://api.canary.fluxer.app/v{v}";
+        return this;
+    }
+
     /// <inheritdoc cref="FluxerBaseClient.Token" />
     public new string Token => base.Token;
 

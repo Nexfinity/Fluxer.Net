@@ -641,6 +641,8 @@ public class CommandService : IDisposable
             var bestCandidate = preconditionResults
                .OrderByDescending(x => x.Key.Command.Priority)
                .FirstOrDefault(x => !x.Value.IsSuccess);
+
+            context.Command = bestCandidate.Key.Command;
             return MatchResult.FromSuccess(bestCandidate.Key, bestCandidate.Value);
         }
 
@@ -678,11 +680,13 @@ public class CommandService : IDisposable
             var bestMatch = parseResults
                 .FirstOrDefault(x => !x.Value.IsSuccess);
 
+            context.Command = bestMatch.Key.Command;
             return MatchResult.FromSuccess(bestMatch.Key, bestMatch.Value);
         }
 
         var chosenOverload = successfulParses[0];
 
+        context.Command = chosenOverload.Key.Command;
         return MatchResult.FromSuccess(chosenOverload.Key, chosenOverload.Value);
     }
     #endregion
