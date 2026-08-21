@@ -1,4 +1,5 @@
 using Fluxer.Net.Extensions;
+using Fluxer.Net.Gateway;
 using Fluxer.Net.OAuth;
 using Fluxer.Net.RateLimiting;
 using Microsoft.AspNetCore.WebUtilities;
@@ -753,20 +754,16 @@ public class FluxerApiClient
             StickerIds = stickerIds,
         };
 
-        if ((attachments?.Count ?? 0) < 1)
+        if ((attachments?.Count ?? 0) > 0)
         {
-            MessageJson jsonAttach = await SendRequestAsync<MessageJson, MessageRequest>(HttpMethod.Post,
-                _isWebhook ? $"/webhooks/{channelId}/{_token}?wait=true" : $"/channels/{channelId}/messages",
-                req, true);
-            return Message.Create(_client, jsonAttach);
+            List<KeyValuePair<string, (HttpContent content, string? filename)>> form = new List<KeyValuePair<string, (HttpContent content, string? filename)>>();
+            for (int i = 0; i < attachments.Count; i++)
+            {
+                attachments[i].Id = (ulong)i;
+                form.Add(new KeyValuePair<string, (HttpContent content, string? filename)>($"file[{i}]", (new StreamContent(attachments[i].Stream), attachments[i].Filename)));
+            }
+            req.Attachments = attachments.Select(x => x.ToJson()).ToList();
         }
-        List<KeyValuePair<string, (HttpContent content, string? filename)>> form = new List<KeyValuePair<string, (HttpContent content, string? filename)>>();
-        for (int i = 0; i < attachments.Count; i++)
-        {
-            attachments[i].Id = (ulong)i;
-            form.Add(new KeyValuePair<string, (HttpContent content, string? filename)>($"file[{i}]", (new StreamContent(attachments[i].Stream), attachments[i].Filename)));
-        }
-        req.Attachments = attachments.Select(x => x.ToJson()).ToList();
 
         MessageJson json = await SendRequestAsync<MessageJson, MessageRequest>(HttpMethod.Post,
             _isWebhook ? $"/webhooks/{channelId}/{_token}?wait=true" : $"/channels/{channelId}/messages",
@@ -782,11 +779,44 @@ public class FluxerApiClient
     /// </remarks>
     /// <param name="channelId"></param>
     /// <param name="messageId"></param>
-    /// <param name="message"></param>
+    /// <param name="content"></param>
+    /// <param name="embeds"></param>
+    /// <param name="reference"></param>
+    /// <param name="allowedMentions"></param>
+    /// <param name="flags"></param>
+    /// <param name="nonce"></param>
+    /// <param name="favoruteMemeId"></param>
+    /// <param name="stickerIds"></param>
+    /// <param name="attachments"></param>
     /// <returns></returns>
-    public async Task<Message> EditMessageAsync(ulong channelId, ulong messageId, UpdateMessageRequest message)
+    public async Task<Message> EditMessageAsync(ulong channelId, ulong messageId, string? content = null, List<EmbedRequest>? embeds = null,
+        MessageReferenceRequest? reference = null, AllowedMentionsRequest? allowedMentions = null, MessageFlag flags = MessageFlag.None,
+        string? nonce = null, ulong? favoruteMemeId = null, List<ulong>? stickerIds = null, List<AttachmentRequest>? attachments = null)
     {
-        MessageJson json = await SendRequestAsync<MessageJson, UpdateMessageRequest>(HttpMethod.Patch, $"/channels/{channelId}/messages/{messageId}", message, true);
+        MessageRequest req = new MessageRequest
+        {
+            Content = content,
+            Embeds = embeds?.ToArray(),
+            MessageReference = reference,
+            AllowedMentions = allowedMentions,
+            Flags = flags,
+            Nonce = nonce,
+            FavoriteMemeId = favoruteMemeId,
+            StickerIds = stickerIds,
+        };
+
+        if ((attachments?.Count ?? 0) > 0)
+        {
+            List<KeyValuePair<string, (HttpContent content, string? filename)>> form = new List<KeyValuePair<string, (HttpContent content, string? filename)>>();
+            for (int i = 0; i < attachments.Count; i++)
+            {
+                attachments[i].Id = (ulong)i;
+                form.Add(new KeyValuePair<string, (HttpContent content, string? filename)>($"file[{i}]", (new StreamContent(attachments[i].Stream), attachments[i].Filename)));
+            }
+            req.Attachments = attachments.Select(x => x.ToJson()).ToList();
+        }
+
+        MessageJson json = await SendRequestAsync<MessageJson, MessageRequest>(HttpMethod.Patch, $"/channels/{channelId}/messages/{messageId}", req, true);
         return Message.Create(_client, json);
     }
 
@@ -2333,6 +2363,8 @@ public class FluxerApiClient
     /// <param name="token"></param>
     /// <param name="content"></param>
     /// <param name="embeds"></param>
+    /// <param name="username"></param>
+    /// <param name="avatarUrl"></param>
     /// <param name="reference"></param>
     /// <param name="allowedMentions"></param>
     /// <param name="flags"></param>
@@ -2340,10 +2372,12 @@ public class FluxerApiClient
     /// <param name="favoruteMemeId"></param>
     /// <param name="tts"></param>
     /// <param name="stickerIds"></param>
+    /// <param name="attachments"></param>
     /// <returns></returns>
     public async Task ExecuteWebhookAsync(ulong webhookId, string token, string? content = null, List<EmbedRequest>? embeds = null,
+        string? username = null, string? avatarUrl = null,
         MessageReferenceRequest? reference = null, AllowedMentionsRequest? allowedMentions = null, MessageFlag flags = MessageFlag.None,
-        string? nonce = null, ulong? favoruteMemeId = null, bool? tts = null, List<ulong>? stickerIds = null)
+        string? nonce = null, ulong? favoruteMemeId = null, bool? tts = null, List<ulong>? stickerIds = null, List<AttachmentRequest>? attachments = null)
     {
         MessageRequest req = new MessageRequest
         {
@@ -2356,8 +2390,19 @@ public class FluxerApiClient
             FavoriteMemeId = favoruteMemeId,
             IsTTS = tts,
             StickerIds = stickerIds,
+            WebhookUsername = username,
+            WebhookAvatarUrl = avatarUrl,
         };
-
+        if ((attachments?.Count ?? 0) > 0)
+        {
+            List<KeyValuePair<string, (HttpContent content, string? filename)>> form = new List<KeyValuePair<string, (HttpContent content, string? filename)>>();
+            for (int i = 0; i < attachments.Count; i++)
+            {
+                attachments[i].Id = (ulong)i;
+                form.Add(new KeyValuePair<string, (HttpContent content, string? filename)>($"file[{i}]", (new StreamContent(attachments[i].Stream), attachments[i].Filename)));
+            }
+            req.Attachments = attachments.Select(x => x.ToJson()).ToList();
+        }
         await SendRequestAsync(HttpMethod.Post, $"/webhooks/{webhookId}/{token}", req, true, false);
     }
 
@@ -2386,12 +2431,12 @@ public class FluxerApiClient
     /// <param name="flags"></param>
     /// <param name="nonce"></param>
     /// <param name="favoruteMemeId"></param>
-    /// <param name="tts"></param>
     /// <param name="stickerIds"></param>
+    /// <param name="attachments"></param>
     /// <returns></returns>
     public async Task<Message> EditWebhookMessageAsync(ulong webhookId, string token, ulong messageId, string? content = null, List<EmbedRequest>? embeds = null,
         MessageReferenceRequest? reference = null, AllowedMentionsRequest? allowedMentions = null, MessageFlag flags = MessageFlag.None,
-        string? nonce = null, ulong? favoruteMemeId = null, bool? tts = null, List<ulong>? stickerIds = null)
+        string? nonce = null, ulong? favoruteMemeId = null, List<ulong>? stickerIds = null, List<AttachmentRequest>? attachments = null)
     {
         MessageRequest req = new MessageRequest
         {
@@ -2402,10 +2447,18 @@ public class FluxerApiClient
             Flags = flags,
             Nonce = nonce,
             FavoriteMemeId = favoruteMemeId,
-            IsTTS = tts,
-            StickerIds = stickerIds,
+            StickerIds = stickerIds
         };
-
+        if ((attachments?.Count ?? 0) > 0)
+        {
+            List<KeyValuePair<string, (HttpContent content, string? filename)>> form = new List<KeyValuePair<string, (HttpContent content, string? filename)>>();
+            for (int i = 0; i < attachments.Count; i++)
+            {
+                attachments[i].Id = (ulong)i;
+                form.Add(new KeyValuePair<string, (HttpContent content, string? filename)>($"file[{i}]", (new StreamContent(attachments[i].Stream), attachments[i].Filename)));
+            }
+            req.Attachments = attachments.Select(x => x.ToJson()).ToList();
+        }
         MessageJson json = await SendRequestAsync<MessageJson, MessageRequest>(HttpMethod.Patch, $"/webhooks/{webhookId}/{token}/messages/{messageId}", req, true, false);
         return Message.Create(_client, json);
     }
@@ -2417,6 +2470,8 @@ public class FluxerApiClient
     /// <param name="token"></param>
     /// <param name="content"></param>
     /// <param name="embeds"></param>
+    /// <param name="username"></param>
+    /// <param name="avatarUrl"></param>
     /// <param name="reference"></param>
     /// <param name="allowedMentions"></param>
     /// <param name="flags"></param>
@@ -2426,8 +2481,9 @@ public class FluxerApiClient
     /// <param name="stickerIds"></param>
     /// <returns></returns>
     public async Task<Message> ExecuteWebhookWaitAsync(ulong webhookId, string token, string? content = null, List<EmbedRequest>? embeds = null,
+        string? username = null, string? avatarUrl = null,
         MessageReferenceRequest? reference = null, AllowedMentionsRequest? allowedMentions = null, MessageFlag flags = MessageFlag.None,
-        string? nonce = null, ulong? favoruteMemeId = null, bool? tts = null, List<ulong>? stickerIds = null)
+        string? nonce = null, ulong? favoruteMemeId = null, bool? tts = null, List<ulong>? stickerIds = null, List<AttachmentRequest>? attachments = null)
     {
         MessageRequest req = new MessageRequest
         {
@@ -2440,8 +2496,19 @@ public class FluxerApiClient
             FavoriteMemeId = favoruteMemeId,
             IsTTS = tts,
             StickerIds = stickerIds,
+            WebhookUsername = username,
+            WebhookAvatarUrl = avatarUrl,
         };
-
+        if ((attachments?.Count ?? 0) > 0)
+        {
+            List<KeyValuePair<string, (HttpContent content, string? filename)>> form = new List<KeyValuePair<string, (HttpContent content, string? filename)>>();
+            for (int i = 0; i < attachments.Count; i++)
+            {
+                attachments[i].Id = (ulong)i;
+                form.Add(new KeyValuePair<string, (HttpContent content, string? filename)>($"file[{i}]", (new StreamContent(attachments[i].Stream), attachments[i].Filename)));
+            }
+            req.Attachments = attachments.Select(x => x.ToJson()).ToList();
+        }
         MessageJson json = await SendRequestAsync<MessageJson, MessageRequest>(HttpMethod.Post, $"/webhooks/{webhookId}/{token}?wait=true", req, true);
         return Message.Create(_client, json);
     }
@@ -2563,5 +2630,31 @@ public class FluxerApiClient
             { "token_type_hint", "refresh_token" }
         });
     }
+    #endregion
+
+    #region Global Search
+
+    public async Task<GlobalSearch> SearchGuildMessagesAsync(ulong guildId, GlobalSearchMessagesRequest request)
+    {
+        request.ContextGuildId = guildId;
+        GlobalSearchJson json = await SendRequestAsync<GlobalSearchJson, GlobalSearchMessagesRequest>(HttpMethod.Post, "/search/messages", request, true);
+        return GlobalSearch.Create(_client, json);
+    }
+
+    public async Task<GlobalSearch> SearchGuildChannelMessagesAsync(ulong guildId, ulong channelId, GlobalSearchMessagesRequest request)
+    {
+        request.ContextGuildId = guildId;
+        request.ContextChannelId = channelId;
+        GlobalSearchJson json = await SendRequestAsync<GlobalSearchJson, GlobalSearchMessagesRequest>(HttpMethod.Post, "/search/messages", request, true);
+        return GlobalSearch.Create(_client, json);
+    }
+
+    public async Task<GlobalSearch> SearchChannelMessagesAsync(ulong channelId, GlobalSearchMessagesRequest request)
+    {
+        request.ContextChannelId = channelId;
+        GlobalSearchJson json = await SendRequestAsync<GlobalSearchJson, GlobalSearchMessagesRequest>(HttpMethod.Post, "/search/messages", request, true);
+        return GlobalSearch.Create(_client, json);
+    }
+
     #endregion
 }

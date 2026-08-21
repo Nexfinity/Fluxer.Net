@@ -15,17 +15,19 @@ public static class WebhookHelpers
     public static Task<Webhook> ModifyAsync(this Webhook webhook, WebhookJson request)
         => webhook.Client.Rest.UpdateWebhookWithTokenAsync(webhook.Id, webhook.Token, request);
 
-    /// <inheritdoc cref="FluxerApiClient.ExecuteWebhookAsync(ulong, string, string?, List{EmbedRequest}?, MessageReferenceRequest?, AllowedMentionsRequest?, MessageFlag, string?, ulong?, bool?, List{ulong}?)" />
+    /// <inheritdoc cref="FluxerApiClient.ExecuteWebhookAsync(ulong, string, string?, List{EmbedRequest}?, string?, string?, MessageReferenceRequest?, AllowedMentionsRequest?, MessageFlag, string?, ulong?, bool?, List{ulong}?, List{AttachmentRequest}?)" />
     public static Task SendMessageAsync(this Webhook webhook, string? content = null, List<EmbedRequest>? embeds = null,
+        string? username = null, string? avatarUrl = null,
         MessageReferenceRequest? reference = null, AllowedMentionsRequest? allowedMentions = null, MessageFlag flags = MessageFlag.None,
-        string? nonce = null, ulong? favoruteMemeId = null, bool? tts = null, List<ulong>? stickerIds = null)
-        => webhook.Client.Rest.ExecuteWebhookAsync(webhook.Id, webhook.Token, content, embeds, reference, allowedMentions, flags, nonce, favoruteMemeId, tts, stickerIds);
+        string? nonce = null, ulong? favoruteMemeId = null, bool? tts = null, List<ulong>? stickerIds = null, List<AttachmentRequest>? attachments = null)
+        => webhook.Client.Rest.ExecuteWebhookAsync(webhook.Id, webhook.Token, content, embeds, username, avatarUrl, reference, allowedMentions, flags, nonce, favoruteMemeId, tts, stickerIds, attachments);
 
-    /// <inheritdoc cref="FluxerApiClient.ExecuteWebhookAsync(ulong, string, string?, List{EmbedRequest}?, MessageReferenceRequest?, AllowedMentionsRequest?, MessageFlag, string?, ulong?, bool?, List{ulong}?)" />
+    /// <inheritdoc cref="FluxerApiClient.ExecuteWebhookWaitAsync(ulong, string, string?, List{EmbedRequest}?, string?, string?, MessageReferenceRequest?, AllowedMentionsRequest?, MessageFlag, string?, ulong?, bool?, List{ulong}?, List{AttachmentRequest}?)" />
     public static Task<Message> SendMessageWaitAsync(this Webhook webhook, string? content = null, List<EmbedRequest>? embeds = null,
+        string? username = null, string? avatarUrl = null,
         MessageReferenceRequest? reference = null, AllowedMentionsRequest? allowedMentions = null, MessageFlag flags = MessageFlag.None,
-        string? nonce = null, ulong? favoruteMemeId = null, bool? tts = null, List<ulong>? stickerIds = null)
-        => webhook.Client.Rest.ExecuteWebhookWaitAsync(webhook.Id, webhook.Token, content, embeds, reference, allowedMentions, flags, nonce, favoruteMemeId, tts, stickerIds);
+        string? nonce = null, ulong? favoruteMemeId = null, bool? tts = null, List<ulong>? stickerIds = null, List<AttachmentRequest>? attachments = null)
+        => webhook.Client.Rest.ExecuteWebhookWaitAsync(webhook.Id, webhook.Token, content, embeds, username, avatarUrl, reference, allowedMentions, flags, nonce, favoruteMemeId, tts, stickerIds, attachments);
 
     /// <inheritdoc cref="FluxerApiClient.DeleteWebhookMessageAsync(ulong, string, ulong)" />
     public static Task DeleteMessageAsync(this Webhook webhook, Message message)
@@ -35,15 +37,15 @@ public static class WebhookHelpers
     public static Task DeleteMessageAsync(this Webhook webhook, ulong messageId)
         => webhook.Client.Rest.EditWebhookMessageAsync(webhook.Id, webhook.Token, messageId);
 
-    /// <inheritdoc cref="FluxerApiClient.EditWebhookMessageAsync(ulong, string, ulong, string?, List{EmbedRequest}?, MessageReferenceRequest?, AllowedMentionsRequest?, MessageFlag, string?, ulong?, bool?, List{ulong}?)" />
+    /// <inheritdoc cref="FluxerApiClient.EditWebhookMessageAsync(ulong, string, ulong, string?, List{EmbedRequest}?, MessageReferenceRequest?, AllowedMentionsRequest?, MessageFlag, string?, ulong?, List{ulong}?, List{AttachmentRequest}?)" />
     public static Task<Message> EditMessageAsync(this Webhook webhook, ulong messageId, string? content = null, List<EmbedRequest>? embeds = null,
         MessageReferenceRequest? reference = null, AllowedMentionsRequest? allowedMentions = null, MessageFlag flags = MessageFlag.None,
-        string? nonce = null, ulong? favoruteMemeId = null, bool? tts = null, List<ulong>? stickerIds = null)
-        => webhook.Client.Rest.EditWebhookMessageAsync(webhook.Id, webhook.Token, messageId, content, embeds, reference, allowedMentions, flags, nonce, favoruteMemeId, tts, stickerIds);
+        string? nonce = null, ulong? favoruteMemeId = null, List<ulong>? stickerIds = null, List<AttachmentRequest>? attachments = null)
+        => webhook.Client.Rest.EditWebhookMessageAsync(webhook.Id, webhook.Token, messageId, content, embeds, reference, allowedMentions, flags, nonce, favoruteMemeId, stickerIds, attachments);
 
-    /// <inheritdoc cref="FluxerApiClient.EditWebhookMessageAsync(ulong, string, ulong, string?, List{EmbedRequest}?, MessageReferenceRequest?, AllowedMentionsRequest?, MessageFlag, string?, ulong?, bool?, List{ulong}?)" />
+    /// <inheritdoc cref="FluxerApiClient.EditWebhookMessageAsync(ulong, string, ulong, string?, List{EmbedRequest}?, MessageReferenceRequest?, AllowedMentionsRequest?, MessageFlag, string?, ulong?, List{ulong}?, List{AttachmentRequest}?)" />
     public static Task<Message> EditMessageAsync(this Webhook webhook, Message message, string? content = null, List<EmbedRequest>? embeds = null,
         MessageReferenceRequest? reference = null, AllowedMentionsRequest? allowedMentions = null, MessageFlag flags = MessageFlag.None,
-        string? nonce = null, ulong? favoruteMemeId = null, bool? tts = null, List<ulong>? stickerIds = null)
-        => webhook.Client.Rest.EditWebhookMessageAsync(webhook.Id, webhook.Token, message.Id, content, embeds, reference, allowedMentions, flags, nonce, favoruteMemeId, tts, stickerIds);
+        string? nonce = null, ulong? favoruteMemeId = null, List<ulong>? stickerIds = null, List<AttachmentRequest>? attachments = null)
+        => webhook.Client.Rest.EditWebhookMessageAsync(webhook.Id, webhook.Token, message.Id, content, embeds, reference, allowedMentions, flags, nonce, favoruteMemeId, stickerIds, attachments);
 }

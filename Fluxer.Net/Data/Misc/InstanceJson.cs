@@ -256,6 +256,25 @@ public class InstanceLimitsJson : IInstanceLimits
     /// <inheritdoc />
     [JsonProperty("traitsDefinition")]
     public string[] Traits { get; set; }
+
+    /// <inheritdoc />
+    [JsonProperty("rules")]
+    public InstanceRuleJson[] Rules { get; set; }
+
+    IInstanceRule[] IInstanceLimits.Rules => Rules;
+}
+
+public class InstanceRuleJson : IInstanceRule
+{
+    /// <inheritdoc />
+    [JsonProperty("id")]
+    public string Id { get; set; }
+
+    /// <inheritdoc />
+    [JsonProperty("overrides")]
+    public Dictionary<string, int> Overrides { get; set; }
+
+    IDictionary<string, int> IInstanceRule.Overrides => Overrides;
 }
 
 /// <inheritdoc />

@@ -121,6 +121,11 @@ public class Instance : Entity, IInstance
             {
                 Traits = json.Limits.Traits,
                 Version = json.Limits.Version,
+                Rules = json.Limits.Rules.Select(x => new InstanceRule
+                {
+                    Id = x.Id,
+                    Overrides = x.Overrides
+                }).ToArray()
             },
             Push = new InstancePush
             {
@@ -170,6 +175,8 @@ public class Instance : Entity, IInstance
 /// <inheritdoc />
 public class InstanceEndpoints : IInstanceEndpoints
 {
+    internal InstanceEndpoints() { }
+
     /// <inheritdoc />
     public string Api { get; internal set; }
 
@@ -207,6 +214,8 @@ public class InstanceEndpoints : IInstanceEndpoints
 /// <inheritdoc />
 public class InstanceCaptcha : IInstanceCaptcha
 {
+    internal InstanceCaptcha() { }
+
     /// <inheritdoc />
     public string? Provider { get; internal set; }
 
@@ -220,6 +229,8 @@ public class InstanceCaptcha : IInstanceCaptcha
 /// <inheritdoc />
 public class InstanceFeatures : IInstanceFeatures
 {
+    internal InstanceFeatures() { }
+
     /// <inheritdoc />
     public bool IsVoiceEnabled { get; internal set; }
 
@@ -239,6 +250,8 @@ public class InstanceFeatures : IInstanceFeatures
 /// <inheritdoc />
 public class InstanceGifs : IInstanceGifs
 {
+    internal InstanceGifs() { }
+
     /// <inheritdoc />
     public string? Provider { get; internal set; }
 
@@ -253,6 +266,8 @@ public class InstanceGifs : IInstanceGifs
 /// <inheritdoc />
 public class InstanceSSO : IInstanceSSO
 {
+    internal InstanceSSO() { }
+
     /// <inheritdoc />
     public bool IsEnabled { get; internal set; }
 
@@ -269,6 +284,8 @@ public class InstanceSSO : IInstanceSSO
 /// <inheritdoc />
 public class InstanceRegistration : IInstanceRegistration
 {
+    internal InstanceRegistration() { }
+
     /// <inheritdoc />
     public string Mode { get; internal set; }
 
@@ -279,6 +296,8 @@ public class InstanceRegistration : IInstanceRegistration
 /// <inheritdoc />
 public class InstanceCommunity : IInstanceCommunity
 {
+    internal InstanceCommunity() { }
+
     /// <inheritdoc />
     public bool IsSingleCommunity { get; internal set; }
 
@@ -292,6 +311,8 @@ public class InstanceCommunity : IInstanceCommunity
 /// <inheritdoc />
 public class InstanceServices : IInstanceServices
 {
+    internal InstanceServices() { }
+
     /// <inheritdoc />
     public bool IsGifEnabled { get; internal set; }
 
@@ -305,16 +326,36 @@ public class InstanceServices : IInstanceServices
 /// <inheritdoc />
 public class InstanceLimits : IInstanceLimits
 {
+    internal InstanceLimits() { }
+
     /// <inheritdoc />
     public int Version { get; internal set; }
 
     /// <inheritdoc />
     public string[] Traits { get; internal set; }
-}
 
+    /// <inheritdoc />
+    public InstanceRule[] Rules { get; internal set; }
+
+    IInstanceRule[] IInstanceLimits.Rules => Rules;
+}
+public class InstanceRule : IInstanceRule
+{
+    internal InstanceRule() { }
+
+    /// <inheritdoc />
+    public string Id { get; internal set; }
+
+    /// <inheritdoc />
+    public Dictionary<string, int> Overrides { get; internal set; }
+
+    IDictionary<string, int> IInstanceRule.Overrides => Overrides;
+}
 /// <inheritdoc />
 public class InstancePush : IInstancePush
 {
+    internal InstancePush() { }
+
     /// <inheritdoc />
     public string PublicVapidKey { get; internal set; }
 }
@@ -322,6 +363,8 @@ public class InstancePush : IInstancePush
 /// <inheritdoc />
 public class InstanceApp : IInstanceApp
 {
+    internal InstanceApp() { }
+
     /// <inheritdoc />
     public InstanceAppBranding Branding { get; internal set; }
 
@@ -346,6 +389,8 @@ public class InstanceApp : IInstanceApp
 /// <inheritdoc />
 public class InstanceAppBranding : IInstanceAppBranding
 {
+    internal InstanceAppBranding() { }
+
     /// <inheritdoc />
     public string ProductName { get; internal set; }
 
@@ -372,6 +417,8 @@ public class InstanceAppBranding : IInstanceAppBranding
 /// <inheritdoc />
 public class InstanceAppSetup : IInstanceAppSetup
 {
+    internal InstanceAppSetup() { }
+
     /// <inheritdoc />
     public bool IsConfigured { get; internal set; }
 
@@ -382,6 +429,8 @@ public class InstanceAppSetup : IInstanceAppSetup
 /// <inheritdoc />
 public class InstanceAppLegal : IInstanceAppLegal
 {
+    internal InstanceAppLegal() { }
+
     /// <inheritdoc />
     public string? TermsUrl { get; internal set; }
 
@@ -392,6 +441,7 @@ public class InstanceAppLegal : IInstanceAppLegal
 /// <inheritdoc />
 public class InstanceAppRegistration : IInstanceAppRegistration
 {
+    internal InstanceAppRegistration() { }
 
     /// <inheritdoc />
     public bool CollectDateOfBirth { get; internal set; }

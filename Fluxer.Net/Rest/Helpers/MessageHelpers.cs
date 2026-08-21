@@ -11,9 +11,11 @@ public static class MessageHelpers
     public static Task DeleteAsync(this Message message)
         => message.Client.Rest.DeleteMessageAsync(message.ChannelId, message.Id);
 
-    /// <inheritdoc cref="FluxerApiClient.EditMessageAsync(ulong, ulong, UpdateMessageRequest)" />
-    public static Task<Message> ModifyAsync(this Message message, UpdateMessageRequest req)
-        => message.Client.Rest.EditMessageAsync(message.ChannelId, message.Id, req);
+    /// <inheritdoc cref="FluxerApiClient.EditMessageAsync(ulong, ulong, string?, List{EmbedRequest}?, MessageReferenceRequest?, AllowedMentionsRequest?, MessageFlag, string?, ulong?, List{ulong}?, List{AttachmentRequest}?)" />
+    public static Task<Message> ModifyAsync(this Message message, string? content = null, List<EmbedRequest>? embeds = null,
+        MessageReferenceRequest? reference = null, AllowedMentionsRequest? allowedMentions = null, MessageFlag flags = MessageFlag.None,
+        string? nonce = null, ulong? favoruteMemeId = null, List<ulong>? stickerIds = null, List<AttachmentRequest>? attachments = null)
+        => message.Client.Rest.EditMessageAsync(message.ChannelId, message.Id, content, embeds, reference, allowedMentions, flags, nonce, favoruteMemeId, stickerIds, attachments);
 
     /// <inheritdoc cref="FluxerApiClient.AcknowledgeMessageAsync(ulong, ulong, MessageAckJson)" />
     public static Task AcknowledgeAsync(this Message message, MessageAckJson json)
@@ -84,10 +86,6 @@ public static class MessageHelpers
     /// <remarks>
     /// Requires <see cref="ChannelPermissions.ViewChannel"/> and <see cref="ChannelPermissions.ReadMessageHistory"/> in a guild channel.
     /// </remarks>
-    public static Task<Message> SuppressEmbedsAsync(this Message message, AllowedMentionsRequest? allowedMentions = null)
-        => message.Client.Rest.EditMessageAsync(message.ChannelId, message.Id, new UpdateMessageRequest
-        {
-            AllowedMentions = allowedMentions,
-            Flags = message.Flags |= MessageFlag.SuppressEmbeds,
-        });
+    public static Task<Message> SuppressEmbedsAsync(this Message message)
+        => message.Client.Rest.EditMessageAsync(message.ChannelId, message.Id, flags: message.Flags |= MessageFlag.SuppressEmbeds);
 }

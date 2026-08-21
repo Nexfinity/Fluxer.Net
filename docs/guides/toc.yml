@@ -1,6 +1,22 @@
 - name: Introduction
   href: intro.md
+- name: API
+  items:
+    - name: Introduction
+      href: api/intro.md
 - name: Commands
   items:
-    - name: Test
-      href: commands/test.md
+    - name: Introduction
+      href: commands/intro.md
+    - name: Command Service
+      href: commands/service.md
+    - name: Modules
+      href: commands/modules.md
+    - name: Attributes
+      href: commands/attributes.md
+    - name: Preconditions
+      href: commands/preconditions.md
+- name: Gateway
+  items:
+    - name: Introduction
+      href: gateway/intro.md

@@ -197,5 +197,5 @@ public class MessageSearchRequest
     public bool? IncludeNsfw { get; set; }
 
     [JsonProperty("scope")]
-    public string? MessageSearchScope { get; set; }
+    public string? MessageSearchScope { get; set; } = "current";
 }

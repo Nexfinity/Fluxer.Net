@@ -115,6 +115,14 @@ public interface IInstanceLimits
     int Version { get; }
 
     string[] Traits { get; }
+
+    IInstanceRule[] Rules { get; }
+}
+public interface IInstanceRule
+{
+    string Id { get; }
+
+    IDictionary<string, int> Overrides { get; }
 }
 public interface IInstancePush
 {

@@ -2,6 +2,9 @@
 
 namespace Fluxer.Net.Rest;
 
+/// <summary>
+/// Allowed mentions when sending a message.
+/// </summary>
 public class AllowedMentionsRequest
 {
     /// <summary>
