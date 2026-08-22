@@ -480,4 +480,4 @@ $RECYCLE.BIN/
 
 .claude/
 
-launchSettings.json
+**/Properties/launchSettings.json
