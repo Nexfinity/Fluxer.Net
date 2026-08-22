@@ -16,19 +16,15 @@ public class FluxerOAuthClient : FluxerBaseClient
     /// <param name="config"></param>
     /// <exception cref="ArgumentNullException"></exception>
     /// <exception cref="ArgumentException"></exception>
-    public FluxerOAuthClient(string clientId, string clientSecret, FluxerConfig? config = null)
+    public FluxerOAuthClient(ulong clientId, string clientSecret, FluxerConfig? config = null)
     {
-        if (string.IsNullOrEmpty(clientId))
+        if (clientId == 0)
             throw new ArgumentNullException("Missing client id.");
 
         if (string.IsNullOrEmpty(clientSecret))
             throw new ArgumentNullException("Missing client secret.");
 
-        if (!ulong.TryParse(clientId, out ulong id))
-            throw new ArgumentException("Invalid client id.");
-
-
-        base.Id = id;
+        base.Id = clientId;
         base.Token = clientSecret;
         if (config == null)
             config = new FluxerConfig();

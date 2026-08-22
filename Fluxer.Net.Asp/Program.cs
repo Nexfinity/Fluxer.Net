@@ -1,15 +1,31 @@
+using Fluxer.Net.OAuth;
+using Newtonsoft.Json;
+
 namespace Fluxer.Net.Asp;
 
+public class Config
+{
+    public ulong Id { get; set; }
+    public string Secret { get; set; }
+}
 public class Program
 {
+    public static Config Config;
     public static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
+        using (StreamReader reader = new StreamReader(System.AppDomain.CurrentDomain.BaseDirectory + "Config.json"))
+        {
+            JsonSerializer serializer = new JsonSerializer();
+            Config = (Config)serializer.Deserialize(reader, typeof(Config));
+        }
 
         // Add services to the container.
         builder.Services.AddAuthorization();
+        builder.Services.AddFluxerOAuth(Config.Id, Config.Secret);
 
-        Console.WriteLine("Test: " + Environment.GetEnvironmentVariable("Test"));
+
+
 
         var app = builder.Build();
 
