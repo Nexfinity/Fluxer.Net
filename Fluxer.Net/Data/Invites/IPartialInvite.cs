@@ -40,7 +40,7 @@ public interface IPartialInvite
     /// <summary>
     /// ISO8601 timestamp of when the invite expires.
     /// </summary>
-    DateTime? ExpiresAt { get; }
+    DateTimeOffset? ExpiresAt { get; }
 
     /// <summary>
     /// Whether the invite grants temporary membership

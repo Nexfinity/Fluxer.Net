@@ -90,7 +90,7 @@ public interface IChannel : ISnowflake
     /// <summary>
     /// The ISO 8601 timestamp of when the last pinned message was pinned.
     /// </summary>
-    DateTime? LastPinAt { get; }
+    DateTimeOffset? LastPinAt { get; }
 
     /// <summary>
     /// The permission overwrites for this channel.
@@ -104,5 +104,5 @@ public interface IChannel : ISnowflake
 
     bool IsSoftDeleted { get; }
 
-    DateTime? IndexedAt { get; }
+    DateTimeOffset? IndexedAt { get; }
 }

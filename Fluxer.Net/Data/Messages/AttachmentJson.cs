@@ -74,7 +74,7 @@ public class AttachmentJson : IAttachment
 
     /// <inheritdoc />
     [JsonProperty("expires_at")]
-    public DateTime? ExpiresAt { get; set; }
+    public DateTimeOffset? ExpiresAt { get; set; }
 
     /// <inheritdoc />
     [JsonProperty("expired")]

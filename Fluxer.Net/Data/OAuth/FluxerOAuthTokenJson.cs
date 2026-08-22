@@ -15,7 +15,7 @@ public class FluxerOAuthTokenJson : IFluxerOAuthToken
 
     /// <inheritdoc />
     [JsonProperty("expires")]
-    public DateTime ExpiresAt { get; set; }
+    public DateTimeOffset ExpiresAt { get; set; }
 
     /// <inheritdoc />
     [JsonProperty("user")]

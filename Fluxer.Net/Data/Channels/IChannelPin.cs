@@ -10,5 +10,5 @@ public interface IChannelPin
     /// <summary>
     /// The ISO 8601 timestamp of when the message was pinned
     /// </summary>
-    DateTime PinnedAt { get; }
+    DateTimeOffset PinnedAt { get; }
 }

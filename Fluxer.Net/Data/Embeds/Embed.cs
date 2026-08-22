@@ -16,7 +16,7 @@ public class Embed : IEmbed
     public int? Color { get; set; }
 
     /// <inheritdoc />
-    public DateTime? Timestamp { get; set; }
+    public DateTimeOffset? Timestamp { get; set; }
 
     /// <inheritdoc />
     public string? Description { get; set; }

@@ -7,10 +7,10 @@ public class MessageSnapshot : Entity, IMessageSnapshot
     public string? Content { get; internal set; }
 
     /// <inheritdoc />
-    public DateTime CreatedAt { get; internal set; }
+    public DateTimeOffset CreatedAt { get; internal set; }
 
     /// <inheritdoc />
-    public DateTime? EditedAt { get; internal set; }
+    public DateTimeOffset? EditedAt { get; internal set; }
 
     /// <inheritdoc />
     public HashSet<ulong>? MentionedUserIds { get; internal set; }

@@ -55,7 +55,7 @@ public class Attachment : Entity, IAttachment
     public string? Waveform { get; set; }
 
     /// <inheritdoc />
-    public DateTime? ExpiresAt { get; set; }
+    public DateTimeOffset? ExpiresAt { get; set; }
 
     /// <inheritdoc />
     public bool? IsExpired { get; set; }

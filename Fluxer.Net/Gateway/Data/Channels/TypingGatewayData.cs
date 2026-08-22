@@ -23,7 +23,7 @@ public class TypingGatewayData
     /// The <see cref="Timestamp"/> value converted to a UTC <see cref="DateTime"/>.
     /// </summary>
     [JsonIgnore]
-    public DateTime TimestampUtc => DateTimeOffset.FromUnixTimeMilliseconds(Timestamp).UtcDateTime;
+    public DateTimeOffset TimestampUtc => DateTimeOffset.FromUnixTimeMilliseconds(Timestamp).UtcDateTime;
 
     /// <summary>
     /// Guild member data for the typing user (only present in guild channels).

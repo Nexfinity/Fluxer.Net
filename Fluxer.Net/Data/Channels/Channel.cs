@@ -61,7 +61,7 @@ public class Channel : Entity, IChannel
     public ulong? LastMessageId { get; internal set; }
 
     /// <inheritdoc />
-    public DateTime? LastPinAt { get; internal set; }
+    public DateTimeOffset? LastPinAt { get; internal set; }
 
     /// <inheritdoc />
     public IEnumerable<PermissionOverwrite>? PermissionOverwrites { get; internal set; }
@@ -73,7 +73,7 @@ public class Channel : Entity, IChannel
     public bool IsSoftDeleted { get; internal set; }
 
     /// <inheritdoc />
-    public DateTime? IndexedAt { get; internal set; }
+    public DateTimeOffset? IndexedAt { get; internal set; }
 
     IEnumerable<IPermissionOverwrite>? IChannel.PermissionOverwrites => PermissionOverwrites;
 

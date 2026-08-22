@@ -11,5 +11,5 @@ public class MessageCallJson : IMessageCall
 
     /// <inheritdoc />
     [JsonProperty("ended_timestamp")]
-    public DateTime? EndedAt { get; set; }
+    public DateTimeOffset? EndedAt { get; set; }
 }

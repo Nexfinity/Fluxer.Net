@@ -25,10 +25,10 @@ public class Message : Entity, IMessage
     public string Content { get; internal set; }
 
     /// <inheritdoc />
-    public DateTime CreatedAt { get; internal set; }
+    public DateTimeOffset CreatedAt { get; internal set; }
 
     /// <inheritdoc />
-    public DateTime? EditedAt { get; internal set; }
+    public DateTimeOffset? EditedAt { get; internal set; }
 
     /// <inheritdoc />
     public bool IsPinned { get; internal set; }

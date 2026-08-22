@@ -5,12 +5,12 @@ public interface IGuildBan
     /// <summary>
     /// When the member was banned.
     /// </summary>
-    DateTime BannedAt { get; }
+    DateTimeOffset BannedAt { get; }
 
     /// <summary>
     /// When the ban expires (<see langword="null"/> for never)
     /// </summary>
-    DateTime? ExpiresAt { get; }
+    DateTimeOffset? ExpiresAt { get; }
 
     /// <summary>
     /// Id of the user who issues the ban.

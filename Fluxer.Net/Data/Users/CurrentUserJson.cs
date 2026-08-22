@@ -59,11 +59,11 @@ public class CurrentUserJson : UserJson, IUserProfile
 
     /// <inheritdoc />
     [JsonProperty("premium_since")]
-    public DateTime? PremiumSince { get; set; }
+    public DateTimeOffset? PremiumSince { get; set; }
 
     /// <inheritdoc />
     [JsonProperty("premium_until")]
-    public DateTime? PremiumUntil { get; set; }
+    public DateTimeOffset? PremiumUntil { get; set; }
 
     /// <inheritdoc />
     [JsonProperty("premium_will_cancel")]
@@ -79,7 +79,7 @@ public class CurrentUserJson : UserJson, IUserProfile
 
     /// <inheritdoc />
     [JsonProperty("password_last_changed_at")]
-    public DateTime? PasswordLastChangedAt { get; set; }
+    public DateTimeOffset? PasswordLastChangedAt { get; set; }
 
     /// <inheritdoc />
     [JsonProperty("has_ever_purchased")]

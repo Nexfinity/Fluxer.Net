@@ -43,7 +43,7 @@ public class Guild : PartialGuild, IGuild
     public GuildOperations DisabledOperations { get; internal set; }
 
     /// <inheritdoc />
-    public DateTime? MessageHistoryCutoff { get; internal set; }
+    public DateTimeOffset? MessageHistoryCutoff { get; internal set; }
 
     /// <inheritdoc />
     public bool IsNsfw { get; internal set; }

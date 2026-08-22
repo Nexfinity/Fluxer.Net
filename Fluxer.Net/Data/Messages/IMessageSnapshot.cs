@@ -10,12 +10,12 @@ public interface IMessageSnapshot
     /// <summary>
     /// The ISO 8601 timestamp of when the original message was created.
     /// </summary>
-    DateTime CreatedAt { get; }
+    DateTimeOffset CreatedAt { get; }
 
     /// <summary>
     /// The ISO 8601 timestamp of when the original message was last edited
     /// </summary>
-    DateTime? EditedAt { get; }
+    DateTimeOffset? EditedAt { get; }
 
     /// <summary>
     /// The user IDs mentioned in the snapshot.

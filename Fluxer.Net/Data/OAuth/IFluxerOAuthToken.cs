@@ -15,7 +15,7 @@ public interface IFluxerOAuthToken
     /// <summary>
     /// The expiration timestamp of the token.
     /// </summary>
-    DateTime ExpiresAt { get; }
+    DateTimeOffset ExpiresAt { get; }
 
     /// <summary>
     /// The user associated with the token.

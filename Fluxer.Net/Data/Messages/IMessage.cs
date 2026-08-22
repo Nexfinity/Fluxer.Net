@@ -40,12 +40,12 @@ public interface IMessage
     /// <summary>
     /// The ISO 8601 timestamp of when the message was created.
     /// </summary>
-    DateTime CreatedAt { get; }
+    DateTimeOffset CreatedAt { get; }
 
     /// <summary>
     /// The ISO 8601 timestamp of when the message was last edited.
     /// </summary>
-    DateTime? EditedAt { get; }
+    DateTimeOffset? EditedAt { get; }
 
     /// <summary>
     /// Whether the message is pinned.

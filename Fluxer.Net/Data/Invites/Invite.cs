@@ -4,7 +4,7 @@
 public class Invite : PartialInvite, IInvite
 {
     /// <inheritdoc />
-    public DateTime CreatedAt { get; internal set; }
+    public DateTimeOffset CreatedAt { get; internal set; }
 
     /// <inheritdoc />
     public int Uses { get; internal set; }

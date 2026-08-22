@@ -25,7 +25,7 @@ public interface IEmbed
     /// <summary>
     /// The ISO 8601 timestamp of the embed content.
     /// </summary>
-    DateTime? Timestamp { get; }
+    DateTimeOffset? Timestamp { get; }
 
     /// <summary>
     /// The description of the embed.

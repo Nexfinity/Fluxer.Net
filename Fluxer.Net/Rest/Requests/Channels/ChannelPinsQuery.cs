@@ -10,7 +10,7 @@ public class ChannelPinsQuery
     /// <summary>
     /// Get pinned messages before this timestamp
     /// </summary>
-    public DateTime? Before { get; set; }
+    public DateTimeOffset? Before { get; set; }
 
     public string BuildQuery()
     {

@@ -17,5 +17,5 @@ public class UserCustomStatusJson
     public bool EmojiAnimated { get; set; }
 
     [JsonProperty("expires_at")]
-    public DateTime? ExpiresAt { get; set; }
+    public DateTimeOffset? ExpiresAt { get; set; }
 }

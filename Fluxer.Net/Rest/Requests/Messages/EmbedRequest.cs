@@ -29,7 +29,7 @@ public class EmbedRequest
     /// ISO8601 timestamp for the embed.
     /// </summary>
     [JsonProperty("timestamp")]
-    public DateTime? Timestamp { get; set; }
+    public DateTimeOffset? Timestamp { get; set; }
 
     /// <summary>
     /// Description of the embed (1-4096 characters)

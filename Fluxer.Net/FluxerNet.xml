@@ -2656,7 +2656,7 @@
             <param name="b">Blue component (0-255).</param>
             <returns>The current builder.</returns>
         </member>
-        <member name="M:Fluxer.Net.EmbedBuilder.WithTimestamp(System.DateTime)">
+        <member name="M:Fluxer.Net.EmbedBuilder.WithTimestamp(System.DateTimeOffset)">
             <summary>
             Sets the timestamp of the embed.
             </summary>
@@ -13704,7 +13704,7 @@
             Requires either <see cref="P:Fluxer.Net.GuildPermissions.ChangeNickname"/> for current user or <see cref="P:Fluxer.Net.GuildPermissions.ManageNicknames"/>.
             </remarks>
         </member>
-        <member name="M:Fluxer.Net.MemberHelpers.SetTimeoutAsync(Fluxer.Net.GuildMember,System.Nullable{System.DateTime})">
+        <member name="M:Fluxer.Net.MemberHelpers.SetTimeoutAsync(Fluxer.Net.GuildMember,System.Nullable{System.DateTimeOffset})">
             <summary>
             Set a members timeout.
             </summary>

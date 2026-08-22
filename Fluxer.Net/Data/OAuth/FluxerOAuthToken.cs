@@ -10,7 +10,7 @@ public class FluxerOAuthToken : Entity, IFluxerOAuthToken
     public string[] Scopes { get; internal set; }
 
     /// <inheritdoc />
-    public DateTime ExpiresAt { get; internal set; }
+    public DateTimeOffset ExpiresAt { get; internal set; }
 
     /// <inheritdoc />
     public FluxerOAuthUser User { get; internal set; }

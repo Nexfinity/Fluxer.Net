@@ -45,12 +45,12 @@ public interface ICurrentUser : IUser
     /// <summary>
     /// ISO8601 timestamp of when premium was first activated.
     /// </summary>
-    DateTime? PremiumSince { get; }
+    DateTimeOffset? PremiumSince { get; }
 
     /// <summary>
     /// ISO8601 timestamp of when the current premium period ends.
     /// </summary>
-    DateTime? PremiumUntil { get; }
+    DateTimeOffset? PremiumUntil { get; }
 
     /// <summary>
     /// Whether premium is set to cancel at the end of the billing period.
@@ -71,7 +71,7 @@ public interface ICurrentUser : IUser
     // TODO ADD MORE PREMIUM STUFF
     //
 
-    DateTime? PasswordLastChangedAt { get; }
+    DateTimeOffset? PasswordLastChangedAt { get; }
 
     //
     // Required Actions/nsfw

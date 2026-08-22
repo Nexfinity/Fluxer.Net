@@ -35,11 +35,11 @@ public class MessageJson : IMessage
 
     /// <inheritdoc />
     [JsonProperty("timestamp")]
-    public DateTime CreatedAt { get; set; }
+    public DateTimeOffset CreatedAt { get; set; }
 
     /// <inheritdoc />
     [JsonProperty("edited_timestamp")]
-    public DateTime? EditedAt { get; set; }
+    public DateTimeOffset? EditedAt { get; set; }
 
     /// <inheritdoc />
     [JsonProperty("pinned")]

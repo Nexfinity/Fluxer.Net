@@ -32,5 +32,5 @@ public class GuildAuditLogJson
     public object? Changes { get; set; }
 
     [JsonProperty("created_at")]
-    public DateTime CreatedAt { get; set; }
+    public DateTimeOffset CreatedAt { get; set; }
 }
