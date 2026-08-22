@@ -7,6 +7,9 @@ public class GuildMember : Entity, IGuildMember
     public ulong Id => User.Id;
 
     /// <inheritdoc />
+    public DateTimeOffset CreatedAt => User.CreatedAt;
+
+    /// <inheritdoc />
     public string Mention => $"<@{Id}>";
 
     /// <inheritdoc />
@@ -16,7 +19,7 @@ public class GuildMember : Entity, IGuildMember
     public User User { get; internal set; }
 
     /// <inheritdoc />
-    public DateTime JoinedAt { get; internal set; }
+    public DateTimeOffset JoinedAt { get; internal set; }
 
     /// <inheritdoc />
     public string? Nickname { get; internal set; }
@@ -37,7 +40,7 @@ public class GuildMember : Entity, IGuildMember
     public bool IsMute { get; internal set; }
 
     /// <inheritdoc />
-    public DateTime? CommunicationDisabledUntil { get; internal set; }
+    public DateTimeOffset? CommunicationDisabledUntil { get; internal set; }
 
     /// <inheritdoc />
     public HashSet<ulong> RoleIds { get; internal set; }

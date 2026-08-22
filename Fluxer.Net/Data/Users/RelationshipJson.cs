@@ -14,5 +14,5 @@ public class RelationshipJson
     public string? Nickname { get; set; }
 
     [JsonProperty("since")]
-    public DateTime? SinceAt { get; set; }
+    public DateTimeOffset? SinceAt { get; set; }
 }

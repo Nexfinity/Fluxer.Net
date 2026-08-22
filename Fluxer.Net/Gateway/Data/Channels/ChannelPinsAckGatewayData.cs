@@ -11,5 +11,5 @@ public class ChannelPinsAckGatewayData
     public ulong ChannelId { get; set; }
 
     [JsonProperty("timestamp")]
-    public DateTime? Timestamp { get; set; }
+    public DateTimeOffset? Timestamp { get; set; }
 }

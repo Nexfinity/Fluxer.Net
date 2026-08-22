@@ -10,5 +10,5 @@ public interface IMessageCall
     /// <summary>
     /// The ISO 8601 timestamp of when the call ended.
     /// </summary>
-    DateTime? EndedAt { get; }
+    DateTimeOffset? EndedAt { get; }
 }

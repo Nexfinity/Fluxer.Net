@@ -1,12 +1,7 @@
 ﻿namespace Fluxer.Net;
 
-public interface IGuildMember
+public interface IGuildMember : ISnowflake
 {
-    /// <summary>
-    /// User id for this member.
-    /// </summary>
-    ulong Id { get; }
-
     /// <summary>
     /// Guild id that the user is in.
     /// </summary>
@@ -25,7 +20,7 @@ public interface IGuildMember
     /// <summary>
     /// ISO8601 timestamp of when the user joined the guild.
     /// </summary>
-    DateTime JoinedAt { get; }
+    DateTimeOffset JoinedAt { get; }
 
     /// <summary>
     /// The nickname of the member in this guild.
@@ -60,7 +55,7 @@ public interface IGuildMember
     /// <summary>
     /// ISO8601 timestamp until which the member is timed out.
     /// </summary>
-    DateTime? CommunicationDisabledUntil { get; }
+    DateTimeOffset? CommunicationDisabledUntil { get; }
 
     /// <summary>
     /// Array of role IDs the member has.

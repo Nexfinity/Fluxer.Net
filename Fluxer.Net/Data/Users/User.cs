@@ -1,6 +1,4 @@
-﻿using Fluxer.Net.Extensions;
-
-namespace Fluxer.Net;
+﻿namespace Fluxer.Net;
 
 /// <inheritdoc />
 public class User : Entity, IUser

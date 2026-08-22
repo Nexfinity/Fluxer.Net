@@ -11,5 +11,5 @@ public class ChannelPinsUpdateGatewayData
     public ulong? GuildId { get; set; }
 
     [JsonProperty("last_pin_timestamp")]
-    public DateTime? LastPinAt { get; set; }
+    public DateTimeOffset? LastPinAt { get; set; }
 }

@@ -34,7 +34,7 @@ public class EmbedBuilder
     private string? _imageUrl;
     private string? _thumbnailUrl;
     private int? _color;
-    private DateTime? _timestamp;
+    private DateTimeOffset? _timestamp;
 
     /// <summary>
     /// Gets or sets the title of the embed.
@@ -105,7 +105,7 @@ public class EmbedBuilder
     /// <summary>
     /// Gets or sets the timestamp of the embed.
     /// </summary>
-    public DateTime? Timestamp
+    public DateTimeOffset? Timestamp
     {
         get => _timestamp;
         set => _timestamp = value;
@@ -232,7 +232,7 @@ public class EmbedBuilder
     /// </summary>
     /// <param name="timestamp">The timestamp to set.</param>
     /// <returns>The current builder.</returns>
-    public EmbedBuilder WithTimestamp(DateTime timestamp)
+    public EmbedBuilder WithTimestamp(DateTimeOffset timestamp)
     {
         Timestamp = timestamp;
         return this;

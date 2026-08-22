@@ -16,19 +16,15 @@ public class FluxerOAuthClient : FluxerBaseClient
     /// <param name="config"></param>
     /// <exception cref="ArgumentNullException"></exception>
     /// <exception cref="ArgumentException"></exception>
-    public FluxerOAuthClient(string clientId, string clientSecret, FluxerConfig? config = null)
+    public FluxerOAuthClient(ulong clientId, string clientSecret, FluxerConfig? config = null)
     {
-        if (string.IsNullOrEmpty(clientId))
+        if (clientId == 0)
             throw new ArgumentNullException("Missing client id.");
 
         if (string.IsNullOrEmpty(clientSecret))
             throw new ArgumentNullException("Missing client secret.");
 
-        if (!ulong.TryParse(clientId, out ulong id))
-            throw new ArgumentException("Invalid client id.");
-
-
-        base.Id = id;
+        base.Id = clientId;
         base.Token = clientSecret;
         if (config == null)
             config = new FluxerConfig();
@@ -59,19 +55,19 @@ public class FluxerOAuthClient : FluxerBaseClient
     public new FluxerApiClient Rest => base.Rest;
 
     /// <inheritdoc cref="FluxerApiClient.GetOAuthUserAsync(string)" />
-    public Task<FluxerOAuthUser> GetOAuthUser(string accessToken)
+    public Task<FluxerOAuthUser> GetUserAsync(string accessToken)
         => Rest.GetOAuthUserAsync(accessToken);
 
     /// <inheritdoc cref="FluxerApiClient.GetOAuthTokenAsync(string)" />
-    public Task<FluxerOAuthToken> GetOAuthTokenAsync(string accessToken)
+    public Task<FluxerOAuthToken> GetTokenAsync(string accessToken)
         => Rest.GetOAuthTokenAsync(accessToken);
 
     /// <inheritdoc cref="FluxerApiClient.GetOAuthGuildsAsync(string)" />
-    public Task<IEnumerable<Guild>> GetOAuthGuildsAsync(string accessToken)
+    public Task<IEnumerable<Guild>> GetGuildsAsync(string accessToken)
         => Rest.GetOAuthGuildsAsync(accessToken);
 
     /// <inheritdoc cref="FluxerApiClient.GetOAuthConnectionsAsync(string)" />
-    public Task<IEnumerable<UserConnection>> GetOAuthConnectionsAsync(string accessToken)
+    public Task<IEnumerable<UserConnection>> GetConnectionsAsync(string accessToken)
         => Rest.GetOAuthConnectionsAsync(accessToken);
 
     /// <inheritdoc cref="FluxerApiClient.GetOAuthValidTokenAsync(ulong, string, string)" />
@@ -79,7 +75,7 @@ public class FluxerOAuthClient : FluxerBaseClient
     {
         try
         {
-            FluxerOAuthValidTokenJson token = await Rest.GetOAuthValidTokenAsync(ClientId, ClientSecret, accessToken);
+            FluxerOAuthValidToken token = await Rest.GetOAuthValidTokenAsync(ClientId, ClientSecret, accessToken);
             return token.IsActive;
         }
         catch
@@ -89,12 +85,12 @@ public class FluxerOAuthClient : FluxerBaseClient
     }
 
     /// <inheritdoc cref="FluxerApiClient.GetOAuthValidTokenAsync(ulong, string, string)" />
-    public Task<FluxerOAuthValidTokenJson> GetValidTokenAsync(string accessToken)
+    public Task<FluxerOAuthValidToken> GetValidTokenAsync(string accessToken)
         => Rest.GetOAuthValidTokenAsync(ClientId, ClientSecret, accessToken);
 
-    /// <inheritdoc cref="FluxerApiClient.GetOAuthRefreshTokenAsync(ulong, string, string)" />
-    public Task<FluxerOAuthRefreshTokenJson> GetRefreshTokenAsync(string refreshToken)
-        => Rest.GetOAuthRefreshTokenAsync(ClientId, ClientSecret, refreshToken);
+    /// <inheritdoc cref="FluxerApiClient.ExchangeOAuthRefreshTokenAsync(ulong, string, string)" />
+    public Task<FluxerOAuthRefreshToken> ExchangeRefreshTokenAsync(string refreshToken)
+        => Rest.ExchangeOAuthRefreshTokenAsync(ClientId, ClientSecret, refreshToken);
 
     /// <inheritdoc cref="FluxerApiClient.RevokeOAuthAccessTokenAsync(ulong, string, string)" />
     public Task RevokeAccessTokenAsync(string accessToken)

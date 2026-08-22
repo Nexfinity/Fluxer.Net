@@ -6,7 +6,7 @@ namespace Fluxer.Net;
 /// <inheritdoc />
 public class FluxerOAuthUser : User, IFluxerOAuthUser
 {
-    public FluxerOAuthUser(FluxerBaseClient client, ClaimsPrincipal principal) : base(client)
+    internal FluxerOAuthUser(FluxerBaseClient client, ClaimsPrincipal principal) : base(client)
     {
         if (principal == null)
             return;
@@ -17,6 +17,7 @@ public class FluxerOAuthUser : User, IFluxerOAuthUser
             {
                 case ClaimTypes.NameIdentifier:
                     Id = ulong.Parse(c.Value);
+                    CreatedAt = SnowflakeUtils.FromSnowflake(Id);
                     break;
                 case ClaimTypes.Name:
                     Username = c.Value;

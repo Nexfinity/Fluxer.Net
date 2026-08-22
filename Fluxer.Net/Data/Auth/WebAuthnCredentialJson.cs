@@ -23,8 +23,8 @@ public class WebAuthnCredentialJson
     public string Name { get; set; }
 
     [JsonProperty("created_at")]
-    public DateTime CreatedAt { get; set; }
+    public DateTimeOffset CreatedAt { get; set; }
 
     [JsonProperty("last_used_at")]
-    public DateTime? LastUsedAt { get; set; }
+    public DateTimeOffset? LastUsedAt { get; set; }
 }

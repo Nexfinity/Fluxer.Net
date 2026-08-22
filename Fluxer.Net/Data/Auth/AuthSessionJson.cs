@@ -11,11 +11,11 @@ public class AuthSessionJson : IAuthSession
 
     /// <inheritdoc />
     [JsonProperty("created_at")]
-    public DateTime CreatedAt { get; set; }
+    public DateTimeOffset CreatedAt { get; set; }
 
     /// <inheritdoc />
     [JsonProperty("approx_last_used_at")]
-    public DateTime ApproximateLastUsedAt { get; set; }
+    public DateTimeOffset ApproximateLastUsedAt { get; set; }
 
     /// <inheritdoc />
     [JsonProperty("client_ip")]

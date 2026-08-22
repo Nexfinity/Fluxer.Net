@@ -11,7 +11,7 @@ public class ChannelPinJson : IChannelPin
 
     /// <inheritdoc />
     [JsonProperty("pinned_at")]
-    public DateTime PinnedAt { get; set; }
+    public DateTimeOffset PinnedAt { get; set; }
 
     IMessage IChannelPin.Message => Message;
 }

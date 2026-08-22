@@ -7,6 +7,9 @@ public class Attachment : Entity, IAttachment
     public ulong Id { get; set; }
 
     /// <inheritdoc />
+    public DateTimeOffset CreatedAt => SnowflakeUtils.FromSnowflake(Id);
+
+    /// <inheritdoc />
     public string Filename { get; set; }
 
     /// <inheritdoc />
@@ -52,7 +55,7 @@ public class Attachment : Entity, IAttachment
     public string? Waveform { get; set; }
 
     /// <inheritdoc />
-    public DateTime? ExpiresAt { get; set; }
+    public DateTimeOffset? ExpiresAt { get; set; }
 
     /// <inheritdoc />
     public bool? IsExpired { get; set; }

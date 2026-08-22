@@ -26,7 +26,7 @@ public class PartialInviteJson : IPartialInvite
     public int PresenceCount { get; set; }
 
     [JsonProperty("expires_at")]
-    public DateTime? ExpiresAt { get; set; }
+    public DateTimeOffset? ExpiresAt { get; set; }
 
     [JsonProperty("temporary")]
     public bool Temporary { get; set; }

@@ -3,13 +3,8 @@
 /// <summary>
 /// Application/bot used to interact with the Fluxer platform and API.
 /// </summary>
-public interface IPartialApplication
+public interface IPartialApplication : ISnowflake
 {
-    /// <summary>
-    /// The unique identifier of the application.
-    /// </summary>
-    ulong Id { get; }
-
     /// <summary>
     /// The name of the application.
     /// </summary>

@@ -1525,6 +1525,9 @@
         <member name="T:Fluxer.Net.CurrentApplication">
             <inheritdoc />
         </member>
+        <member name="P:Fluxer.Net.CurrentApplication.Owner">
+            <inheritdoc />
+        </member>
         <member name="M:Fluxer.Net.CurrentApplication.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.CurrentApplicationJson)">
             <summary>
             Create a Application object from json.
@@ -1534,6 +1537,9 @@
             <returns></returns>
         </member>
         <member name="T:Fluxer.Net.CurrentApplicationJson">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.CurrentApplicationJson.Owner">
             <inheritdoc />
         </member>
         <member name="T:Fluxer.Net.IApplication">
@@ -1554,14 +1560,14 @@
             Detailed bot user metadata.
             </summary>
         </member>
+        <member name="P:Fluxer.Net.ICurrentApplication.Owner">
+            <summary>
+            Owner user of this application.
+            </summary>
+        </member>
         <member name="T:Fluxer.Net.IPartialApplication">
             <summary>
             Application/bot used to interact with the Fluxer platform and API.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IPartialApplication.Id">
-            <summary>
-            The unique identifier of the application.
             </summary>
         </member>
         <member name="P:Fluxer.Net.IPartialApplication.Name">
@@ -1600,6 +1606,9 @@
         <member name="P:Fluxer.Net.PartialApplication.Id">
             <inheritdoc />
         </member>
+        <member name="P:Fluxer.Net.PartialApplication.CreatedAt">
+            <inheritdoc />
+        </member>
         <member name="P:Fluxer.Net.PartialApplication.Name">
             <inheritdoc />
         </member>
@@ -1630,6 +1639,9 @@
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.PartialApplicationJson.Id">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.PartialApplicationJson.CreatedAt">
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.PartialApplicationJson.Name">
@@ -1809,6 +1821,9 @@
         <member name="P:Fluxer.Net.Channel.Id">
             <inheritdoc />
         </member>
+        <member name="P:Fluxer.Net.Channel.CreatedAt">
+            <inheritdoc />
+        </member>
         <member name="P:Fluxer.Net.Channel.Mention">
             <inheritdoc />
         </member>
@@ -1887,6 +1902,9 @@
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.ChannelJson.Id">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelJson.CreatedAt">
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.ChannelJson.Mention">
@@ -2090,11 +2108,6 @@
         <member name="F:Fluxer.Net.ChannelType.DmPersonalNotes">
             <summary>
             A personal notes DM channel for storing private messages.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IChannel.Id">
-            <summary>
-            The unique identifier (snowflake) for this channel.
             </summary>
         </member>
         <member name="P:Fluxer.Net.IChannel.Mention">
@@ -2643,7 +2656,7 @@
             <param name="b">Blue component (0-255).</param>
             <returns>The current builder.</returns>
         </member>
-        <member name="M:Fluxer.Net.EmbedBuilder.WithTimestamp(System.DateTime)">
+        <member name="M:Fluxer.Net.EmbedBuilder.WithTimestamp(System.DateTimeOffset)">
             <summary>
             Sets the timestamp of the embed.
             </summary>
@@ -3139,12 +3152,12 @@
         </member>
         <member name="P:Fluxer.Net.ISnowflake.Id">
             <summary>
-            Fluxer unique identifier (snowflake) for the object.
+            Unique identifier (snowflake) for the object.
             </summary>
         </member>
         <member name="P:Fluxer.Net.ISnowflake.CreatedAt">
             <summary>
-            Object created at UTC.
+            Object created at UTC date.
             </summary>
         </member>
         <member name="T:Fluxer.Net.Entity">
@@ -3156,6 +3169,9 @@
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.Emoji.Id">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Emoji.CreatedAt">
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.Emoji.Name">
@@ -3179,6 +3195,9 @@
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.EmojiJson.Id">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.EmojiJson.CreatedAt">
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.EmojiJson.Name">
@@ -3262,11 +3281,6 @@
         <member name="M:Fluxer.Net.GuildStickerJson.GetStickerUrl(System.Int32)">
             <inheritdoc />
         </member>
-        <member name="P:Fluxer.Net.IEmoji.Id">
-            <summary>
-            The unique identifier for this emoji.
-            </summary>
-        </member>
         <member name="P:Fluxer.Net.IEmoji.Name">
             <summary>
             The name of the emoji
@@ -3312,11 +3326,6 @@
             Get the sticker's image.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.ISticker.Id">
-            <summary>
-            The unique identifier for this sticker.
-            </summary>
-        </member>
         <member name="P:Fluxer.Net.ISticker.Name">
             <summary>
             The name of the sticker.
@@ -3336,6 +3345,9 @@
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.Sticker.Id">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Sticker.CreatedAt">
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.Sticker.Name">
@@ -3359,6 +3371,9 @@
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.StickerJson.Id">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.StickerJson.CreatedAt">
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.StickerJson.Name">
@@ -3576,7 +3591,7 @@
         </member>
         <member name="P:Fluxer.Net.IFavoriteGif.Id">
             <summary>
-            Unique identifier for the favorite gif.
+            Source specific ID of the favorite gif.
             </summary>
         </member>
         <member name="P:Fluxer.Net.IFavoriteGif.UserId">
@@ -3927,11 +3942,6 @@
             Only available from rest get guild not socket guild.
             </remarks>
         </member>
-        <member name="P:Fluxer.Net.IPartialGuild.Id">
-            <summary>
-            The unique identifier for this guild.
-            </summary>
-        </member>
         <member name="P:Fluxer.Net.IPartialGuild.Name">
             <summary>
             The name of the guild.
@@ -4070,6 +4080,9 @@
         <member name="P:Fluxer.Net.GuildMember.Id">
             <inheritdoc />
         </member>
+        <member name="P:Fluxer.Net.GuildMember.CreatedAt">
+            <inheritdoc />
+        </member>
         <member name="P:Fluxer.Net.GuildMember.Mention">
             <inheritdoc />
         </member>
@@ -4133,6 +4146,9 @@
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.GuildMemberJson.Id">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildMemberJson.CreatedAt">
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.GuildMemberJson.Mention">
@@ -4209,11 +4225,6 @@
         <member name="P:Fluxer.Net.IGuildBan.User">
             <summary>
             The user that was banned.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IGuildMember.Id">
-            <summary>
-            User id for this member.
             </summary>
         </member>
         <member name="P:Fluxer.Net.IGuildMember.GuildId">
@@ -4301,11 +4312,6 @@
             Get the member's banner.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.IRole.Id">
-            <summary>
-            The unique identifier for this role.
-            </summary>
-        </member>
         <member name="P:Fluxer.Net.IRole.Mention">
             <summary>
             Get the mention for this role.
@@ -4355,6 +4361,9 @@
         <member name="P:Fluxer.Net.Role.Id">
             <inheritdoc />
         </member>
+        <member name="P:Fluxer.Net.Role.CreatedAt">
+            <inheritdoc />
+        </member>
         <member name="P:Fluxer.Net.Role.Mention">
             <inheritdoc />
         </member>
@@ -4392,6 +4401,9 @@
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.RoleJson.Id">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.RoleJson.CreatedAt">
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.RoleJson.Mention">
@@ -4454,6 +4466,9 @@
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.PartialGuild.Id">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.PartialGuild.CreatedAt">
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.PartialGuild.Name">
@@ -4519,6 +4534,9 @@
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.PartialGuildJson.Id">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.PartialGuildJson.CreatedAt">
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.PartialGuildJson.Name">
@@ -5858,6 +5876,9 @@
         <member name="P:Fluxer.Net.Attachment.Id">
             <inheritdoc />
         </member>
+        <member name="P:Fluxer.Net.Attachment.CreatedAt">
+            <inheritdoc />
+        </member>
         <member name="P:Fluxer.Net.Attachment.Filename">
             <inheritdoc />
         </member>
@@ -5954,6 +5975,9 @@
         <member name="P:Fluxer.Net.AttachmentJson.Id">
             <inheritdoc />
         </member>
+        <member name="P:Fluxer.Net.AttachmentJson.CreatedAt">
+            <inheritdoc />
+        </member>
         <member name="P:Fluxer.Net.AttachmentJson.Filename">
             <inheritdoc />
         </member>
@@ -6004,11 +6028,6 @@
         </member>
         <member name="P:Fluxer.Net.AttachmentJson.IsExpired">
             <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.IAttachment.Id">
-            <summary>
-            The unique identifier for this attachment.
-            </summary>
         </member>
         <member name="P:Fluxer.Net.IAttachment.Filename">
             <summary>
@@ -6097,7 +6116,7 @@
         </member>
         <member name="P:Fluxer.Net.IMessage.Id">
             <summary>
-            The unique identifier (snowflake) for this message.
+            Unique identifier (snowflake) for the object.
             </summary>
         </member>
         <member name="P:Fluxer.Net.IMessage.ChannelId">
@@ -7245,6 +7264,50 @@
         <member name="P:Fluxer.Net.InstanceAppRegistrationJson.CollectDateOfBirth">
             <inheritdoc />
         </member>
+        <member name="T:Fluxer.Net.FluxerOAuthRefreshToken">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FluxerOAuthRefreshToken.AccessToken">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FluxerOAuthRefreshToken.TokenType">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FluxerOAuthRefreshToken.ExpiresIn">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FluxerOAuthRefreshToken.RefreshToken">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FluxerOAuthRefreshToken.Scope">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.FluxerOAuthRefreshToken.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.FluxerOAuthRefreshTokenJson)">
+            <summary>
+            Create a FluxerOAuthRefreshToken object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Fluxer.Net.FluxerOAuthRefreshTokenJson">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FluxerOAuthRefreshTokenJson.AccessToken">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FluxerOAuthRefreshTokenJson.TokenType">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FluxerOAuthRefreshTokenJson.ExpiresIn">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FluxerOAuthRefreshTokenJson.RefreshToken">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FluxerOAuthRefreshTokenJson.Scope">
+            <inheritdoc />
+        </member>
         <member name="T:Fluxer.Net.FluxerOAuthToken">
             <inheritdoc />
         </member>
@@ -7254,7 +7317,7 @@
         <member name="P:Fluxer.Net.FluxerOAuthToken.Scopes">
             <inheritdoc />
         </member>
-        <member name="P:Fluxer.Net.FluxerOAuthToken.Expires">
+        <member name="P:Fluxer.Net.FluxerOAuthToken.ExpiresAt">
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.FluxerOAuthToken.User">
@@ -7277,7 +7340,7 @@
         <member name="P:Fluxer.Net.FluxerOAuthTokenJson.Scopes">
             <inheritdoc />
         </member>
-        <member name="P:Fluxer.Net.FluxerOAuthTokenJson.Expires">
+        <member name="P:Fluxer.Net.FluxerOAuthTokenJson.ExpiresAt">
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.FluxerOAuthTokenJson.User">
@@ -7309,6 +7372,92 @@
         <member name="P:Fluxer.Net.FluxerOAuthUserJson.IsVerified">
             <inheritdoc />
         </member>
+        <member name="T:Fluxer.Net.FluxerOAuthValidToken">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FluxerOAuthValidToken.IsActive">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FluxerOAuthValidToken.Scope">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FluxerOAuthValidToken.ClientId">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FluxerOAuthValidToken.TokenType">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FluxerOAuthValidToken.Exp">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FluxerOAuthValidToken.Iat">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FluxerOAuthValidToken.Sub">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.FluxerOAuthValidToken.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.FluxerOAuthValidTokenJson)">
+            <summary>
+            Create a FluxerOAuthValidToken object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Fluxer.Net.FluxerOAuthValidTokenJson">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FluxerOAuthValidTokenJson.IsActive">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FluxerOAuthValidTokenJson.Scope">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FluxerOAuthValidTokenJson.ClientId">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FluxerOAuthValidTokenJson.TokenType">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FluxerOAuthValidTokenJson.Exp">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FluxerOAuthValidTokenJson.Iat">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FluxerOAuthValidTokenJson.Sub">
+            <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.IFluxerOAuthRefreshToken">
+            <summary>
+            Exchange a refresh token for a new access token.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IFluxerOAuthRefreshToken.AccessToken">
+            <summary>
+            New access token.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IFluxerOAuthRefreshToken.TokenType">
+            <summary>
+            Token type.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IFluxerOAuthRefreshToken.ExpiresIn">
+            <summary>
+            Expires in 
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IFluxerOAuthRefreshToken.RefreshToken">
+            <summary>
+            New refresh token.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IFluxerOAuthRefreshToken.Scope">
+            <summary>
+            Scope of the refresh token.
+            </summary>
+        </member>
         <member name="P:Fluxer.Net.IFluxerOAuthToken.Application">
             <summary>
             The application associated with the token.
@@ -7319,7 +7468,7 @@
             The list of granted OAuth2 scopes.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.IFluxerOAuthToken.Expires">
+        <member name="P:Fluxer.Net.IFluxerOAuthToken.ExpiresAt">
             <summary>
             The expiration timestamp of the token.
             </summary>
@@ -7337,6 +7486,26 @@
         <member name="P:Fluxer.Net.IFluxerOAuthUser.IsVerified">
             <summary>
             Whether the user has verified their email.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IFluxerOAuthValidToken.IsActive">
+            <summary>
+            Is token valid.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IFluxerOAuthValidToken.Scope">
+            <summary>
+            Scope of the token.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IFluxerOAuthValidToken.ClientId">
+            <summary>
+            Client ID for the application used.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IFluxerOAuthValidToken.TokenType">
+            <summary>
+            Token type.
             </summary>
         </member>
         <member name="T:Fluxer.Net.Activity">
@@ -7711,7 +7880,7 @@
         </member>
         <member name="P:Fluxer.Net.IUser.Id">
             <summary>
-            The unique identifier (snowflake) for this user.
+            Unique identifier (snowflake) for the object.
             </summary>
         </member>
         <member name="P:Fluxer.Net.IUser.CreatedAt">
@@ -8881,11 +9050,6 @@
         <member name="P:Fluxer.Net.VoiceStateJson.Member">
             <inheritdoc />
         </member>
-        <member name="P:Fluxer.Net.IWebhook.Id">
-            <summary>
-            The unique identifier (snowflake) for the webhook.
-            </summary>
-        </member>
         <member name="P:Fluxer.Net.IWebhook.Token">
             <summary>
             The secure token used to execute the webhook.
@@ -8940,6 +9104,9 @@
         <member name="P:Fluxer.Net.Webhook.Id">
             <inheritdoc />
         </member>
+        <member name="P:Fluxer.Net.Webhook.CreatedAt">
+            <inheritdoc />
+        </member>
         <member name="P:Fluxer.Net.Webhook.Token">
             <inheritdoc />
         </member>
@@ -8981,6 +9148,9 @@
         <member name="P:Fluxer.Net.WebhookJson.Id">
             <inheritdoc />
         </member>
+        <member name="P:Fluxer.Net.WebhookJson.CreatedAt">
+            <inheritdoc />
+        </member>
         <member name="P:Fluxer.Net.WebhookJson.Token">
             <inheritdoc />
         </member>
@@ -9007,29 +9177,6 @@
         </member>
         <member name="M:Fluxer.Net.WebhookJson.GetAvatarOrDefaultUrl(System.Int32)">
             <inheritdoc />
-        </member>
-        <member name="T:Fluxer.Net.Extensions.SnowflakeUtils">
-            <summary>
-            Provides a series of helper methods for handling snowflake identifiers.
-            </summary>
-        </member>
-        <member name="M:Fluxer.Net.Extensions.SnowflakeUtils.FromSnowflake(System.UInt64)">
-            <summary>
-            Resolves the time of which the snowflake is generated.
-            </summary>
-            <param name="value">The snowflake identifier to resolve.</param>
-            <returns>
-            A <see cref="T:System.DateTimeOffset" /> representing the time for when the object is generated.
-            </returns>
-        </member>
-        <member name="M:Fluxer.Net.Extensions.SnowflakeUtils.ToSnowflake(System.DateTimeOffset)">
-            <summary>
-            Generates a pseudo-snowflake identifier with a <see cref="T:System.DateTimeOffset"/>.
-            </summary>
-            <param name="value">The time to be used in the new snowflake.</param>
-            <returns>
-            A <see cref="T:System.UInt64" /> representing the newly generated snowflake identifier.
-            </returns>
         </member>
         <member name="T:Fluxer.Net.Extensions.StringUInt64Converter">
             <summary>
@@ -9078,6 +9225,29 @@
             Creates an empty Option&lt;T&gt; instance.
             </summary>
             <returns>An empty optional.</returns>
+        </member>
+        <member name="T:Fluxer.Net.SnowflakeUtils">
+            <summary>
+            Provides a series of helper methods for handling snowflake identifiers.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.SnowflakeUtils.FromSnowflake(System.UInt64)">
+            <summary>
+            Resolves the time of which the snowflake is generated.
+            </summary>
+            <param name="value">The snowflake identifier to resolve.</param>
+            <returns>
+            A <see cref="T:System.DateTimeOffset" /> representing the time for when the object is generated.
+            </returns>
+        </member>
+        <member name="M:Fluxer.Net.SnowflakeUtils.ToSnowflake(System.DateTimeOffset)">
+            <summary>
+            Generates a pseudo-snowflake identifier with a <see cref="T:System.DateTimeOffset"/>.
+            </summary>
+            <param name="value">The time to be used in the new snowflake.</param>
+            <returns>
+            A <see cref="T:System.UInt64" /> representing the newly generated snowflake identifier.
+            </returns>
         </member>
         <member name="T:Fluxer.Net.FluxerBaseClient">
             <summary>
@@ -10641,7 +10811,7 @@
             OAuth client used for Fluxer.
             </summary>
         </member>
-        <member name="M:Fluxer.Net.OAuth.FluxerOAuthClient.#ctor(System.String,System.String,Fluxer.Net.FluxerConfig)">
+        <member name="M:Fluxer.Net.OAuth.FluxerOAuthClient.#ctor(System.UInt64,System.String,Fluxer.Net.FluxerConfig)">
             <summary>
             Create an OAuth client with id and secret then use access or refresh tokens.
             </summary>
@@ -10664,16 +10834,16 @@
         <member name="P:Fluxer.Net.OAuth.FluxerOAuthClient.Rest">
             <inheritdoc cref="P:Fluxer.Net.FluxerBaseClient.Rest" />
         </member>
-        <member name="M:Fluxer.Net.OAuth.FluxerOAuthClient.GetOAuthUser(System.String)">
+        <member name="M:Fluxer.Net.OAuth.FluxerOAuthClient.GetUserAsync(System.String)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.GetOAuthUserAsync(System.String)" />
         </member>
-        <member name="M:Fluxer.Net.OAuth.FluxerOAuthClient.GetOAuthTokenAsync(System.String)">
+        <member name="M:Fluxer.Net.OAuth.FluxerOAuthClient.GetTokenAsync(System.String)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.GetOAuthTokenAsync(System.String)" />
         </member>
-        <member name="M:Fluxer.Net.OAuth.FluxerOAuthClient.GetOAuthGuildsAsync(System.String)">
+        <member name="M:Fluxer.Net.OAuth.FluxerOAuthClient.GetGuildsAsync(System.String)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.GetOAuthGuildsAsync(System.String)" />
         </member>
-        <member name="M:Fluxer.Net.OAuth.FluxerOAuthClient.GetOAuthConnectionsAsync(System.String)">
+        <member name="M:Fluxer.Net.OAuth.FluxerOAuthClient.GetConnectionsAsync(System.String)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.GetOAuthConnectionsAsync(System.String)" />
         </member>
         <member name="M:Fluxer.Net.OAuth.FluxerOAuthClient.CheckValidTokenAsync(System.String)">
@@ -10682,8 +10852,8 @@
         <member name="M:Fluxer.Net.OAuth.FluxerOAuthClient.GetValidTokenAsync(System.String)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.GetOAuthValidTokenAsync(System.UInt64,System.String,System.String)" />
         </member>
-        <member name="M:Fluxer.Net.OAuth.FluxerOAuthClient.GetRefreshTokenAsync(System.String)">
-            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.GetOAuthRefreshTokenAsync(System.UInt64,System.String,System.String)" />
+        <member name="M:Fluxer.Net.OAuth.FluxerOAuthClient.ExchangeRefreshTokenAsync(System.String)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.ExchangeOAuthRefreshTokenAsync(System.UInt64,System.String,System.String)" />
         </member>
         <member name="M:Fluxer.Net.OAuth.FluxerOAuthClient.RevokeAccessTokenAsync(System.String)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.RevokeOAuthAccessTokenAsync(System.UInt64,System.String,System.String)" />
@@ -10696,7 +10866,12 @@
             Extension methods for handling fluxer oauth client.
             </Summary>
         </member>
-        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.AddFluxerClient(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,System.String,Fluxer.Net.FluxerConfig)">
+        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.AddFluxerClient(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,Fluxer.Net.FluxerConfig)">
+            <Summary>
+            Add Fluxer client on dependency injection service.
+            </Summary>
+        </member>
+        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.AddFluxerOAuth(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.UInt64,System.String,Fluxer.Net.FluxerConfig)">
             <Summary>
             Add Fluxer oauth client on dependency injection service.
             </Summary>
@@ -10704,11 +10879,6 @@
         <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.GetFluxerClaims(System.Security.Claims.ClaimsPrincipal,Fluxer.Net.FluxerBaseClient)">
             <Summary>
             Get Fluxer specific claims for a claim user.
-            </Summary>
-        </member>
-        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.AddFluxer(Microsoft.AspNetCore.Authentication.AuthenticationBuilder)">
-            <Summary>
-            Add Fluxer oauth client on dependency injection service.
             </Summary>
         </member>
         <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.AddFluxer(Microsoft.AspNetCore.Authentication.AuthenticationBuilder,System.Action{Fluxer.Net.OAuth.FluxerOAuthOptions})">
@@ -12464,7 +12634,7 @@
             <param name="accessToken"></param>
             <returns></returns>
         </member>
-        <member name="M:Fluxer.Net.Rest.FluxerApiClient.GetOAuthRefreshTokenAsync(System.UInt64,System.String,System.String)">
+        <member name="M:Fluxer.Net.Rest.FluxerApiClient.ExchangeOAuthRefreshTokenAsync(System.UInt64,System.String,System.String)">
             <summary>
             Get new access token from refresh token.
             </summary>
@@ -13534,7 +13704,7 @@
             Requires either <see cref="P:Fluxer.Net.GuildPermissions.ChangeNickname"/> for current user or <see cref="P:Fluxer.Net.GuildPermissions.ManageNicknames"/>.
             </remarks>
         </member>
-        <member name="M:Fluxer.Net.MemberHelpers.SetTimeoutAsync(Fluxer.Net.GuildMember,System.Nullable{System.DateTime})">
+        <member name="M:Fluxer.Net.MemberHelpers.SetTimeoutAsync(Fluxer.Net.GuildMember,System.Nullable{System.DateTimeOffset})">
             <summary>
             Set a members timeout.
             </summary>

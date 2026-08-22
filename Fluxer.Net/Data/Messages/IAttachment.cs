@@ -1,12 +1,7 @@
 ﻿namespace Fluxer.Net;
 
-public interface IAttachment
+public interface IAttachment : ISnowflake
 {
-    /// <summary>
-    /// The unique identifier for this attachment.
-    /// </summary>
-    ulong Id { get; }
-
     /// <summary>
     /// The name of the attached file.
     /// </summary>
@@ -85,7 +80,7 @@ public interface IAttachment
     /// <summary>
     /// The ISO 8601 timestamp when the attachment URL expires.
     /// </summary>
-    DateTime? ExpiresAt { get; }
+    DateTimeOffset? ExpiresAt { get; }
 
     /// <summary>
     /// Whether the attachment URL has expired.

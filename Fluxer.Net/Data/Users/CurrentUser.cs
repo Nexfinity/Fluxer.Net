@@ -43,10 +43,10 @@ public class CurrentUser : User, ICurrentUser, IUserProfile
     public PremiumType PremiumType { get; internal set; }
 
     /// <inheritdoc />
-    public DateTime? PremiumSince { get; internal set; }
+    public DateTimeOffset? PremiumSince { get; internal set; }
 
     /// <inheritdoc />
-    public DateTime? PremiumUntil { get; internal set; }
+    public DateTimeOffset? PremiumUntil { get; internal set; }
 
     /// <inheritdoc />
     public bool PremiumWillCancel { get; internal set; }
@@ -58,7 +58,7 @@ public class CurrentUser : User, ICurrentUser, IUserProfile
     public int? PremiumLifetimeSequence { get; internal set; }
 
     /// <inheritdoc />
-    public DateTime? PasswordLastChangedAt { get; internal set; }
+    public DateTimeOffset? PasswordLastChangedAt { get; internal set; }
 
     /// <inheritdoc />
     public bool HasEverPurchased { get; internal set; }

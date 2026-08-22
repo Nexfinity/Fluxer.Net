@@ -7,11 +7,11 @@ public class GuildBanJson : IGuildBan
 {
     /// <inheritdoc />
     [JsonProperty("banned_at")]
-    public DateTime BannedAt { get; set; }
+    public DateTimeOffset BannedAt { get; set; }
 
     /// <inheritdoc />
     [JsonProperty("expires_at")]
-    public DateTime? ExpiresAt { get; set; }
+    public DateTimeOffset? ExpiresAt { get; set; }
 
     /// <inheritdoc />
     [JsonProperty("moderator_id")]

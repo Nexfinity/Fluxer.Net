@@ -59,7 +59,7 @@ public class GuildJson : PartialGuildJson, IGuild
 
     /// <inheritdoc />
     [JsonProperty("message_history_cutoff")]
-    public DateTime? MessageHistoryCutoff { get; set; }
+    public DateTimeOffset? MessageHistoryCutoff { get; set; }
 
     /// <inheritdoc />
     [JsonProperty("nsfw")]

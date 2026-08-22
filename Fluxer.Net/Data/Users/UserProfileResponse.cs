@@ -20,7 +20,7 @@ public class UserProfileResponse
     public int PremiumType { get; set; }
 
     [JsonProperty("premium_since")]
-    public DateTime? PremiumSince { get; set; }
+    public DateTimeOffset? PremiumSince { get; set; }
 
     [JsonProperty("mutual_friends")]
     public UserJson[]? MutualFriends { get; set; }

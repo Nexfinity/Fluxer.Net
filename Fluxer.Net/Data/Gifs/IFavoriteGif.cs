@@ -3,7 +3,7 @@
 public interface IFavoriteGif
 {
     /// <summary>
-    /// Unique identifier for the favorite gif.
+    /// Source specific ID of the favorite gif.
     /// </summary>
     string Id { get; }
 

@@ -7,7 +7,7 @@ public class ChannelPin : Entity, IChannelPin
     public Message Message { get; internal set; }
 
     /// <inheritdoc />
-    public DateTime PinnedAt { get; internal set; }
+    public DateTimeOffset PinnedAt { get; internal set; }
 
     IMessage IChannelPin.Message => Message;
 

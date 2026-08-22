@@ -52,7 +52,7 @@ public static class MemberHelpers
     /// </summary>
     /// <remarks>
     /// Requires <see cref="GuildPermissions.ModerateMembers"/>.</remarks>
-    public static Task SetTimeoutAsync(this GuildMember member, DateTime? date)
+    public static Task SetTimeoutAsync(this GuildMember member, DateTimeOffset? date)
         => member.Client.Rest.UpdateMemberAsync(member.GuildId, member.Id, new GuildMemberJson
         {
             CommunicationDisabledUntil = date

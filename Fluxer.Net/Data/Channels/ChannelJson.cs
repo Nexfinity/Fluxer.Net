@@ -12,6 +12,9 @@ public class ChannelJson : IChannel
     public ulong Id { get; set; }
 
     /// <inheritdoc />
+    public DateTimeOffset CreatedAt => SnowflakeUtils.FromSnowflake(Id);
+
+    /// <inheritdoc />
     [JsonIgnore]
     public string Mention => $"<#{Id}>";
 
@@ -81,7 +84,7 @@ public class ChannelJson : IChannel
 
     /// <inheritdoc />
     [JsonProperty("last_pin_timestamp")]
-    public DateTime? LastPinAt { get; set; }
+    public DateTimeOffset? LastPinAt { get; set; }
 
     /// <inheritdoc />
     [JsonProperty("permission_overwrites")]
@@ -97,7 +100,7 @@ public class ChannelJson : IChannel
 
     /// <inheritdoc />
     [JsonProperty("indexed_at")]
-    public DateTime? IndexedAt { get; set; }
+    public DateTimeOffset? IndexedAt { get; set; }
 
     IEnumerable<IPermissionOverwrite>? IChannel.PermissionOverwrites => PermissionOverwrites;
 }

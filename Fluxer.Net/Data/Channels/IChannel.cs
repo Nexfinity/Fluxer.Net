@@ -1,12 +1,7 @@
 ﻿namespace Fluxer.Net;
 
-public interface IChannel
+public interface IChannel : ISnowflake
 {
-    /// <summary>
-    /// The unique identifier (snowflake) for this channel.
-    /// </summary>
-    ulong Id { get; }
-
     /// <summary>
     /// Get the mention for this channel.
     /// </summary>
@@ -95,7 +90,7 @@ public interface IChannel
     /// <summary>
     /// The ISO 8601 timestamp of when the last pinned message was pinned.
     /// </summary>
-    DateTime? LastPinAt { get; }
+    DateTimeOffset? LastPinAt { get; }
 
     /// <summary>
     /// The permission overwrites for this channel.
@@ -109,5 +104,5 @@ public interface IChannel
 
     bool IsSoftDeleted { get; }
 
-    DateTime? IndexedAt { get; }
+    DateTimeOffset? IndexedAt { get; }
 }

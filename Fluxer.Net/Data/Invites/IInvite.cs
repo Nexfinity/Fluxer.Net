@@ -5,7 +5,7 @@ public interface IInvite
     /// <summary>
     /// ISO8601 timestamp of when the invite was created.
     /// </summary>
-    DateTime CreatedAt { get; }
+    DateTimeOffset CreatedAt { get; }
 
     /// <summary>
     /// The number of times this invite has been used

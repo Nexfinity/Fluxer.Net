@@ -25,7 +25,7 @@ public class PartialInvite : Entity, IPartialInvite
     public int PresenceCount { get; internal set; }
 
     /// <inheritdoc />
-    public DateTime? ExpiresAt { get; internal set; }
+    public DateTimeOffset? ExpiresAt { get; internal set; }
 
     /// <inheritdoc />
     public bool Temporary { get; internal set; }

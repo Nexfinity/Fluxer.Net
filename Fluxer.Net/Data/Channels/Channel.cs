@@ -7,6 +7,9 @@ public class Channel : Entity, IChannel
     public ulong Id { get; internal set; }
 
     /// <inheritdoc />
+    public DateTimeOffset CreatedAt => SnowflakeUtils.FromSnowflake(Id);
+
+    /// <inheritdoc />
     public string Mention => $"<#{Id}>";
 
     /// <inheritdoc />
@@ -58,7 +61,7 @@ public class Channel : Entity, IChannel
     public ulong? LastMessageId { get; internal set; }
 
     /// <inheritdoc />
-    public DateTime? LastPinAt { get; internal set; }
+    public DateTimeOffset? LastPinAt { get; internal set; }
 
     /// <inheritdoc />
     public IEnumerable<PermissionOverwrite>? PermissionOverwrites { get; internal set; }
@@ -70,7 +73,7 @@ public class Channel : Entity, IChannel
     public bool IsSoftDeleted { get; internal set; }
 
     /// <inheritdoc />
-    public DateTime? IndexedAt { get; internal set; }
+    public DateTimeOffset? IndexedAt { get; internal set; }
 
     IEnumerable<IPermissionOverwrite>? IChannel.PermissionOverwrites => PermissionOverwrites;
 

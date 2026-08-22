@@ -7,10 +7,10 @@ public class AuthSession : Entity, IAuthSession
     public byte[] SessionIdHash { get; internal set; }
 
     /// <inheritdoc />
-    public DateTime CreatedAt { get; internal set; }
+    public DateTimeOffset CreatedAt { get; internal set; }
 
     /// <inheritdoc />
-    public DateTime ApproximateLastUsedAt { get; internal set; }
+    public DateTimeOffset ApproximateLastUsedAt { get; internal set; }
 
     /// <inheritdoc />
     public string ClientIp { get; internal set; }

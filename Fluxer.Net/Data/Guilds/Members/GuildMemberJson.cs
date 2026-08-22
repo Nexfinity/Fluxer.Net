@@ -10,6 +10,9 @@ public class GuildMemberJson : IGuildMember
     public ulong Id => User.Id;
 
     /// <inheritdoc />
+    public DateTimeOffset CreatedAt => SnowflakeUtils.FromSnowflake(Id);
+
+    /// <inheritdoc />
     [JsonIgnore]
     public string Mention => $"<@{Id}>";
 
@@ -23,7 +26,7 @@ public class GuildMemberJson : IGuildMember
 
     /// <inheritdoc />
     [JsonProperty("joined_at")]
-    public DateTime JoinedAt { get; set; }
+    public DateTimeOffset JoinedAt { get; set; }
 
     /// <inheritdoc />
     [JsonProperty("nick")]
@@ -51,7 +54,7 @@ public class GuildMemberJson : IGuildMember
 
     /// <inheritdoc />
     [JsonProperty("communication_disabled_until")]
-    public DateTime? CommunicationDisabledUntil { get; set; }
+    public DateTimeOffset? CommunicationDisabledUntil { get; set; }
 
     /// <inheritdoc />
     [JsonProperty("roles")]

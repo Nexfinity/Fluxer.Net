@@ -10,6 +10,9 @@ public class AttachmentJson : IAttachment
     public ulong Id { get; set; }
 
     /// <inheritdoc />
+    public DateTimeOffset CreatedAt => SnowflakeUtils.FromSnowflake(Id);
+
+    /// <inheritdoc />
     [JsonProperty("filename")]
     public string Filename { get; set; }
 
@@ -71,7 +74,7 @@ public class AttachmentJson : IAttachment
 
     /// <inheritdoc />
     [JsonProperty("expires_at")]
-    public DateTime? ExpiresAt { get; set; }
+    public DateTimeOffset? ExpiresAt { get; set; }
 
     /// <inheritdoc />
     [JsonProperty("expired")]

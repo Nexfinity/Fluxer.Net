@@ -1,12 +1,7 @@
 ﻿namespace Fluxer.Net;
 
-public interface IRole
+public interface IRole : ISnowflake
 {
-    /// <summary>
-    /// The unique identifier for this role.
-    /// </summary>
-    ulong Id { get; }
-
     /// <summary>
     /// Get the mention for this role.
     /// </summary>

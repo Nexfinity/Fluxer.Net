@@ -1,9 +1,12 @@
 ﻿namespace Fluxer.Net;
 
 /// <inheritdoc />
-public class CurrentApplication : Application
+public class CurrentApplication : Application, ICurrentApplication
 {
+    /// <inheritdoc />
     public User Owner { get; internal set; }
+
+    IUser ICurrentApplication.Owner => Owner;
 
     internal CurrentApplication(FluxerBaseClient client) : base(client)
     {

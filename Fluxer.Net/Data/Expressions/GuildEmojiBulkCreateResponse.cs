@@ -13,11 +13,9 @@ public class GuildEmojiBulkCreateJson
 
 public class GuildEmojiBulkCreateFailureItemJson
 {
-    [JsonRequired]
     [JsonProperty("name")]
     public string Name { get; set; }
 
-    [JsonRequired]
     [JsonProperty("error")]
     public string Error { get; set; }
 }

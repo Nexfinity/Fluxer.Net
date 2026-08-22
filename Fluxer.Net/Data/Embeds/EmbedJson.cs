@@ -23,7 +23,7 @@ public class EmbedJson : IEmbed
 
     /// <inheritdoc />
     [JsonProperty("timestamp")]
-    public DateTime? Timestamp { get; set; }
+    public DateTimeOffset? Timestamp { get; set; }
 
     /// <inheritdoc />
     [JsonProperty("description")]

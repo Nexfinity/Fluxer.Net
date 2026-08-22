@@ -3,10 +3,10 @@
 public class GuildBan : Entity, IGuildBan
 {
     /// <inheritdoc />
-    public DateTime BannedAt { get; set; }
+    public DateTimeOffset BannedAt { get; set; }
 
     /// <inheritdoc />
-    public DateTime? ExpiresAt { get; set; }
+    public DateTimeOffset? ExpiresAt { get; set; }
 
     /// <inheritdoc />
     public ulong ModeratorId { get; set; }

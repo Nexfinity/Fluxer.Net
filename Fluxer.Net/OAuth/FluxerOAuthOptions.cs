@@ -13,9 +13,7 @@ public class FluxerOAuthOptions : OAuthOptions
         CallbackPath = FluxerOAuthDefaults.CallbackPath;
         AuthorizationEndpoint = FluxerOAuthDefaults.AuthorizationEndpoint;
         TokenEndpoint = FluxerOAuthDefaults.TokenEndpoint;
-
         UserInformationEndpoint = FluxerOAuthDefaults.UserInformationEndpoint;
-
 
         ClaimActions.MapJsonKey(ClaimTypes.NameIdentifier, "id");
         ClaimActions.MapJsonKey(ClaimTypes.Name, "username");

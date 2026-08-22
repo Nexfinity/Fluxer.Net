@@ -41,7 +41,7 @@ public class InviteGatewayData
     /// When this invite was created.
     /// </summary>
     [JsonProperty("created_at")]
-    public DateTime? CreatedAt { get; set; }
+    public DateTimeOffset? CreatedAt { get; set; }
 
     /// <summary>
     /// How many times this invite has been used.

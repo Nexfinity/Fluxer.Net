@@ -20,7 +20,7 @@ public class GuildGatewayData
     /// When the current user joined this guild.
     /// </summary>
     [JsonProperty("joined_at")]
-    public DateTime? JoinedAt { get; set; }
+    public DateTimeOffset? JoinedAt { get; set; }
 
     /// <summary>
     /// Total number of members in the guild.

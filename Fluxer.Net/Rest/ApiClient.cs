@@ -2567,14 +2567,16 @@ public class FluxerApiClient
     /// <param name="clientSecret"></param>
     /// <param name="accessToken"></param>
     /// <returns></returns>
-    public async Task<FluxerOAuthValidTokenJson> GetOAuthValidTokenAsync(ulong clientId, string clientSecret, string accessToken)
+    public async Task<FluxerOAuthValidToken> GetOAuthValidTokenAsync(ulong clientId, string clientSecret, string accessToken)
     {
-        return await InternalSendRequestFormAsync<FluxerOAuthValidTokenJson>(HttpMethod.Post, "/oauth2/introspect", true, new Dictionary<string, string>
+        var json = await InternalSendRequestFormAsync<FluxerOAuthValidTokenJson>(HttpMethod.Post, "/oauth2/introspect", true, new Dictionary<string, string>
         {
             { "client_id", clientId.ToString() },
             { "client_secret", clientSecret },
             { "token", accessToken }
         });
+
+        return FluxerOAuthValidToken.Create(_client, json);
     }
 
     /// <summary>
@@ -2584,15 +2586,17 @@ public class FluxerApiClient
     /// <param name="clientSecret"></param>
     /// <param name="refreshToken"></param>
     /// <returns></returns>
-    public async Task<FluxerOAuthRefreshTokenJson> GetOAuthRefreshTokenAsync(ulong clientId, string clientSecret, string refreshToken)
+    public async Task<FluxerOAuthRefreshToken> ExchangeOAuthRefreshTokenAsync(ulong clientId, string clientSecret, string refreshToken)
     {
-        return await InternalSendRequestFormAsync<FluxerOAuthRefreshTokenJson>(HttpMethod.Post, "/oauth2/token", true, new Dictionary<string, string>
+        FluxerOAuthRefreshTokenJson json = await InternalSendRequestFormAsync<FluxerOAuthRefreshTokenJson>(HttpMethod.Post, "/oauth2/token", true, new Dictionary<string, string>
         {
             { "client_id", clientId.ToString() },
             { "client_secret", clientSecret },
             { "grant_type", "refresh_token" },
             { "refresh_token", refreshToken }
         });
+
+        return FluxerOAuthRefreshToken.Create(_client, json);
     }
 
     /// <summary>

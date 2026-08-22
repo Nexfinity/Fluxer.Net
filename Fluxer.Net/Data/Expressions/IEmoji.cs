@@ -1,12 +1,7 @@
 ﻿namespace Fluxer.Net;
 
-public interface IEmoji
+public interface IEmoji : ISnowflake
 {
-    /// <summary>
-    /// The unique identifier for this emoji.
-    /// </summary>
-    ulong Id { get; }
-
     /// <summary>
     /// The name of the emoji
     /// </summary>

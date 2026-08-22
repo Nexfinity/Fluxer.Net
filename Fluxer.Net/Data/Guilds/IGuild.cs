@@ -70,7 +70,7 @@ public interface IGuild : IPartialGuild
     /// <summary>
     /// ISO8601 timestamp controlling how far back members without Read Message History can access messages. When null, no historical access is allowed.
     /// </summary>
-    DateTime? MessageHistoryCutoff { get; }
+    DateTimeOffset? MessageHistoryCutoff { get; }
 
     /// <summary>
     /// Is the guild nsfw.

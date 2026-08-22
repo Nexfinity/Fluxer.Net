@@ -12,9 +12,17 @@ namespace Fluxer.Net.OAuth;
 public static class FluxerOAuthExtensions
 {
     /// <Summary>
+    /// Add Fluxer client on dependency injection service.
+    /// </Summary>
+    public static IServiceCollection AddFluxerClient(this IServiceCollection services, string token, FluxerConfig? config = null)
+    {
+        return services.AddSingleton(new FluxerClient(token, config));
+    }
+
+    /// <Summary>
     /// Add Fluxer oauth client on dependency injection service.
     /// </Summary>
-    public static IServiceCollection AddFluxerClient(this IServiceCollection services, string clientId, string clientSecret, FluxerConfig? config = null)
+    public static IServiceCollection AddFluxerOAuth(this IServiceCollection services, ulong clientId, string clientSecret, FluxerConfig? config = null)
     {
         return services.AddSingleton(new FluxerOAuthClient(clientId, clientSecret, config));
     }
@@ -25,16 +33,6 @@ public static class FluxerOAuthExtensions
     public static FluxerOAuthUser GetFluxerClaims(this ClaimsPrincipal principal, FluxerBaseClient client)
     {
         return new FluxerOAuthUser(client, principal);
-    }
-
-    /// <Summary>
-    /// Add Fluxer oauth client on dependency injection service.
-    /// </Summary>
-    public static AuthenticationBuilder AddFluxer(
-        [NotNull] this AuthenticationBuilder builder)
-    {
-
-        return builder.AddFluxer(FluxerOAuthDefaults.AuthenticationScheme, options => { });
     }
 
     /// <Summary>

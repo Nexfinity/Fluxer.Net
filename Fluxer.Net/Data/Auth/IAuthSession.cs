@@ -13,12 +13,12 @@ public interface IAuthSession
     /// <summary>
     /// ISO timestamp when the session was created.
     /// </summary>
-    DateTime CreatedAt { get; }
+    DateTimeOffset CreatedAt { get; }
 
     /// <summary>
     /// ISO timestamp of the session last usage. (approximate)
     /// </summary>
-    DateTime ApproximateLastUsedAt { get; }
+    DateTimeOffset ApproximateLastUsedAt { get; }
 
     /// <summary>
     /// Client IP address.

@@ -14,5 +14,5 @@ public class SavedMessageJson
     public ulong MessageId { get; set; }
 
     [JsonProperty("saved_at")]
-    public DateTime SavedAt { get; set; }
+    public DateTimeOffset SavedAt { get; set; }
 }
