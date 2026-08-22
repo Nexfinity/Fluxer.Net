@@ -61,8 +61,8 @@ public partial class FluxerOAuthHandler : OAuthHandler<FluxerOAuthOptions>
 
         using HttpResponseMessage response = await Backchannel.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, Context.RequestAborted);
 
-        string Headers = response.Headers.ToString();
-        string Body = await response.Content.ReadAsStringAsync();
+        //string Headers = response.Headers.ToString();
+        //string Body = await response.Content.ReadAsStringAsync();
 
         //Console.WriteLine("--- Headers ---\n" +
         //    $"{Headers}\n" +

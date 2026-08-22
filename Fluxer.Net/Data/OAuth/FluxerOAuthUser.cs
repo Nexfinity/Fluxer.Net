@@ -17,6 +17,7 @@ public class FluxerOAuthUser : User, IFluxerOAuthUser
             {
                 case ClaimTypes.NameIdentifier:
                     Id = ulong.Parse(c.Value);
+                    CreatedAt = SnowflakeUtils.FromSnowflake(Id);
                     break;
                 case ClaimTypes.Name:
                     Username = c.Value;

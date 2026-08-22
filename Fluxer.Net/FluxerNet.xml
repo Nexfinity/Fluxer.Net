@@ -7264,6 +7264,50 @@
         <member name="P:Fluxer.Net.InstanceAppRegistrationJson.CollectDateOfBirth">
             <inheritdoc />
         </member>
+        <member name="T:Fluxer.Net.FluxerOAuthRefreshToken">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FluxerOAuthRefreshToken.AccessToken">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FluxerOAuthRefreshToken.TokenType">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FluxerOAuthRefreshToken.ExpiresIn">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FluxerOAuthRefreshToken.RefreshToken">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FluxerOAuthRefreshToken.Scope">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.FluxerOAuthRefreshToken.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.FluxerOAuthRefreshTokenJson)">
+            <summary>
+            Create a FluxerOAuthRefreshToken object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Fluxer.Net.FluxerOAuthRefreshTokenJson">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FluxerOAuthRefreshTokenJson.AccessToken">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FluxerOAuthRefreshTokenJson.TokenType">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FluxerOAuthRefreshTokenJson.ExpiresIn">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FluxerOAuthRefreshTokenJson.RefreshToken">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FluxerOAuthRefreshTokenJson.Scope">
+            <inheritdoc />
+        </member>
         <member name="T:Fluxer.Net.FluxerOAuthToken">
             <inheritdoc />
         </member>
@@ -7273,7 +7317,7 @@
         <member name="P:Fluxer.Net.FluxerOAuthToken.Scopes">
             <inheritdoc />
         </member>
-        <member name="P:Fluxer.Net.FluxerOAuthToken.Expires">
+        <member name="P:Fluxer.Net.FluxerOAuthToken.ExpiresAt">
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.FluxerOAuthToken.User">
@@ -7296,7 +7340,7 @@
         <member name="P:Fluxer.Net.FluxerOAuthTokenJson.Scopes">
             <inheritdoc />
         </member>
-        <member name="P:Fluxer.Net.FluxerOAuthTokenJson.Expires">
+        <member name="P:Fluxer.Net.FluxerOAuthTokenJson.ExpiresAt">
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.FluxerOAuthTokenJson.User">
@@ -7328,6 +7372,92 @@
         <member name="P:Fluxer.Net.FluxerOAuthUserJson.IsVerified">
             <inheritdoc />
         </member>
+        <member name="T:Fluxer.Net.FluxerOAuthValidToken">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FluxerOAuthValidToken.IsActive">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FluxerOAuthValidToken.Scope">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FluxerOAuthValidToken.ClientId">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FluxerOAuthValidToken.TokenType">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FluxerOAuthValidToken.Exp">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FluxerOAuthValidToken.Iat">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FluxerOAuthValidToken.Sub">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.FluxerOAuthValidToken.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.FluxerOAuthValidTokenJson)">
+            <summary>
+            Create a FluxerOAuthValidToken object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Fluxer.Net.FluxerOAuthValidTokenJson">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FluxerOAuthValidTokenJson.IsActive">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FluxerOAuthValidTokenJson.Scope">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FluxerOAuthValidTokenJson.ClientId">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FluxerOAuthValidTokenJson.TokenType">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FluxerOAuthValidTokenJson.Exp">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FluxerOAuthValidTokenJson.Iat">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FluxerOAuthValidTokenJson.Sub">
+            <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.IFluxerOAuthRefreshToken">
+            <summary>
+            Exchange a refresh token for a new access token.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IFluxerOAuthRefreshToken.AccessToken">
+            <summary>
+            New access token.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IFluxerOAuthRefreshToken.TokenType">
+            <summary>
+            Token type.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IFluxerOAuthRefreshToken.ExpiresIn">
+            <summary>
+            Expires in 
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IFluxerOAuthRefreshToken.RefreshToken">
+            <summary>
+            New refresh token.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IFluxerOAuthRefreshToken.Scope">
+            <summary>
+            Scope of the refresh token.
+            </summary>
+        </member>
         <member name="P:Fluxer.Net.IFluxerOAuthToken.Application">
             <summary>
             The application associated with the token.
@@ -7338,7 +7468,7 @@
             The list of granted OAuth2 scopes.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.IFluxerOAuthToken.Expires">
+        <member name="P:Fluxer.Net.IFluxerOAuthToken.ExpiresAt">
             <summary>
             The expiration timestamp of the token.
             </summary>
@@ -7356,6 +7486,26 @@
         <member name="P:Fluxer.Net.IFluxerOAuthUser.IsVerified">
             <summary>
             Whether the user has verified their email.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IFluxerOAuthValidToken.IsActive">
+            <summary>
+            Is token valid.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IFluxerOAuthValidToken.Scope">
+            <summary>
+            Scope of the token.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IFluxerOAuthValidToken.ClientId">
+            <summary>
+            Client ID for the application used.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IFluxerOAuthValidToken.TokenType">
+            <summary>
+            Token type.
             </summary>
         </member>
         <member name="T:Fluxer.Net.Activity">
@@ -10661,7 +10811,7 @@
             OAuth client used for Fluxer.
             </summary>
         </member>
-        <member name="M:Fluxer.Net.OAuth.FluxerOAuthClient.#ctor(System.String,System.String,Fluxer.Net.FluxerConfig)">
+        <member name="M:Fluxer.Net.OAuth.FluxerOAuthClient.#ctor(System.UInt64,System.String,Fluxer.Net.FluxerConfig)">
             <summary>
             Create an OAuth client with id and secret then use access or refresh tokens.
             </summary>
@@ -10684,16 +10834,16 @@
         <member name="P:Fluxer.Net.OAuth.FluxerOAuthClient.Rest">
             <inheritdoc cref="P:Fluxer.Net.FluxerBaseClient.Rest" />
         </member>
-        <member name="M:Fluxer.Net.OAuth.FluxerOAuthClient.GetOAuthUser(System.String)">
+        <member name="M:Fluxer.Net.OAuth.FluxerOAuthClient.GetUserAsync(System.String)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.GetOAuthUserAsync(System.String)" />
         </member>
-        <member name="M:Fluxer.Net.OAuth.FluxerOAuthClient.GetOAuthTokenAsync(System.String)">
+        <member name="M:Fluxer.Net.OAuth.FluxerOAuthClient.GetTokenAsync(System.String)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.GetOAuthTokenAsync(System.String)" />
         </member>
-        <member name="M:Fluxer.Net.OAuth.FluxerOAuthClient.GetOAuthGuildsAsync(System.String)">
+        <member name="M:Fluxer.Net.OAuth.FluxerOAuthClient.GetGuildsAsync(System.String)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.GetOAuthGuildsAsync(System.String)" />
         </member>
-        <member name="M:Fluxer.Net.OAuth.FluxerOAuthClient.GetOAuthConnectionsAsync(System.String)">
+        <member name="M:Fluxer.Net.OAuth.FluxerOAuthClient.GetConnectionsAsync(System.String)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.GetOAuthConnectionsAsync(System.String)" />
         </member>
         <member name="M:Fluxer.Net.OAuth.FluxerOAuthClient.CheckValidTokenAsync(System.String)">
@@ -10702,8 +10852,8 @@
         <member name="M:Fluxer.Net.OAuth.FluxerOAuthClient.GetValidTokenAsync(System.String)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.GetOAuthValidTokenAsync(System.UInt64,System.String,System.String)" />
         </member>
-        <member name="M:Fluxer.Net.OAuth.FluxerOAuthClient.GetRefreshTokenAsync(System.String)">
-            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.GetOAuthRefreshTokenAsync(System.UInt64,System.String,System.String)" />
+        <member name="M:Fluxer.Net.OAuth.FluxerOAuthClient.ExchangeRefreshTokenAsync(System.String)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.ExchangeOAuthRefreshTokenAsync(System.UInt64,System.String,System.String)" />
         </member>
         <member name="M:Fluxer.Net.OAuth.FluxerOAuthClient.RevokeAccessTokenAsync(System.String)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.RevokeOAuthAccessTokenAsync(System.UInt64,System.String,System.String)" />
@@ -10716,7 +10866,12 @@
             Extension methods for handling fluxer oauth client.
             </Summary>
         </member>
-        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.AddFluxerClient(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,System.String,Fluxer.Net.FluxerConfig)">
+        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.AddFluxerClient(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,Fluxer.Net.FluxerConfig)">
+            <Summary>
+            Add Fluxer client on dependency injection service.
+            </Summary>
+        </member>
+        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.AddFluxerOAuth(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.UInt64,System.String,Fluxer.Net.FluxerConfig)">
             <Summary>
             Add Fluxer oauth client on dependency injection service.
             </Summary>
@@ -10724,11 +10879,6 @@
         <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.GetFluxerClaims(System.Security.Claims.ClaimsPrincipal,Fluxer.Net.FluxerBaseClient)">
             <Summary>
             Get Fluxer specific claims for a claim user.
-            </Summary>
-        </member>
-        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.AddFluxer(Microsoft.AspNetCore.Authentication.AuthenticationBuilder)">
-            <Summary>
-            Add Fluxer oauth client on dependency injection service.
             </Summary>
         </member>
         <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.AddFluxer(Microsoft.AspNetCore.Authentication.AuthenticationBuilder,System.Action{Fluxer.Net.OAuth.FluxerOAuthOptions})">
@@ -12484,7 +12634,7 @@
             <param name="accessToken"></param>
             <returns></returns>
         </member>
-        <member name="M:Fluxer.Net.Rest.FluxerApiClient.GetOAuthRefreshTokenAsync(System.UInt64,System.String,System.String)">
+        <member name="M:Fluxer.Net.Rest.FluxerApiClient.ExchangeOAuthRefreshTokenAsync(System.UInt64,System.String,System.String)">
             <summary>
             Get new access token from refresh token.
             </summary>

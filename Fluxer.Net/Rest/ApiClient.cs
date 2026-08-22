@@ -85,8 +85,6 @@ public class FluxerApiClient
         _client = oauth;
         _config = oauth.Config;
         _logger = oauth.Config.RestSerilog;
-        //HttpClient.DefaultRequestHeaders.Add("Client-Id", oauth.ClientId.ToString());
-        //HttpClient.DefaultRequestHeaders.Add("Client-Secret", oauth.ClientSecret);
         Initialize();
     }
 
@@ -2571,12 +2569,14 @@ public class FluxerApiClient
     /// <returns></returns>
     public async Task<FluxerOAuthValidToken> GetOAuthValidTokenAsync(ulong clientId, string clientSecret, string accessToken)
     {
-        return await InternalSendRequestFormAsync<FluxerOAuthValidTokenJson>(HttpMethod.Post, "/oauth2/introspect", true, new Dictionary<string, string>
+        var json = await InternalSendRequestFormAsync<FluxerOAuthValidTokenJson>(HttpMethod.Post, "/oauth2/introspect", true, new Dictionary<string, string>
         {
             { "client_id", clientId.ToString() },
             { "client_secret", clientSecret },
             { "token", accessToken }
         });
+
+        return FluxerOAuthValidToken.Create(_client, json);
     }
 
     /// <summary>
@@ -2586,7 +2586,7 @@ public class FluxerApiClient
     /// <param name="clientSecret"></param>
     /// <param name="refreshToken"></param>
     /// <returns></returns>
-    public async Task<FluxerOAuthRefreshToken> GetOAuthRefreshTokenAsync(ulong clientId, string clientSecret, string refreshToken)
+    public async Task<FluxerOAuthRefreshToken> ExchangeOAuthRefreshTokenAsync(ulong clientId, string clientSecret, string refreshToken)
     {
         FluxerOAuthRefreshTokenJson json = await InternalSendRequestFormAsync<FluxerOAuthRefreshTokenJson>(HttpMethod.Post, "/oauth2/token", true, new Dictionary<string, string>
         {

@@ -39,16 +39,6 @@ public static class FluxerOAuthExtensions
     /// Add Fluxer oauth client on dependency injection service.
     /// </Summary>
     public static AuthenticationBuilder AddFluxer(
-        [NotNull] this AuthenticationBuilder builder)
-    {
-
-        return builder.AddFluxer(FluxerOAuthDefaults.AuthenticationScheme, options => { });
-    }
-
-    /// <Summary>
-    /// Add Fluxer oauth client on dependency injection service.
-    /// </Summary>
-    public static AuthenticationBuilder AddFluxer(
         [NotNull] this AuthenticationBuilder builder,
         [NotNull] Action<FluxerOAuthOptions> configuration)
     {
