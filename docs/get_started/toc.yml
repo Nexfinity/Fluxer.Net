@@ -1,4 +1,10 @@
-- name: Introduction
-  href: intro.md
-- name: Development
-  href: dev.md
+- name: Install Editor
+  href: install.md
+- name: Setup Project
+  href: setup.md
+- name: Create Bot
+  href: bot.md
+- name: Using Events
+  href: events.md
+- name: Using Commands
+  href: commands.md

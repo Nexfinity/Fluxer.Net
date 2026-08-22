@@ -4,6 +4,7 @@ private static CommandService _commands;
 public static async Task Main()
 {
     string token = "token_here";
+    
     _client = new FluxerClient(token);
 
     // This is required to recieve text based commands.

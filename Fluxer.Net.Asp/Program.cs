@@ -29,7 +29,7 @@ public class Program
         builder.Services.AddFluxerOAuth(Config.Id, Config.Secret);
         builder.Services.AddAntiforgery(options =>
         {
-            options.Cookie.SameSite = SameSiteMode.None;
+            options.Cookie.SameSite = SameSiteMode.Lax;
             options.Cookie.SecurePolicy = builder.Environment.IsDevelopment() ? CookieSecurePolicy.None : CookieSecurePolicy.Always;
         });
         builder.Services.AddAuthentication(options =>
