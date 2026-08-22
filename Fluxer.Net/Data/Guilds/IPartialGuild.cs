@@ -1,12 +1,7 @@
 ﻿namespace Fluxer.Net;
 
-public interface IPartialGuild
+public interface IPartialGuild : ISnowflake
 {
-    /// <summary>
-    /// The unique identifier for this guild.
-    /// </summary>
-    ulong Id { get; }
-
     /// <summary>
     /// The name of the guild.
     /// </summary>

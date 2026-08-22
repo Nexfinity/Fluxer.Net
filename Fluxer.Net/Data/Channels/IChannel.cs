@@ -1,12 +1,7 @@
 ﻿namespace Fluxer.Net;
 
-public interface IChannel
+public interface IChannel : ISnowflake
 {
-    /// <summary>
-    /// The unique identifier (snowflake) for this channel.
-    /// </summary>
-    ulong Id { get; }
-
     /// <summary>
     /// Get the mention for this channel.
     /// </summary>

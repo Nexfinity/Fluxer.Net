@@ -12,6 +12,9 @@ public class ChannelJson : IChannel
     public ulong Id { get; set; }
 
     /// <inheritdoc />
+    public DateTimeOffset CreatedAt => SnowflakeUtils.FromSnowflake(Id);
+
+    /// <inheritdoc />
     [JsonIgnore]
     public string Mention => $"<#{Id}>";
 

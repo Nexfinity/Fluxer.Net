@@ -10,7 +10,7 @@ public class FluxerOAuthToken : Entity, IFluxerOAuthToken
     public string[] Scopes { get; internal set; }
 
     /// <inheritdoc />
-    public DateTime Expires { get; internal set; }
+    public DateTime ExpiresAt { get; internal set; }
 
     /// <inheritdoc />
     public FluxerOAuthUser User { get; internal set; }
@@ -32,16 +32,12 @@ public class FluxerOAuthToken : Entity, IFluxerOAuthToken
     /// <returns></returns>
     public static FluxerOAuthToken Create(FluxerBaseClient client, FluxerOAuthTokenJson json)
     {
-        FluxerOAuthToken data = new FluxerOAuthToken(client);
-        data.Update(client, json);
-        return data;
-    }
-
-    internal void Update(FluxerBaseClient client, FluxerOAuthTokenJson json)
-    {
-        Application = PartialApplication.Create(client, json.Application);
-        Scopes = json.Scopes;
-        Expires = json.Expires;
-        User = FluxerOAuthUser.Create(client, json.User);
+        return new FluxerOAuthToken(client)
+        {
+            Application = PartialApplication.Create(client, json.Application),
+            Scopes = json.Scopes,
+            ExpiresAt = json.ExpiresAt,
+            User = FluxerOAuthUser.Create(client, json.User)
+        };
     }
 }

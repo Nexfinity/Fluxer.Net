@@ -1,4 +1,4 @@
-﻿namespace Fluxer.Net.Extensions;
+﻿namespace Fluxer.Net;
 
 /// <summary>
 /// Provides a series of helper methods for handling snowflake identifiers.

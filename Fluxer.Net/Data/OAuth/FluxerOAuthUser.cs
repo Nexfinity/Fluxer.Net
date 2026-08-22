@@ -6,7 +6,7 @@ namespace Fluxer.Net;
 /// <inheritdoc />
 public class FluxerOAuthUser : User, IFluxerOAuthUser
 {
-    public FluxerOAuthUser(FluxerBaseClient client, ClaimsPrincipal principal) : base(client)
+    internal FluxerOAuthUser(FluxerBaseClient client, ClaimsPrincipal principal) : base(client)
     {
         if (principal == null)
             return;

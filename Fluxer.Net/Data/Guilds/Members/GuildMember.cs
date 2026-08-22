@@ -7,6 +7,9 @@ public class GuildMember : Entity, IGuildMember
     public ulong Id => User.Id;
 
     /// <inheritdoc />
+    public DateTimeOffset CreatedAt => SnowflakeUtils.FromSnowflake(Id);
+
+    /// <inheritdoc />
     public string Mention => $"<@{Id}>";
 
     /// <inheritdoc />

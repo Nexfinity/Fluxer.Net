@@ -3,7 +3,7 @@
 public interface IUser
 {
     /// <summary>
-    /// The unique identifier (snowflake) for this user.
+    /// Unique identifier (snowflake) for the object.
     /// </summary>
     ulong Id { get; }
 

@@ -1,12 +1,7 @@
 ﻿namespace Fluxer.Net;
 
-public interface IGuildMember
+public interface IGuildMember : ISnowflake
 {
-    /// <summary>
-    /// User id for this member.
-    /// </summary>
-    ulong Id { get; }
-
     /// <summary>
     /// Guild id that the user is in.
     /// </summary>

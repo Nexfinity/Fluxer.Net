@@ -1,12 +1,7 @@
 ﻿namespace Fluxer.Net;
 
-public interface IWebhook
+public interface IWebhook : ISnowflake
 {
-    /// <summary>
-    /// The unique identifier (snowflake) for the webhook.
-    /// </summary>
-    ulong Id { get; }
-
     /// <summary>
     /// The secure token used to execute the webhook.
     /// </summary>

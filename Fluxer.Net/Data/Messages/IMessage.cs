@@ -3,7 +3,7 @@
 public interface IMessage
 {
     /// <summary>
-    /// The unique identifier (snowflake) for this message.
+    /// Unique identifier (snowflake) for the object.
     /// </summary>
     ulong Id { get; }
 

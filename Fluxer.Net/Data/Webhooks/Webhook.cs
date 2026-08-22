@@ -7,6 +7,9 @@ public class Webhook : Entity, IWebhook
     public ulong Id { get; internal set; }
 
     /// <inheritdoc />
+    public DateTimeOffset CreatedAt => SnowflakeUtils.FromSnowflake(Id);
+
+    /// <inheritdoc />
     public string? Token { get; internal set; }
 
     /// <inheritdoc />

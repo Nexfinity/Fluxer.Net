@@ -6,12 +6,12 @@
 public interface ISnowflake
 {
     /// <summary>
-    /// Fluxer unique identifier (snowflake) for the object.
+    /// Unique identifier (snowflake) for the object.
     /// </summary>
     ulong Id { get; }
 
     /// <summary>
-    /// Object created at UTC.
+    /// Object created at UTC date.
     /// </summary>
     DateTimeOffset CreatedAt { get; }
 }

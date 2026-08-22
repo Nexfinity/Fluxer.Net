@@ -1,12 +1,7 @@
 ﻿namespace Fluxer.Net;
 
-public interface ISticker
+public interface ISticker : ISnowflake
 {
-    /// <summary>
-    /// The unique identifier for this sticker.
-    /// </summary>
-    ulong Id { get; }
-
     /// <summary>
     /// The name of the sticker.
     /// </summary>

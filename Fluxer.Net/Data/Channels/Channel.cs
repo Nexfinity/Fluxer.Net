@@ -7,6 +7,9 @@ public class Channel : Entity, IChannel
     public ulong Id { get; internal set; }
 
     /// <inheritdoc />
+    public DateTimeOffset CreatedAt => SnowflakeUtils.FromSnowflake(Id);
+
+    /// <inheritdoc />
     public string Mention => $"<#{Id}>";
 
     /// <inheritdoc />

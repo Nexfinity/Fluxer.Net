@@ -7,6 +7,9 @@ public class Attachment : Entity, IAttachment
     public ulong Id { get; set; }
 
     /// <inheritdoc />
+    public DateTimeOffset CreatedAt => SnowflakeUtils.FromSnowflake(Id);
+
+    /// <inheritdoc />
     public string Filename { get; set; }
 
     /// <inheritdoc />

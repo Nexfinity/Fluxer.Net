@@ -10,6 +10,9 @@ public class EmojiJson : IEmoji
     public ulong Id { get; set; }
 
     /// <inheritdoc />
+    public DateTimeOffset CreatedAt => SnowflakeUtils.FromSnowflake(Id);
+
+    /// <inheritdoc />
     [JsonProperty("name")]
     public string Name { get; set; }
 

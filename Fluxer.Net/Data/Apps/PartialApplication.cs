@@ -7,6 +7,9 @@ public class PartialApplication : Entity, IPartialApplication
     public ulong Id { get; internal set; }
 
     /// <inheritdoc />
+    public DateTimeOffset CreatedAt => SnowflakeUtils.FromSnowflake(Id);
+
+    /// <inheritdoc />
     public string Name { get; internal set; }
 
     /// <inheritdoc />

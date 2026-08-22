@@ -79,7 +79,7 @@ public class FluxerOAuthClient : FluxerBaseClient
     {
         try
         {
-            FluxerOAuthValidTokenJson token = await Rest.GetOAuthValidTokenAsync(ClientId, ClientSecret, accessToken);
+            FluxerOAuthValidToken token = await Rest.GetOAuthValidTokenAsync(ClientId, ClientSecret, accessToken);
             return token.IsActive;
         }
         catch
@@ -89,11 +89,11 @@ public class FluxerOAuthClient : FluxerBaseClient
     }
 
     /// <inheritdoc cref="FluxerApiClient.GetOAuthValidTokenAsync(ulong, string, string)" />
-    public Task<FluxerOAuthValidTokenJson> GetValidTokenAsync(string accessToken)
+    public Task<FluxerOAuthValidToken> GetValidTokenAsync(string accessToken)
         => Rest.GetOAuthValidTokenAsync(ClientId, ClientSecret, accessToken);
 
     /// <inheritdoc cref="FluxerApiClient.GetOAuthRefreshTokenAsync(ulong, string, string)" />
-    public Task<FluxerOAuthRefreshTokenJson> GetRefreshTokenAsync(string refreshToken)
+    public Task<FluxerOAuthRefreshToken> GetRefreshTokenAsync(string refreshToken)
         => Rest.GetOAuthRefreshTokenAsync(ClientId, ClientSecret, refreshToken);
 
     /// <inheritdoc cref="FluxerApiClient.RevokeOAuthAccessTokenAsync(ulong, string, string)" />

@@ -10,6 +10,9 @@ public class AttachmentJson : IAttachment
     public ulong Id { get; set; }
 
     /// <inheritdoc />
+    public DateTimeOffset CreatedAt => SnowflakeUtils.FromSnowflake(Id);
+
+    /// <inheritdoc />
     [JsonProperty("filename")]
     public string Filename { get; set; }
 

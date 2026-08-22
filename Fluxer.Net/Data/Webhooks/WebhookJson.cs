@@ -10,6 +10,9 @@ public class WebhookJson : IWebhook
     public ulong Id { get; set; }
 
     /// <inheritdoc />
+    public DateTimeOffset CreatedAt => SnowflakeUtils.FromSnowflake(Id);
+
+    /// <inheritdoc />
     [JsonProperty("token")]
     public string? Token { get; set; }
 

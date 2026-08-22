@@ -1,12 +1,7 @@
 ﻿namespace Fluxer.Net;
 
-public interface IAttachment
+public interface IAttachment : ISnowflake
 {
-    /// <summary>
-    /// The unique identifier for this attachment.
-    /// </summary>
-    ulong Id { get; }
-
     /// <summary>
     /// The name of the attached file.
     /// </summary>
