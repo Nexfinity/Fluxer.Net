@@ -13,7 +13,7 @@ _layout: landing
 .NET library used for apps to interact with the [Fluxer API](https://fluxer.app)
 
 ## Get Started
-New to programming or C# see [Get Started](xref:GetStarted.Intro) section.
+New to programming or C# see [Get Started](xref:GetStarted.Install) section.
 
 Want to learn the library see [Guides](xref:Guides.Intro) section.
 

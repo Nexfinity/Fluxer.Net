@@ -4,3 +4,5 @@
   href: commands.md
 - name: Modules
   href: modules.md
+- name: OAuth
+  href: oauth.md
