@@ -1,8 +1,7 @@
 namespace Fluxer.Net.Commands;
 
-// Extension of the Cosmetic Summary, for Groups, Commands, and Parameters
 /// <summary>
-///     Attaches remarks to your commands.
+/// Attaches remarks to your commands (Cosmetic)
 /// </summary>
 [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class, AllowMultiple = false, Inherited = true)]
 public class RemarksAttribute : Attribute

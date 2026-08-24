@@ -54,5 +54,18 @@ public class CommandServiceConfig
     /// </summary>
     public bool IgnoreExtraArgs { get; set; } = false;
 
+    /// <summary>
+    /// Configure the logger for the command service.
+    /// </summary>
     public ILogger Logger { get; set; }
+
+    /// <summary>
+    /// Extra owner IDs when checking RequireOwner precondition.
+    /// </summary>
+    public ulong[]? OwnerIDs { get; set; }
+
+    /// <summary>
+    /// Owners can bypass permission preconditions.
+    /// </summary>
+    public bool OwnerBypassPermissions { get; set; }
 }

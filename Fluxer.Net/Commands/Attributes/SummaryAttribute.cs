@@ -1,8 +1,7 @@
 namespace Fluxer.Net.Commands;
 
-// Cosmetic Summary, for Groups and Commands
 /// <summary>
-///     Attaches a summary to your command.
+/// Attaches a summary to your command (Cosmetic)
 /// </summary>
 [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class | AttributeTargets.Parameter, AllowMultiple = false, Inherited = true)]
 public class SummaryAttribute : Attribute

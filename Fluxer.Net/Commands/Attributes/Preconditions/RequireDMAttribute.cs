@@ -1,7 +1,7 @@
 ﻿namespace Fluxer.Net.Commands;
 
 [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false, Inherited = true)]
-public class RequireDMttribute : PreconditionAttribute
+public class RequireDMAttribute : PreconditionAttribute
 {
     /// <inheritdoc />
     public override async Task<PreconditionResult> CheckPermissionsAsync(ICommandContext context, CommandInfo command, IServiceProvider services)

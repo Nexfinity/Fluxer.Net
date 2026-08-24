@@ -1,13 +1,13 @@
 namespace Fluxer.Net.Commands;
 
 [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false, Inherited = true)]
-public class RequireGroupOwnerAttribute : PreconditionAttribute
+public class RequireServerOwnerAttribute : PreconditionAttribute
 {
     /// <inheritdoc />
     public override async Task<PreconditionResult> CheckPermissionsAsync(ICommandContext context, CommandInfo command, IServiceProvider services)
     {
-        if (context.Channel.Type != ChannelType.Group)
-            return PreconditionResult.FromError("You need to run this command in a group channel.");
+        if (context.Guild == null)
+            return PreconditionResult.FromError("You need to run this command in a community.");
 
         if (context.CommandService._ownerBypassPermissions)
         {
@@ -19,9 +19,9 @@ public class RequireGroupOwnerAttribute : PreconditionAttribute
                 return PreconditionResult.FromSuccess();
         }
 
-        if (context.User.Id == (context.Channel as GroupChannel).OwnerId)
+        if (context.User.Id == context.Guild.OwnerId)
             return PreconditionResult.FromSuccess();
 
-        return PreconditionResult.FromError("Command can only be run by the group owner.");
+        return PreconditionResult.FromError("You need to run this command in a community.");
     }
 }

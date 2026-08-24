@@ -1,8 +1,7 @@
 namespace Fluxer.Net.Commands;
 
-// Override public name of command/module
 /// <summary>
-///     Marks the public name of a command, module, or parameter.
+/// Override public name of command/module
 /// </summary>
 [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class | AttributeTargets.Parameter, AllowMultiple = false, Inherited = true)]
 public class NameAttribute : Attribute
