@@ -28,7 +28,7 @@ public class RequireContextAttribute : PreconditionAttribute
         if (isValid)
             return PreconditionResult.FromSuccess();
 
-        return PreconditionResult.FromError($"Invalid channel context for command, require contexts are {Contexts}");
+        return PreconditionResult.FromError($"You need to run this command in {Contexts} channel.");
     }
 }
 

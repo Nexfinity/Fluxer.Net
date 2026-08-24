@@ -84,6 +84,22 @@
             </summary>
             <param name="text">The name of the command.</param>
         </member>
+        <member name="T:Fluxer.Net.Commands.DocsAttribute">
+            <summary>
+            Attaches a docs link for the command (Cosmetic)
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Commands.DocsAttribute.Url">
+            <summary>
+            Url that leads to the docs.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Commands.DocsAttribute.#ctor(System.String)">
+            <summary>
+            Create a DocsAttribute with the url given.
+            </summary>
+            <param name="url"></param>
+        </member>
         <member name="T:Fluxer.Net.Commands.DontAutoLoadAttribute">
             <summary>
                 Prevents the marked module from being loaded automatically.
@@ -120,7 +136,7 @@
         </member>
         <member name="T:Fluxer.Net.Commands.GroupAttribute">
             <summary>
-                Marks the module as a command group.
+            Marks the module as a command group.
             </summary>
         </member>
         <member name="P:Fluxer.Net.Commands.GroupAttribute.Prefix">
@@ -139,7 +155,7 @@
         </member>
         <member name="T:Fluxer.Net.Commands.NameAttribute">
             <summary>
-                Marks the public name of a command, module, or parameter.
+            Override public name of command/module
             </summary>
         </member>
         <member name="P:Fluxer.Net.Commands.NameAttribute.Text">
@@ -254,12 +270,6 @@
         <member name="M:Fluxer.Net.Commands.RequireBotPermissionAttribute.CheckPermissionsAsync(Fluxer.Net.Commands.ICommandContext,Fluxer.Net.Commands.CommandInfo,System.IServiceProvider)">
             <inheritdoc />
         </member>
-        <member name="M:Fluxer.Net.Commands.RequireCommunityAttribute.CheckPermissionsAsync(Fluxer.Net.Commands.ICommandContext,Fluxer.Net.Commands.CommandInfo,System.IServiceProvider)">
-            <inheritdoc />
-        </member>
-        <member name="M:Fluxer.Net.Commands.RequireCommunityOwnerAttribute.CheckPermissionsAsync(Fluxer.Net.Commands.ICommandContext,Fluxer.Net.Commands.CommandInfo,System.IServiceProvider)">
-            <inheritdoc />
-        </member>
         <member name="P:Fluxer.Net.Commands.RequireContextAttribute.Contexts">
             <summary>
             Gets the context required to execute the command.
@@ -268,7 +278,7 @@
         <member name="M:Fluxer.Net.Commands.RequireContextAttribute.CheckPermissionsAsync(Fluxer.Net.Commands.ICommandContext,Fluxer.Net.Commands.CommandInfo,System.IServiceProvider)">
             <inheritdoc />
         </member>
-        <member name="M:Fluxer.Net.Commands.RequireDMttribute.CheckPermissionsAsync(Fluxer.Net.Commands.ICommandContext,Fluxer.Net.Commands.CommandInfo,System.IServiceProvider)">
+        <member name="M:Fluxer.Net.Commands.RequireDMAttribute.CheckPermissionsAsync(Fluxer.Net.Commands.ICommandContext,Fluxer.Net.Commands.CommandInfo,System.IServiceProvider)">
             <inheritdoc />
         </member>
         <member name="M:Fluxer.Net.Commands.RequireGroupAttribute.CheckPermissionsAsync(Fluxer.Net.Commands.ICommandContext,Fluxer.Net.Commands.CommandInfo,System.IServiceProvider)">
@@ -309,6 +319,12 @@
         <member name="M:Fluxer.Net.Commands.RequireOwnerAttribute.CheckPermissionsAsync(Fluxer.Net.Commands.ICommandContext,Fluxer.Net.Commands.CommandInfo,System.IServiceProvider)">
             <inheritdoc />
         </member>
+        <member name="M:Fluxer.Net.Commands.RequireServerAttribute.CheckPermissionsAsync(Fluxer.Net.Commands.ICommandContext,Fluxer.Net.Commands.CommandInfo,System.IServiceProvider)">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.Commands.RequireServerOwnerAttribute.CheckPermissionsAsync(Fluxer.Net.Commands.ICommandContext,Fluxer.Net.Commands.CommandInfo,System.IServiceProvider)">
+            <inheritdoc />
+        </member>
         <member name="F:Fluxer.Net.Commands.RequireUserPermissionAttribute.Server">
             <summary>
             Server/group permission to check for.
@@ -344,12 +360,12 @@
         </member>
         <member name="T:Fluxer.Net.Commands.RemarksAttribute">
             <summary>
-                Attaches remarks to your commands.
+            Attaches remarks to your commands (Cosmetic)
             </summary>
         </member>
         <member name="T:Fluxer.Net.Commands.SummaryAttribute">
             <summary>
-                Attaches a summary to your command.
+            Attaches a summary to your command (Cosmetic)
             </summary>
         </member>
         <member name="M:Fluxer.Net.Commands.CommandBuilder.Build(Fluxer.Net.Commands.ModuleInfo,Fluxer.Net.Commands.CommandService)">
@@ -753,6 +769,21 @@
                 Gets or sets a value that indicates whether extra parameters should be ignored.
             </summary>
         </member>
+        <member name="P:Fluxer.Net.Commands.CommandServiceConfig.Logger">
+            <summary>
+            Configure the logger for the command service.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Commands.CommandServiceConfig.OwnerIds">
+            <summary>
+            Extra owner IDs when checking RequireOwner precondition.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Commands.CommandServiceConfig.OwnerBypassPermissions">
+            <summary>
+            Owners can bypass permission preconditions.
+            </summary>
+        </member>
         <member name="T:Fluxer.Net.Commands.CommandServiceExtensions">
             <summary>
                 Provides extension methods for the <see cref="T:Fluxer.Net.Commands.CommandService"/> class.
@@ -815,6 +846,11 @@
         <member name="T:Fluxer.Net.Commands.ICommandContext">
             <summary>
             The context of a command. This may include the client, guild, channel, user, and message.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Commands.ICommandContext.Command">
+            <summary>
+            Command info from the command used.
             </summary>
         </member>
         <member name="P:Fluxer.Net.Commands.ICommandContext.Client">

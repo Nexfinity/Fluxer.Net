@@ -8,7 +8,12 @@ namespace Fluxer.Net.Commands;
 /// </summary>
 public interface ICommandContext
 {
+    /// <summary>
+    /// Command info from the command used.
+    /// </summary>
     CommandInfo Command { get; internal set; }
+
+    internal CommandService CommandService { get; set; }
 
     /// <summary>
     /// Fluxer base client for the context.

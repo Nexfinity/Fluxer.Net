@@ -2,7 +2,7 @@
   href: client.md
 - name: Commands
   href: commands.md
-- name: Modules
+- name: Example Modules
   href: modules.md
 - name: OAuth
   href: oauth.md

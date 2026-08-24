@@ -42,7 +42,8 @@ public class CommandService : IDisposable
     private readonly HashSet<ModuleInfo> _moduleDefs;
     private readonly CommandMap _map;
 
-    internal readonly bool _caseSensitive, _throwOnError, _ignoreExtraArgs;
+    internal readonly bool _caseSensitive, _throwOnError, _ignoreExtraArgs, _ownerBypassPermissions;
+    internal readonly ulong[]? _ownerIds;
     internal readonly char _separatorChar;
     internal readonly RunMode _defaultRunMode;
     internal readonly ILogger? _logger;
@@ -80,6 +81,8 @@ public class CommandService : IDisposable
     public CommandService(CommandServiceConfig config)
     {
         _caseSensitive = config.CaseSensitiveCommands;
+        _ownerBypassPermissions = config.OwnerBypassPermissions;
+        _ownerIds = config.OwnerIDs;
         _throwOnError = config.ThrowOnError;
         _ignoreExtraArgs = config.IgnoreExtraArgs;
         _separatorChar = config.SeparatorChar;
@@ -542,6 +545,7 @@ public class CommandService : IDisposable
     /// </returns>
     public async Task<IResult> ExecuteAsync(ICommandContext context, string input, IServiceProvider services = null, MultiMatchHandling multiMatchHandling = MultiMatchHandling.Exception)
     {
+        context.CommandService = this;
         services ??= EmptyServiceProvider.Instance;
 
         var searchResult = Search(input);

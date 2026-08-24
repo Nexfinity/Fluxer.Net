@@ -1,7 +1,7 @@
 namespace Fluxer.Net.Commands;
 
 /// <summary>
-///     Marks the module as a command group.
+/// Marks the module as a command group.
 /// </summary>
 [AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = true)]
 public class GroupAttribute : Attribute
