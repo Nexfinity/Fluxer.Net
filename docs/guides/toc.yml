@@ -1,5 +1,7 @@
 - name: Introduction
   href: intro.md
+- name: Hosting
+  href: hosting.md
 - name: API
   items:
     - name: Introduction
@@ -16,9 +18,11 @@
       href: commands/attributes.md
     - name: Preconditions
       href: commands/preconditions.md
-    #- name: Dependency Injection
-    #  href: commands/dependency.md
 - name: Gateway
   items:
     - name: Introduction
       href: gateway/intro.md
+- name: OAuth
+  items:
+    - name: Asp.net
+      href: oauth/aspnet.md
