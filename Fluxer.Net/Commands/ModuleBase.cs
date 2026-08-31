@@ -27,9 +27,9 @@ public abstract class ModuleBase<T> : IModuleBase
     /// </summary>
     protected virtual async Task<Message> ReplyAsync(string? content = null, List<EmbedRequest>? embeds = null,
         MessageReferenceRequest? reference = null, AllowedMentionsRequest? allowedMentions = null, MessageFlag flags = MessageFlag.None,
-        string? nonce = null, ulong? favoruteMemeId = null, bool? tts = null, List<ulong>? stickerIds = null, List<AttachmentRequest>? attachments = null)
+        string? nonce = null, ulong? favoriteMemeId = null, bool? tts = null, List<ulong>? stickerIds = null, List<AttachmentRequest>? attachments = null)
     {
-        return await Context.Client.Rest.SendMessageAsync(Context.Channel.Id, content, embeds, reference, allowedMentions, flags, nonce, favoruteMemeId, tts, stickerIds, attachments);
+        return await Context.Client.Rest.SendMessageAsync(Context.Channel.Id, content, embeds, reference, allowedMentions, flags, nonce, favoriteMemeId, tts, stickerIds, attachments);
     }
 
     /// <summary>

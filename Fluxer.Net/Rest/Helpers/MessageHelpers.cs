@@ -14,8 +14,8 @@ public static class MessageHelpers
     /// <inheritdoc cref="FluxerApiClient.EditMessageAsync(ulong, ulong, string?, List{EmbedRequest}?, MessageReferenceRequest?, AllowedMentionsRequest?, MessageFlag, string?, ulong?, List{ulong}?, List{AttachmentRequest}?)" />
     public static Task<Message> ModifyAsync(this Message message, string? content = null, List<EmbedRequest>? embeds = null,
         MessageReferenceRequest? reference = null, AllowedMentionsRequest? allowedMentions = null, MessageFlag flags = MessageFlag.None,
-        string? nonce = null, ulong? favoruteMemeId = null, List<ulong>? stickerIds = null, List<AttachmentRequest>? attachments = null)
-        => message.Client.Rest.EditMessageAsync(message.ChannelId, message.Id, content, embeds, reference, allowedMentions, flags, nonce, favoruteMemeId, stickerIds, attachments);
+        string? nonce = null, ulong? favoriteMemeId = null, List<ulong>? stickerIds = null, List<AttachmentRequest>? attachments = null)
+        => message.Client.Rest.EditMessageAsync(message.ChannelId, message.Id, content, embeds, reference, allowedMentions, flags, nonce, favoriteMemeId, stickerIds, attachments);
 
     /// <inheritdoc cref="FluxerApiClient.AcknowledgeMessageAsync(ulong, ulong, MessageAckJson)" />
     public static Task AcknowledgeAsync(this Message message, MessageAckJson json)
@@ -60,11 +60,11 @@ public static class MessageHelpers
     /// <inheritdoc cref="FluxerApiClient.SendMessageAsync(ulong, string?, List{EmbedRequest}?, MessageReferenceRequest?, AllowedMentionsRequest?, MessageFlag, string?, ulong?, bool?, List{ulong}?, List{AttachmentRequest}?)" />
     public static Task<Message> ReplyAsync(this Message message, string? content = null, List<EmbedRequest>? embeds = null,
         AllowedMentionsRequest? allowedMentions = null, MessageFlag flags = MessageFlag.None,
-        string? nonce = null, ulong? favoruteMemeId = null, bool? tts = null, List<ulong>? stickerIds = null, List<AttachmentRequest>? attachments = null)
+        string? nonce = null, ulong? favoriteMemeId = null, bool? tts = null, List<ulong>? stickerIds = null, List<AttachmentRequest>? attachments = null)
         => message.Client.Rest.SendMessageAsync(message.ChannelId, content, embeds, new MessageReferenceRequest
         {
             MessageId = message.Id,
-        }, allowedMentions, flags, nonce, favoruteMemeId, tts, stickerIds, attachments);
+        }, allowedMentions, flags, nonce, favoriteMemeId, tts, stickerIds, attachments);
 
     /// <summary>
     /// Forward a message to another channel.
