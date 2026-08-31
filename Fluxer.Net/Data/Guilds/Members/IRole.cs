@@ -23,6 +23,11 @@ public interface IRole : ISnowflake
     int Position { get; }
 
     /// <summary>
+    /// The hoisted position of the role, otherwise use position.
+    /// </summary>
+    int? HoistPosition { get; }
+
+    /// <summary>
     /// The colour of the role as an integer.
     /// </summary>
     int Color { get; }

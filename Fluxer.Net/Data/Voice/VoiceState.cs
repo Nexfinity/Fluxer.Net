@@ -6,7 +6,7 @@ public class VoiceState : Entity, IVoiceState
     public string SessionId { get; set; }
 
     /// <inheritdoc />
-    public bool UserId { get; set; }
+    public ulong UserId { get; set; }
 
     /// <inheritdoc />
     public ulong? ChannelId { get; set; }

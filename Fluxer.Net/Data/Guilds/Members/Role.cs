@@ -25,6 +25,9 @@ public class Role : Entity, IRole
     public int Position { get; internal set; }
 
     /// <inheritdoc />
+    public int? HoistPosition { get; internal set; }
+
+    /// <inheritdoc />
     public int Color { get; internal set; }
 
     /// <inheritdoc />
@@ -64,6 +67,7 @@ public class Role : Entity, IRole
         Name = json.Name;
         Permissions = json.Permissions;
         Position = json.Position;
+        HoistPosition = json.HoistPosition;
         Color = json.Color;
         UnicodeEmoji = json.UnicodeEmoji;
         IsHoisted = json.IsHoisted;

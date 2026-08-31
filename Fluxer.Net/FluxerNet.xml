@@ -774,7 +774,7 @@
             Configure the logger for the command service.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.Commands.CommandServiceConfig.OwnerIds">
+        <member name="P:Fluxer.Net.Commands.CommandServiceConfig.OwnerIDs">
             <summary>
             Extra owner IDs when checking RequireOwner precondition.
             </summary>
@@ -4368,6 +4368,11 @@
             The position of the role in the role hierarchy.
             </summary>
         </member>
+        <member name="P:Fluxer.Net.IRole.HoistPosition">
+            <summary>
+            The hoisted position of the role, otherwise use position.
+            </summary>
+        </member>
         <member name="P:Fluxer.Net.IRole.Color">
             <summary>
             The colour of the role as an integer.
@@ -4412,6 +4417,9 @@
         <member name="P:Fluxer.Net.Role.Position">
             <inheritdoc />
         </member>
+        <member name="P:Fluxer.Net.Role.HoistPosition">
+            <inheritdoc />
+        </member>
         <member name="P:Fluxer.Net.Role.Color">
             <inheritdoc />
         </member>
@@ -4452,6 +4460,9 @@
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.RoleJson.Position">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.RoleJson.HoistPosition">
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.RoleJson.Color">

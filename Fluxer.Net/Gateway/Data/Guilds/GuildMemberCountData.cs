@@ -8,10 +8,10 @@ public class GuildMemberCountGatewayData
     public ulong GuildId { get; set; }
 
     [JsonProperty("member_count")]
-    public ulong MemberCount { get; set; }
+    public int MemberCount { get; set; }
 
     [JsonProperty("online_count")]
-    public ulong OnlineCount { get; set; }
+    public int OnlineCount { get; set; }
 }
 public class GuildChannelMemberCountGatewayData : GuildMemberCountGatewayData
 {

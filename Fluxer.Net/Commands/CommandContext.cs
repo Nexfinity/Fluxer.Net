@@ -7,7 +7,7 @@ namespace Fluxer.Net.Commands;
 public class CommandContext : ICommandContext
 {
     /// <inheritdoc/>
-    public CommandInfo Command { get; }
+    public CommandInfo Command { get; internal set; }
 
     internal CommandService CommandService { get; set; }
 
@@ -49,7 +49,7 @@ public class CommandContext : ICommandContext
     IMessage ICommandContext.Message => Message;
 
     CommandService ICommandContext.CommandService { get => CommandService; set => CommandService = value; }
-    CommandInfo ICommandContext.Command { get => Command; set => throw new NotImplementedException(); }
+    CommandInfo ICommandContext.Command { get => Command; set => Command = value; }
 
     /// <summary>
     ///     Initializes a new <see cref="CommandContext" /> class with the provided client and message.

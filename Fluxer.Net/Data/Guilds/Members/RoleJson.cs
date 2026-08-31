@@ -29,6 +29,10 @@ public class RoleJson : IRole
     public int Position { get; set; }
 
     /// <inheritdoc />
+    [JsonProperty("hoist_position")]
+    public int? HoistPosition { get; set; }
+
+    /// <inheritdoc />
     [JsonProperty("color")]
     public int Color { get; set; }
 
