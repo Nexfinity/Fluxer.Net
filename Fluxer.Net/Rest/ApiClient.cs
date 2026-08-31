@@ -334,7 +334,7 @@ public class FluxerApiClient
 
         if (queryParams != null)
         {
-            var query = queryParams.ToDictionary();
+            Dictionary<string, string?> query = queryParams.ToDictionary();
 
             uri = QueryHelpers.AddQueryString(uri, query);
         }
@@ -2569,7 +2569,7 @@ public class FluxerApiClient
     /// <returns></returns>
     public async Task<FluxerOAuthValidToken> GetOAuthValidTokenAsync(ulong clientId, string clientSecret, string accessToken)
     {
-        var json = await InternalSendRequestFormAsync<FluxerOAuthValidTokenJson>(HttpMethod.Post, "/oauth2/introspect", true, new Dictionary<string, string>
+        FluxerOAuthValidTokenJson json = await InternalSendRequestFormAsync<FluxerOAuthValidTokenJson>(HttpMethod.Post, "/oauth2/introspect", true, new Dictionary<string, string>
         {
             { "client_id", clientId.ToString() },
             { "client_secret", clientSecret },

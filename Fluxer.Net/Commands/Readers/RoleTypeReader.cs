@@ -14,7 +14,7 @@ public class RoleTypeReader<T> : TypeReader
     {
         if (context.Guild != null && context is CommandContext ctx)
         {
-            var results = new Dictionary<ulong, TypeReaderValue>();
+            Dictionary<ulong, TypeReaderValue> results = new Dictionary<ulong, TypeReaderValue>();
 
             if (input.Length > 10)
             {
@@ -28,7 +28,7 @@ public class RoleTypeReader<T> : TypeReader
             }
 
             //By Name (0.7-0.8)
-            foreach (var channel in ctx.Guild.Roles.Values.Where(x => string.Equals(input, x.Name, StringComparison.OrdinalIgnoreCase)))
+            foreach (SocketRole channel in ctx.Guild.Roles.Values.Where(x => string.Equals(input, x.Name, StringComparison.OrdinalIgnoreCase)))
                 AddResult(results, channel as T, channel.Name == input ? 0.80f : 0.70f);
 
             if (results.Count > 0)

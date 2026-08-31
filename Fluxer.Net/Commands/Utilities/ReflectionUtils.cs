@@ -11,18 +11,18 @@ internal static class ReflectionUtils
         => CreateBuilder<T>(typeInfo, commands)(services);
     internal static Func<IServiceProvider, T> CreateBuilder<T>(TypeInfo typeInfo, CommandService commands)
     {
-        var constructor = GetConstructor(typeInfo);
-        var parameters = constructor.GetParameters();
-        var properties = GetProperties(typeInfo);
+        ConstructorInfo constructor = GetConstructor(typeInfo);
+        System.Reflection.ParameterInfo[] parameters = constructor.GetParameters();
+        PropertyInfo[] properties = GetProperties(typeInfo);
 
         return (services) =>
         {
             var args = new object[parameters.Length];
             for (int i = 0; i < parameters.Length; i++)
                 args[i] = GetMember(commands, services, parameters[i].ParameterType, typeInfo, parameters[i].GetCustomAttributes());
-            var obj = InvokeConstructor<T>(constructor, args, typeInfo);
+            T obj = InvokeConstructor<T>(constructor, args, typeInfo);
 
-            foreach (var property in properties)
+            foreach (PropertyInfo property in properties)
                 property.SetValue(obj, GetMember(commands, services, property.PropertyType, typeInfo, null));
             return obj;
         };
@@ -41,7 +41,7 @@ internal static class ReflectionUtils
 
     private static ConstructorInfo GetConstructor(TypeInfo ownerType)
     {
-        var constructors = ownerType.DeclaredConstructors.Where(x => !x.IsStatic).ToArray();
+        ConstructorInfo[] constructors = ownerType.DeclaredConstructors.Where(x => !x.IsStatic).ToArray();
         if (constructors.Length == 0)
             throw new MissingMethodException($"No constructor found for \"{ownerType.FullName}\".");
         else if (constructors.Length > 1)
@@ -50,10 +50,10 @@ internal static class ReflectionUtils
     }
     private static PropertyInfo[] GetProperties(TypeInfo ownerType)
     {
-        var result = new List<System.Reflection.PropertyInfo>();
+        List<PropertyInfo> result = new List<System.Reflection.PropertyInfo>();
         while (ownerType != ObjectTypeInfo)
         {
-            foreach (var prop in ownerType.DeclaredProperties)
+            foreach (PropertyInfo prop in ownerType.DeclaredProperties)
             {
                 if (prop.SetMethod?.IsStatic == false && prop.SetMethod?.IsPublic == true && prop.GetCustomAttribute<DontInjectAttribute>() == null)
                     result.Add(prop);

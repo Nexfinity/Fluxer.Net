@@ -1,4 +1,3 @@
-using Fluxer.Net.Extensions;
 using Newtonsoft.Json;
 
 namespace Fluxer.Net;

@@ -53,7 +53,7 @@ public class SocketGuildMember : GuildMember
         ulong deniedPermissions = 0UL, allowedPermissions = 0UL;
 
         // Check role overwrites
-        foreach (var r in Roles)
+        foreach (SocketRole r in Roles)
         {
             if (r.Id == Guild.Id)
                 continue;

@@ -20,7 +20,7 @@ public class ChannelTypeReader<T> : TypeReader
     {
         if (context.Guild != null)
         {
-            var results = new Dictionary<ulong, TypeReaderValue>();
+            Dictionary<ulong, TypeReaderValue> results = new Dictionary<ulong, TypeReaderValue>();
 
             if (input.Length > 10)
             {
@@ -36,7 +36,7 @@ public class ChannelTypeReader<T> : TypeReader
             //By Name (0.7-0.8)
             if (context is CommandContext ctx)
             {
-                foreach (var channel in ctx.Guild.Channels.Values.Where(x => string.Equals(input, x.Name, StringComparison.OrdinalIgnoreCase)))
+                foreach (Channel channel in ctx.Guild.Channels.Values.Where(x => string.Equals(input, x.Name, StringComparison.OrdinalIgnoreCase)))
                     AddResult(results, channel as T, channel.Name == input ? 0.80f : 0.70f);
             }
 

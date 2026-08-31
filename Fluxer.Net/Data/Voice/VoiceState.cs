@@ -63,7 +63,7 @@ public class VoiceState : Entity, IVoiceState
     /// <returns></returns>
     public static VoiceState Create(FluxerBaseClient client, VoiceStateJson json)
     {
-        var data = new VoiceState(client);
+        VoiceState data = new VoiceState(client);
         data.Update(client, json);
         return data;
     }

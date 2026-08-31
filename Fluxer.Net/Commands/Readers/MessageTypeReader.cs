@@ -41,7 +41,7 @@ public class MessageTypeReader<T> : TypeReader
         //By Id
         if (ulong.TryParse(input, NumberStyles.None, CultureInfo.InvariantCulture, out ulong id))
         {
-            var message = await ctx.Channel.GetMessageAsync(id);
+            Message message = await ctx.Channel.GetMessageAsync(id);
             if (message != null)
                 return TypeReaderResult.FromSuccess(message);
         }

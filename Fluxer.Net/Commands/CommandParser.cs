@@ -16,10 +16,10 @@ internal static class CommandParser
         ParameterInfo curParam = null;
         StringBuilder argBuilder = new StringBuilder(input.Length);
         int endPos = input.Length;
-        var curPart = ParserPart.None;
+        ParserPart curPart = ParserPart.None;
         int lastArgEndPos = int.MinValue;
-        var argList = ImmutableArray.CreateBuilder<TypeReaderResult>();
-        var paramList = ImmutableArray.CreateBuilder<TypeReaderResult>();
+        ImmutableArray<TypeReaderResult>.Builder argList = ImmutableArray.CreateBuilder<TypeReaderResult>();
+        ImmutableArray<TypeReaderResult>.Builder paramList = ImmutableArray.CreateBuilder<TypeReaderResult>();
         bool isEscaping = false;
         char c, matchQuote = '\0';
 
@@ -144,7 +144,7 @@ internal static class CommandParser
                         return ParseResult.FromError(CommandError.BadArgCount, "The input text has too many parameters.");
                 }
 
-                var typeReaderResult = await curParam.ParseAsync(context, argString, services).ConfigureAwait(false);
+                TypeReaderResult typeReaderResult = await curParam.ParseAsync(context, argString, services).ConfigureAwait(false);
                 if (!typeReaderResult.IsSuccess && typeReaderResult.Error != CommandError.MultipleMatches)
                     return ParseResult.FromError(typeReaderResult, curParam);
 
@@ -167,7 +167,7 @@ internal static class CommandParser
 
         if (curParam != null && curParam.IsRemainder)
         {
-            var typeReaderResult = await curParam.ParseAsync(context, argBuilder.ToString(), services).ConfigureAwait(false);
+            TypeReaderResult typeReaderResult = await curParam.ParseAsync(context, argBuilder.ToString(), services).ConfigureAwait(false);
             if (!typeReaderResult.IsSuccess)
                 return ParseResult.FromError(typeReaderResult, curParam);
             argList.Add(typeReaderResult);
@@ -181,7 +181,7 @@ internal static class CommandParser
         //Add missing optionals
         for (int i = argList.Count; i < command.Parameters.Count; i++)
         {
-            var param = command.Parameters[i];
+            ParameterInfo param = command.Parameters[i];
             if (param.IsMultiple)
                 continue;
             if (!param.IsOptional)

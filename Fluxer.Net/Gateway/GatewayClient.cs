@@ -901,12 +901,22 @@ public partial class FluxerGatewayClient : IDisposable
                             SocketGuildMember member = guild.GetMember(data.Member.Id);
                             if (data.ChannelId.HasValue)
                             {
-                                if (!member.VoiceStates.TryAdd(data.SessionId, SocketVoiceState.Create(_client, data, guild)))
-                                    member.VoiceStates[data.SessionId].Update(_client, data);
+                                SocketVoiceChannel Channel = GetChannel(data.ChannelId.Value) as SocketVoiceChannel;
+                                if (member.VoiceStates.TryGetValue(data.SessionId, out var state))
+                                {
+                                    state.Update(_client, data);
+                                }
+                                else
+                                {
+                                    state = SocketVoiceState.Create(_client, data, guild, Channel);
+                                    member.VoiceStates.TryAdd(data.SessionId, state);
+                                    Channel.VoiceStates.TryAdd(data.SessionId, state);
+                                }
                             }
                             else
                             {
-                                member.VoiceStates.TryRemove(data.SessionId, out _);
+                                if (member.VoiceStates.TryRemove(data.SessionId, out SocketVoiceState oldState))
+                                    oldState.Channel.VoiceStates.TryRemove(data.SessionId, out _);
                             }
                         }
 
@@ -967,16 +977,16 @@ public partial class FluxerGatewayClient : IDisposable
                         if (!data.Unavailable.GetValueOrDefault())
                         {
                             GuildMemberGatewayData json = data.Members.First(x => x.Id == CurrentUser.Id);
-                            SocketGuildMember member = SocketGuildMember.Create(_client, json);
+                            SocketGuildMember currentMember = SocketGuildMember.Create(_client, json);
 
                             // Add or update current member
-                            if (!CurrentMembers.TryAdd(data.Id, member))
+                            if (!CurrentMembers.TryAdd(data.Id, currentMember))
                             {
-                                member = CurrentMembers[data.Id];
-                                member.Update(_client, json);
+                                currentMember = CurrentMembers[data.Id];
+                                currentMember.Update(_client, json);
                             }
 
-                            SocketGuild guild = SocketGuild.Create(_client, data.Properties, member);
+                            SocketGuild guild = SocketGuild.Create(_client, data.Properties, currentMember);
 
                             // Ad or update guild
                             if (!Guilds.TryAdd(data.Id, guild))
@@ -988,7 +998,7 @@ public partial class FluxerGatewayClient : IDisposable
                             // Add or update roles
                             foreach (RoleJson r in data.Roles)
                             {
-                                var role = SocketRole.Create(_client, r, guild);
+                                SocketRole role = SocketRole.Create(_client, r, guild);
                                 if (!Roles.TryAdd(r.Id, role))
                                 {
                                     role = Roles[r.Id];
@@ -1009,6 +1019,27 @@ public partial class FluxerGatewayClient : IDisposable
                                     channel.Update(_client, c);
                                 }
                                 guild.Channels.TryAdd(c.Id, channel);
+                            }
+
+                            foreach (var m in data.Members)
+                            {
+                                guild.AddOrUpdateMember(_client, m);
+                            }
+
+                            foreach (var v in data.VoiceStates)
+                            {
+                                SocketGuildMember voiceMember = guild.GetMember(v.UserId);
+                                SocketVoiceChannel Channel = GetChannel(v.ChannelId.Value) as SocketVoiceChannel;
+                                if (voiceMember.VoiceStates.TryGetValue(v.SessionId, out var state))
+                                {
+                                    state.Update(_client, v);
+                                }
+                                else
+                                {
+                                    state = SocketVoiceState.Create(_client, v, guild, Channel);
+                                    voiceMember.VoiceStates.TryAdd(v.SessionId, state);
+                                    Channel.VoiceStates.TryAdd(v.SessionId, state);
+                                }
                             }
                         }
 
@@ -2525,7 +2556,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// </remarks>
     public void UpdateVoiceState(ulong? guildId, ulong? channelId, bool selfMute, bool selfDeaf)
     {
-        var packet = new GatewayPacket()
+        GatewayPacket packet = new GatewayPacket()
         {
             // TODO: Technically should be ulong, but fluxer expects strings. Fluxer will eventually be lenient and accept both.
             Data = JToken.FromObject(new VoiceStateUpdatePayload(guildId.ToString(), channelId.ToString(), selfMute, selfDeaf)),

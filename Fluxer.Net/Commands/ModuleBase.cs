@@ -70,7 +70,7 @@ public abstract class ModuleBase<T> : IModuleBase
     #region IModuleBase
     void IModuleBase.SetContext(ICommandContext context)
     {
-        var newValue = context as T;
+        T newValue = context as T;
         Context = newValue ?? throw new InvalidOperationException($"Invalid context type. Expected {typeof(T).Name}, got {context.GetType().Name}.");
     }
     Task IModuleBase.BeforeExecuteAsync(CommandInfo command) => BeforeExecuteAsync(command);

@@ -57,11 +57,11 @@ public class ParameterBuilder
 
     private TypeReader GetReader(Type type)
     {
-        var commands = Command.Module.Service;
+        CommandService commands = Command.Module.Service;
         if (type.GetTypeInfo().GetCustomAttribute<NamedArgumentTypeAttribute>() != null)
         {
             IsRemainder = true;
-            var reader = commands.GetTypeReaders(type)?.FirstOrDefault().Value;
+            TypeReader reader = commands.GetTypeReaders(type)?.FirstOrDefault().Value;
             if (reader == null)
             {
                 Type readerType;
@@ -82,7 +82,7 @@ public class ParameterBuilder
         }
 
 
-        var readers = commands.GetTypeReaders(type);
+        IDictionary<Type, TypeReader> readers = commands.GetTypeReaders(type);
         if (readers != null)
             return readers.FirstOrDefault().Value;
         else
