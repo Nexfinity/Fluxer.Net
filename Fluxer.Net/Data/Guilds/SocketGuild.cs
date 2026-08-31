@@ -54,13 +54,13 @@ public class SocketGuild : Guild
     /// <param name="json"></param>
     /// <param name="member"></param>
     /// <returns></returns>
-    public static SocketGuild Create(FluxerBaseClient client, GuildJson json, SocketGuildMember member)
+    public static SocketGuild Create(FluxerBaseClient client, GuildJson json, SocketGuildMember currentMember)
     {
         SocketGuild data = new SocketGuild(client)
         {
-            CurrentMember = member
+            CurrentMember = currentMember
         };
-        data.Members.TryAdd(member.Id, member);
+        data.Members.TryAdd(currentMember.Id, currentMember);
         data.CurrentMember.Guild = data;
 
         // Null count data on socket guild.
@@ -82,9 +82,13 @@ public class SocketGuild : Guild
 
     internal void AddOrUpdateMember(FluxerClient client, GuildMemberJson member)
     {
-        var mem = SocketGuildMember.Create(client, member);
-        mem.Guild = this;
-        if (!Members.TryAdd(member.Id, mem))
+        if (Members.ContainsKey(member.Id))
             Members[member.Id].Update(client, member);
+        else
+        {
+            SocketGuildMember mem = SocketGuildMember.Create(client, member);
+            mem.Guild = this;
+            Members.TryAdd(member.Id, mem);
+        }
     }
 }

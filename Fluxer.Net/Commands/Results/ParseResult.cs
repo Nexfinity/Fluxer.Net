@@ -53,7 +53,7 @@ public struct ParseResult : IResult
     }
     public static ParseResult FromSuccess(IReadOnlyList<TypeReaderValue> argValues, IReadOnlyList<TypeReaderValue> paramValues)
     {
-        var argList = new TypeReaderResult[argValues.Count];
+        TypeReaderResult[] argList = new TypeReaderResult[argValues.Count];
         for (int i = 0; i < argValues.Count; i++)
             argList[i] = TypeReaderResult.FromSuccess(argValues[i]);
         TypeReaderResult[] paramList = null;

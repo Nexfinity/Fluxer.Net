@@ -76,4 +76,10 @@ public class GuildGatewayData
     /// </summary>
     [JsonProperty("stickers")]
     public List<GuildStickerJson> Stickers { get; set; } = new();
+
+    /// <summary>
+    /// Current voice states for the guild.
+    /// </summary>
+    [JsonProperty("voice_states")]
+    public List<VoiceStateJson> VoiceStates { get; set; } = new();
 }

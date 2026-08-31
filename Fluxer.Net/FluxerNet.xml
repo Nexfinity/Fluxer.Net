@@ -9068,13 +9068,14 @@
         <member name="P:Fluxer.Net.RtcRegionJson.Emoji">
             <inheritdoc />
         </member>
-        <member name="M:Fluxer.Net.SocketVoiceState.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.VoiceStateJson,Fluxer.Net.SocketGuild)">
+        <member name="M:Fluxer.Net.SocketVoiceState.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.VoiceStateJson,Fluxer.Net.SocketGuild,Fluxer.Net.SocketVoiceChannel)">
             <summary>
             Create a SocketVoiceState object from json.
             </summary>
             <param name="client"></param>
             <param name="json"></param>
             <param name="guild"></param>
+            <param name="channel"></param>
             <returns></returns>
         </member>
         <member name="T:Fluxer.Net.VoiceState">
@@ -9736,6 +9737,11 @@
         <member name="P:Fluxer.Net.Gateway.GuildGatewayData.Stickers">
             <summary>
             Stickers defined in the guild.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Gateway.GuildGatewayData.VoiceStates">
+            <summary>
+            Current voice states for the guild.
             </summary>
         </member>
         <member name="T:Fluxer.Net.Gateway.GuildMemberGatewayData">

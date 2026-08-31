@@ -22,7 +22,7 @@ public class MessageCall : Entity, IMessageCall
     /// <returns></returns>
     public static MessageCall Create(FluxerBaseClient client, MessageCallJson json)
     {
-        var data = new MessageCall(client);
+        MessageCall data = new MessageCall(client);
         data.Update(client, json);
         return data;
     }

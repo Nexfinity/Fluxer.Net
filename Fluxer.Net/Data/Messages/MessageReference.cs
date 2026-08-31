@@ -28,7 +28,7 @@ public class MessageReference : Entity, IMessageReference
     /// <returns></returns>
     public static MessageReference Create(FluxerBaseClient client, MessageReferenceJson json)
     {
-        var data = new MessageReference(client);
+        MessageReference data = new MessageReference(client);
         data.Update(client, json);
         return data;
     }

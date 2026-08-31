@@ -34,8 +34,8 @@ public class GlobalSearch : Entity
     {
         return new GlobalSearch(client)
         {
-            Messages = json.Messages.Select(x => Message.Create(client, x)).ToArray(),
-            Channels = json.Channels.Select(x => Channel.Create(client, x)).ToArray(),
+            Messages = json.Messages != null ? json.Messages.Select(x => Message.Create(client, x)).ToArray() : Array.Empty<Message>(),
+            Channels = json.Channels != null ? json.Channels.Select(x => Channel.Create(client, x)).ToArray() : Array.Empty<Channel>(),
             HitsPerPage = json.HitsPerPage,
             Page = json.Page,
             Total = json.Total

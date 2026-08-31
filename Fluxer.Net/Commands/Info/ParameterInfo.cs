@@ -73,9 +73,9 @@ public class ParameterInfo
     {
         services ??= EmptyServiceProvider.Instance;
 
-        foreach (var precondition in Preconditions)
+        foreach (ParameterPreconditionAttribute precondition in Preconditions)
         {
-            var result = await precondition.CheckPermissionsAsync(context, this, arg, services).ConfigureAwait(false);
+            PreconditionResult result = await precondition.CheckPermissionsAsync(context, this, arg, services).ConfigureAwait(false);
             if (!result.IsSuccess)
                 return result;
         }

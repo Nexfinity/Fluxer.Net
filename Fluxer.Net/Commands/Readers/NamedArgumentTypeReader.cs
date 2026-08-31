@@ -20,15 +20,15 @@ internal sealed class NamedArgumentTypeReader<T> : TypeReader
 
     public override async Task<TypeReaderResult> ReadAsync(ICommandContext context, string input, IServiceProvider services)
     {
-        var result = new T();
-        var state = ReadState.LookingForParameter;
+        T result = new T();
+        ReadState state = ReadState.LookingForParameter;
         int beginRead = 0, currentRead = 0;
 
         while (state != ReadState.End)
         {
             try
             {
-                var prop = Read(out var arg);
+                PropertyInfo prop = Read(out var arg);
                 var propVal = await ReadArgumentAsync(prop, arg).ConfigureAwait(false);
                 if (propVal != null)
                     prop.SetMethod.Invoke(result, new[] { propVal });
@@ -121,7 +121,7 @@ internal sealed class NamedArgumentTypeReader<T> : TypeReader
 
         async Task<object> ReadArgumentAsync(PropertyInfo prop, string arg)
         {
-            var elemType = prop.PropertyType;
+            Type elemType = prop.PropertyType;
             bool isCollection = false;
             if (elemType.GetTypeInfo().IsGenericType && elemType.GetGenericTypeDefinition() == typeof(IEnumerable<>))
             {
@@ -129,8 +129,8 @@ internal sealed class NamedArgumentTypeReader<T> : TypeReader
                 isCollection = true;
             }
 
-            var overridden = prop.GetCustomAttribute<OverrideTypeReaderAttribute>();
-            var reader = (overridden != null)
+            OverrideTypeReaderAttribute overridden = prop.GetCustomAttribute<OverrideTypeReaderAttribute>();
+            TypeReader reader = (overridden != null)
                 ? ModuleClassBuilder.GetTypeReader(_commands, elemType, overridden.TypeReader, services)
                 : (_commands.GetDefaultTypeReader(elemType)
                     ?? _commands.GetTypeReaders(elemType).FirstOrDefault().Value);
@@ -139,8 +139,8 @@ internal sealed class NamedArgumentTypeReader<T> : TypeReader
             {
                 if (isCollection)
                 {
-                    var method = _readMultipleMethod.MakeGenericMethod(elemType);
-                    var task = (Task<IEnumerable>)method.Invoke(null, new object[] { reader, context, arg.Split(','), services });
+                    MethodInfo method = _readMultipleMethod.MakeGenericMethod(elemType);
+                    Task<IEnumerable> task = (Task<IEnumerable>)method.Invoke(null, new object[] { reader, context, arg.Split(','), services });
                     return await task.ConfigureAwait(false);
                 }
                 else
@@ -152,14 +152,14 @@ internal sealed class NamedArgumentTypeReader<T> : TypeReader
 
     private static async Task<object> ReadSingle(TypeReader reader, ICommandContext context, string arg, IServiceProvider services)
     {
-        var readResult = await reader.ReadAsync(context, arg, services).ConfigureAwait(false);
+        TypeReaderResult readResult = await reader.ReadAsync(context, arg, services).ConfigureAwait(false);
         return (readResult.IsSuccess)
             ? readResult.BestMatch
             : null;
     }
     private static async Task<IEnumerable> ReadMultiple<TObj>(TypeReader reader, ICommandContext context, IEnumerable<string> args, IServiceProvider services)
     {
-        var objs = new List<TObj>();
+        List<TObj> objs = new List<TObj>();
         foreach (var arg in args)
         {
             var read = await ReadSingle(reader, context, arg.Trim(), services).ConfigureAwait(false);

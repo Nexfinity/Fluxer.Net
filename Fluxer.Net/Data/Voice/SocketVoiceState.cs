@@ -3,7 +3,7 @@
 public class SocketVoiceState : VoiceState
 {
     public SocketGuild Server { get; internal set; }
-    public SocketVoiceChannel? Channel { get; internal set; }
+    public SocketVoiceChannel Channel { get; internal set; }
 
     internal SocketVoiceState(FluxerBaseClient client) : base(client)
     {
@@ -16,18 +16,19 @@ public class SocketVoiceState : VoiceState
     /// <param name="client"></param>
     /// <param name="json"></param>
     /// <param name="guild"></param>
+    /// <param name="channel"></param>
     /// <returns></returns>
-    public static SocketVoiceState Create(FluxerBaseClient client, VoiceStateJson json, SocketGuild guild)
+    public static SocketVoiceState Create(FluxerBaseClient client, VoiceStateJson json, SocketGuild guild, SocketVoiceChannel channel)
     {
-        var data = new SocketVoiceState(client);
+        SocketVoiceState data = new SocketVoiceState(client);
         data.Update(client, json);
         data.Server = guild;
+        data.Channel = channel;
         return data;
     }
 
     internal override void Update(FluxerBaseClient client, VoiceStateJson json)
     {
         base.Update(client, json);
-        Channel = json.ChannelId.HasValue ? (SocketVoiceChannel)(client as FluxerClient).Gateway.GetChannel(json.ChannelId.Value) : null;
     }
 }

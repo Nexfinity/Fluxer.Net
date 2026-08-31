@@ -8,7 +8,7 @@ internal static class EnumTypeReader
     public static TypeReader GetReader(Type type)
     {
         Type baseType = Enum.GetUnderlyingType(type);
-        var constructor = typeof(EnumTypeReader<>).MakeGenericType(baseType).GetTypeInfo().DeclaredConstructors.First();
+        ConstructorInfo constructor = typeof(EnumTypeReader<>).MakeGenericType(baseType).GetTypeInfo().DeclaredConstructors.First();
         return (TypeReader)constructor.Invoke(new object[] { type, PrimitiveParsers.Get(baseType) });
     }
 }
@@ -25,8 +25,8 @@ internal class EnumTypeReader<T> : TypeReader
         _enumType = type;
         _tryParse = parser;
 
-        var byNameBuilder = ImmutableDictionary.CreateBuilder<string, object>();
-        var byValueBuilder = ImmutableDictionary.CreateBuilder<T, object>();
+        ImmutableDictionary<string, object>.Builder byNameBuilder = ImmutableDictionary.CreateBuilder<string, object>();
+        ImmutableDictionary<T, object>.Builder byValueBuilder = ImmutableDictionary.CreateBuilder<T, object>();
 
         foreach (var v in Enum.GetNames(_enumType))
         {

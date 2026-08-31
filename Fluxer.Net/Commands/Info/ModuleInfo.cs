@@ -77,16 +77,16 @@ public class ModuleInfo
 
     private static IEnumerable<string> BuildAliases(ModuleBuilder builder, CommandService service)
     {
-        var result = builder.Aliases.ToList();
-        var builderQueue = new Queue<ModuleBuilder>();
+        List<string> result = builder.Aliases.ToList();
+        Queue<ModuleBuilder> builderQueue = new Queue<ModuleBuilder>();
 
-        var parent = builder;
+        ModuleBuilder parent = builder;
         while ((parent = parent.Parent) != null)
             builderQueue.Enqueue(parent);
 
         while (builderQueue.Count > 0)
         {
-            var level = builderQueue.Dequeue();
+            ModuleBuilder level = builderQueue.Dequeue();
             // permute in reverse because we want to *prefix* our aliases
             result = level.Aliases.Permutate(result, (first, second) =>
             {
@@ -104,9 +104,9 @@ public class ModuleInfo
 
     private List<ModuleInfo> BuildSubmodules(ModuleBuilder parent, CommandService service, IServiceProvider services)
     {
-        var result = new List<ModuleInfo>();
+        List<ModuleInfo> result = new List<ModuleInfo>();
 
-        foreach (var submodule in parent.Modules)
+        foreach (ModuleBuilder submodule in parent.Modules)
             result.Add(submodule.Build(service, services, this));
 
         return result;
@@ -114,7 +114,7 @@ public class ModuleInfo
 
     private static List<PreconditionAttribute> BuildPreconditions(ModuleBuilder builder)
     {
-        var result = new List<PreconditionAttribute>();
+        List<PreconditionAttribute> result = new List<PreconditionAttribute>();
 
         ModuleBuilder parent = builder;
         while (parent != null)
@@ -128,7 +128,7 @@ public class ModuleInfo
 
     private static List<Attribute> BuildAttributes(ModuleBuilder builder)
     {
-        var result = new List<Attribute>();
+        List<Attribute> result = new List<Attribute>();
 
         ModuleBuilder parent = builder;
         while (parent != null)

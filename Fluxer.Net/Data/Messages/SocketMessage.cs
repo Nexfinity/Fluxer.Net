@@ -19,7 +19,7 @@ public class SocketMessage : Message
     /// <returns></returns>
     public static SocketMessage Create(FluxerBaseClient client, MessageGatewayData json)
     {
-        var data = new SocketMessage(client)
+        SocketMessage data = new SocketMessage(client)
         {
             Channel = (client as FluxerClient).Gateway.GetChannel(json.ChannelId)
         };

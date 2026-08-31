@@ -103,20 +103,20 @@ public class CommandService : IDisposable
         _typeReaders = new ConcurrentDictionary<Type, ConcurrentDictionary<Type, TypeReader>>();
 
         _defaultTypeReaders = new ConcurrentDictionary<Type, TypeReader>();
-        foreach (var type in PrimitiveParsers.SupportedTypes)
+        foreach (Type type in PrimitiveParsers.SupportedTypes)
         {
             _defaultTypeReaders[type] = PrimitiveTypeReader.Create(type);
             _defaultTypeReaders[typeof(Nullable<>).MakeGenericType(type)] = NullableTypeReader.Create(type, _defaultTypeReaders[type]);
         }
 
-        var tsreader = new TimeSpanTypeReader();
+        TimeSpanTypeReader tsreader = new TimeSpanTypeReader();
         _defaultTypeReaders[typeof(TimeSpan)] = tsreader;
         _defaultTypeReaders[typeof(TimeSpan?)] = NullableTypeReader.Create(typeof(TimeSpan), tsreader);
 
         _defaultTypeReaders[typeof(string)] =
             new PrimitiveTypeReader<string>((string x, out string y) => { y = x; return true; }, 0);
 
-        var entityTypeReaders = ImmutableList.CreateBuilder<(Type, Type)>();
+        ImmutableList<(Type, Type)>.Builder entityTypeReaders = ImmutableList.CreateBuilder<(Type, Type)>();
         entityTypeReaders.Add((typeof(IMessage), typeof(MessageTypeReader<>)));
         entityTypeReaders.Add((typeof(IChannel), typeof(ChannelTypeReader<>)));
         entityTypeReaders.Add((typeof(IRole), typeof(RoleTypeReader<>)));
@@ -131,10 +131,10 @@ public class CommandService : IDisposable
         await _moduleLock.WaitAsync().ConfigureAwait(false);
         try
         {
-            var builder = new ModuleBuilder(this, null, primaryAlias);
+            ModuleBuilder builder = new ModuleBuilder(this, null, primaryAlias);
             buildFunc(builder);
 
-            var module = builder.Build(this, null);
+            ModuleInfo module = builder.Build(this, null);
 
             return LoadModuleInternal(module);
         }
@@ -185,12 +185,12 @@ public class CommandService : IDisposable
         await _moduleLock.WaitAsync().ConfigureAwait(false);
         try
         {
-            var typeInfo = type.GetTypeInfo();
+            TypeInfo typeInfo = type.GetTypeInfo();
 
             if (_typedModuleDefs.ContainsKey(type))
                 throw new ArgumentException("This module has already been added.");
 
-            var module = (await ModuleClassBuilder.BuildAsync(this, services, typeInfo).ConfigureAwait(false)).FirstOrDefault();
+            KeyValuePair<Type, ModuleInfo> module = (await ModuleClassBuilder.BuildAsync(this, services, typeInfo).ConfigureAwait(false)).FirstOrDefault();
 
             if (module.Value == default(ModuleInfo))
                 throw new InvalidOperationException($"Could not build the module {type.FullName}, did you pass an invalid type?");
@@ -220,10 +220,10 @@ public class CommandService : IDisposable
         await _moduleLock.WaitAsync().ConfigureAwait(false);
         try
         {
-            var types = await ModuleClassBuilder.SearchAsync(assembly, this).ConfigureAwait(false);
-            var moduleDefs = await ModuleClassBuilder.BuildAsync(types, this, services).ConfigureAwait(false);
+            IReadOnlyList<TypeInfo> types = await ModuleClassBuilder.SearchAsync(assembly, this).ConfigureAwait(false);
+            Dictionary<Type, ModuleInfo> moduleDefs = await ModuleClassBuilder.BuildAsync(types, this, services).ConfigureAwait(false);
 
-            foreach (var info in moduleDefs)
+            foreach (KeyValuePair<Type, ModuleInfo> info in moduleDefs)
             {
                 _typedModuleDefs[info.Key] = info.Value;
                 LoadModuleInternal(info.Value);
@@ -240,10 +240,10 @@ public class CommandService : IDisposable
     {
         _moduleDefs.Add(module);
 
-        foreach (var command in module.Commands)
+        foreach (CommandInfo command in module.Commands)
             _map.AddCommand(command);
 
-        foreach (var submodule in module.Submodules)
+        foreach (ModuleInfo submodule in module.Submodules)
             LoadModuleInternal(submodule);
 
         return module;
@@ -261,10 +261,10 @@ public class CommandService : IDisposable
         await _moduleLock.WaitAsync().ConfigureAwait(false);
         try
         {
-            var typeModulePair = _typedModuleDefs.FirstOrDefault(x => x.Value.Equals(module));
+            KeyValuePair<Type, ModuleInfo> typeModulePair = _typedModuleDefs.FirstOrDefault(x => x.Value.Equals(module));
 
             if (!typeModulePair.Equals(default(KeyValuePair<Type, ModuleInfo>)))
-                _typedModuleDefs.TryRemove(typeModulePair.Key, out var _);
+                _typedModuleDefs.TryRemove(typeModulePair.Key, out ModuleInfo _);
 
             return RemoveModuleInternal(module);
         }
@@ -295,7 +295,7 @@ public class CommandService : IDisposable
         await _moduleLock.WaitAsync().ConfigureAwait(false);
         try
         {
-            if (!_typedModuleDefs.TryRemove(type, out var module))
+            if (!_typedModuleDefs.TryRemove(type, out ModuleInfo module))
                 return false;
 
             return RemoveModuleInternal(module);
@@ -310,10 +310,10 @@ public class CommandService : IDisposable
         if (!_moduleDefs.Remove(module))
             return false;
 
-        foreach (var cmd in module.Commands)
+        foreach (CommandInfo cmd in module.Commands)
             _map.RemoveCommand(cmd);
 
-        foreach (var submodule in module.Submodules)
+        foreach (ModuleInfo submodule in module.Submodules)
         {
             RemoveModuleInternal(submodule);
         }
@@ -385,14 +385,14 @@ public class CommandService : IDisposable
             _defaultTypeReaders.AddOrUpdate(type, reader, (k, v) => reader);
             if (type.GetTypeInfo().IsValueType)
             {
-                var nullableType = typeof(Nullable<>).MakeGenericType(type);
-                var nullableReader = NullableTypeReader.Create(type, reader);
+                Type nullableType = typeof(Nullable<>).MakeGenericType(type);
+                TypeReader nullableReader = NullableTypeReader.Create(type, reader);
                 _defaultTypeReaders.AddOrUpdate(nullableType, nullableReader, (k, v) => nullableReader);
             }
         }
         else
         {
-            var readers = _typeReaders.GetOrAdd(type, x => new ConcurrentDictionary<Type, TypeReader>());
+            ConcurrentDictionary<Type, TypeReader> readers = _typeReaders.GetOrAdd(type, x => new ConcurrentDictionary<Type, TypeReader>());
             readers[reader.GetType()] = reader;
 
             if (type.GetTypeInfo().IsValueType)
@@ -417,7 +417,7 @@ public class CommandService : IDisposable
 
         if (isDefaultTypeReader)
         {
-            var isSuccess = _defaultTypeReaders.TryRemove(type, out var result);
+            var isSuccess = _defaultTypeReaders.TryRemove(type, out TypeReader result);
             if (isSuccess)
                 readers.Add(result?.GetType(), result);
 
@@ -425,7 +425,7 @@ public class CommandService : IDisposable
         }
         else
         {
-            var isSuccess = _typeReaders.TryRemove(type, out var result);
+            var isSuccess = _typeReaders.TryRemove(type, out ConcurrentDictionary<Type, TypeReader> result);
 
             if (isSuccess)
                 readers = result;
@@ -439,28 +439,28 @@ public class CommandService : IDisposable
         if (_defaultTypeReaders.ContainsKey(type))
             return true;
 
-        var typeInfo = type.GetTypeInfo();
+        TypeInfo typeInfo = type.GetTypeInfo();
         if (typeInfo.IsEnum)
             return true;
         return _entityTypeReaders.Any(x => type == x.EntityType || typeInfo.ImplementedInterfaces.Contains(x.EntityType));
     }
     internal void AddNullableTypeReader(Type valueType, TypeReader valueTypeReader)
     {
-        var readers = _typeReaders.GetOrAdd(typeof(Nullable<>).MakeGenericType(valueType), x => new ConcurrentDictionary<Type, TypeReader>());
-        var nullableReader = NullableTypeReader.Create(valueType, valueTypeReader);
+        ConcurrentDictionary<Type, TypeReader> readers = _typeReaders.GetOrAdd(typeof(Nullable<>).MakeGenericType(valueType), x => new ConcurrentDictionary<Type, TypeReader>());
+        TypeReader nullableReader = NullableTypeReader.Create(valueType, valueTypeReader);
         readers[nullableReader.GetType()] = nullableReader;
     }
     internal IDictionary<Type, TypeReader> GetTypeReaders(Type type)
     {
-        if (_typeReaders.TryGetValue(type, out var definedTypeReaders))
+        if (_typeReaders.TryGetValue(type, out ConcurrentDictionary<Type, TypeReader> definedTypeReaders))
             return definedTypeReaders;
         return null;
     }
     internal TypeReader GetDefaultTypeReader(Type type)
     {
-        if (_defaultTypeReaders.TryGetValue(type, out var reader))
+        if (_defaultTypeReaders.TryGetValue(type, out TypeReader reader))
             return reader;
-        var typeInfo = type.GetTypeInfo();
+        TypeInfo typeInfo = type.GetTypeInfo();
 
         //Is this an enum?
         if (typeInfo.IsEnum)
@@ -469,7 +469,7 @@ public class CommandService : IDisposable
             _defaultTypeReaders[type] = reader;
             return reader;
         }
-        var underlyingType = Nullable.GetUnderlyingType(type);
+        Type underlyingType = Nullable.GetUnderlyingType(type);
         if (underlyingType != null && underlyingType.IsEnum)
         {
             reader = NullableTypeReader.Create(underlyingType, EnumTypeReader.GetReader(underlyingType));
@@ -511,7 +511,7 @@ public class CommandService : IDisposable
     public SearchResult Search(string input)
     {
         string searchInput = _caseSensitive ? input : input.ToLowerInvariant();
-        var matches = _map.GetCommands(searchInput).OrderByDescending(x => x.Command.Priority).ToImmutableArray();
+        ImmutableArray<CommandMatch> matches = _map.GetCommands(searchInput).OrderByDescending(x => x.Command.Priority).ToImmutableArray();
 
         if (matches.Length > 0)
             return SearchResult.FromSuccess(input, matches);
@@ -548,9 +548,9 @@ public class CommandService : IDisposable
         context.CommandService = this;
         services ??= EmptyServiceProvider.Instance;
 
-        var searchResult = Search(input);
+        SearchResult searchResult = Search(input);
 
-        var validationResult = await ValidateAndGetBestMatch(searchResult, context, services, multiMatchHandling);
+        IResult validationResult = await ValidateAndGetBestMatch(searchResult, context, services, multiMatchHandling);
 
         if (validationResult is SearchResult result)
         {
@@ -579,7 +579,7 @@ public class CommandService : IDisposable
                 return parseResult;
             }
 
-            var executeResult = await matchResult.Match.Value.ExecuteAsync(context, parseResult, services);
+            IResult executeResult = await matchResult.Match.Value.ExecuteAsync(context, parseResult, services);
 
             //if (!executeResult.IsSuccess && !(executeResult is RuntimeResult || executeResult is ExecuteResult)) // successful results raise the event in CommandInfo#ExecuteInternalAsync (have to raise it there b/c deferred execution)
             //    await _commandExecutedEvent.InvokeAsync(matchResult.Match.Value.Command, context, executeResult);
@@ -627,22 +627,22 @@ public class CommandService : IDisposable
         if (!matches.IsSuccess)
             return matches;
 
-        var commands = matches.Commands;
-        var preconditionResults = new Dictionary<CommandMatch, PreconditionResult>();
+        IReadOnlyList<CommandMatch> commands = matches.Commands;
+        Dictionary<CommandMatch, PreconditionResult> preconditionResults = new Dictionary<CommandMatch, PreconditionResult>();
 
-        foreach (var command in commands)
+        foreach (CommandMatch command in commands)
         {
             preconditionResults[command] = await command.CheckPreconditionsAsync(context, provider);
         }
 
-        var successfulPreconditions = preconditionResults
+        KeyValuePair<CommandMatch, PreconditionResult>[] successfulPreconditions = preconditionResults
             .Where(x => x.Value.IsSuccess)
             .ToArray();
 
         if (successfulPreconditions.Length == 0)
         {
             //All preconditions failed, return the one from the highest priority command
-            var bestCandidate = preconditionResults
+            KeyValuePair<CommandMatch, PreconditionResult> bestCandidate = preconditionResults
                .OrderByDescending(x => x.Key.Command.Priority)
                .FirstOrDefault(x => !x.Value.IsSuccess);
 
@@ -650,11 +650,11 @@ public class CommandService : IDisposable
             return MatchResult.FromSuccess(bestCandidate.Key, bestCandidate.Value);
         }
 
-        var parseResults = new Dictionary<CommandMatch, ParseResult>();
+        Dictionary<CommandMatch, ParseResult> parseResults = new Dictionary<CommandMatch, ParseResult>();
 
-        foreach (var pair in successfulPreconditions)
+        foreach (KeyValuePair<CommandMatch, PreconditionResult> pair in successfulPreconditions)
         {
-            var parseResult = await pair.Key.ParseAsync(context, matches, pair.Value, provider).ConfigureAwait(false);
+            ParseResult parseResult = await pair.Key.ParseAsync(context, matches, pair.Value, provider).ConfigureAwait(false);
 
             if (parseResult.Error == CommandError.MultipleMatches)
             {
@@ -672,23 +672,23 @@ public class CommandService : IDisposable
             parseResults[pair.Key] = parseResult;
         }
 
-        var weightedParseResults = parseResults
+        IOrderedEnumerable<KeyValuePair<CommandMatch, ParseResult>> weightedParseResults = parseResults
            .OrderByDescending(x => CalculateScore(x.Key, x.Value));
 
-        var successfulParses = weightedParseResults
+        KeyValuePair<CommandMatch, ParseResult>[] successfulParses = weightedParseResults
             .Where(x => x.Value.IsSuccess)
             .ToArray();
 
         if (successfulParses.Length == 0)
         {
-            var bestMatch = parseResults
+            KeyValuePair<CommandMatch, ParseResult> bestMatch = parseResults
                 .FirstOrDefault(x => !x.Value.IsSuccess);
 
             context.Command = bestMatch.Key.Command;
             return MatchResult.FromSuccess(bestMatch.Key, bestMatch.Value);
         }
 
-        var chosenOverload = successfulParses[0];
+        KeyValuePair<CommandMatch, ParseResult> chosenOverload = successfulParses[0];
 
         context.Command = chosenOverload.Key.Command;
         return MatchResult.FromSuccess(chosenOverload.Key, chosenOverload.Value);

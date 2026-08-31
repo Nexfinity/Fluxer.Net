@@ -141,7 +141,7 @@ public class FluxerClient : FluxerBaseClient
 
     internal static JsonSerializer CreateGatewaySerializer()
     {
-        var serializer = new JsonSerializer
+        JsonSerializer serializer = new JsonSerializer
         {
             ContractResolver = new FluxerContractResolver(),
             NullValueHandling = NullValueHandling.Ignore
@@ -157,7 +157,7 @@ public class FluxerClient : FluxerBaseClient
 
     internal static JsonSerializerSettings CreateRestSerializer()
     {
-        var serializer = new JsonSerializerSettings
+        JsonSerializerSettings serializer = new JsonSerializerSettings
         {
             ContractResolver = new FluxerContractResolver(),
             NullValueHandling = NullValueHandling.Ignore

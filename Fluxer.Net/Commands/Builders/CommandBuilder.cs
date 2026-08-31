@@ -100,21 +100,21 @@ public class CommandBuilder
     }
     public CommandBuilder AddParameter<T>(string name, Action<ParameterBuilder> createFunc)
     {
-        var param = new ParameterBuilder(this, name, typeof(T));
+        ParameterBuilder param = new ParameterBuilder(this, name, typeof(T));
         createFunc(param);
         _parameters.Add(param);
         return this;
     }
     public CommandBuilder AddParameter(string name, Type type, Action<ParameterBuilder> createFunc)
     {
-        var param = new ParameterBuilder(this, name, type);
+        ParameterBuilder param = new ParameterBuilder(this, name, type);
         createFunc(param);
         _parameters.Add(param);
         return this;
     }
     internal CommandBuilder AddParameter(Action<ParameterBuilder> createFunc)
     {
-        var param = new ParameterBuilder(this);
+        ParameterBuilder param = new ParameterBuilder(this);
         createFunc(param);
         _parameters.Add(param);
         return this;
@@ -129,13 +129,13 @@ public class CommandBuilder
 
         if (_parameters.Count > 0)
         {
-            var lastParam = _parameters[_parameters.Count - 1];
+            ParameterBuilder lastParam = _parameters[_parameters.Count - 1];
 
-            var firstMultipleParam = _parameters.FirstOrDefault(x => x.IsMultiple);
+            ParameterBuilder firstMultipleParam = _parameters.FirstOrDefault(x => x.IsMultiple);
             if ((firstMultipleParam != null) && (firstMultipleParam != lastParam))
                 throw new InvalidOperationException($"Only the last parameter in a command may have the Multiple flag. Parameter: {firstMultipleParam.Name} in {PrimaryAlias}");
 
-            var firstRemainderParam = _parameters.FirstOrDefault(x => x.IsRemainder);
+            ParameterBuilder firstRemainderParam = _parameters.FirstOrDefault(x => x.IsRemainder);
             if ((firstRemainderParam != null) && (firstRemainderParam != lastParam))
                 throw new InvalidOperationException($"Only the last parameter in a command may have the Remainder flag. Parameter: {firstRemainderParam.Name} in {PrimaryAlias}");
         }

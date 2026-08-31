@@ -129,7 +129,7 @@ public class GuildPermissions : IGuildPermissions, IChannelPermissions
     {
         GuildPermissions perms = new GuildPermissions(member.Guild.EveryoneRole.Permissions.RawValue);
 
-        foreach (var i in member.Roles)
+        foreach (SocketRole i in member.Roles)
         {
             perms.RawValue |= i.Permissions.RawValue;
         }

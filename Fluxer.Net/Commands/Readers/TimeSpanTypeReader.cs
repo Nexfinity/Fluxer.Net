@@ -38,7 +38,7 @@ internal class TimeSpanTypeReader : TypeReader
             input = input.Substring(1);
         }
 
-        if (TimeSpan.TryParseExact(input.ToLowerInvariant(), Formats, CultureInfo.InvariantCulture, out var timeSpan))
+        if (TimeSpan.TryParseExact(input.ToLowerInvariant(), Formats, CultureInfo.InvariantCulture, out TimeSpan timeSpan))
         {
             return isNegative
                 ? Task.FromResult(TypeReaderResult.FromSuccess(-timeSpan))

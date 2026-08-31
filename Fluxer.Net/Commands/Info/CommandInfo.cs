@@ -128,14 +128,14 @@ public class CommandInfo
                 {
                     foreach (PreconditionAttribute precondition in preconditionGroup)
                     {
-                        var result = await precondition.CheckPermissionsAsync(context, this, services).ConfigureAwait(false);
+                        PreconditionResult result = await precondition.CheckPermissionsAsync(context, this, services).ConfigureAwait(false);
                         if (!result.IsSuccess)
                             return result;
                     }
                 }
                 else
                 {
-                    var results = new List<PreconditionResult>();
+                    List<PreconditionResult> results = new List<PreconditionResult>();
                     foreach (PreconditionAttribute precondition in preconditionGroup)
                         results.Add(await precondition.CheckPermissionsAsync(context, this, services).ConfigureAwait(false));
 
@@ -146,11 +146,11 @@ public class CommandInfo
             return PreconditionGroupResult.FromSuccess();
         }
 
-        var moduleResult = await CheckGroups(Module.Preconditions, "Module").ConfigureAwait(false);
+        PreconditionResult moduleResult = await CheckGroups(Module.Preconditions, "Module").ConfigureAwait(false);
         if (!moduleResult.IsSuccess)
             return moduleResult;
 
-        var commandResult = await CheckGroups(Preconditions, "Command").ConfigureAwait(false);
+        PreconditionResult commandResult = await CheckGroups(Preconditions, "Command").ConfigureAwait(false);
         if (!commandResult.IsSuccess)
             return commandResult;
 
@@ -204,9 +204,9 @@ public class CommandInfo
 
             for (int position = 0; position < Parameters.Count; position++)
             {
-                var parameter = Parameters[position];
+                ParameterInfo parameter = Parameters[position];
                 object argument = args[position];
-                var result = await parameter.CheckPreconditionsAsync(context, argument, services).ConfigureAwait(false);
+                PreconditionResult result = await parameter.CheckPreconditionsAsync(context, argument, services).ConfigureAwait(false);
                 if (!result.IsSuccess)
                 {
                     //await Module.Service._commandExecutedEvent.InvokeAsync(this, context, result).ConfigureAwait(false);
@@ -219,7 +219,7 @@ public class CommandInfo
                 case RunMode.Sync: //Always sync
                     return await ExecuteInternalAsync(context, args, services).ConfigureAwait(false);
                 case RunMode.Async: //Always async
-                    var t2 = Task.Run(async () =>
+                    Task t2 = Task.Run(async () =>
                     {
                         await ExecuteInternalAsync(context, args, services).ConfigureAwait(false);
                     });
@@ -238,40 +238,40 @@ public class CommandInfo
         Module.Service._logger?.Debug($"Executing {GetLogText(context)}");
         try
         {
-            var task = _action(context, args, services, this);
+            Task task = _action(context, args, services, this);
             if (task is Task<IResult> resultTask)
             {
-                var result = await resultTask.ConfigureAwait(false);
+                IResult result = await resultTask.ConfigureAwait(false);
                 //await Module.Service._commandExecutedEvent.InvokeAsync(this, context, result).ConfigureAwait(false);
                 if (result is RuntimeResult execResult)
                     return execResult;
             }
             else if (task is Task<ExecuteResult> execTask)
             {
-                var result = await execTask.ConfigureAwait(false);
+                ExecuteResult result = await execTask.ConfigureAwait(false);
                 //await Module.Service._commandExecutedEvent.InvokeAsync(this, context, result).ConfigureAwait(false);
                 return result;
             }
             else
             {
                 await task.ConfigureAwait(false);
-                var result = ExecuteResult.FromSuccess();
+                ExecuteResult result = ExecuteResult.FromSuccess();
                 //await Module.Service._commandExecutedEvent.InvokeAsync(this, context, result).ConfigureAwait(false);
             }
 
-            var executeResult = ExecuteResult.FromSuccess();
+            ExecuteResult executeResult = ExecuteResult.FromSuccess();
             return executeResult;
         }
         catch (Exception ex)
         {
-            var originalEx = ex;
+            Exception originalEx = ex;
             while (ex is TargetInvocationException) //Happens with void-returning commands
                 ex = ex.InnerException;
 
-            var wrappedEx = new CommandException(this, context, ex);
+            CommandException wrappedEx = new CommandException(this, context, ex);
             Module.Service._logger?.Error(wrappedEx.ToString());
 
-            var result = ExecuteResult.FromError(ex);
+            ExecuteResult result = ExecuteResult.FromError(ex);
             //await Module.Service._commandExecutedEvent.InvokeAsync(this, context, result).ConfigureAwait(false);
 
             if (Module.Service._throwOnError)
@@ -309,9 +309,9 @@ public class CommandInfo
 
         if (HasVarArgs)
         {
-            var func = _arrayConverters.GetOrAdd(Parameters[Parameters.Count - 1].Type, t =>
+            Func<IEnumerable<object>, object> func = _arrayConverters.GetOrAdd(Parameters[Parameters.Count - 1].Type, t =>
             {
-                var method = _convertParamsMethod.MakeGenericMethod(t);
+                MethodInfo method = _convertParamsMethod.MakeGenericMethod(t);
                 return (Func<IEnumerable<object>, object>)method.CreateDelegate(typeof(Func<IEnumerable<object>, object>));
             });
             array[i] = func(paramsList);
