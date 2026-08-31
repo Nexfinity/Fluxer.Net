@@ -11,7 +11,7 @@ public class VoiceStateJson : IVoiceState
 
     /// <inheritdoc />
     [JsonProperty("user_id")]
-    public bool UserId { get; set; }
+    public ulong UserId { get; set; }
 
     /// <inheritdoc />
     [JsonProperty("channel_id")]

@@ -1,0 +1,9 @@
+services:
+  fluxer-bot:
+    container_name: "fluxer-bot"
+    image: mcr.microsoft.com/dotnet/runtime:10.0
+    command: sh -c "dotnet 'Bot.dll'"
+    volumes:
+      - /root/bot:/app:ro
+    working_dir: /app
+    restart: on-failure:3

@@ -4,7 +4,7 @@ public interface IVoiceState
 {
     string SessionId { get; }
 
-    bool UserId { get; }
+    ulong UserId { get; }
 
     ulong? ChannelId { get; }
 
