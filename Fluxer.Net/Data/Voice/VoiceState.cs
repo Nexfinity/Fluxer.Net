@@ -1,48 +1,52 @@
 ﻿namespace Fluxer.Net;
 
+/// <inheritdoc />
 public class VoiceState : Entity, IVoiceState
 {
     /// <inheritdoc />
-    public string SessionId { get; set; }
+    public string SessionId { get; internal set; }
 
     /// <inheritdoc />
-    public ulong UserId { get; set; }
+    public ulong UserId { get; internal set; }
 
     /// <inheritdoc />
-    public ulong? ChannelId { get; set; }
+    public ulong? ChannelId { get; internal set; }
 
     /// <inheritdoc />
-    public string? ConnectionId { get; set; }
+    public string? ConnectionId { get; internal set; }
 
     /// <inheritdoc />
-    public bool IsDeaf { get; set; }
+    public bool IsDeaf { get; internal set; }
 
     /// <inheritdoc />
-    public bool IsMute { get; set; }
+    public bool IsMute { get; internal set; }
 
     /// <inheritdoc />
-    public ulong? GuildId { get; set; }
+    public ulong? GuildId { get; internal set; }
 
     /// <inheritdoc />
-    public bool IsMobile { get; set; }
+    public bool IsMobile { get; internal set; }
 
     /// <inheritdoc />
-    public bool IsSelfDeaf { get; set; }
+    public bool IsSelfDeaf { get; internal set; }
 
     /// <inheritdoc />
-    public bool IsSelfMute { get; set; }
+    public bool IsSelfMute { get; internal set; }
 
     /// <inheritdoc />
-    public bool IsSelfStream { get; set; }
+    public bool IsSelfStream { get; internal set; }
 
     /// <inheritdoc />
-    public bool IsSelfVideo { get; set; }
+    public bool IsSelfVideo { get; internal set; }
 
     /// <inheritdoc />
-    public string[] ViewerStreamKeys { get; set; }
+    public bool IsSuppressed { get; internal set; }
 
     /// <inheritdoc />
-    public GuildMember Member { get; set; }
+    public string[] ViewerStreamKeys { get; internal set; }
+
+    /// <inheritdoc />
+    public GuildMember Member { get; internal set; }
 
     IGuildMember IVoiceState.Member => Member;
 
@@ -78,6 +82,7 @@ public class VoiceState : Entity, IVoiceState
         IsSelfMute = json.IsSelfMute;
         IsSelfStream = json.IsSelfStream;
         IsSelfVideo = json.IsSelfVideo;
+        IsSuppressed = json.IsSuppressed;
         ViewerStreamKeys = json.ViewerStreamKeys;
         Member = GuildMember.Create(client, json.Member);
     }

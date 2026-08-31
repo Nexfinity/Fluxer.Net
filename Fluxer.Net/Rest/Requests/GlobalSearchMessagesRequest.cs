@@ -13,7 +13,7 @@ public class GlobalSearchMessagesRequest : MessageSearchRequest
     /// <summary>
     /// Guild ID for context when searching across multiple guilds
     /// </summary>
-    [JsonProperty("context_build_ids")]
+    [JsonProperty("context_guild_id")]
     public ulong? ContextGuildId { get; set; }
 
     /// <summary>

@@ -8961,6 +8961,81 @@
             The emoji associated with this RTC region
             </summary>
         </member>
+        <member name="P:Fluxer.Net.IVoiceState.SessionId">
+            <summary>
+            Voice connection session.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IVoiceState.UserId">
+            <summary>
+            User id that is connected.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IVoiceState.ChannelId">
+            <summary>
+            Channel id connected to.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IVoiceState.ConnectionId">
+            <summary>
+            Voice connection id.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IVoiceState.IsDeaf">
+            <summary>
+            User is deafened in the guild.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IVoiceState.IsMute">
+            <summary>
+            User is muted in the guild.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IVoiceState.GuildId">
+            <summary>
+            Guild id for the voice channel.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IVoiceState.IsMobile">
+            <summary>
+            User connected with mobile.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IVoiceState.IsSelfDeaf">
+            <summary>
+            User is self deafend.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IVoiceState.IsSelfMute">
+            <summary>
+            User is self muted.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IVoiceState.IsSelfStream">
+            <summary>
+            User is streaming.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IVoiceState.IsSelfVideo">
+            <summary>
+            User is using video.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IVoiceState.IsSuppressed">
+            <summary>
+            User can't speak in voice.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IVoiceState.ViewerStreamKeys">
+            <summary>
+            Keys used for streaming.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IVoiceState.Member">
+            <summary>
+            Member for the voice connection.
+            </summary>
+        </member>
         <member name="T:Fluxer.Net.RtcRegion">
             <inheritdoc />
         </member>
@@ -9002,6 +9077,9 @@
             <param name="guild"></param>
             <returns></returns>
         </member>
+        <member name="T:Fluxer.Net.VoiceState">
+            <inheritdoc />
+        </member>
         <member name="P:Fluxer.Net.VoiceState.SessionId">
             <inheritdoc />
         </member>
@@ -9036,6 +9114,9 @@
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.VoiceState.IsSelfVideo">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.VoiceState.IsSuppressed">
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.VoiceState.ViewerStreamKeys">
@@ -9089,6 +9170,9 @@
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.VoiceStateJson.IsSelfVideo">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.VoiceStateJson.IsSuppressed">
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.VoiceStateJson.ViewerStreamKeys">
@@ -12708,6 +12792,23 @@
             <param name="refreshToken"></param>
             <returns></returns>
         </member>
+        <member name="M:Fluxer.Net.Rest.FluxerApiClient.SearchGuildMessagesAsync(System.UInt64,Fluxer.Net.Rest.GlobalSearchMessagesRequest)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.SearchChannelMessagesAsync(System.UInt64,Fluxer.Net.Rest.GlobalSearchMessagesRequest)"/>
+        </member>
+        <member name="M:Fluxer.Net.Rest.FluxerApiClient.SearchGuildChannelMessagesAsync(System.UInt64,System.UInt64,Fluxer.Net.Rest.GlobalSearchMessagesRequest)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.SearchChannelMessagesAsync(System.UInt64,Fluxer.Net.Rest.GlobalSearchMessagesRequest)"/>
+        </member>
+        <member name="M:Fluxer.Net.Rest.FluxerApiClient.SearchChannelMessagesAsync(System.UInt64,Fluxer.Net.Rest.GlobalSearchMessagesRequest)">
+            <summary>
+            Search messages globally using either guild or channel.
+            </summary>
+            <remarks>
+            Page needs to be 1 and message scope should not be changed when using bots.
+            </remarks>
+            <param name="channelId"></param>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
         <member name="T:Fluxer.Net.Rest.ApiLimits">
             <summary>
             API limits for the current instance.
@@ -13329,157 +13430,162 @@
         </member>
         <member name="P:Fluxer.Net.Rest.MessageSearchRequest.Page">
             <summary>
-            Page number for pagination
+            Page number for pagination.
             </summary>
         </member>
         <member name="P:Fluxer.Net.Rest.MessageSearchRequest.MaxId">
             <summary>
-            Maximum message ID to include in results
+            Maximum message ID to include in results.
             </summary>
         </member>
         <member name="P:Fluxer.Net.Rest.MessageSearchRequest.MinId">
             <summary>
-            Minimum message ID to include in results
+            Minimum message ID to include in results.
             </summary>
         </member>
         <member name="P:Fluxer.Net.Rest.MessageSearchRequest.Content">
             <summary>
-            Text content to search for
+            Text content to search for.
             </summary>
         </member>
         <member name="P:Fluxer.Net.Rest.MessageSearchRequest.Contents">
             <summary>
-            Multiple content queries to search for
+            Multiple content queries to search for.
             </summary>
         </member>
         <member name="P:Fluxer.Net.Rest.MessageSearchRequest.ExactPhrases">
             <summary>
-            Exact phrases that must appear contiguously in message content
+            Exact phrases that must appear contiguously in message content.
             </summary>
         </member>
         <member name="P:Fluxer.Net.Rest.MessageSearchRequest.ChannelIds">
             <summary>
-            Channel IDs to search in
+            Channel IDs to search in.
             </summary>
         </member>
         <member name="P:Fluxer.Net.Rest.MessageSearchRequest.ExcludeChannelIds">
             <summary>
-            Channel IDs to exclude from search
+            Channel IDs to exclude from search.
             </summary>
         </member>
         <member name="P:Fluxer.Net.Rest.MessageSearchRequest.AuthorTypes">
             <summary>
-            Author types to filter by
+            Author types to filter by.
             </summary>
         </member>
         <member name="P:Fluxer.Net.Rest.MessageSearchRequest.ExcludeAuthorTypes">
             <summary>
-            Author types to exclude
+            Author types to exclude.
             </summary>
         </member>
         <member name="P:Fluxer.Net.Rest.MessageSearchRequest.AuthorId">
             <summary>
-            Author user IDs to filter by
+            Author user IDs to filter by.
             </summary>
         </member>
         <member name="P:Fluxer.Net.Rest.MessageSearchRequest.ExcludeAuthorId">
             <summary>
-            Author user IDs to exclude
+            Author user IDs to exclude.
             </summary>
         </member>
         <member name="P:Fluxer.Net.Rest.MessageSearchRequest.MentionUserIds">
             <summary>
-            User IDs that must be mentioned
+            User IDs that must be mentioned.
             </summary>
         </member>
         <member name="P:Fluxer.Net.Rest.MessageSearchRequest.ExcludeMentionUserIds">
             <summary>
-            User IDs that must not be mentioned
+            User IDs that must not be mentioned.
             </summary>
         </member>
         <member name="P:Fluxer.Net.Rest.MessageSearchRequest.MentionEveryone">
             <summary>
-            Filter by whether message mentions everyone
+            Filter by whether message mentions everyone.
             </summary>
         </member>
         <member name="P:Fluxer.Net.Rest.MessageSearchRequest.Pinned">
             <summary>
-            Filter by pinned status
+            Filter by pinned status.
             </summary>
         </member>
         <member name="P:Fluxer.Net.Rest.MessageSearchRequest.HasContentType">
             <summary>
-            Content types the message must have
+            Content types the message must have.
             </summary>
         </member>
         <member name="P:Fluxer.Net.Rest.MessageSearchRequest.ExcludeContentType">
             <summary>
-            Content types the message must not have
+            Content types the message must not have.
             </summary>
         </member>
         <member name="P:Fluxer.Net.Rest.MessageSearchRequest.EmbedType">
             <summary>
-            Embed types to filter by
+            Embed types to filter by.
             </summary>
         </member>
         <member name="P:Fluxer.Net.Rest.MessageSearchRequest.ExcludeEmbedType">
             <summary>
-            Embed types to exclude
+            Embed types to exclude.
             </summary>
         </member>
         <member name="P:Fluxer.Net.Rest.MessageSearchRequest.EmbedProvider">
             <summary>
-            Embed providers to filter by
+            Embed providers to filter by.
             </summary>
         </member>
         <member name="P:Fluxer.Net.Rest.MessageSearchRequest.ExcludeEmbedProvider">
             <summary>
-            Embed providers to exclude
+            Embed providers to exclude.
             </summary>
         </member>
         <member name="P:Fluxer.Net.Rest.MessageSearchRequest.LinkHostnames">
             <summary>
-            Link hostnames to filter by
+            Link hostnames to filter by.
             </summary>
         </member>
         <member name="P:Fluxer.Net.Rest.MessageSearchRequest.ExcludeLinkHostnames">
             <summary>
-            Link hostnames to exclude
+            Link hostnames to exclude.
             </summary>
         </member>
         <member name="P:Fluxer.Net.Rest.MessageSearchRequest.AttachmentFilenames">
             <summary>
-            Attachment filenames to filter by
+            Attachment filenames to filter by.
             </summary>
         </member>
         <member name="P:Fluxer.Net.Rest.MessageSearchRequest.ExcludeAttachmentFilenames">
             <summary>
-            Attachment filenames to exclude
+            Attachment filenames to exclude.
             </summary>
         </member>
         <member name="P:Fluxer.Net.Rest.MessageSearchRequest.AttachmentExtensions">
             <summary>
-            File extensions to filter by
+            File extensions to filter by.
             </summary>
         </member>
         <member name="P:Fluxer.Net.Rest.MessageSearchRequest.ExcludeAttachmentExtensions">
             <summary>
-            File extensions to exclude
+            File extensions to exclude.
             </summary>
         </member>
         <member name="P:Fluxer.Net.Rest.MessageSearchRequest.SortBy">
             <summary>
-            Field to sort results by
+            Field to sort results by.
             </summary>
         </member>
         <member name="P:Fluxer.Net.Rest.MessageSearchRequest.SortOrder">
             <summary>
-            Sort order for results
+            Sort order for results.
             </summary>
         </member>
         <member name="P:Fluxer.Net.Rest.MessageSearchRequest.IncludeNsfw">
             <summary>
-            Whether to include NSFW channel results
+            Whether to include NSFW channel results.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.MessageSearchRequest.MessageSearchScope">
+            <summary>
+            This should not be changed when using bots.
             </summary>
         </member>
         <member name="T:Fluxer.Net.Rest.RestClientQueryParams">
