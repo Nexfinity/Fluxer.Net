@@ -2638,6 +2638,7 @@ public class FluxerApiClient
 
     #region Global Search
 
+    /// <inheritdoc cref="SearchChannelMessagesAsync(ulong, GlobalSearchMessagesRequest)"/>
     public async Task<GlobalSearch> SearchGuildMessagesAsync(ulong guildId, GlobalSearchMessagesRequest request)
     {
         request.ContextGuildId = guildId;
@@ -2645,6 +2646,7 @@ public class FluxerApiClient
         return GlobalSearch.Create(_client, json);
     }
 
+    /// <inheritdoc cref="SearchChannelMessagesAsync(ulong, GlobalSearchMessagesRequest)"/>
     public async Task<GlobalSearch> SearchGuildChannelMessagesAsync(ulong guildId, ulong channelId, GlobalSearchMessagesRequest request)
     {
         request.ContextGuildId = guildId;
@@ -2653,6 +2655,15 @@ public class FluxerApiClient
         return GlobalSearch.Create(_client, json);
     }
 
+    /// <summary>
+    /// Search messages globally using either guild or channel.
+    /// </summary>
+    /// <remarks>
+    /// Page needs to be 1 and message scope should not be changed when using bots.
+    /// </remarks>
+    /// <param name="channelId"></param>
+    /// <param name="request"></param>
+    /// <returns></returns>
     public async Task<GlobalSearch> SearchChannelMessagesAsync(ulong channelId, GlobalSearchMessagesRequest request)
     {
         request.ContextChannelId = channelId;

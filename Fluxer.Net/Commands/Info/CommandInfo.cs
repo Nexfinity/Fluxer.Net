@@ -326,8 +326,8 @@ public class CommandInfo
     internal string GetLogText(ICommandContext context)
     {
         if (context.Guild != null)
-            return $"\"{Name}\" for {context.User} in {context.Guild}/{context.Channel}";
+            return $"\"{Name}\" for {context.User.Username}#{context.User.Discriminator} in {context.Guild.Name}/{context.Channel.Name}";
         else
-            return $"\"{Name}\" for {context.User} in {context.Channel}";
+            return $"\"{Name}\" for {context.User.Username}#{context.User.Discriminator} in {context.Channel.Name}";
     }
 }

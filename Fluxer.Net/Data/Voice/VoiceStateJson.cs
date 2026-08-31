@@ -54,6 +54,10 @@ public class VoiceStateJson : IVoiceState
     public bool IsSelfVideo { get; set; }
 
     /// <inheritdoc />
+    [JsonProperty("suppress")]
+    public bool IsSuppressed { get; set; }
+
+    /// <inheritdoc />
     [JsonProperty("viewer_stream_keys")]
     public string[] ViewerStreamKeys { get; set; }
 
