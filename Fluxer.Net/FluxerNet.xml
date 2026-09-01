@@ -11468,7 +11468,7 @@
             <param name="allowedMentions"></param>
             <param name="flags"></param>
             <param name="nonce"></param>
-            <param name="favoruteMemeId"></param>
+            <param name="favoriteMemeId"></param>
             <param name="tts"></param>
             <param name="stickerIds"></param>
             <param name="attachments"></param>
@@ -11489,7 +11489,7 @@
             <param name="allowedMentions"></param>
             <param name="flags"></param>
             <param name="nonce"></param>
-            <param name="favoruteMemeId"></param>
+            <param name="favoriteMemeId"></param>
             <param name="stickerIds"></param>
             <param name="attachments"></param>
             <returns></returns>
@@ -12637,7 +12637,7 @@
             <param name="allowedMentions"></param>
             <param name="flags"></param>
             <param name="nonce"></param>
-            <param name="favoruteMemeId"></param>
+            <param name="favoriteMemeId"></param>
             <param name="tts"></param>
             <param name="stickerIds"></param>
             <param name="attachments"></param>
@@ -12665,7 +12665,7 @@
             <param name="allowedMentions"></param>
             <param name="flags"></param>
             <param name="nonce"></param>
-            <param name="favoruteMemeId"></param>
+            <param name="favoriteMemeId"></param>
             <param name="stickerIds"></param>
             <param name="attachments"></param>
             <returns></returns>
@@ -12684,7 +12684,7 @@
             <param name="allowedMentions"></param>
             <param name="flags"></param>
             <param name="nonce"></param>
-            <param name="favoruteMemeId"></param>
+            <param name="favoriteMemeId"></param>
             <param name="tts"></param>
             <param name="stickerIds"></param>
             <returns></returns>

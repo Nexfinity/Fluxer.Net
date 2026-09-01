@@ -26,8 +26,8 @@ public static class ChannelHelpers
     /// <inheritdoc cref="FluxerApiClient.SendMessageAsync(ulong, string?, List{EmbedRequest}?, MessageReferenceRequest?, AllowedMentionsRequest?, MessageFlag, string?, ulong?, bool?, List{ulong}?, List{AttachmentRequest}?)" />
     public static Task<Message> SendMessageAsync(this Channel channel, string? content = null, List<EmbedRequest>? embeds = null,
         MessageReferenceRequest? reference = null, AllowedMentionsRequest? allowedMentions = null, MessageFlag flags = MessageFlag.None,
-        string? nonce = null, ulong? favoruteMemeId = null, bool? tts = null, List<ulong>? stickerIds = null, List<AttachmentRequest>? attachments = null)
-        => channel.Client.Rest.SendMessageAsync(channel.Id, content, embeds, reference, allowedMentions, flags, nonce, favoruteMemeId, tts, stickerIds, attachments);
+        string? nonce = null, ulong? favoriteMemeId = null, bool? tts = null, List<ulong>? stickerIds = null, List<AttachmentRequest>? attachments = null)
+        => channel.Client.Rest.SendMessageAsync(channel.Id, content, embeds, reference, allowedMentions, flags, nonce, favoriteMemeId, tts, stickerIds, attachments);
 
     /// <inheritdoc cref="FluxerApiClient.SendMessageAsync(ulong, string?, List{EmbedRequest}?, MessageReferenceRequest?, AllowedMentionsRequest?, MessageFlag, string?, ulong?, bool?, List{ulong}?, List{AttachmentRequest}?)" />
     public static Task<Message> SendFilesAsync(this Channel channel, List<AttachmentRequest>? attachments, string? content = null)
@@ -72,14 +72,14 @@ public static class ChannelHelpers
     /// <inheritdoc cref="FluxerApiClient.EditMessageAsync(ulong, ulong, string?, List{EmbedRequest}?, MessageReferenceRequest?, AllowedMentionsRequest?, MessageFlag, string?, ulong?, List{ulong}?, List{AttachmentRequest}?)" />
     public static Task<Message> EditMessageAsync(this Channel channel, ulong messageId, string? content = null, List<EmbedRequest>? embeds = null,
         MessageReferenceRequest? reference = null, AllowedMentionsRequest? allowedMentions = null, MessageFlag flags = MessageFlag.None,
-        string? nonce = null, ulong? favoruteMemeId = null, List<ulong>? stickerIds = null, List<AttachmentRequest>? attachments = null)
-        => channel.Client.Rest.EditMessageAsync(channel.Id, messageId, content, embeds, reference, allowedMentions, flags, nonce, favoruteMemeId, stickerIds, attachments);
+        string? nonce = null, ulong? favoriteMemeId = null, List<ulong>? stickerIds = null, List<AttachmentRequest>? attachments = null)
+        => channel.Client.Rest.EditMessageAsync(channel.Id, messageId, content, embeds, reference, allowedMentions, flags, nonce, favoriteMemeId, stickerIds, attachments);
 
     /// <inheritdoc cref="FluxerApiClient.EditMessageAsync(ulong, ulong, string?, List{EmbedRequest}?, MessageReferenceRequest?, AllowedMentionsRequest?, MessageFlag, string?, ulong?, List{ulong}?, List{AttachmentRequest}?)" />
     public static Task<Message> EditMessageAsync(this Channel channel, Message message, string? content = null, List<EmbedRequest>? embeds = null,
         MessageReferenceRequest? reference = null, AllowedMentionsRequest? allowedMentions = null, MessageFlag flags = MessageFlag.None,
-        string? nonce = null, ulong? favoruteMemeId = null, List<ulong>? stickerIds = null, List<AttachmentRequest>? attachments = null)
-        => channel.Client.Rest.EditMessageAsync(channel.Id, message.Id, content, embeds, reference, allowedMentions, flags, nonce, favoruteMemeId, stickerIds, attachments);
+        string? nonce = null, ulong? favoriteMemeId = null, List<ulong>? stickerIds = null, List<AttachmentRequest>? attachments = null)
+        => channel.Client.Rest.EditMessageAsync(channel.Id, message.Id, content, embeds, reference, allowedMentions, flags, nonce, favoriteMemeId, stickerIds, attachments);
 
     /// <inheritdoc cref="FluxerApiClient.DeleteMessageAttachmentAsync(ulong, ulong, ulong)" />
     public static Task DeleteMessageAttachmentAsync(this Channel channel, ulong messageId, ulong attachmentId)
