@@ -195,7 +195,7 @@ public class FluxerApiClient
         if (throwOnNonSuccess && !result.IsSuccessStatusCode)
             throw new FluxerApiException($"Fluxer returned a non-success code {result.StatusCode}", resp);
 
-        return JsonConvert.DeserializeObject<TResponse>(resp);
+        return JsonConvert.DeserializeObject<TResponse>(resp, FluxerClient._restSerializer);
     }
 
     internal async Task<TResponse> InternalSendRequestFormAsync<TResponse>(HttpMethod method, string route, bool throwOnNonSuccess = false,
@@ -227,7 +227,7 @@ public class FluxerApiClient
         if (throwOnNonSuccess && !result.IsSuccessStatusCode)
             throw new FluxerApiException($"Fluxer returned a non-success code {result.StatusCode}", resp);
 
-        return JsonConvert.DeserializeObject<TResponse>(resp);
+        return JsonConvert.DeserializeObject<TResponse>(resp, FluxerClient._restSerializer);
     }
 
     /// <summary>
@@ -306,7 +306,7 @@ public class FluxerApiClient
         if (throwOnNonSuccess && !result.IsSuccessStatusCode)
             throw new FluxerApiException($"Fluxer returned a non-success code {result.StatusCode}", resp);
 
-        return JsonConvert.DeserializeObject<TResponse>(resp);
+        return JsonConvert.DeserializeObject<TResponse>(resp, FluxerClient._restSerializer);
     }
 
     /// <summary>
@@ -360,7 +360,7 @@ public class FluxerApiClient
         if (throwOnNonSuccess && !result.IsSuccessStatusCode)
             throw new FluxerApiException($"Fluxer returned a non-success code {result.StatusCode}", resp);
 
-        return JsonConvert.DeserializeObject<TResponse>(resp);
+        return JsonConvert.DeserializeObject<TResponse>(resp, FluxerClient._restSerializer);
     }
 
     /// <summary>
