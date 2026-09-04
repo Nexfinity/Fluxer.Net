@@ -92,7 +92,7 @@ public partial class FluxerGatewayClient : IDisposable
 
     #region Cache
 
-    public CurrentUser? CurrentUser { get; internal set; }
+    public SocketCurrentUser? CurrentUser { get; internal set; }
 
     internal ulong? OwnerId { get; set; }
 
@@ -188,6 +188,7 @@ public partial class FluxerGatewayClient : IDisposable
                 // IMPORTANT: Do not set ReconnectTimeout here - we manage reconnection manually through the gateway protocol
                 IsReconnectionEnabled = false  // Completely disable automatic reconnection
             };
+            _webSocket.ReconnectionHappened.Subscribe(HandleGatewayConnect);
             _webSocket.MessageReceived.Subscribe(x => GatewayMessageHandler(x.Text));
             _webSocket.DisconnectionHappened.Subscribe(HandleGatewayDisconnect);
             Stopwatch.StartNew();
@@ -524,13 +525,10 @@ public partial class FluxerGatewayClient : IDisposable
                     ReadyGatewayData? data = p.Data.ToObject<ReadyGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
                     {
-                        CurrentUser = CurrentUser.Create(_client, data.User);
-
+                        CurrentUser = SocketCurrentUser.Create(_client, data.User);
                         _sessionId = data.SessionId;
                         _isConnecting = false; // Connection successfully established
                         _reconnectAttemptCount = 0; // Reset backoff counter
-
-                        GuildIds = data.Guilds.Select(x => x.Id).ToHashSet();
                         Channels.Clear();
                         Roles.Clear();
                         CurrentMembers.Clear();
@@ -538,6 +536,7 @@ public partial class FluxerGatewayClient : IDisposable
                         RtcRegions = data.RtcRegions.Select(x => RtcRegion.Create(_client, x)).ToArray();
                         if (data.Guilds != null)
                         {
+                            GuildIds = data.Guilds.Select(x => x.Id).ToHashSet();
                             foreach (GuildGatewayData g in data.Guilds)
                             {
                                 CurrentMembers.TryAdd(g.Id, SocketGuildMember.Create(_client, g.Members.First(x => x.Id == CurrentUser.Id)));
@@ -556,7 +555,7 @@ public partial class FluxerGatewayClient : IDisposable
                         }
 
                         _logger.Information("Connection established successfully with session ID: {SessionId}", _sessionId);
-                        Ready?.Invoke(data);
+                        Ready?.Invoke(CurrentUser);
                     }
                     else
                     {
@@ -576,7 +575,7 @@ public partial class FluxerGatewayClient : IDisposable
                 {
                     GatewaySessionJson[]? data = p.Data.ToObject<GatewaySessionJson[]>(FluxerClient._gatewaySerializer);
                     if (data != null)
-                        SessionsReplace?.Invoke(data[0], data[1]);
+                        SessionsReplace?.Invoke(GatewaySession.Create(_client, data[0]), GatewaySession.Create(_client, data[1]));
                     else
                         _logger.Warning("SESSIONS_REPLACE event received but data could not be cast to SessionsReplaceGatewayData");
                 }
@@ -1449,6 +1448,7 @@ public partial class FluxerGatewayClient : IDisposable
                 IsReconnectionEnabled = false
             };
 
+            _webSocket.ReconnectionHappened.Subscribe(HandleGatewayConnect);
             _webSocket.MessageReceived.Subscribe(x => GatewayMessageHandler(x.Text));
             _webSocket.DisconnectionHappened.Subscribe(HandleGatewayDisconnect);
 
@@ -1514,6 +1514,12 @@ public partial class FluxerGatewayClient : IDisposable
         }
     }
 
+    private void HandleGatewayConnect(ReconnectionInfo info)
+    {
+        _logger.Information($"WebSocket connected: Type={info.Type}");
+        Connected?.Invoke();
+    }
+
     private void HandleGatewayDisconnect(DisconnectionInfo info)
     {
         _isConnecting = false;
@@ -1550,6 +1556,7 @@ public partial class FluxerGatewayClient : IDisposable
 
             _reconnectAttemptCount = 0;
         }
+        Disconnected?.Invoke();
     }
 
     private void HandleHeartbeatAck()
@@ -1788,10 +1795,30 @@ public partial class FluxerGatewayClient : IDisposable
     public event HeartbeatAckEvent HeartbeatAck;
 
     /// <summary>
+    /// Delegate for gateway connected.
+    /// </summary>
+    public delegate void ConnectedEvent();
+
+    /// <summary>
+    /// Occurs when the gateway is connected.
+    /// </summary>
+    public event ConnectedEvent Connected;
+
+    /// <summary>
+    /// Delegate for gateway disconnected.
+    /// </summary>
+    public delegate void DisconnectedEvent();
+
+    /// <summary>
+    /// Occurs when the gateway is disconnected.
+    /// </summary>
+    public event DisconnectedEvent Disconnected;
+
+    /// <summary>
     /// Delegate for the READY event fired when the gateway connection is established.
     /// </summary>
-    /// <param name="data">The ready event data including session ID, user info, and initial state.</param>
-    public delegate void ReadyEvent(ReadyGatewayData data);
+    /// <param name="currentUser">The current user of the client.</param>
+    public delegate void ReadyEvent(SocketCurrentUser currentUser);
 
     /// <summary>
     /// Occurs when the gateway connection is established and initial data is received.
@@ -1812,7 +1839,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Delegate for SESSIONS_REPLACE event when auth sessions are replaced.
     /// </summary>
-    public delegate void SessionsReplaceEvent(GatewaySessionJson oldData, GatewaySessionJson newData);
+    public delegate void SessionsReplaceEvent(GatewaySession oldData, GatewaySession newData);
 
     /// <summary>
     /// Occurs when auth sessions are replaced.

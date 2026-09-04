@@ -8257,6 +8257,25 @@
             Outgoing friend request sent to the user.
             </summary>
         </member>
+        <member name="T:Fluxer.Net.SocketCurrentUser">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.SocketCurrentUser.Guilds">
+            <summary>
+            Cached guilds for the current user.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.SocketCurrentUser.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.UserJson)">
+            <summary>
+            Create a SocketCurrentUser object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Fluxer.Net.SocketUser">
+            <inheritdoc />
+        </member>
         <member name="M:Fluxer.Net.SocketUser.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.UserJson)">
             <summary>
             Create a SocketUser object from json.
@@ -10025,11 +10044,21 @@
             Occurs when the gateway acknowledges a heartbeat packet.
             </summary>
         </member>
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.ConnectedEvent">
+            <summary>
+            Delegate for gateway connected.
+            </summary>
+        </member>
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.Connected">
+            <summary>
+            Occurs when the gateway is connected.
+            </summary>
+        </member>
         <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.ReadyEvent">
             <summary>
             Delegate for the READY event fired when the gateway connection is established.
             </summary>
-            <param name="data">The ready event data including session ID, user info, and initial state.</param>
+            <param name="currentUser">The current user of the client.</param>
         </member>
         <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.Ready">
             <summary>
