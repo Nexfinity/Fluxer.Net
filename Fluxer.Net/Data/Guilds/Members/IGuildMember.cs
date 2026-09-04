@@ -1,17 +1,11 @@
 ﻿namespace Fluxer.Net;
 
-public interface IGuildMember : ISnowflake
+public interface IGuildMember : ISnowflake, IMentionable
 {
     /// <summary>
     /// Guild id that the user is in.
     /// </summary>
     ulong GuildId { get; }
-
-    /// <summary>
-    /// Get the mention for the user.
-    /// </summary>
-    string Mention { get; }
-
     /// <summary>
     /// User data for the member.
     /// </summary>

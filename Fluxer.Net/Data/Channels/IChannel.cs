@@ -1,12 +1,7 @@
 ﻿namespace Fluxer.Net;
 
-public interface IChannel : ISnowflake
+public interface IChannel : ISnowflake, IMentionable
 {
-    /// <summary>
-    /// Get the mention for this channel.
-    /// </summary>
-    string Mention { get; }
-
     /// <summary>
     /// The unique identifier (snowflake) for guild of this channel.
     /// </summary>

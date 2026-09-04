@@ -1,12 +1,7 @@
 ﻿namespace Fluxer.Net;
 
-public interface IRole : ISnowflake
+public interface IRole : ISnowflake, IMentionable
 {
-    /// <summary>
-    /// Get the mention for this role.
-    /// </summary>
-    string Mention { get; }
-
     /// <summary>
     /// The name of the role.
     /// </summary>

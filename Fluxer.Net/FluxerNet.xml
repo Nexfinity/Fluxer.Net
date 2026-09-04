@@ -1967,6 +1967,13 @@
         <member name="P:Fluxer.Net.Channel.IsTextable">
             <inheritdoc/>
         </member>
+        <member name="M:Fluxer.Net.Channel.TextableTypes(Fluxer.Net.ChannelType)">
+            <summary>
+            Channel types that you can send messages to.
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
         <member name="M:Fluxer.Net.Channel.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.ChannelJson)">
             <summary>
             Create a Channel object from json.
@@ -2188,11 +2195,6 @@
         <member name="F:Fluxer.Net.ChannelType.DmPersonalNotes">
             <summary>
             A personal notes DM channel for storing private messages.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IChannel.Mention">
-            <summary>
-            Get the mention for this channel.
             </summary>
         </member>
         <member name="P:Fluxer.Net.IChannel.GuildId">
@@ -4321,11 +4323,6 @@
             Guild id that the user is in.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.IGuildMember.Mention">
-            <summary>
-            Get the mention for the user.
-            </summary>
-        </member>
         <member name="P:Fluxer.Net.IGuildMember.User">
             <summary>
             User data for the member.
@@ -4399,11 +4396,6 @@
         <member name="M:Fluxer.Net.IGuildMember.GetBannerUrl(System.Int32)">
             <summary>
             Get the member's banner.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IRole.Mention">
-            <summary>
-            Get the mention for this role.
             </summary>
         </member>
         <member name="P:Fluxer.Net.IRole.Name">
@@ -6214,11 +6206,6 @@
             Whether the attachment URL has expired.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.IMessage.Id">
-            <summary>
-            Unique identifier (snowflake) for the object.
-            </summary>
-        </member>
         <member name="P:Fluxer.Net.IMessage.ChannelId">
             <summary>
             The ID of the channel this message was sent in.
@@ -6247,11 +6234,6 @@
         <member name="P:Fluxer.Net.IMessage.Content">
             <summary>
             The text content of the message.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IMessage.CreatedAt">
-            <summary>
-            The ISO 8601 timestamp of when the message was created.
             </summary>
         </member>
         <member name="P:Fluxer.Net.IMessage.EditedAt">
@@ -6844,6 +6826,24 @@
             <param name="json"></param>
             <returns></returns>
         </member>
+        <member name="T:Fluxer.Net.GlobalSearch">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GlobalSearch.Messages">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GlobalSearch.Channels">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GlobalSearch.Total">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GlobalSearch.HitsPerPage">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GlobalSearch.Page">
+            <inheritdoc />
+        </member>
         <member name="M:Fluxer.Net.GlobalSearch.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.GlobalSearchJson)">
             <summary>
             Create a Instance object from json.
@@ -6851,6 +6851,34 @@
             <param name="client"></param>
             <param name="json"></param>
             <returns></returns>
+        </member>
+        <member name="T:Fluxer.Net.GlobalSearchJson">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GlobalSearchJson.Messages">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GlobalSearchJson.Channels">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GlobalSearchJson.Total">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GlobalSearchJson.HitsPerPage">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GlobalSearchJson.Page">
+            <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.IMentionable">
+            <summary>
+            Object is mentionable.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IMentionable.Mention">
+            <summary>
+            Formatted mention string for this object.
+            </summary>
         </member>
         <member name="T:Fluxer.Net.Instance">
             <inheritdoc />
@@ -7976,21 +8004,6 @@
         <member name="M:Fluxer.Net.ICurrentUser.GetBannerUrl(System.Int32)">
             <summary>
             Get the user's banner.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IUser.Id">
-            <summary>
-            Unique identifier (snowflake) for the object.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IUser.CreatedAt">
-            <summary>
-            User created at UTC.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IUser.Mention">
-            <summary>
-            Get the mention for the user.
             </summary>
         </member>
         <member name="P:Fluxer.Net.IUser.Username">
