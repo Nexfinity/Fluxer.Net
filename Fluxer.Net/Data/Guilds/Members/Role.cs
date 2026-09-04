@@ -7,7 +7,7 @@ public class Role : Entity, IRole
     public ulong GuildId { get; internal set; }
 
     /// <inheritdoc />
-    public ulong Id { get; internal set; }
+    public ulong Id { get; private set; }
 
     /// <inheritdoc />
     public DateTimeOffset CreatedAt => SnowflakeUtils.FromSnowflake(Id);
@@ -16,28 +16,28 @@ public class Role : Entity, IRole
     public string Mention => $"<@&{Id}>";
 
     /// <inheritdoc />
-    public string Name { get; internal set; }
+    public string Name { get; private set; }
 
     /// <inheritdoc />
-    public GuildPermissions Permissions { get; internal set; }
+    public GuildPermissions Permissions { get; private set; }
 
     /// <inheritdoc />
-    public int Position { get; internal set; }
+    public int Position { get; private set; }
 
     /// <inheritdoc />
-    public int? HoistPosition { get; internal set; }
+    public int? HoistPosition { get; private set; }
 
     /// <inheritdoc />
-    public int Color { get; internal set; }
+    public int Color { get; private set; }
 
     /// <inheritdoc />
-    public string? UnicodeEmoji { get; internal set; }
+    public string? UnicodeEmoji { get; private set; }
 
     /// <inheritdoc />
-    public bool IsHoisted { get; internal set; }
+    public bool IsHoisted { get; private set; }
 
     /// <inheritdoc />
-    public bool IsMentionable { get; internal set; }
+    public bool IsMentionable { get; private set; }
 
     internal Role(FluxerBaseClient client) : base(client)
     {
@@ -57,11 +57,11 @@ public class Role : Entity, IRole
         {
             GuildId = guildId
         };
-        data.Update(client, json);
+        data.Update(json);
         return data;
     }
 
-    internal virtual void Update(FluxerBaseClient client, RoleJson json)
+    internal virtual void Update(RoleJson json)
     {
         Id = json.Id;
         Name = json.Name;

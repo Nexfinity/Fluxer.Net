@@ -4,28 +4,28 @@
 public class Activity : Entity, IActivity
 {
     /// <inheritdoc />
-    public string Name { get; internal set; }
+    public string Name { get; private set; }
 
     /// <inheritdoc />
-    public int Type { get; internal set; }
+    public int Type { get; private set; }
 
     /// <inheritdoc />
-    public string? Url { get; internal set; }
+    public string? Url { get; private set; }
 
     /// <inheritdoc />
-    public long CreatedAt { get; internal set; }
+    public long CreatedAt { get; private set; }
 
     /// <inheritdoc />
-    public ActivityTimestamps? Timestamps { get; internal set; }
+    public ActivityTimestamps? Timestamps { get; private set; }
 
     /// <inheritdoc />
-    public string? Details { get; internal set; }
+    public string? Details { get; private set; }
 
     /// <inheritdoc />
-    public string? State { get; internal set; }
+    public string? State { get; private set; }
 
     /// <inheritdoc />
-    public Emoji? Emoji { get; internal set; }
+    public Emoji? Emoji { get; private set; }
 
     IActivityTimestamps? IActivity.Timestamps => Timestamps;
 
@@ -45,20 +45,20 @@ public class Activity : Entity, IActivity
     public static Activity Create(FluxerBaseClient client, ActivityJson json)
     {
         Activity data = new Activity(client);
-        data.Update(client, json);
+        data.Update(json);
         return data;
     }
 
-    internal void Update(FluxerBaseClient client, ActivityJson json)
+    internal void Update(ActivityJson json)
     {
         Name = json.Name;
         Type = json.Type;
         Url = json.Url;
         CreatedAt = json.CreatedAt;
-        Timestamps = ActivityTimestamps.Create(client, json.Timestamps);
+        Timestamps = ActivityTimestamps.Create(Client, json.Timestamps);
         Details = json.Details;
         State = json.State;
-        Emoji = Emoji.Create(client, json.Emoji);
+        Emoji = Emoji.Create(Client, json.Emoji);
     }
 }
 
@@ -88,11 +88,11 @@ public class ActivityTimestamps : IActivityTimestamps
             return null;
 
         ActivityTimestamps data = new ActivityTimestamps(client);
-        data.Update(client, json);
+        data.Update(json);
         return data;
     }
 
-    internal void Update(FluxerBaseClient client, ActivityTimestampsJson json)
+    internal void Update(ActivityTimestampsJson json)
     {
         Start = json.Start;
         End = json.End;

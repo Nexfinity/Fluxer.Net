@@ -4,70 +4,70 @@
 public class Message : Entity, IMessage
 {
     /// <inheritdoc />
-    public ulong Id { get; internal set; }
+    public ulong Id { get; private set; }
 
     /// <inheritdoc />
-    public ulong ChannelId { get; internal set; }
+    public ulong ChannelId { get; private set; }
 
     /// <inheritdoc />
-    public User Author { get; internal set; }
+    public User Author { get; private set; }
 
     /// <inheritdoc />
-    public ulong? WebhookId { get; internal set; }
+    public ulong? WebhookId { get; private set; }
 
     /// <inheritdoc />
-    public MessageType Type { get; internal set; }
+    public MessageType Type { get; private set; }
 
     /// <inheritdoc />
-    public MessageFlag Flags { get; internal set; }
+    public MessageFlag Flags { get; private set; }
 
     /// <inheritdoc />
-    public string Content { get; internal set; }
+    public string Content { get; private set; }
 
     /// <inheritdoc />
-    public DateTimeOffset CreatedAt { get; internal set; }
+    public DateTimeOffset CreatedAt { get; private set; }
 
     /// <inheritdoc />
-    public DateTimeOffset? EditedAt { get; internal set; }
+    public DateTimeOffset? EditedAt { get; private set; }
 
     /// <inheritdoc />
-    public bool IsPinned { get; internal set; }
+    public bool IsPinned { get; private set; }
 
     /// <inheritdoc />
-    public bool MentionEveryone { get; internal set; }
+    public bool MentionEveryone { get; private set; }
 
     /// <inheritdoc />
-    public bool IsTTS { get; internal set; }
+    public bool IsTTS { get; private set; }
 
     /// <inheritdoc />
-    public IEnumerable<User>? Mentions { get; internal set; }
+    public IEnumerable<User>? Mentions { get; private set; }
 
     /// <inheritdoc />
-    public ulong[]? MentionRoles { get; internal set; }
+    public ulong[]? MentionRoles { get; private set; }
 
     /// <inheritdoc />
-    public IEnumerable<Embed>? Embeds { get; internal set; }
+    public IEnumerable<Embed>? Embeds { get; private set; }
 
     /// <inheritdoc />
-    public Attachment[]? Attachments { get; internal set; }
+    public Attachment[]? Attachments { get; private set; }
 
     /// <inheritdoc />
-    public Sticker[]? Stickers { get; internal set; }
+    public Sticker[]? Stickers { get; private set; }
 
     /// <inheritdoc />
-    public MessageReaction[]? Reactions { get; internal set; }
+    public MessageReaction[]? Reactions { get; private set; }
 
     /// <inheritdoc />
-    public MessageReference? MessageReference { get; internal set; }
+    public MessageReference? MessageReference { get; private set; }
 
     /// <inheritdoc />
-    public MessageSnapshot[]? MessageSnapshots { get; internal set; }
+    public MessageSnapshot[]? MessageSnapshots { get; private set; }
 
     /// <inheritdoc />
-    public string? Nonce { get; internal set; }
+    public string? Nonce { get; private set; }
 
     /// <inheritdoc />
-    public MessageCall? Call { get; internal set; }
+    public MessageCall? Call { get; private set; }
 
     IUser IMessage.Author => Author;
 
@@ -101,15 +101,15 @@ public class Message : Entity, IMessage
     public static Message Create(FluxerBaseClient client, MessageJson json)
     {
         Message data = new Message(client);
-        data.Update(client, json);
+        data.Update(json);
         return data;
     }
 
-    internal void Update(FluxerBaseClient client, MessageJson json)
+    internal void Update(MessageJson json)
     {
         Id = json.Id;
         ChannelId = json.ChannelId;
-        Author = User.Create(client, json.Author);
+        Author = User.Create(Client, json.Author);
         WebhookId = json.WebhookId;
         Type = json.Type;
         Flags = json.Flags;
@@ -120,30 +120,30 @@ public class Message : Entity, IMessage
         MentionEveryone = json.MentionEveryone;
         IsTTS = json.IsTTS;
         if (json.Mentions != null)
-            Mentions = json.Mentions.Select(x => User.Create(client, x));
+            Mentions = json.Mentions.Select(x => User.Create(Client, x));
 
         MentionRoles = json.MentionRoles;
         if (json.Embeds != null)
-            Embeds = json.Embeds.Select(x => Embed.Create(client, x));
+            Embeds = json.Embeds.Select(x => Embed.Create(Client, x));
 
         if (json.Attachments != null)
-            Attachments = json.Attachments.Select(x => Attachment.Create(client, x, ChannelId)).ToArray();
+            Attachments = json.Attachments.Select(x => Attachment.Create(Client, x, ChannelId)).ToArray();
 
         if (json.Stickers != null)
-            Stickers = json.Stickers.Select(x => Sticker.Create(client, x)).ToArray();
+            Stickers = json.Stickers.Select(x => Sticker.Create(Client, x)).ToArray();
 
         if (json.Reactions != null)
-            Reactions = json.Reactions.Select(x => MessageReaction.Create(client, x)).ToArray();
+            Reactions = json.Reactions.Select(x => MessageReaction.Create(Client, x)).ToArray();
 
         if (json.MessageReference != null)
-            MessageReference = MessageReference.Create(client, json.MessageReference);
+            MessageReference = MessageReference.Create(Client, json.MessageReference);
 
         if (json.MessageSnapshots != null)
-            MessageSnapshots = json.MessageSnapshots.Select(x => MessageSnapshot.Create(client, x, ChannelId)).ToArray();
+            MessageSnapshots = json.MessageSnapshots.Select(x => MessageSnapshot.Create(Client, x, ChannelId)).ToArray();
 
         Nonce = json.Nonce;
 
         if (json.Call != null)
-            Call = MessageCall.Create(client, json.Call);
+            Call = MessageCall.Create(Client, json.Call);
     }
 }

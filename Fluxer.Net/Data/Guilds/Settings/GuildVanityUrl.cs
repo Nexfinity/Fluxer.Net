@@ -4,10 +4,10 @@
 public class GuildVanityUrl : Entity, IGuildVanityUrl
 {
     /// <inheritdoc />
-    public string? Code { get; internal set; }
+    public string? Code { get; private set; }
 
     /// <inheritdoc />
-    public int Uses { get; internal set; }
+    public int Uses { get; private set; }
 
     internal GuildVanityUrl(FluxerBaseClient client) : base(client)
     {
@@ -23,11 +23,11 @@ public class GuildVanityUrl : Entity, IGuildVanityUrl
     public static GuildVanityUrl Create(FluxerBaseClient client, GuildVanityUrlJson json)
     {
         GuildVanityUrl data = new GuildVanityUrl(client);
-        data.Update(client, json);
+        data.Update(json);
         return data;
     }
 
-    internal void Update(FluxerBaseClient client, GuildVanityUrlJson json)
+    internal void Update(GuildVanityUrlJson json)
     {
         Code = json.Code;
         Uses = json.Uses;

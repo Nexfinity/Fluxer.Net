@@ -33,16 +33,16 @@ public class GuildBan : Entity, IGuildBan
     public static GuildBan Create(FluxerBaseClient client, GuildBanJson json)
     {
         GuildBan data = new GuildBan(client);
-        data.Update(client, json);
+        data.Update(json);
         return data;
     }
 
-    internal void Update(FluxerBaseClient client, GuildBanJson json)
+    internal void Update(GuildBanJson json)
     {
         BannedAt = json.BannedAt;
         ExpiresAt = json.ExpiresAt;
         ModeratorId = json.ModeratorId;
         Reason = json.Reason;
-        User = User.Create(client, json.User);
+        User = User.Create(Client, json.User);
     }
 }

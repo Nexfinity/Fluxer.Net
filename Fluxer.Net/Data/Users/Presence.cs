@@ -4,19 +4,19 @@
 public class Presence : Entity, IPresence
 {
     /// <inheritdoc />
-    public ulong UserId { get; internal set; }
+    public ulong UserId { get; private set; }
 
     /// <inheritdoc />
-    public ulong? GuildId { get; internal set; }
+    public ulong? GuildId { get; private set; }
 
     /// <inheritdoc />
-    public string Status { get; internal set; }
+    public string Status { get; private set; }
 
     /// <inheritdoc />
-    public List<Activity>? Activities { get; internal set; }
+    public List<Activity>? Activities { get; private set; }
 
     /// <inheritdoc />
-    public ClientStatus? ClientStatus { get; internal set; }
+    public ClientStatus? ClientStatus { get; private set; }
 
     IEnumerable<IActivity>? IPresence.Activities => Activities;
 
@@ -36,16 +36,16 @@ public class Presence : Entity, IPresence
     public static Presence Create(FluxerBaseClient client, PresenceJson json)
     {
         Presence data = new Presence(client);
-        data.Update(client, json);
+        data.Update(json);
         return data;
     }
 
-    internal void Update(FluxerBaseClient client, PresenceJson json)
+    internal void Update(PresenceJson json)
     {
         UserId = json.UserId;
         GuildId = json.GuildId;
         Status = json.Status;
-        Activities = json.Activities != null ? json.Activities.Select(x => Activity.Create(client, x)).ToList() : null;
-        ClientStatus = ClientStatus.Create(client, json.ClientStatus);
+        Activities = json.Activities != null ? json.Activities.Select(x => Activity.Create(Client, x)).ToList() : null;
+        ClientStatus = ClientStatus.Create(Client, json.ClientStatus);
     }
 }

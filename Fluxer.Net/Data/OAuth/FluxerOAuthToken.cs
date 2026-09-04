@@ -4,16 +4,16 @@
 public class FluxerOAuthToken : Entity, IFluxerOAuthToken
 {
     /// <inheritdoc />
-    public PartialApplication Application { get; internal set; }
+    public PartialApplication Application { get; private set; }
 
     /// <inheritdoc />
-    public string[] Scopes { get; internal set; }
+    public string[] Scopes { get; private set; }
 
     /// <inheritdoc />
-    public DateTimeOffset ExpiresAt { get; internal set; }
+    public DateTimeOffset ExpiresAt { get; private set; }
 
     /// <inheritdoc />
-    public FluxerOAuthUser User { get; internal set; }
+    public FluxerOAuthUser User { get; private set; }
 
     IPartialApplication IFluxerOAuthToken.Application => Application;
 

@@ -12,12 +12,12 @@ public class ParameterBuilder
     public string Name { get; internal set; }
     public Type ParameterType { get; internal set; }
 
-    public TypeReader TypeReader { get; set; }
-    public bool IsOptional { get; set; }
-    public bool IsRemainder { get; set; }
-    public bool IsMultiple { get; set; }
-    public object DefaultValue { get; set; }
-    public string Summary { get; set; }
+    public TypeReader TypeReader { get; internal set; }
+    public bool IsOptional { get; internal set; }
+    public bool IsRemainder { get; internal set; }
+    public bool IsMultiple { get; internal set; }
+    public object DefaultValue { get; internal set; }
+    public string Summary { get; internal set; }
 
     public IReadOnlyList<ParameterPreconditionAttribute> Preconditions => _preconditions;
     public IReadOnlyList<Attribute> Attributes => _attributes;

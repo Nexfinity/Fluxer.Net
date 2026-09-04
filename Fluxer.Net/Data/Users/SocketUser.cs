@@ -1,5 +1,6 @@
 ﻿namespace Fluxer.Net;
 
+/// <inheritdoc />
 public class SocketUser : User
 {
     internal SocketUser(FluxerBaseClient client) : base(client)

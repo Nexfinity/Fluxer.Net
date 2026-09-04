@@ -6,22 +6,22 @@ public class UserProfile : Entity, IUserProfile
     /// <summary>
     /// User's id for the profile.
     /// </summary>
-    public ulong UserId { get; internal set; }
+    public ulong UserId { get; private set; }
 
     /// <inheritdoc />
-    public string? Bio { get; internal set; }
+    public string? Bio { get; private set; }
 
     /// <inheritdoc />
-    public string? Pronouns { get; internal set; }
+    public string? Pronouns { get; private set; }
 
     /// <inheritdoc />
-    public int? AccentColor { get; internal set; }
+    public int? AccentColor { get; private set; }
 
     /// <inheritdoc />
-    public string? BannerHash { get; internal set; }
+    public string? BannerHash { get; private set; }
 
     /// <inheritdoc />
-    public int? BannerColor { get; internal set; }
+    public int? BannerColor { get; private set; }
 
     /// <summary>
     /// Get the user's banner.
@@ -52,11 +52,11 @@ public class UserProfile : Entity, IUserProfile
         {
             UserId = userId
         };
-        data.Update(client, json);
+        data.Update(json);
         return data;
     }
 
-    internal void Update(FluxerBaseClient client, UserProfileJson json)
+    internal void Update(UserProfileJson json)
     {
         Bio = json.Bio;
         Pronouns = json.Pronouns;

@@ -4,7 +4,7 @@
 public class Channel : Entity, IChannel
 {
     /// <inheritdoc />
-    public ulong Id { get; internal set; }
+    public ulong Id { get; private set; }
 
     /// <inheritdoc />
     public DateTimeOffset CreatedAt => SnowflakeUtils.FromSnowflake(Id);
@@ -16,68 +16,96 @@ public class Channel : Entity, IChannel
     public ulong? GuildId { get; internal set; }
 
     /// <inheritdoc />
-    public ChannelType Type { get; internal set; }
+    public ChannelType Type { get; private set; }
 
     /// <inheritdoc />
-    public string? Name { get; internal set; }
+    public string? Name { get; private set; }
 
     /// <inheritdoc />
-    public string? Topic { get; internal set; }
+    public string? Topic { get; private set; }
 
     /// <inheritdoc />
-    public string? IconHash { get; internal set; }
+    public string? IconHash { get; private set; }
 
     /// <inheritdoc />
-    public string? Url { get; internal set; }
+    public string? Url { get; private set; }
 
     /// <inheritdoc />
-    public ulong? ParentId { get; internal set; }
+    public ulong? ParentId { get; private set; }
 
     /// <inheritdoc />
-    public int Position { get; internal set; }
+    public int Position { get; private set; }
 
     /// <inheritdoc />
-    public ulong? OwnerId { get; internal set; }
+    public ulong? OwnerId { get; private set; }
 
     /// <inheritdoc />
-    public HashSet<ulong>? RecipientIds { get; internal set; }
+    public HashSet<ulong>? RecipientIds { get; private set; }
 
     /// <inheritdoc />
-    public bool IsNsfw { get; internal set; }
+    public bool IsNsfw { get; private set; }
 
     /// <inheritdoc />
-    public int RateLimitPerUser { get; internal set; }
+    public int RateLimitPerUser { get; private set; }
 
     /// <inheritdoc />
-    public int? Bitrate { get; internal set; }
+    public int? Bitrate { get; private set; }
 
     /// <inheritdoc />
-    public int? UserLimit { get; internal set; }
+    public int? UserLimit { get; private set; }
 
     /// <inheritdoc />
-    public string? RtcRegion { get; internal set; }
+    public string? RtcRegion { get; private set; }
 
     /// <inheritdoc />
-    public ulong? LastMessageId { get; internal set; }
+    public ulong? LastMessageId { get; private set; }
 
     /// <inheritdoc />
-    public DateTimeOffset? LastPinAt { get; internal set; }
+    public DateTimeOffset? LastPinAt { get; private set; }
 
     /// <inheritdoc />
-    public IEnumerable<PermissionOverwrite>? PermissionOverwrites { get; internal set; }
+    public IEnumerable<PermissionOverwrite>? PermissionOverwrites { get; private set; }
 
     /// <inheritdoc />
-    public Dictionary<string, string>? Nicknames { get; internal set; }
+    public Dictionary<string, string>? Nicknames { get; private set; }
 
     /// <inheritdoc />
-    public bool IsSoftDeleted { get; internal set; }
+    public bool IsSoftDeleted { get; private set; }
 
     /// <inheritdoc />
-    public DateTimeOffset? IndexedAt { get; internal set; }
+    public DateTimeOffset? IndexedAt { get; private set; }
 
     IEnumerable<IPermissionOverwrite>? IChannel.PermissionOverwrites => PermissionOverwrites;
 
-    public bool IsTextable { get; internal set; }
+    /// <inheritdoc/>
+    public bool IsTextable => TextableTypes(Type);
+
+    /// <summary>
+    /// Channel types that you can send messages to.
+    /// </summary>
+    /// <param name="type"></param>
+    /// <returns></returns>
+    static public bool TextableTypes(ChannelType type)
+    {
+        switch (type)
+        {
+            case ChannelType.Dm:
+            case ChannelType.DmPersonalNotes:
+            case ChannelType.Group:
+            case ChannelType.GuildForum:
+            case ChannelType.GuildMedia:
+            case ChannelType.GuildNews:
+            case ChannelType.GuildStageVoice:
+            case ChannelType.GuildText:
+            case ChannelType.GuildVoice:
+            case ChannelType.NewsThread:
+            case ChannelType.PrivateThread:
+            case ChannelType.PublicThread:
+                return true;
+        }
+
+        return false;
+    }
 
     internal Channel(FluxerBaseClient client) : base(client)
     {
@@ -98,10 +126,7 @@ public class Channel : Entity, IChannel
         {
             case ChannelType.GuildText:
                 {
-                    data = new TextChannel(client)
-                    {
-                        IsTextable = true
-                    };
+                    data = new TextChannel(client);
                 }
                 break;
             case ChannelType.GuildVoice:
@@ -111,26 +136,17 @@ public class Channel : Entity, IChannel
                 break;
             case ChannelType.Dm:
                 {
-                    data = new DMChannel(client)
-                    {
-                        IsTextable = true
-                    };
+                    data = new DMChannel(client);
                 }
                 break;
             case ChannelType.DmPersonalNotes:
                 {
-                    data = new SavedNotesChannel(client)
-                    {
-                        IsTextable = true
-                    };
+                    data = new SavedNotesChannel(client);
                 }
                 break;
             case ChannelType.Group:
                 {
-                    data = new GroupChannel(client)
-                    {
-                        IsTextable = true
-                    };
+                    data = new GroupChannel(client);
                 }
                 break;
             case ChannelType.GuildCategory:
@@ -149,15 +165,14 @@ public class Channel : Entity, IChannel
                         data = new GuildChannel(client);
                     else
                         data = new Channel(client);
-                    data.IsTextable = true;
                 }
                 break;
         }
-        data.Update(client, json);
+        data.Update(json);
         return data;
     }
 
-    internal virtual void Update(FluxerBaseClient client, ChannelJson json)
+    internal virtual void Update(ChannelJson json)
     {
         Id = json.Id;
         GuildId = json.GuildId;
@@ -178,7 +193,7 @@ public class Channel : Entity, IChannel
         LastMessageId = json.LastMessageId;
         LastPinAt = json.LastPinAt;
         if (json.PermissionOverwrites != null)
-            PermissionOverwrites = json.PermissionOverwrites.Select(x => PermissionOverwrite.Create(client, x));
+            PermissionOverwrites = json.PermissionOverwrites.Select(x => PermissionOverwrite.Create(Client, x));
         Nicknames = json.Nicknames;
         IsSoftDeleted = json.IsSoftDeleted;
         IndexedAt = json.IndexedAt;

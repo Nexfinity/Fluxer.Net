@@ -5,11 +5,11 @@ public class CallEligibility : Entity, ICallEligibility
 {
 
     /// <inheritdoc />
-    public bool IsRingable { get; internal set; }
+    public bool IsRingable { get; private set; }
 
 
     /// <inheritdoc />
-    public bool IsSilent { get; internal set; }
+    public bool IsSilent { get; private set; }
 
     internal CallEligibility(FluxerBaseClient client) : base(client)
     {
@@ -25,11 +25,11 @@ public class CallEligibility : Entity, ICallEligibility
     public static CallEligibility Create(FluxerBaseClient client, CallEligibilityJson json)
     {
         CallEligibility data = new CallEligibility(client);
-        data.Update(client, json);
+        data.Update(json);
         return data;
     }
 
-    internal void Update(FluxerBaseClient client, CallEligibilityJson json)
+    internal void Update(CallEligibilityJson json)
     {
         IsRingable = json.IsRingable;
         IsSilent = json.IsSilent;

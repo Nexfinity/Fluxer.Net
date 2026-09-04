@@ -56,27 +56,18 @@ public class CommandContext : ICommandContext
     /// </summary>
     /// <param name="client">The underlying client.</param>
     /// <param name="message">The underlying message.</param>
-    public CommandContext(FluxerClient client, MessageGatewayData message)
+    public CommandContext(FluxerClient client, SocketMessage message)
     {
         Client = client;
         Rest = client.Rest;
         Gateway = client.Gateway;
-        Message = SocketMessage.Create(client, message);
+        Message = message;
         Channel = client.Gateway.GetChannel(message.ChannelId);
-        User = SocketUser.Create(client, message.Author);
-        if (message.GuildId.HasValue)
+        User = message.Author;
+        if (message.Channel.GuildId.HasValue)
         {
-            Guild = client.Gateway.GetGuild(message.GuildId.Value);
-            Member = Guild.GetMember(User.Id);
-            if (Member == null)
-            {
-                message.Member.User = message.Author;
-                Guild.AddOrUpdateMember(Client, message.Member);
-                Member = Guild.GetMember(User.Id);
-            }
-
-            if (Member.Guild == null)
-                Member.Guild = Guild;
+            Guild = message.Guild;
+            Member = message.Member;
         }
     }
 }

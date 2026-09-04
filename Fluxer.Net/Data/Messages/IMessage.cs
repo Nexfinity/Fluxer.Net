@@ -1,12 +1,7 @@
 ﻿namespace Fluxer.Net;
 
-public interface IMessage
+public interface IMessage : ISnowflake
 {
-    /// <summary>
-    /// Unique identifier (snowflake) for the object.
-    /// </summary>
-    ulong Id { get; }
-
     /// <summary>
     /// The ID of the channel this message was sent in.
     /// </summary>
@@ -36,11 +31,6 @@ public interface IMessage
     /// The text content of the message.
     /// </summary>
     string Content { get; }
-
-    /// <summary>
-    /// The ISO 8601 timestamp of when the message was created.
-    /// </summary>
-    DateTimeOffset CreatedAt { get; }
 
     /// <summary>
     /// The ISO 8601 timestamp of when the message was last edited.

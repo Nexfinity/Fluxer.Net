@@ -4,10 +4,10 @@
 public class ChannelPin : Entity, IChannelPin
 {
     /// <inheritdoc />
-    public Message Message { get; internal set; }
+    public Message Message { get; private set; }
 
     /// <inheritdoc />
-    public DateTimeOffset PinnedAt { get; internal set; }
+    public DateTimeOffset PinnedAt { get; private set; }
 
     IMessage IChannelPin.Message => Message;
 
@@ -25,13 +25,13 @@ public class ChannelPin : Entity, IChannelPin
     public static ChannelPin Create(FluxerBaseClient client, ChannelPinJson json)
     {
         ChannelPin data = new ChannelPin(client);
-        data.Update(client, json);
+        data.Update(json);
         return data;
     }
 
-    internal void Update(FluxerBaseClient client, ChannelPinJson json)
+    internal void Update(ChannelPinJson json)
     {
-        Message = Message.Create(client, json.Message);
+        Message = Message.Create(Client, json.Message);
         PinnedAt = json.PinnedAt;
     }
 }

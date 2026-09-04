@@ -87,5 +87,5 @@ public static class MessageHelpers
     /// Requires <see cref="ChannelPermissions.ViewChannel"/> and <see cref="ChannelPermissions.ReadMessageHistory"/> in a guild channel.
     /// </remarks>
     public static Task<Message> SuppressEmbedsAsync(this Message message)
-        => message.Client.Rest.EditMessageAsync(message.ChannelId, message.Id, flags: message.Flags |= MessageFlag.SuppressEmbeds);
+        => message.Client.Rest.EditMessageAsync(message.ChannelId, message.Id, flags: message.Flags | MessageFlag.SuppressEmbeds);
 }

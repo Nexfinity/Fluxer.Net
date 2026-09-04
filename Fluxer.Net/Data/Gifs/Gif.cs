@@ -4,25 +4,25 @@
 public class Gif : Entity, IGif
 {
     /// <inheritdoc />
-    public string Id { get; internal set; }
+    public string Id { get; private set; }
 
     /// <inheritdoc />
-    public string Title { get; set; }
+    public string Title { get; private set; }
 
     /// <inheritdoc />
-    public string Url { get; set; }
+    public string Url { get; private set; }
 
     /// <inheritdoc />
-    public string Source { get; set; }
+    public string Source { get; private set; }
 
     /// <inheritdoc />
-    public string ProxySource { get; set; }
+    public string ProxySource { get; private set; }
 
     /// <inheritdoc />
-    public int Width { get; set; }
+    public int Width { get; private set; }
 
     /// <inheritdoc />
-    public int Height { get; set; }
+    public int Height { get; private set; }
 
     internal Gif(FluxerBaseClient client) : base(client)
     {
@@ -38,11 +38,11 @@ public class Gif : Entity, IGif
     public static Gif Create(FluxerBaseClient client, GifJson json)
     {
         Gif data = new Gif(client);
-        data.Update(client, json);
+        data.Update(json);
         return data;
     }
 
-    internal void Update(FluxerBaseClient client, GifJson json)
+    internal void Update(GifJson json)
     {
         Id = json.Id;
         Title = json.Title;

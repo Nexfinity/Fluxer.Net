@@ -4,70 +4,70 @@
 public class CurrentUser : User, ICurrentUser, IUserProfile
 {
     /// <inheritdoc />
-    public bool IsStaff { get; internal set; }
+    public bool IsStaff { get; private set; }
 
     /// <inheritdoc />
-    public HashSet<string>? Acls { get; internal set; }
+    public HashSet<string>? Acls { get; private set; }
 
     /// <inheritdoc />
-    public HashSet<string>? Traits { get; internal set; }
+    public HashSet<string>? Traits { get; private set; }
 
     /// <inheritdoc />
-    public string? Email { get; internal set; }
+    public string? Email { get; private set; }
 
     /// <inheritdoc />
-    public string? Phone { get; internal set; }
+    public string? Phone { get; private set; }
 
     /// <inheritdoc />
-    public string? Bio { get; internal set; }
+    public string? Bio { get; private set; }
 
     /// <inheritdoc />
-    public string? Pronouns { get; internal set; }
+    public string? Pronouns { get; private set; }
 
     /// <inheritdoc />
-    public int? AccentColor { get; internal set; }
+    public int? AccentColor { get; private set; }
 
     /// <inheritdoc />
-    public string? BannerHash { get; internal set; }
+    public string? BannerHash { get; private set; }
 
     /// <inheritdoc />
-    public int? BannerColor { get; internal set; }
+    public int? BannerColor { get; private set; }
 
     /// <inheritdoc />
-    public bool IsMfaEnabled { get; internal set; }
+    public bool IsMfaEnabled { get; private set; }
 
     /// <inheritdoc />
-    public bool IsEmailVerified { get; internal set; }
+    public bool IsEmailVerified { get; private set; }
 
     /// <inheritdoc />
-    public PremiumType PremiumType { get; internal set; }
+    public PremiumType PremiumType { get; private set; }
 
     /// <inheritdoc />
-    public DateTimeOffset? PremiumSince { get; internal set; }
+    public DateTimeOffset? PremiumSince { get; private set; }
 
     /// <inheritdoc />
-    public DateTimeOffset? PremiumUntil { get; internal set; }
+    public DateTimeOffset? PremiumUntil { get; private set; }
 
     /// <inheritdoc />
-    public bool PremiumWillCancel { get; internal set; }
+    public bool PremiumWillCancel { get; private set; }
 
     /// <inheritdoc />
-    public string? PremiumBillingCycle { get; internal set; }
+    public string? PremiumBillingCycle { get; private set; }
 
     /// <inheritdoc />
-    public int? PremiumLifetimeSequence { get; internal set; }
+    public int? PremiumLifetimeSequence { get; private set; }
 
     /// <inheritdoc />
-    public DateTimeOffset? PasswordLastChangedAt { get; internal set; }
+    public DateTimeOffset? PasswordLastChangedAt { get; private set; }
 
     /// <inheritdoc />
-    public bool HasEverPurchased { get; internal set; }
+    public bool HasEverPurchased { get; private set; }
 
     /// <inheritdoc />
-    public bool EmailBounced { get; internal set; }
+    public bool EmailBounced { get; private set; }
 
     /// <inheritdoc />
-    public HashSet<int>? AuthenticatorTypes { get; internal set; }
+    public HashSet<int>? AuthenticatorTypes { get; private set; }
 
     /// <inheritdoc />
     public string? GetBannerUrl(int size = 600)
@@ -92,11 +92,11 @@ public class CurrentUser : User, ICurrentUser, IUserProfile
     public static CurrentUser Create(FluxerBaseClient client, CurrentUserJson json)
     {
         CurrentUser data = new CurrentUser(client);
-        data.Update(client, json);
+        data.Update(json);
         return data;
     }
 
-    internal void Update(FluxerBaseClient client, CurrentUserJson json)
+    internal void Update(CurrentUserJson json)
     {
         base.Update(json);
         IsStaff = json.IsStaff;

@@ -12,7 +12,7 @@ public class SocketGuildMember : GuildMember
     /// </summary>
     public SocketGuild Guild { get; internal set; }
 
-    public ConcurrentDictionary<string, SocketVoiceState> VoiceStates { get; internal set; } = new ConcurrentDictionary<string, SocketVoiceState>();
+    public ConcurrentDictionary<string, SocketVoiceState> VoiceStates { get; private set; } = new ConcurrentDictionary<string, SocketVoiceState>();
 
     public IEnumerable<SocketRole> Roles
             => RoleIds.Select(id => Guild.Roles.GetValueOrDefault(id)).Where(x => x != null);
@@ -104,12 +104,7 @@ public class SocketGuildMember : GuildMember
     public static new SocketGuildMember Create(FluxerBaseClient client, GuildMemberJson json)
     {
         SocketGuildMember data = new SocketGuildMember(client);
-        data.Update(client, json);
+        data.Update(json);
         return data;
-    }
-
-    internal override void Update(FluxerBaseClient client, GuildMemberJson json)
-    {
-        base.Update(client, json);
     }
 }

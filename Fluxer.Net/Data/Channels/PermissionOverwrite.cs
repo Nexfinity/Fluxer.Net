@@ -4,16 +4,16 @@
 public class PermissionOverwrite : Entity, IPermissionOverwrite
 {
     /// <inheritdoc />
-    public ulong Id { get; internal set; }
+    public ulong Id { get; private set; }
 
     /// <inheritdoc />
-    public int Type { get; internal set; }
+    public int Type { get; private set; }
 
     /// <inheritdoc />
-    public ChannelPermissions Allow { get; internal set; }
+    public ChannelPermissions Allow { get; private set; }
 
     /// <inheritdoc />
-    public ChannelPermissions Deny { get; internal set; }
+    public ChannelPermissions Deny { get; private set; }
 
     internal PermissionOverwrite(FluxerBaseClient client) : base(client)
     {
@@ -29,11 +29,11 @@ public class PermissionOverwrite : Entity, IPermissionOverwrite
     public static PermissionOverwrite Create(FluxerBaseClient client, PermissionOverwriteJson json)
     {
         PermissionOverwrite data = new PermissionOverwrite(client);
-        data.Update(client, json);
+        data.Update(json);
         return data;
     }
 
-    internal void Update(FluxerBaseClient client, PermissionOverwriteJson json)
+    internal void Update(PermissionOverwriteJson json)
     {
         Id = json.Id;
         Type = json.Type;

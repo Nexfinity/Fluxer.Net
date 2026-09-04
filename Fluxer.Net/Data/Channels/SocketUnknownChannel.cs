@@ -22,10 +22,7 @@ public class SocketUnknownChannel : Channel
         {
             case ChannelType.GuildText:
                 {
-                    data = new SocketTextChannel(client)
-                    {
-                        IsTextable = true
-                    };
+                    data = new SocketTextChannel(client);
                 }
                 break;
             case ChannelType.GuildVoice:
@@ -35,26 +32,17 @@ public class SocketUnknownChannel : Channel
                 break;
             case ChannelType.Dm:
                 {
-                    data = new SocketDMChannel(client)
-                    {
-                        IsTextable = true
-                    };
+                    data = new SocketDMChannel(client);
                 }
                 break;
             case ChannelType.DmPersonalNotes:
                 {
-                    data = new SocketSavedNotesChannel(client)
-                    {
-                        IsTextable = true
-                    };
+                    data = new SocketSavedNotesChannel(client);
                 }
                 break;
             case ChannelType.Group:
                 {
-                    data = new SocketGroupChannel(client)
-                    {
-                        IsTextable = true
-                    };
+                    data = new SocketGroupChannel(client);
                 }
                 break;
             case ChannelType.GuildCategory:
@@ -73,17 +61,11 @@ public class SocketUnknownChannel : Channel
                         data = new SocketUnknownGuildChannel(client);
                     else
                         data = new SocketUnknownChannel(client);
-                    data.IsTextable = true;
                 }
                 break;
         }
         data.GuildId = guildId;
-        data.Update(client, json);
+        data.Update(json);
         return data;
-    }
-
-    internal override void Update(FluxerBaseClient client, ChannelJson json)
-    {
-        base.Update(client, json);
     }
 }

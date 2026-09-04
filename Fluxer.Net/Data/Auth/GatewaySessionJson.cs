@@ -2,17 +2,22 @@
 
 namespace Fluxer.Net;
 
-public class GatewaySessionJson
+/// <inheritdoc />
+public class GatewaySessionJson : IGatewaySession
 {
+    /// <inheritdoc />
     [JsonProperty("session_id")]
     public string SessionId { get; set; }
 
+    /// <inheritdoc />
     [JsonProperty("status")]
     public string Status { get; set; }
 
+    /// <inheritdoc />
     [JsonProperty("mobile")]
-    public bool Mobile { get; set; }
+    public bool IsMobile { get; set; }
 
+    /// <inheritdoc />
     [JsonProperty("afk")]
-    public bool Afk { get; set; }
+    public bool IsAfk { get; set; }
 }

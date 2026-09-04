@@ -404,7 +404,7 @@
         <member name="P:Fluxer.Net.Commands.CommandContext.IsPrivate">
             <inheritdoc/>
         </member>
-        <member name="M:Fluxer.Net.Commands.CommandContext.#ctor(Fluxer.Net.FluxerClient,Fluxer.Net.Gateway.MessageGatewayData)">
+        <member name="M:Fluxer.Net.Commands.CommandContext.#ctor(Fluxer.Net.FluxerClient,Fluxer.Net.SocketMessage)">
             <summary>
                 Initializes a new <see cref="T:Fluxer.Net.Commands.CommandContext" /> class with the provided client and message.
             </summary>
@@ -1765,6 +1765,44 @@
         <member name="P:Fluxer.Net.AuthSessionJson.ClientCountry">
             <inheritdoc />
         </member>
+        <member name="T:Fluxer.Net.GatewaySession">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GatewaySession.SessionId">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GatewaySession.Status">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GatewaySession.IsMobile">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GatewaySession.IsAfk">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.GatewaySession.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.GatewaySessionJson)">
+            <summary>
+            Create a AuthSession object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Fluxer.Net.GatewaySessionJson">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GatewaySessionJson.SessionId">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GatewaySessionJson.Status">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GatewaySessionJson.IsMobile">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GatewaySessionJson.IsAfk">
+            <inheritdoc />
+        </member>
         <member name="T:Fluxer.Net.IAuthSession">
             <summary>
             Authenticated session for a device with client, os and IP data.
@@ -1926,6 +1964,16 @@
         <member name="P:Fluxer.Net.Channel.IndexedAt">
             <inheritdoc />
         </member>
+        <member name="P:Fluxer.Net.Channel.IsTextable">
+            <inheritdoc/>
+        </member>
+        <member name="M:Fluxer.Net.Channel.TextableTypes(Fluxer.Net.ChannelType)">
+            <summary>
+            Channel types that you can send messages to.
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
         <member name="M:Fluxer.Net.Channel.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.ChannelJson)">
             <summary>
             Create a Channel object from json.
@@ -2008,6 +2056,9 @@
         </member>
         <member name="P:Fluxer.Net.ChannelJson.IndexedAt">
             <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelJson.IsTextable">
+            <inheritdoc/>
         </member>
         <member name="T:Fluxer.Net.ChannelPin">
             <inheritdoc />
@@ -2146,11 +2197,6 @@
             A personal notes DM channel for storing private messages.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.IChannel.Mention">
-            <summary>
-            Get the mention for this channel.
-            </summary>
-        </member>
         <member name="P:Fluxer.Net.IChannel.GuildId">
             <summary>
             The unique identifier (snowflake) for guild of this channel.
@@ -2244,6 +2290,11 @@
         <member name="P:Fluxer.Net.IChannel.Nicknames">
             <summary>
             Custom nicknames for users in this channel (for group DMs)
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannel.IsTextable">
+            <summary>
+            Can you send messages in this channel.
             </summary>
         </member>
         <member name="P:Fluxer.Net.IChannelPin.Message">
@@ -3249,7 +3300,9 @@
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.GuildEmoji.GuildId">
-            <inheritdoc />
+            <summary>
+            Guild id for this emoji.
+            </summary>
         </member>
         <member name="P:Fluxer.Net.GuildEmoji.Creator">
             <inheritdoc />
@@ -3279,7 +3332,9 @@
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.GuildSticker.GuildId">
-            <inheritdoc />
+            <summary>
+            Guild id for this sticker.
+            </summary>
         </member>
         <member name="P:Fluxer.Net.GuildSticker.Description">
             <inheritdoc />
@@ -4268,11 +4323,6 @@
             Guild id that the user is in.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.IGuildMember.Mention">
-            <summary>
-            Get the mention for the user.
-            </summary>
-        </member>
         <member name="P:Fluxer.Net.IGuildMember.User">
             <summary>
             User data for the member.
@@ -4346,11 +4396,6 @@
         <member name="M:Fluxer.Net.IGuildMember.GetBannerUrl(System.Int32)">
             <summary>
             Get the member's banner.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IRole.Mention">
-            <summary>
-            Get the mention for this role.
             </summary>
         </member>
         <member name="P:Fluxer.Net.IRole.Name">
@@ -5521,6 +5566,44 @@
             Prevent members from sending messages, reacting, and joining voice for a duration.
             </summary>
         </member>
+        <member name="T:Fluxer.Net.GuildChannelOverride">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildChannelOverride.Collapsed">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildChannelOverride.MessageNotifications">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildChannelOverride.Muted">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildChannelOverride.MuteConfig">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.GuildChannelOverride.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.GuildChannelOverrideJson)">
+            <summary>
+            Create a GuildChannelOverride object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Fluxer.Net.GuildChannelOverrideJson">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildChannelOverrideJson.Collapsed">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildChannelOverrideJson.MessageNotifications">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildChannelOverrideJson.Muted">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildChannelOverrideJson.MuteConfig">
+            <inheritdoc />
+        </member>
         <member name="T:Fluxer.Net.GuildContentFilter">
             <summary>
             Represents the NSFW (Not Safe For Work) filter level for a user.
@@ -5716,6 +5799,32 @@
             <summary>
             The number of times this vanity URL has been used.
             </summary>
+        </member>
+        <member name="T:Fluxer.Net.MuteConfiguration">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.MuteConfiguration.EndAt">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.MuteConfiguration.SelectedTimeSeconds">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.MuteConfiguration.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.MuteConfigurationJson)">
+            <summary>
+            Create a GuildChannelOverride object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Fluxer.Net.MuteConfigurationJson">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.MuteConfigurationJson.EndAt">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.MuteConfigurationJson.SelectedTimeSeconds">
+            <inheritdoc />
         </member>
         <member name="T:Fluxer.Net.SocketGuild">
             <summary>
@@ -6161,11 +6270,6 @@
             Whether the attachment URL has expired.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.IMessage.Id">
-            <summary>
-            Unique identifier (snowflake) for the object.
-            </summary>
-        </member>
         <member name="P:Fluxer.Net.IMessage.ChannelId">
             <summary>
             The ID of the channel this message was sent in.
@@ -6194,11 +6298,6 @@
         <member name="P:Fluxer.Net.IMessage.Content">
             <summary>
             The text content of the message.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IMessage.CreatedAt">
-            <summary>
-            The ISO 8601 timestamp of when the message was created.
             </summary>
         </member>
         <member name="P:Fluxer.Net.IMessage.EditedAt">
@@ -6783,6 +6882,50 @@
             System message.
             </summary>
         </member>
+        <member name="T:Fluxer.Net.SavedMessage">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.SavedMessage.Id">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.SavedMessage.CreatedAt">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.SavedMessage.UserId">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.SavedMessage.ChannelId">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.SavedMessage.SavedAt">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.SavedMessage.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.SavedMessageJson)">
+            <summary>
+            Create a Guild object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Fluxer.Net.SavedMessageJson">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.SavedMessageJson.Id">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.SavedMessageJson.CreatedAt">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.SavedMessageJson.UserId">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.SavedMessageJson.ChannelId">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.SavedMessageJson.SavedAt">
+            <inheritdoc />
+        </member>
         <member name="M:Fluxer.Net.SocketMessage.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.Gateway.MessageGatewayData)">
             <summary>
             Create a SocketMessage object from json.
@@ -6791,6 +6934,24 @@
             <param name="json"></param>
             <returns></returns>
         </member>
+        <member name="T:Fluxer.Net.GlobalSearch">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GlobalSearch.Messages">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GlobalSearch.Channels">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GlobalSearch.Total">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GlobalSearch.HitsPerPage">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GlobalSearch.Page">
+            <inheritdoc />
+        </member>
         <member name="M:Fluxer.Net.GlobalSearch.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.GlobalSearchJson)">
             <summary>
             Create a Instance object from json.
@@ -6798,6 +6959,34 @@
             <param name="client"></param>
             <param name="json"></param>
             <returns></returns>
+        </member>
+        <member name="T:Fluxer.Net.GlobalSearchJson">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GlobalSearchJson.Messages">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GlobalSearchJson.Channels">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GlobalSearchJson.Total">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GlobalSearchJson.HitsPerPage">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GlobalSearchJson.Page">
+            <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.IMentionable">
+            <summary>
+            Object is mentionable.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IMentionable.Mention">
+            <summary>
+            Formatted mention string for this object.
+            </summary>
         </member>
         <member name="T:Fluxer.Net.Instance">
             <inheritdoc />
@@ -7925,21 +8114,6 @@
             Get the user's banner.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.IUser.Id">
-            <summary>
-            Unique identifier (snowflake) for the object.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IUser.CreatedAt">
-            <summary>
-            User created at UTC.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IUser.Mention">
-            <summary>
-            Get the mention for the user.
-            </summary>
-        </member>
         <member name="P:Fluxer.Net.IUser.Username">
             <summary>
             The username of the user, not unique across the platform.
@@ -8256,6 +8430,25 @@
             <summary>
             Outgoing friend request sent to the user.
             </summary>
+        </member>
+        <member name="T:Fluxer.Net.SocketCurrentUser">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.SocketCurrentUser.Guilds">
+            <summary>
+            Cached guilds for the current user.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.SocketCurrentUser.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.UserJson)">
+            <summary>
+            Create a SocketCurrentUser object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Fluxer.Net.SocketUser">
+            <inheritdoc />
         </member>
         <member name="M:Fluxer.Net.SocketUser.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.UserJson)">
             <summary>
@@ -8604,6 +8797,44 @@
         </member>
         <member name="P:Fluxer.Net.UserGuildFolderJson.GuildIds">
             <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserGuildSettings.ChannelOverrides">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserGuildSettings.GuildId">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserGuildSettings.HideMutedChannels">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserGuildSettings.MessageNotifications">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserGuildSettings.MobilePush">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserGuildSettings.MuteConfig">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserGuildSettings.Muted">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserGuildSettings.SuppressEveryone">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserGuildSettings.SuppressRoles">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserGuildSettings.Version">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.UserGuildSettings.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.UserGuildSettingsJson)">
+            <summary>
+            Create a UserGuildSettings object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <returns></returns>
         </member>
         <member name="T:Fluxer.Net.UserGuildSettingsJson">
             <inheritdoc />
@@ -9067,6 +9298,19 @@
         </member>
         <member name="P:Fluxer.Net.RtcRegionJson.Emoji">
             <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.SocketVoiceState">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.SocketVoiceState.Guild">
+            <summary>
+            Guild for the voice state.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.SocketVoiceState.Channel">
+            <summary>
+            Channel for the voice state.
+            </summary>
         </member>
         <member name="M:Fluxer.Net.SocketVoiceState.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.VoiceStateJson,Fluxer.Net.SocketGuild,Fluxer.Net.SocketVoiceChannel)">
             <summary>
@@ -9618,11 +9862,6 @@
             Gateway channel data matching the ChannelResponse API model
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.ChannelOverwriteResponse">
-            <summary>
-            Channel permission overwrite response
-            </summary>
-        </member>
         <member name="T:Fluxer.Net.Gateway.ChannelPinsAckGatewayData">
             <summary>
             Gateway data for CHANNEL_PINS_ACK event when channel pins are acknowledged.
@@ -9880,11 +10119,6 @@
             Gateway data for SAVED_MESSAGE_CREATE and SAVED_MESSAGE_DELETE events.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.UserGatewayData">
-            <summary>
-            Gateway user data matching the UserPartialResponse API model
-            </summary>
-        </member>
         <member name="T:Fluxer.Net.Gateway.UserGuildSettingsUpdateGatewayData">
             <summary>
             Gateway data for USER_GUILD_SETTINGS_UPDATE event when user guild settings are updated.
@@ -10025,11 +10259,31 @@
             Occurs when the gateway acknowledges a heartbeat packet.
             </summary>
         </member>
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.ConnectedEvent">
+            <summary>
+            Delegate for gateway connected.
+            </summary>
+        </member>
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.Connected">
+            <summary>
+            Occurs when the gateway is connected.
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.DisconnectedEvent">
+            <summary>
+            Delegate for gateway disconnected.
+            </summary>
+        </member>
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.Disconnected">
+            <summary>
+            Occurs when the gateway is disconnected.
+            </summary>
+        </member>
         <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.ReadyEvent">
             <summary>
             Delegate for the READY event fired when the gateway connection is established.
             </summary>
-            <param name="data">The ready event data including session ID, user info, and initial state.</param>
+            <param name="currentUser">The current user of the client.</param>
         </member>
         <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.Ready">
             <summary>
@@ -10079,13 +10333,13 @@
             Occurs when user guild settings are updated.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.UserPinnedDmsUpdateEvent">
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.UserPinnedDMsUpdateEvent">
             <summary>
             Delegate for USER_PINNED_DMS_UPDATE events when pinned DMs are updated.
             </summary>
             <param name="data">The pinned DMs data.</param>
         </member>
-        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.UserPinnedDmsUpdate">
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.UserPinnedDMsUpdate">
             <summary>
             Occurs when pinned DMs are updated.
             </summary>

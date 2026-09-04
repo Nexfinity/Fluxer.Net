@@ -88,11 +88,11 @@ public class Attachment : Entity, IAttachment
         {
             ChannelId = channelId
         };
-        data.Update(client, json);
+        data.Update(json);
         return data;
     }
 
-    internal void Update(FluxerBaseClient client, AttachmentJson json)
+    internal void Update(AttachmentJson json)
     {
         Id = json.Id;
         Filename = json.Filename;

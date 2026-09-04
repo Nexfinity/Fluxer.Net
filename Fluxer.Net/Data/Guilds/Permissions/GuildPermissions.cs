@@ -9,7 +9,7 @@ public class GuildPermissions : IGuildPermissions, IChannelPermissions
     /// <summary>
     /// Raw permissions flag for the guild.
     /// </summary>
-    public GuildPermission RawValue { get; internal set; }
+    public GuildPermission RawValue { get; private set; }
 
 
     /// <inheritdoc />

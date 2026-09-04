@@ -13,37 +13,37 @@ public class GuildMember : Entity, IGuildMember
     public string Mention => $"<@{Id}>";
 
     /// <inheritdoc />
-    public ulong GuildId { get; internal set; }
+    public ulong GuildId { get; private set; }
 
     /// <inheritdoc />
     public User User { get; internal set; }
 
     /// <inheritdoc />
-    public DateTimeOffset JoinedAt { get; internal set; }
+    public DateTimeOffset JoinedAt { get; private set; }
 
     /// <inheritdoc />
-    public string? Nickname { get; internal set; }
+    public string? Nickname { get; private set; }
 
     /// <inheritdoc />
-    public string? AvatarHash { get; internal set; }
+    public string? AvatarHash { get; private set; }
 
     /// <inheritdoc />
-    public string? BannerHash { get; internal set; }
+    public string? BannerHash { get; private set; }
 
     /// <inheritdoc />
-    public int? AccentColor { get; internal set; }
+    public int? AccentColor { get; private set; }
 
     /// <inheritdoc />
-    public bool IsDeaf { get; internal set; }
+    public bool IsDeaf { get; private set; }
 
     /// <inheritdoc />
-    public bool IsMute { get; internal set; }
+    public bool IsMute { get; private set; }
 
     /// <inheritdoc />
-    public DateTimeOffset? CommunicationDisabledUntil { get; internal set; }
+    public DateTimeOffset? CommunicationDisabledUntil { get; private set; }
 
     /// <inheritdoc />
-    public HashSet<ulong> RoleIds { get; internal set; }
+    public HashSet<ulong> RoleIds { get; private set; }
 
     /// <inheritdoc />
     public string GetCurrentName()
@@ -100,14 +100,14 @@ public class GuildMember : Entity, IGuildMember
     public static GuildMember Create(FluxerBaseClient client, GuildMemberJson json)
     {
         GuildMember data = new GuildMember(client);
-        data.Update(client, json);
+        data.Update(json);
         return data;
     }
 
-    internal virtual void Update(FluxerBaseClient client, GuildMemberJson json)
+    internal virtual void Update(GuildMemberJson json)
     {
         GuildId = json.GuildId;
-        User = User.Create(client, json.User);
+        User = User.Create(Client, json.User);
         JoinedAt = json.JoinedAt;
         Nickname = json.Nickname;
         AvatarHash = json.AvatarHash;

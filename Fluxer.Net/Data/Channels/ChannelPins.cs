@@ -4,10 +4,10 @@
 public class ChannelPins : Entity, IChannelPins
 {
     /// <inheritdoc />
-    public IEnumerable<ChannelPin> Items { get; internal set; }
+    public IEnumerable<ChannelPin> Items { get; private set; }
 
     /// <inheritdoc />
-    public bool HasMore { get; internal set; }
+    public bool HasMore { get; private set; }
 
     IEnumerable<IChannelPin> IChannelPins.Items => Items;
 
@@ -25,13 +25,13 @@ public class ChannelPins : Entity, IChannelPins
     public static ChannelPins Create(FluxerBaseClient client, ChannelPinsJson json)
     {
         ChannelPins data = new ChannelPins(client);
-        data.Update(client, json);
+        data.Update(json);
         return data;
     }
 
-    internal void Update(FluxerBaseClient client, ChannelPinsJson json)
+    internal void Update(ChannelPinsJson json)
     {
-        Items = json.Items.Select(x => ChannelPin.Create(client, x));
+        Items = json.Items.Select(x => ChannelPin.Create(Client, x));
         HasMore = json.HasMore;
     }
 }

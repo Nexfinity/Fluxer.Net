@@ -4,31 +4,31 @@
 public class PartialInvite : Entity, IPartialInvite
 {
     /// <inheritdoc />
-    public string Code { get; internal set; }
+    public string Code { get; private set; }
 
     /// <inheritdoc />
-    public int Type { get; internal set; }
+    public int Type { get; private set; }
 
     /// <inheritdoc />
-    public PartialGuild? Guild { get; internal set; }
+    public PartialGuild? Guild { get; private set; }
 
     /// <inheritdoc />
-    public InviteChannelJson? Channel { get; internal set; }
+    public InviteChannelJson? Channel { get; private set; }
 
     /// <inheritdoc />
-    public InviteUserJson Inviter { get; internal set; }
+    public InviteUserJson Inviter { get; private set; }
 
     /// <inheritdoc />
-    public int MemberCount { get; internal set; }
+    public int MemberCount { get; private set; }
 
     /// <inheritdoc />
-    public int PresenceCount { get; internal set; }
+    public int PresenceCount { get; private set; }
 
     /// <inheritdoc />
-    public DateTimeOffset? ExpiresAt { get; internal set; }
+    public DateTimeOffset? ExpiresAt { get; private set; }
 
     /// <inheritdoc />
-    public bool Temporary { get; internal set; }
+    public bool Temporary { get; private set; }
 
     IPartialGuild? IPartialInvite.Guild => Guild;
 
@@ -46,16 +46,16 @@ public class PartialInvite : Entity, IPartialInvite
     public static PartialInvite Create(FluxerBaseClient client, PartialInviteJson json)
     {
         PartialInvite data = new PartialInvite(client);
-        data.Update(client, json);
+        data.Update(json);
         return data;
     }
 
-    internal void Update(FluxerBaseClient client, PartialInviteJson json)
+    internal void Update(PartialInviteJson json)
     {
         Code = json.Code;
         Type = json.Type;
         if (json.Guild != null)
-            Guild = PartialGuild.Create(client, json.Guild);
+            Guild = PartialGuild.Create(Client, json.Guild);
 
         Channel = json.Channel;
         Inviter = json.Inviter;

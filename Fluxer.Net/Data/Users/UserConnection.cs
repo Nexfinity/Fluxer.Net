@@ -4,19 +4,19 @@
 public class UserConnection : Entity, IUserConnection
 {
     /// <inheritdoc />
-    public string Id { get; internal set; }
+    public string Id { get; private set; }
 
     /// <inheritdoc />
-    public string Type { get; internal set; }
+    public string Type { get; private set; }
 
     /// <inheritdoc />
-    public string Name { get; internal set; }
+    public string Name { get; private set; }
 
     /// <inheritdoc />
-    public bool IsVerified { get; internal set; }
+    public bool IsVerified { get; private set; }
 
     /// <inheritdoc />
-    public ulong VisibilityFlags { get; internal set; }
+    public ulong VisibilityFlags { get; private set; }
 
     /// <inheritdoc />
     public int SortOrder { get; internal set; }
@@ -35,11 +35,11 @@ public class UserConnection : Entity, IUserConnection
     public static UserConnection Create(FluxerBaseClient client, UserConnectionJson json)
     {
         UserConnection data = new UserConnection(client);
-        data.Update(client, json);
+        data.Update(json);
         return data;
     }
 
-    internal void Update(FluxerBaseClient client, UserConnectionJson json)
+    internal void Update(UserConnectionJson json)
     {
         Id = json.Id;
         Type = json.Type;

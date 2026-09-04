@@ -4,10 +4,10 @@
 public class Login : Entity, ILogin
 {
     /// <inheritdoc />
-    public string Token { get; internal set; }
+    public string Token { get; private set; }
 
     /// <inheritdoc />
-    public ulong UserId { get; internal set; }
+    public ulong UserId { get; private set; }
 
     internal Login(FluxerBaseClient client) : base(client)
     {
@@ -23,11 +23,11 @@ public class Login : Entity, ILogin
     public static Login Create(FluxerBaseClient client, LoginJson json)
     {
         Login data = new Login(client);
-        data.Update(client, json);
+        data.Update(json);
         return data;
     }
 
-    internal void Update(FluxerBaseClient client, LoginJson json)
+    internal void Update(LoginJson json)
     {
         Token = json.Token;
         UserId = json.UserId;

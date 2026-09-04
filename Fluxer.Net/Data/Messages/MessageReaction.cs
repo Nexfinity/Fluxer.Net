@@ -4,13 +4,13 @@
 public class MessageReaction : Entity, IMessageReaction
 {
     /// <inheritdoc />
-    public Emoji Emoji { get; internal set; }
+    public Emoji Emoji { get; private set; }
 
     /// <inheritdoc />
-    public int Count { get; internal set; }
+    public int Count { get; private set; }
 
     /// <inheritdoc />
-    public bool? Me { get; internal set; }
+    public bool? Me { get; private set; }
 
     IEmoji IMessageReaction.Emoji => Emoji;
 
@@ -28,13 +28,13 @@ public class MessageReaction : Entity, IMessageReaction
     public static MessageReaction Create(FluxerBaseClient client, MessageReactionJson json)
     {
         MessageReaction data = new MessageReaction(client);
-        data.Update(client, json);
+        data.Update(json);
         return data;
     }
 
-    internal void Update(FluxerBaseClient client, MessageReactionJson json)
+    internal void Update(MessageReactionJson json)
     {
-        Emoji = Emoji.Create(client, json.Emoji);
+        Emoji = Emoji.Create(Client, json.Emoji);
         Count = json.Count;
         Me = json.Me;
     }

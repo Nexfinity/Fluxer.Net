@@ -4,19 +4,19 @@
 public class Emoji : Entity, IEmoji
 {
     /// <inheritdoc />
-    public ulong Id { get; internal set; }
+    public ulong Id { get; private set; }
 
     /// <inheritdoc />
     public DateTimeOffset CreatedAt => SnowflakeUtils.FromSnowflake(Id);
 
     /// <inheritdoc />
-    public string Name { get; internal set; }
+    public string Name { get; private set; }
 
     /// <inheritdoc />
-    public bool IsAnimated { get; internal set; }
+    public bool IsAnimated { get; private set; }
 
     /// <inheritdoc />
-    public bool AllowCloning { get; internal set; }
+    public bool AllowCloning { get; private set; }
 
     internal Emoji(FluxerBaseClient client) : base(client)
     {
@@ -32,11 +32,11 @@ public class Emoji : Entity, IEmoji
     public static Emoji Create(FluxerBaseClient client, EmojiJson json)
     {
         Emoji data = new Emoji(client);
-        data.Update(client, json);
+        data.Update(json);
         return data;
     }
 
-    internal void Update(FluxerBaseClient client, EmojiJson json)
+    internal void Update(EmojiJson json)
     {
         Id = json.Id;
         Name = json.Name;

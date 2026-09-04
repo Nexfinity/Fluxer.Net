@@ -32,7 +32,7 @@ public static class FluxerOAuthExtensions
     /// </Summary>
     public static FluxerOAuthUser GetFluxerClaims(this ClaimsPrincipal principal, FluxerBaseClient client)
     {
-        return new FluxerOAuthUser(client, principal);
+        return FluxerOAuthUser.Create(client, principal);
     }
 
     /// <Summary>

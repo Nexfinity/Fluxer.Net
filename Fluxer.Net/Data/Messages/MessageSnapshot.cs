@@ -4,34 +4,34 @@
 public class MessageSnapshot : Entity, IMessageSnapshot
 {
     /// <inheritdoc />
-    public string? Content { get; internal set; }
+    public string? Content { get; private set; }
 
     /// <inheritdoc />
-    public DateTimeOffset CreatedAt { get; internal set; }
+    public DateTimeOffset CreatedAt { get; private set; }
 
     /// <inheritdoc />
-    public DateTimeOffset? EditedAt { get; internal set; }
+    public DateTimeOffset? EditedAt { get; private set; }
 
     /// <inheritdoc />
-    public HashSet<ulong>? MentionedUserIds { get; internal set; }
+    public HashSet<ulong>? MentionedUserIds { get; private set; }
 
     /// <inheritdoc />
-    public HashSet<ulong>? MentionedRoleIds { get; internal set; }
+    public HashSet<ulong>? MentionedRoleIds { get; private set; }
 
     /// <inheritdoc />
-    public Embed[]? Embeds { get; internal set; }
+    public Embed[]? Embeds { get; private set; }
 
     /// <inheritdoc />
-    public Attachment[]? Attachments { get; internal set; }
+    public Attachment[]? Attachments { get; private set; }
 
     /// <inheritdoc />
-    public Sticker[]? Stickers { get; internal set; }
+    public Sticker[]? Stickers { get; private set; }
 
     /// <inheritdoc />
-    public MessageType Type { get; internal set; }
+    public MessageType Type { get; private set; }
 
     /// <inheritdoc />
-    public MessageFlag Flags { get; internal set; }
+    public MessageFlag Flags { get; private set; }
 
     IEmbed[]? IMessageSnapshot.Embeds => Embeds;
 
@@ -59,11 +59,11 @@ public class MessageSnapshot : Entity, IMessageSnapshot
         {
             ChannelId = channelId
         };
-        data.Update(client, json);
+        data.Update(json);
         return data;
     }
 
-    internal void Update(FluxerBaseClient client, MessageSnapshotJson json)
+    internal void Update(MessageSnapshotJson json)
     {
         Content = json.Content;
         CreatedAt = json.CreatedAt;
@@ -72,13 +72,13 @@ public class MessageSnapshot : Entity, IMessageSnapshot
         MentionedRoleIds = json.MentionedRoleIds;
 
         if (json.Embeds != null)
-            Embeds = json.Embeds.Select(x => Embed.Create(client, x)).ToArray();
+            Embeds = json.Embeds.Select(x => Embed.Create(Client, x)).ToArray();
 
         if (json.Attachments != null)
-            Attachments = json.Attachments.Select(x => Attachment.Create(client, x, ChannelId)).ToArray();
+            Attachments = json.Attachments.Select(x => Attachment.Create(Client, x, ChannelId)).ToArray();
 
         if (json.Stickers != null)
-            Stickers = json.Stickers.Select(x => Sticker.Create(client, x)).ToArray();
+            Stickers = json.Stickers.Select(x => Sticker.Create(Client, x)).ToArray();
 
         Type = json.Type;
         Flags = json.Flags;

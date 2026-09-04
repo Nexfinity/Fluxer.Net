@@ -2,7 +2,7 @@
 
 public class SocketRole : Role
 {
-    public SocketGuild Guild { get; internal set; }
+    public SocketGuild Guild { get; private set; }
 
     public bool HasPermission(GuildPermission permission)
     {
@@ -34,12 +34,12 @@ public class SocketRole : Role
             GuildId = guild.Id,
             Guild = guild
         };
-        data.Update(client, json);
+        data.Update(json);
         return data;
     }
 
-    internal override void Update(FluxerBaseClient client, RoleJson json)
+    internal override void Update(RoleJson json)
     {
-        base.Update(client, json);
+        base.Update(json);
     }
 }

@@ -6,42 +6,9 @@ namespace Fluxer.Net;
 /// <inheritdoc />
 public class FluxerOAuthUser : User, IFluxerOAuthUser
 {
-    internal FluxerOAuthUser(FluxerBaseClient client, ClaimsPrincipal principal) : base(client)
+    internal FluxerOAuthUser(FluxerBaseClient client) : base(client)
     {
-        if (principal == null)
-            return;
 
-        foreach (Claim c in principal.Claims)
-        {
-            switch (c.Type)
-            {
-                case ClaimTypes.NameIdentifier:
-                    Id = ulong.Parse(c.Value);
-                    CreatedAt = SnowflakeUtils.FromSnowflake(Id);
-                    break;
-                case ClaimTypes.Name:
-                    Username = c.Value;
-                    break;
-                case ClaimTypes.Email:
-                    Email = c.Value;
-                    break;
-                case FluxerOAuthConstants.Claims.Discriminator:
-                    Discriminator = c.Value;
-                    break;
-                case FluxerOAuthConstants.Claims.DisplayName:
-                    DisplayName = c.Value;
-                    break;
-                case FluxerOAuthConstants.Claims.AvatarHash:
-                    AvatarHash = c.Value;
-                    break;
-                case FluxerOAuthConstants.Claims.Verified:
-                    IsVerified = bool.Parse(c.Value);
-                    break;
-                case FluxerOAuthConstants.Claims.Flags:
-                    Flags = (UserFlags)ulong.Parse(c.Value);
-                    break;
-            }
-        }
     }
 
     /// <summary>
@@ -52,12 +19,49 @@ public class FluxerOAuthUser : User, IFluxerOAuthUser
     /// <returns></returns>
     public static FluxerOAuthUser Create(FluxerBaseClient client, FluxerOAuthUserJson json)
     {
-        FluxerOAuthUser data = new FluxerOAuthUser(client, null);
-        data.Update(client, json);
+        FluxerOAuthUser data = new FluxerOAuthUser(client);
+        data.Update(json);
         return data;
     }
 
-    internal void Update(FluxerBaseClient client, FluxerOAuthUserJson json)
+    public static FluxerOAuthUser Create(FluxerBaseClient client, ClaimsPrincipal principal)
+    {
+        FluxerOAuthUser data = new FluxerOAuthUser(client);
+        foreach (Claim c in principal.Claims)
+        {
+            switch (c.Type)
+            {
+                case ClaimTypes.NameIdentifier:
+                    data.Id = ulong.Parse(c.Value);
+                    data.CreatedAt = SnowflakeUtils.FromSnowflake(data.Id);
+                    break;
+                case ClaimTypes.Name:
+                    data.Username = c.Value;
+                    break;
+                case ClaimTypes.Email:
+                    data.Email = c.Value;
+                    break;
+                case FluxerOAuthConstants.Claims.Discriminator:
+                    data.Discriminator = c.Value;
+                    break;
+                case FluxerOAuthConstants.Claims.DisplayName:
+                    data.DisplayName = c.Value;
+                    break;
+                case FluxerOAuthConstants.Claims.AvatarHash:
+                    data.AvatarHash = c.Value;
+                    break;
+                case FluxerOAuthConstants.Claims.Verified:
+                    data.IsVerified = bool.Parse(c.Value);
+                    break;
+                case FluxerOAuthConstants.Claims.Flags:
+                    data.Flags = (UserFlags)ulong.Parse(c.Value);
+                    break;
+            }
+        }
+        return data;
+    }
+
+    internal void Update(FluxerOAuthUserJson json)
     {
         base.Update(json);
         Email = json.Email;
@@ -66,8 +70,8 @@ public class FluxerOAuthUser : User, IFluxerOAuthUser
 
 
     /// <inheritdoc />
-    public string? Email { get; internal set; }
+    public string? Email { get; private set; }
 
     /// <inheritdoc />
-    public bool? IsVerified { get; internal set; }
+    public bool? IsVerified { get; private set; }
 }
