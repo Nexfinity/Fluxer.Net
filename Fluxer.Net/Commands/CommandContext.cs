@@ -21,7 +21,7 @@ public class CommandContext : ICommandContext
     public FluxerGatewayClient Gateway { get; }
 
     /// <inheritdoc/>
-    public SocketGuild Guild { get; }
+    public SocketGuild? Guild { get; }
 
     /// <inheritdoc/>
     public Channel Channel { get; }

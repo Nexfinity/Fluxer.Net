@@ -15,7 +15,7 @@ public class SocketGuildMember : GuildMember
     public ConcurrentDictionary<string, SocketVoiceState> VoiceStates { get; internal set; } = new ConcurrentDictionary<string, SocketVoiceState>();
 
     public IEnumerable<SocketRole> Roles
-            => RoleIds.Select(id => Guild.Roles[id]).Where(x => x != null);
+            => RoleIds.Select(id => Guild.Roles.GetValueOrDefault(id)).Where(x => x != null);
 
     public bool HasPermission(GuildPermission permission)
     {

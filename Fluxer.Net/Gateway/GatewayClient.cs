@@ -672,6 +672,8 @@ public partial class FluxerGatewayClient : IDisposable
                         _logger.Warning("MESSAGE_DELETE event received but data could not be cast to EntityRemovedGatewayData");
                 }
                 return;
+
+            //Channel events
             case "CHANNEL_CREATE":
                 {
                     ChannelGatewayData? data = p.Data.ToObject<ChannelGatewayData>(FluxerClient._gatewaySerializer);

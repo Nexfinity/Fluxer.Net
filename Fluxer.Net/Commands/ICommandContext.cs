@@ -33,7 +33,7 @@ public interface ICommandContext
     /// <summary>
     /// Current guild for the context.
     /// </summary>
-    IGuild Guild { get; }
+    IGuild? Guild { get; }
 
     /// <summary>
     /// Current channel for the context.
