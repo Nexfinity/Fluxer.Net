@@ -4,10 +4,10 @@
 public class Login : Entity, ILogin
 {
     /// <inheritdoc />
-    public string Token { get; internal set; }
+    public string Token { get; private set; }
 
     /// <inheritdoc />
-    public ulong UserId { get; internal set; }
+    public ulong UserId { get; private set; }
 
     internal Login(FluxerBaseClient client) : base(client)
     {

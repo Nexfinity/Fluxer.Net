@@ -4,19 +4,19 @@
 public class Sticker : Entity, ISticker
 {
     /// <inheritdoc />
-    public ulong Id { get; internal set; }
+    public ulong Id { get; private set; }
 
     /// <inheritdoc />
     public DateTimeOffset CreatedAt => SnowflakeUtils.FromSnowflake(Id);
 
     /// <inheritdoc />
-    public string Name { get; internal set; }
+    public string Name { get; private set; }
 
     /// <inheritdoc />
-    public bool IsAnimated { get; internal set; }
+    public bool IsAnimated { get; private set; }
 
     /// <inheritdoc />
-    public bool AllowCloning { get; internal set; }
+    public bool AllowCloning { get; private set; }
 
     internal Sticker(FluxerBaseClient client) : base(client)
     {

@@ -25,16 +25,16 @@ public class User : Entity, IUser
     public string? AvatarHash { get; internal set; }
 
     /// <inheritdoc />
-    public int? AvatarColor { get; internal set; }
+    public int? AvatarColor { get; private set; }
 
     /// <inheritdoc />
     public UserFlags Flags { get; internal set; }
 
     /// <inheritdoc />
-    public bool IsBot { get; internal set; }
+    public bool IsBot { get; private set; }
 
     /// <inheritdoc />
-    public bool IsSystem { get; internal set; }
+    public bool IsSystem { get; private set; }
 
     /// <inheritdoc />
     public string GetCurrentName()

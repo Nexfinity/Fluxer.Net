@@ -12,15 +12,15 @@ public class SocketGuild : Guild
     /// <summary>
     /// Cached current logged in member for the guild.
     /// </summary>
-    public SocketGuildMember CurrentMember { get; internal set; }
+    public SocketGuildMember CurrentMember { get; private set; }
 
     public SocketRole EveryoneRole => Roles.GetValueOrDefault(Id);
 
     public bool HasAllMembers { get; internal set; }
 
-    public ConcurrentDictionary<ulong, SocketGuildMember> Members { get; internal set; } = new ConcurrentDictionary<ulong, SocketGuildMember>();
-    public ConcurrentDictionary<ulong, Channel> Channels { get; internal set; } = new ConcurrentDictionary<ulong, Channel>();
-    public ConcurrentDictionary<ulong, SocketRole> Roles { get; internal set; } = new ConcurrentDictionary<ulong, SocketRole>();
+    public ConcurrentDictionary<ulong, SocketGuildMember> Members { get; private set; } = new ConcurrentDictionary<ulong, SocketGuildMember>();
+    public ConcurrentDictionary<ulong, Channel> Channels { get; private set; } = new ConcurrentDictionary<ulong, Channel>();
+    public ConcurrentDictionary<ulong, SocketRole> Roles { get; private set; } = new ConcurrentDictionary<ulong, SocketRole>();
 
     public SocketGuildMember? GetMember(ulong userId)
     {

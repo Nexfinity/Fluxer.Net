@@ -4,16 +4,16 @@
 public class Invite : PartialInvite, IInvite
 {
     /// <inheritdoc />
-    public DateTimeOffset CreatedAt { get; internal set; }
+    public DateTimeOffset CreatedAt { get; private set; }
 
     /// <inheritdoc />
-    public int Uses { get; internal set; }
+    public int Uses { get; private set; }
 
     /// <inheritdoc />
-    public int MaxUses { get; internal set; }
+    public int MaxUses { get; private set; }
 
     /// <inheritdoc />
-    public int MaxAge { get; internal set; }
+    public int MaxAge { get; private set; }
 
     internal Invite(FluxerBaseClient client) : base(client)
     {

@@ -4,28 +4,28 @@
 public class AuthSession : Entity, IAuthSession
 {
     /// <inheritdoc />
-    public byte[] SessionIdHash { get; internal set; }
+    public byte[] SessionIdHash { get; private set; }
 
     /// <inheritdoc />
-    public DateTimeOffset CreatedAt { get; internal set; }
+    public DateTimeOffset CreatedAt { get; private set; }
 
     /// <inheritdoc />
-    public DateTimeOffset ApproximateLastUsedAt { get; internal set; }
+    public DateTimeOffset ApproximateLastUsedAt { get; private set; }
 
     /// <inheritdoc />
-    public string ClientIp { get; internal set; }
+    public string ClientIp { get; private set; }
 
     /// <inheritdoc />
-    public string? ClientIpReverse { get; internal set; }
+    public string? ClientIpReverse { get; private set; }
 
     /// <inheritdoc />
-    public string? ClientOs { get; internal set; }
+    public string? ClientOs { get; private set; }
 
     /// <inheritdoc />
-    public string? ClientPlatform { get; internal set; }
+    public string? ClientPlatform { get; private set; }
 
     /// <inheritdoc />
-    public string? ClientCountry { get; internal set; }
+    public string? ClientCountry { get; private set; }
 
     internal AuthSession(FluxerBaseClient client) : base(client)
     {

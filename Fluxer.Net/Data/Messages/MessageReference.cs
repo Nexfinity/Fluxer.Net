@@ -4,16 +4,16 @@
 public class MessageReference : Entity, IMessageReference
 {
     /// <inheritdoc />
-    public ulong ChannelId { get; internal set; }
+    public ulong ChannelId { get; private set; }
 
     /// <inheritdoc />
-    public ulong MessageId { get; internal set; }
+    public ulong MessageId { get; private set; }
 
     /// <inheritdoc />
-    public ulong? GuildId { get; internal set; }
+    public ulong? GuildId { get; private set; }
 
     /// <inheritdoc />
-    public MessageReferenceType Type { get; internal set; }
+    public MessageReferenceType Type { get; private set; }
 
     internal MessageReference(FluxerBaseClient client) : base(client)
     {

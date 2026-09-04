@@ -1765,6 +1765,44 @@
         <member name="P:Fluxer.Net.AuthSessionJson.ClientCountry">
             <inheritdoc />
         </member>
+        <member name="T:Fluxer.Net.GatewaySession">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GatewaySession.SessionId">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GatewaySession.Status">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GatewaySession.IsMobile">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GatewaySession.IsAfk">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.GatewaySession.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.GatewaySessionJson)">
+            <summary>
+            Create a AuthSession object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Fluxer.Net.GatewaySessionJson">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GatewaySessionJson.SessionId">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GatewaySessionJson.Status">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GatewaySessionJson.IsMobile">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GatewaySessionJson.IsAfk">
+            <inheritdoc />
+        </member>
         <member name="T:Fluxer.Net.IAuthSession">
             <summary>
             Authenticated session for a device with client, os and IP data.
@@ -1926,6 +1964,9 @@
         <member name="P:Fluxer.Net.Channel.IndexedAt">
             <inheritdoc />
         </member>
+        <member name="P:Fluxer.Net.Channel.IsTextable">
+            <inheritdoc/>
+        </member>
         <member name="M:Fluxer.Net.Channel.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.ChannelJson)">
             <summary>
             Create a Channel object from json.
@@ -2008,6 +2049,9 @@
         </member>
         <member name="P:Fluxer.Net.ChannelJson.IndexedAt">
             <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelJson.IsTextable">
+            <inheritdoc/>
         </member>
         <member name="T:Fluxer.Net.ChannelPin">
             <inheritdoc />
@@ -2244,6 +2288,11 @@
         <member name="P:Fluxer.Net.IChannel.Nicknames">
             <summary>
             Custom nicknames for users in this channel (for group DMs)
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannel.IsTextable">
+            <summary>
+            Can you send messages in this channel.
             </summary>
         </member>
         <member name="P:Fluxer.Net.IChannelPin.Message">
@@ -3249,7 +3298,9 @@
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.GuildEmoji.GuildId">
-            <inheritdoc />
+            <summary>
+            Guild id for this emoji.
+            </summary>
         </member>
         <member name="P:Fluxer.Net.GuildEmoji.Creator">
             <inheritdoc />
@@ -3279,7 +3330,9 @@
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.GuildSticker.GuildId">
-            <inheritdoc />
+            <summary>
+            Guild id for this sticker.
+            </summary>
         </member>
         <member name="P:Fluxer.Net.GuildSticker.Description">
             <inheritdoc />
@@ -9087,6 +9140,19 @@
         <member name="P:Fluxer.Net.RtcRegionJson.Emoji">
             <inheritdoc />
         </member>
+        <member name="T:Fluxer.Net.SocketVoiceState">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.SocketVoiceState.Guild">
+            <summary>
+            Guild for the voice state.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.SocketVoiceState.Channel">
+            <summary>
+            Channel for the voice state.
+            </summary>
+        </member>
         <member name="M:Fluxer.Net.SocketVoiceState.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.VoiceStateJson,Fluxer.Net.SocketGuild,Fluxer.Net.SocketVoiceChannel)">
             <summary>
             Create a SocketVoiceState object from json.
@@ -10052,6 +10118,16 @@
         <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.Connected">
             <summary>
             Occurs when the gateway is connected.
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.DisconnectedEvent">
+            <summary>
+            Delegate for gateway disconnected.
+            </summary>
+        </member>
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.Disconnected">
+            <summary>
+            Occurs when the gateway is disconnected.
             </summary>
         </member>
         <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.ReadyEvent">

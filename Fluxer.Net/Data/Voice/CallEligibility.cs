@@ -5,11 +5,11 @@ public class CallEligibility : Entity, ICallEligibility
 {
 
     /// <inheritdoc />
-    public bool IsRingable { get; internal set; }
+    public bool IsRingable { get; private set; }
 
 
     /// <inheritdoc />
-    public bool IsSilent { get; internal set; }
+    public bool IsSilent { get; private set; }
 
     internal CallEligibility(FluxerBaseClient client) : base(client)
     {

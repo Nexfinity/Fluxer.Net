@@ -4,13 +4,13 @@
 public class GifCategory : Entity, IGifCategory
 {
     /// <inheritdoc />
-    public string Name { get; internal set; }
+    public string Name { get; private set; }
 
     /// <inheritdoc />
-    public string Source { get; internal set; }
+    public string Source { get; private set; }
 
     /// <inheritdoc />
-    public string ProxySource { get; internal set; }
+    public string ProxySource { get; private set; }
 
     internal GifCategory(FluxerBaseClient client) : base(client)
     {

@@ -4,28 +4,28 @@
 public class Webhook : Entity, IWebhook
 {
     /// <inheritdoc />
-    public ulong Id { get; internal set; }
+    public ulong Id { get; private set; }
 
     /// <inheritdoc />
     public DateTimeOffset CreatedAt => SnowflakeUtils.FromSnowflake(Id);
 
     /// <inheritdoc />
-    public string? Token { get; internal set; }
+    public string? Token { get; private set; }
 
     /// <inheritdoc />
-    public ulong? GuildId { get; internal set; }
+    public ulong? GuildId { get; private set; }
 
     /// <inheritdoc />
-    public ulong? ChannelId { get; internal set; }
+    public ulong? ChannelId { get; private set; }
 
     /// <inheritdoc />
-    public User? Creator { get; internal set; }
+    public User? Creator { get; private set; }
 
     /// <inheritdoc />
-    public string Name { get; internal set; }
+    public string Name { get; private set; }
 
     /// <inheritdoc />
-    public string? AvatarHash { get; internal set; }
+    public string? AvatarHash { get; private set; }
 
     IUser? IWebhook.Creator => Creator;
 

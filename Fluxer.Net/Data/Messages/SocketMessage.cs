@@ -4,7 +4,7 @@ namespace Fluxer.Net;
 
 public class SocketMessage : Message
 {
-    public Channel Channel { get; internal set; }
+    public Channel Channel { get; private set; }
 
     internal SocketMessage(FluxerBaseClient client) : base(client)
     {

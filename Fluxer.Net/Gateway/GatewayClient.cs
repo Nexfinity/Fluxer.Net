@@ -40,7 +40,7 @@ public partial class FluxerGatewayClient : IDisposable
     private WebsocketClient _webSocket;
     private readonly Stopwatch _gatewayDuration = new();
 
-    public HashSet<ulong> GuildIds { get; internal set; } = new HashSet<ulong>();
+    public HashSet<ulong> GuildIds { get; private set; } = new HashSet<ulong>();
 
     /// <summary>
     /// Current sequence number for gateway events. Used for resuming connections without data loss.

@@ -4,10 +4,10 @@
 public class MessageCall : Entity, IMessageCall
 {
     /// <inheritdoc />
-    public HashSet<ulong> Participants { get; internal set; }
+    public HashSet<ulong> Participants { get; private set; }
 
     /// <inheritdoc />
-    public DateTimeOffset? EndedAt { get; internal set; }
+    public DateTimeOffset? EndedAt { get; private set; }
 
     internal MessageCall(FluxerBaseClient client) : base(client)
     {

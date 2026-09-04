@@ -4,13 +4,13 @@
 public class MessageReaction : Entity, IMessageReaction
 {
     /// <inheritdoc />
-    public Emoji Emoji { get; internal set; }
+    public Emoji Emoji { get; private set; }
 
     /// <inheritdoc />
-    public int Count { get; internal set; }
+    public int Count { get; private set; }
 
     /// <inheritdoc />
-    public bool? Me { get; internal set; }
+    public bool? Me { get; private set; }
 
     IEmoji IMessageReaction.Emoji => Emoji;
 

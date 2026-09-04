@@ -4,58 +4,58 @@
 public class Guild : PartialGuild, IGuild
 {
     /// <inheritdoc />
-    public ulong OwnerId { get; internal set; }
+    public ulong OwnerId { get; private set; }
 
     /// <inheritdoc />
-    public string? VanityUrlCode { get; internal set; }
+    public string? VanityUrlCode { get; private set; }
 
     /// <inheritdoc />
-    public GuildVerificationLevel VerificationLevel { get; internal set; }
+    public GuildVerificationLevel VerificationLevel { get; private set; }
 
     /// <inheritdoc />
-    public GuildMfaLevel MfaLevel { get; internal set; }
+    public GuildMfaLevel MfaLevel { get; private set; }
 
     /// <inheritdoc />
-    public GuildNsfwLevel NsfwLevel { get; internal set; }
+    public GuildNsfwLevel NsfwLevel { get; private set; }
 
     /// <inheritdoc />
-    public GuildContentFilter ExplicitContentFilter { get; internal set; }
+    public GuildContentFilter ExplicitContentFilter { get; private set; }
 
     /// <inheritdoc />
-    public GuildDefaultNotifications DefaultMessageNotifications { get; internal set; }
+    public GuildDefaultNotifications DefaultMessageNotifications { get; private set; }
 
     /// <inheritdoc />
-    public ulong? SystemChannelId { get; internal set; }
+    public ulong? SystemChannelId { get; private set; }
 
     /// <inheritdoc />
-    public SystemChannelFlags SystemChannelFlags { get; internal set; }
+    public SystemChannelFlags SystemChannelFlags { get; private set; }
 
     /// <inheritdoc />
-    public ulong? RulesChannelId { get; internal set; }
+    public ulong? RulesChannelId { get; private set; }
 
     /// <inheritdoc />
-    public ulong? AfkChannelId { get; internal set; }
+    public ulong? AfkChannelId { get; private set; }
 
     /// <inheritdoc />
-    public int AfkTimeout { get; internal set; }
+    public int AfkTimeout { get; private set; }
 
     /// <inheritdoc />
-    public GuildOperations DisabledOperations { get; internal set; }
+    public GuildOperations DisabledOperations { get; private set; }
 
     /// <inheritdoc />
-    public DateTimeOffset? MessageHistoryCutoff { get; internal set; }
+    public DateTimeOffset? MessageHistoryCutoff { get; private set; }
 
     /// <inheritdoc />
-    public bool IsNsfw { get; internal set; }
+    public bool IsNsfw { get; private set; }
 
     /// <inheritdoc />
-    public string ContentWarningText { get; internal set; }
+    public string ContentWarningText { get; private set; }
 
     /// <inheritdoc />
-    public int? OnlineCount { get; set; }
+    public int? OnlineCount { get; internal set; }
 
     /// <inheritdoc />
-    public int? MemberCount { get; set; }
+    public int? MemberCount { get; internal set; }
 
     internal Guild(FluxerBaseClient client) : base(client)
     {

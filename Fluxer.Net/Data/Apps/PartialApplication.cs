@@ -4,28 +4,28 @@
 public class PartialApplication : Entity, IPartialApplication
 {
     /// <inheritdoc />
-    public ulong Id { get; internal set; }
+    public ulong Id { get; private set; }
 
     /// <inheritdoc />
     public DateTimeOffset CreatedAt => SnowflakeUtils.FromSnowflake(Id);
 
     /// <inheritdoc />
-    public string Name { get; internal set; }
+    public string Name { get; private set; }
 
     /// <inheritdoc />
-    public string Icon { get; internal set; }
+    public string Icon { get; private set; }
 
     /// <inheritdoc />
-    public string Description { get; internal set; }
+    public string Description { get; private set; }
 
     /// <inheritdoc />
-    public bool IsPublic { get; internal set; }
+    public bool IsPublic { get; private set; }
 
     /// <inheritdoc />
-    public bool RequiresCodeGrant { get; internal set; }
+    public bool RequiresCodeGrant { get; private set; }
 
     /// <inheritdoc />
-    public ulong Flags { get; internal set; }
+    public ulong Flags { get; private set; }
 
     internal PartialApplication(FluxerBaseClient client) : base(client)
     {

@@ -1,16 +1,15 @@
-﻿using Newtonsoft.Json;
-
-namespace Fluxer.Net;
+﻿namespace Fluxer.Net;
 
 /// <inheritdoc />
 public class GuildEmoji : Emoji, IGuildEmoji
 {
-    /// <inheritdoc />
-    public ulong GuildId { get; internal set; }
+    /// <summary>
+    /// Guild id for this emoji.
+    /// </summary>
+    public ulong GuildId { get; private set; }
 
     /// <inheritdoc />
-    [JsonProperty("user")]
-    public User? Creator { get; set; }
+    public User? Creator { get; private set; }
 
     /// <inheritdoc />
     public string? GetEmojiUrl(int size = 160)

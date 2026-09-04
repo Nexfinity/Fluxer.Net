@@ -12,7 +12,7 @@ public class SocketGuildMember : GuildMember
     /// </summary>
     public SocketGuild Guild { get; internal set; }
 
-    public ConcurrentDictionary<string, SocketVoiceState> VoiceStates { get; internal set; } = new ConcurrentDictionary<string, SocketVoiceState>();
+    public ConcurrentDictionary<string, SocketVoiceState> VoiceStates { get; private set; } = new ConcurrentDictionary<string, SocketVoiceState>();
 
     public IEnumerable<SocketRole> Roles
             => RoleIds.Select(id => Guild.Roles.GetValueOrDefault(id)).Where(x => x != null);

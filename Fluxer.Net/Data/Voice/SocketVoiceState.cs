@@ -1,9 +1,17 @@
 ﻿namespace Fluxer.Net;
 
+/// <inheritdoc />
 public class SocketVoiceState : VoiceState
 {
-    public SocketGuild Server { get; internal set; }
-    public SocketVoiceChannel Channel { get; internal set; }
+    /// <summary>
+    /// Guild for the voice state.
+    /// </summary>
+    public SocketGuild Guild { get; private set; }
+
+    /// <summary>
+    /// Channel for the voice state.
+    /// </summary>
+    public SocketVoiceChannel Channel { get; private set; }
 
     internal SocketVoiceState(FluxerBaseClient client) : base(client)
     {
@@ -22,7 +30,7 @@ public class SocketVoiceState : VoiceState
     {
         SocketVoiceState data = new SocketVoiceState(client);
         data.Update(client, json);
-        data.Server = guild;
+        data.Guild = guild;
         data.Channel = channel;
         return data;
     }

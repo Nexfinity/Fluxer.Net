@@ -4,34 +4,34 @@
 public class MessageSnapshot : Entity, IMessageSnapshot
 {
     /// <inheritdoc />
-    public string? Content { get; internal set; }
+    public string? Content { get; private set; }
 
     /// <inheritdoc />
-    public DateTimeOffset CreatedAt { get; internal set; }
+    public DateTimeOffset CreatedAt { get; private set; }
 
     /// <inheritdoc />
-    public DateTimeOffset? EditedAt { get; internal set; }
+    public DateTimeOffset? EditedAt { get; private set; }
 
     /// <inheritdoc />
-    public HashSet<ulong>? MentionedUserIds { get; internal set; }
+    public HashSet<ulong>? MentionedUserIds { get; private set; }
 
     /// <inheritdoc />
-    public HashSet<ulong>? MentionedRoleIds { get; internal set; }
+    public HashSet<ulong>? MentionedRoleIds { get; private set; }
 
     /// <inheritdoc />
-    public Embed[]? Embeds { get; internal set; }
+    public Embed[]? Embeds { get; private set; }
 
     /// <inheritdoc />
-    public Attachment[]? Attachments { get; internal set; }
+    public Attachment[]? Attachments { get; private set; }
 
     /// <inheritdoc />
-    public Sticker[]? Stickers { get; internal set; }
+    public Sticker[]? Stickers { get; private set; }
 
     /// <inheritdoc />
-    public MessageType Type { get; internal set; }
+    public MessageType Type { get; private set; }
 
     /// <inheritdoc />
-    public MessageFlag Flags { get; internal set; }
+    public MessageFlag Flags { get; private set; }
 
     IEmbed[]? IMessageSnapshot.Embeds => Embeds;
 

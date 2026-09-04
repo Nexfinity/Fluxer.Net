@@ -4,49 +4,49 @@
 public class PartialGuild : Entity, IPartialGuild
 {
     /// <inheritdoc />
-    public ulong Id { get; internal set; }
+    public ulong Id { get; private set; }
 
     /// <inheritdoc />
     public DateTimeOffset CreatedAt => SnowflakeUtils.FromSnowflake(Id);
 
     /// <inheritdoc />
-    public string Name { get; internal set; }
+    public string Name { get; private set; }
 
     /// <inheritdoc />
-    public string? IconHash { get; internal set; }
+    public string? IconHash { get; private set; }
 
     /// <inheritdoc />
-    public string? BannerHash { get; internal set; }
+    public string? BannerHash { get; private set; }
 
     /// <inheritdoc />
-    public int? BannerWidth { get; internal set; }
+    public int? BannerWidth { get; private set; }
 
     /// <inheritdoc />
-    public int? BannerHeight { get; internal set; }
+    public int? BannerHeight { get; private set; }
 
     /// <inheritdoc />
-    public string? EmbedSplashHash { get; internal set; }
+    public string? EmbedSplashHash { get; private set; }
 
     /// <inheritdoc />
-    public int? EmbedSplashWidth { get; internal set; }
+    public int? EmbedSplashWidth { get; private set; }
 
     /// <inheritdoc />
-    public int? EmbedSplashHeight { get; internal set; }
+    public int? EmbedSplashHeight { get; private set; }
 
     /// <inheritdoc />
-    public string? InviteSplashHash { get; internal set; }
+    public string? InviteSplashHash { get; private set; }
 
     /// <inheritdoc />
-    public int? InviteSplashWidth { get; internal set; }
+    public int? InviteSplashWidth { get; private set; }
 
     /// <inheritdoc />
-    public int? InviteSplashHeight { get; internal set; }
+    public int? InviteSplashHeight { get; private set; }
 
     /// <inheritdoc />
-    public GuildSplashCardAlignment SplashCardAligment { get; internal set; }
+    public GuildSplashCardAlignment SplashCardAligment { get; private set; }
 
     /// <inheritdoc />
-    public GuildFeatures Features { get; internal set; }
+    public GuildFeatures Features { get; private set; }
 
     string[]? IPartialGuild.Features => Features.Raw;
 

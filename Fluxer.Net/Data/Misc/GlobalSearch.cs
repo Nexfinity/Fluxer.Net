@@ -1,23 +1,26 @@
-﻿using Newtonsoft.Json;
+﻿namespace Fluxer.Net;
 
-namespace Fluxer.Net;
-
-public class GlobalSearch : Entity
+/// <inheritdoc />
+public class GlobalSearch : Entity, IGlobalSearch
 {
-    [JsonProperty("messages")]
-    public Message[] Messages { get; internal set; }
+    /// <inheritdoc />
+    public Message[] Messages { get; private set; }
 
-    [JsonProperty("channels")]
-    public Channel[] Channels { get; internal set; }
+    /// <inheritdoc />
+    public Channel[] Channels { get; private set; }
 
-    [JsonProperty("total")]
-    public ulong Total { get; internal set; }
+    /// <inheritdoc />
+    public ulong Total { get; private set; }
 
-    [JsonProperty("hits_per_page")]
-    public int HitsPerPage { get; internal set; }
+    /// <inheritdoc />
+    public int HitsPerPage { get; private set; }
 
-    [JsonProperty("page")]
-    public int Page { get; internal set; }
+    /// <inheritdoc />
+    public int Page { get; private set; }
+
+    IMessage[] IGlobalSearch.Messages => Messages;
+
+    IChannel[] IGlobalSearch.Channels => Channels;
 
     internal GlobalSearch(FluxerBaseClient client) : base(client)
     {

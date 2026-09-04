@@ -4,13 +4,13 @@
 public class RtcRegion : Entity, IRtcRegion
 {
     /// <inheritdoc />
-    public string Id { get; internal set; }
+    public string Id { get; private set; }
 
     /// <inheritdoc />
-    public string Name { get; internal set; }
+    public string Name { get; private set; }
 
     /// <inheritdoc />
-    public string Emoji { get; internal set; }
+    public string Emoji { get; private set; }
 
     internal RtcRegion(FluxerBaseClient client) : base(client)
     {

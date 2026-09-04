@@ -4,49 +4,49 @@
 public class VoiceState : Entity, IVoiceState
 {
     /// <inheritdoc />
-    public string SessionId { get; internal set; }
+    public string SessionId { get; private set; }
 
     /// <inheritdoc />
-    public ulong UserId { get; internal set; }
+    public ulong UserId { get; private set; }
 
     /// <inheritdoc />
-    public ulong? ChannelId { get; internal set; }
+    public ulong? ChannelId { get; private set; }
 
     /// <inheritdoc />
-    public string? ConnectionId { get; internal set; }
+    public string? ConnectionId { get; private set; }
 
     /// <inheritdoc />
-    public bool IsDeaf { get; internal set; }
+    public bool IsDeaf { get; private set; }
 
     /// <inheritdoc />
-    public bool IsMute { get; internal set; }
+    public bool IsMute { get; private set; }
 
     /// <inheritdoc />
-    public ulong? GuildId { get; internal set; }
+    public ulong? GuildId { get; private set; }
 
     /// <inheritdoc />
-    public bool IsMobile { get; internal set; }
+    public bool IsMobile { get; private set; }
 
     /// <inheritdoc />
-    public bool IsSelfDeaf { get; internal set; }
+    public bool IsSelfDeaf { get; private set; }
 
     /// <inheritdoc />
-    public bool IsSelfMute { get; internal set; }
+    public bool IsSelfMute { get; private set; }
 
     /// <inheritdoc />
-    public bool IsSelfStream { get; internal set; }
+    public bool IsSelfStream { get; private set; }
 
     /// <inheritdoc />
-    public bool IsSelfVideo { get; internal set; }
+    public bool IsSelfVideo { get; private set; }
 
     /// <inheritdoc />
-    public bool IsSuppressed { get; internal set; }
+    public bool IsSuppressed { get; private set; }
 
     /// <inheritdoc />
-    public string[] ViewerStreamKeys { get; internal set; }
+    public string[] ViewerStreamKeys { get; private set; }
 
     /// <inheritdoc />
-    public GuildMember Member { get; internal set; }
+    public GuildMember Member { get; private set; }
 
     IGuildMember IVoiceState.Member => Member;
 

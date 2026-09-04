@@ -4,10 +4,10 @@
 public class Application : PartialApplication, IApplication
 {
     /// <inheritdoc />
-    public string[] RedirectUrls { get; internal set; }
+    public string[] RedirectUrls { get; private set; }
 
     /// <inheritdoc />
-    public User Bot { get; internal set; }
+    public User Bot { get; private set; }
 
     IUser IApplication.Bot => Bot;
 

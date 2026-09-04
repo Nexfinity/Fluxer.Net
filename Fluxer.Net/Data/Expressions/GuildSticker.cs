@@ -3,17 +3,19 @@
 /// <inheritdoc />
 public class GuildSticker : Sticker, IGuildSticker
 {
-    /// <inheritdoc />
-    public ulong GuildId { get; internal set; }
+    /// <summary>
+    /// Guild id for this sticker.
+    /// </summary>
+    public ulong GuildId { get; private set; }
 
     /// <inheritdoc />
-    public string? Description { get; internal set; }
+    public string? Description { get; private set; }
 
     /// <inheritdoc />
-    public List<string>? Tags { get; internal set; }
+    public List<string>? Tags { get; private set; }
 
     /// <inheritdoc />
-    public User? Creator { get; internal set; }
+    public User? Creator { get; private set; }
 
     /// <inheritdoc />
     public string? GetStickerUrl(int size = 320)

@@ -4,10 +4,10 @@
 public class ChannelPin : Entity, IChannelPin
 {
     /// <inheritdoc />
-    public Message Message { get; internal set; }
+    public Message Message { get; private set; }
 
     /// <inheritdoc />
-    public DateTimeOffset PinnedAt { get; internal set; }
+    public DateTimeOffset PinnedAt { get; private set; }
 
     IMessage IChannelPin.Message => Message;
 

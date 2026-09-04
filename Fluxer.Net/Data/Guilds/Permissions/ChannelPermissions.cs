@@ -9,7 +9,7 @@ public class ChannelPermissions : IChannelPermissions
     /// <summary>
     /// Raw permissions flag for the guild.
     /// </summary>
-    public ChannelPermission RawValue { get; internal set; }
+    public ChannelPermission RawValue { get; private set; }
 
     /// <summary>
     /// Edit overwrites for roles and members in this channel.

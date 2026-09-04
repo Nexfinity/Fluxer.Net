@@ -4,7 +4,7 @@
 public class CurrentApplication : Application, ICurrentApplication
 {
     /// <inheritdoc />
-    public User Owner { get; internal set; }
+    public User Owner { get; private set; }
 
     IUser ICurrentApplication.Owner => Owner;
 

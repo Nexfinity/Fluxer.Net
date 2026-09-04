@@ -4,70 +4,70 @@
 public class Message : Entity, IMessage
 {
     /// <inheritdoc />
-    public ulong Id { get; internal set; }
+    public ulong Id { get; private set; }
 
     /// <inheritdoc />
-    public ulong ChannelId { get; internal set; }
+    public ulong ChannelId { get; private set; }
 
     /// <inheritdoc />
-    public User Author { get; internal set; }
+    public User Author { get; private set; }
 
     /// <inheritdoc />
-    public ulong? WebhookId { get; internal set; }
+    public ulong? WebhookId { get; private set; }
 
     /// <inheritdoc />
-    public MessageType Type { get; internal set; }
+    public MessageType Type { get; private set; }
 
     /// <inheritdoc />
-    public MessageFlag Flags { get; internal set; }
+    public MessageFlag Flags { get; private set; }
 
     /// <inheritdoc />
-    public string Content { get; internal set; }
+    public string Content { get; private set; }
 
     /// <inheritdoc />
-    public DateTimeOffset CreatedAt { get; internal set; }
+    public DateTimeOffset CreatedAt { get; private set; }
 
     /// <inheritdoc />
-    public DateTimeOffset? EditedAt { get; internal set; }
+    public DateTimeOffset? EditedAt { get; private set; }
 
     /// <inheritdoc />
-    public bool IsPinned { get; internal set; }
+    public bool IsPinned { get; private set; }
 
     /// <inheritdoc />
-    public bool MentionEveryone { get; internal set; }
+    public bool MentionEveryone { get; private set; }
 
     /// <inheritdoc />
-    public bool IsTTS { get; internal set; }
+    public bool IsTTS { get; private set; }
 
     /// <inheritdoc />
-    public IEnumerable<User>? Mentions { get; internal set; }
+    public IEnumerable<User>? Mentions { get; private set; }
 
     /// <inheritdoc />
-    public ulong[]? MentionRoles { get; internal set; }
+    public ulong[]? MentionRoles { get; private set; }
 
     /// <inheritdoc />
-    public IEnumerable<Embed>? Embeds { get; internal set; }
+    public IEnumerable<Embed>? Embeds { get; private set; }
 
     /// <inheritdoc />
-    public Attachment[]? Attachments { get; internal set; }
+    public Attachment[]? Attachments { get; private set; }
 
     /// <inheritdoc />
-    public Sticker[]? Stickers { get; internal set; }
+    public Sticker[]? Stickers { get; private set; }
 
     /// <inheritdoc />
-    public MessageReaction[]? Reactions { get; internal set; }
+    public MessageReaction[]? Reactions { get; private set; }
 
     /// <inheritdoc />
-    public MessageReference? MessageReference { get; internal set; }
+    public MessageReference? MessageReference { get; private set; }
 
     /// <inheritdoc />
-    public MessageSnapshot[]? MessageSnapshots { get; internal set; }
+    public MessageSnapshot[]? MessageSnapshots { get; private set; }
 
     /// <inheritdoc />
-    public string? Nonce { get; internal set; }
+    public string? Nonce { get; private set; }
 
     /// <inheritdoc />
-    public MessageCall? Call { get; internal set; }
+    public MessageCall? Call { get; private set; }
 
     IUser IMessage.Author => Author;
 

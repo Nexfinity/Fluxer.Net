@@ -4,55 +4,55 @@
 public class FavoriteGif : Entity, IFavoriteGif
 {
     /// <inheritdoc />
-    public string Id { get; internal set; }
+    public string Id { get; private set; }
 
     /// <inheritdoc />
-    public ulong UserId { get; internal set; }
+    public ulong UserId { get; private set; }
 
     /// <inheritdoc />
-    public string Name { get; internal set; }
+    public string Name { get; private set; }
 
     /// <inheritdoc />
-    public string[] Tags { get; internal set; }
+    public string[] Tags { get; private set; }
 
     /// <inheritdoc />
-    public ulong AttachmentId { get; internal set; }
+    public ulong AttachmentId { get; private set; }
 
     /// <inheritdoc />
-    public string Filename { get; internal set; }
+    public string Filename { get; private set; }
 
     /// <inheritdoc />
-    public string ContentType { get; internal set; }
+    public string ContentType { get; private set; }
 
     /// <inheritdoc />
-    public int Size { get; internal set; }
+    public int Size { get; private set; }
 
     /// <inheritdoc />
-    public string Url { get; internal set; }
+    public string Url { get; private set; }
 
     /// <inheritdoc />
-    public string? AltText { get; internal set; }
+    public string? AltText { get; private set; }
 
     /// <inheritdoc />
-    public string? ContentHash { get; internal set; }
+    public string? ContentHash { get; private set; }
 
     /// <inheritdoc />
-    public int? Width { get; internal set; }
+    public int? Width { get; private set; }
 
     /// <inheritdoc />
-    public int? Height { get; internal set; }
+    public int? Height { get; private set; }
 
     /// <inheritdoc />
-    public int? Duration { get; internal set; }
+    public int? Duration { get; private set; }
 
     /// <inheritdoc />
-    public bool IsGifVideo { get; internal set; }
+    public bool IsGifVideo { get; private set; }
 
     /// <inheritdoc />
-    public string? KlipySlug { get; internal set; }
+    public string? KlipySlug { get; private set; }
 
     /// <inheritdoc />
-    public string? TenorSlugId { get; internal set; }
+    public string? TenorSlugId { get; private set; }
 
     internal FavoriteGif(FluxerBaseClient client) : base(client)
     {

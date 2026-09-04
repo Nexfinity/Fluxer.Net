@@ -4,10 +4,10 @@
 public class ChannelPins : Entity, IChannelPins
 {
     /// <inheritdoc />
-    public IEnumerable<ChannelPin> Items { get; internal set; }
+    public IEnumerable<ChannelPin> Items { get; private set; }
 
     /// <inheritdoc />
-    public bool HasMore { get; internal set; }
+    public bool HasMore { get; private set; }
 
     IEnumerable<IChannelPin> IChannelPins.Items => Items;
 

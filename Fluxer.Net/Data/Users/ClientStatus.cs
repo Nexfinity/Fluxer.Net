@@ -4,13 +4,13 @@
 public class ClientStatus : Entity, IClientStatus
 {
     /// <inheritdoc />
-    public string? Desktop { get; internal set; }
+    public string? Desktop { get; private set; }
 
     /// <inheritdoc />
-    public string? Mobile { get; internal set; }
+    public string? Mobile { get; private set; }
 
     /// <inheritdoc />
-    public string? Web { get; internal set; }
+    public string? Web { get; private set; }
 
     internal ClientStatus(FluxerBaseClient client) : base(client)
     {

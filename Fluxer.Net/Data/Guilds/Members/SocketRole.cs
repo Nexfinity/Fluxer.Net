@@ -2,7 +2,7 @@
 
 public class SocketRole : Role
 {
-    public SocketGuild Guild { get; internal set; }
+    public SocketGuild Guild { get; private set; }
 
     public bool HasPermission(GuildPermission permission)
     {

@@ -4,25 +4,25 @@
 public class FluxerOAuthValidToken : Entity, IFluxerOAuthValidToken
 {
     /// <inheritdoc />
-    public bool IsActive { get; internal set; }
+    public bool IsActive { get; private set; }
 
     /// <inheritdoc />
-    public string? Scope { get; internal set; }
+    public string? Scope { get; private set; }
 
     /// <inheritdoc />
-    public ulong? ClientId { get; internal set; }
+    public ulong? ClientId { get; private set; }
 
     /// <inheritdoc />
-    public string? TokenType { get; internal set; }
+    public string? TokenType { get; private set; }
 
     /// <inheritdoc />
-    public int? Exp { get; internal set; }
+    public int? Exp { get; private set; }
 
     /// <inheritdoc />
-    public int? Iat { get; internal set; }
+    public int? Iat { get; private set; }
 
     /// <inheritdoc />
-    public ulong? Sub { get; internal set; }
+    public ulong? Sub { get; private set; }
 
     internal FluxerOAuthValidToken(FluxerBaseClient client) : base(client)
     {

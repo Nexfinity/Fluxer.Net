@@ -4,19 +4,19 @@
 public class FluxerOAuthRefreshToken : Entity, IFluxerOAuthRefreshToken
 {
     /// <inheritdoc />
-    public string AccessToken { get; internal set; }
+    public string AccessToken { get; private set; }
 
     /// <inheritdoc />
-    public string TokenType { get; internal set; }
+    public string TokenType { get; private set; }
 
     /// <inheritdoc />
-    public int ExpiresIn { get; internal set; }
+    public int ExpiresIn { get; private set; }
 
     /// <inheritdoc />
-    public string RefreshToken { get; internal set; }
+    public string RefreshToken { get; private set; }
 
     /// <inheritdoc />
-    public string Scope { get; internal set; }
+    public string Scope { get; private set; }
 
     internal FluxerOAuthRefreshToken(FluxerBaseClient client) : base(client)
     {

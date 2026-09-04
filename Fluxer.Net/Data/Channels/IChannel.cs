@@ -102,6 +102,11 @@ public interface IChannel : ISnowflake
     /// </summary>
     Dictionary<string, string>? Nicknames { get; }
 
+    /// <summary>
+    /// Can you send messages in this channel.
+    /// </summary>
+    bool IsTextable { get; }
+
     bool IsSoftDeleted { get; }
 
     DateTimeOffset? IndexedAt { get; }

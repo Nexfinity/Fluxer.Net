@@ -4,40 +4,40 @@
 public class Instance : Entity, IInstance
 {
     /// <inheritdoc />
-    public int ApiVersion { get; internal set; }
+    public int ApiVersion { get; private set; }
 
     /// <inheritdoc />
-    public InstanceEndpoints Endpoints { get; internal set; }
+    public InstanceEndpoints Endpoints { get; private set; }
 
     /// <inheritdoc />
-    public InstanceCaptcha Captcha { get; internal set; }
+    public InstanceCaptcha Captcha { get; private set; }
 
     /// <inheritdoc />
-    public InstanceFeatures Features { get; internal set; }
+    public InstanceFeatures Features { get; private set; }
 
     /// <inheritdoc />
-    public InstanceGifs Gifs { get; internal set; }
+    public InstanceGifs Gifs { get; private set; }
 
     /// <inheritdoc />
-    public InstanceSSO SSO { get; internal set; }
+    public InstanceSSO SSO { get; private set; }
 
     /// <inheritdoc />
-    public InstanceRegistration Registration { get; internal set; }
+    public InstanceRegistration Registration { get; private set; }
 
     /// <inheritdoc />
-    public InstanceCommunity Community { get; internal set; }
+    public InstanceCommunity Community { get; private set; }
 
     /// <inheritdoc />
-    public InstanceServices Services { get; internal set; }
+    public InstanceServices Services { get; private set; }
 
     /// <inheritdoc />
-    public InstanceLimits Limits { get; internal set; }
+    public InstanceLimits Limits { get; private set; }
 
     /// <inheritdoc />
-    public InstancePush Push { get; internal set; }
+    public InstancePush Push { get; private set; }
 
     /// <inheritdoc />
-    public InstanceApp App { get; internal set; }
+    public InstanceApp App { get; private set; }
 
     IInstanceEndpoints IInstance.Endpoints => Endpoints;
 

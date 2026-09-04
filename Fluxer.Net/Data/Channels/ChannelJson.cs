@@ -103,4 +103,7 @@ public class ChannelJson : IChannel
     public DateTimeOffset? IndexedAt { get; set; }
 
     IEnumerable<IPermissionOverwrite>? IChannel.PermissionOverwrites => PermissionOverwrites;
+
+    /// <inheritdoc/>
+    public bool IsTextable => Channel.TextableTypes(Type);
 }
