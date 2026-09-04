@@ -1044,6 +1044,18 @@ public partial class FluxerGatewayClient : IDisposable
                                 guild.AddOrUpdateMember(m);
                             }
 
+                            //foreach (var e in data.Emojis)
+                            //{
+                            //    if (!guild.Emojis.TryAdd(e.Id, Emoji.Create(_client, e)))
+                            //        guild.Emojis[e.Id].Update(e);
+                            //}
+
+                            //foreach (var s in data.Stickers)
+                            //{
+                            //    if (!guild.Stickers.TryAdd(s.Id, Sticker.Create(_client, s)))
+                            //        guild.Stickers[s.Id].Update(s);
+                            //}
+
                             foreach (var v in data.VoiceStates)
                             {
                                 SocketGuildMember voiceMember = guild.GetMember(v.UserId);
@@ -1254,7 +1266,17 @@ public partial class FluxerGatewayClient : IDisposable
                 {
                     GuildEmojisUpdateGatewayData? data = p.Data.ToObject<GuildEmojisUpdateGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
+                    {
+                        //if (Guilds.TryGetValue(data.GuildId, out var guild))
+                        //{
+                        //    foreach (var e in data.Emojis)
+                        //    {
+                        //        if (guild.Emojis.TryGetValue(e.Id, out var emoji))
+                        //            emoji.Update(e);
+                        //    }
+                        //}
                         GuildEmojisUpdate?.Invoke(data);
+                    }
                     else
                         _logger.Warning("GUILD_EMOJIS_UPDATE event received but data could not be cast to GuildEmojisUpdateGatewayData");
                 }
@@ -1263,7 +1285,17 @@ public partial class FluxerGatewayClient : IDisposable
                 {
                     GuildStickersUpdateGatewayData? data = p.Data.ToObject<GuildStickersUpdateGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
+                    {
+                        //if (Guilds.TryGetValue(data.GuildId, out var guild))
+                        //{
+                        //    foreach (var s in data.Stickers)
+                        //    {
+                        //        if (guild.Stickers.TryGetValue(s.Id, out var sticker))
+                        //            sticker.Update(s);
+                        //    }
+                        //}
                         GuildStickersUpdate?.Invoke(data);
+                    }
                     else
                         _logger.Warning("GUILD_STICKERS_UPDATE event received but data could not be cast to GuildStickersUpdateGatewayData");
                 }
@@ -1393,7 +1425,13 @@ public partial class FluxerGatewayClient : IDisposable
                         _logger.Warning("CHANNEL_MEMBER_COUNTS_UPDATE event received but data could not be cast to GuildChannelMemberCountGatewayData");
                 }
                 break;
+            case "GUILD_AUDIT_LOG_ENTRY_CREATE":
+                {
+                    //TODO
+                }
+                break;
             default:
+                _logger.Debug(p.Data.ToString());
                 _logger.Warning("Unhandled dispatch {Dispatch}", p.Dispatch);
                 break;
         }
