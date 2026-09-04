@@ -20,7 +20,7 @@ public class FluxerOAuthUser : User, IFluxerOAuthUser
     public static FluxerOAuthUser Create(FluxerBaseClient client, FluxerOAuthUserJson json)
     {
         FluxerOAuthUser data = new FluxerOAuthUser(client);
-        data.Update(client, json);
+        data.Update(json);
         return data;
     }
 
@@ -61,7 +61,7 @@ public class FluxerOAuthUser : User, IFluxerOAuthUser
         return data;
     }
 
-    internal void Update(FluxerBaseClient client, FluxerOAuthUserJson json)
+    internal void Update(FluxerOAuthUserJson json)
     {
         base.Update(json);
         Email = json.Email;

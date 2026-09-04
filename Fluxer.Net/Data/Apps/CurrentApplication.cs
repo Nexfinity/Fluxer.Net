@@ -22,13 +22,13 @@ public class CurrentApplication : Application, ICurrentApplication
     public static CurrentApplication Create(FluxerBaseClient client, CurrentApplicationJson json)
     {
         CurrentApplication data = new CurrentApplication(client);
-        data.Update(client, json);
+        data.Update(json);
         return data;
     }
 
-    internal virtual void Update(FluxerBaseClient client, CurrentApplicationJson json)
+    internal virtual void Update(CurrentApplicationJson json)
     {
-        base.Update(client, json);
-        Owner = User.Create(client, json.Owner);
+        base.Update(json);
+        Owner = User.Create(Client, json.Owner);
     }
 }

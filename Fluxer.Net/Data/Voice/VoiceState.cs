@@ -64,11 +64,11 @@ public class VoiceState : Entity, IVoiceState
     public static VoiceState Create(FluxerBaseClient client, VoiceStateJson json)
     {
         VoiceState data = new VoiceState(client);
-        data.Update(client, json);
+        data.Update(json);
         return data;
     }
 
-    internal virtual void Update(FluxerBaseClient client, VoiceStateJson json)
+    internal virtual void Update(VoiceStateJson json)
     {
         SessionId = json.SessionId;
         UserId = json.UserId;
@@ -84,6 +84,6 @@ public class VoiceState : Entity, IVoiceState
         IsSelfVideo = json.IsSelfVideo;
         IsSuppressed = json.IsSuppressed;
         ViewerStreamKeys = json.ViewerStreamKeys;
-        Member = GuildMember.Create(client, json.Member);
+        Member = GuildMember.Create(Client, json.Member);
     }
 }

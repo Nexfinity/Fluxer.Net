@@ -66,13 +66,8 @@ public class SocketGuild : Guild
         // Null count data on socket guild.
         data.OnlineCount = null;
         data.MemberCount = null;
-        data.Update(client, json);
+        data.Update(json);
         return data;
-    }
-
-    internal override void Update(FluxerBaseClient client, GuildJson json)
-    {
-        base.Update(client, json);
     }
 
     internal void UpdatePermissions(SocketRole role)
@@ -80,15 +75,19 @@ public class SocketGuild : Guild
         Permissions = role.Permissions;
     }
 
-    internal void AddOrUpdateMember(FluxerClient client, GuildMemberJson member)
+    internal SocketGuildMember AddOrUpdateMember(GuildMemberJson json)
     {
-        if (Members.ContainsKey(member.Id))
-            Members[member.Id].Update(client, member);
+        if (Members.TryGetValue(json.Id, out var member))
+        {
+            member.Update(json);
+            return member;
+        }
         else
         {
-            SocketGuildMember mem = SocketGuildMember.Create(client, member);
-            mem.Guild = this;
-            Members.TryAdd(member.Id, mem);
+            member = SocketGuildMember.Create(Client, json);
+            member.Guild = this;
+            Members.TryAdd(member.Id, member);
+            return member;
         }
     }
 }

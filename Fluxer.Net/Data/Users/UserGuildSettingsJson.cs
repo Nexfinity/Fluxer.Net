@@ -44,4 +44,8 @@ public class UserGuildSettingsJson : IUserGuildSettings
     /// <inheritdoc />
     [JsonProperty("version")]
     public int Version { get; set; }
+
+    IDictionary<ulong, IGuildChannelOverride>? IUserGuildSettings.ChannelOverrides => (IDictionary<ulong, IGuildChannelOverride>?)ChannelOverrides;
+
+    IMuteConfiguration? IUserGuildSettings.MuteConfig => MuteConfig;
 }

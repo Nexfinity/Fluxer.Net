@@ -38,11 +38,11 @@ public class Gif : Entity, IGif
     public static Gif Create(FluxerBaseClient client, GifJson json)
     {
         Gif data = new Gif(client);
-        data.Update(client, json);
+        data.Update(json);
         return data;
     }
 
-    internal void Update(FluxerBaseClient client, GifJson json)
+    internal void Update(GifJson json)
     {
         Id = json.Id;
         Title = json.Title;

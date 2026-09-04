@@ -65,12 +65,7 @@ public class SocketUnknownChannel : Channel
                 break;
         }
         data.GuildId = guildId;
-        data.Update(client, json);
+        data.Update(json);
         return data;
-    }
-
-    internal override void Update(FluxerBaseClient client, ChannelJson json)
-    {
-        base.Update(client, json);
     }
 }

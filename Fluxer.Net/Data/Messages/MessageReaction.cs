@@ -28,13 +28,13 @@ public class MessageReaction : Entity, IMessageReaction
     public static MessageReaction Create(FluxerBaseClient client, MessageReactionJson json)
     {
         MessageReaction data = new MessageReaction(client);
-        data.Update(client, json);
+        data.Update(json);
         return data;
     }
 
-    internal void Update(FluxerBaseClient client, MessageReactionJson json)
+    internal void Update(MessageReactionJson json)
     {
-        Emoji = Emoji.Create(client, json.Emoji);
+        Emoji = Emoji.Create(Client, json.Emoji);
         Count = json.Count;
         Me = json.Me;
     }

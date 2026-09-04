@@ -32,11 +32,11 @@ public class Sticker : Entity, ISticker
     public static Sticker Create(FluxerBaseClient client, StickerJson json)
     {
         Sticker data = new Sticker(client);
-        data.Update(client, json);
+        data.Update(json);
         return data;
     }
 
-    internal void Update(FluxerBaseClient client, StickerJson json)
+    internal void Update(StickerJson json)
     {
         Id = json.Id;
         Name = json.Name;

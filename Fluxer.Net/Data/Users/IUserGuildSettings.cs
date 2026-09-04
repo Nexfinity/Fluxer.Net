@@ -2,7 +2,7 @@
 
 public interface IUserGuildSettings
 {
-    Dictionary<ulong, GuildChannelOverrideJson>? ChannelOverrides { get; }
+    IDictionary<ulong, IGuildChannelOverride>? ChannelOverrides { get; }
 
     ulong GuildId { get; }
 
@@ -12,7 +12,7 @@ public interface IUserGuildSettings
 
     bool MobilePush { get; }
 
-    MuteConfigurationJson? MuteConfig { get; }
+    IMuteConfiguration? MuteConfig { get; }
 
     bool Muted { get; }
 

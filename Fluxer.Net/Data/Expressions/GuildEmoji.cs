@@ -37,14 +37,14 @@ public class GuildEmoji : Emoji, IGuildEmoji
         {
             GuildId = guildId
         };
-        data.Update(client, json);
+        data.Update(json);
         return data;
     }
 
-    internal void Update(FluxerBaseClient client, GuildEmojiJson json)
+    internal void Update(GuildEmojiJson json)
     {
-        base.Update(client, json);
+        base.Update(json);
         if (json.Creator != null)
-            Creator = User.Create(client, json.Creator);
+            Creator = User.Create(Client, json.Creator);
     }
 }

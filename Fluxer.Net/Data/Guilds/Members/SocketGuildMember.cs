@@ -104,12 +104,7 @@ public class SocketGuildMember : GuildMember
     public static new SocketGuildMember Create(FluxerBaseClient client, GuildMemberJson json)
     {
         SocketGuildMember data = new SocketGuildMember(client);
-        data.Update(client, json);
+        data.Update(json);
         return data;
-    }
-
-    internal override void Update(FluxerBaseClient client, GuildMemberJson json)
-    {
-        base.Update(client, json);
     }
 }

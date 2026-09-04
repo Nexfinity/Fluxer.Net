@@ -29,11 +29,11 @@ public class MessageReference : Entity, IMessageReference
     public static MessageReference Create(FluxerBaseClient client, MessageReferenceJson json)
     {
         MessageReference data = new MessageReference(client);
-        data.Update(client, json);
+        data.Update(json);
         return data;
     }
 
-    internal void Update(FluxerBaseClient client, MessageReferenceJson json)
+    internal void Update(MessageReferenceJson json)
     {
         ChannelId = json.ChannelId;
         MessageId = json.MessageId;

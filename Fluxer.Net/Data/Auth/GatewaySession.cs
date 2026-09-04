@@ -29,11 +29,11 @@ public class GatewaySession : Entity, IGatewaySession
     public static GatewaySession Create(FluxerBaseClient client, GatewaySessionJson json)
     {
         GatewaySession data = new GatewaySession(client);
-        data.Update(client, json);
+        data.Update(json);
         return data;
     }
 
-    internal void Update(FluxerBaseClient client, GatewaySessionJson json)
+    internal void Update(GatewaySessionJson json)
     {
         SessionId = json.SessionId;
         Status = json.Status;

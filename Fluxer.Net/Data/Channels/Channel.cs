@@ -168,11 +168,11 @@ public class Channel : Entity, IChannel
                 }
                 break;
         }
-        data.Update(client, json);
+        data.Update(json);
         return data;
     }
 
-    internal virtual void Update(FluxerBaseClient client, ChannelJson json)
+    internal virtual void Update(ChannelJson json)
     {
         Id = json.Id;
         GuildId = json.GuildId;
@@ -193,7 +193,7 @@ public class Channel : Entity, IChannel
         LastMessageId = json.LastMessageId;
         LastPinAt = json.LastPinAt;
         if (json.PermissionOverwrites != null)
-            PermissionOverwrites = json.PermissionOverwrites.Select(x => PermissionOverwrite.Create(client, x));
+            PermissionOverwrites = json.PermissionOverwrites.Select(x => PermissionOverwrite.Create(Client, x));
         Nicknames = json.Nicknames;
         IsSoftDeleted = json.IsSoftDeleted;
         IndexedAt = json.IndexedAt;

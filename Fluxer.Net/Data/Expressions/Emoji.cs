@@ -32,11 +32,11 @@ public class Emoji : Entity, IEmoji
     public static Emoji Create(FluxerBaseClient client, EmojiJson json)
     {
         Emoji data = new Emoji(client);
-        data.Update(client, json);
+        data.Update(json);
         return data;
     }
 
-    internal void Update(FluxerBaseClient client, EmojiJson json)
+    internal void Update(EmojiJson json)
     {
         Id = json.Id;
         Name = json.Name;

@@ -92,11 +92,11 @@ public class UserSettings : Entity, IUserSettings
     public static UserSettings Create(FluxerBaseClient client, UserSettingsJson json)
     {
         UserSettings data = new UserSettings(client);
-        data.Update(client, json);
+        data.Update(json);
         return data;
     }
 
-    internal void Update(FluxerBaseClient client, UserSettingsJson json)
+    internal void Update(UserSettingsJson json)
     {
         UserId = json.UserId;
         Locale = json.Locale;

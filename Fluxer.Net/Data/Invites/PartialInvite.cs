@@ -46,16 +46,16 @@ public class PartialInvite : Entity, IPartialInvite
     public static PartialInvite Create(FluxerBaseClient client, PartialInviteJson json)
     {
         PartialInvite data = new PartialInvite(client);
-        data.Update(client, json);
+        data.Update(json);
         return data;
     }
 
-    internal void Update(FluxerBaseClient client, PartialInviteJson json)
+    internal void Update(PartialInviteJson json)
     {
         Code = json.Code;
         Type = json.Type;
         if (json.Guild != null)
-            Guild = PartialGuild.Create(client, json.Guild);
+            Guild = PartialGuild.Create(Client, json.Guild);
 
         Channel = json.Channel;
         Inviter = json.Inviter;

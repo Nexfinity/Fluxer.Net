@@ -64,11 +64,11 @@ public class PartialGuild : Entity, IPartialGuild
     public static PartialGuild Create(FluxerBaseClient client, PartialGuildJson json)
     {
         PartialGuild data = new PartialGuild(client);
-        data.Update(client, json);
+        data.Update(json);
         return data;
     }
 
-    internal void Update(FluxerBaseClient client, PartialGuildJson json)
+    internal void Update(PartialGuildJson json)
     {
         Id = json.Id;
         Name = json.Name;

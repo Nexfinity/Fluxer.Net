@@ -57,11 +57,11 @@ public class Role : Entity, IRole
         {
             GuildId = guildId
         };
-        data.Update(client, json);
+        data.Update(json);
         return data;
     }
 
-    internal virtual void Update(FluxerBaseClient client, RoleJson json)
+    internal virtual void Update(RoleJson json)
     {
         Id = json.Id;
         Name = json.Name;

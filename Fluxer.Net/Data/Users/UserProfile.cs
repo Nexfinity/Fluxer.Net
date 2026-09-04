@@ -52,11 +52,11 @@ public class UserProfile : Entity, IUserProfile
         {
             UserId = userId
         };
-        data.Update(client, json);
+        data.Update(json);
         return data;
     }
 
-    internal void Update(FluxerBaseClient client, UserProfileJson json)
+    internal void Update(UserProfileJson json)
     {
         Bio = json.Bio;
         Pronouns = json.Pronouns;

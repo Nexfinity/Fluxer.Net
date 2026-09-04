@@ -71,13 +71,13 @@ public class Guild : PartialGuild, IGuild
     public static Guild Create(FluxerBaseClient client, GuildJson json)
     {
         Guild data = new Guild(client);
-        data.Update(client, json);
+        data.Update(json);
         return data;
     }
 
-    internal virtual void Update(FluxerBaseClient client, GuildJson json)
+    internal virtual void Update(GuildJson json)
     {
-        base.Update(client, json);
+        base.Update(json);
         OwnerId = json.OwnerId;
         VanityUrlCode = json.VanityUrlCode;
         VerificationLevel = json.VerificationLevel;

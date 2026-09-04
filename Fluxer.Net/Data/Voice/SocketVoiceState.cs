@@ -28,15 +28,12 @@ public class SocketVoiceState : VoiceState
     /// <returns></returns>
     public static SocketVoiceState Create(FluxerBaseClient client, VoiceStateJson json, SocketGuild guild, SocketVoiceChannel channel)
     {
-        SocketVoiceState data = new SocketVoiceState(client);
-        data.Update(client, json);
-        data.Guild = guild;
-        data.Channel = channel;
+        SocketVoiceState data = new SocketVoiceState(client)
+        {
+            Guild = guild,
+            Channel = channel
+        };
+        data.Update(json);
         return data;
-    }
-
-    internal override void Update(FluxerBaseClient client, VoiceStateJson json)
-    {
-        base.Update(client, json);
     }
 }

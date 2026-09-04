@@ -29,13 +29,13 @@ public class Invite : PartialInvite, IInvite
     public static Invite Create(FluxerBaseClient client, InviteJson json)
     {
         Invite data = new Invite(client);
-        data.Update(client, json);
+        data.Update(json);
         return data;
     }
 
-    internal void Update(FluxerBaseClient client, InviteJson json)
+    internal void Update(InviteJson json)
     {
-        base.Update(client, json);
+        base.Update(json);
         CreatedAt = json.CreatedAt;
         Uses = json.Uses;
         MaxUses = json.MaxUses;

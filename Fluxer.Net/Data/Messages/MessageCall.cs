@@ -23,11 +23,11 @@ public class MessageCall : Entity, IMessageCall
     public static MessageCall Create(FluxerBaseClient client, MessageCallJson json)
     {
         MessageCall data = new MessageCall(client);
-        data.Update(client, json);
+        data.Update(json);
         return data;
     }
 
-    internal void Update(FluxerBaseClient client, MessageCallJson json)
+    internal void Update(MessageCallJson json)
     {
         Participants = json.Participants;
         EndedAt = json.EndedAt;

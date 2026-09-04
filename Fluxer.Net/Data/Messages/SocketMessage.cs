@@ -6,6 +6,12 @@ public class SocketMessage : Message
 {
     public Channel Channel { get; private set; }
 
+    public SocketGuild? Guild { get; private set; }
+
+    public new SocketUser Author { get; private set; }
+
+    public SocketGuildMember Member { get; private set; }
+
     internal SocketMessage(FluxerBaseClient client) : base(client)
     {
 
@@ -21,9 +27,22 @@ public class SocketMessage : Message
     {
         SocketMessage data = new SocketMessage(client)
         {
-            Channel = (client as FluxerClient).Gateway.GetChannel(json.ChannelId)
+            Channel = (client as FluxerClient).Gateway.GetChannel(json.ChannelId),
+            Author = SocketUser.Create(client, json.Author)
         };
-        data.Update(client, json);
+        if (json.GuildId.HasValue)
+        {
+            data.Guild = (client as FluxerClient).Gateway.GetGuild(json.GuildId.Value);
+            data.Member = data.Guild.GetMember(json.Author.Id);
+            if (data.Member == null)
+            {
+                data.Member = SocketGuildMember.Create(client, json.Member);
+                data.Member.Guild = data.Guild;
+                data.Member.User = data.Author;
+            }
+        }
+
+        data.Update(json);
         return data;
     }
 }

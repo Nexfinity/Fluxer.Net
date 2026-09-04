@@ -26,11 +26,11 @@ public class RtcRegion : Entity, IRtcRegion
     public static RtcRegion Create(FluxerBaseClient client, RtcRegionJson json)
     {
         RtcRegion data = new RtcRegion(client);
-        data.Update(client, json);
+        data.Update(json);
         return data;
     }
 
-    internal void Update(FluxerBaseClient client, RtcRegionJson json)
+    internal void Update(RtcRegionJson json)
     {
         Id = json.Id;
         Name = json.Name;

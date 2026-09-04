@@ -29,11 +29,11 @@ public class ClientStatus : Entity, IClientStatus
             return null;
 
         ClientStatus data = new ClientStatus(client);
-        data.Update(client, json);
+        data.Update(json);
         return data;
     }
 
-    internal void Update(FluxerBaseClient client, ClientStatusJson json)
+    internal void Update(ClientStatusJson json)
     {
         Desktop = json.Desktop;
         Mobile = json.Mobile;

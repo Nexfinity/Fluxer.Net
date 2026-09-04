@@ -23,11 +23,11 @@ public class Login : Entity, ILogin
     public static Login Create(FluxerBaseClient client, LoginJson json)
     {
         Login data = new Login(client);
-        data.Update(client, json);
+        data.Update(json);
         return data;
     }
 
-    internal void Update(FluxerBaseClient client, LoginJson json)
+    internal void Update(LoginJson json)
     {
         Token = json.Token;
         UserId = json.UserId;

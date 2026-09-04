@@ -16,7 +16,7 @@ public class GuildMember : Entity, IGuildMember
     public ulong GuildId { get; private set; }
 
     /// <inheritdoc />
-    public User User { get; private set; }
+    public User User { get; internal set; }
 
     /// <inheritdoc />
     public DateTimeOffset JoinedAt { get; private set; }
@@ -100,14 +100,14 @@ public class GuildMember : Entity, IGuildMember
     public static GuildMember Create(FluxerBaseClient client, GuildMemberJson json)
     {
         GuildMember data = new GuildMember(client);
-        data.Update(client, json);
+        data.Update(json);
         return data;
     }
 
-    internal virtual void Update(FluxerBaseClient client, GuildMemberJson json)
+    internal virtual void Update(GuildMemberJson json)
     {
         GuildId = json.GuildId;
-        User = User.Create(client, json.User);
+        User = User.Create(Client, json.User);
         JoinedAt = json.JoinedAt;
         Nickname = json.Nickname;
         AvatarHash = json.AvatarHash;

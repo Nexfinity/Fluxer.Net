@@ -35,11 +35,11 @@ public class UserConnection : Entity, IUserConnection
     public static UserConnection Create(FluxerBaseClient client, UserConnectionJson json)
     {
         UserConnection data = new UserConnection(client);
-        data.Update(client, json);
+        data.Update(json);
         return data;
     }
 
-    internal void Update(FluxerBaseClient client, UserConnectionJson json)
+    internal void Update(UserConnectionJson json)
     {
         Id = json.Id;
         Type = json.Type;

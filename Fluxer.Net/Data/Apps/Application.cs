@@ -25,14 +25,14 @@ public class Application : PartialApplication, IApplication
     public static Application Create(FluxerBaseClient client, ApplicationJson json)
     {
         Application data = new Application(client);
-        data.Update(client, json);
+        data.Update(json);
         return data;
     }
 
-    internal virtual void Update(FluxerBaseClient client, ApplicationJson json)
+    internal virtual void Update(ApplicationJson json)
     {
-        base.Update(client, json);
+        base.Update(json);
         RedirectUrls = json.RedirectUrls;
-        Bot = User.Create(client, json.Bot);
+        Bot = User.Create(Client, json.Bot);
     }
 }

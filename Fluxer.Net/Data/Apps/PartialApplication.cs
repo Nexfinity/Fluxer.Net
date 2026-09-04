@@ -41,11 +41,11 @@ public class PartialApplication : Entity, IPartialApplication
     public static PartialApplication Create(FluxerBaseClient client, PartialApplicationJson json)
     {
         PartialApplication data = new PartialApplication(client);
-        data.Update(client, json);
+        data.Update(json);
         return data;
     }
 
-    internal void Update(FluxerBaseClient client, PartialApplicationJson json)
+    internal void Update(PartialApplicationJson json)
     {
         Id = json.Id;
         Name = json.Name;

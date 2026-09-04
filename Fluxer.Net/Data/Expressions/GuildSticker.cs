@@ -43,16 +43,16 @@ public class GuildSticker : Sticker, IGuildSticker
         {
             GuildId = guildId
         };
-        data.Update(client, json);
+        data.Update(json);
         return data;
     }
 
-    internal void Update(FluxerBaseClient client, GuildStickerJson json)
+    internal void Update(GuildStickerJson json)
     {
-        base.Update(client, json);
+        base.Update(json);
         Description = json.Description;
         Tags = json.Tags;
         if (json.Creator != null)
-            Creator = User.Create(client, json.Creator);
+            Creator = User.Create(Client, json.Creator);
     }
 }

@@ -41,11 +41,11 @@ public class AuthSession : Entity, IAuthSession
     public static AuthSession Create(FluxerBaseClient client, AuthSessionJson json)
     {
         AuthSession data = new AuthSession(client);
-        data.Update(client, json);
+        data.Update(json);
         return data;
     }
 
-    internal void Update(FluxerBaseClient client, AuthSessionJson json)
+    internal void Update(AuthSessionJson json)
     {
         SessionIdHash = json.SessionIdHash;
         CreatedAt = json.CreatedAt;

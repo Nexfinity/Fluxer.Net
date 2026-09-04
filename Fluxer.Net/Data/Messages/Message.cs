@@ -101,15 +101,15 @@ public class Message : Entity, IMessage
     public static Message Create(FluxerBaseClient client, MessageJson json)
     {
         Message data = new Message(client);
-        data.Update(client, json);
+        data.Update(json);
         return data;
     }
 
-    internal void Update(FluxerBaseClient client, MessageJson json)
+    internal void Update(MessageJson json)
     {
         Id = json.Id;
         ChannelId = json.ChannelId;
-        Author = User.Create(client, json.Author);
+        Author = User.Create(Client, json.Author);
         WebhookId = json.WebhookId;
         Type = json.Type;
         Flags = json.Flags;
@@ -120,30 +120,30 @@ public class Message : Entity, IMessage
         MentionEveryone = json.MentionEveryone;
         IsTTS = json.IsTTS;
         if (json.Mentions != null)
-            Mentions = json.Mentions.Select(x => User.Create(client, x));
+            Mentions = json.Mentions.Select(x => User.Create(Client, x));
 
         MentionRoles = json.MentionRoles;
         if (json.Embeds != null)
-            Embeds = json.Embeds.Select(x => Embed.Create(client, x));
+            Embeds = json.Embeds.Select(x => Embed.Create(Client, x));
 
         if (json.Attachments != null)
-            Attachments = json.Attachments.Select(x => Attachment.Create(client, x, ChannelId)).ToArray();
+            Attachments = json.Attachments.Select(x => Attachment.Create(Client, x, ChannelId)).ToArray();
 
         if (json.Stickers != null)
-            Stickers = json.Stickers.Select(x => Sticker.Create(client, x)).ToArray();
+            Stickers = json.Stickers.Select(x => Sticker.Create(Client, x)).ToArray();
 
         if (json.Reactions != null)
-            Reactions = json.Reactions.Select(x => MessageReaction.Create(client, x)).ToArray();
+            Reactions = json.Reactions.Select(x => MessageReaction.Create(Client, x)).ToArray();
 
         if (json.MessageReference != null)
-            MessageReference = MessageReference.Create(client, json.MessageReference);
+            MessageReference = MessageReference.Create(Client, json.MessageReference);
 
         if (json.MessageSnapshots != null)
-            MessageSnapshots = json.MessageSnapshots.Select(x => MessageSnapshot.Create(client, x, ChannelId)).ToArray();
+            MessageSnapshots = json.MessageSnapshots.Select(x => MessageSnapshot.Create(Client, x, ChannelId)).ToArray();
 
         Nonce = json.Nonce;
 
         if (json.Call != null)
-            Call = MessageCall.Create(client, json.Call);
+            Call = MessageCall.Create(Client, json.Call);
     }
 }

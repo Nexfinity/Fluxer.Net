@@ -92,11 +92,11 @@ public class CurrentUser : User, ICurrentUser, IUserProfile
     public static CurrentUser Create(FluxerBaseClient client, CurrentUserJson json)
     {
         CurrentUser data = new CurrentUser(client);
-        data.Update(client, json);
+        data.Update(json);
         return data;
     }
 
-    internal void Update(FluxerBaseClient client, CurrentUserJson json)
+    internal void Update(CurrentUserJson json)
     {
         base.Update(json);
         IsStaff = json.IsStaff;
