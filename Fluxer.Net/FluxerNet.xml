@@ -257,9 +257,9 @@
             <param name="command">The command being executed.</param>
             <param name="services">The service collection used for dependency injection.</param>
         </member>
-        <member name="F:Fluxer.Net.Commands.RequireBotPermissionAttribute.Server">
+        <member name="F:Fluxer.Net.Commands.RequireBotPermissionAttribute.Guild">
             <summary>
-            Server permission to check for.
+            Guild permission to check for.
             </summary>
         </member>
         <member name="F:Fluxer.Net.Commands.RequireBotPermissionAttribute.Channel">
@@ -285,6 +285,12 @@
             <inheritdoc />
         </member>
         <member name="M:Fluxer.Net.Commands.RequireGroupOwnerAttribute.CheckPermissionsAsync(Fluxer.Net.Commands.ICommandContext,Fluxer.Net.Commands.CommandInfo,System.IServiceProvider)">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.Commands.RequireGuildAttribute.CheckPermissionsAsync(Fluxer.Net.Commands.ICommandContext,Fluxer.Net.Commands.CommandInfo,System.IServiceProvider)">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.Commands.RequireGuildOwnerAttribute.CheckPermissionsAsync(Fluxer.Net.Commands.ICommandContext,Fluxer.Net.Commands.CommandInfo,System.IServiceProvider)">
             <inheritdoc />
         </member>
         <member name="M:Fluxer.Net.Commands.RequireNsfwAttribute.CheckPermissionsAsync(Fluxer.Net.Commands.ICommandContext,Fluxer.Net.Commands.CommandInfo,System.IServiceProvider)">
@@ -319,15 +325,9 @@
         <member name="M:Fluxer.Net.Commands.RequireOwnerAttribute.CheckPermissionsAsync(Fluxer.Net.Commands.ICommandContext,Fluxer.Net.Commands.CommandInfo,System.IServiceProvider)">
             <inheritdoc />
         </member>
-        <member name="M:Fluxer.Net.Commands.RequireServerAttribute.CheckPermissionsAsync(Fluxer.Net.Commands.ICommandContext,Fluxer.Net.Commands.CommandInfo,System.IServiceProvider)">
-            <inheritdoc />
-        </member>
-        <member name="M:Fluxer.Net.Commands.RequireServerOwnerAttribute.CheckPermissionsAsync(Fluxer.Net.Commands.ICommandContext,Fluxer.Net.Commands.CommandInfo,System.IServiceProvider)">
-            <inheritdoc />
-        </member>
-        <member name="F:Fluxer.Net.Commands.RequireUserPermissionAttribute.Server">
+        <member name="F:Fluxer.Net.Commands.RequireUserPermissionAttribute.Guild">
             <summary>
-            Server/group permission to check for.
+            Guild/Group permission to check for.
             </summary>
         </member>
         <member name="F:Fluxer.Net.Commands.RequireUserPermissionAttribute.Channel">
@@ -13171,7 +13171,7 @@
         </member>
         <member name="F:Fluxer.Net.Rest.ApiLimits.MaxGuildMembersLarge">
             <summary>
-            How many more users can join a guild with <see cref="P:Fluxer.Net.GuildFeatures.IsLargeServer"/>.
+            How many more users can join a guild with <see cref="P:Fluxer.Net.GuildFeatures.IsLargeGuild"/>.
             </summary>
         </member>
         <member name="F:Fluxer.Net.Rest.ApiLimits.MaxInviteUses">

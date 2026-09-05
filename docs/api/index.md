@@ -48,7 +48,7 @@ Here is some common ones.
 * @Fluxer.Net.FluxerOAuthUser
 * @Fluxer.Net.FluxerOAuthToken
 
-## Servers
+## Guilds
 * @Fluxer.Net.Guild
 * @Fluxer.Net.GuildMember
 * @Fluxer.Net.Role
