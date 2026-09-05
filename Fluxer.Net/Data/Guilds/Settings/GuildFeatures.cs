@@ -26,7 +26,7 @@ public class GuildFeatures
     public bool IsOperator { get; private set; }
     public bool BlockUnclaimedAccounts { get; private set; }
     public bool HasLargeGuildOverride { get; private set; }
-    public bool IsLargeServer { get; private set; }
+    public bool IsLargeGuild { get; private set; }
 
     internal GuildFeatures()
     {
@@ -116,7 +116,7 @@ public class GuildFeatures
                         data.HasLargeGuildOverride = true;
                         break;
                     case "VERY_LARGE_GUILD":
-                        data.IsLargeServer = true;
+                        data.IsLargeGuild = true;
                         break;
                 }
             }
@@ -125,7 +125,7 @@ public class GuildFeatures
         return data;
     }
 
-    public static GuildFeatures FromServer(PartialGuildJson guild)
+    public static GuildFeatures FromGuild(PartialGuildJson guild)
     {
         return GuildFeatures.Create(guild.Features);
     }

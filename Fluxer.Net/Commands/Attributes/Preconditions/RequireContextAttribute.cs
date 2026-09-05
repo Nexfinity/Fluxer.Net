@@ -18,7 +18,7 @@ public class RequireContextAttribute : PreconditionAttribute
     {
         bool isValid = false;
 
-        if ((Contexts & ContextType.Server) != 0)
+        if ((Contexts & ContextType.Community) != 0)
             isValid = context.Channel.GuildId.HasValue;
         if ((Contexts & ContextType.DM) != 0)
             isValid = isValid || context.Channel.Type == ChannelType.Dm;
@@ -37,5 +37,5 @@ public enum ContextType
 {
     DM = 0x01,
     Group = 0x02,
-    Server = 0x03
+    Community = 0x03
 }
