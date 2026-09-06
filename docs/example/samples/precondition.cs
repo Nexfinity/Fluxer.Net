@@ -1,5 +1,5 @@
 [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false, Inherited = true)]
-public class RequireServerAttribute : PreconditionAttribute
+public class RequireGuildAttribute : PreconditionAttribute
 {
     /// <inheritdoc />
     public override async Task<PreconditionResult> CheckPermissionsAsync(ICommandContext context, CommandInfo command, IServiceProvider services)

@@ -4,9 +4,9 @@
 public class RequireBotPermissionAttribute : PreconditionAttribute
 {
     /// <summary>
-    /// Server permission to check for.
+    /// Guild permission to check for.
     /// </summary>
-    private readonly GuildPermission? Server;
+    private readonly GuildPermission? Guild;
 
     /// <summary>
     /// Channel permission to check for.
@@ -15,7 +15,7 @@ public class RequireBotPermissionAttribute : PreconditionAttribute
 
     public RequireBotPermissionAttribute(GuildPermission perm)
     {
-        Server = perm;
+        Guild = perm;
     }
 
     public RequireBotPermissionAttribute(ChannelPermission perm)
@@ -31,12 +31,12 @@ public class RequireBotPermissionAttribute : PreconditionAttribute
 
         SocketGuildMember? member = guild.CurrentMember as SocketGuildMember;
 
-        if (Server.HasValue)
+        if (Guild.HasValue)
         {
-            if (member != null && member.HasPermission(Server.Value))
+            if (member != null && member.HasPermission(Guild.Value))
                 return PreconditionResult.FromSuccess();
 
-            return PreconditionResult.FromError($"Bot needs community permission for **{Server.Value.ToString()}** to use this command.");
+            return PreconditionResult.FromError($"Bot needs community permission for **{Guild.Value.ToString()}** to use this command.");
         }
 
         if (Channel == null)

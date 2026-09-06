@@ -83,7 +83,7 @@ public class PartialGuild : Entity, IPartialGuild
         InviteSplashWidth = json.InviteSplashWidth;
         InviteSplashHeight = json.InviteSplashHeight;
         SplashCardAligment = json.SplashCardAligment;
-        Features = GuildFeatures.FromServer(json);
+        Features = GuildFeatures.FromGuild(json);
     }
 
     /// <inheritdoc />
