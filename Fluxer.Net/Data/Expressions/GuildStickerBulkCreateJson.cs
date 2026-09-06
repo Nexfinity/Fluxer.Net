@@ -13,11 +13,9 @@ public class GuildStickerBulkCreateJson
 
 public class GuildStickerBulkCreateFailureItemJson
 {
-    [JsonRequired]
     [JsonProperty("name")]
     public string Name { get; set; }
 
-    [JsonRequired]
     [JsonProperty("error")]
     public string Error { get; set; }
 }

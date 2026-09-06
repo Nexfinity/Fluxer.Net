@@ -7,14 +7,12 @@ public class MessageReferenceRequest
     /// <summary>
     /// ID of the message being referenced
     /// </summary>
-    [JsonRequired]
     [JsonProperty("message_id")]
     public ulong MessageId { get; set; }
 
     /// <summary>
     /// ID of the channel containing the referenced message
     /// </summary>
-    [JsonRequired]
     [JsonProperty("channel_id")]
     public ulong ChannelId { get; set; }
 
@@ -27,7 +25,6 @@ public class MessageReferenceRequest
     /// <summary>
     /// Type of reference
     /// </summary>
-    [JsonRequired]
     [JsonProperty("type")]
     public MessageReferenceType Type { get; set; }
 }

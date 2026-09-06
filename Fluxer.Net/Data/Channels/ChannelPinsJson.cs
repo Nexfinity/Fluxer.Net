@@ -6,7 +6,6 @@ namespace Fluxer.Net;
 public class ChannelPinsJson : IChannelPins
 {
     /// <inheritdoc />
-    [JsonRequired]
     [JsonProperty("items")]
     public ChannelPinJson[] Items { get; set; }
 

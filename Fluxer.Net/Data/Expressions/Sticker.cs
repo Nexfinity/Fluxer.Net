@@ -18,19 +18,6 @@ public class Sticker : Entity, ISticker
     /// <inheritdoc />
     public bool AllowCloning { get; private set; }
 
-    /// <inheritdoc/>
-    public override bool Equals(object obj)
-    {
-        if (obj is Emoji emoji)
-        {
-            return Id == emoji.Id &&
-                Name == emoji.Name &&
-                AllowCloning == emoji.AllowCloning;
-        }
-
-        return base.Equals(obj);
-    }
-
     internal Sticker(FluxerBaseClient client) : base(client)
     {
 

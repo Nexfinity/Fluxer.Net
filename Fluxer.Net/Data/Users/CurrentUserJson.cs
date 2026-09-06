@@ -3,7 +3,7 @@
 namespace Fluxer.Net;
 
 /// <inheritdoc />
-public class CurrentUserJson : UserJson, IUserProfile
+public class CurrentUserJson : UserJson, ICurrentUser, IUserProfile
 {
     /// <inheritdoc />
     [JsonProperty("is_staff")]
@@ -24,6 +24,10 @@ public class CurrentUserJson : UserJson, IUserProfile
     /// <inheritdoc />
     [JsonProperty("phone")]
     public string? Phone { get; set; }
+
+    /// <inheritdoc />
+    [JsonProperty("has_verified_phone")]
+    public bool IsPhoneVerified { get; set; }
 
     /// <inheritdoc />
     [JsonProperty("bio")]
@@ -91,7 +95,7 @@ public class CurrentUserJson : UserJson, IUserProfile
 
     /// <inheritdoc />
     [JsonProperty("authenticator_types")]
-    public HashSet<int>? AuthenticatorTypes { get; set; }
+    public HashSet<AuthenticatorType>? AuthenticatorTypes { get; set; }
 
     /// <inheritdoc />
     public string? GetBannerUrl(int size = 600)

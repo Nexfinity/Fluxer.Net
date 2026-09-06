@@ -18,17 +18,11 @@ public class Emoji : Entity, IEmoji
     /// <inheritdoc />
     public bool AllowCloning { get; private set; }
 
-    /// <inheritdoc/>
-    public override bool Equals(object obj)
+    internal string ToRequest()
     {
-        if (obj is Emoji emoji)
-        {
-            return Id == emoji.Id &&
-                Name == emoji.Name &&
-                AllowCloning == emoji.AllowCloning;
-        }
-
-        return base.Equals(obj);
+        if (Id == 0)
+            return Name;
+        return $"{Name}:{Id}";
     }
 
     internal Emoji(FluxerBaseClient client) : base(client)
