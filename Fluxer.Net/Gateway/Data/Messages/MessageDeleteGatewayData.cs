@@ -10,6 +10,9 @@ public class MessageDeleteGatewayData
     [JsonProperty("author_id")]
     public ulong? AuthorId { get; set; }
 
+    [JsonProperty("content")]
+    public string? Content { get; set; }
+
     [JsonProperty("guild_id")]
     public ulong? GuildId { get; set; }
 

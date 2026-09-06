@@ -1,8 +1,8 @@
 ﻿namespace Fluxer.Net;
 
-public class SocketUnknownChannel : Channel
+public class SocketChannel : Channel
 {
-    internal SocketUnknownChannel(FluxerBaseClient client) : base(client)
+    internal SocketChannel(FluxerBaseClient client) : base(client)
     {
 
     }
@@ -12,9 +12,9 @@ public class SocketUnknownChannel : Channel
     /// </summary>
     /// <param name="client"></param>
     /// <param name="json"></param>
-    /// <param name="guildId"></param>
+    /// <param name="guild"></param>
     /// <returns></returns>
-    public static Channel Create(FluxerBaseClient client, ChannelJson json, ulong guildId)
+    public static Channel Create(FluxerBaseClient client, ChannelJson json, SocketGuild? guild)
     {
         Channel data = null;
 
@@ -22,12 +22,18 @@ public class SocketUnknownChannel : Channel
         {
             case ChannelType.GuildText:
                 {
-                    data = new SocketTextChannel(client);
+                    data = new SocketTextChannel(client)
+                    {
+                        Guild = guild
+                    };
                 }
                 break;
             case ChannelType.GuildVoice:
                 {
-                    data = new SocketVoiceChannel(client);
+                    data = new SocketVoiceChannel(client)
+                    {
+                        Guild = guild
+                    };
                 }
                 break;
             case ChannelType.DM:
@@ -47,24 +53,33 @@ public class SocketUnknownChannel : Channel
                 break;
             case ChannelType.GuildCategory:
                 {
-                    data = new SocketCategoryChannel(client);
+                    data = new SocketCategoryChannel(client)
+                    {
+                        Guild = guild
+                    };
                 }
                 break;
             case ChannelType.GuildLink:
                 {
-                    data = new SocketLinkChannel(client);
+                    data = new SocketLinkChannel(client)
+                    {
+                        Guild = guild
+                    };
                 }
                 break;
             default:
                 {
                     if (data.GuildId.HasValue)
-                        data = new SocketUnknownGuildChannel(client);
+                        data = new SocketGuildChannel(client)
+                        {
+                            Guild = guild
+                        };
                     else
-                        data = new SocketUnknownChannel(client);
+                        data = new SocketChannel(client);
                 }
                 break;
         }
-        data.GuildId = guildId;
+        data.GuildId = guild?.Id;
         data.Update(json);
         return data;
     }

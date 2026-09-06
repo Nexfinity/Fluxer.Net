@@ -25,7 +25,6 @@ public class SocketGuild : Guild
     public ConcurrentDictionary<ulong, SocketGuildMember> Members { get; private set; } = new ConcurrentDictionary<ulong, SocketGuildMember>();
     public ConcurrentDictionary<ulong, Channel> Channels { get; private set; } = new ConcurrentDictionary<ulong, Channel>();
     public ConcurrentDictionary<ulong, SocketRole> Roles { get; private set; } = new ConcurrentDictionary<ulong, SocketRole>();
-
     public ConcurrentDictionary<ulong, GuildEmoji> Emojis { get; private set; }
     public ConcurrentDictionary<ulong, GuildSticker> Stickers { get; private set; }
 
