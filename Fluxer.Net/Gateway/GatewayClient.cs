@@ -691,9 +691,7 @@ public partial class FluxerGatewayClient : IDisposable
                     if (data != null)
                     {
                         if (Channels.TryGetValue(data.ChannelId, out Channel channel))
-                        {
-                            MessageDeleted?.Invoke(channel, data.MessageId);
-                        }
+                            MessageDeleted?.Invoke(channel, data.AuthorId, data.MessageId, data.Content);
                     }
                     else
                         _logger.Warning("MESSAGE_DELETE event received but data could not be cast to EntityRemovedGatewayData");
@@ -706,13 +704,14 @@ public partial class FluxerGatewayClient : IDisposable
                     ChannelGatewayData? data = p.Data.ToObject<ChannelGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
                     {
-                        Channel channel = SocketUnknownChannel.Create(_client, data, data.GuildId.Value);
+                        SocketGuild? guild = data.GuildId.HasValue ? GetGuild(data.GuildId.Value) : null;
+                        Channel channel = SocketChannel.Create(_client, data, guild);
                         if (!Channels.TryAdd(channel.Id, channel))
                         {
                             channel = Channels[channel.Id];
                             channel.Update(data);
                         }
-                        if (channel.GuildId.HasValue && Guilds.TryGetValue(channel.GuildId.Value, out SocketGuild guild))
+                        if (guild != null)
                             guild.Channels.TryAdd(channel.Id, channel);
 
                         ChannelCreated?.Invoke(channel);
@@ -730,7 +729,7 @@ public partial class FluxerGatewayClient : IDisposable
                             channel.Update(data);
                         else
                         {
-                            channel = SocketUnknownChannel.Create(_client, data);
+                            channel = SocketChannel.Create(_client, data);
                             Channels.TryAdd(data.Id, channel);
                             if (channel.GuildId.HasValue && Guilds.TryGetValue(channel.GuildId.Value, out SocketGuild guild))
                                 guild.Channels.TryAdd(data.Id, channel);
@@ -748,7 +747,7 @@ public partial class FluxerGatewayClient : IDisposable
                     if (data != null)
                     {
                         Channels.TryRemove(data.Id, out Channel channel);
-                        ChannelDeleted?.Invoke(channel ?? SocketUnknownChannel.Create(_client, data));
+                        ChannelDeleted?.Invoke(channel ?? SocketChannel.Create(_client, data));
                     }
                     else
                         _logger.Warning("CHANNEL_DELETE event received but data could not be cast to ChannelGatewayData");
@@ -778,7 +777,9 @@ public partial class FluxerGatewayClient : IDisposable
                 {
                     MessageReactionGatewayData? data = p.Data.ToObject<MessageReactionGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
+                    {
                         MessageReactionAdded?.Invoke(data);
+                    }
                     else
                         _logger.Warning("MESSAGE_REACTION_ADD event received but data could not be cast to MessageReactionGatewayData");
                 }
@@ -1051,7 +1052,7 @@ public partial class FluxerGatewayClient : IDisposable
                             // Add or update channels
                             foreach (ChannelGatewayData c in data.Channels)
                             {
-                                Channel channel = SocketUnknownChannel.Create(_client, c, data.Id);
+                                Channel channel = SocketChannel.Create(_client, c, guild);
                                 if (!Channels.TryAdd(c.Id, channel))
                                 {
                                     channel = Channels[c.Id];
@@ -2094,7 +2095,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Delegate for MESSAGE_DELETE events when a message is deleted.
     /// </summary>
-    public delegate void MessageDeletedEvent(Channel channel, ulong messageId);
+    public delegate void MessageDeletedEvent(Channel channel, ulong? userId, ulong messageId, string? content);
 
     /// <summary>
     /// Occurs when a message is deleted.

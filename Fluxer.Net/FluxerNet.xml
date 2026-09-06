@@ -2427,13 +2427,13 @@
         <member name="P:Fluxer.Net.PermissionOverwriteJson.Deny">
             <inheritdoc />
         </member>
-        <member name="M:Fluxer.Net.SocketUnknownChannel.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.ChannelJson,System.UInt64)">
+        <member name="M:Fluxer.Net.SocketChannel.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.ChannelJson,Fluxer.Net.SocketGuild)">
             <summary>
             Create a SocketChannel object from json.
             </summary>
             <param name="client"></param>
             <param name="json"></param>
-            <param name="guildId"></param>
+            <param name="guild"></param>
             <returns></returns>
         </member>
         <member name="T:Fluxer.Net.SystemChannelFlags">
