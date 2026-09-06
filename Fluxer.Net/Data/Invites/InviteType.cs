@@ -13,5 +13,5 @@ public enum InviteType
     /// <summary>
     /// An invite to join a group DM.
     /// </summary>
-    GroupDm = 1,
+    Group = 1,
 }

@@ -6,7 +6,7 @@ public class RequireDMAttribute : PreconditionAttribute
     /// <inheritdoc />
     public override async Task<PreconditionResult> CheckPermissionsAsync(ICommandContext context, CommandInfo command, IServiceProvider services)
     {
-        if (context.Channel.Type != ChannelType.Dm)
+        if (context.Channel.Type != ChannelType.DM)
             return PreconditionResult.FromError("You need to run this command in a DM/Private channel.");
 
         return PreconditionResult.FromSuccess();

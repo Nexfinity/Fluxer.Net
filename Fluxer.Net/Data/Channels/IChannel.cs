@@ -1,21 +1,11 @@
 ﻿namespace Fluxer.Net;
 
-public interface IChannel : ISnowflake, IMentionable
+public interface IChannel : IPartialChannel
 {
     /// <summary>
     /// The unique identifier (snowflake) for guild of this channel.
     /// </summary>
     ulong? GuildId { get; }
-
-    /// <summary>
-    /// The type of the channel.
-    /// </summary>
-    ChannelType Type { get; }
-
-    /// <summary>
-    /// The name of the channel.
-    /// </summary>
-    string? Name { get; }
 
     /// <summary>
     /// The topic of the channel.
@@ -96,11 +86,6 @@ public interface IChannel : ISnowflake, IMentionable
     /// Custom nicknames for users in this channel (for group DMs)
     /// </summary>
     Dictionary<string, string>? Nicknames { get; }
-
-    /// <summary>
-    /// Can you send messages in this channel.
-    /// </summary>
-    bool IsTextable { get; }
 
     bool IsSoftDeleted { get; }
 

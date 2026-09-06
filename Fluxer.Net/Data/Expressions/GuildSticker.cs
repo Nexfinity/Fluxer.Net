@@ -25,6 +25,19 @@ public class GuildSticker : Sticker, IGuildSticker
 
     IUser? IGuildSticker.Creator => Creator;
 
+    /// <inheritdoc/>
+    internal bool Compare(GuildStickerJson json)
+    {
+        return Id == json.Id &&
+                Name == json.Name &&
+                Description == json.Description &&
+                (Tags == null && json.Tags == null ||
+                (Tags.Count == json.Tags.Count && Tags.All(x => json.Tags.Contains(x)))) &&
+                AllowCloning == json.AllowCloning;
+    }
+
+    internal GuildSticker Clone() => MemberwiseClone() as GuildSticker;
+
     internal GuildSticker(FluxerBaseClient client) : base(client)
     {
 

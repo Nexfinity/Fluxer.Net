@@ -1,4 +1,6 @@
-﻿using System.Collections.Concurrent;
+﻿using Fluxer.Net.Gateway;
+using System.Collections.Concurrent;
+using System.Collections.Immutable;
 
 namespace Fluxer.Net;
 
@@ -18,9 +20,14 @@ public class SocketGuild : Guild
 
     public bool HasAllMembers { get; internal set; }
 
+    public bool IsAvailable { get; internal set; }
+
     public ConcurrentDictionary<ulong, SocketGuildMember> Members { get; private set; } = new ConcurrentDictionary<ulong, SocketGuildMember>();
     public ConcurrentDictionary<ulong, Channel> Channels { get; private set; } = new ConcurrentDictionary<ulong, Channel>();
     public ConcurrentDictionary<ulong, SocketRole> Roles { get; private set; } = new ConcurrentDictionary<ulong, SocketRole>();
+
+    public ConcurrentDictionary<ulong, GuildEmoji> Emojis { get; private set; }
+    public ConcurrentDictionary<ulong, GuildSticker> Stickers { get; private set; }
 
     public SocketGuildMember? GetMember(ulong userId)
     {
@@ -42,6 +49,8 @@ public class SocketGuild : Guild
     /// </summary>
     public GuildPermissions Permissions { get; internal set; }
 
+    internal SocketGuild Clone() => MemberwiseClone() as SocketGuild;
+
     internal SocketGuild(FluxerBaseClient client) : base(client)
     {
 
@@ -52,21 +61,32 @@ public class SocketGuild : Guild
     /// </summary>
     /// <param name="client"></param>
     /// <param name="json"></param>
-    /// <param name="member"></param>
+    /// <param name="currentMember"></param>
     /// <returns></returns>
-    public static SocketGuild Create(FluxerBaseClient client, GuildJson json, SocketGuildMember currentMember)
+    public static SocketGuild Create(FluxerBaseClient client, GuildGatewayData json, SocketGuildMember currentMember)
     {
         SocketGuild data = new SocketGuild(client)
         {
-            CurrentMember = currentMember
+            CurrentMember = currentMember,
+            IsAvailable = true
         };
+        if (json.Emojis != null)
+            data.Emojis = new ConcurrentDictionary<ulong, GuildEmoji>(json.Emojis.ToDictionary(x => x.Id, x => GuildEmoji.Create(client, x, data.Id)));
+        else
+            data.Emojis = new ConcurrentDictionary<ulong, GuildEmoji>();
+
+        if (json.Stickers != null)
+            data.Stickers = new ConcurrentDictionary<ulong, GuildSticker>(json.Stickers.ToDictionary(x => x.Id, x => GuildSticker.Create(client, x, data.Id)));
+        else
+            data.Stickers = new ConcurrentDictionary<ulong, GuildSticker>();
+
         data.Members.TryAdd(currentMember.Id, currentMember);
         data.CurrentMember.Guild = data;
 
         // Null count data on socket guild.
         data.OnlineCount = null;
         data.MemberCount = null;
-        data.Update(json);
+        data.Update(json.Properties);
         return data;
     }
 
@@ -77,7 +97,7 @@ public class SocketGuild : Guild
 
     internal SocketGuildMember AddOrUpdateMember(GuildMemberJson json)
     {
-        if (Members.TryGetValue(json.Id, out var member))
+        if (Members.TryGetValue(json.Id, out SocketGuildMember member))
         {
             member.Update(json);
             return member;

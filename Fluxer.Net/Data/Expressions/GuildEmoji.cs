@@ -19,6 +19,16 @@ public class GuildEmoji : Emoji, IGuildEmoji
 
     IUser? IGuildEmoji.Creator => Creator;
 
+    /// <inheritdoc/>
+    internal bool Compare(GuildEmojiJson json)
+    {
+        return Id == json.Id &&
+                Name == json.Name &&
+                AllowCloning == json.AllowCloning;
+    }
+
+    internal GuildEmoji Clone() => MemberwiseClone() as GuildEmoji;
+
     internal GuildEmoji(FluxerBaseClient client) : base(client)
     {
 

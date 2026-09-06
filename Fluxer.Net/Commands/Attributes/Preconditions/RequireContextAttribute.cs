@@ -21,7 +21,7 @@ public class RequireContextAttribute : PreconditionAttribute
         if ((Contexts & ContextType.Community) != 0)
             isValid = context.Channel.GuildId.HasValue;
         if ((Contexts & ContextType.DM) != 0)
-            isValid = isValid || context.Channel.Type == ChannelType.Dm;
+            isValid = isValid || context.Channel.Type == ChannelType.DM;
         if ((Contexts & ContextType.Group) != 0)
             isValid = isValid || context.Channel.Type == ChannelType.Group;
 

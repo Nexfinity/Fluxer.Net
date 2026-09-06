@@ -15,6 +15,8 @@ public class SocketRole : Role
         return false;
     }
 
+    internal SocketRole Clone() => MemberwiseClone() as SocketRole;
+
     internal SocketRole(FluxerBaseClient client) : base(client)
     {
 

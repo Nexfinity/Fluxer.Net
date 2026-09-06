@@ -7,16 +7,16 @@ public class PartialInvite : Entity, IPartialInvite
     public string Code { get; private set; }
 
     /// <inheritdoc />
-    public int Type { get; private set; }
+    public InviteType Type { get; private set; }
 
     /// <inheritdoc />
     public PartialGuild? Guild { get; private set; }
 
     /// <inheritdoc />
-    public InviteChannelJson? Channel { get; private set; }
+    public PartialChannel? Channel { get; private set; }
 
     /// <inheritdoc />
-    public InviteUserJson Inviter { get; private set; }
+    public User Inviter { get; private set; }
 
     /// <inheritdoc />
     public int MemberCount { get; private set; }
@@ -28,9 +28,13 @@ public class PartialInvite : Entity, IPartialInvite
     public DateTimeOffset? ExpiresAt { get; private set; }
 
     /// <inheritdoc />
-    public bool Temporary { get; private set; }
+    public bool IsTemporary { get; private set; }
 
     IPartialGuild? IPartialInvite.Guild => Guild;
+
+    IPartialChannel? IPartialInvite.Channel => Channel;
+
+    IUser IPartialInvite.Inviter => Inviter;
 
     internal PartialInvite(FluxerBaseClient client) : base(client)
     {
@@ -57,11 +61,11 @@ public class PartialInvite : Entity, IPartialInvite
         if (json.Guild != null)
             Guild = PartialGuild.Create(Client, json.Guild);
 
-        Channel = json.Channel;
-        Inviter = json.Inviter;
+        Channel = PartialChannel.Create(Client, json.Channel);
+        Inviter = User.Create(Client, json.Inviter);
         MemberCount = json.MemberCount;
         PresenceCount = json.PresenceCount;
         ExpiresAt = json.ExpiresAt;
-        Temporary = json.Temporary;
+        IsTemporary = json.IsTemporary;
     }
 }
