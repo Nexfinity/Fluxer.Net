@@ -2076,6 +2076,50 @@
         <member name="P:Fluxer.Net.ChannelPinsJson.HasMore">
             <inheritdoc />
         </member>
+        <member name="T:Fluxer.Net.GuildChannelType">
+            <summary>
+            Channel types for a guild.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildChannelType.GuildText">
+            <inheritdoc cref="F:Fluxer.Net.ChannelType.GuildText"/>
+        </member>
+        <member name="F:Fluxer.Net.GuildChannelType.GuildVoice">
+            <inheritdoc cref="F:Fluxer.Net.ChannelType.GuildVoice"/>
+        </member>
+        <member name="F:Fluxer.Net.GuildChannelType.GuildCategory">
+            <inheritdoc cref="F:Fluxer.Net.ChannelType.GuildCategory"/>
+        </member>
+        <member name="F:Fluxer.Net.GuildChannelType.GuildNews">
+            <inheritdoc cref="F:Fluxer.Net.ChannelType.GuildNews"/>
+        </member>
+        <member name="F:Fluxer.Net.GuildChannelType.GuildStore">
+            <inheritdoc cref="F:Fluxer.Net.ChannelType.GuildStore"/>
+        </member>
+        <member name="F:Fluxer.Net.GuildChannelType.NewsThread">
+            <inheritdoc cref="F:Fluxer.Net.ChannelType.NewsThread"/>
+        </member>
+        <member name="F:Fluxer.Net.GuildChannelType.PublicThread">
+            <inheritdoc cref="F:Fluxer.Net.ChannelType.PublicThread"/>
+        </member>
+        <member name="F:Fluxer.Net.GuildChannelType.PrivateThread">
+            <inheritdoc cref="F:Fluxer.Net.ChannelType.PrivateThread"/>
+        </member>
+        <member name="F:Fluxer.Net.GuildChannelType.GuildStageVoice">
+            <inheritdoc cref="F:Fluxer.Net.ChannelType.GuildStageVoice"/>
+        </member>
+        <member name="F:Fluxer.Net.GuildChannelType.GuildDirectory">
+            <inheritdoc cref="F:Fluxer.Net.ChannelType.GuildDirectory"/>
+        </member>
+        <member name="F:Fluxer.Net.GuildChannelType.GuildForum">
+            <inheritdoc cref="F:Fluxer.Net.ChannelType.GuildForum"/>
+        </member>
+        <member name="F:Fluxer.Net.GuildChannelType.GuildMedia">
+            <inheritdoc cref="F:Fluxer.Net.ChannelType.GuildMedia"/>
+        </member>
+        <member name="F:Fluxer.Net.GuildChannelType.GuildLink">
+            <inheritdoc cref="F:Fluxer.Net.ChannelType.GuildLink"/>
+        </member>
         <member name="T:Fluxer.Net.ChannelType">
             <summary>
             Represents the different types of channels available in Fluxer.
@@ -3273,9 +3317,6 @@
         <member name="P:Fluxer.Net.Emoji.AllowCloning">
             <inheritdoc />
         </member>
-        <member name="M:Fluxer.Net.Emoji.Equals(System.Object)">
-            <inheritdoc/>
-        </member>
         <member name="M:Fluxer.Net.Emoji.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.EmojiJson)">
             <summary>
             Create a Emoji object from json.
@@ -3461,9 +3502,6 @@
         </member>
         <member name="P:Fluxer.Net.Sticker.AllowCloning">
             <inheritdoc />
-        </member>
-        <member name="M:Fluxer.Net.Sticker.Equals(System.Object)">
-            <inheritdoc/>
         </member>
         <member name="M:Fluxer.Net.Sticker.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.StickerJson)">
             <summary>
@@ -7847,6 +7885,21 @@
         <member name="P:Fluxer.Net.ActivityTimestampsJson.End">
             <inheritdoc />
         </member>
+        <member name="T:Fluxer.Net.AuthenticatorType">
+            <summary>
+            2FA methods used
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.AuthenticatorType.TOTP">
+            <summary>
+            Time based one-time code.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.AuthenticatorType.WebAuthN">
+            <summary>
+            Hardward based passkeys.
+            </summary>
+        </member>
         <member name="T:Fluxer.Net.ClientStatus">
             <inheritdoc />
         </member>
@@ -7883,6 +7936,9 @@
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.CurrentUser.Phone">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.CurrentUser.IsPhoneVerified">
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.CurrentUser.Bio">
@@ -7963,6 +8019,9 @@
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.CurrentUserJson.Phone">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.CurrentUserJson.IsPhoneVerified">
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.CurrentUserJson.Bio">
@@ -8064,9 +8123,19 @@
             The email address associated with the account.
             </summary>
         </member>
+        <member name="P:Fluxer.Net.ICurrentUser.EmailBounced">
+            <summary>
+            Whether the current email address is marked as bounced by the mail provider.
+            </summary>
+        </member>
         <member name="P:Fluxer.Net.ICurrentUser.Phone">
             <summary>
             The phone number associated with the account.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.ICurrentUser.IsPhoneVerified">
+            <summary>
+            The user has verified their phone number.
             </summary>
         </member>
         <member name="P:Fluxer.Net.ICurrentUser.IsMfaEnabled">
@@ -8112,11 +8181,6 @@
         <member name="P:Fluxer.Net.ICurrentUser.HasEverPurchased">
             <summary>
             Whether the user has ever made a purchase.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.ICurrentUser.EmailBounced">
-            <summary>
-            Whether the current email address is marked as bounced by the mail provider.
             </summary>
         </member>
         <member name="P:Fluxer.Net.ICurrentUser.AuthenticatorTypes">
@@ -12367,7 +12431,7 @@
             Requires <see cref="P:Fluxer.Net.GuildPermissions.ManageChannels"/>.
             </remarks>
             <param name="guildId"></param>
-            <param name="data"></param>
+            <param name="list"></param>
             <returns></returns>
         </member>
         <member name="M:Fluxer.Net.Rest.FluxerApiClient.SearchGuildAsync``2(System.UInt64,``0)">
@@ -13976,6 +14040,9 @@
         <member name="M:Fluxer.Net.GuildHelpers.ModifyAsync(Fluxer.Net.Guild,Fluxer.Net.GuildJson)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.UpdateGuildAsync(System.UInt64,Fluxer.Net.GuildJson)" />
         </member>
+        <member name="M:Fluxer.Net.GuildHelpers.UpdateChannelPositionsAsync(Fluxer.Net.Guild,System.Collections.Generic.IEnumerable{Fluxer.Net.Rest.ChannelPositionUpdateRequestItem})">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.UpdateChannelPositionsAsync(System.UInt64,System.Collections.Generic.IEnumerable{Fluxer.Net.Rest.ChannelPositionUpdateRequestItem})" />
+        </member>
         <member name="M:Fluxer.Net.GuildHelpers.SearchAuditLogsAsync(Fluxer.Net.Guild,Fluxer.Net.Rest.GuildAuditLogListRequest)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.SearchAuditLogAsync(System.UInt64,Fluxer.Net.Rest.GuildAuditLogListRequest)" />
         </member>
@@ -13991,7 +14058,16 @@
         <member name="M:Fluxer.Net.GuildHelpers.GetChannelsAsync(Fluxer.Net.Guild)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.GetChannelsAsync(System.UInt64)" />
         </member>
-        <member name="M:Fluxer.Net.GuildHelpers.CreateChannelAsync(Fluxer.Net.Guild,Fluxer.Net.Rest.CreateGuildChannelRequest)">
+        <member name="M:Fluxer.Net.GuildHelpers.CreateTextChannelAsync(Fluxer.Net.Guild,Fluxer.Net.Rest.CreateTextChannelRequest)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.CreateGuildChannelAsync(System.UInt64,Fluxer.Net.Rest.CreateGuildChannelRequest)" />
+        </member>
+        <member name="M:Fluxer.Net.GuildHelpers.CreateVoiceChannelAsync(Fluxer.Net.Guild,Fluxer.Net.Rest.CreateVoiceChannelRequest)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.CreateGuildChannelAsync(System.UInt64,Fluxer.Net.Rest.CreateGuildChannelRequest)" />
+        </member>
+        <member name="M:Fluxer.Net.GuildHelpers.CreateLinkChannelAsync(Fluxer.Net.Guild,Fluxer.Net.Rest.CreateLinkChannelRequest)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.CreateGuildChannelAsync(System.UInt64,Fluxer.Net.Rest.CreateGuildChannelRequest)" />
+        </member>
+        <member name="M:Fluxer.Net.GuildHelpers.CreateCategoryChannelAsync(Fluxer.Net.Guild,Fluxer.Net.Rest.CreateCategoryChannelRequest)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.CreateGuildChannelAsync(System.UInt64,Fluxer.Net.Rest.CreateGuildChannelRequest)" />
         </member>
         <member name="M:Fluxer.Net.GuildHelpers.GetEmojisAsync(Fluxer.Net.Guild)">
@@ -14107,6 +14183,21 @@
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.RemoveOwnReactionAsync(System.UInt64,System.UInt64,System.String)" />
         </member>
         <member name="M:Fluxer.Net.MessageHelpers.RemoveUserReactionAsync(Fluxer.Net.Message,System.String,System.UInt64)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.RemoveUserReactionAsync(System.UInt64,System.UInt64,System.String,System.UInt64)" />
+        </member>
+        <member name="M:Fluxer.Net.MessageHelpers.AddReactionAsync(Fluxer.Net.Message,Fluxer.Net.Emoji)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.AddReactionAsync(System.UInt64,System.UInt64,System.String)" />
+        </member>
+        <member name="M:Fluxer.Net.MessageHelpers.GetReactionsForEmojiAsync(Fluxer.Net.Message,Fluxer.Net.Emoji)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.GetReactionsForEmojiAsync(System.UInt64,System.UInt64,System.String)" />
+        </member>
+        <member name="M:Fluxer.Net.MessageHelpers.RemoveAllReactionsForEmojiAsync(Fluxer.Net.Message,Fluxer.Net.Emoji)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.RemoveAllReactionsForEmojiAsync(System.UInt64,System.UInt64,System.String)" />
+        </member>
+        <member name="M:Fluxer.Net.MessageHelpers.RemoveOwnReactionAsync(Fluxer.Net.Message,Fluxer.Net.Emoji)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.RemoveOwnReactionAsync(System.UInt64,System.UInt64,System.String)" />
+        </member>
+        <member name="M:Fluxer.Net.MessageHelpers.RemoveUserReactionAsync(Fluxer.Net.Message,Fluxer.Net.Emoji,Fluxer.Net.User)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.RemoveUserReactionAsync(System.UInt64,System.UInt64,System.String,System.UInt64)" />
         </member>
         <member name="M:Fluxer.Net.MessageHelpers.ReplyAsync(Fluxer.Net.Message,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.EmbedRequest},Fluxer.Net.Rest.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64},System.Collections.Generic.List{Fluxer.Net.Rest.AttachmentRequest})">

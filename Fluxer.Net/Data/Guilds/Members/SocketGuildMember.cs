@@ -58,7 +58,7 @@ public class SocketGuildMember : GuildMember
             if (r.Id == Guild.Id)
                 continue;
 
-            PermissionOverwrite? role = channel.PermissionOverwrites.FirstOrDefault(x => x.Type == 0 && x.Id == r.Id);
+            PermissionOverwrite? role = channel.PermissionOverwrites.FirstOrDefault(x => x.Type == PermissionOverwriteType.Role && x.Id == r.Id);
             if (role != null)
             {
                 allowedPermissions |= (ulong)role.Allow.RawValue;
@@ -68,7 +68,7 @@ public class SocketGuildMember : GuildMember
         resolvedPermissions = (resolvedPermissions & ~deniedPermissions) | allowedPermissions;
 
         // Check user overwrite
-        PermissionOverwrite? user = channel.PermissionOverwrites.FirstOrDefault(x => x.Type == 1 && x.Id == Id);
+        PermissionOverwrite? user = channel.PermissionOverwrites.FirstOrDefault(x => x.Type == PermissionOverwriteType.Member && x.Id == Id);
         if (user != null)
             resolvedPermissions = (resolvedPermissions & ~(ulong)user.Deny.RawValue) | (ulong)user.Allow.RawValue;
 

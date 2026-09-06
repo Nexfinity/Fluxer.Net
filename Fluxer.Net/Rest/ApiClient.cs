@@ -949,7 +949,12 @@ public class FluxerApiClient
     /// <param name="emoji"></param>
     /// <returns></returns>
     public async Task AddReactionAsync(ulong channelId, ulong messageId, string emoji)
-        => await SendRequestRawAsync(HttpMethod.Put, $"/channels/{channelId}/messages/{messageId}/reactions/{emoji}/@me", true);
+    {
+        if (ulong.TryParse(emoji, out _))
+            emoji = $"name:{emoji}";
+
+        await SendRequestRawAsync(HttpMethod.Put, $"/channels/{channelId}/messages/{messageId}/reactions/{emoji}/@me", true);
+    }
 
     /// <summary>
     /// Remove a reaction on a message.
@@ -962,7 +967,12 @@ public class FluxerApiClient
     /// <param name="emoji"></param>
     /// <returns></returns>
     public async Task RemoveOwnReactionAsync(ulong channelId, ulong messageId, string emoji)
-        => await SendRequestRawAsync(HttpMethod.Delete, $"/channels/{channelId}/messages/{messageId}/reactions/{emoji}/@me", true);
+    {
+        if (ulong.TryParse(emoji, out _))
+            emoji = $"name:{emoji}";
+
+        await SendRequestRawAsync(HttpMethod.Delete, $"/channels/{channelId}/messages/{messageId}/reactions/{emoji}/@me", true);
+    }
 
     /// <summary>
     /// Remove a user's reaction on a message.
@@ -976,7 +986,12 @@ public class FluxerApiClient
     /// <param name="targetId"></param>
     /// <returns></returns>
     public async Task RemoveUserReactionAsync(ulong channelId, ulong messageId, string emoji, ulong targetId)
-        => await SendRequestRawAsync(HttpMethod.Delete, $"/channels/{channelId}/messages/{messageId}/reactions/{emoji}/{targetId}", true);
+    {
+        if (ulong.TryParse(emoji, out _))
+            emoji = $"name:{emoji}";
+
+        await SendRequestRawAsync(HttpMethod.Delete, $"/channels/{channelId}/messages/{messageId}/reactions/{emoji}/{targetId}", true);
+    }
 
     /// <summary>
     /// Remove all reactions for a specific emoji on a message.
@@ -989,7 +1004,12 @@ public class FluxerApiClient
     /// <param name="emoji"></param>
     /// <returns></returns>
     public async Task RemoveAllReactionsForEmojiAsync(ulong channelId, ulong messageId, string emoji)
-        => await SendRequestRawAsync(HttpMethod.Delete, $"/channels/{channelId}/messages/{messageId}/reactions/{emoji}", true);
+    {
+        if (ulong.TryParse(emoji, out _))
+            emoji = $"name:{emoji}";
+
+        await SendRequestRawAsync(HttpMethod.Delete, $"/channels/{channelId}/messages/{messageId}/reactions/{emoji}", true);
+    }
 
     /// <summary>
     /// Remove all reactions on a message.
@@ -1628,10 +1648,10 @@ public class FluxerApiClient
     /// Requires <see cref="GuildPermissions.ManageChannels"/>.
     /// </remarks>
     /// <param name="guildId"></param>
-    /// <param name="data"></param>
+    /// <param name="list"></param>
     /// <returns></returns>
     public async Task UpdateChannelPositionsAsync(ulong guildId, IEnumerable<ChannelPositionUpdateRequestItem> list)
-        => await SendRequestAsync(HttpMethod.Patch, $"/guilds/{guildId}/channels", data, true);
+        => await SendRequestAsync(HttpMethod.Patch, $"/guilds/{guildId}/channels", list, true);
 
     /// <summary>
     /// Search the guild.

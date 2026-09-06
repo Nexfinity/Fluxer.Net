@@ -23,9 +23,19 @@ public interface ICurrentUser : IUser
     string? Email { get; }
 
     /// <summary>
+    /// Whether the current email address is marked as bounced by the mail provider.
+    /// </summary>
+    bool EmailBounced { get; }
+
+    /// <summary>
     /// The phone number associated with the account.
     /// </summary>
     string? Phone { get; }
+
+    /// <summary>
+    /// The user has verified their phone number.
+    /// </summary>
+    bool IsPhoneVerified { get; }
 
     /// <summary>
     /// Whether multi-factor authentication is enabled.
@@ -83,14 +93,9 @@ public interface ICurrentUser : IUser
     bool HasEverPurchased { get; }
 
     /// <summary>
-    /// Whether the current email address is marked as bounced by the mail provider.
-    /// </summary>
-    bool EmailBounced { get; }
-
-    /// <summary>
     /// The types of authenticators configured for MFA.
     /// </summary>
-    HashSet<int>? AuthenticatorTypes { get; }
+    HashSet<AuthenticatorType>? AuthenticatorTypes { get; }
 
     /// <summary>
     /// Get the user's banner.

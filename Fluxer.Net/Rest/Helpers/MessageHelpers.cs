@@ -57,6 +57,28 @@ public static class MessageHelpers
     public static Task RemoveUserReactionAsync(this Message message, string emoji, ulong userId)
         => message.Client.Rest.RemoveUserReactionAsync(message.ChannelId, message.Id, emoji, userId);
 
+
+    /// <inheritdoc cref="FluxerApiClient.AddReactionAsync(ulong, ulong, string)" />
+    public static Task AddReactionAsync(this Message message, Emoji emoji)
+        => message.Client.Rest.AddReactionAsync(message.ChannelId, message.Id, emoji.ToRequest());
+
+    /// <inheritdoc cref="FluxerApiClient.GetReactionsForEmojiAsync(ulong, ulong, string)" />
+    public static Task<IEnumerable<User>> GetReactionsForEmojiAsync(this Message message, Emoji emoji)
+        => message.Client.Rest.GetReactionsForEmojiAsync(message.ChannelId, message.Id, emoji.ToRequest());
+
+    /// <inheritdoc cref="FluxerApiClient.RemoveAllReactionsForEmojiAsync(ulong, ulong, string)" />
+    public static Task RemoveAllReactionsForEmojiAsync(this Message message, Emoji emoji)
+        => message.Client.Rest.RemoveAllReactionsForEmojiAsync(message.ChannelId, message.Id, emoji.ToRequest());
+
+    /// <inheritdoc cref="FluxerApiClient.RemoveOwnReactionAsync(ulong, ulong, string)" />
+    public static Task RemoveOwnReactionAsync(this Message message, Emoji emoji)
+        => message.Client.Rest.RemoveOwnReactionAsync(message.ChannelId, message.Id, emoji.ToRequest());
+
+    /// <inheritdoc cref="FluxerApiClient.RemoveUserReactionAsync(ulong, ulong, string, ulong)" />
+    public static Task RemoveUserReactionAsync(this Message message, Emoji emoji, User user)
+        => message.Client.Rest.RemoveUserReactionAsync(message.ChannelId, message.Id, emoji.ToRequest(), user.Id);
+
+
     /// <inheritdoc cref="FluxerApiClient.SendMessageAsync(ulong, string?, List{EmbedRequest}?, MessageReferenceRequest?, AllowedMentionsRequest?, MessageFlag, string?, ulong?, bool?, List{ulong}?, List{AttachmentRequest}?)" />
     public static Task<Message> ReplyAsync(this Message message, string? content = null, List<EmbedRequest>? embeds = null,
         AllowedMentionsRequest? allowedMentions = null, MessageFlag flags = MessageFlag.None,

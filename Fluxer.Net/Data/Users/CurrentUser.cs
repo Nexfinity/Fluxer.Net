@@ -19,6 +19,9 @@ public class CurrentUser : User, ICurrentUser, IUserProfile
     public string? Phone { get; private set; }
 
     /// <inheritdoc />
+    public bool IsPhoneVerified { get; private set; }
+
+    /// <inheritdoc />
     public string? Bio { get; private set; }
 
     /// <inheritdoc />
@@ -67,7 +70,7 @@ public class CurrentUser : User, ICurrentUser, IUserProfile
     public bool EmailBounced { get; private set; }
 
     /// <inheritdoc />
-    public HashSet<int>? AuthenticatorTypes { get; private set; }
+    public HashSet<AuthenticatorType>? AuthenticatorTypes { get; private set; }
 
     /// <inheritdoc />
     public string? GetBannerUrl(int size = 600)
@@ -104,6 +107,7 @@ public class CurrentUser : User, ICurrentUser, IUserProfile
         Traits = json.Traits;
         Email = json.Email;
         Phone = json.Phone;
+        IsPhoneVerified = json.IsPhoneVerified;
         Bio = json.Bio;
         Pronouns = json.Pronouns;
         AccentColor = json.AccentColor;
