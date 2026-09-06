@@ -11,7 +11,7 @@ public class PermissionOverwriteJson : IPermissionOverwrite
 
     /// <inheritdoc />
     [JsonProperty("type")]
-    public int Type { get; set; }
+    public PermissionOverwriteType Type { get; set; }
 
     /// <inheritdoc />
     [JsonProperty("allow")]
@@ -20,4 +20,9 @@ public class PermissionOverwriteJson : IPermissionOverwrite
     /// <inheritdoc />
     [JsonProperty("deny")]
     public ChannelPermissions Deny { get; set; }
+}
+public enum PermissionOverwriteType
+{
+    Role = 0,
+    Member = 1
 }

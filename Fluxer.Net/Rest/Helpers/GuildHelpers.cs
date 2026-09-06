@@ -15,6 +15,10 @@ public static class GuildHelpers
     public static Task<Guild> ModifyAsync(this Guild guild, GuildJson request)
         => guild.Client.Rest.UpdateGuildAsync(guild.Id, request);
 
+    /// <inheritdoc cref="FluxerApiClient.UpdateChannelPositionsAsync(ulong, IEnumerable{ChannelPositionUpdateRequestItem})" />
+    public static Task UpdateChannelPositionsAsync(this Guild guild, IEnumerable<ChannelPositionUpdateRequestItem> list)
+        => guild.Client.Rest.UpdateChannelPositionsAsync(guild.Id, list);
+
     /// <inheritdoc cref="FluxerApiClient.SearchAuditLogAsync(ulong, GuildAuditLogListRequest)" />
     public static Task<GuildAuditLogListJson> SearchAuditLogsAsync(this Guild guild, GuildAuditLogListRequest request)
         => guild.Client.Rest.SearchAuditLogAsync(guild.Id, request);
@@ -36,7 +40,19 @@ public static class GuildHelpers
         => guild.Client.Rest.GetChannelsAsync(guild.Id);
 
     /// <inheritdoc cref="FluxerApiClient.CreateGuildChannelAsync(ulong, CreateGuildChannelRequest)" />
-    public static Task<Channel> CreateChannelAsync(this Guild guild, CreateGuildChannelRequest request)
+    public static Task<Channel> CreateTextChannelAsync(this Guild guild, CreateTextChannelRequest request)
+        => guild.Client.Rest.CreateGuildChannelAsync(guild.Id, request);
+
+    /// <inheritdoc cref="FluxerApiClient.CreateGuildChannelAsync(ulong, CreateGuildChannelRequest)" />
+    public static Task<Channel> CreateVoiceChannelAsync(this Guild guild, CreateVoiceChannelRequest request)
+        => guild.Client.Rest.CreateGuildChannelAsync(guild.Id, request);
+
+    /// <inheritdoc cref="FluxerApiClient.CreateGuildChannelAsync(ulong, CreateGuildChannelRequest)" />
+    public static Task<Channel> CreateLinkChannelAsync(this Guild guild, CreateLinkChannelRequest request)
+        => guild.Client.Rest.CreateGuildChannelAsync(guild.Id, request);
+
+    /// <inheritdoc cref="FluxerApiClient.CreateGuildChannelAsync(ulong, CreateGuildChannelRequest)" />
+    public static Task<Channel> CreateCategoryChannelAsync(this Guild guild, CreateCategoryChannelRequest request)
         => guild.Client.Rest.CreateGuildChannelAsync(guild.Id, request);
 
     /// <inheritdoc cref="FluxerApiClient.GetEmojisAsync(ulong)" />

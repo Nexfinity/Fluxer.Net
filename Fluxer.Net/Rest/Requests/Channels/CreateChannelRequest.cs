@@ -5,7 +5,10 @@ namespace Fluxer.Net.Rest;
 public abstract class CreateGuildChannelRequest
 {
     [JsonProperty("type")]
-    public abstract string Type { get; }
+    public abstract GuildChannelType Type { get; }
+
+    [JsonProperty("name")]
+    public string Name { get; set; }
 
     [JsonProperty("topic")]
     public string? Topic { get; set; }

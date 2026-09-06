@@ -1,12 +1,6 @@
-﻿using Newtonsoft.Json;
-
-namespace Fluxer.Net.Rest;
+﻿namespace Fluxer.Net.Rest;
 
 public class CreateTextChannelRequest : CreateGuildChannelRequest
 {
-    public override string Type => "GUILD_TEXT";
-
-    [JsonRequired]
-    [JsonProperty("name")]
-    public string Name { get; set; }
+    public override GuildChannelType Type => GuildChannelType.GuildText;
 }

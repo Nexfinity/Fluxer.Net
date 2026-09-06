@@ -10,7 +10,7 @@ public interface IPermissionOverwrite
     /// <summary>
     ///  The type of overwrite (0 = role, 1 = member)
     /// </summary>
-    int Type { get; }
+    PermissionOverwriteType Type { get; }
 
     /// <summary>
     /// The bitwise value of allowed permissions.

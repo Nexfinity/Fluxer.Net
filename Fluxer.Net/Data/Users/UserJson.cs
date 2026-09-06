@@ -45,6 +45,10 @@ public class UserJson : IUser
     [JsonProperty("system")]
     public bool IsSystem { get; set; }
 
+    /// <inheritdoc />
+    [JsonProperty("mention_flags")]
+    public MentionPreference MentionPreference { get; set; }
+
     public DateTimeOffset CreatedAt => SnowflakeUtils.FromSnowflake(Id);
 
     /// <inheritdoc />

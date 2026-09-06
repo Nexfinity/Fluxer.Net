@@ -8169,6 +8169,11 @@
             Whether the user is an official system user.
             </summary>
         </member>
+        <member name="P:Fluxer.Net.IUser.MentionPreference">
+            <summary>
+            If a user wants to be mentioned or not in replies.
+            </summary>
+        </member>
         <member name="M:Fluxer.Net.IUser.GetCurrentName">
             <summary>
             Get the user's current display name or username.
@@ -8357,6 +8362,26 @@
             The preferred time format setting.
             </summary>
         </member>
+        <member name="T:Fluxer.Net.MentionPreference">
+            <summary>
+            Mention prefrences for a user.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.MentionPreference.NoPreference">
+            <summary>
+            User has no mention preference.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.MentionPreference.PrefereMention">
+            <summary>
+            User wants to be mentioned in replies.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.MentionPreference.PrefereNoMention">
+            <summary>
+            User does not want to be mentioned in replies.
+            </summary>
+        </member>
         <member name="T:Fluxer.Net.PremiumType">
             <summary>
             Represents the type of premium/subscription status for a user.
@@ -8534,6 +8559,9 @@
         <member name="P:Fluxer.Net.User.IsSystem">
             <inheritdoc />
         </member>
+        <member name="P:Fluxer.Net.User.MentionPreference">
+            <inheritdoc />
+        </member>
         <member name="M:Fluxer.Net.User.GetCurrentName">
             <inheritdoc />
         </member>
@@ -8633,19 +8661,9 @@
             These are typically set by the Fluxer platform and not directly modifiable by users.
             </remarks>
         </member>
-        <member name="F:Fluxer.Net.UserFlags.None">
-            <summary>
-            No flags set.
-            </summary>
-        </member>
         <member name="F:Fluxer.Net.UserFlags.Staff">
             <summary>
             Fluxer staff member badge.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.UserFlags.CtpMember">
-            <summary>
-            Community Testing Program (CTP) member badge.
             </summary>
         </member>
         <member name="F:Fluxer.Net.UserFlags.Partner">
@@ -8668,6 +8686,11 @@
             Bot requires manual approval for friend requests.
             </summary>
         </member>
+        <member name="F:Fluxer.Net.UserFlags.Spammer">
+            <summary>
+            User flagged as a spammer.
+            </summary>
+        </member>
         <member name="F:Fluxer.Net.UserFlags.HighGlobalRateLimit">
             <summary>
             User has a higher global rate limit (internal flag).
@@ -8688,11 +8711,6 @@
             User self-deleted their account (internal flag).
             </summary>
         </member>
-        <member name="F:Fluxer.Net.UserFlags.PremiumDiscriminator">
-            <summary>
-            User has a premium discriminator (custom tag number).
-            </summary>
-        </member>
         <member name="F:Fluxer.Net.UserFlags.Disabled">
             <summary>
             User account is disabled (internal flag).
@@ -8701,41 +8719,6 @@
         <member name="F:Fluxer.Net.UserFlags.HasSessionStarted">
             <summary>
             User has started a session (internal flag).
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.UserFlags.PremiumBadgeHidden">
-            <summary>
-            Premium badge is hidden in user profile (user preference).
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.UserFlags.PremiumBadgeMasked">
-            <summary>
-            Premium badge is masked/anonymized (internal flag).
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.UserFlags.PremiumBadgeTimestampHidden">
-            <summary>
-            Premium badge timestamp is hidden (user preference).
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.UserFlags.PremiumBadgeSequenceHidden">
-            <summary>
-            Premium badge sequence/tier is hidden (user preference).
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.UserFlags.PremiumPerksSanitized">
-            <summary>
-            Premium perks information is sanitized/filtered (internal flag).
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.UserFlags.PremiumPurchaseDisabled">
-            <summary>
-            Premium purchase is disabled for this user (internal flag).
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.UserFlags.PremiumEnabledOverride">
-            <summary>
-            Premium enabled via override (admin/staff action, internal flag).
             </summary>
         </member>
         <member name="F:Fluxer.Net.UserFlags.RateLimitBypass">
@@ -8753,19 +8736,9 @@
             User is verified as not underage (internal flag).
             </summary>
         </member>
-        <member name="F:Fluxer.Net.UserFlags.PendingManualVerification">
-            <summary>
-            User account pending manual verification (internal flag).
-            </summary>
-        </member>
         <member name="F:Fluxer.Net.UserFlags.HasDismissedPremiumOnboarding">
             <summary>
             User has dismissed the premium onboarding flow (user preference).
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.UserFlags.UsedMobileClient">
-            <summary>
-            User has used a mobile client (internal flag)
             </summary>
         </member>
         <member name="F:Fluxer.Net.UserFlags.AppStoreReviewer">
@@ -8773,29 +8746,24 @@
             User is an app store reviewer (internal flag)
             </summary>
         </member>
-        <member name="F:Fluxer.Net.UserFlags.DmHistoryBackfilled">
-            <summary>
-            User DM history has been backfilled (internal flag)
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.UserFlags.HasRelationshipsIndexed">
-            <summary>
-            User relationships have been indexed (internal flag)
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.UserFlags.MessagesByAuthorBackfilled">
-            <summary>
-            Messages by this author have been backfilled (internal flag)
-            </summary>
-        </member>
         <member name="F:Fluxer.Net.UserFlags.StaffHidden">
             <summary>
             User staff status is hidden from public flags (internal flag)
             </summary>
         </member>
-        <member name="F:Fluxer.Net.UserFlags.BotSanitized">
+        <member name="F:Fluxer.Net.UserFlags.AgeVerifiedAdult">
             <summary>
-            User's owned bot discriminators have been sanitized (internal flag)
+            User has verified they are an adult (internal flag)
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.UserFlags.ForcePhoneVerification">
+            <summary>
+            Force phone verification for this user (internal flag)
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.UserFlags.NotSuspicious">
+            <summary>
+            User is exempt from automatic flagging (internal flag)
             </summary>
         </member>
         <member name="T:Fluxer.Net.UserGuildFolderJson">
@@ -8915,6 +8883,9 @@
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.UserJson.IsSystem">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.UserJson.MentionPreference">
             <inheritdoc />
         </member>
         <member name="M:Fluxer.Net.UserJson.GetCurrentName">

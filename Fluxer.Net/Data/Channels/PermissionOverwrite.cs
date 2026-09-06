@@ -7,7 +7,7 @@ public class PermissionOverwrite : Entity, IPermissionOverwrite
     public ulong Id { get; private set; }
 
     /// <inheritdoc />
-    public int Type { get; private set; }
+    public PermissionOverwriteType Type { get; private set; }
 
     /// <inheritdoc />
     public ChannelPermissions Allow { get; private set; }
