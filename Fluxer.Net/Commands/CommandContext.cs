@@ -36,7 +36,7 @@ public class CommandContext : ICommandContext
     public SocketMessage Message { get; }
 
     /// <inheritdoc/>
-    public bool IsPrivate => Channel.Type == ChannelType.Dm;
+    public bool IsPrivate => Channel.Type == ChannelType.DM;
 
     IGuild ICommandContext.Guild => Guild;
 

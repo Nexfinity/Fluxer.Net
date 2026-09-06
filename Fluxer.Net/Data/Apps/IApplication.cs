@@ -3,7 +3,7 @@
 /// <summary>
 /// Application/bot used to interact with the Fluxer platform and API.
 /// </summary>
-public interface IApplication
+public interface IApplication : IPartialApplication
 {
     /// <summary>
     /// The registered redirect URIs for OAuth2.

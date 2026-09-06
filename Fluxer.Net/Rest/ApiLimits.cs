@@ -103,7 +103,7 @@ public class ApiLimits
     public int MaxGuildMembers = 1000000;
 
     /// <summary>
-    /// How many more users can join a guild with <see cref="GuildFeatures.IsLargeServer"/>.
+    /// How many more users can join a guild with <see cref="GuildFeatures.IsLargeGuild"/>.
     /// </summary>
     public int MaxGuildMembersLarge = 10000000;
 

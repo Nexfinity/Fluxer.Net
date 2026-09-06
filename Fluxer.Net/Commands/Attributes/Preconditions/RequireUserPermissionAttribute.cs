@@ -4,9 +4,9 @@
 public class RequireUserPermissionAttribute : PreconditionAttribute
 {
     /// <summary>
-    /// Server/group permission to check for.
+    /// Guild/Group permission to check for.
     /// </summary>
-    private readonly GuildPermission? Server;
+    private readonly GuildPermission? Guild;
 
     /// <summary>
     /// Channel permission to check for.
@@ -15,7 +15,7 @@ public class RequireUserPermissionAttribute : PreconditionAttribute
 
     public RequireUserPermissionAttribute(GuildPermission perm)
     {
-        Server = perm;
+        Guild = perm;
     }
 
     public RequireUserPermissionAttribute(ChannelPermission perm)
@@ -41,12 +41,12 @@ public class RequireUserPermissionAttribute : PreconditionAttribute
 
         SocketGuildMember? member = context.Member as SocketGuildMember;
 
-        if (Server.HasValue)
+        if (Guild.HasValue)
         {
-            if (member != null && member.HasPermission(Server.Value))
+            if (member != null && member.HasPermission(Guild.Value))
                 return PreconditionResult.FromSuccess();
 
-            return PreconditionResult.FromError($"You need community permission for **{Server.Value.ToString()}** to use this command.");
+            return PreconditionResult.FromError($"You need community permission for **{Guild.Value.ToString()}** to use this command.");
         }
 
         if (Channel == null)

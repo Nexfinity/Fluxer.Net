@@ -30,12 +30,12 @@ public class SocketUnknownChannel : Channel
                     data = new SocketVoiceChannel(client);
                 }
                 break;
-            case ChannelType.Dm:
+            case ChannelType.DM:
                 {
                     data = new SocketDMChannel(client);
                 }
                 break;
-            case ChannelType.DmPersonalNotes:
+            case ChannelType.DMPersonalNotes:
                 {
                     data = new SocketSavedNotesChannel(client);
                 }

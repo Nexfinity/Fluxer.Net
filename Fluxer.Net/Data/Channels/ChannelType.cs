@@ -13,7 +13,7 @@ public enum ChannelType
     /// <summary>
     /// A direct message channel between two users.
     /// </summary>
-    Dm = 1,
+    DM = 1,
 
     /// <summary>
     /// A voice channel within a guild/server.
@@ -83,5 +83,5 @@ public enum ChannelType
     /// <summary>
     /// A personal notes DM channel for storing private messages.
     /// </summary>
-    DmPersonalNotes = 999,
+    DMPersonalNotes = 999,
 }

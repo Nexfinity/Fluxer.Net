@@ -257,9 +257,9 @@
             <param name="command">The command being executed.</param>
             <param name="services">The service collection used for dependency injection.</param>
         </member>
-        <member name="F:Fluxer.Net.Commands.RequireBotPermissionAttribute.Server">
+        <member name="F:Fluxer.Net.Commands.RequireBotPermissionAttribute.Guild">
             <summary>
-            Server permission to check for.
+            Guild permission to check for.
             </summary>
         </member>
         <member name="F:Fluxer.Net.Commands.RequireBotPermissionAttribute.Channel">
@@ -285,6 +285,12 @@
             <inheritdoc />
         </member>
         <member name="M:Fluxer.Net.Commands.RequireGroupOwnerAttribute.CheckPermissionsAsync(Fluxer.Net.Commands.ICommandContext,Fluxer.Net.Commands.CommandInfo,System.IServiceProvider)">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.Commands.RequireGuildAttribute.CheckPermissionsAsync(Fluxer.Net.Commands.ICommandContext,Fluxer.Net.Commands.CommandInfo,System.IServiceProvider)">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.Commands.RequireGuildOwnerAttribute.CheckPermissionsAsync(Fluxer.Net.Commands.ICommandContext,Fluxer.Net.Commands.CommandInfo,System.IServiceProvider)">
             <inheritdoc />
         </member>
         <member name="M:Fluxer.Net.Commands.RequireNsfwAttribute.CheckPermissionsAsync(Fluxer.Net.Commands.ICommandContext,Fluxer.Net.Commands.CommandInfo,System.IServiceProvider)">
@@ -319,15 +325,9 @@
         <member name="M:Fluxer.Net.Commands.RequireOwnerAttribute.CheckPermissionsAsync(Fluxer.Net.Commands.ICommandContext,Fluxer.Net.Commands.CommandInfo,System.IServiceProvider)">
             <inheritdoc />
         </member>
-        <member name="M:Fluxer.Net.Commands.RequireServerAttribute.CheckPermissionsAsync(Fluxer.Net.Commands.ICommandContext,Fluxer.Net.Commands.CommandInfo,System.IServiceProvider)">
-            <inheritdoc />
-        </member>
-        <member name="M:Fluxer.Net.Commands.RequireServerOwnerAttribute.CheckPermissionsAsync(Fluxer.Net.Commands.ICommandContext,Fluxer.Net.Commands.CommandInfo,System.IServiceProvider)">
-            <inheritdoc />
-        </member>
-        <member name="F:Fluxer.Net.Commands.RequireUserPermissionAttribute.Server">
+        <member name="F:Fluxer.Net.Commands.RequireUserPermissionAttribute.Guild">
             <summary>
-            Server/group permission to check for.
+            Guild/Group permission to check for.
             </summary>
         </member>
         <member name="F:Fluxer.Net.Commands.RequireUserPermissionAttribute.Channel">
@@ -1892,22 +1892,7 @@
         <member name="T:Fluxer.Net.Channel">
             <inheritdoc />
         </member>
-        <member name="P:Fluxer.Net.Channel.Id">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.Channel.CreatedAt">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.Channel.Mention">
-            <inheritdoc />
-        </member>
         <member name="P:Fluxer.Net.Channel.GuildId">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.Channel.Type">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.Channel.Name">
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.Channel.Topic">
@@ -1964,9 +1949,6 @@
         <member name="P:Fluxer.Net.Channel.IndexedAt">
             <inheritdoc />
         </member>
-        <member name="P:Fluxer.Net.Channel.IsTextable">
-            <inheritdoc/>
-        </member>
         <member name="M:Fluxer.Net.Channel.TextableTypes(Fluxer.Net.ChannelType)">
             <summary>
             Channel types that you can send messages to.
@@ -1985,22 +1967,7 @@
         <member name="T:Fluxer.Net.ChannelJson">
             <inheritdoc />
         </member>
-        <member name="P:Fluxer.Net.ChannelJson.Id">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.ChannelJson.CreatedAt">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.ChannelJson.Mention">
-            <inheritdoc />
-        </member>
         <member name="P:Fluxer.Net.ChannelJson.GuildId">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.ChannelJson.Type">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.ChannelJson.Name">
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.ChannelJson.Topic">
@@ -2056,9 +2023,6 @@
         </member>
         <member name="P:Fluxer.Net.ChannelJson.IndexedAt">
             <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.ChannelJson.IsTextable">
-            <inheritdoc/>
         </member>
         <member name="T:Fluxer.Net.ChannelPin">
             <inheritdoc />
@@ -2122,7 +2086,7 @@
             A text channel within a guild/server.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.ChannelType.Dm">
+        <member name="F:Fluxer.Net.ChannelType.DM">
             <summary>
             A direct message channel between two users.
             </summary>
@@ -2192,7 +2156,7 @@
             A guild link channel (custom Fluxer channel type).
             </summary>
         </member>
-        <member name="F:Fluxer.Net.ChannelType.DmPersonalNotes">
+        <member name="F:Fluxer.Net.ChannelType.DMPersonalNotes">
             <summary>
             A personal notes DM channel for storing private messages.
             </summary>
@@ -2200,16 +2164,6 @@
         <member name="P:Fluxer.Net.IChannel.GuildId">
             <summary>
             The unique identifier (snowflake) for guild of this channel.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IChannel.Type">
-            <summary>
-            The type of the channel.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IChannel.Name">
-            <summary>
-            The name of the channel.
             </summary>
         </member>
         <member name="P:Fluxer.Net.IChannel.Topic">
@@ -2292,11 +2246,6 @@
             Custom nicknames for users in this channel (for group DMs)
             </summary>
         </member>
-        <member name="P:Fluxer.Net.IChannel.IsTextable">
-            <summary>
-            Can you send messages in this channel.
-            </summary>
-        </member>
         <member name="P:Fluxer.Net.IChannelPin.Message">
             <summary>
             The message data for this pin.
@@ -2322,6 +2271,21 @@
             Whether more pins can be fetched with pagination
             </summary>
         </member>
+        <member name="P:Fluxer.Net.IPartialChannel.Name">
+            <summary>
+            The name of the channel.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IPartialChannel.Type">
+            <summary>
+            The type of the channel.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IPartialChannel.IsTextable">
+            <summary>
+            Can you send messages in this channel.
+            </summary>
+        </member>
         <member name="P:Fluxer.Net.IPermissionOverwrite.Id">
             <summary>
             The unique identifier for the role or user this overwrite applies to.
@@ -2341,6 +2305,45 @@
             <summary>
             The bitwise value of denied permissions.
             </summary>
+        </member>
+        <member name="P:Fluxer.Net.PartialChannel.Id">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.PartialChannel.CreatedAt">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.PartialChannel.Mention">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.PartialChannel.Name">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.PartialChannel.Type">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.PartialChannel.IsTextable">
+            <inheritdoc/>
+        </member>
+        <member name="T:Fluxer.Net.PartialChannelJson">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.PartialChannelJson.Id">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.PartialChannelJson.CreatedAt">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.PartialChannelJson.Mention">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.PartialChannelJson.Name">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.PartialChannelJson.Type">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.PartialChannelJson.IsTextable">
+            <inheritdoc/>
         </member>
         <member name="T:Fluxer.Net.PermissionOverwrite">
             <inheritdoc />
@@ -3270,6 +3273,9 @@
         <member name="P:Fluxer.Net.Emoji.AllowCloning">
             <inheritdoc />
         </member>
+        <member name="M:Fluxer.Net.Emoji.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
         <member name="M:Fluxer.Net.Emoji.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.EmojiJson)">
             <summary>
             Create a Emoji object from json.
@@ -3310,6 +3316,9 @@
         <member name="M:Fluxer.Net.GuildEmoji.GetEmojiUrl(System.Int32)">
             <inheritdoc />
         </member>
+        <member name="M:Fluxer.Net.GuildEmoji.Compare(Fluxer.Net.GuildEmojiJson)">
+            <inheritdoc/>
+        </member>
         <member name="M:Fluxer.Net.GuildEmoji.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.GuildEmojiJson,System.UInt64)">
             <summary>
             Create a GuildEmoji object from json.
@@ -3347,6 +3356,9 @@
         </member>
         <member name="M:Fluxer.Net.GuildSticker.GetStickerUrl(System.Int32)">
             <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.GuildSticker.Compare(Fluxer.Net.GuildStickerJson)">
+            <inheritdoc/>
         </member>
         <member name="M:Fluxer.Net.GuildSticker.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.GuildStickerJson,System.UInt64)">
             <summary>
@@ -3449,6 +3461,9 @@
         </member>
         <member name="P:Fluxer.Net.Sticker.AllowCloning">
             <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.Sticker.Equals(System.Object)">
+            <inheritdoc/>
         </member>
         <member name="M:Fluxer.Net.Sticker.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.StickerJson)">
             <summary>
@@ -5841,13 +5856,13 @@
             Permissions for the guild.
             </summary>
         </member>
-        <member name="M:Fluxer.Net.SocketGuild.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.GuildJson,Fluxer.Net.SocketGuildMember)">
+        <member name="M:Fluxer.Net.SocketGuild.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.Gateway.GuildGatewayData,Fluxer.Net.SocketGuildMember)">
             <summary>
             Create a SocketGuild object from json.
             </summary>
             <param name="client"></param>
             <param name="json"></param>
-            <param name="member"></param>
+            <param name="currentMember"></param>
             <returns></returns>
         </member>
         <member name="P:Fluxer.Net.IInvite.CreatedAt">
@@ -5918,7 +5933,7 @@
             An invite to join a guild/server.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.InviteType.GroupDm">
+        <member name="F:Fluxer.Net.InviteType.Group">
             <summary>
             An invite to join a group DM.
             </summary>
@@ -5963,7 +5978,7 @@
             ISO8601 timestamp of when the invite expires.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.IPartialInvite.Temporary">
+        <member name="P:Fluxer.Net.IPartialInvite.IsTemporary">
             <summary>
             Whether the invite grants temporary membership
             </summary>
@@ -5995,7 +6010,7 @@
         <member name="P:Fluxer.Net.PartialInvite.ExpiresAt">
             <inheritdoc />
         </member>
-        <member name="P:Fluxer.Net.PartialInvite.Temporary">
+        <member name="P:Fluxer.Net.PartialInvite.IsTemporary">
             <inheritdoc />
         </member>
         <member name="M:Fluxer.Net.PartialInvite.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.PartialInviteJson)">
@@ -10008,59 +10023,9 @@
             Gateway data for GUILD_STICKERS_UPDATE event when guild stickers are updated.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.InviteGatewayData">
+        <member name="T:Fluxer.Net.Gateway.InviteDeleteGatewayData">
             <summary>
-            Gateway data for invite events (INVITE_CREATE, INVITE_DELETE).
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.Gateway.InviteGatewayData.Code">
-            <summary>
-            The invite code (unique identifier).
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.Gateway.InviteGatewayData.GuildId">
-            <summary>
-            The guild ID this invite is for (if applicable).
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.Gateway.InviteGatewayData.ChannelId">
-            <summary>
-            The channel ID this invite is for.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.Gateway.InviteGatewayData.Inviter">
-            <summary>
-            The user who created the invite.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.Gateway.InviteGatewayData.Type">
-            <summary>
-            The type of invite (Guild = 0, GroupDm = 1).
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.Gateway.InviteGatewayData.CreatedAt">
-            <summary>
-            When this invite was created.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.Gateway.InviteGatewayData.Uses">
-            <summary>
-            How many times this invite has been used.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.Gateway.InviteGatewayData.MaxUses">
-            <summary>
-            Max number of times this invite can be used (0 = unlimited).
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.Gateway.InviteGatewayData.MaxAge">
-            <summary>
-            Duration (in seconds) after which the invite expires (0 = never).
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.Gateway.InviteGatewayData.Temporary">
-            <summary>
-            Whether this invite grants temporary membership.
+            Gateway data for invite delete.
             </summary>
         </member>
         <member name="T:Fluxer.Net.Gateway.MessageGatewayData">
@@ -10301,155 +10266,154 @@
             Occurs when a disconnected session is successfully resumed without data loss.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.SessionsReplaceEvent">
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.SessionsReplacedEvent">
             <summary>
             Delegate for SESSIONS_REPLACE event when auth sessions are replaced.
             </summary>
         </member>
-        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.SessionsReplace">
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.SessionsReplaced">
             <summary>
             Occurs when auth sessions are replaced.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.UserSettingsUpdateEvent">
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.UserSettingsUpdatedEvent">
             <summary>
             Delegate for USER_SETTINGS_UPDATE events when user settings are updated.
             </summary>
             <param name="data">The user settings data.</param>
         </member>
-        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.UserSettingsUpdate">
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.UserSettingsUpdated">
             <summary>
             Occurs when user settings are updated.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.UserGuildSettingsUpdateEvent">
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.UserGuildSettingsUpdatedEvent">
             <summary>
             Delegate for USER_GUILD_SETTINGS_UPDATE events when user guild settings are updated.
             </summary>
             <param name="data">The user guild settings data.</param>
         </member>
-        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.UserGuildSettingsUpdate">
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.UserGuildSettingsUpdated">
             <summary>
             Occurs when user guild settings are updated.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.UserPinnedDMsUpdateEvent">
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.UserPinnedDMsUpdatedEvent">
             <summary>
             Delegate for USER_PINNED_DMS_UPDATE events when pinned DMs are updated.
             </summary>
             <param name="data">The pinned DMs data.</param>
         </member>
-        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.UserPinnedDMsUpdate">
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.UserPinnedDMsUpdated">
             <summary>
             Occurs when pinned DMs are updated.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.UserNoteUpdateEvent">
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.UserNoteUpdatedEvent">
             <summary>
             Delegate for USER_NOTE_UPDATE events when a user note is updated.
             </summary>
             <param name="data">The user note data.</param>
         </member>
-        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.UserNoteUpdate">
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.UserNoteUpdated">
             <summary>
             Occurs when a user note is updated.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.AuthSessionChangeEvent">
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.AuthSessionChangedEvent">
             <summary>
             Delegate for AUTH_SESSION_CHANGE events when an auth session changes.
             </summary>
             <param name="data">The auth session data.</param>
         </member>
-        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.AuthSessionChange">
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.AuthSessionChanged">
             <summary>
             Occurs when an auth session changes.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.MessageCreateEvent">
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.MessageCreatedEvent">
             <summary>
             Delegate for MESSAGE_CREATE events when a new message is sent.
             </summary>
             <param name="data">The message data including content, author, channel, etc.</param>
         </member>
-        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.MessageCreate">
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.MessageCreated">
             <summary>
             Occurs when a new message is created in any channel the user has access to.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.MessageUpdateEvent">
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.MessageUpdatedEvent">
             <summary>
             Delegate for MESSAGE_UPDATE events when a message is edited.
             </summary>
             <param name="data">The updated message data.</param>
         </member>
-        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.MessageUpdate">
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.MessageUpdated">
             <summary>
             Occurs when a message is edited.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.MessageDeleteEvent">
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.MessageDeletedEvent">
             <summary>
             Delegate for MESSAGE_DELETE events when a message is deleted.
             </summary>
-            <param name="data">The deleted entity data containing message and channel IDs.</param>
         </member>
-        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.MessageDelete">
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.MessageDeleted">
             <summary>
             Occurs when a message is deleted.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.ChannelCreateEvent">
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.ChannelCreatedEvent">
             <summary>
             Delegate for CHANNEL_CREATE events when a channel is created.
             </summary>
             <param name="data">The channel data.</param>
         </member>
-        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.ChannelCreate">
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.ChannelCreated">
             <summary>
             Occurs when a channel is created in a guild.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.ChannelUpdateEvent">
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.ChannelUpdatedEvent">
             <summary>
             Delegate for CHANNEL_UPDATE events when a channel is updated.
             </summary>
             <param name="data">The updated channel data.</param>
         </member>
-        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.ChannelUpdate">
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.ChannelUpdated">
             <summary>
             Occurs when a channel is updated.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.ChannelDeleteEvent">
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.ChannelDeletedEvent">
             <summary>
             Delegate for CHANNEL_DELETE events when a channel is deleted.
             </summary>
             <param name="data">The deleted channel data.</param>
         </member>
-        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.ChannelDelete">
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.ChannelDeleted">
             <summary>
             Occurs when a channel is deleted.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.UserUpdateEvent">
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.UserUpdatedEvent">
             <summary>
             Delegate for USER_UPDATE events when the current user's data is updated.
             </summary>
             <param name="data">The updated user data.</param>
         </member>
-        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.UserUpdate">
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.UserUpdated">
             <summary>
             Occurs when the current user's account is updated.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.PresenceUpdateEvent">
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.PresenceUpdatedEvent">
             <summary>
             Delegate for PRESENCE_UPDATE events when a user's presence changes.
             </summary>
             <param name="data">The presence data.</param>
         </member>
-        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.PresenceUpdate">
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.PresenceUpdated">
             <summary>
             Occurs when a user's presence (online status) changes.
             </summary>
@@ -10460,7 +10424,7 @@
             </summary>
             <param name="data">The typing indicator data.</param>
         </member>
-        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.TypingStart">
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.TypingStarted">
             <summary>
             Occurs when a user starts typing in a channel.
             </summary>
@@ -10471,29 +10435,29 @@
             </summary>
             <param name="data">The typing indicator data.</param>
         </member>
-        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.TypingStop">
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.TypingStopped">
             <summary>
             Occurs when a user stops typing in a channel.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.MessageReactionAddEvent">
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.MessageReactionAddedEvent">
             <summary>
             Delegate for MESSAGE_REACTION_ADD events when a reaction is added.
             </summary>
             <param name="data">The reaction data.</param>
         </member>
-        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.MessageReactionAdd">
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.MessageReactionAdded">
             <summary>
             Occurs when a user adds a reaction to a message.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.MessageReactionRemoveEvent">
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.MessageReactionRemovedEvent">
             <summary>
             Delegate for MESSAGE_REACTION_REMOVE events when a reaction is removed.
             </summary>
             <param name="data">The reaction data.</param>
         </member>
-        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.MessageReactionRemove">
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.MessageReactionRemoved">
             <summary>
             Occurs when a user removes a reaction from a message.
             </summary>
@@ -10502,7 +10466,6 @@
             <summary>
             Delegate for MESSAGE_REACTION_REMOVE_ALL events when all reactions are cleared.
             </summary>
-            <param name="data">The entity data containing message and channel IDs.</param>
         </member>
         <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.MessageReactionRemoveAll">
             <summary>
@@ -10520,35 +10483,35 @@
             Occurs when all instances of a specific emoji are removed from a message.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.SavedMessageCreateEvent">
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.SavedMessageCreatedEvent">
             <summary>
             Delegate for SAVED_MESSAGE_CREATE events when a message is saved.
             </summary>
             <param name="data">The saved message data.</param>
         </member>
-        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.SavedMessageCreate">
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.SavedMessageCreated">
             <summary>
             Occurs when a message is saved.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.SavedMessageDeleteEvent">
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.SavedMessageDeletedEvent">
             <summary>
             Delegate for SAVED_MESSAGE_DELETE events when a saved message is deleted.
             </summary>
             <param name="data">The saved message data.</param>
         </member>
-        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.SavedMessageDelete">
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.SavedMessageDeleted">
             <summary>
             Occurs when a saved message is deleted.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.RecentMentionDeleteEvent">
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.RecentMentionDeletedEvent">
             <summary>
             Delegate for RECENT_MENTION_DELETE events when a recent mention is deleted.
             </summary>
             <param name="data">The recent mention data.</param>
         </member>
-        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.RecentMentionDelete">
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.RecentMentionDeleted">
             <summary>
             Occurs when a recent mention is deleted.
             </summary>
@@ -10559,7 +10522,7 @@
             </summary>
             <param name="data">The bulk delete data containing message IDs.</param>
         </member>
-        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.MessageDeleteBulk">
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.MessagesDeleted">
             <summary>
             Occurs when multiple messages are deleted in bulk (e.g., purge operation).
             </summary>
@@ -10575,13 +10538,13 @@
             Occurs when a message is acknowledged as read by the current user.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.ChannelPinsUpdateEvent">
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.ChannelPinsUpdatedEvent">
             <summary>
             Delegate for CHANNEL_PINS_UPDATE events when channel pins are updated.
             </summary>
             <param name="data">The pins update data.</param>
         </member>
-        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.ChannelPinsUpdate">
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.ChannelPinsUpdated">
             <summary>
             Occurs when a message is pinned or unpinned in a channel.
             </summary>
@@ -10603,338 +10566,348 @@
             </summary>
             <param name="data">The bulk channel update data.</param>
         </member>
-        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.ChannelUpdateBulk">
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.ChannelsUpdated">
             <summary>
             Occurs when multiple channels are updated at once.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.ChannelRecipientAddEvent">
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.ChannelRecipientAddedEvent">
             <summary>
             Delegate for CHANNEL_RECIPIENT_ADD events when a recipient is added to a channel.
             </summary>
             <param name="data">The channel recipient data.</param>
         </member>
-        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.ChannelRecipientAdd">
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.ChannelRecipientAdded">
             <summary>
             Occurs when a recipient is added to a group DM or channel.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.ChannelRecipientRemoveEvent">
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.ChannelRecipientRemovedEvent">
             <summary>
             Delegate for CHANNEL_RECIPIENT_REMOVE events when a recipient is removed from a channel.
             </summary>
             <param name="data">The channel recipient data.</param>
         </member>
-        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.ChannelRecipientRemove">
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.ChannelRecipientRemoved">
             <summary>
             Occurs when a recipient is removed from a group DM or channel.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.VoiceStateUpdateEvent">
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.VoiceStateUpdatedEvent">
             <summary>
             Delegate for VOICE_STATE_UPDATE events when a user's voice state changes.
             </summary>
             <param name="data">The voice state data.</param>
         </member>
-        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.VoiceStateUpdate">
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.VoiceStateUpdated">
             <summary>
             Occurs when a user joins, leaves, or updates their state in a voice channel.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.VoiceServerUpdateEvent">
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.VoiceServerUpdatedEvent">
             <summary>
             Delegate for VOICE_SERVER_UPDATE events for voice connection data.
             </summary>
             <param name="data">The voice server data.</param>
         </member>
-        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.VoiceServerUpdate">
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.VoiceServerUpdated">
             <summary>
             Occurs when voice server information is updated (used for establishing voice connections).
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.GuildBanAddEvent">
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.GuildBanAddedEvent">
             <summary>
             Delegate for GUILD_BAN_ADD events when a user is banned from a guild.
             </summary>
             <param name="data">The ban data.</param>
         </member>
-        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.GuildBanAdd">
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.MemberBanned">
             <summary>
             Occurs when a user is banned from a guild.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.GuildBanRemoveEvent">
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.GuildBanRemovedEvent">
             <summary>
             Delegate for GUILD_BAN_REMOVE events when a user is unbanned from a guild.
             </summary>
             <param name="data">The ban data.</param>
         </member>
-        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.GuildBanRemove">
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.MemberUnbanned">
             <summary>
             Occurs when a user is unbanned from a guild.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.WebhooksUpdateEvent">
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.WebhooksUpdatedEvent">
             <summary>
             Delegate for WEBHOOKS_UPDATE events when webhooks in a channel are updated.
             </summary>
             <param name="data">The webhooks update data.</param>
         </member>
-        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.WebhooksUpdate">
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.WebhooksUpdated">
             <summary>
             Occurs when webhooks are created, updated, or deleted in a channel.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.GuildCreateEvent">
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.GuildJoinedEvent">
             <summary>
             Delegate for GUILD_CREATE events when a guild becomes available.
             </summary>
             <param name="data">The guild data.</param>
         </member>
-        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.GuildCreate">
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.GuildJoined">
             <summary>
-            Occurs when the bot joins a guild or when a guild becomes available after an outage.
+            Occurs when the bot joins a guild.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.GuildUpdateEvent">
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.GuildUpdatedEvent">
             <summary>
             Delegate for GUILD_UPDATE events when guild properties are updated.
             </summary>
-            <param name="data">The updated guild data.</param>
+            <param name="before"></param>
+            <param name="after"></param>
         </member>
-        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.GuildUpdate">
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.GuildUpdated">
             <summary>
             Occurs when a guild is updated (name, icon, settings, etc.).
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.GuildDeleteEvent">
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.GuildLeftEvent">
             <summary>
-            Delegate for GUILD_DELETE events when a guild becomes unavailable or the bot is removed.
+            Delegate for GUILD_DELETE events when the bot is removed.
             </summary>
-            <param name="data">The guild delete data containing guild ID and unavailable status.</param>
+            <param name="data">The guild delete data containing guild.</param>
         </member>
-        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.GuildDelete">
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.GuildLeft">
             <summary>
             Occurs when the bot is removed from a guild or when a guild becomes unavailable.
             Check the Unavailable property to distinguish between guild outages (true) and the user being removed (false/null).
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.GuildMemberAddEvent">
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.GuildAvailableEvent">
+            <summary>
+            Delegate for GUILD_CREATE events when a guild has come back.
+            </summary>
+            <param name="data"></param>
+        </member>
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.GuildAvailable">
+            <summary>
+            Occurs when the guild becomes available again.
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.GuildUnavailableEvent">
+            <summary>
+            Delegate for GUILD_DELETE events when a guild has gone down.
+            </summary>
+            <param name="data"></param>
+        </member>
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.GuildUnavailable">
+            <summary>
+            Occurs when the guild becomes unavailable.
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.GuildMemberAddedEvent">
             <summary>
             Delegate for GUILD_MEMBER_ADD events when a user joins a guild.
             </summary>
             <param name="data">The guild member data.</param>
         </member>
-        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.GuildMemberAdd">
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.MemberJoined">
             <summary>
             Occurs when a new member joins a guild.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.GuildMemberUpdateEvent">
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.GuildMemberUpdatedEvent">
             <summary>
             Delegate for GUILD_MEMBER_UPDATE events when a guild member is updated.
             </summary>
             <param name="data">The updated guild member data.</param>
         </member>
-        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.GuildMemberUpdate">
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.MemberUpdated">
             <summary>
             Occurs when a guild member is updated (roles, nickname, avatar, etc.).
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.GuildMemberRemoveEvent">
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.GuildMemberRemovedEvent">
             <summary>
             Delegate for GUILD_MEMBER_REMOVE events when a member leaves or is removed from a guild.
             </summary>
             <param name="data">The entity data containing guild and user IDs.</param>
         </member>
-        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.GuildMemberRemove">
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.MemberLeft">
             <summary>
             Occurs when a member leaves a guild or is kicked/banned.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.GuildRoleCreateEvent">
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.GuildRoleCreatedEvent">
             <summary>
             Delegate for GUILD_ROLE_CREATE events when a role is created in a guild.
             </summary>
             <param name="data">The guild role data containing guild ID and role information.</param>
         </member>
-        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.GuildRoleCreate">
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.RoleCreated">
             <summary>
             Occurs when a new role is created in a guild.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.GuildRoleUpdateEvent">
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.GuildRoleUpdatedEvent">
             <summary>
             Delegate for GUILD_ROLE_UPDATE events when a role is updated.
             </summary>
             <param name="data">The updated guild role data containing guild ID and role information.</param>
         </member>
-        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.GuildRoleUpdate">
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.RoleUpdated">
             <summary>
             Occurs when a role is updated (name, color, permissions, etc.).
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.GuildRoleDeleteEvent">
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.GuildRoleDeletedEvent">
             <summary>
             Delegate for GUILD_ROLE_DELETE events when a role is deleted from a guild.
             </summary>
             <param name="data">The guild role delete data containing guild and role IDs.</param>
         </member>
-        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.GuildRoleDelete">
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.RoleDeleted">
             <summary>
             Occurs when a role is deleted from a guild.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.GuildEmojisUpdateEvent">
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.GuildEmojiUpdatedEvent">
             <summary>
             Delegate for GUILD_EMOJIS_UPDATE events when guild emojis are updated.
             </summary>
-            <param name="data">The guild emojis update data containing guild ID and updated emoji list.</param>
         </member>
-        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.GuildEmojisUpdate">
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.EmojiUpdated">
             <summary>
             Occurs when the list of emojis in a guild is updated (added, removed, or modified).
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.GuildRoleUpdateBulkEvent">
-            <summary>
-            Delegate for GUILD_ROLE_UPDATE_BULK events when multiple guild roles are updated.
-            </summary>
-            <param name="data">The guild role bulk update data containing guild ID and updated roles.</param>
-        </member>
-        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.GuildRoleUpdateBulk">
-            <summary>
-            Occurs when multiple roles are updated at once in a guild.
-            </summary>
-        </member>
-        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.GuildStickersUpdateEvent">
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.GuildStickerUpdatedEvent">
             <summary>
             Delegate for GUILD_STICKERS_UPDATE events when guild stickers are updated.
             </summary>
-            <param name="data">The guild stickers update data containing guild ID and updated sticker list.</param>
         </member>
-        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.GuildStickersUpdate">
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.StickerUpdated">
             <summary>
             Occurs when the list of stickers in a guild is updated (added, removed, or modified).
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.RelationshipAddEvent">
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.RelationshipAddedEvent">
             <summary>
             Delegate for RELATIONSHIP_ADD events when a relationship is added.
             </summary>
             <param name="data">The relationship data.</param>
         </member>
-        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.RelationshipAdd">
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.RelationshipAdded">
             <summary>
             Occurs when a relationship (friend, blocked user, etc.) is added.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.RelationshipUpdateEvent">
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.RelationshipUpdatedEvent">
             <summary>
             Delegate for RELATIONSHIP_UPDATE events when a relationship is updated.
             </summary>
             <param name="data">The relationship data.</param>
         </member>
-        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.RelationshipUpdate">
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.RelationshipUpdated">
             <summary>
             Occurs when a relationship is updated.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.RelationshipRemoveEvent">
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.RelationshipRemovedEvent">
             <summary>
             Delegate for RELATIONSHIP_REMOVE events when a relationship is removed.
             </summary>
             <param name="data">The relationship data.</param>
         </member>
-        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.RelationshipRemove">
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.RelationshipRemoved">
             <summary>
             Occurs when a relationship is removed.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.FavoriteMemeCreateEvent">
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.FavoriteMemeCreatedEvent">
             <summary>
             Delegate for FAVORITE_MEME_CREATE events when a favorite meme is created.
             </summary>
             <param name="data">The favorite meme data.</param>
         </member>
-        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.FavoriteMemeCreate">
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.FavoriteMemeCreated">
             <summary>
             Occurs when a favorite meme is created.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.FavoriteMemeUpdateEvent">
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.FavoriteMemeUpdatedEvent">
             <summary>
             Delegate for FAVORITE_MEME_UPDATE events when a favorite meme is updated.
             </summary>
             <param name="data">The favorite meme data.</param>
         </member>
-        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.FavoriteMemeUpdate">
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.FavoriteMemeUpdated">
             <summary>
             Occurs when a favorite meme is updated.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.FavoriteMemeDeleteEvent">
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.FavoriteMemeDeletedEvent">
             <summary>
             Delegate for FAVORITE_MEME_DELETE events when a favorite meme is deleted.
             </summary>
             <param name="data">The favorite meme data.</param>
         </member>
-        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.FavoriteMemeDelete">
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.FavoriteMemeDeleted">
             <summary>
             Occurs when a favorite meme is deleted.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.CallCreateEvent">
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.CallCreatedEvent">
             <summary>
             Delegate for CALL_CREATE events when a call is created.
             </summary>
             <param name="data">The call data.</param>
         </member>
-        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.CallCreate">
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.CallCreated">
             <summary>
             Occurs when a call is created.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.CallUpdateEvent">
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.CallUpdatedEvent">
             <summary>
             Delegate for CALL_UPDATE events when a call is updated.
             </summary>
             <param name="data">The call data.</param>
         </member>
-        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.CallUpdate">
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.CallUpdated">
             <summary>
             Occurs when a call is updated.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.CallDeleteEvent">
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.CallDeletedEvent">
             <summary>
             Delegate for CALL_DELETE events when a call is deleted.
             </summary>
             <param name="data">The call data.</param>
         </member>
-        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.CallDelete">
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.CallDeleted">
             <summary>
             Occurs when a call is deleted.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.InviteCreateEvent">
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.InviteCreatedEvent">
             <summary>
             Delegate for INVITE_CREATE events when an invite is created.
             </summary>
             <param name="data">The invite data including code, channel, guild, and inviter information.</param>
         </member>
-        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.InviteCreate">
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.InviteCreated">
             <summary>
             Occurs when a new invite is created for a guild or group DM.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.InviteDeleteEvent">
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.InviteDeletedEvent">
             <summary>
             Delegate for INVITE_DELETE events when an invite is deleted or expires.
             </summary>
             <param name="data">The invite data containing the deleted invite code and channel/guild information.</param>
         </member>
-        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.InviteDelete">
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.InviteDeleted">
             <summary>
             Occurs when an invite is deleted or expires.
             </summary>
@@ -13126,7 +13099,7 @@
         </member>
         <member name="F:Fluxer.Net.Rest.ApiLimits.MaxGuildMembersLarge">
             <summary>
-            How many more users can join a guild with <see cref="P:Fluxer.Net.GuildFeatures.IsLargeServer"/>.
+            How many more users can join a guild with <see cref="P:Fluxer.Net.GuildFeatures.IsLargeGuild"/>.
             </summary>
         </member>
         <member name="F:Fluxer.Net.Rest.ApiLimits.MaxInviteUses">

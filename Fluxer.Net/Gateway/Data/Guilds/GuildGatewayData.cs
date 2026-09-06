@@ -57,29 +57,29 @@ public class GuildGatewayData
     /// Members present in the guild at the time of the event.
     /// </summary>
     [JsonProperty("members")]
-    public List<GuildMemberGatewayData> Members { get; set; } = new();
+    public List<GuildMemberGatewayData> Members { get; set; }
 
     /// <summary>
     /// Roles defined in the guild.
     /// </summary>
     [JsonProperty("roles")]
-    public List<RoleJson> Roles { get; set; } = new();
+    public List<RoleJson> Roles { get; set; }
 
     /// <summary>
     /// Emojis defined in the guild.
     /// </summary>
     [JsonProperty("emojis")]
-    public List<GuildEmojiJson> Emojis { get; set; } = new();
+    public GuildEmojiJson[]? Emojis { get; set; }
 
     /// <summary>
     /// Stickers defined in the guild.
     /// </summary>
     [JsonProperty("stickers")]
-    public List<GuildStickerJson> Stickers { get; set; } = new();
+    public GuildStickerJson[]? Stickers { get; set; }
 
     /// <summary>
     /// Current voice states for the guild.
     /// </summary>
     [JsonProperty("voice_states")]
-    public List<VoiceStateJson> VoiceStates { get; set; } = new();
+    public List<VoiceStateJson>? VoiceStates { get; set; }
 }

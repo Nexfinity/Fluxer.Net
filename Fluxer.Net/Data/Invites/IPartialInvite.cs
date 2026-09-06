@@ -10,7 +10,7 @@ public interface IPartialInvite
     /// <summary>
     /// The type of invite (guild).
     /// </summary>
-    int Type { get; }
+    InviteType Type { get; }
 
     /// <summary>
     /// The guild this invite is for
@@ -20,12 +20,12 @@ public interface IPartialInvite
     /// <summary>
     /// The channel this invite is for.
     /// </summary>
-    InviteChannelJson? Channel { get; }
+    IPartialChannel? Channel { get; }
 
     /// <summary>
     /// The user who created the invite.
     /// </summary>
-    InviteUserJson Inviter { get; }
+    IUser Inviter { get; }
 
     /// <summary>
     /// The approximate total member count of the guild
@@ -45,5 +45,5 @@ public interface IPartialInvite
     /// <summary>
     /// Whether the invite grants temporary membership
     /// </summary>
-    bool Temporary { get; }
+    bool IsTemporary { get; }
 }

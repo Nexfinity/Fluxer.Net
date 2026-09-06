@@ -4,31 +4,11 @@ namespace Fluxer.Net;
 
 
 /// <inheritdoc />
-public class ChannelJson : IChannel
+public class ChannelJson : PartialChannelJson, IChannel
 {
-
-    /// <inheritdoc />
-    [JsonProperty("id")]
-    public ulong Id { get; set; }
-
-    /// <inheritdoc />
-    public DateTimeOffset CreatedAt => SnowflakeUtils.FromSnowflake(Id);
-
-    /// <inheritdoc />
-    [JsonIgnore]
-    public string Mention => $"<#{Id}>";
-
     /// <inheritdoc />
     [JsonProperty("guild_id")]
     public ulong? GuildId { get; set; }
-
-    /// <inheritdoc />
-    [JsonProperty("type")]
-    public ChannelType Type { get; set; }
-
-    /// <inheritdoc />
-    [JsonProperty("name")]
-    public string? Name { get; set; }
 
     /// <inheritdoc />
     [JsonProperty("topic")]
@@ -103,7 +83,4 @@ public class ChannelJson : IChannel
     public DateTimeOffset? IndexedAt { get; set; }
 
     IEnumerable<IPermissionOverwrite>? IChannel.PermissionOverwrites => PermissionOverwrites;
-
-    /// <inheritdoc/>
-    public bool IsTextable => Channel.TextableTypes(Type);
 }

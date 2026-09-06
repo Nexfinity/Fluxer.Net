@@ -8,16 +8,16 @@ public class PartialInviteJson : IPartialInvite
     public string Code { get; set; }
 
     [JsonProperty("type")]
-    public int Type { get; set; }
+    public InviteType Type { get; set; }
 
     [JsonProperty("guild")]
     public PartialGuildJson? Guild { get; set; }
 
     [JsonProperty("channel")]
-    public InviteChannelJson? Channel { get; set; }
+    public PartialChannelJson? Channel { get; set; }
 
     [JsonProperty("inviter")]
-    public InviteUserJson Inviter { get; set; }
+    public UserJson Inviter { get; set; }
 
     [JsonProperty("member_count")]
     public int MemberCount { get; set; }
@@ -29,7 +29,11 @@ public class PartialInviteJson : IPartialInvite
     public DateTimeOffset? ExpiresAt { get; set; }
 
     [JsonProperty("temporary")]
-    public bool Temporary { get; set; }
+    public bool IsTemporary { get; set; }
 
     IPartialGuild? IPartialInvite.Guild => Guild;
+
+    IPartialChannel? IPartialInvite.Channel => Channel;
+
+    IUser IPartialInvite.Inviter => Inviter;
 }

@@ -1,25 +1,10 @@
 ﻿namespace Fluxer.Net;
 
 /// <inheritdoc />
-public class Channel : Entity, IChannel
+public class Channel : PartialChannel, IChannel
 {
     /// <inheritdoc />
-    public ulong Id { get; private set; }
-
-    /// <inheritdoc />
-    public DateTimeOffset CreatedAt => SnowflakeUtils.FromSnowflake(Id);
-
-    /// <inheritdoc />
-    public string Mention => $"<#{Id}>";
-
-    /// <inheritdoc />
     public ulong? GuildId { get; internal set; }
-
-    /// <inheritdoc />
-    public ChannelType Type { get; private set; }
-
-    /// <inheritdoc />
-    public string? Name { get; private set; }
 
     /// <inheritdoc />
     public string? Topic { get; private set; }
@@ -77,9 +62,6 @@ public class Channel : Entity, IChannel
 
     IEnumerable<IPermissionOverwrite>? IChannel.PermissionOverwrites => PermissionOverwrites;
 
-    /// <inheritdoc/>
-    public bool IsTextable => TextableTypes(Type);
-
     /// <summary>
     /// Channel types that you can send messages to.
     /// </summary>
@@ -89,8 +71,8 @@ public class Channel : Entity, IChannel
     {
         switch (type)
         {
-            case ChannelType.Dm:
-            case ChannelType.DmPersonalNotes:
+            case ChannelType.DM:
+            case ChannelType.DMPersonalNotes:
             case ChannelType.Group:
             case ChannelType.GuildForum:
             case ChannelType.GuildMedia:
@@ -134,12 +116,12 @@ public class Channel : Entity, IChannel
                     data = new VoiceChannel(client);
                 }
                 break;
-            case ChannelType.Dm:
+            case ChannelType.DM:
                 {
                     data = new DMChannel(client);
                 }
                 break;
-            case ChannelType.DmPersonalNotes:
+            case ChannelType.DMPersonalNotes:
                 {
                     data = new SavedNotesChannel(client);
                 }
@@ -174,10 +156,8 @@ public class Channel : Entity, IChannel
 
     internal virtual void Update(ChannelJson json)
     {
-        Id = json.Id;
+        base.Update(json);
         GuildId = json.GuildId;
-        Type = json.Type;
-        Name = json.Name;
         Topic = json.Topic;
         IconHash = json.IconHash;
         Url = json.Url;
