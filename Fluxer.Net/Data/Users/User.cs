@@ -37,6 +37,9 @@ public class User : Entity, IUser
     public bool IsSystem { get; private set; }
 
     /// <inheritdoc />
+    public MentionPreference MentionPreference { get; private set; }
+
+    /// <inheritdoc />
     public string GetCurrentName()
     {
         return DisplayName ?? Username;
@@ -96,5 +99,6 @@ public class User : Entity, IUser
         Flags = json.Flags;
         IsBot = json.IsBot;
         IsSystem = json.IsSystem;
+        MentionPreference = json.MentionPreference;
     }
 }

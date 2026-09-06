@@ -1,6 +1,50 @@
 namespace Fluxer.Net;
 
 /// <summary>
+/// Channel types for a guild.
+/// </summary>
+public enum GuildChannelType : int
+{
+    /// <inheritdoc cref="ChannelType.GuildText"/>
+    GuildText = 0,
+
+    /// <inheritdoc cref="ChannelType.GuildVoice"/>
+    GuildVoice = 2,
+
+    /// <inheritdoc cref="ChannelType.GuildCategory"/>
+    GuildCategory = 4,
+
+    /// <inheritdoc cref="ChannelType.GuildNews"/>
+    GuildNews = 5,
+
+    /// <inheritdoc cref="ChannelType.GuildStore"/>
+    GuildStore = 6,
+
+    /// <inheritdoc cref="ChannelType.NewsThread"/>
+    NewsThread = 10,
+
+    /// <inheritdoc cref="ChannelType.PublicThread"/>
+    PublicThread = 11,
+
+    /// <inheritdoc cref="ChannelType.PrivateThread"/>
+    PrivateThread = 12,
+
+    /// <inheritdoc cref="ChannelType.GuildStageVoice"/>
+    GuildStageVoice = 13,
+
+    /// <inheritdoc cref="ChannelType.GuildDirectory"/>
+    GuildDirectory = 14,
+
+    /// <inheritdoc cref="ChannelType.GuildForum"/>
+    GuildForum = 15,
+
+    /// <inheritdoc cref="ChannelType.GuildMedia"/>
+    GuildMedia = 16,
+
+    /// <inheritdoc cref="ChannelType.GuildLink"/>
+    GuildLink = 998,
+}
+/// <summary>
 /// Represents the different types of channels available in Fluxer.
 /// </summary>
 public enum ChannelType

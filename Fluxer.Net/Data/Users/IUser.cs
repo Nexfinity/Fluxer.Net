@@ -43,6 +43,11 @@ public interface IUser : IMentionable, ISnowflake
     bool IsSystem { get; }
 
     /// <summary>
+    /// If a user wants to be mentioned or not in replies.
+    /// </summary>
+    MentionPreference MentionPreference { get; }
+
+    /// <summary>
     /// Get the user's current display name or username.
     /// </summary>
     string GetCurrentName();

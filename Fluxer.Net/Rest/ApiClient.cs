@@ -1630,7 +1630,7 @@ public class FluxerApiClient
     /// <param name="guildId"></param>
     /// <param name="data"></param>
     /// <returns></returns>
-    public async Task UpdateChannelPositionsAsync(ulong guildId, IEnumerable<ChannelPositionUpdateRequestItem> data)
+    public async Task UpdateChannelPositionsAsync(ulong guildId, IEnumerable<ChannelPositionUpdateRequestItem> list)
         => await SendRequestAsync(HttpMethod.Patch, $"/guilds/{guildId}/channels", data, true);
 
     /// <summary>
