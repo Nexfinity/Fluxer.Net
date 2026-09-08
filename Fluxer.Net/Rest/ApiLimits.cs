@@ -223,24 +223,24 @@ public class ApiLimits
     public int MaxBookmarks = 50;
 
     /// <summary>
-    /// Max favorite gifs you can have with premium.
+    /// Max favorite media you can have with premium.
     /// </summary>
-    public int MaxFavoriteMemesPremium = 500;
+    public int MaxFavoriteMediaPremium = 500;
 
     /// <summary>
-    /// Max favorite gifs you can have.
+    /// Max favorite media you can have.
     /// </summary>
-    public int MaxFavoriteMemes = 50;
+    public int MaxFavoriteMedia = 50;
 
     /// <summary>
-    /// Max tags a favorite gif can have.
+    /// Max tags a favorite media can have.
     /// </summary>
-    public int MaxFavoriteMemeTags = 10;
+    public int MaxFavoriteMediaTags = 10;
 
     /// <summary>
-    /// Max favorite gifs saved.
+    /// Max favorite media saved.
     /// </summary>
-    public int MaxFavoriteGifs = 10000;
+    public int MaxFavoriteMediaSaved = 10000;
 
     #endregion
 

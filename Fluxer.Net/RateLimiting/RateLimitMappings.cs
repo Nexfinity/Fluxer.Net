@@ -77,12 +77,12 @@ public static class RateLimitMappings
         ["DELETE /attachments/:upload_filename"] = RateLimitConfigs.ATTACHMENT_DELETE,
 
         // Meme API
-        ["GET /users/@me/memes"] = RateLimitConfigs.FAVORITE_MEME_LIST,
-        ["POST /users/@me/memes"] = RateLimitConfigs.FAVORITE_MEME_CREATE_FROM_URL,
-        ["GET /users/@me/memes/:meme_id"] = RateLimitConfigs.FAVORITE_MEME_GET,
-        ["PATCH /users/@me/memes/:meme_id"] = RateLimitConfigs.FAVORITE_MEME_UPDATE,
-        ["DELETE /users/@me/memes/:meme_id"] = RateLimitConfigs.FAVORITE_MEME_DELETE,
-        ["POST /channels/:channel_id/messages/:message_id/memes"] = RateLimitConfigs.FAVORITE_MEME_CREATE_FROM_MESSAGE,
+        ["GET /users/@me/memes"] = RateLimitConfigs.FAVORITE_MEDIA_LIST,
+        ["POST /users/@me/memes"] = RateLimitConfigs.FAVORITE_MEDIA_CREATE_FROM_URL,
+        ["GET /users/@me/memes/:meme_id"] = RateLimitConfigs.FAVORITE_MEDIA_GET,
+        ["PATCH /users/@me/memes/:meme_id"] = RateLimitConfigs.FAVORITE_MEDIA_UPDATE,
+        ["DELETE /users/@me/memes/:meme_id"] = RateLimitConfigs.FAVORITE_MEDIA_DELETE,
+        ["POST /channels/:channel_id/messages/:message_id/memes"] = RateLimitConfigs.FAVORITE_MEDIA_CREATE_FROM_MESSAGE,
 
         // Invite API
         ["GET /invites/:invite_code"] = RateLimitConfigs.INVITE_GET,

@@ -63,7 +63,7 @@ public class VoiceStateJson : IVoiceState
 
     /// <inheritdoc />
     [JsonProperty("member")]
-    public GuildMemberJson Member { get; set; }
+    public GuildMemberJson? Member { get; set; }
 
-    IGuildMember IVoiceState.Member => Member;
+    IGuildMember? IVoiceState.Member => Member;
 }
