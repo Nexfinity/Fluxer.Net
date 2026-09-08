@@ -7,6 +7,12 @@ namespace Fluxer.Net.Gateway;
 /// </summary>
 public class AuthSessionChangeGatewayData
 {
-    [JsonProperty("session")]
-    public AuthSessionJson Session { get; set; } = null!;
+    [JsonProperty("old_auth_session_id_hash")]
+    public string OldSessionId { get; set; }
+
+    [JsonProperty("new_auth_session_id_hash")]
+    public string NewSessionId { get; set; }
+
+    [JsonProperty("new_token")]
+    public string NewToken { get; set; }
 }

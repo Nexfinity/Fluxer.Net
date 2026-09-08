@@ -9362,15 +9362,64 @@
             Channel for the voice state.
             </summary>
         </member>
-        <member name="M:Fluxer.Net.SocketVoiceState.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.VoiceStateJson,Fluxer.Net.SocketGuild,Fluxer.Net.SocketVoiceChannel)">
+        <member name="M:Fluxer.Net.SocketVoiceState.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.VoiceStateJson,Fluxer.Net.Channel)">
             <summary>
             Create a SocketVoiceState object from json.
             </summary>
             <param name="client"></param>
             <param name="json"></param>
-            <param name="guild"></param>
             <param name="channel"></param>
             <returns></returns>
+        </member>
+        <member name="T:Fluxer.Net.VoiceServer">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.VoiceServer.Token">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.VoiceServer.Endpoint">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.VoiceServer.ConnectionId">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.VoiceServer.ChannelId">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.VoiceServer.GuildId">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.VoiceServer.E2EEKey">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.VoiceServer.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.VoiceServerJson)">
+            <summary>
+            Create a VoiceServer object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Fluxer.Net.VoiceServerJson">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.VoiceServerJson.Token">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.VoiceServerJson.Endpoint">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.VoiceServerJson.ConnectionId">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.VoiceServerJson.ChannelId">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.VoiceServerJson.GuildId">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.VoiceServerJson.E2EEKey">
+            <inheritdoc />
         </member>
         <member name="T:Fluxer.Net.VoiceState">
             <inheritdoc />
@@ -9805,6 +9854,11 @@
             Providing your own HttpClient allows for connection pooling, custom headers, and proxy configuration.
             </summary>
         </member>
+        <member name="P:Fluxer.Net.FluxerConfig.Proxy">
+            <summary>
+            Proxy used for the rest/http client.
+            </summary>
+        </member>
         <member name="P:Fluxer.Net.FluxerConfig.IgnoredGatewayEvents">
             <summary>
             List of gateway event dispatch types to ignore. Useful for filtering out high-volume events
@@ -10139,9 +10193,19 @@
             Gateway data for USER_SETTINGS_UPDATE event when user settings are updated.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.CallGatewayData">
+        <member name="T:Fluxer.Net.Gateway.CallCreateGatewayData">
             <summary>
-            Gateway data for CALL_CREATE, CALL_UPDATE, and CALL_DELETE events.
+            Gateway data for CALL_CREATE  event.
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.Gateway.CallDeleteGatewayData">
+            <summary>
+            Gateway data for CALL_CREATE  event.
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.Gateway.CallUpdateGatewayData">
+            <summary>
+            Gateway data for CALL_UPDATE  event.
             </summary>
         </member>
         <member name="T:Fluxer.Net.Gateway.VoiceStateUpdatePayload">
@@ -10413,7 +10477,6 @@
             <summary>
             Delegate for CHANNEL_UPDATE events when a channel is updated.
             </summary>
-            <param name="data">The updated channel data.</param>
         </member>
         <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.ChannelUpdated">
             <summary>
@@ -10431,13 +10494,12 @@
             Occurs when a channel is deleted.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.UserUpdatedEvent">
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.CurrentUserUpdatedEvent">
             <summary>
             Delegate for USER_UPDATE events when the current user's data is updated.
             </summary>
-            <param name="data">The updated user data.</param>
         </member>
-        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.UserUpdated">
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.CurrentUserUpdated">
             <summary>
             Occurs when the current user's account is updated.
             </summary>
@@ -10462,17 +10524,6 @@
         <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.TypingStarted">
             <summary>
             Occurs when a user starts typing in a channel.
-            </summary>
-        </member>
-        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.TypingStopEvent">
-            <summary>
-            Delegate for TYPING_STOP events when a user stops typing.
-            </summary>
-            <param name="data">The typing indicator data.</param>
-        </member>
-        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.TypingStopped">
-            <summary>
-            Occurs when a user stops typing in a channel.
             </summary>
         </member>
         <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.MessageReactionAddedEvent">
@@ -10507,13 +10558,13 @@
             Occurs when all reactions are removed from a message.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.MessageReactionRemoveEmojiEvent">
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.MessageReactionRemovedEmojiEvent">
             <summary>
             Delegate for MESSAGE_REACTION_REMOVE_EMOJI events when all reactions of a specific emoji are removed.
             </summary>
             <param name="data">The reaction removal data.</param>
         </member>
-        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.MessageReactionRemoveEmoji">
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.MessageReactionRemovedEmoji">
             <summary>
             Occurs when all instances of a specific emoji are removed from a message.
             </summary>
@@ -10595,35 +10646,22 @@
             Occurs when channel pins are acknowledged.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.ChannelUpdateBulkEvent">
-            <summary>
-            Delegate for CHANNEL_UPDATE_BULK events when multiple channels are updated.
-            </summary>
-            <param name="data">The bulk channel update data.</param>
-        </member>
-        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.ChannelsUpdated">
-            <summary>
-            Occurs when multiple channels are updated at once.
-            </summary>
-        </member>
-        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.ChannelRecipientAddedEvent">
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.GroupUserAddedEvent">
             <summary>
             Delegate for CHANNEL_RECIPIENT_ADD events when a recipient is added to a channel.
             </summary>
-            <param name="data">The channel recipient data.</param>
         </member>
-        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.ChannelRecipientAdded">
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.GroupUserAdded">
             <summary>
             Occurs when a recipient is added to a group DM or channel.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.ChannelRecipientRemovedEvent">
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.GroupUserRemovedEvent">
             <summary>
             Delegate for CHANNEL_RECIPIENT_REMOVE events when a recipient is removed from a channel.
             </summary>
-            <param name="data">The channel recipient data.</param>
         </member>
-        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.ChannelRecipientRemoved">
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.GroupUserRemoved">
             <summary>
             Occurs when a recipient is removed from a group DM or channel.
             </summary>
@@ -10654,9 +10692,8 @@
             <summary>
             Delegate for GUILD_BAN_ADD events when a user is banned from a guild.
             </summary>
-            <param name="data">The ban data.</param>
         </member>
-        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.MemberBanned">
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.UserBanned">
             <summary>
             Occurs when a user is banned from a guild.
             </summary>
@@ -10665,9 +10702,8 @@
             <summary>
             Delegate for GUILD_BAN_REMOVE events when a user is unbanned from a guild.
             </summary>
-            <param name="data">The ban data.</param>
         </member>
-        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.MemberUnbanned">
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.UserUnbanned">
             <summary>
             Occurs when a user is unbanned from a guild.
             </summary>
@@ -11368,22 +11404,6 @@
             REST and can be paired with <see cref="T:Fluxer.Net.Gateway.FluxerGatewayClient"/> for real-time events.
             </remarks>
         </member>
-        <member name="P:Fluxer.Net.Rest.FluxerApiClient.HttpClient">
-            <summary>
-            The HTTP client used to make requests. Can be shared or injected for connection pooling.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.Rest.FluxerApiClient.RateLimitManager">
-            <summary>
-            Manages client-side rate limiting using sliding window algorithm.
-            Prevents exceeding Fluxer API rate limits by automatically waiting when necessary.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.Rest.FluxerApiClient.Limits">
-            <summary>
-            API limits for message length, attachment count and premium limits.
-            </summary>
-        </member>
         <member name="M:Fluxer.Net.Rest.FluxerApiClient.#ctor(Fluxer.Net.FluxerClient)">
             <summary>
             Initializes a new instance of the <see cref="T:Fluxer.Net.Rest.FluxerApiClient"/> class.
@@ -11407,70 +11427,6 @@
             <param name="userId">Optional user ID for user-specific rate limits.</param>
             <param name="webhookId">Optional webhook ID for webhook-specific rate limits.</param>
             <param name="inviteCode">Optional invite code for invite-specific rate limits.</param>
-        </member>
-        <member name="M:Fluxer.Net.Rest.FluxerApiClient.SendRequestAsync``2(System.Net.Http.HttpMethod,System.String,``1,System.Boolean,System.Boolean,System.Collections.Generic.ICollection{System.Collections.Generic.KeyValuePair{System.String,System.ValueTuple{System.Net.Http.HttpContent,System.String}}})">
-            <summary>
-            Makes an HTTP request with both request and response bodies.
-            </summary>
-            <typeparam name="TResponse">The type to deserialize the response into.</typeparam>
-            <typeparam name="TSend">The type of the request body.</typeparam>
-            <param name="method">The HTTP method (GET, POST, PATCH, etc.).</param>
-            <param name="route">The API route (e.g., "/channels/123/messages").</param>
-            <param name="data">The request body data to serialize and send.</param>
-            <param name="throwOnNonSuccess">Whether to throw an exception on non-2xx status codes.</param>
-            <param name="authorize">Whether to include the Authorization header.</param>
-            <param name="otherFormData"></param>
-            <returns>The deserialized response object.</returns>
-            <exception cref="T:Fluxer.Net.Extensions.FluxerApiException">Thrown when <paramref name="throwOnNonSuccess"/> is true and the API returns a non-success status code.</exception>
-        </member>
-        <member name="M:Fluxer.Net.Rest.FluxerApiClient.SendRequestAsync``1(System.Net.Http.HttpMethod,System.String,``0,System.Boolean,System.Boolean)">
-            <summary>
-            Makes an HTTP request with a request body but no response body (returns status code only).
-            </summary>
-            <typeparam name="TSend">The type of the request body.</typeparam>
-            <param name="method">The HTTP method (POST, PATCH, DELETE, etc.).</param>
-            <param name="route">The API route (e.g., "/channels/123/typing").</param>
-            <param name="data">The request body data to serialize and send.</param>
-            <param name="throwOnNonSuccess">Whether to throw an exception on non-2xx status codes.</param>
-            <param name="authorize">Whether to include the Authorization header.</param>
-            <returns>The HTTP status code of the response.</returns>
-            <exception cref="T:Fluxer.Net.Extensions.FluxerApiException">Thrown when <paramref name="throwOnNonSuccess"/> is true and the API returns a non-success status code.</exception>
-        </member>
-        <member name="M:Fluxer.Net.Rest.FluxerApiClient.SendRequestAsync``1(System.Net.Http.HttpMethod,System.String,System.Boolean,System.Boolean)">
-            <summary>
-            Makes an HTTP request with no request body but expects a response body.
-            </summary>
-            <typeparam name="TResponse">The type to deserialize the response into.</typeparam>
-            <param name="method">The HTTP method (typically GET).</param>
-            <param name="route">The API route (e.g., "/users/@me").</param>
-            <param name="throwOnNonSuccess">Whether to throw an exception on non-2xx status codes.</param>
-            <param name="authorize">Whether to include the Authorization header.</param>
-            <returns>The deserialized response object.</returns>
-            <exception cref="T:Fluxer.Net.Extensions.FluxerApiException">Thrown when <paramref name="throwOnNonSuccess"/> is true and the API returns a non-success status code.</exception>
-        </member>
-        <member name="M:Fluxer.Net.Rest.FluxerApiClient.SendRequestQueryParamsAsync``1(System.Net.Http.HttpMethod,Fluxer.Net.Rest.RestClientQueryParams,System.String,System.Boolean,System.Boolean)">
-            <summary>
-            Makes an HTTP request with no request body but expects a response body.
-            </summary>
-            <typeparam name="TResponse">The type to deserialize the response into.</typeparam>
-            <param name="method">The HTTP method (typically GET).</param>
-            <param name="queryParams">The HTTP method query params like limit, after, etc.</param>
-            <param name="route">The API route (e.g., "/users/@me").</param>
-            <param name="throwOnNonSuccess">Whether to throw an exception on non-2xx status codes.</param>
-            <param name="authorize">Whether to include the Authorization header.</param>
-            <returns>The deserialized response object.</returns>
-            <exception cref="T:Fluxer.Net.Extensions.FluxerApiException">Thrown when <paramref name="throwOnNonSuccess"/> is true and the API returns a non-success status code.</exception>
-        </member>
-        <member name="M:Fluxer.Net.Rest.FluxerApiClient.SendRequestRawAsync(System.Net.Http.HttpMethod,System.String,System.Boolean,System.Boolean)">
-            <summary>
-            Makes an HTTP request with no request or response body (returns status code only).
-            </summary>
-            <param name="method">The HTTP method (DELETE, POST, etc.).</param>
-            <param name="route">The API route (e.g., "/channels/123").</param>
-            <param name="throwOnNonSuccess">Whether to throw an exception on non-2xx status codes.</param>
-            <param name="authorize">Whether to include the Authorization header.</param>
-            <returns>The HTTP status code of the response.</returns>
-            <exception cref="T:Fluxer.Net.Extensions.FluxerApiException">Thrown when <paramref name="throwOnNonSuccess"/> is true and the API returns a non-success status code.</exception>
         </member>
         <member name="M:Fluxer.Net.Rest.FluxerApiClient.GetInstanceAsync">
             <summary>
@@ -13296,6 +13252,86 @@
             <summary>
             Max length of message nonce.
             </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.FluxerBaseApiClient.HttpClient">
+            <summary>
+            The HTTP client used to make requests. Can be shared or injected for connection pooling.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.FluxerBaseApiClient.RateLimitManager">
+            <summary>
+            Manages client-side rate limiting using sliding window algorithm.
+            Prevents exceeding Fluxer API rate limits by automatically waiting when necessary.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.FluxerBaseApiClient.Limits">
+            <summary>
+            API limits for message length, attachment count and premium limits.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Rest.FluxerBaseApiClient.SendRequestAsync``2(System.Net.Http.HttpMethod,System.String,``1,System.Boolean,System.Boolean,System.Collections.Generic.ICollection{System.Collections.Generic.KeyValuePair{System.String,System.ValueTuple{System.Net.Http.HttpContent,System.String}}})">
+            <summary>
+            Makes an HTTP request with both request and response bodies.
+            </summary>
+            <typeparam name="TResponse">The type to deserialize the response into.</typeparam>
+            <typeparam name="TSend">The type of the request body.</typeparam>
+            <param name="method">The HTTP method (GET, POST, PATCH, etc.).</param>
+            <param name="route">The API route (e.g., "/channels/123/messages").</param>
+            <param name="data">The request body data to serialize and send.</param>
+            <param name="throwOnNonSuccess">Whether to throw an exception on non-2xx status codes.</param>
+            <param name="authorize">Whether to include the Authorization header.</param>
+            <param name="otherFormData"></param>
+            <returns>The deserialized response object.</returns>
+            <exception cref="T:Fluxer.Net.Extensions.FluxerApiException">Thrown when <paramref name="throwOnNonSuccess"/> is true and the API returns a non-success status code.</exception>
+        </member>
+        <member name="M:Fluxer.Net.Rest.FluxerBaseApiClient.SendRequestAsync``1(System.Net.Http.HttpMethod,System.String,``0,System.Boolean,System.Boolean)">
+            <summary>
+            Makes an HTTP request with a request body but no response body (returns status code only).
+            </summary>
+            <typeparam name="TSend">The type of the request body.</typeparam>
+            <param name="method">The HTTP method (POST, PATCH, DELETE, etc.).</param>
+            <param name="route">The API route (e.g., "/channels/123/typing").</param>
+            <param name="data">The request body data to serialize and send.</param>
+            <param name="throwOnNonSuccess">Whether to throw an exception on non-2xx status codes.</param>
+            <param name="authorize">Whether to include the Authorization header.</param>
+            <returns>The HTTP status code of the response.</returns>
+            <exception cref="T:Fluxer.Net.Extensions.FluxerApiException">Thrown when <paramref name="throwOnNonSuccess"/> is true and the API returns a non-success status code.</exception>
+        </member>
+        <member name="M:Fluxer.Net.Rest.FluxerBaseApiClient.SendRequestAsync``1(System.Net.Http.HttpMethod,System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Makes an HTTP request with no request body but expects a response body.
+            </summary>
+            <typeparam name="TResponse">The type to deserialize the response into.</typeparam>
+            <param name="method">The HTTP method (typically GET).</param>
+            <param name="route">The API route (e.g., "/users/@me").</param>
+            <param name="throwOnNonSuccess">Whether to throw an exception on non-2xx status codes.</param>
+            <param name="authorize">Whether to include the Authorization header.</param>
+            <returns>The deserialized response object.</returns>
+            <exception cref="T:Fluxer.Net.Extensions.FluxerApiException">Thrown when <paramref name="throwOnNonSuccess"/> is true and the API returns a non-success status code.</exception>
+        </member>
+        <member name="M:Fluxer.Net.Rest.FluxerBaseApiClient.SendRequestQueryParamsAsync``1(System.Net.Http.HttpMethod,Fluxer.Net.Rest.RestClientQueryParams,System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Makes an HTTP request with no request body but expects a response body.
+            </summary>
+            <typeparam name="TResponse">The type to deserialize the response into.</typeparam>
+            <param name="method">The HTTP method (typically GET).</param>
+            <param name="queryParams">The HTTP method query params like limit, after, etc.</param>
+            <param name="route">The API route (e.g., "/users/@me").</param>
+            <param name="throwOnNonSuccess">Whether to throw an exception on non-2xx status codes.</param>
+            <param name="authorize">Whether to include the Authorization header.</param>
+            <returns>The deserialized response object.</returns>
+            <exception cref="T:Fluxer.Net.Extensions.FluxerApiException">Thrown when <paramref name="throwOnNonSuccess"/> is true and the API returns a non-success status code.</exception>
+        </member>
+        <member name="M:Fluxer.Net.Rest.FluxerBaseApiClient.SendRequestRawAsync(System.Net.Http.HttpMethod,System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Makes an HTTP request with no request or response body (returns status code only).
+            </summary>
+            <param name="method">The HTTP method (DELETE, POST, etc.).</param>
+            <param name="route">The API route (e.g., "/channels/123").</param>
+            <param name="throwOnNonSuccess">Whether to throw an exception on non-2xx status codes.</param>
+            <param name="authorize">Whether to include the Authorization header.</param>
+            <returns>The HTTP status code of the response.</returns>
+            <exception cref="T:Fluxer.Net.Extensions.FluxerApiException">Thrown when <paramref name="throwOnNonSuccess"/> is true and the API returns a non-success status code.</exception>
         </member>
         <member name="T:Fluxer.Net.Rest.QueryParams">
             <summary>

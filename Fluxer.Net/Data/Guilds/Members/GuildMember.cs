@@ -106,8 +106,11 @@ public class GuildMember : Entity, IGuildMember
 
     internal virtual void Update(GuildMemberJson json)
     {
+        if (User == null)
+            User = User.Create(Client, json.User);
+        else
+            User.Update(json.User);
         GuildId = json.GuildId;
-        User = User.Create(Client, json.User);
         JoinedAt = json.JoinedAt;
         Nickname = json.Nickname;
         AvatarHash = json.AvatarHash;
