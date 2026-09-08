@@ -89,6 +89,8 @@ public class Channel : PartialChannel, IChannel
         return false;
     }
 
+    internal Channel Clone() => MemberwiseClone() as Channel;
+
     internal Channel(FluxerBaseClient client) : base(client)
     {
 

@@ -46,7 +46,7 @@ public class VoiceState : Entity, IVoiceState
     public string[] ViewerStreamKeys { get; private set; }
 
     /// <inheritdoc />
-    public GuildMember Member { get; private set; }
+    public GuildMember? Member { get; private set; }
 
     IGuildMember IVoiceState.Member => Member;
 
@@ -84,6 +84,7 @@ public class VoiceState : Entity, IVoiceState
         IsSelfVideo = json.IsSelfVideo;
         IsSuppressed = json.IsSuppressed;
         ViewerStreamKeys = json.ViewerStreamKeys;
-        Member = GuildMember.Create(Client, json.Member);
+        if (json.Member != null)
+            Member = GuildMember.Create(Client, json.Member);
     }
 }

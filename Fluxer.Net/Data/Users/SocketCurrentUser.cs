@@ -13,6 +13,8 @@ public class SocketCurrentUser : CurrentUser
     /// </summary>
     public IReadOnlyCollection<SocketGuild> Guilds => (IReadOnlyCollection<SocketGuild>)(Client as FluxerClient).Gateway.Guilds.Values;
 
+    internal SocketCurrentUser Clone() => MemberwiseClone() as SocketCurrentUser;
+
     /// <summary>
     /// Create a SocketCurrentUser object from json.
     /// </summary>

@@ -1,5 +1,6 @@
 using Fluxer.Net.Gateway;
 using Serilog;
+using System.Net;
 
 namespace Fluxer.Net;
 
@@ -51,6 +52,11 @@ public class FluxerConfig
     /// Providing your own HttpClient allows for connection pooling, custom headers, and proxy configuration.
     /// </summary>
     public HttpClient HttpClient { get; set; } = null;
+
+    /// <summary>
+    /// Proxy used for the rest/http client.
+    /// </summary>
+    public IWebProxy? Proxy { get; set; }
 
     /// <summary>
     /// List of gateway event dispatch types to ignore. Useful for filtering out high-volume events

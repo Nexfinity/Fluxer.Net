@@ -36,7 +36,10 @@ public class FluxerBaseApiClient
 
     internal void Initialize()
     {
-        HttpClient = _config.HttpClient ?? new();
+        HttpClient = _config.HttpClient ?? new(new HttpClientHandler
+        {
+            Proxy = _config.Proxy
+        });
         RateLimitManager = new RateLimitManager(_config.EnableRateLimiting);
 
         _logger.Information("Initialized Fluxer.Net api client ({AssemblyVersion}) (API {ApiVersion}) with rate limiting {RateLimitEnabled}",
