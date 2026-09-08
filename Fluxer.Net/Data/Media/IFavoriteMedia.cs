@@ -1,14 +1,14 @@
 ﻿namespace Fluxer.Net;
 
-public interface IFavoriteGif
+public interface IFavoriteMedia
 {
     /// <summary>
-    /// Source specific ID of the favorite gif.
+    /// Source specific ID of the favorite media.
     /// </summary>
     string Id { get; }
 
     /// <summary>
-    /// ID of the user who owns this favorite gif.
+    /// ID of the user who owns this favorite media.
     /// </summary>
     ulong UserId { get; }
 
@@ -43,7 +43,7 @@ public interface IFavoriteGif
     int Size { get; }
 
     /// <summary>
-    /// CDN URL to access the meme.
+    /// CDN URL to access the media.
     /// </summary>
     string Url { get; }
 
@@ -75,15 +75,15 @@ public interface IFavoriteGif
     /// <summary>
     /// Whether the gif is a video converted from GIF
     /// </summary>
-    bool IsGifVideo { get; }
+    bool IsMediaVideo { get; }
 
     /// <summary>
-    /// Klipy clip slug if the meme was sourced from Klipy.
+    /// Klipy clip slug if the media was sourced from Klipy.
     /// </summary>
     string? KlipySlug { get; }
 
     /// <summary>
-    /// Tenor view/- identifier if the meme was sourced from Tenor.
+    /// Tenor view/- identifier if the media was sourced from Tenor.
     /// </summary>
     string? TenorSlugId { get; }
 }

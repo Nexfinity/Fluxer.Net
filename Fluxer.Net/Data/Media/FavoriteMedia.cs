@@ -1,7 +1,7 @@
 ﻿namespace Fluxer.Net;
 
 /// <inheritdoc />
-public class FavoriteGif : Entity, IFavoriteGif
+public class FavoriteMedia : Entity, IFavoriteMedia
 {
     /// <inheritdoc />
     public string Id { get; private set; }
@@ -46,7 +46,7 @@ public class FavoriteGif : Entity, IFavoriteGif
     public int? Duration { get; private set; }
 
     /// <inheritdoc />
-    public bool IsGifVideo { get; private set; }
+    public bool IsMediaVideo { get; private set; }
 
     /// <inheritdoc />
     public string? KlipySlug { get; private set; }
@@ -54,25 +54,25 @@ public class FavoriteGif : Entity, IFavoriteGif
     /// <inheritdoc />
     public string? TenorSlugId { get; private set; }
 
-    internal FavoriteGif(FluxerBaseClient client) : base(client)
+    internal FavoriteMedia(FluxerBaseClient client) : base(client)
     {
 
     }
 
     /// <summary>
-    /// Create a FavoriteGif object from json.
+    /// Create a FavoriteMedia object from json.
     /// </summary>
     /// <param name="client"></param>
     /// <param name="json"></param>
     /// <returns></returns>
-    public static FavoriteGif Create(FluxerBaseClient client, FavoriteGifJson json)
+    public static FavoriteMedia Create(FluxerBaseClient client, FavoriteMediaJson json)
     {
-        FavoriteGif data = new FavoriteGif(client);
+        FavoriteMedia data = new FavoriteMedia(client);
         data.Update(json);
         return data;
     }
 
-    internal void Update(FavoriteGifJson json)
+    internal void Update(FavoriteMediaJson json)
     {
         Id = json.Id;
         UserId = json.UserId;
@@ -88,7 +88,7 @@ public class FavoriteGif : Entity, IFavoriteGif
         Width = json.Width;
         Height = json.Height;
         Duration = json.Duration;
-        IsGifVideo = json.IsGifVideo;
+        IsMediaVideo = json.IsMediaVideo;
         KlipySlug = json.KlipySlug;
         TenorSlugId = json.TenorSlugId;
     }

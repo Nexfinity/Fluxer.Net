@@ -14,7 +14,7 @@ public class ReadyGatewayData
     public string CountryCode { get; set; }
 
     [JsonProperty("favorite_memes")]
-    public FavoriteGifJson[]? FavoriteMemes { get; set; }
+    public FavoriteMediaJson[]? FavoriteMedia { get; set; }
 
     [JsonProperty("pinned_dms")]
     public ulong[] PinnedDMs { get; set; }

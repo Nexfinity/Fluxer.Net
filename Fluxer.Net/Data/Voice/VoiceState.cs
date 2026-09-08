@@ -48,7 +48,7 @@ public class VoiceState : Entity, IVoiceState
     /// <inheritdoc />
     public GuildMember? Member { get; private set; }
 
-    IGuildMember IVoiceState.Member => Member;
+    IGuildMember? IVoiceState.Member => Member;
 
     internal VoiceState(FluxerBaseClient client) : base(client)
     {

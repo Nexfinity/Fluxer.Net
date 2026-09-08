@@ -432,14 +432,14 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// <param name="allowedMentions"></param>
     /// <param name="flags"></param>
     /// <param name="nonce"></param>
-    /// <param name="favoriteMemeId"></param>
+    /// <param name="favoriteMediaId"></param>
     /// <param name="tts"></param>
     /// <param name="stickerIds"></param>
     /// <param name="attachments"></param>
     /// <returns></returns>
     public async Task<Message> SendMessageAsync(ulong channelId, string? content = null, List<EmbedRequest>? embeds = null,
         MessageReferenceRequest? reference = null, AllowedMentionsRequest? allowedMentions = null, MessageFlag flags = MessageFlag.None,
-        string? nonce = null, ulong? favoriteMemeId = null, bool? tts = null, List<ulong>? stickerIds = null, List<AttachmentRequest>? attachments = null)
+        string? nonce = null, ulong? favoriteMediaId = null, bool? tts = null, List<ulong>? stickerIds = null, List<AttachmentRequest>? attachments = null)
     {
         MessageRequest req = new MessageRequest
         {
@@ -449,7 +449,7 @@ public class FluxerApiClient : FluxerBaseApiClient
             AllowedMentions = allowedMentions,
             Flags = flags,
             Nonce = nonce,
-            FavoriteMemeId = favoriteMemeId,
+            FavoriteMediaId = favoriteMediaId,
             IsTTS = tts,
             StickerIds = stickerIds,
         };
@@ -485,13 +485,13 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// <param name="allowedMentions"></param>
     /// <param name="flags"></param>
     /// <param name="nonce"></param>
-    /// <param name="favoriteMemeId"></param>
+    /// <param name="favoriteMediaId"></param>
     /// <param name="stickerIds"></param>
     /// <param name="attachments"></param>
     /// <returns></returns>
     public async Task<Message> EditMessageAsync(ulong channelId, ulong messageId, string? content = null, List<EmbedRequest>? embeds = null,
         MessageReferenceRequest? reference = null, AllowedMentionsRequest? allowedMentions = null, MessageFlag flags = MessageFlag.None,
-        string? nonce = null, ulong? favoriteMemeId = null, List<ulong>? stickerIds = null, List<AttachmentRequest>? attachments = null)
+        string? nonce = null, ulong? favoriteMediaId = null, List<ulong>? stickerIds = null, List<AttachmentRequest>? attachments = null)
     {
         MessageRequest req = new MessageRequest
         {
@@ -501,7 +501,7 @@ public class FluxerApiClient : FluxerBaseApiClient
             AllowedMentions = allowedMentions,
             Flags = flags,
             Nonce = nonce,
-            FavoriteMemeId = favoriteMemeId,
+            FavoriteMediaId = favoriteMediaId,
             StickerIds = stickerIds,
         };
 
@@ -889,60 +889,60 @@ public class FluxerApiClient : FluxerBaseApiClient
 
     #endregion
 
-    #region Favorite Gifs API
+    #region Favorite Media API
     /// <summary>
-    /// Get all your favorite gifs.
+    /// Get all your favorite media.
     /// </summary>
     /// <returns></returns>
-    public async Task<IEnumerable<FavoriteGif>> GetCurrentUserFavoriteGifsAsync()
+    public async Task<IEnumerable<FavoriteMedia>> GetCurrentUserFavoriteMediaAsync()
     {
-        IEnumerable<FavoriteGifJson> json = await SendRequestAsync<IEnumerable<FavoriteGifJson>>(HttpMethod.Get, "/users/@me/memes", true);
-        return json.Select(x => FavoriteGif.Create(_client, x));
+        IEnumerable<FavoriteMediaJson> json = await SendRequestAsync<IEnumerable<FavoriteMediaJson>>(HttpMethod.Get, "/users/@me/memes", true);
+        return json.Select(x => FavoriteMedia.Create(_client, x));
     }
 
     /// <summary>
-    /// Add a favorite gif.
+    /// Add a favorite media.
     /// </summary>
     /// <typeparam name="TRequest"></typeparam>
     /// <param name="data"></param>
     /// <returns></returns>
-    public async Task<FavoriteGif> PostCurrentUserFavoriteGifAsync<TRequest>(TRequest data)
+    public async Task<FavoriteMedia> PostCurrentUserFavoriteMediaAsync<TRequest>(TRequest data)
     {
-        FavoriteGifJson json = await SendRequestAsync<FavoriteGifJson, TRequest>(HttpMethod.Post, "/users/@me/memes", data, true);
-        return FavoriteGif.Create(_client, json);
+        FavoriteMediaJson json = await SendRequestAsync<FavoriteMediaJson, TRequest>(HttpMethod.Post, "/users/@me/memes", data, true);
+        return FavoriteMedia.Create(_client, json);
     }
 
     /// <summary>
-    /// Get your favorite gif.
+    /// Get your favorite media.
     /// </summary>
-    /// <param name="memeId"></param>
+    /// <param name="mediaId"></param>
     /// <returns></returns>
-    public async Task<FavoriteGif> GetCurrentUserFavoriteGifAsync(ulong memeId)
+    public async Task<FavoriteMedia> GetCurrentUserFavoriteMediaAsync(ulong mediaId)
     {
-        FavoriteGifJson json = await SendRequestAsync<FavoriteGifJson>(HttpMethod.Get, $"/users/@me/memes/{memeId}", true);
-        return FavoriteGif.Create(_client, json);
+        FavoriteMediaJson json = await SendRequestAsync<FavoriteMediaJson>(HttpMethod.Get, $"/users/@me/memes/{mediaId}", true);
+        return FavoriteMedia.Create(_client, json);
     }
 
     /// <summary>
-    /// Update your favorite gif.
+    /// Update your favorite media.
     /// </summary>
     /// <typeparam name="TRequest"></typeparam>
-    /// <param name="memeId"></param>
+    /// <param name="mediaId"></param>
     /// <param name="data"></param>
     /// <returns></returns>
-    public async Task<FavoriteGif> PatchCurrentUserFavoriteGifAsync<TRequest>(ulong memeId, TRequest data)
+    public async Task<FavoriteMedia> PatchCurrentUserFavoriteMediaAsync<TRequest>(ulong mediaId, TRequest data)
     {
-        FavoriteGifJson json = await SendRequestAsync<FavoriteGifJson, TRequest>(HttpMethod.Patch, $"/users/@me/memes/{memeId}", data, true);
-        return FavoriteGif.Create(_client, json);
+        FavoriteMediaJson json = await SendRequestAsync<FavoriteMediaJson, TRequest>(HttpMethod.Patch, $"/users/@me/memes/{mediaId}", data, true);
+        return FavoriteMedia.Create(_client, json);
     }
 
     /// <summary>
-    /// Delete your favorite gif.
+    /// Delete your favorite media.
     /// </summary>
-    /// <param name="memeId"></param>
+    /// <param name="mediaId"></param>
     /// <returns></returns>
-    public async Task DeleteCurrentUserFavoriteGifAsync(ulong memeId)
-        => await SendRequestRawAsync(HttpMethod.Delete, $"/users/@me/memes/{memeId}", true);
+    public async Task DeleteCurrentUserFavoriteMediaAsync(ulong mediaId)
+        => await SendRequestRawAsync(HttpMethod.Delete, $"/users/@me/memes/{mediaId}", true);
 
     #endregion
 
@@ -2089,7 +2089,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// <param name="allowedMentions"></param>
     /// <param name="flags"></param>
     /// <param name="nonce"></param>
-    /// <param name="favoriteMemeId"></param>
+    /// <param name="favoriteMediaId"></param>
     /// <param name="tts"></param>
     /// <param name="stickerIds"></param>
     /// <param name="attachments"></param>
@@ -2097,7 +2097,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     public async Task ExecuteWebhookAsync(ulong webhookId, string token, string? content = null, List<EmbedRequest>? embeds = null,
         string? username = null, string? avatarUrl = null,
         MessageReferenceRequest? reference = null, AllowedMentionsRequest? allowedMentions = null, MessageFlag flags = MessageFlag.None,
-        string? nonce = null, ulong? favoriteMemeId = null, bool? tts = null, List<ulong>? stickerIds = null, List<AttachmentRequest>? attachments = null)
+        string? nonce = null, ulong? favoriteMediaId = null, bool? tts = null, List<ulong>? stickerIds = null, List<AttachmentRequest>? attachments = null)
     {
         MessageRequest req = new MessageRequest
         {
@@ -2107,7 +2107,7 @@ public class FluxerApiClient : FluxerBaseApiClient
             AllowedMentions = allowedMentions,
             Flags = flags,
             Nonce = nonce,
-            FavoriteMemeId = favoriteMemeId,
+            FavoriteMediaId = favoriteMediaId,
             IsTTS = tts,
             StickerIds = stickerIds,
             WebhookUsername = username,
@@ -2150,13 +2150,13 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// <param name="allowedMentions"></param>
     /// <param name="flags"></param>
     /// <param name="nonce"></param>
-    /// <param name="favoriteMemeId"></param>
+    /// <param name="favoriteMediaId"></param>
     /// <param name="stickerIds"></param>
     /// <param name="attachments"></param>
     /// <returns></returns>
     public async Task<Message> EditWebhookMessageAsync(ulong webhookId, string token, ulong messageId, string? content = null, List<EmbedRequest>? embeds = null,
         MessageReferenceRequest? reference = null, AllowedMentionsRequest? allowedMentions = null, MessageFlag flags = MessageFlag.None,
-        string? nonce = null, ulong? favoriteMemeId = null, List<ulong>? stickerIds = null, List<AttachmentRequest>? attachments = null)
+        string? nonce = null, ulong? favoriteMediaId = null, List<ulong>? stickerIds = null, List<AttachmentRequest>? attachments = null)
     {
         MessageRequest req = new MessageRequest
         {
@@ -2166,7 +2166,7 @@ public class FluxerApiClient : FluxerBaseApiClient
             AllowedMentions = allowedMentions,
             Flags = flags,
             Nonce = nonce,
-            FavoriteMemeId = favoriteMemeId,
+            FavoriteMediaId = favoriteMediaId,
             StickerIds = stickerIds
         };
         if ((attachments?.Count ?? 0) > 0)
@@ -2196,14 +2196,14 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// <param name="allowedMentions"></param>
     /// <param name="flags"></param>
     /// <param name="nonce"></param>
-    /// <param name="favoriteMemeId"></param>
+    /// <param name="favoriteMediaId"></param>
     /// <param name="tts"></param>
     /// <param name="stickerIds"></param>
     /// <returns></returns>
     public async Task<Message> ExecuteWebhookWaitAsync(ulong webhookId, string token, string? content = null, List<EmbedRequest>? embeds = null,
         string? username = null, string? avatarUrl = null,
         MessageReferenceRequest? reference = null, AllowedMentionsRequest? allowedMentions = null, MessageFlag flags = MessageFlag.None,
-        string? nonce = null, ulong? favoriteMemeId = null, bool? tts = null, List<ulong>? stickerIds = null, List<AttachmentRequest>? attachments = null)
+        string? nonce = null, ulong? favoriteMediaId = null, bool? tts = null, List<ulong>? stickerIds = null, List<AttachmentRequest>? attachments = null)
     {
         MessageRequest req = new MessageRequest
         {
@@ -2213,7 +2213,7 @@ public class FluxerApiClient : FluxerBaseApiClient
             AllowedMentions = allowedMentions,
             Flags = flags,
             Nonce = nonce,
-            FavoriteMemeId = favoriteMemeId,
+            FavoriteMediaId = favoriteMediaId,
             IsTTS = tts,
             StickerIds = stickerIds,
             WebhookUsername = username,

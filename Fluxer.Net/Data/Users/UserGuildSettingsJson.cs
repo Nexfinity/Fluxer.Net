@@ -11,7 +11,7 @@ public class UserGuildSettingsJson : IUserGuildSettings
 
     /// <inheritdoc />
     [JsonProperty("guild_id")]
-    public ulong GuildId { get; set; }
+    public ulong? GuildId { get; set; }
 
     /// <inheritdoc />
     [JsonProperty("hide_muted_channels")]
@@ -20,6 +20,9 @@ public class UserGuildSettingsJson : IUserGuildSettings
     /// <inheritdoc />
     [JsonProperty("message_notifications")]
     public NotificationType MessageNotifications { get; set; }
+
+    [JsonProperty("unread_badges")]
+    public NotificationType? UnreadBadges { get; set; }
 
     /// <inheritdoc />
     [JsonProperty("mobile_push")]

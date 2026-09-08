@@ -1,10 +1,6 @@
 ﻿namespace Fluxer.Net;
 
-public interface ISavedMessage : ISnowflake
+public interface ISavedMessage : IMessage
 {
-    ulong UserId { get; }
 
-    ulong ChannelId { get; }
-
-    DateTimeOffset SavedAt { get; }
 }

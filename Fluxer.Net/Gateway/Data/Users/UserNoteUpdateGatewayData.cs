@@ -7,7 +7,7 @@ namespace Fluxer.Net.Gateway;
 /// </summary>
 public class UserNoteUpdateGatewayData
 {
-    [JsonProperty("user_id")]
+    [JsonProperty("id")]
     public ulong UserId { get; set; }
 
     [JsonProperty("note")]

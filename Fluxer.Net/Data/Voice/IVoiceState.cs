@@ -75,5 +75,5 @@ public interface IVoiceState
     /// <summary>
     /// Member for the voice connection.
     /// </summary>
-    IGuildMember Member { get; }
+    IGuildMember? Member { get; }
 }

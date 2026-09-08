@@ -199,13 +199,13 @@ public static class RateLimitConfigs
     // Report rate limits
     public static readonly RateLimitConfig REPORT_CREATE = new("report:create", 10, 3600000);
 
-    // Favorite meme rate limits
-    public static readonly RateLimitConfig FAVORITE_MEME_LIST = new("favorite_meme:list", 60, 10000);
-    public static readonly RateLimitConfig FAVORITE_MEME_GET = new("favorite_meme:get", 100, 10000);
-    public static readonly RateLimitConfig FAVORITE_MEME_CREATE_FROM_MESSAGE = new("favorite_meme:create:message", 10, 60000);
-    public static readonly RateLimitConfig FAVORITE_MEME_CREATE_FROM_URL = new("favorite_meme:create:url", 20, 60000);
-    public static readonly RateLimitConfig FAVORITE_MEME_UPDATE = new("favorite_meme:update", 30, 10000);
-    public static readonly RateLimitConfig FAVORITE_MEME_DELETE = new("favorite_meme:delete", 30, 10000);
+    // Favorite media rate limits
+    public static readonly RateLimitConfig FAVORITE_MEDIA_LIST = new("favorite_meme:list", 60, 10000);
+    public static readonly RateLimitConfig FAVORITE_MEDIA_GET = new("favorite_meme:get", 100, 10000);
+    public static readonly RateLimitConfig FAVORITE_MEDIA_CREATE_FROM_MESSAGE = new("favorite_meme:create:message", 10, 60000);
+    public static readonly RateLimitConfig FAVORITE_MEDIA_CREATE_FROM_URL = new("favorite_meme:create:url", 20, 60000);
+    public static readonly RateLimitConfig FAVORITE_MEDIA_UPDATE = new("favorite_meme:update", 30, 10000);
+    public static readonly RateLimitConfig FAVORITE_MEDIA_DELETE = new("favorite_meme:delete", 30, 10000);
 
     // Default rate limit
     public static readonly RateLimitConfig DEFAULT = new("default", 60, 10000);

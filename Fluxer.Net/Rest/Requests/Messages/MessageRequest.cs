@@ -50,7 +50,7 @@ public class MessageRequest
     /// ID of a favorite meme to attach.
     /// </summary>
     [JsonProperty("favorite_meme_id")]
-    public ulong? FavoriteMemeId { get; set; }
+    public ulong? FavoriteMediaId { get; set; }
 
     /// <summary>
     /// Array of sticker IDs to include (max 3)

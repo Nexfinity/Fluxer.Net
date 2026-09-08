@@ -6,13 +6,16 @@ public class UserGuildSettings : Entity, IUserGuildSettings
     public Dictionary<ulong, GuildChannelOverride>? ChannelOverrides { get; private set; }
 
     /// <inheritdoc />
-    public ulong GuildId { get; private set; }
+    public ulong? GuildId { get; private set; }
 
     /// <inheritdoc />
     public bool HideMutedChannels { get; private set; }
 
     /// <inheritdoc />
     public NotificationType MessageNotifications { get; private set; }
+
+    /// <inheritdoc />
+    public NotificationType? UnreadBadges { get; private set; }
 
     /// <inheritdoc />
     public bool MobilePush { get; private set; }
@@ -56,12 +59,20 @@ public class UserGuildSettings : Entity, IUserGuildSettings
 
     internal void Update(UserGuildSettingsJson json)
     {
-        ChannelOverrides = json.ChannelOverrides.ToDictionary(x => x.Key, x => GuildChannelOverride.Create(Client, x.Value));
+        if (json.ChannelOverrides != null)
+            ChannelOverrides = json.ChannelOverrides.ToDictionary(x => x.Key, x => GuildChannelOverride.Create(Client, x.Value));
+        else
+            ChannelOverrides = new Dictionary<ulong, GuildChannelOverride>();
+
         GuildId = json.GuildId;
         HideMutedChannels = json.HideMutedChannels;
         MessageNotifications = json.MessageNotifications;
+        UnreadBadges = json.UnreadBadges;
         MobilePush = json.MobilePush;
-        MuteConfig = MuteConfiguration.Create(Client, json.MuteConfig);
+        if (json.MuteConfig != null)
+            MuteConfig = MuteConfiguration.Create(Client, json.MuteConfig);
+        else
+            MuteConfig = null;
         Muted = json.Muted;
         SuppressEveryone = json.SuppressEveryone;
         SuppressRoles = json.SuppressRoles;

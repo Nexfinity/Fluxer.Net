@@ -3,7 +3,7 @@
 namespace Fluxer.Net;
 
 /// <inheritdoc />
-public class FavoriteGifJson : IFavoriteGif
+public class FavoriteMediaJson : IFavoriteMedia
 {
     /// <inheritdoc />
     [JsonProperty("id")]
@@ -63,7 +63,7 @@ public class FavoriteGifJson : IFavoriteGif
 
     /// <inheritdoc />
     [JsonProperty("is_gifv")]
-    public bool IsGifVideo { get; set; }
+    public bool IsMediaVideo { get; set; }
 
     /// <inheritdoc />
     [JsonProperty("klipy_slug")]

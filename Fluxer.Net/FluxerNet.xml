@@ -3529,345 +3529,6 @@
         <member name="P:Fluxer.Net.StickerJson.AllowCloning">
             <inheritdoc />
         </member>
-        <member name="T:Fluxer.Net.FavoriteGif">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.FavoriteGif.Id">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.FavoriteGif.UserId">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.FavoriteGif.Name">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.FavoriteGif.Tags">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.FavoriteGif.AttachmentId">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.FavoriteGif.Filename">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.FavoriteGif.ContentType">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.FavoriteGif.Size">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.FavoriteGif.Url">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.FavoriteGif.AltText">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.FavoriteGif.ContentHash">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.FavoriteGif.Width">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.FavoriteGif.Height">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.FavoriteGif.Duration">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.FavoriteGif.IsGifVideo">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.FavoriteGif.KlipySlug">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.FavoriteGif.TenorSlugId">
-            <inheritdoc />
-        </member>
-        <member name="M:Fluxer.Net.FavoriteGif.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.FavoriteGifJson)">
-            <summary>
-            Create a FavoriteGif object from json.
-            </summary>
-            <param name="client"></param>
-            <param name="json"></param>
-            <returns></returns>
-        </member>
-        <member name="T:Fluxer.Net.FavoriteGifJson">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.FavoriteGifJson.Id">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.FavoriteGifJson.UserId">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.FavoriteGifJson.Name">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.FavoriteGifJson.Tags">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.FavoriteGifJson.AttachmentId">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.FavoriteGifJson.Filename">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.FavoriteGifJson.ContentType">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.FavoriteGifJson.Size">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.FavoriteGifJson.Url">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.FavoriteGifJson.AltText">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.FavoriteGifJson.ContentHash">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.FavoriteGifJson.Width">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.FavoriteGifJson.Height">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.FavoriteGifJson.Duration">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.FavoriteGifJson.IsGifVideo">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.FavoriteGifJson.KlipySlug">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.FavoriteGifJson.TenorSlugId">
-            <inheritdoc />
-        </member>
-        <member name="T:Fluxer.Net.Gif">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.Gif.Id">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.Gif.Title">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.Gif.Url">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.Gif.Source">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.Gif.ProxySource">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.Gif.Width">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.Gif.Height">
-            <inheritdoc />
-        </member>
-        <member name="M:Fluxer.Net.Gif.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.GifJson)">
-            <summary>
-            Create a Gif object from json.
-            </summary>
-            <param name="client"></param>
-            <param name="json"></param>
-            <returns></returns>
-        </member>
-        <member name="T:Fluxer.Net.GifCategory">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GifCategory.Name">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GifCategory.Source">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GifCategory.ProxySource">
-            <inheritdoc />
-        </member>
-        <member name="M:Fluxer.Net.GifCategory.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.GifCategoryJson)">
-            <summary>
-            Create a GifCategory object from json.
-            </summary>
-            <param name="client"></param>
-            <param name="json"></param>
-            <returns></returns>
-        </member>
-        <member name="T:Fluxer.Net.GifCategoryJson">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GifCategoryJson.Name">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GifCategoryJson.Source">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GifCategoryJson.ProxySource">
-            <inheritdoc />
-        </member>
-        <member name="T:Fluxer.Net.GifJson">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GifJson.Id">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GifJson.Title">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GifJson.Url">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GifJson.Source">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GifJson.ProxySource">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GifJson.Width">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GifJson.Height">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.IFavoriteGif.Id">
-            <summary>
-            Source specific ID of the favorite gif.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IFavoriteGif.UserId">
-            <summary>
-            ID of the user who owns this favorite gif.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IFavoriteGif.Name">
-            <summary>
-            Display name of the gif.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IFavoriteGif.Tags">
-            <summary>
-            Tags for categorizing and searching the gif.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IFavoriteGif.AttachmentId">
-            <summary>
-            ID of the attachment storing the gif.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IFavoriteGif.Filename">
-            <summary>
-            Original filename of the gif.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IFavoriteGif.ContentType">
-            <summary>
-            MIME type of the gif file.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IFavoriteGif.Size">
-            <summary>
-            File size in bytes.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IFavoriteGif.Url">
-            <summary>
-            CDN URL to access the meme.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IFavoriteGif.AltText">
-            <summary>
-            Alternative text description for accessibility.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IFavoriteGif.ContentHash">
-            <summary>
-            Hash of the file content for deduplication.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IFavoriteGif.Width">
-            <summary>
-            Width of the image or video in pixels.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IFavoriteGif.Height">
-            <summary>
-            Height of the image or video in pixels.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IFavoriteGif.Duration">
-            <summary>
-            Duration of the video in seconds
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IFavoriteGif.IsGifVideo">
-            <summary>
-            Whether the gif is a video converted from GIF
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IFavoriteGif.KlipySlug">
-            <summary>
-            Klipy clip slug if the meme was sourced from Klipy.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IFavoriteGif.TenorSlugId">
-            <summary>
-            Tenor view/- identifier if the meme was sourced from Tenor.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IGif.Id">
-            <summary>
-            The unique Gif result id.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IGif.Title">
-            <summary>
-            The title/description of the GIF.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IGif.Url">
-            <summary>
-            The Gif page URL for the GIF.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IGif.Source">
-            <summary>
-            Direct URL to the GIF media file.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IGif.ProxySource">
-            <summary>
-            Proxied URL to the GIF media file.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IGif.Width">
-            <summary>
-            Width of the GIF in pixels.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IGif.Height">
-            <summary>
-            Height of the GIF in pixels.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IGifCategory.Name">
-            <summary>
-            The category search term.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IGifCategory.Source">
-            <summary>
-            URL to the category preview image.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.IGifCategory.ProxySource">
-            <summary>
-            Proxied URL to the category preview image.
-            </summary>
-        </member>
         <member name="T:Fluxer.Net.Guild">
             <inheritdoc />
         </member>
@@ -6059,6 +5720,345 @@
             <param name="json"></param>
             <returns></returns>
         </member>
+        <member name="T:Fluxer.Net.FavoriteMedia">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FavoriteMedia.Id">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FavoriteMedia.UserId">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FavoriteMedia.Name">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FavoriteMedia.Tags">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FavoriteMedia.AttachmentId">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FavoriteMedia.Filename">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FavoriteMedia.ContentType">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FavoriteMedia.Size">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FavoriteMedia.Url">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FavoriteMedia.AltText">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FavoriteMedia.ContentHash">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FavoriteMedia.Width">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FavoriteMedia.Height">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FavoriteMedia.Duration">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FavoriteMedia.IsMediaVideo">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FavoriteMedia.KlipySlug">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FavoriteMedia.TenorSlugId">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.FavoriteMedia.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.FavoriteMediaJson)">
+            <summary>
+            Create a FavoriteMedia object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Fluxer.Net.FavoriteMediaJson">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FavoriteMediaJson.Id">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FavoriteMediaJson.UserId">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FavoriteMediaJson.Name">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FavoriteMediaJson.Tags">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FavoriteMediaJson.AttachmentId">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FavoriteMediaJson.Filename">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FavoriteMediaJson.ContentType">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FavoriteMediaJson.Size">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FavoriteMediaJson.Url">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FavoriteMediaJson.AltText">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FavoriteMediaJson.ContentHash">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FavoriteMediaJson.Width">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FavoriteMediaJson.Height">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FavoriteMediaJson.Duration">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FavoriteMediaJson.IsMediaVideo">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FavoriteMediaJson.KlipySlug">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.FavoriteMediaJson.TenorSlugId">
+            <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.Gif">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Gif.Id">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Gif.Title">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Gif.Url">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Gif.Source">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Gif.ProxySource">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Gif.Width">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Gif.Height">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.Gif.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.GifJson)">
+            <summary>
+            Create a Gif object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Fluxer.Net.GifCategory">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GifCategory.Name">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GifCategory.Source">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GifCategory.ProxySource">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.GifCategory.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.GifCategoryJson)">
+            <summary>
+            Create a GifCategory object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Fluxer.Net.GifCategoryJson">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GifCategoryJson.Name">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GifCategoryJson.Source">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GifCategoryJson.ProxySource">
+            <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.GifJson">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GifJson.Id">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GifJson.Title">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GifJson.Url">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GifJson.Source">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GifJson.ProxySource">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GifJson.Width">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GifJson.Height">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.IFavoriteMedia.Id">
+            <summary>
+            Source specific ID of the favorite media.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IFavoriteMedia.UserId">
+            <summary>
+            ID of the user who owns this favorite media.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IFavoriteMedia.Name">
+            <summary>
+            Display name of the gif.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IFavoriteMedia.Tags">
+            <summary>
+            Tags for categorizing and searching the gif.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IFavoriteMedia.AttachmentId">
+            <summary>
+            ID of the attachment storing the gif.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IFavoriteMedia.Filename">
+            <summary>
+            Original filename of the gif.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IFavoriteMedia.ContentType">
+            <summary>
+            MIME type of the gif file.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IFavoriteMedia.Size">
+            <summary>
+            File size in bytes.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IFavoriteMedia.Url">
+            <summary>
+            CDN URL to access the media.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IFavoriteMedia.AltText">
+            <summary>
+            Alternative text description for accessibility.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IFavoriteMedia.ContentHash">
+            <summary>
+            Hash of the file content for deduplication.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IFavoriteMedia.Width">
+            <summary>
+            Width of the image or video in pixels.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IFavoriteMedia.Height">
+            <summary>
+            Height of the image or video in pixels.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IFavoriteMedia.Duration">
+            <summary>
+            Duration of the video in seconds
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IFavoriteMedia.IsMediaVideo">
+            <summary>
+            Whether the gif is a video converted from GIF
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IFavoriteMedia.KlipySlug">
+            <summary>
+            Klipy clip slug if the media was sourced from Klipy.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IFavoriteMedia.TenorSlugId">
+            <summary>
+            Tenor view/- identifier if the media was sourced from Tenor.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IGif.Id">
+            <summary>
+            The unique Gif result id.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IGif.Title">
+            <summary>
+            The title/description of the GIF.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IGif.Url">
+            <summary>
+            The Gif page URL for the GIF.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IGif.Source">
+            <summary>
+            Direct URL to the GIF media file.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IGif.ProxySource">
+            <summary>
+            Proxied URL to the GIF media file.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IGif.Width">
+            <summary>
+            Width of the GIF in pixels.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IGif.Height">
+            <summary>
+            Height of the GIF in pixels.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IGifCategory.Name">
+            <summary>
+            The category search term.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IGifCategory.Source">
+            <summary>
+            URL to the category preview image.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IGifCategory.ProxySource">
+            <summary>
+            Proxied URL to the category preview image.
+            </summary>
+        </member>
         <member name="T:Fluxer.Net.AllowedMentionParseType">
             <summary>
             Which mentions should be used when sending a message.
@@ -6938,21 +6938,6 @@
         <member name="T:Fluxer.Net.SavedMessage">
             <inheritdoc />
         </member>
-        <member name="P:Fluxer.Net.SavedMessage.Id">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.SavedMessage.CreatedAt">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.SavedMessage.UserId">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.SavedMessage.ChannelId">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.SavedMessage.SavedAt">
-            <inheritdoc />
-        </member>
         <member name="M:Fluxer.Net.SavedMessage.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.SavedMessageJson)">
             <summary>
             Create a Guild object from json.
@@ -6962,21 +6947,6 @@
             <returns></returns>
         </member>
         <member name="T:Fluxer.Net.SavedMessageJson">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.SavedMessageJson.Id">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.SavedMessageJson.CreatedAt">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.SavedMessageJson.UserId">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.SavedMessageJson.ChannelId">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.SavedMessageJson.SavedAt">
             <inheritdoc />
         </member>
         <member name="M:Fluxer.Net.SocketMessage.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.Gateway.MessageGatewayData)">
@@ -8857,6 +8827,9 @@
         <member name="P:Fluxer.Net.UserGuildSettings.MessageNotifications">
             <inheritdoc />
         </member>
+        <member name="P:Fluxer.Net.UserGuildSettings.UnreadBadges">
+            <inheritdoc />
+        </member>
         <member name="P:Fluxer.Net.UserGuildSettings.MobilePush">
             <inheritdoc />
         </member>
@@ -10142,7 +10115,7 @@
             Gateway data for RECENT_MENTION_DELETE event when a recent mention is deleted.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.FavoriteMemeGatewayData">
+        <member name="T:Fluxer.Net.Gateway.FavoriteMediaGatewayData">
             <summary>
             Gateway data for FAVORITE_MEME_CREATE, FAVORITE_MEME_UPDATE, and FAVORITE_MEME_DELETE events.
             </summary>
@@ -10168,9 +10141,14 @@
             Gateway data for RELATIONSHIP_ADD, RELATIONSHIP_UPDATE, and RELATIONSHIP_REMOVE events.
             </summary>
         </member>
+        <member name="T:Fluxer.Net.Gateway.SavedMessageDeletedGatewayData">
+            <summary>
+            Gateway data for SAVED_MESSAGE_DELETE event.
+            </summary>
+        </member>
         <member name="T:Fluxer.Net.Gateway.SavedMessageGatewayData">
             <summary>
-            Gateway data for SAVED_MESSAGE_CREATE and SAVED_MESSAGE_DELETE events.
+            Gateway data for SAVED_MESSAGE_CREATE event.
             </summary>
         </member>
         <member name="T:Fluxer.Net.Gateway.UserGuildSettingsUpdateGatewayData">
@@ -10430,6 +10408,26 @@
             Occurs when an auth session changes.
             </summary>
         </member>
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.RateLimitedEvent">
+            <summary>
+            Delegate for RATE_LIMITED event when rate limited.
+            </summary>
+        </member>
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.RateLimited">
+            <summary>
+            Occurs on rate limited.
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.UserConnectionsUpdatedEvent">
+            <summary>
+            Delegate for USER_CONNECTIONS_UPDATE event when user updates a connection.
+            </summary>
+        </member>
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.ConnectionsUpdated">
+            <summary>
+            Occurs on user connection updated.
+            </summary>
+        </member>
         <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.MessageCreatedEvent">
             <summary>
             Delegate for MESSAGE_CREATE events when a new message is sent.
@@ -10584,7 +10582,6 @@
             <summary>
             Delegate for SAVED_MESSAGE_DELETE events when a saved message is deleted.
             </summary>
-            <param name="data">The saved message data.</param>
         </member>
         <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.SavedMessageDeleted">
             <summary>
@@ -10895,35 +10892,35 @@
             Occurs when a relationship is removed.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.FavoriteMemeCreatedEvent">
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.FavoriteMediaCreatedEvent">
             <summary>
             Delegate for FAVORITE_MEME_CREATE events when a favorite meme is created.
             </summary>
             <param name="data">The favorite meme data.</param>
         </member>
-        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.FavoriteMemeCreated">
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.FavoriteMediaCreated">
             <summary>
             Occurs when a favorite meme is created.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.FavoriteMemeUpdatedEvent">
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.FavoriteMediaUpdatedEvent">
             <summary>
             Delegate for FAVORITE_MEME_UPDATE events when a favorite meme is updated.
             </summary>
             <param name="data">The favorite meme data.</param>
         </member>
-        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.FavoriteMemeUpdated">
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.FavoriteMediaUpdated">
             <summary>
             Occurs when a favorite meme is updated.
             </summary>
         </member>
-        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.FavoriteMemeDeletedEvent">
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.FavoriteMediaDeletedEvent">
             <summary>
             Delegate for FAVORITE_MEME_DELETE events when a favorite meme is deleted.
             </summary>
             <param name="data">The favorite meme data.</param>
         </member>
-        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.FavoriteMemeDeleted">
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.FavoriteMediaDeleted">
             <summary>
             Occurs when a favorite meme is deleted.
             </summary>
@@ -11686,7 +11683,7 @@
             <param name="allowedMentions"></param>
             <param name="flags"></param>
             <param name="nonce"></param>
-            <param name="favoriteMemeId"></param>
+            <param name="favoriteMediaId"></param>
             <param name="tts"></param>
             <param name="stickerIds"></param>
             <param name="attachments"></param>
@@ -11707,7 +11704,7 @@
             <param name="allowedMentions"></param>
             <param name="flags"></param>
             <param name="nonce"></param>
-            <param name="favoriteMemeId"></param>
+            <param name="favoriteMediaId"></param>
             <param name="stickerIds"></param>
             <param name="attachments"></param>
             <returns></returns>
@@ -11999,41 +11996,41 @@
             <param name="uploadFilename"></param>
             <returns></returns>
         </member>
-        <member name="M:Fluxer.Net.Rest.FluxerApiClient.GetCurrentUserFavoriteGifsAsync">
+        <member name="M:Fluxer.Net.Rest.FluxerApiClient.GetCurrentUserFavoriteMediaAsync">
             <summary>
-            Get all your favorite gifs.
+            Get all your favorite media.
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Fluxer.Net.Rest.FluxerApiClient.PostCurrentUserFavoriteGifAsync``1(``0)">
+        <member name="M:Fluxer.Net.Rest.FluxerApiClient.PostCurrentUserFavoriteMediaAsync``1(``0)">
             <summary>
-            Add a favorite gif.
+            Add a favorite media.
             </summary>
             <typeparam name="TRequest"></typeparam>
             <param name="data"></param>
             <returns></returns>
         </member>
-        <member name="M:Fluxer.Net.Rest.FluxerApiClient.GetCurrentUserFavoriteGifAsync(System.UInt64)">
+        <member name="M:Fluxer.Net.Rest.FluxerApiClient.GetCurrentUserFavoriteMediaAsync(System.UInt64)">
             <summary>
-            Get your favorite gif.
+            Get your favorite media.
             </summary>
-            <param name="memeId"></param>
+            <param name="mediaId"></param>
             <returns></returns>
         </member>
-        <member name="M:Fluxer.Net.Rest.FluxerApiClient.PatchCurrentUserFavoriteGifAsync``1(System.UInt64,``0)">
+        <member name="M:Fluxer.Net.Rest.FluxerApiClient.PatchCurrentUserFavoriteMediaAsync``1(System.UInt64,``0)">
             <summary>
-            Update your favorite gif.
+            Update your favorite media.
             </summary>
             <typeparam name="TRequest"></typeparam>
-            <param name="memeId"></param>
+            <param name="mediaId"></param>
             <param name="data"></param>
             <returns></returns>
         </member>
-        <member name="M:Fluxer.Net.Rest.FluxerApiClient.DeleteCurrentUserFavoriteGifAsync(System.UInt64)">
+        <member name="M:Fluxer.Net.Rest.FluxerApiClient.DeleteCurrentUserFavoriteMediaAsync(System.UInt64)">
             <summary>
-            Delete your favorite gif.
+            Delete your favorite media.
             </summary>
-            <param name="memeId"></param>
+            <param name="mediaId"></param>
             <returns></returns>
         </member>
         <member name="M:Fluxer.Net.Rest.FluxerApiClient.GetInviteAsync(System.String)">
@@ -12855,7 +12852,7 @@
             <param name="allowedMentions"></param>
             <param name="flags"></param>
             <param name="nonce"></param>
-            <param name="favoriteMemeId"></param>
+            <param name="favoriteMediaId"></param>
             <param name="tts"></param>
             <param name="stickerIds"></param>
             <param name="attachments"></param>
@@ -12883,7 +12880,7 @@
             <param name="allowedMentions"></param>
             <param name="flags"></param>
             <param name="nonce"></param>
-            <param name="favoriteMemeId"></param>
+            <param name="favoriteMediaId"></param>
             <param name="stickerIds"></param>
             <param name="attachments"></param>
             <returns></returns>
@@ -12902,7 +12899,7 @@
             <param name="allowedMentions"></param>
             <param name="flags"></param>
             <param name="nonce"></param>
-            <param name="favoriteMemeId"></param>
+            <param name="favoriteMediaId"></param>
             <param name="tts"></param>
             <param name="stickerIds"></param>
             <returns></returns>
@@ -13203,24 +13200,24 @@
             Max bookmarks you can have.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxFavoriteMemesPremium">
+        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxFavoriteMediaPremium">
             <summary>
-            Max favorite gifs you can have with premium.
+            Max favorite media you can have with premium.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxFavoriteMemes">
+        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxFavoriteMedia">
             <summary>
-            Max favorite gifs you can have.
+            Max favorite media you can have.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxFavoriteMemeTags">
+        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxFavoriteMediaTags">
             <summary>
-            Max tags a favorite gif can have.
+            Max tags a favorite media can have.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxFavoriteGifs">
+        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxFavoriteMediaSaved">
             <summary>
-            Max favorite gifs saved.
+            Max favorite media saved.
             </summary>
         </member>
         <member name="F:Fluxer.Net.Rest.ApiLimits.FilenameTypeMinLength">
@@ -13657,7 +13654,7 @@
             Client-generated identifier for the message.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.Rest.MessageRequest.FavoriteMemeId">
+        <member name="P:Fluxer.Net.Rest.MessageRequest.FavoriteMediaId">
             <summary>
             ID of a favorite meme to attach.
             </summary>

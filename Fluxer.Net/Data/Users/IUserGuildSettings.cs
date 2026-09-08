@@ -4,11 +4,13 @@ public interface IUserGuildSettings
 {
     IDictionary<ulong, IGuildChannelOverride>? ChannelOverrides { get; }
 
-    ulong GuildId { get; }
+    ulong? GuildId { get; }
 
     bool HideMutedChannels { get; }
 
     NotificationType MessageNotifications { get; }
+
+    NotificationType? UnreadBadges { get; }
 
     bool MobilePush { get; }
 

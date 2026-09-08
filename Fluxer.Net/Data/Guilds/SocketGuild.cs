@@ -67,7 +67,7 @@ public class SocketGuild : Guild
         SocketGuild data = new SocketGuild(client)
         {
             CurrentMember = currentMember,
-            IsAvailable = true
+            IsAvailable = !(json.Unavailable.HasValue && json.Unavailable.Value)
         };
         if (json.Emojis != null)
             data.Emojis = new ConcurrentDictionary<ulong, GuildEmoji>(json.Emojis.ToDictionary(x => x.Id, x => GuildEmoji.Create(client, x, data.Id)));

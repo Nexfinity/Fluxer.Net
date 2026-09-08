@@ -17,21 +17,26 @@ public class PresenceGatewayData
     [JsonProperty("status")]
     public string Status { get; set; }
 
-    [JsonProperty("activities")]
-    public List<ActivityJson>? Activities { get; set; }
+    [JsonProperty("custom_status")]
+    public UserCustomStatusJson? CustomStatus { get; set; }
 
-    [JsonProperty("client_status")]
-    public ClientStatusJson? ClientStatus { get; set; }
+    //Defunct or wip?
+    //[JsonProperty("activities")]
+    //public List<ActivityJson>? Activities { get; set; }
+
+    //Defunct or wip?
+    //[JsonProperty("client_status")]
+    //public ClientStatusJson? ClientStatus { get; set; }
 
     /// <summary>
     /// Whether the user is AFK.
     /// </summary>
     [JsonProperty("afk")]
-    public bool? Afk { get; set; }
+    public bool Afk { get; set; }
 
     /// <summary>
     /// Whether the user is on mobile.
     /// </summary>
     [JsonProperty("mobile")]
-    public bool? Mobile { get; set; }
+    public bool Mobile { get; set; }
 }
