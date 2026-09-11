@@ -1,4 +1,3 @@
-using Fluxer.Net.Gateway;
 using Serilog;
 using System.Net;
 
@@ -57,18 +56,6 @@ public class FluxerConfig
     /// Proxy used for the rest/http client.
     /// </summary>
     public IWebProxy? Proxy { get; set; }
-
-    /// <summary>
-    /// List of gateway event dispatch types to ignore. Useful for filtering out high-volume events
-    /// your application doesn't need (e.g., "PRESENCE_UPDATE", "TYPING_START"). Defaults to empty list.
-    /// </summary>
-    public List<string> IgnoredGatewayEvents { get; set; } = new();
-
-    /// <summary>
-    /// Initial presence data to send when connecting to the gateway. If null, no presence is sent.
-    /// Allows setting your bot's or user's online status, activity, and other presence information.
-    /// </summary>
-    public PresenceUpdateGatewayData? Presence { get; set; } = null;
 
     /// <summary>
     /// Enable client-side rate limiting using a sliding window algorithm. Defaults to true.

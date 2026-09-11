@@ -8,6 +8,8 @@ public class SocketCurrentUser : CurrentUser
 
     }
 
+    public string SessionId { get; internal set; }
+
     /// <summary>
     /// Cached guilds for the current user.
     /// </summary>

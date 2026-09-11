@@ -69,12 +69,12 @@ public class SocketGuild : Guild
             CurrentMember = currentMember,
             IsAvailable = !(json.Unavailable.HasValue && json.Unavailable.Value)
         };
-        if (json.Emojis != null)
+        if (json.Emojis != null && !(client as FluxerClient).Gateway.Config.DisableEmojiCache)
             data.Emojis = new ConcurrentDictionary<ulong, GuildEmoji>(json.Emojis.ToDictionary(x => x.Id, x => GuildEmoji.Create(client, x, data.Id)));
         else
             data.Emojis = new ConcurrentDictionary<ulong, GuildEmoji>();
 
-        if (json.Stickers != null)
+        if (json.Stickers != null && !(client as FluxerClient).Gateway.Config.DisableStickerCache)
             data.Stickers = new ConcurrentDictionary<ulong, GuildSticker>(json.Stickers.ToDictionary(x => x.Id, x => GuildSticker.Create(client, x, data.Id)));
         else
             data.Stickers = new ConcurrentDictionary<ulong, GuildSticker>();

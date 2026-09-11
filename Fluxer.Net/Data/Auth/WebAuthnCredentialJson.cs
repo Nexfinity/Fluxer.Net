@@ -2,29 +2,22 @@ using Newtonsoft.Json;
 
 namespace Fluxer.Net;
 
-public class WebAuthnCredentialJson
+/// <inheritdoc />
+public class WebAuthnCredentialJson : IWebAuthnCredential
 {
-    [JsonProperty("user_id")]
-    public ulong UserId { get; set; }
+    /// <inheritdoc />
+    [JsonProperty("id")]
+    public string Id { get; set; }
 
-    [JsonProperty("credential_id")]
-    public string CredentialId { get; set; }
-
-    [JsonProperty("public_key")]
-    public byte[] PublicKey { get; set; }
-
-    [JsonProperty("counter")]
-    public ulong Counter { get; set; }
-
-    [JsonProperty("transports")]
-    public HashSet<string>? Transports { get; set; }
-
+    /// <inheritdoc />
     [JsonProperty("name")]
     public string Name { get; set; }
 
+    /// <inheritdoc />
     [JsonProperty("created_at")]
     public DateTimeOffset CreatedAt { get; set; }
 
+    /// <inheritdoc />
     [JsonProperty("last_used_at")]
     public DateTimeOffset? LastUsedAt { get; set; }
 }
