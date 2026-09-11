@@ -40,6 +40,8 @@ public partial class FluxerGatewayClient : IDisposable
     private WebsocketClient _webSocket;
     private readonly Stopwatch _gatewayDuration = new();
 
+    public FluxerGatewayConfig Config { get; internal set; }
+
     public HashSet<ulong> GuildIds { get; private set; } = new HashSet<ulong>();
 
     /// <summary>
@@ -158,8 +160,12 @@ public partial class FluxerGatewayClient : IDisposable
     /// The connection will automatically reconnect on disconnect and attempt to resume the session.
     /// </para>
     /// </remarks>
-    public async Task ConnectAsync()
+    public async Task ConnectAsync(FluxerGatewayConfig? config = null)
     {
+        if (config == null)
+            config = new FluxerGatewayConfig();
+        Config = config;
+
         if (_isConnecting)
         {
             _logger.Warning("Connection attempt already in progress, skipping duplicate ConnectAsync call");
@@ -217,8 +223,8 @@ public partial class FluxerGatewayClient : IDisposable
                         { "browser", "fluxer-net" },
                         { "device", "fluxer-net" }
                     },
-                    IgnoredGatewayEvents = _client.Config.IgnoredGatewayEvents,
-                    Presence = _client.Config.Presence
+                    IgnoredGatewayEvents = Config.IgnoredEvents,
+                    Presence = Config.Presence
                 })
             };
 
@@ -524,11 +530,12 @@ public partial class FluxerGatewayClient : IDisposable
         {
             case "READY":
                 {
-                    Console.WriteLine(p.Data);
                     ReadyGatewayData? data = p.Data.ToObject<ReadyGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
                     {
                         CurrentUser = SocketCurrentUser.Create(_client, data.User);
+                        CurrentUser.SessionId = data.SessionId;
+                        GatewaySessionJson? presence = data.Sessions.FirstOrDefault(x => x.SessionId == CurrentUser.SessionId);
                         _sessionId = data.SessionId;
                         _isConnecting = false; // Connection successfully established
                         _reconnectAttemptCount = 0; // Reset backoff counter
@@ -715,7 +722,15 @@ public partial class FluxerGatewayClient : IDisposable
                         _logger.Warning("USER_CONNECTIONS_UPDATE event received but data could not be cast to ConnectionsUpdatedGatewayData");
                 }
                 break;
-            // webauth update?
+            case "WEBAUTHN_CREDENTIALS_UPDATE":
+                {
+                    WebAuthnCredentialJson[]? data = p.Data.ToObject<WebAuthnCredentialJson[]>(FluxerClient._gatewaySerializer);
+                    if (data != null)
+                        WebAuthnCredentialsUpdated?.Invoke(data.Select(x => WebAuthnCredential.Create(_client, x)).ToArray());
+                    else
+                        _logger.Warning("WEBAUTHN_CREDENTIALS_UPDATE event received but data could not be cast to WebAuthnCredentialJson");
+                }
+                break;
 
             // Relationships
             case "RELATIONSHIP_ADD":
@@ -812,95 +827,163 @@ public partial class FluxerGatewayClient : IDisposable
                     GuildGatewayData? data = p.Data.ToObject<GuildGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
                     {
-                        if (data.Unavailable.HasValue && data.Unavailable.Value)
+                        GuildMemberGatewayData currentMemberJson = data.Members.First(x => x.Id == CurrentUser.Id);
+                        SocketGuildMember currentMember = SocketGuildMember.Create(_client, currentMemberJson);
+
+                        // Add or update current member
+                        if (!CurrentMembers.TryAdd(data.Id, currentMember))
                         {
-                            if (Guilds.TryGetValue(data.Id, out SocketGuild guild))
+                            currentMember = CurrentMembers[data.Id];
+                            currentMember.Update(currentMemberJson);
+                        }
+
+                        SocketGuild guild = SocketGuild.Create(_client, data, currentMember);
+
+                        // Add or update guild
+                        if (!Guilds.TryAdd(data.Id, guild))
+                        {
+                            guild = Guilds[data.Id];
+                            guild.Update(data.Properties);
+                        }
+
+                        guild.IsAvailable = true;
+                        // Add or update roles
+                        foreach (RoleJson r in data.Roles)
+                        {
+                            SocketRole role = SocketRole.Create(_client, r, guild);
+                            if (!Roles.TryAdd(r.Id, role))
                             {
-                                guild.IsAvailable = true;
-                                GuildAvailable?.Invoke(guild);
+                                role = Roles[r.Id];
+                                role.Update(r);
+                            }
+
+                            guild.Roles.TryAdd(r.Id, role);
+                            if (role.Id == guild.Id)
+                                guild.UpdatePermissions(role);
+                        }
+
+                        // Add or update channels
+                        foreach (ChannelGatewayData c in data.Channels)
+                        {
+                            Channel channel = SocketChannel.Create(_client, c, guild);
+                            if (!Channels.TryAdd(c.Id, channel))
+                            {
+                                channel = Channels[c.Id];
+                                channel.Update(c);
+                            }
+                            guild.Channels.TryAdd(c.Id, channel);
+                        }
+
+                        foreach (GuildMemberGatewayData m in data.Members)
+                        {
+                            if (m.Id != currentMember.Id)
+                                guild.AddOrUpdateMember(m);
+                        }
+
+                        // Add or update voice states
+                        foreach (VoiceStateJson v in data.VoiceStates)
+                        {
+                            SocketGuildMember voiceMember = guild.AddOrUpdateMember(v.Member);
+                            SocketVoiceChannel Channel = GetChannel(v.ChannelId.Value) as SocketVoiceChannel;
+                            if (voiceMember.VoiceStates.TryGetValue(v.SessionId, out SocketVoiceState state))
+                            {
+                                state.Update(v);
+                            }
+                            else
+                            {
+                                state = SocketVoiceState.Create(_client, v, Channel);
+                                voiceMember.VoiceStates.TryAdd(v.SessionId, state);
+                                Channel.VoiceStates.TryAdd(v.SessionId, state);
                             }
                         }
-                        else
-                        {
-                            GuildMemberGatewayData currentMemberJson = data.Members.First(x => x.Id == CurrentUser.Id);
-                            SocketGuildMember currentMember = SocketGuildMember.Create(_client, currentMemberJson);
+                        if (guild.CurrentMember.JoinedAt > DateTime.UtcNow.AddMinutes(-1))
+                            GuildJoined?.Invoke(guild);
 
-                            // Add or update current member
-                            if (!CurrentMembers.TryAdd(data.Id, currentMember))
-                            {
-                                currentMember = CurrentMembers[data.Id];
-                                currentMember.Update(currentMemberJson);
-                            }
+                        GuildAvailable?.Invoke(guild);
 
-                            SocketGuild guild = SocketGuild.Create(_client, data, currentMember);
-
-                            // Add or update guild
-                            if (!Guilds.TryAdd(data.Id, guild))
-                            {
-                                guild = Guilds[data.Id];
-                                guild.Update(data.Properties);
-                            }
-
-                            // Add or update roles
-                            foreach (RoleJson r in data.Roles)
-                            {
-                                SocketRole role = SocketRole.Create(_client, r, guild);
-                                if (!Roles.TryAdd(r.Id, role))
-                                {
-                                    role = Roles[r.Id];
-                                    role.Update(r);
-                                }
-
-                                guild.Roles.TryAdd(r.Id, role);
-                                if (role.Id == guild.Id)
-                                    guild.UpdatePermissions(role);
-                            }
-
-                            // Add or update channels
-                            foreach (ChannelGatewayData c in data.Channels)
-                            {
-                                Channel channel = SocketChannel.Create(_client, c, guild);
-                                if (!Channels.TryAdd(c.Id, channel))
-                                {
-                                    channel = Channels[c.Id];
-                                    channel.Update(c);
-                                }
-                                guild.Channels.TryAdd(c.Id, channel);
-                            }
-
-                            foreach (GuildMemberGatewayData m in data.Members)
-                            {
-                                if (m.Id != currentMember.Id)
-                                    guild.AddOrUpdateMember(m);
-                            }
-
-                            // Add or update voice states
-                            foreach (VoiceStateJson v in data.VoiceStates)
-                            {
-                                SocketGuildMember voiceMember = guild.AddOrUpdateMember(v.Member);
-                                SocketVoiceChannel Channel = GetChannel(v.ChannelId.Value) as SocketVoiceChannel;
-                                if (voiceMember.VoiceStates.TryGetValue(v.SessionId, out SocketVoiceState state))
-                                {
-                                    state.Update(v);
-                                }
-                                else
-                                {
-                                    state = SocketVoiceState.Create(_client, v, Channel);
-                                    voiceMember.VoiceStates.TryAdd(v.SessionId, state);
-                                    Channel.VoiceStates.TryAdd(v.SessionId, state);
-                                }
-                            }
-                            if (guild.CurrentMember.JoinedAt > DateTime.UtcNow.AddMinutes(-1))
-                                GuildJoined?.Invoke(guild);
-
-                            GuildAvailable?.Invoke(guild);
-                        }
                     }
                     else
                         _logger.Warning("GUILD_CREATE event received but data could not be cast to GuildGatewayData");
                 }
                 return;
-            // Guild sync?
+            case "GUILD_SYNC":
+                {
+                    GuildGatewayData? data = p.Data.ToObject<GuildGatewayData>(FluxerClient._gatewaySerializer);
+                    if (data != null)
+                    {
+                        GuildMemberGatewayData currentMemberJson = data.Members.First(x => x.Id == CurrentUser.Id);
+                        SocketGuildMember currentMember = SocketGuildMember.Create(_client, currentMemberJson);
+
+                        // Add or update current member
+                        if (!CurrentMembers.TryAdd(data.Id, currentMember))
+                        {
+                            currentMember = CurrentMembers[data.Id];
+                            currentMember.Update(currentMemberJson);
+                        }
+
+                        SocketGuild guild = SocketGuild.Create(_client, data, currentMember);
+
+                        // Add or update guild
+                        if (!Guilds.TryAdd(data.Id, guild))
+                        {
+                            guild = Guilds[data.Id];
+                            guild.Update(data.Properties);
+                        }
+
+                        // Add or update roles
+                        foreach (RoleJson r in data.Roles)
+                        {
+                            SocketRole role = SocketRole.Create(_client, r, guild);
+                            if (!Roles.TryAdd(r.Id, role))
+                            {
+                                role = Roles[r.Id];
+                                role.Update(r);
+                            }
+
+                            guild.Roles.TryAdd(r.Id, role);
+                            if (role.Id == guild.Id)
+                                guild.UpdatePermissions(role);
+                        }
+
+                        // Add or update channels
+                        foreach (ChannelGatewayData c in data.Channels)
+                        {
+                            Channel channel = SocketChannel.Create(_client, c, guild);
+                            if (!Channels.TryAdd(c.Id, channel))
+                            {
+                                channel = Channels[c.Id];
+                                channel.Update(c);
+                            }
+                            guild.Channels.TryAdd(c.Id, channel);
+                        }
+
+                        foreach (GuildMemberGatewayData m in data.Members)
+                        {
+                            if (m.Id != currentMember.Id)
+                                guild.AddOrUpdateMember(m);
+                        }
+
+                        // Add or update voice states
+                        foreach (VoiceStateJson v in data.VoiceStates)
+                        {
+                            SocketGuildMember voiceMember = guild.AddOrUpdateMember(v.Member);
+                            SocketVoiceChannel Channel = GetChannel(v.ChannelId.Value) as SocketVoiceChannel;
+                            if (voiceMember.VoiceStates.TryGetValue(v.SessionId, out SocketVoiceState state))
+                            {
+                                state.Update(v);
+                            }
+                            else
+                            {
+                                state = SocketVoiceState.Create(_client, v, Channel);
+                                voiceMember.VoiceStates.TryAdd(v.SessionId, state);
+                                Channel.VoiceStates.TryAdd(v.SessionId, state);
+                            }
+                        }
+                    }
+                    else
+                        _logger.Warning("GUILD_SYNC event received but data could not be cast to GuildGatewayData");
+                }
+                break;
             case "GUILD_UPDATE":
                 {
                     GuildJson? data = p.Data.ToObject<GuildJson>(FluxerClient._gatewaySerializer);
@@ -1048,6 +1131,9 @@ public partial class FluxerGatewayClient : IDisposable
             // Expressions
             case "GUILD_EMOJIS_UPDATE":
                 {
+                    if (Config.DisableEmojiCache)
+                        return;
+
                     GuildEmojisUpdateGatewayData? data = p.Data.ToObject<GuildEmojisUpdateGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
                     {
@@ -1099,6 +1185,9 @@ public partial class FluxerGatewayClient : IDisposable
                 return;
             case "GUILD_STICKERS_UPDATE":
                 {
+                    if (Config.DisableStickerCache)
+                        return;
+
                     GuildStickersUpdateGatewayData? data = p.Data.ToObject<GuildStickersUpdateGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
                     {
@@ -1787,8 +1876,8 @@ public partial class FluxerGatewayClient : IDisposable
                             { "browser", "Fluxer.Net" },
                             { "device", "Fluxer.Net" }
                         },
-                        IgnoredGatewayEvents = _client.Config.IgnoredGatewayEvents,
-                        Presence = _client.Config.Presence
+                        IgnoredGatewayEvents = Config.IgnoredEvents,
+                        Presence = Config.Presence
                     })
                 };
             }
@@ -2050,15 +2139,17 @@ public partial class FluxerGatewayClient : IDisposable
     /// Updates the current user's presence status on the gateway.
     /// </summary>
     /// <param name="status">The new status to set (Online, Idle, DoNotDisturb, Invisible).</param>
+    /// <param name="mobile"></param>
+    /// <param name="custom"></param>
     /// <remarks>
     /// This sends a PRESENCE_UPDATE packet to the gateway. Other users will see the status change
     /// in real-time through PRESENCE_UPDATE events.
     /// </remarks>
-    public void SetStatus(Status status, UserCustomStatusJson? custom)
+    public void SetStatus(Status? status = null, bool? mobile = null, UserCustomStatusJson? custom = null)
     {
         GatewayPacket packet = new GatewayPacket()
         {
-            Data = JToken.FromObject(new PresenceUpdateGatewayData(status, custom)),
+            Data = JToken.FromObject(new PresenceUpdateGatewayData(status, mobile, custom)),
             OpCode = FluxerOpCode.PresenceUpdate
         };
         SendGatewayPacket(packet);
@@ -2211,6 +2302,16 @@ public partial class FluxerGatewayClient : IDisposable
     /// Occurs on user connection updated.
     /// </summary>
     public event UserConnectionsUpdatedEvent ConnectionsUpdated;
+
+    /// <summary>
+    /// Delegate for WEBAUTHN_CREDENTIALS_UPDATE event when user updates webauthn credentials.
+    /// </summary>
+    public delegate void UserWebAuthnCredentialsUpdatedEvent(WebAuthnCredential[] data);
+
+    /// <summary>
+    /// Occurs on user connection updated.
+    /// </summary>
+    public event UserWebAuthnCredentialsUpdatedEvent WebAuthnCredentialsUpdated;
 
     // ============================================================================
     // Message Events

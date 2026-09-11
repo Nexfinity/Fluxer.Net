@@ -1863,6 +1863,31 @@
             ID of the authenticated user.
             </summary>
         </member>
+        <member name="T:Fluxer.Net.IWebAuthnCredential">
+            <summary>
+            Passkey or device based authentication credential.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IWebAuthnCredential.Id">
+            <summary>
+            ID of the credential.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IWebAuthnCredential.Name">
+            <summary>
+            User given name of the credential.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IWebAuthnCredential.CreatedAt">
+            <summary>
+            Credential created at date.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IWebAuthnCredential.LastUsedAt">
+            <summary>
+            Credential last used at date.
+            </summary>
+        </member>
         <member name="T:Fluxer.Net.Login">
             <inheritdoc />
         </member>
@@ -1887,6 +1912,44 @@
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.LoginJson.UserId">
+            <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.WebAuthnCredential">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.WebAuthnCredential.Id">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.WebAuthnCredential.Name">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.WebAuthnCredential.CreatedAt">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.WebAuthnCredential.LastUsedAt">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.WebAuthnCredential.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.WebAuthnCredentialJson)">
+            <summary>
+            Create a Login object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Fluxer.Net.WebAuthnCredentialJson">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.WebAuthnCredentialJson.Id">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.WebAuthnCredentialJson.Name">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.WebAuthnCredentialJson.CreatedAt">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.WebAuthnCredentialJson.LastUsedAt">
             <inheritdoc />
         </member>
         <member name="T:Fluxer.Net.Channel">
@@ -9832,18 +9895,6 @@
             Proxy used for the rest/http client.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.FluxerConfig.IgnoredGatewayEvents">
-            <summary>
-            List of gateway event dispatch types to ignore. Useful for filtering out high-volume events
-            your application doesn't need (e.g., "PRESENCE_UPDATE", "TYPING_START"). Defaults to empty list.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.FluxerConfig.Presence">
-            <summary>
-            Initial presence data to send when connecting to the gateway. If null, no presence is sent.
-            Allows setting your bot's or user's online status, activity, and other presence information.
-            </summary>
-        </member>
         <member name="P:Fluxer.Net.FluxerConfig.EnableRateLimiting">
             <summary>
             Enable client-side rate limiting using a sliding window algorithm. Defaults to true.
@@ -10207,7 +10258,7 @@
             <item>Automatic heartbeat mechanism to maintain connection</item>
             <item>Sequence tracking for ordered event processing</item>
             <item>Session-based reconnection with resume capability (no event loss)</item>
-            <item>Event filtering via <see cref="P:Fluxer.Net.FluxerConfig.IgnoredGatewayEvents"/></item>
+            <item>Event filtering via <see cref="!:FluxerConfig.IgnoredGatewayEvents"/></item>
             </list>
             <para>
             This client should be paired with <see cref="T:Fluxer.Net.Rest.FluxerApiClient"/> for full Fluxer functionality.
@@ -10229,10 +10280,10 @@
             Initializes a new instance of the <see cref="T:Fluxer.Net.Gateway.FluxerGatewayClient"/> class.
             </summary>
             <remarks>
-            The client is initialized but not connected. Call <see cref="M:Fluxer.Net.Gateway.FluxerGatewayClient.ConnectAsync"/> to establish the gateway connection.
+            The client is initialized but not connected. Call <see cref="M:Fluxer.Net.Gateway.FluxerGatewayClient.ConnectAsync(Fluxer.Net.FluxerGatewayConfig)"/> to establish the gateway connection.
             </remarks>
         </member>
-        <member name="M:Fluxer.Net.Gateway.FluxerGatewayClient.ConnectAsync">
+        <member name="M:Fluxer.Net.Gateway.FluxerGatewayClient.ConnectAsync(Fluxer.Net.FluxerGatewayConfig)">
             <summary>
             Establishes a WebSocket connection to the Fluxer gateway and sends the IDENTIFY packet.
             </summary>
@@ -10281,11 +10332,13 @@
             <param name="description">Optional description provided with the close event.</param>
             <returns>True if reconnection should be attempted; false if reconnection should be prevented.</returns>
         </member>
-        <member name="M:Fluxer.Net.Gateway.FluxerGatewayClient.SetStatus(Fluxer.Net.Status,Fluxer.Net.UserCustomStatusJson)">
+        <member name="M:Fluxer.Net.Gateway.FluxerGatewayClient.SetStatus(System.Nullable{Fluxer.Net.Status},System.Nullable{System.Boolean},Fluxer.Net.UserCustomStatusJson)">
             <summary>
             Updates the current user's presence status on the gateway.
             </summary>
             <param name="status">The new status to set (Online, Idle, DoNotDisturb, Invisible).</param>
+            <param name="mobile"></param>
+            <param name="custom"></param>
             <remarks>
             This sends a PRESENCE_UPDATE packet to the gateway. Other users will see the status change
             in real-time through PRESENCE_UPDATE events.
@@ -10424,6 +10477,16 @@
             </summary>
         </member>
         <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.ConnectionsUpdated">
+            <summary>
+            Occurs on user connection updated.
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.UserWebAuthnCredentialsUpdatedEvent">
+            <summary>
+            Delegate for WEBAUTHN_CREDENTIALS_UPDATE event when user updates webauthn credentials.
+            </summary>
+        </member>
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.WebAuthnCredentialsUpdated">
             <summary>
             Occurs on user connection updated.
             </summary>
@@ -11236,6 +11299,28 @@
         <member name="P:Fluxer.Net.Gateway.RequestMembersPacket.GuildId">
             <summary>
             The guild ID.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.FluxerGatewayConfig.IgnoredEvents">
+            <summary>
+            List of gateway event dispatch types to ignore. Useful for filtering out high-volume events
+            your application doesn't need (e.g., "PRESENCE_UPDATE", "TYPING_START"). Defaults to empty list.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.FluxerGatewayConfig.Presence">
+            <summary>
+            Initial presence data to send when connecting to the gateway. If null, no presence is sent.
+            Allows setting your bot's or user's online status, activity, and other presence information.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.FluxerGatewayConfig.DisableEmojiCache">
+            <summary>
+            Don't cache emojis and also disable emojis updated event.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.FluxerGatewayConfig.DisableStickerCache">
+            <summary>
+            Don't cache stickers and also disable stickers updated event.
             </summary>
         </member>
         <member name="T:Fluxer.Net.OAuth.FluxerOAuthClient">

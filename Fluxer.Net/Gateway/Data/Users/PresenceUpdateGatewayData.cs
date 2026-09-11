@@ -8,22 +8,29 @@ public class PresenceUpdateGatewayData
     [JsonProperty("status")]
     public string Status { get; set; }
 
+    [JsonProperty("mobile")]
+    public bool? IsMobile { get; set; }
+
     [JsonProperty("custom_status")]
     public UserCustomStatusJson? CustomStatus { get; set; }
 
     // [JsonProperty("activities")]
     // public object[] Activities { get; set; } = Array.Empty<object>();
 
-    public PresenceUpdateGatewayData(StatusEnum status, UserCustomStatusJson? custom)
+    public PresenceUpdateGatewayData(StatusEnum? status = null, bool? mobile = null, UserCustomStatusJson? custom = null)
     {
         CustomStatus = custom;
-        Status = status switch
+        IsMobile = mobile;
+        if (status.HasValue)
         {
-            StatusEnum.Online => "online",
-            StatusEnum.Idle => "idle",
-            StatusEnum.Dnd => "dnd",
-            StatusEnum.Invisible => "invisible",
-            _ => Status
-        };
+            Status = status switch
+            {
+                StatusEnum.Online => "online",
+                StatusEnum.Idle => "idle",
+                StatusEnum.Dnd => "dnd",
+                StatusEnum.Invisible => "invisible",
+                _ => Status
+            };
+        }
     }
 }
