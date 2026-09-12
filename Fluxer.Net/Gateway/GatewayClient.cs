@@ -1458,7 +1458,17 @@ public partial class FluxerGatewayClient : IDisposable
             // Audit log
             case "GUILD_AUDIT_LOG_ENTRY_CREATE":
                 {
-                    //TODO
+                    GuildAuditLogJson? data = p.Data.ToObject<GuildAuditLogJson>(FluxerClient._gatewaySerializer);
+                    if (data != null)
+                    {
+                        if (Guilds.TryGetValue(data.GuildId, out SocketGuild guild))
+                        {
+                            SocketAuditLog auditLog = SocketAuditLog.Create(_client, data);
+                            AuditLogCreated?.Invoke(guild, auditLog);
+                        }
+                    }
+                    else
+                        _logger.Warning("GUILD_AUDIT_LOG_ENTRY_CREATE event received but data could not be cast to GuildAuditLogEntryJson");
                 }
                 break;
 
@@ -2746,6 +2756,16 @@ public partial class FluxerGatewayClient : IDisposable
     /// Occurs when a member leaves a guild or is kicked/banned.
     /// </summary>
     public event GuildMemberRemovedEvent MemberLeft;
+
+    /// <summary>
+    /// Delegate for GUILD_AUDIT_LOG_ENTRY_CREATE event.
+    /// </summary>
+    public delegate void AuditLogCreatedEvent(SocketGuild guild, SocketAuditLog auditLog);
+
+    /// <summary>
+    /// Occurs when an audit log is created.
+    /// </summary>
+    public event AuditLogCreatedEvent AuditLogCreated;
 
     // ============================================================================
     // Guild Role Events

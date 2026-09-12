@@ -33,6 +33,15 @@ public class SocketGuild : Guild
         return Members.GetValueOrDefault(userId);
     }
 
+    //public async Task<SocketGuildMember> GetMemberAsync(ulong userId)
+    //{
+    //    if (Members.TryGetValue(userId, out var member))
+    //        return member;
+
+    //    GuildMemberJson json = await Client.Rest.SendRequestAsync<GuildMemberJson>(HttpMethod.Get, $"/guilds/{Id}/members/{userId}", true);
+    //    return AddOrUpdateMember(json);
+    //}
+
     public SocketRole? GetRole(ulong roleId)
     {
         return Roles.GetValueOrDefault(roleId);

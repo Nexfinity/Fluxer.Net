@@ -4,31 +4,22 @@ using System.Runtime.Serialization;
 
 namespace Fluxer.Net;
 
-public class AuditLogResponseItemChangeJson
+public class AuditLogChangeJson
 {
-    [JsonRequired]
     [JsonProperty("key")]
     public string Key { get; set; }
 
     [JsonProperty("old_value")]
-    public object? OldValue { get; set; }
+    public JToken? OldValue { get; set; }
 
     [JsonProperty("new_value")]
-    public object? NewValue { get; set; }
+    public JToken? NewValue { get; set; }
 
     [OnDeserialized]
     private void OnDeserialized(StreamingContext context)
     {
         if (!Key.Equals("permissions_diff", StringComparison.OrdinalIgnoreCase)) return;
 
-        if (NewValue is JObject newValueObj)
-        {
-            NewValue = newValueObj.ToObject<PermissionDiffSchemaJson>();
-        }
-        if (OldValue is JObject oldValueObj)
-        {
-            OldValue = oldValueObj.ToObject<PermissionDiffSchemaJson>();
-        }
     }
 }
 
