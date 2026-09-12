@@ -2,13 +2,11 @@
 
 namespace Fluxer.Net;
 
-public class AuditLogWebhookJson
+public class AuditLogWebhookJson : ISnowflake
 {
-    [JsonRequired]
     [JsonProperty("id")]
     public ulong Id { get; set; }
 
-    [JsonRequired]
     [JsonProperty("type")]
     public WebhookType Type { get; set; }
 
@@ -18,10 +16,11 @@ public class AuditLogWebhookJson
     [JsonProperty("channel_id")]
     public ulong? ChannelId { get; set; }
 
-    [JsonRequired]
     [JsonProperty("name")]
     public string Name { get; set; }
 
     [JsonProperty("avatar_hash")]
     public string? AvatarHash { get; set; }
+
+    public DateTimeOffset CreatedAt => SnowflakeUtils.FromSnowflake(Id);
 }

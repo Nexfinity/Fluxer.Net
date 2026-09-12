@@ -3,24 +3,33 @@
 public class GuildFeatures
 {
     public string[] Raw { get; private set; }
-    public bool HasAnimatedIcon { get; private set; }
-    public bool HasAnimatedBanner { get; private set; }
-    public bool HasBanner { get; private set; }
+    public bool AnimatedIcon { get; private set; }
+    public bool AnimatedBanner { get; private set; }
+    public bool CloneEmoji { get; private set; }
+    public bool CloneSticker { get; private set; }
+    public bool AudioBitrate128Kbps { get; private set; }
+    public bool AudioBitrate256Kbps { get; private set; }
+    public bool AudioBitrate384Kbps { get; private set; }
+    public bool Banner { get; private set; }
     public bool IsBannerDetached { get; private set; }
-    public bool HasInviteSplash { get; private set; }
+    public bool InviteSplash { get; private set; }
     public bool IsInvitesDisabled { get; private set; }
+    public bool RaidDetected { get; private set; }
     public bool IsChannelNamesFlexible { get; private set; }
-    public bool HasMoreEmojis { get; private set; }
-    public bool HasMoreStickers { get; private set; }
-    public bool HasUnlimitedEmojis { get; private set; }
-    public bool HasUnlimitedStickers { get; private set; }
+    public bool HideOwnerCrown { get; private set; }
+    public bool MoreEmojis { get; private set; }
+    public bool MoreStickers { get; private set; }
+    public bool UnlimitedEmojis { get; private set; }
+    public bool UnlimitedStickers { get; private set; }
     public bool IsExpressionPurgeAllowed { get; private set; }
-    public bool HasVanityUrl { get; private set; }
+    public bool VanityUrl { get; private set; }
     public bool IsDiscoverable { get; private set; }
     public bool IsPartnered { get; private set; }
     public bool IsVerified { get; private set; }
-    public bool HasVipVoice { get; private set; }
+    public bool VoiceE2EE { get; private set; }
+    public bool VipVoice { get; private set; }
     public bool IsUnavailable { get; private set; }
+    public bool IsHidden { get; private set; }
     public bool IsStaffOnly { get; private set; }
     public bool IsVisionary { get; private set; }
     public bool IsOperator { get; private set; }
@@ -47,43 +56,64 @@ public class GuildFeatures
                 switch (feature)
                 {
                     case "ANIMATED_ICON":
-                        data.HasAnimatedIcon = true;
+                        data.AnimatedIcon = true;
                         break;
                     case "ANIMATED_BANNER":
-                        data.HasAnimatedBanner = true;
+                        data.AnimatedBanner = true;
+                        break;
+                    case "AUDIO_BITRATE_128_KBPS":
+                        data.AudioBitrate128Kbps = true;
+                        break;
+                    case "AUDIO_BITRATE_256_KBPS":
+                        data.AudioBitrate256Kbps = true;
+                        break;
+                    case "AUDIO_BITRATE_384_KBPS":
+                        data.AudioBitrate384Kbps = true;
                         break;
                     case "BANNER":
-                        data.HasBanner = true;
+                        data.Banner = true;
+                        break;
+                    case "CLONE_EMOJI_ENABLED":
+                        data.CloneEmoji = true;
+                        break;
+                    case "CLONE_STICKER_ENABLED":
+                        data.CloneSticker = true;
                         break;
                     case "DETACHED_BANNER":
                         data.IsBannerDetached = true;
                         break;
                     case "INVITE_SPLASH":
-                        data.HasInviteSplash = true;
+                        data.InviteSplash = true;
                         break;
                     case "INVITES_DISABLED":
                         data.IsInvitesDisabled = true;
                         break;
+                    case "RAID_DETECTED":
+                        data.RaidDetected = true;
+                        break;
                     case "TEXT_CHANNEL_FLEXIBLE_NAMES":
                         data.IsChannelNamesFlexible = true;
                         break;
+                    case "HIDE_OWNER_CROWN":
+                        data.HideOwnerCrown = true;
+                        break;
                     case "MORE_EMOJI":
-                        data.HasMoreEmojis = true;
+                        data.MoreEmojis = true;
                         break;
                     case "MORE_STICKERS":
-                        data.HasMoreStickers = true;
+                        data.MoreStickers = true;
                         break;
                     case "UNLIMITED_EMOJI":
-                        data.HasUnlimitedEmojis = true;
+                        data.UnlimitedEmojis = true;
                         break;
                     case "UNLIMITED_STICKERS":
-                        data.HasUnlimitedStickers = true;
+                        data.UnlimitedStickers = true;
                         break;
                     case "EXPRESSION_PURGE_ALLOWED":
                         data.IsExpressionPurgeAllowed = true;
                         break;
                     case "VANITY_URL":
-                        data.HasVanityUrl = true;
+                        data.VanityUrl = true;
                         break;
                     case "DISCOVERABLE":
                         data.IsDiscoverable = true;
@@ -94,14 +124,20 @@ public class GuildFeatures
                     case "VERIFIED":
                         data.IsVerified = true;
                         break;
+                    case "VOICE_E2EE":
+                        data.VoiceE2EE = true;
+                        break;
                     case "VIP_VOICE":
-                        data.HasVipVoice = true;
+                        data.VipVoice = true;
                         break;
                     case "UNAVAILABLE_FOR_EVERYONE":
                         data.IsUnavailable = true;
                         break;
                     case "UNAVAILABLE_FOR_EVERYONE_BUT_STAFF":
                         data.IsStaffOnly = true;
+                        break;
+                    case "UNAVAILABLE_HIDDEN":
+                        data.IsHidden = true;
                         break;
                     case "VISIONARY":
                         data.IsVisionary = true;

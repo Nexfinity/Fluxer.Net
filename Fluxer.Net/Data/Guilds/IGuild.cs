@@ -77,6 +77,8 @@ public interface IGuild : IPartialGuild
     /// </summary>
     bool IsNsfw { get; }
 
+    GuildContentWarning ContentWarningLevel { get; }
+
     /// <summary>
     /// Show a custom warning to new members.
     /// </summary>

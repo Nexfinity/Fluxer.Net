@@ -49,6 +49,9 @@ public class Guild : PartialGuild, IGuild
     public bool IsNsfw { get; private set; }
 
     /// <inheritdoc />
+    public GuildContentWarning ContentWarningLevel { get; private set; }
+
+    /// <inheritdoc />
     public string ContentWarningText { get; private set; }
 
     /// <inheritdoc />
@@ -93,6 +96,7 @@ public class Guild : PartialGuild, IGuild
         DisabledOperations = json.DisabledOperations;
         MessageHistoryCutoff = json.MessageHistoryCutoff;
         IsNsfw = json.IsNsfw;
+        ContentWarningLevel = json.ContentWarningLevel;
         ContentWarningText = json.ContentWarningText;
         OnlineCount = json.OnlineCount;
         MemberCount = json.MemberCount;

@@ -50,12 +50,17 @@ public interface IChannel : IPartialChannel
     /// <summary>
     /// The slowmode for this channel to limit messages per second.
     /// </summary>
-    int RateLimitPerUser { get; }
+    int? RateLimitPerUser { get; }
 
     /// <summary>
     /// The bitrate of the voice channel in bits per second.
     /// </summary>
     int? Bitrate { get; }
+
+    /// <summary>
+    /// The maximum number of connections a user can have in the voice channel.
+    /// </summary>
+    int? VoiceConnectionLimit { get; }
 
     /// <summary>
     /// The maximum number of users allowed in the voice channel.
@@ -86,6 +91,10 @@ public interface IChannel : IPartialChannel
     /// Custom nicknames for users in this channel (for group DMs)
     /// </summary>
     Dictionary<string, string>? Nicknames { get; }
+
+    GuildContentWarning? ContentWarningLevel { get; }
+
+    string? ContentWarningText { get; }
 
     bool IsSoftDeleted { get; }
 

@@ -14,10 +14,12 @@ public enum ActionType
     /// A channel was created.
     /// </summary>
     ChannelCreated = 10,
+
     /// <summary>
     /// A channel was updated.
     /// </summary>
     ChannelUpdated = 11,
+
     /// <summary>
     /// A channel was deleted.
     /// </summary>
@@ -27,10 +29,12 @@ public enum ActionType
     /// A permission overwrite was created for a channel.
     /// </summary>
     OverwriteCreated = 13,
+
     /// <summary>
     /// A permission overwrite was updated for a channel.
     /// </summary>
     OverwriteUpdated = 14,
+
     /// <summary>
     /// A permission overwrite was deleted for a channel.
     /// </summary>
@@ -40,14 +44,17 @@ public enum ActionType
     /// A user was kicked from this guild.
     /// </summary>
     Kick = 20,
+
     /// <summary>
     /// A prune took place in this guild.
     /// </summary>
     Prune = 21,
+
     /// <summary>
     /// A user banned another user from this guild.
     /// </summary>
     Ban = 22,
+
     /// <summary>
     /// A user unbanned another user from this guild.
     /// </summary>
@@ -57,18 +64,22 @@ public enum ActionType
     /// A guild member whose information was updated.
     /// </summary>
     MemberUpdated = 24,
+
     /// <summary>
     /// A guild member's role collection was updated.
     /// </summary>
     MemberRoleUpdated = 25,
+
     /// <summary>
     /// A guild member moved to a voice channel.
     /// </summary>
     MemberMoved = 26,
+
     /// <summary>
     /// A guild member disconnected from a voice channel.
     /// </summary>
     MemberDisconnected = 27,
+
     /// <summary>
     /// A bot was added to this guild.
     /// </summary>
@@ -78,10 +89,12 @@ public enum ActionType
     /// A role was created in this guild.
     /// </summary>
     RoleCreated = 30,
+
     /// <summary>
     /// A role was updated in this guild.
     /// </summary>
     RoleUpdated = 31,
+
     /// <summary>
     /// A role was deleted from this guild.
     /// </summary>
@@ -91,10 +104,12 @@ public enum ActionType
     /// An invite was created in this guild.
     /// </summary>
     InviteCreated = 40,
+
     /// <summary>
     /// An invite was updated in this guild.
     /// </summary>
     InviteUpdated = 41,
+
     /// <summary>
     /// An invite was deleted from this guild.
     /// </summary>
@@ -104,10 +119,12 @@ public enum ActionType
     /// A Webhook was created in this guild.
     /// </summary>
     WebhookCreated = 50,
+
     /// <summary>
     /// A Webhook was updated in this guild.
     /// </summary>
     WebhookUpdated = 51,
+
     /// <summary>
     /// A Webhook was deleted from this guild.
     /// </summary>
@@ -117,10 +134,12 @@ public enum ActionType
     /// An emoji was created in this guild.
     /// </summary>
     EmojiCreated = 60,
+
     /// <summary>
     /// An emoji was updated in this guild.
     /// </summary>
     EmojiUpdated = 61,
+
     /// <summary>
     /// An emoji was deleted from this guild.
     /// </summary>
@@ -130,14 +149,17 @@ public enum ActionType
     /// A message was deleted from this guild.
     /// </summary>
     MessageDeleted = 72,
+
     /// <summary>
     /// Multiple messages were deleted from this guild.
     /// </summary>
     MessageBulkDeleted = 73,
+
     /// <summary>
     /// A message was pinned from this guild.
     /// </summary>
     MessagePinned = 74,
+
     /// <summary>
     /// A message was unpinned from this guild.
     /// </summary>
@@ -147,10 +169,12 @@ public enum ActionType
     /// A sticker was created.
     /// </summary>
     StickerCreated = 90,
+
     /// <summary>
     /// A sticker was updated.
     /// </summary>
     StickerUpdated = 91,
+
     /// <summary>
     /// A sticker was deleted.
     /// </summary>
