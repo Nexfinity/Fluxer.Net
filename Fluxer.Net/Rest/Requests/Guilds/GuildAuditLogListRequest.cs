@@ -32,5 +32,5 @@ public class GuildAuditLogListRequest
     /// Filter entries by the type of action
     /// </summary>
     [JsonProperty("action_type")]
-    public AuditLogActionType? ActionType { get; set; }
+    public ActionType? ActionType { get; set; }
 }

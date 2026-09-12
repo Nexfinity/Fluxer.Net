@@ -2,33 +2,7 @@
 
 namespace Fluxer.Net;
 
-public class GuildAuditLogEntryJson
-{
-    [JsonRequired]
-    [JsonProperty("id")]
-    public ulong Id { get; set; }
-
-    [JsonRequired]
-    [JsonProperty("action_type")]
-    public AuditLogActionType ActionType { get; set; }
-
-    [JsonProperty("user_id")]
-    public ulong? UserId { get; set; }
-
-    [JsonProperty("target_id")]
-    public ulong? TargetId { get; set; }
-
-    [JsonProperty("reason")]
-    public string? Reason { get; set; }
-
-    [JsonProperty("options")]
-    public AuditLogResponseItemOptions? Options { get; set; }
-
-    [JsonProperty("changes")]
-    public AuditLogResponseItemChangeJson[]? Changes { get; set; }
-}
-
-public class AuditLogResponseItemOptions
+public class AuditLogOptionsJson
 {
     [JsonProperty("channel_id")]
     public ulong? ChannelId { get; set; }

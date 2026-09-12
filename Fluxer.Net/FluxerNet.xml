@@ -1698,10 +1698,193 @@
         <member name="P:Fluxer.Net.PartialApplicationJson.Flags">
             <inheritdoc />
         </member>
-        <member name="T:Fluxer.Net.AuditLogActionType">
+        <member name="T:Fluxer.Net.ActionType">
             <summary>
-            
+            Action types for audit logs.
             </summary>
+        </member>
+        <member name="F:Fluxer.Net.ActionType.GuildUpdated">
+            <summary>
+            this guild was updated.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ActionType.ChannelCreated">
+            <summary>
+            A channel was created.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ActionType.ChannelUpdated">
+            <summary>
+            A channel was updated.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ActionType.ChannelDeleted">
+            <summary>
+            A channel was deleted.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ActionType.OverwriteCreated">
+            <summary>
+            A permission overwrite was created for a channel.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ActionType.OverwriteUpdated">
+            <summary>
+            A permission overwrite was updated for a channel.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ActionType.OverwriteDeleted">
+            <summary>
+            A permission overwrite was deleted for a channel.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ActionType.Kick">
+            <summary>
+            A user was kicked from this guild.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ActionType.Prune">
+            <summary>
+            A prune took place in this guild.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ActionType.Ban">
+            <summary>
+            A user banned another user from this guild.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ActionType.Unban">
+            <summary>
+            A user unbanned another user from this guild.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ActionType.MemberUpdated">
+            <summary>
+            A guild member whose information was updated.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ActionType.MemberRoleUpdated">
+            <summary>
+            A guild member's role collection was updated.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ActionType.MemberMoved">
+            <summary>
+            A guild member moved to a voice channel.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ActionType.MemberDisconnected">
+            <summary>
+            A guild member disconnected from a voice channel.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ActionType.BotAdded">
+            <summary>
+            A bot was added to this guild.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ActionType.RoleCreated">
+            <summary>
+            A role was created in this guild.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ActionType.RoleUpdated">
+            <summary>
+            A role was updated in this guild.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ActionType.RoleDeleted">
+            <summary>
+            A role was deleted from this guild.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ActionType.InviteCreated">
+            <summary>
+            An invite was created in this guild.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ActionType.InviteUpdated">
+            <summary>
+            An invite was updated in this guild.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ActionType.InviteDeleted">
+            <summary>
+            An invite was deleted from this guild.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ActionType.WebhookCreated">
+            <summary>
+            A Webhook was created in this guild.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ActionType.WebhookUpdated">
+            <summary>
+            A Webhook was updated in this guild.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ActionType.WebhookDeleted">
+            <summary>
+            A Webhook was deleted from this guild.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ActionType.EmojiCreated">
+            <summary>
+            An emoji was created in this guild.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ActionType.EmojiUpdated">
+            <summary>
+            An emoji was updated in this guild.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ActionType.EmojiDeleted">
+            <summary>
+            An emoji was deleted from this guild.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ActionType.MessageDeleted">
+            <summary>
+            A message was deleted from this guild.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ActionType.MessageBulkDeleted">
+            <summary>
+            Multiple messages were deleted from this guild.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ActionType.MessagePinned">
+            <summary>
+            A message was pinned from this guild.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ActionType.MessageUnpinned">
+            <summary>
+            A message was unpinned from this guild.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ActionType.StickerCreated">
+            <summary>
+            A sticker was created.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ActionType.StickerUpdated">
+            <summary>
+            A sticker was updated.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ActionType.StickerDeleted">
+            <summary>
+            A sticker was deleted.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.SocketAuditLog.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.GuildAuditLogJson)">
+            <summary>
+            Create a Login object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <returns></returns>
         </member>
         <member name="T:Fluxer.Net.AuthSession">
             <inheritdoc />
@@ -10867,6 +11050,16 @@
         <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.MemberLeft">
             <summary>
             Occurs when a member leaves a guild or is kicked/banned.
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.AuditLogCreatedEvent">
+            <summary>
+            Delegate for GUILD_AUDIT_LOG_ENTRY_CREATE event.
+            </summary>
+        </member>
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.AuditLogCreated">
+            <summary>
+            Occurs when an audit log is created.
             </summary>
         </member>
         <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.GuildRoleCreatedEvent">

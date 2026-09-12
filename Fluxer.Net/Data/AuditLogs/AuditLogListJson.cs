@@ -2,10 +2,10 @@
 
 namespace Fluxer.Net;
 
-public class GuildAuditLogListJson
+public class AuditLogListJson
 {
     [JsonProperty("audit_log_entries")]
-    public GuildAuditLogEntryJson[] Entries { get; set; } = Array.Empty<GuildAuditLogEntryJson>();
+    public AuditLogJson[] Entries { get; set; } = Array.Empty<AuditLogJson>();
 
     [JsonProperty("users")]
     public UserJson[] Users { get; set; } = Array.Empty<UserJson>();

@@ -1373,8 +1373,8 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// <param name="guildId"></param>
     /// <param name="data"></param>
     /// <returns></returns>
-    public async Task<GuildAuditLogListJson> SearchAuditLogAsync(ulong guildId, GuildAuditLogListRequest data)
-        => await SendRequestAsync<GuildAuditLogListJson, GuildAuditLogListRequest>(HttpMethod.Post, $"/guilds/{guildId}/audit-logs", data, true);
+    public async Task<AuditLogListJson> SearchAuditLogAsync(ulong guildId, GuildAuditLogListRequest data)
+        => await SendRequestAsync<AuditLogListJson, GuildAuditLogListRequest>(HttpMethod.Post, $"/guilds/{guildId}/audit-logs", data, true);
 
     /// <summary>
     /// Create emojis for the guild.

@@ -20,7 +20,7 @@ public static class GuildHelpers
         => guild.Client.Rest.UpdateChannelPositionsAsync(guild.Id, list);
 
     /// <inheritdoc cref="FluxerApiClient.SearchAuditLogAsync(ulong, GuildAuditLogListRequest)" />
-    public static Task<GuildAuditLogListJson> SearchAuditLogsAsync(this Guild guild, GuildAuditLogListRequest request)
+    public static Task<AuditLogListJson> SearchAuditLogsAsync(this Guild guild, GuildAuditLogListRequest request)
         => guild.Client.Rest.SearchAuditLogAsync(guild.Id, request);
 
     /// <inheritdoc cref="FluxerApiClient.GetBansAsync(ulong)" />
