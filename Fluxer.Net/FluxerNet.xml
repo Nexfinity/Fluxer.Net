@@ -2171,6 +2171,9 @@
         <member name="P:Fluxer.Net.Channel.Bitrate">
             <inheritdoc />
         </member>
+        <member name="P:Fluxer.Net.Channel.VoiceConnectionLimit">
+            <inheritdoc />
+        </member>
         <member name="P:Fluxer.Net.Channel.UserLimit">
             <inheritdoc />
         </member>
@@ -2187,6 +2190,12 @@
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.Channel.Nicknames">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Channel.ContentWarningLevel">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Channel.ContentWarningText">
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.Channel.IsSoftDeleted">
@@ -2249,6 +2258,9 @@
         <member name="P:Fluxer.Net.ChannelJson.UserLimit">
             <inheritdoc />
         </member>
+        <member name="P:Fluxer.Net.ChannelJson.VoiceConnectionLimit">
+            <inheritdoc />
+        </member>
         <member name="P:Fluxer.Net.ChannelJson.RtcRegion">
             <inheritdoc />
         </member>
@@ -2268,6 +2280,12 @@
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.ChannelJson.IndexedAt">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelJson.ContentWarningLevel">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelJson.ContentWarningText">
             <inheritdoc />
         </member>
         <member name="T:Fluxer.Net.ChannelPin">
@@ -2504,6 +2522,11 @@
         <member name="P:Fluxer.Net.IChannel.Bitrate">
             <summary>
             The bitrate of the voice channel in bits per second.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IChannel.VoiceConnectionLimit">
+            <summary>
+            The maximum number of connections a user can have in the voice channel.
             </summary>
         </member>
         <member name="P:Fluxer.Net.IChannel.UserLimit">
@@ -3823,6 +3846,9 @@
         <member name="P:Fluxer.Net.Guild.IsNsfw">
             <inheritdoc />
         </member>
+        <member name="P:Fluxer.Net.Guild.ContentWarningLevel">
+            <inheritdoc />
+        </member>
         <member name="P:Fluxer.Net.Guild.ContentWarningText">
             <inheritdoc />
         </member>
@@ -3858,6 +3884,12 @@
         <member name="P:Fluxer.Net.GuildJson.NsfwLevel">
             <inheritdoc />
         </member>
+        <member name="P:Fluxer.Net.GuildJson.ContentWarningLevel">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildJson.ContentWarningText">
+            <inheritdoc />
+        </member>
         <member name="P:Fluxer.Net.GuildJson.ExplicitContentFilter">
             <inheritdoc />
         </member>
@@ -3886,9 +3918,6 @@
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.GuildJson.IsNsfw">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.GuildJson.ContentWarningText">
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.GuildJson.OnlineCount">
@@ -13335,12 +13364,12 @@
         </member>
         <member name="F:Fluxer.Net.Rest.ApiLimits.MaxGuildEmojisMore">
             <summary>
-            How many more emojis you can create in a guild with <see cref="P:Fluxer.Net.GuildFeatures.HasMoreEmojis"/>.
+            How many more emojis you can create in a guild with <see cref="P:Fluxer.Net.GuildFeatures.MoreEmojis"/>.
             </summary>
         </member>
         <member name="F:Fluxer.Net.Rest.ApiLimits.MaxGuildEmojisAnimatedMore">
             <summary>
-            How many more animated emojis you can create in a guild with <see cref="P:Fluxer.Net.GuildFeatures.HasMoreEmojis"/>.
+            How many more animated emojis you can create in a guild with <see cref="P:Fluxer.Net.GuildFeatures.MoreEmojis"/>.
             </summary>
         </member>
         <member name="F:Fluxer.Net.Rest.ApiLimits.MaxStickers">
@@ -13350,7 +13379,7 @@
         </member>
         <member name="F:Fluxer.Net.Rest.ApiLimits.MaxGuildStickersMore">
             <summary>
-            How many more stickers you can create in a guild with <see cref="P:Fluxer.Net.GuildFeatures.HasMoreStickers"/>.
+            How many more stickers you can create in a guild with <see cref="P:Fluxer.Net.GuildFeatures.MoreStickers"/>.
             </summary>
         </member>
         <member name="F:Fluxer.Net.Rest.ApiLimits.MaxGuildInvites">

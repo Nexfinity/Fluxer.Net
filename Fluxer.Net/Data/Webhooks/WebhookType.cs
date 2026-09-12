@@ -2,6 +2,6 @@
 
 public enum WebhookType
 {
-    INCOMING = 1,
-    CHANNEL_FOLLOWER = 2
+    External = 1,
+    ChannelFollow = 2
 }

@@ -31,10 +31,13 @@ public class Channel : PartialChannel, IChannel
     public bool IsNsfw { get; private set; }
 
     /// <inheritdoc />
-    public int RateLimitPerUser { get; private set; }
+    public int? RateLimitPerUser { get; private set; }
 
     /// <inheritdoc />
     public int? Bitrate { get; private set; }
+
+    /// <inheritdoc />
+    public int? VoiceConnectionLimit { get; set; }
 
     /// <inheritdoc />
     public int? UserLimit { get; private set; }
@@ -43,16 +46,22 @@ public class Channel : PartialChannel, IChannel
     public string? RtcRegion { get; private set; }
 
     /// <inheritdoc />
-    public ulong? LastMessageId { get; private set; }
+    public ulong? LastMessageId { get; internal set; }
 
     /// <inheritdoc />
-    public DateTimeOffset? LastPinAt { get; private set; }
+    public DateTimeOffset? LastPinAt { get; internal set; }
 
     /// <inheritdoc />
     public IEnumerable<PermissionOverwrite>? PermissionOverwrites { get; private set; }
 
     /// <inheritdoc />
     public Dictionary<string, string>? Nicknames { get; private set; }
+
+    /// <inheritdoc />
+    public GuildContentWarning? ContentWarningLevel { get; private set; }
+
+    /// <inheritdoc />
+    public string? ContentWarningText { get; private set; }
 
     /// <inheritdoc />
     public bool IsSoftDeleted { get; private set; }
@@ -170,6 +179,7 @@ public class Channel : PartialChannel, IChannel
         IsNsfw = json.IsNsfw;
         RateLimitPerUser = json.RateLimitPerUser;
         Bitrate = json.Bitrate;
+        VoiceConnectionLimit = json.VoiceConnectionLimit;
         UserLimit = json.UserLimit;
         RtcRegion = json.RtcRegion;
         LastMessageId = json.LastMessageId;
@@ -177,6 +187,8 @@ public class Channel : PartialChannel, IChannel
         if (json.PermissionOverwrites != null)
             PermissionOverwrites = json.PermissionOverwrites.Select(x => PermissionOverwrite.Create(Client, x));
         Nicknames = json.Nicknames;
+        ContentWarningLevel = json.ContentWarningLevel;
+        ContentWarningText = json.ContentWarningText;
         IsSoftDeleted = json.IsSoftDeleted;
         IndexedAt = json.IndexedAt;
     }

@@ -44,7 +44,7 @@ public class ChannelJson : PartialChannelJson, IChannel
 
     /// <inheritdoc />
     [JsonProperty("rate_limit_per_user")]
-    public int RateLimitPerUser { get; set; }
+    public int? RateLimitPerUser { get; set; }
 
     /// <inheritdoc />
     [JsonProperty("bitrate")]
@@ -53,6 +53,10 @@ public class ChannelJson : PartialChannelJson, IChannel
     /// <inheritdoc />
     [JsonProperty("user_limit")]
     public int? UserLimit { get; set; }
+
+    /// <inheritdoc />
+    [JsonProperty("voice_connection_limit")]
+    public int? VoiceConnectionLimit { get; set; }
 
     /// <inheritdoc />
     [JsonProperty("rtc_region")]
@@ -81,6 +85,14 @@ public class ChannelJson : PartialChannelJson, IChannel
     /// <inheritdoc />
     [JsonProperty("indexed_at")]
     public DateTimeOffset? IndexedAt { get; set; }
+
+    /// <inheritdoc />
+    [JsonProperty("content_warning_level")]
+    public GuildContentWarning? ContentWarningLevel { get; set; }
+
+    /// <inheritdoc />
+    [JsonProperty("content_warning_text")]
+    public string? ContentWarningText { get; set; }
 
     IEnumerable<IPermissionOverwrite>? IChannel.PermissionOverwrites => PermissionOverwrites;
 }

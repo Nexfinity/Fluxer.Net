@@ -1533,7 +1533,11 @@ public partial class FluxerGatewayClient : IDisposable
                 {
                     MessageGatewayData? data = p.Data.ToObject<MessageGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
+                    {
+                        if (Channels.TryGetValue(data.ChannelId, out Channel channel))
+                            channel.LastMessageId = data.Id;
                         MessageCreated?.Invoke(SocketMessage.Create(_client, data));
+                    }
                     else
                         _logger.Warning("MESSAGE_CREATE event received but data could not be cast to MessageGatewayData");
                 }
@@ -1639,7 +1643,11 @@ public partial class FluxerGatewayClient : IDisposable
                 {
                     ChannelPinsUpdateGatewayData? data = p.Data.ToObject<ChannelPinsUpdateGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
+                    {
+                        if (Channels.TryGetValue(data.ChannelId, out Channel channel))
+                            channel.LastPinAt = data.LastPinAt;
                         ChannelPinsUpdated?.Invoke(data);
+                    }
                     else
                         _logger.Warning("CHANNEL_PINS_UPDATE event received but data could not be cast to ChannelPinsUpdateGatewayData");
                 }

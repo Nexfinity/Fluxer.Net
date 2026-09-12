@@ -1,6 +1,4 @@
-﻿
-
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace Fluxer.Net;
@@ -20,8 +18,11 @@ public class SocketAuditLog : Entity, ISnowflake
     public ulong? TargetId { get; private set; }
 
     public string? Reason { get; private set; }
-    public AuditRawDataJson Raw { get; private set; }
+
+    public AuditLogRawDataJson Raw { get; private set; }
+
     public IAuditLogData? OldData { get; private set; }
+
     public IAuditLogData NewData { get; private set; }
 
     internal SocketAuditLog(FluxerBaseClient client) : base(client)
@@ -44,27 +45,30 @@ public class SocketAuditLog : Entity, ISnowflake
             UserId = json.UserId,
             TargetId = json.TargetId,
             Reason = json.Reason,
-            Raw = new AuditRawDataJson
+            Raw = new AuditLogRawDataJson
             {
                 OldData = new JObject(),
                 NewData = new JObject()
             },
             Guild = (client as FluxerClient).Gateway.GetGuild(json.GuildId)
         };
-        foreach (var c in json.Changes)
+        if (json.Changes != null)
         {
-            if (c.OldValue != null)
-                data.Raw.OldData.Add(c.Key, c.OldValue);
+            foreach (var c in json.Changes)
+            {
+                if (c.OldValue != null)
+                    data.Raw.OldData.Add(c.Key, c.OldValue);
 
-            data.Raw.NewData.Add(c.Key, c.NewValue);
+                data.Raw.NewData.Add(c.Key, c.NewValue);
+            }
         }
         Type? type = null;
         switch (data.Action)
         {
             case ActionType.GuildUpdated:
-                data.OldData = new AuditGuildDataJson();
-                data.NewData = new AuditGuildDataJson();
-                type = typeof(AuditGuildDataJson);
+                data.OldData = new GuildChangeDataJson();
+                data.NewData = new GuildChangeDataJson();
+                type = typeof(GuildChangeDataJson);
                 break;
         }
         if (type != null)

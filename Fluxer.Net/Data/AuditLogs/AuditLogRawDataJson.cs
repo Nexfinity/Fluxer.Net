@@ -2,7 +2,7 @@
 
 namespace Fluxer.Net;
 
-public class AuditRawDataJson
+public class AuditLogRawDataJson
 {
     public JObject OldData { get; internal set; }
     public JObject NewData { get; internal set; }

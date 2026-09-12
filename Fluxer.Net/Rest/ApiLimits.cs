@@ -73,12 +73,12 @@ public class ApiLimits
     public int MaxGuildEmojisAnimated = 50;
 
     /// <summary>
-    /// How many more emojis you can create in a guild with <see cref="GuildFeatures.HasMoreEmojis"/>.
+    /// How many more emojis you can create in a guild with <see cref="GuildFeatures.MoreEmojis"/>.
     /// </summary>
     public int MaxGuildEmojisMore = 250;
 
     /// <summary>
-    /// How many more animated emojis you can create in a guild with <see cref="GuildFeatures.HasMoreEmojis"/>.
+    /// How many more animated emojis you can create in a guild with <see cref="GuildFeatures.MoreEmojis"/>.
     /// </summary>
     public int MaxGuildEmojisAnimatedMore = 250;
 
@@ -88,7 +88,7 @@ public class ApiLimits
     public int MaxStickers = 50;
 
     /// <summary>
-    /// How many more stickers you can create in a guild with <see cref="GuildFeatures.HasMoreStickers"/>.
+    /// How many more stickers you can create in a guild with <see cref="GuildFeatures.MoreStickers"/>.
     /// </summary>
     public int MaxGuildStickersMore = 250;
 

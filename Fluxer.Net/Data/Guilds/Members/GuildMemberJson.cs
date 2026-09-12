@@ -10,6 +10,7 @@ public class GuildMemberJson : IGuildMember
     public ulong Id => User.Id;
 
     /// <inheritdoc />
+    [JsonIgnore]
     public DateTimeOffset CreatedAt => SnowflakeUtils.FromSnowflake(Id);
 
     /// <inheritdoc />

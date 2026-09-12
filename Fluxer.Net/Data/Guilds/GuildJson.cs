@@ -26,6 +26,14 @@ public class GuildJson : PartialGuildJson, IGuild
     public GuildNsfwLevel NsfwLevel { get; set; }
 
     /// <inheritdoc />
+    [JsonProperty("content_warning_level")]
+    public GuildContentWarning ContentWarningLevel { get; set; }
+
+    /// <inheritdoc />
+    [JsonProperty("content_warning_text")]
+    public string? ContentWarningText { get; set; }
+
+    /// <inheritdoc />
     [JsonProperty("explicit_content_filter")]
     public GuildContentFilter ExplicitContentFilter { get; set; }
 
@@ -65,9 +73,7 @@ public class GuildJson : PartialGuildJson, IGuild
     [JsonProperty("nsfw")]
     public bool IsNsfw { get; set; }
 
-    /// <inheritdoc />
-    [JsonProperty("content_warning_text")]
-    public string ContentWarningText { get; set; }
+
 
     /// <inheritdoc />
     [JsonProperty("online_count")]
