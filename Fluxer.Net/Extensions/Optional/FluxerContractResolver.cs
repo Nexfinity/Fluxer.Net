@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Fluxer.Net.Extensions;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using System.Reflection;
 
@@ -57,6 +58,18 @@ public class FluxerContractResolver : DefaultContractResolver
             else if (genericType == typeof(Nullable<>))
                 return MakeGenericConverter(property, propInfo, typeof(NullableConverter<>), type.GenericTypeArguments[0], depth);
         }
+        if (type == typeof(SearchScope))
+            return SearchScopeConverter.Instance;
+
+        if (type == typeof(SearchAuthorType))
+            return SearchAuthorTypeConverter.Instance;
+
+        if (type == typeof(SearchContentType))
+            return SearchContentTypeConverter.Instance;
+
+        if (type == typeof(SearchEmbedType))
+            return SearchEmbedTypeConverter.Instance;
+
         return null;
     }
 

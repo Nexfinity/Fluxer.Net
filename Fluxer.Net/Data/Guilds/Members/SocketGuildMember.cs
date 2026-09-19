@@ -17,21 +17,26 @@ public class SocketGuildMember : GuildMember
     public IEnumerable<SocketRole> Roles
             => RoleIds.Select(id => Guild.Roles.GetValueOrDefault(id)).Where(x => x != null);
 
+    public GuildPermissions GuildPermissions => GuildPermissions.Resolve(this);
+
+    public int Hierarchy
+    {
+        get
+        {
+            if (Guild.OwnerId == Id)
+                return int.MaxValue;
+
+            var orderedRoles = Guild.Roles.Values.OrderByDescending(x => x.Position);
+            return orderedRoles.Where(x => RoleIds.Contains(x.Id)).Max(x => x.Position);
+        }
+    }
+
     public bool HasPermission(GuildPermission permission)
     {
         if (Id == Guild.OwnerId)
             return true;
 
-        foreach (SocketRole r in Roles)
-        {
-            if (r.Permissions.Administrator)
-                return true;
-
-            if (r.Permissions.RawValue.HasFlag(permission))
-                return true;
-        }
-
-        return false;
+        return Roles.Any(r => r.Permissions.Administrator || r.Permissions.RawValue.HasFlag(permission));
     }
 
     public ChannelPermissions GetPermissions(Channel channel)
@@ -61,8 +66,8 @@ public class SocketGuildMember : GuildMember
             PermissionOverwrite? role = channel.PermissionOverwrites.FirstOrDefault(x => x.Type == PermissionOverwriteType.Role && x.Id == r.Id);
             if (role != null)
             {
-                allowedPermissions |= (ulong)role.Allow.RawValue;
                 deniedPermissions |= (ulong)role.Deny.RawValue;
+                allowedPermissions |= (ulong)role.Allow.RawValue;
             }
         }
         resolvedPermissions = (resolvedPermissions & ~deniedPermissions) | allowedPermissions;

@@ -1,5 +1,4 @@
 ﻿using Fluxer.Net.Extensions;
-using Fluxer.Net.RateLimiting;
 using Microsoft.AspNetCore.WebUtilities;
 using Newtonsoft.Json;
 using Serilog;
@@ -21,11 +20,11 @@ public class FluxerBaseApiClient
     /// </summary>
     public HttpClient HttpClient { get; internal set; }
 
-    /// <summary>
-    /// Manages client-side rate limiting using sliding window algorithm.
-    /// Prevents exceeding Fluxer API rate limits by automatically waiting when necessary.
-    /// </summary>
-    public RateLimitManager RateLimitManager { get; internal set; }
+    // <summary>
+    // Manages client-side rate limiting using sliding window algorithm.
+    // Prevents exceeding Fluxer API rate limits by automatically waiting when necessary.
+    // </summary>
+    //public RateLimitManager RateLimitManager { get; internal set; }
 
     /// <summary>
     /// API limits for message length, attachment count and premium limits.
@@ -40,12 +39,11 @@ public class FluxerBaseApiClient
         {
             Proxy = _config.Proxy
         });
-        RateLimitManager = new RateLimitManager(_config.EnableRateLimiting);
+        //RateLimitManager = new RateLimitManager(_config.EnableRateLimiting);
 
-        _logger.Information("Initialized Fluxer.Net api client ({AssemblyVersion}) (API {ApiVersion}) with rate limiting {RateLimitEnabled}",
+        _logger.Information("Initialized Fluxer.Net api client ({AssemblyVersion}) (API {ApiVersion})",
             Assembly.GetExecutingAssembly().GetName().Version,
-            _config.Version,
-            _config.EnableRateLimiting ? "enabled" : "disabled");
+            _config.Version);
     }
 
     /// <summary>

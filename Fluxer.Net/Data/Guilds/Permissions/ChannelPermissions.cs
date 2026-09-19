@@ -6,6 +6,11 @@ public class ChannelPermissions : IChannelPermissions
     {
         RawValue = (ChannelPermission)(ulong)perms;
     }
+
+    public ChannelPermissions(ChannelPermission perms)
+    {
+        RawValue = perms;
+    }
     /// <summary>
     /// Raw permissions flag for the guild.
     /// </summary>

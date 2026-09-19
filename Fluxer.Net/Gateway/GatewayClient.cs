@@ -27,7 +27,7 @@ namespace Fluxer.Net.Gateway;
 /// <item>Automatic heartbeat mechanism to maintain connection</item>
 /// <item>Sequence tracking for ordered event processing</item>
 /// <item>Session-based reconnection with resume capability (no event loss)</item>
-/// <item>Event filtering via <see cref="FluxerConfig.IgnoredGatewayEvents"/></item>
+/// <item>Event filtering via <see cref="FluxerGatewayConfig.IgnoredEvents"/></item>
 /// </list>
 /// <para>
 /// This client should be paired with <see cref="FluxerApiClient"/> for full Fluxer functionality.
@@ -549,6 +549,9 @@ public partial class FluxerGatewayClient : IDisposable
                             GuildIds = data.Guilds.Select(x => x.Id).ToHashSet();
                             foreach (GuildGatewayData g in data.Guilds)
                             {
+                                if (g.Members == null)
+                                    continue;
+
                                 CurrentMembers.TryAdd(g.Id, SocketGuildMember.Create(_client, g.Members.First(x => x.Id == CurrentUser.Id)));
                                 SocketGuild guild = SocketGuild.Create(_client, g, CurrentMembers[g.Id]);
                                 foreach (GuildMemberGatewayData m in g.Members)

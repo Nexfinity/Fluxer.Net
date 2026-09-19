@@ -57,12 +57,12 @@ public class FluxerConfig
     /// </summary>
     public IWebProxy? Proxy { get; set; }
 
-    /// <summary>
-    /// Enable client-side rate limiting using a sliding window algorithm. Defaults to true.
-    /// When enabled, API requests automatically wait when approaching rate limits to prevent
-    /// 429 responses from the server. See RateLimiting/README.md for details.
-    /// </summary>
-    public bool EnableRateLimiting { get; set; } = true;
+    // <summary>
+    // Enable client-side rate limiting using a sliding window algorithm. Defaults to true.
+    // When enabled, API requests automatically wait when approaching rate limits to prevent
+    // 429 responses from the server. See RateLimiting/README.md for details.
+    // </summary>
+    //public bool EnableRateLimiting { get; set; } = true;
 
     /// <summary>
     /// Gets the fully resolved API base URL with the version number substituted.
