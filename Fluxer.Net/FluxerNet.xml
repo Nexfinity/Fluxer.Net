@@ -8042,6 +8042,18 @@
             Token type.
             </summary>
         </member>
+        <member name="T:Fluxer.Net.SearchAuthorType">
+            <see cref="T:Fluxer.Net.Extensions.SearchAuthorTypeConverter"/>
+        </member>
+        <member name="T:Fluxer.Net.SearchContentType">
+            <see cref="T:Fluxer.Net.Extensions.SearchContentTypeConverter"/>
+        </member>
+        <member name="T:Fluxer.Net.SearchEmbedType">
+            <see cref="T:Fluxer.Net.Extensions.SearchEmbedTypeConverter"/>
+        </member>
+        <member name="T:Fluxer.Net.SearchScope">
+            <see cref="T:Fluxer.Net.Extensions.SearchScopeConverter"/>
+        </member>
         <member name="T:Fluxer.Net.Activity">
             <inheritdoc />
         </member>
@@ -10107,13 +10119,6 @@
             Proxy used for the rest/http client.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.FluxerConfig.EnableRateLimiting">
-            <summary>
-            Enable client-side rate limiting using a sliding window algorithm. Defaults to true.
-            When enabled, API requests automatically wait when approaching rate limits to prevent
-            429 responses from the server. See RateLimiting/README.md for details.
-            </summary>
-        </member>
         <member name="P:Fluxer.Net.FluxerConfig.RealApiBaseUrl">
             <summary>
             Gets the fully resolved API base URL with the version number substituted.
@@ -10470,7 +10475,7 @@
             <item>Automatic heartbeat mechanism to maintain connection</item>
             <item>Sequence tracking for ordered event processing</item>
             <item>Session-based reconnection with resume capability (no event loss)</item>
-            <item>Event filtering via <see cref="!:FluxerConfig.IgnoredGatewayEvents"/></item>
+            <item>Event filtering via <see cref="P:Fluxer.Net.FluxerGatewayConfig.IgnoredEvents"/></item>
             </list>
             <para>
             This client should be paired with <see cref="T:Fluxer.Net.Rest.FluxerApiClient"/> for full Fluxer functionality.
@@ -11760,22 +11765,10 @@
             <remarks>
             The client is automatically configured with:
             <list type="bullet">
-            <item>Rate limiting enabled by default (configurable via <see cref="P:Fluxer.Net.FluxerConfig.EnableRateLimiting"/>)</item>
             <item>Serilog logger for request/response tracking</item>
             <item>HTTP client for connection pooling</item>
             </list>
             </remarks>
-        </member>
-        <member name="M:Fluxer.Net.Rest.FluxerApiClient.WaitForRateLimitAsync(Fluxer.Net.RateLimiting.RateLimitConfig,System.Nullable{System.UInt64},System.Nullable{System.UInt64},System.Nullable{System.UInt64},System.Nullable{System.UInt64},System.String)">
-            <summary>
-            Helper method to wait for rate limiting before making a request.
-            </summary>
-            <param name="config">The rate limit configuration for this request.</param>
-            <param name="channelId">Optional channel ID for channel-specific rate limits.</param>
-            <param name="guildId">Optional guild ID for guild-specific rate limits.</param>
-            <param name="userId">Optional user ID for user-specific rate limits.</param>
-            <param name="webhookId">Optional webhook ID for webhook-specific rate limits.</param>
-            <param name="inviteCode">Optional invite code for invite-specific rate limits.</param>
         </member>
         <member name="M:Fluxer.Net.Rest.FluxerApiClient.GetInstanceAsync">
             <summary>
@@ -13605,12 +13598,6 @@
         <member name="P:Fluxer.Net.Rest.FluxerBaseApiClient.HttpClient">
             <summary>
             The HTTP client used to make requests. Can be shared or injected for connection pooling.
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.Rest.FluxerBaseApiClient.RateLimitManager">
-            <summary>
-            Manages client-side rate limiting using sliding window algorithm.
-            Prevents exceeding Fluxer API rate limits by automatically waiting when necessary.
             </summary>
         </member>
         <member name="P:Fluxer.Net.Rest.FluxerBaseApiClient.Limits">

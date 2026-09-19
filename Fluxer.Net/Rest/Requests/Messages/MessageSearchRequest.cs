@@ -37,7 +37,7 @@ public class MessageSearchRequest
     /// <summary>
     /// Multiple content queries to search for.
     /// </summary>
-    [JsonProperty("Multiple content queries to search for")]
+    [JsonProperty("contents")]
     public HashSet<string>? Contents { get; set; }
 
     /// <summary>
@@ -62,13 +62,13 @@ public class MessageSearchRequest
     /// Author types to filter by.
     /// </summary>
     [JsonProperty("author_type")]
-    public HashSet<string>? AuthorTypes { get; set; }
+    public SearchAuthorType? AuthorTypes { get; set; }
 
     /// <summary>
     /// Author types to exclude.
     /// </summary>
     [JsonProperty("exclude_author_type")]
-    public HashSet<string>? ExcludeAuthorTypes { get; set; }
+    public SearchAuthorType? ExcludeAuthorTypes { get; set; }
 
     /// <summary>
     /// Author user IDs to filter by.
@@ -110,25 +110,25 @@ public class MessageSearchRequest
     /// Content types the message must have.
     /// </summary>
     [JsonProperty("has")]
-    public HashSet<string>? HasContentType { get; set; }
+    public SearchContentType? HasContentType { get; set; }
 
     /// <summary>
     /// Content types the message must not have.
     /// </summary>
     [JsonProperty("exclude_has")]
-    public HashSet<string>? ExcludeContentType { get; set; }
+    public SearchContentType? ExcludeContentType { get; set; }
 
     /// <summary>
     /// Embed types to filter by.
     /// </summary>
     [JsonProperty("embed_type")]
-    public HashSet<string>? EmbedType { get; set; }
+    public SearchEmbedType? EmbedType { get; set; }
 
     /// <summary>
     /// Embed types to exclude.
     /// </summary>
     [JsonProperty("exclude_embed_type")]
-    public HashSet<string>? ExcludeEmbedType { get; set; }
+    public SearchEmbedType? ExcludeEmbedType { get; set; }
 
     /// <summary>
     /// Embed providers to filter by.
@@ -200,5 +200,5 @@ public class MessageSearchRequest
     /// This should not be changed when using bots.
     /// </summary>
     [JsonProperty("scope")]
-    public string? MessageSearchScope { get; set; } = "current";
+    public SearchScope? MessageSearchScope { get; set; } = Net.SearchScope.Current;
 }
