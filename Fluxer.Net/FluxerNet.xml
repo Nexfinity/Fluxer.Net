@@ -4523,7 +4523,18 @@
         </member>
         <member name="P:Fluxer.Net.SocketGuildMember.Guild">
             <summary>
-            Guild that the member is for.
+            Guild that the member is part of.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.SocketGuildMember.Roles">
+            <summary>
+            List of roles the member is part of.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.SocketGuildMember.Hierarchy">
+            <summary>
+            Where the member places in the role hierarchy.
+            Higher value means higher rank.
             </summary>
         </member>
         <member name="M:Fluxer.Net.SocketGuildMember.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.GuildMemberJson)">
