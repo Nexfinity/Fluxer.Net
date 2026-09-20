@@ -18,7 +18,7 @@ public class SocketGuildMember : GuildMember
     /// List of roles the member is part of.
     /// </summary>
     public IEnumerable<SocketRole> Roles
-            => RoleIds.Select(id => Guild.Roles.GetValueOrDefault(id)).Where(x => x != null);
+            => RoleIds.Select(Guild.Roles.GetValueOrDefault).Where(x => x != null);
 
     public GuildPermissions GuildPermissions => GuildPermissions.Resolve(this);
 
@@ -33,8 +33,7 @@ public class SocketGuildMember : GuildMember
             if (Guild.OwnerId == Id)
                 return int.MaxValue;
 
-            var orderedRoles = Guild.Roles.Values.OrderByDescending(x => x.Position);
-            return orderedRoles.Where(x => RoleIds.Contains(x.Id)).Max(x => x.Position);
+            return Roles.Max(x => x.Position);
         }
     }
 
