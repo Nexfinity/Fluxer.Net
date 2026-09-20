@@ -8,17 +8,24 @@ namespace Fluxer.Net;
 public class SocketGuildMember : GuildMember
 {
     /// <summary>
-    /// Guild that the member is for.
+    /// Guild that the member is part of.
     /// </summary>
     public SocketGuild Guild { get; internal set; }
 
     public ConcurrentDictionary<string, SocketVoiceState> VoiceStates { get; private set; } = new ConcurrentDictionary<string, SocketVoiceState>();
 
+    /// <summary>
+    /// List of roles the member is part of.
+    /// </summary>
     public IEnumerable<SocketRole> Roles
             => RoleIds.Select(id => Guild.Roles.GetValueOrDefault(id)).Where(x => x != null);
 
     public GuildPermissions GuildPermissions => GuildPermissions.Resolve(this);
 
+    /// <summary>
+    /// Where the member places in the role hierarchy.
+    /// Higher value means higher rank.
+    /// </summary>
     public int Hierarchy
     {
         get
@@ -50,14 +57,14 @@ public class SocketGuildMember : GuildMember
 
         ulong resolvedPermissions = (ulong)guildPerms.RawValue;
 
-        // Check everyone overwrite
+        // "everyone" is a special role that has the guild id as its role id.
         PermissionOverwrite? everyone = channel.PermissionOverwrites.FirstOrDefault(x => x.Id == Guild.Id);
         if (everyone != null)
             resolvedPermissions = (resolvedPermissions & ~(ulong)everyone.Deny.RawValue) | (ulong)everyone.Allow.RawValue;
 
         ulong deniedPermissions = 0UL, allowedPermissions = 0UL;
 
-        // Check role overwrites
+        // Check role overwrites.
         foreach (SocketRole r in Roles)
         {
             if (r.Id == Guild.Id)
@@ -80,12 +87,12 @@ public class SocketGuildMember : GuildMember
 
         if (!((ChannelPermission)resolvedPermissions).HasFlag(ChannelPermission.ViewChannel))
         {
-            // No view channel permissions all permissions removed.
+            // No view channel permissions = all permissions removed.
             resolvedPermissions = 0;
         }
         else if (!((ChannelPermission)resolvedPermissions).HasFlag(ChannelPermission.SendMessages))
         {
-            // No send permissions on channel.
+            // These permissions require send messages to work, so we remove them.
             resolvedPermissions &= ~(ulong)ChannelPermission.SendTTSMessages;
             resolvedPermissions &= ~(ulong)ChannelPermission.MentionEveryone;
             resolvedPermissions &= ~(ulong)ChannelPermission.EmbedLinks;
