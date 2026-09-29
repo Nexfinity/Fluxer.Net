@@ -347,9 +347,9 @@ public class InstanceRule : IInstanceRule
     public string Id { get; internal set; }
 
     /// <inheritdoc />
-    public Dictionary<string, int> Overrides { get; internal set; }
+    public Dictionary<string, long> Overrides { get; internal set; }
 
-    IDictionary<string, int> IInstanceRule.Overrides => Overrides;
+    IDictionary<string, long> IInstanceRule.Overrides => Overrides;
 }
 /// <inheritdoc />
 public class InstancePush : IInstancePush

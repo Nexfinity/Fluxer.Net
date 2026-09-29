@@ -122,7 +122,7 @@ public interface IInstanceRule
 {
     string Id { get; }
 
-    IDictionary<string, int> Overrides { get; }
+    IDictionary<string, long> Overrides { get; }
 }
 public interface IInstancePush
 {

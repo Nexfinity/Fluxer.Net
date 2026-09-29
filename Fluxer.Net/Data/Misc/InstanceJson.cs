@@ -272,9 +272,9 @@ public class InstanceRuleJson : IInstanceRule
 
     /// <inheritdoc />
     [JsonProperty("overrides")]
-    public Dictionary<string, int> Overrides { get; set; }
+    public Dictionary<string, long> Overrides { get; set; }
 
-    IDictionary<string, int> IInstanceRule.Overrides => Overrides;
+    IDictionary<string, long> IInstanceRule.Overrides => Overrides;
 }
 
 /// <inheritdoc />

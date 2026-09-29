@@ -8,17 +8,24 @@ namespace Fluxer.Net;
 public class SocketGuildMember : GuildMember
 {
     /// <summary>
-    /// Guild that the member is for.
+    /// Guild that the member is part of.
     /// </summary>
     public SocketGuild Guild { get; internal set; }
 
     public ConcurrentDictionary<string, SocketVoiceState> VoiceStates { get; private set; } = new ConcurrentDictionary<string, SocketVoiceState>();
 
+    /// <summary>
+    /// List of roles the member is part of.
+    /// </summary>
     public IEnumerable<SocketRole> Roles
-            => RoleIds.Select(id => Guild.Roles.GetValueOrDefault(id)).Where(x => x != null);
+            => RoleIds.Select(Guild.Roles.GetValueOrDefault).Where(x => x != null);
 
     public GuildPermissions GuildPermissions => GuildPermissions.Resolve(this);
 
+    /// <summary>
+    /// Where the member places in the role hierarchy.
+    /// Higher value means higher rank.
+    /// </summary>
     public int Hierarchy
     {
         get
@@ -26,8 +33,7 @@ public class SocketGuildMember : GuildMember
             if (Guild.OwnerId == Id)
                 return int.MaxValue;
 
-            var orderedRoles = Guild.Roles.Values.OrderByDescending(x => x.Position);
-            return orderedRoles.Where(x => RoleIds.Contains(x.Id)).Max(x => x.Position);
+            return Roles.Max(x => x.Position);
         }
     }
 
@@ -48,16 +54,16 @@ public class SocketGuildMember : GuildMember
         if (guildPerms.Administrator)
             return new ChannelPermissions((GuildPermission)ulong.MaxValue);
 
-        ulong resolvedPermissions = (ulong)guildPerms.RawValue;
+        ChannelPermission resolvedPermissions = (ChannelPermission)guildPerms.RawValue;
 
-        // Check everyone overwrite
+        // "everyone" is a special role that has the guild id as its role id.
         PermissionOverwrite? everyone = channel.PermissionOverwrites.FirstOrDefault(x => x.Id == Guild.Id);
         if (everyone != null)
-            resolvedPermissions = (resolvedPermissions & ~(ulong)everyone.Deny.RawValue) | (ulong)everyone.Allow.RawValue;
+            resolvedPermissions = (resolvedPermissions & ~everyone.Deny.RawValue) | everyone.Allow.RawValue;
 
-        ulong deniedPermissions = 0UL, allowedPermissions = 0UL;
+        ChannelPermission deniedPermissions = 0UL, allowedPermissions = 0UL;
 
-        // Check role overwrites
+        // Check role overwrites.
         foreach (SocketRole r in Roles)
         {
             if (r.Id == Guild.Id)
@@ -66,8 +72,8 @@ public class SocketGuildMember : GuildMember
             PermissionOverwrite? role = channel.PermissionOverwrites.FirstOrDefault(x => x.Type == PermissionOverwriteType.Role && x.Id == r.Id);
             if (role != null)
             {
-                deniedPermissions |= (ulong)role.Deny.RawValue;
-                allowedPermissions |= (ulong)role.Allow.RawValue;
+                deniedPermissions |= role.Deny.RawValue;
+                allowedPermissions |= role.Allow.RawValue;
             }
         }
         resolvedPermissions = (resolvedPermissions & ~deniedPermissions) | allowedPermissions;
@@ -75,24 +81,17 @@ public class SocketGuildMember : GuildMember
         // Check user overwrite
         PermissionOverwrite? user = channel.PermissionOverwrites.FirstOrDefault(x => x.Type == PermissionOverwriteType.Member && x.Id == Id);
         if (user != null)
-            resolvedPermissions = (resolvedPermissions & ~(ulong)user.Deny.RawValue) | (ulong)user.Allow.RawValue;
+            resolvedPermissions = (resolvedPermissions & ~user.Deny.RawValue) | user.Allow.RawValue;
 
 
-        if (!((ChannelPermission)resolvedPermissions).HasFlag(ChannelPermission.ViewChannel))
-        {
-            // No view channel permissions all permissions removed.
+        if (!resolvedPermissions.HasFlag(ChannelPermission.ViewChannel))
+            // No view channel permissions = all permissions removed.
             resolvedPermissions = 0;
-        }
-        else if (!((ChannelPermission)resolvedPermissions).HasFlag(ChannelPermission.SendMessages))
-        {
-            // No send permissions on channel.
-            resolvedPermissions &= ~(ulong)ChannelPermission.SendTTSMessages;
-            resolvedPermissions &= ~(ulong)ChannelPermission.MentionEveryone;
-            resolvedPermissions &= ~(ulong)ChannelPermission.EmbedLinks;
-            resolvedPermissions &= ~(ulong)ChannelPermission.AttachFiles;
-        }
+        else if (!resolvedPermissions.HasFlag(ChannelPermission.SendMessages))
+            // These permissions require send messages to work, so we remove them.
+            resolvedPermissions &= ~(ChannelPermission.SendTTSMessages | ChannelPermission.MentionEveryone | ChannelPermission.EmbedLinks | ChannelPermission.AttachFiles);
 
-        return new ChannelPermissions((GuildPermission)resolvedPermissions);
+        return new ChannelPermissions(resolvedPermissions);
     }
 
     internal SocketGuildMember(FluxerBaseClient client) : base(client)
