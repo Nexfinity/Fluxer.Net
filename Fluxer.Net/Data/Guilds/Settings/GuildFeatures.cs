@@ -36,6 +36,7 @@ public class GuildFeatures
     public bool BlockUnclaimedAccounts { get; private set; }
     public bool HasLargeGuildOverride { get; private set; }
     public bool IsLargeGuild { get; private set; }
+    public bool IsAnnouncementChannelsDisabled { get; private set; }
 
     internal GuildFeatures()
     {
@@ -153,6 +154,9 @@ public class GuildFeatures
                         break;
                     case "VERY_LARGE_GUILD":
                         data.IsLargeGuild = true;
+                        break;
+                    case "ANNOUNCEMENT_CHANNELS_DISABLED":
+                        data.IsAnnouncementChannelsDisabled = true;
                         break;
                 }
             }

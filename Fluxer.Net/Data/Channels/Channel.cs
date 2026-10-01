@@ -118,11 +118,21 @@ public class Channel : PartialChannel, IChannel
         switch (json.Type)
         {
             case ChannelType.GuildText:
+            case ChannelType.NewsThread:
+            case ChannelType.PublicThread:
+            case ChannelType.PrivateThread:
+            case ChannelType.GuildMedia:
                 {
                     data = new TextChannel(client);
                 }
                 break;
+            case ChannelType.GuildNews:
+                {
+                    data = new NewsChannel(client);
+                }
+                break;
             case ChannelType.GuildVoice:
+            case ChannelType.GuildStageVoice:
                 {
                     data = new VoiceChannel(client);
                 }
