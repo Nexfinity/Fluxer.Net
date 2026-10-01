@@ -404,6 +404,12 @@ public class FluxerApiClient : FluxerBaseApiClient
     }
 
     /// <summary>
+    /// Crosspost a message.
+    /// </summary>
+    public async Task CrosspostMessageAsync(ulong channelId, ulong messageId)
+        => await SendRequestAsync<dynamic>(HttpMethod.Post, $"/channels/{channelId}/messages/{messageId}/crosspost", null, true);
+
+    /// <summary>
     /// Search messages in a channel.
     /// </summary>
     /// <remarks>

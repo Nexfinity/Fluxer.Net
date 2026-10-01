@@ -21,6 +21,10 @@ public class SocketChannel : Channel
         switch (json.Type)
         {
             case ChannelType.GuildText:
+            case ChannelType.NewsThread:
+            case ChannelType.PublicThread:
+            case ChannelType.PrivateThread:
+            case ChannelType.GuildMedia:
                 {
                     data = new SocketTextChannel(client)
                     {
@@ -28,7 +32,16 @@ public class SocketChannel : Channel
                     };
                 }
                 break;
+            case ChannelType.GuildNews:
+                {
+                    data = new SocketNewsChannel(client)
+                    {
+                        Guild = guild
+                    };
+                }
+                break;
             case ChannelType.GuildVoice:
+            case ChannelType.GuildStageVoice:
                 {
                     data = new SocketVoiceChannel(client)
                     {

@@ -102,6 +102,10 @@ public static class MessageHelpers
             ChannelId = message.ChannelId,
         }, null, flags, nonce);
 
+    /// <inheritdoc cref="FluxerApiClient.CrosspostMessageAsync(ulong, ulong)"/>
+    public static Task CrosspostAsync(this Message message)
+        => message.Client.Rest.CrosspostMessageAsync(message.ChannelId, message.Id);
+
     /// <summary>
     /// Hide embeds on a message.
     /// </summary>
