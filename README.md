@@ -11,9 +11,6 @@ This project is inspired by [Discord.net](https://github.com/discord-net/Discord
   <a href="https://www.nuget.org/packages/Fluxer.Net/">
     <img src="https://img.shields.io/nuget/v/Fluxer.Net.svg?maxAge=2592000?style=plastic" alt="NuGet">
   </a>
-  <a href="https://www.nuget.org/packages/Fluxer.Net/">
-    <img src="https://img.shields.io/nuget/vpre/Fluxer.Net.svg?maxAge=2592000?style=plastic" alt="NuGet">
-  </a>
   <a href="https://github.com/Nexfinity/Fluxer.Net/actions/workflows/publish.yml">
     <img src="https://github.com/Nexfinity/Fluxer.Net/actions/workflows/publish.yml/badge.svg" alt="Dotnet Build Status">
   </a>
