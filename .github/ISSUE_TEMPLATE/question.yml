@@ -1,0 +1,22 @@
+name: ❔ Question
+description: Ask a question
+title: "[Question]: "
+labels: ["question"]
+body:
+  - type: markdown
+    attributes:
+      value: Ask a question!
+  - type: checkboxes
+    attributes:
+      label: Check The Docs
+      description: Please check the [Fluxer.net Docs](https://fluxer.net/api/index.html) for guides, examples and reference before asking a question.
+      options:
+      - label: "I have checked the docs"
+        required: true
+  - type: textarea
+    id: description
+    attributes: 
+      label: Description
+      description: What do you want to ask?
+    validations:
+      required: true
