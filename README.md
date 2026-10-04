@@ -1,7 +1,9 @@
 # Fluxer.Net
-Fluxer.net is an API client to interact with [Fluxer](https://fluxer.com/) a chat platform using a bot or user account.
+Fluxer.net is an API client to interact with [Fluxer](https://fluxer.com) a chat platform using a bot or user account.
 
-Fluxer.Net is currently functional with Fluxer's pre-release, however, things are very likely to break or stop working as Fluxer updates. Please report bug reports in the issues page, and open pull requests for missing or broken features and endpoints. 
+Supports Gateway, Self-hosted Instances, Webhooks, OAuth and announcement channels.
+
+This project is inspired by [Discord.net](https://github.com/discord-net/Discord.Net) with similar design.
 
 <br />
 
@@ -18,22 +20,15 @@ Fluxer.Net is currently functional with Fluxer's pre-release, however, things ar
 </div>
 
 ## 📄 Documentation
-Documentation can be found at [https://fluxer.net/](https://fluxer.net/)
+View our docs: [https://fluxer.net](https://fluxer.net)
+
+## 📥 Installation
+Get the NuGet package: [Fluxer.Net](https://www.nuget.org/packages/Fluxer.Net)
+
+Get started here: [Get Started](https://fluxer.net/get_started/install.html)
 
 ## 🩷 Supporting Fluxer.Net
 Fluxer.Net is an MIT-licensed open source project with its development made possible entirely by volunteers. 
-
-## 📥 Installation
-
-### Stable (NuGet)
-
-Our stable builds available from NuGet through the Fluxer.Net metapackage:
-
-- [Fluxer.Net](https://www.nuget.org/packages/Fluxer.Net/)
-
-### Nightlies
-
-Nightlies are builds of Fluxer.Net that are still in an experimental phase, and have not been released. We do not current have a nightlies build feed.
 
 ## 🗃️ Versioning Guarantees
 
