@@ -6,7 +6,7 @@ type: "Bug"
 body:
   - type: markdown
     attributes:
-      value: Report an issue with Fluxer.net
+      value: Report an issue with Fluxer.net!
   - type: checkboxes
     attributes:
       label: Check The Docs
