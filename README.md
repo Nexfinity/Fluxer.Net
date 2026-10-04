@@ -1,39 +1,37 @@
 # Fluxer.Net
-Fluxer.net is an API client to interact with [Fluxer](https://fluxer.com/) a chat platform using a bot or user account.
+Fluxer.net is an API client to interact with [Fluxer](https://fluxer.com) a chat platform using a bot or user account.
 
-Fluxer.Net is currently functional with Fluxer's pre-release, however, things are very likely to break or stop working as Fluxer updates. Please report bug reports in the issues page, and open pull requests for missing or broken features and endpoints. 
+Supports Gateway, Self-hosted Instances, Webhooks, OAuth and Announcement channels.
+
+This project is inspired by [Discord.net](https://github.com/discord-net/Discord.Net) with similar design.
 
 <br />
 
 <div align="center">
-  <a href="https://www.nuget.org/packages/Fluxer.Net/">
-    <img src="https://img.shields.io/nuget/v/Fluxer.Net.svg?maxAge=2592000?style=plastic" alt="NuGet">
+  <a href="https://github.com/Nexfinity/Fluxer.Net">
+    <img src="https://img.shields.io/github/last-commit/Nexfinity/Fluxer.Net" alt="NuGet">
   </a>
-  <a href="https://www.nuget.org/packages/Fluxer.Net/">
-    <img src="https://img.shields.io/nuget/vpre/Fluxer.Net.svg?maxAge=2592000?style=plastic" alt="NuGet">
+  <a href="https://www.nuget.org/packages/Fluxer.Net">
+    <img src="https://img.shields.io/nuget/vpre/Fluxer.Net.svg?maxAge=2592000" alt="NuGet">
   </a>
-  <a href="https://github.com/Nexfinity/Fluxer.Net/actions/workflows/publish.yml">
-    <img src="https://github.com/Nexfinity/Fluxer.Net/actions/workflows/publish.yml/badge.svg" alt="Dotnet Build Status">
+  <a href="https://github.com/Nexfinity/Fluxer.Net/actions/workflows/build.yml">
+    <img src="https://github.com/Nexfinity/Fluxer.Net/actions/workflows/build.yml/badge.svg" alt="NuGet">
+  </a>
+  <a href="https://github.com/Nexfinity/Fluxer.Net/actions/workflows/docs.yml">
+    <img src="https://github.com/Nexfinity/Fluxer.Net/actions/workflows/docs.yml/badge.svg" alt="NuGet">
   </a>
 </div>
 
 ## 📄 Documentation
-Documentation can be found at [https://fluxer.net/](https://fluxer.net/)
+View our docs: [https://fluxer.net](https://fluxer.net)
+
+## 📥 Installation
+Get the NuGet package: [Fluxer.Net](https://www.nuget.org/packages/Fluxer.Net)
+
+Get started here: [Get Started](https://fluxer.net/get_started/install.html)
 
 ## 🩷 Supporting Fluxer.Net
 Fluxer.Net is an MIT-licensed open source project with its development made possible entirely by volunteers. 
-
-## 📥 Installation
-
-### Stable (NuGet)
-
-Our stable builds available from NuGet through the Fluxer.Net metapackage:
-
-- [Fluxer.Net](https://www.nuget.org/packages/Fluxer.Net/)
-
-### Nightlies
-
-Nightlies are builds of Fluxer.Net that are still in an experimental phase, and have not been released. We do not current have a nightlies build feed.
 
 ## 🗃️ Versioning Guarantees
 
