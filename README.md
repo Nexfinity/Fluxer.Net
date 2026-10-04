@@ -1,7 +1,7 @@
 # Fluxer.Net
 Fluxer.net is an API client to interact with [Fluxer](https://fluxer.com) a chat platform using a bot or user account.
 
-Supports Gateway, Self-hosted Instances, Webhooks, OAuth and announcement channels.
+Supports Gateway, Self-hosted Instances, Webhooks, OAuth and Announcement channels.
 
 This project is inspired by [Discord.net](https://github.com/discord-net/Discord.Net) with similar design.
 
