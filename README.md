@@ -1,4 +1,6 @@
 # Fluxer.Net
+Fluxer.net is an API client to interact with [Fluxer](https://fluxer.com/) a chat platform using a bot or user account.
+
 Fluxer.Net is currently functional with Fluxer's pre-release, however, things are very likely to break or stop working as Fluxer updates. Please report bug reports in the issues page, and open pull requests for missing or broken features and endpoints. 
 
 <br />
