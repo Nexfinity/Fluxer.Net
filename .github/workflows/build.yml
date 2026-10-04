@@ -20,6 +20,12 @@ jobs:
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.0.x
+          
+      - name: Cache NuGet packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.nuget/packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj') 
 
       - name: Restore dependencies
         run: dotnet restore
@@ -29,4 +35,4 @@ jobs:
 
       # TODO: make separate workflow just for unit test 
       - name: Test
-        run: dotnet test --no-restore --verbosity normal
+        run: dotnet test --configuration Release  --no-restore --verbosity normal
