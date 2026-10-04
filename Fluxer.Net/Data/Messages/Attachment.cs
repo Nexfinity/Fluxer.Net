@@ -52,6 +52,9 @@ public class Attachment : Entity, IAttachment
     public bool? IsNsfw { get; set; }
 
     /// <inheritdoc />
+    public bool IsSpoiler => Filename.StartsWith("SPOILER_") || Flags.HasFlag(AttachmentFlag.IsSpoiler);
+
+    /// <inheritdoc />
     public string? Waveform { get; set; }
 
     /// <inheritdoc />

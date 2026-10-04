@@ -33,7 +33,7 @@ public class SocketMessage : Message
         if (json.GuildId.HasValue)
         {
             data.Guild = (client as FluxerClient).Gateway.GetGuild(json.GuildId.Value);
-            data.Member = data.Guild.GetMember(json.Author.Id);
+            data.Member = data.Guild.Members.GetValueOrDefault(json.Author.Id);
             if (data.Member == null)
             {
                 json.Member.User = json.Author;

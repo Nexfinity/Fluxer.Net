@@ -49,6 +49,8 @@ public class UserJson : IUser
     [JsonProperty("mention_flags")]
     public MentionPreference MentionPreference { get; set; }
 
+    /// <inheritdoc />
+    [JsonIgnore]
     public DateTimeOffset CreatedAt => SnowflakeUtils.FromSnowflake(Id);
 
     /// <inheritdoc />

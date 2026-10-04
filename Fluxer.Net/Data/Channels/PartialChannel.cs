@@ -1,5 +1,6 @@
 ﻿namespace Fluxer.Net;
 
+/// <inheritdoc />
 public class PartialChannel : Entity, IPartialChannel
 {
     /// <inheritdoc />

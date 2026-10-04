@@ -68,6 +68,11 @@ public interface IAttachment : ISnowflake
     bool? IsNsfw { get; }
 
     /// <summary>
+    /// Whether the attachment is flagged as spoiler.
+    /// </summary>
+    bool IsSpoiler { get; }
+
+    /// <summary>
     /// The duration of the media in seconds.
     /// </summary>
     ulong? Duration { get; }

@@ -4,11 +4,11 @@ using System.Globalization;
 namespace Fluxer.Net.Commands;
 
 /// <summary>
-///     A<see cref = "TypeReader" /> for parsing objects implementing <see cref="IUser"/>.
+///     A<see cref = "TypeReader" /> for parsing objects implementing <see cref="IGuildMember"/>.
 /// </summary>
-/// <typeparam name="T" > The type to be checked; must implement<see cref="IUser"/>.</typeparam>
-public class UserTypeReader<T> : TypeReader
-    where T : class, IUser
+/// <typeparam name = "T" > The type to be checked; must implement<see cref="IGuildMember"/>.</typeparam>
+public class MemberTypeReader<T> : TypeReader
+    where T : class, IGuildMember
 {
     /// <inheritdoc />
     public override async Task<TypeReaderResult> ReadAsync(ICommandContext context, string input, IServiceProvider services)
@@ -20,11 +20,11 @@ public class UserTypeReader<T> : TypeReader
             {
                 //By Mention (1.0)
                 if (ulong.TryParse(input.Substring(2, input.Length - 3), NumberStyles.None, CultureInfo.InvariantCulture, out ulong id))
-                    AddResult(results, (await ctx.Guild.GetMemberAsync(id))?.User as T, 1.00f);
+                    AddResult(results, await ctx.Guild.GetMemberAsync(id) as T, 1.00f);
 
                 //By Id (0.9)
                 if (ulong.TryParse(input, NumberStyles.None, CultureInfo.InvariantCulture, out id))
-                    AddResult(results, (await ctx.Guild.GetMemberAsync(id))?.User as T, 0.90f);
+                    AddResult(results, await ctx.Guild.GetMemberAsync(id) as T, 0.90f);
             }
 
             if (results.Count > 0)
@@ -32,7 +32,7 @@ public class UserTypeReader<T> : TypeReader
         }
 
 
-        return TypeReaderResult.FromError(CommandError.ObjectNotFound, "User not found.");
+        return TypeReaderResult.FromError(CommandError.ObjectNotFound, "Member not found.");
     }
 
     private void AddResult(Dictionary<ulong, TypeReaderValue> results, T user, float score)

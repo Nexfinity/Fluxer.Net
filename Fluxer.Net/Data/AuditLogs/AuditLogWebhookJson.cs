@@ -22,5 +22,6 @@ public class AuditLogWebhookJson : ISnowflake
     [JsonProperty("avatar_hash")]
     public string? AvatarHash { get; set; }
 
+    [JsonIgnore]
     public DateTimeOffset CreatedAt => SnowflakeUtils.FromSnowflake(Id);
 }

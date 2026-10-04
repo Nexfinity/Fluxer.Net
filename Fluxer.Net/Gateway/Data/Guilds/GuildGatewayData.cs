@@ -5,8 +5,8 @@ namespace Fluxer.Net.Gateway;
 /// <summary>
 /// Gateway data for GUILD_CREATE and GUILD_UPDATE events.
 /// Contains the full guild state including channels, members, roles, and nested guild properties.
-/// When <see cref="Unavailable"/> is true the guild is temporarily unavailable (outage)
-/// and only <see cref="Id"/> and <see cref="Unavailable"/> will be populated.
+/// When <see cref="IsUnavailable"/> is true the guild is temporarily unavailable (outage)
+/// and only <see cref="Id"/> and <see cref="IsUnavailable"/> will be populated.
 /// </summary>
 public class GuildGatewayData
 {
@@ -39,7 +39,7 @@ public class GuildGatewayData
     /// When received on GUILD_CREATE, this indicates the guild is not yet available rather than being joined.
     /// </summary>
     [JsonProperty("unavailable")]
-    public bool? Unavailable { get; set; }
+    public bool? IsUnavailable { get; set; }
 
     /// <summary>
     /// Nested guild properties (name, icon, owner, settings, etc.).

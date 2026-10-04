@@ -36,6 +36,21 @@ public interface IWebhook : ISnowflake
     string? AvatarHash { get; }
 
     /// <summary>
+    /// Type of webhook either external of followed.
+    /// </summary>
+    WebhookType Type { get; }
+
+    /// <summary>
+    /// Source guild of the followed webhook.
+    /// </summary>
+    IPartialGuild? SourceGuild { get; }
+
+    /// <summary>
+    /// Source channel of the followed webhook.
+    /// </summary>
+    IPartialChannel? SourceChannel { get; }
+
+    /// <summary>
     /// Get the default avatar for the user.
     /// </summary>
     string GetDefaultAvatarUrl();
