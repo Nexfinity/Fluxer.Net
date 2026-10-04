@@ -8,11 +8,17 @@ This project is inspired by [Discord.net](https://github.com/discord-net/Discord
 <br />
 
 <div align="center">
-  <a href="https://www.nuget.org/packages/Fluxer.Net/">
-    <img src="https://img.shields.io/nuget/v/Fluxer.Net.svg?maxAge=2592000?style=plastic" alt="NuGet">
+  <a href="https://github.com/Nexfinity/Fluxer.Net">
+    <img src="https://img.shields.io/github/last-commit/Nexfinity/Fluxer.Net" alt="NuGet">
   </a>
-  <a href="https://github.com/Nexfinity/Fluxer.Net/actions/workflows/publish.yml">
-    <img src="https://github.com/Nexfinity/Fluxer.Net/actions/workflows/publish.yml/badge.svg" alt="Dotnet Build Status">
+  <a href="https://www.nuget.org/packages/Fluxer.Net">
+    <img src="https://img.shields.io/nuget/vpre/Fluxer.Net.svg?maxAge=2592000" alt="NuGet">
+  </a>
+  <a href="https://github.com/Nexfinity/Fluxer.Net/actions/workflows/build.yml">
+    <img src="https://github.com/Nexfinity/Fluxer.Net/actions/workflows/build.yml/badge.svg" alt="NuGet">
+  </a>
+  <a href="https://github.com/Nexfinity/Fluxer.Net/actions/workflows/docs.yml">
+    <img src="https://github.com/Nexfinity/Fluxer.Net/actions/workflows/docs.yml/badge.svg" alt="NuGet">
   </a>
 </div>
 
