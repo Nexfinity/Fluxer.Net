@@ -1,0 +1,50 @@
+name: 🐞 Bug Report
+description: Report an issue
+title: "[Bug]: "
+labels: ["bug"]
+type: "Bug"
+body:
+  - type: markdown
+    attributes:
+      value: Report an issue with Fluxer.net!
+  - type: checkboxes
+    attributes:
+      label: Check The Docs
+      description: Please check the [Fluxer.net Docs](https://fluxer.net/api/index.html) for guides, examples and reference before reporting your issue.
+      options:
+      - label: "I have checked the docs"
+        required: true
+  - type: textarea
+    id: description
+    attributes: 
+      label: Description
+      description: A brief explanation of your issue.
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: What version of Fluxer.net are you using?
+      placeholder: 3.5.0
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes: 
+      label: Logs
+      description: Add logs or a stacktrace to help pinpoint the issue.
+      render: shell
+    validations:
+      required: false
+  - type: textarea
+    id: sample
+    attributes:
+      label: Sample
+      description: Include an example of your code.
+      placeholder: |
+        ```cs
+        FluxerClient _client = new FluxerClient();
+        ```
+    validations:
+      required: false   
