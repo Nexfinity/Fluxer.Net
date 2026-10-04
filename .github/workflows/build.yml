@@ -27,6 +27,6 @@ jobs:
       - name: Build
         run: dotnet build --configuration Release --no-restore
 
-      # TODO: make separate workflow just for unit test
+      # TODO: make separate workflow just for unit test 
       - name: Test
         run: dotnet test --no-restore --verbosity normal
