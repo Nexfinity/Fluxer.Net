@@ -1,6 +1,8 @@
 ﻿using Fluxer.Net.Rest;
 
+#pragma warning disable IDE0130 // Namespace does not match folder structure
 namespace Fluxer.Net;
+#pragma warning restore IDE0130 // Namespace does not match folder structure
 
 /// <summary>
 /// Http methods for <see cref="User"/> class. 

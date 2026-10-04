@@ -10,6 +10,7 @@ public class WebhookJson : IWebhook
     public ulong Id { get; set; }
 
     /// <inheritdoc />
+    [JsonIgnore]
     public DateTimeOffset CreatedAt => SnowflakeUtils.FromSnowflake(Id);
 
     /// <inheritdoc />
@@ -36,7 +37,23 @@ public class WebhookJson : IWebhook
     [JsonProperty("avatar")]
     public string? AvatarHash { get; set; }
 
+    /// <inheritdoc />
+    [JsonProperty("type")]
+    public WebhookType Type { get; set; }
+
+    /// <inheritdoc />
+    [JsonProperty("source_guild")]
+    public PartialGuildJson? SourceGuild { get; set; }
+
+    /// <inheritdoc />
+    [JsonProperty("source_channel")]
+    public PartialChannelJson? SourceChannel { get; set; }
+
     IUser? IWebhook.Creator => Creator;
+
+    IPartialGuild? IWebhook.SourceGuild => SourceGuild;
+
+    IPartialChannel? IWebhook.SourceChannel => SourceChannel;
 
     /// <inheritdoc />
     public string GetDefaultAvatarUrl()

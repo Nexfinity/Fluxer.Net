@@ -410,6 +410,15 @@ public class FluxerApiClient : FluxerBaseApiClient
         => await SendRequestAsync<dynamic>(HttpMethod.Post, $"/channels/{channelId}/messages/{messageId}/crosspost", null, true);
 
     /// <summary>
+    /// Follow a news channel.
+    /// </summary>
+    public async Task FollowChannelAsync(ulong channelId, ulong newsChannelId)
+        => await SendRequestAsync<dynamic>(HttpMethod.Post, $"/channels/{channelId}/followers", new FollowChannelRequest
+        {
+            ChannelId = newsChannelId,
+        }, true);
+
+    /// <summary>
     /// Search messages in a channel.
     /// </summary>
     /// <remarks>

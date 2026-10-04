@@ -1219,6 +1219,15 @@
         <member name="M:Fluxer.Net.Commands.EnumTypeReader`1.ReadAsync(Fluxer.Net.Commands.ICommandContext,System.String,System.IServiceProvider)">
             <inheritdoc />
         </member>
+        <member name="T:Fluxer.Net.Commands.MemberTypeReader`1">
+            <summary>
+                A<see cref = "T:Fluxer.Net.Commands.TypeReader" /> for parsing objects implementing <see cref="T:Fluxer.Net.IGuildMember"/>.
+            </summary>
+            <typeparam name = "T" > The type to be checked; must implement<see cref="T:Fluxer.Net.IGuildMember"/>.</typeparam>
+        </member>
+        <member name="M:Fluxer.Net.Commands.MemberTypeReader`1.ReadAsync(Fluxer.Net.Commands.ICommandContext,System.String,System.IServiceProvider)">
+            <inheritdoc />
+        </member>
         <member name="T:Fluxer.Net.Commands.MessageTypeReader`1">
             <summary>
                 A <see cref="T:Fluxer.Net.Commands.TypeReader"/> for parsing objects implementing <see cref="T:Fluxer.Net.IMessage"/>.
@@ -1269,6 +1278,15 @@
             <returns>
                 A task that represents the asynchronous parsing operation. The task result contains the parsing result.
             </returns>
+        </member>
+        <member name="T:Fluxer.Net.Commands.UserTypeReader`1">
+            <summary>
+                A<see cref = "T:Fluxer.Net.Commands.TypeReader" /> for parsing objects implementing <see cref="T:Fluxer.Net.IUser"/>.
+            </summary>
+            <typeparam name="T" > The type to be checked; must implement<see cref="T:Fluxer.Net.IUser"/>.</typeparam>
+        </member>
+        <member name="M:Fluxer.Net.Commands.UserTypeReader`1.ReadAsync(Fluxer.Net.Commands.ICommandContext,System.String,System.IServiceProvider)">
+            <inheritdoc />
         </member>
         <member name="T:Fluxer.Net.Commands.ExecuteResult">
             <summary>
@@ -2618,6 +2636,9 @@
             <summary>
             The bitwise value of denied permissions.
             </summary>
+        </member>
+        <member name="T:Fluxer.Net.PartialChannel">
+            <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.PartialChannel.Id">
             <inheritdoc />
@@ -6917,9 +6938,27 @@
             No flags set.
             </summary>
         </member>
+        <member name="F:Fluxer.Net.MessageFlag.Crossposted">
+            <summary>
+            Flag given to messages that have been published to subscribed
+            channels (via Channel Following).
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.MessageFlag.IsCrosspost">
+            <summary>
+            Flag given to messages that originated from a message in another
+            channel (via Channel Following).
+            </summary>
+        </member>
         <member name="F:Fluxer.Net.MessageFlag.SuppressEmbeds">
             <summary>
             Do not include any embeds when serializing this message (link previews hidden).
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.MessageFlag.SourceMessageDeleted">
+            <summary>
+                Flag given to messages that the source message for this crosspost
+                has been deleted (via Channel Following).
             </summary>
         </member>
         <member name="F:Fluxer.Net.MessageFlag.SuppressNotifications">
@@ -9223,6 +9262,9 @@
         <member name="P:Fluxer.Net.UserJson.MentionPreference">
             <inheritdoc />
         </member>
+        <member name="P:Fluxer.Net.UserJson.CreatedAt">
+            <inheritdoc />
+        </member>
         <member name="M:Fluxer.Net.UserJson.GetCurrentName">
             <inheritdoc />
         </member>
@@ -9829,6 +9871,21 @@
             The hash of the webhook avatar image.
             </summary>
         </member>
+        <member name="P:Fluxer.Net.IWebhook.Type">
+            <summary>
+            Type of webhook either external of followed.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IWebhook.SourceGuild">
+            <summary>
+            Source guild of the followed webhook.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IWebhook.SourceChannel">
+            <summary>
+            Source channel of the followed webhook.
+            </summary>
+        </member>
         <member name="M:Fluxer.Net.IWebhook.GetDefaultAvatarUrl">
             <summary>
             Get the default avatar for the user.
@@ -9869,6 +9926,15 @@
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.Webhook.AvatarHash">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Webhook.Type">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Webhook.SourceGuild">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Webhook.SourceChannel">
             <inheritdoc />
         </member>
         <member name="M:Fluxer.Net.Webhook.GetDefaultAvatarUrl">
@@ -9913,6 +9979,15 @@
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.WebhookJson.AvatarHash">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.WebhookJson.Type">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.WebhookJson.SourceGuild">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.WebhookJson.SourceChannel">
             <inheritdoc />
         </member>
         <member name="M:Fluxer.Net.WebhookJson.GetDefaultAvatarUrl">
@@ -10259,7 +10334,7 @@
             ID of the guild that was deleted or became unavailable.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.Gateway.GuildDeleteGatewayData.Unavailable">
+        <member name="P:Fluxer.Net.Gateway.GuildDeleteGatewayData.IsUnavailable">
             <summary>
             If true, the guild became unavailable due to an outage and may become available again later.
             If false or null, the user was removed from the guild (left, kicked, or banned).
@@ -10274,8 +10349,8 @@
             <summary>
             Gateway data for GUILD_CREATE and GUILD_UPDATE events.
             Contains the full guild state including channels, members, roles, and nested guild properties.
-            When <see cref="P:Fluxer.Net.Gateway.GuildGatewayData.Unavailable"/> is true the guild is temporarily unavailable (outage)
-            and only <see cref="P:Fluxer.Net.Gateway.GuildGatewayData.Id"/> and <see cref="P:Fluxer.Net.Gateway.GuildGatewayData.Unavailable"/> will be populated.
+            When <see cref="P:Fluxer.Net.Gateway.GuildGatewayData.IsUnavailable"/> is true the guild is temporarily unavailable (outage)
+            and only <see cref="P:Fluxer.Net.Gateway.GuildGatewayData.Id"/> and <see cref="P:Fluxer.Net.Gateway.GuildGatewayData.IsUnavailable"/> will be populated.
             </summary>
         </member>
         <member name="P:Fluxer.Net.Gateway.GuildGatewayData.Id">
@@ -10298,7 +10373,7 @@
             Number of online members in the guild.
             </summary>
         </member>
-        <member name="P:Fluxer.Net.Gateway.GuildGatewayData.Unavailable">
+        <member name="P:Fluxer.Net.Gateway.GuildGatewayData.IsUnavailable">
             <summary>
             If true, the guild is temporarily unavailable due to an outage.
             When received on GUILD_CREATE, this indicates the guild is not yet available rather than being joined.
@@ -11616,6 +11691,51 @@
         <member name="M:Fluxer.Net.OAuth.FluxerOAuthClient.RevokeRefreshTokenAsync(System.String)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.RevokeOAuthRefreshTokenAsync(System.UInt64,System.String,System.String)" />
         </member>
+        <member name="T:Fluxer.Net.OAuth.FluxerOAuthExtensions">
+            <Summary>
+            Extension methods for handling fluxer oauth client.
+            </Summary>
+        </member>
+        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.AddFluxerClient(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,Fluxer.Net.FluxerConfig)">
+            <Summary>
+            Add Fluxer client on dependency injection service.
+            </Summary>
+        </member>
+        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.AddFluxerOAuth(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.UInt64,System.String,Fluxer.Net.FluxerConfig)">
+            <Summary>
+            Add Fluxer oauth client on dependency injection service.
+            </Summary>
+        </member>
+        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.GetFluxerClaims(System.Security.Claims.ClaimsPrincipal,Fluxer.Net.FluxerBaseClient)">
+            <Summary>
+            Get Fluxer specific claims for a claim user.
+            </Summary>
+        </member>
+        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.AddFluxer(Microsoft.AspNetCore.Authentication.AuthenticationBuilder,System.Action{Fluxer.Net.OAuth.FluxerOAuthOptions})">
+            <Summary>
+            Add Fluxer oauth client on dependency injection service.
+            </Summary>
+        </member>
+        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.AddFluxer(Microsoft.AspNetCore.Authentication.AuthenticationBuilder,System.String,System.Action{Fluxer.Net.OAuth.FluxerOAuthOptions})">
+            <Summary>
+            Add Fluxer oauth client on dependency injection service.
+            </Summary>
+        </member>
+        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.AddFluxer(Microsoft.AspNetCore.Authentication.AuthenticationBuilder,System.String,System.String,System.Action{Fluxer.Net.OAuth.FluxerOAuthOptions})">
+            <Summary>
+            Add Fluxer oauth client on dependency injection service.
+            </Summary>
+        </member>
+        <member name="T:Fluxer.Net.OAuth.FluxerOAuthHandler">
+            <Summary>
+            Asp.net oauth handler for Fluxer.
+            </Summary>
+        </member>
+        <member name="M:Fluxer.Net.OAuth.FluxerOAuthHandler.#ctor(Microsoft.Extensions.Options.IOptionsMonitor{Fluxer.Net.OAuth.FluxerOAuthOptions},Microsoft.Extensions.Logging.ILoggerFactory,System.Text.Encodings.Web.UrlEncoder,Microsoft.AspNetCore.Authentication.ISystemClock)">
+            <Summary>
+            Create asp.net oauth handler for Fluxer.
+            </Summary>
+        </member>
         <member name="T:Fluxer.Net.RateLimiting.RateLimitBucket">
             <summary>
             Represents a sliding window rate limit bucket for API requests
@@ -11966,6 +12086,16 @@
             <param name="channelId"></param>
             <param name="messageId"></param>
             <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.Rest.FluxerApiClient.CrosspostMessageAsync(System.UInt64,System.UInt64)">
+            <summary>
+            Crosspost a message.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Rest.FluxerApiClient.FollowChannelAsync(System.UInt64,System.UInt64)">
+            <summary>
+            Follow a news channel.
+            </summary>
         </member>
         <member name="M:Fluxer.Net.Rest.FluxerApiClient.SearchChannelAsync``2(System.UInt64,``0)">
             <summary>
@@ -14305,6 +14435,12 @@
         <member name="M:Fluxer.Net.ChannelHelpers.RemoveUserReactionAsync(Fluxer.Net.Channel,Fluxer.Net.Message,System.String,Fluxer.Net.User)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.RemoveUserReactionAsync(System.UInt64,System.UInt64,System.String,System.UInt64)" />
         </member>
+        <member name="M:Fluxer.Net.ChannelHelpers.FollowAsync(Fluxer.Net.Channel,System.UInt64)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.FollowChannelAsync(System.UInt64,System.UInt64)" />
+        </member>
+        <member name="M:Fluxer.Net.ChannelHelpers.FollowAsync(Fluxer.Net.Channel,Fluxer.Net.Channel)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.FollowChannelAsync(System.UInt64,System.UInt64)" />
+        </member>
         <member name="T:Fluxer.Net.ExpressionHelpers">
             <summary>
             Http methods for <see cref="T:Fluxer.Net.GuildEmoji"/> and <see cref="T:Fluxer.Net.GuildSticker"/> class. 
@@ -14504,6 +14640,9 @@
             Requires <see cref="P:Fluxer.Net.ChannelPermissions.ViewChannel"/> and <see cref="P:Fluxer.Net.ChannelPermissions.SendMessages"/> in a guild channel.
             </remarks>
         </member>
+        <member name="M:Fluxer.Net.MessageHelpers.CrosspostAsync(Fluxer.Net.Message)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.CrosspostMessageAsync(System.UInt64,System.UInt64)"/>
+        </member>
         <member name="M:Fluxer.Net.MessageHelpers.SuppressEmbedsAsync(Fluxer.Net.Message)">
             <summary>
             Hide embeds on a message.
@@ -14518,16 +14657,16 @@
             </summary>
         </member>
         <member name="M:Fluxer.Net.PrivateChannelHelpers.AddUserAsync(Fluxer.Net.GroupChannel,Fluxer.Net.User)">
-            <inheritdoc cref="!:FluxerApiClient.AddRecipientAsync(ulong, ulong)" />
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.AddRecipientAsync(System.UInt64,System.UInt64)" />
         </member>
         <member name="M:Fluxer.Net.PrivateChannelHelpers.AddUserAsync(Fluxer.Net.GroupChannel,System.UInt64)">
-            <inheritdoc cref="!:FluxerApiClient.AddRecipientAsync(ulong, ulong)" />
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.AddRecipientAsync(System.UInt64,System.UInt64)" />
         </member>
         <member name="M:Fluxer.Net.PrivateChannelHelpers.RemoveUserAsync(Fluxer.Net.GroupChannel,Fluxer.Net.User)">
-            <inheritdoc cref="!:FluxerApiClient.RemoveRecipientAsync(ulong, ulong)" />
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.RemoveRecipientAsync(System.UInt64,System.UInt64)" />
         </member>
         <member name="M:Fluxer.Net.PrivateChannelHelpers.RemoveUserAsync(Fluxer.Net.GroupChannel,System.UInt64)">
-            <inheritdoc cref="!:FluxerApiClient.RemoveRecipientAsync(ulong, ulong)" />
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.RemoveRecipientAsync(System.UInt64,System.UInt64)" />
         </member>
         <member name="M:Fluxer.Net.PrivateChannelHelpers.TransferOwnershipAsync(Fluxer.Net.GroupChannel,Fluxer.Net.User)">
             <inheritdoc cref="M:Fluxer.Net.PrivateChannelHelpers.TransferOwnershipAsync(Fluxer.Net.GroupChannel,System.UInt64)" />

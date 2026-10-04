@@ -10,6 +10,7 @@ public class AttachmentJson : IAttachment
     public ulong Id { get; set; }
 
     /// <inheritdoc />
+    [JsonIgnore]
     public DateTimeOffset CreatedAt => SnowflakeUtils.FromSnowflake(Id);
 
     /// <inheritdoc />
@@ -67,6 +68,10 @@ public class AttachmentJson : IAttachment
     /// <inheritdoc />
     [JsonProperty("nsfw")]
     public bool? IsNsfw { get; set; }
+
+    /// <inheritdoc />
+    [JsonIgnore]
+    public bool IsSpoiler => Filename.StartsWith("SPOILER_") || Flags.HasFlag(AttachmentFlag.IsSpoiler);
 
     /// <inheritdoc />
     [JsonProperty("waveform")]

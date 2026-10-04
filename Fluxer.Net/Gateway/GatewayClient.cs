@@ -36,7 +36,7 @@ namespace Fluxer.Net.Gateway;
 public partial class FluxerGatewayClient : IDisposable
 {
     #region Declares
-    private FluxerClient _client;
+    private readonly FluxerClient _client;
     private WebsocketClient _webSocket;
     private readonly Stopwatch _gatewayDuration = new();
 
@@ -59,7 +59,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// </summary>
     private string _sessionId = "";
 
-    private ILogger _logger;
+    private readonly ILogger _logger;
     private CancellationTokenSource? _heartbeatCancellation;
     private readonly SemaphoreSlim _reconnectLock = new(1, 1);
     private bool _disposed = false;
@@ -1008,7 +1008,7 @@ public partial class FluxerGatewayClient : IDisposable
                     GuildDeleteGatewayData? data = p.Data.ToObject<GuildDeleteGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
                     {
-                        if (data.Unavailable.HasValue && data.Unavailable.Value)
+                        if (data.IsUnavailable.HasValue && data.IsUnavailable.Value)
                         {
                             if (Guilds.TryGetValue(data.Id, out SocketGuild guild))
                             {
@@ -1482,7 +1482,7 @@ public partial class FluxerGatewayClient : IDisposable
                     if (data != null)
                     {
                         if (Guilds.TryGetValue(data.GuildId, out var guild))
-                            UserBanned?.Invoke(guild, new Cacheable<SocketGuildMember>(data.User.Id, guild.GetMember(data.User.Id), () =>
+                            UserBanned?.Invoke(guild, new Cacheable<SocketGuildMember>(data.User.Id, guild.Members.GetValueOrDefault(data.User.Id), () =>
                             {
                                 return null;
                             }));
@@ -1678,7 +1678,7 @@ public partial class FluxerGatewayClient : IDisposable
                         if (data.GuildId.HasValue && Guilds.TryGetValue(data.GuildId.Value, out SocketGuild guild))
                         {
                             guild.AddOrUpdateMember(data.Member);
-                            SocketGuildMember member = guild.GetMember(data.Member.Id);
+                            SocketGuildMember member = guild.Members.GetValueOrDefault(data.Member.Id);
                             if (data.ChannelId.HasValue)
                             {
                                 SocketVoiceChannel? Channel = GetChannel(data.ChannelId.Value) as SocketVoiceChannel;

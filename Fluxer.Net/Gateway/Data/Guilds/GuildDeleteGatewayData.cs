@@ -19,5 +19,5 @@ public class GuildDeleteGatewayData
     /// If false or null, the user was removed from the guild (left, kicked, or banned).
     /// </summary>
     [JsonProperty("unavailable")]
-    public bool? Unavailable { get; set; }
+    public bool? IsUnavailable { get; set; }
 }

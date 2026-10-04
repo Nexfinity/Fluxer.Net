@@ -60,6 +60,18 @@ public class Guild : PartialGuild, IGuild
     /// <inheritdoc />
     public int? MemberCount { get; internal set; }
 
+    public virtual async Task<GuildMember?> GetMemberAsync(ulong userId)
+    {
+        GuildMemberJson? json = await Client.Rest.SendRequestAsync<GuildMemberJson?>(HttpMethod.Get, $"/guilds/{Id}/members/{userId}", false);
+        if (json == null)
+            return null;
+
+        return GuildMember.Create(Client, json);
+    }
+
+    public virtual Task<GuildMember?> GetOwnerAsync()
+        => GetMemberAsync(OwnerId);
+
     internal Guild(FluxerBaseClient client) : base(client)
     {
 

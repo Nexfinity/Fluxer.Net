@@ -10,6 +10,7 @@ public class StickerJson : ISticker
     public ulong Id { get; set; }
 
     /// <inheritdoc />
+    [JsonIgnore]
     public DateTimeOffset CreatedAt => SnowflakeUtils.FromSnowflake(Id);
 
     /// <inheritdoc />

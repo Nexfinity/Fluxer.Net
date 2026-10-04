@@ -28,29 +28,39 @@ public class SocketGuild : Guild
     public ConcurrentDictionary<ulong, GuildEmoji> Emojis { get; private set; }
     public ConcurrentDictionary<ulong, GuildSticker> Stickers { get; private set; }
 
-    public SocketGuildMember? GetMember(ulong userId)
+    public new async Task<SocketGuildMember?> GetMemberAsync(ulong userId)
     {
-        return Members.GetValueOrDefault(userId);
+        if (Members.TryGetValue(userId, out var member))
+            return member;
+
+        GuildMemberJson? json = await Client.Rest.SendRequestAsync<GuildMemberJson?>(HttpMethod.Get, $"/guilds/{Id}/members/{userId}", false);
+        if (json == null)
+            return null;
+
+        return AddOrUpdateMember(json);
     }
 
-    //public async Task<SocketGuildMember> GetMemberAsync(ulong userId)
-    //{
-    //    if (Members.TryGetValue(userId, out var member))
-    //        return member;
+    public new Task<SocketGuildMember?> GetOwnerAsync()
+        => GetMemberAsync(OwnerId);
 
-    //    GuildMemberJson json = await Client.Rest.SendRequestAsync<GuildMemberJson>(HttpMethod.Get, $"/guilds/{Id}/members/{userId}", true);
-    //    return AddOrUpdateMember(json);
-    //}
+    public Channel? SystemChannel => GetChannel(SystemChannelId);
+
+    public Channel? RulesChannel => GetChannel(RulesChannelId);
 
     public SocketRole? GetRole(ulong roleId)
-    {
-        return Roles.GetValueOrDefault(roleId);
-    }
+        => Roles.GetValueOrDefault(roleId);
+
+    internal Channel? GetChannel(ulong? channelId)
+        => channelId.HasValue ? Channels.GetValueOrDefault(channelId.Value) : null;
 
     public Channel? GetChannel(ulong channelId)
-    {
-        return Channels.GetValueOrDefault(channelId);
-    }
+        => Channels.GetValueOrDefault(channelId);
+
+    public GuildEmoji? GetEmoji(ulong emojiId)
+        => Emojis.GetValueOrDefault(emojiId);
+
+    public GuildSticker? GetSticker(ulong stickerId)
+        => Stickers.GetValueOrDefault(stickerId);
 
     /// <summary>
     /// Permissions for the guild.
@@ -76,7 +86,7 @@ public class SocketGuild : Guild
         SocketGuild data = new SocketGuild(client)
         {
             CurrentMember = currentMember,
-            IsAvailable = !(json.Unavailable.HasValue && json.Unavailable.Value)
+            IsAvailable = !(json.IsUnavailable.HasValue && json.IsUnavailable.Value)
         };
         if (json.Emojis != null && !(client as FluxerClient).Gateway.Config.DisableEmojiCache)
             data.Emojis = new ConcurrentDictionary<ulong, GuildEmoji>(json.Emojis.ToDictionary(x => x.Id, x => GuildEmoji.Create(client, x, data.Id)));

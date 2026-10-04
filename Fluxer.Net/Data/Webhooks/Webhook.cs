@@ -27,7 +27,20 @@ public class Webhook : Entity, IWebhook
     /// <inheritdoc />
     public string? AvatarHash { get; private set; }
 
+    /// <inheritdoc />
+    public WebhookType Type { get; private set; }
+
+    /// <inheritdoc />
+    public PartialGuild? SourceGuild { get; private set; }
+
+    /// <inheritdoc />
+    public PartialChannel? SourceChannel { get; private set; }
+
     IUser? IWebhook.Creator => Creator;
+
+    IPartialGuild? IWebhook.SourceGuild => SourceGuild;
+
+    IPartialChannel? IWebhook.SourceChannel => SourceChannel;
 
     /// <inheritdoc />
     public string GetDefaultAvatarUrl()
@@ -82,5 +95,11 @@ public class Webhook : Entity, IWebhook
 
         Name = json.Name;
         AvatarHash = json.AvatarHash;
+        Type = json.Type;
+
+        if (json.SourceGuild != null)
+            SourceGuild = PartialGuild.Create(Client, json.SourceGuild);
+        if (json.SourceChannel != null)
+            SourceChannel = PartialChannel.Create(Client, json.SourceChannel);
     }
 }

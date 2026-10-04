@@ -120,7 +120,8 @@ public class CommandService : IDisposable
         entityTypeReaders.Add((typeof(IMessage), typeof(MessageTypeReader<>)));
         entityTypeReaders.Add((typeof(IChannel), typeof(ChannelTypeReader<>)));
         entityTypeReaders.Add((typeof(IRole), typeof(RoleTypeReader<>)));
-        //entityTypeReaders.Add((typeof(IUser), typeof(UserTypeReader<>)));
+        entityTypeReaders.Add((typeof(IUser), typeof(UserTypeReader<>)));
+        entityTypeReaders.Add((typeof(IGuildMember), typeof(MemberTypeReader<>)));
         _entityTypeReaders = entityTypeReaders.ToImmutable();
     }
     #endregion

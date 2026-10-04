@@ -9,6 +9,7 @@ public class SocketAuditLog : Entity, ISnowflake
 
     public ulong Id { get; private set; }
 
+    [JsonIgnore]
     public DateTimeOffset CreatedAt => SnowflakeUtils.FromSnowflake(Id);
 
     public ActionType Action { get; private set; }

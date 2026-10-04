@@ -1,6 +1,8 @@
 ﻿using Fluxer.Net.Rest;
 
+#pragma warning disable IDE0130 // Namespace does not match folder structure
 namespace Fluxer.Net;
+#pragma warning restore IDE0130 // Namespace does not match folder structure
 
 /// <summary>
 /// Http methods for <see cref="Channel"/> class. 
@@ -176,4 +178,12 @@ public static class ChannelHelpers
     /// <inheritdoc cref="FluxerApiClient.RemoveUserReactionAsync(ulong, ulong, string, ulong)" />
     public static Task RemoveUserReactionAsync(this Channel channel, Message message, string emoji, User user)
         => channel.Client.Rest.RemoveUserReactionAsync(channel.Id, message.Id, emoji, user.Id);
+
+    /// <inheritdoc cref="FluxerApiClient.FollowChannelAsync(ulong, ulong)" />
+    public static Task FollowAsync(this Channel channel, ulong targetChannelId)
+        => channel.Client.Rest.FollowChannelAsync(targetChannelId, channel.Id);
+
+    /// <inheritdoc cref="FluxerApiClient.FollowChannelAsync(ulong, ulong)" />
+    public static Task FollowAsync(this Channel channel, Channel targetChannel)
+        => channel.Client.Rest.FollowChannelAsync(targetChannel.Id, channel.Id);
 }
