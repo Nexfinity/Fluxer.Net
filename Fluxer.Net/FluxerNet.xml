@@ -6437,6 +6437,9 @@
         <member name="P:Fluxer.Net.Attachment.IsNsfw">
             <inheritdoc />
         </member>
+        <member name="P:Fluxer.Net.Attachment.IsSpoiler">
+            <inheritdoc />
+        </member>
         <member name="P:Fluxer.Net.Attachment.Waveform">
             <inheritdoc />
         </member>
@@ -6536,6 +6539,9 @@
         <member name="P:Fluxer.Net.AttachmentJson.IsNsfw">
             <inheritdoc />
         </member>
+        <member name="P:Fluxer.Net.AttachmentJson.IsSpoiler">
+            <inheritdoc />
+        </member>
         <member name="P:Fluxer.Net.AttachmentJson.Waveform">
             <inheritdoc />
         </member>
@@ -6608,6 +6614,11 @@
         <member name="P:Fluxer.Net.IAttachment.IsNsfw">
             <summary>
             Whether the attachment is flagged as NSFW.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IAttachment.IsSpoiler">
+            <summary>
+            Whether the attachment is flagged as spoiler.
             </summary>
         </member>
         <member name="P:Fluxer.Net.IAttachment.Duration">
