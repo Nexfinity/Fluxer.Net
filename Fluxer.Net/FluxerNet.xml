@@ -11894,73 +11894,7 @@
             <param name="data"></param>
             <returns></returns>
         </member>
-        <member name="M:Fluxer.Net.Rest.FluxerApiClient.RegisterAsync``1(``0)">
-            <summary>
-            Create a user account
-            </summary>
-            <typeparam name="TRequest"></typeparam>
-            <param name="data"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Fluxer.Net.Rest.FluxerApiClient.LoginMfaTotpAsync``2(``0)">
-            <summary>
-            Login with a user account that has MFA.
-            </summary>
-            <typeparam name="TRequest"></typeparam>
-            <typeparam name="TResponse"></typeparam>
-            <param name="data"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Fluxer.Net.Rest.FluxerApiClient.SendMfaSmsCodeAsync">
-            <summary>
-            Send a SMS code.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Fluxer.Net.Rest.FluxerApiClient.LoginMfaSmsAsync``2(``0)">
-            <summary>
-            Login with a SMS code.
-            </summary>
-            <typeparam name="TRequest"></typeparam>
-            <typeparam name="TResponse"></typeparam>
-            <param name="data"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Fluxer.Net.Rest.FluxerApiClient.LogoutAsync">
-            <summary>
-            Logout of the current session/auth.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Fluxer.Net.Rest.FluxerApiClient.VerifyEmailAsync``1(``0)">
-            <summary>
-            Verify the user account email.
-            </summary>
-            <typeparam name="TRequest"></typeparam>
-            <param name="data"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Fluxer.Net.Rest.FluxerApiClient.ResendVerificationEmailAsync">
-            <summary>
-            Send an email verification for the user account.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Fluxer.Net.Rest.FluxerApiClient.ForgotPasswordAsync``1(``0)">
-            <summary>
-            Request a password reset for the user account.
-            </summary>
-            <typeparam name="TRequest"></typeparam>
-            <param name="data"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Fluxer.Net.Rest.FluxerApiClient.ResetPasswordAsync``1(``0)">
-            <summary>
-            Reset the password for the user account.
-            </summary>
-            <typeparam name="TRequest"></typeparam>
-            <param name="data"></param>
-            <returns></returns>
+s></returns>
         </member>
         <member name="M:Fluxer.Net.Rest.FluxerApiClient.GetSessionsAsync(Fluxer.Net.Rest.RestClientQueryParams)">
             <summary>
@@ -11993,6 +11927,69 @@
             <returns></returns>
         </member>
         <member name="M:Fluxer.Net.Rest.FluxerApiClient.PostAuthWebauthnAuthenticateAsync``2(``0)">
+            <summary>
+            Setup webauth for the user account.
+            </summary>
+            <typeparam name="TRequest"></typeparam>
+            <typeparam name="TResponse"></typeparam>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.Rest.FluxerApiClient.PostAuthLoginMfaWebauthnAuthenticationOptionsAsync``1">
+            <summary>
+            Setup webauth for the user account.
+            </summary>
+            <typeparam name="TResponse"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.Rest.FluxerApiClient.PostAuthLoginMfaWebauthnAsync``2(``0)">
+            <summary>
+            Setup webauth for the user account.
+            </summary>
+            <typeparam name="TRequest"></typeparam>
+            <typeparam name="TResponse"></typeparam>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.Rest.FluxerApiClient.CreatePrivateChannelAsync(Fluxer.Net.Rest.CreatePrivateChannelRequest)">
+            <summary>
+            Create a DM or Group channel.
+            </summary>
+            <param name="req"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.Rest.FluxerApiClient.GetChannelAsync(System.UInt64)">
+            <summary>
+            Get a channel.
+            </summary>
+            <remarks>
+            Requires <see cref="P:Fluxer.Net.ChannelPermissions.ViewChannel"/> for guild channels.
+            </remarks>
+            <param name="channelId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.Rest.FluxerApiClient.GetChannelRtcRegionsAsync(System.UInt64)">
+            <summary>
+            Get voice regions for a channel.
+            </summary>
+            <remarks>
+            Requires <see cref="P:Fluxer.Net.ChannelPermissions.ViewChannel"/> for guild channels.
+            </remarks>
+            <param name="channelId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fluxer.Net.Rest.FluxerApiClient.UpdateChannelAsync(System.UInt64,Fluxer.Net.ChannelJson)">
+            <summary>
+            Modify a channel.
+            </summary>
+            <remarks>
+            Requires <see cref="P:Fluxer.Net.ChannelPermissions.ManageChannels"/> for guild channels.
+            </remarks>
+            <param name="channelId"></param>
+            <param name="channel"></param>
+            <returns></returns>
+        </member>
+        <membbauthnAuthenticateAsync``2(``0)">
             <summary>
             Setup webauth for the user account.
             </summary>
@@ -13437,271 +13434,6 @@
             <param name="request"></param>
             <returns></returns>
         </member>
-        <member name="T:Fluxer.Net.Rest.ApiLimits">
-            <summary>
-            API limits for the current instance.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxGuildsPremium">
-            <summary>
-            How many guilds you can join with premium.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxGuilds">
-            <summary>
-            How many guilds you can join.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxGuildChannels">
-            <summary>
-            How many channels a guild can have.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxChannelsPerCategory">
-            <summary>
-            How many channels a category can have.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Rest.ApiLimits.VoiceChannelBitrateMin">
-            <summary>
-            Minimum bitrate for voice channel.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Rest.ApiLimits.VoiceChannelBitrateMax">
-            <summary>
-            Maximum bitrate for voice channel.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Rest.ApiLimits.VoiceChannelUserLimitMax">
-            <summary>
-            Maximum users that can join a voice channel.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Rest.ApiLimits.VoiceChannelCameraUserLimit">
-            <summary>
-            Maximum users that can use camera in a voice channel.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Rest.ApiLimits.VoiceChannelConnectionLimitMax">
-            <summary>
-            Maximum connections a user can have in a voice channel.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Rest.ApiLimits.ChannelTopicMaxLength">
-            <summary>
-            Maximum length a channel topic can have.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Rest.ApiLimits.RTCRegionIdMaxLength">
-            <summary>
-            Maximum length a region id can have.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxGuildEmojis">
-            <summary>
-            How many emojis you can create in a guild.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxGuildEmojisAnimated">
-            <summary>
-            How many animated emojis you can create in a guild.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxGuildEmojisMore">
-            <summary>
-            How many more emojis you can create in a guild with <see cref="P:Fluxer.Net.GuildFeatures.MoreEmojis"/>.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxGuildEmojisAnimatedMore">
-            <summary>
-            How many more animated emojis you can create in a guild with <see cref="P:Fluxer.Net.GuildFeatures.MoreEmojis"/>.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxStickers">
-            <summary>
-            How many stickers you can create in a guild.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxGuildStickersMore">
-            <summary>
-            How many more stickers you can create in a guild with <see cref="P:Fluxer.Net.GuildFeatures.MoreStickers"/>.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxGuildInvites">
-            <summary>
-            Maximum invites a guild can create.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxGuildMembers">
-            <summary>
-            How many users can join a guild.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxGuildMembersLarge">
-            <summary>
-            How many more users can join a guild with <see cref="P:Fluxer.Net.GuildFeatures.IsLargeGuild"/>.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxInviteUses">
-            <summary>
-            Maximum limit a limited invite can be set to.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxInviteAgeSeconds">
-            <summary>
-            Maximum seconds a limited invite can be set to.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxGuildRoles">
-            <summary>
-            Maximum roles a guild can create.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxAppsPerUser">
-            <summary>
-            Maximum apps a user can create.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxWebhooksPerChannel">
-            <summary>
-            Maximum webhooks a channel can have.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxWebhooksPerGuild">
-            <summary>
-            Maximum webhooks a guild can create.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxMessageContentLengthPremium">
-            <summary>
-            Max length of message text you can send with premium.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxMessageContentLength">
-            <summary>
-            Max length of message text you can send.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxAttachmentsPerMessage">
-            <summary>
-            Max attachments you can send in 1 message.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxMessageEmbeds">
-            <summary>
-            Max embeds you can send in 1 message.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxReactionsPerMessage">
-            <summary>
-            Maximum reactions a message can have.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxUsersPerMessageReaction">
-            <summary>
-            Maximum users each reaction can have.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Rest.ApiLimits.NaxAttachmentAltTextLength">
-            <summary>
-            Maximum length of attachment alternative text.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxBioLength">
-            <summary>
-            Maximum length of profile bio/text you can set.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxBioLengthPremium">
-            <summary>
-            Maximum length of profile bio/text you can set with premium.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Rest.ApiLimits.AvatarMaxSize">
-            <summary>
-            Maximum size and avatar upload can be.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxRelationships">
-            <summary>
-            Maximum friends a user can have.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxGroupMembers">
-            <summary>
-            Maximum users a group can have.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxPrivateChannelsPerUser">
-            <summary>
-            Maximum private channels a user can have open.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxGroupsPerUser">
-            <summary>
-            Maximum groups a user can create.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxBookmarksPremium">
-            <summary>
-            Max bookmarks you can have with premium.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxBookmarks">
-            <summary>
-            Max bookmarks you can have.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxFavoriteMediaPremium">
-            <summary>
-            Max favorite media you can have with premium.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxFavoriteMedia">
-            <summary>
-            Max favorite media you can have.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxFavoriteMediaTags">
-            <summary>
-            Max tags a favorite media can have.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Rest.ApiLimits.MaxFavoriteMediaSaved">
-            <summary>
-            Max favorite media saved.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Rest.ApiLimits.FilenameTypeMinLength">
-            <summary>
-            Min length of attachment filename.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Rest.ApiLimits.FilenameTypeMaxLength">
-            <summary>
-            Max length of attachment filename.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Rest.ApiLimits.UrlTypeMinLength">
-            <summary>
-            Min length of embed url.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Rest.ApiLimits.UrlTypeMaxLength">
-            <summary>
-            Max length of embed url.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Rest.ApiLimits.MessageNonceMinLength">
-            <summary>
-            Min length of message nonce.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.Rest.ApiLimits.MessageNonceMaxLength">
-            <summary>
-            Max length of message nonce.
-            </summary>
-        </member>
         <member name="P:Fluxer.Net.Rest.FluxerBaseApiClient.HttpClient">
             <summary>
             The HTTP client used to make requests. Can be shared or injected for connection pooling.
@@ -14317,6 +14049,271 @@
             Create dictionary of query params for Uri
             </summary>
             <returns></returns>
+        </member>
+        <member name="T:Fluxer.Net.ApiLimits">
+            <summary>
+            API limits for the current instance.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ApiLimits.MaxGuildsPremium">
+            <summary>
+            How many guilds you can join with premium.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ApiLimits.MaxGuilds">
+            <summary>
+            How many guilds you can join.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ApiLimits.MaxGuildChannels">
+            <summary>
+            How many channels a guild can have.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ApiLimits.MaxChannelsPerCategory">
+            <summary>
+            How many channels a category can have.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ApiLimits.VoiceChannelBitrateMin">
+            <summary>
+            Minimum bitrate for voice channel.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ApiLimits.VoiceChannelBitrateMax">
+            <summary>
+            Maximum bitrate for voice channel.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ApiLimits.VoiceChannelUserLimitMax">
+            <summary>
+            Maximum users that can join a voice channel.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ApiLimits.VoiceChannelCameraUserLimit">
+            <summary>
+            Maximum users that can use camera in a voice channel.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ApiLimits.VoiceChannelConnectionLimitMax">
+            <summary>
+            Maximum connections a user can have in a voice channel.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ApiLimits.ChannelTopicMaxLength">
+            <summary>
+            Maximum length a channel topic can have.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ApiLimits.RTCRegionIdMaxLength">
+            <summary>
+            Maximum length a region id can have.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ApiLimits.MaxGuildEmojis">
+            <summary>
+            How many emojis you can create in a guild.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ApiLimits.MaxGuildEmojisAnimated">
+            <summary>
+            How many animated emojis you can create in a guild.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ApiLimits.MaxGuildEmojisMore">
+            <summary>
+            How many more emojis you can create in a guild with <see cref="P:Fluxer.Net.GuildFeatures.MoreEmojis"/>.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ApiLimits.MaxGuildEmojisAnimatedMore">
+            <summary>
+            How many more animated emojis you can create in a guild with <see cref="P:Fluxer.Net.GuildFeatures.MoreEmojis"/>.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ApiLimits.MaxStickers">
+            <summary>
+            How many stickers you can create in a guild.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ApiLimits.MaxGuildStickersMore">
+            <summary>
+            How many more stickers you can create in a guild with <see cref="P:Fluxer.Net.GuildFeatures.MoreStickers"/>.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ApiLimits.MaxGuildInvites">
+            <summary>
+            Maximum invites a guild can create.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ApiLimits.MaxGuildMembers">
+            <summary>
+            How many users can join a guild.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ApiLimits.MaxGuildMembersLarge">
+            <summary>
+            How many more users can join a guild with <see cref="P:Fluxer.Net.GuildFeatures.IsLargeGuild"/>.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ApiLimits.MaxInviteUses">
+            <summary>
+            Maximum limit a limited invite can be set to.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ApiLimits.MaxInviteAgeSeconds">
+            <summary>
+            Maximum seconds a limited invite can be set to.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ApiLimits.MaxGuildRoles">
+            <summary>
+            Maximum roles a guild can create.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ApiLimits.MaxAppsPerUser">
+            <summary>
+            Maximum apps a user can create.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ApiLimits.MaxWebhooksPerChannel">
+            <summary>
+            Maximum webhooks a channel can have.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ApiLimits.MaxWebhooksPerGuild">
+            <summary>
+            Maximum webhooks a guild can create.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ApiLimits.MaxMessageContentLengthPremium">
+            <summary>
+            Max length of message text you can send with premium.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ApiLimits.MaxMessageContentLength">
+            <summary>
+            Max length of message text you can send.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ApiLimits.MaxAttachmentsPerMessage">
+            <summary>
+            Max attachments you can send in 1 message.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ApiLimits.MaxMessageEmbeds">
+            <summary>
+            Max embeds you can send in 1 message.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ApiLimits.MaxReactionsPerMessage">
+            <summary>
+            Maximum reactions a message can have.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ApiLimits.MaxUsersPerMessageReaction">
+            <summary>
+            Maximum users each reaction can have.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ApiLimits.NaxAttachmentAltTextLength">
+            <summary>
+            Maximum length of attachment alternative text.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ApiLimits.MaxBioLength">
+            <summary>
+            Maximum length of profile bio/text you can set.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ApiLimits.MaxBioLengthPremium">
+            <summary>
+            Maximum length of profile bio/text you can set with premium.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ApiLimits.AvatarMaxSize">
+            <summary>
+            Maximum size and avatar upload can be.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ApiLimits.MaxRelationships">
+            <summary>
+            Maximum friends a user can have.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ApiLimits.MaxGroupMembers">
+            <summary>
+            Maximum users a group can have.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ApiLimits.MaxPrivateChannelsPerUser">
+            <summary>
+            Maximum private channels a user can have open.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ApiLimits.MaxGroupsPerUser">
+            <summary>
+            Maximum groups a user can create.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ApiLimits.MaxBookmarksPremium">
+            <summary>
+            Max bookmarks you can have with premium.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ApiLimits.MaxBookmarks">
+            <summary>
+            Max bookmarks you can have.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ApiLimits.MaxFavoriteMediaPremium">
+            <summary>
+            Max favorite media you can have with premium.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ApiLimits.MaxFavoriteMedia">
+            <summary>
+            Max favorite media you can have.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ApiLimits.MaxFavoriteMediaTags">
+            <summary>
+            Max tags a favorite media can have.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ApiLimits.MaxFavoriteMediaSaved">
+            <summary>
+            Max favorite media saved.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ApiLimits.FilenameTypeMinLength">
+            <summary>
+            Min length of attachment filename.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ApiLimits.FilenameTypeMaxLength">
+            <summary>
+            Max length of attachment filename.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ApiLimits.UrlTypeMinLength">
+            <summary>
+            Min length of embed url.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ApiLimits.UrlTypeMaxLength">
+            <summary>
+            Max length of embed url.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ApiLimits.MessageNonceMinLength">
+            <summary>
+            Min length of message nonce.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ApiLimits.MessageNonceMaxLength">
+            <summary>
+            Max length of message nonce.
+            </summary>
         </member>
         <member name="T:Fluxer.Net.ChannelHelpers">
             <summary>
