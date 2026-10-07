@@ -82,7 +82,7 @@ public class SocketChannel : Channel
                 break;
             default:
                 {
-                    if (data.GuildId.HasValue)
+                    if (guild != null)
                         data = new SocketGuildChannel(client)
                         {
                             Guild = guild
