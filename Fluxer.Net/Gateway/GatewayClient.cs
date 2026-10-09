@@ -955,7 +955,16 @@ public partial class FluxerGatewayClient : IDisposable
                             if (!Channels.TryAdd(c.Id, channel))
                             {
                                 channel = Channels[c.Id];
-                                channel.Update(c);
+                                Channel before = channel.Clone();
+                                if (before.Type != c.Type)
+                                {
+                                    channel = Channel.Create(_client, c);
+                                    Channels.TryUpdate(c.Id, channel, before);
+                                    if (c.GuildId.HasValue && Guilds.TryGetValue(c.GuildId.Value, out SocketGuild getGuild))
+                                        getGuild.Channels.TryUpdate(c.Id, channel, before);
+                                }
+                                else
+                                    channel.Update(c);
                             }
                             guild.Channels.TryAdd(c.Id, channel);
                         }
@@ -1271,7 +1280,16 @@ public partial class FluxerGatewayClient : IDisposable
                         if (Channels.TryGetValue(data.Id, out Channel channel))
                         {
                             Channel before = channel.Clone();
-                            channel.Update(data);
+
+                            if (before.Type != data.Type)
+                            {
+                                channel = SocketChannel.Create(_client, data);
+                                Channels.TryUpdate(data.Id, channel, before);
+                                if (data.GuildId.HasValue && Guilds.TryGetValue(data.GuildId.Value, out SocketGuild guild))
+                                    guild.Channels.TryUpdate(data.Id, channel, before);
+                            }
+                            else
+                                channel.Update(data);
                             ChannelUpdated?.Invoke(before, channel);
                         }
                         else
@@ -1296,7 +1314,15 @@ public partial class FluxerGatewayClient : IDisposable
                             if (Channels.TryGetValue(c.Id, out Channel channel))
                             {
                                 Channel before = channel.Clone();
-                                channel.Update(c);
+                                if (before.Type != c.Type)
+                                {
+                                    channel = SocketChannel.Create(_client, c);
+                                    Channels.TryUpdate(c.Id, channel, before);
+                                    if (c.GuildId.HasValue && Guilds.TryGetValue(c.GuildId.Value, out SocketGuild guild))
+                                        guild.Channels.TryUpdate(c.Id, channel, before);
+                                }
+                                else
+                                    channel.Update(c);
                                 ChannelUpdated?.Invoke(before, channel);
                             }
                         }
@@ -1317,6 +1343,39 @@ public partial class FluxerGatewayClient : IDisposable
                         _logger.Warning("CHANNEL_DELETE event received but data could not be cast to ChannelGatewayData");
                 }
                 return;
+
+            case "THREAD_CREATE":
+                {
+                    ChannelGatewayData? data = p.Data.ToObject<ChannelGatewayData>(FluxerClient._gatewaySerializer);
+                    ThreadChannel channel = (ThreadChannel)SocketChannel.Create(_client, data);
+                    ThreadCreated?.Invoke(channel);
+                }
+                break;
+            case "THREAD_UPDATE":
+                {
+                    ChannelGatewayData? data = p.Data.ToObject<ChannelGatewayData>(FluxerClient._gatewaySerializer);
+                    ThreadChannel channel = (ThreadChannel)SocketChannel.Create(_client, data);
+                    ThreadUpdated?.Invoke(new Cacheable<ThreadChannel>(data.Id, null, () =>
+                    {
+                        return null;
+                    }), channel);
+                }
+                break;
+
+            case "THREAD_DELETE":
+                {
+                    ChannelGatewayData? data = p.Data.ToObject<ChannelGatewayData>(FluxerClient._gatewaySerializer);
+                    ThreadDeleted?.Invoke(new Cacheable<ThreadChannel>(data.Id, null, () =>
+                    {
+                        return null;
+                    }));
+                }
+                break;
+            case "THREAD_MEMBERS_UPDATE":
+                {
+                    // To be added
+                }
+                break;
 
             // Groups
             case "CHANNEL_RECIPIENT_ADD":
@@ -2405,6 +2464,28 @@ public partial class FluxerGatewayClient : IDisposable
     /// Occurs when a channel is deleted.
     /// </summary>
     public event ChannelDeletedEvent ChannelDeleted;
+
+    /// <summary>
+    /// Delegate for THREAD_CREATE events when a thread is created.
+    /// </summary>
+    /// <param name="data">The thread data.</param>
+    public delegate void ThreadCreatedEvent(ThreadChannel data);
+
+    public event ThreadCreatedEvent ThreadCreated;
+
+    /// <summary>
+    /// Delegate for THREAD_UPDATE events when a thread is updated.
+    /// </summary>
+    public delegate void ThreadUpdatedEvent(Cacheable<ThreadChannel> before, ThreadChannel after);
+
+    public event ThreadUpdatedEvent ThreadUpdated;
+
+    /// <summary>
+    /// Delegate for THREAD_DELETE events when a thread is deleted.
+    /// </summary>
+    public delegate void ThreadDeletedEvent(Cacheable<ThreadChannel> thread);
+
+    public event ThreadDeletedEvent ThreadDeleted;
 
     // ============================================================================
     // User Events

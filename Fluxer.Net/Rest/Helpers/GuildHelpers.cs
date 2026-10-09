@@ -42,20 +42,20 @@ public static class GuildHelpers
         => guild.Client.Rest.GetChannelsAsync(guild.Id);
 
     /// <inheritdoc cref="FluxerApiClient.CreateGuildChannelAsync(ulong, CreateGuildChannelRequest)" />
-    public static Task<Channel> CreateTextChannelAsync(this Guild guild, CreateTextChannelRequest request)
-        => guild.Client.Rest.CreateGuildChannelAsync(guild.Id, request);
+    public static Task<TextChannel> CreateTextChannelAsync(this Guild guild, CreateTextChannelRequest request)
+        => guild.Client.Rest.CreateTextChannelAsync(guild.Id, request);
 
     /// <inheritdoc cref="FluxerApiClient.CreateGuildChannelAsync(ulong, CreateGuildChannelRequest)" />
-    public static Task<Channel> CreateVoiceChannelAsync(this Guild guild, CreateVoiceChannelRequest request)
-        => guild.Client.Rest.CreateGuildChannelAsync(guild.Id, request);
+    public static Task<VoiceChannel> CreateVoiceChannelAsync(this Guild guild, CreateVoiceChannelRequest request)
+        => guild.Client.Rest.CreateVoiceChannelAsync(guild.Id, request);
 
     /// <inheritdoc cref="FluxerApiClient.CreateGuildChannelAsync(ulong, CreateGuildChannelRequest)" />
-    public static Task<Channel> CreateLinkChannelAsync(this Guild guild, CreateLinkChannelRequest request)
-        => guild.Client.Rest.CreateGuildChannelAsync(guild.Id, request);
+    public static Task<LinkChannel> CreateLinkChannelAsync(this Guild guild, CreateLinkChannelRequest request)
+        => guild.Client.Rest.CreateLinkChannelAsync(guild.Id, request);
 
     /// <inheritdoc cref="FluxerApiClient.CreateGuildChannelAsync(ulong, CreateGuildChannelRequest)" />
-    public static Task<Channel> CreateCategoryChannelAsync(this Guild guild, CreateCategoryChannelRequest request)
-        => guild.Client.Rest.CreateGuildChannelAsync(guild.Id, request);
+    public static Task<CategoryChannel> CreateCategoryChannelAsync(this Guild guild, CreateCategoryChannelRequest request)
+        => guild.Client.Rest.CreateCategoryChannelAsync(guild.Id, request);
 
     /// <inheritdoc cref="FluxerApiClient.GetEmojisAsync(ulong)" />
     public static Task<IEnumerable<GuildEmoji>> GetEmojisAsync(this Guild guild)

@@ -47,6 +47,10 @@ public class ChannelJson : PartialChannelJson, IChannel
     public int? RateLimitPerUser { get; set; }
 
     /// <inheritdoc />
+    [JsonProperty("thread_metadata")]
+    public ThreadMetadataJson? ThreadMetadata { get; set; }
+
+    /// <inheritdoc />
     [JsonProperty("bitrate")]
     public int? Bitrate { get; set; }
 
@@ -95,4 +99,6 @@ public class ChannelJson : PartialChannelJson, IChannel
     public string? ContentWarningText { get; set; }
 
     IEnumerable<IPermissionOverwrite>? IChannel.PermissionOverwrites => PermissionOverwrites;
+
+    IThreadMetadata? IChannel.ThreadMetadata => ThreadMetadata;
 }

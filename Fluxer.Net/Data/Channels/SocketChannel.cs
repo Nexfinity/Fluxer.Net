@@ -1,4 +1,6 @@
-﻿namespace Fluxer.Net;
+﻿using Fluxer.Net.Data.Channels;
+
+namespace Fluxer.Net;
 
 public class SocketChannel : Channel
 {
@@ -17,18 +19,24 @@ public class SocketChannel : Channel
     public static Channel Create(FluxerBaseClient client, ChannelJson json, SocketGuild? guild)
     {
         Channel data = null;
-
         switch (json.Type)
         {
             case ChannelType.GuildText:
-            case ChannelType.NewsThread:
-            case ChannelType.PublicThread:
-            case ChannelType.PrivateThread:
-            case ChannelType.GuildMedia:
                 {
                     data = new SocketTextChannel(client)
                     {
                         Guild = guild
+                    };
+                }
+                break;
+            case ChannelType.NewsThread:
+            case ChannelType.PublicThread:
+            case ChannelType.PrivateThread:
+                {
+                    data = new SocketThreadChannel(client)
+                    {
+                        Guild = guild,
+                        ThreadType = ThreadChannel.GetThreadType(data.Type)
                     };
                 }
                 break;
@@ -75,6 +83,22 @@ public class SocketChannel : Channel
             case ChannelType.GuildLink:
                 {
                     data = new SocketLinkChannel(client)
+                    {
+                        Guild = guild
+                    };
+                }
+                break;
+            case ChannelType.GuildForum:
+                {
+                    data = new SocketForumChannel(client)
+                    {
+                        Guild = guild
+                    };
+                }
+                break;
+            case ChannelType.GuildMedia:
+                {
+                    data = new SocketMediaChannel(client)
                     {
                         Guild = guild
                     };
