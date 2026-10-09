@@ -36,7 +36,7 @@ public class SocketChannel : Channel
                     data = new SocketThreadChannel(client)
                     {
                         Guild = guild,
-                        ThreadType = ThreadChannel.GetThreadType(data.Type)
+                        ThreadType = ThreadChannel.GetThreadType(json.Type)
                     };
                 }
                 break;

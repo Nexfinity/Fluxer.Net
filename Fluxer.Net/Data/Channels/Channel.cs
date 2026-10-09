@@ -131,7 +131,7 @@ public class Channel : PartialChannel, IChannel
                 {
                     data = new ThreadChannel(client)
                     {
-                        ThreadType = ThreadChannel.GetThreadType(data.Type)
+                        ThreadType = ThreadChannel.GetThreadType(json.Type)
                     };
                 }
                 break;

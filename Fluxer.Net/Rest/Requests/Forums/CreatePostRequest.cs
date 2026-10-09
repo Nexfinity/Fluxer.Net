@@ -8,7 +8,7 @@ public class CreatePostRequest
     public string Title { get; set; }
 
     [JsonProperty("auto_archive_duration")]
-    public int ArchiveDuration { get; set; }
+    public ThreadArchiveDuration? ArchiveDuration { get; set; }
 
     [JsonProperty("rate_limit_per_user")]
     public int? Slowmode { get; set; }
