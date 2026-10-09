@@ -186,4 +186,20 @@ public static class ChannelHelpers
     /// <inheritdoc cref="FluxerApiClient.FollowChannelAsync(ulong, ulong)" />
     public static Task FollowAsync(this Channel channel, Channel targetChannel)
         => channel.Client.Rest.FollowChannelAsync(targetChannel.Id, channel.Id);
+
+    /// <inheritdoc cref="FluxerApiClient.CreateMessageThreadAsync(ulong, ulong, CreatePublicThreadRequest)" />
+    public static Task<ThreadChannel> CreateMessageThreadAsync(this Channel channel, ulong messageId, CreatePublicThreadRequest req)
+        => channel.Client.Rest.CreateMessageThreadAsync(channel.Id, messageId, req);
+
+    /// <inheritdoc cref="FluxerApiClient.CreateMessageThreadAsync(ulong, ulong, CreatePublicThreadRequest)" />
+    public static Task<ThreadChannel> CreateMessageThreadAsync(this Channel channel, Message message, CreatePublicThreadRequest req)
+        => channel.Client.Rest.CreateMessageThreadAsync(channel.Id, message.Id, req);
+
+    /// <inheritdoc cref="FluxerApiClient.CreatePublicThreadAsync(ulong, CreatePublicThreadRequest)" />
+    public static Task<ThreadChannel> CreatePublicThreadAsync(this Channel channel, CreatePublicThreadRequest req)
+        => channel.Client.Rest.CreatePublicThreadAsync(channel.Id, req);
+
+    /// <inheritdoc cref="FluxerApiClient.CreatePrivateThreadAsync(ulong, CreatePrivateThreadRequest)" />
+    public static Task<ThreadChannel> CreatePrivateThreadAsync(this Channel channel, CreatePrivateThreadRequest req)
+        => channel.Client.Rest.CreatePrivateThreadAsync(channel.Id, req);
 }

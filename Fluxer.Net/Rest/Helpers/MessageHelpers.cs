@@ -114,4 +114,8 @@ public static class MessageHelpers
     /// </remarks>
     public static Task<Message> SuppressEmbedsAsync(this Message message)
         => message.Client.Rest.EditMessageAsync(message.ChannelId, message.Id, flags: message.Flags | MessageFlag.SuppressEmbeds);
+
+    /// <inheritdoc cref="FluxerApiClient.CreateMessageThreadAsync(ulong, ulong, CreatePublicThreadRequest)" />
+    public static Task<ThreadChannel> CreateThreadAsync(this Message message, CreatePublicThreadRequest req)
+        => message.Client.Rest.CreateMessageThreadAsync(message.ChannelId, message.Id, req);
 }

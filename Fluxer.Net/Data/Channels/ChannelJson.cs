@@ -102,9 +102,43 @@ public class ChannelJson : PartialChannelJson, IChannel
     [JsonProperty("member")]
     public ThreadMemberJson? ThreadMember { get; set; }
 
+    /// <inheritdoc />
+    [JsonProperty("flags")]
+    public ChannelFlags Flags { get; set; }
+
+    /// <inheritdoc />
+    [JsonProperty("available_tags")]
+    public ForumTagJson[]? ForumTags { get; set; }
+
+    /// <inheritdoc />
+    [JsonProperty("applied_tags")]
+    public ulong[]? AppliedTags { get; set; }
+
+    /// <inheritdoc />
+    [JsonProperty("default_reaction_emoji")]
+    public ForumReactionEmoji? DefaultReactionEmoji { get; set; }
+
+    /// <inheritdoc />
+    [JsonProperty("default_sort_order")]
+    public ForumSortOrder? DefaultSortOrder { get; set; }
+
+    /// <inheritdoc />
+    [JsonProperty("default_forum_layout")]
+    public ForumLayout? DefaultLayout { get; set; }
+
+    /// <inheritdoc />
+    [JsonProperty("default_auto_archive_duration")]
+    public ThreadArchiveDuration? DefaultAutoArchiveDuration { get; set; }
+
+    /// <inheritdoc />
+    [JsonProperty("default_thread_rate_limit_per_user")]
+    public int? DefaultRateLimitPerUser { get; set; }
+
     IEnumerable<IPermissionOverwrite>? IChannel.PermissionOverwrites => PermissionOverwrites;
 
     IThreadMetadata? IChannel.ThreadMetadata => ThreadMetadata;
 
     IThreadMember? IChannel.ThreadMember => ThreadMember;
+
+    IForumTag[]? IChannel.ForumTags => ForumTags;
 }

@@ -9,34 +9,34 @@ namespace Fluxer.Net;
 /// </summary>
 public static class ThreadHelpers
 {
-    /// <inheritdoc cref="FluxerApiClient.ModifyThreadAsync(ulong, UpdateThreadRequest)" />
+    /// <inheritdoc cref="FluxerApiClient.UpdateThreadAsync(ulong, UpdateThreadRequest)" />
     public static Task<ThreadChannel> ModifyAsync(this ThreadChannel channel, UpdateThreadRequest req)
-        => channel.Client.Rest.ModifyThreadAsync(channel.Id, req);
+        => channel.Client.Rest.UpdateThreadAsync(channel.Id, req);
 
-    /// <inheritdoc cref="FluxerApiClient.ModifyThreadAsync(ulong, UpdateThreadRequest)" />
+    /// <inheritdoc cref="FluxerApiClient.UpdateThreadAsync(ulong, UpdateThreadRequest)" />
     public static Task<ThreadChannel> LockAsync(this ThreadChannel channel)
-        => channel.Client.Rest.ModifyThreadAsync(channel.Id, new UpdateThreadRequest
+        => channel.Client.Rest.UpdateThreadAsync(channel.Id, new UpdateThreadRequest
         {
             IsLocked = true
         });
 
-    /// <inheritdoc cref="FluxerApiClient.ModifyThreadAsync(ulong, UpdateThreadRequest)" />
+    /// <inheritdoc cref="FluxerApiClient.UpdateThreadAsync(ulong, UpdateThreadRequest)" />
     public static Task<ThreadChannel> UnLockAsync(this ThreadChannel channel)
-        => channel.Client.Rest.ModifyThreadAsync(channel.Id, new UpdateThreadRequest
+        => channel.Client.Rest.UpdateThreadAsync(channel.Id, new UpdateThreadRequest
         {
             IsLocked = false
         });
 
-    /// <inheritdoc cref="FluxerApiClient.ModifyThreadAsync(ulong, UpdateThreadRequest)" />
+    /// <inheritdoc cref="FluxerApiClient.UpdateThreadAsync(ulong, UpdateThreadRequest)" />
     public static Task<ThreadChannel> ArchiveAsync(this ThreadChannel channel)
-        => channel.Client.Rest.ModifyThreadAsync(channel.Id, new UpdateThreadRequest
+        => channel.Client.Rest.UpdateThreadAsync(channel.Id, new UpdateThreadRequest
         {
             IsArchived = true
         });
 
-    /// <inheritdoc cref="FluxerApiClient.ModifyThreadAsync(ulong, UpdateThreadRequest)" />
+    /// <inheritdoc cref="FluxerApiClient.UpdateThreadAsync(ulong, UpdateThreadRequest)" />
     public static Task<ThreadChannel> OpenAsync(this ThreadChannel channel)
-        => channel.Client.Rest.ModifyThreadAsync(channel.Id, new UpdateThreadRequest
+        => channel.Client.Rest.UpdateThreadAsync(channel.Id, new UpdateThreadRequest
         {
             IsArchived = false
         });

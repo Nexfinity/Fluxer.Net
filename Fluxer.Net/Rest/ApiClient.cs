@@ -918,7 +918,13 @@ public class FluxerApiClient : FluxerBaseApiClient
         return (ThreadChannel)Channel.Create(_client, json);
     }
 
-    public async Task<ThreadChannel> ModifyThreadAsync(ulong channelId, UpdateThreadRequest req)
+    public async Task<ThreadChannel> CreateMessageThreadAsync(ulong channelId, ulong messageId, CreatePublicThreadRequest req)
+    {
+        ChannelJson json = await SendRequestAsync<ChannelJson, CreatePublicThreadRequest>(HttpMethod.Post, $"/channels/{channelId}/messages/{messageId}/threads", req, true);
+        return (ThreadChannel)Channel.Create(_client, json);
+    }
+
+    public async Task<ThreadChannel> UpdateThreadAsync(ulong channelId, UpdateThreadRequest req)
     {
         ChannelJson json = await SendRequestAsync<ChannelJson, UpdateThreadRequest>(HttpMethod.Patch, $"/channels/{channelId}/threads", req, true);
         return (ThreadChannel)Channel.Create(_client, json);

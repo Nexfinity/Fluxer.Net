@@ -72,13 +72,40 @@ public class Channel : PartialChannel, IChannel
     /// <inheritdoc />
     public DateTimeOffset? IndexedAt { get; private set; }
 
+    /// <inheritdoc />
     public ThreadMember? ThreadMember { get; private set; }
+
+    /// <inheritdoc />
+    public ChannelFlags Flags { get; private set; }
+
+    /// <inheritdoc />
+    public ForumTag[]? ForumTags { get; private set; }
+
+    /// <inheritdoc />
+    public ulong[]? AppliedTags { get; private set; }
+
+    /// <inheritdoc />
+    public ForumReactionEmoji? DefaultReactionEmoji { get; private set; }
+
+    /// <inheritdoc />
+    public ForumSortOrder? DefaultSortOrder { get; private set; }
+
+    /// <inheritdoc />
+    public ForumLayout? DefaultLayout { get; private set; }
+
+    /// <inheritdoc />
+    public ThreadArchiveDuration? DefaultAutoArchiveDuration { get; private set; }
+
+    /// <inheritdoc />
+    public int? DefaultRateLimitPerUser { get; private set; }
 
     IEnumerable<IPermissionOverwrite>? IChannel.PermissionOverwrites => PermissionOverwrites;
 
     IThreadMetadata? IChannel.ThreadMetadata => ThreadMetadata;
 
     IThreadMember? IChannel.ThreadMember => ThreadMember;
+
+    IForumTag[]? IChannel.ForumTags => ForumTags;
 
     /// <summary>
     /// Channel types that you can send messages to.
@@ -230,5 +257,14 @@ public class Channel : PartialChannel, IChannel
         IndexedAt = json.IndexedAt;
         if (json.ThreadMember != null)
             ThreadMember = ThreadMember.Create(Client, json.ThreadMember);
+        Flags = json.Flags;
+        if (json.ForumTags != null)
+            ForumTags = json.ForumTags.Select(x => ForumTag.Create(Client, x, Id)).ToArray();
+        AppliedTags = json.AppliedTags;
+        DefaultReactionEmoji = json.DefaultReactionEmoji;
+        DefaultSortOrder = json.DefaultSortOrder;
+        DefaultLayout = json.DefaultLayout;
+        DefaultAutoArchiveDuration = json.DefaultAutoArchiveDuration;
+        DefaultRateLimitPerUser = json.DefaultRateLimitPerUser;
     }
 }
