@@ -16,20 +16,8 @@ public abstract class CreateGuildChannelRequest
     [JsonProperty("parent_id")]
     public ulong? ParentCategoryId { get; set; }
 
-    [JsonProperty("url")]
-    public string? Url { get; set; }
-
     [JsonProperty("nsfw")]
     public bool Nsfw { get; set; }
-
-    [JsonProperty("bitrate")]
-    public int? Bitrate { get; set; }
-
-    [JsonProperty("user_limit")]
-    public int? UserLimit { get; set; }
-
-    [JsonProperty("voice_connection_limit")]
-    public int? VoiceConnectionLimit { get; set; }
 
     [JsonProperty("rate_limit_per_user")]
     public int? RatelimitPerUser { get; set; }

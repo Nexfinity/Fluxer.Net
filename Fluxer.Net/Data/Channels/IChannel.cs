@@ -53,6 +53,11 @@ public interface IChannel : IPartialChannel
     int? RateLimitPerUser { get; }
 
     /// <summary>
+    /// Metadata for a thread.
+    /// </summary>
+    IThreadMetadata? ThreadMetadata { get; }
+
+    /// <summary>
     /// The bitrate of the voice channel in bits per second.
     /// </summary>
     int? Bitrate { get; }

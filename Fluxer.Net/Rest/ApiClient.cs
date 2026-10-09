@@ -293,14 +293,25 @@ public class FluxerApiClient : FluxerBaseApiClient
 
     #region Channels API
     /// <summary>
-    /// Create a DM or Group channel.
+    /// Create a DM channel.
     /// </summary>
     /// <param name="req"></param>
     /// <returns></returns>
-    public async Task<Channel> CreatePrivateChannelAsync(CreatePrivateChannelRequest req)
+    public async Task<DMChannel> CreateDMChannelAsync(CreatePrivateChannelRequest req)
     {
         ChannelJson json = await SendRequestAsync<ChannelJson, CreatePrivateChannelRequest>(HttpMethod.Post, $"/users/@me/channels", req, true);
-        return Channel.Create(_client, json);
+        return (DMChannel)Channel.Create(_client, json);
+    }
+
+    /// <summary>
+    /// Create a Group channel.
+    /// </summary>
+    /// <param name="req"></param>
+    /// <returns></returns>
+    public async Task<GroupChannel> CreateGroupChannelAsync(CreatePrivateChannelRequest req)
+    {
+        ChannelJson json = await SendRequestAsync<ChannelJson, CreatePrivateChannelRequest>(HttpMethod.Post, $"/users/@me/channels", req, true);
+        return (GroupChannel)Channel.Create(_client, json);
     }
 
     /// <summary>
@@ -893,6 +904,76 @@ public class FluxerApiClient : FluxerBaseApiClient
 
     #endregion
 
+    #region Threads API
+
+    public async Task<ThreadChannel> CreatePrivateThreadAsync(ulong channelId, CreatePrivateThreadRequest req)
+    {
+        ChannelJson json = await SendRequestAsync<ChannelJson, CreatePrivateThreadRequest>(HttpMethod.Post, $"/channels/{channelId}/threads", req, true);
+        return (ThreadChannel)Channel.Create(_client, json);
+    }
+
+    public async Task<ThreadChannel> CreatePublicThreadAsync(ulong channelId, CreatePublicThreadRequest req)
+    {
+        ChannelJson json = await SendRequestAsync<ChannelJson, CreatePublicThreadRequest>(HttpMethod.Post, $"/channels/{channelId}/threads", req, true);
+        return (ThreadChannel)Channel.Create(_client, json);
+    }
+
+    public async Task<ThreadChannel> ModifyThreadAsync(ulong channelId, UpdateThreadRequest req)
+    {
+        ChannelJson json = await SendRequestAsync<ChannelJson, UpdateThreadRequest>(HttpMethod.Patch, $"/channels/{channelId}/threads", req, true);
+        return (ThreadChannel)Channel.Create(_client, json);
+    }
+
+    public async Task JoinThreadAsync(ulong channelId)
+    {
+        await SendRequestAsync<dynamic>(HttpMethod.Put, $"/channels/{channelId}/thread-members/@me", null, true);
+    }
+
+    public async Task LeaveThreadAsync(ulong channelId)
+    {
+        await SendRequestAsync<dynamic>(HttpMethod.Delete, $"/channels/{channelId}/thread-members/@me", null, true);
+    }
+
+    public async Task AddThreadMemberAsync(ulong channelId, ulong userId)
+    {
+        await SendRequestAsync<dynamic>(HttpMethod.Put, $"/channels/{channelId}/thread-members/{userId}", null, true);
+    }
+
+    public async Task RemoveThreadMemberAsync(ulong channelId, ulong userId)
+    {
+        await SendRequestAsync<dynamic>(HttpMethod.Delete, $"/channels/{channelId}/thread-members/{userId}", null, true);
+    }
+
+    #endregion
+
+    #region Forums API
+
+    public async Task<ThreadChannel> CreatePostAsync(ulong channelId, CreatePostRequest req)
+    {
+        ChannelJson json = await SendRequestAsync<ChannelJson, CreatePostRequest>(HttpMethod.Post, $"/channels/{channelId}/threads", req, true);
+        return (ThreadChannel)Channel.Create(_client, json);
+    }
+
+    public async Task<ForumChannel> CreateForumTagAsync(ulong channelId, CreateForumTagRequest req)
+    {
+        ChannelJson json = await SendRequestAsync<ChannelJson, CreateForumTagRequest>(HttpMethod.Post, $"/channels/{channelId}/tags", req, true);
+        return (ForumChannel)Channel.Create(_client, json);
+    }
+
+    public async Task<ForumChannel> UpdateForumTagAsync(ulong channelId, ulong tagId, CreateForumTagRequest req)
+    {
+        ChannelJson json = await SendRequestAsync<ChannelJson, CreateForumTagRequest>(HttpMethod.Patch, $"/channels/{channelId}/tags/{tagId}", req, true);
+        return (ForumChannel)Channel.Create(_client, json);
+    }
+
+    public async Task<ForumChannel> DeleteForumTagAsync(ulong channelId, ulong tagId)
+    {
+        ChannelJson json = await SendRequestAsync<ChannelJson, dynamic>(HttpMethod.Delete, $"/channels/{channelId}/tags/{tagId}", null, true);
+        return (ForumChannel)Channel.Create(_client, json);
+    }
+
+    #endregion
+
     #region Attachments API
     /// <summary>
     /// Delete an attachment.
@@ -1354,6 +1435,55 @@ public class FluxerApiClient : FluxerBaseApiClient
     {
         ChannelJson json = await SendRequestAsync<ChannelJson, CreateGuildChannelRequest>(HttpMethod.Post, $"/guilds/{guildId}/channels", data, true);
         return Channel.Create(_client, json);
+    }
+
+    /// <inheritdoc cref="CreateGuildChannelAsync(ulong, CreateGuildChannelRequest)" />
+    public async Task<CategoryChannel> CreateCategoryChannelAsync(ulong guildId, CreateCategoryChannelRequest data)
+    {
+        ChannelJson json = await SendRequestAsync<ChannelJson, CreateCategoryChannelRequest>(HttpMethod.Post, $"/guilds/{guildId}/channels", data, true);
+        return (CategoryChannel)Channel.Create(_client, json);
+    }
+
+    /// <inheritdoc cref="CreateGuildChannelAsync(ulong, CreateGuildChannelRequest)" />
+    public async Task<TextChannel> CreateTextChannelAsync(ulong guildId, CreateTextChannelRequest data)
+    {
+        ChannelJson json = await SendRequestAsync<ChannelJson, CreateTextChannelRequest>(HttpMethod.Post, $"/guilds/{guildId}/channels", data, true);
+        return (TextChannel)Channel.Create(_client, json);
+    }
+
+    /// <inheritdoc cref="CreateGuildChannelAsync(ulong, CreateGuildChannelRequest)" />
+    public async Task<VoiceChannel> CreateVoiceChannelAsync(ulong guildId, CreateVoiceChannelRequest data)
+    {
+        ChannelJson json = await SendRequestAsync<ChannelJson, CreateVoiceChannelRequest>(HttpMethod.Post, $"/guilds/{guildId}/channels", data, true);
+        return (VoiceChannel)Channel.Create(_client, json);
+    }
+
+    /// <inheritdoc cref="CreateGuildChannelAsync(ulong, CreateGuildChannelRequest)" />
+    public async Task<LinkChannel> CreateLinkChannelAsync(ulong guildId, CreateLinkChannelRequest data)
+    {
+        ChannelJson json = await SendRequestAsync<ChannelJson, CreateLinkChannelRequest>(HttpMethod.Post, $"/guilds/{guildId}/channels", data, true);
+        return (LinkChannel)Channel.Create(_client, json);
+    }
+
+    /// <inheritdoc cref="CreateGuildChannelAsync(ulong, CreateGuildChannelRequest)" />
+    public async Task<NewsChannel> CreateNewsChannelAsync(ulong guildId, CreateGuildChannelRequest data)
+    {
+        ChannelJson json = await SendRequestAsync<ChannelJson, CreateGuildChannelRequest>(HttpMethod.Post, $"/guilds/{guildId}/channels", data, true);
+        return (NewsChannel)Channel.Create(_client, json);
+    }
+
+    /// <inheritdoc cref="CreateGuildChannelAsync(ulong, CreateGuildChannelRequest)" />
+    public async Task<ForumChannel> CreateForumChannelAsync(ulong guildId, CreateForumChannelRequest data)
+    {
+        ChannelJson json = await SendRequestAsync<ChannelJson, CreateForumChannelRequest>(HttpMethod.Post, $"/guilds/{guildId}/channels", data, true);
+        return (ForumChannel)Channel.Create(_client, json);
+    }
+
+    /// <inheritdoc cref="CreateGuildChannelAsync(ulong, CreateGuildChannelRequest)" />
+    public async Task<MediaChannel> CreateMediaChannelAsync(ulong guildId, CreateGuildChannelRequest data)
+    {
+        ChannelJson json = await SendRequestAsync<ChannelJson, CreateGuildChannelRequest>(HttpMethod.Post, $"/guilds/{guildId}/channels", data, true);
+        return (MediaChannel)Channel.Create(_client, json);
     }
 
     /// <summary>

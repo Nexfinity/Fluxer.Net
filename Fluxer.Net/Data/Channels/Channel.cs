@@ -34,6 +34,9 @@ public class Channel : PartialChannel, IChannel
     public int? RateLimitPerUser { get; private set; }
 
     /// <inheritdoc />
+    public ThreadMetadata? ThreadMetadata { get; set; }
+
+    /// <inheritdoc />
     public int? Bitrate { get; private set; }
 
     /// <inheritdoc />
@@ -71,6 +74,8 @@ public class Channel : PartialChannel, IChannel
 
     IEnumerable<IPermissionOverwrite>? IChannel.PermissionOverwrites => PermissionOverwrites;
 
+    IThreadMetadata? IChannel.ThreadMetadata => ThreadMetadata;
+
     /// <summary>
     /// Channel types that you can send messages to.
     /// </summary>
@@ -83,8 +88,6 @@ public class Channel : PartialChannel, IChannel
             case ChannelType.DM:
             case ChannelType.DMPersonalNotes:
             case ChannelType.Group:
-            case ChannelType.GuildForum:
-            case ChannelType.GuildMedia:
             case ChannelType.GuildNews:
             case ChannelType.GuildStageVoice:
             case ChannelType.GuildText:
@@ -118,12 +121,18 @@ public class Channel : PartialChannel, IChannel
         switch (json.Type)
         {
             case ChannelType.GuildText:
+                {
+                    data = new TextChannel(client);
+                }
+                break;
             case ChannelType.NewsThread:
             case ChannelType.PublicThread:
             case ChannelType.PrivateThread:
-            case ChannelType.GuildMedia:
                 {
-                    data = new TextChannel(client);
+                    data = new ThreadChannel(client)
+                    {
+                        ThreadType = ThreadChannel.GetThreadType(data.Type)
+                    };
                 }
                 break;
             case ChannelType.GuildNews:
@@ -162,9 +171,19 @@ public class Channel : PartialChannel, IChannel
                     data = new LinkChannel(client);
                 }
                 break;
+            case ChannelType.GuildForum:
+                {
+                    data = new ForumChannel(client);
+                }
+                break;
+            case ChannelType.GuildMedia:
+                {
+                    data = new MediaChannel(client);
+                }
+                break;
             default:
                 {
-                    if (data.GuildId.HasValue)
+                    if (json.GuildId.HasValue)
                         data = new GuildChannel(client);
                     else
                         data = new Channel(client);
@@ -188,6 +207,9 @@ public class Channel : PartialChannel, IChannel
         RecipientIds = json.RecipientIds;
         IsNsfw = json.IsNsfw;
         RateLimitPerUser = json.RateLimitPerUser;
+        if (json.ThreadMetadata != null)
+            ThreadMetadata = ThreadMetadata.Create(Client, json.ThreadMetadata);
+
         Bitrate = json.Bitrate;
         VoiceConnectionLimit = json.VoiceConnectionLimit;
         UserLimit = json.UserLimit;
@@ -196,6 +218,7 @@ public class Channel : PartialChannel, IChannel
         LastPinAt = json.LastPinAt;
         if (json.PermissionOverwrites != null)
             PermissionOverwrites = json.PermissionOverwrites.Select(x => PermissionOverwrite.Create(Client, x));
+
         Nicknames = json.Nicknames;
         ContentWarningLevel = json.ContentWarningLevel;
         ContentWarningText = json.ContentWarningText;

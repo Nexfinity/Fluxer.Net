@@ -14,23 +14,23 @@ public static class UserHelpers
     /// </summary>
     public static async Task<DMChannel> GetOrCreateDMChannelAsync(this User user)
     {
-        Channel chan = await user.Client.Rest.CreatePrivateChannelAsync(new CreatePrivateChannelRequest
+        DMChannel chan = await user.Client.Rest.CreateDMChannelAsync(new CreatePrivateChannelRequest
         {
             RecipientId = user.Id
         });
 
-        return (DMChannel)chan;
+        return chan;
     }
 
     /// <inheritdoc cref="CreateGroupChannelAsync(CurrentUser, HashSet{ulong})" />
     public static async Task<GroupChannel> CreateGroupChannelAsync(this CurrentUser user, HashSet<User> users)
     {
-        Channel chan = await user.Client.Rest.CreatePrivateChannelAsync(new CreatePrivateChannelRequest
+        GroupChannel chan = await user.Client.Rest.CreateGroupChannelAsync(new CreatePrivateChannelRequest
         {
             Recipients = users.Select(x => x.Id).ToHashSet()
         });
 
-        return (GroupChannel)chan;
+        return chan;
     }
 
     /// <summary>
@@ -38,11 +38,11 @@ public static class UserHelpers
     /// </summary>
     public static async Task<GroupChannel> CreateGroupChannelAsync(this CurrentUser user, HashSet<ulong> userIds)
     {
-        Channel chan = await user.Client.Rest.CreatePrivateChannelAsync(new CreatePrivateChannelRequest
+        GroupChannel chan = await user.Client.Rest.CreateGroupChannelAsync(new CreatePrivateChannelRequest
         {
             Recipients = userIds
         });
 
-        return (GroupChannel)chan;
+        return chan;
     }
 }
