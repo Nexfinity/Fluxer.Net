@@ -98,7 +98,13 @@ public class ChannelJson : PartialChannelJson, IChannel
     [JsonProperty("content_warning_text")]
     public string? ContentWarningText { get; set; }
 
+    /// <inheritdoc />
+    [JsonProperty("member")]
+    public ThreadMemberJson? ThreadMember { get; set; }
+
     IEnumerable<IPermissionOverwrite>? IChannel.PermissionOverwrites => PermissionOverwrites;
 
     IThreadMetadata? IChannel.ThreadMetadata => ThreadMetadata;
+
+    IThreadMember? IChannel.ThreadMember => ThreadMember;
 }

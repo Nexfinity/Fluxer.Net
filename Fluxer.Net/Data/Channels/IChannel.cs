@@ -104,4 +104,6 @@ public interface IChannel : IPartialChannel
     bool IsSoftDeleted { get; }
 
     DateTimeOffset? IndexedAt { get; }
+
+    IThreadMember? ThreadMember { get; }
 }

@@ -6,7 +6,7 @@ public class ThreadMetadataJson : IThreadMetadata
 {
     /// <inheritdoc />
     [JsonProperty("archive_timestamp")]
-    public DateTimeOffset ArchivedTimestamp { get; set; }
+    public DateTimeOffset ArchivedAt { get; set; }
 
     /// <inheritdoc />
     [JsonProperty("archived")]
@@ -18,9 +18,13 @@ public class ThreadMetadataJson : IThreadMetadata
 
     /// <inheritdoc />
     [JsonProperty("create_timestamp")]
-    public DateTimeOffset CreatedTimestamp { get; set; }
+    public DateTimeOffset CreatedAt { get; set; }
 
     /// <inheritdoc />
     [JsonProperty("locked")]
     public bool IsLocked { get; set; }
+
+    /// <inheritdoc />
+    [JsonProperty("invitable")]
+    public bool? IsInvitable { get; set; }
 }

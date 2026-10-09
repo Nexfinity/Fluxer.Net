@@ -2,13 +2,15 @@
 
 public interface IThreadMetadata
 {
-    DateTimeOffset ArchivedTimestamp { get; }
+    DateTimeOffset ArchivedAt { get; }
 
     bool IsArchived { get; }
 
     ThreadArchiveDuration AutoArchiveDuration { get; }
 
-    DateTimeOffset CreatedTimestamp { get; }
+    DateTimeOffset CreatedAt { get; }
 
     bool IsLocked { get; }
+
+    bool? IsInvitable { get; }
 }

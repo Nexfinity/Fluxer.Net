@@ -6,6 +6,8 @@ public class SocketThreadChannel : SocketTextChannel
 
     public bool IsPrivate => ThreadType == ThreadType.PrivateThread;
 
+    public Channel ParentChannel { get; internal set; }
+
     internal SocketThreadChannel(FluxerBaseClient client) : base(client)
     {
 
