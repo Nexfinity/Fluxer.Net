@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Reflection;
 
 namespace Fluxer.Net;
 
@@ -55,7 +56,7 @@ public class SocketAuditLog : Entity, ISnowflake
         };
         if (json.Changes != null)
         {
-            foreach (var c in json.Changes)
+            foreach (AuditLogChangeJson c in json.Changes)
             {
                 if (c.OldValue != null)
                     data.Raw.OldData.Add(c.Key, c.OldValue);
@@ -74,8 +75,8 @@ public class SocketAuditLog : Entity, ISnowflake
         }
         if (type != null)
         {
-            var props = type.GetProperties();
-            foreach (var p in props)
+            PropertyInfo[] props = type.GetProperties();
+            foreach (PropertyInfo p in props)
             {
                 if (p.GetCustomAttributes(typeof(JsonPropertyAttribute), true).FirstOrDefault() is not JsonPropertyAttribute jsonAttribute)
                     continue;

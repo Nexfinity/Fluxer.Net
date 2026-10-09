@@ -1347,15 +1347,21 @@ public partial class FluxerGatewayClient : IDisposable
             case "THREAD_CREATE":
                 {
                     ChannelGatewayData? data = p.Data.ToObject<ChannelGatewayData>(FluxerClient._gatewaySerializer);
+                    if (!data.GuildId.HasValue || !Guilds.TryGetValue(data.GuildId.Value, out SocketGuild guild))
+                        return;
+
                     ThreadChannel channel = (ThreadChannel)SocketChannel.Create(_client, data);
-                    ThreadCreated?.Invoke(channel);
+                    ThreadCreated?.Invoke(guild, channel, SocketThreadMember.Create(_client, data.ThreadMember, channel, guild));
                 }
                 break;
             case "THREAD_UPDATE":
                 {
                     ChannelGatewayData? data = p.Data.ToObject<ChannelGatewayData>(FluxerClient._gatewaySerializer);
+                    if (!data.GuildId.HasValue || !Guilds.TryGetValue(data.GuildId.Value, out SocketGuild guild))
+                        return;
+
                     ThreadChannel channel = (ThreadChannel)SocketChannel.Create(_client, data);
-                    ThreadUpdated?.Invoke(new Cacheable<ThreadChannel>(data.Id, null, () =>
+                    ThreadUpdated?.Invoke(guild, new Cacheable<ThreadChannel>(data.Id, null, () =>
                     {
                         return null;
                     }), channel);
@@ -1365,7 +1371,10 @@ public partial class FluxerGatewayClient : IDisposable
             case "THREAD_DELETE":
                 {
                     ChannelGatewayData? data = p.Data.ToObject<ChannelGatewayData>(FluxerClient._gatewaySerializer);
-                    ThreadDeleted?.Invoke(new Cacheable<ThreadChannel>(data.Id, null, () =>
+                    if (!data.GuildId.HasValue || !Guilds.TryGetValue(data.GuildId.Value, out SocketGuild guild))
+                        return;
+
+                    ThreadDeleted?.Invoke(guild, new Cacheable<ThreadChannel>(data.Id, null, () =>
                     {
                         return null;
                     }));
@@ -1373,7 +1382,17 @@ public partial class FluxerGatewayClient : IDisposable
                 break;
             case "THREAD_MEMBERS_UPDATE":
                 {
-                    // To be added
+                    ThreadMembersUpdateGatewayData? data = p.Data.ToObject<ThreadMembersUpdateGatewayData>(FluxerClient._gatewaySerializer);
+                    if (!Guilds.TryGetValue(data.GuildId, out SocketGuild guild))
+                        return;
+
+                    if (data.AddedMembers != null && data.AddedMembers.Any())
+                        ThreadMembersAdded?.Invoke(guild, data.AddedMembers.Select(x => ThreadMember.Create(_client, x)).ToArray());
+
+                    if (data.RemovedMemberIds != null && data.RemovedMemberIds.Any())
+                        ThreadMembersRemoved?.Invoke(guild, data.RemovedMemberIds);
+
+                    ThreadMembersCount?.Invoke(guild, data.ThreadId, data.MemberCount);
                 }
                 break;
 
@@ -1540,7 +1559,7 @@ public partial class FluxerGatewayClient : IDisposable
                     GuildBanGatewayData? data = p.Data.ToObject<GuildBanGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
                     {
-                        if (Guilds.TryGetValue(data.GuildId, out var guild))
+                        if (Guilds.TryGetValue(data.GuildId, out SocketGuild guild))
                             UserBanned?.Invoke(guild, new Cacheable<SocketGuildMember>(data.User.Id, guild.Members.GetValueOrDefault(data.User.Id), () =>
                             {
                                 return null;
@@ -1555,7 +1574,7 @@ public partial class FluxerGatewayClient : IDisposable
                     GuildBanGatewayData? data = p.Data.ToObject<GuildBanGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
                     {
-                        if (Guilds.TryGetValue(data.GuildId, out var guild))
+                        if (Guilds.TryGetValue(data.GuildId, out SocketGuild guild))
                             UserUnbanned?.Invoke(guild, data.User.Id);
                     }
                     else
@@ -2468,24 +2487,44 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Delegate for THREAD_CREATE events when a thread is created.
     /// </summary>
-    /// <param name="data">The thread data.</param>
-    public delegate void ThreadCreatedEvent(ThreadChannel data);
+    public delegate void ThreadCreatedEvent(SocketGuild guild, ThreadChannel channel, SocketThreadMember member);
 
     public event ThreadCreatedEvent ThreadCreated;
 
     /// <summary>
     /// Delegate for THREAD_UPDATE events when a thread is updated.
     /// </summary>
-    public delegate void ThreadUpdatedEvent(Cacheable<ThreadChannel> before, ThreadChannel after);
+    public delegate void ThreadUpdatedEvent(SocketGuild guild, Cacheable<ThreadChannel> before, ThreadChannel after);
 
     public event ThreadUpdatedEvent ThreadUpdated;
 
     /// <summary>
     /// Delegate for THREAD_DELETE events when a thread is deleted.
     /// </summary>
-    public delegate void ThreadDeletedEvent(Cacheable<ThreadChannel> thread);
+    public delegate void ThreadDeletedEvent(SocketGuild guild, Cacheable<ThreadChannel> thread);
 
     public event ThreadDeletedEvent ThreadDeleted;
+
+    /// <summary>
+    /// Delegate for THREAD_DELETE events when a thread is deleted.
+    /// </summary>
+    public delegate void ThreadMembersAddedEvent(SocketGuild guild, ThreadMember[] members);
+
+    public event ThreadMembersAddedEvent ThreadMembersAdded;
+
+    /// <summary>
+    /// Delegate for THREAD_DELETE events when a thread is deleted.
+    /// </summary>
+    public delegate void ThreadMembersRemovedEvent(SocketGuild guild, ulong[] members);
+
+    public event ThreadMembersRemovedEvent ThreadMembersRemoved;
+
+    /// <summary>
+    /// Delegate for THREAD_DELETE events when a thread is deleted.
+    /// </summary>
+    public delegate void ThreadMembersCountEvent(SocketGuild guild, ulong threadId, int membersCount);
+
+    public event ThreadMembersCountEvent ThreadMembersCount;
 
     // ============================================================================
     // User Events

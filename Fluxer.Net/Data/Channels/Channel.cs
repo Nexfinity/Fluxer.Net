@@ -72,9 +72,13 @@ public class Channel : PartialChannel, IChannel
     /// <inheritdoc />
     public DateTimeOffset? IndexedAt { get; private set; }
 
+    public ThreadMember? ThreadMember { get; private set; }
+
     IEnumerable<IPermissionOverwrite>? IChannel.PermissionOverwrites => PermissionOverwrites;
 
     IThreadMetadata? IChannel.ThreadMetadata => ThreadMetadata;
+
+    IThreadMember? IChannel.ThreadMember => ThreadMember;
 
     /// <summary>
     /// Channel types that you can send messages to.
@@ -224,5 +228,7 @@ public class Channel : PartialChannel, IChannel
         ContentWarningText = json.ContentWarningText;
         IsSoftDeleted = json.IsSoftDeleted;
         IndexedAt = json.IndexedAt;
+        if (json.ThreadMember != null)
+            ThreadMember = ThreadMember.Create(Client, json.ThreadMember);
     }
 }

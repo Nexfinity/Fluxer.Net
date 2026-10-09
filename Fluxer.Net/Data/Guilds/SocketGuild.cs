@@ -30,7 +30,7 @@ public class SocketGuild : Guild
 
     public new async Task<SocketGuildMember?> GetMemberAsync(ulong userId)
     {
-        if (Members.TryGetValue(userId, out var member))
+        if (Members.TryGetValue(userId, out SocketGuildMember member))
             return member;
 
         GuildMemberJson? json = await Client.Rest.SendRequestAsync<GuildMemberJson?>(HttpMethod.Get, $"/guilds/{Id}/members/{userId}", false);

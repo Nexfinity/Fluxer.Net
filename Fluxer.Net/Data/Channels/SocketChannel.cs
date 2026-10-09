@@ -36,7 +36,8 @@ public class SocketChannel : Channel
                     data = new SocketThreadChannel(client)
                     {
                         Guild = guild,
-                        ThreadType = ThreadChannel.GetThreadType(json.Type)
+                        ThreadType = ThreadChannel.GetThreadType(json.Type),
+                        ParentChannel = (client as FluxerClient).Gateway.GetChannel(json.ParentId.Value)
                     };
                 }
                 break;

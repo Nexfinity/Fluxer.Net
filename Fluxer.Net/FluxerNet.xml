@@ -2312,6 +2312,9 @@
         <member name="P:Fluxer.Net.ChannelJson.ContentWarningText">
             <inheritdoc />
         </member>
+        <member name="P:Fluxer.Net.ChannelJson.ThreadMember">
+            <inheritdoc />
+        </member>
         <member name="T:Fluxer.Net.ChannelPin">
             <inheritdoc />
         </member>
@@ -2750,89 +2753,6 @@
         <member name="F:Fluxer.Net.SystemChannelFlags.SuppressJoinNotifications">
             <summary>
             Suppress member join notifications in the system channel.
-            </summary>
-        </member>
-        <member name="T:Fluxer.Net.ThreadArchiveDuration">
-            <summary>
-            The duration of time until a thread is locked.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.ThreadArchiveDuration.OneHour">
-            <summary>
-            1 hour (60 minutes).
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.ThreadArchiveDuration.OneDay">
-            <summary>
-            1 day (1440 minutes).
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.ThreadArchiveDuration.ThreeDays">
-            <summary>
-            3 days (4320 minutes).
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.ThreadArchiveDuration.OneWeek">
-            <summary>
-            1 week (10080 minutes).
-            </summary>
-        </member>
-        <member name="P:Fluxer.Net.ThreadMetadata.ArchivedTimestamp">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.ThreadMetadata.IsArchived">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.ThreadMetadata.AutoArchiveDuration">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.ThreadMetadata.CreatedTimestamp">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.ThreadMetadata.IsLocked">
-            <inheritdoc />
-        </member>
-        <member name="M:Fluxer.Net.ThreadMetadata.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.ThreadMetadataJson)">
-            <summary>
-            Create a ThreadMetadata object from json.
-            </summary>
-            <param name="client"></param>
-            <param name="json"></param>
-            <returns></returns>
-        </member>
-        <member name="P:Fluxer.Net.ThreadMetadataJson.ArchivedTimestamp">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.ThreadMetadataJson.IsArchived">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.ThreadMetadataJson.AutoArchiveDuration">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.ThreadMetadataJson.CreatedTimestamp">
-            <inheritdoc />
-        </member>
-        <member name="P:Fluxer.Net.ThreadMetadataJson.IsLocked">
-            <inheritdoc />
-        </member>
-        <member name="T:Fluxer.Net.ThreadType">
-            <summary>
-            The type of thread channel.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.ThreadType.NewsThread">
-            <summary>
-            Thread in a news channel.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.ThreadType.PublicThread">
-            <summary>
-            Public thread in a text/forum channel.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.ThreadType.PrivateThread">
-            <summary>
-            Private thread in a text/forum channel, only visible to invited users or those with Manage Threads permission.
             </summary>
         </member>
         <member name="T:Fluxer.Net.Embed">
@@ -8209,6 +8129,144 @@
         <member name="T:Fluxer.Net.SearchScope">
             <see cref="T:Fluxer.Net.Extensions.SearchScopeConverter"/>
         </member>
+        <member name="M:Fluxer.Net.SocketThreadMember.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.ThreadMemberJson,Fluxer.Net.ThreadChannel,Fluxer.Net.SocketGuild)">
+            <summary>
+            Create a ThreadMember object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Fluxer.Net.ThreadArchiveDuration">
+            <summary>
+            The duration of time until a thread is locked.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ThreadArchiveDuration.OneHour">
+            <summary>
+            1 hour (60 minutes).
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ThreadArchiveDuration.OneDay">
+            <summary>
+            1 day (1440 minutes).
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ThreadArchiveDuration.ThreeDays">
+            <summary>
+            3 days (4320 minutes).
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ThreadArchiveDuration.OneWeek">
+            <summary>
+            1 week (10080 minutes).
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.ThreadMember.Id">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ThreadMember.ThreadId">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ThreadMember.JoinedAt">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ThreadMember.Flags">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ThreadMember.Member">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.ThreadMember.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.ThreadMemberJson)">
+            <summary>
+            Create a ThreadMember object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Fluxer.Net.ThreadMemberJson">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ThreadMemberJson.ThreadId">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ThreadMemberJson.Id">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ThreadMemberJson.JoinedAt">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ThreadMemberJson.Flags">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ThreadMemberJson.Member">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ThreadMetadata.ArchivedAt">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ThreadMetadata.IsArchived">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ThreadMetadata.AutoArchiveDuration">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ThreadMetadata.CreatedAt">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ThreadMetadata.IsLocked">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ThreadMetadata.IsInvitable">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.ThreadMetadata.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.ThreadMetadataJson)">
+            <summary>
+            Create a ThreadMetadata object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Fluxer.Net.ThreadMetadataJson.ArchivedAt">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ThreadMetadataJson.IsArchived">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ThreadMetadataJson.AutoArchiveDuration">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ThreadMetadataJson.CreatedAt">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ThreadMetadataJson.IsLocked">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ThreadMetadataJson.IsInvitable">
+            <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.ThreadType">
+            <summary>
+            The type of thread channel.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ThreadType.NewsThread">
+            <summary>
+            Thread in a news channel.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ThreadType.PublicThread">
+            <summary>
+            Public thread in a text/forum channel.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ThreadType.PrivateThread">
+            <summary>
+            Private thread in a text/forum channel, only visible to invited users or those with Manage Threads permission.
+            </summary>
+        </member>
         <member name="T:Fluxer.Net.Activity">
             <inheritdoc />
         </member>
@@ -10967,7 +11025,6 @@
             <summary>
             Delegate for THREAD_CREATE events when a thread is created.
             </summary>
-            <param name="data">The thread data.</param>
         </member>
         <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.ThreadUpdatedEvent">
             <summary>
@@ -10975,6 +11032,21 @@
             </summary>
         </member>
         <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.ThreadDeletedEvent">
+            <summary>
+            Delegate for THREAD_DELETE events when a thread is deleted.
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.ThreadMembersAddedEvent">
+            <summary>
+            Delegate for THREAD_DELETE events when a thread is deleted.
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.ThreadMembersRemovedEvent">
+            <summary>
+            Delegate for THREAD_DELETE events when a thread is deleted.
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.ThreadMembersCountEvent">
             <summary>
             Delegate for THREAD_DELETE events when a thread is deleted.
             </summary>

@@ -3,7 +3,7 @@
 public class ThreadMetadata : Entity, IThreadMetadata
 {
     /// <inheritdoc />
-    public DateTimeOffset ArchivedTimestamp { get; private set; }
+    public DateTimeOffset ArchivedAt { get; private set; }
 
     /// <inheritdoc />
     public bool IsArchived { get; private set; }
@@ -12,10 +12,13 @@ public class ThreadMetadata : Entity, IThreadMetadata
     public ThreadArchiveDuration AutoArchiveDuration { get; private set; }
 
     /// <inheritdoc />
-    public DateTimeOffset CreatedTimestamp { get; private set; }
+    public DateTimeOffset CreatedAt { get; private set; }
 
     /// <inheritdoc />
     public bool IsLocked { get; private set; }
+
+    /// <inheritdoc />
+    public bool? IsInvitable { get; private set; }
 
     internal ThreadMetadata(FluxerBaseClient client) : base(client)
     {
@@ -37,10 +40,11 @@ public class ThreadMetadata : Entity, IThreadMetadata
 
     internal void Update(ThreadMetadataJson json)
     {
-        ArchivedTimestamp = json.ArchivedTimestamp;
+        ArchivedAt = json.ArchivedAt;
         IsArchived = json.IsArchived;
         AutoArchiveDuration = json.AutoArchiveDuration;
-        CreatedTimestamp = json.CreatedTimestamp;
+        CreatedAt = json.CreatedAt;
         IsLocked = json.IsLocked;
+        IsInvitable = json.IsInvitable;
     }
 }
