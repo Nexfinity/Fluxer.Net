@@ -2225,6 +2225,33 @@
         <member name="P:Fluxer.Net.Channel.IndexedAt">
             <inheritdoc />
         </member>
+        <member name="P:Fluxer.Net.Channel.ThreadMember">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Channel.Flags">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Channel.ForumTags">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Channel.AppliedTags">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Channel.DefaultReactionEmoji">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Channel.DefaultSortOrder">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Channel.DefaultLayout">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Channel.DefaultAutoArchiveDuration">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Channel.DefaultRateLimitPerUser">
+            <inheritdoc />
+        </member>
         <member name="M:Fluxer.Net.Channel.TextableTypes(Fluxer.Net.ChannelType)">
             <summary>
             Channel types that you can send messages to.
@@ -2239,6 +2266,21 @@
             <param name="client"></param>
             <param name="json"></param>
             <returns></returns>
+        </member>
+        <member name="F:Fluxer.Net.ChannelFlags.Pinned">
+            <summary>
+            Forum threads that are pinned.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ChannelFlags.RequireTag">
+            <summary>
+            Forum channel requires a tag.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ChannelFlags.HideMediaDownloadOption">
+            <summary>
+            Hide media download in forum channel.
+            </summary>
         </member>
         <member name="T:Fluxer.Net.ChannelJson">
             <inheritdoc />
@@ -2313,6 +2355,30 @@
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.ChannelJson.ThreadMember">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelJson.Flags">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelJson.ForumTags">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelJson.AppliedTags">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelJson.DefaultReactionEmoji">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelJson.DefaultSortOrder">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelJson.DefaultLayout">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelJson.DefaultAutoArchiveDuration">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelJson.DefaultRateLimitPerUser">
             <inheritdoc />
         </member>
         <member name="T:Fluxer.Net.ChannelPin">
@@ -3832,6 +3898,80 @@
         </member>
         <member name="P:Fluxer.Net.StickerJson.AllowCloning">
             <inheritdoc />
+        </member>
+        <member name="F:Fluxer.Net.ForumLayout.Default">
+            <summary>
+            Default layout.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ForumLayout.List">
+            <summary>
+            Order posts in a list view.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ForumLayout.Grid">
+            <summary>
+            Order posts in a grid/gallery view.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ForumSortOrder.LatestActivity">
+            <summary>
+            Sort posts by last active.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ForumSortOrder.CreationDate">
+            <summary>
+            Sort posts by last created.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.ForumTag.Id">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ForumTag.Name">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ForumTag.EmojiId">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ForumTag.EmojiName">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ForumTag.IsModerated">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.ForumTag.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.ForumTagJson,System.UInt64)">
+            <summary>
+            Create a ForumTag object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Fluxer.Net.ForumTagJson">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ForumTagJson.Id">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ForumTagJson.Name">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ForumTagJson.EmojiId">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ForumTagJson.EmojiName">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ForumTagJson.IsModerated">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.SocketForumTag.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.ForumTagJson)">
+            <summary>
+            Create a ForumTag object from json.
+            </summary>
+            <param name="client"></param>
+            <param name="json"></param>
+            <returns></returns>
         </member>
         <member name="T:Fluxer.Net.Guild">
             <inheritdoc />
@@ -14662,6 +14802,18 @@
         <member name="M:Fluxer.Net.ChannelHelpers.FollowAsync(Fluxer.Net.Channel,Fluxer.Net.Channel)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.FollowChannelAsync(System.UInt64,System.UInt64)" />
         </member>
+        <member name="M:Fluxer.Net.ChannelHelpers.CreateMessageThreadAsync(Fluxer.Net.Channel,System.UInt64,Fluxer.Net.Rest.CreatePublicThreadRequest)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.CreateMessageThreadAsync(System.UInt64,System.UInt64,Fluxer.Net.Rest.CreatePublicThreadRequest)" />
+        </member>
+        <member name="M:Fluxer.Net.ChannelHelpers.CreateMessageThreadAsync(Fluxer.Net.Channel,Fluxer.Net.Message,Fluxer.Net.Rest.CreatePublicThreadRequest)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.CreateMessageThreadAsync(System.UInt64,System.UInt64,Fluxer.Net.Rest.CreatePublicThreadRequest)" />
+        </member>
+        <member name="M:Fluxer.Net.ChannelHelpers.CreatePublicThreadAsync(Fluxer.Net.Channel,Fluxer.Net.Rest.CreatePublicThreadRequest)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.CreatePublicThreadAsync(System.UInt64,Fluxer.Net.Rest.CreatePublicThreadRequest)" />
+        </member>
+        <member name="M:Fluxer.Net.ChannelHelpers.CreatePrivateThreadAsync(Fluxer.Net.Channel,Fluxer.Net.Rest.CreatePrivateThreadRequest)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.CreatePrivateThreadAsync(System.UInt64,Fluxer.Net.Rest.CreatePrivateThreadRequest)" />
+        </member>
         <member name="T:Fluxer.Net.ExpressionHelpers">
             <summary>
             Http methods for <see cref="T:Fluxer.Net.GuildEmoji"/> and <see cref="T:Fluxer.Net.GuildSticker"/> class. 
@@ -14693,7 +14845,13 @@
         <member name="M:Fluxer.Net.ForumHelpers.ModifyTagAsync(Fluxer.Net.Channel,System.UInt64,Fluxer.Net.Rest.CreateForumTagRequest)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.UpdateForumTagAsync(System.UInt64,System.UInt64,Fluxer.Net.Rest.CreateForumTagRequest)" />
         </member>
+        <member name="M:Fluxer.Net.ForumHelpers.ModifyAsync(Fluxer.Net.ForumTag,Fluxer.Net.Rest.CreateForumTagRequest)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.UpdateForumTagAsync(System.UInt64,System.UInt64,Fluxer.Net.Rest.CreateForumTagRequest)" />
+        </member>
         <member name="M:Fluxer.Net.ForumHelpers.DeleteTagAsync(Fluxer.Net.Channel,System.UInt64)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.DeleteForumTagAsync(System.UInt64,System.UInt64)" />
+        </member>
+        <member name="M:Fluxer.Net.ForumHelpers.DeleteAsync(Fluxer.Net.ForumTag)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.DeleteForumTagAsync(System.UInt64,System.UInt64)" />
         </member>
         <member name="T:Fluxer.Net.GuildHelpers">
@@ -14889,6 +15047,9 @@
             Requires <see cref="P:Fluxer.Net.ChannelPermissions.ViewChannel"/> and <see cref="P:Fluxer.Net.ChannelPermissions.ReadMessageHistory"/> in a guild channel.
             </remarks>
         </member>
+        <member name="M:Fluxer.Net.MessageHelpers.CreateThreadAsync(Fluxer.Net.Message,Fluxer.Net.Rest.CreatePublicThreadRequest)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.CreateMessageThreadAsync(System.UInt64,System.UInt64,Fluxer.Net.Rest.CreatePublicThreadRequest)" />
+        </member>
         <member name="T:Fluxer.Net.PrivateChannelHelpers">
             <summary>
             Http methods for <see cref="T:Fluxer.Net.DMChannel"/> and <see cref="T:Fluxer.Net.GroupChannel"/> class. 
@@ -14959,19 +15120,19 @@
             </summary>
         </member>
         <member name="M:Fluxer.Net.ThreadHelpers.ModifyAsync(Fluxer.Net.ThreadChannel,Fluxer.Net.Rest.UpdateThreadRequest)">
-            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.ModifyThreadAsync(System.UInt64,Fluxer.Net.Rest.UpdateThreadRequest)" />
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.UpdateThreadAsync(System.UInt64,Fluxer.Net.Rest.UpdateThreadRequest)" />
         </member>
         <member name="M:Fluxer.Net.ThreadHelpers.LockAsync(Fluxer.Net.ThreadChannel)">
-            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.ModifyThreadAsync(System.UInt64,Fluxer.Net.Rest.UpdateThreadRequest)" />
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.UpdateThreadAsync(System.UInt64,Fluxer.Net.Rest.UpdateThreadRequest)" />
         </member>
         <member name="M:Fluxer.Net.ThreadHelpers.UnLockAsync(Fluxer.Net.ThreadChannel)">
-            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.ModifyThreadAsync(System.UInt64,Fluxer.Net.Rest.UpdateThreadRequest)" />
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.UpdateThreadAsync(System.UInt64,Fluxer.Net.Rest.UpdateThreadRequest)" />
         </member>
         <member name="M:Fluxer.Net.ThreadHelpers.ArchiveAsync(Fluxer.Net.ThreadChannel)">
-            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.ModifyThreadAsync(System.UInt64,Fluxer.Net.Rest.UpdateThreadRequest)" />
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.UpdateThreadAsync(System.UInt64,Fluxer.Net.Rest.UpdateThreadRequest)" />
         </member>
         <member name="M:Fluxer.Net.ThreadHelpers.OpenAsync(Fluxer.Net.ThreadChannel)">
-            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.ModifyThreadAsync(System.UInt64,Fluxer.Net.Rest.UpdateThreadRequest)" />
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.UpdateThreadAsync(System.UInt64,Fluxer.Net.Rest.UpdateThreadRequest)" />
         </member>
         <member name="M:Fluxer.Net.ThreadHelpers.JoinAsync(Fluxer.Net.ThreadChannel)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.JoinThreadAsync(System.UInt64)" />

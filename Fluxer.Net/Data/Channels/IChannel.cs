@@ -106,4 +106,20 @@ public interface IChannel : IPartialChannel
     DateTimeOffset? IndexedAt { get; }
 
     IThreadMember? ThreadMember { get; }
+
+    ChannelFlags Flags { get; }
+
+    IForumTag[]? ForumTags { get; }
+
+    ulong[]? AppliedTags { get; }
+
+    ForumReactionEmoji? DefaultReactionEmoji { get; }
+
+    ForumSortOrder? DefaultSortOrder { get; }
+
+    ForumLayout? DefaultLayout { get; }
+
+    ThreadArchiveDuration? DefaultAutoArchiveDuration { get; }
+
+    int? DefaultRateLimitPerUser { get; }
 }

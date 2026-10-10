@@ -2331,7 +2331,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// Delegate for USER_SETTINGS_UPDATE events when user settings are updated.
     /// </summary>
     /// <param name="data">The user settings data.</param>
-    public delegate void UserSettingsUpdatedEvent(UserSettings data);
+    public delegate void UserSettingsUpdatedEvent(UserSettings settings);
 
     /// <summary>
     /// Occurs when user settings are updated.
@@ -2342,7 +2342,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// Delegate for USER_GUILD_SETTINGS_UPDATE events when user guild settings are updated.
     /// </summary>
     /// <param name="data">The user guild settings data.</param>
-    public delegate void UserGuildSettingsUpdatedEvent(UserGuildSettings data);
+    public delegate void UserGuildSettingsUpdatedEvent(UserGuildSettings settings);
 
     /// <summary>
     /// Occurs when user guild settings are updated.
@@ -2353,7 +2353,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// Delegate for USER_PINNED_DMS_UPDATE events when pinned DMs are updated.
     /// </summary>
     /// <param name="data">The pinned DMs data.</param>
-    public delegate void UserPinnedDMsUpdatedEvent(List<ulong> data);
+    public delegate void UserPinnedDMsUpdatedEvent(List<ulong> pins);
 
     /// <summary>
     /// Occurs when pinned DMs are updated.
@@ -2375,7 +2375,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// Delegate for AUTH_SESSION_CHANGE events when an auth session changes.
     /// </summary>
     /// <param name="data">The auth session data.</param>
-    public delegate void AuthSessionChangedEvent(AuthSessionChangeGatewayData data);
+    public delegate void AuthSessionChangedEvent(AuthSessionChangeGatewayData session);
 
     /// <summary>
     /// Occurs when an auth session changes.
@@ -2385,7 +2385,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Delegate for RATE_LIMITED event when rate limited.
     /// </summary>
-    public delegate void RateLimitedEvent(RateLimitedGatewayData data);
+    public delegate void RateLimitedEvent(RateLimitedGatewayData ratelimited);
 
     /// <summary>
     /// Occurs on rate limited.
@@ -2395,7 +2395,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Delegate for USER_CONNECTIONS_UPDATE event when user updates a connection.
     /// </summary>
-    public delegate void UserConnectionsUpdatedEvent(ConnectionsUpdatedGatewayData data);
+    public delegate void UserConnectionsUpdatedEvent(ConnectionsUpdatedGatewayData connections);
 
     /// <summary>
     /// Occurs on user connection updated.
@@ -2405,7 +2405,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Delegate for WEBAUTHN_CREDENTIALS_UPDATE event when user updates webauthn credentials.
     /// </summary>
-    public delegate void UserWebAuthnCredentialsUpdatedEvent(WebAuthnCredential[] data);
+    public delegate void UserWebAuthnCredentialsUpdatedEvent(WebAuthnCredential[] credentials);
 
     /// <summary>
     /// Occurs on user connection updated.
@@ -2420,7 +2420,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// Delegate for MESSAGE_CREATE events when a new message is sent.
     /// </summary>
     /// <param name="data">The message data including content, author, channel, etc.</param>
-    public delegate void MessageCreatedEvent(SocketMessage data);
+    public delegate void MessageCreatedEvent(SocketMessage message);
 
     /// <summary>
     /// Occurs when a new message is created in any channel the user has access to.
@@ -2431,7 +2431,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// Delegate for MESSAGE_UPDATE events when a message is edited.
     /// </summary>
     /// <param name="data">The updated message data.</param>
-    public delegate void MessageUpdatedEvent(SocketMessage data);
+    public delegate void MessageUpdatedEvent(SocketMessage message);
 
     /// <summary>
     /// Occurs when a message is edited.
@@ -2456,7 +2456,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// Delegate for CHANNEL_CREATE events when a channel is created.
     /// </summary>
     /// <param name="data">The channel data.</param>
-    public delegate void ChannelCreatedEvent(Channel data);
+    public delegate void ChannelCreatedEvent(Channel channel);
 
     /// <summary>
     /// Occurs when a channel is created in a guild.
@@ -2477,7 +2477,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// Delegate for CHANNEL_DELETE events when a channel is deleted.
     /// </summary>
     /// <param name="data">The deleted channel data.</param>
-    public delegate void ChannelDeletedEvent(Channel data);
+    public delegate void ChannelDeletedEvent(Channel channel);
 
     /// <summary>
     /// Occurs when a channel is deleted.
@@ -2548,7 +2548,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// Delegate for PRESENCE_UPDATE events when a user's presence changes.
     /// </summary>
     /// <param name="data">The presence data.</param>
-    public delegate void PresenceUpdatedEvent(PresenceGatewayData data);
+    public delegate void PresenceUpdatedEvent(PresenceGatewayData presence);
 
     /// <summary>
     /// Occurs when a user's presence (online status) changes.
@@ -2563,7 +2563,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// Delegate for TYPING_START events when a user starts typing.
     /// </summary>
     /// <param name="data">The typing indicator data.</param>
-    public delegate void TypingStartEvent(TypingGatewayData data);
+    public delegate void TypingStartEvent(TypingGatewayData typing);
 
     /// <summary>
     /// Occurs when a user starts typing in a channel.
@@ -2578,7 +2578,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// Delegate for MESSAGE_REACTION_ADD events when a reaction is added.
     /// </summary>
     /// <param name="data">The reaction data.</param>
-    public delegate void MessageReactionAddedEvent(MessageReactionGatewayData data);
+    public delegate void MessageReactionAddedEvent(MessageReactionGatewayData reaction);
 
     /// <summary>
     /// Occurs when a user adds a reaction to a message.
@@ -2589,7 +2589,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// Delegate for MESSAGE_REACTION_REMOVE events when a reaction is removed.
     /// </summary>
     /// <param name="data">The reaction data.</param>
-    public delegate void MessageReactionRemovedEvent(MessageReactionGatewayData data);
+    public delegate void MessageReactionRemovedEvent(MessageReactionGatewayData reaction);
 
     /// <summary>
     /// Occurs when a user removes a reaction from a message.
@@ -2599,7 +2599,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Delegate for MESSAGE_REACTION_REMOVE_ALL events when all reactions are cleared.
     /// </summary>
-    public delegate void MessageReactionRemoveAllEvent(MessageReactionsRemoveGatewayData data);
+    public delegate void MessageReactionRemoveAllEvent(MessageReactionsRemoveGatewayData reaction);
 
     /// <summary>
     /// Occurs when all reactions are removed from a message.
@@ -2610,7 +2610,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// Delegate for MESSAGE_REACTION_REMOVE_EMOJI events when all reactions of a specific emoji are removed.
     /// </summary>
     /// <param name="data">The reaction removal data.</param>
-    public delegate void MessageReactionRemovedEmojiEvent(MessageReactionRemoveEmojiGatewayData data);
+    public delegate void MessageReactionRemovedEmojiEvent(MessageReactionRemoveEmojiGatewayData reaction);
 
     /// <summary>
     /// Occurs when all instances of a specific emoji are removed from a message.
@@ -2625,7 +2625,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// Delegate for SAVED_MESSAGE_CREATE events when a message is saved.
     /// </summary>
     /// <param name="data">The saved message data.</param>
-    public delegate void SavedMessageCreatedEvent(SavedMessage data);
+    public delegate void SavedMessageCreatedEvent(SavedMessage message);
 
     /// <summary>
     /// Occurs when a message is saved.
@@ -2646,7 +2646,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// Delegate for RECENT_MENTION_DELETE events when a recent mention is deleted.
     /// </summary>
     /// <param name="data">The recent mention data.</param>
-    public delegate void RecentMentionDeletedEvent(RecentMentionDeleteGatewayData data);
+    public delegate void RecentMentionDeletedEvent(RecentMentionDeleteGatewayData mention);
 
     /// <summary>
     /// Occurs when a recent mention is deleted.
@@ -2661,7 +2661,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// Delegate for MESSAGE_DELETE_BULK events when multiple messages are deleted at once.
     /// </summary>
     /// <param name="data">The bulk delete data containing message IDs.</param>
-    public delegate void MessageDeleteBulkEvent(MessageBulkDeleteGatewayData data);
+    public delegate void MessageDeleteBulkEvent(MessageBulkDeleteGatewayData messages);
 
     /// <summary>
     /// Occurs when multiple messages are deleted in bulk (e.g., purge operation).
@@ -2672,7 +2672,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// Delegate for MESSAGE_ACK events when a message is acknowledged as read.
     /// </summary>
     /// <param name="data">The acknowledgment data.</param>
-    public delegate void MessageAckEvent(MessageAckGatewayData data);
+    public delegate void MessageAckEvent(MessageAckGatewayData message);
 
     /// <summary>
     /// Occurs when a message is acknowledged as read by the current user.
@@ -2687,7 +2687,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// Delegate for CHANNEL_PINS_UPDATE events when channel pins are updated.
     /// </summary>
     /// <param name="data">The pins update data.</param>
-    public delegate void ChannelPinsUpdatedEvent(ChannelPinsUpdateGatewayData data);
+    public delegate void ChannelPinsUpdatedEvent(ChannelPinsUpdateGatewayData pins);
 
     /// <summary>
     /// Occurs when a message is pinned or unpinned in a channel.
@@ -2698,7 +2698,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// Delegate for CHANNEL_PINS_ACK events when channel pins are acknowledged.
     /// </summary>
     /// <param name="data">The pins acknowledgment data.</param>
-    public delegate void ChannelPinsAckEvent(ChannelPinsAckGatewayData data);
+    public delegate void ChannelPinsAckEvent(ChannelPinsAckGatewayData pins);
 
     /// <summary>
     /// Occurs when channel pins are acknowledged.
@@ -2733,7 +2733,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// Delegate for VOICE_STATE_UPDATE events when a user's voice state changes.
     /// </summary>
     /// <param name="data">The voice state data.</param>
-    public delegate void VoiceStateUpdatedEvent(SocketVoiceState data);
+    public delegate void VoiceStateUpdatedEvent(SocketVoiceState voiceState);
 
     /// <summary>
     /// Occurs when a user joins, leaves, or updates their state in a voice channel.
@@ -2744,7 +2744,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// Delegate for VOICE_SERVER_UPDATE events for voice connection data.
     /// </summary>
     /// <param name="data">The voice server data.</param>
-    public delegate void VoiceServerUpdatedEvent(VoiceServer data);
+    public delegate void VoiceServerUpdatedEvent(VoiceServer voiceServer);
 
     /// <summary>
     /// Occurs when voice server information is updated (used for establishing voice connections).
@@ -2798,7 +2798,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// Delegate for GUILD_CREATE events when a guild becomes available.
     /// </summary>
     /// <param name="data">The guild data.</param>
-    public delegate void GuildJoinedEvent(SocketGuild data);
+    public delegate void GuildJoinedEvent(SocketGuild guild);
 
     /// <summary>
     /// Occurs when the bot joins a guild.
@@ -2821,7 +2821,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// Delegate for GUILD_DELETE events when the bot is removed.
     /// </summary>
     /// <param name="data">The guild delete data containing guild.</param>
-    public delegate void GuildLeftEvent(SocketGuild data);
+    public delegate void GuildLeftEvent(SocketGuild guild);
 
     /// <summary>
     /// Occurs when the bot is removed from a guild or when a guild becomes unavailable.
@@ -2833,7 +2833,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// Delegate for GUILD_CREATE events when a guild has come back.
     /// </summary>
     /// <param name="data"></param>
-    public delegate void GuildAvailableEvent(SocketGuild data);
+    public delegate void GuildAvailableEvent(SocketGuild guild);
 
     /// <summary>
     /// Occurs when the guild becomes available again.
@@ -2844,7 +2844,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// Delegate for GUILD_DELETE events when a guild has gone down.
     /// </summary>
     /// <param name="data"></param>
-    public delegate void GuildUnavailableEvent(SocketGuild data);
+    public delegate void GuildUnavailableEvent(SocketGuild guild);
 
     /// <summary>
     /// Occurs when the guild becomes unavailable.
@@ -2859,7 +2859,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// Delegate for GUILD_MEMBER_ADD events when a user joins a guild.
     /// </summary>
     /// <param name="data">The guild member data.</param>
-    public delegate void GuildMemberAddedEvent(SocketGuildMember data);
+    public delegate void GuildMemberAddedEvent(SocketGuildMember member);
 
     /// <summary>
     /// Occurs when a new member joins a guild.
@@ -2870,7 +2870,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// Delegate for GUILD_MEMBER_UPDATE events when a guild member is updated.
     /// </summary>
     /// <param name="data">The updated guild member data.</param>
-    public delegate void GuildMemberUpdatedEvent(SocketGuildMember data);
+    public delegate void GuildMemberUpdatedEvent(SocketGuildMember member);
 
     /// <summary>
     /// Occurs when a guild member is updated (roles, nickname, avatar, etc.).
@@ -2906,7 +2906,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// Delegate for GUILD_ROLE_CREATE events when a role is created in a guild.
     /// </summary>
     /// <param name="data">The guild role data containing guild ID and role information.</param>
-    public delegate void GuildRoleCreatedEvent(SocketRole data);
+    public delegate void GuildRoleCreatedEvent(SocketRole role);
 
     /// <summary>
     /// Occurs when a new role is created in a guild.
@@ -2928,7 +2928,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// Delegate for GUILD_ROLE_DELETE events when a role is deleted from a guild.
     /// </summary>
     /// <param name="data">The guild role delete data containing guild and role IDs.</param>
-    public delegate void GuildRoleDeletedEvent(SocketRole data);
+    public delegate void GuildRoleDeletedEvent(SocketRole role);
 
     /// <summary>
     /// Occurs when a role is deleted from a guild.
@@ -2939,19 +2939,19 @@ public partial class FluxerGatewayClient : IDisposable
     // Guild Emoji Events
     // ============================================================================
 
-    public delegate void GuildEmojiCreatedEvent(Emoji data);
+    public delegate void GuildEmojiCreatedEvent(Emoji emoji);
 
     public event GuildEmojiCreatedEvent EmojiCreated;
 
-    public delegate void GuildEmojiDeletedEvent(Emoji data);
+    public delegate void GuildEmojiDeletedEvent(Emoji emoji);
 
     public event GuildEmojiDeletedEvent EmojiDeleted;
 
-    public delegate void GuildStickerCreatedEvent(Sticker data);
+    public delegate void GuildStickerCreatedEvent(Sticker sticker);
 
     public event GuildStickerCreatedEvent StickerCreated;
 
-    public delegate void GuildStickerDeletedEvent(Sticker data);
+    public delegate void GuildStickerDeletedEvent(Sticker sticker);
 
     public event GuildStickerDeletedEvent StickerDeleted;
 
@@ -2983,7 +2983,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// Delegate for RELATIONSHIP_ADD events when a relationship is added.
     /// </summary>
     /// <param name="data">The relationship data.</param>
-    public delegate void RelationshipAddedEvent(RelationshipGatewayData data);
+    public delegate void RelationshipAddedEvent(RelationshipGatewayData relationship);
 
     /// <summary>
     /// Occurs when a relationship (friend, blocked user, etc.) is added.
@@ -2994,7 +2994,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// Delegate for RELATIONSHIP_UPDATE events when a relationship is updated.
     /// </summary>
     /// <param name="data">The relationship data.</param>
-    public delegate void RelationshipUpdatedEvent(RelationshipGatewayData data);
+    public delegate void RelationshipUpdatedEvent(RelationshipGatewayData relationship);
 
     /// <summary>
     /// Occurs when a relationship is updated.
@@ -3005,7 +3005,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// Delegate for RELATIONSHIP_REMOVE events when a relationship is removed.
     /// </summary>
     /// <param name="data">The relationship data.</param>
-    public delegate void RelationshipRemovedEvent(RelationshipRemoveGatewayData data);
+    public delegate void RelationshipRemovedEvent(RelationshipRemoveGatewayData relationship);
 
     /// <summary>
     /// Occurs when a relationship is removed.
@@ -3020,7 +3020,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// Delegate for FAVORITE_MEME_CREATE events when a favorite meme is created.
     /// </summary>
     /// <param name="data">The favorite meme data.</param>
-    public delegate void FavoriteMediaCreatedEvent(FavoriteMediaGatewayData data);
+    public delegate void FavoriteMediaCreatedEvent(FavoriteMediaGatewayData media);
 
     /// <summary>
     /// Occurs when a favorite meme is created.
@@ -3031,7 +3031,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// Delegate for FAVORITE_MEME_UPDATE events when a favorite meme is updated.
     /// </summary>
     /// <param name="data">The favorite meme data.</param>
-    public delegate void FavoriteMediaUpdatedEvent(FavoriteMediaGatewayData data);
+    public delegate void FavoriteMediaUpdatedEvent(FavoriteMediaGatewayData media);
 
     /// <summary>
     /// Occurs when a favorite meme is updated.
@@ -3042,7 +3042,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// Delegate for FAVORITE_MEME_DELETE events when a favorite meme is deleted.
     /// </summary>
     /// <param name="data">The favorite meme data.</param>
-    public delegate void FavoriteMediaDeletedEvent(FavoriteMediaDeleteGatewayData data);
+    public delegate void FavoriteMediaDeletedEvent(FavoriteMediaDeleteGatewayData media);
 
     /// <summary>
     /// Occurs when a favorite meme is deleted.
@@ -3057,7 +3057,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// Delegate for CALL_CREATE events when a call is created.
     /// </summary>
     /// <param name="data">The call data.</param>
-    public delegate void CallCreatedEvent(CallCreateGatewayData data);
+    public delegate void CallCreatedEvent(CallCreateGatewayData call);
 
     /// <summary>
     /// Occurs when a call is created.
@@ -3068,7 +3068,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// Delegate for CALL_UPDATE events when a call is updated.
     /// </summary>
     /// <param name="data">The call data.</param>
-    public delegate void CallUpdatedEvent(CallUpdateGatewayData data);
+    public delegate void CallUpdatedEvent(CallUpdateGatewayData call);
 
     /// <summary>
     /// Occurs when a call is updated.
@@ -3079,7 +3079,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// Delegate for CALL_DELETE events when a call is deleted.
     /// </summary>
     /// <param name="data">The call data.</param>
-    public delegate void CallDeletedEvent(CallDeleteGatewayData data);
+    public delegate void CallDeletedEvent(CallDeleteGatewayData call);
 
     /// <summary>
     /// Occurs when a call is deleted.
@@ -3094,7 +3094,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// Delegate for INVITE_CREATE events when an invite is created.
     /// </summary>
     /// <param name="data">The invite data including code, channel, guild, and inviter information.</param>
-    public delegate void InviteCreatedEvent(Invite data);
+    public delegate void InviteCreatedEvent(Invite invite);
 
     /// <summary>
     /// Occurs when a new invite is created for a guild or group DM.
@@ -3105,18 +3105,18 @@ public partial class FluxerGatewayClient : IDisposable
     /// Delegate for INVITE_DELETE events when an invite is deleted or expires.
     /// </summary>
     /// <param name="data">The invite data containing the deleted invite code and channel/guild information.</param>
-    public delegate void InviteDeletedEvent(InviteDeleteGatewayData data);
+    public delegate void InviteDeletedEvent(InviteDeleteGatewayData invite);
 
     /// <summary>
     /// Occurs when an invite is deleted or expires.
     /// </summary>
     public event InviteDeletedEvent InviteDeleted;
 
-    public delegate void GuildMemberCountsEvent(CountGatewayData<GuildMemberCountGatewayData> data);
+    public delegate void GuildMemberCountsEvent(CountGatewayData<GuildMemberCountGatewayData> countData);
 
     public event GuildMemberCountsEvent GuildMemberCounts;
 
-    public delegate void ChannelMemberCountsEvent(CountGatewayData<GuildChannelMemberCountGatewayData> data);
+    public delegate void ChannelMemberCountsEvent(CountGatewayData<GuildChannelMemberCountGatewayData> countData);
 
     public event ChannelMemberCountsEvent ChannelMemberCounts;
 
