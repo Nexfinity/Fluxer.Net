@@ -35,9 +35,7 @@ public class SocketAuditLog : Entity, ISnowflake
     /// <summary>
     /// Create a Login object from json.
     /// </summary>
-    /// <param name="client"></param>
-    /// <param name="json"></param>
-    /// <returns></returns>
+    /// <returns><see cref="SocketAuditLog"/></returns>
     public static SocketAuditLog Create(FluxerBaseClient client, GuildAuditLogJson json)
     {
         SocketAuditLog data = new SocketAuditLog(client)

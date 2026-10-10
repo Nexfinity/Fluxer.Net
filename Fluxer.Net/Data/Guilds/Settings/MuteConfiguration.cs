@@ -17,9 +17,7 @@ public class MuteConfiguration : Entity, IMuteConfiguration
     /// <summary>
     /// Create a GuildChannelOverride object from json.
     /// </summary>
-    /// <param name="client"></param>
-    /// <param name="json"></param>
-    /// <returns></returns>
+    /// <returns><see cref="MuteConfiguration"/></returns>
     public static MuteConfiguration Create(FluxerBaseClient client, MuteConfigurationJson json)
     {
         MuteConfiguration data = new MuteConfiguration(client);

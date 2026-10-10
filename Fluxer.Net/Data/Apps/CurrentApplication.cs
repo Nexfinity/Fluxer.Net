@@ -16,9 +16,7 @@ public class CurrentApplication : Application, ICurrentApplication
     /// <summary>
     /// Create a Application object from json.
     /// </summary>
-    /// <param name="client"></param>
-    /// <param name="json"></param>
-    /// <returns></returns>
+    /// <returns><see cref="CurrentApplication"/></returns>
     public static CurrentApplication Create(FluxerBaseClient client, CurrentApplicationJson json)
     {
         CurrentApplication data = new CurrentApplication(client);

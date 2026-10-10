@@ -17,9 +17,7 @@ public class Login : Entity, ILogin
     /// <summary>
     /// Create a Login object from json.
     /// </summary>
-    /// <param name="client"></param>
-    /// <param name="json"></param>
-    /// <returns></returns>
+    /// <returns><see cref="Login"/></returns>
     public static Login Create(FluxerBaseClient client, LoginJson json)
     {
         Login data = new Login(client);

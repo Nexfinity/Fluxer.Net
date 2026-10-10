@@ -25,9 +25,7 @@ public class GuildChannelOverride : Entity, IGuildChannelOverride
     /// <summary>
     /// Create a GuildChannelOverride object from json.
     /// </summary>
-    /// <param name="client"></param>
-    /// <param name="json"></param>
-    /// <returns></returns>
+    /// <returns><see cref="GuildChannelOverride"/></returns>
     public static GuildChannelOverride Create(FluxerBaseClient client, GuildChannelOverrideJson json)
     {
         GuildChannelOverride data = new GuildChannelOverride(client);

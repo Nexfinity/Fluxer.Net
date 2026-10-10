@@ -42,10 +42,7 @@ public class UserProfile : Entity, IUserProfile
     /// <summary>
     /// Create a UserProfile object from json.
     /// </summary>
-    /// <param name="client"></param>
-    /// <param name="json"></param>
-    /// <param name="userId"></param>
-    /// <returns></returns>
+    /// <returns><see cref="UserProfile"/></returns>
     public static UserProfile Create(FluxerBaseClient client, UserProfileJson json, ulong userId)
     {
         UserProfile data = new UserProfile(client)

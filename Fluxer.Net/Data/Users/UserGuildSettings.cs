@@ -47,9 +47,7 @@ public class UserGuildSettings : Entity, IUserGuildSettings
     /// <summary>
     /// Create a UserGuildSettings object from json.
     /// </summary>
-    /// <param name="client"></param>
-    /// <param name="json"></param>
-    /// <returns></returns>
+    /// <returns><see cref="UserGuildSettings"/></returns>
     public static UserGuildSettings Create(FluxerBaseClient client, UserGuildSettingsJson json)
     {
         UserGuildSettings data = new UserGuildSettings(client);

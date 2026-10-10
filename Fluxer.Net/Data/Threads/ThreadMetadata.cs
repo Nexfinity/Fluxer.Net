@@ -28,9 +28,7 @@ public class ThreadMetadata : Entity, IThreadMetadata
     /// <summary>
     /// Create a ThreadMetadata object from json.
     /// </summary>
-    /// <param name="client"></param>
-    /// <param name="json"></param>
-    /// <returns></returns>
+    /// <returns><see cref="ThreadMetadata"/></returns>
     public static ThreadMetadata Create(FluxerBaseClient client, ThreadMetadataJson json)
     {
         ThreadMetadata data = new ThreadMetadata(client);

@@ -17,6 +17,7 @@ public class ForumTag : Entity, IForumTag
     /// <inheritdoc />
     public bool IsModerated { get; private set; }
 
+    /// <inheritdoc />
     public ulong ChannelId { get; private set; }
 
     internal ForumTag(FluxerBaseClient client) : base(client)
@@ -27,9 +28,7 @@ public class ForumTag : Entity, IForumTag
     /// <summary>
     /// Create a ForumTag object from json.
     /// </summary>
-    /// <param name="client"></param>
-    /// <param name="json"></param>
-    /// <returns></returns>
+    /// <returns><see cref="ForumTag"/></returns>
     public static ForumTag Create(FluxerBaseClient client, ForumTagJson json, ulong channelId)
     {
         ForumTag data = new ForumTag(client)

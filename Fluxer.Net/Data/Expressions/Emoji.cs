@@ -33,9 +33,7 @@ public class Emoji : Entity, IEmoji
     /// <summary>
     /// Create a Emoji object from json.
     /// </summary>
-    /// <param name="client"></param>
-    /// <param name="json"></param>
-    /// <returns></returns>
+    /// <returns><see cref="Emoji"/></returns>
     public static Emoji Create(FluxerBaseClient client, EmojiJson json)
     {
         Emoji data = new Emoji(client);

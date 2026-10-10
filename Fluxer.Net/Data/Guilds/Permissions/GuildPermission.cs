@@ -11,11 +11,6 @@ namespace Fluxer.Net;
 public enum GuildPermission : ulong
 {
     /// <summary>
-    /// No permissions granted.
-    /// </summary>
-    None = 0,
-
-    /// <summary>
     /// Allows creation of instant invites to the guild or channel.
     /// </summary>
     CreateInstantInvite = 1UL << 0,

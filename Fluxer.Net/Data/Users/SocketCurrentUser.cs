@@ -20,9 +20,7 @@ public class SocketCurrentUser : CurrentUser
     /// <summary>
     /// Create a SocketCurrentUser object from json.
     /// </summary>
-    /// <param name="client"></param>
-    /// <param name="json"></param>
-    /// <returns></returns>
+    /// <returns><see cref="SocketCurrentUser"/></returns>
     public static new SocketCurrentUser Create(FluxerBaseClient client, UserJson json)
     {
         SocketCurrentUser data = new SocketCurrentUser(client);

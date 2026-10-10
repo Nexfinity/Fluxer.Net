@@ -89,9 +89,7 @@ public class CurrentUser : User, ICurrentUser, IUserProfile
     /// <summary>
     /// Create a CurrentUser object from json.
     /// </summary>
-    /// <param name="client"></param>
-    /// <param name="json"></param>
-    /// <returns></returns>
+    /// <returns><see cref="CurrentUser"/></returns>
     public static CurrentUser Create(FluxerBaseClient client, CurrentUserJson json)
     {
         CurrentUser data = new CurrentUser(client);

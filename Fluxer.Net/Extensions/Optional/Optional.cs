@@ -24,7 +24,6 @@ public struct Optional<T>
     /// <summary>
     /// Returns the existing value if present, and otherwise an alternative value.
     /// </summary>
-    /// <param name="alternative">The alternative value.</param>
     /// <returns>The existing or alternative value.</returns>
     public T ValueOr(T alternative) => hasValue ? value : alternative;
 }
@@ -37,7 +36,6 @@ public static class Optional
     /// <summary>
     /// Wraps an existing value in an Option&lt;T&gt; instance.
     /// </summary>
-    /// <param name="value">The value to be wrapped.</param>
     /// <returns>An optional containing the specified value.</returns>
     public static Optional<T> Some<T>(T value) => new Optional<T>(value, true);
 

@@ -17,9 +17,7 @@ public class MessageCall : Entity, IMessageCall
     /// <summary>
     /// Create a MessageCall object from json.
     /// </summary>
-    /// <param name="client"></param>
-    /// <param name="json"></param>
-    /// <returns></returns>
+    /// <returns><see cref="MessageCall"/></returns>
     public static MessageCall Create(FluxerBaseClient client, MessageCallJson json)
     {
         MessageCall data = new MessageCall(client);

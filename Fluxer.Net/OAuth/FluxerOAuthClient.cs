@@ -11,9 +11,6 @@ public class FluxerOAuthClient : FluxerBaseClient
     /// <summary>
     /// Create an OAuth client with id and secret then use access or refresh tokens.
     /// </summary>
-    /// <param name="clientId"></param>
-    /// <param name="clientSecret"></param>
-    /// <param name="config"></param>
     /// <exception cref="ArgumentNullException"></exception>
     /// <exception cref="ArgumentException"></exception>
     public FluxerOAuthClient(ulong clientId, string clientSecret, FluxerConfig? config = null)

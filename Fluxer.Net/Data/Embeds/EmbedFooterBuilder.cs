@@ -38,8 +38,7 @@ public class EmbedFooterBuilder
     /// <summary>
     /// Sets the text of the footer.
     /// </summary>
-    /// <param name="text">The text to set.</param>
-    /// <returns>The current builder.</returns>
+    /// <returns><see cref="EmbedFooterBuilder"/></returns>
     public EmbedFooterBuilder WithText(string text)
     {
         Text = text;
@@ -49,8 +48,7 @@ public class EmbedFooterBuilder
     /// <summary>
     /// Sets the icon URL of the footer.
     /// </summary>
-    /// <param name="iconUrl">The icon URL to set.</param>
-    /// <returns>The current builder.</returns>
+    /// <returns><see cref="EmbedFooterBuilder"/></returns>
     public EmbedFooterBuilder WithIconUrl(string iconUrl)
     {
         IconUrl = iconUrl;

@@ -28,7 +28,7 @@ public class ChannelJson : PartialChannelJson, IChannel
 
     /// <inheritdoc />
     [JsonProperty("position")]
-    public int Position { get; set; }
+    public int? Position { get; set; }
 
     /// <inheritdoc />
     [JsonProperty("owner_id")]

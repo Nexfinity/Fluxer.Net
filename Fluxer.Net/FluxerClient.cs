@@ -37,8 +37,6 @@ public class FluxerClient : FluxerBaseClient
     /// <summary>
     /// Create a Fluxer client.
     /// </summary>
-    /// <param name="token"></param>
-    /// <param name="config"></param>
     public FluxerClient(string token, FluxerConfig? config = null)
     {
         // Load token
@@ -73,7 +71,6 @@ public class FluxerClient : FluxerBaseClient
     /// <summary>
     /// Use canary features for the API.
     /// </summary>
-    /// <returns></returns>
     public FluxerClient UseCanary()
     {
         Config.ApiBaseUrl = "https://api.canary.fluxer.app/v{v}";
@@ -103,8 +100,7 @@ public class FluxerClient : FluxerBaseClient
     /// <summary>
     /// This will update your config urls to use the instance.
     /// </summary>
-    /// <param name="apiUrl"></param>
-    /// <returns></returns>
+    /// <returns><see cref="Instance"/></returns>
     /// <exception cref="ArgumentNullException"></exception>
     /// <exception cref="Exception"></exception>
     public async Task<Instance> LoginAsync(string apiUrl = null)
@@ -136,7 +132,6 @@ public class FluxerClient : FluxerBaseClient
     /// <summary>
     /// Start the gateway session to recieve events.
     /// </summary>
-    /// <returns></returns>
     public Task StartAsync() => Gateway.ConnectAsync();
 
     internal static JsonSerializer _gatewaySerializer { get; set; } = CreateGatewaySerializer();
@@ -172,7 +167,6 @@ public class FluxerClient : FluxerBaseClient
     /// <summary>
     /// Validates that the token has a recognized prefix for the Fluxer API.
     /// </summary>
-    /// <param name="token">The token to validate.</param>
     /// <exception cref="ArgumentException">
     /// Thrown when the token is null, empty, or does not begin with a valid prefix.
     /// Bot tokens must start with <c>Bot </c> (including the trailing space).

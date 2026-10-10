@@ -102,9 +102,7 @@ public class SocketGuildMember : GuildMember
     /// <summary>
     /// Create a SocketGuildMember object from json.
     /// </summary>
-    /// <param name="client"></param>
-    /// <param name="json"></param>
-    /// <returns></returns>
+    /// <returns><see cref="SocketGuildMember"/></returns>
     public static new SocketGuildMember Create(FluxerBaseClient client, GuildMemberJson json)
     {
         SocketGuildMember data = new SocketGuildMember(client);

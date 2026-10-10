@@ -21,10 +21,7 @@ public class SocketVoiceState : VoiceState
     /// <summary>
     /// Create a SocketVoiceState object from json.
     /// </summary>
-    /// <param name="client"></param>
-    /// <param name="json"></param>
-    /// <param name="channel"></param>
-    /// <returns></returns>
+    /// <returns><see cref="SocketVoiceState"/></returns>
     public static SocketVoiceState Create(FluxerBaseClient client, VoiceStateJson json, Channel channel)
     {
         SocketVoiceState data = new SocketVoiceState(client)

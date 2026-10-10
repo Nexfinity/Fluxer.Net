@@ -59,8 +59,7 @@ public class EmbedFieldBuilder
     /// <summary>
     /// Sets the name of the field.
     /// </summary>
-    /// <param name="name">The name to set.</param>
-    /// <returns>The current builder.</returns>
+    /// <returns><see cref="EmbedFieldBuilder"/></returns>
     public EmbedFieldBuilder WithName(string name)
     {
         Name = name;
@@ -70,8 +69,7 @@ public class EmbedFieldBuilder
     /// <summary>
     /// Sets the value of the field.
     /// </summary>
-    /// <param name="value">The value to set.</param>
-    /// <returns>The current builder.</returns>
+    /// <returns><see cref="EmbedFieldBuilder"/></returns>
     public EmbedFieldBuilder WithValue(object value)
     {
         Value = value?.ToString();
@@ -81,8 +79,7 @@ public class EmbedFieldBuilder
     /// <summary>
     /// Sets whether the field should be inline.
     /// </summary>
-    /// <param name="isInline">Whether the field should be inline.</param>
-    /// <returns>The current builder.</returns>
+    /// <returns><see cref="EmbedFieldBuilder"/></returns>
     public EmbedFieldBuilder WithIsInline(bool isInline)
     {
         IsInline = isInline;

@@ -27,9 +27,7 @@ public class ThreadMember : Entity, IThreadMember
     /// <summary>
     /// Create a ThreadMember object from json.
     /// </summary>
-    /// <param name="client"></param>
-    /// <param name="json"></param>
-    /// <returns></returns>
+    /// <returns><see cref="ThreadMember"/></returns>
     public static ThreadMember Create(FluxerBaseClient client, ThreadMemberJson json)
     {
         ThreadMember data = new ThreadMember(client);

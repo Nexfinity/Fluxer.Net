@@ -3939,6 +3939,9 @@
         <member name="P:Fluxer.Net.ForumTag.IsModerated">
             <inheritdoc />
         </member>
+        <member name="P:Fluxer.Net.ForumTag.ChannelId">
+            <inheritdoc />
+        </member>
         <member name="M:Fluxer.Net.ForumTag.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.ForumTagJson,System.UInt64)">
             <summary>
             Create a ForumTag object from json.

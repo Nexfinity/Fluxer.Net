@@ -95,9 +95,7 @@ public class Message : Entity, IMessage
     /// <summary>
     /// Create a Message object from json.
     /// </summary>
-    /// <param name="client"></param>
-    /// <param name="json"></param>
-    /// <returns></returns>
+    /// <returns><see cref="Message"/></returns>
     public static Message Create(FluxerBaseClient client, MessageJson json)
     {
         Message data = new Message(client);

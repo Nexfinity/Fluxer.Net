@@ -69,9 +69,7 @@ public class Instance : Entity, IInstance
     /// <summary>
     /// Create a Instance object from json.
     /// </summary>
-    /// <param name="client"></param>
-    /// <param name="json"></param>
-    /// <returns></returns>
+    /// <returns><see cref="Instance"/></returns>
     public static Instance Create(FluxerBaseClient client, InstanceJson json)
     {
         Instance data = new Instance(client)

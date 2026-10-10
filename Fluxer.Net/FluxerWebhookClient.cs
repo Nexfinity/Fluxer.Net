@@ -11,8 +11,6 @@ public class FluxerWebhookClient : FluxerBaseClient
     /// <summary>
     /// Create a Webhook client with url to send webhook messages.
     /// </summary>
-    /// <param name="webhookUrl"></param>
-    /// <param name="config"></param>
     /// <exception cref="ArgumentNullException"></exception>
     /// <exception cref="ArgumentException"></exception>
     public FluxerWebhookClient(string webhookUrl, FluxerConfig? config = null)

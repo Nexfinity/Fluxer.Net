@@ -11,9 +11,7 @@ public class SocketUser : User
     /// <summary>
     /// Create a SocketUser object from json.
     /// </summary>
-    /// <param name="client"></param>
-    /// <param name="json"></param>
-    /// <returns></returns>
+    /// <returns><see cref="SocketUser"/></returns>
     public static new SocketUser Create(FluxerBaseClient client, UserJson json)
     {
         SocketUser data = new SocketUser(client);
