@@ -11,23 +11,8 @@ public class GuildPermissions : IGuildPermissions, IChannelPermissions
     /// </summary>
     public GuildPermission RawValue { get; private set; }
 
-
     /// <inheritdoc />
-    public bool Administrator => RawValue.HasFlag(GuildPermission.Administrator);
-
-    /// <inheritdoc />
-    public bool ViewAuditLog => RawValue.HasFlag(GuildPermission.ViewAuditLog);
-
-    /// <inheritdoc />
-    public bool ManageGuild => RawValue.HasFlag(GuildPermission.ManageGuild);
-
-    /// <summary>
-    /// Create, edit, or delete roles below your highest role. Also allows editing channel permission overwrites.
-    /// </summary>
-    public bool ManageRoles => RawValue.HasFlag(GuildPermission.ManageRoles);
-
-    /// <inheritdoc />
-    public bool ManageChannels => RawValue.HasFlag(GuildPermission.ManageChannels);
+    public bool CreateInstantInvite => RawValue.HasFlag(GuildPermission.CreateInstantInvite);
 
     /// <inheritdoc />
     public bool KickMembers => RawValue.HasFlag(GuildPermission.KickMembers);
@@ -36,25 +21,28 @@ public class GuildPermissions : IGuildPermissions, IChannelPermissions
     public bool BanMembers => RawValue.HasFlag(GuildPermission.BanMembers);
 
     /// <inheritdoc />
-    public bool CreateInstantInvite => RawValue.HasFlag(GuildPermission.CreateInstantInvite);
+    public bool Administrator => RawValue.HasFlag(GuildPermission.Administrator);
 
     /// <inheritdoc />
-    public bool ChangeNickname => RawValue.HasFlag(GuildPermission.ChangeNickname);
+    public bool ManageChannels => RawValue.HasFlag(GuildPermission.ManageChannels);
 
     /// <inheritdoc />
-    public bool ManageNicknames => RawValue.HasFlag(GuildPermission.ManageNicknames);
+    public bool ManageGuild => RawValue.HasFlag(GuildPermission.ManageGuild);
 
     /// <inheritdoc />
-    public bool CreateExpressions => RawValue.HasFlag(GuildPermission.CreateExpressions);
+    public bool AddReactions => RawValue.HasFlag(GuildPermission.AddReactions);
 
     /// <inheritdoc />
-    public bool ManageExpressions => RawValue.HasFlag(GuildPermission.ManageExpressions);
+    public bool ViewAuditLog => RawValue.HasFlag(GuildPermission.ViewAuditLog);
 
     /// <inheritdoc />
-    public bool ManageWebhooks => RawValue.HasFlag(GuildPermission.ManageWebhooks);
+    public bool PrioritySpeaker => RawValue.HasFlag(GuildPermission.PrioritySpeaker);
 
     /// <inheritdoc />
-    public bool ViewChannel => RawValue.HasFlag(GuildPermission.ViewChannel);
+    public bool Stream => RawValue.HasFlag(GuildPermission.Stream);
+
+    /// <inheritdoc />
+    public bool ViewChannels => RawValue.HasFlag(GuildPermission.ViewChannel);
 
     /// <inheritdoc />
     public bool SendMessages => RawValue.HasFlag(GuildPermission.SendMessages);
@@ -64,9 +52,6 @@ public class GuildPermissions : IGuildPermissions, IChannelPermissions
 
     /// <inheritdoc />
     public bool ManageMessages => RawValue.HasFlag(GuildPermission.ManageMessages);
-
-    /// <inheritdoc />
-    public bool PinMessages => RawValue.HasFlag(GuildPermission.PinMessages);
 
     /// <inheritdoc />
     public bool EmbedLinks => RawValue.HasFlag(GuildPermission.EmbedLinks);
@@ -84,31 +69,11 @@ public class GuildPermissions : IGuildPermissions, IChannelPermissions
     public bool UseExternalEmojis => RawValue.HasFlag(GuildPermission.UseExternalEmojis);
 
     /// <inheritdoc />
-    public bool UseExternalStickers => RawValue.HasFlag(GuildPermission.UseExternalStickers);
-
-    /// <inheritdoc />
-    public bool AddReactions => RawValue.HasFlag(GuildPermission.AddReactions);
-
-    /// <inheritdoc />
-    public bool BypassSlowmode => RawValue.HasFlag(GuildPermission.BypassSlowmode);
-
-    /// <inheritdoc />
-    public bool ModerateMembers => RawValue.HasFlag(GuildPermission.ModerateMembers);
-
-    /// <inheritdoc />
     public bool Connect => RawValue.HasFlag(GuildPermission.Connect);
 
     /// <inheritdoc />
     public bool Speak => RawValue.HasFlag(GuildPermission.Speak);
 
-    /// <inheritdoc />
-    public bool Stream => RawValue.HasFlag(GuildPermission.Stream);
-
-    /// <inheritdoc />
-    public bool UseVad => RawValue.HasFlag(GuildPermission.UseVad);
-
-    /// <inheritdoc />
-    public bool PrioritySpeaker => RawValue.HasFlag(GuildPermission.PrioritySpeaker);
 
     /// <inheritdoc />
     public bool MuteMembers => RawValue.HasFlag(GuildPermission.MuteMembers);
@@ -118,6 +83,51 @@ public class GuildPermissions : IGuildPermissions, IChannelPermissions
 
     /// <inheritdoc />
     public bool MoveMembers => RawValue.HasFlag(GuildPermission.MoveMembers);
+
+    /// <inheritdoc />
+    public bool UseVad => RawValue.HasFlag(GuildPermission.UseVad);
+
+    /// <inheritdoc />
+    public bool ChangeNickname => RawValue.HasFlag(GuildPermission.ChangeNickname);
+
+    /// <inheritdoc />
+    public bool ManageNicknames => RawValue.HasFlag(GuildPermission.ManageNicknames);
+
+    /// <inheritdoc />
+    public bool ManageRoles => RawValue.HasFlag(GuildPermission.ManageRoles);
+
+    /// <inheritdoc />
+    public bool ManageWebhooks => RawValue.HasFlag(GuildPermission.ManageWebhooks);
+
+    /// <inheritdoc />
+    public bool ManageExpressions => RawValue.HasFlag(GuildPermission.ManageExpressions);
+
+    /// <inheritdoc />
+    public bool ManageThreads => RawValue.HasFlag(GuildPermission.ManageThreads);
+
+    /// <inheritdoc />
+    public bool CreatePublicThreads => RawValue.HasFlag(GuildPermission.CreatePublicThreads);
+
+    /// <inheritdoc />
+    public bool CreatePrivateThreads => RawValue.HasFlag(GuildPermission.CreatePrivateThreads);
+
+    /// <inheritdoc />
+    public bool UseExternalStickers => RawValue.HasFlag(GuildPermission.UseExternalStickers);
+
+    /// <inheritdoc />
+    public bool SendMessagesInThreads => RawValue.HasFlag(GuildPermission.SendMessagesInThreads);
+
+    /// <inheritdoc />
+    public bool ModerateMembers => RawValue.HasFlag(GuildPermission.ModerateMembers);
+
+    /// <inheritdoc />
+    public bool CreateExpressions => RawValue.HasFlag(GuildPermission.CreateExpressions);
+
+    /// <inheritdoc />
+    public bool PinMessages => RawValue.HasFlag(GuildPermission.PinMessages);
+
+    /// <inheritdoc />
+    public bool BypassSlowmode => RawValue.HasFlag(GuildPermission.BypassSlowmode);
 
     /// <inheritdoc />
     public bool UpdateRtcRegion => RawValue.HasFlag(GuildPermission.UpdateRtcRegion);

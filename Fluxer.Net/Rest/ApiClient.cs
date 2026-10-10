@@ -739,40 +739,86 @@ public class FluxerApiClient : FluxerBaseApiClient
 
     #region Threads API
 
+    /// <summary>
+    /// Create a private thread.
+    /// </summary>
+    /// <remarks>
+    /// Requires <see cref="ChannelPermissions.ViewChannel"/> and <see cref="ChannelPermissions.CreatePrivateThreads"/>.
+    /// </remarks>
+    /// <returns><see cref="ThreadChannel"/></returns>
     public async Task<ThreadChannel> CreatePrivateThreadAsync(ulong channelId, CreatePrivateThreadRequest req)
     {
         ChannelJson json = await SendRequestAsync<ChannelJson, CreatePrivateThreadRequest>(HttpMethod.Post, $"/channels/{channelId}/threads", req, true);
         return (ThreadChannel)Channel.Create(_client, json);
     }
 
+    /// <summary>
+    /// Create a public thread.
+    /// </summary>
+    /// <remarks>
+    /// Requires <see cref="ChannelPermissions.ViewChannel"/> and <see cref="ChannelPermissions.CreatePublicThreads"/>.
+    /// </remarks>
+    /// <returns><see cref="ThreadChannel"/></returns>
     public async Task<ThreadChannel> CreatePublicThreadAsync(ulong channelId, CreatePublicThreadRequest req)
     {
         ChannelJson json = await SendRequestAsync<ChannelJson, CreatePublicThreadRequest>(HttpMethod.Post, $"/channels/{channelId}/threads", req, true);
         return (ThreadChannel)Channel.Create(_client, json);
     }
 
+    /// <summary>
+    /// Create a thread from a message
+    /// </summary>
+    /// <remarks>
+    /// Requires <see cref="ChannelPermissions.ViewChannel"/> and <see cref="ChannelPermissions.CreatePublicThreads"/>.
+    /// </remarks>
+    /// <returns><see cref="ThreadChannel"/></returns>
     public async Task<ThreadChannel> CreateMessageThreadAsync(ulong channelId, ulong messageId, CreatePublicThreadRequest req)
     {
         ChannelJson json = await SendRequestAsync<ChannelJson, CreatePublicThreadRequest>(HttpMethod.Post, $"/channels/{channelId}/messages/{messageId}/threads", req, true);
         return (ThreadChannel)Channel.Create(_client, json);
     }
 
+    /// <summary>
+    /// Update a thread.
+    /// </summary>
+    /// <remarks>
+    /// Requires <see cref="ChannelPermissions.ManageThreads"/> or Thread Owner.
+    /// </remarks>
+    /// <returns><see cref="ThreadChannel"/></returns>
     public async Task<ThreadChannel> UpdateThreadAsync(ulong channelId, UpdateThreadRequest req)
     {
         ChannelJson json = await SendRequestAsync<ChannelJson, UpdateThreadRequest>(HttpMethod.Patch, $"/channels/{channelId}/threads", req, true);
         return (ThreadChannel)Channel.Create(_client, json);
     }
 
+    /// <summary>
+    /// Join a thread.
+    /// </summary>
+    /// <remarks>
+    /// Requires <see cref="ChannelPermissions.ViewChannel"/>.
+    /// </remarks>
     public async Task JoinThreadAsync(ulong channelId)
     {
         await SendRequestAsync<dynamic>(HttpMethod.Put, $"/channels/{channelId}/thread-members/@me", null, true);
     }
 
+    /// <summary>
+    /// Leave a thread.
+    /// </summary>
+    /// <remarks>
+    /// Requires <see cref="ChannelPermissions.ViewChannel"/>.
+    /// </remarks>
     public async Task LeaveThreadAsync(ulong channelId)
     {
         await SendRequestAsync<dynamic>(HttpMethod.Delete, $"/channels/{channelId}/thread-members/@me", null, true);
     }
 
+    /// <summary>
+    /// Add a member to the thread.
+    /// </summary>
+    /// <remarks>
+    /// Requires <see cref="ChannelPermissions.ManageThreads"/> or Thread Owner.
+    /// </remarks>
     public async Task AddThreadMemberAsync(ulong channelId, ulong userId)
     {
         await SendRequestAsync<dynamic>(HttpMethod.Put, $"/channels/{channelId}/thread-members/{userId}", null, true);
@@ -782,9 +828,8 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// Remove a member from a thread.
     /// </summary>
     /// <remarks>
-    /// Requires <see cref="ChannelPermissions.thread"/>.
+    /// Requires <see cref="ChannelPermissions.ManageThreads"/> or Thread Owner.
     /// </remarks>
-    /// <returns><see cref="Webhook"/></returns>
     public async Task RemoveThreadMemberAsync(ulong channelId, ulong userId)
     {
         await SendRequestAsync<dynamic>(HttpMethod.Delete, $"/channels/{channelId}/thread-members/{userId}", null, true);

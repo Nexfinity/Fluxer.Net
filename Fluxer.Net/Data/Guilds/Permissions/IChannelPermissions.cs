@@ -20,7 +20,7 @@ public interface IChannelPermissions
     /// <summary>
     /// View this channel.
     /// </summary>
-    bool ViewChannel { get; }
+    bool ViewChannels { get; }
 
     /// <summary>
     /// Send messages in this channel.
