@@ -109,4 +109,7 @@ public class ChannelPermissions : IChannelPermissions
     /// <inheritdoc />
     public bool ViewChannelMembers => RawValue.HasFlag(ChannelPermission.ViewChannelMembers);
 
+    public bool ManageChannels => ManagePermissions;
+
+    public bool ViewChannels => ViewChannel;
 }
