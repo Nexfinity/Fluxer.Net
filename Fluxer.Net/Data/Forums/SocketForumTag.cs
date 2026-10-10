@@ -11,9 +11,7 @@ public class SocketForumTag : ForumTag
     /// <summary>
     /// Create a ForumTag object from json.
     /// </summary>
-    /// <param name="client"></param>
-    /// <param name="json"></param>
-    /// <returns></returns>
+    /// <returns><see cref="SocketForumTag"/></returns>
     public static SocketForumTag Create(FluxerBaseClient client, ForumTagJson json)
     {
         SocketForumTag data = new SocketForumTag(client);

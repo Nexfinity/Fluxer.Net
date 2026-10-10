@@ -19,7 +19,7 @@ public class Channel : PartialChannel, IChannel
     public ulong? ParentId { get; private set; }
 
     /// <inheritdoc />
-    public int Position { get; private set; }
+    public int? Position { get; private set; }
 
     /// <inheritdoc />
     public ulong? OwnerId { get; private set; }
@@ -110,8 +110,7 @@ public class Channel : PartialChannel, IChannel
     /// <summary>
     /// Channel types that you can send messages to.
     /// </summary>
-    /// <param name="type"></param>
-    /// <returns></returns>
+    /// <returns><see cref="bool"/></returns>
     static public bool TextableTypes(ChannelType type)
     {
         switch (type)
@@ -142,9 +141,7 @@ public class Channel : PartialChannel, IChannel
     /// <summary>
     /// Create a Channel object from json.
     /// </summary>
-    /// <param name="client"></param>
-    /// <param name="json"></param>
-    /// <returns></returns>
+    /// <returns><see cref="Channel"/></returns>
     public static Channel Create(FluxerBaseClient client, ChannelJson json)
     {
         Channel data = null;

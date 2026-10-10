@@ -25,10 +25,7 @@ public class SocketRole : Role
     /// <summary>
     /// Create a SocketRole object from json.
     /// </summary>
-    /// <param name="client"></param>
-    /// <param name="json"></param>
-    /// <param name="guild"></param>
-    /// <returns></returns>
+    /// <returns><see cref="SocketRole"/></returns>
     public static SocketRole Create(FluxerBaseClient client, RoleJson json, SocketGuild guild)
     {
         SocketRole data = new SocketRole(client)

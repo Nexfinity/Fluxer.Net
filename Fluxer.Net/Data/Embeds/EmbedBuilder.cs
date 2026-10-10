@@ -151,8 +151,7 @@ public class EmbedBuilder
     /// <summary>
     /// Sets the title of the embed.
     /// </summary>
-    /// <param name="title">The title to set.</param>
-    /// <returns>The current builder.</returns>
+    /// <returns><see cref="EmbedBuilder"/></returns>
     public EmbedBuilder WithTitle(string? title)
     {
         Title = title;
@@ -162,8 +161,7 @@ public class EmbedBuilder
     /// <summary>
     /// Sets the description of the embed.
     /// </summary>
-    /// <param name="description">The description to set.</param>
-    /// <returns>The current builder.</returns>
+    /// <returns><see cref="EmbedBuilder"/></returns>
     public EmbedBuilder WithDescription(string? description)
     {
         Description = description;
@@ -173,8 +171,7 @@ public class EmbedBuilder
     /// <summary>
     /// Sets the URL of the embed.
     /// </summary>
-    /// <param name="url">The URL to set.</param>
-    /// <returns>The current builder.</returns>
+    /// <returns><see cref="EmbedBuilder"/></returns>
     public EmbedBuilder WithUrl(string? url)
     {
         Url = url;
@@ -184,8 +181,7 @@ public class EmbedBuilder
     /// <summary>
     /// Sets the thumbnail URL of the embed.
     /// </summary>
-    /// <param name="thumbnailUrl">The thumbnail URL to set.</param>
-    /// <returns>The current builder.</returns>
+    /// <returns><see cref="EmbedBuilder"/></returns>
     public EmbedBuilder WithThumbnailUrl(string? thumbnailUrl)
     {
         ThumbnailUrl = thumbnailUrl;
@@ -195,8 +191,7 @@ public class EmbedBuilder
     /// <summary>
     /// Sets the image URL of the embed.
     /// </summary>
-    /// <param name="imageUrl">The image URL to set.</param>
-    /// <returns>The current builder.</returns>
+    /// <returns><see cref="EmbedBuilder"/></returns>
     public EmbedBuilder WithImageUrl(string? imageUrl)
     {
         ImageUrl = imageUrl;
@@ -206,8 +201,7 @@ public class EmbedBuilder
     /// <summary>
     /// Sets the color of the embed.
     /// </summary>
-    /// <param name="color">The color to set as an integer (RGB).</param>
-    /// <returns>The current builder.</returns>
+    /// <returns><see cref="EmbedBuilder"/></returns>
     public EmbedBuilder WithColor(int color)
     {
         Color = color;
@@ -217,10 +211,7 @@ public class EmbedBuilder
     /// <summary>
     /// Sets the color of the embed using RGB values.
     /// </summary>
-    /// <param name="r">Red component (0-255).</param>
-    /// <param name="g">Green component (0-255).</param>
-    /// <param name="b">Blue component (0-255).</param>
-    /// <returns>The current builder.</returns>
+    /// <returns><see cref="EmbedBuilder"/></returns>
     public EmbedBuilder WithColor(byte r, byte g, byte b)
     {
         Color = (r << 16) | (g << 8) | b;
@@ -230,8 +221,7 @@ public class EmbedBuilder
     /// <summary>
     /// Sets the timestamp of the embed.
     /// </summary>
-    /// <param name="timestamp">The timestamp to set.</param>
-    /// <returns>The current builder.</returns>
+    /// <returns><see cref="EmbedBuilder"/></returns>
     public EmbedBuilder WithTimestamp(DateTimeOffset timestamp)
     {
         Timestamp = timestamp;
@@ -251,8 +241,7 @@ public class EmbedBuilder
     /// <summary>
     /// Sets the author field of the embed.
     /// </summary>
-    /// <param name="author">The author builder to set.</param>
-    /// <returns>The current builder.</returns>
+    /// <returns><see cref="EmbedBuilder"/></returns>
     public EmbedBuilder WithAuthor(EmbedAuthorBuilder author)
     {
         Author = author;
@@ -262,10 +251,7 @@ public class EmbedBuilder
     /// <summary>
     /// Sets the author field of the embed.
     /// </summary>
-    /// <param name="name">The name of the author.</param>
-    /// <param name="iconUrl">The icon URL of the author.</param>
-    /// <param name="url">The URL of the author.</param>
-    /// <returns>The current builder.</returns>
+    /// <returns><see cref="EmbedBuilder"/></returns>
     public EmbedBuilder WithAuthor(string name, string? iconUrl = null, string? url = null)
     {
         EmbedAuthorBuilder author = new EmbedAuthorBuilder
@@ -281,8 +267,7 @@ public class EmbedBuilder
     /// <summary>
     /// Sets the author field of the embed using an action.
     /// </summary>
-    /// <param name="action">The action to configure the author builder.</param>
-    /// <returns>The current builder.</returns>
+    /// <returns><see cref="EmbedBuilder"/></returns>
     public EmbedBuilder WithAuthor(Action<EmbedAuthorBuilder> action)
     {
         EmbedAuthorBuilder author = new EmbedAuthorBuilder();
@@ -294,8 +279,7 @@ public class EmbedBuilder
     /// <summary>
     /// Sets the footer field of the embed.
     /// </summary>
-    /// <param name="footer">The footer builder to set.</param>
-    /// <returns>The current builder.</returns>
+    /// <returns><see cref="EmbedBuilder"/></returns>
     public EmbedBuilder WithFooter(EmbedFooterBuilder footer)
     {
         Footer = footer;
@@ -305,9 +289,7 @@ public class EmbedBuilder
     /// <summary>
     /// Sets the footer field of the embed.
     /// </summary>
-    /// <param name="text">The text of the footer.</param>
-    /// <param name="iconUrl">The icon URL of the footer.</param>
-    /// <returns>The current builder.</returns>
+    /// <returns><see cref="EmbedBuilder"/></returns>
     public EmbedBuilder WithFooter(string text, string? iconUrl = null)
     {
         EmbedFooterBuilder footer = new EmbedFooterBuilder
@@ -322,8 +304,7 @@ public class EmbedBuilder
     /// <summary>
     /// Sets the footer field of the embed using an action.
     /// </summary>
-    /// <param name="action">The action to configure the footer builder.</param>
-    /// <returns>The current builder.</returns>
+    /// <returns><see cref="EmbedBuilder"/></returns>
     public EmbedBuilder WithFooter(Action<EmbedFooterBuilder> action)
     {
         EmbedFooterBuilder footer = new EmbedFooterBuilder();
@@ -335,8 +316,7 @@ public class EmbedBuilder
     /// <summary>
     /// Adds a field to the embed.
     /// </summary>
-    /// <param name="field">The field builder to add.</param>
-    /// <returns>The current builder.</returns>
+    /// <returns><see cref="EmbedBuilder"/></returns>
     /// <exception cref="ArgumentException">Field count exceeds <see cref="MaxFieldCount"/>.</exception>
     public EmbedBuilder AddField(EmbedFieldBuilder field)
     {
@@ -350,10 +330,7 @@ public class EmbedBuilder
     /// <summary>
     /// Adds a field to the embed.
     /// </summary>
-    /// <param name="name">The name of the field.</param>
-    /// <param name="value">The value of the field.</param>
-    /// <param name="inline">Whether the field should be inline.</param>
-    /// <returns>The current builder.</returns>
+    /// <returns><see cref="EmbedBuilder"/></returns>
     /// <exception cref="ArgumentException">Field count exceeds <see cref="MaxFieldCount"/>.</exception>
     public EmbedBuilder AddField(string name, object value, bool inline = false)
     {
@@ -369,8 +346,7 @@ public class EmbedBuilder
     /// <summary>
     /// Adds a field to the embed using an action.
     /// </summary>
-    /// <param name="action">The action to configure the field builder.</param>
-    /// <returns>The current builder.</returns>
+    /// <returns><see cref="EmbedBuilder"/></returns>
     /// <exception cref="ArgumentException">Field count exceeds <see cref="MaxFieldCount"/>.</exception>
     public EmbedBuilder AddField(Action<EmbedFieldBuilder> action)
     {

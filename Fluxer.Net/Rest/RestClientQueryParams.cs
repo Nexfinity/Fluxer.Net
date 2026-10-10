@@ -10,9 +10,6 @@ public class RestClientQueryParams
     /// <summary>
     /// Add query param
     /// </summary>
-    /// <param name="key">Query param name (Ex.: Limit)</param>
-    /// <param name="value">Query param value (Ex. 10)</param>
-    /// <returns></returns>
     public RestClientQueryParams Add(string key, object? value)
     {
         if (value != null)
@@ -23,10 +20,6 @@ public class RestClientQueryParams
     /// <summary>
     /// Add query param
     /// </summary>
-    /// <param name="condition"></param>
-    /// <param name="key">Query param name (Ex.: Limit)</param>
-    /// <param name="value">Query param value (Ex. 10)</param>
-    /// <returns></returns>
     public RestClientQueryParams AddIf(bool condition, string key, object? value)
     {
         if (condition && value != null)
@@ -37,6 +30,5 @@ public class RestClientQueryParams
     /// <summary>
     /// Create dictionary of query params for Uri
     /// </summary>
-    /// <returns></returns>
     public Dictionary<string, string?> ToDictionary() => _params;
 }

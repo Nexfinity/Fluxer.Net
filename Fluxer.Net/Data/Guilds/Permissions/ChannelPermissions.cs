@@ -16,19 +16,20 @@ public class ChannelPermissions : IChannelPermissions
     /// </summary>
     public ChannelPermission RawValue { get; private set; }
 
-    /// <summary>
-    /// Edit overwrites for roles and members in this channel.
-    /// </summary>
-    public bool ManagePermissions => RawValue.HasFlag(ChannelPermission.ManagePermissions);
-
-    /// <inheritdoc />
-    public bool ManageChannels => RawValue.HasFlag(ChannelPermission.ManageChannel);
-
     /// <inheritdoc />
     public bool CreateInstantInvite => RawValue.HasFlag(ChannelPermission.CreateInstantInvite);
 
     /// <inheritdoc />
-    public bool ManageWebhooks => RawValue.HasFlag(ChannelPermission.ManageWebhooks);
+    public bool ManageChannel => RawValue.HasFlag(ChannelPermission.ManageChannel);
+
+    /// <inheritdoc />
+    public bool AddReactions => RawValue.HasFlag(ChannelPermission.AddReactions);
+
+    /// <inheritdoc />
+    public bool PrioritySpeaker => RawValue.HasFlag(ChannelPermission.PrioritySpeaker);
+
+    /// <inheritdoc />
+    public bool Stream => RawValue.HasFlag(ChannelPermission.Stream);
 
     /// <inheritdoc />
     public bool ViewChannel => RawValue.HasFlag(ChannelPermission.ViewChannel);
@@ -41,9 +42,6 @@ public class ChannelPermissions : IChannelPermissions
 
     /// <inheritdoc />
     public bool ManageMessages => RawValue.HasFlag(ChannelPermission.ManageMessages);
-
-    /// <inheritdoc />
-    public bool PinMessages => RawValue.HasFlag(ChannelPermission.PinMessages);
 
     /// <inheritdoc />
     public bool EmbedLinks => RawValue.HasFlag(ChannelPermission.EmbedLinks);
@@ -61,28 +59,10 @@ public class ChannelPermissions : IChannelPermissions
     public bool UseExternalEmojis => RawValue.HasFlag(ChannelPermission.UseExternalEmojis);
 
     /// <inheritdoc />
-    public bool UseExternalStickers => RawValue.HasFlag(ChannelPermission.UseExternalStickers);
-
-    /// <inheritdoc />
-    public bool AddReactions => RawValue.HasFlag(ChannelPermission.AddReactions);
-
-    /// <inheritdoc />
-    public bool BypassSlowmode => RawValue.HasFlag(ChannelPermission.BypassSlowmode);
-
-    /// <inheritdoc />
     public bool Connect => RawValue.HasFlag(ChannelPermission.Connect);
 
     /// <inheritdoc />
     public bool Speak => RawValue.HasFlag(ChannelPermission.Speak);
-
-    /// <inheritdoc />
-    public bool Stream => RawValue.HasFlag(ChannelPermission.Stream);
-
-    /// <inheritdoc />
-    public bool UseVad => RawValue.HasFlag(ChannelPermission.UseVad);
-
-    /// <inheritdoc />
-    public bool PrioritySpeaker => RawValue.HasFlag(ChannelPermission.PrioritySpeaker);
 
     /// <inheritdoc />
     public bool MuteMembers => RawValue.HasFlag(ChannelPermission.MuteMembers);
@@ -94,8 +74,42 @@ public class ChannelPermissions : IChannelPermissions
     public bool MoveMembers => RawValue.HasFlag(ChannelPermission.MoveMembers);
 
     /// <inheritdoc />
+    public bool UseVad => RawValue.HasFlag(ChannelPermission.UseVad);
+
+    /// <inheritdoc />
+    public bool ManagePermissions => RawValue.HasFlag(ChannelPermission.ManagePermissions);
+
+    /// <inheritdoc />
+    public bool ManageWebhooks => RawValue.HasFlag(ChannelPermission.ManageWebhooks);
+
+    /// <inheritdoc />
+    public bool ManageThreads => RawValue.HasFlag(ChannelPermission.ManageThreads);
+
+    /// <inheritdoc />
+    public bool CreatePublicThreads => RawValue.HasFlag(ChannelPermission.CreatePublicThreads);
+
+    /// <inheritdoc />
+    public bool CreatePrivateThreads => RawValue.HasFlag(ChannelPermission.CreatePrivateThreads);
+
+    /// <inheritdoc />
+    public bool UseExternalStickers => RawValue.HasFlag(ChannelPermission.UseExternalStickers);
+
+    /// <inheritdoc />
+    public bool SendMessagesInThreads => RawValue.HasFlag(ChannelPermission.SendMessagesInThreads);
+
+    /// <inheritdoc />
+    public bool PinMessages => RawValue.HasFlag(ChannelPermission.PinMessages);
+
+    /// <inheritdoc />
+    public bool BypassSlowmode => RawValue.HasFlag(ChannelPermission.BypassSlowmode);
+
+    /// <inheritdoc />
     public bool UpdateRtcRegion => RawValue.HasFlag(ChannelPermission.UpdateRtcRegion);
 
     /// <inheritdoc />
     public bool ViewChannelMembers => RawValue.HasFlag(ChannelPermission.ViewChannelMembers);
+
+    public bool ManageChannels => ManagePermissions;
+
+    public bool ViewChannels => ViewChannel;
 }

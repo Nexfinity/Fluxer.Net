@@ -17,9 +17,7 @@ public class GuildVanityUrl : Entity, IGuildVanityUrl
     /// <summary>
     /// Create a GuildVanityUrl object from json.
     /// </summary>
-    /// <param name="client"></param>
-    /// <param name="json"></param>
-    /// <returns></returns>
+    /// <returns><see cref="GuildVanityUrl"/></returns>
     public static GuildVanityUrl Create(FluxerBaseClient client, GuildVanityUrlJson json)
     {
         GuildVanityUrl data = new GuildVanityUrl(client);

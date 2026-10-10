@@ -94,9 +94,7 @@ public class GuildMember : Entity, IGuildMember
     /// <summary>
     /// Create a GuildMember object from json.
     /// </summary>
-    /// <param name="client"></param>
-    /// <param name="json"></param>
-    /// <returns></returns>
+    /// <returns><see cref="GuildMember"/></returns>
     public static GuildMember Create(FluxerBaseClient client, GuildMemberJson json)
     {
         GuildMember data = new GuildMember(client);

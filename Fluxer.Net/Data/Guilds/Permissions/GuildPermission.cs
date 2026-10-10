@@ -11,11 +11,6 @@ namespace Fluxer.Net;
 public enum GuildPermission : ulong
 {
     /// <summary>
-    /// No permissions granted.
-    /// </summary>
-    None = 0,
-
-    /// <summary>
     /// Allows creation of instant invites to the guild or channel.
     /// </summary>
     CreateInstantInvite = 1UL << 0,
@@ -110,10 +105,10 @@ public enum GuildPermission : ulong
     /// </summary>
     UseExternalEmojis = 1UL << 18,
 
-    /// <summary>
-    /// Allows viewing guild insights and analytics.
-    /// </summary>
-    ViewGuildInsights = 1UL << 19,
+    // <summary>
+    // Allows viewing guild insights and analytics.
+    // </summary>
+    //ViewGuildInsights = 1UL << 19,
 
     /// <summary>
     /// Allows joining voice channels.
@@ -170,20 +165,20 @@ public enum GuildPermission : ulong
     /// </summary>
     ManageExpressions = 1UL << 30,
 
-    /// <summary>
-    /// Allows using application commands (slash commands, context menu commands).
-    /// </summary>
-    UseApplicationCommands = 1UL << 31,
+    // <summary>
+    // Allows using application commands (slash commands, context menu commands).
+    // </summary>
+    //UseApplicationCommands = 1UL << 31,
 
-    /// <summary>
-    /// Allows requesting to speak in stage channels.
-    /// </summary>
-    RequestToSpeak = 1UL << 32,
+    // <summary>
+    // Allows requesting to speak in stage channels.
+    // </summary>
+    //RequestToSpeak = 1UL << 32,
 
-    /// <summary>
-    /// Allows managing guild events.
-    /// </summary>
-    ManageEvents = 1UL << 33,
+    // <summary>
+    // Allows managing guild events.
+    // </summary>
+    //ManageEvents = 1UL << 33,
 
     /// <summary>
     /// Allows management of threads (archiving, locking, deleting).
@@ -210,60 +205,60 @@ public enum GuildPermission : ulong
     /// </summary>
     SendMessagesInThreads = 1UL << 38,
 
-    /// <summary>
-    /// Allows using embedded activities (games, activities) in voice channels.
-    /// </summary>
-    UseEmbeddedActivities = 1UL << 39,
+    // <summary>
+    // Allows using embedded activities (games, activities) in voice channels.
+    // </summary>
+    //UseEmbeddedActivities = 1UL << 39,
 
     /// <summary>
     /// Allows timing out members (preventing them from sending messages/joining voice).
     /// </summary>
     ModerateMembers = 1UL << 40,
 
-    /// <summary>
-    /// Allows viewing monetization analytics for creators.
-    /// </summary>
-    ViewCreatorMonetizationAnalytics = 1UL << 41,
+    // <summary>
+    // Allows viewing monetization analytics for creators.
+    // </summary>
+    //ViewCreatorMonetizationAnalytics = 1UL << 41,
 
-    /// <summary>
-    /// Allows using the soundboard in voice channels.
-    /// </summary>
-    UseSoundboard = 1UL << 42,
+    // <summary>
+    // Allows using the soundboard in voice channels.
+    // </summary>
+    //UseSoundboard = 1UL << 42,
 
     /// <summary>
     /// Allows creating custom emojis, stickers, and soundboard sounds.
     /// </summary>
     CreateExpressions = 1UL << 43,
 
-    /// <summary>
-    /// Allows creating guild events.
-    /// </summary>
-    CreateEvents = 1UL << 44,
+    // <summary>
+    // Allows creating guild events.
+    // </summary>
+    //CreateEvents = 1UL << 44,
 
-    /// <summary>
-    /// Allows using soundboard sounds from other guilds.
-    /// </summary>
-    UseExternalSounds = 1UL << 45,
+    // <summary>
+    // Allows using soundboard sounds from other guilds.
+    // </summary>
+    //UseExternalSounds = 1UL << 45,
 
-    /// <summary>
-    /// Allows sending voice messages in text channels.
-    /// </summary>
-    SendVoiceMessages = 1UL << 46,
+    // <summary>
+    // Allows sending voice messages in text channels.
+    // </summary>
+    //SendVoiceMessages = 1UL << 46,
 
-    /// <summary>
-    /// Allows setting a custom status for voice channels.
-    /// </summary>
-    SetVoiceChannelStatus = 1UL << 48,
+    // <summary>
+    // Allows setting a custom status for voice channels.
+    // </summary>
+    //SetVoiceChannelStatus = 1UL << 48,
 
-    /// <summary>
-    /// Allows sending polls in text channels.
-    /// </summary>
-    SendPolls = 1UL << 49,
+    // <summary>
+    // Allows sending polls in text channels.
+    // </summary>
+    //SendPolls = 1UL << 49,
 
-    /// <summary>
-    /// Allows using external applications in channels.
-    /// </summary>
-    UseExternalApps = 1UL << 50,
+    // <summary>
+    // Allows using external applications in channels.
+    // </summary>
+    //UseExternalApps = 1UL << 50,
 
     /// <summary>
     /// Allows pinning messages in channels.

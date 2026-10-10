@@ -14,9 +14,7 @@ public class FluxerOAuthUser : User, IFluxerOAuthUser
     /// <summary>
     /// Create a FluxerOAuthUser object from json.
     /// </summary>
-    /// <param name="client"></param>
-    /// <param name="json"></param>
-    /// <returns></returns>
+    /// <returns><see cref="FluxerOAuthUser"/></returns>
     public static FluxerOAuthUser Create(FluxerBaseClient client, FluxerOAuthUserJson json)
     {
         FluxerOAuthUser data = new FluxerOAuthUser(client);

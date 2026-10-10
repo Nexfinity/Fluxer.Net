@@ -62,9 +62,7 @@ public class FavoriteMedia : Entity, IFavoriteMedia
     /// <summary>
     /// Create a FavoriteMedia object from json.
     /// </summary>
-    /// <param name="client"></param>
-    /// <param name="json"></param>
-    /// <returns></returns>
+    /// <returns><see cref="FavoriteMedia"/></returns>
     public static FavoriteMedia Create(FluxerBaseClient client, FavoriteMediaJson json)
     {
         FavoriteMedia data = new FavoriteMedia(client);

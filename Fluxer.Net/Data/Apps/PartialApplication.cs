@@ -35,9 +35,7 @@ public class PartialApplication : Entity, IPartialApplication
     /// <summary>
     /// Create a PartialApplication object from json.
     /// </summary>
-    /// <param name="client"></param>
-    /// <param name="json"></param>
-    /// <returns></returns>
+    /// <returns><see cref="PartialApplication"/></returns>
     public static PartialApplication Create(FluxerBaseClient client, PartialApplicationJson json)
     {
         PartialApplication data = new PartialApplication(client);

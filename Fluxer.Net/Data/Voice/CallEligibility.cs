@@ -19,9 +19,7 @@ public class CallEligibility : Entity, ICallEligibility
     /// <summary>
     /// Create a CallEligibility object from json.
     /// </summary>
-    /// <param name="client"></param>
-    /// <param name="json"></param>
-    /// <returns></returns>
+    /// <returns><see cref="CallEligibility"/></returns>
     public static CallEligibility Create(FluxerBaseClient client, CallEligibilityJson json)
     {
         CallEligibility data = new CallEligibility(client);

@@ -49,10 +49,7 @@ public class MessageSnapshot : Entity, IMessageSnapshot
     /// <summary>
     /// Create a MessageSnapshot object from json.
     /// </summary>
-    /// <param name="client"></param>
-    /// <param name="json"></param>
-    /// <param name="channelId"></param>
-    /// <returns></returns>
+    /// <returns><see cref="MessageSnapshot"/></returns>
     public static MessageSnapshot Create(FluxerBaseClient client, MessageSnapshotJson json, ulong channelId)
     {
         MessageSnapshot data = new MessageSnapshot(client)

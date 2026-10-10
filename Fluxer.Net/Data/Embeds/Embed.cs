@@ -72,9 +72,7 @@ public class Embed : IEmbed
     /// <summary>
     /// Create a Embed object from json.
     /// </summary>
-    /// <param name="client"></param>
-    /// <param name="json"></param>
-    /// <returns></returns>
+    /// <returns><see cref="Embed"/></returns>
     public static Embed Create(FluxerBaseClient client, EmbedJson json)
     {
         Embed data = new Embed(client);
@@ -123,9 +121,7 @@ public class EmbedField : IEmbedField
     /// <summary>
     /// Create a EmbedField object from json.
     /// </summary>
-    /// <param name="client"></param>
-    /// <param name="json"></param>
-    /// <returns></returns>
+    /// <returns><see cref="EmbedField"/></returns>
     public static EmbedField Create(FluxerBaseClient client, EmbedFieldJson json)
     {
         EmbedField data = new EmbedField(client);
@@ -162,9 +158,7 @@ public class EmbedAuthor : IEmbedAuthor
     /// <summary>
     /// Create a EmbedAuthor object from json.
     /// </summary>
-    /// <param name="client"></param>
-    /// <param name="json"></param>
-    /// <returns></returns>
+    /// <returns><see cref="EmbedAuthor"/> or <see langword="null" /></returns>
     public static EmbedAuthor? Create(FluxerBaseClient client, EmbedAuthorJson? json)
     {
         if (json == null)
@@ -202,9 +196,7 @@ public class EmbedFooter : IEmbedFooter
     /// <summary>
     /// Create a EmbedFooter object from json.
     /// </summary>
-    /// <param name="client"></param>
-    /// <param name="json"></param>
-    /// <returns></returns>
+    /// <returns><see cref="EmbedFooter"/></returns>
     public static EmbedFooter? Create(FluxerBaseClient client, EmbedFooterJson? json)
     {
         if (json == null)
@@ -262,9 +254,7 @@ public class EmbedMedia : IEmbedMedia
     /// <summary>
     /// Create a EmbedMedia object from json.
     /// </summary>
-    /// <param name="client"></param>
-    /// <param name="json"></param>
-    /// <returns></returns>
+    /// <returns><see cref="EmbedMedia"/></returns>
     public static EmbedMedia? Create(FluxerBaseClient client, EmbedMediaJson? json)
     {
         if (json == null)

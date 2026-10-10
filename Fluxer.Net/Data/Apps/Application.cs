@@ -19,9 +19,7 @@ public class Application : PartialApplication, IApplication
     /// <summary>
     /// Create a Application object from json.
     /// </summary>
-    /// <param name="client"></param>
-    /// <param name="json"></param>
-    /// <returns></returns>
+    /// <returns><see cref="Application"/></returns>
     public static Application Create(FluxerBaseClient client, ApplicationJson json)
     {
         Application data = new Application(client);

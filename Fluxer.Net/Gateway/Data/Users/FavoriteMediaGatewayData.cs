@@ -12,6 +12,9 @@ public class FavoriteMediaGatewayData : FavoriteMediaJson
 
 public class FavoriteMediaDeleteGatewayData
 {
+    /// <summary>
+    /// Deleted media ID.
+    /// </summary>
     [JsonProperty("meme_id")]
-    public new string Id { get; set; }
+    public string Id { get; set; }
 }

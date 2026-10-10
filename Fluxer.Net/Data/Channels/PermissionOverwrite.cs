@@ -23,9 +23,7 @@ public class PermissionOverwrite : Entity, IPermissionOverwrite
     /// <summary>
     /// Create a PermissionOverwrite object from json.
     /// </summary>
-    /// <param name="client"></param>
-    /// <param name="json"></param>
-    /// <returns></returns>
+    /// <returns><see cref="PermissionOverwrite"/></returns>
     public static PermissionOverwrite Create(FluxerBaseClient client, PermissionOverwriteJson json)
     {
         PermissionOverwrite data = new PermissionOverwrite(client);

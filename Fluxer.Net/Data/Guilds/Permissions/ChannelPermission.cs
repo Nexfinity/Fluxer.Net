@@ -11,11 +11,6 @@
 public enum ChannelPermission : ulong
 {
     /// <summary>
-    /// No permissions granted.
-    /// </summary>
-    None = 0,
-
-    /// <summary>
     /// Allows creation of instant invites to the guild or channel.
     /// </summary>
     CreateInstantInvite = 1UL << 0,
@@ -125,15 +120,15 @@ public enum ChannelPermission : ulong
     /// </summary>
     ManageWebhooks = 1UL << 29,
 
-    /// <summary>
-    /// Allows using application commands (slash commands, context menu commands).
-    /// </summary>
-    UseApplicationCommands = 1UL << 31,
+    // <summary>
+    // Allows using application commands (slash commands, context menu commands).
+    // </summary>
+    //UseApplicationCommands = 1UL << 31,
 
-    /// <summary>
-    /// Allows requesting to speak in stage channels.
-    /// </summary>
-    RequestToSpeak = 1UL << 32,
+    // <summary>
+    // Allows requesting to speak in stage channels.
+    // </summary>
+    //RequestToSpeak = 1UL << 32,
 
     /// <summary>
     /// Allows management of threads (archiving, locking, deleting).
@@ -160,40 +155,40 @@ public enum ChannelPermission : ulong
     /// </summary>
     SendMessagesInThreads = 1UL << 38,
 
-    /// <summary>
-    /// Allows using embedded activities (games, activities) in voice channels.
-    /// </summary>
-    UseEmbeddedActivities = 1UL << 39,
+    // <summary>
+    // Allows using embedded activities (games, activities) in voice channels.
+    // </summary>
+    //UseEmbeddedActivities = 1UL << 39,
 
-    /// <summary>
-    /// Allows using the soundboard in voice channels.
-    /// </summary>
-    UseSoundboard = 1UL << 42,
+    // <summary>
+    // Allows using the soundboard in voice channels.
+    // </summary>
+    //UseSoundboard = 1UL << 42,
 
-    /// <summary>
-    /// Allows using soundboard sounds from other guilds.
-    /// </summary>
-    UseExternalSounds = 1UL << 45,
+    // <summary>
+    // Allows using soundboard sounds from other guilds.
+    // </summary>
+    //UseExternalSounds = 1UL << 45,
 
-    /// <summary>
-    /// Allows sending voice messages in text channels.
-    /// </summary>
-    SendVoiceMessages = 1UL << 46,
+    // <summary>
+    // Allows sending voice messages in text channels.
+    // </summary>
+    //SendVoiceMessages = 1UL << 46,
 
-    /// <summary>
-    /// Allows setting a custom status for voice channels.
-    /// </summary>
-    SetVoiceChannelStatus = 1UL << 48,
+    // <summary>
+    // Allows setting a custom status for voice channels.
+    // </summary>
+    //SetVoiceChannelStatus = 1UL << 48,
 
-    /// <summary>
-    /// Allows sending polls in text channels.
-    /// </summary>
-    SendPolls = 1UL << 49,
+    // <summary>
+    // Allows sending polls in text channels.
+    // </summary>
+    //SendPolls = 1UL << 49,
 
-    /// <summary>
-    /// Allows using external applications in channels.
-    /// </summary>
-    UseExternalApps = 1UL << 50,
+    // <summary>
+    // Allows using external applications in channels.
+    // </summary>
+    //UseExternalApps = 1UL << 50,
 
     /// <summary>
     /// Allows pinning messages in channels.

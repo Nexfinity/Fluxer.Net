@@ -1,6 +1,4 @@
-﻿using Fluxer.Net.Data.Channels;
-
-namespace Fluxer.Net;
+﻿namespace Fluxer.Net;
 
 public class SocketChannel : Channel
 {
@@ -12,10 +10,7 @@ public class SocketChannel : Channel
     /// <summary>
     /// Create a SocketChannel object from json.
     /// </summary>
-    /// <param name="client"></param>
-    /// <param name="json"></param>
-    /// <param name="guild"></param>
-    /// <returns></returns>
+    /// <returns><see cref="Channel"/></returns>
     public static Channel Create(FluxerBaseClient client, ChannelJson json, SocketGuild? guild)
     {
         Channel data = null;

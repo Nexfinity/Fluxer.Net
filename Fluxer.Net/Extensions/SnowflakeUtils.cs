@@ -8,7 +8,6 @@ public static class SnowflakeUtils
     /// <summary>
     /// Resolves the time of which the snowflake is generated.
     /// </summary>
-    /// <param name="value">The snowflake identifier to resolve.</param>
     /// <returns>
     /// A <see cref="DateTimeOffset" /> representing the time for when the object is generated.
     /// </returns>
@@ -18,7 +17,6 @@ public static class SnowflakeUtils
     /// <summary>
     /// Generates a pseudo-snowflake identifier with a <see cref="DateTimeOffset"/>.
     /// </summary>
-    /// <param name="value">The time to be used in the new snowflake.</param>
     /// <returns>
     /// A <see cref="UInt64" /> representing the newly generated snowflake identifier.
     /// </returns>

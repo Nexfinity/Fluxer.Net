@@ -92,7 +92,7 @@ public static class MessageHelpers
     /// Forward a message to another channel.
     /// </summary>
     /// <remarks>
-    /// Requires <see cref="ChannelPermissions.ViewChannel"/> and <see cref="ChannelPermissions.SendMessages"/> in a guild channel.
+    /// Requires <see cref="ChannelPermissions.ViewChannels"/> and <see cref="ChannelPermissions.SendMessages"/> in a guild channel.
     /// </remarks>
     public static Task<Message> ForwardAsync(this Message message, Channel channel, MessageFlag flags = MessageFlag.None, string? nonce = null)
         => message.Client.Rest.SendMessageAsync(channel.Id, null, null, new MessageReferenceRequest
@@ -110,7 +110,7 @@ public static class MessageHelpers
     /// Hide embeds on a message.
     /// </summary>
     /// <remarks>
-    /// Requires <see cref="ChannelPermissions.ViewChannel"/> and <see cref="ChannelPermissions.ReadMessageHistory"/> in a guild channel.
+    /// Requires <see cref="ChannelPermissions.ViewChannels"/> and <see cref="ChannelPermissions.ReadMessageHistory"/> in a guild channel.
     /// </remarks>
     public static Task<Message> SuppressEmbedsAsync(this Message message)
         => message.Client.Rest.EditMessageAsync(message.ChannelId, message.Id, flags: message.Flags | MessageFlag.SuppressEmbeds);

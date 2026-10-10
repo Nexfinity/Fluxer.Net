@@ -43,8 +43,7 @@ public class EmbedAuthorBuilder
     /// <summary>
     /// Sets the name of the author.
     /// </summary>
-    /// <param name="name">The name to set.</param>
-    /// <returns>The current builder.</returns>
+    /// <returns><see cref="EmbedAuthorBuilder"/></returns>
     public EmbedAuthorBuilder WithName(string name)
     {
         Name = name;
@@ -54,8 +53,7 @@ public class EmbedAuthorBuilder
     /// <summary>
     /// Sets the URL of the author.
     /// </summary>
-    /// <param name="url">The URL to set.</param>
-    /// <returns>The current builder.</returns>
+    /// <returns><see cref="EmbedAuthorBuilder"/></returns>
     public EmbedAuthorBuilder WithUrl(string url)
     {
         Url = url;
@@ -65,8 +63,7 @@ public class EmbedAuthorBuilder
     /// <summary>
     /// Sets the icon URL of the author.
     /// </summary>
-    /// <param name="iconUrl">The icon URL to set.</param>
-    /// <returns>The current builder.</returns>
+    /// <returns><see cref="EmbedAuthorBuilder"/></returns>
     public EmbedAuthorBuilder WithIconUrl(string iconUrl)
     {
         IconUrl = iconUrl;

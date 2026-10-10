@@ -20,9 +20,7 @@ public class ClientStatus : Entity, IClientStatus
     /// <summary>
     /// Create a ClientStatus object from json.
     /// </summary>
-    /// <param name="client"></param>
-    /// <param name="json"></param>
-    /// <returns></returns>
+    /// <returns><see cref="ClientStatus"/></returns>
     public static ClientStatus? Create(FluxerBaseClient client, ClientStatusJson? json)
     {
         if (json == null)

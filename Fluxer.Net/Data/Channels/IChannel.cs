@@ -30,7 +30,7 @@ public interface IChannel : IPartialChannel
     /// <summary>
     /// The position of the channel relative to other channels.
     /// </summary>
-    int Position { get; }
+    int? Position { get; }
 
     /// <summary>
     /// The ID of the owner of the channel. (for group DMs)

@@ -29,9 +29,7 @@ public class UserConnection : Entity, IUserConnection
     /// <summary>
     /// Create a UserConnection object from json.
     /// </summary>
-    /// <param name="client"></param>
-    /// <param name="json"></param>
-    /// <returns></returns>
+    /// <returns><see cref="UserConnection"/></returns>
     public static UserConnection Create(FluxerBaseClient client, UserConnectionJson json)
     {
         UserConnection data = new UserConnection(client);
