@@ -10,7 +10,7 @@ public class SocketMessage : Message
 
     public new SocketUser Author { get; private set; }
 
-    public SocketGuildMember Member { get; private set; }
+    public SocketGuildMember? Member { get; private set; }
 
     internal SocketMessage(FluxerBaseClient client) : base(client)
     {
@@ -32,7 +32,7 @@ public class SocketMessage : Message
         {
             data.Guild = (client as FluxerClient).Gateway.GetGuild(json.GuildId.Value);
             data.Member = data.Guild.Members.GetValueOrDefault(json.Author.Id);
-            if (data.Member == null)
+            if (data.Member == null && json.Member != null)
             {
                 json.Member.User = json.Author;
                 data.Member = SocketGuildMember.Create(client, json.Member);
