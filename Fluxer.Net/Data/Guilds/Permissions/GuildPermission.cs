@@ -138,7 +138,7 @@ public enum GuildPermission : ulong
     /// <summary>
     /// Allows using voice activity detection (no push-to-talk required).
     /// </summary>
-    UseVad = 1UL << 25,
+    UseVAD = 1UL << 25,
 
     /// <summary>
     /// Allows changing own nickname.
@@ -273,7 +273,7 @@ public enum GuildPermission : ulong
     /// <summary>
     /// Allows updating the RTC (voice) region for a channel.
     /// </summary>
-    UpdateRtcRegion = 1UL << 53,
+    UpdateRTCRegion = 1UL << 53,
 
     /// <summary>
     /// Allows you to view members in the channel.
