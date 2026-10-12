@@ -650,7 +650,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// Update the voice region for a voice channel.
     /// </summary>
     /// <remarks>
-    /// Requires <see cref="ChannelPermissions.ViewChannel"/> and <see cref="ChannelPermissions.UpdateRtcRegion"/> in a guild channel.
+    /// Requires <see cref="ChannelPermissions.ViewChannel"/> and <see cref="ChannelPermissions.UpdateRTCRegion"/> in a guild channel.
     /// </remarks>
     public async Task UpdateVoiceRegionAsync(ulong channelId, string? region)
         => await SendRequestAsync(HttpMethod.Patch, $"/channels/{channelId}/call", new UpdateVoiceRegionRequest

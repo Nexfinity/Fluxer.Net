@@ -1,6 +1,6 @@
 ﻿namespace Fluxer.Net;
 
-public class ChannelPermissions : IChannelPermissions
+public class ChannelPermissions
 {
     public ChannelPermissions(GuildPermission perms)
     {
@@ -11,105 +11,102 @@ public class ChannelPermissions : IChannelPermissions
     {
         RawValue = perms;
     }
+
     /// <summary>
     /// Raw permissions flag for the guild.
     /// </summary>
     public ChannelPermission RawValue { get; private set; }
 
-    /// <inheritdoc />
+    /// <inheritdoc cref="ChannelPermission.CreateInstantInvite" />
     public bool CreateInstantInvite => RawValue.HasFlag(ChannelPermission.CreateInstantInvite);
 
-    /// <inheritdoc />
+    /// <inheritdoc cref="ChannelPermission.ManageChannel" />
     public bool ManageChannel => RawValue.HasFlag(ChannelPermission.ManageChannel);
 
-    /// <inheritdoc />
+    /// <inheritdoc cref="ChannelPermission.AddReactions" />
     public bool AddReactions => RawValue.HasFlag(ChannelPermission.AddReactions);
 
-    /// <inheritdoc />
+    /// <inheritdoc cref="ChannelPermission.PrioritySpeaker" />
     public bool PrioritySpeaker => RawValue.HasFlag(ChannelPermission.PrioritySpeaker);
 
-    /// <inheritdoc />
+    /// <inheritdoc cref="ChannelPermission.Stream" />
     public bool Stream => RawValue.HasFlag(ChannelPermission.Stream);
 
-    /// <inheritdoc />
+    /// <inheritdoc cref="ChannelPermission.ViewChannel" />
     public bool ViewChannel => RawValue.HasFlag(ChannelPermission.ViewChannel);
 
-    /// <inheritdoc />
+    /// <inheritdoc cref="ChannelPermission.SendMessages" />
     public bool SendMessages => RawValue.HasFlag(ChannelPermission.SendMessages);
 
-    /// <inheritdoc />
+    /// <inheritdoc cref="ChannelPermission.SendTTSMessages" />
     public bool SendTTSMessages => RawValue.HasFlag(ChannelPermission.SendTTSMessages);
 
-    /// <inheritdoc />
+    /// <inheritdoc cref="ChannelPermission.ManageMessages" />
     public bool ManageMessages => RawValue.HasFlag(ChannelPermission.ManageMessages);
 
-    /// <inheritdoc />
+    /// <inheritdoc cref="ChannelPermission.EmbedLinks" />
     public bool EmbedLinks => RawValue.HasFlag(ChannelPermission.EmbedLinks);
 
-    /// <inheritdoc />
+    /// <inheritdoc cref="ChannelPermission.AttachFiles" />
     public bool AttachFiles => RawValue.HasFlag(ChannelPermission.AttachFiles);
 
-    /// <inheritdoc />
+    /// <inheritdoc cref="ChannelPermission.ReadMessageHistory" />
     public bool ReadMessageHistory => RawValue.HasFlag(ChannelPermission.ReadMessageHistory);
 
-    /// <inheritdoc />
+    /// <inheritdoc cref="ChannelPermission.MentionEveryone" />
     public bool MentionEveryone => RawValue.HasFlag(ChannelPermission.MentionEveryone);
 
-    /// <inheritdoc />
+    /// <inheritdoc cref="ChannelPermission.UseExternalEmojis" />
     public bool UseExternalEmojis => RawValue.HasFlag(ChannelPermission.UseExternalEmojis);
 
-    /// <inheritdoc />
+    /// <inheritdoc cref="ChannelPermission.Connect" />
     public bool Connect => RawValue.HasFlag(ChannelPermission.Connect);
 
-    /// <inheritdoc />
+    /// <inheritdoc cref="ChannelPermission.Speak" />
     public bool Speak => RawValue.HasFlag(ChannelPermission.Speak);
 
-    /// <inheritdoc />
+    /// <inheritdoc cref="ChannelPermission.MuteMembers" />
     public bool MuteMembers => RawValue.HasFlag(ChannelPermission.MuteMembers);
 
-    /// <inheritdoc />
+    /// <inheritdoc cref="ChannelPermission.DeafenMembers" />
     public bool DeafenMembers => RawValue.HasFlag(ChannelPermission.DeafenMembers);
 
-    /// <inheritdoc />
+    /// <inheritdoc cref="ChannelPermission.MoveMembers" />
     public bool MoveMembers => RawValue.HasFlag(ChannelPermission.MoveMembers);
 
-    /// <inheritdoc />
-    public bool UseVad => RawValue.HasFlag(ChannelPermission.UseVad);
+    /// <inheritdoc cref="ChannelPermission.UseVAD" />
+    public bool UseVAD => RawValue.HasFlag(ChannelPermission.UseVAD);
 
-    /// <inheritdoc />
+    /// <inheritdoc cref="ChannelPermission.ManagePermissions" />
     public bool ManagePermissions => RawValue.HasFlag(ChannelPermission.ManagePermissions);
 
-    /// <inheritdoc />
+    /// <inheritdoc cref="ChannelPermission.ManageWebhooks" />
     public bool ManageWebhooks => RawValue.HasFlag(ChannelPermission.ManageWebhooks);
 
-    /// <inheritdoc />
+    /// <inheritdoc cref="ChannelPermission.ManageThreads" />
     public bool ManageThreads => RawValue.HasFlag(ChannelPermission.ManageThreads);
 
-    /// <inheritdoc />
+    /// <inheritdoc cref="ChannelPermission.CreatePublicThreads" />
     public bool CreatePublicThreads => RawValue.HasFlag(ChannelPermission.CreatePublicThreads);
 
-    /// <inheritdoc />
+    /// <inheritdoc cref="ChannelPermission.CreatePrivateThreads" />
     public bool CreatePrivateThreads => RawValue.HasFlag(ChannelPermission.CreatePrivateThreads);
 
-    /// <inheritdoc />
+    /// <inheritdoc cref="ChannelPermission.UseExternalStickers" />
     public bool UseExternalStickers => RawValue.HasFlag(ChannelPermission.UseExternalStickers);
 
-    /// <inheritdoc />
+    /// <inheritdoc cref="ChannelPermission.SendMessagesInThreads" />
     public bool SendMessagesInThreads => RawValue.HasFlag(ChannelPermission.SendMessagesInThreads);
 
-    /// <inheritdoc />
+    /// <inheritdoc cref="ChannelPermission.PinMessages" />
     public bool PinMessages => RawValue.HasFlag(ChannelPermission.PinMessages);
 
-    /// <inheritdoc />
+    /// <inheritdoc cref="ChannelPermission.BypassSlowmode" />
     public bool BypassSlowmode => RawValue.HasFlag(ChannelPermission.BypassSlowmode);
 
-    /// <inheritdoc />
-    public bool UpdateRtcRegion => RawValue.HasFlag(ChannelPermission.UpdateRtcRegion);
+    /// <inheritdoc cref="ChannelPermission.UpdateRTCRegion" />
+    public bool UpdateRTCRegion => RawValue.HasFlag(ChannelPermission.UpdateRTCRegion);
 
-    /// <inheritdoc />
+    /// <inheritdoc cref="ChannelPermission.ViewChannelMembers" />
     public bool ViewChannelMembers => RawValue.HasFlag(ChannelPermission.ViewChannelMembers);
-
-    public bool ManageChannels => ManagePermissions;
-
-    public bool ViewChannels => ViewChannel;
 }
