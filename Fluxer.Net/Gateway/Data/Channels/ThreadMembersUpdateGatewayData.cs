@@ -2,7 +2,7 @@
 
 namespace Fluxer.Net.Gateway;
 
-public class ThreadMembersUpdateGatewayData
+internal class ThreadMembersUpdateGatewayData
 {
     [JsonProperty("id")]
     public ulong ThreadId { get; set; }

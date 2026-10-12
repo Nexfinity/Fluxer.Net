@@ -2,11 +2,7 @@
 
 namespace Fluxer.Net.Gateway;
 
-/// <summary>
-/// Gateway data for updating the current user's voice state.
-/// Sent as part of VOICE_STATE_UPDATE opcode (4).
-/// </summary>
-public class VoiceStateUpdatePayload
+internal class VoiceStateUpdatePayload
 {
     [JsonProperty("guild_id")]
     public string GuildId { get; set; }

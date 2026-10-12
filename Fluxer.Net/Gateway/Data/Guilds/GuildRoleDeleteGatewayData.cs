@@ -2,10 +2,7 @@ using Newtonsoft.Json;
 
 namespace Fluxer.Net.Gateway;
 
-/// <summary>
-/// Gateway data for GUILD_ROLE_DELETE event
-/// </summary>
-public class GuildRoleDeleteGatewayData
+internal class GuildRoleDeleteGatewayData
 {
     [JsonProperty("guild_id")]
     public ulong GuildId { get; set; }

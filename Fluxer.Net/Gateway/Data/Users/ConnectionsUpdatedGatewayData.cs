@@ -2,7 +2,7 @@
 
 namespace Fluxer.Net.Gateway;
 
-public class ConnectionsUpdatedGatewayData
+internal class ConnectionsUpdatedGatewayData
 {
     [JsonProperty("connections")]
     public UserConnectionJson[] Connections { get; set; }

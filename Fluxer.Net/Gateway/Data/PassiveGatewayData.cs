@@ -2,7 +2,7 @@
 
 namespace Fluxer.Net.Gateway;
 
-public class PassiveGatewayData
+internal class PassiveGatewayData
 {
     [JsonProperty("guild_id")]
     public ulong GuildId { get; set; }

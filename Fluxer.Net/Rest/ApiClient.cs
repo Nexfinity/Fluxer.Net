@@ -297,7 +297,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// Modify a channel.
     /// </summary>
     /// <remarks>
-    /// Requires <see cref="ChannelPermissions.ManageChannels"/> for guild channels.
+    /// Requires <see cref="ChannelPermissions.ManageChannel"/> for guild channels.
     /// </remarks>
     /// <returns><see cref="Channel"/></returns>
     public async Task<Channel> UpdateChannelAsync(ulong channelId, ChannelJson channel)
@@ -310,7 +310,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// Delete a channel.
     /// </summary>
     /// <remarks>
-    /// Requires <see cref="ChannelPermissions.ManageChannels"/> for guild channels.
+    /// Requires <see cref="ChannelPermissions.ManageChannel"/> for guild channels.
     /// </remarks>
     public async Task DeleteChannelAsync(ulong channelId)
         => await SendRequestRawAsync(HttpMethod.Delete, $"/channels/{channelId}", true);
@@ -347,9 +347,12 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// Requires <see cref="ChannelPermissions.ViewChannel"/> and <see cref="ChannelPermissions.ReadMessageHistory"/> for guild channels.
     /// </remarks>
     /// <returns><see cref="Message"/></returns>
-    public async Task<Message> GetMessageAsync(ulong channelId, ulong messageId)
+    public async Task<Message?> GetMessageAsync(ulong channelId, ulong messageId)
     {
-        MessageJson json = await SendRequestAsync<MessageJson>(HttpMethod.Get, $"/channels/{channelId}/messages/{messageId}", true);
+        MessageJson? json = await SendRequestAsync<MessageJson>(HttpMethod.Get, $"/channels/{channelId}/messages/{messageId}", false);
+        if (json == null)
+            return null;
+
         return Message.Create(_client, json);
     }
 
@@ -683,7 +686,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// Get invites for a guild channel.
     /// </summary>
     /// <remarks>
-    /// Requires <see cref="ChannelPermissions.ViewChannel"/> and <see cref="ChannelPermissions.ManageChannels"/>.
+    /// Requires <see cref="ChannelPermissions.ViewChannel"/> and <see cref="ChannelPermissions.ManageChannel"/>.
     /// </remarks>
     /// <returns>List of <see cref="Invite"/></returns>
     public async Task<IEnumerable<Invite>> GetChannelInvitesAsync(ulong channelId)
@@ -856,7 +859,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// Create a forum tag.
     /// </summary>
     /// <remarks>
-    /// Requires <see cref="ChannelPermissions.ManageChannels"/>.
+    /// Requires <see cref="ChannelPermissions.ManageChannel"/>.
     /// </remarks>
     /// <returns><see cref="ForumChannel"/></returns>
     public async Task<ForumChannel> CreateForumTagAsync(ulong channelId, CreateForumTagRequest req)
@@ -870,7 +873,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// Update a forum tag.
     /// </summary>
     /// <remarks>
-    /// Requires <see cref="ChannelPermissions.ManageChannels"/>.
+    /// Requires <see cref="ChannelPermissions.ManageChannel"/>.
     /// </remarks>
     /// <returns><see cref="ForumChannel"/></returns>
     public async Task<ForumChannel> UpdateForumTagAsync(ulong channelId, ulong tagId, CreateForumTagRequest req)
@@ -883,7 +886,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// Delete a forum tag.
     /// </summary>
     /// <remarks>
-    /// Requires <see cref="ChannelPermissions.ManageChannels"/>.
+    /// Requires <see cref="ChannelPermissions.ManageChannel"/>.
     /// </remarks>
     /// <returns><see cref="ForumChannel"/></returns>
     public async Task<ForumChannel> DeleteForumTagAsync(ulong channelId, ulong tagId)
@@ -980,7 +983,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// Delete an invite.
     /// </summary>
     /// <remarks>
-    /// Requires <see cref="ChannelPermissions.ViewChannel"/> and <see cref="ChannelPermissions.ManageChannels"/>.
+    /// Requires <see cref="ChannelPermissions.ViewChannel"/> and <see cref="ChannelPermissions.ManageChannel"/>.
     /// </remarks>
     public async Task DeleteInviteAsync(string inviteCode)
         => await SendRequestRawAsync(HttpMethod.Delete, $"/invites/{inviteCode}", true);
@@ -1476,7 +1479,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// Get all invites for the guild.
     /// </summary>
     /// <remarks>
-    /// Requires <see cref="ChannelPermissions.ManageChannels"/>.
+    /// Requires <see cref="ChannelPermissions.ManageChannel"/>.
     /// </remarks>
     /// <returns>List of <see cref="Invite"/></returns>
     public async Task<IEnumerable<Invite>> GetGuildInvitesAsync(ulong guildId)

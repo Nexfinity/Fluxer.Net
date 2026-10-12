@@ -2,7 +2,7 @@ using Newtonsoft.Json;
 
 namespace Fluxer.Net.Gateway;
 
-public class IdentifyGatewayData
+internal class IdentifyGatewayData
 {
     [JsonProperty("token")]
     public string Token { get; set; }

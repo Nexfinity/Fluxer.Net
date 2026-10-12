@@ -4,7 +4,7 @@ using System.Reflection;
 namespace Fluxer.Net;
 
 
-internal class OptionalDeserializerConverter : JsonConverter
+public class OptionalDeserializerConverter : JsonConverter
 {
     public override bool CanConvert(Type objectType)
     {

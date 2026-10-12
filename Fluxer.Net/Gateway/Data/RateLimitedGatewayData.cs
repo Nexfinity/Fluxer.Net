@@ -13,6 +13,7 @@ public class RateLimitedGatewayData
     [JsonProperty("meta")]
     public RateLimitedMetaGatewayData Meta { get; set; }
 }
+
 public class RateLimitedMetaGatewayData
 {
     [JsonProperty("guild_id")]

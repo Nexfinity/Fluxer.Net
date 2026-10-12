@@ -2,7 +2,7 @@
 
 namespace Fluxer.Net.Gateway;
 
-public class GuildMembersChunkGatewayData
+internal class GuildMembersChunkGatewayData
 {
     [JsonProperty("chunk_count")]
     public int ChunkCount { get; set; }

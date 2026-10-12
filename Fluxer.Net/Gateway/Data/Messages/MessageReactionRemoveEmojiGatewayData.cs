@@ -2,7 +2,7 @@ using Newtonsoft.Json;
 
 namespace Fluxer.Net.Gateway;
 
-public class MessageReactionRemoveEmojiGatewayData
+internal class MessageReactionRemoveEmojiGatewayData
 {
     [JsonProperty("channel_id")]
     public ulong ChannelId { get; set; }

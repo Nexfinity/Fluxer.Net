@@ -21,7 +21,7 @@ public class SocketMessage : Message
     /// Create a SocketMessage object from json.
     /// </summary>
     /// <returns><see cref="SocketMessage"/></returns>
-    public static SocketMessage Create(FluxerBaseClient client, MessageGatewayData json)
+    internal static SocketMessage Create(FluxerBaseClient client, MessageGatewayData json)
     {
         SocketMessage data = new SocketMessage(client)
         {

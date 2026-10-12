@@ -78,7 +78,7 @@ public class SocketGuild : Guild
     /// Create a SocketGuild object from json.
     /// </summary>
     /// <returns><see cref="SocketGuild"/></returns>
-    public static SocketGuild Create(FluxerBaseClient client, GuildGatewayData json, SocketGuildMember currentMember)
+    internal static SocketGuild Create(FluxerBaseClient client, GuildGatewayData json, SocketGuildMember currentMember)
     {
         SocketGuild data = new SocketGuild(client)
         {

@@ -2,7 +2,7 @@ using Newtonsoft.Json;
 
 namespace Fluxer.Net.Gateway;
 
-public class ReconnectGatewayData
+internal class ReconnectGatewayData
 {
     [JsonProperty("token")]
     public string Token { get; set; }
@@ -12,5 +12,4 @@ public class ReconnectGatewayData
 
     [JsonProperty("seq")]
     public int Sequence { get; set; }
-
 }

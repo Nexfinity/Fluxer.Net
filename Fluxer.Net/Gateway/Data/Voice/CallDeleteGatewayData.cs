@@ -2,14 +2,11 @@
 
 namespace Fluxer.Net.Gateway;
 
-/// <summary>
-/// Gateway data for CALL_CREATE  event.
-/// </summary>
-public class CallDeleteGatewayData
+internal class CallDeleteGatewayData
 {
     [JsonProperty("channel_id")]
     public ulong ChannelId { get; set; }
 
     [JsonProperty("unavailable")]
-    public bool? Unavailable { get; set; }
+    public bool? IsUnavailable { get; set; }
 }

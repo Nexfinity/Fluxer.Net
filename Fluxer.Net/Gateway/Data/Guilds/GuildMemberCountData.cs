@@ -13,6 +13,7 @@ public class GuildMemberCountGatewayData
     [JsonProperty("online_count")]
     public int OnlineCount { get; set; }
 }
+
 public class GuildChannelMemberCountGatewayData : GuildMemberCountGatewayData
 {
     [JsonProperty("channel_id")]

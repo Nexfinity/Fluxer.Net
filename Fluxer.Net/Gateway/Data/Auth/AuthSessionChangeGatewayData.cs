@@ -2,9 +2,6 @@ using Newtonsoft.Json;
 
 namespace Fluxer.Net.Gateway;
 
-/// <summary>
-/// Gateway data for AUTH_SESSION_CHANGE event when an auth session changes.
-/// </summary>
 public class AuthSessionChangeGatewayData
 {
     [JsonProperty("old_auth_session_id_hash")]
