@@ -1,4 +1,4 @@
-namespace Fluxer.Net.Extensions;
+namespace Fluxer.Net.Rest;
 
 [System.Serializable]
 public class FluxerApiException : System.Exception
