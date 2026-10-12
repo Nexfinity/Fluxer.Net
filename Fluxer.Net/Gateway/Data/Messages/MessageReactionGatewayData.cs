@@ -2,7 +2,7 @@ using Newtonsoft.Json;
 
 namespace Fluxer.Net.Gateway;
 
-public class MessageReactionGatewayData
+internal class MessageReactionGatewayData
 {
     [JsonProperty("user_id")]
     public ulong UserId { get; set; }
@@ -18,4 +18,7 @@ public class MessageReactionGatewayData
 
     [JsonProperty("emoji")]
     public EmojiJson Emoji { get; set; }
+
+    [JsonProperty("member")]
+    public GuildMemberJson? Member { get; set; }
 }

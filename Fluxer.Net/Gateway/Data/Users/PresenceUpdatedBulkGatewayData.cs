@@ -2,7 +2,7 @@
 
 namespace Fluxer.Net.Gateway;
 
-public class PresenceUpdatedBulkGatewayData
+internal class PresenceUpdatedBulkGatewayData
 {
     [JsonProperty("guild_id")]
     public ulong? GuildId { get; set; }

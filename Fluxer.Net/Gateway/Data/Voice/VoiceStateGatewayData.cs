@@ -1,6 +1,6 @@
 namespace Fluxer.Net.Gateway;
 
-public class VoiceStateGatewayData : VoiceStateJson
+internal class VoiceStateGatewayData : VoiceStateJson
 {
 
 }

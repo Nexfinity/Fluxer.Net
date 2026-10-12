@@ -2,10 +2,7 @@ using Newtonsoft.Json;
 
 namespace Fluxer.Net.Gateway;
 
-/// <summary>
-/// Gateway data for GUILD_ROLE_UPDATE_BULK event when multiple guild roles are updated.
-/// </summary>
-public class GuildRoleUpdateBulkGatewayData
+internal class GuildRoleUpdateBulkGatewayData
 {
     [JsonProperty("guild_id")]
     public ulong GuildId { get; set; }

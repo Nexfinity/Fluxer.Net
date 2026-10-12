@@ -2,7 +2,7 @@ using Newtonsoft.Json;
 
 namespace Fluxer.Net.Gateway;
 
-public class WebhooksUpdateGatewayData
+internal class WebhooksUpdateGatewayData
 {
     [JsonProperty("guild_id")]
     public ulong GuildId { get; set; }

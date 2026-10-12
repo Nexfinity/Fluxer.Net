@@ -2,10 +2,7 @@ using Newtonsoft.Json;
 
 namespace Fluxer.Net.Gateway;
 
-/// <summary>
-/// Gateway data for GUILD_ROLE_CREATE and GUILD_ROLE_UPDATE events
-/// </summary>
-public class GuildRoleGatewayData
+internal class GuildRoleGatewayData
 {
     [JsonProperty("guild_id")]
     public ulong GuildId { get; set; }

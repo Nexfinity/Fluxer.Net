@@ -2,10 +2,7 @@ using Newtonsoft.Json;
 
 namespace Fluxer.Net.Gateway;
 
-/// <summary>
-/// Gateway data for USER_NOTE_UPDATE event when a user note is updated.
-/// </summary>
-public class UserNoteUpdateGatewayData
+internal class UserNoteUpdateGatewayData
 {
     [JsonProperty("id")]
     public ulong UserId { get; set; }

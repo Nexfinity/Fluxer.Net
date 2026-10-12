@@ -2,7 +2,7 @@
 
 namespace Fluxer.Net.Gateway;
 
-public class MessageReactionsRemoveGatewayData
+internal class MessageReactionsRemoveGatewayData
 {
     [JsonProperty("message_id")]
     public ulong MessageId { get; set; }

@@ -1,3 +1,6 @@
 namespace Fluxer.Net.Gateway;
 
-public class RoleGatewayData : RoleJson { }
+internal class RoleGatewayData : RoleJson
+{
+
+}

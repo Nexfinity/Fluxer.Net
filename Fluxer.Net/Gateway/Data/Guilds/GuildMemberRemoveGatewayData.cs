@@ -2,7 +2,7 @@
 
 namespace Fluxer.Net.Gateway;
 
-public class GuildMemberRemoveGatewayData
+internal class GuildMemberRemoveGatewayData
 {
     [JsonProperty("guild_id")]
     public ulong GuildId { get; set; }
@@ -10,7 +10,8 @@ public class GuildMemberRemoveGatewayData
     [JsonProperty("user")]
     public GuildMemberUserRemoveGatewayData User { get; set; }
 }
-public class GuildMemberUserRemoveGatewayData
+
+internal class GuildMemberUserRemoveGatewayData
 {
     [JsonProperty("id")]
     public ulong Id { get; set; }

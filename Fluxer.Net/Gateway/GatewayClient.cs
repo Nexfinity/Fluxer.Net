@@ -719,7 +719,7 @@ public partial class FluxerGatewayClient : IDisposable
                 {
                     ConnectionsUpdatedGatewayData? data = p.Data.ToObject<ConnectionsUpdatedGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
-                        ConnectionsUpdated?.Invoke(data);
+                        ConnectionsUpdated?.Invoke(data.Connections.Select(x => UserConnection.Create(_client, x)).ToArray());
                     else
                         _logger.Warning("USER_CONNECTIONS_UPDATE event received but data could not be cast to ConnectionsUpdatedGatewayData");
                 }
@@ -739,7 +739,7 @@ public partial class FluxerGatewayClient : IDisposable
                 {
                     RelationshipGatewayData? data = p.Data.ToObject<RelationshipGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
-                        RelationshipAdded?.Invoke(data);
+                        RelationshipAdded?.Invoke(SocketRelationship.Create(_client, data, SocketUser.Create(_client, data.User)));
                     else
                         _logger.Warning("RELATIONSHIP_ADD event received but data could not be cast to RelationshipGatewayData");
                 }
@@ -748,7 +748,7 @@ public partial class FluxerGatewayClient : IDisposable
                 {
                     RelationshipGatewayData? data = p.Data.ToObject<RelationshipGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
-                        RelationshipUpdated?.Invoke(data);
+                        RelationshipUpdated?.Invoke(SocketRelationship.Create(_client, data, SocketUser.Create(_client, data.User)));
                     else
                         _logger.Warning("RELATIONSHIP_UPDATE event received but data could not be cast to RelationshipGatewayData");
                 }
@@ -757,7 +757,7 @@ public partial class FluxerGatewayClient : IDisposable
                 {
                     RelationshipRemoveGatewayData? data = p.Data.ToObject<RelationshipRemoveGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
-                        RelationshipRemoved?.Invoke(data);
+                        RelationshipRemoved?.Invoke(data.Id);
                     else
                         _logger.Warning("RELATIONSHIP_REMOVE event received but data could not be cast to RelationshipGatewayData");
                 }
@@ -788,7 +788,7 @@ public partial class FluxerGatewayClient : IDisposable
                 {
                     RecentMentionDeleteGatewayData? data = p.Data.ToObject<RecentMentionDeleteGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
-                        RecentMentionDeleted?.Invoke(data);
+                        RecentMentionDeleted?.Invoke(data.MessageId);
                     else
                         _logger.Warning("RECENT_MENTION_DELETE event received but data could not be cast to RecentMentionDeleteGatewayData");
                 }
@@ -799,7 +799,7 @@ public partial class FluxerGatewayClient : IDisposable
                 {
                     FavoriteMediaGatewayData? data = p.Data.ToObject<FavoriteMediaGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
-                        FavoriteMediaCreated?.Invoke(data);
+                        FavoriteMediaCreated?.Invoke(FavoriteMedia.Create(_client, data));
                     else
                         _logger.Warning("FAVORITE_MEME_CREATE event received but data could not be cast to FavoriteMemeGatewayData");
                 }
@@ -808,7 +808,7 @@ public partial class FluxerGatewayClient : IDisposable
                 {
                     FavoriteMediaGatewayData? data = p.Data.ToObject<FavoriteMediaGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
-                        FavoriteMediaUpdated?.Invoke(data);
+                        FavoriteMediaUpdated?.Invoke(FavoriteMedia.Create(_client, data));
                     else
                         _logger.Warning("FAVORITE_MEME_UPDATE event received but data could not be cast to FavoriteMemeGatewayData");
                 }
@@ -817,7 +817,7 @@ public partial class FluxerGatewayClient : IDisposable
                 {
                     FavoriteMediaDeleteGatewayData? data = p.Data.ToObject<FavoriteMediaDeleteGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
-                        FavoriteMediaDeleted?.Invoke(data);
+                        FavoriteMediaDeleted?.Invoke(data.Id);
                     else
                         _logger.Warning("FAVORITE_MEME_DELETE event received but data could not be cast to FavoriteMemeGatewayData");
                 }
@@ -1455,7 +1455,10 @@ public partial class FluxerGatewayClient : IDisposable
                 {
                     InviteDeleteGatewayData? data = p.Data.ToObject<InviteDeleteGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
-                        InviteDeleted?.Invoke(data);
+                    {
+                        if (Channels.TryGetValue(data.ChannelId, out Channel channel))
+                            InviteDeleted?.Invoke(channel, data.GuildId.HasValue ? GetGuild(data.GuildId.Value) : null, data.Code);
+                    }
                     else
                         _logger.Warning("INVITE_DELETE event received but data could not be cast to InviteGatewayData");
                 }
@@ -1652,7 +1655,10 @@ public partial class FluxerGatewayClient : IDisposable
                 {
                     MessageBulkDeleteGatewayData? data = p.Data.ToObject<MessageBulkDeleteGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
-                        MessagesDeleted?.Invoke(data);
+                    {
+                        if (Channels.TryGetValue(data.ChannelId, out Channel channel))
+                            MessagesDeleted?.Invoke(channel, data.GuildId.HasValue ? GetGuild(data.GuildId.Value) : null, data.Ids);
+                    }
                     else
                         _logger.Warning("MESSAGE_DELETE_BULK event received but data could not be cast to MessageBulkDeleteGatewayData");
                 }
@@ -1661,7 +1667,13 @@ public partial class FluxerGatewayClient : IDisposable
                 {
                     MessageAckGatewayData? data = p.Data.ToObject<MessageAckGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
-                        MessageAck?.Invoke(data);
+                    {
+                        if (Channels.TryGetValue(data.ChannelId, out Channel channel))
+                            MessageAck?.Invoke(channel, new Cacheable<Message>(data.MessageId, null, async () =>
+                            {
+                                return await _client.Rest.GetMessageAsync(data.ChannelId, data.MessageId);
+                            }));
+                    }
                     else
                         _logger.Warning("MESSAGE_ACK event received but data could not be cast to MessageAckGatewayData");
                 }
@@ -1673,7 +1685,24 @@ public partial class FluxerGatewayClient : IDisposable
                     MessageReactionGatewayData? data = p.Data.ToObject<MessageReactionGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
                     {
-                        MessageReactionAdded?.Invoke(data);
+                        if (Channels.TryGetValue(data.ChannelId, out Channel channel))
+                        {
+                            SocketGuildMember? member = null;
+                            SocketGuild? guild = null;
+                            if (channel.GuildId.HasValue && Guilds.TryGetValue(channel.GuildId.Value, out guild))
+                                member = guild.Members.GetValueOrDefault(data.UserId);
+
+                            if (data.Member != null && member == null)
+                            {
+                                member = SocketGuildMember.Create(_client, data.Member);
+                                member.Guild = guild;
+                            }
+
+                            MessageReactionAdded?.Invoke(channel, new Cacheable<Message>(data.MessageId, null, async () =>
+                            {
+                                return await _client.Rest.GetMessageAsync(data.ChannelId, data.MessageId);
+                            }), SocketReaction.Create(_client, data, channel, member));
+                        }
                     }
                     else
                         _logger.Warning("MESSAGE_REACTION_ADD event received but data could not be cast to MessageReactionGatewayData");
@@ -1683,7 +1712,26 @@ public partial class FluxerGatewayClient : IDisposable
                 {
                     MessageReactionGatewayData? data = p.Data.ToObject<MessageReactionGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
-                        MessageReactionRemoved?.Invoke(data);
+                    {
+                        if (Channels.TryGetValue(data.ChannelId, out Channel channel))
+                        {
+                            SocketGuildMember? member = null;
+                            SocketGuild? guild = null;
+                            if (channel.GuildId.HasValue && Guilds.TryGetValue(channel.GuildId.Value, out guild))
+                                member = guild.Members.GetValueOrDefault(data.UserId);
+
+                            if (data.Member != null && member == null)
+                            {
+                                member = SocketGuildMember.Create(_client, data.Member);
+                                member.Guild = guild;
+                            }
+
+                            MessageReactionRemoved?.Invoke(channel, new Cacheable<Message>(data.MessageId, null, async () =>
+                            {
+                                return await _client.Rest.GetMessageAsync(data.ChannelId, data.MessageId);
+                            }), SocketReaction.Create(_client, data, channel, member));
+                        }
+                    }
                     else
                         _logger.Warning("MESSAGE_REACTION_REMOVE event received but data could not be cast to MessageReactionGatewayData");
                 }
@@ -1692,7 +1740,15 @@ public partial class FluxerGatewayClient : IDisposable
                 {
                     MessageReactionsRemoveGatewayData? data = p.Data.ToObject<MessageReactionsRemoveGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
-                        MessageReactionRemoveAll?.Invoke(data);
+                    {
+                        if (Channels.TryGetValue(data.ChannelId, out Channel channel))
+                        {
+                            MessageReactionRemoveAll?.Invoke(channel, new Cacheable<Message>(data.MessageId, null, async () =>
+                            {
+                                return await _client.Rest.GetMessageAsync(data.ChannelId, data.MessageId);
+                            }));
+                        }
+                    }
                     else
                         _logger.Warning("MESSAGE_REACTION_REMOVE_ALL event received but data could not be cast to MessageReactionsRemovedGatewayData");
                 }
@@ -1701,7 +1757,15 @@ public partial class FluxerGatewayClient : IDisposable
                 {
                     MessageReactionRemoveEmojiGatewayData? data = p.Data.ToObject<MessageReactionRemoveEmojiGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
-                        MessageReactionRemovedEmoji?.Invoke(data);
+                    {
+                        if (Channels.TryGetValue(data.ChannelId, out Channel channel))
+                        {
+                            MessageReactionRemovedEmoji?.Invoke(channel, new Cacheable<Message>(data.MessageId, null, async () =>
+                            {
+                                return await _client.Rest.GetMessageAsync(data.ChannelId, data.MessageId);
+                            }), GuildEmoji.Create(_client, data.Emoji));
+                        }
+                    }
                     else
                         _logger.Warning("MESSAGE_REACTION_REMOVE_EMOJI event received but data could not be cast to MessageReactionRemoveEmojiGatewayData");
                 }
@@ -1712,7 +1776,10 @@ public partial class FluxerGatewayClient : IDisposable
                 {
                     TypingGatewayData? data = p.Data.ToObject<TypingGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
-                        TypingStarted?.Invoke(data);
+                    {
+                        if (Channels.TryGetValue(data.ChannelId, out Channel channel))
+                            TypingStarted?.Invoke(channel, data.GuildId.HasValue ? GetGuild(data.GuildId.Value) : null, data.UserId, data.TimestampAt);
+                    }
                     else
                         _logger.Warning("TYPING_START event received but data could not be cast to TypingGatewayData");
                 }
@@ -1725,8 +1792,10 @@ public partial class FluxerGatewayClient : IDisposable
                     if (data != null)
                     {
                         if (Channels.TryGetValue(data.ChannelId, out Channel channel))
+                        {
                             channel.LastPinAt = data.LastPinAt;
-                        ChannelPinsUpdated?.Invoke(data);
+                            ChannelPinsUpdated?.Invoke(channel, data.GuildId.HasValue ? GetGuild(data.GuildId.Value) : null);
+                        }
                     }
                     else
                         _logger.Warning("CHANNEL_PINS_UPDATE event received but data could not be cast to ChannelPinsUpdateGatewayData");
@@ -1736,7 +1805,10 @@ public partial class FluxerGatewayClient : IDisposable
                 {
                     ChannelPinsAckGatewayData? data = p.Data.ToObject<ChannelPinsAckGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
-                        ChannelPinsAck?.Invoke(data);
+                    {
+                        if (Channels.TryGetValue(data.ChannelId, out Channel channel))
+                            ChannelPinsAck?.Invoke(channel);
+                    }
                     else
                         _logger.Warning("CHANNEL_PINS_ACK event received but data could not be cast to ChannelPinsAckGatewayData");
                 }
@@ -1802,18 +1874,24 @@ public partial class FluxerGatewayClient : IDisposable
             // Calls
             case "CALL_CREATE":
                 {
-                    CallCreateGatewayData? data = p.Data.ToObject<CallCreateGatewayData>(FluxerClient._gatewaySerializer);
+                    CallGatewayData? data = p.Data.ToObject<CallGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
-                        CallCreated?.Invoke(data);
+                    {
+                        if (Channels.TryGetValue(data.ChannelId, out Channel channel))
+                            CallCreated?.Invoke(SocketCall.Create(_client, data, channel));
+                    }
                     else
                         _logger.Warning("CALL_CREATE event received but data could not be cast to CallGatewayData");
                 }
                 return;
             case "CALL_UPDATE":
                 {
-                    CallUpdateGatewayData? data = p.Data.ToObject<CallUpdateGatewayData>(FluxerClient._gatewaySerializer);
+                    CallGatewayData? data = p.Data.ToObject<CallGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
-                        CallUpdated?.Invoke(data);
+                    {
+                        if (Channels.TryGetValue(data.ChannelId, out Channel channel))
+                            CallUpdated?.Invoke(SocketCall.Create(_client, data, channel));
+                    }
                     else
                         _logger.Warning("CALL_UPDATE event received but data could not be cast to CallGatewayData");
                 }
@@ -1822,7 +1900,10 @@ public partial class FluxerGatewayClient : IDisposable
                 {
                     CallDeleteGatewayData? data = p.Data.ToObject<CallDeleteGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
-                        CallDeleted?.Invoke(data);
+                    {
+                        if (Channels.TryGetValue(data.ChannelId, out Channel channel))
+                            CallDeleted?.Invoke(channel, data.IsUnavailable.GetValueOrDefault());
+                    }
                     else
                         _logger.Warning("CALL_DELETE event received but data could not be cast to CallGatewayData");
                 }
@@ -1833,7 +1914,9 @@ public partial class FluxerGatewayClient : IDisposable
                 {
                     CountGatewayData<GuildMemberCountGatewayData> data = p.Data.ToObject<CountGatewayData<GuildMemberCountGatewayData>>(FluxerClient._gatewaySerializer);
                     if (data != null)
-                        GuildMemberCounts?.Invoke(data);
+                    {
+                        GuildMemberCounts?.Invoke(data.Counts);
+                    }
                     else
                         _logger.Warning("GUILD_COUNTS_UPDATE event received but data could not be cast to GuildMemberCountGatewayData");
                 }
@@ -1842,7 +1925,7 @@ public partial class FluxerGatewayClient : IDisposable
                 {
                     CountGatewayData<GuildChannelMemberCountGatewayData> data = p.Data.ToObject<CountGatewayData<GuildChannelMemberCountGatewayData>>(FluxerClient._gatewaySerializer);
                     if (data != null)
-                        ChannelMemberCounts?.Invoke(data);
+                        ChannelMemberCounts?.Invoke(data.Counts);
                     else
                         _logger.Warning("CHANNEL_MEMBER_COUNTS_UPDATE event received but data could not be cast to GuildChannelMemberCountGatewayData");
                 }
@@ -2383,7 +2466,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Delegate for USER_CONNECTIONS_UPDATE event when user updates a connection.
     /// </summary>
-    public delegate void UserConnectionsUpdatedEvent(ConnectionsUpdatedGatewayData connections);
+    public delegate void UserConnectionsUpdatedEvent(UserConnection[] connections);
 
     /// <summary>
     /// Occurs on user connection updated.
@@ -2545,7 +2628,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Delegate for TYPING_START events when a user starts typing.
     /// </summary>
-    public delegate void TypingStartEvent(TypingGatewayData typing);
+    public delegate void TypingStartEvent(Channel channel, SocketGuild? guild, ulong userId, DateTimeOffset timestamp);
 
     /// <summary>
     /// Occurs when a user starts typing in a channel.
@@ -2559,7 +2642,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Delegate for MESSAGE_REACTION_ADD events when a reaction is added.
     /// </summary>
-    public delegate void MessageReactionAddedEvent(MessageReactionGatewayData reaction);
+    public delegate void MessageReactionAddedEvent(Channel channel, Cacheable<Message> message, SocketReaction reaction);
 
     /// <summary>
     /// Occurs when a user adds a reaction to a message.
@@ -2569,7 +2652,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Delegate for MESSAGE_REACTION_REMOVE events when a reaction is removed.
     /// </summary>
-    public delegate void MessageReactionRemovedEvent(MessageReactionGatewayData reaction);
+    public delegate void MessageReactionRemovedEvent(Channel channel, Cacheable<Message> message, SocketReaction reaction);
 
     /// <summary>
     /// Occurs when a user removes a reaction from a message.
@@ -2579,7 +2662,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Delegate for MESSAGE_REACTION_REMOVE_ALL events when all reactions are cleared.
     /// </summary>
-    public delegate void MessageReactionRemoveAllEvent(MessageReactionsRemoveGatewayData reaction);
+    public delegate void MessageReactionRemoveAllEvent(Channel channel, Cacheable<Message> message);
 
     /// <summary>
     /// Occurs when all reactions are removed from a message.
@@ -2589,7 +2672,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Delegate for MESSAGE_REACTION_REMOVE_EMOJI events when all reactions of a specific emoji are removed.
     /// </summary>
-    public delegate void MessageReactionRemovedEmojiEvent(MessageReactionRemoveEmojiGatewayData reaction);
+    public delegate void MessageReactionRemovedEmojiEvent(Channel channel, Cacheable<Message> message, IEmoji emoji);
 
     /// <summary>
     /// Occurs when all instances of a specific emoji are removed from a message.
@@ -2623,7 +2706,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Delegate for RECENT_MENTION_DELETE events when a recent mention is deleted.
     /// </summary>
-    public delegate void RecentMentionDeletedEvent(RecentMentionDeleteGatewayData mention);
+    public delegate void RecentMentionDeletedEvent(ulong messageId);
 
     /// <summary>
     /// Occurs when a recent mention is deleted.
@@ -2637,7 +2720,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Delegate for MESSAGE_DELETE_BULK events when multiple messages are deleted at once.
     /// </summary>
-    public delegate void MessageDeleteBulkEvent(MessageBulkDeleteGatewayData messages);
+    public delegate void MessageDeleteBulkEvent(Channel channel, SocketGuild? guild, ulong[] messageIds);
 
     /// <summary>
     /// Occurs when multiple messages are deleted in bulk (e.g., purge operation).
@@ -2647,7 +2730,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Delegate for MESSAGE_ACK events when a message is acknowledged as read.
     /// </summary>
-    public delegate void MessageAckEvent(MessageAckGatewayData message);
+    public delegate void MessageAckEvent(Channel channel, Cacheable<Message> message);
 
     /// <summary>
     /// Occurs when a message is acknowledged as read by the current user.
@@ -2661,7 +2744,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Delegate for CHANNEL_PINS_UPDATE events when channel pins are updated.
     /// </summary>
-    public delegate void ChannelPinsUpdatedEvent(ChannelPinsUpdateGatewayData pins);
+    public delegate void ChannelPinsUpdatedEvent(Channel channel, SocketGuild? guild);
 
     /// <summary>
     /// Occurs when a message is pinned or unpinned in a channel.
@@ -2671,7 +2754,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Delegate for CHANNEL_PINS_ACK events when channel pins are acknowledged.
     /// </summary>
-    public delegate void ChannelPinsAckEvent(ChannelPinsAckGatewayData pins);
+    public delegate void ChannelPinsAckEvent(Channel channel);
 
     /// <summary>
     /// Occurs when channel pins are acknowledged.
@@ -2940,7 +3023,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Delegate for RELATIONSHIP_ADD events when a relationship is added.
     /// </summary>
-    public delegate void RelationshipAddedEvent(RelationshipGatewayData relationship);
+    public delegate void RelationshipAddedEvent(SocketRelationship relationship);
 
     /// <summary>
     /// Occurs when a relationship (friend, blocked user, etc.) is added.
@@ -2950,7 +3033,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Delegate for RELATIONSHIP_UPDATE events when a relationship is updated.
     /// </summary>
-    public delegate void RelationshipUpdatedEvent(RelationshipGatewayData relationship);
+    public delegate void RelationshipUpdatedEvent(SocketRelationship relationship);
 
     /// <summary>
     /// Occurs when a relationship is updated.
@@ -2960,7 +3043,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Delegate for RELATIONSHIP_REMOVE events when a relationship is removed.
     /// </summary>
-    public delegate void RelationshipRemovedEvent(RelationshipRemoveGatewayData relationship);
+    public delegate void RelationshipRemovedEvent(ulong userId);
 
     /// <summary>
     /// Occurs when a relationship is removed.
@@ -2974,7 +3057,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Delegate for FAVORITE_MEME_CREATE events when a favorite meme is created.
     /// </summary>
-    public delegate void FavoriteMediaCreatedEvent(FavoriteMediaGatewayData media);
+    public delegate void FavoriteMediaCreatedEvent(FavoriteMedia media);
 
     /// <summary>
     /// Occurs when a favorite meme is created.
@@ -2984,7 +3067,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Delegate for FAVORITE_MEME_UPDATE events when a favorite meme is updated.
     /// </summary>
-    public delegate void FavoriteMediaUpdatedEvent(FavoriteMediaGatewayData media);
+    public delegate void FavoriteMediaUpdatedEvent(FavoriteMedia media);
 
     /// <summary>
     /// Occurs when a favorite meme is updated.
@@ -2994,7 +3077,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Delegate for FAVORITE_MEME_DELETE events when a favorite meme is deleted.
     /// </summary>
-    public delegate void FavoriteMediaDeletedEvent(FavoriteMediaDeleteGatewayData media);
+    public delegate void FavoriteMediaDeletedEvent(string mediaId);
 
     /// <summary>
     /// Occurs when a favorite meme is deleted.
@@ -3008,7 +3091,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Delegate for CALL_CREATE events when a call is created.
     /// </summary>
-    public delegate void CallCreatedEvent(CallCreateGatewayData call);
+    public delegate void CallCreatedEvent(SocketCall call);
 
     /// <summary>
     /// Occurs when a call is created.
@@ -3018,7 +3101,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Delegate for CALL_UPDATE events when a call is updated.
     /// </summary>
-    public delegate void CallUpdatedEvent(CallUpdateGatewayData call);
+    public delegate void CallUpdatedEvent(SocketCall call);
 
     /// <summary>
     /// Occurs when a call is updated.
@@ -3028,7 +3111,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Delegate for CALL_DELETE events when a call is deleted.
     /// </summary>
-    public delegate void CallDeletedEvent(CallDeleteGatewayData call);
+    public delegate void CallDeletedEvent(Channel channel, bool isUnavailable);
 
     /// <summary>
     /// Occurs when a call is deleted.
@@ -3052,18 +3135,18 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Delegate for INVITE_DELETE events when an invite is deleted or expires.
     /// </summary>
-    public delegate void InviteDeletedEvent(InviteDeleteGatewayData invite);
+    public delegate void InviteDeletedEvent(Channel channel, SocketGuild? guild, string code);
 
     /// <summary>
     /// Occurs when an invite is deleted or expires.
     /// </summary>
     public event InviteDeletedEvent InviteDeleted;
 
-    public delegate void GuildMemberCountsEvent(CountGatewayData<GuildMemberCountGatewayData> countData);
+    public delegate void GuildMemberCountsEvent(GuildMemberCountGatewayData[] guilds);
 
     public event GuildMemberCountsEvent GuildMemberCounts;
 
-    public delegate void ChannelMemberCountsEvent(CountGatewayData<GuildChannelMemberCountGatewayData> countData);
+    public delegate void ChannelMemberCountsEvent(GuildChannelMemberCountGatewayData[] channels);
 
     public event ChannelMemberCountsEvent ChannelMemberCounts;
 

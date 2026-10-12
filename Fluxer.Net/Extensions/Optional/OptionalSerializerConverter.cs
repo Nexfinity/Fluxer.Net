@@ -3,7 +3,7 @@
 namespace Fluxer.Net;
 
 
-internal class OptionalSerializerConverter<T> : JsonConverter
+public class OptionalSerializerConverter<T> : JsonConverter
 {
     private readonly JsonConverter _innerConverter;
 

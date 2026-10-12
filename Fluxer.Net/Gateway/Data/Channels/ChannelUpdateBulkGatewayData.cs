@@ -2,10 +2,7 @@ using Newtonsoft.Json;
 
 namespace Fluxer.Net.Gateway;
 
-/// <summary>
-/// Gateway data for CHANNEL_UPDATE_BULK event when multiple channels are updated.
-/// </summary>
-public class ChannelUpdateBulkGatewayData
+internal class ChannelUpdateBulkGatewayData
 {
     [JsonProperty("channels")]
     public List<ChannelJson> Channels { get; set; } = new();

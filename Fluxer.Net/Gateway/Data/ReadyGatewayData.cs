@@ -2,7 +2,7 @@ using Newtonsoft.Json;
 
 namespace Fluxer.Net.Gateway;
 
-public class ReadyGatewayData
+internal class ReadyGatewayData
 {
     [JsonProperty("v")]
     public string Version { get; set; }
