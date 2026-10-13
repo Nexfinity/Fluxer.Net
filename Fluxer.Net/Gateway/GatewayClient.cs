@@ -558,6 +558,7 @@ public partial class FluxerGatewayClient : IDisposable
                                     if (m.Id != CurrentUser.Id)
                                     {
                                         SocketGuildMember member = SocketGuildMember.Create(_client, m);
+                                        member.GuildId = guild.Id;
                                         member.Guild = guild;
                                         guild.Members.TryAdd(m.Id, member);
                                     }
@@ -1695,6 +1696,7 @@ public partial class FluxerGatewayClient : IDisposable
                             if (data.Member != null && member == null)
                             {
                                 member = SocketGuildMember.Create(_client, data.Member);
+                                member.GuildId = guild.Id;
                                 member.Guild = guild;
                             }
 
@@ -1723,6 +1725,7 @@ public partial class FluxerGatewayClient : IDisposable
                             if (data.Member != null && member == null)
                             {
                                 member = SocketGuildMember.Create(_client, data.Member);
+                                member.GuildId = channel.GuildId.Value;
                                 member.Guild = guild;
                             }
 

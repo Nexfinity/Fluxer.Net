@@ -96,6 +96,7 @@ public class SocketGuild : Guild
             data.Stickers = new ConcurrentDictionary<ulong, GuildSticker>();
 
         data.Members.TryAdd(currentMember.Id, currentMember);
+        data.CurrentMember.GuildId = data.Id;
         data.CurrentMember.Guild = data;
 
         // Null count data on socket guild.
@@ -120,6 +121,7 @@ public class SocketGuild : Guild
         else
         {
             member = SocketGuildMember.Create(Client, json);
+            member.GuildId = Id;
             member.Guild = this;
             Members.TryAdd(member.Id, member);
             return member;
