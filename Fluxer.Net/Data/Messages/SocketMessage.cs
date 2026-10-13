@@ -36,6 +36,7 @@ public class SocketMessage : Message
             {
                 json.Member.User = json.Author;
                 data.Member = SocketGuildMember.Create(client, json.Member);
+                data.Member.GuildId = json.GuildId.Value;
                 data.Member.Guild = data.Guild;
             }
         }

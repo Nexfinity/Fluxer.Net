@@ -13,7 +13,7 @@ public class GuildMember : Entity, IGuildMember
     public string Mention => $"<@{Id}>";
 
     /// <inheritdoc />
-    public ulong GuildId { get; private set; }
+    public ulong GuildId { get; internal set; }
 
     /// <inheritdoc />
     public User User { get; internal set; }
