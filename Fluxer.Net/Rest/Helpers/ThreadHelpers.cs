@@ -9,59 +9,59 @@ namespace Fluxer.Net;
 /// </summary>
 public static class ThreadHelpers
 {
-    /// <inheritdoc cref="FluxerApiClient.UpdateThreadAsync(ulong, UpdateThreadRequest)" />
-    public static Task<ThreadChannel> ModifyAsync(this ThreadChannel channel, UpdateThreadRequest req)
-        => channel.Client.Rest.UpdateThreadAsync(channel.Id, req);
+    /// <inheritdoc cref="FluxerApiClient.UpdateThreadAsync(ulong, UpdateThreadRequest, RequestOptions?)" />
+    public static Task<ThreadChannel> ModifyAsync(this ThreadChannel channel, UpdateThreadRequest req, RequestOptions? options = null)
+        => channel.Client.Rest.UpdateThreadAsync(channel.Id, req, options);
 
-    /// <inheritdoc cref="FluxerApiClient.UpdateThreadAsync(ulong, UpdateThreadRequest)" />
-    public static Task<ThreadChannel> LockAsync(this ThreadChannel channel)
+    /// <inheritdoc cref="FluxerApiClient.UpdateThreadAsync(ulong, UpdateThreadRequest, RequestOptions?)" />
+    public static Task<ThreadChannel> LockAsync(this ThreadChannel channel, RequestOptions? options = null)
         => channel.Client.Rest.UpdateThreadAsync(channel.Id, new UpdateThreadRequest
         {
             IsLocked = true
-        });
+        }, options);
 
-    /// <inheritdoc cref="FluxerApiClient.UpdateThreadAsync(ulong, UpdateThreadRequest)" />
-    public static Task<ThreadChannel> UnLockAsync(this ThreadChannel channel)
+    /// <inheritdoc cref="FluxerApiClient.UpdateThreadAsync(ulong, UpdateThreadRequest, RequestOptions?)" />
+    public static Task<ThreadChannel> UnLockAsync(this ThreadChannel channel, RequestOptions? options = null)
         => channel.Client.Rest.UpdateThreadAsync(channel.Id, new UpdateThreadRequest
         {
             IsLocked = false
-        });
+        }, options);
 
-    /// <inheritdoc cref="FluxerApiClient.UpdateThreadAsync(ulong, UpdateThreadRequest)" />
-    public static Task<ThreadChannel> ArchiveAsync(this ThreadChannel channel)
+    /// <inheritdoc cref="FluxerApiClient.UpdateThreadAsync(ulong, UpdateThreadRequest, RequestOptions?)" />
+    public static Task<ThreadChannel> ArchiveAsync(this ThreadChannel channel, RequestOptions? options = null)
         => channel.Client.Rest.UpdateThreadAsync(channel.Id, new UpdateThreadRequest
         {
             IsArchived = true
-        });
+        }, options);
 
-    /// <inheritdoc cref="FluxerApiClient.UpdateThreadAsync(ulong, UpdateThreadRequest)" />
-    public static Task<ThreadChannel> OpenAsync(this ThreadChannel channel)
+    /// <inheritdoc cref="FluxerApiClient.UpdateThreadAsync(ulong, UpdateThreadRequest, RequestOptions?)" />
+    public static Task<ThreadChannel> OpenAsync(this ThreadChannel channel, RequestOptions? options = null)
         => channel.Client.Rest.UpdateThreadAsync(channel.Id, new UpdateThreadRequest
         {
             IsArchived = false
-        });
+        }, options);
 
-    /// <inheritdoc cref="FluxerApiClient.JoinThreadAsync(ulong)" />
-    public static Task JoinAsync(this ThreadChannel channel)
-        => channel.Client.Rest.JoinThreadAsync(channel.Id);
+    /// <inheritdoc cref="FluxerApiClient.JoinThreadAsync(ulong, RequestOptions?)" />
+    public static Task JoinAsync(this ThreadChannel channel, RequestOptions? options = null)
+        => channel.Client.Rest.JoinThreadAsync(channel.Id, options);
 
-    /// <inheritdoc cref="FluxerApiClient.LeaveThreadAsync(ulong)" />
-    public static Task LeaveAsync(this ThreadChannel channel)
-        => channel.Client.Rest.LeaveThreadAsync(channel.Id);
+    /// <inheritdoc cref="FluxerApiClient.LeaveThreadAsync(ulong, RequestOptions?)" />
+    public static Task LeaveAsync(this ThreadChannel channel, RequestOptions? options = null)
+        => channel.Client.Rest.LeaveThreadAsync(channel.Id, options);
 
-    /// <inheritdoc cref="FluxerApiClient.AddThreadMemberAsync(ulong, ulong)" />
-    public static Task AddMemberAsync(this ThreadChannel channel, ulong userId)
-        => channel.Client.Rest.AddThreadMemberAsync(channel.Id, userId);
+    /// <inheritdoc cref="FluxerApiClient.AddThreadMemberAsync(ulong, ulong, RequestOptions?)" />
+    public static Task AddMemberAsync(this ThreadChannel channel, ulong userId, RequestOptions? options = null)
+        => channel.Client.Rest.AddThreadMemberAsync(channel.Id, userId, options);
 
-    /// <inheritdoc cref="FluxerApiClient.AddThreadMemberAsync(ulong, ulong)" />
-    public static Task AddMemberAsync(this ThreadChannel channel, GuildMember member)
-        => channel.Client.Rest.AddThreadMemberAsync(channel.Id, member.Id);
+    /// <inheritdoc cref="FluxerApiClient.AddThreadMemberAsync(ulong, ulong, RequestOptions?)" />
+    public static Task AddMemberAsync(this ThreadChannel channel, GuildMember member, RequestOptions? options = null)
+        => channel.Client.Rest.AddThreadMemberAsync(channel.Id, member.Id, options);
 
-    /// <inheritdoc cref="FluxerApiClient.RemoveThreadMemberAsync(ulong, ulong)" />
-    public static Task RemoveMemberAsync(this ThreadChannel channel, ulong userId)
-        => channel.Client.Rest.RemoveThreadMemberAsync(channel.Id, userId);
+    /// <inheritdoc cref="FluxerApiClient.RemoveThreadMemberAsync(ulong, ulong, RequestOptions?)" />
+    public static Task RemoveMemberAsync(this ThreadChannel channel, ulong userId, RequestOptions? options = null)
+        => channel.Client.Rest.RemoveThreadMemberAsync(channel.Id, userId, options);
 
-    /// <inheritdoc cref="FluxerApiClient.RemoveThreadMemberAsync(ulong, ulong)" />
-    public static Task RemoveMemberAsync(this ThreadChannel channel, GuildMember member)
-        => channel.Client.Rest.RemoveThreadMemberAsync(channel.Id, member.Id);
+    /// <inheritdoc cref="FluxerApiClient.RemoveThreadMemberAsync(ulong, ulong, RequestOptions?)" />
+    public static Task RemoveMemberAsync(this ThreadChannel channel, GuildMember member, RequestOptions? options = null)
+        => channel.Client.Rest.RemoveThreadMemberAsync(channel.Id, member.Id, options);
 }
