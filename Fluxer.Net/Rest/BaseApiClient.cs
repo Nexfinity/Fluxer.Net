@@ -1,5 +1,4 @@
-﻿using Fluxer.Net.Extensions;
-using Microsoft.AspNetCore.WebUtilities;
+﻿using Microsoft.AspNetCore.WebUtilities;
 using Newtonsoft.Json;
 using Serilog;
 using System.Net;
@@ -49,6 +48,14 @@ public class FluxerBaseApiClient
             _config.Version);
     }
 
+    private void SetOptions(HttpRequestMessage req, RequestOptions? options = null)
+    {
+        if (options == null)
+            return;
+        if (!string.IsNullOrEmpty(options.AuditLogReason))
+            req.Headers.Add("X-Audit-Log-Reason", Uri.EscapeDataString(options.AuditLogReason));
+    }
+
     /// <summary>
     /// Makes an HTTP request with both request and response bodies.
     /// </summary>
@@ -60,10 +67,11 @@ public class FluxerBaseApiClient
     /// <param name="throwOnNonSuccess">Whether to throw an exception on non-2xx status codes.</param>
     /// <param name="authorize">Whether to include the Authorization header.</param>
     /// <param name="otherFormData"></param>
+    /// <param name="options"></param>
     /// <returns>The deserialized response object.</returns>
     /// <exception cref="FluxerApiException">Thrown when <paramref name="throwOnNonSuccess"/> is true and the API returns a non-success status code.</exception>
     public async Task<TResponse> SendRequestAsync<TResponse, TSend>(HttpMethod method, string route, TSend data, bool throwOnNonSuccess = false, bool authorize = true,
-        ICollection<KeyValuePair<string, (HttpContent content, string? filename)>>? otherFormData = null)
+        ICollection<KeyValuePair<string, (HttpContent content, string? filename)>>? otherFormData = null, RequestOptions? options = null)
     {
         string rawContent = JsonConvert.SerializeObject(data, FluxerClient._restSerializer);
         _logger.Verbose("Sending {@Enums} to {Route}", rawContent, route);
@@ -72,6 +80,7 @@ public class FluxerBaseApiClient
             Method = method,
             RequestUri = new(_config.RealApiBaseUrl + route)
         };
+        SetOptions(req, options);
 
         if (otherFormData != null)
         {
@@ -141,14 +150,14 @@ public class FluxerBaseApiClient
     }
 
     internal async Task<TResponse> InternalSendRequestFormAsync<TResponse>(HttpMethod method, string route, bool throwOnNonSuccess = false,
-        Dictionary<string, string?>? formData = null)
+        Dictionary<string, string?>? formData = null, RequestOptions? options = null)
     {
         HttpRequestMessage req = new HttpRequestMessage()
         {
             Method = method,
             RequestUri = new(_config.RealApiBaseUrl + route)
         };
-
+        SetOptions(req, options);
 
         if (formData != null)
         {
@@ -192,9 +201,11 @@ public class FluxerBaseApiClient
     /// <param name="data">The request body data to serialize and send.</param>
     /// <param name="throwOnNonSuccess">Whether to throw an exception on non-2xx status codes.</param>
     /// <param name="authorize">Whether to include the Authorization header.</param>
+    /// <param name="options"></param>
     /// <returns>The HTTP status code of the response.</returns>
     /// <exception cref="FluxerApiException">Thrown when <paramref name="throwOnNonSuccess"/> is true and the API returns a non-success status code.</exception>
-    public async Task<HttpStatusCode> SendRequestAsync<TSend>(HttpMethod method, string route, TSend data, bool throwOnNonSuccess = false, bool authorize = true)
+    public async Task<HttpStatusCode> SendRequestAsync<TSend>(HttpMethod method, string route, TSend data, bool throwOnNonSuccess = false,
+        bool authorize = true, RequestOptions? options = null)
     {
         _logger.Verbose("Sending {@Enums} to {Route}", data, route);
         HttpRequestMessage req = new HttpRequestMessage()
@@ -210,6 +221,8 @@ public class FluxerBaseApiClient
             ),
             RequestUri = new(_config.RealApiBaseUrl + route)
         };
+        SetOptions(req, options);
+
         if (!string.IsNullOrEmpty(_token) && authorize)
             req.Headers.Add("Authorization", _token);
         HttpResponseMessage result = await HttpClient.SendAsync(req);
@@ -243,18 +256,21 @@ public class FluxerBaseApiClient
     /// <param name="route">The API route (e.g., "/users/@me").</param>
     /// <param name="throwOnNonSuccess">Whether to throw an exception on non-2xx status codes.</param>
     /// <param name="authorize">Whether to include the Authorization header.</param>
+    /// <param name="options"></param>
     /// <returns>The deserialized response object.</returns>
     /// <exception cref="FluxerApiException">Thrown when <paramref name="throwOnNonSuccess"/> is true and the API returns a non-success status code.</exception>
-    public Task<TResponse> SendRequestAsync<TResponse>(HttpMethod method, string route, bool throwOnNonSuccess = false, bool authorize = true)
-     => InternalSendRequestAsync<TResponse>(method, route, throwOnNonSuccess, authorize, null);
+    public Task<TResponse> SendRequestAsync<TResponse>(HttpMethod method, string route, bool throwOnNonSuccess = false,
+        bool authorize = true, RequestOptions? options = null)
+     => InternalSendRequestAsync<TResponse>(method, route, throwOnNonSuccess, authorize, null, options: options);
 
-    internal async Task<TResponse> InternalSendRequestAsync<TResponse>(HttpMethod method, string route, bool throwOnNonSuccess, bool authorize, string accessToken = null, bool useConfigUrl = true)
+    internal async Task<TResponse> InternalSendRequestAsync<TResponse>(HttpMethod method, string route, bool throwOnNonSuccess, bool authorize, string accessToken = null, bool useConfigUrl = true, RequestOptions? options = null)
     {
         HttpRequestMessage req = new HttpRequestMessage()
         {
             Method = method,
             RequestUri = useConfigUrl ? new Uri(_config.RealApiBaseUrl + route) : new Uri(route)
         };
+        SetOptions(req, options);
 
         if (!string.IsNullOrEmpty(accessToken))
             req.Headers.Add("Authorization", "Bearer " + accessToken);
@@ -293,17 +309,19 @@ public class FluxerBaseApiClient
     /// <param name="route">The API route (e.g., "/users/@me").</param>
     /// <param name="throwOnNonSuccess">Whether to throw an exception on non-2xx status codes.</param>
     /// <param name="authorize">Whether to include the Authorization header.</param>
+    /// <param name="options"></param>
     /// <returns>The deserialized response object.</returns>
     /// <exception cref="FluxerApiException">Thrown when <paramref name="throwOnNonSuccess"/> is true and the API returns a non-success status code.</exception>
-    public Task<TResponse> SendRequestQueryParamsAsync<TResponse>(HttpMethod method, RestClientQueryParams queryParams, string route, bool throwOnNonSuccess = false, bool authorize = true)
-        => InternalSendRequestQueryParamsAsync<TResponse>(method, queryParams, route, throwOnNonSuccess, authorize, null);
+    public Task<TResponse> SendRequestQueryParamsAsync<TResponse>(HttpMethod method, RestClientQueryParams queryParams, string route, bool throwOnNonSuccess = false,
+        bool authorize = true, RequestOptions? options = null)
+        => InternalSendRequestQueryParamsAsync<TResponse>(method, queryParams, route, throwOnNonSuccess, authorize, null, options: options);
     internal async Task<TResponse> InternalSendRequestQueryParamsAsync<TResponse>(
         HttpMethod method,
         RestClientQueryParams? queryParams,
         string route,
         bool throwOnNonSuccess,
         bool authorize,
-        string accessToken)
+        string accessToken, RequestOptions? options = null)
     {
         string uri = _config.RealApiBaseUrl + route;
 
@@ -319,7 +337,7 @@ public class FluxerBaseApiClient
             Method = method,
             RequestUri = new Uri(uri)
         };
-
+        SetOptions(req, options);
 
         if (!string.IsNullOrEmpty(accessToken))
             req.Headers.Add("Authorization", "Bearer " + accessToken);
@@ -356,15 +374,19 @@ public class FluxerBaseApiClient
     /// <param name="route">The API route (e.g., "/channels/123").</param>
     /// <param name="throwOnNonSuccess">Whether to throw an exception on non-2xx status codes.</param>
     /// <param name="authorize">Whether to include the Authorization header.</param>
+    /// <param name="options"></param>
     /// <returns>The HTTP status code of the response.</returns>
     /// <exception cref="FluxerApiException">Thrown when <paramref name="throwOnNonSuccess"/> is true and the API returns a non-success status code.</exception>
-    public async Task<HttpStatusCode> SendRequestRawAsync(HttpMethod method, string route, bool throwOnNonSuccess = false, bool authorize = true)
+    public async Task<HttpStatusCode> SendRequestRawAsync(HttpMethod method, string route, bool throwOnNonSuccess = false,
+        bool authorize = true, RequestOptions? options = null)
     {
         HttpRequestMessage req = new HttpRequestMessage()
         {
             Method = method,
             RequestUri = new(_config.RealApiBaseUrl + route)
         };
+        SetOptions(req, options);
+
         if (!string.IsNullOrEmpty(_token) && authorize)
             req.Headers.Add("Authorization", _token);
         HttpResponseMessage result = await HttpClient.SendAsync(req);

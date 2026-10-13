@@ -14,12 +14,6 @@ public class CreateGuildBanRequest
     /// <summary>
     /// Number of days of messages to delete from the banned user (0-7)
     /// </summary>
-    [JsonProperty("delete_message_days")]
-    public int? DeleteMessageDays { get; set; }
-
-    /// <summary>
-    /// The reason for the ban (max 512 characters)
-    /// </summary>
-    [JsonProperty("reason")]
-    public string? Reason { get; set; }
+    [JsonProperty("delete_message_seconds")]
+    public int? DeleteMessageSeconds { get; set; }
 }
