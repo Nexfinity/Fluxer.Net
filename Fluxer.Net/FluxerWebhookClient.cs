@@ -62,7 +62,7 @@ public class FluxerWebhookClient : FluxerBaseClient
     public new string Token => base.Token;
 
     /// <inheritdoc cref="FluxerApiClient.GetWebhookWithTokenAsync(ulong, string, RequestOptions?)" />
-    public Task<Webhook> GetAsync(RequestOptions? options = null)
+    public Task<Webhook?> GetAsync(RequestOptions? options = null)
         => Rest.GetWebhookWithTokenAsync(Id, Token, options);
 
     /// <inheritdoc cref="FluxerApiClient.DeleteWebhookWithTokenAsync(ulong, string, RequestOptions?)" />

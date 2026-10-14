@@ -57,7 +57,7 @@ public static class ChannelHelpers
         => channel.Client.Rest.RingCallAsync(channel.Id, recipients, options);
 
     /// <inheritdoc cref="FluxerApiClient.GetMessageAsync(ulong, ulong, RequestOptions?)" />
-    public static Task<Message> GetMessageAsync(this Channel channel, ulong messageId, RequestOptions? options = null)
+    public static Task<Message?> GetMessageAsync(this Channel channel, ulong messageId, RequestOptions? options = null)
         => channel.Client.Rest.GetMessageAsync(channel.Id, messageId, options);
 
     /// <inheritdoc cref="FluxerApiClient.GetMessagesAsync(ulong, int, ulong?, ulong?, ulong?, RestClientQueryParams?, RequestOptions?)" />
@@ -203,4 +203,8 @@ public static class ChannelHelpers
     /// <inheritdoc cref="FluxerApiClient.CreatePrivateThreadAsync(ulong, CreatePrivateThreadRequest, RequestOptions?)" />
     public static Task<ThreadChannel> CreatePrivateThreadAsync(this Channel channel, CreatePrivateThreadRequest req, RequestOptions? options = null)
         => channel.Client.Rest.CreatePrivateThreadAsync(channel.Id, req, options);
+
+    /// <inheritdoc cref="FluxerApiClient.GetThreadChannelAsync(ulong, RequestOptions?)" />
+    public static Task<ThreadChannel?> GetThreadChannelAsync(this Channel channel, ulong threadId, RequestOptions? options = null)
+        => channel.Client.Rest.GetThreadChannelAsync(threadId, options);
 }
