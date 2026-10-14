@@ -1376,8 +1376,10 @@ public partial class FluxerGatewayClient : IDisposable
                     if (!data.GuildId.HasValue || !Guilds.TryGetValue(data.GuildId.Value, out SocketGuild guild))
                         return;
 
-                    ThreadChannel channel = (ThreadChannel)SocketChannel.Create(_client, data);
-                    ThreadCreated?.Invoke(guild, channel, SocketThreadMember.Create(_client, data.ThreadMember, channel, guild));
+                    if (data.IsThreadNew.GetValueOrDefault())
+                        ThreadCreated?.Invoke(guild, Channel.Create(_client, data) as ThreadChannel);
+                    else
+                        ThreadJoined?.Invoke(guild, Channel.Create(_client, data) as ThreadChannel);
                 }
                 break;
             case "THREAD_UPDATE":
@@ -1419,10 +1421,20 @@ public partial class FluxerGatewayClient : IDisposable
                         }), data.AddedMembers.Select(x => ThreadMember.Create(_client, x)).ToArray());
 
                     if (data.RemovedMemberIds != null && data.RemovedMemberIds.Any())
+                    {
+                        if (data.RemovedMemberIds.Any(x => x == CurrentUser.Id))
+                            ThreadLeft?.Invoke(guild, new Cacheable<ThreadChannel>(data.ThreadId, null, async () =>
+                            {
+                                return await _client.Rest.GetThreadChannelAsync(data.ThreadId);
+                            }));
+
                         ThreadMembersRemoved?.Invoke(guild, new Cacheable<ThreadChannel>(data.ThreadId, null, async () =>
                         {
                             return await _client.Rest.GetThreadChannelAsync(data.ThreadId);
                         }), data.RemovedMemberIds);
+
+
+                    }
 
                     ThreadMembersCount?.Invoke(guild, new Cacheable<ThreadChannel>(data.ThreadId, null, async () =>
                     {
@@ -2617,9 +2629,19 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Delegate for THREAD_CREATE events when a thread is created.
     /// </summary>
-    public delegate void ThreadCreatedEvent(SocketGuild guild, ThreadChannel channel, SocketThreadMember member);
+    public delegate void ThreadCreatedEvent(SocketGuild guild, ThreadChannel channel);
 
     public event ThreadCreatedEvent ThreadCreated;
+
+
+    public event ThreadCreatedEvent ThreadJoined;
+
+    /// <summary>
+    /// Delegate for THREAD_CREATE events when a thread is created.
+    /// </summary>
+    public delegate void ThreadLeftEvent(SocketGuild guild, Cacheable<ThreadChannel> channel);
+
+    public event ThreadLeftEvent ThreadLeft;
 
     /// <summary>
     /// Delegate for THREAD_UPDATE events when a thread is updated.

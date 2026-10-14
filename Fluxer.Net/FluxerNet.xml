@@ -12431,6 +12431,11 @@
             Delegate for THREAD_CREATE events when a thread is created.
             </summary>
         </member>
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.ThreadLeftEvent">
+            <summary>
+            Delegate for THREAD_CREATE events when a thread is created.
+            </summary>
+        </member>
         <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.ThreadUpdatedEvent">
             <summary>
             Delegate for THREAD_UPDATE events when a thread is updated.
