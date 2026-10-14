@@ -21,13 +21,21 @@ public static class GuildHelpers
     public static Task UpdateChannelPositionsAsync(this Guild guild, IEnumerable<ChannelPositionUpdateRequestItem> list, RequestOptions? options = null)
         => guild.Client.Rest.UpdateChannelPositionsAsync(guild.Id, list, options);
 
-    /// <inheritdoc cref="FluxerApiClient.SearchAuditLogAsync(ulong, GuildAuditLogListRequest, RequestOptions?)" />
-    public static Task<AuditLogListJson> SearchAuditLogsAsync(this Guild guild, GuildAuditLogListRequest request, RequestOptions? options = null)
-        => guild.Client.Rest.SearchAuditLogAsync(guild.Id, request, options);
+    /// <inheritdoc cref="FluxerApiClient.GetAuditLogAsync(ulong, GuildAuditLogListRequest, RequestOptions?)" />
+    public static Task<AuditLogListJson> GetAuditLogsAsync(this Guild guild, GuildAuditLogListRequest request, RequestOptions? options = null)
+        => guild.Client.Rest.GetAuditLogAsync(guild.Id, request, options);
 
     /// <inheritdoc cref="FluxerApiClient.GetBansAsync(ulong, RequestOptions?)" />
     public static Task<IEnumerable<GuildBan>> GetBansAsync(this Guild guild, RequestOptions? options = null)
         => guild.Client.Rest.GetBansAsync(guild.Id, options);
+
+    /// <inheritdoc cref="FluxerApiClient.BanMemberAsync(ulong, ulong, string?, int?, int?, RequestOptions?)" />
+    public static Task BanUserAsync(this Guild guild, ulong userId, string? reason = null, int? deleteMessageSeconds = null, int? banDurationSeconds = null, RequestOptions? options = null)
+        => guild.Client.Rest.BanMemberAsync(guild.Id, userId, reason, deleteMessageSeconds, banDurationSeconds, options);
+
+    /// <inheritdoc cref="FluxerApiClient.BanMemberAsync(ulong, ulong, string?, int?, int?, RequestOptions?)" />
+    public static Task BanUserAsync(this Guild guild, User user, string? reason = null, int? deleteMessageSeconds = null, int? banDurationSeconds = null, RequestOptions? options = null)
+        => guild.Client.Rest.BanMemberAsync(guild.Id, user.Id, reason, deleteMessageSeconds, banDurationSeconds, options);
 
     /// <inheritdoc cref="FluxerApiClient.UnbanMemberAsync(ulong, ulong, RequestOptions?)" />
     public static Task UnbanUserAsync(this Guild guild, ulong userId, RequestOptions? options = null)
@@ -36,6 +44,14 @@ public static class GuildHelpers
     /// <inheritdoc cref="FluxerApiClient.UnbanMemberAsync(ulong, ulong, RequestOptions?)" />
     public static Task UnbanUserAsync(this Guild guild, User user, RequestOptions? options = null)
         => guild.Client.Rest.UnbanMemberAsync(guild.Id, user.Id, options);
+
+    /// <inheritdoc cref="FluxerApiClient.KickMemberAsync(ulong, ulong, string?, RequestOptions?)" />
+    public static Task KickUserAsync(this Guild guild, ulong userId, string? reason = null, RequestOptions? options = null)
+        => guild.Client.Rest.KickMemberAsync(guild.Id, userId, reason, options);
+
+    /// <inheritdoc cref="FluxerApiClient.KickMemberAsync(ulong, ulong, string?, RequestOptions?)" />
+    public static Task KickUserAsync(this Guild guild, User user, string? reason = null, RequestOptions? options = null)
+        => guild.Client.Rest.KickMemberAsync(guild.Id, user.Id, reason, options);
 
     /// <inheritdoc cref="FluxerApiClient.GetChannelsAsync(ulong, RequestOptions?)" />
     public static Task<IEnumerable<Channel>> GetChannelsAsync(this Guild guild, RequestOptions? options = null)
@@ -56,6 +72,18 @@ public static class GuildHelpers
     /// <inheritdoc cref="FluxerApiClient.CreateGuildChannelAsync(ulong, CreateGuildChannelRequest, RequestOptions?)" />
     public static Task<CategoryChannel> CreateCategoryChannelAsync(this Guild guild, CreateCategoryChannelRequest request, RequestOptions? options = null)
         => guild.Client.Rest.CreateCategoryChannelAsync(guild.Id, request, options);
+
+    /// <inheritdoc cref="FluxerApiClient.CreateGuildChannelAsync(ulong, CreateGuildChannelRequest, RequestOptions?)" />
+    public static Task<NewsChannel> CreateNewsChannelAsync(this Guild guild, CreateNewsChannelRequest request, RequestOptions? options = null)
+        => guild.Client.Rest.CreateNewsChannelAsync(guild.Id, request, options);
+
+    /// <inheritdoc cref="FluxerApiClient.CreateGuildChannelAsync(ulong, CreateGuildChannelRequest, RequestOptions?)" />
+    public static Task<ForumChannel> CreateForumChannelAsync(this Guild guild, CreateForumChannelRequest request, RequestOptions? options = null)
+        => guild.Client.Rest.CreateForumChannelAsync(guild.Id, request, options);
+
+    /// <inheritdoc cref="FluxerApiClient.CreateGuildChannelAsync(ulong, CreateGuildChannelRequest, RequestOptions?)" />
+    public static Task<MediaChannel> CreateMediaChannelAsync(this Guild guild, CreateMediaChannelRequest request, RequestOptions? options = null)
+        => guild.Client.Rest.CreateMediaChannelAsync(guild.Id, request, options);
 
     /// <inheritdoc cref="FluxerApiClient.GetEmojisAsync(ulong, RequestOptions?)" />
     public static Task<IEnumerable<GuildEmoji>> GetEmojisAsync(this Guild guild, RequestOptions? options = null)
@@ -78,11 +106,11 @@ public static class GuildHelpers
         => guild.Client.Rest.GetMembersAsync(guild.Id, limit, afterId, queryParams, options);
 
     /// <inheritdoc cref="FluxerApiClient.GetMemberAsync(ulong, ulong, RequestOptions?)" />
-    public static Task<GuildMember> GetMemberAsync(this Guild guild, ulong userId, RequestOptions? options = null)
+    public static Task<GuildMember?> GetMemberAsync(this Guild guild, ulong userId, RequestOptions? options = null)
         => guild.Client.Rest.GetMemberAsync(guild.Id, userId, options);
 
     /// <inheritdoc cref="FluxerApiClient.GetMemberAsync(ulong, ulong, RequestOptions?)" />
-    public static Task<GuildMember> GetMemberAsync(this Guild guild, User user, RequestOptions? options = null)
+    public static Task<GuildMember?> GetMemberAsync(this Guild guild, User user, RequestOptions? options = null)
         => guild.Client.Rest.GetMemberAsync(guild.Id, user.Id, options);
 
     /// <inheritdoc cref="FluxerApiClient.CreateRoleAsync(ulong, CreateGuildRoleRequest, RequestOptions?)" />
@@ -94,10 +122,18 @@ public static class GuildHelpers
         => guild.Client.Rest.GetGuildVanityUrlAsync(guild.Id, options);
 
     /// <inheritdoc cref="FluxerApiClient.GetGuildWebhooksAsync(ulong, RequestOptions?)" />
+    public static Task<Webhook?> GetWebhookAsync(this Guild guild, ulong webhookId, RequestOptions? options = null)
+        => guild.Client.Rest.GetWebhookAsync(webhookId, options);
+
+    /// <inheritdoc cref="FluxerApiClient.GetGuildWebhooksAsync(ulong, RequestOptions?)" />
     public static Task<IEnumerable<Webhook>> GetWebhooksAsync(this Guild guild, RequestOptions? options = null)
         => guild.Client.Rest.GetGuildWebhooksAsync(guild.Id, options);
 
     /// <inheritdoc cref="FluxerApiClient.GetGuildInvitesAsync(ulong, RequestOptions?)" />
     public static Task<IEnumerable<Invite>> GetInvitesAsync(this Guild guild, RequestOptions? options = null)
         => guild.Client.Rest.GetGuildInvitesAsync(guild.Id, options);
+
+    /// <inheritdoc cref="FluxerApiClient.GetThreadChannelAsync(ulong, RequestOptions?)" />
+    public static Task<ThreadChannel?> GetThreadChannelAsync(this Guild guild, ulong threadId, RequestOptions? options = null)
+        => guild.Client.Rest.GetThreadChannelAsync(threadId, options);
 }

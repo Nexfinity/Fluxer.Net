@@ -10096,6 +10096,9 @@
             </remarks>
             <returns><see cref="T:Fluxer.Net.Channel"/></returns>
         </member>
+        <member name="M:Fluxer.Net.Rest.FluxerApiClient.GetThreadChannelAsync(System.UInt64,Fluxer.Net.Rest.RequestOptions)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.GetChannelAsync(System.UInt64,Fluxer.Net.Rest.RequestOptions)"/>
+        </member>
         <member name="M:Fluxer.Net.Rest.FluxerApiClient.GetChannelRtcRegionsAsync(System.UInt64,Fluxer.Net.Rest.RequestOptions)">
             <summary>
             Get voice regions for a channel.
@@ -10767,13 +10770,13 @@
         <member name="M:Fluxer.Net.Rest.FluxerApiClient.CreateLinkChannelAsync(System.UInt64,Fluxer.Net.Rest.CreateLinkChannelRequest,Fluxer.Net.Rest.RequestOptions)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.CreateGuildChannelAsync(System.UInt64,Fluxer.Net.Rest.CreateGuildChannelRequest,Fluxer.Net.Rest.RequestOptions)" />
         </member>
-        <member name="M:Fluxer.Net.Rest.FluxerApiClient.CreateNewsChannelAsync(System.UInt64,Fluxer.Net.Rest.CreateGuildChannelRequest,Fluxer.Net.Rest.RequestOptions)">
+        <member name="M:Fluxer.Net.Rest.FluxerApiClient.CreateNewsChannelAsync(System.UInt64,Fluxer.Net.Rest.CreateNewsChannelRequest,Fluxer.Net.Rest.RequestOptions)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.CreateGuildChannelAsync(System.UInt64,Fluxer.Net.Rest.CreateGuildChannelRequest,Fluxer.Net.Rest.RequestOptions)" />
         </member>
         <member name="M:Fluxer.Net.Rest.FluxerApiClient.CreateForumChannelAsync(System.UInt64,Fluxer.Net.Rest.CreateForumChannelRequest,Fluxer.Net.Rest.RequestOptions)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.CreateGuildChannelAsync(System.UInt64,Fluxer.Net.Rest.CreateGuildChannelRequest,Fluxer.Net.Rest.RequestOptions)" />
         </member>
-        <member name="M:Fluxer.Net.Rest.FluxerApiClient.CreateMediaChannelAsync(System.UInt64,Fluxer.Net.Rest.CreateGuildChannelRequest,Fluxer.Net.Rest.RequestOptions)">
+        <member name="M:Fluxer.Net.Rest.FluxerApiClient.CreateMediaChannelAsync(System.UInt64,Fluxer.Net.Rest.CreateMediaChannelRequest,Fluxer.Net.Rest.RequestOptions)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.CreateGuildChannelAsync(System.UInt64,Fluxer.Net.Rest.CreateGuildChannelRequest,Fluxer.Net.Rest.RequestOptions)" />
         </member>
         <member name="M:Fluxer.Net.Rest.FluxerApiClient.UpdateChannelPositionsAsync(System.UInt64,System.Collections.Generic.IEnumerable{Fluxer.Net.Rest.ChannelPositionUpdateRequestItem},Fluxer.Net.Rest.RequestOptions)">
@@ -10789,7 +10792,7 @@
             Search the guild.
             </summary>
         </member>
-        <member name="M:Fluxer.Net.Rest.FluxerApiClient.SearchAuditLogAsync(System.UInt64,Fluxer.Net.Rest.GuildAuditLogListRequest,Fluxer.Net.Rest.RequestOptions)">
+        <member name="M:Fluxer.Net.Rest.FluxerApiClient.GetAuditLogAsync(System.UInt64,Fluxer.Net.Rest.GuildAuditLogListRequest,Fluxer.Net.Rest.RequestOptions)">
             <summary>
             Search audit logs in the guild.
             </summary>
@@ -13552,6 +13555,29 @@
             Max length of message nonce.
             </summary>
         </member>
+        <member name="T:Fluxer.Net.CategoryHelpers">
+            <summary>
+            Http methods for <see cref="T:Fluxer.Net.CategoryChannel"/> class. 
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.CategoryHelpers.CreateTextChannelAsync(Fluxer.Net.CategoryChannel,Fluxer.Net.Rest.CreateTextChannelRequest,Fluxer.Net.Rest.RequestOptions)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.CreateGuildChannelAsync(System.UInt64,Fluxer.Net.Rest.CreateGuildChannelRequest,Fluxer.Net.Rest.RequestOptions)" />
+        </member>
+        <member name="M:Fluxer.Net.CategoryHelpers.CreateVoiceChannelAsync(Fluxer.Net.CategoryChannel,Fluxer.Net.Rest.CreateVoiceChannelRequest,Fluxer.Net.Rest.RequestOptions)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.CreateGuildChannelAsync(System.UInt64,Fluxer.Net.Rest.CreateGuildChannelRequest,Fluxer.Net.Rest.RequestOptions)" />
+        </member>
+        <member name="M:Fluxer.Net.CategoryHelpers.CreateLinkChannelAsync(Fluxer.Net.CategoryChannel,Fluxer.Net.Rest.CreateLinkChannelRequest,Fluxer.Net.Rest.RequestOptions)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.CreateGuildChannelAsync(System.UInt64,Fluxer.Net.Rest.CreateGuildChannelRequest,Fluxer.Net.Rest.RequestOptions)" />
+        </member>
+        <member name="M:Fluxer.Net.CategoryHelpers.CreateNewsChannelAsync(Fluxer.Net.CategoryChannel,Fluxer.Net.Rest.CreateNewsChannelRequest,Fluxer.Net.Rest.RequestOptions)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.CreateGuildChannelAsync(System.UInt64,Fluxer.Net.Rest.CreateGuildChannelRequest,Fluxer.Net.Rest.RequestOptions)" />
+        </member>
+        <member name="M:Fluxer.Net.CategoryHelpers.CreateForumChannelAsync(Fluxer.Net.CategoryChannel,Fluxer.Net.Rest.CreateForumChannelRequest,Fluxer.Net.Rest.RequestOptions)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.CreateGuildChannelAsync(System.UInt64,Fluxer.Net.Rest.CreateGuildChannelRequest,Fluxer.Net.Rest.RequestOptions)" />
+        </member>
+        <member name="M:Fluxer.Net.CategoryHelpers.CreateMediaChannelAsync(Fluxer.Net.CategoryChannel,Fluxer.Net.Rest.CreateMediaChannelRequest,Fluxer.Net.Rest.RequestOptions)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.CreateGuildChannelAsync(System.UInt64,Fluxer.Net.Rest.CreateGuildChannelRequest,Fluxer.Net.Rest.RequestOptions)" />
+        </member>
         <member name="T:Fluxer.Net.ChannelHelpers">
             <summary>
             Http methods for <see cref="T:Fluxer.Net.Channel"/> class. 
@@ -13698,19 +13724,46 @@
         <member name="M:Fluxer.Net.ChannelHelpers.CreatePrivateThreadAsync(Fluxer.Net.Channel,Fluxer.Net.Rest.CreatePrivateThreadRequest,Fluxer.Net.Rest.RequestOptions)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.CreatePrivateThreadAsync(System.UInt64,Fluxer.Net.Rest.CreatePrivateThreadRequest,Fluxer.Net.Rest.RequestOptions)" />
         </member>
+        <member name="M:Fluxer.Net.ChannelHelpers.GetThreadChannelAsync(Fluxer.Net.Channel,System.UInt64,Fluxer.Net.Rest.RequestOptions)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.GetThreadChannelAsync(System.UInt64,Fluxer.Net.Rest.RequestOptions)" />
+        </member>
         <member name="T:Fluxer.Net.ExpressionHelpers">
             <summary>
             Http methods for <see cref="T:Fluxer.Net.GuildEmoji"/> and <see cref="T:Fluxer.Net.GuildSticker"/> class. 
             </summary>
         </member>
-        <member name="M:Fluxer.Net.ExpressionHelpers.DeleteAsync(Fluxer.Net.GuildEmoji,Fluxer.Net.Rest.RequestOptions)">
+        <member name="M:Fluxer.Net.ExpressionHelpers.DeleteEmojiAsync(Fluxer.Net.Guild,Fluxer.Net.GuildEmoji,Fluxer.Net.Rest.RequestOptions)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.DeleteEmojiAsync(System.UInt64,System.UInt64,Fluxer.Net.Rest.RequestOptions)" />
+        </member>
+        <member name="M:Fluxer.Net.ExpressionHelpers.DeleteEmojiAsync(Fluxer.Net.Guild,System.UInt64,Fluxer.Net.Rest.RequestOptions)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.DeleteEmojiAsync(System.UInt64,System.UInt64,Fluxer.Net.Rest.RequestOptions)" />
+        </member>
+        <member name="M:Fluxer.Net.ExpressionHelpers.DeleteEmojiAsync(Fluxer.Net.GuildEmoji,Fluxer.Net.Rest.RequestOptions)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.DeleteEmojiAsync(System.UInt64,System.UInt64,Fluxer.Net.Rest.RequestOptions)" />
+        </member>
+        <member name="M:Fluxer.Net.ExpressionHelpers.ModifyEmojiAsync(Fluxer.Net.Guild,Fluxer.Net.GuildEmoji,System.String,Fluxer.Net.Rest.RequestOptions)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.UpdateEmojiAsync(System.UInt64,System.UInt64,Fluxer.Net.Rest.UpdateGuildEmojiRequest,Fluxer.Net.Rest.RequestOptions)" />
+        </member>
+        <member name="M:Fluxer.Net.ExpressionHelpers.ModifyEmojiAsync(Fluxer.Net.Guild,System.UInt64,System.String,Fluxer.Net.Rest.RequestOptions)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.UpdateEmojiAsync(System.UInt64,System.UInt64,Fluxer.Net.Rest.UpdateGuildEmojiRequest,Fluxer.Net.Rest.RequestOptions)" />
         </member>
         <member name="M:Fluxer.Net.ExpressionHelpers.ModifyAsync(Fluxer.Net.GuildEmoji,System.String,Fluxer.Net.Rest.RequestOptions)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.UpdateEmojiAsync(System.UInt64,System.UInt64,Fluxer.Net.Rest.UpdateGuildEmojiRequest,Fluxer.Net.Rest.RequestOptions)" />
         </member>
+        <member name="M:Fluxer.Net.ExpressionHelpers.DeleteStickerAsync(Fluxer.Net.Guild,Fluxer.Net.GuildSticker,Fluxer.Net.Rest.RequestOptions)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.DeleteStickerAsync(System.UInt64,System.UInt64,Fluxer.Net.Rest.RequestOptions)" />
+        </member>
+        <member name="M:Fluxer.Net.ExpressionHelpers.DeleteStickerAsync(Fluxer.Net.Guild,System.UInt64,Fluxer.Net.Rest.RequestOptions)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.DeleteStickerAsync(System.UInt64,System.UInt64,Fluxer.Net.Rest.RequestOptions)" />
+        </member>
         <member name="M:Fluxer.Net.ExpressionHelpers.DeleteAsync(Fluxer.Net.GuildSticker,Fluxer.Net.Rest.RequestOptions)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.DeleteStickerAsync(System.UInt64,System.UInt64,Fluxer.Net.Rest.RequestOptions)" />
+        </member>
+        <member name="M:Fluxer.Net.ExpressionHelpers.ModifyStickerAsync(Fluxer.Net.Guild,Fluxer.Net.GuildSticker,Fluxer.Net.Rest.UpdateGuildStickerRequest,Fluxer.Net.Rest.RequestOptions)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.UpdateStickerAsync(System.UInt64,System.UInt64,Fluxer.Net.Rest.UpdateGuildStickerRequest,Fluxer.Net.Rest.RequestOptions)" />
+        </member>
+        <member name="M:Fluxer.Net.ExpressionHelpers.ModifyStickerAsync(Fluxer.Net.Guild,System.UInt64,Fluxer.Net.Rest.UpdateGuildStickerRequest,Fluxer.Net.Rest.RequestOptions)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.UpdateStickerAsync(System.UInt64,System.UInt64,Fluxer.Net.Rest.UpdateGuildStickerRequest,Fluxer.Net.Rest.RequestOptions)" />
         </member>
         <member name="M:Fluxer.Net.ExpressionHelpers.ModifyAsync(Fluxer.Net.GuildSticker,Fluxer.Net.Rest.UpdateGuildStickerRequest,Fluxer.Net.Rest.RequestOptions)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.UpdateStickerAsync(System.UInt64,System.UInt64,Fluxer.Net.Rest.UpdateGuildStickerRequest,Fluxer.Net.Rest.RequestOptions)" />
@@ -13752,17 +13805,29 @@
         <member name="M:Fluxer.Net.GuildHelpers.UpdateChannelPositionsAsync(Fluxer.Net.Guild,System.Collections.Generic.IEnumerable{Fluxer.Net.Rest.ChannelPositionUpdateRequestItem},Fluxer.Net.Rest.RequestOptions)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.UpdateChannelPositionsAsync(System.UInt64,System.Collections.Generic.IEnumerable{Fluxer.Net.Rest.ChannelPositionUpdateRequestItem},Fluxer.Net.Rest.RequestOptions)" />
         </member>
-        <member name="M:Fluxer.Net.GuildHelpers.SearchAuditLogsAsync(Fluxer.Net.Guild,Fluxer.Net.Rest.GuildAuditLogListRequest,Fluxer.Net.Rest.RequestOptions)">
-            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.SearchAuditLogAsync(System.UInt64,Fluxer.Net.Rest.GuildAuditLogListRequest,Fluxer.Net.Rest.RequestOptions)" />
+        <member name="M:Fluxer.Net.GuildHelpers.GetAuditLogsAsync(Fluxer.Net.Guild,Fluxer.Net.Rest.GuildAuditLogListRequest,Fluxer.Net.Rest.RequestOptions)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.GetAuditLogAsync(System.UInt64,Fluxer.Net.Rest.GuildAuditLogListRequest,Fluxer.Net.Rest.RequestOptions)" />
         </member>
         <member name="M:Fluxer.Net.GuildHelpers.GetBansAsync(Fluxer.Net.Guild,Fluxer.Net.Rest.RequestOptions)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.GetBansAsync(System.UInt64,Fluxer.Net.Rest.RequestOptions)" />
+        </member>
+        <member name="M:Fluxer.Net.GuildHelpers.BanUserAsync(Fluxer.Net.Guild,System.UInt64,System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},Fluxer.Net.Rest.RequestOptions)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.BanMemberAsync(System.UInt64,System.UInt64,System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},Fluxer.Net.Rest.RequestOptions)" />
+        </member>
+        <member name="M:Fluxer.Net.GuildHelpers.BanUserAsync(Fluxer.Net.Guild,Fluxer.Net.User,System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},Fluxer.Net.Rest.RequestOptions)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.BanMemberAsync(System.UInt64,System.UInt64,System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},Fluxer.Net.Rest.RequestOptions)" />
         </member>
         <member name="M:Fluxer.Net.GuildHelpers.UnbanUserAsync(Fluxer.Net.Guild,System.UInt64,Fluxer.Net.Rest.RequestOptions)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.UnbanMemberAsync(System.UInt64,System.UInt64,Fluxer.Net.Rest.RequestOptions)" />
         </member>
         <member name="M:Fluxer.Net.GuildHelpers.UnbanUserAsync(Fluxer.Net.Guild,Fluxer.Net.User,Fluxer.Net.Rest.RequestOptions)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.UnbanMemberAsync(System.UInt64,System.UInt64,Fluxer.Net.Rest.RequestOptions)" />
+        </member>
+        <member name="M:Fluxer.Net.GuildHelpers.KickUserAsync(Fluxer.Net.Guild,System.UInt64,System.String,Fluxer.Net.Rest.RequestOptions)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.KickMemberAsync(System.UInt64,System.UInt64,System.String,Fluxer.Net.Rest.RequestOptions)" />
+        </member>
+        <member name="M:Fluxer.Net.GuildHelpers.KickUserAsync(Fluxer.Net.Guild,Fluxer.Net.User,System.String,Fluxer.Net.Rest.RequestOptions)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.KickMemberAsync(System.UInt64,System.UInt64,System.String,Fluxer.Net.Rest.RequestOptions)" />
         </member>
         <member name="M:Fluxer.Net.GuildHelpers.GetChannelsAsync(Fluxer.Net.Guild,Fluxer.Net.Rest.RequestOptions)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.GetChannelsAsync(System.UInt64,Fluxer.Net.Rest.RequestOptions)" />
@@ -13777,6 +13842,15 @@
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.CreateGuildChannelAsync(System.UInt64,Fluxer.Net.Rest.CreateGuildChannelRequest,Fluxer.Net.Rest.RequestOptions)" />
         </member>
         <member name="M:Fluxer.Net.GuildHelpers.CreateCategoryChannelAsync(Fluxer.Net.Guild,Fluxer.Net.Rest.CreateCategoryChannelRequest,Fluxer.Net.Rest.RequestOptions)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.CreateGuildChannelAsync(System.UInt64,Fluxer.Net.Rest.CreateGuildChannelRequest,Fluxer.Net.Rest.RequestOptions)" />
+        </member>
+        <member name="M:Fluxer.Net.GuildHelpers.CreateNewsChannelAsync(Fluxer.Net.Guild,Fluxer.Net.Rest.CreateNewsChannelRequest,Fluxer.Net.Rest.RequestOptions)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.CreateGuildChannelAsync(System.UInt64,Fluxer.Net.Rest.CreateGuildChannelRequest,Fluxer.Net.Rest.RequestOptions)" />
+        </member>
+        <member name="M:Fluxer.Net.GuildHelpers.CreateForumChannelAsync(Fluxer.Net.Guild,Fluxer.Net.Rest.CreateForumChannelRequest,Fluxer.Net.Rest.RequestOptions)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.CreateGuildChannelAsync(System.UInt64,Fluxer.Net.Rest.CreateGuildChannelRequest,Fluxer.Net.Rest.RequestOptions)" />
+        </member>
+        <member name="M:Fluxer.Net.GuildHelpers.CreateMediaChannelAsync(Fluxer.Net.Guild,Fluxer.Net.Rest.CreateMediaChannelRequest,Fluxer.Net.Rest.RequestOptions)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.CreateGuildChannelAsync(System.UInt64,Fluxer.Net.Rest.CreateGuildChannelRequest,Fluxer.Net.Rest.RequestOptions)" />
         </member>
         <member name="M:Fluxer.Net.GuildHelpers.GetEmojisAsync(Fluxer.Net.Guild,Fluxer.Net.Rest.RequestOptions)">
@@ -13806,11 +13880,17 @@
         <member name="M:Fluxer.Net.GuildHelpers.GetVanityUrlAsync(Fluxer.Net.Guild,Fluxer.Net.Rest.RequestOptions)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.GetGuildVanityUrlAsync(System.UInt64,Fluxer.Net.Rest.RequestOptions)" />
         </member>
+        <member name="M:Fluxer.Net.GuildHelpers.GetWebhookAsync(Fluxer.Net.Guild,System.UInt64,Fluxer.Net.Rest.RequestOptions)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.GetGuildWebhooksAsync(System.UInt64,Fluxer.Net.Rest.RequestOptions)" />
+        </member>
         <member name="M:Fluxer.Net.GuildHelpers.GetWebhooksAsync(Fluxer.Net.Guild,Fluxer.Net.Rest.RequestOptions)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.GetGuildWebhooksAsync(System.UInt64,Fluxer.Net.Rest.RequestOptions)" />
         </member>
         <member name="M:Fluxer.Net.GuildHelpers.GetInvitesAsync(Fluxer.Net.Guild,Fluxer.Net.Rest.RequestOptions)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.GetGuildInvitesAsync(System.UInt64,Fluxer.Net.Rest.RequestOptions)" />
+        </member>
+        <member name="M:Fluxer.Net.GuildHelpers.GetThreadChannelAsync(Fluxer.Net.Guild,System.UInt64,Fluxer.Net.Rest.RequestOptions)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.GetThreadChannelAsync(System.UInt64,Fluxer.Net.Rest.RequestOptions)" />
         </member>
         <member name="T:Fluxer.Net.MemberHelpers">
             <summary>
@@ -13821,7 +13901,7 @@
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.BanMemberAsync(System.UInt64,System.UInt64,System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},Fluxer.Net.Rest.RequestOptions)" />
         </member>
         <member name="M:Fluxer.Net.MemberHelpers.KickAsync(Fluxer.Net.GuildMember,System.String,Fluxer.Net.Rest.RequestOptions)">
-            <inheritdoc cref="!:FluxerApiClient.KickMemberAsync(ulong, ulong, RequestOptions?)" />
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.KickMemberAsync(System.UInt64,System.UInt64,System.String,Fluxer.Net.Rest.RequestOptions)" />
         </member>
         <member name="M:Fluxer.Net.MemberHelpers.ModifyAsync(Fluxer.Net.GuildMember,Fluxer.Net.GuildMemberJson,Fluxer.Net.Rest.RequestOptions)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.UpdateMemberAsync(System.UInt64,System.UInt64,Fluxer.Net.GuildMemberJson,Fluxer.Net.Rest.RequestOptions)" />
@@ -13980,8 +14060,20 @@
             Http methods for <see cref="T:Fluxer.Net.Role"/> class. 
             </summary>
         </member>
+        <member name="M:Fluxer.Net.RoleHelpers.DeleteRoleAsync(Fluxer.Net.Guild,Fluxer.Net.Role,Fluxer.Net.Rest.RequestOptions)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.DeleteRoleAsync(System.UInt64,System.UInt64,Fluxer.Net.Rest.RequestOptions)" />
+        </member>
+        <member name="M:Fluxer.Net.RoleHelpers.DeleteRoleAsync(Fluxer.Net.Guild,System.UInt64,Fluxer.Net.Rest.RequestOptions)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.DeleteRoleAsync(System.UInt64,System.UInt64,Fluxer.Net.Rest.RequestOptions)" />
+        </member>
         <member name="M:Fluxer.Net.RoleHelpers.DeleteAsync(Fluxer.Net.Role,Fluxer.Net.Rest.RequestOptions)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.DeleteRoleAsync(System.UInt64,System.UInt64,Fluxer.Net.Rest.RequestOptions)" />
+        </member>
+        <member name="M:Fluxer.Net.RoleHelpers.ModifyRoleAsync(Fluxer.Net.Guild,Fluxer.Net.Role,Fluxer.Net.Rest.UpdateGuildRoleRequest,Fluxer.Net.Rest.RequestOptions)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.UpdateRoleAsync(System.UInt64,System.UInt64,Fluxer.Net.Rest.UpdateGuildRoleRequest,Fluxer.Net.Rest.RequestOptions)" />
+        </member>
+        <member name="M:Fluxer.Net.RoleHelpers.ModifyRoleAsync(Fluxer.Net.Guild,System.UInt64,Fluxer.Net.Rest.UpdateGuildRoleRequest,Fluxer.Net.Rest.RequestOptions)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.UpdateRoleAsync(System.UInt64,System.UInt64,Fluxer.Net.Rest.UpdateGuildRoleRequest,Fluxer.Net.Rest.RequestOptions)" />
         </member>
         <member name="M:Fluxer.Net.RoleHelpers.ModifyAsync(Fluxer.Net.Role,Fluxer.Net.Rest.UpdateGuildRoleRequest,Fluxer.Net.Rest.RequestOptions)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.UpdateRoleAsync(System.UInt64,System.UInt64,Fluxer.Net.Rest.UpdateGuildRoleRequest,Fluxer.Net.Rest.RequestOptions)" />

@@ -13,7 +13,7 @@ public static class MemberHelpers
     public static Task BanAsync(this GuildMember member, string? reason = null, int? deleteMessageSeconds = null, int? banDurationSeconds = null, RequestOptions? options = null)
         => member.Client.Rest.BanMemberAsync(member.GuildId, member.Id, reason, deleteMessageSeconds, banDurationSeconds, options);
 
-    /// <inheritdoc cref="FluxerApiClient.KickMemberAsync(ulong, ulong, RequestOptions?)" />
+    /// <inheritdoc cref="FluxerApiClient.KickMemberAsync(ulong, ulong, string, RequestOptions?)" />
     public static Task KickAsync(this GuildMember member, string? reason = null, RequestOptions? options = null)
         => member.Client.Rest.KickMemberAsync(member.GuildId, member.Id, reason, options);
 

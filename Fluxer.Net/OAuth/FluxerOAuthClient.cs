@@ -52,11 +52,11 @@ public class FluxerOAuthClient : FluxerBaseClient
     public new FluxerApiClient Rest => base.Rest;
 
     /// <inheritdoc cref="FluxerApiClient.GetOAuthUserAsync(string, RequestOptions?)" />
-    public Task<FluxerOAuthUser> GetUserAsync(string accessToken, RequestOptions? options = null)
+    public Task<FluxerOAuthUser?> GetUserAsync(string accessToken, RequestOptions? options = null)
         => Rest.GetOAuthUserAsync(accessToken, options);
 
     /// <inheritdoc cref="FluxerApiClient.GetOAuthTokenAsync(string, RequestOptions?)" />
-    public Task<FluxerOAuthToken> GetTokenAsync(string accessToken, RequestOptions? options = null)
+    public Task<FluxerOAuthToken?> GetTokenAsync(string accessToken, RequestOptions? options = null)
         => Rest.GetOAuthTokenAsync(accessToken, options);
 
     /// <inheritdoc cref="FluxerApiClient.GetOAuthGuildsAsync(string, RequestOptions?)" />
@@ -82,7 +82,7 @@ public class FluxerOAuthClient : FluxerBaseClient
     }
 
     /// <inheritdoc cref="FluxerApiClient.GetOAuthValidTokenAsync(ulong, string, string, RequestOptions?)" />
-    public Task<FluxerOAuthValidToken> GetValidTokenAsync(string accessToken, RequestOptions? options = null)
+    public Task<FluxerOAuthValidToken?> GetValidTokenAsync(string accessToken, RequestOptions? options = null)
         => Rest.GetOAuthValidTokenAsync(ClientId, ClientSecret, accessToken, options);
 
     /// <inheritdoc cref="FluxerApiClient.ExchangeOAuthRefreshTokenAsync(ulong, string, string, RequestOptions?)" />

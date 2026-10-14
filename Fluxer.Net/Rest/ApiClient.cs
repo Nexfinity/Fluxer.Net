@@ -274,10 +274,23 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// Requires <see cref="ChannelPermissions.ViewChannel"/> for guild channels.
     /// </remarks>
     /// <returns><see cref="Channel"/></returns>
-    public async Task<Channel> GetChannelAsync(ulong channelId, RequestOptions? options = null)
+    public async Task<Channel?> GetChannelAsync(ulong channelId, RequestOptions? options = null)
     {
-        ChannelJson json = await SendRequestAsync<ChannelJson>(HttpMethod.Get, $"/channels/{channelId}", true, options: options);
+        ChannelJson json = await SendRequestAsync<ChannelJson>(HttpMethod.Get, $"/channels/{channelId}", false, options: options);
+        if (json == null)
+            return null;
+
         return Channel.Create(_client, json);
+    }
+
+    /// <inheritdoc cref="GetChannelAsync(ulong, RequestOptions?)"/>
+    public async Task<ThreadChannel?> GetThreadChannelAsync(ulong channelId, RequestOptions? options = null)
+    {
+        ChannelJson json = await SendRequestAsync<ChannelJson>(HttpMethod.Get, $"/channels/{channelId}", false, options: options);
+        if (json == null)
+            return null;
+
+        return Channel.Create(_client, json) as ThreadChannel;
     }
 
     /// <summary>
@@ -963,9 +976,12 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// Get invite info from invite code.
     /// </summary>
     /// <returns><see cref="PartialInvite"/></returns>
-    public async Task<PartialInvite> GetInviteAsync(string inviteCode, RequestOptions? options = null)
+    public async Task<PartialInvite?> GetInviteAsync(string inviteCode, RequestOptions? options = null)
     {
-        PartialInviteJson json = await SendRequestAsync<PartialInviteJson>(HttpMethod.Get, $"/invites/{inviteCode}", true, options: options);
+        PartialInviteJson? json = await SendRequestAsync<PartialInviteJson>(HttpMethod.Get, $"/invites/{inviteCode}", false, options: options);
+        if (json == null)
+            return null;
+
         return PartialInvite.Create(_client, json);
     }
 
@@ -1039,9 +1055,12 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// Get a guild that the current user is in.
     /// </summary>
     /// <returns><see cref="Guild"/></returns>
-    public async Task<Guild> GetGuildAsync(ulong guildId, RequestOptions? options = null)
+    public async Task<Guild?> GetGuildAsync(ulong guildId, RequestOptions? options = null)
     {
-        GuildJson json = await SendRequestAsync<GuildJson>(HttpMethod.Get, $"/guilds/{guildId}", true, options: options);
+        GuildJson? json = await SendRequestAsync<GuildJson>(HttpMethod.Get, $"/guilds/{guildId}", false, options: options);
+        if (json == null)
+            return null;
+
         return Guild.Create(_client, json);
     }
 
@@ -1103,9 +1122,12 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// Get current member for a guild.
     /// </summary>
     /// <returns><see cref="GuildMember"/></returns>
-    public async Task<GuildMember> GetCurrentMemberAsync(ulong guildId, RequestOptions? options = null)
+    public async Task<GuildMember?> GetCurrentMemberAsync(ulong guildId, RequestOptions? options = null)
     {
-        GuildMemberJson json = await SendRequestAsync<GuildMemberJson>(HttpMethod.Get, $"/guilds/{guildId}/members/@me", true, options: options);
+        GuildMemberJson? json = await SendRequestAsync<GuildMemberJson>(HttpMethod.Get, $"/guilds/{guildId}/members/@me", false, options: options);
+        if (json == null)
+            return null;
+
         return GuildMember.Create(_client, json);
     }
 
@@ -1113,9 +1135,12 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// Get a member in a guild.
     /// </summary>
     /// <returns><see cref="GuildMember"/></returns>
-    public async Task<GuildMember> GetMemberAsync(ulong guildId, ulong userId, RequestOptions? options = null)
+    public async Task<GuildMember?> GetMemberAsync(ulong guildId, ulong userId, RequestOptions? options = null)
     {
-        GuildMemberJson json = await SendRequestAsync<GuildMemberJson>(HttpMethod.Get, $"/guilds/{guildId}/members/{userId}", true, options: options);
+        GuildMemberJson json = await SendRequestAsync<GuildMemberJson>(HttpMethod.Get, $"/guilds/{guildId}/members/{userId}", false, options: options);
+        if (json == null)
+            return null;
+
         return GuildMember.Create(_client, json);
     }
 
@@ -1353,9 +1378,9 @@ public class FluxerApiClient : FluxerBaseApiClient
     }
 
     /// <inheritdoc cref="CreateGuildChannelAsync(ulong, CreateGuildChannelRequest, RequestOptions?)" />
-    public async Task<NewsChannel> CreateNewsChannelAsync(ulong guildId, CreateGuildChannelRequest data, RequestOptions? options = null)
+    public async Task<NewsChannel> CreateNewsChannelAsync(ulong guildId, CreateNewsChannelRequest data, RequestOptions? options = null)
     {
-        ChannelJson json = await SendRequestAsync<ChannelJson, CreateGuildChannelRequest>(HttpMethod.Post, $"/guilds/{guildId}/channels", data, true, options: options);
+        ChannelJson json = await SendRequestAsync<ChannelJson, CreateNewsChannelRequest>(HttpMethod.Post, $"/guilds/{guildId}/channels", data, true, options: options);
         return (NewsChannel)Channel.Create(_client, json);
     }
 
@@ -1367,9 +1392,9 @@ public class FluxerApiClient : FluxerBaseApiClient
     }
 
     /// <inheritdoc cref="CreateGuildChannelAsync(ulong, CreateGuildChannelRequest, RequestOptions?)" />
-    public async Task<MediaChannel> CreateMediaChannelAsync(ulong guildId, CreateGuildChannelRequest data, RequestOptions? options = null)
+    public async Task<MediaChannel> CreateMediaChannelAsync(ulong guildId, CreateMediaChannelRequest data, RequestOptions? options = null)
     {
-        ChannelJson json = await SendRequestAsync<ChannelJson, CreateGuildChannelRequest>(HttpMethod.Post, $"/guilds/{guildId}/channels", data, true, options: options);
+        ChannelJson json = await SendRequestAsync<ChannelJson, CreateMediaChannelRequest>(HttpMethod.Post, $"/guilds/{guildId}/channels", data, true, options: options);
         return (MediaChannel)Channel.Create(_client, json);
     }
 
@@ -1395,7 +1420,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// Requires <see cref="GuildPermissions.ViewAuditLog"/>.
     /// </remarks>
     /// <returns><see cref="AuditLogListJson"/></returns>
-    public async Task<AuditLogListJson> SearchAuditLogAsync(ulong guildId, GuildAuditLogListRequest data, RequestOptions? options = null)
+    public async Task<AuditLogListJson> GetAuditLogAsync(ulong guildId, GuildAuditLogListRequest data, RequestOptions? options = null)
         => await SendRequestAsync<AuditLogListJson, GuildAuditLogListRequest>(HttpMethod.Post, $"/guilds/{guildId}/audit-logs", data, true, options: options);
 
     /// <summary>
@@ -1642,9 +1667,12 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// Get a user.
     /// </summary>
     /// <returns><see cref="User"/></returns>
-    public async Task<User> GetUserAsync(ulong userId, RequestOptions? options = null)
+    public async Task<User?> GetUserAsync(ulong userId, RequestOptions? options = null)
     {
-        UserJson json = await SendRequestAsync<UserJson>(HttpMethod.Get, $"/users/{userId}", true, options: options);
+        UserJson? json = await SendRequestAsync<UserJson>(HttpMethod.Get, $"/users/{userId}", false, options: options);
+        if (json == null)
+            return null;
+
         return User.Create(_client, json);
     }
 
@@ -1938,9 +1966,12 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// Requires <see cref="ChannelPermissions.ManageWebhooks"/>.
     /// </remarks>
     /// <returns><see cref="Webhook"/></returns>
-    public async Task<Webhook> GetWebhookAsync(ulong webhookId, RequestOptions? options = null)
+    public async Task<Webhook?> GetWebhookAsync(ulong webhookId, RequestOptions? options = null)
     {
-        WebhookJson json = await SendRequestAsync<WebhookJson>(HttpMethod.Get, $"/webhooks/{webhookId}", true, options: options);
+        WebhookJson? json = await SendRequestAsync<WebhookJson>(HttpMethod.Get, $"/webhooks/{webhookId}", false, options: options);
+        if (json == null)
+            return null;
+
         return Webhook.Create(_client, json);
     }
 
@@ -1970,9 +2001,12 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// Get webhook using the webhook token.
     /// </summary>
     /// <returns><see cref="Webhook"/></returns>
-    public async Task<Webhook> GetWebhookWithTokenAsync(ulong webhookId, string token, RequestOptions? options = null)
+    public async Task<Webhook?> GetWebhookWithTokenAsync(ulong webhookId, string token, RequestOptions? options = null)
     {
-        WebhookJson json = await SendRequestAsync<WebhookJson>(HttpMethod.Get, $"/webhooks/{webhookId}/{token}", false, options: options);
+        WebhookJson? json = await SendRequestAsync<WebhookJson>(HttpMethod.Get, $"/webhooks/{webhookId}/{token}", false, options: options);
+        if (json == null)
+            return null;
+
         return Webhook.Create(_client, json);
     }
 
@@ -2111,9 +2145,12 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// Get user from access token.
     /// </summary>
     /// <returns><see cref="FluxerOAuthUser"/></returns>
-    public async Task<FluxerOAuthUser> GetOAuthUserAsync(string accessToken, RequestOptions? options = null)
+    public async Task<FluxerOAuthUser?> GetOAuthUserAsync(string accessToken, RequestOptions? options = null)
     {
-        FluxerOAuthUserJson json = await InternalSendRequestAsync<FluxerOAuthUserJson>(HttpMethod.Get, "/oauth2/userinfo", true, false, accessToken, options: options);
+        FluxerOAuthUserJson? json = await InternalSendRequestAsync<FluxerOAuthUserJson>(HttpMethod.Get, "/oauth2/userinfo", false, false, accessToken, options: options);
+        if (json == null)
+            return null;
+
         return FluxerOAuthUser.Create(_client, json);
     }
 
@@ -2121,9 +2158,12 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// Get oauth token from access token.
     /// </summary>
     /// <returns><see cref="FluxerOAuthToken"/></returns>
-    public async Task<FluxerOAuthToken> GetOAuthTokenAsync(string accessToken, RequestOptions? options = null)
+    public async Task<FluxerOAuthToken?> GetOAuthTokenAsync(string accessToken, RequestOptions? options = null)
     {
-        FluxerOAuthTokenJson json = await InternalSendRequestAsync<FluxerOAuthTokenJson>(HttpMethod.Get, "/oauth2/@me", true, false, accessToken, options: options);
+        FluxerOAuthTokenJson? json = await InternalSendRequestAsync<FluxerOAuthTokenJson>(HttpMethod.Get, "/oauth2/@me", false, false, accessToken, options: options);
+        if (json == null)
+            return null;
+
         return FluxerOAuthToken.Create(_client, json);
     }
 
@@ -2152,14 +2192,17 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// Check if oauth token is valid.
     /// </summary>
     /// /// <returns><see cref="FluxerOAuthValidToken"/></returns>
-    public async Task<FluxerOAuthValidToken> GetOAuthValidTokenAsync(ulong clientId, string clientSecret, string accessToken, RequestOptions? options = null)
+    public async Task<FluxerOAuthValidToken?> GetOAuthValidTokenAsync(ulong clientId, string clientSecret, string accessToken, RequestOptions? options = null)
     {
-        FluxerOAuthValidTokenJson json = await InternalSendRequestFormAsync<FluxerOAuthValidTokenJson>(HttpMethod.Post, "/oauth2/introspect", true, new Dictionary<string, string>
+        FluxerOAuthValidTokenJson? json = await InternalSendRequestFormAsync<FluxerOAuthValidTokenJson>(HttpMethod.Post, "/oauth2/introspect", false, new Dictionary<string, string>
         {
             { "client_id", clientId.ToString() },
             { "client_secret", clientSecret },
             { "token", accessToken }
         }, options: options);
+
+        if (json == null)
+            return null;
 
         return FluxerOAuthValidToken.Create(_client, json);
     }

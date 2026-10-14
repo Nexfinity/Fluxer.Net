@@ -28,6 +28,9 @@ public class SocketGuild : Guild
     public ConcurrentDictionary<ulong, GuildEmoji> Emojis { get; private set; }
     public ConcurrentDictionary<ulong, GuildSticker> Stickers { get; private set; }
 
+    public Task<bool> DownloadMembersAsync()
+        => (Client as FluxerClient).Gateway.DownloadMembersAsync(this);
+
     public new async Task<SocketGuildMember?> GetMemberAsync(ulong userId)
     {
         if (Members.TryGetValue(userId, out SocketGuildMember member))
@@ -55,6 +58,27 @@ public class SocketGuild : Guild
 
     public Channel? GetChannel(ulong channelId)
         => Channels.GetValueOrDefault(channelId);
+
+    public TextChannel? GetTextChannel(ulong channelId)
+        => Channels.GetValueOrDefault(channelId) as TextChannel;
+
+    public VoiceChannel? GetVoiceChannel(ulong channelId)
+        => Channels.GetValueOrDefault(channelId) as VoiceChannel;
+
+    public CategoryChannel? GetCategoryChannel(ulong channelId)
+        => Channels.GetValueOrDefault(channelId) as CategoryChannel;
+
+    public LinkChannel? GetLinkChannel(ulong channelId)
+        => Channels.GetValueOrDefault(channelId) as LinkChannel;
+
+    public NewsChannel? GetNewsChannel(ulong channelId)
+        => Channels.GetValueOrDefault(channelId) as NewsChannel;
+
+    public ForumChannel? GetForumChannel(ulong channelId)
+        => Channels.GetValueOrDefault(channelId) as ForumChannel;
+
+    public MediaChannel? GetMediaChannel(ulong channelId)
+        => Channels.GetValueOrDefault(channelId) as MediaChannel;
 
     public GuildEmoji? GetEmoji(ulong emojiId)
         => Emojis.GetValueOrDefault(emojiId);
