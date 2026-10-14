@@ -98,6 +98,32 @@ public partial class FluxerGatewayClient : IDisposable
 
     internal ulong? OwnerId { get; set; }
 
+    public async Task<GroupChannel?> GetGroupChannelAsync(ulong channelId)
+    {
+        if (Channels.TryGetValue(channelId, out Channel? channel))
+            return channel as GroupChannel;
+
+        channel = await _client.Rest.GetChannelAsync(channelId);
+        if (channel == null || channel is not GroupChannel gc)
+            return null;
+
+        Channels.TryAdd(channel.Id, gc);
+        return gc;
+    }
+
+    public async Task<DMChannel?> GetDMChannelAsync(ulong channelId)
+    {
+        if (Channels.TryGetValue(channelId, out Channel? channel))
+            return channel as DMChannel;
+
+        channel = await _client.Rest.GetChannelAsync(channelId);
+        if (channel == null || channel is not DMChannel dm)
+            return null;
+
+        Channels.TryAdd(channel.Id, dm);
+        return dm;
+    }
+
     public async Task<ulong?> GetOwnerIdAsync()
     {
         if (OwnerId == null)
@@ -1387,12 +1413,21 @@ public partial class FluxerGatewayClient : IDisposable
                         return;
 
                     if (data.AddedMembers != null && data.AddedMembers.Any())
-                        ThreadMembersAdded?.Invoke(guild, data.AddedMembers.Select(x => ThreadMember.Create(_client, x)).ToArray());
+                        ThreadMembersAdded?.Invoke(guild, new Cacheable<ThreadChannel>(data.ThreadId, null, async () =>
+                        {
+                            return await _client.Rest.GetThreadChannelAsync(data.ThreadId);
+                        }), data.AddedMembers.Select(x => ThreadMember.Create(_client, x)).ToArray());
 
                     if (data.RemovedMemberIds != null && data.RemovedMemberIds.Any())
-                        ThreadMembersRemoved?.Invoke(guild, data.RemovedMemberIds);
+                        ThreadMembersRemoved?.Invoke(guild, new Cacheable<ThreadChannel>(data.ThreadId, null, async () =>
+                        {
+                            return await _client.Rest.GetThreadChannelAsync(data.ThreadId);
+                        }), data.RemovedMemberIds);
 
-                    ThreadMembersCount?.Invoke(guild, data.ThreadId, data.MemberCount);
+                    ThreadMembersCount?.Invoke(guild, new Cacheable<ThreadChannel>(data.ThreadId, null, async () =>
+                    {
+                        return await _client.Rest.GetThreadChannelAsync(data.ThreadId);
+                    }), data.MemberCount);
                 }
                 break;
 
@@ -1403,7 +1438,15 @@ public partial class FluxerGatewayClient : IDisposable
                     if (data != null)
                     {
                         if (Channels.TryGetValue(data.ChannelId, out Channel channel))
-                            GroupUserAdded?.Invoke(channel, SocketUser.Create(_client, data.User));
+                            GroupUserAdded?.Invoke(new Cacheable<GroupChannel>(data.ChannelId, null, async () =>
+                            {
+                                Channel? channel = await _client.Rest.GetChannelAsync(data.ChannelId);
+                                if (channel == null || channel is not GroupChannel gc)
+                                    return null;
+
+                                Channels.TryAdd(channel.Id, gc);
+                                return gc;
+                            }), SocketUser.Create(_client, data.User));
                     }
                     else
                         _logger.Warning("CHANNEL_RECIPIENT_ADD event received but data could not be cast to ChannelRecipientGatewayData");
@@ -1415,7 +1458,15 @@ public partial class FluxerGatewayClient : IDisposable
                     if (data != null)
                     {
                         if (Channels.TryGetValue(data.ChannelId, out Channel channel))
-                            GroupUserRemoved?.Invoke(channel, SocketUser.Create(_client, data.User));
+                            GroupUserRemoved?.Invoke(new Cacheable<GroupChannel>(data.ChannelId, null, async () =>
+                            {
+                                Channel? channel = await _client.Rest.GetChannelAsync(data.ChannelId);
+                                if (channel == null || channel is not GroupChannel gc)
+                                    return null;
+
+                                Channels.TryAdd(channel.Id, gc);
+                                return gc;
+                            }), SocketUser.Create(_client, data.User));
                     }
                     else
                         _logger.Warning("CHANNEL_RECIPIENT_REMOVE event received but data could not be cast to ChannelRecipientGatewayData");
@@ -1620,6 +1671,9 @@ public partial class FluxerGatewayClient : IDisposable
                     {
                         if (Channels.TryGetValue(data.ChannelId, out Channel channel))
                             channel.LastMessageId = data.Id;
+                        else
+                            return;
+
                         MessageCreated?.Invoke(SocketMessage.Create(_client, data));
                     }
                     else
@@ -1631,6 +1685,9 @@ public partial class FluxerGatewayClient : IDisposable
                     MessageGatewayData? data = p.Data.ToObject<MessageGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
                     {
+                        if (!Channels.TryGetValue(data.ChannelId, out Channel channel))
+                            return;
+
                         if (data.Member != null)
                             data.Member.User = data.Author;
 
@@ -1645,8 +1702,10 @@ public partial class FluxerGatewayClient : IDisposable
                     MessageDeleteGatewayData? data = p.Data.ToObject<MessageDeleteGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
                     {
-                        if (Channels.TryGetValue(data.ChannelId, out Channel channel))
-                            MessageDeleted?.Invoke(channel, data.AuthorId, data.MessageId, data.Content);
+                        if (!Channels.TryGetValue(data.ChannelId, out Channel channel))
+                            return;
+
+                        MessageDeleted?.Invoke(channel, data.AuthorId, data.MessageId, data.Content);
                     }
                     else
                         _logger.Warning("MESSAGE_DELETE event received but data could not be cast to EntityRemovedGatewayData");
@@ -2520,6 +2579,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// </summary>
     public event MessageDeletedEvent MessageDeleted;
 
+
     // ============================================================================
     // Channel Events
     // ============================================================================
@@ -2578,21 +2638,21 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Delegate for THREAD_DELETE events when a thread is deleted.
     /// </summary>
-    public delegate void ThreadMembersAddedEvent(SocketGuild guild, ThreadMember[] members);
+    public delegate void ThreadMembersAddedEvent(SocketGuild guild, Cacheable<ThreadChannel> thread, ThreadMember[] members);
 
     public event ThreadMembersAddedEvent ThreadMembersAdded;
 
     /// <summary>
     /// Delegate for THREAD_DELETE events when a thread is deleted.
     /// </summary>
-    public delegate void ThreadMembersRemovedEvent(SocketGuild guild, ulong[] members);
+    public delegate void ThreadMembersRemovedEvent(SocketGuild guild, Cacheable<ThreadChannel> thread, ulong[] members);
 
     public event ThreadMembersRemovedEvent ThreadMembersRemoved;
 
     /// <summary>
     /// Delegate for THREAD_DELETE events when a thread is deleted.
     /// </summary>
-    public delegate void ThreadMembersCountEvent(SocketGuild guild, ulong threadId, int membersCount);
+    public delegate void ThreadMembersCountEvent(SocketGuild guild, Cacheable<ThreadChannel> thread, int membersCount);
 
     public event ThreadMembersCountEvent ThreadMembersCount;
 
@@ -2767,7 +2827,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Delegate for CHANNEL_RECIPIENT_ADD events when a recipient is added to a channel.
     /// </summary>
-    public delegate void GroupUserAddedEvent(Channel channel, SocketUser user);
+    public delegate void GroupUserAddedEvent(Cacheable<GroupChannel> channel, SocketUser user);
 
     /// <summary>
     /// Occurs when a recipient is added to a group DM or channel.
@@ -2777,7 +2837,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Delegate for CHANNEL_RECIPIENT_REMOVE events when a recipient is removed from a channel.
     /// </summary>
-    public delegate void GroupUserRemovedEvent(Channel channel, SocketUser user);
+    public delegate void GroupUserRemovedEvent(Cacheable<GroupChannel> channel, SocketUser user);
 
     /// <summary>
     /// Occurs when a recipient is removed from a group DM or channel.
