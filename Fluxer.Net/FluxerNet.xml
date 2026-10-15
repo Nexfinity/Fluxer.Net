@@ -12406,6 +12406,31 @@
             Occurs when a channel is created in a guild.
             </summary>
         </member>
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.DMChannelCreatedEvent">
+            <summary>
+            Delegate for CHANNEL_CREATE events when a channel is created.
+            </summary>
+        </member>
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.DMCreated">
+            <summary>
+            Occurs when a private DM channel is created.
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.GroupChannelJoinedEvent">
+            <summary>
+            Delegate for CHANNEL_CREATE events when a channel is created.
+            </summary>
+        </member>
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.GroupJoined">
+            <summary>
+            Occurs when a private Group channel is joined.
+            </summary>
+        </member>
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.GroupLeft">
+            <summary>
+            Occurs when a private Group channel is left.
+            </summary>
+        </member>
         <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.ChannelUpdatedEvent">
             <summary>
             Delegate for CHANNEL_UPDATE events when a channel is updated.
@@ -12414,6 +12439,16 @@
         <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.ChannelUpdated">
             <summary>
             Occurs when a channel is updated.
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.GroupChannelUpdatedEvent">
+            <summary>
+            Delegate for CHANNEL_UPDATE events when a channel is updated.
+            </summary>
+        </member>
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.GroupUpdated">
+            <summary>
+            Occurs when a private DM or Group channel is created.
             </summary>
         </member>
         <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.ChannelDeletedEvent">
