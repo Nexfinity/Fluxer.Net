@@ -25,6 +25,9 @@ internal class GuildGatewayData
     [JsonProperty("channels")]
     public List<ChannelGatewayData> Channels { get; set; } = new();
 
+    [JsonProperty("threads")]
+    public List<ChannelGatewayData> Threads { get; set; } = new();
+
     [JsonProperty("members")]
     public List<GuildMemberGatewayData> Members { get; set; }
 

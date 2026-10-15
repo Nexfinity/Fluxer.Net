@@ -11,7 +11,7 @@ public class SocketChannel : Channel
     /// Create a SocketChannel object from json.
     /// </summary>
     /// <returns><see cref="Channel"/></returns>
-    public static Channel Create(FluxerBaseClient client, ChannelJson json, SocketGuild? guild)
+    private static Channel Create(FluxerBaseClient client, ChannelJson json, SocketGuild? guild)
     {
         Channel data = null;
         switch (json.Type)
