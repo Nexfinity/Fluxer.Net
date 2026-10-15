@@ -549,7 +549,7 @@ public partial class FluxerGatewayClient : IDisposable
 
     private void HandleDispatch(GatewayPacket p)
     {
-        Console.WriteLine("Type: " + p.Dispatch);
+        //Console.WriteLine("Type: " + p.Dispatch);
         //Console.WriteLine(p.Data);
         switch (p.Dispatch)
         {
@@ -1309,7 +1309,15 @@ public partial class FluxerGatewayClient : IDisposable
                         if (guild != null)
                             guild.Channels.TryAdd(channel.Id, channel);
 
-                        ChannelCreated?.Invoke(channel);
+                        if (data.GuildId.HasValue)
+                            ChannelCreated?.Invoke(guild, channel);
+                        else
+                        {
+                            if (data.Type == ChannelType.DM)
+                                DMCreated?.Invoke((DMChannel)channel);
+                            else if (data.Type == ChannelType.Group)
+                                GroupJoined?.Invoke((GroupChannel)channel);
+                        }
                     }
                     else
                         _logger.Warning("CHANNEL_CREATE event received but data could not be cast to ChannelGatewayData");
@@ -1320,27 +1328,36 @@ public partial class FluxerGatewayClient : IDisposable
                     ChannelGatewayData? data = p.Data.ToObject<ChannelGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
                     {
-                        if (Channels.TryGetValue(data.Id, out Channel channel))
+                        if (data.GuildId.HasValue)
                         {
-                            Channel before = channel.Clone();
+                            if (!Guilds.TryGetValue(data.GuildId.Value, out SocketGuild guild))
+                                return;
 
-                            if (before.Type != data.Type)
+                            if (Channels.TryGetValue(data.Id, out Channel channel))
                             {
-                                channel = SocketChannel.Create(_client, data);
-                                Channels.TryUpdate(data.Id, channel, before);
-                                if (data.GuildId.HasValue && Guilds.TryGetValue(data.GuildId.Value, out SocketGuild guild))
+                                Channel before = channel.Clone();
+                                if (before.Type != data.Type)
+                                {
+                                    channel = SocketChannel.Create(_client, data);
+                                    Channels.TryUpdate(data.Id, channel, before);
                                     guild.Channels.TryUpdate(data.Id, channel, before);
+                                }
+                                else
+                                    channel.Update(data);
+                                ChannelUpdated?.Invoke(guild, before, channel);
                             }
                             else
-                                channel.Update(data);
-                            ChannelUpdated?.Invoke(before, channel);
+                            {
+                                channel = SocketChannel.Create(_client, data);
+                                Channels.TryAdd(data.Id, channel);
+                                guild.Channels.TryAdd(data.Id, channel);
+                            }
                         }
                         else
                         {
-                            channel = SocketChannel.Create(_client, data);
-                            Channels.TryAdd(data.Id, channel);
-                            if (channel.GuildId.HasValue && Guilds.TryGetValue(channel.GuildId.Value, out SocketGuild guild))
-                                guild.Channels.TryAdd(data.Id, channel);
+                            Channel channel = SocketChannel.Create(_client, data);
+                            if (channel.Type == ChannelType.Group)
+                                GroupUpdated?.Invoke((GroupChannel)channel);
                         }
                     }
                     else
@@ -1352,6 +1369,9 @@ public partial class FluxerGatewayClient : IDisposable
                     ChannelUpdateBulkGatewayData? data = p.Data.ToObject<ChannelUpdateBulkGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
                     {
+                        if (!Guilds.TryGetValue(data.GuildId, out SocketGuild guild))
+                            return;
+
                         foreach (ChannelJson c in data.Channels)
                         {
                             if (Channels.TryGetValue(c.Id, out Channel channel))
@@ -1361,12 +1381,11 @@ public partial class FluxerGatewayClient : IDisposable
                                 {
                                     channel = SocketChannel.Create(_client, c);
                                     Channels.TryUpdate(c.Id, channel, before);
-                                    if (c.GuildId.HasValue && Guilds.TryGetValue(c.GuildId.Value, out SocketGuild guild))
-                                        guild.Channels.TryUpdate(c.Id, channel, before);
+                                    guild.Channels.TryUpdate(c.Id, channel, before);
                                 }
                                 else
                                     channel.Update(c);
-                                ChannelUpdated?.Invoke(before, channel);
+                                ChannelUpdated?.Invoke(guild, before, channel);
                             }
                         }
                     }
@@ -1379,8 +1398,23 @@ public partial class FluxerGatewayClient : IDisposable
                     ChannelGatewayData? data = p.Data.ToObject<ChannelGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
                     {
-                        Channels.TryRemove(data.Id, out Channel channel);
-                        ChannelDeleted?.Invoke(channel ?? SocketChannel.Create(_client, data));
+                        if (data.Type == ChannelType.Group)
+                        {
+                            GroupLeft?.Invoke((GroupChannel)Channel.Create(_client, data));
+                        }
+                        else if (data.Type == ChannelType.DM)
+                        {
+
+                        }
+                        else
+                        {
+                            Channels.TryRemove(data.Id, out Channel channel);
+
+                            if (!Guilds.TryGetValue(data.GuildId.Value, out SocketGuild guild))
+                                return;
+
+                            ChannelDeleted?.Invoke(guild, channel ?? SocketChannel.Create(_client, data));
+                        }
                     }
                     else
                         _logger.Warning("CHANNEL_DELETE event received but data could not be cast to ChannelGatewayData");
@@ -2628,7 +2662,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Delegate for CHANNEL_CREATE events when a channel is created.
     /// </summary>
-    public delegate void ChannelCreatedEvent(Channel channel);
+    public delegate void ChannelCreatedEvent(SocketGuild guild, Channel channel);
 
     /// <summary>
     /// Occurs when a channel is created in a guild.
@@ -2636,9 +2670,34 @@ public partial class FluxerGatewayClient : IDisposable
     public event ChannelCreatedEvent ChannelCreated;
 
     /// <summary>
+    /// Delegate for CHANNEL_CREATE events when a channel is created.
+    /// </summary>
+    public delegate void DMChannelCreatedEvent(DMChannel channel);
+
+    /// <summary>
+    /// Occurs when a private DM channel is created.
+    /// </summary>
+    public event DMChannelCreatedEvent DMCreated;
+
+    /// <summary>
+    /// Delegate for CHANNEL_CREATE events when a channel is created.
+    /// </summary>
+    public delegate void GroupChannelJoinedEvent(GroupChannel channel);
+
+    /// <summary>
+    /// Occurs when a private Group channel is joined.
+    /// </summary>
+    public event GroupChannelJoinedEvent GroupJoined;
+
+    /// <summary>
+    /// Occurs when a private Group channel is left.
+    /// </summary>
+    public event GroupChannelJoinedEvent GroupLeft;
+
+    /// <summary>
     /// Delegate for CHANNEL_UPDATE events when a channel is updated.
     /// </summary>
-    public delegate void ChannelUpdatedEvent(Channel before, Channel after);
+    public delegate void ChannelUpdatedEvent(SocketGuild guild, Channel before, Channel after);
 
     /// <summary>
     /// Occurs when a channel is updated.
@@ -2646,9 +2705,19 @@ public partial class FluxerGatewayClient : IDisposable
     public event ChannelUpdatedEvent ChannelUpdated;
 
     /// <summary>
+    /// Delegate for CHANNEL_UPDATE events when a channel is updated.
+    /// </summary>
+    public delegate void GroupChannelUpdatedEvent(GroupChannel channel);
+
+    /// <summary>
+    /// Occurs when a private DM or Group channel is created.
+    /// </summary>
+    public event GroupChannelUpdatedEvent GroupUpdated;
+
+    /// <summary>
     /// Delegate for CHANNEL_DELETE events when a channel is deleted.
     /// </summary>
-    public delegate void ChannelDeletedEvent(Channel channel);
+    public delegate void ChannelDeletedEvent(SocketGuild guild, Channel channel);
 
     /// <summary>
     /// Occurs when a channel is deleted.
