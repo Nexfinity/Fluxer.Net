@@ -1680,12 +1680,12 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// Get a user's profile.
     /// </summary>
     /// <remarks>
-    /// Requires mutual friend or guild.
+    /// Requires mutual friend or guild, this may also fail if hidden profile is enabled.
     /// </remarks>
     /// <returns><see cref="UserProfileResponse"/></returns>
-    public async Task<UserProfileResponse> GetUserProfileAsync(ulong targetId, string? guildId = null, bool mutualFriends = false, bool mutualGuilds = false, RequestOptions? options = null)
+    public async Task<UserProfileResponse> GetUserProfileAsync(ulong targetId, ulong? guildId = null, bool mutualFriends = false, bool mutualGuilds = false, RequestOptions? options = null)
         => await SendRequestAsync<UserProfileResponse>(HttpMethod.Get,
-            new QueryBuilder($"/users/{targetId}/profile").With("guild_id", guildId).With("with_mutual_friends", mutualFriends).With("with_mutual_guilds", mutualGuilds).Build(), true, options: options);
+            new QueryBuilder($"/users/{targetId}/profile").WithIf("guild_id", guildId.Value, guildId.HasValue).With("with_mutual_friends", mutualFriends).With("with_mutual_guilds", mutualGuilds).Build(), true, options: options);
 
     /// <summary>
     /// Get current user settings.
