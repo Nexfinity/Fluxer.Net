@@ -2,15 +2,41 @@
 
 namespace Fluxer.Net;
 
+public class SocketPrivateMessage : SocketMessage
+{
+    public new Cacheable<Channel> Channel { get; private set; }
+
+    internal SocketPrivateMessage(FluxerBaseClient client) : base(client)
+    {
+
+    }
+
+    /// <summary>
+    /// Create a SocketMessage object from json.
+    /// </summary>
+    /// <returns><see cref="SocketMessage"/></returns>
+    internal static SocketPrivateMessage Create(FluxerBaseClient client, MessageGatewayData json, Cacheable<Channel> channel)
+    {
+        SocketPrivateMessage data = new SocketPrivateMessage(client)
+        {
+            Channel = channel,
+            Author = json.Author != null ? SocketUser.Create(client, json.Author) : null
+        };
+
+        data.Update(json);
+        return data;
+    }
+}
+
 public class SocketMessage : Message
 {
     public Channel Channel { get; private set; }
 
+    public new SocketUser? Author { get; internal set; }
+
     public SocketGuild? Guild { get; private set; }
 
-    public new SocketUser Author { get; private set; }
-
-    public SocketGuildMember? Member { get; private set; }
+    public SocketGuildMember? Member { get; internal set; }
 
     internal SocketMessage(FluxerBaseClient client) : base(client)
     {
@@ -21,16 +47,17 @@ public class SocketMessage : Message
     /// Create a SocketMessage object from json.
     /// </summary>
     /// <returns><see cref="SocketMessage"/></returns>
-    internal static SocketMessage Create(FluxerBaseClient client, MessageGatewayData json)
+    internal static SocketMessage Create(FluxerBaseClient client, MessageGatewayData json, Channel channel, SocketGuild guild)
     {
         SocketMessage data = new SocketMessage(client)
         {
-            Channel = (client as FluxerClient).Gateway.GetChannel(json.ChannelId),
-            Author = SocketUser.Create(client, json.Author)
+            Channel = channel,
+            Guild = guild,
+            Author = json.Author != null ? SocketUser.Create(client, json.Author) : null
         };
-        if (json.GuildId.HasValue)
+
+        if (json.GuildId.HasValue && data.Author != null)
         {
-            data.Guild = (client as FluxerClient).Gateway.GetGuild(json.GuildId.Value);
             data.Member = data.Guild.Members.GetValueOrDefault(json.Author.Id);
             if (data.Member == null && json.Member != null)
             {
@@ -40,7 +67,6 @@ public class SocketMessage : Message
                 data.Member.Guild = data.Guild;
             }
         }
-
         data.Update(json);
         return data;
     }

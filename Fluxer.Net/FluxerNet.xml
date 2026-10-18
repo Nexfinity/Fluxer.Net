@@ -7027,7 +7027,13 @@
         <member name="T:Fluxer.Net.SavedMessageJson">
             <inheritdoc />
         </member>
-        <member name="M:Fluxer.Net.SocketMessage.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.Gateway.MessageGatewayData)">
+        <member name="M:Fluxer.Net.SocketPrivateMessage.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.Gateway.MessageGatewayData,Fluxer.Net.Cacheable{Fluxer.Net.Channel})">
+            <summary>
+            Create a SocketMessage object from json.
+            </summary>
+            <returns><see cref="T:Fluxer.Net.SocketMessage"/></returns>
+        </member>
+        <member name="M:Fluxer.Net.SocketMessage.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.Gateway.MessageGatewayData,Fluxer.Net.Channel,Fluxer.Net.SocketGuild)">
             <summary>
             Create a SocketMessage object from json.
             </summary>
@@ -12376,6 +12382,16 @@
             Occurs when a new message is created in any channel the user has access to.
             </summary>
         </member>
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.PrivateMessageCreatedEvent">
+            <summary>
+            Delegate for MESSAGE_CREATE events when a new message is sent.
+            </summary>
+        </member>
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.PrivateMessageCreated">
+            <summary>
+            Occurs when a new message is created in any channel the user has access to.
+            </summary>
+        </member>
         <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.MessageUpdatedEvent">
             <summary>
             Delegate for MESSAGE_UPDATE events when a message is edited.
@@ -12386,12 +12402,27 @@
             Occurs when a message is edited.
             </summary>
         </member>
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.PrivateMessageUpdated">
+            <summary>
+            Occurs when a new message is created in any channel the user has access to.
+            </summary>
+        </member>
         <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.MessageDeletedEvent">
             <summary>
             Delegate for MESSAGE_DELETE events when a message is deleted.
             </summary>
         </member>
         <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.MessageDeleted">
+            <summary>
+            Occurs when a message is deleted.
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.PrivateMessageDeletedEvent">
+            <summary>
+            Delegate for MESSAGE_DELETE events when a message is deleted.
+            </summary>
+        </member>
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.PrivateMessageDeleted">
             <summary>
             Occurs when a message is deleted.
             </summary>
@@ -12526,12 +12557,32 @@
             Occurs when a user starts typing in a channel.
             </summary>
         </member>
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.PrivateTypingStartEvent">
+            <summary>
+            Delegate for TYPING_START events when a user starts typing.
+            </summary>
+        </member>
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.PrivateTypingStarted">
+            <summary>
+            Occurs when a user starts typing in a channel.
+            </summary>
+        </member>
         <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.MessageReactionAddedEvent">
             <summary>
             Delegate for MESSAGE_REACTION_ADD events when a reaction is added.
             </summary>
         </member>
         <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.MessageReactionAdded">
+            <summary>
+            Occurs when a user adds a reaction to a message.
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.PrivateMessageReactionAddedEvent">
+            <summary>
+            Delegate for MESSAGE_REACTION_ADD events when a reaction is added.
+            </summary>
+        </member>
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.PrivateMessageReactionAdded">
             <summary>
             Occurs when a user adds a reaction to a message.
             </summary>
@@ -12546,6 +12597,16 @@
             Occurs when a user removes a reaction from a message.
             </summary>
         </member>
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.PrivateMessageReactionRemovedEvent">
+            <summary>
+            Delegate for MESSAGE_REACTION_REMOVE events when a reaction is removed.
+            </summary>
+        </member>
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.PrivateMessageReactionRemoved">
+            <summary>
+            Occurs when a user removes a reaction from a message.
+            </summary>
+        </member>
         <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.MessageReactionRemoveAllEvent">
             <summary>
             Delegate for MESSAGE_REACTION_REMOVE_ALL events when all reactions are cleared.
@@ -12556,12 +12617,32 @@
             Occurs when all reactions are removed from a message.
             </summary>
         </member>
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.PrivateMessageReactionRemoveAllEvent">
+            <summary>
+            Delegate for MESSAGE_REACTION_REMOVE_ALL events when all reactions are cleared.
+            </summary>
+        </member>
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.PrivateMessageReactionRemoveAll">
+            <summary>
+            Occurs when all reactions are removed from a message.
+            </summary>
+        </member>
         <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.MessageReactionRemovedEmojiEvent">
             <summary>
             Delegate for MESSAGE_REACTION_REMOVE_EMOJI events when all reactions of a specific emoji are removed.
             </summary>
         </member>
         <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.MessageReactionRemovedEmoji">
+            <summary>
+            Occurs when all instances of a specific emoji are removed from a message.
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.PrivateMessageReactionRemovedEmojiEvent">
+            <summary>
+            Delegate for MESSAGE_REACTION_REMOVE_EMOJI events when all reactions of a specific emoji are removed.
+            </summary>
+        </member>
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.PrivateMessageReactionRemovedEmoji">
             <summary>
             Occurs when all instances of a specific emoji are removed from a message.
             </summary>
@@ -12606,6 +12687,16 @@
             Occurs when multiple messages are deleted in bulk (e.g., purge operation).
             </summary>
         </member>
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.PrivateMessageDeleteBulkEvent">
+            <summary>
+            Delegate for MESSAGE_DELETE_BULK events when multiple messages are deleted at once.
+            </summary>
+        </member>
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.PrivateMessagesDeleted">
+            <summary>
+            Occurs when multiple messages are deleted in bulk (e.g., purge operation).
+            </summary>
+        </member>
         <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.MessageAckEvent">
             <summary>
             Delegate for MESSAGE_ACK events when a message is acknowledged as read.
@@ -12622,6 +12713,16 @@
             </summary>
         </member>
         <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.ChannelPinsUpdated">
+            <summary>
+            Occurs when a message is pinned or unpinned in a channel.
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.PrivateChannelPinsUpdatedEvent">
+            <summary>
+            Delegate for CHANNEL_PINS_UPDATE events when channel pins are updated.
+            </summary>
+        </member>
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.PrivateChannelPinsUpdated">
             <summary>
             Occurs when a message is pinned or unpinned in a channel.
             </summary>

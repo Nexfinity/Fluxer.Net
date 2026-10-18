@@ -533,6 +533,7 @@ public class CommandService : IDisposable
     /// </returns>
     public Task<IResult> ExecuteAsync(ICommandContext context, int argPos, IServiceProvider services = null, MultiMatchHandling multiMatchHandling = MultiMatchHandling.Exception)
         => ExecuteAsync(context, context.Message.Content.Substring(argPos), services, multiMatchHandling);
+
     /// <summary>
     ///     Executes the command.
     /// </summary>
@@ -548,6 +549,13 @@ public class CommandService : IDisposable
     {
         context.CommandService = this;
         services ??= EmptyServiceProvider.Instance;
+
+        if (context.Channel == null && context.Message is SocketPrivateMessage privateMessage)
+        {
+            Channel? channel = await privateMessage.Channel.GetOrDownloadAsync();
+            if (channel == null)
+                return PreconditionResult.FromError("Failed to get DM or Group channel.");
+        }
 
         SearchResult searchResult = Search(input);
 

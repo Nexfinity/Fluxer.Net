@@ -36,7 +36,7 @@ public class CommandContext : ICommandContext
     public SocketMessage Message { get; }
 
     /// <inheritdoc/>
-    public bool IsPrivate => Channel.Type == ChannelType.DM;
+    public bool IsPrivate => Channel.Type == ChannelType.DM || Channel.Type == ChannelType.Group;
 
     IGuild ICommandContext.Guild => Guild;
 
@@ -64,10 +64,7 @@ public class CommandContext : ICommandContext
         Message = message;
         Channel = client.Gateway.GetChannel(message.ChannelId);
         User = message.Author;
-        if (message.Channel.GuildId.HasValue)
-        {
-            Guild = message.Guild;
-            Member = message.Member;
-        }
+        Guild = message.Guild;
+        Member = message.Member;
     }
 }
