@@ -10967,12 +10967,12 @@
             </summary>
             <returns><see cref="T:Fluxer.Net.User"/></returns>
         </member>
-        <member name="M:Fluxer.Net.Rest.FluxerApiClient.GetUserProfileAsync(System.UInt64,System.String,System.Boolean,System.Boolean,Fluxer.Net.Rest.RequestOptions)">
+        <member name="M:Fluxer.Net.Rest.FluxerApiClient.GetUserProfileAsync(System.UInt64,System.Nullable{System.UInt64},System.Boolean,System.Boolean,Fluxer.Net.Rest.RequestOptions)">
             <summary>
             Get a user's profile.
             </summary>
             <remarks>
-            Requires mutual friend or guild.
+            Requires mutual friend or guild, this may also fail if hidden profile is enabled.
             </remarks>
             <returns><see cref="T:Fluxer.Net.UserProfileResponse"/></returns>
         </member>
@@ -14286,6 +14286,9 @@
             <summary>
             Create a <see cref="T:Fluxer.Net.GroupChannel"/>.
             </summary>
+        </member>
+        <member name="M:Fluxer.Net.UserHelpers.GetProfileAsync(Fluxer.Net.User,System.Nullable{System.UInt64},System.Boolean,System.Boolean,Fluxer.Net.Rest.RequestOptions)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.GetUserProfileAsync(System.UInt64,System.Nullable{System.UInt64},System.Boolean,System.Boolean,Fluxer.Net.Rest.RequestOptions)" />
         </member>
         <member name="T:Fluxer.Net.WebhookHelpers">
             <summary>
