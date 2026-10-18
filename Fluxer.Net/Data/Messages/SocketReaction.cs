@@ -10,22 +10,20 @@ public class SocketReaction : Entity, IReaction
     public ulong MessageId { get; private set; }
 
     public ulong ChannelId { get; private set; }
+
     public IEmoji Emoji { get; private set; }
 
     public SocketGuildMember? Member { get; private set; }
-
-    public Channel Channel { get; private set; }
 
     internal SocketReaction(FluxerBaseClient client) : base(client)
     {
 
     }
 
-    internal static SocketReaction Create(FluxerBaseClient client, MessageReactionGatewayData json, Channel channel, SocketGuildMember? member)
+    internal static SocketReaction Create(FluxerBaseClient client, MessageReactionGatewayData json, SocketGuildMember? member)
     {
         SocketReaction data = new SocketReaction(client)
         {
-            Channel = channel,
             Member = member
         };
         data.Update(json);
