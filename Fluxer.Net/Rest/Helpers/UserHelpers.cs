@@ -45,4 +45,8 @@ public static class UserHelpers
 
         return chan;
     }
+
+    /// <inheritdoc cref="FluxerApiClient.GetUserProfileAsync(ulong, ulong?, bool, bool, RequestOptions?)" />
+    public static Task<UserProfileResponse> GetProfileAsync(this User user, ulong? guildId = null, bool mutualFriends = false, bool mutualGuilds = false, RequestOptions? options = null)
+        => user.Client.Rest.GetUserProfileAsync(user.Id, guildId, mutualFriends, mutualGuilds, options);
 }

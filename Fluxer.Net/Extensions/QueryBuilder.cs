@@ -23,6 +23,16 @@ internal class QueryBuilder
         return this;
     }
 
+    public QueryBuilder WithIf(string name, ulong value, bool check)
+    {
+        if (!check)
+            return this;
+
+        builder.Append((HasStart ? "?" : "&") + $"{name}={value}");
+        HasStart = true;
+        return this;
+    }
+
     public QueryBuilder With(string name, string value)
     {
         if (string.IsNullOrEmpty(value))

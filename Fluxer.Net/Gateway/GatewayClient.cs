@@ -549,7 +549,7 @@ public partial class FluxerGatewayClient : IDisposable
 
     private void HandleDispatch(GatewayPacket p)
     {
-        //Console.WriteLine("Type: " + p.Dispatch);
+        Console.WriteLine("Type: " + p.Dispatch);
         //Console.WriteLine(p.Data);
         switch (p.Dispatch)
         {
@@ -1361,7 +1361,14 @@ public partial class FluxerGatewayClient : IDisposable
                         }
                         else
                         {
-                            Channel channel = SocketChannel.Create(_client, data);
+                            if (!Channels.TryGetValue(data.Id, out Channel channel))
+                            {
+                                channel = SocketChannel.Create(_client, data);
+                                Channels.TryAdd(data.Id, channel);
+                            }
+                            else
+                                channel.Update(data);
+
                             if (channel is GroupChannel gc)
                                 GroupUpdated?.Invoke(gc);
                         }
@@ -1501,8 +1508,6 @@ public partial class FluxerGatewayClient : IDisposable
                         {
                             return await _client.Rest.GetThreadChannelAsync(data.ThreadId);
                         }), data.RemovedMemberIds);
-
-
                     }
 
                     ThreadMembersCount?.Invoke(guild, new Cacheable<ThreadChannel>(data.ThreadId, null, async () =>
