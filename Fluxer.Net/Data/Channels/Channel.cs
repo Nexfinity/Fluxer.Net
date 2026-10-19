@@ -211,10 +211,7 @@ public class Channel : PartialChannel, IChannel
                 break;
             default:
                 {
-                    if (json.GuildId.HasValue)
-                        data = new GuildChannel(client);
-                    else
-                        data = new Channel(client);
+                    data = new Channel(client);
                 }
                 break;
         }

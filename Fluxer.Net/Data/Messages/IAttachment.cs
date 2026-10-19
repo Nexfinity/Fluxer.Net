@@ -10,7 +10,7 @@ public interface IAttachment : ISnowflake
     /// <summary>
     /// The size of the attachment in bytes.
     /// </summary>
-    ulong Size { get; }
+    long Size { get; }
 
     /// <summary>
     /// Attachment flags.

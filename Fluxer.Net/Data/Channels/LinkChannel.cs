@@ -1,6 +1,6 @@
 ﻿namespace Fluxer.Net;
 
-public class LinkChannel : GuildChannel
+public class LinkChannel : Channel
 {
     internal LinkChannel(FluxerBaseClient client) : base(client)
     {

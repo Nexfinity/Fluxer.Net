@@ -549,7 +549,7 @@ public partial class FluxerGatewayClient : IDisposable
 
     private void HandleDispatch(GatewayPacket p)
     {
-        Console.WriteLine("Type: " + p.Dispatch);
+        //Console.WriteLine("Type: " + p.Dispatch);
         //Console.WriteLine(p.Data);
         switch (p.Dispatch)
         {
@@ -603,8 +603,20 @@ public partial class FluxerGatewayClient : IDisposable
                                 // Add channels
                                 foreach (ChannelGatewayData c in g.Channels)
                                 {
-                                    Channel channel = Channel.Create(_client, c);
+                                    Channel channel = SocketChannel.Create(_client, c, guild);
                                     channel.GuildId = g.Id;
+                                    if (!Channels.TryAdd(c.Id, channel))
+                                    {
+                                        channel = Channels[c.Id];
+                                        channel.Update(c);
+                                    }
+                                    guild.Channels.TryAdd(c.Id, channel);
+                                }
+
+                                // Add threads
+                                foreach (ChannelGatewayData c in g.Threads)
+                                {
+                                    Channel channel = SocketChannel.Create(_client, c, guild);
                                     if (!Channels.TryAdd(c.Id, channel))
                                     {
                                         channel = Channels[c.Id];
@@ -895,8 +907,7 @@ public partial class FluxerGatewayClient : IDisposable
                         // Add or update channels
                         foreach (ChannelGatewayData c in data.Channels)
                         {
-                            Channel channel = Channel.Create(_client, c);
-                            channel.GuildId = data.Id;
+                            Channel channel = SocketChannel.Create(_client, c, guild);
                             if (!Channels.TryAdd(c.Id, channel))
                             {
                                 channel = Channels[c.Id];
@@ -908,8 +919,7 @@ public partial class FluxerGatewayClient : IDisposable
                         // Add or update threads
                         foreach (ChannelGatewayData c in data.Threads)
                         {
-                            Channel channel = SocketChannel.Create(_client, c);
-                            channel.GuildId = data.Id;
+                            Channel channel = SocketChannel.Create(_client, c, guild);
                             if (!Channels.TryAdd(c.Id, channel))
                             {
                                 channel = Channels[c.Id];

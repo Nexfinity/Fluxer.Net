@@ -13,7 +13,7 @@ public class Attachment : Entity, IAttachment
     public string Filename { get; set; }
 
     /// <inheritdoc />
-    public ulong Size { get; set; }
+    public long Size { get; set; }
 
     /// <inheritdoc />
     public string? Title { get; set; }
