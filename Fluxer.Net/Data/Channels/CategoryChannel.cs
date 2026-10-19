@@ -1,6 +1,6 @@
 ﻿namespace Fluxer.Net;
 
-public class CategoryChannel : GuildChannel
+public class CategoryChannel : Channel
 {
     internal CategoryChannel(FluxerBaseClient client) : base(client)
     {

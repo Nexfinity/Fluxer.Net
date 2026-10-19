@@ -1,6 +1,6 @@
 ﻿namespace Fluxer.Net;
 
-public class TextChannel : GuildChannel, ITextable
+public class TextChannel : Channel, ITextable
 {
     internal TextChannel(FluxerBaseClient client) : base(client)
     {

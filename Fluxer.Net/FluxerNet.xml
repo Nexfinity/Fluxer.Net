@@ -11491,7 +11491,7 @@
             Create an attachment with a request.
             </summary>
         </member>
-        <member name="M:Fluxer.Net.Rest.AttachmentRequest.#ctor(System.IO.Stream)">
+        <member name="M:Fluxer.Net.Rest.AttachmentRequest.#ctor(System.IO.Stream,System.String)">
             <summary>
             Create attachment using file stream.
             </summary>

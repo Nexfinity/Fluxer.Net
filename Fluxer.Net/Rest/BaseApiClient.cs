@@ -100,7 +100,9 @@ public class FluxerBaseApiClient
             };
             foreach ((string key, (HttpContent content, string filename)) in otherFormData)
             {
-                if (key == "payload_json") continue;
+                if (key == "payload_json")
+                    continue;
+
                 if (string.IsNullOrEmpty(filename?.Trim()))
                 {
                     form.Add(content, key);

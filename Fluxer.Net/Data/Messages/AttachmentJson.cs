@@ -19,7 +19,7 @@ public class AttachmentJson : IAttachment
 
     /// <inheritdoc />
     [JsonProperty("size")]
-    public ulong Size { get; set; }
+    public long Size { get; set; }
 
     /// <inheritdoc />
     [JsonProperty("title")]
@@ -71,7 +71,7 @@ public class AttachmentJson : IAttachment
 
     /// <inheritdoc />
     [JsonIgnore]
-    public bool IsSpoiler => Filename.StartsWith("SPOILER_") || Flags.HasFlag(AttachmentFlag.IsSpoiler);
+    public bool IsSpoiler => Filename?.StartsWith("SPOILER_") == true || Flags.HasFlag(AttachmentFlag.IsSpoiler);
 
     /// <inheritdoc />
     [JsonProperty("waveform")]

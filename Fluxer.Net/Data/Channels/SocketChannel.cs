@@ -1,6 +1,6 @@
 ﻿namespace Fluxer.Net;
 
-public class SocketChannel : Channel
+public abstract class SocketChannel : Channel
 {
     internal SocketChannel(FluxerBaseClient client) : base(client)
     {
@@ -11,7 +11,7 @@ public class SocketChannel : Channel
     /// Create a SocketChannel object from json.
     /// </summary>
     /// <returns><see cref="Channel"/></returns>
-    private static Channel Create(FluxerBaseClient client, ChannelJson json, SocketGuild? guild)
+    internal static Channel Create(FluxerBaseClient client, ChannelJson json, SocketGuild? guild)
     {
         Channel data = null;
         switch (json.Type)
@@ -102,13 +102,7 @@ public class SocketChannel : Channel
                 break;
             default:
                 {
-                    if (guild != null)
-                        data = new SocketGuildChannel(client)
-                        {
-                            Guild = guild
-                        };
-                    else
-                        data = new SocketChannel(client);
+                    data = new Channel(client);
                 }
                 break;
         }

@@ -423,9 +423,15 @@ public class FluxerApiClient : FluxerBaseApiClient
             for (int i = 0; i < attachments.Count; i++)
             {
                 attachments[i].Id = (ulong)i;
-                form.Add(new KeyValuePair<string, (HttpContent content, string? filename)>($"file[{i}]", (new StreamContent(attachments[i].Stream), attachments[i].Filename)));
+                form.Add(new KeyValuePair<string, (HttpContent content, string? filename)>($"files[{i}]", (new StreamContent(attachments[i].Stream), attachments[i].Filename)));
             }
             req.Attachments = attachments.Select(x => x.ToJson()).ToList();
+
+            MessageJson json2 = await SendRequestAsync<MessageJson, MessageRequest>(HttpMethod.Post,
+            _isWebhook ? $"/webhooks/{channelId}/{_token}?wait=true" : $"/channels/{channelId}/messages",
+            req, true, otherFormData: form, options: options);
+
+            return Message.Create(_client, json2);
         }
 
         MessageJson json = await SendRequestAsync<MessageJson, MessageRequest>(HttpMethod.Post,
@@ -1683,9 +1689,13 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// Requires mutual friend or guild, this may also fail if hidden profile is enabled.
     /// </remarks>
     /// <returns><see cref="UserProfileResponse"/></returns>
-    public async Task<UserProfileResponse> GetUserProfileAsync(ulong targetId, ulong? guildId = null, bool mutualFriends = false, bool mutualGuilds = false, RequestOptions? options = null)
-        => await SendRequestAsync<UserProfileResponse>(HttpMethod.Get,
-            new QueryBuilder($"/users/{targetId}/profile").WithIf("guild_id", guildId.Value, guildId.HasValue).With("with_mutual_friends", mutualFriends).With("with_mutual_guilds", mutualGuilds).Build(), true, options: options);
+    public async Task<UserProfileResponse?> GetUserProfileAsync(ulong targetId, ulong? guildId = null, bool mutualFriends = false, bool mutualGuilds = false, RequestOptions? options = null)
+    {
+        UserProfileResponse? data = await SendRequestAsync<UserProfileResponse>(HttpMethod.Get,
+            new QueryBuilder($"/users/{targetId}/profile").WithIf("guild_id", guildId.GetValueOrDefault(), guildId.HasValue).With("with_mutual_friends", mutualFriends).With("with_mutual_guilds", mutualGuilds).Build(), false, options: options);
+
+        return data;
+    }
 
     /// <summary>
     /// Get current user settings.

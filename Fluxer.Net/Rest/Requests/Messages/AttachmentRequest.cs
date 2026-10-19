@@ -10,9 +10,10 @@ public class AttachmentRequest : AttachmentJson
     /// <summary>
     /// Create attachment using file stream.
     /// </summary>
-    public AttachmentRequest(Stream stream)
+    public AttachmentRequest(Stream stream, string filename)
     {
         Stream = stream;
+        Filename = filename;
     }
 
     /// <summary>
