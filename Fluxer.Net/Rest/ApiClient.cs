@@ -423,7 +423,7 @@ public class FluxerApiClient : FluxerBaseApiClient
             for (int i = 0; i < attachments.Count; i++)
             {
                 attachments[i].Id = (ulong)i;
-                form.Add(new KeyValuePair<string, (HttpContent content, string? filename)>($"file[{i}]", (new StreamContent(attachments[i].Stream), attachments[i].Filename)));
+                form.Add(new KeyValuePair<string, (HttpContent content, string? filename)>($"files[{i}]", (new StreamContent(attachments[i].Stream), attachments[i].Filename)));
             }
             req.Attachments = attachments.Select(x => x.ToJson()).ToList();
 
