@@ -7,7 +7,7 @@ namespace Fluxer.Net;
 public enum SystemChannelFlags : ulong
 {
     /// <summary>
-    /// No flags set (all system messages enabled).
+    /// No flags set.
     /// </summary>
     None = 0,
 

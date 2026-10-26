@@ -41,6 +41,11 @@ public enum UserFlags : ulong
     Spammer = 1UL << 6,
 
     /// <summary>
+    /// Profile details are hidden.
+    /// </summary>
+    ProfileHidden = 1UL << 7,
+
+    /// <summary>
     /// User has a higher global rate limit (internal flag).
     /// </summary>
     HighGlobalRateLimit = 1UL << 33,

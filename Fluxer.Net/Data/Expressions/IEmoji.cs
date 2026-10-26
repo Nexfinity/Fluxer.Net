@@ -1,7 +1,13 @@
 ﻿namespace Fluxer.Net;
 
-public interface IEmoji : ISnowflake
+public interface IEmoji
 {
+    /// <inheritdoc cref="ISnowflake.Id" />
+    ulong? Id { get; }
+
+    /// <inheritdoc cref="ISnowflake.CreatedAt" />
+    DateTimeOffset? CreatedAt { get; }
+
     /// <summary>
     /// The name of the emoji
     /// </summary>

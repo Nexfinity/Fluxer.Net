@@ -4,11 +4,6 @@
 public enum GuildOperations : ulong
 {
     /// <summary>
-    /// No flags set.
-    /// </summary>
-    None = 0,
-
-    /// <summary>
     /// Push notifications for this guild.
     /// </summary>
     PushNotifications = 1UL << 0,

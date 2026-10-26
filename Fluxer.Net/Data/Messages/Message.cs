@@ -69,6 +69,9 @@ public class Message : Entity, IMessage
     /// <inheritdoc />
     public MessageCall? Call { get; private set; }
 
+    /// <inheritdoc />
+    public Channel? Thread { get; private set; }
+
     IUser IMessage.Author => Author;
 
     IEnumerable<IUser>? IMessage.Mentions => Mentions;
@@ -86,6 +89,8 @@ public class Message : Entity, IMessage
     IMessageSnapshot[]? IMessage.MessageSnapshots => MessageSnapshots;
 
     IMessageCall? IMessage.Call => Call;
+
+    IChannel? IMessage.Thread => Thread;
 
     internal Message(FluxerBaseClient client) : base(client)
     {
@@ -143,5 +148,10 @@ public class Message : Entity, IMessage
 
         if (json.Call != null)
             Call = MessageCall.Create(Client, json.Call);
+
+        if (json.Thread != null)
+            Thread = Channel.Create(Client, json.Thread);
+        else
+            Thread = null;
     }
 }

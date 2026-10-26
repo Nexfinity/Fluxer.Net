@@ -46,9 +46,24 @@ public enum MessageType
     UserJoin = 7,
 
     /// <summary>
+    /// Message for when a new channel subscription is added.
+    /// </summary>
+    ChannelFollowAdded = 12,
+
+    /// <summary>
+    /// Thread created from message.
+    /// </summary>
+    ThreadCreated = 18,
+
+    /// <summary>
     /// A message that is a reply to another message.
     /// </summary>
     Reply = 19,
+
+    /// <summary>
+    /// The message that started the thread.
+    /// </summary>
+    ThreadStarterMessage = 21,
 
     /// <summary>
     /// System message.

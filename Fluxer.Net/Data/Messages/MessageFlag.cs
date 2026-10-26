@@ -35,6 +35,16 @@ public enum MessageFlag : ulong
     SourceMessageDeleted = 1UL << 3,
 
     /// <summary>
+    ///     Flag given to messages has an associated thread, with the same id as the message
+    /// </summary>
+    HasThread = 1 << 5,
+
+    /// <summary>
+    ///     Flag given to messages that failed to mention some roles and add their members to the thread.
+    /// </summary>
+    FailedToMentionRolesInThread = 1 << 8,
+
+    /// <summary>
     /// Message will not trigger push or desktop notifications.
     /// </summary>
     SuppressNotifications = 1UL << 12,
@@ -43,9 +53,4 @@ public enum MessageFlag : ulong
     /// Message is a voice attachment.
     /// </summary>
     VoiceMessage = 1UL << 13,
-
-    /// <summary>
-    /// Display attachments in a compact format.
-    /// </summary>
-    CompactAttachments = 1UL << 17
 }

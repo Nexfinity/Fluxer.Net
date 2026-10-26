@@ -7,11 +7,11 @@ public class EmojiJson : IEmoji
 {
     /// <inheritdoc />
     [JsonProperty("id")]
-    public ulong Id { get; set; }
+    public ulong? Id { get; set; }
 
     /// <inheritdoc />
     [JsonIgnore]
-    public DateTimeOffset CreatedAt => SnowflakeUtils.FromSnowflake(Id);
+    public DateTimeOffset? CreatedAt => Id.HasValue ? SnowflakeUtils.FromSnowflake(Id.Value) : null;
 
     /// <inheritdoc />
     [JsonProperty("name")]
