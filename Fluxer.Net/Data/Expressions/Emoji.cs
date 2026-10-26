@@ -4,10 +4,10 @@
 public class Emoji : Entity, IEmoji
 {
     /// <inheritdoc />
-    public ulong Id { get; private set; }
+    public ulong? Id { get; private set; }
 
     /// <inheritdoc />
-    public DateTimeOffset CreatedAt => SnowflakeUtils.FromSnowflake(Id);
+    public DateTimeOffset? CreatedAt => Id.HasValue ? SnowflakeUtils.FromSnowflake(Id.Value) : null;
 
     /// <inheritdoc />
     public string Name { get; private set; }
@@ -20,9 +20,52 @@ public class Emoji : Entity, IEmoji
 
     internal string ToRequest()
     {
-        if (Id == 0)
-            return Name;
-        return $"{Name}:{Id}";
+        if (Id.HasValue)
+            return $"{Name}:{Id}";
+        return Name;
+    }
+
+    /// <inheritdoc />
+    public Emoji(string name) : base(null)
+    {
+        Name = name;
+    }
+
+    /// <inheritdoc />
+    public Emoji(ulong id, string name, bool isAnimated = false) : base(null)
+    {
+        Name = name;
+        Id = id;
+        IsAnimated = isAnimated;
+    }
+
+    public static Emoji Parse(string text)
+    {
+        text = text.Replace("<", "").Replace(">", "");
+        bool animated = text.StartsWith("a:");
+        if (animated)
+            text = text.Substring(1);
+
+        string[] split = text.Split(":");
+        if (split.Length == 1)
+            return new Emoji(split[0]);
+        else if (split.Length == 3 && ulong.TryParse(split[2], out ulong id))
+            return new Emoji(id, split[1]);
+
+        throw new FormatException("Invalid emoji");
+    }
+
+    public static bool TryParse(string text, out Emoji? result)
+    {
+        try
+        {
+            result = Parse(text);
+            return true;
+        }
+        catch { }
+
+        result = null;
+        return false;
     }
 
     internal Emoji(FluxerBaseClient client) : base(client)

@@ -2248,6 +2248,11 @@
             </summary>
             <returns><see cref="T:Fluxer.Net.Channel"/></returns>
         </member>
+        <member name="F:Fluxer.Net.ChannelFlags.None">
+            <summary>
+            No flags set.
+            </summary>
+        </member>
         <member name="F:Fluxer.Net.ChannelFlags.Pinned">
             <summary>
             Forum threads that are pinned.
@@ -2785,7 +2790,7 @@
         </member>
         <member name="F:Fluxer.Net.SystemChannelFlags.None">
             <summary>
-            No flags set (all system messages enabled).
+            No flags set.
             </summary>
         </member>
         <member name="F:Fluxer.Net.SystemChannelFlags.SuppressJoinNotifications">
@@ -3617,6 +3622,12 @@
         <member name="P:Fluxer.Net.Emoji.AllowCloning">
             <inheritdoc />
         </member>
+        <member name="M:Fluxer.Net.Emoji.#ctor(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.Emoji.#ctor(System.UInt64,System.String,System.Boolean)">
+            <inheritdoc />
+        </member>
         <member name="M:Fluxer.Net.Emoji.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.EmojiJson)">
             <summary>
             Create a Emoji object from json.
@@ -3642,6 +3653,12 @@
             <inheritdoc />
         </member>
         <member name="T:Fluxer.Net.GuildEmoji">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildEmoji.Id">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildEmoji.CreatedAt">
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.GuildEmoji.GuildId">
@@ -3716,6 +3733,12 @@
         </member>
         <member name="M:Fluxer.Net.GuildStickerJson.GetStickerUrl(System.Int32)">
             <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.IEmoji.Id">
+            <inheritdoc cref="P:Fluxer.Net.ISnowflake.Id" />
+        </member>
+        <member name="P:Fluxer.Net.IEmoji.CreatedAt">
+            <inheritdoc cref="P:Fluxer.Net.ISnowflake.CreatedAt" />
         </member>
         <member name="P:Fluxer.Net.IEmoji.Name">
             <summary>
@@ -5480,11 +5503,6 @@
             Users in certain countries will need to be age verified.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.GuildOperations.None">
-            <summary>
-            No flags set.
-            </summary>
-        </member>
         <member name="F:Fluxer.Net.GuildOperations.PushNotifications">
             <summary>
             Push notifications for this guild.
@@ -6660,6 +6678,9 @@
         <member name="P:Fluxer.Net.Message.Call">
             <inheritdoc />
         </member>
+        <member name="P:Fluxer.Net.Message.Thread">
+            <inheritdoc />
+        </member>
         <member name="M:Fluxer.Net.Message.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.MessageJson)">
             <summary>
             Create a Message object from json.
@@ -6723,6 +6744,16 @@
                 has been deleted (via Channel Following).
             </summary>
         </member>
+        <member name="F:Fluxer.Net.MessageFlag.HasThread">
+            <summary>
+                Flag given to messages has an associated thread, with the same id as the message
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.MessageFlag.FailedToMentionRolesInThread">
+            <summary>
+                Flag given to messages that failed to mention some roles and add their members to the thread.
+            </summary>
+        </member>
         <member name="F:Fluxer.Net.MessageFlag.SuppressNotifications">
             <summary>
             Message will not trigger push or desktop notifications.
@@ -6731,11 +6762,6 @@
         <member name="F:Fluxer.Net.MessageFlag.VoiceMessage">
             <summary>
             Message is a voice attachment.
-            </summary>
-        </member>
-        <member name="F:Fluxer.Net.MessageFlag.CompactAttachments">
-            <summary>
-            Display attachments in a compact format.
             </summary>
         </member>
         <member name="T:Fluxer.Net.MessageJson">
@@ -6805,6 +6831,9 @@
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.MessageJson.Call">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.MessageJson.Thread">
             <inheritdoc />
         </member>
         <member name="T:Fluxer.Net.MessageReaction">
@@ -7005,9 +7034,24 @@
             System message indicating a user joined the guild.
             </summary>
         </member>
+        <member name="F:Fluxer.Net.MessageType.ChannelFollowAdded">
+            <summary>
+            Message for when a new channel subscription is added.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.MessageType.ThreadCreated">
+            <summary>
+            Thread created from message.
+            </summary>
+        </member>
         <member name="F:Fluxer.Net.MessageType.Reply">
             <summary>
             A message that is a reply to another message.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.MessageType.ThreadStarterMessage">
+            <summary>
+            The message that started the thread.
             </summary>
         </member>
         <member name="F:Fluxer.Net.MessageType.SystemMessage">
@@ -8951,6 +8995,11 @@
         <member name="F:Fluxer.Net.UserFlags.Spammer">
             <summary>
             User flagged as a spammer.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.UserFlags.ProfileHidden">
+            <summary>
+            Profile details are hidden.
             </summary>
         </member>
         <member name="F:Fluxer.Net.UserFlags.HighGlobalRateLimit">

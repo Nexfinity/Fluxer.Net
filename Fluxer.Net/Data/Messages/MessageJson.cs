@@ -93,6 +93,10 @@ public class MessageJson : IMessage
     [JsonProperty("call")]
     public MessageCallJson? Call { get; set; }
 
+    /// <inheritdoc />
+    [JsonProperty("thread")]
+    public ChannelJson? Thread { get; set; }
+
     IUser IMessage.Author => Author;
 
     IEnumerable<IUser>? IMessage.Mentions => Mentions;
@@ -110,4 +114,6 @@ public class MessageJson : IMessage
     IMessageSnapshot[]? IMessage.MessageSnapshots => MessageSnapshots;
 
     IMessageCall? IMessage.Call => Call;
+
+    IChannel? IMessage.Thread => Thread;
 }

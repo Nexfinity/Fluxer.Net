@@ -1204,11 +1204,11 @@ public partial class FluxerGatewayClient : IDisposable
                         if (!Guilds.TryGetValue(data.GuildId, out SocketGuild guild))
                             return;
 
-                        IEnumerable<GuildEmojiJson> newEmojis = data.Emojis.Where(x => !guild.Emojis.ContainsKey(x.Id));
+                        IEnumerable<GuildEmojiJson> newEmojis = data.Emojis.Where(x => !guild.Emojis.ContainsKey(x.Id.Value));
                         IEnumerable<KeyValuePair<ulong, GuildEmoji>> deletedEmojis = guild.Emojis.Where(x => !data.Emojis.Any(y => y.Id == x.Key));
                         (GuildEmoji Entity, GuildEmojiJson Model)[] updatedEmojis = data.Emojis.Select(x =>
                         {
-                            GuildEmoji s = guild.Emojis.GetValueOrDefault(x.Id);
+                            GuildEmoji s = guild.Emojis.GetValueOrDefault(x.Id.Value);
                             if (s == null)
                                 return null;
 

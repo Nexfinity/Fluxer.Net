@@ -3,6 +3,11 @@
 public enum ChannelFlags
 {
     /// <summary>
+    /// No flags set.
+    /// </summary>
+    None = 0,
+
+    /// <summary>
     /// Forum threads that are pinned.
     /// </summary>
     Pinned = 1 << 1,

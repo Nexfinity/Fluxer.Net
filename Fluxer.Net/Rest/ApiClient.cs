@@ -568,7 +568,12 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// <returns>List of <see cref="User"/></returns>
     public async Task<IEnumerable<User>> GetReactionsForEmojiAsync(ulong channelId, ulong messageId, string emoji, RequestOptions? options = null)
     {
-        IEnumerable<UserJson> json = await SendRequestAsync<IEnumerable<UserJson>>(HttpMethod.Get, $"/channels/{channelId}/messages/{messageId}/reactions/{emoji}", true, options: options);
+        if (ulong.TryParse(emoji, out _))
+            emoji = $"name:{emoji}";
+
+        bool encode = !emoji.Contains(":");
+
+        IEnumerable<UserJson> json = await SendRequestAsync<IEnumerable<UserJson>>(HttpMethod.Get, $"/channels/{channelId}/messages/{messageId}/reactions/{(encode ? System.Web.HttpUtility.UrlEncode(emoji) : emoji)}", true, options: options);
         return json.Select(x => User.Create(_client, x));
     }
 
@@ -583,7 +588,9 @@ public class FluxerApiClient : FluxerBaseApiClient
         if (ulong.TryParse(emoji, out _))
             emoji = $"name:{emoji}";
 
-        await SendRequestRawAsync(HttpMethod.Put, $"/channels/{channelId}/messages/{messageId}/reactions/{emoji}/@me", true, options: options);
+        bool encode = !emoji.Contains(":");
+
+        await SendRequestRawAsync(HttpMethod.Put, $"/channels/{channelId}/messages/{messageId}/reactions/{(encode ? System.Web.HttpUtility.UrlEncode(emoji) : emoji)}/@me", true, options: options);
     }
 
     /// <summary>
@@ -597,7 +604,9 @@ public class FluxerApiClient : FluxerBaseApiClient
         if (ulong.TryParse(emoji, out _))
             emoji = $"name:{emoji}";
 
-        await SendRequestRawAsync(HttpMethod.Delete, $"/channels/{channelId}/messages/{messageId}/reactions/{emoji}/@me", true, options: options);
+        bool encode = !emoji.Contains(":");
+
+        await SendRequestRawAsync(HttpMethod.Delete, $"/channels/{channelId}/messages/{messageId}/reactions/{(encode ? System.Web.HttpUtility.UrlEncode(emoji) : emoji)}/@me", true, options: options);
     }
 
     /// <summary>
@@ -611,7 +620,9 @@ public class FluxerApiClient : FluxerBaseApiClient
         if (ulong.TryParse(emoji, out _))
             emoji = $"name:{emoji}";
 
-        await SendRequestRawAsync(HttpMethod.Delete, $"/channels/{channelId}/messages/{messageId}/reactions/{emoji}/{targetId}", true, options: options);
+        bool encode = !emoji.Contains(":");
+
+        await SendRequestRawAsync(HttpMethod.Delete, $"/channels/{channelId}/messages/{messageId}/reactions/{(encode ? System.Web.HttpUtility.UrlEncode(emoji) : emoji)}/{targetId}", true, options: options);
     }
 
     /// <summary>
@@ -625,7 +636,9 @@ public class FluxerApiClient : FluxerBaseApiClient
         if (ulong.TryParse(emoji, out _))
             emoji = $"name:{emoji}";
 
-        await SendRequestRawAsync(HttpMethod.Delete, $"/channels/{channelId}/messages/{messageId}/reactions/{emoji}", true, options: options);
+        bool encode = !emoji.Contains(":");
+
+        await SendRequestRawAsync(HttpMethod.Delete, $"/channels/{channelId}/messages/{messageId}/reactions/{(encode ? System.Web.HttpUtility.UrlEncode(emoji) : emoji)}", true, options: options);
     }
 
     /// <summary>

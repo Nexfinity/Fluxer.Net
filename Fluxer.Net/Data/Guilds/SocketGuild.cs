@@ -110,7 +110,7 @@ public class SocketGuild : Guild
             IsAvailable = !(json.IsUnavailable.HasValue && json.IsUnavailable.Value)
         };
         if (json.Emojis != null && !(client as FluxerClient).Gateway.Config.DisableEmojiCache)
-            data.Emojis = new ConcurrentDictionary<ulong, GuildEmoji>(json.Emojis.ToDictionary(x => x.Id, x => GuildEmoji.Create(client, x, data.Id)));
+            data.Emojis = new ConcurrentDictionary<ulong, GuildEmoji>(json.Emojis.ToDictionary(x => x.Id.Value, x => GuildEmoji.Create(client, x, data.Id)));
         else
             data.Emojis = new ConcurrentDictionary<ulong, GuildEmoji>();
 

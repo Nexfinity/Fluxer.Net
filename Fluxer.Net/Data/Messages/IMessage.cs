@@ -101,4 +101,6 @@ public interface IMessage : ISnowflake
     /// Call information if this message represents a call
     /// </summary>
     IMessageCall? Call { get; }
+
+    IChannel? Thread { get; }
 }

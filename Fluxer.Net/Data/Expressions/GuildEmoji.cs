@@ -3,6 +3,12 @@
 /// <inheritdoc />
 public class GuildEmoji : Emoji, IGuildEmoji
 {
+    /// <inheritdoc />
+    public new ulong Id { get; private set; }
+
+    /// <inheritdoc />
+    public new DateTimeOffset CreatedAt => SnowflakeUtils.FromSnowflake(Id);
+
     /// <summary>
     /// Guild id for this emoji.
     /// </summary>
