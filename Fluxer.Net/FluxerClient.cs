@@ -103,15 +103,15 @@ public class FluxerClient : FluxerBaseClient
     /// <returns><see cref="Instance"/></returns>
     /// <exception cref="ArgumentNullException"></exception>
     /// <exception cref="Exception"></exception>
-    public async Task<Instance> LoginAsync(string apiUrl = null)
+    public async Task<Instance> LoginAsync(string hostUrl = null)
     {
-        if (string.IsNullOrEmpty(apiUrl))
-            apiUrl = Config.RealApiBaseUrl.Replace("v" + Config.Version, null);
+        if (string.IsNullOrEmpty(hostUrl))
+            hostUrl = Config.RealApiBaseUrl.Replace("v" + Config.Version, null);
 
-        if (!Uri.TryCreate(apiUrl, UriKind.Absolute, out Uri apiUri))
-            throw new ArgumentException(nameof(apiUrl), "API url is invalid.");
+        if (!Uri.TryCreate(hostUrl, UriKind.Absolute, out Uri apiUri))
+            throw new ArgumentException(nameof(hostUrl), "API url is invalid.");
 
-        string route = (apiUri + (apiUrl.EndsWith('/') ? null : "/") + $"v{Config.Version}/.well-known/fluxer");
+        string route = (apiUri + $".well-known/fluxer");
 
         InstanceJson? instance = await Rest.InternalSendRequestAsync<InstanceJson>(HttpMethod.Get, route, throwOnNonSuccess: true, authorize: false, useConfigUrl: false);
         if (instance == null)
