@@ -34,7 +34,7 @@ internal class VoiceStateUpdatePayload
     [JsonProperty("longitude")]
     public string? Longitude { get; set; }
 
-    public VoiceStateUpdatePayload(string? guildId, string? channelId, bool selfMute, bool selfDeaf)
+    public VoiceStateUpdatePayload(string? guildId, string? channelId, bool selfMute, bool selfDeaf, string? connectionId = null)
     {
         GuildId = guildId;
         ChannelId = channelId;
@@ -43,7 +43,7 @@ internal class VoiceStateUpdatePayload
         SelfStream = false;
         SelfVideo = false;
         IsMobile = false;
-        ConnectionId = null;
+        ConnectionId = connectionId;
         Latitude = null;
         Longitude = null;
     }

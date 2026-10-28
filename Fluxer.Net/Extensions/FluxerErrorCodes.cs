@@ -1,7 +1,8 @@
 ﻿namespace Fluxer.Net;
 
 /// <summary>
-/// Error codes the Fluxer API returns in <see cref="FluxerApiException.ErrorCode"/>.
+/// Error codes the Fluxer API returns in <see cref="FluxerApiException.ErrorCode"/>, and the gateway sends in
+/// <see cref="Gateway.GatewayErrorGatewayData.Code"/>.
 /// </summary>
 public static class FluxerErrorCodes
 {
@@ -36,4 +37,10 @@ public static class FluxerErrorCodes
     public const string MaxGuildRoles = "MAX_GUILD_ROLES";
 
     public const string MaxGuildChannels = "MAX_GUILD_CHANNELS";
+
+    public const string VoiceChannelFull = "VOICE_CHANNEL_FULL";
+
+    public const string VoiceP2PConsentRequired = "VOICE_P2P_CONSENT_REQUIRED";
+
+    public const string VoiceP2PUnavailable = "VOICE_P2P_UNAVAILABLE";
 }

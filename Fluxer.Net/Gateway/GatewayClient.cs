@@ -392,7 +392,7 @@ public partial class FluxerGatewayClient : IDisposable
         }
     }
 
-    private void GatewayMessageHandler(string message)
+    internal void GatewayMessageHandler(string message)
     {
         // try deserializing the packet, fallback to regex
         _logger.Verbose("Received raw gateway message {Message}", LogRedaction.Redact(message));
@@ -486,7 +486,16 @@ public partial class FluxerGatewayClient : IDisposable
                     _logger.Debug("Received RequestGuildMembers opcode from server (unexpected)");
                     return;
                 case FluxerOpCode.GatewayError:
-                    _logger.Debug("Received GatewayError opcode from server");
+                    {
+                        GatewayErrorGatewayData? data = packet.Data?.ToObject<GatewayErrorGatewayData>(FluxerClient._gatewaySerializer);
+                        if (data != null)
+                        {
+                            _logger.Debug("Received GatewayError {Code}: {Message}", data.Code, data.Message);
+                            GatewayErrorReceived?.Invoke(data);
+                        }
+                        else
+                            _logger.Warning("GatewayError opcode received but data could not be cast to GatewayErrorGatewayData");
+                    }
                     return;
                 case FluxerOpCode.CallConnect:
                     _logger.Debug("Received CallConnect opcode from server");
@@ -2223,7 +2232,15 @@ public partial class FluxerGatewayClient : IDisposable
                                 SocketVoiceChannel? Channel = GetChannel(data.ChannelId.Value) as SocketVoiceChannel;
                                 if (member.VoiceStates.TryGetValue(data.SessionId, out SocketVoiceState state))
                                 {
+                                    ulong? previousChannelId = state.ChannelId;
                                     state.Update(data);
+                                    if (previousChannelId != data.ChannelId)
+                                    {
+                                        if (previousChannelId.HasValue && GetChannel(previousChannelId.Value) is SocketVoiceChannel previousChannel)
+                                            previousChannel.VoiceStates.TryRemove(data.SessionId, out _);
+                                        if (Channel != null)
+                                            Channel.VoiceStates[data.SessionId] = state;
+                                    }
                                 }
                                 else
                                 {
@@ -2856,6 +2873,16 @@ public partial class FluxerGatewayClient : IDisposable
     /// Occurs on rate limited.
     /// </summary>
     public event RateLimitedEvent RateLimited;
+
+    /// <summary>
+    /// Delegate for the gateway error opcode, sent when Fluxer refuses a voice state update.
+    /// </summary>
+    public delegate void GatewayErrorEvent(GatewayErrorGatewayData error);
+
+    /// <summary>
+    /// Occurs when Fluxer refuses a voice state update with a code the client is expected to act on.
+    /// </summary>
+    public event GatewayErrorEvent GatewayErrorReceived;
 
     /// <summary>
     /// Delegate for USER_CONNECTIONS_UPDATE event when user updates a connection.
@@ -3697,13 +3724,15 @@ public partial class FluxerGatewayClient : IDisposable
     /// <remarks>
     /// This sends a VOICE_STATE_UPDATE packet to the gateway. The server will respond with
     /// VOICE_STATE_UPDATE and VOICE_SERVER_UPDATE events containing connection information.
+    /// Without a connection id a channel opens a new connection, and leaving a guild needs the id of the
+    /// connection to drop.
     /// </remarks>
-    public void UpdateVoiceState(ulong? guildId, ulong? channelId, bool selfMute, bool selfDeaf)
+    public void UpdateVoiceState(ulong? guildId, ulong? channelId, bool selfMute, bool selfDeaf, string? connectionId = null)
     {
         GatewayPacket packet = new GatewayPacket()
         {
             // TODO: Technically should be ulong, but fluxer expects strings. Fluxer will eventually be lenient and accept both.
-            Data = JToken.FromObject(new VoiceStateUpdatePayload(guildId.ToString(), channelId.ToString(), selfMute, selfDeaf)),
+            Data = JToken.FromObject(new VoiceStateUpdatePayload(guildId?.ToString(), channelId?.ToString(), selfMute, selfDeaf, connectionId)),
             OpCode = FluxerOpCode.VoiceStateUpdate
         };
         SendGatewayPacket(packet);

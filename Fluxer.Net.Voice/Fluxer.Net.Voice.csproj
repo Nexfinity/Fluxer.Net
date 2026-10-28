@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net10.0;net9.0;net8.0</TargetFrameworks>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>annotations</Nullable>
+    <DebugSymbols>true</DebugSymbols>
+    <EmbedAllSources>true</EmbedAllSources>
+    <DebugType>portable</DebugType>
+
+    <PackageId>Fluxer.Net.Voice</PackageId>
+    <Version>3.8.4</Version>
+    <Authors>Nexfinity</Authors>
+    <Company>Nexfinity</Company>
+    <Description>Voice channel support for Fluxer.Net bots: joining voice channels and sending audio.</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://fluxer.net</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Nexfinity/Fluxer.Net</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>fluxer;bot;voice;livekit;dotnet</PackageTags>
+    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <LangVersion>latest</LangVersion>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Livekit.Rtc.Dotnet" Version="0.1.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Fluxer.Net\Fluxer.Net.csproj" />
+  </ItemGroup>
+
+</Project>

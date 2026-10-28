@@ -12352,7 +12352,8 @@
         </member>
         <member name="T:Fluxer.Net.FluxerErrorCodes">
             <summary>
-            Error codes the Fluxer API returns in <see cref="!:FluxerApiException.ErrorCode"/>.
+            Error codes the Fluxer API returns in <see cref="!:FluxerApiException.ErrorCode"/>, and the gateway sends in
+            <see cref="P:Fluxer.Net.Gateway.GatewayErrorGatewayData.Code"/>.
             </summary>
         </member>
         <member name="T:Fluxer.Net.FluxerContractResolver">
@@ -12837,6 +12838,21 @@
             Returns the markup for the tag in another style.
             </summary>
         </member>
+        <member name="T:Fluxer.Net.Gateway.GatewayErrorGatewayData">
+            <summary>
+            A voice state update Fluxer refused, sent only to the session that sent it.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Gateway.GatewayErrorGatewayData.Code">
+            <summary>
+            The refusal code, one of the voice codes in <see cref="T:Fluxer.Net.FluxerErrorCodes"/>.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Gateway.GatewayErrorGatewayData.Message">
+            <summary>
+            A description of the refusal, meant for logs.
+            </summary>
+        </member>
         <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient">
             <summary>
             WebSocket gateway client for real-time events from the Fluxer platform.
@@ -13056,6 +13072,16 @@
         <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.RateLimited">
             <summary>
             Occurs on rate limited.
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.GatewayErrorEvent">
+            <summary>
+            Delegate for the gateway error opcode, sent when Fluxer refuses a voice state update.
+            </summary>
+        </member>
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.GatewayErrorReceived">
+            <summary>
+            Occurs when Fluxer refuses a voice state update with a code the client is expected to act on.
             </summary>
         </member>
         <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.UserConnectionsUpdatedEvent">
@@ -13764,13 +13790,15 @@
             Occurs when an invite is deleted or expires.
             </summary>
         </member>
-        <member name="M:Fluxer.Net.Gateway.FluxerGatewayClient.UpdateVoiceState(System.Nullable{System.UInt64},System.Nullable{System.UInt64},System.Boolean,System.Boolean)">
+        <member name="M:Fluxer.Net.Gateway.FluxerGatewayClient.UpdateVoiceState(System.Nullable{System.UInt64},System.Nullable{System.UInt64},System.Boolean,System.Boolean,System.String)">
             <summary>
             Updates the current user's voice state (join/leave voice channels, mute, deafen).
             </summary>
             <remarks>
             This sends a VOICE_STATE_UPDATE packet to the gateway. The server will respond with
             VOICE_STATE_UPDATE and VOICE_SERVER_UPDATE events containing connection information.
+            Without a connection id a channel opens a new connection, and leaving a guild needs the id of the
+            connection to drop.
             </remarks>
         </member>
         <member name="T:Fluxer.Net.Gateway.FluxerCloseCode">

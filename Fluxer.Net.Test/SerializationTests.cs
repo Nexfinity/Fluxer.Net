@@ -79,4 +79,16 @@ public class SerializationTests
             Assert.That(LogRedaction.Redact("{\"code\":\"UNKNOWN_CHANNEL\"}"), Is.EqualTo("{\"code\":\"UNKNOWN_CHANNEL\"}"));
         });
     }
+
+    [Test]
+    public void GatewayErrorsAreRaisedWithTheirCode()
+    {
+        FluxerClient client = new FluxerClient("Bot test");
+        Gateway.GatewayErrorGatewayData? received = null;
+        client.Gateway.GatewayErrorReceived += error => received = error;
+
+        client.Gateway.GatewayMessageHandler("{\"op\":12,\"d\":{\"code\":\"VOICE_CHANNEL_FULL\",\"message\":\"The channel is full\"}}");
+
+        Assert.That(received?.Code, Is.EqualTo(FluxerErrorCodes.VoiceChannelFull));
+    }
 }
