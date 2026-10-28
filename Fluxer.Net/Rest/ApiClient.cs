@@ -70,25 +70,6 @@ public class FluxerApiClient : FluxerBaseApiClient
         Initialize();
     }
 
-    // <summary>
-    // Helper method to wait for rate limiting before making a request.
-    // </summary>
-    // <param name="config">The rate limit configuration for this request.</param>
-    // <param name="channelId">Optional channel ID for channel-specific rate limits.</param>
-    // <param name="guildId">Optional guild ID for guild-specific rate limits.</param>
-    // <param name="userId">Optional user ID for user-specific rate limits.</param>
-    // <param name="webhookId">Optional webhook ID for webhook-specific rate limits.</param>
-    // <param name="inviteCode">Optional invite code for invite-specific rate limits.</param>
-    //private async Task WaitForRateLimitAsync(RateLimitConfig config, ulong? channelId = null, ulong? guildId = null, ulong? userId = null, ulong? webhookId = null, string inviteCode = null)
-    //{
-    //    if (!_config.EnableRateLimiting)
-    //        return;
-
-    //    RateLimitBucket bucket = RateLimitManager.GetBucket(config, channelId, guildId, userId, webhookId, inviteCode);
-    //    await RateLimitManager.WaitForRateLimitAsync(bucket);
-    //}
-
-
     #endregion
 
     /// <summary>

@@ -1,8 +1,10 @@
 ﻿#undef NOPE
+using Fluxer.Net.RateLimiting;
 using Fluxer.Net.Rest;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Serilog;
+using Serilog.Events;
 using System.Collections.Concurrent;
 using System.Data;
 using System.Diagnostics;
@@ -66,6 +68,7 @@ public partial class FluxerGatewayClient : IDisposable
     private string _sessionId = "";
 
     private readonly ILogger _logger;
+    private readonly GatewaySendQueue _sendQueue;
     private CancellationTokenSource? _heartbeatCancellation;
     private readonly SemaphoreSlim _reconnectLock = new(1, 1);
     private bool _disposed = false;
@@ -94,6 +97,7 @@ public partial class FluxerGatewayClient : IDisposable
     {
         _client = client;
         _logger = client.Config.GatewaySerilog;
+        _sendQueue = new GatewaySendQueue(WriteToSocket, _logger);
         _logger.Information("Initialized Fluxer.Net gateway client ({AssemblyVersion}) (API {ApiVersion})", Assembly.GetExecutingAssembly().GetName().Version, _client.Config.Version);
     }
     #endregion
@@ -221,6 +225,7 @@ public partial class FluxerGatewayClient : IDisposable
                 }
             }
 
+            _sendQueue.ResetConnection();
             _webSocket = new WebsocketClient(new(_client.Config.GatewayUrl))
             {
                 // IMPORTANT: Do not set ReconnectTimeout here - we manage reconnection manually through the gateway protocol
@@ -272,7 +277,13 @@ public partial class FluxerGatewayClient : IDisposable
     public async Task<bool> DownloadMembersAsync(SocketGuild guild)
     {
         if (guild._downloaderPromise != null)
-            return await guild._downloaderPromise.Task;
+        {
+            TaskCompletionSource<bool> existing = guild._downloaderPromise;
+            if (await Task.WhenAny(existing.Task, Task.Delay(new TimeSpan(0, 0, 30))) != existing.Task)
+                return false;
+
+            return existing.Task.Result;
+        }
 
         guild._downloaderPromise = new TaskCompletionSource<bool>();
 
@@ -290,6 +301,7 @@ public partial class FluxerGatewayClient : IDisposable
         TaskCompletionSource<bool> promise = guild._downloaderPromise;
         if (await Task.WhenAny(promise.Task, Task.Delay(new TimeSpan(0, 0, 30))) != promise.Task)
         {
+            promise.TrySetResult(false);
             guild._downloaderPromise = null;
             return false;
         }
@@ -315,10 +327,17 @@ public partial class FluxerGatewayClient : IDisposable
         }
 
         string text = JsonConvert.SerializeObject(Data, FluxerClient._restSerializer);
-        _logger.Debug("Sending serialized gateway packet {Enums}", LogRedaction.Redact(text));
+        if (_logger.IsEnabled(LogEventLevel.Debug))
+            _logger.Debug("Sending serialized gateway packet {Enums}", LogRedaction.Redact(text));
+
+        _sendQueue.Enqueue(text, (Data as GatewayPacket)?.OpCode);
+    }
+
+    private void WriteToSocket(string text)
+    {
         try
         {
-            _webSocket.Send(text);
+            _webSocket?.Send(text);
         }
         catch (Exception ex)
         {
@@ -395,7 +414,9 @@ public partial class FluxerGatewayClient : IDisposable
     internal void GatewayMessageHandler(string message)
     {
         // try deserializing the packet, fallback to regex
-        _logger.Verbose("Received raw gateway message {Message}", LogRedaction.Redact(message));
+        if (_logger.IsEnabled(LogEventLevel.Verbose))
+            _logger.Verbose("Received raw gateway message {Message}", LogRedaction.Redact(message));
+
         try
         {
             // Pre-parse to check for InvalidSession opcode (which has a boolean payload instead of an object)
@@ -2407,6 +2428,7 @@ public partial class FluxerGatewayClient : IDisposable
             }
 
             // Create NEW transport
+            _sendQueue.ResetConnection();
             _webSocket = new WebsocketClient(new(_client.Config.GatewayUrl))
             {
                 IsReconnectionEnabled = false
@@ -3756,6 +3778,8 @@ public partial class FluxerGatewayClient : IDisposable
         if (disposing)
         {
             _logger.Information("Disposing GatewayClient");
+
+            _sendQueue.Dispose();
 
             // Cancel and dispose heartbeat
             try

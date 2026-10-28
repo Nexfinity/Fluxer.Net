@@ -57,12 +57,30 @@ public class FluxerConfig
     /// </summary>
     public IWebProxy? Proxy { get; set; }
 
-    // <summary>
-    // Enable client-side rate limiting using a sliding window algorithm. Defaults to true.
-    // When enabled, API requests automatically wait when approaching rate limits to prevent
-    // 429 responses from the server. See RateLimiting/README.md for details.
-    // </summary>
-    //public bool EnableRateLimiting { get; set; } = true;
+    /// <summary>
+    /// Whether REST requests wait for Fluxer's rate limits and are sent again when answered with 429. Defaults to true.
+    /// </summary>
+    public bool EnableRateLimiting { get; set; } = true;
+
+    /// <summary>
+    /// Which failures REST requests retry. POST and PATCH are not resent after a timeout or 502.
+    /// </summary>
+    public RetryMode DefaultRetryMode { get; set; } = RetryMode.AlwaysRetry;
+
+    /// <summary>
+    /// Milliseconds a REST request may wait for rate limits before throwing. Null waits as long as needed.
+    /// </summary>
+    public int? DefaultRequestTimeout { get; set; }
+
+    /// <summary>
+    /// Called with the rate limit headers of every REST response.
+    /// </summary>
+    public Func<IRateLimitInfo, Task> DefaultRatelimitCallback { get; set; }
+
+    /// <summary>
+    /// REST requests sent per second before waiting. Set to 0 to rely on 429 responses alone.
+    /// </summary>
+    public int GlobalRateLimit { get; set; } = 50;
 
     /// <summary>
     /// Gets the fully resolved API base URL with the version number substituted.

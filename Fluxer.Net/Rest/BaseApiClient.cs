@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.WebUtilities;
 using Newtonsoft.Json;
+using Fluxer.Net.RateLimiting;
 using Serilog;
 using Serilog.Events;
 using System.Net;
@@ -20,11 +21,10 @@ public class FluxerBaseApiClient
     /// </summary>
     public HttpClient HttpClient { get; internal set; }
 
-    // <summary>
-    // Manages client-side rate limiting using sliding window algorithm.
-    // Prevents exceeding Fluxer API rate limits by automatically waiting when necessary.
-    // </summary>
-    //public RateLimitManager RateLimitManager { get; internal set; }
+    /// <summary>
+    /// Holds requests back to stay inside Fluxer's rate limits and retries the ones answered with 429.
+    /// </summary>
+    internal RequestQueue RequestQueue { get; private set; }
 
     /// <summary>
     /// API limits for message length, attachment count and premium limits.
@@ -43,7 +43,7 @@ public class FluxerBaseApiClient
         {
             Proxy = _config.Proxy
         });
-        //RateLimitManager = new RateLimitManager(_config.EnableRateLimiting);
+        RequestQueue = new RequestQueue(_config, _logger);
         _logger.Information("Initialized Fluxer.Net api client ({AssemblyVersion}) (API {ApiVersion})",
             Assembly.GetExecutingAssembly().GetName().Version,
             _config.Version);
@@ -130,7 +130,7 @@ public class FluxerBaseApiClient
         if (!string.IsNullOrEmpty(_token) && authorize)
             req.Headers.Add("Authorization", _token);
 
-        HttpResponseMessage result = await HttpClient.SendAsync(req);
+        HttpResponseMessage result = await RequestQueue.SendAsync(HttpClient, req, route, options);
 
         if (_logger.IsEnabled(LogEventLevel.Debug))
             _logger.Debug("Made {Method} request to {Route}", method, LogRedaction.Redact(route));
@@ -175,7 +175,7 @@ public class FluxerBaseApiClient
             req.Content = form;
         }
 
-        HttpResponseMessage result = await HttpClient.SendAsync(req);
+        HttpResponseMessage result = await RequestQueue.SendAsync(HttpClient, req, route, options);
 
         if (_logger.IsEnabled(LogEventLevel.Debug))
             _logger.Debug("Made {Method} request to {Route}", method, LogRedaction.Redact(route));
@@ -234,7 +234,7 @@ public class FluxerBaseApiClient
 
         if (!string.IsNullOrEmpty(_token) && authorize)
             req.Headers.Add("Authorization", _token);
-        HttpResponseMessage result = await HttpClient.SendAsync(req);
+        HttpResponseMessage result = await RequestQueue.SendAsync(HttpClient, req, route, options);
 
         if (_logger.IsEnabled(LogEventLevel.Debug))
             _logger.Debug("Made {Method} request to {Route}", method, LogRedaction.Redact(route));
@@ -288,7 +288,7 @@ public class FluxerBaseApiClient
         else if (!string.IsNullOrEmpty(_token) && authorize)
             req.Headers.Add("Authorization", _token);
 
-        HttpResponseMessage result = await HttpClient.SendAsync(req);
+        HttpResponseMessage result = await RequestQueue.SendAsync(HttpClient, req, route, options);
 
         if (_logger.IsEnabled(LogEventLevel.Debug))
             _logger.Debug("Made {Method} request to {Route}", method, LogRedaction.Redact(route));
@@ -357,7 +357,7 @@ public class FluxerBaseApiClient
         else if (!string.IsNullOrEmpty(_token) && authorize)
             req.Headers.Add("Authorization", _token);
 
-        HttpResponseMessage result = await HttpClient.SendAsync(req);
+        HttpResponseMessage result = await RequestQueue.SendAsync(HttpClient, req, route, options);
 
         if (_logger.IsEnabled(LogEventLevel.Debug))
             _logger.Debug("Made {Method} request to {Route}", method, LogRedaction.Redact(route));
@@ -404,7 +404,7 @@ public class FluxerBaseApiClient
 
         if (!string.IsNullOrEmpty(_token) && authorize)
             req.Headers.Add("Authorization", _token);
-        HttpResponseMessage result = await HttpClient.SendAsync(req);
+        HttpResponseMessage result = await RequestQueue.SendAsync(HttpClient, req, route, options);
 
         if (_logger.IsEnabled(LogEventLevel.Debug))
             _logger.Debug("Made {Method} request to {Route} with response code {Code}", method, LogRedaction.Redact(route), result.StatusCode);
