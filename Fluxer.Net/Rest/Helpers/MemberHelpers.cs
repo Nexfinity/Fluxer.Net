@@ -18,7 +18,12 @@ public static class MemberHelpers
         => member.Client.Rest.KickMemberAsync(member.GuildId, member.Id, reason, options);
 
     /// <inheritdoc cref="FluxerApiClient.UpdateMemberAsync(ulong, ulong, GuildMemberJson, RequestOptions?)" />
+    [Obsolete("Every property of GuildMemberJson is sent, including its empty role list, so this replaces the member's roles and voice state. Use the UpdateGuildMemberRequest overload.")]
     public static Task<GuildMember> ModifyAsync(this GuildMember member, GuildMemberJson request, RequestOptions? options = null)
+        => member.Client.Rest.UpdateMemberAsync(member.GuildId, member.Id, request, options);
+
+    /// <inheritdoc cref="FluxerApiClient.UpdateMemberAsync(ulong, ulong, UpdateGuildMemberRequest, RequestOptions?)" />
+    public static Task<GuildMember> ModifyAsync(this GuildMember member, UpdateGuildMemberRequest request, RequestOptions? options = null)
         => member.Client.Rest.UpdateMemberAsync(member.GuildId, member.Id, request, options);
 
     /// <inheritdoc cref="FluxerApiClient.AddMemberRoleAsync(ulong, ulong, ulong, RequestOptions?)" />
@@ -44,7 +49,7 @@ public static class MemberHelpers
     /// Requires either <see cref="GuildPermissions.ChangeNickname"/> for current user or <see cref="GuildPermissions.ManageNicknames"/>.
     /// </remarks>
     public static Task SetNicknameAsync(this GuildMember member, string? name, RequestOptions? options = null)
-        => member.Client.Rest.UpdateMemberAsync(member.GuildId, member.Id, new GuildMemberJson
+        => member.Client.Rest.UpdateMemberAsync(member.GuildId, member.Id, new UpdateGuildMemberRequest
         {
             Nickname = name
         }, options);
@@ -55,7 +60,7 @@ public static class MemberHelpers
     /// <remarks>
     /// Requires <see cref="GuildPermissions.ModerateMembers"/>.</remarks>
     public static Task SetTimeoutAsync(this GuildMember member, DateTimeOffset? date, RequestOptions? options = null)
-        => member.Client.Rest.UpdateMemberAsync(member.GuildId, member.Id, new GuildMemberJson
+        => member.Client.Rest.UpdateMemberAsync(member.GuildId, member.Id, new UpdateGuildMemberRequest
         {
             CommunicationDisabledUntil = date
         }, options);

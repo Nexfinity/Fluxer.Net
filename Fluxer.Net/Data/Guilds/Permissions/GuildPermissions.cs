@@ -11,6 +11,27 @@ public class GuildPermissions
     /// </summary>
     public GuildPermission RawValue { get; private set; }
 
+    /// <summary>
+    /// Whether every flag in <paramref name="permission"/> is set.
+    /// </summary>
+    public bool Has(GuildPermission permission) => (RawValue & permission) == permission;
+
+    /// <summary>
+    /// Lists every single permission that is set.
+    /// </summary>
+    public List<GuildPermission> ToList()
+    {
+        List<GuildPermission> perms = new();
+        for (int bit = 0; bit < 64; bit++)
+        {
+            GuildPermission flag = (GuildPermission)(1UL << bit);
+            if ((RawValue & flag) != 0)
+                perms.Add(flag);
+        }
+
+        return perms;
+    }
+
     /// <inheritdoc cref="GuildPermission.CreateInstantInvite" />
     public bool CreateInstantInvite => RawValue.HasFlag(GuildPermission.CreateInstantInvite);
 
@@ -136,12 +157,18 @@ public class GuildPermissions
 
     internal static GuildPermissions Resolve(SocketGuildMember member)
     {
-        GuildPermissions perms = new GuildPermissions(member.Guild.EveryoneRole.Permissions.RawValue);
+        if (member.Id == member.Guild.OwnerId)
+            return new GuildPermissions((GuildPermission)ulong.MaxValue);
+
+        GuildPermissions perms = new GuildPermissions(member.Guild.EveryoneRole?.Permissions.RawValue ?? 0);
 
         foreach (SocketRole i in member.Roles)
         {
             perms.RawValue |= i.Permissions.RawValue;
         }
+
+        if (perms.Administrator)
+            return new GuildPermissions((GuildPermission)ulong.MaxValue);
 
         return perms;
     }

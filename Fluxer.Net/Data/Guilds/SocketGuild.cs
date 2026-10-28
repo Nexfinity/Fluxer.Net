@@ -22,6 +22,11 @@ public class SocketGuild : Guild
 
     public bool IsAvailable { get; internal set; }
 
+    /// <summary>
+    /// The bot's open voice connection in this guild, or null when it is not in voice or voice is not set up.
+    /// </summary>
+    public IAudioClient? AudioClient => Client.Voice?.GetAudioClient(Id);
+
     public ConcurrentDictionary<ulong, SocketGuildMember> Members { get; private set; } = new ConcurrentDictionary<ulong, SocketGuildMember>();
     public ConcurrentDictionary<ulong, Channel> Channels { get; private set; } = new ConcurrentDictionary<ulong, Channel>();
     public ConcurrentDictionary<ulong, SocketRole> Roles { get; private set; } = new ConcurrentDictionary<ulong, SocketRole>();
@@ -62,8 +67,8 @@ public class SocketGuild : Guild
     public TextChannel? GetTextChannel(ulong channelId)
         => Channels.GetValueOrDefault(channelId) as TextChannel;
 
-    public VoiceChannel? GetVoiceChannel(ulong channelId)
-        => Channels.GetValueOrDefault(channelId) as VoiceChannel;
+    public IVoiceChannel? GetVoiceChannel(ulong channelId)
+        => Channels.GetValueOrDefault(channelId) as IVoiceChannel;
 
     public CategoryChannel? GetCategoryChannel(ulong channelId)
         => Channels.GetValueOrDefault(channelId) as CategoryChannel;
@@ -71,8 +76,8 @@ public class SocketGuild : Guild
     public LinkChannel? GetLinkChannel(ulong channelId)
         => Channels.GetValueOrDefault(channelId) as LinkChannel;
 
-    public NewsChannel? GetNewsChannel(ulong channelId)
-        => Channels.GetValueOrDefault(channelId) as NewsChannel;
+    public INewsChannel? GetNewsChannel(ulong channelId)
+        => Channels.GetValueOrDefault(channelId) as INewsChannel;
 
     public ForumChannel? GetForumChannel(ulong channelId)
         => Channels.GetValueOrDefault(channelId) as ForumChannel;

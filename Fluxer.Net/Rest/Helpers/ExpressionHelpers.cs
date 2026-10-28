@@ -63,4 +63,12 @@ public static class ExpressionHelpers
     /// <inheritdoc cref="FluxerApiClient.UpdateStickerAsync(ulong, ulong, UpdateGuildStickerRequest, RequestOptions?)" />
     public static Task ModifyAsync(this GuildSticker sticker, UpdateGuildStickerRequest request, RequestOptions? options = null)
         => sticker.Client.Rest.UpdateStickerAsync(sticker.GuildId, sticker.Id, request, options);
+
+    /// <inheritdoc cref="FluxerApiClient.CloneEmojiAsync(ulong, ulong, RequestOptions?)" />
+    public static Task<GuildEmoji> CloneEmojiAsync(this Guild guild, ulong sourceEmojiId, RequestOptions? options = null)
+        => guild.Client.Rest.CloneEmojiAsync(guild.Id, sourceEmojiId, options);
+
+    /// <inheritdoc cref="FluxerApiClient.CloneStickerAsync(ulong, ulong, RequestOptions?)" />
+    public static Task<GuildSticker> CloneStickerAsync(this Guild guild, ulong sourceStickerId, RequestOptions? options = null)
+        => guild.Client.Rest.CloneStickerAsync(guild.Id, sourceStickerId, options);
 }

@@ -257,12 +257,12 @@
             <param name="command">The command being executed.</param>
             <param name="services">The service collection used for dependency injection.</param>
         </member>
-        <member name="F:Fluxer.Net.Commands.RequireBotPermissionAttribute.Guild">
+        <member name="P:Fluxer.Net.Commands.RequireBotPermissionAttribute.Guild">
             <summary>
             Guild permission to check for.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Commands.RequireBotPermissionAttribute.Channel">
+        <member name="P:Fluxer.Net.Commands.RequireBotPermissionAttribute.Channel">
             <summary>
             Channel permission to check for.
             </summary>
@@ -277,6 +277,31 @@
         </member>
         <member name="M:Fluxer.Net.Commands.RequireContextAttribute.CheckPermissionsAsync(Fluxer.Net.Commands.ICommandContext,Fluxer.Net.Commands.CommandInfo,System.IServiceProvider)">
             <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.Commands.ContextType">
+            <summary>
+            Where a command may run. Combine values to allow several.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.Commands.ContextType.DM">
+            <summary>
+            A direct message with one user.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.Commands.ContextType.Group">
+            <summary>
+            A group direct message.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.Commands.ContextType.Community">
+            <summary>
+            A channel in a community.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.Commands.ContextType.Guild">
+            <summary>
+            The same as <see cref="F:Fluxer.Net.Commands.ContextType.Community" />, named after the guild ids the API uses.
+            </summary>
         </member>
         <member name="M:Fluxer.Net.Commands.RequireDMAttribute.CheckPermissionsAsync(Fluxer.Net.Commands.ICommandContext,Fluxer.Net.Commands.CommandInfo,System.IServiceProvider)">
             <inheritdoc />
@@ -325,12 +350,12 @@
         <member name="M:Fluxer.Net.Commands.RequireOwnerAttribute.CheckPermissionsAsync(Fluxer.Net.Commands.ICommandContext,Fluxer.Net.Commands.CommandInfo,System.IServiceProvider)">
             <inheritdoc />
         </member>
-        <member name="F:Fluxer.Net.Commands.RequireUserPermissionAttribute.Guild">
+        <member name="P:Fluxer.Net.Commands.RequireUserPermissionAttribute.Guild">
             <summary>
             Guild/Group permission to check for.
             </summary>
         </member>
-        <member name="F:Fluxer.Net.Commands.RequireUserPermissionAttribute.Channel">
+        <member name="P:Fluxer.Net.Commands.RequireUserPermissionAttribute.Channel">
             <summary>
             Channel permission to check for.
             </summary>
@@ -491,6 +516,16 @@
                     statically via compile-time modules. To create a command module at compile-time, see
                     <see cref="T:Fluxer.Net.Commands.ModuleBase" /> (most common); otherwise, see <see cref="T:Fluxer.Net.Commands.ModuleBuilder" />.
                 </para>
+            </remarks>
+        </member>
+        <member name="E:Fluxer.Net.Commands.CommandService.CommandExecuted">
+            <summary>
+                Occurs when a command is executed.
+            </summary>
+            <remarks>
+                This event is fired when a command has been executed, successfully or not. When a command fails to
+                execute during the search stage, the command is null. Commands run with <see cref="F:Fluxer.Net.Commands.RunMode.Async" />
+                report their real outcome only through this event.
             </remarks>
         </member>
         <member name="P:Fluxer.Net.Commands.CommandService.Modules">
@@ -2268,6 +2303,16 @@
             Hide media download in forum channel.
             </summary>
         </member>
+        <member name="P:Fluxer.Net.ChannelFollowerStatsJson.ChannelCount">
+            <summary>
+            The number of channels following the announcement channel.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.ChannelFollowerStatsJson.GuildCount">
+            <summary>
+            The number of different guilds following the announcement channel.
+            </summary>
+        </member>
         <member name="T:Fluxer.Net.ChannelJson">
             <inheritdoc />
         </member>
@@ -2544,6 +2589,16 @@
             A personal notes DM channel for storing private messages.
             </summary>
         </member>
+        <member name="T:Fluxer.Net.IAudioChannel">
+            <summary>
+            A channel that can carry audio.
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.ICategoryChannel">
+            <summary>
+            A guild channel that groups other channels.
+            </summary>
+        </member>
         <member name="P:Fluxer.Net.IChannel.GuildId">
             <summary>
             The unique identifier (snowflake) for guild of this channel.
@@ -2664,6 +2719,41 @@
             Whether more pins can be fetched with pagination
             </summary>
         </member>
+        <member name="T:Fluxer.Net.IDMChannel">
+            <summary>
+            A direct message channel with one other user.
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.IGroupChannel">
+            <summary>
+            A group direct message channel.
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.IGuildChannel">
+            <summary>
+            A channel that belongs to a guild.
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.IMessageChannel">
+            <summary>
+            A channel messages can be sent to.
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.INestedChannel">
+            <summary>
+            A guild channel that can sit under a category.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.INestedChannel.CategoryId">
+            <summary>
+            The ID of the category this channel is in, if known.
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.INewsChannel">
+            <summary>
+            A guild announcement channel.
+            </summary>
+        </member>
         <member name="P:Fluxer.Net.IPartialChannel.Name">
             <summary>
             The name of the channel.
@@ -2699,6 +2789,47 @@
             The bitwise value of denied permissions.
             </summary>
         </member>
+        <member name="T:Fluxer.Net.IPrivateChannel">
+            <summary>
+            A channel outside of guilds.
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.ISocketGuildChannel">
+            <summary>
+            A cached guild channel that knows its <see cref="T:Fluxer.Net.SocketGuild"/>.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.ISocketGuildChannel.Guild">
+            <summary>
+            The cached guild this channel belongs to.
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.ITextChannel">
+            <summary>
+            A guild channel with a text chat.
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.IVoiceChannel">
+            <summary>
+            A guild voice or stage channel.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.IVoiceChannel.ConnectAsync(System.Boolean,System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            Joins this voice channel, or moves the bot to it when it is already in voice in this guild.
+            </summary>
+            <param name="selfDeaf">Whether the bot joins deafened. Bots that only send audio should leave this on.</param>
+            <param name="selfMute">Whether the bot joins muted.</param>
+            <param name="cancellationToken">Cancels the join.</param>
+            <returns>The connection to send audio with.</returns>
+            <exception cref="T:System.InvalidOperationException">Voice is not set up for the client.</exception>
+        </member>
+        <member name="M:Fluxer.Net.IVoiceChannel.DisconnectAsync">
+            <summary>
+            Leaves voice in this channel's guild.
+            </summary>
+            <exception cref="T:System.InvalidOperationException">Voice is not set up for the client.</exception>
+        </member>
         <member name="T:Fluxer.Net.PartialChannel">
             <inheritdoc />
         </member>
@@ -2710,6 +2841,11 @@
         </member>
         <member name="P:Fluxer.Net.PartialChannel.Mention">
             <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.PartialChannel.ToString">
+            <summary>
+            Returns the name.
+            </summary>
         </member>
         <member name="P:Fluxer.Net.PartialChannel.Name">
             <inheritdoc />
@@ -2777,11 +2913,37 @@
         <member name="P:Fluxer.Net.PermissionOverwriteJson.Deny">
             <inheritdoc />
         </member>
+        <member name="T:Fluxer.Net.SlowmodeStateJson">
+            <summary>
+            A channel's slowmode as it applies to the current user.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.SlowmodeStateJson.Interval">
+            <summary>
+            The slowmode interval in seconds, or 0 when slowmode is off.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.SlowmodeStateJson.RetryAfterMs">
+            <summary>
+            How long the current user must wait before sending, in milliseconds.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.SlowmodeStateJson.CanBypass">
+            <summary>
+            Whether the current user can ignore slowmode.
+            </summary>
+        </member>
         <member name="M:Fluxer.Net.SocketChannel.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.ChannelJson,Fluxer.Net.SocketGuild)">
             <summary>
             Create a SocketChannel object from json.
             </summary>
             <returns><see cref="T:Fluxer.Net.Channel"/></returns>
+        </member>
+        <member name="M:Fluxer.Net.SocketVoiceChannel.ConnectAsync(System.Boolean,System.Boolean,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.SocketVoiceChannel.DisconnectAsync">
+            <inheritdoc />
         </member>
         <member name="T:Fluxer.Net.SystemChannelFlags">
             <summary>
@@ -2797,6 +2959,110 @@
             <summary>
             Suppress member join notifications in the system channel.
             </summary>
+        </member>
+        <member name="M:Fluxer.Net.VoiceChannel.ConnectAsync(System.Boolean,System.Boolean,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.VoiceChannel.DisconnectAsync">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.DiscoveryGuildListJson.Total">
+            <summary>
+            The number of guilds matching the search.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.DiscoveryGuildListJson.CategoryCounts">
+            <summary>
+            The number of matches in each category, ignoring the category filter.
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.DiscoveryInfoJson">
+            <summary>
+            A guild's discovery application and whether it can apply.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.DiscoveryInfoJson.IsEligible">
+            <summary>
+            Whether the guild meets the requirements to apply.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.DiscoveryApplicationJson.Status">
+            <summary>
+            The review status of the application, such as pending, approved or rejected.
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.Color">
+            <summary>
+            An RGB color, as used by embeds and roles.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Color.#ctor(System.UInt32)">
+            <summary>
+            Creates a color from a raw 0xRRGGBB value.
+            </summary>
+            <exception cref="T:System.ArgumentOutOfRangeException">The value is larger than <see cref="F:Fluxer.Net.Color.MaxDecimalValue" />.</exception>
+        </member>
+        <member name="M:Fluxer.Net.Color.#ctor(System.Byte,System.Byte,System.Byte)">
+            <summary>
+            Creates a color from its red, green and blue parts.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Color.#ctor(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Creates a color from its red, green and blue parts, each from 0 to 255.
+            </summary>
+            <exception cref="T:System.ArgumentOutOfRangeException">A part is outside 0 to 255.</exception>
+        </member>
+        <member name="M:Fluxer.Net.Color.#ctor(System.Single,System.Single,System.Single)">
+            <summary>
+            Creates a color from its red, green and blue parts, each from 0 to 1.
+            </summary>
+            <exception cref="T:System.ArgumentOutOfRangeException">A part is outside 0 to 1.</exception>
+        </member>
+        <member name="P:Fluxer.Net.Color.RawValue">
+            <summary>
+            The raw 0xRRGGBB value.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Color.R">
+            <summary>
+            The red part, from 0 to 255.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Color.G">
+            <summary>
+            The green part, from 0 to 255.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Color.B">
+            <summary>
+            The blue part, from 0 to 255.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Color.TryParse(System.String,Fluxer.Net.Color@)">
+            <summary>
+            Reads a color written as hex, with or without a leading # or 0x.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Color.Parse(System.String)">
+            <summary>
+            Reads a color written as hex, with or without a leading # or 0x.
+            </summary>
+            <exception cref="T:System.FormatException">The text is not a six digit hex color.</exception>
+        </member>
+        <member name="M:Fluxer.Net.Color.ToString">
+            <summary>
+            Returns the color as #RRGGBB.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Color.Equals(Fluxer.Net.Color)">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.Color.Equals(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.Color.GetHashCode">
+            <inheritdoc />
         </member>
         <member name="T:Fluxer.Net.Embed">
             <inheritdoc />
@@ -3173,6 +3439,20 @@
         <member name="M:Fluxer.Net.EmbedBuilder.AddField(System.String,System.Object,System.Boolean)">
             <summary>
             Adds a field to the embed.
+            </summary>
+            <returns><see cref="T:Fluxer.Net.EmbedBuilder"/></returns>
+            <exception cref="T:System.ArgumentException">Field count exceeds <see cref="P:Fluxer.Net.EmbedBuilder.MaxFieldCount"/>.</exception>
+        </member>
+        <member name="M:Fluxer.Net.EmbedBuilder.WithFields(System.Collections.Generic.IEnumerable{Fluxer.Net.EmbedFieldBuilder})">
+            <summary>
+            Replaces the embed's fields.
+            </summary>
+            <returns><see cref="T:Fluxer.Net.EmbedBuilder"/></returns>
+            <exception cref="T:System.ArgumentException">Field count exceeds <see cref="P:Fluxer.Net.EmbedBuilder.MaxFieldCount"/>.</exception>
+        </member>
+        <member name="M:Fluxer.Net.EmbedBuilder.WithFields(Fluxer.Net.EmbedFieldBuilder[])">
+            <summary>
+            Replaces the embed's fields.
             </summary>
             <returns><see cref="T:Fluxer.Net.EmbedBuilder"/></returns>
             <exception cref="T:System.ArgumentException">Field count exceeds <see cref="P:Fluxer.Net.EmbedBuilder.MaxFieldCount"/>.</exception>
@@ -3628,6 +3908,53 @@
         <member name="M:Fluxer.Net.Emoji.#ctor(System.UInt64,System.String,System.Boolean)">
             <inheritdoc />
         </member>
+        <member name="P:Fluxer.Net.Emoji.IsCustom">
+            <summary>
+            Whether this is a custom emoji rather than a unicode one.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Emoji.FromUnicode(System.String)">
+            <summary>
+            Creates a unicode emoji.
+            </summary>
+            <exception cref="T:System.ArgumentException">The text is empty.</exception>
+        </member>
+        <member name="M:Fluxer.Net.Emoji.FromCustom(System.String,System.UInt64,System.Boolean)">
+            <summary>
+            Creates a custom emoji from its name and id.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Emoji.TryParseCustom(System.String,Fluxer.Net.Emoji@)">
+            <summary>
+            Reads a custom emoji from its message markup.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Emoji.TryParse(System.String,Fluxer.Net.Emoji@)">
+            <summary>
+            Reads a custom emoji, or a unicode emoji.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Emoji.Parse(System.String)">
+            <summary>
+            Reads a custom or unicode emoji.
+            </summary>
+            <exception cref="T:System.FormatException">The text is not an emoji.</exception>
+        </member>
+        <member name="M:Fluxer.Net.Emoji.From(Fluxer.Net.IEmoji)">
+            <summary>
+            Gets an <see cref="T:Fluxer.Net.Emoji"/> for any <see cref="T:Fluxer.Net.IEmoji"/>.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Emoji.Matches(Fluxer.Net.IEmoji)">
+            <summary>
+            Whether another emoji is the same emoji, ignoring variation selectors on unicode emojis.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Emoji.ToString">
+            <summary>
+            Returns the emoji as message markup.
+            </summary>
+        </member>
         <member name="M:Fluxer.Net.Emoji.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.EmojiJson)">
             <summary>
             Create a Emoji object from json.
@@ -3651,6 +3978,16 @@
         </member>
         <member name="P:Fluxer.Net.EmojiJson.AllowCloning">
             <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.ExpressionSourceGuildJson">
+            <summary>
+            The public details of the guild an emoji or sticker belongs to.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.ExpressionSourceGuildJson.Features">
+            <summary>
+            The guild's badges, limited to VERIFIED, PARTNERED and DISCOVERABLE.
+            </summary>
         </member>
         <member name="T:Fluxer.Net.GuildEmoji">
             <inheritdoc />
@@ -3857,6 +4194,27 @@
             Order posts in a grid/gallery view.
             </summary>
         </member>
+        <member name="T:Fluxer.Net.ForumPostData">
+            <summary>
+            The author and first message of a forum or media post.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.ForumPostData.Owner">
+            <summary>
+            The member who created the post, or null when they left the guild.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.ForumPostData.FirstMessage">
+            <summary>
+            The first message of the post, or null when it was deleted.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.ForumPostData.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.ForumPostDataJson)">
+            <summary>
+            Create a ForumPostData object from json.
+            </summary>
+            <returns><see cref="T:Fluxer.Net.ForumPostData"/></returns>
+        </member>
         <member name="F:Fluxer.Net.ForumSortOrder.LatestActivity">
             <summary>
             Sort posts by last active.
@@ -3908,6 +4266,16 @@
         </member>
         <member name="P:Fluxer.Net.ForumTagJson.IsModerated">
             <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.IForumChannel">
+            <summary>
+            A guild channel made of posts.
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.IMediaChannel">
+            <summary>
+            A forum channel for media posts.
+            </summary>
         </member>
         <member name="M:Fluxer.Net.SocketForumTag.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.ForumTagJson)">
             <summary>
@@ -4315,6 +4683,11 @@
         <member name="M:Fluxer.Net.GuildMember.GetCurrentName">
             <inheritdoc />
         </member>
+        <member name="M:Fluxer.Net.GuildMember.ToString">
+            <summary>
+            Returns the member's user as text.
+            </summary>
+        </member>
         <member name="M:Fluxer.Net.GuildMember.GetDefaultAvatarUrl">
             <inheritdoc />
         </member>
@@ -4392,6 +4765,16 @@
         </member>
         <member name="M:Fluxer.Net.GuildMemberJson.GetBannerUrl(System.Int32)">
             <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildMemberSearchJson.IsIndexing">
+            <summary>
+            Whether Fluxer is still indexing the guild's members, so results may be missing.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.GuildMemberSearchResultJson.JoinedAt">
+            <summary>
+            When the member joined, in unix seconds.
+            </summary>
         </member>
         <member name="P:Fluxer.Net.IGuildBan.BannedAt">
             <summary>
@@ -4553,6 +4936,11 @@
         <member name="P:Fluxer.Net.Role.Mention">
             <inheritdoc />
         </member>
+        <member name="M:Fluxer.Net.Role.ToString">
+            <summary>
+            Returns the name.
+            </summary>
+        </member>
         <member name="P:Fluxer.Net.Role.Name">
             <inheritdoc />
         </member>
@@ -4668,6 +5056,11 @@
         </member>
         <member name="P:Fluxer.Net.PartialGuild.Name">
             <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.PartialGuild.ToString">
+            <summary>
+            Returns the name.
+            </summary>
         </member>
         <member name="P:Fluxer.Net.PartialGuild.IconHash">
             <inheritdoc />
@@ -4950,6 +5343,16 @@
         <member name="P:Fluxer.Net.ChannelPermissions.RawValue">
             <summary>
             Raw permissions flag for the guild.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.ChannelPermissions.Has(Fluxer.Net.ChannelPermission)">
+            <summary>
+            Whether every flag in <paramref name="permission"/> is set.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.ChannelPermissions.ToList">
+            <summary>
+            Lists every single permission that is set.
             </summary>
         </member>
         <member name="P:Fluxer.Net.ChannelPermissions.CreateInstantInvite">
@@ -5262,6 +5665,16 @@
         <member name="P:Fluxer.Net.GuildPermissions.RawValue">
             <summary>
             Raw permissions flag for the guild.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.GuildPermissions.Has(Fluxer.Net.GuildPermission)">
+            <summary>
+            Whether every flag in <paramref name="permission"/> is set.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.GuildPermissions.ToList">
+            <summary>
+            Lists every single permission that is set.
             </summary>
         </member>
         <member name="P:Fluxer.Net.GuildPermissions.CreateInstantInvite">
@@ -5644,6 +6057,11 @@
         <member name="P:Fluxer.Net.SocketGuild.CurrentMember">
             <summary>
             Cached current logged in member for the guild.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.SocketGuild.AudioClient">
+            <summary>
+            The bot's open voice connection in this guild, or null when it is not in voice or voice is not set up.
             </summary>
         </member>
         <member name="P:Fluxer.Net.SocketGuild.Permissions">
@@ -6323,6 +6741,21 @@
         </member>
         <member name="P:Fluxer.Net.AttachmentJson.IsExpired">
             <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.CrosspostSourceGuildJson">
+            <summary>
+            The public details of the guild an announcement was published from.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.CrosspostSourceGuildJson.Description">
+            <summary>
+            The guild's discovery description, or null when it is not listed in discovery.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.CrosspostSourceGuildJson.IsDiscoverable">
+            <summary>
+            Whether the guild can be joined through discovery.
+            </summary>
         </member>
         <member name="P:Fluxer.Net.IAttachment.Filename">
             <summary>
@@ -7059,6 +7492,32 @@
             System message.
             </summary>
         </member>
+        <member name="T:Fluxer.Net.ReactionUserPage">
+            <summary>
+            A page of the users who reacted to a message with one emoji.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.ReactionUserPage.HasMore">
+            <summary>
+            Whether more users can be fetched by passing <see cref="P:Fluxer.Net.ReactionUserPage.NextAfterId"/>.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.ReactionUserPage.NextAfterId">
+            <summary>
+            The id to fetch the next page after, or null on the last page.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.ReactionUserPage.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.ReactionUserPageJson)">
+            <summary>
+            Create a ReactionUserPage object from json.
+            </summary>
+            <returns><see cref="T:Fluxer.Net.ReactionUserPage"/></returns>
+        </member>
+        <member name="P:Fluxer.Net.RefreshedAttachmentUrlJson.Refreshed">
+            <summary>
+            The URL with a new signature, or the original when it is not an attachment URL.
+            </summary>
+        </member>
         <member name="T:Fluxer.Net.SavedMessage">
             <inheritdoc />
         </member>
@@ -7082,6 +7541,25 @@
             Create a SocketMessage object from json.
             </summary>
             <returns><see cref="T:Fluxer.Net.SocketMessage"/></returns>
+        </member>
+        <member name="M:Fluxer.Net.SocketMessage.CopyAs(Fluxer.Net.SocketGuildMember,System.String)">
+            <summary>
+            Creates a local copy of this message as if another member had sent it with other content, for example to run
+            a command on that member's behalf. The copy only exists in memory and is never sent to Fluxer.
+            </summary>
+            <param name="member">Member the copy is sent by.</param>
+            <param name="content">Content of the copy.</param>
+            <returns><see cref="T:Fluxer.Net.SocketMessage"/></returns>
+        </member>
+        <member name="P:Fluxer.Net.ExperimentAssignmentsJson.PollInterval">
+            <summary>
+            How often Fluxer's clients check their assignments again, in seconds.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.ExperimentAssignmentsJson.Assignments">
+            <summary>
+            Each experiment's assignment by name, such as channel_threads, whose "active" says whether threads are available.
+            </summary>
         </member>
         <member name="T:Fluxer.Net.GlobalSearch">
             <inheritdoc />
@@ -7893,6 +8371,21 @@
         <member name="T:Fluxer.Net.SearchScope">
             <see cref="T:Fluxer.Net.Extensions.SearchScopeConverter"/>
         </member>
+        <member name="T:Fluxer.Net.IThreadChannel">
+            <summary>
+            A thread inside a text or news channel.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IThreadChannel.ThreadType">
+            <summary>
+            The kind of thread.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IThreadChannel.IsPrivate">
+            <summary>
+            Whether the thread is private.
+            </summary>
+        </member>
         <member name="M:Fluxer.Net.SocketThreadMember.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.ThreadMemberJson,Fluxer.Net.ThreadChannel,Fluxer.Net.SocketGuild)">
             <summary>
             Create a ThreadMember object from json.
@@ -7922,6 +8415,37 @@
             <summary>
             1 week (10080 minutes).
             </summary>
+        </member>
+        <member name="T:Fluxer.Net.ThreadList">
+            <summary>
+            A list of threads, with the current user's thread member for each thread it joined.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.ThreadList.Threads">
+            <summary>
+            The threads.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.ThreadList.Members">
+            <summary>
+            The current user's thread member for each listed thread it joined.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.ThreadList.HasMore">
+            <summary>
+            Whether more threads can be fetched. Always false for active threads.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.ThreadList.TotalResults">
+            <summary>
+            The total number of threads matching a search, or null when the list is not a search result.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.ThreadList.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.ThreadListJson)">
+            <summary>
+            Create a ThreadList object from json.
+            </summary>
+            <returns><see cref="T:Fluxer.Net.ThreadList"/></returns>
         </member>
         <member name="P:Fluxer.Net.ThreadMember.Id">
             <inheritdoc />
@@ -8875,6 +9399,11 @@
         <member name="M:Fluxer.Net.User.GetCurrentName">
             <inheritdoc />
         </member>
+        <member name="M:Fluxer.Net.User.ToString">
+            <summary>
+            Returns the username, followed by the discriminator when the account still has one.
+            </summary>
+        </member>
         <member name="M:Fluxer.Net.User.GetDefaultAvatarUrl">
             <inheritdoc />
         </member>
@@ -9507,6 +10036,71 @@
         <member name="P:Fluxer.Net.CallJson.CreatedAt">
             <inheritdoc />
         </member>
+        <member name="T:Fluxer.Net.IAudioClient">
+            <summary>
+            The bot's connection to one voice channel, used to send audio into it.
+            </summary>
+            <remarks>
+            Audio is 16 bit signed PCM at <see cref="F:Fluxer.Net.IAudioClient.SampleRate"/> Hz with <see cref="F:Fluxer.Net.IAudioClient.Channels"/> interleaved channels.
+            </remarks>
+        </member>
+        <member name="F:Fluxer.Net.IAudioClient.SampleRate">
+            <summary>
+            The sample rate audio must be sent at.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.IAudioClient.Channels">
+            <summary>
+            The number of interleaved channels audio must be sent with.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IAudioClient.GuildId">
+            <summary>
+            The guild of the voice channel.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IAudioClient.ChannelId">
+            <summary>
+            The voice channel the bot is connected to.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IAudioClient.IsConnected">
+            <summary>
+            Whether the connection is open and audio can be sent.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IAudioClient.QueuedDuration">
+            <summary>
+            How much audio is queued and not yet sent.
+            </summary>
+        </member>
+        <member name="E:Fluxer.Net.IAudioClient.Disconnected">
+            <summary>
+            Raised when the voice connection is lost or closed. The exception is null when it closed normally.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.IAudioClient.CreatePcmStream">
+            <summary>
+            Creates a stream that sends the 16 bit PCM bytes written to it, in frames of 20 milliseconds.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.IAudioClient.SendAsync(System.Int16[],System.Threading.CancellationToken)">
+            <summary>
+            Sends one frame of audio, waiting when the queue is full.
+            </summary>
+            <param name="samples">Interleaved 16 bit samples for <see cref="F:Fluxer.Net.IAudioClient.Channels"/> channels at <see cref="F:Fluxer.Net.IAudioClient.SampleRate"/> Hz.</param>
+            <param name="cancellationToken">Cancels the wait for room in the queue.</param>
+        </member>
+        <member name="M:Fluxer.Net.IAudioClient.ClearQueue">
+            <summary>
+            Drops queued audio that has not been sent yet.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.IAudioClient.DisconnectAsync">
+            <summary>
+            Leaves the voice channel.
+            </summary>
+        </member>
         <member name="P:Fluxer.Net.ICallEligibility.IsRingable">
             <summary>
             Whether the current user can ring this call
@@ -9539,6 +10133,35 @@
             <summary>
             The emoji associated with this RTC region
             </summary>
+        </member>
+        <member name="T:Fluxer.Net.IVoiceProvider">
+            <summary>
+            Joins and leaves voice channels for a client. Fluxer.Net.Voice provides one; set it on
+            <see cref="P:Fluxer.Net.FluxerBaseClient.Voice"/> to make <see cref="M:Fluxer.Net.IVoiceChannel.ConnectAsync(System.Boolean,System.Boolean,System.Threading.CancellationToken)"/> work.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.IVoiceProvider.ConnectAsync(System.UInt64,System.UInt64,System.Boolean,System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            Joins a voice channel, or moves to it when the bot is already in voice in that guild.
+            </summary>
+            <param name="guildId">The guild of the voice channel.</param>
+            <param name="channelId">The voice channel to join.</param>
+            <param name="selfDeaf">Whether the bot joins deafened.</param>
+            <param name="selfMute">Whether the bot joins muted.</param>
+            <param name="cancellationToken">Cancels the join.</param>
+            <returns>The open connection.</returns>
+        </member>
+        <member name="M:Fluxer.Net.IVoiceProvider.DisconnectAsync(System.UInt64)">
+            <summary>
+            Leaves voice in a guild.
+            </summary>
+            <param name="guildId">The guild.</param>
+        </member>
+        <member name="M:Fluxer.Net.IVoiceProvider.GetAudioClient(System.UInt64)">
+            <summary>
+            Gets the open connection in a guild, or null when the bot is not in voice there.
+            </summary>
+            <param name="guildId">The guild.</param>
         </member>
         <member name="P:Fluxer.Net.IVoiceState.SessionId">
             <summary>
@@ -10002,6 +10625,41 @@
             integer precision loss, but the REST API may return them as plain numbers.
             </summary>
         </member>
+        <member name="T:Fluxer.Net.Rest.FluxerApiException">
+            <summary>
+            Thrown when the Fluxer API answers a request with an error.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Rest.FluxerApiException.#ctor(System.String,System.String,System.Net.HttpStatusCode,Fluxer.Net.FluxerErrorJson)">
+            <summary>
+            Creates the exception from a response status and its parsed error body.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.FluxerApiException.FluxerData">
+            <summary>
+            The raw response body.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.FluxerApiException.HttpCode">
+            <summary>
+            The HTTP status of the response.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.FluxerApiException.ErrorCode">
+            <summary>
+            Fluxer's error code.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.FluxerApiException.Reason">
+            <summary>
+            Fluxer's explanation of the error.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.FluxerApiException.Errors">
+            <summary>
+            The field errors of a validation failure.
+            </summary>
+        </member>
         <member name="T:Fluxer.Net.Rest.FluxerApiClient">
             <summary>
             REST API client for the Fluxer platform. Provides methods for all Fluxer API endpoints
@@ -10031,6 +10689,12 @@
             </summary>
             <returns><see cref="T:Fluxer.Net.Instance"/></returns>
         </member>
+        <member name="M:Fluxer.Net.Rest.FluxerApiClient.GetExperimentsAsync(Fluxer.Net.Rest.RequestOptions)">
+            <summary>
+            Get the current user's experiment assignments, such as whether channel threads are enabled.
+            </summary>
+            <returns><see cref="T:Fluxer.Net.ExperimentAssignmentsJson"/></returns>
+        </member>
         <member name="M:Fluxer.Net.Rest.FluxerApiClient.GetEmojiAsync(System.UInt64,Fluxer.Net.Rest.RequestOptions)">
             <summary>
             Get a custom emoji.
@@ -10042,6 +10706,18 @@
             Get a custom sticker.
             </summary>
             <returns><see cref="T:Fluxer.Net.Sticker"/></returns>
+        </member>
+        <member name="M:Fluxer.Net.Rest.FluxerApiClient.GetEmojiSourceAsync(System.UInt64,Fluxer.Net.Rest.RequestOptions)">
+            <summary>
+            Get the guild a custom emoji belongs to.
+            </summary>
+            <returns><see cref="T:Fluxer.Net.ExpressionSourceGuildJson"/></returns>
+        </member>
+        <member name="M:Fluxer.Net.Rest.FluxerApiClient.GetStickerSourceAsync(System.UInt64,Fluxer.Net.Rest.RequestOptions)">
+            <summary>
+            Get the guild a custom sticker belongs to.
+            </summary>
+            <returns><see cref="T:Fluxer.Net.ExpressionSourceGuildJson"/></returns>
         </member>
         <member name="M:Fluxer.Net.Rest.FluxerApiClient.LoginAsync(Fluxer.Net.LoginRequestJson,Fluxer.Net.Rest.RequestOptions)">
             <summary>
@@ -10172,6 +10848,16 @@
             </remarks>
             <returns><see cref="T:Fluxer.Net.Channel"/></returns>
         </member>
+        <member name="M:Fluxer.Net.Rest.FluxerApiClient.UpdateChannelAsync(System.UInt64,Fluxer.Net.Rest.UpdateChannelRequest,Fluxer.Net.Rest.RequestOptions)">
+            <summary>
+            Update a guild channel. Only the properties set on <paramref name="request"/> are changed.
+            </summary>
+            <remarks>
+            Requires <see cref="P:Fluxer.Net.ChannelPermissions.ManageChannel"/>, and <see cref="P:Fluxer.Net.ChannelPermissions.ManagePermissions"/>
+            to change permission overwrites.
+            </remarks>
+            <returns><see cref="T:Fluxer.Net.Channel"/></returns>
+        </member>
         <member name="M:Fluxer.Net.Rest.FluxerApiClient.DeleteChannelAsync(System.UInt64,Fluxer.Net.Rest.RequestOptions)">
             <summary>
             Delete a channel.
@@ -10212,6 +10898,24 @@
             <summary>
             Follow a news channel.
             </summary>
+        </member>
+        <member name="M:Fluxer.Net.Rest.FluxerApiClient.GetFollowerStatsAsync(System.UInt64,Fluxer.Net.Rest.RequestOptions)">
+            <summary>
+            Get how many channels and guilds follow an announcement channel.
+            </summary>
+            <returns><see cref="T:Fluxer.Net.ChannelFollowerStatsJson"/></returns>
+        </member>
+        <member name="M:Fluxer.Net.Rest.FluxerApiClient.GetCrosspostSourceAsync(System.UInt64,System.UInt64,Fluxer.Net.Rest.RequestOptions)">
+            <summary>
+            Get the guild a published announcement was copied from.
+            </summary>
+            <returns><see cref="T:Fluxer.Net.CrosspostSourceGuildJson"/></returns>
+        </member>
+        <member name="M:Fluxer.Net.Rest.FluxerApiClient.GetSlowmodeStateAsync(System.UInt64,Fluxer.Net.Rest.RequestOptions)">
+            <summary>
+            Get a channel's slowmode and how long the current user must wait before sending.
+            </summary>
+            <returns><see cref="T:Fluxer.Net.SlowmodeStateJson"/></returns>
         </member>
         <member name="M:Fluxer.Net.Rest.FluxerApiClient.SearchChannelAsync``2(System.UInt64,``0,Fluxer.Net.Rest.RequestOptions)">
             <summary>
@@ -10265,6 +10969,18 @@
             Requires <see cref="P:Fluxer.Net.ChannelPermissions.ViewChannel"/>, <see cref="P:Fluxer.Net.ChannelPermissions.ReadMessageHistory"/> and <see cref="P:Fluxer.Net.ChannelPermissions.ManageMessages"/> in a guild channel.
             </remarks>
         </member>
+        <member name="M:Fluxer.Net.Rest.FluxerApiClient.DeleteOwnMessagesAsync(System.UInt64,Fluxer.Net.Rest.SudoVerificationRequest,Fluxer.Net.Rest.RequestOptions)">
+            <summary>
+            Delete every message the current user sent in a channel. Fluxer deletes them in the background.
+            </summary>
+            <param name="verification">The password or MFA code user accounts must confirm with.</param>
+        </member>
+        <member name="M:Fluxer.Net.Rest.FluxerApiClient.PurgeSavedNotesAsync(System.UInt64,Fluxer.Net.Rest.RequestOptions)">
+            <summary>
+            Delete every message in the current user's Saved Notes channel.
+            </summary>
+            <returns>The number of deleted messages</returns>
+        </member>
         <member name="M:Fluxer.Net.Rest.FluxerApiClient.TriggerTypingIndicatorAsync(System.UInt64,Fluxer.Net.Rest.RequestOptions)">
             <summary>
             Send a user typing status for the channel.
@@ -10306,6 +11022,27 @@
             Requires <see cref="P:Fluxer.Net.ChannelPermissions.ViewChannel"/>, <see cref="P:Fluxer.Net.ChannelPermissions.ReadMessageHistory"/> and <see cref="P:Fluxer.Net.ChannelPermissions.PinMessages"/> in a guild channel.
             </remarks>
         </member>
+        <member name="M:Fluxer.Net.Rest.FluxerApiClient.AcknowledgePinsAsync(System.UInt64,Fluxer.Net.Rest.RequestOptions)">
+            <summary>
+            Mark the new pins of a channel as seen.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Rest.FluxerApiClient.SetPermissionOverwriteAsync(System.UInt64,System.UInt64,Fluxer.Net.PermissionOverwriteType,Fluxer.Net.ChannelPermission,Fluxer.Net.ChannelPermission,Fluxer.Net.Rest.RequestOptions)">
+            <summary>
+            Create or replace the permission overwrite for a role or member on a guild channel.
+            </summary>
+            <remarks>
+            Requires <see cref="P:Fluxer.Net.ChannelPermissions.ManagePermissions"/> in the channel. Not available on threads.
+            </remarks>
+        </member>
+        <member name="M:Fluxer.Net.Rest.FluxerApiClient.DeletePermissionOverwriteAsync(System.UInt64,System.UInt64,Fluxer.Net.Rest.RequestOptions)">
+            <summary>
+            Remove the permission overwrite for a role or member from a guild channel.
+            </summary>
+            <remarks>
+            Requires <see cref="P:Fluxer.Net.ChannelPermissions.ManagePermissions"/> in the channel.
+            </remarks>
+        </member>
         <member name="M:Fluxer.Net.Rest.FluxerApiClient.GetReactionsForEmojiAsync(System.UInt64,System.UInt64,System.String,Fluxer.Net.Rest.RequestOptions)">
             <summary>
             Get reaction users for a certain emoji on a message.
@@ -10314,6 +11051,16 @@
             Requires <see cref="P:Fluxer.Net.ChannelPermissions.ViewChannel"/> and <see cref="P:Fluxer.Net.ChannelPermissions.ReadMessageHistory"/> in a guild channel.
             </remarks>
             <returns>List of <see cref="T:Fluxer.Net.User"/></returns>
+        </member>
+        <member name="M:Fluxer.Net.Rest.FluxerApiClient.GetReactionUsersAsync(System.UInt64,System.UInt64,System.String,System.Nullable{System.Int32},System.Nullable{System.UInt64},Fluxer.Net.Rest.RequestOptions)">
+            <summary>
+            Get a page of the users who reacted to a message with an emoji.
+            </summary>
+            <remarks>
+            Requires <see cref="P:Fluxer.Net.ChannelPermissions.ViewChannel"/> and <see cref="P:Fluxer.Net.ChannelPermissions.ReadMessageHistory"/> in a guild channel.
+            </remarks>
+            <param name="afterId">Only users after this one, such as <see cref="P:Fluxer.Net.ReactionUserPage.NextAfterId"/> of the previous page.</param>
+            <returns><see cref="T:Fluxer.Net.ReactionUserPage"/></returns>
         </member>
         <member name="M:Fluxer.Net.Rest.FluxerApiClient.AddReactionAsync(System.UInt64,System.UInt64,System.String,Fluxer.Net.Rest.RequestOptions)">
             <summary>
@@ -10510,6 +11257,71 @@
             Requires <see cref="P:Fluxer.Net.ChannelPermissions.ManageThreads"/> or Thread Owner.
             </remarks>
         </member>
+        <member name="M:Fluxer.Net.Rest.FluxerApiClient.GetThreadMembersAsync(System.UInt64,System.Boolean,System.Nullable{System.Int32},System.Nullable{System.UInt64},Fluxer.Net.Rest.RequestOptions)">
+            <summary>
+            Get the members of a thread.
+            </summary>
+            <remarks>
+            Requires <see cref="P:Fluxer.Net.ChannelPermissions.ViewChannel"/>.
+            </remarks>
+            <param name="withMember">Whether to include each member's guild member.</param>
+            <returns>List of <see cref="T:Fluxer.Net.ThreadMember"/></returns>
+        </member>
+        <member name="M:Fluxer.Net.Rest.FluxerApiClient.GetThreadMemberAsync(System.UInt64,System.UInt64,System.Boolean,Fluxer.Net.Rest.RequestOptions)">
+            <summary>
+            Get a member of a thread.
+            </summary>
+            <remarks>
+            Requires <see cref="P:Fluxer.Net.ChannelPermissions.ViewChannel"/>.
+            </remarks>
+            <param name="withMember">Whether to include the guild member.</param>
+            <returns><see cref="T:Fluxer.Net.ThreadMember"/></returns>
+        </member>
+        <member name="M:Fluxer.Net.Rest.FluxerApiClient.GetActiveThreadsAsync(System.UInt64,Fluxer.Net.Rest.RequestOptions)">
+            <summary>
+            Get the active threads of a guild.
+            </summary>
+            <returns><see cref="T:Fluxer.Net.ThreadList"/></returns>
+        </member>
+        <member name="M:Fluxer.Net.Rest.FluxerApiClient.GetPublicArchivedThreadsAsync(System.UInt64,System.Nullable{System.Int32},System.Nullable{System.DateTimeOffset},Fluxer.Net.Rest.RequestOptions)">
+            <summary>
+            Get the archived public threads of a channel, newest first.
+            </summary>
+            <remarks>
+            Requires <see cref="P:Fluxer.Net.ChannelPermissions.ReadMessageHistory"/>.
+            </remarks>
+            <param name="before">Only threads archived before this time.</param>
+            <returns><see cref="T:Fluxer.Net.ThreadList"/></returns>
+        </member>
+        <member name="M:Fluxer.Net.Rest.FluxerApiClient.GetPrivateArchivedThreadsAsync(System.UInt64,System.Nullable{System.Int32},System.Nullable{System.DateTimeOffset},Fluxer.Net.Rest.RequestOptions)">
+            <summary>
+            Get the archived private threads of a channel, newest first.
+            </summary>
+            <remarks>
+            Requires <see cref="P:Fluxer.Net.ChannelPermissions.ReadMessageHistory"/> and <see cref="P:Fluxer.Net.ChannelPermissions.ManageThreads"/>.
+            </remarks>
+            <param name="before">Only threads archived before this time.</param>
+            <returns><see cref="T:Fluxer.Net.ThreadList"/></returns>
+        </member>
+        <member name="M:Fluxer.Net.Rest.FluxerApiClient.GetJoinedPrivateArchivedThreadsAsync(System.UInt64,System.Nullable{System.Int32},System.Nullable{System.UInt64},Fluxer.Net.Rest.RequestOptions)">
+            <summary>
+            Get the archived private threads of a channel that the current user joined.
+            </summary>
+            <remarks>
+            Requires <see cref="P:Fluxer.Net.ChannelPermissions.ReadMessageHistory"/>.
+            </remarks>
+            <param name="beforeId">Only threads created before this thread.</param>
+            <returns><see cref="T:Fluxer.Net.ThreadList"/></returns>
+        </member>
+        <member name="M:Fluxer.Net.Rest.FluxerApiClient.SearchThreadsAsync(System.UInt64,Fluxer.Net.Rest.ThreadSearchQuery,Fluxer.Net.Rest.RequestOptions)">
+            <summary>
+            Search the threads of a channel by name, tags and archive state.
+            </summary>
+            <remarks>
+            Requires <see cref="P:Fluxer.Net.ChannelPermissions.ReadMessageHistory"/>. Returns no threads while Fluxer is still indexing the channel.
+            </remarks>
+            <returns><see cref="T:Fluxer.Net.ThreadList"/></returns>
+        </member>
         <member name="M:Fluxer.Net.Rest.FluxerApiClient.CreatePostAsync(System.UInt64,Fluxer.Net.Rest.CreatePostRequest,Fluxer.Net.Rest.RequestOptions)">
             <summary>
             Create a new post in a forum channel.
@@ -10545,6 +11357,27 @@
             Requires <see cref="P:Fluxer.Net.ChannelPermissions.ManageChannel"/>.
             </remarks>
             <returns><see cref="T:Fluxer.Net.ForumChannel"/></returns>
+        </member>
+        <member name="M:Fluxer.Net.Rest.FluxerApiClient.GetPostDataAsync(System.UInt64,System.Collections.Generic.IEnumerable{System.UInt64},Fluxer.Net.Rest.RequestOptions)">
+            <summary>
+            Get the author and first message of up to 100 posts in a forum or media channel.
+            </summary>
+            <remarks>
+            Requires <see cref="P:Fluxer.Net.ChannelPermissions.ViewChannel"/>.
+            </remarks>
+            <returns>Each post's <see cref="T:Fluxer.Net.ForumPostData"/>, by post id</returns>
+        </member>
+        <member name="M:Fluxer.Net.Rest.FluxerApiClient.RefreshAttachmentUrlsAsync(System.Collections.Generic.IEnumerable{System.String},Fluxer.Net.Rest.RequestOptions)">
+            <summary>
+            Get fresh signed URLs for up to 50 attachment URLs whose signature expired.
+            </summary>
+            <returns>One <see cref="T:Fluxer.Net.RefreshedAttachmentUrlJson"/> per URL, in the order given</returns>
+        </member>
+        <member name="M:Fluxer.Net.Rest.FluxerApiClient.CompleteAttachmentUploadsAsync(System.UInt64,System.Collections.Generic.IEnumerable{Fluxer.Net.Rest.CompleteAttachmentUploadItem},Fluxer.Net.Rest.RequestOptions)">
+            <summary>
+            Finish multipart uploads of large attachments, so they can be sent in a message.
+            </summary>
+            <returns>The upload filename of each finished upload</returns>
         </member>
         <member name="M:Fluxer.Net.Rest.FluxerApiClient.DeleteAttachmentAsync(System.String,Fluxer.Net.Rest.RequestOptions)">
             <summary>
@@ -10646,6 +11479,15 @@
             </remarks>
             <returns><see cref="T:Fluxer.Net.Guild"/></returns>
         </member>
+        <member name="M:Fluxer.Net.Rest.FluxerApiClient.UpdateGuildAsync(System.UInt64,Fluxer.Net.Rest.UpdateGuildRequest,Fluxer.Net.Rest.RequestOptions)">
+            <summary>
+            Update a guild that you manage. Only the properties set on <paramref name="request"/> are changed.
+            </summary>
+            <remarks>
+            Requires <see cref="P:Fluxer.Net.GuildPermissions.ManageGuild"/>.
+            </remarks>
+            <returns><see cref="T:Fluxer.Net.Guild"/></returns>
+        </member>
         <member name="M:Fluxer.Net.Rest.FluxerApiClient.DeleteGuildAsync(System.UInt64,Fluxer.Net.Rest.DeleteGuildRequest,Fluxer.Net.Rest.RequestOptions)">
             <summary>
             Delete a guild that you own.
@@ -10670,6 +11512,15 @@
             Get a list of members for a guild, default and maximum 1000.
             </summary>
             <returns>List of <see cref="T:Fluxer.Net.GuildMember"/></returns>
+        </member>
+        <member name="M:Fluxer.Net.Rest.FluxerApiClient.SearchMembersAsync(System.UInt64,Fluxer.Net.Rest.GuildMemberSearchRequest,Fluxer.Net.Rest.RequestOptions)">
+            <summary>
+            Search the members of a guild by name, roles, join time and more.
+            </summary>
+            <remarks>
+            Results can be incomplete while <see cref="P:Fluxer.Net.GuildMemberSearchJson.IsIndexing"/> is true.
+            </remarks>
+            <returns><see cref="T:Fluxer.Net.GuildMemberSearchJson"/></returns>
         </member>
         <member name="M:Fluxer.Net.Rest.FluxerApiClient.GetCurrentMemberAsync(System.UInt64,Fluxer.Net.Rest.RequestOptions)">
             <summary>
@@ -10702,6 +11553,16 @@
             <see cref="P:Fluxer.Net.GuildPermissions.MuteMembers"/> depending on property.
             </remarks>
             <returns><see cref="T:Fluxer.Net.GuildMember"/></returns>
+        </member>
+        <member name="M:Fluxer.Net.Rest.FluxerApiClient.UpdateMemberAsync(System.UInt64,System.UInt64,Fluxer.Net.Rest.UpdateGuildMemberRequest,Fluxer.Net.Rest.RequestOptions)">
+            <summary>
+            Update a member of the guild. Only the properties set on <paramref name="request"/> are changed.
+            </summary>
+            <remarks>
+            Changing the nickname requires <see cref="P:Fluxer.Net.GuildPermissions.ManageNicknames"/>, roles require
+            <see cref="P:Fluxer.Net.GuildPermissions.ManageRoles"/>, a timeout requires <see cref="P:Fluxer.Net.GuildPermissions.ModerateMembers"/>
+            and muting, deafening or moving requires the matching voice permission.
+            </remarks>
         </member>
         <member name="M:Fluxer.Net.Rest.FluxerApiClient.KickMemberAsync(System.UInt64,System.UInt64,System.String,Fluxer.Net.Rest.RequestOptions)">
             <summary>
@@ -10782,6 +11643,28 @@
         <member name="M:Fluxer.Net.Rest.FluxerApiClient.UpdateRolePositionsAsync(System.UInt64,System.Collections.Generic.IEnumerable{Fluxer.Net.RolePositionItemJson},Fluxer.Net.Rest.RequestOptions)">
             <summary>
             Update role positions in the guild.
+            </summary>
+            <remarks>
+            Requires <see cref="P:Fluxer.Net.GuildPermissions.ManageRoles"/>.
+            </remarks>
+        </member>
+        <member name="M:Fluxer.Net.Rest.FluxerApiClient.GetRolesAsync(System.UInt64,Fluxer.Net.Rest.RequestOptions)">
+            <summary>
+            Get all roles in the guild.
+            </summary>
+            <returns>List of <see cref="T:Fluxer.Net.Role"/></returns>
+        </member>
+        <member name="M:Fluxer.Net.Rest.FluxerApiClient.UpdateRoleHoistPositionsAsync(System.UInt64,System.Collections.Generic.IEnumerable{Fluxer.Net.RoleHoistPositionItemJson},Fluxer.Net.Rest.RequestOptions)">
+            <summary>
+            Set the order hoisted roles are shown in the member list, separate from their permission order.
+            </summary>
+            <remarks>
+            Requires <see cref="P:Fluxer.Net.GuildPermissions.ManageRoles"/>.
+            </remarks>
+        </member>
+        <member name="M:Fluxer.Net.Rest.FluxerApiClient.ResetRoleHoistPositionsAsync(System.UInt64,Fluxer.Net.Rest.RequestOptions)">
+            <summary>
+            Show hoisted roles in the member list in their permission order again.
             </summary>
             <remarks>
             Requires <see cref="P:Fluxer.Net.GuildPermissions.ManageRoles"/>.
@@ -10900,6 +11783,15 @@
             Requires either <see cref="P:Fluxer.Net.GuildPermissions.CreateExpressions"/> or <see cref="P:Fluxer.Net.GuildPermissions.ManageExpressions"/>.
             </remarks>
         </member>
+        <member name="M:Fluxer.Net.Rest.FluxerApiClient.CloneEmojiAsync(System.UInt64,System.UInt64,Fluxer.Net.Rest.RequestOptions)">
+            <summary>
+            Copy an emoji from another guild into the guild, keeping its name and image.
+            </summary>
+            <remarks>
+            Requires either <see cref="P:Fluxer.Net.GuildPermissions.CreateExpressions"/> or <see cref="P:Fluxer.Net.GuildPermissions.ManageExpressions"/>.
+            </remarks>
+            <returns><see cref="T:Fluxer.Net.GuildEmoji"/></returns>
+        </member>
         <member name="M:Fluxer.Net.Rest.FluxerApiClient.CreateStickerAsync(System.UInt64,Fluxer.Net.Rest.CreateGuildStickerRequest,Fluxer.Net.Rest.RequestOptions)">
             <summary>
             Create stickers for a guild.
@@ -10944,6 +11836,15 @@
             Requires either <see cref="P:Fluxer.Net.GuildPermissions.CreateExpressions"/> or <see cref="P:Fluxer.Net.GuildPermissions.ManageExpressions"/>.
             </remarks>
         </member>
+        <member name="M:Fluxer.Net.Rest.FluxerApiClient.CloneStickerAsync(System.UInt64,System.UInt64,Fluxer.Net.Rest.RequestOptions)">
+            <summary>
+            Copy a sticker from another guild into the guild, keeping its name, description, tags and image.
+            </summary>
+            <remarks>
+            Requires either <see cref="P:Fluxer.Net.GuildPermissions.CreateExpressions"/> or <see cref="P:Fluxer.Net.GuildPermissions.ManageExpressions"/>.
+            </remarks>
+            <returns><see cref="T:Fluxer.Net.GuildSticker"/></returns>
+        </member>
         <member name="M:Fluxer.Net.Rest.FluxerApiClient.GetGuildInvitesAsync(System.UInt64,Fluxer.Net.Rest.RequestOptions)">
             <summary>
             Get all invites for the guild.
@@ -10961,6 +11862,54 @@
             Requires <see cref="P:Fluxer.Net.ChannelPermissions.ManageWebhooks"/>.
             </remarks>
             <returns>List of <see cref="T:Fluxer.Net.Webhook"/></returns>
+        </member>
+        <member name="M:Fluxer.Net.Rest.FluxerApiClient.GetDiscoveryCategoriesAsync(Fluxer.Net.Rest.RequestOptions)">
+            <summary>
+            Get the categories guilds can be listed under in discovery.
+            </summary>
+            <returns>List of <see cref="T:Fluxer.Net.DiscoveryCategoryJson"/></returns>
+        </member>
+        <member name="M:Fluxer.Net.Rest.FluxerApiClient.SearchDiscoveryGuildsAsync(System.String,System.Nullable{System.Int32},System.String,System.String,System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},Fluxer.Net.Rest.RequestOptions)">
+            <summary>
+            Search the guilds listed in discovery.
+            </summary>
+            <param name="sortBy">"member_count", "online_count" or "relevance".</param>
+            <returns><see cref="T:Fluxer.Net.DiscoveryGuildListJson"/></returns>
+        </member>
+        <member name="M:Fluxer.Net.Rest.FluxerApiClient.GetDiscoveryStatusAsync(System.UInt64,Fluxer.Net.Rest.RequestOptions)">
+            <summary>
+            Get a guild's discovery application and whether it can apply.
+            </summary>
+            <remarks>
+            Requires <see cref="P:Fluxer.Net.GuildPermissions.ManageGuild"/>.
+            </remarks>
+            <returns><see cref="T:Fluxer.Net.DiscoveryInfoJson"/></returns>
+        </member>
+        <member name="M:Fluxer.Net.Rest.FluxerApiClient.ApplyForDiscoveryAsync(System.UInt64,Fluxer.Net.Rest.DiscoveryApplicationRequest,Fluxer.Net.Rest.RequestOptions)">
+            <summary>
+            Apply for a guild to be listed in discovery.
+            </summary>
+            <remarks>
+            Requires <see cref="P:Fluxer.Net.GuildPermissions.ManageGuild"/>.
+            </remarks>
+            <returns><see cref="T:Fluxer.Net.DiscoveryApplicationJson"/></returns>
+        </member>
+        <member name="M:Fluxer.Net.Rest.FluxerApiClient.UpdateDiscoveryApplicationAsync(System.UInt64,Fluxer.Net.Rest.DiscoveryApplicationRequest,Fluxer.Net.Rest.RequestOptions)">
+            <summary>
+            Change a guild's discovery listing. Only the fields that are set change.
+            </summary>
+            <remarks>
+            Requires <see cref="P:Fluxer.Net.GuildPermissions.ManageGuild"/>.
+            </remarks>
+            <returns><see cref="T:Fluxer.Net.DiscoveryApplicationJson"/></returns>
+        </member>
+        <member name="M:Fluxer.Net.Rest.FluxerApiClient.WithdrawDiscoveryApplicationAsync(System.UInt64,Fluxer.Net.Rest.RequestOptions)">
+            <summary>
+            Withdraw a guild's discovery application, or remove it from discovery.
+            </summary>
+            <remarks>
+            Requires <see cref="P:Fluxer.Net.GuildPermissions.ManageGuild"/>.
+            </remarks>
         </member>
         <member name="M:Fluxer.Net.Rest.FluxerApiClient.SearchKlipyAsync(System.String,Fluxer.Net.Rest.RequestOptions)">
             <summary>
@@ -10992,6 +11941,18 @@
             </summary>
             <returns><see cref="T:Fluxer.Net.Application"/></returns>
         </member>
+        <member name="M:Fluxer.Net.Rest.FluxerApiClient.PreloadMessagesAsync(System.Collections.Generic.IEnumerable{System.UInt64},Fluxer.Net.Rest.RequestOptions)">
+            <summary>
+            Get the latest message in each of up to 100 channels.
+            </summary>
+            <returns>The latest <see cref="T:Fluxer.Net.Message"/> by channel id, or null for a channel without messages</returns>
+        </member>
+        <member name="M:Fluxer.Net.Rest.FluxerApiClient.DeleteOwnGuildMessagesAsync(System.UInt64,Fluxer.Net.Rest.SudoVerificationRequest,Fluxer.Net.Rest.RequestOptions)">
+            <summary>
+            Delete every message the current user sent in a guild. Fluxer deletes them in the background.
+            </summary>
+            <param name="verification">The password or MFA code user accounts must confirm with.</param>
+        </member>
         <member name="M:Fluxer.Net.Rest.FluxerApiClient.GetCurrentUserAsync(Fluxer.Net.Rest.RequestOptions)">
             <summary>
             Get the current user.
@@ -11001,6 +11962,12 @@
         <member name="M:Fluxer.Net.Rest.FluxerApiClient.UpdateCurrentUserAsync(Fluxer.Net.UserJson,Fluxer.Net.Rest.RequestOptions)">
             <summary>
             Update the current user.
+            </summary>
+            <returns><see cref="T:Fluxer.Net.CurrentUser"/></returns>
+        </member>
+        <member name="M:Fluxer.Net.Rest.FluxerApiClient.UpdateCurrentUserAsync(Fluxer.Net.Rest.UpdateCurrentUserRequest,Fluxer.Net.Rest.RequestOptions)">
+            <summary>
+            Update the current user. Only the properties set on <paramref name="request"/> are changed.
             </summary>
             <returns><see cref="T:Fluxer.Net.CurrentUser"/></returns>
         </member>
@@ -11315,6 +12282,11 @@
             The HTTP client used to make requests. Can be shared or injected for connection pooling.
             </summary>
         </member>
+        <member name="P:Fluxer.Net.Rest.FluxerBaseApiClient.RequestQueue">
+            <summary>
+            Holds requests back to stay inside Fluxer's rate limits and retries the ones answered with 429.
+            </summary>
+        </member>
         <member name="P:Fluxer.Net.Rest.FluxerBaseApiClient.Limits">
             <summary>
             API limits for message length, attachment count and premium limits.
@@ -11399,6 +12371,28 @@
             Add audit log reason to this request, only used for certain endpoints.
             </summary>
         </member>
+        <member name="P:Fluxer.Net.Rest.RequestOptions.RetryMode">
+            <summary>
+            Which failures this request waits out and retries. Falls back to <see cref="P:Fluxer.Net.FluxerConfig.DefaultRetryMode"/>.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.RequestOptions.Timeout">
+            <summary>
+            How long, in milliseconds, this request may spend waiting for rate limits before
+            <see cref="T:Fluxer.Net.RateLimitedException"/> is thrown. Falls back to <see cref="P:Fluxer.Net.FluxerConfig.DefaultRequestTimeout"/>.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.RequestOptions.CancelToken">
+            <summary>
+            Cancels the request, including any wait for a rate limit.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.RequestOptions.RatelimitCallback">
+            <summary>
+            Called with the rate limit headers of every response to this request. Falls back to
+            <see cref="P:Fluxer.Net.FluxerConfig.DefaultRatelimitCallback"/>.
+            </summary>
+        </member>
         <member name="P:Fluxer.Net.Rest.ChannelPinsQuery.Limit">
             <summary>
             Maximum number of pinned messages to return (1-50)
@@ -11407,6 +12401,16 @@
         <member name="P:Fluxer.Net.Rest.ChannelPinsQuery.Before">
             <summary>
             Get pinned messages before this timestamp
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.Rest.PermissionOverwriteRequest">
+            <summary>
+            Body for creating or replacing one permission overwrite on a guild channel.
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.Rest.UpdateChannelRequest">
+            <summary>
+            Request body for updating a guild channel, sending only the properties that are set.
             </summary>
         </member>
         <member name="P:Fluxer.Net.Rest.GlobalSearchMessagesRequest.ContextChannelId">
@@ -11450,6 +12454,26 @@
             The name of the role (1-100 characters)
             </summary>
         </member>
+        <member name="P:Fluxer.Net.Rest.DiscoveryApplicationRequest.Description">
+            <summary>
+            The description shown in discovery, up to 300 characters. Required when applying.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.DiscoveryApplicationRequest.Category">
+            <summary>
+            A category id from GetDiscoveryCategoriesAsync. Required when applying.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.DiscoveryApplicationRequest.PrimaryLanguage">
+            <summary>
+            The guild's main language as a BCP-47 code, such as en-US.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.DiscoveryApplicationRequest.Tags">
+            <summary>
+            Up to 10 tags of up to 30 characters each.
+            </summary>
+        </member>
         <member name="P:Fluxer.Net.Rest.GuildAuditLogListRequest.Limit">
             <summary>
             Maximum number of audit log entries to return (1-100)
@@ -11473,6 +12497,66 @@
         <member name="P:Fluxer.Net.Rest.GuildAuditLogListRequest.ActionType">
             <summary>
             Filter entries by the type of action
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.GuildMemberSearchRequest.Query">
+            <summary>
+            Text to look for in usernames, global names and nicknames, up to 100 characters.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.GuildMemberSearchRequest.Limit">
+            <summary>
+            The number of members to return, from 1 to 100.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.GuildMemberSearchRequest.RoleIds">
+            <summary>
+            Roles a member must all have.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.GuildMemberSearchRequest.JoinedAfter">
+            <summary>
+            Only members who joined at or after this unix time, in seconds.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.GuildMemberSearchRequest.JoinedBefore">
+            <summary>
+            Only members who joined at or before this unix time, in seconds.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.GuildMemberSearchRequest.InviteCodes">
+            <summary>
+            Only members who joined with one of these invite codes.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.GuildMemberSearchRequest.CreatedAfter">
+            <summary>
+            Only users whose account was created at or after this unix time, in seconds.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.GuildMemberSearchRequest.CreatedBefore">
+            <summary>
+            Only users whose account was created at or before this unix time, in seconds.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.GuildMemberSearchRequest.SortBy">
+            <summary>
+            "joinedAt" or "relevance".
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.GuildMemberSearchRequest.SortOrder">
+            <summary>
+            "asc" or "desc".
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.Rest.UpdateGuildMemberRequest">
+            <summary>
+            Request body for updating a guild member, sending only the properties that are set.
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.Rest.UpdateGuildRequest">
+            <summary>
+            Request body for updating a guild, sending only the properties that are set.
             </summary>
         </member>
         <member name="T:Fluxer.Net.Rest.UpdateGuildRoleRequest">
@@ -11555,6 +12639,16 @@
             Create json from attachment request.
             </summary>
             <returns><see cref="T:Fluxer.Net.AttachmentJson"/></returns>
+        </member>
+        <member name="P:Fluxer.Net.Rest.CompleteAttachmentUploadItem.UploadFilename">
+            <summary>
+            The upload_filename Fluxer returned when the upload was planned.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.CompleteAttachmentUploadItem.UploadId">
+            <summary>
+            The upload_id Fluxer returned when the upload was planned.
+            </summary>
         </member>
         <member name="P:Fluxer.Net.Rest.EmbedAuthorRequest.Name">
             <summary>
@@ -11901,6 +12995,56 @@
             This should not be changed when using bots.
             </summary>
         </member>
+        <member name="T:Fluxer.Net.Rest.SudoVerificationRequest">
+            <summary>
+            Sudo verification for actions Fluxer guards on user accounts.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.SudoVerificationRequest.MfaMethod">
+            <summary>
+            "totp" or "webauthn".
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.ThreadSearchQuery.Name">
+            <summary>
+            Text to look for in thread names, up to 100 characters.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.ThreadSearchQuery.TagIds">
+            <summary>
+            Forum tags the threads must have, up to 20.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.ThreadSearchQuery.TagSetting">
+            <summary>
+            Whether a thread needs one of <see cref="P:Fluxer.Net.Rest.ThreadSearchQuery.TagIds"/> or all of them.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.ThreadSearchQuery.IsArchived">
+            <summary>
+            True for archived threads only, false for active threads only, or null for both.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.ThreadSearchQuery.Limit">
+            <summary>
+            The number of threads to return, from 1 to 25.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.ThreadSearchQuery.BeforeId">
+            <summary>
+            Only threads created before this thread.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.ThreadSearchQuery.AfterId">
+            <summary>
+            Only threads created after this thread.
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.Rest.UpdateCurrentUserRequest">
+            <summary>
+            Request body for updating the current user's profile, sending only the properties that are set.
+            </summary>
+        </member>
         <member name="T:Fluxer.Net.Rest.RestClientQueryParams">
             <summary>
             Query params for HTTP requests
@@ -11919,6 +13063,12 @@
         <member name="M:Fluxer.Net.Rest.RestClientQueryParams.ToDictionary">
             <summary>
             Create dictionary of query params for Uri
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.FluxerErrorCodes">
+            <summary>
+            Error codes the Fluxer API returns in <see cref="!:FluxerApiException.ErrorCode"/>, and the gateway sends in
+            <see cref="P:Fluxer.Net.Gateway.GatewayErrorGatewayData.Code"/>.
             </summary>
         </member>
         <member name="T:Fluxer.Net.FluxerContractResolver">
@@ -11941,6 +13091,11 @@
             Returns the existing value if present, and otherwise an alternative value.
             </summary>
             <returns>The existing or alternative value.</returns>
+        </member>
+        <member name="M:Fluxer.Net.Optional`1.op_Implicit(`0)~Fluxer.Net.Optional{`0}">
+            <summary>
+            Wraps a value, so request properties can be assigned the value directly.
+            </summary>
         </member>
         <member name="T:Fluxer.Net.Optional">
             <summary>
@@ -11998,6 +13153,12 @@
         <member name="P:Fluxer.Net.FluxerBaseClient.Config">
             <summary>
             Client options and settings to configure.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.FluxerBaseClient.Voice">
+            <summary>
+            Joins voice for <see cref="M:Fluxer.Net.IVoiceChannel.ConnectAsync(System.Boolean,System.Boolean,System.Threading.CancellationToken)"/>, or null when voice is not set up. Creating a
+            FluxerVoiceClient from Fluxer.Net.Voice sets it.
             </summary>
         </member>
         <member name="T:Fluxer.Net.FluxerClient">
@@ -12109,6 +13270,31 @@
             Proxy used for the rest/http client.
             </summary>
         </member>
+        <member name="P:Fluxer.Net.FluxerConfig.EnableRateLimiting">
+            <summary>
+            Whether REST requests wait for Fluxer's rate limits and are sent again when answered with 429. Defaults to true.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.FluxerConfig.DefaultRetryMode">
+            <summary>
+            Which failures REST requests retry. POST and PATCH are not resent after a timeout or 502.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.FluxerConfig.DefaultRequestTimeout">
+            <summary>
+            Milliseconds a REST request may wait for rate limits before throwing. Null waits as long as needed.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.FluxerConfig.DefaultRatelimitCallback">
+            <summary>
+            Called with the rate limit headers of every REST response.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.FluxerConfig.GlobalRateLimit">
+            <summary>
+            REST requests sent per second before waiting. Set to 0 to rely on 429 responses alone.
+            </summary>
+        </member>
         <member name="P:Fluxer.Net.FluxerConfig.RealApiBaseUrl">
             <summary>
             Gets the fully resolved API base URL with the version number substituted.
@@ -12185,6 +13371,234 @@
         <member name="M:Fluxer.Net.FluxerWebhookClient.DeleteMessageAsync(System.UInt64,Fluxer.Net.Rest.RequestOptions)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.DeleteWebhookMessageAsync(System.UInt64,System.String,System.UInt64,Fluxer.Net.Rest.RequestOptions)" />
         </member>
+        <member name="T:Fluxer.Net.Format">
+            <summary>
+            Helpers for writing Fluxer markdown.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Format.Bold(System.String)">
+            <summary>
+            Returns the text in bold.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Format.Italics(System.String)">
+            <summary>
+            Returns the text in italics.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Format.Underline(System.String)">
+            <summary>
+            Returns the text underlined.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Format.Strikethrough(System.String)">
+            <summary>
+            Returns the text struck through.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Format.Spoiler(System.String)">
+            <summary>
+            Returns the text hidden behind a spoiler.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Format.Header(System.String,System.Int32)">
+            <summary>
+            Returns the text as a heading of the given level, from 1 to 3.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Format.Subtext(System.String)">
+            <summary>
+            Returns the text as small, muted subtext.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Format.Url(System.String,System.String)">
+            <summary>
+            Returns the text as a markdown link.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Format.EscapeUrl(System.String)">
+            <summary>
+            Returns the url wrapped so it shows no embed preview.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Format.Code(System.String,System.String)">
+            <summary>
+            Returns the text as inline code, or as a code block when a language is given or the text spans lines.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Format.Quote(System.String)">
+            <summary>
+            Returns every line of the text as a block quote.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Format.BlockQuote(System.String)">
+            <summary>
+            Returns the rest of the message from this point as a block quote.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Format.Sanitize(System.String)">
+            <summary>
+            Escapes the markdown characters in the text.
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.MentionUtils">
+            <summary>
+            Builds and parses user, role and channel mentions.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.MentionUtils.MentionUser(System.UInt64)">
+            <summary>
+            Returns the mention for a user.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.MentionUtils.MentionRole(System.UInt64)">
+            <summary>
+            Returns the mention for a role.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.MentionUtils.MentionChannel(System.UInt64)">
+            <summary>
+            Returns the mention for a channel.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.MentionUtils.TryParseUser(System.String,System.UInt64@)">
+            <summary>
+            Reads the user id from a user mention.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.MentionUtils.TryParseRole(System.String,System.UInt64@)">
+            <summary>
+            Reads the role id from a role mention.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.MentionUtils.TryParseChannel(System.String,System.UInt64@)">
+            <summary>
+            Reads the channel id from a channel mention.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.MentionUtils.ParseUser(System.String)">
+            <summary>
+            Reads the user id from a user mention.
+            </summary>
+            <exception cref="T:System.ArgumentException">The text is not a user mention.</exception>
+        </member>
+        <member name="M:Fluxer.Net.MentionUtils.ParseRole(System.String)">
+            <summary>
+            Reads the role id from a role mention.
+            </summary>
+            <exception cref="T:System.ArgumentException">The text is not a role mention.</exception>
+        </member>
+        <member name="M:Fluxer.Net.MentionUtils.ParseChannel(System.String)">
+            <summary>
+            Reads the channel id from a channel mention.
+            </summary>
+            <exception cref="T:System.ArgumentException">The text is not a channel mention.</exception>
+        </member>
+        <member name="T:Fluxer.Net.TimestampTagStyles">
+            <summary>
+            How a timestamp tag is shown to the reader, in their own time zone and locale.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.TimestampTagStyles.ShortTime">
+            <summary>
+            Hours and minutes, for example 16:20.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.TimestampTagStyles.LongTime">
+            <summary>
+            Hours, minutes and seconds, for example 16:20:30.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.TimestampTagStyles.ShortDate">
+            <summary>
+            A numeric date, for example 20/04/2021.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.TimestampTagStyles.LongDate">
+            <summary>
+            A written date, for example 20 April 2021.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.TimestampTagStyles.ShortDateTime">
+            <summary>
+            A written date with the time, for example 20 April 2021 16:20.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.TimestampTagStyles.LongDateTime">
+            <summary>
+            The weekday, written date and time, for example Tuesday, 20 April 2021 16:20.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.TimestampTagStyles.ShortDateShortTime">
+            <summary>
+            A numeric date with hours and minutes, for example 20/04/2021 16:20.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.TimestampTagStyles.ShortDateMediumTime">
+            <summary>
+            A numeric date with hours, minutes and seconds, for example 20/04/2021 16:20:30.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.TimestampTagStyles.Relative">
+            <summary>
+            The distance from now, for example in 2 hours or 3 days ago.
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.TimestampTag">
+            <summary>
+            A timestamp that every reader sees in their own time zone.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.TimestampTag.#ctor(System.DateTimeOffset,Fluxer.Net.TimestampTagStyles)">
+            <summary>
+            Creates a tag for a moment in time.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.TimestampTag.Time">
+            <summary>
+            The moment the tag shows.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.TimestampTag.Style">
+            <summary>
+            How the tag is shown.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.TimestampTag.FromDateTimeOffset(System.DateTimeOffset,Fluxer.Net.TimestampTagStyles)">
+            <summary>
+            Creates a tag for a moment in time.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.TimestampTag.FromDateTime(System.DateTime,Fluxer.Net.TimestampTagStyles)">
+            <summary>
+            Creates a tag for a moment in time, treating an unspecified kind as UTC.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.TimestampTag.ToString">
+            <summary>
+            Returns the markup for the tag, for example <c>&lt;t:1618953630:R&gt;</c>.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.TimestampTag.ToString(Fluxer.Net.TimestampTagStyles)">
+            <summary>
+            Returns the markup for the tag in another style.
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.Gateway.GatewayErrorGatewayData">
+            <summary>
+            A voice state update Fluxer refused, sent only to the session that sent it.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Gateway.GatewayErrorGatewayData.Code">
+            <summary>
+            The refusal code, one of the voice codes in <see cref="T:Fluxer.Net.FluxerErrorCodes"/>.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Gateway.GatewayErrorGatewayData.Message">
+            <summary>
+            A description of the refusal, meant for logs.
+            </summary>
+        </member>
         <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient">
             <summary>
             WebSocket gateway client for real-time events from the Fluxer platform.
@@ -12206,6 +13620,11 @@
             This client should be paired with <see cref="T:Fluxer.Net.Rest.FluxerApiClient"/> for full Fluxer functionality.
             </para>
             </remarks>
+        </member>
+        <member name="P:Fluxer.Net.Gateway.FluxerGatewayClient.Latency">
+            <summary>
+            Milliseconds between the last heartbeat and its acknowledgement, or 0 before the first one.
+            </summary>
         </member>
         <member name="F:Fluxer.Net.Gateway.FluxerGatewayClient._sequence">
             <summary>
@@ -12399,6 +13818,16 @@
         <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.RateLimited">
             <summary>
             Occurs on rate limited.
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.GatewayErrorEvent">
+            <summary>
+            Delegate for the gateway error opcode, sent when Fluxer refuses a voice state update.
+            </summary>
+        </member>
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.GatewayErrorReceived">
+            <summary>
+            Occurs when Fluxer refuses a voice state update with a code the client is expected to act on.
             </summary>
         </member>
         <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.UserConnectionsUpdatedEvent">
@@ -13107,13 +14536,15 @@
             Occurs when an invite is deleted or expires.
             </summary>
         </member>
-        <member name="M:Fluxer.Net.Gateway.FluxerGatewayClient.UpdateVoiceState(System.Nullable{System.UInt64},System.Nullable{System.UInt64},System.Boolean,System.Boolean)">
+        <member name="M:Fluxer.Net.Gateway.FluxerGatewayClient.UpdateVoiceState(System.Nullable{System.UInt64},System.Nullable{System.UInt64},System.Boolean,System.Boolean,System.String)">
             <summary>
             Updates the current user's voice state (join/leave voice channels, mute, deafen).
             </summary>
             <remarks>
             This sends a VOICE_STATE_UPDATE packet to the gateway. The server will respond with
             VOICE_STATE_UPDATE and VOICE_SERVER_UPDATE events containing connection information.
+            Without a connection id a channel opens a new connection, and leaving a guild needs the id of the
+            connection to drop.
             </remarks>
         </member>
         <member name="T:Fluxer.Net.Gateway.FluxerCloseCode">
@@ -13480,6 +14911,220 @@
             Create asp.net oauth handler for Fluxer.
             </Summary>
         </member>
+        <member name="T:Fluxer.Net.RateLimiting.BucketId">
+            <summary>
+            Which rate limit bucket a request belongs to. Fluxer keeps one allowance per route and per path resource, so a
+            route is keyed by its method and its path with every id replaced by a placeholder, plus the ids of the channel,
+            guild and webhook it acts on. Once Fluxer names the route's bucket, the name replaces the route.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.RateLimiting.BucketId.HttpMethod">
+            <summary>
+            Gets the request method, or null for a bucket named by Fluxer.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.RateLimiting.BucketId.Endpoint">
+            <summary>
+            Gets the route with its ids replaced by placeholders, or null for a bucket named by Fluxer.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.RateLimiting.BucketId.MajorParameters">
+            <summary>
+            Gets the channel, guild and webhook ids the request acts on, joined with slashes.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.RateLimiting.BucketId.BucketHash">
+            <summary>
+            Gets Fluxer's name for the bucket, once a response has carried it.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.RateLimiting.BucketId.IsHashBucket">
+            <summary>
+            Gets whether the bucket is named by Fluxer.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.RateLimiting.BucketId.IsGlobalExempt">
+            <summary>
+            Gets whether requests in this bucket are left out of the global limit. Fluxer exempts executing a webhook and
+            reading, editing or deleting its messages through the webhook token.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.RateLimiting.BucketId.RouteKey">
+            <summary>
+            Gets the method and route template that identify the route, whatever bucket it ends up in.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.RateLimiting.BucketId.Create(System.String,System.String)">
+            <summary>
+            Describes the bucket of a request.
+            </summary>
+            <param name="httpMethod">The request method.</param>
+            <param name="route">The request path, with or without a query string.</param>
+            <returns>The route's bucket.</returns>
+        </member>
+        <member name="M:Fluxer.Net.RateLimiting.BucketId.WithHash(System.String)">
+            <summary>
+            Gets the bucket Fluxer named for this route, keeping the same major parameters.
+            </summary>
+            <param name="hash">The value of the X-RateLimit-Bucket header.</param>
+            <returns>The named bucket.</returns>
+        </member>
+        <member name="M:Fluxer.Net.RateLimiting.BucketId.ToString">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.RateLimiting.BucketId.Equals(Fluxer.Net.RateLimiting.BucketId)">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.RateLimiting.BucketId.Equals(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.RateLimiting.BucketId.GetHashCode">
+            <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.IRateLimitInfo">
+            <summary>
+            What a response said about the rate limit its request was counted against.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IRateLimitInfo.IsGlobal">
+            <summary>
+            Gets whether the global limit, rather than the route's own, refused the request.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IRateLimitInfo.Limit">
+            <summary>
+            Gets how many requests the route's bucket admits at once.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IRateLimitInfo.Remaining">
+            <summary>
+            Gets how many more requests the route's bucket admits right now.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IRateLimitInfo.RetryAfter">
+            <summary>
+            Gets how long to wait before one more request is admitted, in milliseconds. Only set on a 429.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IRateLimitInfo.Reset">
+            <summary>
+            Gets when the route's bucket has fully drained.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IRateLimitInfo.ResetAfter">
+            <summary>
+            Gets how long until the route's bucket has fully drained.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IRateLimitInfo.Bucket">
+            <summary>
+            Gets Fluxer's identifier for the route's bucket.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IRateLimitInfo.Scope">
+            <summary>
+            Gets which allowance refused the request: user, global or shared. Only set on a 429.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IRateLimitInfo.Lag">
+            <summary>
+            Gets how far the local clock is ahead of Fluxer's, when the response carried a date.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IRateLimitInfo.Endpoint">
+            <summary>
+            Gets the request's method and route.
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.RateLimitedException">
+            <summary>
+            Thrown when a request is rate limited and its <see cref="T:Fluxer.Net.RetryMode"/> does not allow waiting, or the wait would
+            run past the request's timeout.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.RateLimitedException.#ctor(System.String,System.TimeSpan)">
+            <summary>
+            Creates the exception.
+            </summary>
+            <param name="endpoint">The request's method and route.</param>
+            <param name="retryAfter">How long the request would have had to wait.</param>
+        </member>
+        <member name="P:Fluxer.Net.RateLimitedException.Endpoint">
+            <summary>
+            Gets the request's method and route.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.RateLimitedException.RetryAfter">
+            <summary>
+            Gets how long the request would have had to wait.
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.RateLimitInfo">
+            <summary>
+            The rate limit headers of one response, and the delay from the body of a 429.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.RateLimitInfo.IsGlobal">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.RateLimitInfo.Limit">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.RateLimitInfo.Remaining">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.RateLimitInfo.RetryAfter">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.RateLimitInfo.Reset">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.RateLimitInfo.ResetAfter">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.RateLimitInfo.Bucket">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.RateLimitInfo.Scope">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.RateLimitInfo.Lag">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.RateLimitInfo.Endpoint">
+            <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.RetryMode">
+            <summary>
+            Which failures a REST request waits out and retries instead of returning straight away.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.RetryMode.AlwaysFail">
+            <summary>
+            Every failure is returned as it happens. A request that would have to wait for a rate limit throws
+            <see cref="T:Fluxer.Net.RateLimitedException"/> instead.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.RetryMode.RetryTimeouts">
+            <summary>
+            Requests that time out are sent again. Only GET, HEAD, PUT, DELETE and OPTIONS are resent.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.RetryMode.RetryRatelimit">
+            <summary>
+            Requests are held until their rate limit allows them, and requests answered with 429 are sent again.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.RetryMode.Retry502">
+            <summary>
+            Requests answered with 502 Bad Gateway are sent again. Only GET, HEAD, PUT, DELETE and OPTIONS are resent.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.RetryMode.AlwaysRetry">
+            <summary>
+            Every retryable failure is retried.
+            </summary>
+        </member>
         <member name="T:Fluxer.Net.ApiLimits">
             <summary>
             API limits for the current instance.
@@ -13747,25 +15392,25 @@
         </member>
         <member name="T:Fluxer.Net.CategoryHelpers">
             <summary>
-            Http methods for <see cref="T:Fluxer.Net.CategoryChannel"/> class. 
+            Http methods for <see cref="T:Fluxer.Net.ICategoryChannel"/> interface. 
             </summary>
         </member>
-        <member name="M:Fluxer.Net.CategoryHelpers.CreateTextChannelAsync(Fluxer.Net.CategoryChannel,Fluxer.Net.Rest.CreateTextChannelRequest,Fluxer.Net.Rest.RequestOptions)">
+        <member name="M:Fluxer.Net.CategoryHelpers.CreateTextChannelAsync(Fluxer.Net.ICategoryChannel,Fluxer.Net.Rest.CreateTextChannelRequest,Fluxer.Net.Rest.RequestOptions)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.CreateGuildChannelAsync(System.UInt64,Fluxer.Net.Rest.CreateGuildChannelRequest,Fluxer.Net.Rest.RequestOptions)" />
         </member>
-        <member name="M:Fluxer.Net.CategoryHelpers.CreateVoiceChannelAsync(Fluxer.Net.CategoryChannel,Fluxer.Net.Rest.CreateVoiceChannelRequest,Fluxer.Net.Rest.RequestOptions)">
+        <member name="M:Fluxer.Net.CategoryHelpers.CreateVoiceChannelAsync(Fluxer.Net.ICategoryChannel,Fluxer.Net.Rest.CreateVoiceChannelRequest,Fluxer.Net.Rest.RequestOptions)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.CreateGuildChannelAsync(System.UInt64,Fluxer.Net.Rest.CreateGuildChannelRequest,Fluxer.Net.Rest.RequestOptions)" />
         </member>
-        <member name="M:Fluxer.Net.CategoryHelpers.CreateLinkChannelAsync(Fluxer.Net.CategoryChannel,Fluxer.Net.Rest.CreateLinkChannelRequest,Fluxer.Net.Rest.RequestOptions)">
+        <member name="M:Fluxer.Net.CategoryHelpers.CreateLinkChannelAsync(Fluxer.Net.ICategoryChannel,Fluxer.Net.Rest.CreateLinkChannelRequest,Fluxer.Net.Rest.RequestOptions)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.CreateGuildChannelAsync(System.UInt64,Fluxer.Net.Rest.CreateGuildChannelRequest,Fluxer.Net.Rest.RequestOptions)" />
         </member>
-        <member name="M:Fluxer.Net.CategoryHelpers.CreateNewsChannelAsync(Fluxer.Net.CategoryChannel,Fluxer.Net.Rest.CreateNewsChannelRequest,Fluxer.Net.Rest.RequestOptions)">
+        <member name="M:Fluxer.Net.CategoryHelpers.CreateNewsChannelAsync(Fluxer.Net.ICategoryChannel,Fluxer.Net.Rest.CreateNewsChannelRequest,Fluxer.Net.Rest.RequestOptions)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.CreateGuildChannelAsync(System.UInt64,Fluxer.Net.Rest.CreateGuildChannelRequest,Fluxer.Net.Rest.RequestOptions)" />
         </member>
-        <member name="M:Fluxer.Net.CategoryHelpers.CreateForumChannelAsync(Fluxer.Net.CategoryChannel,Fluxer.Net.Rest.CreateForumChannelRequest,Fluxer.Net.Rest.RequestOptions)">
+        <member name="M:Fluxer.Net.CategoryHelpers.CreateForumChannelAsync(Fluxer.Net.ICategoryChannel,Fluxer.Net.Rest.CreateForumChannelRequest,Fluxer.Net.Rest.RequestOptions)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.CreateGuildChannelAsync(System.UInt64,Fluxer.Net.Rest.CreateGuildChannelRequest,Fluxer.Net.Rest.RequestOptions)" />
         </member>
-        <member name="M:Fluxer.Net.CategoryHelpers.CreateMediaChannelAsync(Fluxer.Net.CategoryChannel,Fluxer.Net.Rest.CreateMediaChannelRequest,Fluxer.Net.Rest.RequestOptions)">
+        <member name="M:Fluxer.Net.CategoryHelpers.CreateMediaChannelAsync(Fluxer.Net.ICategoryChannel,Fluxer.Net.Rest.CreateMediaChannelRequest,Fluxer.Net.Rest.RequestOptions)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.CreateGuildChannelAsync(System.UInt64,Fluxer.Net.Rest.CreateGuildChannelRequest,Fluxer.Net.Rest.RequestOptions)" />
         </member>
         <member name="T:Fluxer.Net.ChannelHelpers">
@@ -13796,6 +15441,9 @@
         </member>
         <member name="M:Fluxer.Net.ChannelHelpers.ModifyAsync(Fluxer.Net.Channel,Fluxer.Net.ChannelJson,Fluxer.Net.Rest.RequestOptions)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.UpdateChannelAsync(System.UInt64,Fluxer.Net.ChannelJson,Fluxer.Net.Rest.RequestOptions)" />
+        </member>
+        <member name="M:Fluxer.Net.ChannelHelpers.ModifyAsync(Fluxer.Net.Channel,Fluxer.Net.Rest.UpdateChannelRequest,Fluxer.Net.Rest.RequestOptions)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.UpdateChannelAsync(System.UInt64,Fluxer.Net.Rest.UpdateChannelRequest,Fluxer.Net.Rest.RequestOptions)" />
         </member>
         <member name="M:Fluxer.Net.ChannelHelpers.GetVoiceEligibilityAsync(Fluxer.Net.Channel,Fluxer.Net.Rest.RequestOptions)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.GetVoiceEligibilityAsync(System.UInt64,Fluxer.Net.Rest.RequestOptions)" />
@@ -13847,6 +15495,23 @@
         </member>
         <member name="M:Fluxer.Net.ChannelHelpers.UnPinMessageAsync(Fluxer.Net.Channel,Fluxer.Net.Message,Fluxer.Net.Rest.RequestOptions)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.UnpinMessageAsync(System.UInt64,System.UInt64,Fluxer.Net.Rest.RequestOptions)" />
+        </member>
+        <member name="M:Fluxer.Net.ChannelHelpers.GetPermissionOverwrite(Fluxer.Net.Channel,System.UInt64)">
+            <summary>
+            Gets the overwrite the channel stores for a role or member, or null when it has none.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.ChannelHelpers.AddPermissionOverwriteAsync(Fluxer.Net.Channel,Fluxer.Net.Role,Fluxer.Net.ChannelPermission,Fluxer.Net.ChannelPermission,Fluxer.Net.Rest.RequestOptions)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.SetPermissionOverwriteAsync(System.UInt64,System.UInt64,Fluxer.Net.PermissionOverwriteType,Fluxer.Net.ChannelPermission,Fluxer.Net.ChannelPermission,Fluxer.Net.Rest.RequestOptions)" />
+        </member>
+        <member name="M:Fluxer.Net.ChannelHelpers.AddPermissionOverwriteAsync(Fluxer.Net.Channel,Fluxer.Net.GuildMember,Fluxer.Net.ChannelPermission,Fluxer.Net.ChannelPermission,Fluxer.Net.Rest.RequestOptions)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.SetPermissionOverwriteAsync(System.UInt64,System.UInt64,Fluxer.Net.PermissionOverwriteType,Fluxer.Net.ChannelPermission,Fluxer.Net.ChannelPermission,Fluxer.Net.Rest.RequestOptions)" />
+        </member>
+        <member name="M:Fluxer.Net.ChannelHelpers.AddPermissionOverwriteAsync(Fluxer.Net.Channel,System.UInt64,Fluxer.Net.PermissionOverwriteType,Fluxer.Net.ChannelPermission,Fluxer.Net.ChannelPermission,Fluxer.Net.Rest.RequestOptions)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.SetPermissionOverwriteAsync(System.UInt64,System.UInt64,Fluxer.Net.PermissionOverwriteType,Fluxer.Net.ChannelPermission,Fluxer.Net.ChannelPermission,Fluxer.Net.Rest.RequestOptions)" />
+        </member>
+        <member name="M:Fluxer.Net.ChannelHelpers.RemovePermissionOverwriteAsync(Fluxer.Net.Channel,System.UInt64,Fluxer.Net.Rest.RequestOptions)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.DeletePermissionOverwriteAsync(System.UInt64,System.UInt64,Fluxer.Net.Rest.RequestOptions)" />
         </member>
         <member name="M:Fluxer.Net.ChannelHelpers.AcknowledgeMessageAsync(Fluxer.Net.Channel,System.UInt64,Fluxer.Net.MessageAckJson,Fluxer.Net.Rest.RequestOptions)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.AcknowledgeMessageAsync(System.UInt64,System.UInt64,Fluxer.Net.MessageAckJson,Fluxer.Net.Rest.RequestOptions)" />
@@ -13917,6 +15582,18 @@
         <member name="M:Fluxer.Net.ChannelHelpers.GetThreadChannelAsync(Fluxer.Net.Channel,System.UInt64,Fluxer.Net.Rest.RequestOptions)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.GetThreadChannelAsync(System.UInt64,Fluxer.Net.Rest.RequestOptions)" />
         </member>
+        <member name="M:Fluxer.Net.ChannelHelpers.GetSlowmodeStateAsync(Fluxer.Net.Channel,Fluxer.Net.Rest.RequestOptions)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.GetSlowmodeStateAsync(System.UInt64,Fluxer.Net.Rest.RequestOptions)" />
+        </member>
+        <member name="M:Fluxer.Net.ChannelHelpers.GetFollowerStatsAsync(Fluxer.Net.Channel,Fluxer.Net.Rest.RequestOptions)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.GetFollowerStatsAsync(System.UInt64,Fluxer.Net.Rest.RequestOptions)" />
+        </member>
+        <member name="M:Fluxer.Net.ChannelHelpers.AcknowledgePinsAsync(Fluxer.Net.Channel,Fluxer.Net.Rest.RequestOptions)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.AcknowledgePinsAsync(System.UInt64,Fluxer.Net.Rest.RequestOptions)" />
+        </member>
+        <member name="M:Fluxer.Net.ChannelHelpers.DeleteOwnMessagesAsync(Fluxer.Net.Channel,Fluxer.Net.Rest.SudoVerificationRequest,Fluxer.Net.Rest.RequestOptions)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.DeleteOwnMessagesAsync(System.UInt64,Fluxer.Net.Rest.SudoVerificationRequest,Fluxer.Net.Rest.RequestOptions)" />
+        </member>
         <member name="T:Fluxer.Net.ExpressionHelpers">
             <summary>
             Http methods for <see cref="T:Fluxer.Net.GuildEmoji"/> and <see cref="T:Fluxer.Net.GuildSticker"/> class. 
@@ -13958,6 +15635,12 @@
         <member name="M:Fluxer.Net.ExpressionHelpers.ModifyAsync(Fluxer.Net.GuildSticker,Fluxer.Net.Rest.UpdateGuildStickerRequest,Fluxer.Net.Rest.RequestOptions)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.UpdateStickerAsync(System.UInt64,System.UInt64,Fluxer.Net.Rest.UpdateGuildStickerRequest,Fluxer.Net.Rest.RequestOptions)" />
         </member>
+        <member name="M:Fluxer.Net.ExpressionHelpers.CloneEmojiAsync(Fluxer.Net.Guild,System.UInt64,Fluxer.Net.Rest.RequestOptions)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.CloneEmojiAsync(System.UInt64,System.UInt64,Fluxer.Net.Rest.RequestOptions)" />
+        </member>
+        <member name="M:Fluxer.Net.ExpressionHelpers.CloneStickerAsync(Fluxer.Net.Guild,System.UInt64,Fluxer.Net.Rest.RequestOptions)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.CloneStickerAsync(System.UInt64,System.UInt64,Fluxer.Net.Rest.RequestOptions)" />
+        </member>
         <member name="T:Fluxer.Net.ForumHelpers">
             <summary>
             Http methods for <see cref="T:Fluxer.Net.Channel"/> class. 
@@ -13981,6 +15664,9 @@
         <member name="M:Fluxer.Net.ForumHelpers.DeleteAsync(Fluxer.Net.ForumTag,Fluxer.Net.Rest.RequestOptions)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.DeleteForumTagAsync(System.UInt64,System.UInt64,Fluxer.Net.Rest.RequestOptions)" />
         </member>
+        <member name="M:Fluxer.Net.ForumHelpers.GetPostDataAsync(Fluxer.Net.Channel,System.Collections.Generic.IEnumerable{System.UInt64},Fluxer.Net.Rest.RequestOptions)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.GetPostDataAsync(System.UInt64,System.Collections.Generic.IEnumerable{System.UInt64},Fluxer.Net.Rest.RequestOptions)" />
+        </member>
         <member name="T:Fluxer.Net.GuildHelpers">
             <summary>
             Http methods for <see cref="T:Fluxer.Net.Guild"/> class. 
@@ -13991,6 +15677,9 @@
         </member>
         <member name="M:Fluxer.Net.GuildHelpers.ModifyAsync(Fluxer.Net.Guild,Fluxer.Net.GuildJson,Fluxer.Net.Rest.RequestOptions)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.UpdateGuildAsync(System.UInt64,Fluxer.Net.GuildJson,Fluxer.Net.Rest.RequestOptions)" />
+        </member>
+        <member name="M:Fluxer.Net.GuildHelpers.ModifyAsync(Fluxer.Net.Guild,Fluxer.Net.Rest.UpdateGuildRequest,Fluxer.Net.Rest.RequestOptions)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.UpdateGuildAsync(System.UInt64,Fluxer.Net.Rest.UpdateGuildRequest,Fluxer.Net.Rest.RequestOptions)" />
         </member>
         <member name="M:Fluxer.Net.GuildHelpers.UpdateChannelPositionsAsync(Fluxer.Net.Guild,System.Collections.Generic.IEnumerable{Fluxer.Net.Rest.ChannelPositionUpdateRequestItem},Fluxer.Net.Rest.RequestOptions)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.UpdateChannelPositionsAsync(System.UInt64,System.Collections.Generic.IEnumerable{Fluxer.Net.Rest.ChannelPositionUpdateRequestItem},Fluxer.Net.Rest.RequestOptions)" />
@@ -14082,6 +15771,38 @@
         <member name="M:Fluxer.Net.GuildHelpers.GetThreadChannelAsync(Fluxer.Net.Guild,System.UInt64,Fluxer.Net.Rest.RequestOptions)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.GetThreadChannelAsync(System.UInt64,Fluxer.Net.Rest.RequestOptions)" />
         </member>
+        <member name="M:Fluxer.Net.GuildHelpers.GetRolesAsync(Fluxer.Net.Guild,Fluxer.Net.Rest.RequestOptions)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.GetRolesAsync(System.UInt64,Fluxer.Net.Rest.RequestOptions)" />
+        </member>
+        <member name="M:Fluxer.Net.GuildHelpers.UpdateRoleHoistPositionsAsync(Fluxer.Net.Guild,System.Collections.Generic.IEnumerable{Fluxer.Net.RoleHoistPositionItemJson},Fluxer.Net.Rest.RequestOptions)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.UpdateRoleHoistPositionsAsync(System.UInt64,System.Collections.Generic.IEnumerable{Fluxer.Net.RoleHoistPositionItemJson},Fluxer.Net.Rest.RequestOptions)" />
+        </member>
+        <member name="M:Fluxer.Net.GuildHelpers.ResetRoleHoistPositionsAsync(Fluxer.Net.Guild,Fluxer.Net.Rest.RequestOptions)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.ResetRoleHoistPositionsAsync(System.UInt64,Fluxer.Net.Rest.RequestOptions)" />
+        </member>
+        <member name="M:Fluxer.Net.GuildHelpers.SearchMembersAsync(Fluxer.Net.Guild,Fluxer.Net.Rest.GuildMemberSearchRequest,Fluxer.Net.Rest.RequestOptions)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.SearchMembersAsync(System.UInt64,Fluxer.Net.Rest.GuildMemberSearchRequest,Fluxer.Net.Rest.RequestOptions)" />
+        </member>
+        <member name="M:Fluxer.Net.GuildHelpers.SearchUsersAsync(Fluxer.Net.Guild,System.String,System.Int32,Fluxer.Net.Rest.RequestOptions)">
+            <summary>
+            Search the members of a guild by username, global name or nickname.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.GuildHelpers.DeleteOwnMessagesAsync(Fluxer.Net.Guild,Fluxer.Net.Rest.SudoVerificationRequest,Fluxer.Net.Rest.RequestOptions)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.DeleteOwnGuildMessagesAsync(System.UInt64,Fluxer.Net.Rest.SudoVerificationRequest,Fluxer.Net.Rest.RequestOptions)" />
+        </member>
+        <member name="M:Fluxer.Net.GuildHelpers.GetDiscoveryStatusAsync(Fluxer.Net.Guild,Fluxer.Net.Rest.RequestOptions)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.GetDiscoveryStatusAsync(System.UInt64,Fluxer.Net.Rest.RequestOptions)" />
+        </member>
+        <member name="M:Fluxer.Net.GuildHelpers.ApplyForDiscoveryAsync(Fluxer.Net.Guild,Fluxer.Net.Rest.DiscoveryApplicationRequest,Fluxer.Net.Rest.RequestOptions)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.ApplyForDiscoveryAsync(System.UInt64,Fluxer.Net.Rest.DiscoveryApplicationRequest,Fluxer.Net.Rest.RequestOptions)" />
+        </member>
+        <member name="M:Fluxer.Net.GuildHelpers.ModifyDiscoveryApplicationAsync(Fluxer.Net.Guild,Fluxer.Net.Rest.DiscoveryApplicationRequest,Fluxer.Net.Rest.RequestOptions)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.UpdateDiscoveryApplicationAsync(System.UInt64,Fluxer.Net.Rest.DiscoveryApplicationRequest,Fluxer.Net.Rest.RequestOptions)" />
+        </member>
+        <member name="M:Fluxer.Net.GuildHelpers.WithdrawDiscoveryApplicationAsync(Fluxer.Net.Guild,Fluxer.Net.Rest.RequestOptions)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.WithdrawDiscoveryApplicationAsync(System.UInt64,Fluxer.Net.Rest.RequestOptions)" />
+        </member>
         <member name="T:Fluxer.Net.MemberHelpers">
             <summary>
             Http methods for <see cref="T:Fluxer.Net.GuildMember"/> class. 
@@ -14095,6 +15816,9 @@
         </member>
         <member name="M:Fluxer.Net.MemberHelpers.ModifyAsync(Fluxer.Net.GuildMember,Fluxer.Net.GuildMemberJson,Fluxer.Net.Rest.RequestOptions)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.UpdateMemberAsync(System.UInt64,System.UInt64,Fluxer.Net.GuildMemberJson,Fluxer.Net.Rest.RequestOptions)" />
+        </member>
+        <member name="M:Fluxer.Net.MemberHelpers.ModifyAsync(Fluxer.Net.GuildMember,Fluxer.Net.Rest.UpdateGuildMemberRequest,Fluxer.Net.Rest.RequestOptions)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.UpdateMemberAsync(System.UInt64,System.UInt64,Fluxer.Net.Rest.UpdateGuildMemberRequest,Fluxer.Net.Rest.RequestOptions)" />
         </member>
         <member name="M:Fluxer.Net.MemberHelpers.AddRoleAsync(Fluxer.Net.GuildMember,System.UInt64,Fluxer.Net.Rest.RequestOptions)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.AddMemberRoleAsync(System.UInt64,System.UInt64,System.UInt64,Fluxer.Net.Rest.RequestOptions)" />
@@ -14204,6 +15928,15 @@
         <member name="M:Fluxer.Net.MessageHelpers.CreateThreadAsync(Fluxer.Net.Message,Fluxer.Net.Rest.CreatePublicThreadRequest,Fluxer.Net.Rest.RequestOptions)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.CreateMessageThreadAsync(System.UInt64,System.UInt64,Fluxer.Net.Rest.CreatePublicThreadRequest,Fluxer.Net.Rest.RequestOptions)" />
         </member>
+        <member name="M:Fluxer.Net.MessageHelpers.GetReactionUsersAsync(Fluxer.Net.Message,System.String,System.Nullable{System.Int32},System.Nullable{System.UInt64},Fluxer.Net.Rest.RequestOptions)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.GetReactionUsersAsync(System.UInt64,System.UInt64,System.String,System.Nullable{System.Int32},System.Nullable{System.UInt64},Fluxer.Net.Rest.RequestOptions)" />
+        </member>
+        <member name="M:Fluxer.Net.MessageHelpers.GetReactionUsersAsync(Fluxer.Net.Message,Fluxer.Net.Emoji,System.Nullable{System.Int32},System.Nullable{System.UInt64},Fluxer.Net.Rest.RequestOptions)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.GetReactionUsersAsync(System.UInt64,System.UInt64,System.String,System.Nullable{System.Int32},System.Nullable{System.UInt64},Fluxer.Net.Rest.RequestOptions)" />
+        </member>
+        <member name="M:Fluxer.Net.MessageHelpers.GetCrosspostSourceAsync(Fluxer.Net.Message,Fluxer.Net.Rest.RequestOptions)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.GetCrosspostSourceAsync(System.UInt64,System.UInt64,Fluxer.Net.Rest.RequestOptions)" />
+        </member>
         <member name="T:Fluxer.Net.PrivateChannelHelpers">
             <summary>
             Http methods for <see cref="T:Fluxer.Net.DMChannel"/> and <see cref="T:Fluxer.Net.GroupChannel"/> class. 
@@ -14285,38 +16018,59 @@
             Http methods for <see cref="T:Fluxer.Net.Channel"/> class. 
             </summary>
         </member>
-        <member name="M:Fluxer.Net.ThreadHelpers.ModifyAsync(Fluxer.Net.ThreadChannel,Fluxer.Net.Rest.UpdateThreadRequest,Fluxer.Net.Rest.RequestOptions)">
+        <member name="M:Fluxer.Net.ThreadHelpers.ModifyAsync(Fluxer.Net.IThreadChannel,Fluxer.Net.Rest.UpdateThreadRequest,Fluxer.Net.Rest.RequestOptions)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.UpdateThreadAsync(System.UInt64,Fluxer.Net.Rest.UpdateThreadRequest,Fluxer.Net.Rest.RequestOptions)" />
         </member>
-        <member name="M:Fluxer.Net.ThreadHelpers.LockAsync(Fluxer.Net.ThreadChannel,Fluxer.Net.Rest.RequestOptions)">
+        <member name="M:Fluxer.Net.ThreadHelpers.LockAsync(Fluxer.Net.IThreadChannel,Fluxer.Net.Rest.RequestOptions)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.UpdateThreadAsync(System.UInt64,Fluxer.Net.Rest.UpdateThreadRequest,Fluxer.Net.Rest.RequestOptions)" />
         </member>
-        <member name="M:Fluxer.Net.ThreadHelpers.UnLockAsync(Fluxer.Net.ThreadChannel,Fluxer.Net.Rest.RequestOptions)">
+        <member name="M:Fluxer.Net.ThreadHelpers.UnLockAsync(Fluxer.Net.IThreadChannel,Fluxer.Net.Rest.RequestOptions)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.UpdateThreadAsync(System.UInt64,Fluxer.Net.Rest.UpdateThreadRequest,Fluxer.Net.Rest.RequestOptions)" />
         </member>
-        <member name="M:Fluxer.Net.ThreadHelpers.ArchiveAsync(Fluxer.Net.ThreadChannel,Fluxer.Net.Rest.RequestOptions)">
+        <member name="M:Fluxer.Net.ThreadHelpers.ArchiveAsync(Fluxer.Net.IThreadChannel,Fluxer.Net.Rest.RequestOptions)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.UpdateThreadAsync(System.UInt64,Fluxer.Net.Rest.UpdateThreadRequest,Fluxer.Net.Rest.RequestOptions)" />
         </member>
-        <member name="M:Fluxer.Net.ThreadHelpers.OpenAsync(Fluxer.Net.ThreadChannel,Fluxer.Net.Rest.RequestOptions)">
+        <member name="M:Fluxer.Net.ThreadHelpers.OpenAsync(Fluxer.Net.IThreadChannel,Fluxer.Net.Rest.RequestOptions)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.UpdateThreadAsync(System.UInt64,Fluxer.Net.Rest.UpdateThreadRequest,Fluxer.Net.Rest.RequestOptions)" />
         </member>
-        <member name="M:Fluxer.Net.ThreadHelpers.JoinAsync(Fluxer.Net.ThreadChannel,Fluxer.Net.Rest.RequestOptions)">
+        <member name="M:Fluxer.Net.ThreadHelpers.JoinAsync(Fluxer.Net.IThreadChannel,Fluxer.Net.Rest.RequestOptions)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.JoinThreadAsync(System.UInt64,Fluxer.Net.Rest.RequestOptions)" />
         </member>
-        <member name="M:Fluxer.Net.ThreadHelpers.LeaveAsync(Fluxer.Net.ThreadChannel,Fluxer.Net.Rest.RequestOptions)">
+        <member name="M:Fluxer.Net.ThreadHelpers.LeaveAsync(Fluxer.Net.IThreadChannel,Fluxer.Net.Rest.RequestOptions)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.LeaveThreadAsync(System.UInt64,Fluxer.Net.Rest.RequestOptions)" />
         </member>
-        <member name="M:Fluxer.Net.ThreadHelpers.AddMemberAsync(Fluxer.Net.ThreadChannel,System.UInt64,Fluxer.Net.Rest.RequestOptions)">
+        <member name="M:Fluxer.Net.ThreadHelpers.AddMemberAsync(Fluxer.Net.IThreadChannel,System.UInt64,Fluxer.Net.Rest.RequestOptions)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.AddThreadMemberAsync(System.UInt64,System.UInt64,Fluxer.Net.Rest.RequestOptions)" />
         </member>
-        <member name="M:Fluxer.Net.ThreadHelpers.AddMemberAsync(Fluxer.Net.ThreadChannel,Fluxer.Net.GuildMember,Fluxer.Net.Rest.RequestOptions)">
+        <member name="M:Fluxer.Net.ThreadHelpers.AddMemberAsync(Fluxer.Net.IThreadChannel,Fluxer.Net.GuildMember,Fluxer.Net.Rest.RequestOptions)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.AddThreadMemberAsync(System.UInt64,System.UInt64,Fluxer.Net.Rest.RequestOptions)" />
         </member>
-        <member name="M:Fluxer.Net.ThreadHelpers.RemoveMemberAsync(Fluxer.Net.ThreadChannel,System.UInt64,Fluxer.Net.Rest.RequestOptions)">
+        <member name="M:Fluxer.Net.ThreadHelpers.RemoveMemberAsync(Fluxer.Net.IThreadChannel,System.UInt64,Fluxer.Net.Rest.RequestOptions)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.RemoveThreadMemberAsync(System.UInt64,System.UInt64,Fluxer.Net.Rest.RequestOptions)" />
         </member>
-        <member name="M:Fluxer.Net.ThreadHelpers.RemoveMemberAsync(Fluxer.Net.ThreadChannel,Fluxer.Net.GuildMember,Fluxer.Net.Rest.RequestOptions)">
+        <member name="M:Fluxer.Net.ThreadHelpers.RemoveMemberAsync(Fluxer.Net.IThreadChannel,Fluxer.Net.GuildMember,Fluxer.Net.Rest.RequestOptions)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.RemoveThreadMemberAsync(System.UInt64,System.UInt64,Fluxer.Net.Rest.RequestOptions)" />
+        </member>
+        <member name="M:Fluxer.Net.ThreadHelpers.GetUsersAsync(Fluxer.Net.IThreadChannel,System.Boolean,System.Nullable{System.Int32},System.Nullable{System.UInt64},Fluxer.Net.Rest.RequestOptions)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.GetThreadMembersAsync(System.UInt64,System.Boolean,System.Nullable{System.Int32},System.Nullable{System.UInt64},Fluxer.Net.Rest.RequestOptions)" />
+        </member>
+        <member name="M:Fluxer.Net.ThreadHelpers.GetUserAsync(Fluxer.Net.IThreadChannel,System.UInt64,System.Boolean,Fluxer.Net.Rest.RequestOptions)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.GetThreadMemberAsync(System.UInt64,System.UInt64,System.Boolean,Fluxer.Net.Rest.RequestOptions)" />
+        </member>
+        <member name="M:Fluxer.Net.ThreadHelpers.GetPublicArchivedThreadsAsync(Fluxer.Net.Channel,System.Nullable{System.Int32},System.Nullable{System.DateTimeOffset},Fluxer.Net.Rest.RequestOptions)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.GetPublicArchivedThreadsAsync(System.UInt64,System.Nullable{System.Int32},System.Nullable{System.DateTimeOffset},Fluxer.Net.Rest.RequestOptions)" />
+        </member>
+        <member name="M:Fluxer.Net.ThreadHelpers.GetPrivateArchivedThreadsAsync(Fluxer.Net.Channel,System.Nullable{System.Int32},System.Nullable{System.DateTimeOffset},Fluxer.Net.Rest.RequestOptions)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.GetPrivateArchivedThreadsAsync(System.UInt64,System.Nullable{System.Int32},System.Nullable{System.DateTimeOffset},Fluxer.Net.Rest.RequestOptions)" />
+        </member>
+        <member name="M:Fluxer.Net.ThreadHelpers.GetJoinedPrivateArchivedThreadsAsync(Fluxer.Net.Channel,System.Nullable{System.Int32},System.Nullable{System.UInt64},Fluxer.Net.Rest.RequestOptions)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.GetJoinedPrivateArchivedThreadsAsync(System.UInt64,System.Nullable{System.Int32},System.Nullable{System.UInt64},Fluxer.Net.Rest.RequestOptions)" />
+        </member>
+        <member name="M:Fluxer.Net.ThreadHelpers.SearchThreadsAsync(Fluxer.Net.Channel,Fluxer.Net.Rest.ThreadSearchQuery,Fluxer.Net.Rest.RequestOptions)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.SearchThreadsAsync(System.UInt64,Fluxer.Net.Rest.ThreadSearchQuery,Fluxer.Net.Rest.RequestOptions)" />
+        </member>
+        <member name="M:Fluxer.Net.ThreadHelpers.GetActiveThreadsAsync(Fluxer.Net.Guild,Fluxer.Net.Rest.RequestOptions)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.GetActiveThreadsAsync(System.UInt64,Fluxer.Net.Rest.RequestOptions)" />
         </member>
         <member name="T:Fluxer.Net.UserHelpers">
             <summary>

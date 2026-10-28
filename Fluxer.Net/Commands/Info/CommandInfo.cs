@@ -119,6 +119,7 @@ public class CommandInfo
     public async Task<PreconditionResult> CheckPreconditionsAsync(ICommandContext context, IServiceProvider services = null)
     {
         services ??= EmptyServiceProvider.Instance;
+        context.CommandService ??= _commandService;
 
         async Task<PreconditionResult> CheckGroups(IEnumerable<PreconditionAttribute> preconditions, string type)
         {
@@ -197,6 +198,7 @@ public class CommandInfo
     public async Task<IResult> ExecuteAsync(ICommandContext context, IEnumerable<object> argList, IEnumerable<object> paramList, IServiceProvider services)
     {
         services ??= EmptyServiceProvider.Instance;
+        context.CommandService ??= _commandService;
 
         try
         {
@@ -209,7 +211,7 @@ public class CommandInfo
                 PreconditionResult result = await parameter.CheckPreconditionsAsync(context, argument, services).ConfigureAwait(false);
                 if (!result.IsSuccess)
                 {
-                    //await Module.Service._commandExecutedEvent.InvokeAsync(this, context, result).ConfigureAwait(false);
+                    await Module.Service.RaiseCommandExecutedAsync(this, context, result).ConfigureAwait(false);
                     return ExecuteResult.FromError(result);
                 }
             }
@@ -242,21 +244,21 @@ public class CommandInfo
             if (task is Task<IResult> resultTask)
             {
                 IResult result = await resultTask.ConfigureAwait(false);
-                //await Module.Service._commandExecutedEvent.InvokeAsync(this, context, result).ConfigureAwait(false);
+                await Module.Service.RaiseCommandExecutedAsync(this, context, result).ConfigureAwait(false);
                 if (result is RuntimeResult execResult)
                     return execResult;
             }
             else if (task is Task<ExecuteResult> execTask)
             {
                 ExecuteResult result = await execTask.ConfigureAwait(false);
-                //await Module.Service._commandExecutedEvent.InvokeAsync(this, context, result).ConfigureAwait(false);
+                await Module.Service.RaiseCommandExecutedAsync(this, context, result).ConfigureAwait(false);
                 return result;
             }
             else
             {
                 await task.ConfigureAwait(false);
                 ExecuteResult result = ExecuteResult.FromSuccess();
-                //await Module.Service._commandExecutedEvent.InvokeAsync(this, context, result).ConfigureAwait(false);
+                await Module.Service.RaiseCommandExecutedAsync(this, context, result).ConfigureAwait(false);
             }
 
             ExecuteResult executeResult = ExecuteResult.FromSuccess();
@@ -272,7 +274,7 @@ public class CommandInfo
             Module.Service._logger?.Error(wrappedEx.ToString());
 
             ExecuteResult result = ExecuteResult.FromError(ex);
-            //await Module.Service._commandExecutedEvent.InvokeAsync(this, context, result).ConfigureAwait(false);
+            await Module.Service.RaiseCommandExecutedAsync(this, context, result).ConfigureAwait(false);
 
             if (Module.Service._throwOnError)
             {

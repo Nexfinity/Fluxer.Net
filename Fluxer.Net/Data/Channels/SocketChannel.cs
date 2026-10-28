@@ -32,7 +32,7 @@ public abstract class SocketChannel : Channel
                     {
                         Guild = guild,
                         ThreadType = ThreadChannel.GetThreadType(json.Type),
-                        ParentChannel = (client as FluxerClient).Gateway.GetChannel(json.ParentId.Value)
+                        ParentChannel = json.ParentId.HasValue ? (client as FluxerClient)?.Gateway?.GetChannel(json.ParentId.Value) : null
                     };
                 }
                 break;

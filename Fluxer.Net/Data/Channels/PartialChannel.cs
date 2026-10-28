@@ -12,6 +12,11 @@ public class PartialChannel : Entity, IPartialChannel
     /// <inheritdoc />
     public string Mention => $"<#{Id}>";
 
+    /// <summary>
+    /// Returns the name.
+    /// </summary>
+    public override string ToString() => Name ?? Id.ToString();
+
     /// <inheritdoc />
     public string? Name { get; private set; }
 

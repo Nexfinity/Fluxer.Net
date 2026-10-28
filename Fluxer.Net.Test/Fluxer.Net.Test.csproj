@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Fluxer.Net\Fluxer.Net.csproj" />
+    <ProjectReference Include="..\Fluxer.Net.Voice\Fluxer.Net.Voice.csproj" />
   </ItemGroup>
 
   <ItemGroup>

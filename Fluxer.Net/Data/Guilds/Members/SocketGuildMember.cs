@@ -33,17 +33,11 @@ public class SocketGuildMember : GuildMember
             if (Guild.OwnerId == Id)
                 return int.MaxValue;
 
-            return Roles.Max(x => x.Position);
+            return Roles.Select(x => x.Position).DefaultIfEmpty(0).Max();
         }
     }
 
-    public bool HasPermission(GuildPermission permission)
-    {
-        if (Id == Guild.OwnerId)
-            return true;
-
-        return Roles.Any(r => r.Permissions.Administrator || r.Permissions.RawValue.HasFlag(permission));
-    }
+    public bool HasPermission(GuildPermission permission) => GuildPermissions.Resolve(this).Has(permission);
 
     public ChannelPermissions GetPermissions(Channel channel)
     {

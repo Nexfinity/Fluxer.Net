@@ -33,5 +33,7 @@ public static class ForumHelpers
     public static Task<ForumChannel> DeleteAsync(this ForumTag tag, RequestOptions? options = null)
         => tag.Client.Rest.DeleteForumTagAsync(tag.ChannelId, tag.Id, options);
 
-
+    /// <inheritdoc cref="FluxerApiClient.GetPostDataAsync(ulong, IEnumerable{ulong}, RequestOptions?)" />
+    public static Task<IReadOnlyDictionary<ulong, ForumPostData>> GetPostDataAsync(this Channel channel, IEnumerable<ulong> postIds, RequestOptions? options = null)
+        => channel.Client.Rest.GetPostDataAsync(channel.Id, postIds, options);
 }

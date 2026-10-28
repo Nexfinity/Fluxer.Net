@@ -77,7 +77,7 @@ public class GuildMemberJson : IGuildMember
     public string? GetAvatarUrl(int size = 160)
     {
         if (string.IsNullOrEmpty(AvatarHash))
-            return User.GetAvatarUrl();
+            return User.GetAvatarUrl(size);
 
         return $"https://fluxerusercontent.com/guilds/{GuildId}/users/{Id}/avatars/{AvatarHash}.png?size={size}";
     }

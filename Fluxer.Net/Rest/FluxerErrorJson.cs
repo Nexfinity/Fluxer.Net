@@ -11,7 +11,7 @@ public class FluxerErrorJson
     public string Reason { get; set; }
 
     [JsonProperty("errors")]
-    FluxerErrorItemJson[]? Errors { get; set; }
+    public FluxerErrorItemJson[]? Errors { get; set; }
 }
 public class FluxerErrorItemJson
 {

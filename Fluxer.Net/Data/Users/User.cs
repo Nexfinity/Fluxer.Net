@@ -45,6 +45,12 @@ public class User : Entity, IUser
         return DisplayName ?? Username;
     }
 
+    /// <summary>
+    /// Returns the username, followed by the discriminator when the account still has one.
+    /// </summary>
+    public override string ToString() =>
+        string.IsNullOrEmpty(Discriminator) || Discriminator.Trim('0').Length == 0 ? Username : $"{Username}#{Discriminator}";
+
     /// <inheritdoc />
     public string GetDefaultAvatarUrl()
     {
@@ -99,4 +105,18 @@ public class User : Entity, IUser
         IsSystem = json.IsSystem;
         MentionPreference = json.MentionPreference;
     }
+
+    internal UserJson ToJson() => new()
+    {
+        Id = Id,
+        Username = Username,
+        Discriminator = Discriminator,
+        DisplayName = DisplayName,
+        AvatarHash = AvatarHash,
+        AvatarColor = AvatarColor,
+        Flags = Flags,
+        IsBot = IsBot,
+        IsSystem = IsSystem,
+        MentionPreference = MentionPreference
+    };
 }

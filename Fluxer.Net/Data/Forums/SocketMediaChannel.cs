@@ -1,6 +1,6 @@
 ﻿namespace Fluxer.Net;
 
-public class SocketMediaChannel : MediaChannel
+public class SocketMediaChannel : MediaChannel, ISocketGuildChannel
 {
     public SocketGuild Guild { get; internal set; }
 

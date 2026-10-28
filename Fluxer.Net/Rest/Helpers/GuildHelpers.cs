@@ -14,7 +14,12 @@ public static class GuildHelpers
         => guild.Client.Rest.LeaveGuildAsync(guild.Id, options);
 
     /// <inheritdoc cref="FluxerApiClient.UpdateGuildAsync(ulong, GuildJson, RequestOptions?)" />
+    [Obsolete("Every property of GuildJson is sent, so this also resets settings that were not meant to change. Use the UpdateGuildRequest overload.")]
     public static Task<Guild> ModifyAsync(this Guild guild, GuildJson request, RequestOptions? options = null)
+        => guild.Client.Rest.UpdateGuildAsync(guild.Id, request, options);
+
+    /// <inheritdoc cref="FluxerApiClient.UpdateGuildAsync(ulong, UpdateGuildRequest, RequestOptions?)" />
+    public static Task<Guild> ModifyAsync(this Guild guild, UpdateGuildRequest request, RequestOptions? options = null)
         => guild.Client.Rest.UpdateGuildAsync(guild.Id, request, options);
 
     /// <inheritdoc cref="FluxerApiClient.UpdateChannelPositionsAsync(ulong, IEnumerable{ChannelPositionUpdateRequestItem}, RequestOptions?)" />
@@ -136,4 +141,46 @@ public static class GuildHelpers
     /// <inheritdoc cref="FluxerApiClient.GetThreadChannelAsync(ulong, RequestOptions?)" />
     public static Task<ThreadChannel?> GetThreadChannelAsync(this Guild guild, ulong threadId, RequestOptions? options = null)
         => guild.Client.Rest.GetThreadChannelAsync(threadId, options);
+
+    /// <inheritdoc cref="FluxerApiClient.GetRolesAsync(ulong, RequestOptions?)" />
+    public static Task<IEnumerable<Role>> GetRolesAsync(this Guild guild, RequestOptions? options = null)
+        => guild.Client.Rest.GetRolesAsync(guild.Id, options);
+
+    /// <inheritdoc cref="FluxerApiClient.UpdateRoleHoistPositionsAsync(ulong, IEnumerable{RoleHoistPositionItemJson}, RequestOptions?)" />
+    public static Task UpdateRoleHoistPositionsAsync(this Guild guild, IEnumerable<RoleHoistPositionItemJson> positions, RequestOptions? options = null)
+        => guild.Client.Rest.UpdateRoleHoistPositionsAsync(guild.Id, positions, options);
+
+    /// <inheritdoc cref="FluxerApiClient.ResetRoleHoistPositionsAsync(ulong, RequestOptions?)" />
+    public static Task ResetRoleHoistPositionsAsync(this Guild guild, RequestOptions? options = null)
+        => guild.Client.Rest.ResetRoleHoistPositionsAsync(guild.Id, options);
+
+    /// <inheritdoc cref="FluxerApiClient.SearchMembersAsync(ulong, GuildMemberSearchRequest, RequestOptions?)" />
+    public static Task<GuildMemberSearchJson> SearchMembersAsync(this Guild guild, GuildMemberSearchRequest request, RequestOptions? options = null)
+        => guild.Client.Rest.SearchMembersAsync(guild.Id, request, options);
+
+    /// <summary>
+    /// Search the members of a guild by username, global name or nickname.
+    /// </summary>
+    public static Task<GuildMemberSearchJson> SearchUsersAsync(this Guild guild, string query, int limit = 100, RequestOptions? options = null)
+        => guild.Client.Rest.SearchMembersAsync(guild.Id, new GuildMemberSearchRequest { Query = query, Limit = limit }, options);
+
+    /// <inheritdoc cref="FluxerApiClient.DeleteOwnGuildMessagesAsync(ulong, SudoVerificationRequest?, RequestOptions?)" />
+    public static Task DeleteOwnMessagesAsync(this Guild guild, SudoVerificationRequest? verification = null, RequestOptions? options = null)
+        => guild.Client.Rest.DeleteOwnGuildMessagesAsync(guild.Id, verification, options);
+
+    /// <inheritdoc cref="FluxerApiClient.GetDiscoveryStatusAsync(ulong, RequestOptions?)" />
+    public static Task<DiscoveryInfoJson> GetDiscoveryStatusAsync(this Guild guild, RequestOptions? options = null)
+        => guild.Client.Rest.GetDiscoveryStatusAsync(guild.Id, options);
+
+    /// <inheritdoc cref="FluxerApiClient.ApplyForDiscoveryAsync(ulong, DiscoveryApplicationRequest, RequestOptions?)" />
+    public static Task<DiscoveryApplicationJson> ApplyForDiscoveryAsync(this Guild guild, DiscoveryApplicationRequest request, RequestOptions? options = null)
+        => guild.Client.Rest.ApplyForDiscoveryAsync(guild.Id, request, options);
+
+    /// <inheritdoc cref="FluxerApiClient.UpdateDiscoveryApplicationAsync(ulong, DiscoveryApplicationRequest, RequestOptions?)" />
+    public static Task<DiscoveryApplicationJson> ModifyDiscoveryApplicationAsync(this Guild guild, DiscoveryApplicationRequest request, RequestOptions? options = null)
+        => guild.Client.Rest.UpdateDiscoveryApplicationAsync(guild.Id, request, options);
+
+    /// <inheritdoc cref="FluxerApiClient.WithdrawDiscoveryApplicationAsync(ulong, RequestOptions?)" />
+    public static Task WithdrawDiscoveryApplicationAsync(this Guild guild, RequestOptions? options = null)
+        => guild.Client.Rest.WithdrawDiscoveryApplicationAsync(guild.Id, options);
 }

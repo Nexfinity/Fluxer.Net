@@ -24,15 +24,35 @@ public class CommandService : IDisposable
     //public event Func<LogMessage, Task> Log { add { _logEvent.Add(value); } remove { _logEvent.Remove(value); } }
     //internal readonly AsyncEvent<Func<LogMessage, Task>> _logEvent = new AsyncEvent<Func<LogMessage, Task>>();
 
-    // <summary>
-    //     Occurs when a command is executed.
-    // </summary>
-    // <remarks>
-    //     This event is fired when a command has been executed, successfully or not. When a command fails to
-    //     execute during parsing or precondition stage, the CommandInfo may not be returned.
-    // </remarks>
-    //public event Func<Optional<CommandInfo>, ICommandContext, IResult, Task> CommandExecuted { add { _commandExecutedEvent.Add(value); } remove { _commandExecutedEvent.Remove(value); } }
-    //internal readonly AsyncEvent<Func<Optional<CommandInfo>, ICommandContext, IResult, Task>> _commandExecutedEvent = new AsyncEvent<Func<Optional<CommandInfo>, ICommandContext, IResult, Task>>();
+    /// <summary>
+    ///     Occurs when a command is executed.
+    /// </summary>
+    /// <remarks>
+    ///     This event is fired when a command has been executed, successfully or not. When a command fails to
+    ///     execute during the search stage, the command is null. Commands run with <see cref="RunMode.Async" />
+    ///     report their real outcome only through this event.
+    /// </remarks>
+    public event Func<CommandInfo?, ICommandContext, IResult, Task>? CommandExecuted;
+
+    internal async Task RaiseCommandExecutedAsync(CommandInfo? command, ICommandContext context, IResult result)
+    {
+        Func<CommandInfo?, ICommandContext, IResult, Task>? handlers = CommandExecuted;
+        if (handlers == null)
+            return;
+
+        foreach (Func<CommandInfo?, ICommandContext, IResult, Task> handler in handlers.GetInvocationList()
+                     .Cast<Func<CommandInfo?, ICommandContext, IResult, Task>>())
+        {
+            try
+            {
+                await handler(command, context, result).ConfigureAwait(false);
+            }
+            catch (Exception ex)
+            {
+                _logger?.Error(ex, "A CommandExecuted handler threw an exception.");
+            }
+        }
+    }
 
     private readonly SemaphoreSlim _moduleLock;
     private readonly ConcurrentDictionary<Type, ModuleInfo> _typedModuleDefs;
@@ -563,7 +583,7 @@ public class CommandService : IDisposable
 
         if (validationResult is SearchResult result)
         {
-            //await _commandExecutedEvent.InvokeAsync(Optional.Some<CommandInfo>(), context, result).ConfigureAwait(false);
+            await RaiseCommandExecutedAsync(null, context, result).ConfigureAwait(false);
             return result;
         }
 
@@ -584,20 +604,20 @@ public class CommandService : IDisposable
         {
             if (!parseResult.IsSuccess)
             {
-                //await _commandExecutedEvent.InvokeAsync(matchResult.Match.Value.Command, context, parseResult);
+                await RaiseCommandExecutedAsync(matchResult.Match.Value.Command, context, parseResult).ConfigureAwait(false);
                 return parseResult;
             }
 
             IResult executeResult = await matchResult.Match.Value.ExecuteAsync(context, parseResult, services);
 
-            //if (!executeResult.IsSuccess && !(executeResult is RuntimeResult || executeResult is ExecuteResult)) // successful results raise the event in CommandInfo#ExecuteInternalAsync (have to raise it there b/c deferred execution)
-            //    await _commandExecutedEvent.InvokeAsync(matchResult.Match.Value.Command, context, executeResult);
+            if (!executeResult.IsSuccess && !(executeResult is RuntimeResult || executeResult is ExecuteResult))
+                await RaiseCommandExecutedAsync(matchResult.Match.Value.Command, context, executeResult).ConfigureAwait(false);
             return executeResult;
         }
 
         if (matchResult.Pipeline is PreconditionResult preconditionResult)
         {
-            //await _commandExecutedEvent.InvokeAsync(matchResult.Match.Value.Command, context, preconditionResult).ConfigureAwait(false);
+            await RaiseCommandExecutedAsync(matchResult.Match.Value.Command, context, preconditionResult).ConfigureAwait(false);
             return preconditionResult;
         }
 

@@ -19,9 +19,17 @@ public class SocketPrivateMessage : SocketMessage
     {
         SocketPrivateMessage data = new SocketPrivateMessage(client)
         {
-            Channel = channel,
             Author = json.Author != null ? SocketUser.Create(client, json.Author) : null
         };
+
+        ((SocketMessage)data).Channel = channel.Value;
+        data.Channel = new Cacheable<Channel>(channel.Id, channel.Value, async () =>
+        {
+            Channel? downloaded = await channel.GetOrDownloadAsync();
+            if (downloaded != null)
+                ((SocketMessage)data).Channel = downloaded;
+            return downloaded;
+        });
 
         data.Update(json);
         return data;
@@ -30,7 +38,7 @@ public class SocketPrivateMessage : SocketMessage
 
 public class SocketMessage : Message
 {
-    public Channel Channel { get; private set; }
+    public Channel Channel { get; internal set; }
 
     public new SocketUser? Author { get; internal set; }
 
@@ -75,5 +83,23 @@ public class SocketMessage : Message
         }
         data.Update(json);
         return data;
+    }
+
+    /// <summary>
+    /// Creates a local copy of this message as if another member had sent it with other content, for example to run
+    /// a command on that member's behalf. The copy only exists in memory and is never sent to Fluxer.
+    /// </summary>
+    /// <param name="member">Member the copy is sent by.</param>
+    /// <param name="content">Content of the copy.</param>
+    /// <returns><see cref="SocketMessage"/></returns>
+    public SocketMessage CopyAs(SocketGuildMember member, string content)
+    {
+        SocketMessage copy = (SocketMessage)MemberwiseClone();
+        SocketUser author = member.User as SocketUser ?? SocketUser.Create(Client, member.User.ToJson());
+        copy.Author = author;
+        ((Message)copy).Author = author;
+        copy.Member = member;
+        copy.Content = content;
+        return copy;
     }
 }

@@ -51,6 +51,11 @@ public class GuildMember : Entity, IGuildMember
         return Nickname ?? User.DisplayName ?? User.Username;
     }
 
+    /// <summary>
+    /// Returns the member's user as text.
+    /// </summary>
+    public override string ToString() => User.ToString();
+
     /// <inheritdoc />
     public string GetDefaultAvatarUrl()
     {
@@ -61,9 +66,9 @@ public class GuildMember : Entity, IGuildMember
     public string? GetAvatarUrl(int size = 160)
     {
         if (string.IsNullOrEmpty(AvatarHash))
-            return User.GetAvatarUrl();
+            return User.GetAvatarUrl(size);
 
-        return $"{Client.Config.MediaUrl}/avatars/{Id}/{AvatarHash}.png?size={size}";
+        return $"{Client.Config.MediaUrl}/guilds/{GuildId}/users/{Id}/avatars/{AvatarHash}.png?size={size}";
     }
 
     /// <inheritdoc />

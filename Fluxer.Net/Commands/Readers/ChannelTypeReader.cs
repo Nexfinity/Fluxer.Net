@@ -26,18 +26,18 @@ public class ChannelTypeReader<T> : TypeReader
             {
                 //By Mention (1.0)
                 if (ulong.TryParse(input.Substring(2, input.Length - 3), NumberStyles.None, CultureInfo.InvariantCulture, out ulong id))
-                    AddResult(results, context.Gateway.GetChannel(id) as T, 1.00f);
+                    AddResult(results, context.Gateway.GetChannel(id), 1.00f);
 
                 //By Id (0.9)
                 if (ulong.TryParse(input, NumberStyles.None, CultureInfo.InvariantCulture, out id))
-                    AddResult(results, context.Gateway.GetChannel(id) as T, 0.90f);
+                    AddResult(results, context.Gateway.GetChannel(id), 0.90f);
             }
 
             //By Name (0.7-0.8)
             if (context is CommandContext ctx)
             {
                 foreach (Channel channel in ctx.Guild.Channels.Values.Where(x => string.Equals(input, x.Name, StringComparison.OrdinalIgnoreCase)))
-                    AddResult(results, channel as T, channel.Name == input ? 0.80f : 0.70f);
+                    AddResult(results, channel, channel.Name == input ? 0.80f : 0.70f);
             }
 
             if (results.Count > 0)
@@ -47,9 +47,11 @@ public class ChannelTypeReader<T> : TypeReader
         return TypeReaderResult.FromError(CommandError.ObjectNotFound, "Channel not found.");
     }
 
-    private static void AddResult(Dictionary<ulong, TypeReaderValue> results, T channel, float score)
+    internal static bool Accepts(IChannel? channel) => channel is T;
+
+    private static void AddResult(Dictionary<ulong, TypeReaderValue> results, IChannel? channel, float score)
     {
-        if (channel != null && !results.ContainsKey(channel.Id))
-            results.Add(channel.Id, new TypeReaderValue(channel, score));
+        if (channel is T typed && !results.ContainsKey(channel.Id))
+            results.Add(channel.Id, new TypeReaderValue(typed, score));
     }
 }

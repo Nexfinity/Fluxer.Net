@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fluxer.Net.Test", "Fluxer.N
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fluxer.Net.Asp", "Fluxer.Net.Asp\Fluxer.Net.Asp.csproj", "{31076789-A5BA-4637-9F05-4A99D1C8C0DA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fluxer.Net.Voice", "Fluxer.Net.Voice\Fluxer.Net.Voice.csproj", "{D725A61C-4FD4-44CC-91A2-77FE7D81C077}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{31076789-A5BA-4637-9F05-4A99D1C8C0DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{31076789-A5BA-4637-9F05-4A99D1C8C0DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{31076789-A5BA-4637-9F05-4A99D1C8C0DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D725A61C-4FD4-44CC-91A2-77FE7D81C077}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D725A61C-4FD4-44CC-91A2-77FE7D81C077}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D725A61C-4FD4-44CC-91A2-77FE7D81C077}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D725A61C-4FD4-44CC-91A2-77FE7D81C077}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

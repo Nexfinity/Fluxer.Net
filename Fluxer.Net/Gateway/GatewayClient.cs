@@ -1,8 +1,10 @@
 ﻿#undef NOPE
+using Fluxer.Net.RateLimiting;
 using Fluxer.Net.Rest;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Serilog;
+using Serilog.Events;
 using System.Collections.Concurrent;
 using System.Data;
 using System.Diagnostics;
@@ -39,6 +41,12 @@ public partial class FluxerGatewayClient : IDisposable
     private readonly FluxerClient _client;
     private WebsocketClient _webSocket;
     private readonly Stopwatch _gatewayDuration = new();
+    private long _heartbeatSentAt;
+
+    /// <summary>
+    /// Milliseconds between the last heartbeat and its acknowledgement, or 0 before the first one.
+    /// </summary>
+    public int Latency { get; private set; }
 
     public FluxerGatewayConfig Config { get; internal set; }
 
@@ -60,6 +68,7 @@ public partial class FluxerGatewayClient : IDisposable
     private string _sessionId = "";
 
     private readonly ILogger _logger;
+    private readonly GatewaySendQueue _sendQueue;
     private CancellationTokenSource? _heartbeatCancellation;
     private readonly SemaphoreSlim _reconnectLock = new(1, 1);
     private bool _disposed = false;
@@ -88,6 +97,7 @@ public partial class FluxerGatewayClient : IDisposable
     {
         _client = client;
         _logger = client.Config.GatewaySerilog;
+        _sendQueue = new GatewaySendQueue(WriteToSocket, _logger);
         _logger.Information("Initialized Fluxer.Net gateway client ({AssemblyVersion}) (API {ApiVersion})", Assembly.GetExecutingAssembly().GetName().Version, _client.Config.Version);
     }
     #endregion
@@ -215,6 +225,7 @@ public partial class FluxerGatewayClient : IDisposable
                 }
             }
 
+            _sendQueue.ResetConnection();
             _webSocket = new WebsocketClient(new(_client.Config.GatewayUrl))
             {
                 // IMPORTANT: Do not set ReconnectTimeout here - we manage reconnection manually through the gateway protocol
@@ -266,7 +277,13 @@ public partial class FluxerGatewayClient : IDisposable
     public async Task<bool> DownloadMembersAsync(SocketGuild guild)
     {
         if (guild._downloaderPromise != null)
-            return await guild._downloaderPromise.Task;
+        {
+            TaskCompletionSource<bool> existing = guild._downloaderPromise;
+            if (await Task.WhenAny(existing.Task, Task.Delay(new TimeSpan(0, 0, 30))) != existing.Task)
+                return false;
+
+            return existing.Task.Result;
+        }
 
         guild._downloaderPromise = new TaskCompletionSource<bool>();
 
@@ -281,9 +298,15 @@ public partial class FluxerGatewayClient : IDisposable
         };
         SendGatewayPacket(login);
 
-        await Task.WhenAny(guild._downloaderPromise.Task, Task.Delay(new TimeSpan(0, 0, 30)));
+        TaskCompletionSource<bool> promise = guild._downloaderPromise;
+        if (await Task.WhenAny(promise.Task, Task.Delay(new TimeSpan(0, 0, 30))) != promise.Task)
+        {
+            promise.TrySetResult(false);
+            guild._downloaderPromise = null;
+            return false;
+        }
 
-        return guild._downloaderPromise.Task.Result;
+        return promise.Task.Result;
     }
 
     /// <summary>
@@ -304,10 +327,17 @@ public partial class FluxerGatewayClient : IDisposable
         }
 
         string text = JsonConvert.SerializeObject(Data, FluxerClient._restSerializer);
-        _logger.Debug("Sending serialized gateway packet {Enums}", text);
+        if (_logger.IsEnabled(LogEventLevel.Debug))
+            _logger.Debug("Sending serialized gateway packet {Enums}", LogRedaction.Redact(text));
+
+        _sendQueue.Enqueue(text, (Data as GatewayPacket)?.OpCode);
+    }
+
+    private void WriteToSocket(string text)
+    {
         try
         {
-            _webSocket.Send(text);
+            _webSocket?.Send(text);
         }
         catch (Exception ex)
         {
@@ -381,10 +411,12 @@ public partial class FluxerGatewayClient : IDisposable
         }
     }
 
-    private void GatewayMessageHandler(string message)
+    internal void GatewayMessageHandler(string message)
     {
         // try deserializing the packet, fallback to regex
-        _logger.Verbose("Received raw gateway message {Message}", message);
+        if (_logger.IsEnabled(LogEventLevel.Verbose))
+            _logger.Verbose("Received raw gateway message {Message}", LogRedaction.Redact(message));
+
         try
         {
             // Pre-parse to check for InvalidSession opcode (which has a boolean payload instead of an object)
@@ -475,7 +507,16 @@ public partial class FluxerGatewayClient : IDisposable
                     _logger.Debug("Received RequestGuildMembers opcode from server (unexpected)");
                     return;
                 case FluxerOpCode.GatewayError:
-                    _logger.Debug("Received GatewayError opcode from server");
+                    {
+                        GatewayErrorGatewayData? data = packet.Data?.ToObject<GatewayErrorGatewayData>(FluxerClient._gatewaySerializer);
+                        if (data != null)
+                        {
+                            _logger.Debug("Received GatewayError {Code}: {Message}", data.Code, data.Message);
+                            GatewayErrorReceived?.Invoke(data);
+                        }
+                        else
+                            _logger.Warning("GatewayError opcode received but data could not be cast to GatewayErrorGatewayData");
+                    }
                     return;
                 case FluxerOpCode.CallConnect:
                     _logger.Debug("Received CallConnect opcode from server");
@@ -1118,6 +1159,7 @@ public partial class FluxerGatewayClient : IDisposable
                                 role = Roles[data.Role.Id];
                                 role.Update(data.Role);
                             }
+                            guild.Roles[role.Id] = role;
                             RoleCreated?.Invoke(role);
                         }
                     }
@@ -1308,7 +1350,8 @@ public partial class FluxerGatewayClient : IDisposable
                     ChannelGatewayData? data = p.Data.ToObject<ChannelGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
                     {
-                        Channel channel = Channel.Create(_client, data);
+                        SocketGuild? createGuild = data.GuildId.HasValue ? GetGuild(data.GuildId.Value) : null;
+                        Channel channel = SocketChannel.Create(_client, data, createGuild);
                         if (!Channels.TryAdd(channel.Id, channel))
                         {
                             channel = Channels[channel.Id];
@@ -1354,9 +1397,9 @@ public partial class FluxerGatewayClient : IDisposable
                                 Channel before = channel.Clone();
                                 if (before.Type != data.Type)
                                 {
-                                    channel = SocketChannel.Create(_client, data);
-                                    Channels.TryUpdate(data.Id, channel, before);
-                                    guild.Channels.TryUpdate(data.Id, channel, before);
+                                    channel = SocketChannel.Create(_client, data, guild);
+                                    Channels[data.Id] = channel;
+                                    guild.Channels[data.Id] = channel;
                                 }
                                 else
                                     channel.Update(data);
@@ -1364,7 +1407,7 @@ public partial class FluxerGatewayClient : IDisposable
                             }
                             else
                             {
-                                channel = SocketChannel.Create(_client, data);
+                                channel = SocketChannel.Create(_client, data, guild);
                                 Channels.TryAdd(data.Id, channel);
                                 guild.Channels.TryAdd(data.Id, channel);
                             }
@@ -1373,7 +1416,7 @@ public partial class FluxerGatewayClient : IDisposable
                         {
                             if (!Channels.TryGetValue(data.Id, out Channel channel))
                             {
-                                channel = SocketChannel.Create(_client, data);
+                                channel = SocketChannel.Create(_client, data, null);
                                 Channels.TryAdd(data.Id, channel);
                             }
                             else
@@ -1402,9 +1445,9 @@ public partial class FluxerGatewayClient : IDisposable
                                 Channel before = channel.Clone();
                                 if (before.Type != c.Type)
                                 {
-                                    channel = SocketChannel.Create(_client, c);
-                                    Channels.TryUpdate(c.Id, channel, before);
-                                    guild.Channels.TryUpdate(c.Id, channel, before);
+                                    channel = SocketChannel.Create(_client, c, guild);
+                                    Channels[c.Id] = channel;
+                                    guild.Channels[c.Id] = channel;
                                 }
                                 else
                                     channel.Update(c);
@@ -1436,7 +1479,7 @@ public partial class FluxerGatewayClient : IDisposable
                                 return;
                             guild.Channels.TryRemove(data.Id, out _);
 
-                            ChannelDeleted?.Invoke(guild, channel ?? SocketChannel.Create(_client, data));
+                            ChannelDeleted?.Invoke(guild, channel ?? SocketChannel.Create(_client, data, guild));
                         }
                     }
                     else
@@ -1450,7 +1493,7 @@ public partial class FluxerGatewayClient : IDisposable
                     if (!data.GuildId.HasValue || !Guilds.TryGetValue(data.GuildId.Value, out SocketGuild guild))
                         return;
 
-                    Channel channel = Channel.Create(_client, data);
+                    Channel channel = SocketChannel.Create(_client, data, guild);
                     channel.GuildId = data.GuildId;
                     if (!Channels.TryAdd(data.Id, channel))
                     {
@@ -1471,7 +1514,18 @@ public partial class FluxerGatewayClient : IDisposable
                     if (!data.GuildId.HasValue || !Guilds.TryGetValue(data.GuildId.Value, out SocketGuild guild))
                         return;
 
-                    ThreadChannel channel = (ThreadChannel)SocketChannel.Create(_client, data);
+                    if (Channels.TryGetValue(data.Id, out Channel? cachedThread))
+                    {
+                        cachedThread.Update(data);
+                    }
+                    else
+                    {
+                        Channel socketThread = SocketChannel.Create(_client, data, guild);
+                        Channels.TryAdd(data.Id, socketThread);
+                        guild.Channels.TryAdd(data.Id, socketThread);
+                    }
+
+                    ThreadChannel channel = (ThreadChannel)Channel.Create(_client, data);
                     ThreadUpdated?.Invoke(guild, new Cacheable<ThreadChannel>(data.Id, null, () =>
                     {
                         return null;
@@ -1488,7 +1542,13 @@ public partial class FluxerGatewayClient : IDisposable
                     Channels.TryRemove(data.Id, out Channel channel);
                     guild.Channels.TryRemove(data.Id, out _);
 
-                    ThreadDeleted?.Invoke(guild, new Cacheable<ThreadChannel>(data.Id, channel as ThreadChannel, () =>
+                    if (channel is IThreadChannel)
+                    {
+                        data.Name ??= channel.Name;
+                        data.ParentId ??= channel.ParentId;
+                    }
+
+                    ThreadDeleted?.Invoke(guild, new Cacheable<ThreadChannel>(data.Id, channel is IThreadChannel ? Channel.Create(_client, data) as ThreadChannel : null, () =>
                     {
                         return null;
                     }));
@@ -1677,7 +1737,7 @@ public partial class FluxerGatewayClient : IDisposable
                             {
                                 guild.HasAllMembers = true;
                                 if (guild._downloaderPromise != null)
-                                    guild._downloaderPromise.SetResult(true);
+                                    guild._downloaderPromise.TrySetResult(true);
                             }
                         }
                     }
@@ -2193,7 +2253,15 @@ public partial class FluxerGatewayClient : IDisposable
                                 SocketVoiceChannel? Channel = GetChannel(data.ChannelId.Value) as SocketVoiceChannel;
                                 if (member.VoiceStates.TryGetValue(data.SessionId, out SocketVoiceState state))
                                 {
+                                    ulong? previousChannelId = state.ChannelId;
                                     state.Update(data);
+                                    if (previousChannelId != data.ChannelId)
+                                    {
+                                        if (previousChannelId.HasValue && GetChannel(previousChannelId.Value) is SocketVoiceChannel previousChannel)
+                                            previousChannel.VoiceStates.TryRemove(data.SessionId, out _);
+                                        if (Channel != null)
+                                            Channel.VoiceStates[data.SessionId] = state;
+                                    }
                                 }
                                 else
                                 {
@@ -2360,6 +2428,7 @@ public partial class FluxerGatewayClient : IDisposable
             }
 
             // Create NEW transport
+            _sendQueue.ResetConnection();
             _webSocket = new WebsocketClient(new(_client.Config.GatewayUrl))
             {
                 IsReconnectionEnabled = false
@@ -2478,6 +2547,9 @@ public partial class FluxerGatewayClient : IDisposable
 
     private void HandleHeartbeatAck()
     {
+        long sentAt = Interlocked.Read(ref _heartbeatSentAt);
+        if (sentAt != 0)
+            Latency = (int)((Stopwatch.GetTimestamp() - sentAt) * 1000 / Stopwatch.Frequency);
         HeartbeatAck?.Invoke();
     }
 
@@ -2661,6 +2733,7 @@ public partial class FluxerGatewayClient : IDisposable
                     Data = _sequence,
                     OpCode = FluxerOpCode.Heartbeat,
                 };
+                Interlocked.Exchange(ref _heartbeatSentAt, Stopwatch.GetTimestamp());
                 SendGatewayPacket(packet);
             }
         }
@@ -2822,6 +2895,16 @@ public partial class FluxerGatewayClient : IDisposable
     /// Occurs on rate limited.
     /// </summary>
     public event RateLimitedEvent RateLimited;
+
+    /// <summary>
+    /// Delegate for the gateway error opcode, sent when Fluxer refuses a voice state update.
+    /// </summary>
+    public delegate void GatewayErrorEvent(GatewayErrorGatewayData error);
+
+    /// <summary>
+    /// Occurs when Fluxer refuses a voice state update with a code the client is expected to act on.
+    /// </summary>
+    public event GatewayErrorEvent GatewayErrorReceived;
 
     /// <summary>
     /// Delegate for USER_CONNECTIONS_UPDATE event when user updates a connection.
@@ -3663,13 +3746,15 @@ public partial class FluxerGatewayClient : IDisposable
     /// <remarks>
     /// This sends a VOICE_STATE_UPDATE packet to the gateway. The server will respond with
     /// VOICE_STATE_UPDATE and VOICE_SERVER_UPDATE events containing connection information.
+    /// Without a connection id a channel opens a new connection, and leaving a guild needs the id of the
+    /// connection to drop.
     /// </remarks>
-    public void UpdateVoiceState(ulong? guildId, ulong? channelId, bool selfMute, bool selfDeaf)
+    public void UpdateVoiceState(ulong? guildId, ulong? channelId, bool selfMute, bool selfDeaf, string? connectionId = null)
     {
         GatewayPacket packet = new GatewayPacket()
         {
             // TODO: Technically should be ulong, but fluxer expects strings. Fluxer will eventually be lenient and accept both.
-            Data = JToken.FromObject(new VoiceStateUpdatePayload(guildId.ToString(), channelId.ToString(), selfMute, selfDeaf)),
+            Data = JToken.FromObject(new VoiceStateUpdatePayload(guildId?.ToString(), channelId?.ToString(), selfMute, selfDeaf, connectionId)),
             OpCode = FluxerOpCode.VoiceStateUpdate
         };
         SendGatewayPacket(packet);
@@ -3693,6 +3778,8 @@ public partial class FluxerGatewayClient : IDisposable
         if (disposing)
         {
             _logger.Information("Disposing GatewayClient");
+
+            _sendQueue.Dispose();
 
             // Cancel and dispose heartbeat
             try
