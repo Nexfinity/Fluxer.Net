@@ -9,8 +9,10 @@ namespace Fluxer.Net.Voice;
 /// </summary>
 /// <remarks>
 /// Fluxer voice runs on LiveKit. Connections reconnect on their own when Fluxer moves the bot to another voice server.
+/// Creating a voice client sets it as the client's <see cref="FluxerBaseClient.Voice"/>, so
+/// <see cref="IVoiceChannel.ConnectAsync"/> joins through it.
 /// </remarks>
-public sealed class FluxerVoiceClient : IDisposable
+public sealed class FluxerVoiceClient : IVoiceProvider, IDisposable
 {
     private readonly FluxerClient _client;
     private readonly ConcurrentDictionary<ulong, FluxerVoiceConnection> _connections = new ConcurrentDictionary<ulong, FluxerVoiceConnection>();
@@ -25,6 +27,7 @@ public sealed class FluxerVoiceClient : IDisposable
     public FluxerVoiceClient(FluxerClient client)
     {
         _client = client;
+        _client.Voice = this;
         _client.Gateway.VoiceServerUpdated += OnVoiceServerUpdated;
         _client.Gateway.VoiceStateUpdated += OnVoiceStateUpdated;
         _client.Gateway.GatewayErrorReceived += OnGatewayError;
@@ -124,6 +127,14 @@ public sealed class FluxerVoiceClient : IDisposable
         }
     }
 
+    async Task<IAudioClient> IVoiceProvider.ConnectAsync(ulong guildId, ulong channelId, bool selfDeaf, bool selfMute,
+        CancellationToken cancellationToken) =>
+        await JoinAsync(guildId, channelId, selfDeaf, selfMute, cancellationToken).ConfigureAwait(false);
+
+    Task IVoiceProvider.DisconnectAsync(ulong guildId) => LeaveAsync(guildId);
+
+    IAudioClient? IVoiceProvider.GetAudioClient(ulong guildId) => GetConnection(guildId);
+
     /// <summary>
     /// Leaves voice in a guild and closes its connection.
     /// </summary>
@@ -146,6 +157,8 @@ public sealed class FluxerVoiceClient : IDisposable
         if (_disposed)
             return;
         _disposed = true;
+        if (ReferenceEquals(_client.Voice, this))
+            _client.Voice = null;
         _client.Gateway.VoiceServerUpdated -= OnVoiceServerUpdated;
         _client.Gateway.VoiceStateUpdated -= OnVoiceStateUpdated;
         _client.Gateway.GatewayErrorReceived -= OnGatewayError;

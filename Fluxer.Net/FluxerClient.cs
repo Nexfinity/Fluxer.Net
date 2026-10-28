@@ -27,6 +27,15 @@ public abstract class FluxerBaseClient
     /// Client options and settings to configure.
     /// </summary>
     public FluxerConfig Config { get; internal set; }
+
+    /// <summary>
+    /// Joins voice for <see cref="IVoiceChannel.ConnectAsync"/>, or null when voice is not set up. Creating a
+    /// FluxerVoiceClient from Fluxer.Net.Voice sets it.
+    /// </summary>
+    public IVoiceProvider? Voice { get; set; }
+
+    internal IVoiceProvider RequireVoice() => Voice ?? throw new InvalidOperationException(
+        "Voice is not set up. Add the Fluxer.Net.Voice package and create a FluxerVoiceClient for this client.");
 }
 
 /// <summary>

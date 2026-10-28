@@ -10,17 +10,13 @@ namespace Fluxer.Net.Voice;
 /// Audio is 16 bit signed PCM at <see cref="SampleRate"/> Hz with <see cref="Channels"/> interleaved channels.
 /// Frames of 10 or 20 milliseconds work best.
 /// </remarks>
-public sealed class FluxerVoiceConnection : IAsyncDisposable
+public sealed class FluxerVoiceConnection : IAudioClient
 {
-    /// <summary>
-    /// The sample rate audio must be sent at.
-    /// </summary>
-    public const int SampleRate = 48000;
+    /// <inheritdoc cref="IAudioClient.SampleRate" />
+    public const int SampleRate = IAudioClient.SampleRate;
 
-    /// <summary>
-    /// The number of interleaved channels audio must be sent with.
-    /// </summary>
-    public const int Channels = 2;
+    /// <inheritdoc cref="IAudioClient.Channels" />
+    public const int Channels = IAudioClient.Channels;
 
     private readonly FluxerVoiceClient _owner;
     private readonly SemaphoreSlim _connectLock = new SemaphoreSlim(1, 1);
@@ -63,7 +59,10 @@ public sealed class FluxerVoiceConnection : IAsyncDisposable
     /// <summary>
     /// Raised when the voice connection is lost or closed. The exception is null when it closed normally.
     /// </summary>
-    public event Action<FluxerVoiceConnection, Exception?>? Disconnected;
+    public event Action<IAudioClient, Exception?>? Disconnected;
+
+    /// <inheritdoc />
+    public Stream CreatePcmStream() => new PcmStream(this);
 
     /// <summary>
     /// Sends one frame of audio, waiting when the queue is full.

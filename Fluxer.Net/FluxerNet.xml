@@ -2814,6 +2814,22 @@
             A guild voice or stage channel.
             </summary>
         </member>
+        <member name="M:Fluxer.Net.IVoiceChannel.ConnectAsync(System.Boolean,System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            Joins this voice channel, or moves the bot to it when it is already in voice in this guild.
+            </summary>
+            <param name="selfDeaf">Whether the bot joins deafened. Bots that only send audio should leave this on.</param>
+            <param name="selfMute">Whether the bot joins muted.</param>
+            <param name="cancellationToken">Cancels the join.</param>
+            <returns>The connection to send audio with.</returns>
+            <exception cref="T:System.InvalidOperationException">Voice is not set up for the client.</exception>
+        </member>
+        <member name="M:Fluxer.Net.IVoiceChannel.DisconnectAsync">
+            <summary>
+            Leaves voice in this channel's guild.
+            </summary>
+            <exception cref="T:System.InvalidOperationException">Voice is not set up for the client.</exception>
+        </member>
         <member name="T:Fluxer.Net.PartialChannel">
             <inheritdoc />
         </member>
@@ -2923,6 +2939,12 @@
             </summary>
             <returns><see cref="T:Fluxer.Net.Channel"/></returns>
         </member>
+        <member name="M:Fluxer.Net.SocketVoiceChannel.ConnectAsync(System.Boolean,System.Boolean,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.SocketVoiceChannel.DisconnectAsync">
+            <inheritdoc />
+        </member>
         <member name="T:Fluxer.Net.SystemChannelFlags">
             <summary>
             Flags that control which system messages are sent to the guild's system channel. Multiple flags can be combined using bitwise OR.
@@ -2937,6 +2959,12 @@
             <summary>
             Suppress member join notifications in the system channel.
             </summary>
+        </member>
+        <member name="M:Fluxer.Net.VoiceChannel.ConnectAsync(System.Boolean,System.Boolean,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.VoiceChannel.DisconnectAsync">
+            <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.DiscoveryGuildListJson.Total">
             <summary>
@@ -6029,6 +6057,11 @@
         <member name="P:Fluxer.Net.SocketGuild.CurrentMember">
             <summary>
             Cached current logged in member for the guild.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.SocketGuild.AudioClient">
+            <summary>
+            The bot's open voice connection in this guild, or null when it is not in voice or voice is not set up.
             </summary>
         </member>
         <member name="P:Fluxer.Net.SocketGuild.Permissions">
@@ -10003,6 +10036,71 @@
         <member name="P:Fluxer.Net.CallJson.CreatedAt">
             <inheritdoc />
         </member>
+        <member name="T:Fluxer.Net.IAudioClient">
+            <summary>
+            The bot's connection to one voice channel, used to send audio into it.
+            </summary>
+            <remarks>
+            Audio is 16 bit signed PCM at <see cref="F:Fluxer.Net.IAudioClient.SampleRate"/> Hz with <see cref="F:Fluxer.Net.IAudioClient.Channels"/> interleaved channels.
+            </remarks>
+        </member>
+        <member name="F:Fluxer.Net.IAudioClient.SampleRate">
+            <summary>
+            The sample rate audio must be sent at.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.IAudioClient.Channels">
+            <summary>
+            The number of interleaved channels audio must be sent with.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IAudioClient.GuildId">
+            <summary>
+            The guild of the voice channel.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IAudioClient.ChannelId">
+            <summary>
+            The voice channel the bot is connected to.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IAudioClient.IsConnected">
+            <summary>
+            Whether the connection is open and audio can be sent.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IAudioClient.QueuedDuration">
+            <summary>
+            How much audio is queued and not yet sent.
+            </summary>
+        </member>
+        <member name="E:Fluxer.Net.IAudioClient.Disconnected">
+            <summary>
+            Raised when the voice connection is lost or closed. The exception is null when it closed normally.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.IAudioClient.CreatePcmStream">
+            <summary>
+            Creates a stream that sends the 16 bit PCM bytes written to it, in frames of 20 milliseconds.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.IAudioClient.SendAsync(System.Int16[],System.Threading.CancellationToken)">
+            <summary>
+            Sends one frame of audio, waiting when the queue is full.
+            </summary>
+            <param name="samples">Interleaved 16 bit samples for <see cref="F:Fluxer.Net.IAudioClient.Channels"/> channels at <see cref="F:Fluxer.Net.IAudioClient.SampleRate"/> Hz.</param>
+            <param name="cancellationToken">Cancels the wait for room in the queue.</param>
+        </member>
+        <member name="M:Fluxer.Net.IAudioClient.ClearQueue">
+            <summary>
+            Drops queued audio that has not been sent yet.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.IAudioClient.DisconnectAsync">
+            <summary>
+            Leaves the voice channel.
+            </summary>
+        </member>
         <member name="P:Fluxer.Net.ICallEligibility.IsRingable">
             <summary>
             Whether the current user can ring this call
@@ -10035,6 +10133,35 @@
             <summary>
             The emoji associated with this RTC region
             </summary>
+        </member>
+        <member name="T:Fluxer.Net.IVoiceProvider">
+            <summary>
+            Joins and leaves voice channels for a client. Fluxer.Net.Voice provides one; set it on
+            <see cref="P:Fluxer.Net.FluxerBaseClient.Voice"/> to make <see cref="M:Fluxer.Net.IVoiceChannel.ConnectAsync(System.Boolean,System.Boolean,System.Threading.CancellationToken)"/> work.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.IVoiceProvider.ConnectAsync(System.UInt64,System.UInt64,System.Boolean,System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            Joins a voice channel, or moves to it when the bot is already in voice in that guild.
+            </summary>
+            <param name="guildId">The guild of the voice channel.</param>
+            <param name="channelId">The voice channel to join.</param>
+            <param name="selfDeaf">Whether the bot joins deafened.</param>
+            <param name="selfMute">Whether the bot joins muted.</param>
+            <param name="cancellationToken">Cancels the join.</param>
+            <returns>The open connection.</returns>
+        </member>
+        <member name="M:Fluxer.Net.IVoiceProvider.DisconnectAsync(System.UInt64)">
+            <summary>
+            Leaves voice in a guild.
+            </summary>
+            <param name="guildId">The guild.</param>
+        </member>
+        <member name="M:Fluxer.Net.IVoiceProvider.GetAudioClient(System.UInt64)">
+            <summary>
+            Gets the open connection in a guild, or null when the bot is not in voice there.
+            </summary>
+            <param name="guildId">The guild.</param>
         </member>
         <member name="P:Fluxer.Net.IVoiceState.SessionId">
             <summary>
@@ -13026,6 +13153,12 @@
         <member name="P:Fluxer.Net.FluxerBaseClient.Config">
             <summary>
             Client options and settings to configure.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.FluxerBaseClient.Voice">
+            <summary>
+            Joins voice for <see cref="M:Fluxer.Net.IVoiceChannel.ConnectAsync(System.Boolean,System.Boolean,System.Threading.CancellationToken)"/>, or null when voice is not set up. Creating a
+            FluxerVoiceClient from Fluxer.Net.Voice sets it.
             </summary>
         </member>
         <member name="T:Fluxer.Net.FluxerClient">
