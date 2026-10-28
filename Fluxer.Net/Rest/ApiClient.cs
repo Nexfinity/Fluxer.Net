@@ -85,6 +85,13 @@ public class FluxerApiClient : FluxerBaseApiClient
         return Instance.Create(_client, json);
     }
 
+    /// <summary>
+    /// Get the current user's experiment assignments, such as whether channel threads are enabled.
+    /// </summary>
+    /// <returns><see cref="ExperimentAssignmentsJson"/></returns>
+    public async Task<ExperimentAssignmentsJson> GetExperimentsAsync(RequestOptions? options = null)
+        => await SendRequestAsync<ExperimentAssignmentsJson>(HttpMethod.Get, "/experiments", true, options: options);
+
     #region Expressions API
     /// <summary>
     /// Get a custom emoji.
@@ -111,6 +118,20 @@ public class FluxerApiClient : FluxerBaseApiClient
 
         return Sticker.Create(_client, json);
     }
+
+    /// <summary>
+    /// Get the guild a custom emoji belongs to.
+    /// </summary>
+    /// <returns><see cref="ExpressionSourceGuildJson"/></returns>
+    public async Task<ExpressionSourceGuildJson> GetEmojiSourceAsync(ulong emojiId, RequestOptions? options = null)
+        => await SendRequestAsync<ExpressionSourceGuildJson>(HttpMethod.Get, $"/emojis/{emojiId}/source", true, options: options);
+
+    /// <summary>
+    /// Get the guild a custom sticker belongs to.
+    /// </summary>
+    /// <returns><see cref="ExpressionSourceGuildJson"/></returns>
+    public async Task<ExpressionSourceGuildJson> GetStickerSourceAsync(ulong stickerId, RequestOptions? options = null)
+        => await SendRequestAsync<ExpressionSourceGuildJson>(HttpMethod.Get, $"/stickers/{stickerId}/source", true, options: options);
 
     #endregion
 
@@ -140,12 +161,14 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// <summary>
     /// Send a SMS code.
     /// </summary>
+    [Obsolete("Fluxer removed phone numbers and SMS verification.")]
     public async Task SendMfaSmsCodeAsync()
         => await SendRequestRawAsync(HttpMethod.Post, "/auth/login/mfa/sms/send", true, false);
 
     /// <summary>
     /// Login with a SMS code.
     /// </summary>
+    [Obsolete("Fluxer removed phone numbers and SMS verification.")]
     public async Task LoginMfaSmsAsync<TRequest, TResponse>(TRequest data, RequestOptions? options = null)
         => await SendRequestAsync<TResponse, TRequest>(HttpMethod.Post, "/auth/login/mfa/sms", data, true, false, options: options);
 
@@ -381,11 +404,36 @@ public class FluxerApiClient : FluxerBaseApiClient
         }, true, options: options);
 
     /// <summary>
+    /// Get how many channels and guilds follow an announcement channel.
+    /// </summary>
+    /// <returns><see cref="ChannelFollowerStatsJson"/></returns>
+    public async Task<ChannelFollowerStatsJson> GetFollowerStatsAsync(ulong channelId, RequestOptions? options = null)
+        => await SendRequestAsync<ChannelFollowerStatsJson>(HttpMethod.Get, $"/channels/{channelId}/follower-stats", true, options: options);
+
+    /// <summary>
+    /// Get the guild a published announcement was copied from.
+    /// </summary>
+    /// <returns><see cref="CrosspostSourceGuildJson"/></returns>
+    public async Task<CrosspostSourceGuildJson> GetCrosspostSourceAsync(ulong channelId, ulong messageId, RequestOptions? options = null)
+    {
+        CrosspostSourceJson json = await SendRequestAsync<CrosspostSourceJson>(HttpMethod.Get, $"/channels/{channelId}/messages/{messageId}/crosspost-source", true, options: options);
+        return json.Guild;
+    }
+
+    /// <summary>
+    /// Get a channel's slowmode and how long the current user must wait before sending.
+    /// </summary>
+    /// <returns><see cref="SlowmodeStateJson"/></returns>
+    public async Task<SlowmodeStateJson> GetSlowmodeStateAsync(ulong channelId, RequestOptions? options = null)
+        => await SendRequestAsync<SlowmodeStateJson>(HttpMethod.Get, $"/channels/{channelId}/slowmode", true, options: options);
+
+    /// <summary>
     /// Search messages in a channel.
     /// </summary>
     /// <remarks>
     /// Not implemented or tested properly.
     /// </remarks>
+    [Obsolete("Fluxer removed this route. Use SearchChannelMessagesAsync.")]
     public async Task<TResponse> SearchChannelAsync<TRequest, TResponse>(ulong channelId, TRequest data, RequestOptions? options = null)
         => await SendRequestAsync<TResponse, TRequest>(HttpMethod.Post, $"/channels/{channelId}/search", data, true, options: options);
 
@@ -507,6 +555,23 @@ public class FluxerApiClient : FluxerBaseApiClient
         }, true, options: options);
 
     /// <summary>
+    /// Delete every message the current user sent in a channel. Fluxer deletes them in the background.
+    /// </summary>
+    /// <param name="verification">The password or MFA code user accounts must confirm with.</param>
+    public async Task DeleteOwnMessagesAsync(ulong channelId, SudoVerificationRequest? verification = null, RequestOptions? options = null)
+        => await SendRequestAsync(HttpMethod.Post, $"/channels/{channelId}/messages/bulk-delete-mine", verification ?? new SudoVerificationRequest(), true, options: options);
+
+    /// <summary>
+    /// Delete every message in the current user's Saved Notes channel.
+    /// </summary>
+    /// <returns>The number of deleted messages</returns>
+    public async Task<int> PurgeSavedNotesAsync(ulong channelId, RequestOptions? options = null)
+    {
+        MessagePurgeJson json = await SendRequestAsync<MessagePurgeJson>(HttpMethod.Post, $"/channels/{channelId}/messages/purge", true, options: options);
+        return json.DeletedCount;
+    }
+
+    /// <summary>
     /// Send a user typing status for the channel.
     /// </summary>
     /// <remarks>
@@ -533,7 +598,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// <returns><see cref="ChannelPins"/></returns>
     public async Task<ChannelPins> GetPinnedMessagesAsync(ulong channelId, ChannelPinsQuery? query = null, RequestOptions? options = null)
     {
-        ChannelPinsJson json = await SendRequestAsync<ChannelPinsJson>(HttpMethod.Get, $"/channels/{channelId}/pins?{query?.BuildQuery() ?? string.Empty}", true, options: options);
+        ChannelPinsJson json = await SendRequestAsync<ChannelPinsJson>(HttpMethod.Get, $"/channels/{channelId}/messages/pins?{query?.BuildQuery() ?? string.Empty}", true, options: options);
         return ChannelPins.Create(_client, json);
     }
 
@@ -554,6 +619,12 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// </remarks>
     public async Task UnpinMessageAsync(ulong channelId, ulong messageId, RequestOptions? options = null)
         => await SendRequestRawAsync(HttpMethod.Delete, $"/channels/{channelId}/pins/{messageId}", true, options: options);
+
+    /// <summary>
+    /// Mark the new pins of a channel as seen.
+    /// </summary>
+    public async Task AcknowledgePinsAsync(ulong channelId, RequestOptions? options = null)
+        => await SendRequestRawAsync(HttpMethod.Post, $"/channels/{channelId}/pins/ack", true, options: options);
 
     /// <summary>
     /// Create or replace the permission overwrite for a role or member on a guild channel.
@@ -595,6 +666,24 @@ public class FluxerApiClient : FluxerBaseApiClient
 
         IEnumerable<UserJson> json = await SendRequestAsync<IEnumerable<UserJson>>(HttpMethod.Get, $"/channels/{channelId}/messages/{messageId}/reactions/{(encode ? System.Web.HttpUtility.UrlEncode(emoji) : emoji)}", true, options: options);
         return json.Select(x => User.Create(_client, x));
+    }
+
+    /// <summary>
+    /// Get a page of the users who reacted to a message with an emoji.
+    /// </summary>
+    /// <remarks>
+    /// Requires <see cref="ChannelPermissions.ViewChannel"/> and <see cref="ChannelPermissions.ReadMessageHistory"/> in a guild channel.
+    /// </remarks>
+    /// <param name="afterId">Only users after this one, such as <see cref="ReactionUserPage.NextAfterId"/> of the previous page.</param>
+    /// <returns><see cref="ReactionUserPage"/></returns>
+    public async Task<ReactionUserPage> GetReactionUsersAsync(ulong channelId, ulong messageId, string emoji, int? limit = null, ulong? afterId = null, RequestOptions? options = null)
+    {
+        RestClientQueryParams queryParams = new RestClientQueryParams()
+            .AddIf(limit != null, QueryParams.Limit, limit)
+            .AddIf(afterId != null, QueryParams.After, afterId);
+
+        ReactionUserPageJson json = await SendRequestQueryParamsAsync<ReactionUserPageJson>(HttpMethod.Get, queryParams, $"/channels/{channelId}/messages/{messageId}/reactions/{emoji}/users", true, options: options);
+        return ReactionUserPage.Create(_client, json);
     }
 
     /// <summary>
@@ -845,7 +934,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// <returns><see cref="ThreadChannel"/></returns>
     public async Task<ThreadChannel> UpdateThreadAsync(ulong channelId, UpdateThreadRequest req, RequestOptions? options = null)
     {
-        ChannelJson json = await SendRequestAsync<ChannelJson, UpdateThreadRequest>(HttpMethod.Patch, $"/channels/{channelId}/threads", req, true, options: options);
+        ChannelJson json = await SendRequestAsync<ChannelJson, UpdateThreadRequest>(HttpMethod.Patch, $"/channels/{channelId}", req, true, options: options);
         return (ThreadChannel)Channel.Create(_client, json);
     }
 
@@ -893,6 +982,108 @@ public class FluxerApiClient : FluxerBaseApiClient
         await SendRequestAsync<dynamic>(HttpMethod.Delete, $"/channels/{channelId}/thread-members/{userId}", null, true, options: options);
     }
 
+    /// <summary>
+    /// Get the members of a thread.
+    /// </summary>
+    /// <remarks>
+    /// Requires <see cref="ChannelPermissions.ViewChannel"/>.
+    /// </remarks>
+    /// <param name="withMember">Whether to include each member's guild member.</param>
+    /// <returns>List of <see cref="ThreadMember"/></returns>
+    public async Task<IEnumerable<ThreadMember>> GetThreadMembersAsync(ulong channelId, bool withMember = false, int? limit = null, ulong? afterId = null, RequestOptions? options = null)
+    {
+        RestClientQueryParams queryParams = new RestClientQueryParams()
+            .AddIf(withMember, "with_member", "true")
+            .AddIf(limit != null, QueryParams.Limit, limit)
+            .AddIf(afterId != null, QueryParams.After, afterId);
+
+        IEnumerable<ThreadMemberJson> json = await SendRequestQueryParamsAsync<IEnumerable<ThreadMemberJson>>(HttpMethod.Get, queryParams, $"/channels/{channelId}/thread-members", true, options: options);
+        return json.Select(x => ThreadMember.Create(_client, x));
+    }
+
+    /// <summary>
+    /// Get a member of a thread.
+    /// </summary>
+    /// <remarks>
+    /// Requires <see cref="ChannelPermissions.ViewChannel"/>.
+    /// </remarks>
+    /// <param name="withMember">Whether to include the guild member.</param>
+    /// <returns><see cref="ThreadMember"/></returns>
+    public async Task<ThreadMember> GetThreadMemberAsync(ulong channelId, ulong userId, bool withMember = false, RequestOptions? options = null)
+    {
+        RestClientQueryParams queryParams = new RestClientQueryParams()
+            .AddIf(withMember, "with_member", "true");
+
+        ThreadMemberJson json = await SendRequestQueryParamsAsync<ThreadMemberJson>(HttpMethod.Get, queryParams, $"/channels/{channelId}/thread-members/{userId}", true, options: options);
+        return ThreadMember.Create(_client, json);
+    }
+
+    /// <summary>
+    /// Get the active threads of a guild.
+    /// </summary>
+    /// <returns><see cref="ThreadList"/></returns>
+    public async Task<ThreadList> GetActiveThreadsAsync(ulong guildId, RequestOptions? options = null)
+    {
+        ThreadListJson json = await SendRequestAsync<ThreadListJson>(HttpMethod.Get, $"/guilds/{guildId}/threads/active", true, options: options);
+        return ThreadList.Create(_client, json);
+    }
+
+    /// <summary>
+    /// Get the archived public threads of a channel, newest first.
+    /// </summary>
+    /// <remarks>
+    /// Requires <see cref="ChannelPermissions.ReadMessageHistory"/>.
+    /// </remarks>
+    /// <param name="before">Only threads archived before this time.</param>
+    /// <returns><see cref="ThreadList"/></returns>
+    public async Task<ThreadList> GetPublicArchivedThreadsAsync(ulong channelId, int? limit = null, DateTimeOffset? before = null, RequestOptions? options = null)
+        => await GetArchivedThreadsAsync($"/channels/{channelId}/threads/archived/public", limit, before?.ToString("O"), options);
+
+    /// <summary>
+    /// Get the archived private threads of a channel, newest first.
+    /// </summary>
+    /// <remarks>
+    /// Requires <see cref="ChannelPermissions.ReadMessageHistory"/> and <see cref="ChannelPermissions.ManageThreads"/>.
+    /// </remarks>
+    /// <param name="before">Only threads archived before this time.</param>
+    /// <returns><see cref="ThreadList"/></returns>
+    public async Task<ThreadList> GetPrivateArchivedThreadsAsync(ulong channelId, int? limit = null, DateTimeOffset? before = null, RequestOptions? options = null)
+        => await GetArchivedThreadsAsync($"/channels/{channelId}/threads/archived/private", limit, before?.ToString("O"), options);
+
+    /// <summary>
+    /// Get the archived private threads of a channel that the current user joined.
+    /// </summary>
+    /// <remarks>
+    /// Requires <see cref="ChannelPermissions.ReadMessageHistory"/>.
+    /// </remarks>
+    /// <param name="beforeId">Only threads created before this thread.</param>
+    /// <returns><see cref="ThreadList"/></returns>
+    public async Task<ThreadList> GetJoinedPrivateArchivedThreadsAsync(ulong channelId, int? limit = null, ulong? beforeId = null, RequestOptions? options = null)
+        => await GetArchivedThreadsAsync($"/channels/{channelId}/users/@me/threads/archived/private", limit, beforeId?.ToString(), options);
+
+    private async Task<ThreadList> GetArchivedThreadsAsync(string route, int? limit, string? before, RequestOptions? options)
+    {
+        RestClientQueryParams queryParams = new RestClientQueryParams()
+            .AddIf(limit != null, QueryParams.Limit, limit)
+            .AddIf(before != null, QueryParams.Before, before);
+
+        ThreadListJson json = await SendRequestQueryParamsAsync<ThreadListJson>(HttpMethod.Get, queryParams, route, true, options: options);
+        return ThreadList.Create(_client, json);
+    }
+
+    /// <summary>
+    /// Search the threads of a channel by name, tags and archive state.
+    /// </summary>
+    /// <remarks>
+    /// Requires <see cref="ChannelPermissions.ReadMessageHistory"/>. Returns no threads while Fluxer is still indexing the channel.
+    /// </remarks>
+    /// <returns><see cref="ThreadList"/></returns>
+    public async Task<ThreadList> SearchThreadsAsync(ulong channelId, ThreadSearchQuery query, RequestOptions? options = null)
+    {
+        ThreadListJson json = await SendRequestAsync<ThreadListJson>(HttpMethod.Get, $"/channels/{channelId}/threads/search?{query.BuildQuery()}", true, options: options);
+        return ThreadList.Create(_client, json);
+    }
+
     #endregion
 
     #region Forums API
@@ -933,7 +1124,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// <returns><see cref="ForumChannel"/></returns>
     public async Task<ForumChannel> UpdateForumTagAsync(ulong channelId, ulong tagId, CreateForumTagRequest req, RequestOptions? options = null)
     {
-        ChannelJson json = await SendRequestAsync<ChannelJson, CreateForumTagRequest>(HttpMethod.Patch, $"/channels/{channelId}/tags/{tagId}", req, true, options: options);
+        ChannelJson json = await SendRequestAsync<ChannelJson, CreateForumTagRequest>(HttpMethod.Put, $"/channels/{channelId}/tags/{tagId}", req, true, options: options);
         return (ForumChannel)Channel.Create(_client, json);
     }
 
@@ -950,12 +1141,55 @@ public class FluxerApiClient : FluxerBaseApiClient
         return (ForumChannel)Channel.Create(_client, json);
     }
 
+    /// <summary>
+    /// Get the author and first message of up to 100 posts in a forum or media channel.
+    /// </summary>
+    /// <remarks>
+    /// Requires <see cref="ChannelPermissions.ViewChannel"/>.
+    /// </remarks>
+    /// <returns>Each post's <see cref="ForumPostData"/>, by post id</returns>
+    public async Task<IReadOnlyDictionary<ulong, ForumPostData>> GetPostDataAsync(ulong channelId, IEnumerable<ulong> postIds, RequestOptions? options = null)
+    {
+        ForumPostDataListJson json = await SendRequestAsync<ForumPostDataListJson, ForumPostDataRequest>(HttpMethod.Post, $"/channels/{channelId}/post-data", new ForumPostDataRequest
+        {
+            ThreadIds = postIds
+        }, true, options: options);
+        return json.Threads.ToDictionary(x => x.Key, x => ForumPostData.Create(_client, x.Value));
+    }
+
     #endregion
 
     #region Attachments API
     /// <summary>
+    /// Get fresh signed URLs for up to 50 attachment URLs whose signature expired.
+    /// </summary>
+    /// <returns>One <see cref="RefreshedAttachmentUrlJson"/> per URL, in the order given</returns>
+    public async Task<IReadOnlyList<RefreshedAttachmentUrlJson>> RefreshAttachmentUrlsAsync(IEnumerable<string> urls, RequestOptions? options = null)
+    {
+        RefreshedAttachmentUrlListJson json = await SendRequestAsync<RefreshedAttachmentUrlListJson, RefreshAttachmentUrlsRequest>(HttpMethod.Post, "/attachments/refresh-urls", new RefreshAttachmentUrlsRequest
+        {
+            Urls = urls
+        }, true, options: options);
+        return json.Urls;
+    }
+
+    /// <summary>
+    /// Finish multipart uploads of large attachments, so they can be sent in a message.
+    /// </summary>
+    /// <returns>The upload filename of each finished upload</returns>
+    public async Task<IReadOnlyList<string>> CompleteAttachmentUploadsAsync(ulong channelId, IEnumerable<CompleteAttachmentUploadItem> uploads, RequestOptions? options = null)
+    {
+        CompletedAttachmentUploadListJson json = await SendRequestAsync<CompletedAttachmentUploadListJson, CompleteAttachmentUploadsRequest>(HttpMethod.Post, $"/channels/{channelId}/attachments/complete", new CompleteAttachmentUploadsRequest
+        {
+            Uploads = uploads
+        }, true, options: options);
+        return json.Uploads.Select(x => x.UploadFilename).ToArray();
+    }
+
+    /// <summary>
     /// Delete an attachment.
     /// </summary>
+    [Obsolete("Fluxer removed this route.")]
     public async Task DeleteAttachmentAsync(string uploadFilename, RequestOptions? options = null)
         => await SendRequestRawAsync(HttpMethod.Delete, $"/attachments/{uploadFilename}", true, options: options);
 
@@ -1172,6 +1406,16 @@ public class FluxerApiClient : FluxerBaseApiClient
     }
 
     /// <summary>
+    /// Search the members of a guild by name, roles, join time and more.
+    /// </summary>
+    /// <remarks>
+    /// Results can be incomplete while <see cref="GuildMemberSearchJson.IsIndexing"/> is true.
+    /// </remarks>
+    /// <returns><see cref="GuildMemberSearchJson"/></returns>
+    public async Task<GuildMemberSearchJson> SearchMembersAsync(ulong guildId, GuildMemberSearchRequest request, RequestOptions? options = null)
+        => await SendRequestAsync<GuildMemberSearchJson, GuildMemberSearchRequest>(HttpMethod.Post, $"/guilds/{guildId}/members-search", request, true, options: options);
+
+    /// <summary>
     /// Get current member for a guild.
     /// </summary>
     /// <returns><see cref="GuildMember"/></returns>
@@ -1383,6 +1627,34 @@ public class FluxerApiClient : FluxerBaseApiClient
         => await SendRequestAsync(HttpMethod.Patch, $"/guilds/{guildId}/roles", positions, true, options: options);
 
     /// <summary>
+    /// Get all roles in the guild.
+    /// </summary>
+    /// <returns>List of <see cref="Role"/></returns>
+    public async Task<IEnumerable<Role>> GetRolesAsync(ulong guildId, RequestOptions? options = null)
+    {
+        IEnumerable<RoleJson> json = await SendRequestAsync<IEnumerable<RoleJson>>(HttpMethod.Get, $"/guilds/{guildId}/roles", true, options: options);
+        return json.Select(x => Role.Create(_client, x, guildId));
+    }
+
+    /// <summary>
+    /// Set the order hoisted roles are shown in the member list, separate from their permission order.
+    /// </summary>
+    /// <remarks>
+    /// Requires <see cref="GuildPermissions.ManageRoles"/>.
+    /// </remarks>
+    public async Task UpdateRoleHoistPositionsAsync(ulong guildId, IEnumerable<RoleHoistPositionItemJson> positions, RequestOptions? options = null)
+        => await SendRequestAsync(HttpMethod.Patch, $"/guilds/{guildId}/roles/hoist-positions", positions, true, options: options);
+
+    /// <summary>
+    /// Show hoisted roles in the member list in their permission order again.
+    /// </summary>
+    /// <remarks>
+    /// Requires <see cref="GuildPermissions.ManageRoles"/>.
+    /// </remarks>
+    public async Task ResetRoleHoistPositionsAsync(ulong guildId, RequestOptions? options = null)
+        => await SendRequestRawAsync(HttpMethod.Delete, $"/guilds/{guildId}/roles/hoist-positions", true, options: options);
+
+    /// <summary>
     /// Delete a role in the guild.
     /// </summary>
     /// <remarks>
@@ -1478,6 +1750,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// <summary>
     /// Search the guild.
     /// </summary>
+    [Obsolete("Fluxer removed this route. Use SearchGuildMessagesAsync.")]
     public async Task<TResponse> SearchGuildAsync<TRequest, TResponse>(ulong guildId, TRequest data, RequestOptions? options = null)
         => await SendRequestAsync<TResponse, TRequest>(HttpMethod.Post, $"/guilds/{guildId}/search", data, true, options: options);
 
@@ -1489,7 +1762,16 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// </remarks>
     /// <returns><see cref="AuditLogListJson"/></returns>
     public async Task<AuditLogListJson> GetAuditLogAsync(ulong guildId, GuildAuditLogListRequest data, RequestOptions? options = null)
-        => await SendRequestAsync<AuditLogListJson, GuildAuditLogListRequest>(HttpMethod.Post, $"/guilds/{guildId}/audit-logs", data, true, options: options);
+    {
+        RestClientQueryParams queryParams = new RestClientQueryParams()
+            .AddIf(data.Limit != null, QueryParams.Limit, data.Limit)
+            .AddIf(data.Before != null, QueryParams.Before, data.Before)
+            .AddIf(data.After != null, QueryParams.After, data.After)
+            .AddIf(data.UserId != null, QueryParams.UserId, data.UserId)
+            .AddIf(data.ActionType != null, QueryParams.ActionType, (int?)data.ActionType);
+
+        return await SendRequestQueryParamsAsync<AuditLogListJson>(HttpMethod.Get, queryParams, $"/guilds/{guildId}/audit-logs", true, options: options);
+    }
 
     /// <summary>
     /// Create emojis for the guild.
@@ -1550,6 +1832,22 @@ public class FluxerApiClient : FluxerBaseApiClient
         => await SendRequestRawAsync(HttpMethod.Delete, $"/guilds/{guildId}/emojis/{emojiId}", true, options: options);
 
     /// <summary>
+    /// Copy an emoji from another guild into the guild, keeping its name and image.
+    /// </summary>
+    /// <remarks>
+    /// Requires either <see cref="GuildPermissions.CreateExpressions"/> or <see cref="GuildPermissions.ManageExpressions"/>.
+    /// </remarks>
+    /// <returns><see cref="GuildEmoji"/></returns>
+    public async Task<GuildEmoji> CloneEmojiAsync(ulong guildId, ulong sourceEmojiId, RequestOptions? options = null)
+    {
+        GuildEmojiJson json = await SendRequestAsync<GuildEmojiJson, CloneGuildExpressionRequest>(HttpMethod.Post, $"/guilds/{guildId}/emojis/clone", new CloneGuildExpressionRequest
+        {
+            SourceEmojiId = sourceEmojiId
+        }, true, options: options);
+        return GuildEmoji.Create(_client, json, guildId);
+    }
+
+    /// <summary>
     /// Create stickers for a guild.
     /// </summary>
     /// <remarks>
@@ -1608,6 +1906,22 @@ public class FluxerApiClient : FluxerBaseApiClient
         => await SendRequestRawAsync(HttpMethod.Delete, $"/guilds/{guildId}/stickers/{stickerId}", true, options: options);
 
     /// <summary>
+    /// Copy a sticker from another guild into the guild, keeping its name, description, tags and image.
+    /// </summary>
+    /// <remarks>
+    /// Requires either <see cref="GuildPermissions.CreateExpressions"/> or <see cref="GuildPermissions.ManageExpressions"/>.
+    /// </remarks>
+    /// <returns><see cref="GuildSticker"/></returns>
+    public async Task<GuildSticker> CloneStickerAsync(ulong guildId, ulong sourceStickerId, RequestOptions? options = null)
+    {
+        GuildStickerJson json = await SendRequestAsync<GuildStickerJson, CloneGuildExpressionRequest>(HttpMethod.Post, $"/guilds/{guildId}/stickers/clone", new CloneGuildExpressionRequest
+        {
+            SourceStickerId = sourceStickerId
+        }, true, options: options);
+        return GuildSticker.Create(_client, json, guildId);
+    }
+
+    /// <summary>
     /// Get all invites for the guild.
     /// </summary>
     /// <remarks>
@@ -1637,7 +1951,71 @@ public class FluxerApiClient : FluxerBaseApiClient
 
     #region Discovery API
 
+    /// <summary>
+    /// Get the categories guilds can be listed under in discovery.
+    /// </summary>
+    /// <returns>List of <see cref="DiscoveryCategoryJson"/></returns>
+    public async Task<IReadOnlyList<DiscoveryCategoryJson>> GetDiscoveryCategoriesAsync(RequestOptions? options = null)
+        => await SendRequestAsync<DiscoveryCategoryJson[]>(HttpMethod.Get, "/discovery/categories", true, options: options);
 
+    /// <summary>
+    /// Search the guilds listed in discovery.
+    /// </summary>
+    /// <param name="sortBy">"member_count", "online_count" or "relevance".</param>
+    /// <returns><see cref="DiscoveryGuildListJson"/></returns>
+    public async Task<DiscoveryGuildListJson> SearchDiscoveryGuildsAsync(string? query = null, int? category = null, string? language = null, string? tag = null,
+        string? sortBy = null, int? limit = null, int? offset = null, RequestOptions? options = null)
+    {
+        RestClientQueryParams queryParams = new RestClientQueryParams()
+            .AddIf(query != null, "query", query)
+            .AddIf(category != null, "category", category)
+            .AddIf(language != null, "language", language)
+            .AddIf(tag != null, "tag", tag)
+            .AddIf(sortBy != null, "sort_by", sortBy)
+            .AddIf(limit != null, QueryParams.Limit, limit)
+            .AddIf(offset != null, "offset", offset);
+
+        return await SendRequestQueryParamsAsync<DiscoveryGuildListJson>(HttpMethod.Get, queryParams, "/discovery/guilds", true, options: options);
+    }
+
+    /// <summary>
+    /// Get a guild's discovery application and whether it can apply.
+    /// </summary>
+    /// <remarks>
+    /// Requires <see cref="GuildPermissions.ManageGuild"/>.
+    /// </remarks>
+    /// <returns><see cref="DiscoveryInfoJson"/></returns>
+    public async Task<DiscoveryInfoJson> GetDiscoveryStatusAsync(ulong guildId, RequestOptions? options = null)
+        => await SendRequestAsync<DiscoveryInfoJson>(HttpMethod.Get, $"/guilds/{guildId}/discovery", true, options: options);
+
+    /// <summary>
+    /// Apply for a guild to be listed in discovery.
+    /// </summary>
+    /// <remarks>
+    /// Requires <see cref="GuildPermissions.ManageGuild"/>.
+    /// </remarks>
+    /// <returns><see cref="DiscoveryApplicationJson"/></returns>
+    public async Task<DiscoveryApplicationJson> ApplyForDiscoveryAsync(ulong guildId, DiscoveryApplicationRequest request, RequestOptions? options = null)
+        => await SendRequestAsync<DiscoveryApplicationJson, DiscoveryApplicationRequest>(HttpMethod.Post, $"/guilds/{guildId}/discovery", request, true, options: options);
+
+    /// <summary>
+    /// Change a guild's discovery listing. Only the fields that are set change.
+    /// </summary>
+    /// <remarks>
+    /// Requires <see cref="GuildPermissions.ManageGuild"/>.
+    /// </remarks>
+    /// <returns><see cref="DiscoveryApplicationJson"/></returns>
+    public async Task<DiscoveryApplicationJson> UpdateDiscoveryApplicationAsync(ulong guildId, DiscoveryApplicationRequest request, RequestOptions? options = null)
+        => await SendRequestAsync<DiscoveryApplicationJson, DiscoveryApplicationRequest>(HttpMethod.Patch, $"/guilds/{guildId}/discovery", request, true, options: options);
+
+    /// <summary>
+    /// Withdraw a guild's discovery application, or remove it from discovery.
+    /// </summary>
+    /// <remarks>
+    /// Requires <see cref="GuildPermissions.ManageGuild"/>.
+    /// </remarks>
+    public async Task WithdrawDiscoveryApplicationAsync(ulong guildId, RequestOptions? options = null)
+        => await SendRequestRawAsync(HttpMethod.Delete, $"/guilds/{guildId}/discovery", true, options: options);
 
     #endregion
 
@@ -1702,6 +2080,26 @@ public class FluxerApiClient : FluxerBaseApiClient
     #endregion
 
     #region Users API
+    /// <summary>
+    /// Get the latest message in each of up to 100 channels.
+    /// </summary>
+    /// <returns>The latest <see cref="Message"/> by channel id, or null for a channel without messages</returns>
+    public async Task<IReadOnlyDictionary<ulong, Message?>> PreloadMessagesAsync(IEnumerable<ulong> channelIds, RequestOptions? options = null)
+    {
+        Dictionary<ulong, MessageJson?> json = await SendRequestAsync<Dictionary<ulong, MessageJson?>, PreloadMessagesRequest>(HttpMethod.Post, "/users/@me/channels/messages/preload", new PreloadMessagesRequest
+        {
+            ChannelIds = channelIds
+        }, true, options: options);
+        return json.ToDictionary(x => x.Key, x => x.Value == null ? null : Message.Create(_client, x.Value));
+    }
+
+    /// <summary>
+    /// Delete every message the current user sent in a guild. Fluxer deletes them in the background.
+    /// </summary>
+    /// <param name="verification">The password or MFA code user accounts must confirm with.</param>
+    public async Task DeleteOwnGuildMessagesAsync(ulong guildId, SudoVerificationRequest? verification = null, RequestOptions? options = null)
+        => await SendRequestAsync(HttpMethod.Post, $"/users/@me/guilds/{guildId}/messages/bulk-delete-mine", verification ?? new SudoVerificationRequest(), true, options: options);
+
     /// <summary>
     /// Get the current user.
     /// </summary>
@@ -1875,6 +2273,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// <remarks>
     /// User account only.
     /// </remarks>
+    [Obsolete("Fluxer removed phone numbers and SMS verification.")]
     public async Task PostCurrentUserPhoneSendVerificationAsync<TRequest>(TRequest data, RequestOptions? options = null)
         => await SendRequestAsync<TRequest>(HttpMethod.Post, "/users/@me/phone/send-verification", data, true, options: options);
 
@@ -1884,6 +2283,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// <remarks>
     /// User account only.
     /// </remarks>
+    [Obsolete("Fluxer removed phone numbers and SMS verification.")]
     public async Task<TResponse> PostCurrentUserPhoneVerifyAsync<TRequest, TResponse>(TRequest data, RequestOptions? options = null)
         => await SendRequestAsync<TResponse, TRequest>(HttpMethod.Post, "/users/@me/phone/verify", data, true, options: options);
 
@@ -1893,6 +2293,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// <remarks>
     /// User account only.
     /// </remarks>
+    [Obsolete("Fluxer removed phone numbers and SMS verification.")]
     public async Task<TResponse> PostCurrentUserPhoneAsync<TRequest, TResponse>(TRequest data, RequestOptions? options = null)
         => await SendRequestAsync<TResponse, TRequest>(HttpMethod.Post, "/users/@me/phone", data, true, options: options);
 
@@ -1902,6 +2303,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// <remarks>
     /// User account only.
     /// </remarks>
+    [Obsolete("Fluxer removed phone numbers and SMS verification.")]
     public async Task DeleteCurrentUserPhoneAsync<TRequest>(TRequest data, RequestOptions? options = null)
         => await SendRequestAsync<TRequest>(HttpMethod.Delete, "/users/@me/phone", data, true, options: options);
 
@@ -1911,6 +2313,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// <remarks>
     /// User account only.
     /// </remarks>
+    [Obsolete("Fluxer removed phone numbers and SMS verification.")]
     public async Task PostCurrentUserMfaSmsEnableAsync<TRequest>(TRequest data, RequestOptions? options = null)
         => await SendRequestAsync<TRequest>(HttpMethod.Post, "/users/@me/mfa/sms/enable", data, true, options: options);
 
@@ -1920,6 +2323,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// <remarks>
     /// User account only.
     /// </remarks>
+    [Obsolete("Fluxer removed phone numbers and SMS verification.")]
     public async Task PostCurrentUserMfaSmsDisableAsync<TRequest>(TRequest data, RequestOptions? options = null)
         => await SendRequestAsync<TRequest>(HttpMethod.Post, "/users/@me/mfa/sms/disable", data, true, options: options);
 

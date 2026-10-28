@@ -237,4 +237,20 @@ public static class ChannelHelpers
     /// <inheritdoc cref="FluxerApiClient.GetThreadChannelAsync(ulong, RequestOptions?)" />
     public static Task<ThreadChannel?> GetThreadChannelAsync(this Channel channel, ulong threadId, RequestOptions? options = null)
         => channel.Client.Rest.GetThreadChannelAsync(threadId, options);
+
+    /// <inheritdoc cref="FluxerApiClient.GetSlowmodeStateAsync(ulong, RequestOptions?)" />
+    public static Task<SlowmodeStateJson> GetSlowmodeStateAsync(this Channel channel, RequestOptions? options = null)
+        => channel.Client.Rest.GetSlowmodeStateAsync(channel.Id, options);
+
+    /// <inheritdoc cref="FluxerApiClient.GetFollowerStatsAsync(ulong, RequestOptions?)" />
+    public static Task<ChannelFollowerStatsJson> GetFollowerStatsAsync(this Channel channel, RequestOptions? options = null)
+        => channel.Client.Rest.GetFollowerStatsAsync(channel.Id, options);
+
+    /// <inheritdoc cref="FluxerApiClient.AcknowledgePinsAsync(ulong, RequestOptions?)" />
+    public static Task AcknowledgePinsAsync(this Channel channel, RequestOptions? options = null)
+        => channel.Client.Rest.AcknowledgePinsAsync(channel.Id, options);
+
+    /// <inheritdoc cref="FluxerApiClient.DeleteOwnMessagesAsync(ulong, SudoVerificationRequest?, RequestOptions?)" />
+    public static Task DeleteOwnMessagesAsync(this Channel channel, SudoVerificationRequest? verification = null, RequestOptions? options = null)
+        => channel.Client.Rest.DeleteOwnMessagesAsync(channel.Id, verification, options);
 }

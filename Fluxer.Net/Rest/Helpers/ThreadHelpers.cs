@@ -66,4 +66,32 @@ public static class ThreadHelpers
     /// <inheritdoc cref="FluxerApiClient.RemoveThreadMemberAsync(ulong, ulong, RequestOptions?)" />
     public static Task RemoveMemberAsync(this IThreadChannel channel, GuildMember member, RequestOptions? options = null)
         => ClientOf(channel).Rest.RemoveThreadMemberAsync(channel.Id, member.Id, options);
+
+    /// <inheritdoc cref="FluxerApiClient.GetThreadMembersAsync(ulong, bool, int?, ulong?, RequestOptions?)" />
+    public static Task<IEnumerable<ThreadMember>> GetUsersAsync(this IThreadChannel channel, bool withMember = false, int? limit = null, ulong? afterId = null, RequestOptions? options = null)
+        => ClientOf(channel).Rest.GetThreadMembersAsync(channel.Id, withMember, limit, afterId, options);
+
+    /// <inheritdoc cref="FluxerApiClient.GetThreadMemberAsync(ulong, ulong, bool, RequestOptions?)" />
+    public static Task<ThreadMember> GetUserAsync(this IThreadChannel channel, ulong userId, bool withMember = false, RequestOptions? options = null)
+        => ClientOf(channel).Rest.GetThreadMemberAsync(channel.Id, userId, withMember, options);
+
+    /// <inheritdoc cref="FluxerApiClient.GetPublicArchivedThreadsAsync(ulong, int?, DateTimeOffset?, RequestOptions?)" />
+    public static Task<ThreadList> GetPublicArchivedThreadsAsync(this Channel channel, int? limit = null, DateTimeOffset? before = null, RequestOptions? options = null)
+        => channel.Client.Rest.GetPublicArchivedThreadsAsync(channel.Id, limit, before, options);
+
+    /// <inheritdoc cref="FluxerApiClient.GetPrivateArchivedThreadsAsync(ulong, int?, DateTimeOffset?, RequestOptions?)" />
+    public static Task<ThreadList> GetPrivateArchivedThreadsAsync(this Channel channel, int? limit = null, DateTimeOffset? before = null, RequestOptions? options = null)
+        => channel.Client.Rest.GetPrivateArchivedThreadsAsync(channel.Id, limit, before, options);
+
+    /// <inheritdoc cref="FluxerApiClient.GetJoinedPrivateArchivedThreadsAsync(ulong, int?, ulong?, RequestOptions?)" />
+    public static Task<ThreadList> GetJoinedPrivateArchivedThreadsAsync(this Channel channel, int? limit = null, ulong? beforeId = null, RequestOptions? options = null)
+        => channel.Client.Rest.GetJoinedPrivateArchivedThreadsAsync(channel.Id, limit, beforeId, options);
+
+    /// <inheritdoc cref="FluxerApiClient.SearchThreadsAsync(ulong, ThreadSearchQuery, RequestOptions?)" />
+    public static Task<ThreadList> SearchThreadsAsync(this Channel channel, ThreadSearchQuery query, RequestOptions? options = null)
+        => channel.Client.Rest.SearchThreadsAsync(channel.Id, query, options);
+
+    /// <inheritdoc cref="FluxerApiClient.GetActiveThreadsAsync(ulong, RequestOptions?)" />
+    public static Task<ThreadList> GetActiveThreadsAsync(this Guild guild, RequestOptions? options = null)
+        => guild.Client.Rest.GetActiveThreadsAsync(guild.Id, options);
 }

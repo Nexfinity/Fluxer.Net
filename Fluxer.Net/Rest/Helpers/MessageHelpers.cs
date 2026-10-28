@@ -118,4 +118,16 @@ public static class MessageHelpers
     /// <inheritdoc cref="FluxerApiClient.CreateMessageThreadAsync(ulong, ulong, CreatePublicThreadRequest, RequestOptions?)" />
     public static Task<ThreadChannel> CreateThreadAsync(this Message message, CreatePublicThreadRequest req, RequestOptions? options = null)
         => message.Client.Rest.CreateMessageThreadAsync(message.ChannelId, message.Id, req, options: options);
+
+    /// <inheritdoc cref="FluxerApiClient.GetReactionUsersAsync(ulong, ulong, string, int?, ulong?, RequestOptions?)" />
+    public static Task<ReactionUserPage> GetReactionUsersAsync(this Message message, string emoji, int? limit = null, ulong? afterId = null, RequestOptions? options = null)
+        => message.Client.Rest.GetReactionUsersAsync(message.ChannelId, message.Id, emoji, limit, afterId, options);
+
+    /// <inheritdoc cref="FluxerApiClient.GetReactionUsersAsync(ulong, ulong, string, int?, ulong?, RequestOptions?)" />
+    public static Task<ReactionUserPage> GetReactionUsersAsync(this Message message, Emoji emoji, int? limit = null, ulong? afterId = null, RequestOptions? options = null)
+        => message.Client.Rest.GetReactionUsersAsync(message.ChannelId, message.Id, emoji.ToRequest(), limit, afterId, options);
+
+    /// <inheritdoc cref="FluxerApiClient.GetCrosspostSourceAsync(ulong, ulong, RequestOptions?)" />
+    public static Task<CrosspostSourceGuildJson> GetCrosspostSourceAsync(this Message message, RequestOptions? options = null)
+        => message.Client.Rest.GetCrosspostSourceAsync(message.ChannelId, message.Id, options);
 }

@@ -9,4 +9,6 @@ public static class QueryParams
     public const string After = "after";
     public const string Before = "before";
     public const string Around = "around";
+    public const string UserId = "user_id";
+    public const string ActionType = "action_type";
 }

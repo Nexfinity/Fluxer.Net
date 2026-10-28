@@ -22,6 +22,9 @@ public class RoleChangeDataJson : IAuditLogData
     [JsonProperty("color")]
     public int? Color { get; set; }
 
+    [JsonProperty("icon_hash")]
+    public string? IconHash { get; set; }
+
     [JsonProperty("unicode_emoji")]
     public string? UnicodeEmoji { get; set; }
 

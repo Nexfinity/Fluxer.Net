@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Serilog;
 using System.Reflection;
 
 namespace Fluxer.Net;
@@ -62,33 +63,58 @@ public class SocketAuditLog : Entity, ISnowflake
                 data.Raw.NewData.Add(c.Key, c.NewValue);
             }
         }
-        Type? type = null;
-        switch (data.Action)
-        {
-            case ActionType.GuildUpdated:
-                data.OldData = new GuildChangeDataJson();
-                data.NewData = new GuildChangeDataJson();
-                type = typeof(GuildChangeDataJson);
-                break;
-        }
+        Type? type = GetChangeDataType(data.Action);
         if (type != null)
         {
+            data.OldData = (IAuditLogData)Activator.CreateInstance(type)!;
+            data.NewData = (IAuditLogData)Activator.CreateInstance(type)!;
+
+            ILogger? logger = (client as FluxerClient)?.Config.GatewaySerilog;
             PropertyInfo[] props = type.GetProperties();
             foreach (PropertyInfo p in props)
             {
                 if (p.GetCustomAttributes(typeof(JsonPropertyAttribute), true).FirstOrDefault() is not JsonPropertyAttribute jsonAttribute)
                     continue;
 
-                AuditLogChangeJson? change = json.Changes.FirstOrDefault(x => x.Key == jsonAttribute.PropertyName);
+                AuditLogChangeJson? change = json.Changes?.FirstOrDefault(x => x.Key == jsonAttribute.PropertyName);
                 if (change == null)
                     continue;
 
-                if (data.OldData != null)
-                    p.SetValue(data.OldData, change.OldValue?.ToObject(p.PropertyType, FluxerClient._gatewaySerializer));
-                p.SetValue(data.NewData, change.NewValue?.ToObject(p.PropertyType, FluxerClient._gatewaySerializer));
+                SetChangeValue(p, data.OldData, change.OldValue, logger);
+                SetChangeValue(p, data.NewData, change.NewValue, logger);
             }
 
         }
         return data;
+    }
+
+    private static Type? GetChangeDataType(ActionType action) => action switch
+    {
+        ActionType.GuildUpdated => typeof(GuildChangeDataJson),
+        ActionType.ChannelCreated or ActionType.ChannelUpdated or ActionType.ChannelDeleted => typeof(ChannelChangeDataJson),
+        ActionType.Ban or ActionType.Unban => typeof(BanChangeDataJson),
+        ActionType.MemberUpdated or ActionType.MemberRoleUpdated => typeof(MemberChangeDataJson),
+        ActionType.MemberMoved or ActionType.MemberDisconnected => typeof(VoiceChannelChangeDataJson),
+        ActionType.RoleCreated or ActionType.RoleUpdated or ActionType.RoleDeleted => typeof(RoleChangeDataJson),
+        ActionType.InviteCreated or ActionType.InviteUpdated or ActionType.InviteDeleted => typeof(InviteChangeDataJson),
+        ActionType.WebhookCreated or ActionType.WebhookUpdated or ActionType.WebhookDeleted => typeof(WebhookChangeDataJson),
+        ActionType.EmojiCreated or ActionType.EmojiUpdated or ActionType.EmojiDeleted => typeof(EmojiChangeDataJson),
+        ActionType.StickerCreated or ActionType.StickerUpdated or ActionType.StickerDeleted => typeof(StickerChangeDataJson),
+        _ => null
+    };
+
+    private static void SetChangeValue(PropertyInfo property, IAuditLogData target, JToken? value, ILogger? logger)
+    {
+        if (value == null || value.Type == JTokenType.Null)
+            return;
+
+        try
+        {
+            property.SetValue(target, value.ToObject(property.PropertyType, FluxerClient._gatewaySerializer));
+        }
+        catch (Exception ex) when (ex is JsonException or ArgumentException or FormatException or InvalidCastException or OverflowException)
+        {
+            logger?.Debug(ex, "Could not convert audit log change {Property} to {Type}", property.Name, property.PropertyType);
+        }
     }
 }
