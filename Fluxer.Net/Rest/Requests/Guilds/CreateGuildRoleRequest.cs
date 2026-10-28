@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Fluxer.Net.Extensions;
+using Newtonsoft.Json;
 
 namespace Fluxer.Net.Rest;
 
@@ -20,5 +21,6 @@ public class CreateGuildRoleRequest
     public string Name { get; set; }
 
     [JsonProperty("permissions")]
+    [JsonConverter(typeof(StringUInt64Converter))]
     public ulong? Permissions { get; set; }
 }

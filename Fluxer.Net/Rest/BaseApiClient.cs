@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.WebUtilities;
 using Newtonsoft.Json;
 using Serilog;
+using Serilog.Events;
 using System.Net;
 using System.Net.Http.Headers;
 using System.Reflection;
@@ -74,7 +75,8 @@ public class FluxerBaseApiClient
         ICollection<KeyValuePair<string, (HttpContent content, string? filename)>>? otherFormData = null, RequestOptions? options = null)
     {
         string rawContent = JsonConvert.SerializeObject(data, FluxerClient._restSerializer);
-        _logger.Verbose("Sending {@Enums} to {Route}", rawContent, route);
+        if (_logger.IsEnabled(LogEventLevel.Verbose))
+            _logger.Verbose("Sending {Enums} to {Route}", LogRedaction.Redact(rawContent), LogRedaction.Redact(route));
         HttpRequestMessage req = new HttpRequestMessage()
         {
             Method = method,
@@ -130,9 +132,11 @@ public class FluxerBaseApiClient
 
         HttpResponseMessage result = await HttpClient.SendAsync(req);
 
-        _logger.Debug("Made {Method} request to {Route}", method, route);
+        if (_logger.IsEnabled(LogEventLevel.Debug))
+            _logger.Debug("Made {Method} request to {Route}", method, LogRedaction.Redact(route));
         string resp = await result.Content.ReadAsStringAsync();
-        _logger.Verbose("Received {Code}:{Result} from {Route}", result.StatusCode, resp, route);
+        if (_logger.IsEnabled(LogEventLevel.Verbose))
+            _logger.Verbose("Received {Code}:{Result} from {Route}", result.StatusCode, LogRedaction.Redact(resp), LogRedaction.Redact(route));
 
         if (!result.IsSuccessStatusCode)
         {
@@ -142,9 +146,9 @@ public class FluxerBaseApiClient
             if (throwOnNonSuccess)
             {
                 if (json != null)
-                    throw new FluxerApiException($"Fluxer returned an error code {result.StatusCode} with {json.Code} - {json.Reason}", resp);
+                    throw new FluxerApiException($"Fluxer returned an error code {result.StatusCode} with {json.Code} - {json.Reason}", resp, result.StatusCode, json);
 
-                throw new FluxerApiException($"Fluxer returned an error code {result.StatusCode}", resp);
+                throw new FluxerApiException($"Fluxer returned an error code {result.StatusCode}", resp, result.StatusCode, null);
             }
         }
 
@@ -173,9 +177,11 @@ public class FluxerBaseApiClient
 
         HttpResponseMessage result = await HttpClient.SendAsync(req);
 
-        _logger.Debug("Made {Method} request to {Route}", method, route);
+        if (_logger.IsEnabled(LogEventLevel.Debug))
+            _logger.Debug("Made {Method} request to {Route}", method, LogRedaction.Redact(route));
         string resp = await result.Content.ReadAsStringAsync();
-        _logger.Verbose("Received {Code}:{Result} from {Route}", result.StatusCode, resp, route);
+        if (_logger.IsEnabled(LogEventLevel.Verbose))
+            _logger.Verbose("Received {Code}:{Result} from {Route}", result.StatusCode, LogRedaction.Redact(resp), LogRedaction.Redact(route));
 
         if (!result.IsSuccessStatusCode)
         {
@@ -185,9 +191,9 @@ public class FluxerBaseApiClient
             if (throwOnNonSuccess)
             {
                 if (json != null)
-                    throw new FluxerApiException($"Fluxer returned an error code {result.StatusCode} with {json.Code} - {json.Reason}", resp);
+                    throw new FluxerApiException($"Fluxer returned an error code {result.StatusCode} with {json.Code} - {json.Reason}", resp, result.StatusCode, json);
 
-                throw new FluxerApiException($"Fluxer returned an error code {result.StatusCode}", resp);
+                throw new FluxerApiException($"Fluxer returned an error code {result.StatusCode}", resp, result.StatusCode, null);
             }
         }
 
@@ -209,7 +215,8 @@ public class FluxerBaseApiClient
     public async Task<HttpStatusCode> SendRequestAsync<TSend>(HttpMethod method, string route, TSend data, bool throwOnNonSuccess = false,
         bool authorize = true, RequestOptions? options = null)
     {
-        _logger.Verbose("Sending {@Enums} to {Route}", data, route);
+        if (_logger.IsEnabled(LogEventLevel.Verbose))
+            _logger.Verbose("Sending {Enums} to {Route}", LogRedaction.Redact(JsonConvert.SerializeObject(data, FluxerClient._restSerializer)), LogRedaction.Redact(route));
         HttpRequestMessage req = new HttpRequestMessage()
         {
             Method = method,
@@ -229,9 +236,11 @@ public class FluxerBaseApiClient
             req.Headers.Add("Authorization", _token);
         HttpResponseMessage result = await HttpClient.SendAsync(req);
 
-        _logger.Debug("Made {Method} request to {Route}", method, route);
+        if (_logger.IsEnabled(LogEventLevel.Debug))
+            _logger.Debug("Made {Method} request to {Route}", method, LogRedaction.Redact(route));
         string resp = await result.Content.ReadAsStringAsync();
-        _logger.Verbose("Received {Code}:{Result} from {Route}", result.StatusCode, resp, route);
+        if (_logger.IsEnabled(LogEventLevel.Verbose))
+            _logger.Verbose("Received {Code}:{Result} from {Route}", result.StatusCode, LogRedaction.Redact(resp), LogRedaction.Redact(route));
 
         if (!result.IsSuccessStatusCode)
         {
@@ -241,9 +250,9 @@ public class FluxerBaseApiClient
             if (throwOnNonSuccess)
             {
                 if (json != null)
-                    throw new FluxerApiException($"Fluxer returned an error code {result.StatusCode} with {json.Code} - {json.Reason}", resp);
+                    throw new FluxerApiException($"Fluxer returned an error code {result.StatusCode} with {json.Code} - {json.Reason}", resp, result.StatusCode, json);
 
-                throw new FluxerApiException($"Fluxer returned an error code {result.StatusCode}", resp);
+                throw new FluxerApiException($"Fluxer returned an error code {result.StatusCode}", resp, result.StatusCode, null);
             }
         }
 
@@ -281,9 +290,11 @@ public class FluxerBaseApiClient
 
         HttpResponseMessage result = await HttpClient.SendAsync(req);
 
-        _logger.Debug("Made {Method} request to {Route}", method, route);
+        if (_logger.IsEnabled(LogEventLevel.Debug))
+            _logger.Debug("Made {Method} request to {Route}", method, LogRedaction.Redact(route));
         string resp = await result.Content.ReadAsStringAsync();
-        _logger.Verbose("Received {Code}:{Result} from {Route}", result.StatusCode, resp, route);
+        if (_logger.IsEnabled(LogEventLevel.Verbose))
+            _logger.Verbose("Received {Code}:{Result} from {Route}", result.StatusCode, LogRedaction.Redact(resp), LogRedaction.Redact(route));
 
         if (!result.IsSuccessStatusCode)
         {
@@ -293,9 +304,9 @@ public class FluxerBaseApiClient
             if (throwOnNonSuccess)
             {
                 if (json != null)
-                    throw new FluxerApiException($"Fluxer returned an error code {result.StatusCode} with {json.Code} - {json.Reason}", resp);
+                    throw new FluxerApiException($"Fluxer returned an error code {result.StatusCode} with {json.Code} - {json.Reason}", resp, result.StatusCode, json);
 
-                throw new FluxerApiException($"Fluxer returned an error code {result.StatusCode}", resp);
+                throw new FluxerApiException($"Fluxer returned an error code {result.StatusCode}", resp, result.StatusCode, null);
             }
         }
 
@@ -348,9 +359,11 @@ public class FluxerBaseApiClient
 
         HttpResponseMessage result = await HttpClient.SendAsync(req);
 
-        _logger.Debug("Made {Method} request to {Route}", method, route);
+        if (_logger.IsEnabled(LogEventLevel.Debug))
+            _logger.Debug("Made {Method} request to {Route}", method, LogRedaction.Redact(route));
         string resp = await result.Content.ReadAsStringAsync();
-        _logger.Verbose("Received {Code}:{Result} from {Route}", result.StatusCode, resp, route);
+        if (_logger.IsEnabled(LogEventLevel.Verbose))
+            _logger.Verbose("Received {Code}:{Result} from {Route}", result.StatusCode, LogRedaction.Redact(resp), LogRedaction.Redact(route));
 
         if (!result.IsSuccessStatusCode)
         {
@@ -360,9 +373,9 @@ public class FluxerBaseApiClient
             if (throwOnNonSuccess)
             {
                 if (json != null)
-                    throw new FluxerApiException($"Fluxer returned an error code {result.StatusCode} with {json.Code} - {json.Reason}", resp);
+                    throw new FluxerApiException($"Fluxer returned an error code {result.StatusCode} with {json.Code} - {json.Reason}", resp, result.StatusCode, json);
 
-                throw new FluxerApiException($"Fluxer returned an error code {result.StatusCode}", resp);
+                throw new FluxerApiException($"Fluxer returned an error code {result.StatusCode}", resp, result.StatusCode, null);
             }
         }
 
@@ -393,9 +406,11 @@ public class FluxerBaseApiClient
             req.Headers.Add("Authorization", _token);
         HttpResponseMessage result = await HttpClient.SendAsync(req);
 
-        _logger.Debug("Made {Method} request to {Route} with response code {Code}", method, route, result.StatusCode);
+        if (_logger.IsEnabled(LogEventLevel.Debug))
+            _logger.Debug("Made {Method} request to {Route} with response code {Code}", method, LogRedaction.Redact(route), result.StatusCode);
         string resp = await result.Content.ReadAsStringAsync();
-        _logger.Verbose("Received {Code}:{Result} from {Route}", result.StatusCode, resp, route);
+        if (_logger.IsEnabled(LogEventLevel.Verbose))
+            _logger.Verbose("Received {Code}:{Result} from {Route}", result.StatusCode, LogRedaction.Redact(resp), LogRedaction.Redact(route));
 
         if (!result.IsSuccessStatusCode)
         {
@@ -405,9 +420,9 @@ public class FluxerBaseApiClient
             if (throwOnNonSuccess)
             {
                 if (json != null)
-                    throw new FluxerApiException($"Fluxer returned an error code {result.StatusCode} with {json.Code} - {json.Reason}", resp);
+                    throw new FluxerApiException($"Fluxer returned an error code {result.StatusCode} with {json.Code} - {json.Reason}", resp, result.StatusCode, json);
 
-                throw new FluxerApiException($"Fluxer returned an error code {result.StatusCode}", resp);
+                throw new FluxerApiException($"Fluxer returned an error code {result.StatusCode}", resp, result.StatusCode, null);
             }
         }
 

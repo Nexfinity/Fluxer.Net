@@ -20,5 +20,5 @@ public class ChannelPermissionsConverter : JsonConverter<ChannelPermissions>
     }
 
     public override void WriteJson(JsonWriter writer, ChannelPermissions value, JsonSerializer serializer)
-        => writer.WriteValue((ulong)value.RawValue);
+        => writer.WriteValue(((ulong)value.RawValue).ToString());
 }

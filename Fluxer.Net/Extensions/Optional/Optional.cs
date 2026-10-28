@@ -26,6 +26,11 @@ public struct Optional<T>
     /// </summary>
     /// <returns>The existing or alternative value.</returns>
     public T ValueOr(T alternative) => hasValue ? value : alternative;
+
+    /// <summary>
+    /// Wraps a value, so request properties can be assigned the value directly.
+    /// </summary>
+    public static implicit operator Optional<T>(T value) => new Optional<T>(value, true);
 }
 
 /// <summary>

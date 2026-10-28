@@ -62,8 +62,8 @@ public class SocketGuild : Guild
     public TextChannel? GetTextChannel(ulong channelId)
         => Channels.GetValueOrDefault(channelId) as TextChannel;
 
-    public VoiceChannel? GetVoiceChannel(ulong channelId)
-        => Channels.GetValueOrDefault(channelId) as VoiceChannel;
+    public IVoiceChannel? GetVoiceChannel(ulong channelId)
+        => Channels.GetValueOrDefault(channelId) as IVoiceChannel;
 
     public CategoryChannel? GetCategoryChannel(ulong channelId)
         => Channels.GetValueOrDefault(channelId) as CategoryChannel;
@@ -71,8 +71,8 @@ public class SocketGuild : Guild
     public LinkChannel? GetLinkChannel(ulong channelId)
         => Channels.GetValueOrDefault(channelId) as LinkChannel;
 
-    public NewsChannel? GetNewsChannel(ulong channelId)
-        => Channels.GetValueOrDefault(channelId) as NewsChannel;
+    public INewsChannel? GetNewsChannel(ulong channelId)
+        => Channels.GetValueOrDefault(channelId) as INewsChannel;
 
     public ForumChannel? GetForumChannel(ulong channelId)
         => Channels.GetValueOrDefault(channelId) as ForumChannel;

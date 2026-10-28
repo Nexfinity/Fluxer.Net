@@ -14,7 +14,12 @@ public static class GuildHelpers
         => guild.Client.Rest.LeaveGuildAsync(guild.Id, options);
 
     /// <inheritdoc cref="FluxerApiClient.UpdateGuildAsync(ulong, GuildJson, RequestOptions?)" />
+    [Obsolete("Every property of GuildJson is sent, so this also resets settings that were not meant to change. Use the UpdateGuildRequest overload.")]
     public static Task<Guild> ModifyAsync(this Guild guild, GuildJson request, RequestOptions? options = null)
+        => guild.Client.Rest.UpdateGuildAsync(guild.Id, request, options);
+
+    /// <inheritdoc cref="FluxerApiClient.UpdateGuildAsync(ulong, UpdateGuildRequest, RequestOptions?)" />
+    public static Task<Guild> ModifyAsync(this Guild guild, UpdateGuildRequest request, RequestOptions? options = null)
         => guild.Client.Rest.UpdateGuildAsync(guild.Id, request, options);
 
     /// <inheritdoc cref="FluxerApiClient.UpdateChannelPositionsAsync(ulong, IEnumerable{ChannelPositionUpdateRequestItem}, RequestOptions?)" />

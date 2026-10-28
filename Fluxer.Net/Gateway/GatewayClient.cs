@@ -39,6 +39,12 @@ public partial class FluxerGatewayClient : IDisposable
     private readonly FluxerClient _client;
     private WebsocketClient _webSocket;
     private readonly Stopwatch _gatewayDuration = new();
+    private long _heartbeatSentAt;
+
+    /// <summary>
+    /// Milliseconds between the last heartbeat and its acknowledgement, or 0 before the first one.
+    /// </summary>
+    public int Latency { get; private set; }
 
     public FluxerGatewayConfig Config { get; internal set; }
 
@@ -281,9 +287,14 @@ public partial class FluxerGatewayClient : IDisposable
         };
         SendGatewayPacket(login);
 
-        await Task.WhenAny(guild._downloaderPromise.Task, Task.Delay(new TimeSpan(0, 0, 30)));
+        TaskCompletionSource<bool> promise = guild._downloaderPromise;
+        if (await Task.WhenAny(promise.Task, Task.Delay(new TimeSpan(0, 0, 30))) != promise.Task)
+        {
+            guild._downloaderPromise = null;
+            return false;
+        }
 
-        return guild._downloaderPromise.Task.Result;
+        return promise.Task.Result;
     }
 
     /// <summary>
@@ -304,7 +315,7 @@ public partial class FluxerGatewayClient : IDisposable
         }
 
         string text = JsonConvert.SerializeObject(Data, FluxerClient._restSerializer);
-        _logger.Debug("Sending serialized gateway packet {Enums}", text);
+        _logger.Debug("Sending serialized gateway packet {Enums}", LogRedaction.Redact(text));
         try
         {
             _webSocket.Send(text);
@@ -384,7 +395,7 @@ public partial class FluxerGatewayClient : IDisposable
     private void GatewayMessageHandler(string message)
     {
         // try deserializing the packet, fallback to regex
-        _logger.Verbose("Received raw gateway message {Message}", message);
+        _logger.Verbose("Received raw gateway message {Message}", LogRedaction.Redact(message));
         try
         {
             // Pre-parse to check for InvalidSession opcode (which has a boolean payload instead of an object)
@@ -1118,6 +1129,7 @@ public partial class FluxerGatewayClient : IDisposable
                                 role = Roles[data.Role.Id];
                                 role.Update(data.Role);
                             }
+                            guild.Roles[role.Id] = role;
                             RoleCreated?.Invoke(role);
                         }
                     }
@@ -1308,7 +1320,8 @@ public partial class FluxerGatewayClient : IDisposable
                     ChannelGatewayData? data = p.Data.ToObject<ChannelGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
                     {
-                        Channel channel = Channel.Create(_client, data);
+                        SocketGuild? createGuild = data.GuildId.HasValue ? GetGuild(data.GuildId.Value) : null;
+                        Channel channel = SocketChannel.Create(_client, data, createGuild);
                         if (!Channels.TryAdd(channel.Id, channel))
                         {
                             channel = Channels[channel.Id];
@@ -1354,9 +1367,9 @@ public partial class FluxerGatewayClient : IDisposable
                                 Channel before = channel.Clone();
                                 if (before.Type != data.Type)
                                 {
-                                    channel = SocketChannel.Create(_client, data);
-                                    Channels.TryUpdate(data.Id, channel, before);
-                                    guild.Channels.TryUpdate(data.Id, channel, before);
+                                    channel = SocketChannel.Create(_client, data, guild);
+                                    Channels[data.Id] = channel;
+                                    guild.Channels[data.Id] = channel;
                                 }
                                 else
                                     channel.Update(data);
@@ -1364,7 +1377,7 @@ public partial class FluxerGatewayClient : IDisposable
                             }
                             else
                             {
-                                channel = SocketChannel.Create(_client, data);
+                                channel = SocketChannel.Create(_client, data, guild);
                                 Channels.TryAdd(data.Id, channel);
                                 guild.Channels.TryAdd(data.Id, channel);
                             }
@@ -1373,7 +1386,7 @@ public partial class FluxerGatewayClient : IDisposable
                         {
                             if (!Channels.TryGetValue(data.Id, out Channel channel))
                             {
-                                channel = SocketChannel.Create(_client, data);
+                                channel = SocketChannel.Create(_client, data, null);
                                 Channels.TryAdd(data.Id, channel);
                             }
                             else
@@ -1402,9 +1415,9 @@ public partial class FluxerGatewayClient : IDisposable
                                 Channel before = channel.Clone();
                                 if (before.Type != c.Type)
                                 {
-                                    channel = SocketChannel.Create(_client, c);
-                                    Channels.TryUpdate(c.Id, channel, before);
-                                    guild.Channels.TryUpdate(c.Id, channel, before);
+                                    channel = SocketChannel.Create(_client, c, guild);
+                                    Channels[c.Id] = channel;
+                                    guild.Channels[c.Id] = channel;
                                 }
                                 else
                                     channel.Update(c);
@@ -1436,7 +1449,7 @@ public partial class FluxerGatewayClient : IDisposable
                                 return;
                             guild.Channels.TryRemove(data.Id, out _);
 
-                            ChannelDeleted?.Invoke(guild, channel ?? SocketChannel.Create(_client, data));
+                            ChannelDeleted?.Invoke(guild, channel ?? SocketChannel.Create(_client, data, guild));
                         }
                     }
                     else
@@ -1450,7 +1463,7 @@ public partial class FluxerGatewayClient : IDisposable
                     if (!data.GuildId.HasValue || !Guilds.TryGetValue(data.GuildId.Value, out SocketGuild guild))
                         return;
 
-                    Channel channel = Channel.Create(_client, data);
+                    Channel channel = SocketChannel.Create(_client, data, guild);
                     channel.GuildId = data.GuildId;
                     if (!Channels.TryAdd(data.Id, channel))
                     {
@@ -1471,7 +1484,18 @@ public partial class FluxerGatewayClient : IDisposable
                     if (!data.GuildId.HasValue || !Guilds.TryGetValue(data.GuildId.Value, out SocketGuild guild))
                         return;
 
-                    ThreadChannel channel = (ThreadChannel)SocketChannel.Create(_client, data);
+                    if (Channels.TryGetValue(data.Id, out Channel? cachedThread))
+                    {
+                        cachedThread.Update(data);
+                    }
+                    else
+                    {
+                        Channel socketThread = SocketChannel.Create(_client, data, guild);
+                        Channels.TryAdd(data.Id, socketThread);
+                        guild.Channels.TryAdd(data.Id, socketThread);
+                    }
+
+                    ThreadChannel channel = (ThreadChannel)Channel.Create(_client, data);
                     ThreadUpdated?.Invoke(guild, new Cacheable<ThreadChannel>(data.Id, null, () =>
                     {
                         return null;
@@ -1488,7 +1512,13 @@ public partial class FluxerGatewayClient : IDisposable
                     Channels.TryRemove(data.Id, out Channel channel);
                     guild.Channels.TryRemove(data.Id, out _);
 
-                    ThreadDeleted?.Invoke(guild, new Cacheable<ThreadChannel>(data.Id, channel as ThreadChannel, () =>
+                    if (channel is IThreadChannel)
+                    {
+                        data.Name ??= channel.Name;
+                        data.ParentId ??= channel.ParentId;
+                    }
+
+                    ThreadDeleted?.Invoke(guild, new Cacheable<ThreadChannel>(data.Id, channel is IThreadChannel ? Channel.Create(_client, data) as ThreadChannel : null, () =>
                     {
                         return null;
                     }));
@@ -1677,7 +1707,7 @@ public partial class FluxerGatewayClient : IDisposable
                             {
                                 guild.HasAllMembers = true;
                                 if (guild._downloaderPromise != null)
-                                    guild._downloaderPromise.SetResult(true);
+                                    guild._downloaderPromise.TrySetResult(true);
                             }
                         }
                     }
@@ -2478,6 +2508,9 @@ public partial class FluxerGatewayClient : IDisposable
 
     private void HandleHeartbeatAck()
     {
+        long sentAt = Interlocked.Read(ref _heartbeatSentAt);
+        if (sentAt != 0)
+            Latency = (int)((Stopwatch.GetTimestamp() - sentAt) * 1000 / Stopwatch.Frequency);
         HeartbeatAck?.Invoke();
     }
 
@@ -2661,6 +2694,7 @@ public partial class FluxerGatewayClient : IDisposable
                     Data = _sequence,
                     OpCode = FluxerOpCode.Heartbeat,
                 };
+                Interlocked.Exchange(ref _heartbeatSentAt, Stopwatch.GetTimestamp());
                 SendGatewayPacket(packet);
             }
         }

@@ -313,9 +313,24 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// Requires <see cref="ChannelPermissions.ManageChannel"/> for guild channels.
     /// </remarks>
     /// <returns><see cref="Channel"/></returns>
+    [Obsolete("Every property of ChannelJson is sent, so this also resets the channel's age restriction and flags. Use the UpdateChannelRequest overload.")]
     public async Task<Channel> UpdateChannelAsync(ulong channelId, ChannelJson channel, RequestOptions? options = null)
     {
         ChannelJson json = await SendRequestAsync<ChannelJson, ChannelJson>(HttpMethod.Patch, $"/channels/{channelId}", channel, true, options: options);
+        return Channel.Create(_client, json);
+    }
+
+    /// <summary>
+    /// Update a guild channel. Only the properties set on <paramref name="request"/> are changed.
+    /// </summary>
+    /// <remarks>
+    /// Requires <see cref="ChannelPermissions.ManageChannel"/>, and <see cref="ChannelPermissions.ManagePermissions"/>
+    /// to change permission overwrites.
+    /// </remarks>
+    /// <returns><see cref="Channel"/></returns>
+    public async Task<Channel> UpdateChannelAsync(ulong channelId, UpdateChannelRequest request, RequestOptions? options = null)
+    {
+        ChannelJson json = await SendRequestAsync<ChannelJson, UpdateChannelRequest>(HttpMethod.Patch, $"/channels/{channelId}", request, true, options: options);
         return Channel.Create(_client, json);
     }
 
@@ -558,6 +573,30 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// </remarks>
     public async Task UnpinMessageAsync(ulong channelId, ulong messageId, RequestOptions? options = null)
         => await SendRequestRawAsync(HttpMethod.Delete, $"/channels/{channelId}/pins/{messageId}", true, options: options);
+
+    /// <summary>
+    /// Create or replace the permission overwrite for a role or member on a guild channel.
+    /// </summary>
+    /// <remarks>
+    /// Requires <see cref="ChannelPermissions.ManagePermissions"/> in the channel. Not available on threads.
+    /// </remarks>
+    public async Task SetPermissionOverwriteAsync(ulong channelId, ulong targetId, PermissionOverwriteType type,
+        ChannelPermission allow, ChannelPermission deny, RequestOptions? options = null)
+        => await SendRequestAsync(HttpMethod.Put, $"/channels/{channelId}/permissions/{targetId}", new PermissionOverwriteRequest
+        {
+            Type = type,
+            Allow = (ulong)allow,
+            Deny = (ulong)deny
+        }, true, options: options);
+
+    /// <summary>
+    /// Remove the permission overwrite for a role or member from a guild channel.
+    /// </summary>
+    /// <remarks>
+    /// Requires <see cref="ChannelPermissions.ManagePermissions"/> in the channel.
+    /// </remarks>
+    public async Task DeletePermissionOverwriteAsync(ulong channelId, ulong targetId, RequestOptions? options = null)
+        => await SendRequestRawAsync(HttpMethod.Delete, $"/channels/{channelId}/permissions/{targetId}", true, options: options);
 
     /// <summary>
     /// Get reaction users for a certain emoji on a message.
@@ -1090,9 +1129,23 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// Requires <see cref="GuildPermissions.ManageGuild"/>.
     /// </remarks>
     /// <returns><see cref="Guild"/></returns>
+    [Obsolete("Every property of GuildJson is sent, so this also resets settings that were not meant to change. Use the UpdateGuildRequest overload.")]
     public async Task<Guild> UpdateGuildAsync(ulong guildId, GuildJson guild, RequestOptions? options = null)
     {
         GuildJson json = await SendRequestAsync<GuildJson, GuildJson>(HttpMethod.Patch, $"/guilds/{guildId}", guild, true, options: options);
+        return Guild.Create(_client, json);
+    }
+
+    /// <summary>
+    /// Update a guild that you manage. Only the properties set on <paramref name="request"/> are changed.
+    /// </summary>
+    /// <remarks>
+    /// Requires <see cref="GuildPermissions.ManageGuild"/>.
+    /// </remarks>
+    /// <returns><see cref="Guild"/></returns>
+    public async Task<Guild> UpdateGuildAsync(ulong guildId, UpdateGuildRequest request, RequestOptions? options = null)
+    {
+        GuildJson json = await SendRequestAsync<GuildJson, UpdateGuildRequest>(HttpMethod.Patch, $"/guilds/{guildId}", request, true, options: options);
         return Guild.Create(_client, json);
     }
 
@@ -1185,9 +1238,24 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// <see cref="GuildPermissions.MuteMembers"/> depending on property.
     /// </remarks>
     /// <returns><see cref="GuildMember"/></returns>
+    [Obsolete("Every property of GuildMemberJson is sent, including its empty role list, so this replaces the member's roles and voice state. Use the UpdateGuildMemberRequest overload.")]
     public async Task<GuildMember> UpdateMemberAsync(ulong guildId, ulong userId, GuildMemberJson member, RequestOptions? options = null)
     {
         GuildMemberJson json = await SendRequestAsync<GuildMemberJson, GuildMemberJson>(HttpMethod.Patch, $"/guilds/{guildId}/members/{userId}", member, true, options: options);
+        return GuildMember.Create(_client, json);
+    }
+
+    /// <summary>
+    /// Update a member of the guild. Only the properties set on <paramref name="request"/> are changed.
+    /// </summary>
+    /// <remarks>
+    /// Changing the nickname requires <see cref="GuildPermissions.ManageNicknames"/>, roles require
+    /// <see cref="GuildPermissions.ManageRoles"/>, a timeout requires <see cref="GuildPermissions.ModerateMembers"/>
+    /// and muting, deafening or moving requires the matching voice permission.
+    /// </remarks>
+    public async Task<GuildMember> UpdateMemberAsync(ulong guildId, ulong userId, UpdateGuildMemberRequest request, RequestOptions? options = null)
+    {
+        GuildMemberJson json = await SendRequestAsync<GuildMemberJson, UpdateGuildMemberRequest>(HttpMethod.Patch, $"/guilds/{guildId}/members/{userId}", request, true, options: options);
         return GuildMember.Create(_client, json);
     }
 
@@ -1667,9 +1735,20 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// Update the current user.
     /// </summary>
     /// <returns><see cref="CurrentUser"/></returns>
+    [Obsolete("Every property of UserJson is sent, so this also resets profile fields that were not meant to change. Use the UpdateCurrentUserRequest overload.")]
     public async Task<CurrentUser> UpdateCurrentUserAsync(UserJson user, RequestOptions? options = null)
     {
         CurrentUserJson json = await SendRequestAsync<CurrentUserJson, UserJson>(HttpMethod.Patch, "/users/@me", user, true, options: options);
+        return CurrentUser.Create(_client, json);
+    }
+
+    /// <summary>
+    /// Update the current user. Only the properties set on <paramref name="request"/> are changed.
+    /// </summary>
+    /// <returns><see cref="CurrentUser"/></returns>
+    public async Task<CurrentUser> UpdateCurrentUserAsync(UpdateCurrentUserRequest request, RequestOptions? options = null)
+    {
+        CurrentUserJson json = await SendRequestAsync<CurrentUserJson, UpdateCurrentUserRequest>(HttpMethod.Patch, "/users/@me", request, true, options: options);
         return CurrentUser.Create(_client, json);
     }
 

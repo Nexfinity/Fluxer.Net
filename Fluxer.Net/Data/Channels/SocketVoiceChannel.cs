@@ -2,7 +2,7 @@
 
 namespace Fluxer.Net;
 
-public class SocketVoiceChannel : SocketTextChannel
+public class SocketVoiceChannel : SocketTextChannel, IVoiceChannel
 {
     public ConcurrentDictionary<string, SocketVoiceState> VoiceStates { get; } = new ConcurrentDictionary<string, SocketVoiceState>();
 

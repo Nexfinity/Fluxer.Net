@@ -10,7 +10,7 @@ public class Message : Entity, IMessage
     public ulong ChannelId { get; private set; }
 
     /// <inheritdoc />
-    public User Author { get; private set; }
+    public User Author { get; internal set; }
 
     /// <inheritdoc />
     public ulong? WebhookId { get; private set; }
@@ -22,7 +22,7 @@ public class Message : Entity, IMessage
     public MessageFlag Flags { get; private set; }
 
     /// <inheritdoc />
-    public string Content { get; private set; }
+    public string Content { get; internal set; }
 
     /// <inheritdoc />
     public DateTimeOffset CreatedAt { get; private set; }

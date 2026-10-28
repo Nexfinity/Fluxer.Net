@@ -1,10 +1,12 @@
 ﻿namespace Fluxer.Net;
 
-public class ThreadChannel : TextChannel
+public class ThreadChannel : TextChannel, IThreadChannel
 {
     public ThreadType ThreadType { get; internal set; }
 
     public bool IsPrivate => ThreadType == ThreadType.PrivateThread;
+
+    public override ulong? CategoryId => null;
 
     internal ThreadChannel(FluxerBaseClient client) : base(client)
     {

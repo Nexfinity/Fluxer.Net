@@ -21,7 +21,7 @@ public abstract class FluxerBaseClient
     /// <summary>
     /// Http client for Fluxer with requests.
     /// </summary>
-    internal FluxerApiClient Rest { get; set; }
+    public FluxerApiClient Rest { get; internal set; }
 
     /// <summary>
     /// Client options and settings to configure.

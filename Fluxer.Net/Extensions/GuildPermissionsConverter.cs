@@ -20,5 +20,5 @@ public class GuildPermissionsConverter : JsonConverter<GuildPermissions>
     }
 
     public override void WriteJson(JsonWriter writer, GuildPermissions value, JsonSerializer serializer)
-        => writer.WriteValue((ulong)value.RawValue);
+        => writer.WriteValue(((ulong)value.RawValue).ToString());
 }

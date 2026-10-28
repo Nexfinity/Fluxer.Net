@@ -99,4 +99,18 @@ public class User : Entity, IUser
         IsSystem = json.IsSystem;
         MentionPreference = json.MentionPreference;
     }
+
+    internal UserJson ToJson() => new()
+    {
+        Id = Id,
+        Username = Username,
+        Discriminator = Discriminator,
+        DisplayName = DisplayName,
+        AvatarHash = AvatarHash,
+        AvatarColor = AvatarColor,
+        Flags = Flags,
+        IsBot = IsBot,
+        IsSystem = IsSystem,
+        MentionPreference = MentionPreference
+    };
 }

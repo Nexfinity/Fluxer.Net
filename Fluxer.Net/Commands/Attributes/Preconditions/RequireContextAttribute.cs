@@ -32,10 +32,29 @@ public class RequireContextAttribute : PreconditionAttribute
     }
 }
 
+/// <summary>
+/// Where a command may run. Combine values to allow several.
+/// </summary>
 [Flags]
 public enum ContextType
 {
+    /// <summary>
+    /// A direct message with one user.
+    /// </summary>
     DM = 0x01,
+
+    /// <summary>
+    /// A group direct message.
+    /// </summary>
     Group = 0x02,
-    Community = 0x03
+
+    /// <summary>
+    /// A channel in a community.
+    /// </summary>
+    Community = 0x04,
+
+    /// <summary>
+    /// The same as <see cref="Community" />, named after the guild ids the API uses.
+    /// </summary>
+    Guild = Community
 }

@@ -25,6 +25,7 @@ public static class PrivateChannelHelpers
     public static Task RemoveUserAsync(this GroupChannel channel, ulong userId, RequestOptions? options = null)
         => channel.Client.Rest.RemoveRecipientAsync(channel.Id, userId, options);
 
+#pragma warning disable CS0618
     /// <inheritdoc cref="TransferOwnershipAsync(GroupChannel, ulong, RequestOptions?)" />
     public static Task TransferOwnershipAsync(this GroupChannel channel, User user, RequestOptions? options = null)
         => channel.Client.Rest.UpdateChannelAsync(channel.Id, new ChannelJson
@@ -55,6 +56,7 @@ public static class PrivateChannelHelpers
          {
              Name = name,
          }, options);
+#pragma warning restore CS0618
 
     /// <summary>
     /// Close the DM channel.

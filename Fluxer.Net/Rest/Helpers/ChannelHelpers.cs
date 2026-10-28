@@ -41,8 +41,13 @@ public static class ChannelHelpers
         => channel.Client.Rest.DeleteChannelAsync(channel.Id, options);
 
     /// <inheritdoc cref="FluxerApiClient.UpdateChannelAsync(ulong, ChannelJson, RequestOptions?)" />
+    [Obsolete("Every property of ChannelJson is sent, so this also resets the channel's age restriction and flags. Use the UpdateChannelRequest overload.")]
     public static Task<Channel> ModifyAsync(this Channel channel, ChannelJson json, RequestOptions? options = null)
         => channel.Client.Rest.UpdateChannelAsync(channel.Id, json, options);
+
+    /// <inheritdoc cref="FluxerApiClient.UpdateChannelAsync(ulong, UpdateChannelRequest, RequestOptions?)" />
+    public static Task<Channel> ModifyAsync(this Channel channel, UpdateChannelRequest request, RequestOptions? options = null)
+        => channel.Client.Rest.UpdateChannelAsync(channel.Id, request, options);
 
     /// <inheritdoc cref="FluxerApiClient.GetVoiceEligibilityAsync(ulong, RequestOptions?)" />
     public static Task<CallEligibility> GetVoiceEligibilityAsync(this Channel channel, RequestOptions? options = null)
@@ -115,6 +120,31 @@ public static class ChannelHelpers
     /// <inheritdoc cref="FluxerApiClient.UnpinMessageAsync(ulong, ulong, RequestOptions?)" />
     public static Task UnPinMessageAsync(this Channel channel, Message message, RequestOptions? options = null)
         => channel.Client.Rest.UnpinMessageAsync(channel.Id, message.Id, options);
+
+    /// <summary>
+    /// Gets the overwrite the channel stores for a role or member, or null when it has none.
+    /// </summary>
+    public static PermissionOverwrite? GetPermissionOverwrite(this Channel channel, ulong targetId)
+        => channel.PermissionOverwrites?.FirstOrDefault(x => x.Id == targetId);
+
+    /// <inheritdoc cref="FluxerApiClient.SetPermissionOverwriteAsync(ulong, ulong, PermissionOverwriteType, ChannelPermission, ChannelPermission, RequestOptions?)" />
+    public static Task AddPermissionOverwriteAsync(this Channel channel, Role role, ChannelPermission allow,
+        ChannelPermission deny, RequestOptions? options = null)
+        => channel.Client.Rest.SetPermissionOverwriteAsync(channel.Id, role.Id, PermissionOverwriteType.Role, allow, deny, options);
+
+    /// <inheritdoc cref="FluxerApiClient.SetPermissionOverwriteAsync(ulong, ulong, PermissionOverwriteType, ChannelPermission, ChannelPermission, RequestOptions?)" />
+    public static Task AddPermissionOverwriteAsync(this Channel channel, GuildMember member, ChannelPermission allow,
+        ChannelPermission deny, RequestOptions? options = null)
+        => channel.Client.Rest.SetPermissionOverwriteAsync(channel.Id, member.Id, PermissionOverwriteType.Member, allow, deny, options);
+
+    /// <inheritdoc cref="FluxerApiClient.SetPermissionOverwriteAsync(ulong, ulong, PermissionOverwriteType, ChannelPermission, ChannelPermission, RequestOptions?)" />
+    public static Task AddPermissionOverwriteAsync(this Channel channel, ulong targetId, PermissionOverwriteType type,
+        ChannelPermission allow, ChannelPermission deny, RequestOptions? options = null)
+        => channel.Client.Rest.SetPermissionOverwriteAsync(channel.Id, targetId, type, allow, deny, options);
+
+    /// <inheritdoc cref="FluxerApiClient.DeletePermissionOverwriteAsync(ulong, ulong, RequestOptions?)" />
+    public static Task RemovePermissionOverwriteAsync(this Channel channel, ulong targetId, RequestOptions? options = null)
+        => channel.Client.Rest.DeletePermissionOverwriteAsync(channel.Id, targetId, options);
 
     /// <inheritdoc cref="FluxerApiClient.AcknowledgeMessageAsync(ulong, ulong, MessageAckJson, RequestOptions?)" />
     public static Task AcknowledgeMessageAsync(this Channel channel, ulong messageId, MessageAckJson json, RequestOptions? options = null)

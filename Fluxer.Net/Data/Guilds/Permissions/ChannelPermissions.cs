@@ -17,6 +17,27 @@ public class ChannelPermissions
     /// </summary>
     public ChannelPermission RawValue { get; private set; }
 
+    /// <summary>
+    /// Whether every flag in <paramref name="permission"/> is set.
+    /// </summary>
+    public bool Has(ChannelPermission permission) => (RawValue & permission) == permission;
+
+    /// <summary>
+    /// Lists every single permission that is set.
+    /// </summary>
+    public List<ChannelPermission> ToList()
+    {
+        List<ChannelPermission> perms = new();
+        for (int bit = 0; bit < 64; bit++)
+        {
+            ChannelPermission flag = (ChannelPermission)(1UL << bit);
+            if ((RawValue & flag) != 0)
+                perms.Add(flag);
+        }
+
+        return perms;
+    }
+
     /// <inheritdoc cref="ChannelPermission.CreateInstantInvite" />
     public bool CreateInstantInvite => RawValue.HasFlag(ChannelPermission.CreateInstantInvite);
 
