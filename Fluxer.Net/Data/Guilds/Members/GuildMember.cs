@@ -51,6 +51,11 @@ public class GuildMember : Entity, IGuildMember
         return Nickname ?? User.DisplayName ?? User.Username;
     }
 
+    /// <summary>
+    /// Returns the member's user as text.
+    /// </summary>
+    public override string ToString() => User.ToString();
+
     /// <inheritdoc />
     public string GetDefaultAvatarUrl()
     {

@@ -12,6 +12,11 @@ public class PartialGuild : Entity, IPartialGuild
     /// <inheritdoc />
     public string Name { get; private set; }
 
+    /// <summary>
+    /// Returns the name.
+    /// </summary>
+    public override string ToString() => Name ?? Id.ToString();
+
     /// <inheritdoc />
     public string? IconHash { get; private set; }
 

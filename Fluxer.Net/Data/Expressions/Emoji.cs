@@ -39,33 +39,107 @@ public class Emoji : Entity, IEmoji
         IsAnimated = isAnimated;
     }
 
-    public static Emoji Parse(string text)
+    /// <summary>
+    /// Whether this is a custom emoji rather than a unicode one.
+    /// </summary>
+    public bool IsCustom => Id.HasValue;
+
+    /// <summary>
+    /// Creates a unicode emoji.
+    /// </summary>
+    /// <exception cref="ArgumentException">The text is empty.</exception>
+    public static Emoji FromUnicode(string emoji)
     {
-        text = text.Replace("<", "").Replace(">", "");
-        bool animated = text.StartsWith("a:");
-        if (animated)
-            text = text.Substring(1);
-
-        string[] split = text.Split(":");
-        if (split.Length == 1)
-            return new Emoji(split[0]);
-        else if (split.Length == 3 && ulong.TryParse(split[2], out ulong id))
-            return new Emoji(id, split[1]);
-
-        throw new FormatException("Invalid emoji");
+        if (string.IsNullOrWhiteSpace(emoji))
+            throw new ArgumentException("An emoji cannot be empty.", nameof(emoji));
+        return new Emoji(emoji.Trim());
     }
 
-    public static bool TryParse(string text, out Emoji? result)
-    {
-        try
-        {
-            result = Parse(text);
-            return true;
-        }
-        catch { }
+    /// <summary>
+    /// Creates a custom emoji from its name and id.
+    /// </summary>
+    public static Emoji FromCustom(string name, ulong id, bool animated = false) => new(id, name, animated);
 
-        result = null;
-        return false;
+    /// <summary>
+    /// Reads a custom emoji from its message markup.
+    /// </summary>
+    public static bool TryParseCustom(string? text, out Emoji emoji)
+    {
+        emoji = null!;
+        if (text == null)
+            return false;
+
+        string value = text.Trim();
+        bool animated = value.StartsWith("<a:", StringComparison.Ordinal);
+        if ((!animated && !value.StartsWith("<:", StringComparison.Ordinal)) || !value.EndsWith(">", StringComparison.Ordinal))
+            return false;
+
+        string body = value.Substring(animated ? 3 : 2, value.Length - (animated ? 4 : 3));
+        int split = body.LastIndexOf(':');
+        if (split <= 0 || !ulong.TryParse(body.Substring(split + 1), System.Globalization.NumberStyles.None,
+                System.Globalization.CultureInfo.InvariantCulture, out ulong id))
+            return false;
+
+        emoji = FromCustom(body.Substring(0, split), id, animated);
+        return true;
+    }
+
+    /// <summary>
+    /// Reads a custom emoji, or a unicode emoji.
+    /// </summary>
+    public static bool TryParse(string? text, out Emoji emoji)
+    {
+        if (TryParseCustom(text, out emoji))
+            return true;
+
+        string value = text?.Trim() ?? "";
+        if (value.Length == 0 || value.Any(char.IsWhiteSpace) || value.All(c => c < 128))
+            return false;
+
+        emoji = FromUnicode(value);
+        return true;
+    }
+
+    /// <summary>
+    /// Reads a custom or unicode emoji.
+    /// </summary>
+    /// <exception cref="FormatException">The text is not an emoji.</exception>
+    public static Emoji Parse(string text) =>
+        TryParse(text, out Emoji emoji) ? emoji : throw new FormatException($"'{text}' is not an emoji.");
+
+    /// <summary>
+    /// Gets an <see cref="Emoji"/> for any <see cref="IEmoji"/>.
+    /// </summary>
+    public static Emoji From(IEmoji emoji) => emoji switch
+    {
+        Emoji known => known,
+        { Id: { } id } => FromCustom(emoji.Name, id, emoji.IsAnimated),
+        _ => FromUnicode(emoji.Name)
+    };
+
+    /// <summary>
+    /// Whether another emoji is the same emoji, ignoring variation selectors on unicode emojis.
+    /// </summary>
+    public bool Matches(IEmoji? other)
+    {
+        if (other is null)
+            return false;
+        if (IsCustom || other.Id.HasValue)
+            return Id == other.Id;
+        return StripVariationSelectors(Name) == StripVariationSelectors(other.Name);
+    }
+
+    private static string StripVariationSelectors(string? name) =>
+        name is null ? string.Empty : name.Replace("\uFE0F", string.Empty).Replace("\uFE0E", string.Empty);
+
+    /// <summary>
+    /// Returns the emoji as message markup.
+    /// </summary>
+    public override string ToString()
+    {
+        if (!IsCustom)
+            return Name;
+        return IsAnimated ? $"<a:{Name}:{Id}>" : $"<:{Name}:{Id}>";
     }
 
     internal Emoji(FluxerBaseClient client) : base(client)

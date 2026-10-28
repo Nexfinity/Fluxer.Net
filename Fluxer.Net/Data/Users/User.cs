@@ -45,6 +45,12 @@ public class User : Entity, IUser
         return DisplayName ?? Username;
     }
 
+    /// <summary>
+    /// Returns the username, followed by the discriminator when the account still has one.
+    /// </summary>
+    public override string ToString() =>
+        string.IsNullOrEmpty(Discriminator) || Discriminator.Trim('0').Length == 0 ? Username : $"{Username}#{Discriminator}";
+
     /// <inheritdoc />
     public string GetDefaultAvatarUrl()
     {

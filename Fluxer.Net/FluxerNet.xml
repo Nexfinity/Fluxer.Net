@@ -2816,6 +2816,11 @@
         <member name="P:Fluxer.Net.PartialChannel.Mention">
             <inheritdoc />
         </member>
+        <member name="M:Fluxer.Net.PartialChannel.ToString">
+            <summary>
+            Returns the name.
+            </summary>
+        </member>
         <member name="P:Fluxer.Net.PartialChannel.Name">
             <inheritdoc />
         </member>
@@ -2902,6 +2907,79 @@
             <summary>
             Suppress member join notifications in the system channel.
             </summary>
+        </member>
+        <member name="T:Fluxer.Net.Color">
+            <summary>
+            An RGB color, as used by embeds and roles.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Color.#ctor(System.UInt32)">
+            <summary>
+            Creates a color from a raw 0xRRGGBB value.
+            </summary>
+            <exception cref="T:System.ArgumentOutOfRangeException">The value is larger than <see cref="F:Fluxer.Net.Color.MaxDecimalValue" />.</exception>
+        </member>
+        <member name="M:Fluxer.Net.Color.#ctor(System.Byte,System.Byte,System.Byte)">
+            <summary>
+            Creates a color from its red, green and blue parts.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Color.#ctor(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Creates a color from its red, green and blue parts, each from 0 to 255.
+            </summary>
+            <exception cref="T:System.ArgumentOutOfRangeException">A part is outside 0 to 255.</exception>
+        </member>
+        <member name="M:Fluxer.Net.Color.#ctor(System.Single,System.Single,System.Single)">
+            <summary>
+            Creates a color from its red, green and blue parts, each from 0 to 1.
+            </summary>
+            <exception cref="T:System.ArgumentOutOfRangeException">A part is outside 0 to 1.</exception>
+        </member>
+        <member name="P:Fluxer.Net.Color.RawValue">
+            <summary>
+            The raw 0xRRGGBB value.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Color.R">
+            <summary>
+            The red part, from 0 to 255.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Color.G">
+            <summary>
+            The green part, from 0 to 255.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Color.B">
+            <summary>
+            The blue part, from 0 to 255.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Color.TryParse(System.String,Fluxer.Net.Color@)">
+            <summary>
+            Reads a color written as hex, with or without a leading # or 0x.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Color.Parse(System.String)">
+            <summary>
+            Reads a color written as hex, with or without a leading # or 0x.
+            </summary>
+            <exception cref="T:System.FormatException">The text is not a six digit hex color.</exception>
+        </member>
+        <member name="M:Fluxer.Net.Color.ToString">
+            <summary>
+            Returns the color as #RRGGBB.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Color.Equals(Fluxer.Net.Color)">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.Color.Equals(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.Color.GetHashCode">
+            <inheritdoc />
         </member>
         <member name="T:Fluxer.Net.Embed">
             <inheritdoc />
@@ -3747,6 +3825,53 @@
         <member name="M:Fluxer.Net.Emoji.#ctor(System.UInt64,System.String,System.Boolean)">
             <inheritdoc />
         </member>
+        <member name="P:Fluxer.Net.Emoji.IsCustom">
+            <summary>
+            Whether this is a custom emoji rather than a unicode one.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Emoji.FromUnicode(System.String)">
+            <summary>
+            Creates a unicode emoji.
+            </summary>
+            <exception cref="T:System.ArgumentException">The text is empty.</exception>
+        </member>
+        <member name="M:Fluxer.Net.Emoji.FromCustom(System.String,System.UInt64,System.Boolean)">
+            <summary>
+            Creates a custom emoji from its name and id.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Emoji.TryParseCustom(System.String,Fluxer.Net.Emoji@)">
+            <summary>
+            Reads a custom emoji from its message markup.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Emoji.TryParse(System.String,Fluxer.Net.Emoji@)">
+            <summary>
+            Reads a custom emoji, or a unicode emoji.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Emoji.Parse(System.String)">
+            <summary>
+            Reads a custom or unicode emoji.
+            </summary>
+            <exception cref="T:System.FormatException">The text is not an emoji.</exception>
+        </member>
+        <member name="M:Fluxer.Net.Emoji.From(Fluxer.Net.IEmoji)">
+            <summary>
+            Gets an <see cref="T:Fluxer.Net.Emoji"/> for any <see cref="T:Fluxer.Net.IEmoji"/>.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Emoji.Matches(Fluxer.Net.IEmoji)">
+            <summary>
+            Whether another emoji is the same emoji, ignoring variation selectors on unicode emojis.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Emoji.ToString">
+            <summary>
+            Returns the emoji as message markup.
+            </summary>
+        </member>
         <member name="M:Fluxer.Net.Emoji.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.EmojiJson)">
             <summary>
             Create a Emoji object from json.
@@ -4444,6 +4569,11 @@
         <member name="M:Fluxer.Net.GuildMember.GetCurrentName">
             <inheritdoc />
         </member>
+        <member name="M:Fluxer.Net.GuildMember.ToString">
+            <summary>
+            Returns the member's user as text.
+            </summary>
+        </member>
         <member name="M:Fluxer.Net.GuildMember.GetDefaultAvatarUrl">
             <inheritdoc />
         </member>
@@ -4682,6 +4812,11 @@
         <member name="P:Fluxer.Net.Role.Mention">
             <inheritdoc />
         </member>
+        <member name="M:Fluxer.Net.Role.ToString">
+            <summary>
+            Returns the name.
+            </summary>
+        </member>
         <member name="P:Fluxer.Net.Role.Name">
             <inheritdoc />
         </member>
@@ -4797,6 +4932,11 @@
         </member>
         <member name="P:Fluxer.Net.PartialGuild.Name">
             <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.PartialGuild.ToString">
+            <summary>
+            Returns the name.
+            </summary>
         </member>
         <member name="P:Fluxer.Net.PartialGuild.IconHash">
             <inheritdoc />
@@ -9048,6 +9188,11 @@
         <member name="M:Fluxer.Net.User.GetCurrentName">
             <inheritdoc />
         </member>
+        <member name="M:Fluxer.Net.User.ToString">
+            <summary>
+            Returns the username, followed by the discriminator when the account still has one.
+            </summary>
+        </member>
         <member name="M:Fluxer.Net.User.GetDefaultAvatarUrl">
             <inheritdoc />
         </member>
@@ -12478,6 +12623,219 @@
         </member>
         <member name="M:Fluxer.Net.FluxerWebhookClient.DeleteMessageAsync(System.UInt64,Fluxer.Net.Rest.RequestOptions)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.DeleteWebhookMessageAsync(System.UInt64,System.String,System.UInt64,Fluxer.Net.Rest.RequestOptions)" />
+        </member>
+        <member name="T:Fluxer.Net.Format">
+            <summary>
+            Helpers for writing Fluxer markdown.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Format.Bold(System.String)">
+            <summary>
+            Returns the text in bold.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Format.Italics(System.String)">
+            <summary>
+            Returns the text in italics.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Format.Underline(System.String)">
+            <summary>
+            Returns the text underlined.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Format.Strikethrough(System.String)">
+            <summary>
+            Returns the text struck through.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Format.Spoiler(System.String)">
+            <summary>
+            Returns the text hidden behind a spoiler.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Format.Header(System.String,System.Int32)">
+            <summary>
+            Returns the text as a heading of the given level, from 1 to 3.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Format.Subtext(System.String)">
+            <summary>
+            Returns the text as small, muted subtext.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Format.Url(System.String,System.String)">
+            <summary>
+            Returns the text as a markdown link.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Format.EscapeUrl(System.String)">
+            <summary>
+            Returns the url wrapped so it shows no embed preview.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Format.Code(System.String,System.String)">
+            <summary>
+            Returns the text as inline code, or as a code block when a language is given or the text spans lines.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Format.Quote(System.String)">
+            <summary>
+            Returns every line of the text as a block quote.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Format.BlockQuote(System.String)">
+            <summary>
+            Returns the rest of the message from this point as a block quote.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Format.Sanitize(System.String)">
+            <summary>
+            Escapes the markdown characters in the text.
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.MentionUtils">
+            <summary>
+            Builds and parses user, role and channel mentions.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.MentionUtils.MentionUser(System.UInt64)">
+            <summary>
+            Returns the mention for a user.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.MentionUtils.MentionRole(System.UInt64)">
+            <summary>
+            Returns the mention for a role.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.MentionUtils.MentionChannel(System.UInt64)">
+            <summary>
+            Returns the mention for a channel.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.MentionUtils.TryParseUser(System.String,System.UInt64@)">
+            <summary>
+            Reads the user id from a user mention.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.MentionUtils.TryParseRole(System.String,System.UInt64@)">
+            <summary>
+            Reads the role id from a role mention.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.MentionUtils.TryParseChannel(System.String,System.UInt64@)">
+            <summary>
+            Reads the channel id from a channel mention.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.MentionUtils.ParseUser(System.String)">
+            <summary>
+            Reads the user id from a user mention.
+            </summary>
+            <exception cref="T:System.ArgumentException">The text is not a user mention.</exception>
+        </member>
+        <member name="M:Fluxer.Net.MentionUtils.ParseRole(System.String)">
+            <summary>
+            Reads the role id from a role mention.
+            </summary>
+            <exception cref="T:System.ArgumentException">The text is not a role mention.</exception>
+        </member>
+        <member name="M:Fluxer.Net.MentionUtils.ParseChannel(System.String)">
+            <summary>
+            Reads the channel id from a channel mention.
+            </summary>
+            <exception cref="T:System.ArgumentException">The text is not a channel mention.</exception>
+        </member>
+        <member name="T:Fluxer.Net.TimestampTagStyles">
+            <summary>
+            How a timestamp tag is shown to the reader, in their own time zone and locale.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.TimestampTagStyles.ShortTime">
+            <summary>
+            Hours and minutes, for example 16:20.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.TimestampTagStyles.LongTime">
+            <summary>
+            Hours, minutes and seconds, for example 16:20:30.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.TimestampTagStyles.ShortDate">
+            <summary>
+            A numeric date, for example 20/04/2021.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.TimestampTagStyles.LongDate">
+            <summary>
+            A written date, for example 20 April 2021.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.TimestampTagStyles.ShortDateTime">
+            <summary>
+            A written date with the time, for example 20 April 2021 16:20.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.TimestampTagStyles.LongDateTime">
+            <summary>
+            The weekday, written date and time, for example Tuesday, 20 April 2021 16:20.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.TimestampTagStyles.ShortDateShortTime">
+            <summary>
+            A numeric date with hours and minutes, for example 20/04/2021 16:20.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.TimestampTagStyles.ShortDateMediumTime">
+            <summary>
+            A numeric date with hours, minutes and seconds, for example 20/04/2021 16:20:30.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.TimestampTagStyles.Relative">
+            <summary>
+            The distance from now, for example in 2 hours or 3 days ago.
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.TimestampTag">
+            <summary>
+            A timestamp that every reader sees in their own time zone.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.TimestampTag.#ctor(System.DateTimeOffset,Fluxer.Net.TimestampTagStyles)">
+            <summary>
+            Creates a tag for a moment in time.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.TimestampTag.Time">
+            <summary>
+            The moment the tag shows.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.TimestampTag.Style">
+            <summary>
+            How the tag is shown.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.TimestampTag.FromDateTimeOffset(System.DateTimeOffset,Fluxer.Net.TimestampTagStyles)">
+            <summary>
+            Creates a tag for a moment in time.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.TimestampTag.FromDateTime(System.DateTime,Fluxer.Net.TimestampTagStyles)">
+            <summary>
+            Creates a tag for a moment in time, treating an unspecified kind as UTC.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.TimestampTag.ToString">
+            <summary>
+            Returns the markup for the tag, for example <c>&lt;t:1618953630:R&gt;</c>.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.TimestampTag.ToString(Fluxer.Net.TimestampTagStyles)">
+            <summary>
+            Returns the markup for the tag in another style.
+            </summary>
         </member>
         <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient">
             <summary>
