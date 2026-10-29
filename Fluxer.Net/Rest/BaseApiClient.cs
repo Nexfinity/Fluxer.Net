@@ -150,6 +150,8 @@ public class FluxerBaseApiClient
 
                 throw new FluxerApiException($"Fluxer returned an error code {result.StatusCode}", resp, result.StatusCode, null);
             }
+
+            return default!;
         }
 
         return JsonConvert.DeserializeObject<TResponse>(resp, FluxerClient._restSerializer);
@@ -195,6 +197,8 @@ public class FluxerBaseApiClient
 
                 throw new FluxerApiException($"Fluxer returned an error code {result.StatusCode}", resp, result.StatusCode, null);
             }
+
+            return default!;
         }
 
         return JsonConvert.DeserializeObject<TResponse>(resp, FluxerClient._restSerializer);
@@ -308,6 +312,8 @@ public class FluxerBaseApiClient
 
                 throw new FluxerApiException($"Fluxer returned an error code {result.StatusCode}", resp, result.StatusCode, null);
             }
+
+            return default!;
         }
 
         return JsonConvert.DeserializeObject<TResponse>(resp, FluxerClient._restSerializer);
@@ -377,6 +383,8 @@ public class FluxerBaseApiClient
 
                 throw new FluxerApiException($"Fluxer returned an error code {result.StatusCode}", resp, result.StatusCode, null);
             }
+
+            return default!;
         }
 
         return JsonConvert.DeserializeObject<TResponse>(resp, FluxerClient._restSerializer);
