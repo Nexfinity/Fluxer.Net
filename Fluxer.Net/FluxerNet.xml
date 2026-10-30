@@ -4694,6 +4694,9 @@
         <member name="M:Fluxer.Net.GuildMember.GetAvatarUrl(System.Int32)">
             <inheritdoc />
         </member>
+        <member name="M:Fluxer.Net.GuildMember.GetGuildAvatarUrl(System.Int32)">
+            <inheritdoc />
+        </member>
         <member name="M:Fluxer.Net.GuildMember.GetAvatarOrDefaultUrl(System.Int32)">
             <inheritdoc />
         </member>
@@ -4758,6 +4761,9 @@
             <inheritdoc />
         </member>
         <member name="M:Fluxer.Net.GuildMemberJson.GetAvatarUrl(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.GuildMemberJson.GetGuildAvatarUrl(System.Int32)">
             <inheritdoc />
         </member>
         <member name="M:Fluxer.Net.GuildMemberJson.GetAvatarOrDefaultUrl(System.Int32)">
@@ -4868,7 +4874,12 @@
         </member>
         <member name="M:Fluxer.Net.IGuildMember.GetAvatarUrl(System.Int32)">
             <summary>
-            Get the members's avatar.
+            Get the member's server avatar, or their account avatar when they have none.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.IGuildMember.GetGuildAvatarUrl(System.Int32)">
+            <summary>
+            Get the member's server avatar, or null when they have none.
             </summary>
         </member>
         <member name="M:Fluxer.Net.IGuildMember.GetAvatarOrDefaultUrl(System.Int32)">

@@ -76,8 +76,14 @@ public class GuildMemberJson : IGuildMember
     /// <inheritdoc />
     public string? GetAvatarUrl(int size = 160)
     {
+        return GetGuildAvatarUrl(size) ?? User.GetAvatarUrl(size);
+    }
+
+    /// <inheritdoc />
+    public string? GetGuildAvatarUrl(int size = 160)
+    {
         if (string.IsNullOrEmpty(AvatarHash))
-            return User.GetAvatarUrl(size);
+            return null;
 
         return $"https://fluxerusercontent.com/guilds/{GuildId}/users/{Id}/avatars/{AvatarHash}.png?size={size}";
     }

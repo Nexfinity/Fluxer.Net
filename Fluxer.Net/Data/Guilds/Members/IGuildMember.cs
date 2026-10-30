@@ -67,9 +67,14 @@ public interface IGuildMember : ISnowflake, IMentionable
     string GetDefaultAvatarUrl();
 
     /// <summary>
-    /// Get the members's avatar.
+    /// Get the member's server avatar, or their account avatar when they have none.
     /// </summary>
     string? GetAvatarUrl(int size);
+
+    /// <summary>
+    /// Get the member's server avatar, or null when they have none.
+    /// </summary>
+    string? GetGuildAvatarUrl(int size);
 
     /// <summary>
     /// Get the members's avatar or fallback to default.
