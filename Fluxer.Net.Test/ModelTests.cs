@@ -47,6 +47,21 @@ public class ModelTests
     }
 
     [Test]
+    public void GuildAvatarIsNullWithoutAServerAvatar()
+    {
+        GuildMemberJson member = new() { GuildId = 2, User = new UserJson { Id = 1, AvatarHash = "account" } };
+        GuildMemberJson withServerAvatar = new() { GuildId = 2, AvatarHash = "server", User = new UserJson { Id = 1, AvatarHash = "account" } };
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(member.GetGuildAvatarUrl(), Is.Null);
+            Assert.That(member.GetAvatarUrl(), Does.Contain("/avatars/1/account."));
+            Assert.That(withServerAvatar.GetGuildAvatarUrl(), Does.Contain("/guilds/2/users/1/avatars/server."));
+            Assert.That(withServerAvatar.GetAvatarUrl(), Is.EqualTo(withServerAvatar.GetGuildAvatarUrl()));
+        });
+    }
+
+    [Test]
     public void ContextTypesDoNotOverlap()
     {
         Assert.Multiple(() =>
