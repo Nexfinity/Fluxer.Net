@@ -4383,6 +4383,12 @@
         <member name="P:Fluxer.Net.Guild.MemberCount">
             <inheritdoc />
         </member>
+        <member name="P:Fluxer.Net.Guild.ApproximateMemberCount">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Guild.ApproximatePresenceCount">
+            <inheritdoc />
+        </member>
         <member name="M:Fluxer.Net.Guild.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.GuildJson)">
             <summary>
             Create a Guild object from json.
@@ -4447,6 +4453,12 @@
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.GuildJson.MemberCount">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildJson.ApproximateMemberCount">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildJson.ApproximatePresenceCount">
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.IGuild.OwnerId">
@@ -4543,6 +4555,22 @@
             </summary>
             <remarks>
             Only available from rest get guild not socket guild.
+            </remarks>
+        </member>
+        <member name="P:Fluxer.Net.IGuild.ApproximateMemberCount">
+            <summary>
+            Approximate total member count.
+            </summary>
+            <remarks>
+            Only filled when the guilds were requested with counts.
+            </remarks>
+        </member>
+        <member name="P:Fluxer.Net.IGuild.ApproximatePresenceCount">
+            <summary>
+            Approximate online member count.
+            </summary>
+            <remarks>
+            Only filled when the guilds were requested with counts.
             </remarks>
         </member>
         <member name="P:Fluxer.Net.IPartialGuild.Name">
@@ -11609,6 +11637,13 @@
             </summary>
             <returns>List of <see cref="T:Fluxer.Net.Guild"/></returns>
         </member>
+        <member name="M:Fluxer.Net.Rest.FluxerApiClient.GetCurrentUserGuildsAsync(System.Boolean,Fluxer.Net.Rest.RequestOptions)">
+            <summary>
+            Get the guilds the current user is in, optionally with approximate member and presence counts.
+            </summary>
+            <param name="withCounts">Fill <see cref="P:Fluxer.Net.Guild.ApproximateMemberCount"/> and <see cref="P:Fluxer.Net.Guild.ApproximatePresenceCount"/>.</param>
+            <returns>List of <see cref="T:Fluxer.Net.Guild"/></returns>
+        </member>
         <member name="M:Fluxer.Net.Rest.FluxerApiClient.LeaveGuildAsync(System.UInt64,Fluxer.Net.Rest.RequestOptions)">
             <summary>
             Leave a guild for the current user.
@@ -12741,6 +12776,11 @@
         <member name="T:Fluxer.Net.Rest.UpdateGuildMemberRequest">
             <summary>
             Request body for updating a guild member, sending only the properties that are set.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.UpdateGuildMemberRequest.ConnectionId">
+            <summary>
+            The voice connection ID of the member to move when <see cref="P:Fluxer.Net.Rest.UpdateGuildMemberRequest.ChannelId"/> is set.
             </summary>
         </member>
         <member name="T:Fluxer.Net.Rest.UpdateGuildRequest">

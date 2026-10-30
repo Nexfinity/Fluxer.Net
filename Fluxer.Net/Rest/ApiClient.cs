@@ -1319,9 +1319,17 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// Get all guilds for the current user.
     /// </summary>
     /// <returns>List of <see cref="Guild"/></returns>
-    public async Task<IEnumerable<Guild>> GetCurrentUserGuildsAsync(RequestOptions? options = null)
+    public Task<IEnumerable<Guild>> GetCurrentUserGuildsAsync(RequestOptions? options = null)
+        => GetCurrentUserGuildsAsync(false, options);
+
+    /// <summary>
+    /// Get the guilds the current user is in, optionally with approximate member and presence counts.
+    /// </summary>
+    /// <param name="withCounts">Fill <see cref="Guild.ApproximateMemberCount"/> and <see cref="Guild.ApproximatePresenceCount"/>.</param>
+    /// <returns>List of <see cref="Guild"/></returns>
+    public async Task<IEnumerable<Guild>> GetCurrentUserGuildsAsync(bool withCounts, RequestOptions? options = null)
     {
-        IEnumerable<GuildJson> json = await SendRequestAsync<IEnumerable<GuildJson>>(HttpMethod.Get, "/users/@me/guilds", true, options: options);
+        IEnumerable<GuildJson> json = await SendRequestAsync<IEnumerable<GuildJson>>(HttpMethod.Get, withCounts ? "/users/@me/guilds?with_counts=true" : "/users/@me/guilds", true, options: options);
         return json.Select(x => Guild.Create(_client, x));
     }
 

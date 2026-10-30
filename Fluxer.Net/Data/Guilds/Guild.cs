@@ -60,6 +60,12 @@ public class Guild : PartialGuild, IGuild
     /// <inheritdoc />
     public int? MemberCount { get; internal set; }
 
+    /// <inheritdoc />
+    public int? ApproximateMemberCount { get; internal set; }
+
+    /// <inheritdoc />
+    public int? ApproximatePresenceCount { get; internal set; }
+
     public virtual async Task<GuildMember?> GetMemberAsync(ulong userId)
     {
         GuildMemberJson? json = await Client.Rest.SendRequestAsync<GuildMemberJson?>(HttpMethod.Get, $"/guilds/{Id}/members/{userId}", false);
@@ -110,5 +116,7 @@ public class Guild : PartialGuild, IGuild
         ContentWarningText = json.ContentWarningText;
         OnlineCount = json.OnlineCount ?? OnlineCount;
         MemberCount = json.MemberCount ?? MemberCount;
+        ApproximateMemberCount = json.ApproximateMemberCount ?? ApproximateMemberCount;
+        ApproximatePresenceCount = json.ApproximatePresenceCount ?? ApproximatePresenceCount;
     }
 }

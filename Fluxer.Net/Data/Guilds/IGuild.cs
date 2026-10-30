@@ -99,4 +99,20 @@ public interface IGuild : IPartialGuild
     /// Only available from rest get guild not socket guild.
     /// </remarks>
     int? MemberCount { get; }
+
+    /// <summary>
+    /// Approximate total member count.
+    /// </summary>
+    /// <remarks>
+    /// Only filled when the guilds were requested with counts.
+    /// </remarks>
+    int? ApproximateMemberCount { get; }
+
+    /// <summary>
+    /// Approximate online member count.
+    /// </summary>
+    /// <remarks>
+    /// Only filled when the guilds were requested with counts.
+    /// </remarks>
+    int? ApproximatePresenceCount { get; }
 }

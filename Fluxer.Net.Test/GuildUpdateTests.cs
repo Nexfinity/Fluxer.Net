@@ -101,4 +101,34 @@ public class GuildUpdateTests
             Assert.That(guild, Is.Not.Null);
         });
     }
+
+    [Test]
+    public async Task CurrentUserGuildsCanAskForCounts()
+    {
+        string body = "[{\"id\":\"10\",\"name\":\"Test\",\"owner_id\":\"1\",\"approximate_member_count\":120,\"approximate_presence_count\":30}]";
+        (FluxerClient client, RecordingHandler handler) = Create(body);
+
+        Guild plain = (await client.Rest.GetCurrentUserGuildsAsync()).Single();
+        Guild counted = (await client.Rest.GetCurrentUserGuildsAsync(true)).Single();
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(handler.Requests[0].Url, Does.EndWith("/users/@me/guilds"));
+            Assert.That(handler.Requests[1].Url, Does.EndWith("/users/@me/guilds?with_counts=true"));
+            Assert.That(counted.ApproximateMemberCount, Is.EqualTo(120));
+            Assert.That(counted.ApproximatePresenceCount, Is.EqualTo(30));
+            Assert.That(plain.ApproximateMemberCount, Is.EqualTo(120));
+        });
+    }
+
+    [Test]
+    public void MemberUpdatesCanMoveAVoiceConnection()
+    {
+        Assert.Multiple(() =>
+        {
+            Assert.That(Serialize(new UpdateGuildMemberRequest { ChannelId = 5, ConnectionId = "conn-1" }),
+                Is.EqualTo("{\"channel_id\":5,\"connection_id\":\"conn-1\"}"));
+            Assert.That(Serialize(new UpdateGuildMemberRequest { ChannelId = 5 }), Is.EqualTo("{\"channel_id\":5}"));
+        });
+    }
 }
