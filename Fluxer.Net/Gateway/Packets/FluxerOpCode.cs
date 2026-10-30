@@ -139,20 +139,28 @@ public enum FluxerOpCode
     GatewayError = 12,
 
     /// <summary>
-    /// Connects to a call (voice/video).
-    /// Client → Server. Initiates call connection.
+    /// A signaling message for a peer-to-peer voice connection.
+    /// Client → Server.
     /// </summary>
-    CallConnect = 13,
+    VoiceSignal = 13,
 
     /// <summary>
-    /// Subscribes to events for specific guilds.
-    /// Client → Server. Controls which guild events are received.
+    /// The old name of <see cref="VoiceSignal"/>.
     /// </summary>
-    /// <remarks>
-    /// Used to enable or disable events for specific guilds.
-    /// Useful for managing event load in bots that are in many guilds.
-    /// </remarks>
-    GuildSubscriptions = 14,
+    [Obsolete("Opcode 13 is the voice signaling command. Use VoiceSignal.")]
+    CallConnect = VoiceSignal,
+
+    /// <summary>
+    /// Sets the per-guild subscriptions for member lists, presences, typing, syncs and threads.
+    /// Client → Server. Sent by <see cref="FluxerGatewayClient.SendLazyRequest"/>.
+    /// </summary>
+    LazyRequest = 14,
+
+    /// <summary>
+    /// The old name of <see cref="LazyRequest"/>.
+    /// </summary>
+    [Obsolete("Opcode 14 is Lazy Request. Use LazyRequest.")]
+    GuildSubscriptions = LazyRequest,
 
     /// <summary>
     /// Request guild member count.
@@ -162,5 +170,11 @@ public enum FluxerOpCode
     /// <summary>
     /// Request channel member count.
     /// </summary>
-    RequestChannelMemberCounts = 16
+    RequestChannelMemberCounts = 16,
+
+    /// <summary>
+    /// Requests unread counts for posts in a forum or media channel.
+    /// Client → Server. Sent by <see cref="FluxerGatewayClient.RequestForumUnreads"/>, answered with FORUM_UNREADS.
+    /// </summary>
+    RequestForumUnreads = 28
 }
