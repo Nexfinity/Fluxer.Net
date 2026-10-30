@@ -91,6 +91,8 @@ public class User : Entity, IUser
         return data;
     }
 
+    internal User Snapshot() => (User)MemberwiseClone();
+
     internal void Update(UserJson json)
     {
         Id = json.Id;

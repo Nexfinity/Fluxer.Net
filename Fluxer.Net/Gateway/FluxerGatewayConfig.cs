@@ -31,4 +31,11 @@ public class FluxerGatewayConfig
     /// <see cref="FluxerGatewayClient.MessageReactionsAdded"/>. A batch of one is still sent as MESSAGE_REACTION_ADD.
     /// </summary>
     public bool DebounceMessageReactions { get; set; }
+
+    /// <summary>
+    /// How many recent messages to keep per guild channel. Cached messages are handed to
+    /// <see cref="FluxerGatewayClient.MessageEdited"/> and <see cref="FluxerGatewayClient.MessageRemoved"/> as they were
+    /// before the event. Defaults to 0, keeping no messages.
+    /// </summary>
+    public int MessageCacheSize { get; set; }
 }

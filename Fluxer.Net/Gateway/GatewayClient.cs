@@ -185,6 +185,16 @@ public partial class FluxerGatewayClient : IDisposable
         return Channels.GetValueOrDefault(channelId);
     }
 
+    /// <summary>
+    /// Recent guild messages, kept when <see cref="FluxerGatewayConfig.MessageCacheSize"/> is above 0.
+    /// </summary>
+    public MessageCache Messages { get; internal set; } = new MessageCache(0);
+
+    /// <summary>
+    /// Gets a message from <see cref="Messages"/>, or null when it isn't cached.
+    /// </summary>
+    public SocketMessage? GetCachedMessage(ulong messageId) => Messages.Get(messageId);
+
     #endregion
 
     #region Gateway
@@ -211,6 +221,8 @@ public partial class FluxerGatewayClient : IDisposable
         if (config == null)
             config = new FluxerGatewayConfig();
         Config = config;
+        if (Messages.Count == 0)
+            Messages = new MessageCache(config.MessageCacheSize);
 
         if (_isConnecting)
         {
@@ -1157,6 +1169,7 @@ public partial class FluxerGatewayClient : IDisposable
                         {
                             Guilds.TryRemove(data.Id, out SocketGuild guild);
                             CurrentMembers.TryRemove(data.Id, out _);
+                            Messages.RemoveGuild(data.Id);
                             foreach (Channel c in Channels.Values.Where(x => x.GuildId == data.Id))
                             {
                                 Channels.TryRemove(c.Id, out _);
@@ -1513,6 +1526,7 @@ public partial class FluxerGatewayClient : IDisposable
                                 return;
                             guild.Channels.TryRemove(data.Id, out _);
 
+                            Messages.RemoveChannel(data.Id);
                             ChannelDeleted?.Invoke(guild, channel ?? SocketChannel.Create(_client, data, guild));
                         }
                     }
@@ -1575,6 +1589,7 @@ public partial class FluxerGatewayClient : IDisposable
 
                     Channels.TryRemove(data.Id, out Channel channel);
                     guild.Channels.TryRemove(data.Id, out _);
+                    Messages.RemoveChannel(data.Id);
 
                     if (channel is IThreadChannel)
                     {
@@ -1780,8 +1795,12 @@ public partial class FluxerGatewayClient : IDisposable
                     {
                         if (Guilds.TryGetValue(data.GuildId, out SocketGuild guild))
                         {
+                            SocketGuildMember? before = guild.Members.TryGetValue(data.Id, out SocketGuildMember cached)
+                                ? (SocketGuildMember)cached.Snapshot()
+                                : null;
                             SocketGuildMember member = guild.AddOrUpdateMember(data);
                             MemberUpdated?.Invoke(member);
+                            MemberChanged?.Invoke(before, member);
                         }
                     }
                     else
@@ -1921,7 +1940,9 @@ public partial class FluxerGatewayClient : IDisposable
                                 return;
 
                             channel.LastMessageId = data.Id;
-                            MessageCreated?.Invoke(SocketMessage.Create(_client, data, channel, guild));
+                            SocketMessage created = SocketMessage.Create(_client, data, channel, guild);
+                            Messages.Add(created);
+                            MessageCreated?.Invoke(created);
                         }
                         else
                         {
@@ -1954,7 +1975,10 @@ public partial class FluxerGatewayClient : IDisposable
                             if (!Channels.TryGetValue(data.ChannelId, out Channel channel))
                                 return;
 
-                            MessageUpdated?.Invoke(SocketMessage.Create(_client, data, channel, guild));
+                            SocketMessage edited = SocketMessage.Create(_client, data, channel, guild);
+                            SocketMessage? before = Messages.Replace(edited);
+                            MessageUpdated?.Invoke(edited);
+                            MessageEdited?.Invoke(before, edited);
                         }
                         else
                         {
@@ -1987,7 +2011,9 @@ public partial class FluxerGatewayClient : IDisposable
                             if (!Channels.TryGetValue(data.ChannelId, out Channel channel))
                                 return;
 
+                            SocketMessage? removed = Messages.Remove(data.MessageId);
                             MessageDeleted?.Invoke(channel, data.AuthorId, data.MessageId, data.Content);
+                            MessageRemoved?.Invoke(channel, data.MessageId, removed);
                         }
                         else
                         {
@@ -2020,7 +2046,9 @@ public partial class FluxerGatewayClient : IDisposable
                             if (!Channels.TryGetValue(data.ChannelId, out Channel channel))
                                 return;
 
+                            List<SocketMessage> removed = data.Ids.Select(Messages.Remove).Where(x => x != null).Cast<SocketMessage>().ToList();
                             MessagesDeleted?.Invoke(channel, data.GuildId.HasValue ? GetGuild(data.GuildId.Value) : null, data.Ids);
+                            MessagesRemoved?.Invoke(channel, data.Ids.ToList(), removed);
                         }
                         else
                         {
@@ -2372,10 +2400,14 @@ public partial class FluxerGatewayClient : IDisposable
                         Channel? channel = data.ChannelId.HasValue ? GetChannel(data.ChannelId.Value) : null;
 
                         SocketVoiceState currentState = SocketVoiceState.Create(_client, data, channel);
+                        SocketVoiceState? previousState = null;
                         if (data.GuildId.HasValue && Guilds.TryGetValue(data.GuildId.Value, out SocketGuild guild))
                         {
                             guild.AddOrUpdateMember(data.Member);
                             SocketGuildMember member = guild.Members.GetValueOrDefault(data.Member.Id);
+                            if (member.VoiceStates.TryGetValue(data.SessionId, out SocketVoiceState cachedState))
+                                previousState = (SocketVoiceState)cachedState.Snapshot();
+
                             if (data.ChannelId.HasValue)
                             {
                                 SocketVoiceChannel? Channel = GetChannel(data.ChannelId.Value) as SocketVoiceChannel;
@@ -2411,6 +2443,8 @@ public partial class FluxerGatewayClient : IDisposable
                         }
 
                         VoiceStateUpdated?.Invoke(currentState);
+                        if (data.GuildId.HasValue)
+                            VoiceStateChanged?.Invoke(previousState, currentState);
                     }
                     else
                         _logger.Warning("VOICE_STATE_UPDATE event received but data could not be cast to VoiceStateGatewayData");
@@ -3122,6 +3156,47 @@ public partial class FluxerGatewayClient : IDisposable
     /// </summary>
     public event PrivateMessageDeletedEvent PrivateMessageDeleted;
 
+    /// <summary>
+    /// Delegate for MESSAGE_UPDATE events that also hands over the message as it was before the edit.
+    /// </summary>
+    /// <param name="before">The cached message from before the edit, or null when it wasn't cached.</param>
+    /// <param name="after">The edited message.</param>
+    public delegate void MessageEditedEvent(SocketMessage? before, SocketMessage after);
+
+    /// <summary>
+    /// Occurs when a guild message is edited, after <see cref="MessageUpdated"/>.
+    /// Set <see cref="FluxerGatewayConfig.MessageCacheSize"/> to get the message from before the edit.
+    /// </summary>
+    public event MessageEditedEvent MessageEdited;
+
+    /// <summary>
+    /// Delegate for MESSAGE_DELETE events that also hands over the deleted message when it was cached.
+    /// </summary>
+    /// <param name="channel">The channel the message was in.</param>
+    /// <param name="messageId">The ID of the deleted message.</param>
+    /// <param name="message">The cached message, or null when it wasn't cached.</param>
+    public delegate void MessageRemovedEvent(Channel channel, ulong messageId, SocketMessage? message);
+
+    /// <summary>
+    /// Occurs when a guild message is deleted, after <see cref="MessageDeleted"/>.
+    /// Set <see cref="FluxerGatewayConfig.MessageCacheSize"/> to get the deleted message.
+    /// </summary>
+    public event MessageRemovedEvent MessageRemoved;
+
+    /// <summary>
+    /// Delegate for MESSAGE_DELETE_BULK events that also hands over the deleted messages that were cached.
+    /// </summary>
+    /// <param name="channel">The channel the messages were in.</param>
+    /// <param name="messageIds">The IDs of every deleted message.</param>
+    /// <param name="messages">The deleted messages that were cached.</param>
+    public delegate void MessagesRemovedEvent(Channel channel, IReadOnlyList<ulong> messageIds, IReadOnlyList<SocketMessage> messages);
+
+    /// <summary>
+    /// Occurs when guild messages are bulk deleted, after <see cref="MessagesDeleted"/>.
+    /// Set <see cref="FluxerGatewayConfig.MessageCacheSize"/> to get the deleted messages.
+    /// </summary>
+    public event MessagesRemovedEvent MessagesRemoved;
+
 
     // ============================================================================
     // Channel Events
@@ -3571,6 +3646,18 @@ public partial class FluxerGatewayClient : IDisposable
     public event VoiceStateUpdatedEvent VoiceStateUpdated;
 
     /// <summary>
+    /// Delegate for VOICE_STATE_UPDATE events that also hands over the voice state from before the change.
+    /// </summary>
+    /// <param name="before">The cached state of that voice connection, or null when it just joined or wasn't cached.</param>
+    /// <param name="after">The new state. Its channel is null when the connection left voice.</param>
+    public delegate void VoiceStateChangedEvent(SocketVoiceState? before, SocketVoiceState after);
+
+    /// <summary>
+    /// Occurs when a voice connection in a guild joins, leaves, moves or changes state, after <see cref="VoiceStateUpdated"/>.
+    /// </summary>
+    public event VoiceStateChangedEvent VoiceStateChanged;
+
+    /// <summary>
     /// Delegate for VOICE_SERVER_UPDATE events for voice connection data.
     /// </summary>
     public delegate void VoiceServerUpdatedEvent(VoiceServer voiceServer);
@@ -3696,6 +3783,18 @@ public partial class FluxerGatewayClient : IDisposable
     /// Occurs when a guild member is updated (roles, nickname, avatar, etc.).
     /// </summary>
     public event GuildMemberUpdatedEvent MemberUpdated;
+
+    /// <summary>
+    /// Delegate for GUILD_MEMBER_UPDATE events that also hands over the member as they were before.
+    /// </summary>
+    /// <param name="before">A copy of the cached member from before the update, or null when they weren't cached.</param>
+    /// <param name="after">The updated member.</param>
+    public delegate void GuildMemberChangedEvent(SocketGuildMember? before, SocketGuildMember after);
+
+    /// <summary>
+    /// Occurs when a guild member is updated, after <see cref="MemberUpdated"/>.
+    /// </summary>
+    public event GuildMemberChangedEvent MemberChanged;
 
     /// <summary>
     /// Delegate for GUILD_MEMBER_REMOVE events when a member leaves or is removed from a guild.
