@@ -531,11 +531,11 @@ public partial class FluxerGatewayClient : IDisposable
                             _logger.Warning("GatewayError opcode received but data could not be cast to GatewayErrorGatewayData");
                     }
                     return;
-                case FluxerOpCode.CallConnect:
-                    _logger.Debug("Received CallConnect opcode from server");
+                case FluxerOpCode.VoiceSignal:
+                    _logger.Debug("Received VoiceSignal opcode from server (unexpected)");
                     return;
-                case FluxerOpCode.GuildSubscriptions:
-                    _logger.Debug("Received GuildSubscriptions opcode from server");
+                case FluxerOpCode.LazyRequest:
+                    _logger.Debug("Received LazyRequest opcode from server (unexpected)");
                     return;
                 case FluxerOpCode.RequestGuildMemberCounts:
                     _logger.Debug("Received RequestGuildMemberCounts opcode from server (unexpected)");
@@ -1603,6 +1603,33 @@ public partial class FluxerGatewayClient : IDisposable
                     }));
                 }
                 break;
+            case "THREAD_MEMBER_LIST_UPDATE":
+                {
+                    ThreadMemberListUpdateGatewayData? data = p.Data.ToObject<ThreadMemberListUpdateGatewayData>(FluxerClient._gatewaySerializer);
+                    if (data != null)
+                        ThreadMemberListUpdated?.Invoke(data);
+                    else
+                        _logger.Warning("THREAD_MEMBER_LIST_UPDATE event received but data could not be cast to ThreadMemberListUpdateGatewayData");
+                }
+                return;
+            case "FORUM_UNREADS":
+                {
+                    ForumUnreadsGatewayData? data = p.Data.ToObject<ForumUnreadsGatewayData>(FluxerClient._gatewaySerializer);
+                    if (data != null)
+                        ForumUnreadsReceived?.Invoke(data);
+                    else
+                        _logger.Warning("FORUM_UNREADS event received but data could not be cast to ForumUnreadsGatewayData");
+                }
+                return;
+            case "GUILD_MEMBER_LIST_UPDATE":
+                {
+                    GuildMemberListUpdateGatewayData? data = p.Data.ToObject<GuildMemberListUpdateGatewayData>(FluxerClient._gatewaySerializer);
+                    if (data != null)
+                        GuildMemberListUpdated?.Invoke(data);
+                    else
+                        _logger.Warning("GUILD_MEMBER_LIST_UPDATE event received but data could not be cast to GuildMemberListUpdateGatewayData");
+                }
+                return;
             case "THREAD_MEMBERS_UPDATE":
                 {
                     ThreadMembersUpdateGatewayData? data = p.Data.ToObject<ThreadMembersUpdateGatewayData>(FluxerClient._gatewaySerializer);
@@ -2935,6 +2962,55 @@ public partial class FluxerGatewayClient : IDisposable
         SendGatewayPacket(packet);
     }
 
+    /// <summary>
+    /// Sends a Lazy Request with what the session wants to receive from each guild.
+    /// </summary>
+    /// <remarks>
+    /// Fluxer sends a guild member's presence updates only to sessions that listed them in <see cref="GuildSubscription.Members"/>.
+    /// Fluxer applies each guild's options again when the session connects to that guild later.
+    /// </remarks>
+    /// <param name="subscriptions">The options for each guild, keyed by guild ID.</param>
+    public void SendLazyRequest(IDictionary<ulong, GuildSubscription> subscriptions)
+    {
+        SendGatewayPacket(new GatewayPacket
+        {
+            Data = JToken.FromObject(new LazyRequestPacket { Subscriptions = subscriptions }, FluxerClient._gatewaySerializer),
+            OpCode = FluxerOpCode.LazyRequest
+        });
+    }
+
+    /// <summary>
+    /// Subscribes to the presence updates of up to 1,000 members of a guild, replacing the guild's previous list.
+    /// </summary>
+    /// <param name="guildId">The guild.</param>
+    /// <param name="userIds">The members to follow. Only the first 1,000 are sent.</param>
+    public void SubscribePresences(ulong guildId, IEnumerable<ulong> userIds)
+        => SendLazyRequest(new Dictionary<ulong, GuildSubscription>
+        {
+            [guildId] = new GuildSubscription { Members = userIds.Distinct().Take(1000).ToArray() }
+        });
+
+    /// <summary>
+    /// Asks for unread counts of up to 40 posts in a forum or media channel. The answer arrives as
+    /// <see cref="ForumUnreadsReceived"/>. Fluxer accepts five of these every 5 seconds.
+    /// </summary>
+    /// <param name="guildId">The guild.</param>
+    /// <param name="channelId">The forum or media channel.</param>
+    /// <param name="threads">The posts to count.</param>
+    public void RequestForumUnreads(ulong guildId, ulong channelId, IEnumerable<ForumUnreadRequest> threads)
+    {
+        SendGatewayPacket(new GatewayPacket
+        {
+            Data = JToken.FromObject(new ForumUnreadsRequestPacket
+            {
+                GuildId = guildId,
+                ChannelId = channelId,
+                Threads = threads.Take(40).ToArray()
+            }, FluxerClient._gatewaySerializer),
+            OpCode = FluxerOpCode.RequestForumUnreads
+        });
+    }
+
 
     #region Events
 
@@ -3342,6 +3418,36 @@ public partial class FluxerGatewayClient : IDisposable
     /// Occurs when the current user's membership of a thread changes, for example its flags or mute state.
     /// </summary>
     public event ThreadMemberUpdatedEvent ThreadMemberUpdated;
+
+    /// <summary>
+    /// Delegate for THREAD_MEMBER_LIST_UPDATE events.
+    /// </summary>
+    public delegate void ThreadMemberListUpdatedEvent(ThreadMemberListUpdateGatewayData data);
+
+    /// <summary>
+    /// Occurs with the full member list of a thread subscribed to with <see cref="GuildSubscription.ThreadMemberLists"/>.
+    /// </summary>
+    public event ThreadMemberListUpdatedEvent ThreadMemberListUpdated;
+
+    /// <summary>
+    /// Delegate for FORUM_UNREADS events.
+    /// </summary>
+    public delegate void ForumUnreadsReceivedEvent(ForumUnreadsGatewayData data);
+
+    /// <summary>
+    /// Occurs with the answer to <see cref="RequestForumUnreads"/>.
+    /// </summary>
+    public event ForumUnreadsReceivedEvent ForumUnreadsReceived;
+
+    /// <summary>
+    /// Delegate for GUILD_MEMBER_LIST_UPDATE events.
+    /// </summary>
+    public delegate void GuildMemberListUpdatedEvent(GuildMemberListUpdateGatewayData data);
+
+    /// <summary>
+    /// Occurs when a member list subscribed to with <see cref="GuildSubscription.MemberListChannels"/> changes.
+    /// </summary>
+    public event GuildMemberListUpdatedEvent GuildMemberListUpdated;
 
     /// <summary>
     /// Delegate for GUILD_HEALTH_UPDATE events when a guild becomes degraded or recovers.

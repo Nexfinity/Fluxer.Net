@@ -14,6 +14,7 @@ internal sealed class GatewaySendQueue : IDisposable
     private readonly RollingWindow _payloads = new(PayloadLimit - ReservedPayloads, PayloadWindow);
     private readonly RollingWindow _presence = new(5, TimeSpan.FromSeconds(20));
     private readonly RollingWindow _memberRequests = new(12, TimeSpan.FromSeconds(10));
+    private readonly RollingWindow _forumUnreads = new(5, TimeSpan.FromSeconds(5));
     private readonly ConcurrentQueue<(string Text, FluxerOpCode? OpCode)> _priority = new();
     private readonly ConcurrentQueue<(string Text, FluxerOpCode? OpCode)> _normal = new();
     private readonly SemaphoreSlim _signal = new(0);
@@ -139,6 +140,7 @@ internal sealed class GatewaySendQueue : IDisposable
         {
             FluxerOpCode.PresenceUpdate => _presence.TimeUntilFree(),
             FluxerOpCode.RequestGuildMembers => _memberRequests.TimeUntilFree(),
+            FluxerOpCode.RequestForumUnreads => _forumUnreads.TimeUntilFree(),
             _ => TimeSpan.Zero
         };
         return own > wait ? own : wait;
@@ -154,6 +156,9 @@ internal sealed class GatewaySendQueue : IDisposable
                 break;
             case FluxerOpCode.RequestGuildMembers:
                 _memberRequests.Record();
+                break;
+            case FluxerOpCode.RequestForumUnreads:
+                _forumUnreads.Record();
                 break;
         }
 
