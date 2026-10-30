@@ -48,6 +48,11 @@ public partial class FluxerGatewayClient : IDisposable
     /// </summary>
     public int Latency { get; private set; }
 
+    /// <summary>
+    /// Whether the gateway connection is currently open.
+    /// </summary>
+    public bool IsConnected => _webSocket?.IsRunning == true;
+
     public FluxerGatewayConfig Config { get; internal set; }
 
     /// <summary>
@@ -223,6 +228,8 @@ public partial class FluxerGatewayClient : IDisposable
         Config = config;
         if (Messages.Count == 0)
             Messages = new MessageCache(config.MessageCacheSize);
+
+        SeedPresence(config.Presence);
 
         if (_isConnecting)
         {
@@ -2954,13 +2961,75 @@ public partial class FluxerGatewayClient : IDisposable
     /// </remarks>
     public void SetStatus(Status? status = null, bool? mobile = null, UserCustomStatusJson? custom = null)
     {
-        GatewayPacket packet = new GatewayPacket()
+        PresenceUpdateGatewayData presence;
+        lock (_presenceLock)
         {
-            Data = JToken.FromObject(new PresenceUpdateGatewayData(status, mobile, custom)),
+            CurrentStatus = status ?? CurrentStatus;
+            _presenceMobile = mobile ?? _presenceMobile;
+            CurrentCustomStatus = custom ?? CurrentCustomStatus;
+            presence = new PresenceUpdateGatewayData(CurrentStatus, _presenceMobile, CurrentCustomStatus);
+        }
+
+        SendGatewayPacket(new GatewayPacket
+        {
+            Data = JToken.FromObject(presence),
             OpCode = FluxerOpCode.PresenceUpdate
-        };
-        SendGatewayPacket(packet);
+        });
     }
+
+    /// <summary>
+    /// Sets the custom status text and keeps the online status. Null or empty clears the custom status.
+    /// </summary>
+    public void SetCustomStatus(string? text, string? emojiName = null)
+    {
+        PresenceUpdateGatewayData presence;
+        lock (_presenceLock)
+        {
+            CurrentCustomStatus = string.IsNullOrWhiteSpace(text) && string.IsNullOrEmpty(emojiName)
+                ? null
+                : new UserCustomStatusJson { Text = text, EmojiName = emojiName };
+            presence = new PresenceUpdateGatewayData(CurrentStatus, _presenceMobile, CurrentCustomStatus ?? new UserCustomStatusJson());
+        }
+
+        SendGatewayPacket(new GatewayPacket
+        {
+            Data = JToken.FromObject(presence),
+            OpCode = FluxerOpCode.PresenceUpdate
+        });
+    }
+
+    private readonly object _presenceLock = new object();
+    private bool? _presenceMobile;
+
+    internal void SeedPresence(PresenceUpdateGatewayData? presence)
+    {
+        if (presence == null)
+            return;
+
+        lock (_presenceLock)
+        {
+            CurrentStatus ??= presence.Status switch
+            {
+                "online" => Status.Online,
+                "idle" => Status.Idle,
+                "dnd" => Status.Dnd,
+                "invisible" => Status.Invisible,
+                _ => null
+            };
+            _presenceMobile ??= presence.IsMobile;
+            CurrentCustomStatus ??= presence.CustomStatus;
+        }
+    }
+
+    /// <summary>
+    /// The online status last set with <see cref="SetStatus"/>, or null when none was set.
+    /// </summary>
+    public Status? CurrentStatus { get; private set; }
+
+    /// <summary>
+    /// The custom status last set with <see cref="SetStatus"/> or <see cref="SetCustomStatus"/>, or null when there is none.
+    /// </summary>
+    public UserCustomStatusJson? CurrentCustomStatus { get; private set; }
 
     /// <summary>
     /// Sends a Lazy Request with what the session wants to receive from each guild.

@@ -9,6 +9,12 @@ namespace Fluxer.Net;
 /// </summary>
 public static class WebhookHelpers
 {
+    /// <summary>
+    /// The webhook's execute URL, or null when the webhook has no token.
+    /// </summary>
+    public static string? GetUrl(this Webhook webhook)
+        => string.IsNullOrEmpty(webhook.Token) ? null : $"{webhook.Client.Config.RealApiBaseUrl}/webhooks/{webhook.Id}/{webhook.Token}";
+
     /// <inheritdoc cref="FluxerApiClient.DeleteWebhookWithTokenAsync(ulong, string, RequestOptions?)" />
     public static Task DeleteAsync(this Webhook webhook, RequestOptions? options = null)
         => webhook.Client.Rest.DeleteWebhookWithTokenAsync(webhook.Id, webhook.Token, options);

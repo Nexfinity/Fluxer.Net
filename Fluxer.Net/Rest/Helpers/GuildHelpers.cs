@@ -42,6 +42,24 @@ public static class GuildHelpers
     public static Task<IEnumerable<GuildBan>> GetBansAsync(this Guild guild, RequestOptions? options = null)
         => guild.Client.Rest.GetBansAsync(guild.Id, options);
 
+    /// <summary>
+    /// Gets one user's ban, or null when they aren't banned. Fluxer has no single-ban route, and this reads the full ban list.
+    /// </summary>
+    /// <remarks>
+    /// Requires <see cref="GuildPermissions.BanMembers"/>.
+    /// </remarks>
+    public static async Task<GuildBan?> GetBanAsync(this Guild guild, ulong userId, RequestOptions? options = null)
+        => (await guild.Client.Rest.GetBansAsync(guild.Id, options)).FirstOrDefault(x => x.User?.Id == userId);
+
+    /// <summary>
+    /// Ban a user, deleting their messages from the given number of days.
+    /// </summary>
+    /// <remarks>
+    /// Requires <see cref="GuildPermissions.BanMembers"/>.
+    /// </remarks>
+    public static Task BanUserAsync(this Guild guild, ulong userId, int deleteMessageDays, string? reason = null, RequestOptions? options = null)
+        => guild.Client.Rest.BanMemberAsync(guild.Id, userId, reason, Math.Clamp(deleteMessageDays, 0, 7) * 86400, null, options);
+
     /// <inheritdoc cref="FluxerApiClient.BanMemberAsync(ulong, ulong, string?, int?, int?, RequestOptions?)" />
     public static Task BanUserAsync(this Guild guild, ulong userId, string? reason = null, int? deleteMessageSeconds = null, int? banDurationSeconds = null, RequestOptions? options = null)
         => guild.Client.Rest.BanMemberAsync(guild.Id, userId, reason, deleteMessageSeconds, banDurationSeconds, options);

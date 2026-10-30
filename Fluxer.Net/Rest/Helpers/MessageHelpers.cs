@@ -7,6 +7,14 @@ namespace Fluxer.Net;
 /// </summary>
 public static class MessageHelpers
 {
+    /// <summary>
+    /// A link that opens the message in the web app.
+    /// </summary>
+    /// <param name="message">The message.</param>
+    /// <param name="guildId">The guild the message is in, or null for a direct message.</param>
+    public static string GetJumpUrl(this Message message, ulong? guildId)
+        => $"{message.Client.Config.WebUrl}/channels/{guildId?.ToString() ?? "@me"}/{message.ChannelId}/{message.Id}";
+
     /// <inheritdoc cref="FluxerApiClient.DeleteMessageAsync(ulong, ulong, RequestOptions?)" />
     public static Task DeleteAsync(this Message message, RequestOptions? options = null)
         => message.Client.Rest.DeleteMessageAsync(message.ChannelId, message.Id, options);

@@ -13,6 +13,49 @@ public static class ChannelHelpers
     public static Task TriggerTypingIndicatorAsync(this Channel channel, RequestOptions? options = null)
         => channel.Client.Rest.TriggerTypingIndicatorAsync(channel.Id, options);
 
+    /// <summary>
+    /// Shows the typing indicator until the returned object is disposed, sending it again every 8 seconds.
+    /// </summary>
+    /// <example>
+    /// <code>using (channel.EnterTypingState()) { await DoSlowWorkAsync(); }</code>
+    /// </example>
+    public static IDisposable EnterTypingState(this Channel channel)
+        => new TypingState(() => channel.Client.Rest.TriggerTypingIndicatorAsync(channel.Id));
+
+    private sealed class TypingState : IDisposable
+    {
+        private readonly CancellationTokenSource _cancel = new CancellationTokenSource();
+
+        public TypingState(Func<Task> trigger)
+        {
+            CancellationToken token = _cancel.Token;
+            _ = Task.Run(async () =>
+            {
+                while (!token.IsCancellationRequested)
+                {
+                    try
+                    {
+                        await trigger();
+                    }
+                    catch (Exception)
+                    {
+                    }
+
+                    try
+                    {
+                        await Task.Delay(TimeSpan.FromSeconds(8), token);
+                    }
+                    catch (OperationCanceledException)
+                    {
+                        return;
+                    }
+                }
+            });
+        }
+
+        public void Dispose() => _cancel.Cancel();
+    }
+
     /// <inheritdoc cref="FluxerApiClient.GetChannelWebhooksAsync(ulong, RequestOptions?)" />
     public static Task<IEnumerable<Webhook>> GetWebhooksAsync(this Channel channel, RequestOptions? options = null)
         => channel.Client.Rest.GetChannelWebhooksAsync(channel.Id, options);

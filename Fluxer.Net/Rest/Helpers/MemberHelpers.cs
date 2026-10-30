@@ -64,4 +64,68 @@ public static class MemberHelpers
         {
             CommunicationDisabledUntil = date
         }, options);
+
+    /// <summary>
+    /// Time a member out for a length of time.
+    /// </summary>
+    /// <remarks>
+    /// Requires <see cref="GuildPermissions.ModerateMembers"/>.
+    /// </remarks>
+    public static Task SetTimeoutAsync(this GuildMember member, TimeSpan duration, string? reason = null, RequestOptions? options = null)
+    {
+        UpdateGuildMemberRequest request = new UpdateGuildMemberRequest
+        {
+            CommunicationDisabledUntil = DateTimeOffset.UtcNow.Add(duration)
+        };
+        if (!string.IsNullOrEmpty(reason))
+            request.TimeoutReason = reason;
+        return member.Client.Rest.UpdateMemberAsync(member.GuildId, member.Id, request, options);
+    }
+
+    /// <summary>
+    /// End a member's timeout.
+    /// </summary>
+    /// <remarks>
+    /// Requires <see cref="GuildPermissions.ModerateMembers"/>.
+    /// </remarks>
+    public static Task RemoveTimeoutAsync(this GuildMember member, RequestOptions? options = null)
+        => member.SetTimeoutAsync((DateTimeOffset?)null, options);
+
+    /// <summary>
+    /// Give a member several roles, one request each.
+    /// </summary>
+    /// <remarks>
+    /// Requires <see cref="GuildPermissions.ManageRoles"/>.
+    /// </remarks>
+    public static async Task AddRolesAsync(this GuildMember member, IEnumerable<ulong> roleIds, RequestOptions? options = null)
+    {
+        foreach (ulong roleId in roleIds.Distinct())
+            await member.Client.Rest.AddMemberRoleAsync(member.GuildId, member.Id, roleId, options);
+    }
+
+    /// <inheritdoc cref="AddRolesAsync(GuildMember, IEnumerable{ulong}, RequestOptions?)" />
+    public static Task AddRolesAsync(this GuildMember member, IEnumerable<Role> roles, RequestOptions? options = null)
+        => member.AddRolesAsync(roles.Select(x => x.Id), options);
+
+    /// <summary>
+    /// Take several roles from a member, one request each.
+    /// </summary>
+    /// <remarks>
+    /// Requires <see cref="GuildPermissions.ManageRoles"/>.
+    /// </remarks>
+    public static async Task RemoveRolesAsync(this GuildMember member, IEnumerable<ulong> roleIds, RequestOptions? options = null)
+    {
+        foreach (ulong roleId in roleIds.Distinct())
+            await member.Client.Rest.RemoveMemberRoleAsync(member.GuildId, member.Id, roleId, options);
+    }
+
+    /// <inheritdoc cref="RemoveRolesAsync(GuildMember, IEnumerable{ulong}, RequestOptions?)" />
+    public static Task RemoveRolesAsync(this GuildMember member, IEnumerable<Role> roles, RequestOptions? options = null)
+        => member.RemoveRolesAsync(roles.Select(x => x.Id), options);
+
+    /// <summary>
+    /// A link that opens the member's profile in the web app.
+    /// </summary>
+    public static string GetProfileUrl(this GuildMember member)
+        => $"{member.Client.Config.WebUrl}/users/{member.Id}";
 }
