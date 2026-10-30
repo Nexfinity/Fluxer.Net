@@ -75,4 +75,16 @@ public class MessageRequest
     /// </summary>
     [JsonProperty("avatar_url")]
     public string? WebhookAvatarUrl { get; set; }
+
+    /// <summary>
+    /// Name of the post to create when the webhook belongs to a forum or media channel.
+    /// </summary>
+    [JsonProperty("thread_name")]
+    public string? ThreadName { get; set; }
+
+    /// <summary>
+    /// IDs of the tags to apply to the post created by <see cref="ThreadName"/>.
+    /// </summary>
+    [JsonProperty("applied_tags")]
+    public List<ulong>? AppliedTags { get; set; }
 }

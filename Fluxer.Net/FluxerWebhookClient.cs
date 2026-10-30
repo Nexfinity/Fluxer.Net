@@ -69,27 +69,34 @@ public class FluxerWebhookClient : FluxerBaseClient
     public Task DeleteAsync(RequestOptions? options = null)
         => Rest.DeleteWebhookWithTokenAsync(Id, Token, options);
 
-    /// <inheritdoc cref="FluxerApiClient.ExecuteWebhookAsync(ulong, string, string?, List{EmbedRequest}?, string?, string?, MessageReferenceRequest?, AllowedMentionsRequest?, MessageFlag, string?, ulong?, bool?, List{ulong}?, List{AttachmentRequest}?, RequestOptions?)" />
+    /// <inheritdoc cref="FluxerApiClient.ExecuteWebhookAsync(ulong, string, string?, List{EmbedRequest}?, string?, string?, MessageReferenceRequest?, AllowedMentionsRequest?, MessageFlag, string?, ulong?, bool?, List{ulong}?, List{AttachmentRequest}?, RequestOptions?, ulong?, string?, List{ulong}?)" />
     public Task SendMessageAsync(string? content = null, List<EmbedRequest>? embeds = null,
         string? username = null, string? avatarUrl = null,
         MessageReferenceRequest? reference = null, AllowedMentionsRequest? allowedMentions = null, MessageFlag flags = MessageFlag.None,
-        string? nonce = null, ulong? favoriteMediaId = null, bool? tts = null, List<ulong>? stickerIds = null, List<AttachmentRequest>? attachments = null, RequestOptions? options = null)
-        => Rest.ExecuteWebhookAsync(Id, Token, content, embeds, username, avatarUrl, reference, allowedMentions, flags, nonce, favoriteMediaId, tts, stickerIds, attachments, options: options);
+        string? nonce = null, ulong? favoriteMediaId = null, bool? tts = null, List<ulong>? stickerIds = null, List<AttachmentRequest>? attachments = null, RequestOptions? options = null,
+        ulong? threadId = null, string? threadName = null, List<ulong>? appliedTags = null)
+        => Rest.ExecuteWebhookAsync(Id, Token, content, embeds, username, avatarUrl, reference, allowedMentions, flags, nonce, favoriteMediaId, tts, stickerIds, attachments, options: options, threadId: threadId, threadName: threadName, appliedTags: appliedTags);
 
-    /// <inheritdoc cref="FluxerApiClient.ExecuteWebhookWaitAsync(ulong, string, string?, List{EmbedRequest}?, string?, string?, MessageReferenceRequest?, AllowedMentionsRequest?, MessageFlag, string?, ulong?, bool?, List{ulong}?, List{AttachmentRequest}?, RequestOptions?)" />
+    /// <inheritdoc cref="FluxerApiClient.ExecuteWebhookWaitAsync(ulong, string, string?, List{EmbedRequest}?, string?, string?, MessageReferenceRequest?, AllowedMentionsRequest?, MessageFlag, string?, ulong?, bool?, List{ulong}?, List{AttachmentRequest}?, RequestOptions?, ulong?, string?, List{ulong}?)" />
     public Task<Message> SendMessageWaitAsync(string? content = null, List<EmbedRequest>? embeds = null,
         string? username = null, string? avatarUrl = null,
         MessageReferenceRequest? reference = null, AllowedMentionsRequest? allowedMentions = null, MessageFlag flags = MessageFlag.None,
-        string? nonce = null, ulong? favoriteMediaId = null, bool? tts = null, List<ulong>? stickerIds = null, List<AttachmentRequest>? attachments = null, RequestOptions? options = null)
-        => Rest.ExecuteWebhookWaitAsync(Id, Token, content, embeds, username, avatarUrl, reference, allowedMentions, flags, nonce, favoriteMediaId, tts, stickerIds, attachments, options: options);
+        string? nonce = null, ulong? favoriteMediaId = null, bool? tts = null, List<ulong>? stickerIds = null, List<AttachmentRequest>? attachments = null, RequestOptions? options = null,
+        ulong? threadId = null, string? threadName = null, List<ulong>? appliedTags = null)
+        => Rest.ExecuteWebhookWaitAsync(Id, Token, content, embeds, username, avatarUrl, reference, allowedMentions, flags, nonce, favoriteMediaId, tts, stickerIds, attachments, options: options, threadId: threadId, threadName: threadName, appliedTags: appliedTags);
 
-    /// <inheritdoc cref="FluxerApiClient.EditWebhookMessageAsync(ulong, string, ulong, string?, List{EmbedRequest}?, MessageReferenceRequest?, AllowedMentionsRequest?, MessageFlag, string?, ulong?, List{ulong}?, List{AttachmentRequest}?, RequestOptions?)" />
+    /// <inheritdoc cref="FluxerApiClient.GetWebhookMessageAsync(ulong, string, ulong, ulong?, RequestOptions?)" />
+    public Task<Message> GetMessageAsync(ulong messageId, ulong? threadId = null, RequestOptions? options = null)
+        => Rest.GetWebhookMessageAsync(Id, Token, messageId, threadId, options);
+
+    /// <inheritdoc cref="FluxerApiClient.EditWebhookMessageAsync(ulong, string, ulong, string?, List{EmbedRequest}?, MessageReferenceRequest?, AllowedMentionsRequest?, MessageFlag, string?, ulong?, List{ulong}?, List{AttachmentRequest}?, RequestOptions?, ulong?)" />
     public Task<Message> EditMessageAsync(ulong messageId, string? content = null, List<EmbedRequest>? embeds = null,
         MessageReferenceRequest? reference = null, AllowedMentionsRequest? allowedMentions = null, MessageFlag flags = MessageFlag.None,
-        string? nonce = null, ulong? favoriteMediaId = null, List<ulong>? stickerIds = null, List<AttachmentRequest>? attachments = null, RequestOptions? options = null)
-        => Rest.EditWebhookMessageAsync(Id, Token, messageId, content, embeds, reference, allowedMentions, flags, nonce, favoriteMediaId, stickerIds, attachments, options: options);
+        string? nonce = null, ulong? favoriteMediaId = null, List<ulong>? stickerIds = null, List<AttachmentRequest>? attachments = null, RequestOptions? options = null,
+        ulong? threadId = null)
+        => Rest.EditWebhookMessageAsync(Id, Token, messageId, content, embeds, reference, allowedMentions, flags, nonce, favoriteMediaId, stickerIds, attachments, options: options, threadId: threadId);
 
-    /// <inheritdoc cref="FluxerApiClient.DeleteWebhookMessageAsync(ulong, string, ulong, RequestOptions?)" />
-    public Task DeleteMessageAsync(ulong messageId, RequestOptions? options = null)
-        => Rest.DeleteWebhookMessageAsync(Id, Token, messageId, options: options);
+    /// <inheritdoc cref="FluxerApiClient.DeleteWebhookMessageAsync(ulong, string, ulong, RequestOptions?, ulong?)" />
+    public Task DeleteMessageAsync(ulong messageId, RequestOptions? options = null, ulong? threadId = null)
+        => Rest.DeleteWebhookMessageAsync(Id, Token, messageId, options: options, threadId: threadId);
 }
