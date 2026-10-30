@@ -128,10 +128,9 @@ public class SocketGuild : Guild
         data.CurrentMember.GuildId = data.Id;
         data.CurrentMember.Guild = data;
 
-        // Null count data on socket guild.
-        data.OnlineCount = null;
-        data.MemberCount = null;
         data.Update(json.Properties);
+        data.OnlineCount = json.OnlineCount;
+        data.MemberCount = json.MemberCount;
         return data;
     }
 

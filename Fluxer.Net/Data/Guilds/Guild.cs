@@ -108,7 +108,7 @@ public class Guild : PartialGuild, IGuild
         IsNsfw = json.IsNsfw;
         ContentWarningLevel = json.ContentWarningLevel;
         ContentWarningText = json.ContentWarningText;
-        OnlineCount = json.OnlineCount;
-        MemberCount = json.MemberCount;
+        OnlineCount = json.OnlineCount ?? OnlineCount;
+        MemberCount = json.MemberCount ?? MemberCount;
     }
 }

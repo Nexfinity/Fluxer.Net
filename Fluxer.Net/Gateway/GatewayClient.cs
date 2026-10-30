@@ -927,6 +927,8 @@ public partial class FluxerGatewayClient : IDisposable
                         {
                             guild = Guilds[data.Id];
                             guild.Update(data.Properties);
+                            guild.MemberCount = data.MemberCount;
+                            guild.OnlineCount = data.OnlineCount;
                         }
 
                         guild.IsAvailable = true;
@@ -1023,6 +1025,8 @@ public partial class FluxerGatewayClient : IDisposable
                         {
                             guild = Guilds[data.Id];
                             guild.Update(data.Properties);
+                            guild.MemberCount = data.MemberCount;
+                            guild.OnlineCount = data.OnlineCount;
                         }
 
                         // Add or update roles
@@ -1681,6 +1685,8 @@ public partial class FluxerGatewayClient : IDisposable
                         if (Guilds.TryGetValue(data.GuildId, out SocketGuild guild))
                         {
                             SocketGuildMember member = guild.AddOrUpdateMember(data);
+                            if (guild.MemberCount.HasValue)
+                                guild.MemberCount++;
                             MemberJoined?.Invoke(member);
                         }
                     }
@@ -1712,6 +1718,8 @@ public partial class FluxerGatewayClient : IDisposable
                         if (Guilds.TryGetValue(data.GuildId, out SocketGuild guild))
                         {
                             guild.Members.TryRemove(userId, out SocketGuildMember? member);
+                            if (guild.MemberCount > 0)
+                                guild.MemberCount--;
                             MemberLeft?.Invoke(guild, new Cacheable<SocketGuildMember>(userId, member, () =>
                             {
                                 return null;
@@ -2343,6 +2351,15 @@ public partial class FluxerGatewayClient : IDisposable
                     CountGatewayData<GuildMemberCountGatewayData> data = p.Data.ToObject<CountGatewayData<GuildMemberCountGatewayData>>(FluxerClient._gatewaySerializer);
                     if (data != null)
                     {
+                        foreach (GuildMemberCountGatewayData count in data.Counts)
+                        {
+                            if (Guilds.TryGetValue(count.GuildId, out SocketGuild guild))
+                            {
+                                guild.MemberCount = count.MemberCount;
+                                guild.OnlineCount = count.OnlineCount;
+                            }
+                        }
+
                         GuildMemberCounts?.Invoke(data.Counts);
                     }
                     else
