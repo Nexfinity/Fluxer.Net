@@ -4957,6 +4957,11 @@
             The colour of the role as an integer.
             </summary>
         </member>
+        <member name="P:Fluxer.Net.IRole.IconHash">
+            <summary>
+            The hash of the role icon image.
+            </summary>
+        </member>
         <member name="P:Fluxer.Net.IRole.UnicodeEmoji">
             <summary>
             The unicode emoji for this role.
@@ -5007,6 +5012,15 @@
         <member name="P:Fluxer.Net.Role.Color">
             <inheritdoc />
         </member>
+        <member name="P:Fluxer.Net.Role.IconHash">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.Role.GetIconUrl(System.Int32)">
+            <summary>
+            Get the role icon url, or null when the role has no icon image.
+            </summary>
+            <param name="size">Image size between 16 and 512.</param>
+        </member>
         <member name="P:Fluxer.Net.Role.UnicodeEmoji">
             <inheritdoc />
         </member>
@@ -5048,6 +5062,15 @@
         </member>
         <member name="P:Fluxer.Net.RoleJson.Color">
             <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.RoleJson.IconHash">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.RoleJson.GetIconUrl(System.Int32)">
+            <summary>
+            Get the role icon url, or null when the role has no icon image.
+            </summary>
+            <param name="size">Image size between 16 and 512.</param>
         </member>
         <member name="P:Fluxer.Net.RoleJson.UnicodeEmoji">
             <inheritdoc />
@@ -12554,6 +12577,21 @@
             The name of the role (1-100 characters)
             </summary>
         </member>
+        <member name="P:Fluxer.Net.Rest.CreateGuildRoleRequest.IconBase64">
+            <summary>
+            Base64 data URI for the role icon image. Null removes the icon. Cannot be combined with <see cref="P:Fluxer.Net.Rest.CreateGuildRoleRequest.UnicodeEmoji"/>.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.CreateGuildRoleRequest.UnicodeEmoji">
+            <summary>
+            A single unicode emoji to use as the role icon. Null removes it.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.CreateGuildRoleRequest.IconSourceRoleId">
+            <summary>
+            The ID of a role in the same guild whose icon the new role copies. Cannot be combined with an icon or emoji.
+            </summary>
+        </member>
         <member name="P:Fluxer.Net.Rest.DiscoveryApplicationRequest.Description">
             <summary>
             The description shown in discovery, up to 300 characters. Required when applying.
@@ -12767,6 +12805,16 @@
         <member name="P:Fluxer.Net.Rest.UpdateGuildRoleRequest.Name">
             <summary>
             The name of the role (1-100 characters)
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.UpdateGuildRoleRequest.IconBase64">
+            <summary>
+            Base64 data URI for the role icon image. Null removes the icon. Cannot be combined with <see cref="P:Fluxer.Net.Rest.UpdateGuildRoleRequest.UnicodeEmoji"/>.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.UpdateGuildRoleRequest.UnicodeEmoji">
+            <summary>
+            A single unicode emoji to use as the role icon. Null removes it.
             </summary>
         </member>
         <member name="P:Fluxer.Net.Rest.UpdateGuildVanityUrlRequest.Code">

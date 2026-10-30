@@ -38,6 +38,17 @@ public class RoleJson : IRole
     public int Color { get; set; }
 
     /// <inheritdoc />
+    [JsonProperty("icon")]
+    public string? IconHash { get; set; }
+
+    /// <summary>
+    /// Get the role icon url, or null when the role has no icon image.
+    /// </summary>
+    /// <param name="size">Image size between 16 and 512.</param>
+    public string? GetIconUrl(int size = 64)
+        => string.IsNullOrEmpty(IconHash) ? null : $"https://fluxerusercontent.com/role-icons/{Id}/{IconHash}.webp?size={size}";
+
+    /// <inheritdoc />
     [JsonProperty("unicode_emoji")]
     public string? UnicodeEmoji { get; set; }
 
