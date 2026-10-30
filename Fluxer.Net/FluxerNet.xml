@@ -2271,6 +2271,26 @@
         <member name="P:Fluxer.Net.Channel.DefaultRateLimitPerUser">
             <inheritdoc />
         </member>
+        <member name="P:Fluxer.Net.Channel.MemberCount">
+            <summary>
+            Approximate number of thread members, capped at 50.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Channel.MemberIdsPreview">
+            <summary>
+            IDs of the most recently joined members of a forum or media post, newest first.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Channel.MessageCount">
+            <summary>
+            Messages in the thread, excluding the starter and deleted messages.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Channel.TotalMessageSent">
+            <summary>
+            Messages ever sent in the thread, never decremented.
+            </summary>
+        </member>
         <member name="M:Fluxer.Net.Channel.TextableTypes(Fluxer.Net.ChannelType)">
             <summary>
             Channel types that you can send messages to.
@@ -2411,6 +2431,26 @@
         </member>
         <member name="P:Fluxer.Net.ChannelJson.DefaultRateLimitPerUser">
             <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelJson.MemberCount">
+            <summary>
+            Approximate number of thread members, capped at 50.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.ChannelJson.MemberIdsPreview">
+            <summary>
+            IDs of the most recently joined members of a forum or media post, newest first.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.ChannelJson.MessageCount">
+            <summary>
+            Messages in the thread, excluding the starter and deleted messages.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.ChannelJson.TotalMessageSent">
+            <summary>
+            Messages ever sent in the thread, never decremented.
+            </summary>
         </member>
         <member name="T:Fluxer.Net.ChannelPin">
             <inheritdoc />
@@ -8397,6 +8437,26 @@
             Whether the thread is private.
             </summary>
         </member>
+        <member name="P:Fluxer.Net.IThreadChannel.MemberCount">
+            <summary>
+            Approximate number of thread members, capped at 50.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IThreadChannel.MemberIdsPreview">
+            <summary>
+            IDs of the most recently joined members of a forum or media post, newest first.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IThreadChannel.MessageCount">
+            <summary>
+            Messages in the thread, excluding the starter and deleted messages.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IThreadChannel.TotalMessageSent">
+            <summary>
+            Messages ever sent in the thread, never decremented.
+            </summary>
+        </member>
         <member name="M:Fluxer.Net.SocketThreadMember.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.ThreadMemberJson,Fluxer.Net.ThreadChannel,Fluxer.Net.SocketGuild)">
             <summary>
             Create a ThreadMember object from json.
@@ -13076,6 +13136,11 @@
             Only threads created after this thread.
             </summary>
         </member>
+        <member name="P:Fluxer.Net.Rest.UpdateThreadRequest.AppliedTags">
+            <summary>
+            IDs of the tags applied to the forum or media post (max 5).
+            </summary>
+        </member>
         <member name="T:Fluxer.Net.Rest.UpdateCurrentUserRequest">
             <summary>
             Request body for updating the current user's profile, sending only the properties that are set.
@@ -14905,51 +14970,6 @@
         <member name="M:Fluxer.Net.OAuth.FluxerOAuthClient.RevokeRefreshTokenAsync(System.String,Fluxer.Net.Rest.RequestOptions)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.RevokeOAuthRefreshTokenAsync(System.UInt64,System.String,System.String,Fluxer.Net.Rest.RequestOptions)" />
         </member>
-        <member name="T:Fluxer.Net.OAuth.FluxerOAuthExtensions">
-            <Summary>
-            Extension methods for handling fluxer oauth client.
-            </Summary>
-        </member>
-        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.AddFluxerClient(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,Fluxer.Net.FluxerConfig)">
-            <Summary>
-            Add Fluxer client on dependency injection service.
-            </Summary>
-        </member>
-        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.AddFluxerOAuth(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.UInt64,System.String,Fluxer.Net.FluxerConfig)">
-            <Summary>
-            Add Fluxer oauth client on dependency injection service.
-            </Summary>
-        </member>
-        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.GetFluxerClaims(System.Security.Claims.ClaimsPrincipal,Fluxer.Net.FluxerBaseClient)">
-            <Summary>
-            Get Fluxer specific claims for a claim user.
-            </Summary>
-        </member>
-        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.AddFluxer(Microsoft.AspNetCore.Authentication.AuthenticationBuilder,System.Action{Fluxer.Net.OAuth.FluxerOAuthOptions})">
-            <Summary>
-            Add Fluxer oauth client on dependency injection service.
-            </Summary>
-        </member>
-        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.AddFluxer(Microsoft.AspNetCore.Authentication.AuthenticationBuilder,System.String,System.Action{Fluxer.Net.OAuth.FluxerOAuthOptions})">
-            <Summary>
-            Add Fluxer oauth client on dependency injection service.
-            </Summary>
-        </member>
-        <member name="M:Fluxer.Net.OAuth.FluxerOAuthExtensions.AddFluxer(Microsoft.AspNetCore.Authentication.AuthenticationBuilder,System.String,System.String,System.Action{Fluxer.Net.OAuth.FluxerOAuthOptions})">
-            <Summary>
-            Add Fluxer oauth client on dependency injection service.
-            </Summary>
-        </member>
-        <member name="T:Fluxer.Net.OAuth.FluxerOAuthHandler">
-            <Summary>
-            Asp.net oauth handler for Fluxer.
-            </Summary>
-        </member>
-        <member name="M:Fluxer.Net.OAuth.FluxerOAuthHandler.#ctor(Microsoft.Extensions.Options.IOptionsMonitor{Fluxer.Net.OAuth.FluxerOAuthOptions},Microsoft.Extensions.Logging.ILoggerFactory,System.Text.Encodings.Web.UrlEncoder,Microsoft.AspNetCore.Authentication.ISystemClock)">
-            <Summary>
-            Create asp.net oauth handler for Fluxer.
-            </Summary>
-        </member>
         <member name="T:Fluxer.Net.RateLimiting.BucketId">
             <summary>
             Which rate limit bucket a request belongs to. Fluxer keeps one allowance per route and per path resource, so a
@@ -16072,6 +16092,11 @@
         <member name="M:Fluxer.Net.ThreadHelpers.OpenAsync(Fluxer.Net.IThreadChannel,Fluxer.Net.Rest.RequestOptions)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.UpdateThreadAsync(System.UInt64,Fluxer.Net.Rest.UpdateThreadRequest,Fluxer.Net.Rest.RequestOptions)" />
         </member>
+        <member name="M:Fluxer.Net.ThreadHelpers.SetTagsAsync(Fluxer.Net.IThreadChannel,System.Collections.Generic.IEnumerable{System.UInt64},Fluxer.Net.Rest.RequestOptions)">
+            <summary>
+            Replace the tags applied to the forum or media post.
+            </summary>
+        </member>
         <member name="M:Fluxer.Net.ThreadHelpers.JoinAsync(Fluxer.Net.IThreadChannel,Fluxer.Net.Rest.RequestOptions)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.JoinThreadAsync(System.UInt64,Fluxer.Net.Rest.RequestOptions)" />
         </member>
@@ -16147,6 +16172,23 @@
             <inheritdoc cref="!:FluxerApiClient.ExecuteWebhookAsync(ulong, string, string?, List&lt;EmbedRequest&gt;?, string?, string?, MessageReferenceRequest?, AllowedMentionsRequest?, MessageFlag, string?, ulong?, bool?, List&lt;ulong&gt;?, List&lt;AttachmentRequest&gt;?, RequestOptions?)" />
         </member>
         <member name="M:Fluxer.Net.WebhookHelpers.SendMessageWaitAsync(Fluxer.Net.Webhook,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.EmbedRequest},System.String,System.String,Fluxer.Net.Rest.MessageReferenceRequest,Fluxer.Net.Rest.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64},System.Collections.Generic.List{Fluxer.Net.Rest.AttachmentRequest},Fluxer.Net.Rest.RequestOptions)">
+            <inheritdoc cref="!:FluxerApiClient.ExecuteWebhookWaitAsync(ulong, string, string?, List&lt;EmbedRequest&gt;?, string?, string?, MessageReferenceRequest?, AllowedMentionsRequest?, MessageFlag, string?, ulong?, bool?, List&lt;ulong&gt;?, List&lt;AttachmentRequest&gt;?, RequestOptions?)" />
+        </member>
+        <member name="M:Fluxer.Net.WebhookHelpers.DeleteMessageAsync(Fluxer.Net.Webhook,Fluxer.Net.Message,Fluxer.Net.Rest.RequestOptions)">
+            <inheritdoc cref="!:FluxerApiClient.DeleteWebhookMessageAsync(ulong, string, ulong, RequestOptions?)" />
+        </member>
+        <member name="M:Fluxer.Net.WebhookHelpers.DeleteMessageAsync(Fluxer.Net.Webhook,System.UInt64,Fluxer.Net.Rest.RequestOptions)">
+            <inheritdoc cref="!:FluxerApiClient.DeleteWebhookMessageAsync(ulong, string, ulong, RequestOptions?)" />
+        </member>
+        <member name="M:Fluxer.Net.WebhookHelpers.EditMessageAsync(Fluxer.Net.Webhook,System.UInt64,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.EmbedRequest},Fluxer.Net.Rest.MessageReferenceRequest,Fluxer.Net.Rest.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Collections.Generic.List{System.UInt64},System.Collections.Generic.List{Fluxer.Net.Rest.AttachmentRequest},Fluxer.Net.Rest.RequestOptions)">
+            <inheritdoc cref="!:FluxerApiClient.EditWebhookMessageAsync(ulong, string, ulong, string?, List&lt;EmbedRequest&gt;?, MessageReferenceRequest?, AllowedMentionsRequest?, MessageFlag, string?, ulong?, List&lt;ulong&gt;?, List&lt;AttachmentRequest&gt;?, RequestOptions?)" />
+        </member>
+        <member name="M:Fluxer.Net.WebhookHelpers.EditMessageAsync(Fluxer.Net.Webhook,Fluxer.Net.Message,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.EmbedRequest},Fluxer.Net.Rest.MessageReferenceRequest,Fluxer.Net.Rest.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Collections.Generic.List{System.UInt64},System.Collections.Generic.List{Fluxer.Net.Rest.AttachmentRequest},Fluxer.Net.Rest.RequestOptions)">
+            <inheritdoc cref="!:FluxerApiClient.EditWebhookMessageAsync(ulong, string, ulong, string?, List&lt;EmbedRequest&gt;?, MessageReferenceRequest?, AllowedMentionsRequest?, MessageFlag, string?, ulong?, List&lt;ulong&gt;?, List&lt;AttachmentRequest&gt;?, RequestOptions?)" />
+        </member>
+    </members>
+</doc>
+g,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64},System.Collections.Generic.List{Fluxer.Net.Rest.AttachmentRequest},Fluxer.Net.Rest.RequestOptions)">
             <inheritdoc cref="!:FluxerApiClient.ExecuteWebhookWaitAsync(ulong, string, string?, List&lt;EmbedRequest&gt;?, string?, string?, MessageReferenceRequest?, AllowedMentionsRequest?, MessageFlag, string?, ulong?, bool?, List&lt;ulong&gt;?, List&lt;AttachmentRequest&gt;?, RequestOptions?)" />
         </member>
         <member name="M:Fluxer.Net.WebhookHelpers.DeleteMessageAsync(Fluxer.Net.Webhook,Fluxer.Net.Message,Fluxer.Net.Rest.RequestOptions)">

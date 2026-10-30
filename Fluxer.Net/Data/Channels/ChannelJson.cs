@@ -134,6 +134,30 @@ public class ChannelJson : PartialChannelJson, IChannel
     [JsonProperty("default_thread_rate_limit_per_user")]
     public int? DefaultRateLimitPerUser { get; set; }
 
+    /// <summary>
+    /// Approximate number of thread members, capped at 50.
+    /// </summary>
+    [JsonProperty("member_count")]
+    public int? MemberCount { get; set; }
+
+    /// <summary>
+    /// IDs of the most recently joined members of a forum or media post, newest first.
+    /// </summary>
+    [JsonProperty("member_ids_preview")]
+    public ulong[]? MemberIdsPreview { get; set; }
+
+    /// <summary>
+    /// Messages in the thread, excluding the starter and deleted messages.
+    /// </summary>
+    [JsonProperty("message_count")]
+    public int? MessageCount { get; set; }
+
+    /// <summary>
+    /// Messages ever sent in the thread, never decremented.
+    /// </summary>
+    [JsonProperty("total_message_sent")]
+    public int? TotalMessageSent { get; set; }
+
     IEnumerable<IPermissionOverwrite>? IChannel.PermissionOverwrites => PermissionOverwrites;
 
     IThreadMetadata? IChannel.ThreadMetadata => ThreadMetadata;

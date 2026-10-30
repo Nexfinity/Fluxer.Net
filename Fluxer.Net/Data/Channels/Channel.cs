@@ -99,6 +99,26 @@ public class Channel : PartialChannel, IChannel
     /// <inheritdoc />
     public int? DefaultRateLimitPerUser { get; private set; }
 
+    /// <summary>
+    /// Approximate number of thread members, capped at 50.
+    /// </summary>
+    public int? MemberCount { get; internal set; }
+
+    /// <summary>
+    /// IDs of the most recently joined members of a forum or media post, newest first.
+    /// </summary>
+    public ulong[]? MemberIdsPreview { get; internal set; }
+
+    /// <summary>
+    /// Messages in the thread, excluding the starter and deleted messages.
+    /// </summary>
+    public int? MessageCount { get; internal set; }
+
+    /// <summary>
+    /// Messages ever sent in the thread, never decremented.
+    /// </summary>
+    public int? TotalMessageSent { get; internal set; }
+
     IEnumerable<IPermissionOverwrite>? IChannel.PermissionOverwrites => PermissionOverwrites;
 
     IThreadMetadata? IChannel.ThreadMetadata => ThreadMetadata;
@@ -260,5 +280,9 @@ public class Channel : PartialChannel, IChannel
         DefaultLayout = json.DefaultLayout;
         DefaultAutoArchiveDuration = json.DefaultAutoArchiveDuration;
         DefaultRateLimitPerUser = json.DefaultRateLimitPerUser;
+        MemberCount = json.MemberCount ?? MemberCount;
+        MemberIdsPreview = json.MemberIdsPreview ?? MemberIdsPreview;
+        MessageCount = json.MessageCount ?? MessageCount;
+        TotalMessageSent = json.TotalMessageSent ?? TotalMessageSent;
     }
 }

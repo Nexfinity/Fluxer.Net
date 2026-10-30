@@ -1,4 +1,4 @@
-﻿using Fluxer.Net.Rest;
+using Fluxer.Net.Rest;
 using Newtonsoft.Json;
 
 namespace Fluxer.Net.Test;
@@ -107,5 +107,16 @@ public class SerializationTests
         }.BuildQuery();
 
         Assert.That(query, Is.EqualTo("name=bug%20report&tag=1&tag=2&tag_setting=match_all&archived=false&sort_by=creation_time&sort_order=asc&max_id=9"));
+    }
+
+    [Test]
+    public void ThreadUpdatesCanSetAppliedTags()
+    {
+        Assert.Multiple(() =>
+        {
+            Assert.That(SerializeForRest(new UpdateThreadRequest { AppliedTags = new List<ulong> { 1, 2 } }),
+                Does.Contain("\"applied_tags\":[").And.Not.Contain("\"name\""));
+            Assert.That(SerializeForRest(new UpdateThreadRequest { IsLocked = true }), Does.Not.Contain("applied_tags"));
+        });
     }
 }

@@ -18,4 +18,10 @@ public class UpdateThreadRequest
 
     [JsonProperty("archived")]
     public bool? IsArchived { get; set; }
+
+    /// <summary>
+    /// IDs of the tags applied to the forum or media post (max 5).
+    /// </summary>
+    [JsonProperty("applied_tags")]
+    public List<ulong>? AppliedTags { get; set; }
 }

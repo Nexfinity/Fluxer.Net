@@ -114,4 +114,28 @@ public class ChannelTests
             Assert.That(((ISocketGuildChannel)category).Guild, Is.SameAs(guild));
         });
     }
+
+    [Test]
+    public void ThreadCountsFlowFromJsonToTheModelAndSurviveSparseUpdates()
+    {
+        ChannelJson json = Newtonsoft.Json.JsonConvert.DeserializeObject<ChannelJson>(
+            "{\"id\":\"3\",\"type\":11,\"member_count\":4,\"member_ids_preview\":[\"7\",\"8\"],\"message_count\":12,\"total_message_sent\":15}")!;
+        IThreadChannel thread = (IThreadChannel)Channel.Create(null!, json);
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(thread.MemberCount, Is.EqualTo(4));
+            Assert.That(thread.MemberIdsPreview, Is.EqualTo(new ulong[] { 7, 8 }));
+            Assert.That(thread.MessageCount, Is.EqualTo(12));
+            Assert.That(thread.TotalMessageSent, Is.EqualTo(15));
+        });
+
+        ((Channel)thread).Update(new ChannelJson { Id = 3, Type = ChannelType.PublicThread, MessageCount = 13 });
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(thread.MessageCount, Is.EqualTo(13));
+            Assert.That(thread.MemberCount, Is.EqualTo(4));
+        });
+    }
 }
