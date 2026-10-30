@@ -14,6 +14,11 @@ public class ThreadMember : Entity, IThreadMember
     /// <inheritdoc />
     public int Flags { get; private set; }
 
+    /// <summary>
+    /// Whether the user has muted the thread. Only known for the current user.
+    /// </summary>
+    public bool? Muted { get; private set; }
+
     /// <inheritdoc />
     public GuildMember? Member { get; private set; }
 
@@ -41,6 +46,7 @@ public class ThreadMember : Entity, IThreadMember
         ThreadId = json.ThreadId;
         JoinedAt = json.JoinedAt;
         Flags = json.Flags;
+        Muted = json.Muted ?? Muted;
         if (json.Member != null)
             Member = GuildMember.Create(Client, json.Member);
     }

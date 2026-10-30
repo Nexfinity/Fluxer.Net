@@ -99,4 +99,30 @@ public interface IGuild : IPartialGuild
     /// Only available from rest get guild not socket guild.
     /// </remarks>
     int? MemberCount { get; }
+
+    /// <summary>
+    /// Approximate total member count.
+    /// </summary>
+    /// <remarks>
+    /// Only filled when the guilds were requested with counts.
+    /// </remarks>
+    int? ApproximateMemberCount { get; }
+
+    /// <summary>
+    /// Approximate online member count.
+    /// </summary>
+    /// <remarks>
+    /// Only filled when the guilds were requested with counts.
+    /// </remarks>
+    int? ApproximatePresenceCount { get; }
+
+    /// <summary>
+    /// True when threads, forum and media channels are active in this guild for the requesting client. Only sent on the current user guild list.
+    /// </summary>
+    bool? ThreadsActive { get; }
+
+    /// <summary>
+    /// True when the requesting user is visiting the guild without being a member.
+    /// </summary>
+    bool? Visiting { get; }
 }

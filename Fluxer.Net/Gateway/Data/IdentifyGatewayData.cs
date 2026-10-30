@@ -16,6 +16,12 @@ internal class IdentifyGatewayData
     [JsonProperty("presence")]
     public PresenceUpdateGatewayData? Presence { get; set; }
 
+    [JsonProperty("shard", NullValueHandling = NullValueHandling.Ignore)]
+    public int[]? Shard { get; set; }
+
+    [JsonProperty("flags", NullValueHandling = NullValueHandling.Ignore)]
+    public int? Flags { get; set; }
+
     public IdentifyGatewayData(string token)
         => Token = token;
 }

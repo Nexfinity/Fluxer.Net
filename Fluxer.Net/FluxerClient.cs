@@ -155,6 +155,7 @@ public class FluxerClient : FluxerBaseClient
         serializer.Converters.Add(new StringUInt64Converter());
         serializer.Converters.Add(new GuildPermissionsConverter());
         serializer.Converters.Add(new ChannelPermissionsConverter());
+        serializer.Converters.Add(new UtcDateTimeOffsetConverter());
         return serializer;
     }
 
@@ -170,6 +171,7 @@ public class FluxerClient : FluxerBaseClient
         };
         serializer.Converters.Add(new GuildPermissionsConverter());
         serializer.Converters.Add(new ChannelPermissionsConverter());
+        serializer.Converters.Add(new UtcDateTimeOffsetConverter());
         return serializer;
     }
 

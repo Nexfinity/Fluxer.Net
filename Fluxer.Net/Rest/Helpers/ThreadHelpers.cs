@@ -43,6 +43,15 @@ public static class ThreadHelpers
             IsArchived = false
         }, options);
 
+    /// <summary>
+    /// Replace the tags applied to the forum or media post.
+    /// </summary>
+    public static Task<ThreadChannel> SetTagsAsync(this IThreadChannel channel, IEnumerable<ulong> tagIds, RequestOptions? options = null)
+        => ClientOf(channel).Rest.UpdateThreadAsync(channel.Id, new UpdateThreadRequest
+        {
+            AppliedTags = tagIds.ToList()
+        }, options);
+
     /// <inheritdoc cref="FluxerApiClient.JoinThreadAsync(ulong, RequestOptions?)" />
     public static Task JoinAsync(this IThreadChannel channel, RequestOptions? options = null)
         => ClientOf(channel).Rest.JoinThreadAsync(channel.Id, options);

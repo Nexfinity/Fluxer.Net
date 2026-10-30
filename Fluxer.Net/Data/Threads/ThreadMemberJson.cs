@@ -21,6 +21,12 @@ public class ThreadMemberJson : IThreadMember
     [JsonProperty("flags")]
     public int Flags { get; set; }
 
+    /// <summary>
+    /// Whether the user has muted the thread. Only sent for the current user.
+    /// </summary>
+    [JsonProperty("muted")]
+    public bool? Muted { get; set; }
+
     /// <inheritdoc />
     [JsonProperty("member")]
     public GuildMemberJson? Member { get; set; }

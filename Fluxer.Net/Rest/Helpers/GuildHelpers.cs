@@ -22,6 +22,14 @@ public static class GuildHelpers
     public static Task<Guild> ModifyAsync(this Guild guild, UpdateGuildRequest request, RequestOptions? options = null)
         => guild.Client.Rest.UpdateGuildAsync(guild.Id, request, options);
 
+    /// <inheritdoc cref="FluxerApiClient.SetGuildInvitesPausedAsync(ulong, bool, RequestOptions?)" />
+    public static Task<Guild?> PauseInvitesAsync(this Guild guild, RequestOptions? options = null)
+        => guild.Client.Rest.SetGuildInvitesPausedAsync(guild.Id, true, options);
+
+    /// <inheritdoc cref="FluxerApiClient.SetGuildInvitesPausedAsync(ulong, bool, RequestOptions?)" />
+    public static Task<Guild?> ResumeInvitesAsync(this Guild guild, RequestOptions? options = null)
+        => guild.Client.Rest.SetGuildInvitesPausedAsync(guild.Id, false, options);
+
     /// <inheritdoc cref="FluxerApiClient.UpdateChannelPositionsAsync(ulong, IEnumerable{ChannelPositionUpdateRequestItem}, RequestOptions?)" />
     public static Task UpdateChannelPositionsAsync(this Guild guild, IEnumerable<ChannelPositionUpdateRequestItem> list, RequestOptions? options = null)
         => guild.Client.Rest.UpdateChannelPositionsAsync(guild.Id, list, options);

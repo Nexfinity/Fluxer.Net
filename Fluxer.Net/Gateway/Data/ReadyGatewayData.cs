@@ -46,6 +46,9 @@ internal class ReadyGatewayData
     [JsonProperty("user_guild_settings")]
     public UserGuildSettingsJson[]? UserGuildSettings { get; set; }
 
+    [JsonProperty("shard")]
+    public int[]? Shard { get; set; }
+
     [JsonProperty("rtc_regions")]
     public RtcRegionJson[]? RtcRegions { get; set; }
 }

@@ -82,4 +82,20 @@ public class GuildJson : PartialGuildJson, IGuild
     /// <inheritdoc />
     [JsonProperty("member_count")]
     public int? MemberCount { get; set; }
+
+    /// <inheritdoc />
+    [JsonProperty("approximate_member_count")]
+    public int? ApproximateMemberCount { get; set; }
+
+    /// <inheritdoc />
+    [JsonProperty("approximate_presence_count")]
+    public int? ApproximatePresenceCount { get; set; }
+
+    /// <inheritdoc />
+    [JsonProperty("threads_active")]
+    public bool? ThreadsActive { get; set; }
+
+    /// <inheritdoc />
+    [JsonProperty("visiting")]
+    public bool? Visiting { get; set; }
 }

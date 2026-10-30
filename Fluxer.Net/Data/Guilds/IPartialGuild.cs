@@ -74,6 +74,11 @@ public interface IPartialGuild : ISnowflake
     string[]? Features { get; }
 
     /// <summary>
+    /// IDs of the custom badges assigned to the community. Look them up in the guild badges of the instance discovery document.
+    /// </summary>
+    ulong[]? BadgeIds { get; }
+
+    /// <summary>
     /// Get the guild's icon.
     /// </summary>
     string? GetIconUrl(int size);

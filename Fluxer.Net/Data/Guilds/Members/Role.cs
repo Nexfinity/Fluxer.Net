@@ -36,6 +36,16 @@ public class Role : Entity, IRole
     public int Color { get; private set; }
 
     /// <inheritdoc />
+    public string? IconHash { get; private set; }
+
+    /// <summary>
+    /// Get the role icon url, or null when the role has no icon image.
+    /// </summary>
+    /// <param name="size">Image size between 16 and 512.</param>
+    public string? GetIconUrl(int size = 64)
+        => string.IsNullOrEmpty(IconHash) ? null : $"{Client.Config.MediaUrl}/role-icons/{Id}/{IconHash}.webp?size={size}";
+
+    /// <inheritdoc />
     public string? UnicodeEmoji { get; private set; }
 
     /// <inheritdoc />
@@ -71,6 +81,7 @@ public class Role : Entity, IRole
         Position = json.Position;
         HoistPosition = json.HoistPosition;
         Color = json.Color;
+        IconHash = json.IconHash;
         UnicodeEmoji = json.UnicodeEmoji;
         IsHoisted = json.IsHoisted;
         IsMentionable = json.IsMentionable;

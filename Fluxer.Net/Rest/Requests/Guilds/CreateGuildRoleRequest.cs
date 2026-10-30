@@ -23,4 +23,22 @@ public class CreateGuildRoleRequest
     [JsonProperty("permissions")]
     [JsonConverter(typeof(StringUInt64Converter))]
     public ulong? Permissions { get; set; }
+
+    /// <summary>
+    /// Base64 data URI for the role icon image. Null removes the icon. Cannot be combined with <see cref="UnicodeEmoji"/>.
+    /// </summary>
+    [JsonProperty("icon")]
+    public Optional<string?> IconBase64 { get; set; }
+
+    /// <summary>
+    /// A single unicode emoji to use as the role icon. Null removes it.
+    /// </summary>
+    [JsonProperty("unicode_emoji")]
+    public Optional<string?> UnicodeEmoji { get; set; }
+
+    /// <summary>
+    /// The ID of a role in the same guild whose icon the new role copies. Cannot be combined with an icon or emoji.
+    /// </summary>
+    [JsonProperty("icon_source_role_id")]
+    public ulong? IconSourceRoleId { get; set; }
 }

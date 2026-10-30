@@ -27,4 +27,10 @@ public class UpdateGuildMemberRequest
 
     [JsonProperty("channel_id")]
     public Optional<ulong?> ChannelId { get; set; }
+
+    /// <summary>
+    /// The voice connection ID of the member to move when <see cref="ChannelId"/> is set.
+    /// </summary>
+    [JsonProperty("connection_id")]
+    public Optional<string?> ConnectionId { get; set; }
 }

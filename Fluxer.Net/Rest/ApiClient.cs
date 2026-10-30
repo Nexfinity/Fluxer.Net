@@ -73,6 +73,13 @@ public class FluxerApiClient : FluxerBaseApiClient
     #endregion
 
     /// <summary>
+    /// Get the gateway URL, recommended shard count and session start limits.
+    /// </summary>
+    /// <returns><see cref="GatewayBotJson"/>, or null when the request fails.</returns>
+    public async Task<GatewayBotJson?> GetGatewayBotAsync(RequestOptions? options = null)
+        => await SendRequestAsync<GatewayBotJson>(HttpMethod.Get, "/gateway/bot", false, options: options);
+
+    /// <summary>
     /// Get info and config for the Fluxer instance, useful for self-hosted.
     /// </summary>
     /// <returns><see cref="Instance"/></returns>
@@ -1312,9 +1319,17 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// Get all guilds for the current user.
     /// </summary>
     /// <returns>List of <see cref="Guild"/></returns>
-    public async Task<IEnumerable<Guild>> GetCurrentUserGuildsAsync(RequestOptions? options = null)
+    public Task<IEnumerable<Guild>> GetCurrentUserGuildsAsync(RequestOptions? options = null)
+        => GetCurrentUserGuildsAsync(false, options);
+
+    /// <summary>
+    /// Get the guilds the current user is in, optionally with approximate member and presence counts.
+    /// </summary>
+    /// <param name="withCounts">Fill <see cref="Guild.ApproximateMemberCount"/> and <see cref="Guild.ApproximatePresenceCount"/>.</param>
+    /// <returns>List of <see cref="Guild"/></returns>
+    public async Task<IEnumerable<Guild>> GetCurrentUserGuildsAsync(bool withCounts, RequestOptions? options = null)
     {
-        IEnumerable<GuildJson> json = await SendRequestAsync<IEnumerable<GuildJson>>(HttpMethod.Get, "/users/@me/guilds", true, options: options);
+        IEnumerable<GuildJson> json = await SendRequestAsync<IEnumerable<GuildJson>>(HttpMethod.Get, withCounts ? "/users/@me/guilds?with_counts=true" : "/users/@me/guilds", true, options: options);
         return json.Select(x => Guild.Create(_client, x));
     }
 
@@ -1362,6 +1377,26 @@ public class FluxerApiClient : FluxerBaseApiClient
     {
         GuildJson json = await SendRequestAsync<GuildJson, UpdateGuildRequest>(HttpMethod.Patch, $"/guilds/{guildId}", request, true, options: options);
         return Guild.Create(_client, json);
+    }
+
+    /// <summary>
+    /// Pause or resume invites for a guild by toggling the INVITES_DISABLED feature in its current feature set.
+    /// </summary>
+    /// <remarks>
+    /// Requires <see cref="GuildPermissions.ManageGuild"/>.
+    /// </remarks>
+    /// <returns>The updated <see cref="Guild"/>, or the current guild when invites already were in the requested state. Null when the guild cannot be read.</returns>
+    public async Task<Guild?> SetGuildInvitesPausedAsync(ulong guildId, bool paused, RequestOptions? options = null)
+    {
+        Guild? guild = await GetGuildAsync(guildId, options);
+        if (guild == null)
+            return null;
+
+        string[]? features = GuildFeatures.WithFeature(guild.Features.Raw, GuildFeatures.InvitesDisabledFeature, paused);
+        if (features == null)
+            return guild;
+
+        return await UpdateGuildAsync(guildId, new UpdateGuildRequest { Features = features }, options);
     }
 
     /// <summary>
@@ -2516,53 +2551,48 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// <summary>
     /// Send message using the webhook token in a guild channel.
     /// </summary>
+    /// <param name="threadId">Thread in the webhook channel to send into.</param>
+    /// <param name="threadName">Name of the post to create when the webhook belongs to a forum or media channel.</param>
+    /// <param name="appliedTags">Tags to apply to the post created by <paramref name="threadName"/>.</param>
     public async Task ExecuteWebhookAsync(ulong webhookId, string token, string? content = null, List<EmbedRequest>? embeds = null,
         string? username = null, string? avatarUrl = null,
         MessageReferenceRequest? reference = null, AllowedMentionsRequest? allowedMentions = null, MessageFlag flags = MessageFlag.None,
-        string? nonce = null, ulong? favoriteMediaId = null, bool? tts = null, List<ulong>? stickerIds = null, List<AttachmentRequest>? attachments = null, RequestOptions? options = null)
+        string? nonce = null, ulong? favoriteMediaId = null, bool? tts = null, List<ulong>? stickerIds = null, List<AttachmentRequest>? attachments = null, RequestOptions? options = null,
+        ulong? threadId = null, string? threadName = null, List<ulong>? appliedTags = null)
     {
-        MessageRequest req = new MessageRequest
-        {
-            Content = content,
-            Embeds = embeds?.ToArray(),
-            MessageReference = reference,
-            AllowedMentions = allowedMentions,
-            Flags = flags,
-            Nonce = nonce,
-            FavoriteMediaId = favoriteMediaId,
-            IsTTS = tts,
-            StickerIds = stickerIds,
-            WebhookUsername = username,
-            WebhookAvatarUrl = avatarUrl,
-        };
-        if ((attachments?.Count ?? 0) > 0)
-        {
-            List<KeyValuePair<string, (HttpContent content, string? filename)>> form = new List<KeyValuePair<string, (HttpContent content, string? filename)>>();
-            for (int i = 0; i < attachments.Count; i++)
-            {
-                attachments[i].Id = (ulong)i;
-                form.Add(new KeyValuePair<string, (HttpContent content, string? filename)>($"file[{i}]", (new StreamContent(attachments[i].Stream), attachments[i].Filename)));
-            }
-            req.Attachments = attachments.Select(x => x.ToJson()).ToList();
-        }
-        await SendRequestAsync(HttpMethod.Post, $"/webhooks/{webhookId}/{token}", req, true, false, options: options);
+        MessageRequest req = BuildWebhookExecuteRequest(content, embeds, username, avatarUrl, reference, allowedMentions, flags, nonce, favoriteMediaId, tts, stickerIds, attachments, threadName, appliedTags);
+        await SendRequestAsync(HttpMethod.Post, WebhookRoute(webhookId, token, null, false, threadId), req, true, false, options: options);
+    }
+
+    /// <summary>
+    /// Get a message previously sent by the webhook.
+    /// </summary>
+    /// <param name="threadId">Thread in the webhook channel the message was sent in.</param>
+    /// <returns><see cref="Message"/></returns>
+    public async Task<Message> GetWebhookMessageAsync(ulong webhookId, string token, ulong messageId, ulong? threadId = null, RequestOptions? options = null)
+    {
+        MessageJson json = await SendRequestAsync<MessageJson>(HttpMethod.Get, WebhookRoute(webhookId, token, messageId, false, threadId), true, false, options: options);
+        return Message.Create(_client, json);
     }
 
     /// <summary>
     /// Delete a webhook message using the webhook token.
     /// </summary>
-    public async Task DeleteWebhookMessageAsync(ulong webhookId, string token, ulong messageId, RequestOptions? options = null)
+    /// <param name="threadId">Thread in the webhook channel the message was sent in.</param>
+    public async Task DeleteWebhookMessageAsync(ulong webhookId, string token, ulong messageId, RequestOptions? options = null, ulong? threadId = null)
     {
-        await SendRequestAsync(HttpMethod.Delete, $"/webhooks/{webhookId}/{token}/messages/{messageId}", true, options: options);
+        await SendRequestRawAsync(HttpMethod.Delete, WebhookRoute(webhookId, token, messageId, false, threadId), true, false, options: options);
     }
 
     /// <summary>
     /// Modify a webhook message using the webhook token.
     /// </summary>
+    /// <param name="threadId">Thread in the webhook channel the message was sent in.</param>
     /// <returns><see cref="Message"/></returns>
     public async Task<Message> EditWebhookMessageAsync(ulong webhookId, string token, ulong messageId, string? content = null, List<EmbedRequest>? embeds = null,
         MessageReferenceRequest? reference = null, AllowedMentionsRequest? allowedMentions = null, MessageFlag flags = MessageFlag.None,
-        string? nonce = null, ulong? favoriteMediaId = null, List<ulong>? stickerIds = null, List<AttachmentRequest>? attachments = null, RequestOptions? options = null)
+        string? nonce = null, ulong? favoriteMediaId = null, List<ulong>? stickerIds = null, List<AttachmentRequest>? attachments = null, RequestOptions? options = null,
+        ulong? threadId = null)
     {
         MessageRequest req = new MessageRequest
         {
@@ -2585,18 +2615,46 @@ public class FluxerApiClient : FluxerBaseApiClient
             }
             req.Attachments = attachments.Select(x => x.ToJson()).ToList();
         }
-        MessageJson json = await SendRequestAsync<MessageJson, MessageRequest>(HttpMethod.Patch, $"/webhooks/{webhookId}/{token}/messages/{messageId}", req, true, false, options: options);
+        MessageJson json = await SendRequestAsync<MessageJson, MessageRequest>(HttpMethod.Patch, WebhookRoute(webhookId, token, messageId, false, threadId), req, true, false, options: options);
         return Message.Create(_client, json);
     }
 
     /// <summary>
     /// Send message using the webhook token in a guild channel and wait for response message.
     /// </summary>
+    /// <param name="threadId">Thread in the webhook channel to send into.</param>
+    /// <param name="threadName">Name of the post to create when the webhook belongs to a forum or media channel.</param>
+    /// <param name="appliedTags">Tags to apply to the post created by <paramref name="threadName"/>.</param>
     /// <returns><see cref="Message"/></returns>
     public async Task<Message> ExecuteWebhookWaitAsync(ulong webhookId, string token, string? content = null, List<EmbedRequest>? embeds = null,
         string? username = null, string? avatarUrl = null,
         MessageReferenceRequest? reference = null, AllowedMentionsRequest? allowedMentions = null, MessageFlag flags = MessageFlag.None,
-        string? nonce = null, ulong? favoriteMediaId = null, bool? tts = null, List<ulong>? stickerIds = null, List<AttachmentRequest>? attachments = null, RequestOptions? options = null)
+        string? nonce = null, ulong? favoriteMediaId = null, bool? tts = null, List<ulong>? stickerIds = null, List<AttachmentRequest>? attachments = null, RequestOptions? options = null,
+        ulong? threadId = null, string? threadName = null, List<ulong>? appliedTags = null)
+    {
+        MessageRequest req = BuildWebhookExecuteRequest(content, embeds, username, avatarUrl, reference, allowedMentions, flags, nonce, favoriteMediaId, tts, stickerIds, attachments, threadName, appliedTags);
+        MessageJson json = await SendRequestAsync<MessageJson, MessageRequest>(HttpMethod.Post, WebhookRoute(webhookId, token, null, true, threadId), req, true, options: options);
+        return Message.Create(_client, json);
+    }
+
+    internal static string WebhookRoute(ulong webhookId, string token, ulong? messageId, bool wait, ulong? threadId)
+    {
+        string route = $"/webhooks/{webhookId}/{token}";
+        if (messageId != null)
+            route += $"/messages/{messageId}";
+
+        List<string> query = new List<string>();
+        if (wait)
+            query.Add("wait=true");
+        if (threadId != null)
+            query.Add($"thread_id={threadId}");
+
+        return query.Count == 0 ? route : $"{route}?{string.Join("&", query)}";
+    }
+
+    private static MessageRequest BuildWebhookExecuteRequest(string? content, List<EmbedRequest>? embeds, string? username, string? avatarUrl,
+        MessageReferenceRequest? reference, AllowedMentionsRequest? allowedMentions, MessageFlag flags, string? nonce, ulong? favoriteMediaId,
+        bool? tts, List<ulong>? stickerIds, List<AttachmentRequest>? attachments, string? threadName, List<ulong>? appliedTags)
     {
         MessageRequest req = new MessageRequest
         {
@@ -2611,19 +2669,16 @@ public class FluxerApiClient : FluxerBaseApiClient
             StickerIds = stickerIds,
             WebhookUsername = username,
             WebhookAvatarUrl = avatarUrl,
+            ThreadName = threadName,
+            AppliedTags = appliedTags,
         };
         if ((attachments?.Count ?? 0) > 0)
         {
-            List<KeyValuePair<string, (HttpContent content, string? filename)>> form = new List<KeyValuePair<string, (HttpContent content, string? filename)>>();
             for (int i = 0; i < attachments.Count; i++)
-            {
                 attachments[i].Id = (ulong)i;
-                form.Add(new KeyValuePair<string, (HttpContent content, string? filename)>($"file[{i}]", (new StreamContent(attachments[i].Stream), attachments[i].Filename)));
-            }
             req.Attachments = attachments.Select(x => x.ToJson()).ToList();
         }
-        MessageJson json = await SendRequestAsync<MessageJson, MessageRequest>(HttpMethod.Post, $"/webhooks/{webhookId}/{token}?wait=true", req, true, options: options);
-        return Message.Create(_client, json);
+        return req;
     }
     #endregion
 

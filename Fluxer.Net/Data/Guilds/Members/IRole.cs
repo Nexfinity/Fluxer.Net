@@ -28,6 +28,11 @@ public interface IRole : ISnowflake, IMentionable
     int Color { get; }
 
     /// <summary>
+    /// The hash of the role icon image.
+    /// </summary>
+    string? IconHash { get; }
+
+    /// <summary>
     /// The unicode emoji for this role.
     /// </summary>
     string? UnicodeEmoji { get; }

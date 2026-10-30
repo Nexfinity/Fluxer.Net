@@ -66,6 +66,10 @@ public class PartialGuildJson : IPartialGuild
     public string[]? Features { get; set; }
 
     /// <inheritdoc />
+    [JsonProperty("badge_ids")]
+    public ulong[]? BadgeIds { get; set; }
+
+    /// <inheritdoc />
     public string? GetIconUrl(int size = 160)
     {
         if (string.IsNullOrEmpty(IconHash))

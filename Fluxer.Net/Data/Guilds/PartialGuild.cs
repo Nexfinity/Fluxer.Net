@@ -55,6 +55,9 @@ public class PartialGuild : Entity, IPartialGuild
 
     string[]? IPartialGuild.Features => Features.Raw;
 
+    /// <inheritdoc />
+    public ulong[]? BadgeIds { get; private set; }
+
     internal PartialGuild(FluxerBaseClient client) : base(client)
     {
 
@@ -87,6 +90,7 @@ public class PartialGuild : Entity, IPartialGuild
         InviteSplashHeight = json.InviteSplashHeight;
         SplashCardAligment = json.SplashCardAligment;
         Features = GuildFeatures.FromGuild(json);
+        BadgeIds = json.BadgeIds;
     }
 
     /// <inheritdoc />
