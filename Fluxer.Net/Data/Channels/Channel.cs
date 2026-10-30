@@ -239,6 +239,9 @@ public class Channel : PartialChannel, IChannel
         return data;
     }
 
+    internal void SetThreadMember(ThreadMemberJson json)
+        => ThreadMember = ThreadMember.Create(Client, json);
+
     internal virtual void Update(ChannelJson json)
     {
         base.Update(json);

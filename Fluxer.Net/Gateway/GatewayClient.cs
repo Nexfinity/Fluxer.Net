@@ -589,6 +589,19 @@ public partial class FluxerGatewayClient : IDisposable
         }
     }
 
+    private static MessageReactionGatewayData ToReactionData(MessageReactionAddManyGatewayData batch, MessageReactionAddManyEntryGatewayData entry)
+        => new MessageReactionGatewayData
+        {
+            UserId = entry.UserId,
+            ChannelId = batch.ChannelId,
+            MessageId = batch.MessageId,
+            GuildId = batch.GuildId,
+            Emoji = entry.Emoji,
+            Member = entry.Member
+        };
+
+    private const int IdentifyFlagDebounceMessageReactions = 1 << 1;
+
     internal GatewayPacket CreateIdentifyPacket(Dictionary<string, string> properties)
         => new GatewayPacket
         {
@@ -598,6 +611,7 @@ public partial class FluxerGatewayClient : IDisposable
                 Properties = properties,
                 IgnoredGatewayEvents = Config.IgnoredEvents,
                 Presence = Config.Presence,
+                Flags = Config.DebounceMessageReactions ? IdentifyFlagDebounceMessageReactions : null,
                 Shard = _client.Config.GetShard()
             })
         };
@@ -1600,10 +1614,59 @@ public partial class FluxerGatewayClient : IDisposable
                         }), data.RemovedMemberIds);
                     }
 
+                    if (Channels.TryGetValue(data.ThreadId, out Channel? countedThread))
+                        countedThread.MemberCount = data.MemberCount;
+
                     ThreadMembersCount?.Invoke(guild, new Cacheable<ThreadChannel>(data.ThreadId, null, async () =>
                     {
                         return await _client.Rest.GetThreadChannelAsync(data.ThreadId);
                     }), data.MemberCount);
+                }
+                break;
+
+            case "THREAD_LIST_SYNC":
+                {
+                    ThreadListSyncGatewayData? data = p.Data.ToObject<ThreadListSyncGatewayData>(FluxerClient._gatewaySerializer);
+                    if (data == null || !Guilds.TryGetValue(data.GuildId, out SocketGuild guild))
+                        return;
+
+                    List<ThreadChannel> threads = new List<ThreadChannel>();
+                    foreach (ChannelGatewayData thread in data.Threads ?? Array.Empty<ChannelGatewayData>())
+                    {
+                        if (Channels.TryGetValue(thread.Id, out Channel? cachedThread))
+                            cachedThread.Update(thread);
+                        else
+                        {
+                            Channel socketThread = SocketChannel.Create(_client, thread, guild);
+                            socketThread.GuildId = data.GuildId;
+                            Channels.TryAdd(thread.Id, socketThread);
+                            guild.Channels.TryAdd(thread.Id, socketThread);
+                        }
+
+                        if (Channel.Create(_client, thread) is ThreadChannel restThread)
+                            threads.Add(restThread);
+                    }
+
+                    ThreadMemberJson[] memberData = data.Members ?? Array.Empty<ThreadMemberJson>();
+                    foreach (ThreadMemberJson member in memberData)
+                    {
+                        if (Channels.TryGetValue(member.ThreadId, out Channel? memberThread))
+                            memberThread.SetThreadMember(member);
+                    }
+
+                    ThreadListSynced?.Invoke(guild, threads.ToArray(), memberData.Select(x => ThreadMember.Create(_client, x)).ToArray(), data.ChannelIds);
+                }
+                break;
+            case "THREAD_MEMBER_UPDATE":
+                {
+                    ThreadMemberUpdateGatewayData? data = p.Data.ToObject<ThreadMemberUpdateGatewayData>(FluxerClient._gatewaySerializer);
+                    if (data == null || !Guilds.TryGetValue(data.GuildId, out SocketGuild guild))
+                        return;
+
+                    if (Channels.TryGetValue(data.ThreadId, out Channel? thread))
+                        thread.SetThreadMember(data);
+
+                    ThreadMemberUpdated?.Invoke(guild, ThreadMember.Create(_client, data));
                 }
                 break;
 
@@ -2046,6 +2109,47 @@ public partial class FluxerGatewayClient : IDisposable
                         _logger.Warning("MESSAGE_REACTION_ADD event received but data could not be cast to MessageReactionGatewayData");
                 }
                 return;
+            case "MESSAGE_REACTION_ADD_MANY":
+                {
+                    MessageReactionAddManyGatewayData? data = p.Data.ToObject<MessageReactionAddManyGatewayData>(FluxerClient._gatewaySerializer);
+                    if (data == null)
+                    {
+                        _logger.Warning("MESSAGE_REACTION_ADD_MANY event received but data could not be cast to MessageReactionAddManyGatewayData");
+                        return;
+                    }
+
+                    if (data.GuildId.HasValue)
+                    {
+                        if (!Guilds.TryGetValue(data.GuildId.Value, out SocketGuild guild))
+                            return;
+
+                        if (!Channels.TryGetValue(data.ChannelId, out Channel channel))
+                            return;
+
+                        SocketReaction[] reactions = data.Reactions.Select(x => SocketReaction.Create(_client, ToReactionData(data, x), x.Member == null ? null : guild.AddOrUpdateMember(x.Member))).ToArray();
+                        MessageReactionsAdded?.Invoke(channel, new Cacheable<Message>(data.MessageId, null, async () =>
+                        {
+                            return await _client.Rest.GetMessageAsync(data.ChannelId, data.MessageId);
+                        }), reactions);
+                    }
+                    else
+                    {
+                        Channels.TryGetValue(data.ChannelId, out Channel channel);
+                        PrivateMessageReactionsAdded?.Invoke(new Cacheable<Channel>(data.ChannelId, channel, async () =>
+                        {
+                            Channel? channel = await _client.Rest.GetChannelAsync(data.ChannelId);
+                            if (channel == null)
+                                return null;
+                            Channels.TryAdd(data.ChannelId, channel);
+
+                            return channel;
+                        }), new Cacheable<Message>(data.MessageId, null, async () =>
+                        {
+                            return await _client.Rest.GetMessageAsync(data.ChannelId, data.MessageId);
+                        }), data.Reactions.Select(x => SocketReaction.Create(_client, ToReactionData(data, x), null)).ToArray());
+                    }
+                }
+                return;
             case "MESSAGE_REACTION_REMOVE":
                 {
                     MessageReactionGatewayData? data = p.Data.ToObject<MessageReactionGatewayData>(FluxerClient._gatewaySerializer);
@@ -2380,6 +2484,15 @@ public partial class FluxerGatewayClient : IDisposable
                     }
                     else
                         _logger.Warning("GUILD_COUNTS_UPDATE event received but data could not be cast to GuildMemberCountGatewayData");
+                }
+                break;
+            case "GUILD_HEALTH_UPDATE":
+                {
+                    GuildHealthUpdateGatewayData? data = p.Data.ToObject<GuildHealthUpdateGatewayData>(FluxerClient._gatewaySerializer);
+                    if (data != null)
+                        GuildHealthUpdated?.Invoke(data.GuildId, data.IsDegraded);
+                    else
+                        _logger.Warning("GUILD_HEALTH_UPDATE event received but data could not be cast to GuildHealthUpdateGatewayData");
                 }
                 break;
             case "CHANNEL_MEMBER_COUNTS_UPDATE":
@@ -3131,6 +3244,40 @@ public partial class FluxerGatewayClient : IDisposable
 
     public event ThreadMembersCountEvent ThreadMembersCount;
 
+    /// <summary>
+    /// Delegate for THREAD_LIST_SYNC events carrying the threads the gateway currently lists for a guild.
+    /// </summary>
+    /// <param name="guild">The guild the threads belong to.</param>
+    /// <param name="threads">The threads in the sync.</param>
+    /// <param name="members">The current user's thread member entries for those threads.</param>
+    /// <param name="parentChannelIds">The parent channels the sync is limited to, or null when it covers the whole guild.</param>
+    public delegate void ThreadListSyncedEvent(SocketGuild guild, ThreadChannel[] threads, ThreadMember[] members, ulong[]? parentChannelIds);
+
+    /// <summary>
+    /// Occurs when the gateway syncs the thread list of a guild.
+    /// </summary>
+    public event ThreadListSyncedEvent ThreadListSynced;
+
+    /// <summary>
+    /// Delegate for THREAD_MEMBER_UPDATE events when the current user's membership of a thread changes.
+    /// </summary>
+    public delegate void ThreadMemberUpdatedEvent(SocketGuild guild, ThreadMember member);
+
+    /// <summary>
+    /// Occurs when the current user's membership of a thread changes, for example its flags or mute state.
+    /// </summary>
+    public event ThreadMemberUpdatedEvent ThreadMemberUpdated;
+
+    /// <summary>
+    /// Delegate for GUILD_HEALTH_UPDATE events when a guild becomes degraded or recovers.
+    /// </summary>
+    public delegate void GuildHealthUpdatedEvent(ulong guildId, bool isDegraded);
+
+    /// <summary>
+    /// Occurs when the gateway reports a guild as degraded or recovered.
+    /// </summary>
+    public event GuildHealthUpdatedEvent GuildHealthUpdated;
+
     // ============================================================================
     // User Events
     // ============================================================================
@@ -3206,6 +3353,26 @@ public partial class FluxerGatewayClient : IDisposable
     /// Occurs when a user adds a reaction to a message.
     /// </summary>
     public event PrivateMessageReactionAddedEvent PrivateMessageReactionAdded;
+
+    /// <summary>
+    /// Delegate for MESSAGE_REACTION_ADD_MANY events when several reactions are added to a message at once.
+    /// </summary>
+    public delegate void MessageReactionsAddedEvent(Channel channel, Cacheable<Message> message, SocketReaction[] reactions);
+
+    /// <summary>
+    /// Occurs when the gateway delivers a batch of reactions added to a message. Needs <see cref="FluxerGatewayConfig.DebounceMessageReactions"/>.
+    /// </summary>
+    public event MessageReactionsAddedEvent MessageReactionsAdded;
+
+    /// <summary>
+    /// Delegate for MESSAGE_REACTION_ADD_MANY events in direct messages.
+    /// </summary>
+    public delegate void PrivateMessageReactionsAddedEvent(Cacheable<Channel> channel, Cacheable<Message> message, SocketReaction[] reactions);
+
+    /// <summary>
+    /// Occurs when the gateway delivers a batch of reactions added to a direct message. Needs <see cref="FluxerGatewayConfig.DebounceMessageReactions"/>.
+    /// </summary>
+    public event PrivateMessageReactionsAddedEvent PrivateMessageReactionsAdded;
 
     /// <summary>
     /// Delegate for MESSAGE_REACTION_REMOVE events when a reaction is removed.

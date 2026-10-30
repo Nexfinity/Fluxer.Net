@@ -4389,6 +4389,12 @@
         <member name="P:Fluxer.Net.Guild.ApproximatePresenceCount">
             <inheritdoc />
         </member>
+        <member name="P:Fluxer.Net.Guild.ThreadsActive">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.Guild.Visiting">
+            <inheritdoc />
+        </member>
         <member name="M:Fluxer.Net.Guild.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.GuildJson)">
             <summary>
             Create a Guild object from json.
@@ -4459,6 +4465,12 @@
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.GuildJson.ApproximatePresenceCount">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildJson.ThreadsActive">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GuildJson.Visiting">
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.IGuild.OwnerId">
@@ -4573,6 +4585,16 @@
             Only filled when the guilds were requested with counts.
             </remarks>
         </member>
+        <member name="P:Fluxer.Net.IGuild.ThreadsActive">
+            <summary>
+            True when threads, forum and media channels are active in this guild for the requesting client. Only sent on the current user guild list.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.IGuild.Visiting">
+            <summary>
+            True when the requesting user is visiting the guild without being a member.
+            </summary>
+        </member>
         <member name="P:Fluxer.Net.IPartialGuild.Name">
             <summary>
             The name of the guild.
@@ -4643,6 +4665,11 @@
             EXPRESSION_PURGE_ALLOWED, VANITY_URL, VERIFIED, VIP_VOICE, UNAVAILABLE_FOR_EVERYONE,
             UNAVAILABLE_FOR_EVERYONE_BUT_STAFF, VISIONARY, OPERATOR, LARGE_GUILD_OVERRIDE, VERY_LARGE_GUILD (other values allowed)
             </remarks>
+        </member>
+        <member name="P:Fluxer.Net.IPartialGuild.BadgeIds">
+            <summary>
+            IDs of the custom badges assigned to the community. Look them up in the guild badges of the instance discovery document.
+            </summary>
         </member>
         <member name="M:Fluxer.Net.IPartialGuild.GetIconUrl(System.Int32)">
             <summary>
@@ -5200,6 +5227,9 @@
         <member name="P:Fluxer.Net.PartialGuild.Features">
             <inheritdoc />
         </member>
+        <member name="P:Fluxer.Net.PartialGuild.BadgeIds">
+            <inheritdoc />
+        </member>
         <member name="M:Fluxer.Net.PartialGuild.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.PartialGuildJson)">
             <summary>
             Create a PartialGuild object from json.
@@ -5264,6 +5294,9 @@
             <inheritdoc />
         </member>
         <member name="P:Fluxer.Net.PartialGuildJson.Features">
+            <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.PartialGuildJson.BadgeIds">
             <inheritdoc />
         </member>
         <member name="M:Fluxer.Net.PartialGuildJson.GetIconUrl(System.Int32)">
@@ -8631,6 +8664,11 @@
         <member name="P:Fluxer.Net.ThreadMember.Flags">
             <inheritdoc />
         </member>
+        <member name="P:Fluxer.Net.ThreadMember.Muted">
+            <summary>
+            Whether the user has muted the thread. Only known for the current user.
+            </summary>
+        </member>
         <member name="P:Fluxer.Net.ThreadMember.Member">
             <inheritdoc />
         </member>
@@ -8654,6 +8692,11 @@
         </member>
         <member name="P:Fluxer.Net.ThreadMemberJson.Flags">
             <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ThreadMemberJson.Muted">
+            <summary>
+            Whether the user has muted the thread. Only sent for the current user.
+            </summary>
         </member>
         <member name="P:Fluxer.Net.ThreadMemberJson.Member">
             <inheritdoc />
@@ -14398,6 +14441,40 @@
             Delegate for THREAD_DELETE events when a thread is deleted.
             </summary>
         </member>
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.ThreadListSyncedEvent">
+            <summary>
+            Delegate for THREAD_LIST_SYNC events carrying the threads the gateway currently lists for a guild.
+            </summary>
+            <param name="guild">The guild the threads belong to.</param>
+            <param name="threads">The threads in the sync.</param>
+            <param name="members">The current user's thread member entries for those threads.</param>
+            <param name="parentChannelIds">The parent channels the sync is limited to, or null when it covers the whole guild.</param>
+        </member>
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.ThreadListSynced">
+            <summary>
+            Occurs when the gateway syncs the thread list of a guild.
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.ThreadMemberUpdatedEvent">
+            <summary>
+            Delegate for THREAD_MEMBER_UPDATE events when the current user's membership of a thread changes.
+            </summary>
+        </member>
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.ThreadMemberUpdated">
+            <summary>
+            Occurs when the current user's membership of a thread changes, for example its flags or mute state.
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.GuildHealthUpdatedEvent">
+            <summary>
+            Delegate for GUILD_HEALTH_UPDATE events when a guild becomes degraded or recovers.
+            </summary>
+        </member>
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.GuildHealthUpdated">
+            <summary>
+            Occurs when the gateway reports a guild as degraded or recovered.
+            </summary>
+        </member>
         <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.CurrentUserUpdatedEvent">
             <summary>
             Delegate for USER_UPDATE events when the current user's data is updated.
@@ -14456,6 +14533,26 @@
         <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.PrivateMessageReactionAdded">
             <summary>
             Occurs when a user adds a reaction to a message.
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.MessageReactionsAddedEvent">
+            <summary>
+            Delegate for MESSAGE_REACTION_ADD_MANY events when several reactions are added to a message at once.
+            </summary>
+        </member>
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.MessageReactionsAdded">
+            <summary>
+            Occurs when the gateway delivers a batch of reactions added to a message. Needs <see cref="P:Fluxer.Net.FluxerGatewayConfig.DebounceMessageReactions"/>.
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.PrivateMessageReactionsAddedEvent">
+            <summary>
+            Delegate for MESSAGE_REACTION_ADD_MANY events in direct messages.
+            </summary>
+        </member>
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.PrivateMessageReactionsAdded">
+            <summary>
+            Occurs when the gateway delivers a batch of reactions added to a direct message. Needs <see cref="P:Fluxer.Net.FluxerGatewayConfig.DebounceMessageReactions"/>.
             </summary>
         </member>
         <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.MessageReactionRemovedEvent">
@@ -15205,6 +15302,12 @@
         <member name="P:Fluxer.Net.FluxerGatewayConfig.DisableStickerCache">
             <summary>
             Don't cache stickers and also disable stickers updated event.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.FluxerGatewayConfig.DebounceMessageReactions">
+            <summary>
+            Ask the gateway to batch reactions added to the same message into MESSAGE_REACTION_ADD_MANY, raised as
+            <see cref="E:Fluxer.Net.Gateway.FluxerGatewayClient.MessageReactionsAdded"/>. A batch of one is still sent as MESSAGE_REACTION_ADD.
             </summary>
         </member>
         <member name="T:Fluxer.Net.OAuth.FluxerOAuthClient">

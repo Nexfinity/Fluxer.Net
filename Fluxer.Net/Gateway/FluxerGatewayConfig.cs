@@ -25,4 +25,10 @@ public class FluxerGatewayConfig
     /// Don't cache stickers and also disable stickers updated event.
     /// </summary>
     public bool DisableStickerCache { get; set; }
+
+    /// <summary>
+    /// Ask the gateway to batch reactions added to the same message into MESSAGE_REACTION_ADD_MANY, raised as
+    /// <see cref="FluxerGatewayClient.MessageReactionsAdded"/>. A batch of one is still sent as MESSAGE_REACTION_ADD.
+    /// </summary>
+    public bool DebounceMessageReactions { get; set; }
 }

@@ -115,4 +115,14 @@ public interface IGuild : IPartialGuild
     /// Only filled when the guilds were requested with counts.
     /// </remarks>
     int? ApproximatePresenceCount { get; }
+
+    /// <summary>
+    /// True when threads, forum and media channels are active in this guild for the requesting client. Only sent on the current user guild list.
+    /// </summary>
+    bool? ThreadsActive { get; }
+
+    /// <summary>
+    /// True when the requesting user is visiting the guild without being a member.
+    /// </summary>
+    bool? Visiting { get; }
 }
