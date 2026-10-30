@@ -126,6 +126,10 @@ public static class GuildHelpers
     public static Task<GuildMember?> GetMemberAsync(this Guild guild, User user, RequestOptions? options = null)
         => guild.Client.Rest.GetMemberAsync(guild.Id, user.Id, options);
 
+    /// <inheritdoc cref="FluxerApiClient.UpdateCurrentMemberAsync(ulong, UpdateCurrentMemberRequest, RequestOptions?)" />
+    public static Task<GuildMember> UpdateCurrentMemberAsync(this Guild guild, UpdateCurrentMemberRequest request, RequestOptions? options = null)
+        => guild.Client.Rest.UpdateCurrentMemberAsync(guild.Id, request, options);
+
     /// <inheritdoc cref="FluxerApiClient.CreateRoleAsync(ulong, CreateGuildRoleRequest, RequestOptions?)" />
     public static Task<Role> CreateRoleAsync(this Guild guild, CreateGuildRoleRequest request, RequestOptions? options = null)
         => guild.Client.Rest.CreateRoleAsync(guild.Id, request, options);

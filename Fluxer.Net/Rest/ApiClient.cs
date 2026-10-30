@@ -1483,9 +1483,23 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// Requires <see cref="GuildPermissions.ChangeNickname"/> to change your nickname.
     /// </remarks>
     /// <returns><see cref="GuildMember"/></returns>
+    [Obsolete("Every property of GuildMemberJson is sent and the bio and pronouns can't be set. Use the UpdateCurrentMemberRequest overload.")]
     public async Task<GuildMember> UpdateCurrentMemberAsync(ulong guildId, GuildMemberJson member, RequestOptions? options = null)
     {
         GuildMemberJson json = await SendRequestAsync<GuildMemberJson, GuildMemberJson>(HttpMethod.Patch, $"/guilds/{guildId}/members/@me", member, true, options: options);
+        return GuildMember.Create(_client, json);
+    }
+
+    /// <summary>
+    /// Update the current user's member profile in a guild. Only the properties set on <paramref name="request"/> are changed.
+    /// </summary>
+    /// <remarks>
+    /// Requires <see cref="GuildPermissions.ChangeNickname"/> to change your nickname.
+    /// </remarks>
+    /// <returns><see cref="GuildMember"/></returns>
+    public async Task<GuildMember> UpdateCurrentMemberAsync(ulong guildId, UpdateCurrentMemberRequest request, RequestOptions? options = null)
+    {
+        GuildMemberJson json = await SendRequestAsync<GuildMemberJson, UpdateCurrentMemberRequest>(HttpMethod.Patch, $"/guilds/{guildId}/members/@me", request, true, options: options);
         return GuildMember.Create(_client, json);
     }
 

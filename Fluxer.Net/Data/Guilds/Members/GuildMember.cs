@@ -45,6 +45,16 @@ public class GuildMember : Entity, IGuildMember
     /// <inheritdoc />
     public HashSet<ulong> RoleIds { get; private set; }
 
+    /// <summary>
+    /// Flags on the member's guild profile.
+    /// </summary>
+    public GuildMemberProfileFlags ProfileFlags { get; private set; }
+
+    /// <summary>
+    /// Whether replies to the member mention them by default in this guild.
+    /// </summary>
+    public MentionReplyPreference MentionFlags { get; private set; }
+
     /// <inheritdoc />
     public string GetCurrentName()
     {
@@ -129,5 +139,7 @@ public class GuildMember : Entity, IGuildMember
         IsMute = json.IsMute;
         CommunicationDisabledUntil = json.CommunicationDisabledUntil;
         RoleIds = json.RoleIds != null ? json.RoleIds : new HashSet<ulong>();
+        ProfileFlags = json.ProfileFlags ?? GuildMemberProfileFlags.None;
+        MentionFlags = json.MentionFlags ?? MentionReplyPreference.NoPreference;
     }
 }

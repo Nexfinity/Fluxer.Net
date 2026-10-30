@@ -61,6 +61,18 @@ public class GuildMemberJson : IGuildMember
     [JsonProperty("roles")]
     public HashSet<ulong> RoleIds { get; set; } = new HashSet<ulong>();
 
+    /// <summary>
+    /// Flags on the member's guild profile.
+    /// </summary>
+    [JsonProperty("profile_flags")]
+    public GuildMemberProfileFlags? ProfileFlags { get; set; }
+
+    /// <summary>
+    /// Whether replies to the member mention them by default in this guild.
+    /// </summary>
+    [JsonProperty("mention_flags")]
+    public MentionReplyPreference? MentionFlags { get; set; }
+
     /// <inheritdoc />
     public string GetCurrentName()
     {
