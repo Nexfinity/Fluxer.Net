@@ -185,6 +185,77 @@ public partial class FluxerGatewayClient : IDisposable
         return Channels.GetValueOrDefault(channelId);
     }
 
+    /// <summary>
+    /// The stores the gateway keeps earlier states in, set up from <see cref="FluxerGatewayConfig.Cache"/> on connect.
+    /// </summary>
+    public GatewayCache Cache { get; internal set; } = new GatewayCache(new FluxerCacheConfig());
+
+    private bool _cacheConfigured;
+
+    /// <summary>
+    /// Gets a guild message from <see cref="GatewayCache.Messages"/>, or null when it isn't cached or its guild or channel is gone.
+    /// </summary>
+    public async ValueTask<SocketMessage?> GetCachedMessageAsync(ulong messageId)
+        => ToSocketMessage(await Cache.Messages.GetAsync(messageId));
+
+    private SocketMessage? ToSocketMessage(MessageGatewayData? data)
+    {
+        if (data?.GuildId is not ulong guildId || !Guilds.TryGetValue(guildId, out SocketGuild guild)
+            || !Channels.TryGetValue(data.ChannelId, out Channel channel))
+            return null;
+
+        return SocketMessage.Create(_client, data, channel, guild);
+    }
+
+    private static CacheScope ScopeOf(MessageGatewayData data) => new CacheScope(data.GuildId, data.ChannelId);
+
+    private static MessageGatewayData MergeMessage(MessageGatewayData cached, JObject update)
+    {
+        JObject merged = JObject.FromObject(cached, FluxerClient._gatewaySerializer);
+        merged.Merge(update, new JsonMergeSettings { MergeArrayHandling = MergeArrayHandling.Replace });
+        return merged.ToObject<MessageGatewayData>(FluxerClient._gatewaySerializer) ?? cached;
+    }
+
+    private async ValueTask TrackUserAsync(UserJson? user)
+    {
+        if (user == null || string.IsNullOrEmpty(user.Username))
+            return;
+
+        UserJson? before = await Cache.Users.GetAsync(user.Id);
+        await Cache.Users.SetAsync(user.Id, before == null ? user : FillMissingUserFields(user, before), default);
+        if (before != null && (before.Username != user.Username || before.Discriminator != user.Discriminator
+            || before.AvatarHash != user.AvatarHash
+            || (user.DisplayName != null && before.DisplayName != user.DisplayName)
+            || (user.Flags != 0 && before.Flags != 0 && before.Flags != user.Flags)))
+            UserChanged?.Invoke(User.Create(_client, before), User.Create(_client, user));
+    }
+
+    private static UserJson FillMissingUserFields(UserJson user, UserJson before)
+    {
+        bool missingName = user.DisplayName == null && before.DisplayName != null;
+        bool missingFlags = user.Flags == 0 && before.Flags != 0;
+        if (!missingName && !missingFlags)
+            return user;
+
+        UserJson filled = JObject.FromObject(user, FluxerClient._gatewaySerializer).ToObject<UserJson>(FluxerClient._gatewaySerializer) ?? user;
+        if (missingName)
+            filled.DisplayName = before.DisplayName;
+        if (missingFlags)
+            filled.Flags = before.Flags;
+        return filled;
+    }
+
+    private async ValueTask TrackPresenceAsync(PresenceGatewayData presence)
+    {
+        PresenceGatewayData? before = presence.User == null ? null : await Cache.Presences.GetAsync(presence.User.Id);
+        if (presence.User != null)
+            await Cache.Presences.SetAsync(presence.User.Id, presence, default);
+
+        PresenceUpdated?.Invoke(presence);
+        PresenceChanged?.Invoke(before, presence);
+        await TrackUserAsync(presence.User);
+    }
+
     #endregion
 
     #region Gateway
@@ -211,6 +282,11 @@ public partial class FluxerGatewayClient : IDisposable
         if (config == null)
             config = new FluxerGatewayConfig();
         Config = config;
+        if (!_cacheConfigured)
+        {
+            Cache = new GatewayCache(config.Cache, _logger);
+            _cacheConfigured = true;
+        }
 
         if (_isConnecting)
         {
@@ -487,7 +563,8 @@ public partial class FluxerGatewayClient : IDisposable
             switch (packet.OpCode)
             {
                 case FluxerOpCode.Dispatch:
-                    HandleDispatch(packet);
+                    Interlocked.Increment(ref _pendingDispatches);
+                    _ = DispatchInOrderAsync(packet);
                     return;
                 case FluxerOpCode.Heartbeat:
                     _logger.Debug("Received Heartbeat opcode from server");
@@ -616,7 +693,63 @@ public partial class FluxerGatewayClient : IDisposable
             })
         };
 
-    private void HandleDispatch(GatewayPacket p)
+    private readonly SemaphoreSlim _dispatchLock = new(1, 1);
+    private int _pendingDispatches;
+
+    /// <summary>
+    /// The number of received events still waiting to be handled, usually behind a slow cache store.
+    /// </summary>
+    public int PendingEvents => Volatile.Read(ref _pendingDispatches);
+
+    /// <summary>
+    /// Waits until every event received so far has been handled, for example before shutting down.
+    /// </summary>
+    public async Task WaitForPendingEventsAsync(CancellationToken cancellationToken = default)
+    {
+        await _dispatchLock.WaitAsync(cancellationToken);
+        _dispatchLock.Release();
+    }
+
+    private async Task DispatchInOrderAsync(GatewayPacket p)
+    {
+        await _dispatchLock.WaitAsync();
+        try
+        {
+            await HandleDispatchAsync(p);
+        }
+        catch (Exception ex)
+        {
+            _logger.Error(ex, "Error handling {Dispatch} event", p.Dispatch);
+        }
+        finally
+        {
+            Interlocked.Decrement(ref _pendingDispatches);
+            _dispatchLock.Release();
+        }
+    }
+
+    private async ValueTask ForgetUsersAsync(IEnumerable<ulong> userIds, ulong leftGuildId)
+    {
+        HashSet<ulong> gone = new HashSet<ulong>(userIds);
+        foreach (SocketGuild other in Guilds.Values)
+        {
+            if (other.Id == leftGuildId)
+                continue;
+
+            foreach (ulong memberId in other.Members.Keys)
+                gone.Remove(memberId);
+            if (gone.Count == 0)
+                return;
+        }
+
+        if (gone.Count == 0)
+            return;
+
+        await Cache.Presences.RemoveManyAsync(gone);
+        await Cache.Users.RemoveManyAsync(gone);
+    }
+
+    private async Task HandleDispatchAsync(GatewayPacket p)
     {
         //Console.WriteLine("Type: " + p.Dispatch);
         //Console.WriteLine(p.Data);
@@ -627,6 +760,7 @@ public partial class FluxerGatewayClient : IDisposable
                     ReadyGatewayData? data = p.Data.ToObject<ReadyGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
                     {
+                        await Cache.ClearBuiltInAsync();
                         CurrentUser = SocketCurrentUser.Create(_client, data.User);
                         CurrentUser.SessionId = data.SessionId;
                         GatewaySessionJson? presence = data.Sessions.FirstOrDefault(x => x.SessionId == CurrentUser.SessionId);
@@ -1157,6 +1291,9 @@ public partial class FluxerGatewayClient : IDisposable
                         {
                             Guilds.TryRemove(data.Id, out SocketGuild guild);
                             CurrentMembers.TryRemove(data.Id, out _);
+                            await Cache.RemoveScopeAsync(data.Id);
+                            if (guild != null)
+                                await ForgetUsersAsync(guild.Members.Keys.ToList(), data.Id);
                             foreach (Channel c in Channels.Values.Where(x => x.GuildId == data.Id))
                             {
                                 Channels.TryRemove(c.Id, out _);
@@ -1513,6 +1650,7 @@ public partial class FluxerGatewayClient : IDisposable
                                 return;
                             guild.Channels.TryRemove(data.Id, out _);
 
+                            await Cache.RemoveScopeAsync(data.Id);
                             ChannelDeleted?.Invoke(guild, channel ?? SocketChannel.Create(_client, data, guild));
                         }
                     }
@@ -1548,15 +1686,17 @@ public partial class FluxerGatewayClient : IDisposable
                     if (!data.GuildId.HasValue || !Guilds.TryGetValue(data.GuildId.Value, out SocketGuild guild))
                         return;
 
+                    Channel? threadBefore = null;
                     if (Channels.TryGetValue(data.Id, out Channel? cachedThread))
                     {
+                        threadBefore = cachedThread.Clone();
                         cachedThread.Update(data);
                     }
                     else
                     {
-                        Channel socketThread = SocketChannel.Create(_client, data, guild);
-                        Channels.TryAdd(data.Id, socketThread);
-                        guild.Channels.TryAdd(data.Id, socketThread);
+                        cachedThread = SocketChannel.Create(_client, data, guild);
+                        Channels.TryAdd(data.Id, cachedThread);
+                        guild.Channels.TryAdd(data.Id, cachedThread);
                     }
 
                     ThreadChannel channel = (ThreadChannel)Channel.Create(_client, data);
@@ -1564,6 +1704,7 @@ public partial class FluxerGatewayClient : IDisposable
                     {
                         return null;
                     }), channel);
+                    ThreadChanged?.Invoke(guild, threadBefore, cachedThread);
                 }
                 break;
 
@@ -1575,6 +1716,7 @@ public partial class FluxerGatewayClient : IDisposable
 
                     Channels.TryRemove(data.Id, out Channel channel);
                     guild.Channels.TryRemove(data.Id, out _);
+                    await Cache.RemoveScopeAsync(data.Id);
 
                     if (channel is IThreadChannel)
                     {
@@ -1733,9 +1875,10 @@ public partial class FluxerGatewayClient : IDisposable
             // Invites
             case "INVITE_CREATE":
                 {
-                    InviteJson? data = p.Data.ToObject<InviteJson>(FluxerClient._gatewaySerializer);
+                    InviteCreateGatewayData? data = p.Data.ToObject<InviteCreateGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
                     {
+                        await Cache.Invites.SetAsync(data.Code, data, new CacheScope(data.GuildId ?? data.Guild?.Id, data.ChannelId ?? data.Channel?.Id));
                         InviteCreated?.Invoke(Invite.Create(_client, data));
                     }
                     else
@@ -1747,8 +1890,13 @@ public partial class FluxerGatewayClient : IDisposable
                     InviteDeleteGatewayData? data = p.Data.ToObject<InviteDeleteGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
                     {
+                        InviteJson? removedInvite = await Cache.Invites.RemoveAsync(data.Code);
                         if (Channels.TryGetValue(data.ChannelId, out Channel channel))
-                            InviteDeleted?.Invoke(channel, data.GuildId.HasValue ? GetGuild(data.GuildId.Value) : null, data.Code);
+                        {
+                            SocketGuild? inviteGuild = data.GuildId.HasValue ? GetGuild(data.GuildId.Value) : null;
+                            InviteDeleted?.Invoke(channel, inviteGuild, data.Code);
+                            InviteRemoved?.Invoke(channel, inviteGuild, data.Code, removedInvite == null ? null : Invite.Create(_client, removedInvite));
+                        }
                     }
                     else
                         _logger.Warning("INVITE_DELETE event received but data could not be cast to InviteGatewayData");
@@ -1767,6 +1915,7 @@ public partial class FluxerGatewayClient : IDisposable
                             if (guild.MemberCount.HasValue)
                                 guild.MemberCount++;
                             MemberJoined?.Invoke(member);
+                            await TrackUserAsync(data.User);
                         }
                     }
                     else
@@ -1780,8 +1929,13 @@ public partial class FluxerGatewayClient : IDisposable
                     {
                         if (Guilds.TryGetValue(data.GuildId, out SocketGuild guild))
                         {
+                            SocketGuildMember? before = guild.Members.TryGetValue(data.Id, out SocketGuildMember cached)
+                                ? (SocketGuildMember)cached.Snapshot()
+                                : null;
                             SocketGuildMember member = guild.AddOrUpdateMember(data);
                             MemberUpdated?.Invoke(member);
+                            MemberChanged?.Invoke(before, member);
+                            await TrackUserAsync(data.User);
                         }
                     }
                     else
@@ -1803,6 +1957,7 @@ public partial class FluxerGatewayClient : IDisposable
                             {
                                 return null;
                             }));
+                            await ForgetUsersAsync(new[] { userId }, data.GuildId);
                         }
                     }
                     else
@@ -1884,7 +2039,7 @@ public partial class FluxerGatewayClient : IDisposable
                 {
                     PresenceGatewayData? data = p.Data.ToObject<PresenceGatewayData>(FluxerClient._gatewaySerializer);
                     if (data != null)
-                        PresenceUpdated?.Invoke(data);
+                        await TrackPresenceAsync(data);
                     else
                         _logger.Warning("PRESENCE_UPDATE event received but data could not be cast to PresenceGatewayData");
                 }
@@ -1896,7 +2051,7 @@ public partial class FluxerGatewayClient : IDisposable
                     {
                         foreach (PresenceGatewayData i in data.Presences)
                         {
-                            PresenceUpdated?.Invoke(i);
+                            await TrackPresenceAsync(i);
                         }
                     }
                     else
@@ -1921,7 +2076,10 @@ public partial class FluxerGatewayClient : IDisposable
                                 return;
 
                             channel.LastMessageId = data.Id;
-                            MessageCreated?.Invoke(SocketMessage.Create(_client, data, channel, guild));
+                            SocketMessage created = SocketMessage.Create(_client, data, channel, guild);
+                            await Cache.Messages.SetAsync(data.Id, data, ScopeOf(data));
+                            await TrackUserAsync(data.Author);
+                            MessageCreated?.Invoke(created);
                         }
                         else
                         {
@@ -1954,7 +2112,17 @@ public partial class FluxerGatewayClient : IDisposable
                             if (!Channels.TryGetValue(data.ChannelId, out Channel channel))
                                 return;
 
-                            MessageUpdated?.Invoke(SocketMessage.Create(_client, data, channel, guild));
+                            MessageGatewayData? cached = await Cache.Messages.GetAsync(data.Id);
+                            SocketMessage? before = ToSocketMessage(cached);
+                            if (cached != null)
+                            {
+                                data = MergeMessage(cached, (JObject)p.Data);
+                                await Cache.Messages.SetAsync(data.Id, data, ScopeOf(data));
+                            }
+
+                            SocketMessage edited = SocketMessage.Create(_client, data, channel, guild);
+                            MessageUpdated?.Invoke(edited);
+                            MessageEdited?.Invoke(before, edited);
                         }
                         else
                         {
@@ -1987,7 +2155,9 @@ public partial class FluxerGatewayClient : IDisposable
                             if (!Channels.TryGetValue(data.ChannelId, out Channel channel))
                                 return;
 
+                            SocketMessage? removed = ToSocketMessage(await Cache.Messages.RemoveAsync(data.MessageId));
                             MessageDeleted?.Invoke(channel, data.AuthorId, data.MessageId, data.Content);
+                            MessageRemoved?.Invoke(channel, data.MessageId, removed);
                         }
                         else
                         {
@@ -2020,7 +2190,14 @@ public partial class FluxerGatewayClient : IDisposable
                             if (!Channels.TryGetValue(data.ChannelId, out Channel channel))
                                 return;
 
+                            List<SocketMessage> removed = new List<SocketMessage>();
+                            foreach (ulong id in data.Ids)
+                            {
+                                if (ToSocketMessage(await Cache.Messages.RemoveAsync(id)) is { } message)
+                                    removed.Add(message);
+                            }
                             MessagesDeleted?.Invoke(channel, data.GuildId.HasValue ? GetGuild(data.GuildId.Value) : null, data.Ids);
+                            MessagesRemoved?.Invoke(channel, data.Ids.ToList(), removed);
                         }
                         else
                         {
@@ -2083,7 +2260,7 @@ public partial class FluxerGatewayClient : IDisposable
 
                             SocketGuildMember member = guild.AddOrUpdateMember(data.Member);
 
-                            MessageReactionAdded?.Invoke(channel, new Cacheable<Message>(data.MessageId, null, async () =>
+                            MessageReactionAdded?.Invoke(channel, new Cacheable<Message>(data.MessageId, await GetCachedMessageAsync(data.MessageId), async () =>
                             {
                                 return await _client.Rest.GetMessageAsync(data.ChannelId, data.MessageId);
                             }), SocketReaction.Create(_client, data, member));
@@ -2127,7 +2304,7 @@ public partial class FluxerGatewayClient : IDisposable
                             return;
 
                         SocketReaction[] reactions = data.Reactions.Select(x => SocketReaction.Create(_client, ToReactionData(data, x), x.Member == null ? null : guild.AddOrUpdateMember(x.Member))).ToArray();
-                        MessageReactionsAdded?.Invoke(channel, new Cacheable<Message>(data.MessageId, null, async () =>
+                        MessageReactionsAdded?.Invoke(channel, new Cacheable<Message>(data.MessageId, await GetCachedMessageAsync(data.MessageId), async () =>
                         {
                             return await _client.Rest.GetMessageAsync(data.ChannelId, data.MessageId);
                         }), reactions);
@@ -2165,7 +2342,7 @@ public partial class FluxerGatewayClient : IDisposable
 
                             SocketGuildMember member = guild.AddOrUpdateMember(data.Member);
 
-                            MessageReactionRemoved?.Invoke(channel, new Cacheable<Message>(data.MessageId, null, async () =>
+                            MessageReactionRemoved?.Invoke(channel, new Cacheable<Message>(data.MessageId, await GetCachedMessageAsync(data.MessageId), async () =>
                             {
                                 return await _client.Rest.GetMessageAsync(data.ChannelId, data.MessageId);
                             }), SocketReaction.Create(_client, data, member));
@@ -2204,7 +2381,7 @@ public partial class FluxerGatewayClient : IDisposable
                             if (!Channels.TryGetValue(data.ChannelId, out Channel channel))
                                 return;
 
-                            MessageReactionRemoveAll?.Invoke(channel, new Cacheable<Message>(data.MessageId, null, async () =>
+                            MessageReactionRemoveAll?.Invoke(channel, new Cacheable<Message>(data.MessageId, await GetCachedMessageAsync(data.MessageId), async () =>
                             {
                                 return await _client.Rest.GetMessageAsync(data.ChannelId, data.MessageId);
                             }));
@@ -2243,7 +2420,7 @@ public partial class FluxerGatewayClient : IDisposable
                             if (!Channels.TryGetValue(data.ChannelId, out Channel channel))
                                 return;
 
-                            MessageReactionRemovedEmoji?.Invoke(channel, new Cacheable<Message>(data.MessageId, null, async () =>
+                            MessageReactionRemovedEmoji?.Invoke(channel, new Cacheable<Message>(data.MessageId, await GetCachedMessageAsync(data.MessageId), async () =>
                             {
                                 return await _client.Rest.GetMessageAsync(data.ChannelId, data.MessageId);
                             }), GuildEmoji.Create(_client, data.Emoji));
@@ -2319,8 +2496,10 @@ public partial class FluxerGatewayClient : IDisposable
                             if (!Channels.TryGetValue(data.ChannelId, out Channel channel))
                                 return;
 
+                            DateTimeOffset? pinBefore = channel.LastPinAt;
                             channel.LastPinAt = data.LastPinAt;
                             ChannelPinsUpdated?.Invoke(channel, guild);
+                            ChannelPinsChanged?.Invoke(channel, guild, pinBefore);
                         }
                         else
                         {
@@ -2372,10 +2551,14 @@ public partial class FluxerGatewayClient : IDisposable
                         Channel? channel = data.ChannelId.HasValue ? GetChannel(data.ChannelId.Value) : null;
 
                         SocketVoiceState currentState = SocketVoiceState.Create(_client, data, channel);
+                        SocketVoiceState? previousState = null;
                         if (data.GuildId.HasValue && Guilds.TryGetValue(data.GuildId.Value, out SocketGuild guild))
                         {
                             guild.AddOrUpdateMember(data.Member);
                             SocketGuildMember member = guild.Members.GetValueOrDefault(data.Member.Id);
+                            if (member.VoiceStates.TryGetValue(data.SessionId, out SocketVoiceState cachedState))
+                                previousState = (SocketVoiceState)cachedState.Snapshot();
+
                             if (data.ChannelId.HasValue)
                             {
                                 SocketVoiceChannel? Channel = GetChannel(data.ChannelId.Value) as SocketVoiceChannel;
@@ -2411,6 +2594,8 @@ public partial class FluxerGatewayClient : IDisposable
                         }
 
                         VoiceStateUpdated?.Invoke(currentState);
+                        if (data.GuildId.HasValue)
+                            VoiceStateChanged?.Invoke(previousState, currentState);
                     }
                     else
                         _logger.Warning("VOICE_STATE_UPDATE event received but data could not be cast to VoiceStateGatewayData");
@@ -3122,6 +3307,47 @@ public partial class FluxerGatewayClient : IDisposable
     /// </summary>
     public event PrivateMessageDeletedEvent PrivateMessageDeleted;
 
+    /// <summary>
+    /// Delegate for MESSAGE_UPDATE events that also hands over the message as it was before the edit.
+    /// </summary>
+    /// <param name="before">The cached message from before the edit, or null when it wasn't cached.</param>
+    /// <param name="after">The edited message.</param>
+    public delegate void MessageEditedEvent(SocketMessage? before, SocketMessage after);
+
+    /// <summary>
+    /// Occurs when a guild message is edited, after <see cref="MessageUpdated"/>.
+    /// Turn on <see cref="FluxerCacheConfig.Messages"/> to get the message from before the edit.
+    /// </summary>
+    public event MessageEditedEvent MessageEdited;
+
+    /// <summary>
+    /// Delegate for MESSAGE_DELETE events that also hands over the deleted message when it was cached.
+    /// </summary>
+    /// <param name="channel">The channel the message was in.</param>
+    /// <param name="messageId">The ID of the deleted message.</param>
+    /// <param name="message">The cached message, or null when it wasn't cached.</param>
+    public delegate void MessageRemovedEvent(Channel channel, ulong messageId, SocketMessage? message);
+
+    /// <summary>
+    /// Occurs when a guild message is deleted, after <see cref="MessageDeleted"/>.
+    /// Turn on <see cref="FluxerCacheConfig.Messages"/> to get the deleted message.
+    /// </summary>
+    public event MessageRemovedEvent MessageRemoved;
+
+    /// <summary>
+    /// Delegate for MESSAGE_DELETE_BULK events that also hands over the deleted messages that were cached.
+    /// </summary>
+    /// <param name="channel">The channel the messages were in.</param>
+    /// <param name="messageIds">The IDs of every deleted message.</param>
+    /// <param name="messages">The deleted messages that were cached.</param>
+    public delegate void MessagesRemovedEvent(Channel channel, IReadOnlyList<ulong> messageIds, IReadOnlyList<SocketMessage> messages);
+
+    /// <summary>
+    /// Occurs when guild messages are bulk deleted, after <see cref="MessagesDeleted"/>.
+    /// Turn on <see cref="FluxerCacheConfig.Messages"/> to get the deleted messages.
+    /// </summary>
+    public event MessagesRemovedEvent MessagesRemoved;
+
 
     // ============================================================================
     // Channel Events
@@ -3217,6 +3443,19 @@ public partial class FluxerGatewayClient : IDisposable
     public event ThreadUpdatedEvent ThreadUpdated;
 
     /// <summary>
+    /// Delegate for THREAD_UPDATE events that hands over the cached thread from before the change.
+    /// </summary>
+    /// <param name="guild">The guild of the thread.</param>
+    /// <param name="before">A copy of the cached thread from before the update, or null when it wasn't cached.</param>
+    /// <param name="after">The cached thread after the update.</param>
+    public delegate void ThreadChangedEvent(SocketGuild guild, Channel? before, Channel after);
+
+    /// <summary>
+    /// Occurs when a thread is updated, after <see cref="ThreadUpdated"/>.
+    /// </summary>
+    public event ThreadChangedEvent ThreadChanged;
+
+    /// <summary>
     /// Delegate for THREAD_DELETE events when a thread is deleted.
     /// </summary>
     public delegate void ThreadDeletedEvent(SocketGuild guild, Cacheable<ThreadChannel> thread);
@@ -3305,6 +3544,32 @@ public partial class FluxerGatewayClient : IDisposable
     /// Occurs when a user's presence (online status) changes.
     /// </summary>
     public event PresenceUpdatedEvent PresenceUpdated;
+
+    /// <summary>
+    /// Delegate for PRESENCE_UPDATE events that also hands over the user's previous presence.
+    /// </summary>
+    /// <param name="before">The cached presence from before, or null when it wasn't cached.</param>
+    /// <param name="after">The new presence.</param>
+    public delegate void PresenceChangedEvent(PresenceGatewayData? before, PresenceGatewayData after);
+
+    /// <summary>
+    /// Occurs when a presence changes, after <see cref="PresenceUpdated"/>. Turn on <see cref="FluxerCacheConfig.Presences"/>
+    /// to get the previous presence.
+    /// </summary>
+    public event PresenceChangedEvent PresenceChanged;
+
+    /// <summary>
+    /// Delegate for user changes seen in member, presence and message events.
+    /// </summary>
+    /// <param name="before">The user as cached before the change.</param>
+    /// <param name="after">The user now.</param>
+    public delegate void UserChangedEvent(User before, User after);
+
+    /// <summary>
+    /// Occurs when a user's name, discriminator, display name, avatar or flags change. Needs <see cref="FluxerCacheConfig.Users"/>,
+    /// and is raised the first time the gateway sees the user again after the change.
+    /// </summary>
+    public event UserChangedEvent UserChanged;
 
     // ============================================================================
     // Typing Events
@@ -3517,6 +3782,19 @@ public partial class FluxerGatewayClient : IDisposable
     public event ChannelPinsUpdatedEvent ChannelPinsUpdated;
 
     /// <summary>
+    /// Delegate for CHANNEL_PINS_UPDATE events in guilds that also hands over the previous pin time.
+    /// </summary>
+    /// <param name="channel">The channel, with its new <see cref="Channel.LastPinAt"/>.</param>
+    /// <param name="guild">The guild of the channel.</param>
+    /// <param name="before">The channel's last pin time before the change.</param>
+    public delegate void ChannelPinsChangedEvent(Channel channel, SocketGuild guild, DateTimeOffset? before);
+
+    /// <summary>
+    /// Occurs when a guild channel's pins change, after <see cref="ChannelPinsUpdated"/>.
+    /// </summary>
+    public event ChannelPinsChangedEvent ChannelPinsChanged;
+
+    /// <summary>
     /// Delegate for CHANNEL_PINS_UPDATE events when channel pins are updated.
     /// </summary>
     public delegate void PrivateChannelPinsUpdatedEvent(Cacheable<Channel> channel);
@@ -3569,6 +3847,18 @@ public partial class FluxerGatewayClient : IDisposable
     /// Occurs when a user joins, leaves, or updates their state in a voice channel.
     /// </summary>
     public event VoiceStateUpdatedEvent VoiceStateUpdated;
+
+    /// <summary>
+    /// Delegate for VOICE_STATE_UPDATE events that also hands over the voice state from before the change.
+    /// </summary>
+    /// <param name="before">The cached state of that voice connection, or null when it just joined or wasn't cached.</param>
+    /// <param name="after">The new state. Its channel is null when the connection left voice.</param>
+    public delegate void VoiceStateChangedEvent(SocketVoiceState? before, SocketVoiceState after);
+
+    /// <summary>
+    /// Occurs when a voice connection in a guild joins, leaves, moves or changes state, after <see cref="VoiceStateUpdated"/>.
+    /// </summary>
+    public event VoiceStateChangedEvent VoiceStateChanged;
 
     /// <summary>
     /// Delegate for VOICE_SERVER_UPDATE events for voice connection data.
@@ -3696,6 +3986,18 @@ public partial class FluxerGatewayClient : IDisposable
     /// Occurs when a guild member is updated (roles, nickname, avatar, etc.).
     /// </summary>
     public event GuildMemberUpdatedEvent MemberUpdated;
+
+    /// <summary>
+    /// Delegate for GUILD_MEMBER_UPDATE events that also hands over the member as they were before.
+    /// </summary>
+    /// <param name="before">A copy of the cached member from before the update, or null when they weren't cached.</param>
+    /// <param name="after">The updated member.</param>
+    public delegate void GuildMemberChangedEvent(SocketGuildMember? before, SocketGuildMember after);
+
+    /// <summary>
+    /// Occurs when a guild member is updated, after <see cref="MemberUpdated"/>.
+    /// </summary>
+    public event GuildMemberChangedEvent MemberChanged;
 
     /// <summary>
     /// Delegate for GUILD_MEMBER_REMOVE events when a member leaves or is removed from a guild.
@@ -3917,6 +4219,21 @@ public partial class FluxerGatewayClient : IDisposable
     /// </summary>
     public event InviteDeletedEvent InviteDeleted;
 
+    /// <summary>
+    /// Delegate for INVITE_DELETE events that also hands over the deleted invite.
+    /// </summary>
+    /// <param name="channel">The channel the invite was for.</param>
+    /// <param name="guild">The guild the invite was for, if any.</param>
+    /// <param name="code">The invite code.</param>
+    /// <param name="invite">The cached invite, or null when it wasn't cached.</param>
+    public delegate void InviteRemovedEvent(Channel channel, SocketGuild? guild, string code, Invite? invite);
+
+    /// <summary>
+    /// Occurs when an invite is deleted, after <see cref="InviteDeleted"/>. Turn on <see cref="FluxerCacheConfig.Invites"/>
+    /// to get the deleted invite.
+    /// </summary>
+    public event InviteRemovedEvent InviteRemoved;
+
     public delegate void GuildMemberCountsEvent(GuildMemberCountGatewayData[] guilds);
 
     public event GuildMemberCountsEvent GuildMemberCounts;
@@ -3971,6 +4288,16 @@ public partial class FluxerGatewayClient : IDisposable
             _logger.Information("Disposing GatewayClient");
 
             _sendQueue.Dispose();
+
+            try
+            {
+                if (!Cache.DisposeAsync().AsTask().Wait(TimeSpan.FromSeconds(5)))
+                    _logger.Warning("Cache stores took longer than 5 seconds to dispose");
+            }
+            catch (Exception ex)
+            {
+                _logger.Warning(ex, "Error disposing cache stores");
+            }
 
             // Cancel and dispose heartbeat
             try

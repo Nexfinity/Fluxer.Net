@@ -66,6 +66,8 @@ public class VoiceState : Entity, IVoiceState
         return data;
     }
 
+    internal VoiceState Snapshot() => (VoiceState)MemberwiseClone();
+
     internal virtual void Update(VoiceStateJson json)
     {
         SessionId = json.SessionId;

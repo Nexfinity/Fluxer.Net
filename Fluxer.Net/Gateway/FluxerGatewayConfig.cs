@@ -31,4 +31,10 @@ public class FluxerGatewayConfig
     /// <see cref="FluxerGatewayClient.MessageReactionsAdded"/>. A batch of one is still sent as MESSAGE_REACTION_ADD.
     /// </summary>
     public bool DebounceMessageReactions { get; set; }
+
+    /// <summary>
+    /// What the gateway remembers to hand over the state from before update and delete events, and where it keeps it.
+    /// Everything is off by default.
+    /// </summary>
+    public FluxerCacheConfig Cache { get; set; } = new FluxerCacheConfig();
 }

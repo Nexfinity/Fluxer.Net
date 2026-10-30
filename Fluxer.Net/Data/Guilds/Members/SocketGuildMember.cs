@@ -14,6 +14,13 @@ public class SocketGuildMember : GuildMember
 
     public ConcurrentDictionary<string, SocketVoiceState> VoiceStates { get; private set; } = new ConcurrentDictionary<string, SocketVoiceState>();
 
+    internal override GuildMember Snapshot()
+    {
+        SocketGuildMember copy = (SocketGuildMember)base.Snapshot();
+        copy.VoiceStates = new ConcurrentDictionary<string, SocketVoiceState>(VoiceStates);
+        return copy;
+    }
+
     /// <summary>
     /// List of roles the member is part of.
     /// </summary>

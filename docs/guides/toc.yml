@@ -22,6 +22,8 @@
   items:
     - name: Introduction
       href: gateway/intro.md
+    - name: Caching
+      href: gateway/caching.md
 - name: OAuth
   items:
     - name: Asp.net

@@ -123,6 +123,14 @@ public class GuildMember : Entity, IGuildMember
         return data;
     }
 
+    internal virtual GuildMember Snapshot()
+    {
+        GuildMember copy = (GuildMember)MemberwiseClone();
+        copy.RoleIds = new HashSet<ulong>(RoleIds ?? new HashSet<ulong>());
+        copy.User = User?.Snapshot();
+        return copy;
+    }
+
     internal virtual void Update(GuildMemberJson json)
     {
         if (User == null)
