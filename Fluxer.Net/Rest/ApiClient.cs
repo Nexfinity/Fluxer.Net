@@ -73,6 +73,13 @@ public class FluxerApiClient : FluxerBaseApiClient
     #endregion
 
     /// <summary>
+    /// Get the gateway URL, recommended shard count and session start limits.
+    /// </summary>
+    /// <returns><see cref="GatewayBotJson"/>, or null when the request fails.</returns>
+    public async Task<GatewayBotJson?> GetGatewayBotAsync(RequestOptions? options = null)
+        => await SendRequestAsync<GatewayBotJson>(HttpMethod.Get, "/gateway/bot", false, options: options);
+
+    /// <summary>
     /// Get info and config for the Fluxer instance, useful for self-hosted.
     /// </summary>
     /// <returns><see cref="Instance"/></returns>

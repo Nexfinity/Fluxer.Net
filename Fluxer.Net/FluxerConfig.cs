@@ -83,6 +83,34 @@ public class FluxerConfig
     public int GlobalRateLimit { get; set; } = 50;
 
     /// <summary>
+    /// Zero based id of this shard. Sent in IDENTIFY together with <see cref="ShardCount"/>. Leave both unset to connect without sharding.
+    /// </summary>
+    public int? ShardId { get; set; }
+
+    /// <summary>
+    /// Total number of shards. Sent in IDENTIFY together with <see cref="ShardId"/>. Leave both unset to connect without sharding.
+    /// </summary>
+    public int? ShardCount { get; set; }
+
+    /// <summary>
+    /// The shard pair sent in IDENTIFY, or null when sharding is not configured.
+    /// </summary>
+    /// <exception cref="InvalidOperationException">Only one of <see cref="ShardId"/> and <see cref="ShardCount"/> is set, or the pair is outside 0 &lt;= id &lt; count &lt;= 16384.</exception>
+    public int[]? GetShard()
+    {
+        if (ShardId == null && ShardCount == null)
+            return null;
+
+        if (ShardId == null || ShardCount == null)
+            throw new InvalidOperationException("ShardId and ShardCount must be set together.");
+
+        if (ShardId < 0 || ShardCount < 1 || ShardCount > 16384 || ShardId >= ShardCount)
+            throw new InvalidOperationException($"Invalid shard {ShardId} of {ShardCount}.");
+
+        return new[] { ShardId.Value, ShardCount.Value };
+    }
+
+    /// <summary>
     /// Gets the fully resolved API base URL with the version number substituted.
     /// This is the actual URL used for API requests.
     /// </summary>

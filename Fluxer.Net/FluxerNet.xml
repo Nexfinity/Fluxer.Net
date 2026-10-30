@@ -7640,6 +7640,51 @@
             Each experiment's assignment by name, such as channel_threads, whose "active" says whether threads are available.
             </summary>
         </member>
+        <member name="T:Fluxer.Net.GatewayBotJson">
+            <summary>
+            Gateway connection information and the recommended shard count.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.GatewayBotJson.Url">
+            <summary>
+            WebSocket URL to connect to the gateway.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.GatewayBotJson.Shards">
+            <summary>
+            Recommended number of shards to use when connecting.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.GatewayBotJson.SessionStartLimit">
+            <summary>
+            Session start rate limit information.
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.GatewaySessionStartLimitJson">
+            <summary>
+            Session start rate limit information.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.GatewaySessionStartLimitJson.Total">
+            <summary>
+            Total number of session starts allowed.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.GatewaySessionStartLimitJson.Remaining">
+            <summary>
+            Remaining number of session starts.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.GatewaySessionStartLimitJson.ResetAfter">
+            <summary>
+            Milliseconds until the limit resets.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.GatewaySessionStartLimitJson.MaxConcurrency">
+            <summary>
+            Maximum number of concurrent IDENTIFY requests.
+            </summary>
+        </member>
         <member name="T:Fluxer.Net.GlobalSearch">
             <inheritdoc />
         </member>
@@ -10782,6 +10827,12 @@
             </list>
             </remarks>
         </member>
+        <member name="M:Fluxer.Net.Rest.FluxerApiClient.GetGatewayBotAsync(Fluxer.Net.Rest.RequestOptions)">
+            <summary>
+            Get the gateway URL, recommended shard count and session start limits.
+            </summary>
+            <returns><see cref="T:Fluxer.Net.GatewayBotJson"/>, or null when the request fails.</returns>
+        </member>
         <member name="M:Fluxer.Net.Rest.FluxerApiClient.GetInstanceAsync(Fluxer.Net.Rest.RequestOptions)">
             <summary>
             Get info and config for the Fluxer instance, useful for self-hosted.
@@ -13568,6 +13619,22 @@
             REST requests sent per second before waiting. Set to 0 to rely on 429 responses alone.
             </summary>
         </member>
+        <member name="P:Fluxer.Net.FluxerConfig.ShardId">
+            <summary>
+            Zero based id of this shard. Sent in IDENTIFY together with <see cref="P:Fluxer.Net.FluxerConfig.ShardCount"/>. Leave both unset to connect without sharding.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.FluxerConfig.ShardCount">
+            <summary>
+            Total number of shards. Sent in IDENTIFY together with <see cref="P:Fluxer.Net.FluxerConfig.ShardId"/>. Leave both unset to connect without sharding.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.FluxerConfig.GetShard">
+            <summary>
+            The shard pair sent in IDENTIFY, or null when sharding is not configured.
+            </summary>
+            <exception cref="T:System.InvalidOperationException">Only one of <see cref="P:Fluxer.Net.FluxerConfig.ShardId"/> and <see cref="P:Fluxer.Net.FluxerConfig.ShardCount"/> is set, or the pair is outside 0 &lt;= id &lt; count &lt;= 16384.</exception>
+        </member>
         <member name="P:Fluxer.Net.FluxerConfig.RealApiBaseUrl">
             <summary>
             Gets the fully resolved API base URL with the version number substituted.
@@ -13900,6 +13967,16 @@
         <member name="P:Fluxer.Net.Gateway.FluxerGatewayClient.Latency">
             <summary>
             Milliseconds between the last heartbeat and its acknowledgement, or 0 before the first one.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Gateway.FluxerGatewayClient.ShardId">
+            <summary>
+            Zero based id of the shard the server reported in READY, or null when the session is not sharded.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Gateway.FluxerGatewayClient.ShardCount">
+            <summary>
+            Total number of shards the server reported in READY, or null when the session is not sharded.
             </summary>
         </member>
         <member name="F:Fluxer.Net.Gateway.FluxerGatewayClient._sequence">

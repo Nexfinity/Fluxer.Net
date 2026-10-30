@@ -50,6 +50,16 @@ public partial class FluxerGatewayClient : IDisposable
 
     public FluxerGatewayConfig Config { get; internal set; }
 
+    /// <summary>
+    /// Zero based id of the shard the server reported in READY, or null when the session is not sharded.
+    /// </summary>
+    public int? ShardId { get; private set; }
+
+    /// <summary>
+    /// Total number of shards the server reported in READY, or null when the session is not sharded.
+    /// </summary>
+    public int? ShardCount { get; private set; }
+
     public HashSet<ulong> GuildIds { get; private set; } = new HashSet<ulong>();
 
     /// <summary>
@@ -249,21 +259,12 @@ public partial class FluxerGatewayClient : IDisposable
                 return;
             }
 
-            GatewayPacket login = new GatewayPacket
+            GatewayPacket login = CreateIdentifyPacket(new Dictionary<string, string>
             {
-                OpCode = FluxerOpCode.Identify,
-                Data = JToken.FromObject(new IdentifyGatewayData(_client.RawToken)
-                {
-                    Properties = new Dictionary<string, string>
-                    {
-                        { "os", "linux" },
-                        { "browser", "fluxer-net" },
-                        { "device", "fluxer-net" }
-                    },
-                    IgnoredGatewayEvents = Config.IgnoredEvents,
-                    Presence = Config.Presence
-                })
-            };
+                { "os", "linux" },
+                { "browser", "fluxer-net" },
+                { "device", "fluxer-net" }
+            });
 
             SendGatewayPacket(login);
             _reconnectAttemptCount = 0; // Reset backoff counter on successful connection
@@ -588,6 +589,19 @@ public partial class FluxerGatewayClient : IDisposable
         }
     }
 
+    internal GatewayPacket CreateIdentifyPacket(Dictionary<string, string> properties)
+        => new GatewayPacket
+        {
+            OpCode = FluxerOpCode.Identify,
+            Data = JToken.FromObject(new IdentifyGatewayData(_client.RawToken)
+            {
+                Properties = properties,
+                IgnoredGatewayEvents = Config.IgnoredEvents,
+                Presence = Config.Presence,
+                Shard = _client.Config.GetShard()
+            })
+        };
+
     private void HandleDispatch(GatewayPacket p)
     {
         //Console.WriteLine("Type: " + p.Dispatch);
@@ -603,6 +617,8 @@ public partial class FluxerGatewayClient : IDisposable
                         CurrentUser.SessionId = data.SessionId;
                         GatewaySessionJson? presence = data.Sessions.FirstOrDefault(x => x.SessionId == CurrentUser.SessionId);
                         _sessionId = data.SessionId;
+                        ShardId = data.Shard?[0];
+                        ShardCount = data.Shard?[1];
                         _isConnecting = false; // Connection successfully established
                         _reconnectAttemptCount = 0; // Reset backoff counter
                         Channels.Clear();
@@ -2492,21 +2508,12 @@ public partial class FluxerGatewayClient : IDisposable
             {
                 _logger.Information("No session ID, sending IDENTIFY");
 
-                packet = new GatewayPacket
+                packet = CreateIdentifyPacket(new Dictionary<string, string>
                 {
-                    OpCode = FluxerOpCode.Identify,
-                    Data = JToken.FromObject(new IdentifyGatewayData(_client.RawToken)
-                    {
-                        Properties = new Dictionary<string, string>
-                        {
-                            { "os", Environment.OSVersion.Platform.ToString() },
-                            { "browser", "Fluxer.Net" },
-                            { "device", "Fluxer.Net" }
-                        },
-                        IgnoredGatewayEvents = Config.IgnoredEvents,
-                        Presence = Config.Presence
-                    })
-                };
+                    { "os", Environment.OSVersion.Platform.ToString() },
+                    { "browser", "Fluxer.Net" },
+                    { "device", "Fluxer.Net" }
+                });
             }
 
             SendGatewayPacket(packet);
