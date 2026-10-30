@@ -3485,14 +3485,14 @@
         </member>
         <member name="M:Fluxer.Net.EmbedBuilder.WithFields(System.Collections.Generic.IEnumerable{Fluxer.Net.EmbedFieldBuilder})">
             <summary>
-            Replaces the embed's fields.
+            Adds the specified fields to the embed.
             </summary>
             <returns><see cref="T:Fluxer.Net.EmbedBuilder"/></returns>
             <exception cref="T:System.ArgumentException">Field count exceeds <see cref="P:Fluxer.Net.EmbedBuilder.MaxFieldCount"/>.</exception>
         </member>
         <member name="M:Fluxer.Net.EmbedBuilder.WithFields(Fluxer.Net.EmbedFieldBuilder[])">
             <summary>
-            Replaces the embed's fields.
+            Adds the specified fields to the embed.
             </summary>
             <returns><see cref="T:Fluxer.Net.EmbedBuilder"/></returns>
             <exception cref="T:System.ArgumentException">Field count exceeds <see cref="P:Fluxer.Net.EmbedBuilder.MaxFieldCount"/>.</exception>

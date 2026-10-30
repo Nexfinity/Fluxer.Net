@@ -344,22 +344,22 @@ public class EmbedBuilder
     }
 
     /// <summary>
-    /// Replaces the embed's fields.
+    /// Adds the specified fields to the embed.
     /// </summary>
     /// <returns><see cref="EmbedBuilder"/></returns>
     /// <exception cref="ArgumentException">Field count exceeds <see cref="MaxFieldCount"/>.</exception>
     public EmbedBuilder WithFields(IEnumerable<EmbedFieldBuilder> fields)
     {
         List<EmbedFieldBuilder> list = fields.ToList();
-        if (list.Count > MaxFieldCount)
+        if (Fields.Count + list.Count > MaxFieldCount)
             throw new ArgumentException($"Field count must be less than or equal to {MaxFieldCount}.", nameof(fields));
 
-        Fields = list;
+        Fields.AddRange(list);
         return this;
     }
 
     /// <summary>
-    /// Replaces the embed's fields.
+    /// Adds the specified fields to the embed.
     /// </summary>
     /// <returns><see cref="EmbedBuilder"/></returns>
     /// <exception cref="ArgumentException">Field count exceeds <see cref="MaxFieldCount"/>.</exception>

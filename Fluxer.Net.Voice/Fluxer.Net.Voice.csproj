@@ -9,7 +9,7 @@
     <DebugType>portable</DebugType>
 
     <PackageId>Fluxer.Net.Voice</PackageId>
-    <Version>3.10.0</Version>
+    <Version>3.10.1</Version>
     <Authors>Nexfinity</Authors>
     <Company>Nexfinity</Company>
     <Description>Voice channel support for Fluxer.Net bots: joining voice channels and sending audio.</Description>
