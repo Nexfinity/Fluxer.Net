@@ -84,4 +84,28 @@ public class ModelTests
             Assert.That(Emoji.From(Emoji.FromCustom("a", 5)).ToString(), Is.EqualTo("<:a:5>"));
         });
     }
+
+    [Test]
+    public void WithFieldsAddsToTheExistingFields()
+    {
+        EmbedBuilder builder = new EmbedBuilder()
+            .AddField("One", "1")
+            .WithFields(new EmbedFieldBuilder { Name = "Two", Value = "2" })
+            .WithFields(new EmbedFieldBuilder { Name = "Three", Value = "3" });
+
+        Assert.That(builder.Fields.Select(f => f.Name), Is.EqualTo(new[] { "One", "Two", "Three" }));
+    }
+
+    [Test]
+    public void WithFieldsRejectsGoingOverTheFieldLimitWithoutAddingAny()
+    {
+        EmbedBuilder builder = new();
+        for (int i = 0; i < EmbedBuilder.MaxFieldCount - 1; i++)
+            builder.AddField($"F{i}", i);
+
+        Assert.Throws<ArgumentException>(() => builder.WithFields(
+            new EmbedFieldBuilder { Name = "A", Value = "a" },
+            new EmbedFieldBuilder { Name = "B", Value = "b" }));
+        Assert.That(builder.Fields, Has.Count.EqualTo(EmbedBuilder.MaxFieldCount - 1));
+    }
 }
