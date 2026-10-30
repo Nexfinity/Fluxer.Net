@@ -366,6 +366,35 @@ public class EmbedBuilder
     public EmbedBuilder WithFields(params EmbedFieldBuilder[] fields) => WithFields((IEnumerable<EmbedFieldBuilder>)fields);
 
     /// <summary>
+    /// Creates a builder filled from an existing embed, for example one on a received message, to change and send again.
+    /// </summary>
+    /// <returns><see cref="EmbedBuilder"/></returns>
+    public static EmbedBuilder FromEmbed(IEmbed embed)
+    {
+        EmbedBuilder builder = new EmbedBuilder
+        {
+            Title = embed.Title,
+            Description = embed.Description,
+            Url = embed.Url,
+            Color = embed.Color,
+            Timestamp = embed.Timestamp,
+            ImageUrl = embed.Image?.Url,
+            ThumbnailUrl = embed.Thumbnail?.Url
+        };
+
+        if (embed.Author != null && !string.IsNullOrEmpty(embed.Author.Name))
+            builder.Author = new EmbedAuthorBuilder { Name = embed.Author.Name, Url = embed.Author.Url, IconUrl = embed.Author.IconUrl };
+
+        if (embed.Footer != null && !string.IsNullOrEmpty(embed.Footer.Text))
+            builder.Footer = new EmbedFooterBuilder { Text = embed.Footer.Text, IconUrl = embed.Footer.IconUrl };
+
+        foreach (IEmbedField field in (embed.Fields ?? Array.Empty<IEmbedField>()).Take(MaxFieldCount))
+            builder.Fields.Add(new EmbedFieldBuilder { Name = field.Name, Value = field.Value, IsInline = field.IsInline });
+
+        return builder;
+    }
+
+    /// <summary>
     /// Adds a field to the embed using an action.
     /// </summary>
     /// <returns><see cref="EmbedBuilder"/></returns>

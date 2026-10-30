@@ -46,11 +46,7 @@ public class SocketMessage : Message
 
     public SocketGuildMember? Member { get; internal set; }
 
-    public string GetJumpUrl()
-    {
-        string target = Channel.GuildId.HasValue ? Channel.GuildId.Value.ToString() : "@me";
-        return $"{Client.Config.WebUrl}/{target}/{ChannelId}/{Id}";
-    }
+    public string GetJumpUrl() => this.GetJumpUrl(Channel.GuildId);
 
     internal SocketMessage(FluxerBaseClient client) : base(client)
     {

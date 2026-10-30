@@ -13,6 +13,54 @@ public static class ChannelHelpers
     public static Task TriggerTypingIndicatorAsync(this Channel channel, RequestOptions? options = null)
         => channel.Client.Rest.TriggerTypingIndicatorAsync(channel.Id, options);
 
+    /// <summary>
+    /// Shows the typing indicator until the returned object is disposed, sending it again every 8 seconds.
+    /// </summary>
+    /// <example>
+    /// <code>using (channel.EnterTypingState()) { await DoSlowWorkAsync(); }</code>
+    /// </example>
+    public static IDisposable EnterTypingState(this Channel channel)
+        => new TypingState(channel.Client.Rest, channel.Id);
+
+    private sealed class TypingState : IDisposable
+    {
+        private readonly CancellationTokenSource _cancel = new CancellationTokenSource();
+        private readonly Task _loop;
+
+        public TypingState(FluxerApiClient rest, ulong channelId)
+        {
+            CancellationToken token = _cancel.Token;
+            _loop = Task.Run(async () =>
+            {
+                while (!token.IsCancellationRequested)
+                {
+                    try
+                    {
+                        await rest.TriggerTypingIndicatorAsync(channelId, new RequestOptions { CancelToken = token });
+                    }
+                    catch (Exception)
+                    {
+                    }
+
+                    try
+                    {
+                        await Task.Delay(TimeSpan.FromSeconds(8), token);
+                    }
+                    catch (OperationCanceledException)
+                    {
+                        return;
+                    }
+                }
+            });
+        }
+
+        public void Dispose()
+        {
+            _cancel.Cancel();
+            _loop.ContinueWith(_ => _cancel.Dispose(), TaskScheduler.Default);
+        }
+    }
+
     /// <inheritdoc cref="FluxerApiClient.GetChannelWebhooksAsync(ulong, RequestOptions?)" />
     public static Task<IEnumerable<Webhook>> GetWebhooksAsync(this Channel channel, RequestOptions? options = null)
         => channel.Client.Rest.GetChannelWebhooksAsync(channel.Id, options);
