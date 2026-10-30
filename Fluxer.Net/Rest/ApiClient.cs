@@ -1365,6 +1365,26 @@ public class FluxerApiClient : FluxerBaseApiClient
     }
 
     /// <summary>
+    /// Pause or resume invites for a guild by toggling the INVITES_DISABLED feature in its current feature set.
+    /// </summary>
+    /// <remarks>
+    /// Requires <see cref="GuildPermissions.ManageGuild"/>.
+    /// </remarks>
+    /// <returns>The updated <see cref="Guild"/>, or the current guild when invites already were in the requested state. Null when the guild cannot be read.</returns>
+    public async Task<Guild?> SetGuildInvitesPausedAsync(ulong guildId, bool paused, RequestOptions? options = null)
+    {
+        Guild? guild = await GetGuildAsync(guildId, options);
+        if (guild == null)
+            return null;
+
+        string[]? features = GuildFeatures.WithFeature(guild.Features.Raw, GuildFeatures.InvitesDisabledFeature, paused);
+        if (features == null)
+            return guild;
+
+        return await UpdateGuildAsync(guildId, new UpdateGuildRequest { Features = features }, options);
+    }
+
+    /// <summary>
     /// Delete a guild that you own.
     /// </summary>
     public async Task DeleteGuildAsync(ulong guildId, DeleteGuildRequest data, RequestOptions? options = null)

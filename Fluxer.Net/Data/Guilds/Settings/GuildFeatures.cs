@@ -38,6 +38,11 @@ public class GuildFeatures
     public bool IsLargeGuild { get; private set; }
     public bool IsAnnouncementChannelsDisabled { get; private set; }
 
+    /// <summary>
+    /// Name of the feature that blocks new invites from being used.
+    /// </summary>
+    public const string InvitesDisabledFeature = "INVITES_DISABLED";
+
     internal GuildFeatures()
     {
 
@@ -163,6 +168,21 @@ public class GuildFeatures
         }
 
         return data;
+    }
+
+    internal static string[]? WithFeature(string[]? current, string feature, bool enabled)
+    {
+        List<string> features = (current ?? []).ToList();
+        bool present = features.Contains(feature);
+        if (present == enabled)
+            return null;
+
+        if (enabled)
+            features.Add(feature);
+        else
+            features.RemoveAll(x => x == feature);
+
+        return features.ToArray();
     }
 
     public static GuildFeatures FromGuild(PartialGuildJson guild)
