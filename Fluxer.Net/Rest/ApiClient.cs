@@ -93,6 +93,26 @@ public class FluxerApiClient : FluxerBaseApiClient
     }
 
     /// <summary>
+    /// Get the instance's community badge catalog, either one page at a time or by badge ID.
+    /// </summary>
+    /// <param name="ids">Up to 100 badge IDs to look up. Cannot be combined with <paramref name="after"/>.</param>
+    /// <param name="after">The <see cref="InstanceBadges.Next"/> cursor of the previous page.</param>
+    /// <param name="options">Request options.</param>
+    /// <returns><see cref="InstanceBadges"/></returns>
+    public async Task<InstanceBadges?> GetInstanceBadgesAsync(IEnumerable<ulong>? ids = null, string? after = null, RequestOptions? options = null)
+    {
+        List<ulong>? idList = ids?.ToList();
+        if (idList?.Count > 100)
+            throw new ArgumentOutOfRangeException(nameof(ids), "At most 100 badge IDs can be requested at once.");
+
+        string route = new QueryBuilder("/instance/badges")
+            .With("ids", idList == null ? string.Empty : string.Join(",", idList))
+            .With("after", after ?? string.Empty)
+            .Build();
+        return await SendRequestAsync<InstanceBadges>(HttpMethod.Get, route, false, options: options);
+    }
+
+    /// <summary>
     /// Get the current user's experiment assignments, such as whether channel threads are enabled.
     /// </summary>
     /// <returns><see cref="ExperimentAssignmentsJson"/></returns>
@@ -1191,6 +1211,141 @@ public class FluxerApiClient : FluxerBaseApiClient
             Uploads = uploads
         }, true, options: options);
         return json.Uploads.Select(x => x.UploadFilename).ToArray();
+    }
+
+    /// <summary>
+    /// Plan direct uploads of up to 10 files to a channel. Each plan says where to PUT the file, whole or in parts.
+    /// <see cref="UploadAttachmentAsync"/> does the whole upload for one file.
+    /// </summary>
+    /// <returns>One plan for each file</returns>
+    public async Task<IReadOnlyList<AttachmentUploadPlan>> PlanAttachmentUploadsAsync(ulong channelId, IEnumerable<PlannedAttachmentUpload> files, RequestOptions? options = null)
+    {
+        AttachmentUploadPlanListJson json = await SendRequestAsync<AttachmentUploadPlanListJson, PlanAttachmentUploadsRequest>(HttpMethod.Post, $"/channels/{channelId}/attachments", new PlanAttachmentUploadsRequest
+        {
+            Attachments = files.ToArray()
+        }, true, options: options);
+        return json.Attachments;
+    }
+
+    /// <summary>
+    /// Upload a file straight to Fluxer's storage, in parts when it is large, ready to send with
+    /// <see cref="SendMessageAsync(ulong, IEnumerable{UploadedAttachment}, string?, List{EmbedRequest}?, MessageReferenceRequest?, AllowedMentionsRequest?, RequestOptions?)"/>.
+    /// Use this for files too big to send with the message itself.
+    /// </summary>
+    /// <param name="channelId">The channel the file will be sent in.</param>
+    /// <param name="stream">The file. It is read from its current position to the end.</param>
+    /// <param name="filename">The name of the file.</param>
+    /// <param name="contentType">The MIME type of the file.</param>
+    /// <param name="options">Request options for the Fluxer API calls.</param>
+    /// <returns>The uploaded file</returns>
+    public async Task<UploadedAttachment> UploadAttachmentAsync(ulong channelId, Stream stream, string filename, string contentType = "application/octet-stream", RequestOptions? options = null)
+    {
+        CancellationToken token = options?.CancelToken ?? CancellationToken.None;
+        if (stream.CanSeek)
+            return await UploadSeekableAttachmentAsync(channelId, stream, filename, contentType, options, token);
+
+        using FileStream buffer = new FileStream(Path.GetTempFileName(), FileMode.Create, FileAccess.ReadWrite, FileShare.None, 81920, FileOptions.DeleteOnClose | FileOptions.Asynchronous);
+        await stream.CopyToAsync(buffer, 81920, token);
+        buffer.Position = 0;
+        return await UploadSeekableAttachmentAsync(channelId, buffer, filename, contentType, options, token);
+    }
+
+    private async Task<UploadedAttachment> UploadSeekableAttachmentAsync(ulong channelId, Stream source, string filename, string contentType, RequestOptions? options, CancellationToken token)
+    {
+        long size = source.Length - source.Position;
+        AttachmentUploadPlan plan = (await PlanAttachmentUploadsAsync(channelId, new[]
+        {
+            new PlannedAttachmentUpload { Id = 0, Filename = filename, FileSize = size, ContentType = contentType }
+        }, options)).Single();
+
+        if (plan.IsMultipart)
+        {
+            long partSize = plan.PartSize ?? throw new InvalidOperationException($"Fluxer asked for a multipart upload of {filename} without a part size.");
+            foreach (AttachmentUploadPart part in (plan.Parts ?? Array.Empty<AttachmentUploadPart>()).OrderBy(x => x.PartNumber))
+            {
+                token.ThrowIfCancellationRequested();
+                byte[] chunk = new byte[Math.Min(partSize, size - (part.PartNumber - 1) * partSize)];
+                int read = 0;
+                while (read < chunk.Length)
+                {
+                    int count = await source.ReadAsync(chunk, read, chunk.Length - read, token);
+                    if (count == 0)
+                        throw new EndOfStreamException($"The stream ended before part {part.PartNumber} of {filename} was read.");
+                    read += count;
+                }
+
+                using ByteArrayContent partContent = new ByteArrayContent(chunk);
+                await PutUploadAsync(part.UploadUrl, partContent, plan.ContentType, token);
+            }
+
+            await CompleteAttachmentUploadsAsync(channelId, new[]
+            {
+                new CompleteAttachmentUploadItem { UploadFilename = plan.UploadFilename, UploadId = plan.UploadId! }
+            }, options);
+        }
+        else
+        {
+            await PutUploadAsync(plan.UploadUrl!, new StreamContent(source), plan.ContentType, token);
+        }
+
+        return new UploadedAttachment
+        {
+            Filename = filename,
+            ContentType = plan.ContentType,
+            UploadFilename = plan.UploadFilename,
+            FileSize = size
+        };
+    }
+
+    private async Task PutUploadAsync(string url, HttpContent content, string contentType, CancellationToken token)
+    {
+        content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue(contentType);
+        HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Put, url) { Content = content };
+        try
+        {
+            using HttpResponseMessage response = await HttpClient.SendAsync(request, token);
+            if (!response.IsSuccessStatusCode)
+                throw new HttpRequestException($"Uploading to Fluxer's storage failed with {(int)response.StatusCode} {response.ReasonPhrase}.");
+        }
+        finally
+        {
+            request.Content = null;
+            request.Dispose();
+        }
+    }
+
+    /// <summary>
+    /// Send a message with files uploaded by <see cref="UploadAttachmentAsync"/>.
+    /// </summary>
+    /// <remarks>
+    /// Requires <see cref="ChannelPermissions.ViewChannel"/>, <see cref="ChannelPermissions.SendMessages"/> and
+    /// <see cref="ChannelPermissions.AttachFiles"/> for guild channels.
+    /// </remarks>
+    /// <returns><see cref="Message"/></returns>
+    public async Task<Message> SendMessageAsync(ulong channelId, IEnumerable<UploadedAttachment> uploads, string? content = null, List<EmbedRequest>? embeds = null,
+        MessageReferenceRequest? reference = null, AllowedMentionsRequest? allowedMentions = null, RequestOptions? options = null)
+    {
+        List<AttachmentJson> attachments = new List<AttachmentJson>();
+        ulong id = 0;
+        foreach (UploadedAttachment upload in uploads)
+        {
+            upload.Id = id++;
+            attachments.Add(upload);
+        }
+
+        MessageRequest req = new MessageRequest
+        {
+            Content = content,
+            Embeds = embeds?.ToArray(),
+            MessageReference = reference,
+            AllowedMentions = allowedMentions,
+            Attachments = attachments
+        };
+
+        MessageJson json = await SendRequestAsync<MessageJson, MessageRequest>(HttpMethod.Post,
+            _isWebhook ? $"/webhooks/{channelId}/{_token}?wait=true" : $"/channels/{channelId}/messages",
+            req, true, options: options);
+        return Message.Create(_client, json);
     }
 
     /// <summary>

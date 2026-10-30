@@ -13,35 +13,21 @@ internal class QueryBuilder
 
     private bool HasStart = false;
 
-    public QueryBuilder With(string name, bool value)
+    private QueryBuilder Append(string name, string value)
     {
-        if (!value)
-            return this;
-
-        builder.Append((HasStart ? "?" : "&") + $"{name}={value}");
+        builder.Append(HasStart ? "&" : "?").Append(name).Append('=').Append(Uri.EscapeDataString(value));
         HasStart = true;
         return this;
     }
+
+    public QueryBuilder With(string name, bool value)
+        => value ? Append(name, "true") : this;
 
     public QueryBuilder WithIf(string name, ulong value, bool check)
-    {
-        if (!check)
-            return this;
-
-        builder.Append((HasStart ? "?" : "&") + $"{name}={value}");
-        HasStart = true;
-        return this;
-    }
+        => check ? Append(name, value.ToString()) : this;
 
     public QueryBuilder With(string name, string value)
-    {
-        if (string.IsNullOrEmpty(value))
-            return this;
-
-        builder.Append((HasStart ? "?" : "&") + $"{name}={value}");
-        HasStart = true;
-        return this;
-    }
+        => string.IsNullOrEmpty(value) ? this : Append(name, value);
 
     public string Build()
     {

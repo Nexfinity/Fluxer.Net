@@ -6,7 +6,7 @@ namespace Fluxer.Net;
 public class ApplicationJson : PartialApplicationJson, IApplication
 {
     /// <inheritdoc />
-    [JsonProperty("redirect_urls")]
+    [JsonProperty("redirect_uris")]
     public string[] RedirectUrls { get; set; }
 
     /// <inheritdoc />

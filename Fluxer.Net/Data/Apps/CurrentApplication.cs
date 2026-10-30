@@ -6,6 +6,11 @@ public class CurrentApplication : Application, ICurrentApplication
     /// <inheritdoc />
     public User Owner { get; private set; }
 
+    /// <summary>
+    /// The public key used to verify requests signed by Fluxer for this application.
+    /// </summary>
+    public string? VerifyKey { get; private set; }
+
     IUser ICurrentApplication.Owner => Owner;
 
     internal CurrentApplication(FluxerBaseClient client) : base(client)
@@ -28,5 +33,6 @@ public class CurrentApplication : Application, ICurrentApplication
     {
         base.Update(json);
         Owner = User.Create(Client, json.Owner);
+        VerifyKey = json.VerifyKey;
     }
 }

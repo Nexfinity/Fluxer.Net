@@ -30,7 +30,7 @@ public class PartialApplicationJson : IPartialApplication
     public bool IsPublic { get; set; }
 
     /// <inheritdoc />
-    [JsonProperty("bot_requires_code_grant")]
+    [JsonProperty("bot_require_code_grant")]
     public bool RequiresCodeGrant { get; set; }
 
     /// <inheritdoc />
