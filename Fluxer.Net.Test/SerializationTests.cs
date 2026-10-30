@@ -52,6 +52,15 @@ public class SerializationTests
     }
 
     [Test]
+    public void TimestampsAreSentAsUtcWithZ()
+    {
+        DateTimeOffset until = new(2026, 10, 30, 14, 5, 6, 789, TimeSpan.FromHours(2));
+
+        Assert.That(SerializeForRest(new UpdateGuildMemberRequest { CommunicationDisabledUntil = until }),
+            Is.EqualTo("{\"communication_disabled_until\":\"2026-10-30T12:05:06.789Z\"}"));
+    }
+
+    [Test]
     public void ChannelAndGuildUpdatesOnlySendWhatWasSet()
     {
         Assert.Multiple(() =>

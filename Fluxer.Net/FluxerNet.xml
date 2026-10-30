@@ -10840,6 +10840,23 @@
             integer precision loss, but the REST API may return them as plain numbers.
             </summary>
         </member>
+        <member name="T:Fluxer.Net.Extensions.UtcDateTimeOffsetConverter">
+            <summary>
+            Writes <see cref="T:System.DateTimeOffset"/> values as UTC ISO 8601 timestamps ending in <c>Z</c>.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Extensions.UtcDateTimeOffsetConverter.CanRead">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.Extensions.UtcDateTimeOffsetConverter.CanConvert(System.Type)">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.Extensions.UtcDateTimeOffsetConverter.ReadJson(Newtonsoft.Json.JsonReader,System.Type,System.Object,Newtonsoft.Json.JsonSerializer)">
+            <inheritdoc />
+        </member>
+        <member name="M:Fluxer.Net.Extensions.UtcDateTimeOffsetConverter.WriteJson(Newtonsoft.Json.JsonWriter,System.Object,Newtonsoft.Json.JsonSerializer)">
+            <inheritdoc />
+        </member>
         <member name="T:Fluxer.Net.Rest.FluxerApiException">
             <summary>
             Thrown when the Fluxer API answers a request with an error.
