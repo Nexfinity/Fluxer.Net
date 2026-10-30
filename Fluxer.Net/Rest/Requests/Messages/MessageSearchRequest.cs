@@ -17,6 +17,12 @@ public class MessageSearchRequest
     public int Page { get; set; } = 1;
 
     /// <summary>
+    /// The cursor from the previous page of results. When set, <see cref="Page"/> is ignored.
+    /// </summary>
+    [JsonProperty("cursor")]
+    public string[]? Cursor { get; set; }
+
+    /// <summary>
     /// Maximum message ID to include in results.
     /// </summary>
     [JsonProperty("max_id")]

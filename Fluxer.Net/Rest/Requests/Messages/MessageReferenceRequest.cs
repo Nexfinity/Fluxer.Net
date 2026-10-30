@@ -27,4 +27,16 @@ public class MessageReferenceRequest
     /// </summary>
     [JsonProperty("type")]
     public MessageReferenceType Type { get; set; }
+
+    /// <summary>
+    /// When forwarding, only these attachments of the original message are included.
+    /// </summary>
+    [JsonProperty("attachment_ids")]
+    public ulong[]? AttachmentIds { get; set; }
+
+    /// <summary>
+    /// When forwarding, only the embeds at these positions of the original message are included.
+    /// </summary>
+    [JsonProperty("embed_indices")]
+    public int[]? EmbedIndices { get; set; }
 }

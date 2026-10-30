@@ -135,6 +135,18 @@ public class ChannelJson : PartialChannelJson, IChannel
     public int? DefaultRateLimitPerUser { get; set; }
 
     /// <summary>
+    /// How a forum's tag search combines several picked tags.
+    /// </summary>
+    [JsonProperty("default_tag_setting")]
+    public ForumTagMatchSetting? DefaultTagSetting { get; set; }
+
+    /// <summary>
+    /// Whether voice calls connect participants directly, without a voice server.
+    /// </summary>
+    [JsonProperty("rtc_p2p")]
+    public bool? RtcP2P { get; set; }
+
+    /// <summary>
     /// Approximate number of thread members, capped at 50.
     /// </summary>
     [JsonProperty("member_count")]

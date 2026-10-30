@@ -25,6 +25,12 @@ public class GlobalSearchJson : IGlobalSearch
     [JsonProperty("page")]
     public int Page { get; set; }
 
+    /// <summary>
+    /// Pass this as <c>Cursor</c> on the next search request to get the next page, or null on the last page.
+    /// </summary>
+    [JsonProperty("cursor")]
+    public string[]? Cursor { get; set; }
+
     IMessage[] IGlobalSearch.Messages => Messages;
 
     IChannel[] IGlobalSearch.Channels => Channels;

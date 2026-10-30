@@ -48,6 +48,16 @@ public class Channel : PartialChannel, IChannel
     /// <inheritdoc />
     public string? RtcRegion { get; private set; }
 
+    /// <summary>
+    /// Whether voice calls connect participants directly, without a voice server.
+    /// </summary>
+    public bool RtcP2P { get; private set; }
+
+    /// <summary>
+    /// How a forum's tag search combines several picked tags.
+    /// </summary>
+    public ForumTagMatchSetting? DefaultTagSetting { get; private set; }
+
     /// <inheritdoc />
     public ulong? LastMessageId { get; internal set; }
 
@@ -262,6 +272,8 @@ public class Channel : PartialChannel, IChannel
         VoiceConnectionLimit = json.VoiceConnectionLimit;
         UserLimit = json.UserLimit;
         RtcRegion = json.RtcRegion;
+        RtcP2P = json.RtcP2P ?? RtcP2P;
+        DefaultTagSetting = json.DefaultTagSetting ?? DefaultTagSetting;
         LastMessageId = json.LastMessageId;
         LastPinAt = json.LastPinAt;
         if (json.PermissionOverwrites != null)

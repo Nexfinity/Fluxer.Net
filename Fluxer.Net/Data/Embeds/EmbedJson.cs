@@ -57,6 +57,24 @@ public class EmbedJson : IEmbed
     [JsonProperty("video")]
     public EmbedMediaJson? Video { get; set; }
 
+    /// <summary>
+    /// Cleaned-up oEmbed HTML from the linked site, for embeds Fluxer renders as a player.
+    /// </summary>
+    [JsonProperty("html")]
+    public string? Html { get; set; }
+
+    /// <summary>
+    /// The preferred width of <see cref="Html"/>.
+    /// </summary>
+    [JsonProperty("html_width")]
+    public int? HtmlWidth { get; set; }
+
+    /// <summary>
+    /// The preferred height of <see cref="Html"/>.
+    /// </summary>
+    [JsonProperty("html_height")]
+    public int? HtmlHeight { get; set; }
+
     /// <inheritdoc />
     [JsonProperty("audio")]
     public EmbedMediaJson? Audio { get; set; }

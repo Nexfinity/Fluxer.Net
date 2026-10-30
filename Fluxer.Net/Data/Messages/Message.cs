@@ -63,6 +63,17 @@ public class Message : Entity, IMessage
     /// <inheritdoc />
     public MessageSnapshot[]? MessageSnapshots { get; private set; }
 
+    /// <summary>
+    /// The message this one replies to, sent along by Fluxer. Null when this isn't a reply or the replied-to message was deleted;
+    /// check <see cref="MessageReference"/> to tell those apart.
+    /// </summary>
+    public Message? ReferencedMessage { get; private set; }
+
+    /// <summary>
+    /// Channels mentioned in the message that everyone in the guild can see.
+    /// </summary>
+    public MessageChannelMention[]? MentionChannels { get; private set; }
+
     /// <inheritdoc />
     public string? Nonce { get; private set; }
 
@@ -143,6 +154,9 @@ public class Message : Entity, IMessage
 
         if (json.MessageSnapshots != null)
             MessageSnapshots = json.MessageSnapshots.Select(x => MessageSnapshot.Create(Client, x, ChannelId)).ToArray();
+
+        ReferencedMessage = json.ReferencedMessage != null ? Create(Client, json.ReferencedMessage) : null;
+        MentionChannels = json.MentionChannels;
 
         Nonce = json.Nonce;
 

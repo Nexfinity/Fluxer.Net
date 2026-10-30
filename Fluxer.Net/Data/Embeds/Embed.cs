@@ -48,6 +48,21 @@ public class Embed : IEmbed
     /// <inheritdoc />
     public bool IsNsfw { get; set; }
 
+    /// <summary>
+    /// Cleaned-up oEmbed HTML from the linked site, for embeds Fluxer renders as a player.
+    /// </summary>
+    public string? Html { get; set; }
+
+    /// <summary>
+    /// The preferred width of <see cref="Html"/>.
+    /// </summary>
+    public int? HtmlWidth { get; set; }
+
+    /// <summary>
+    /// The preferred height of <see cref="Html"/>.
+    /// </summary>
+    public int? HtmlHeight { get; set; }
+
     IEmbedAuthor? IEmbed.Author => Author;
 
     IEmbedMedia? IEmbed.Image => Image;
@@ -98,6 +113,9 @@ public class Embed : IEmbed
         Video = EmbedMedia.Create(client, json.Video);
         Audio = EmbedMedia.Create(client, json.Audio);
         IsNsfw = json.IsNsfw;
+        Html = json.Html;
+        HtmlWidth = json.HtmlWidth;
+        HtmlHeight = json.HtmlHeight;
     }
 }
 

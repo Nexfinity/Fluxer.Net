@@ -18,6 +18,11 @@ public class GlobalSearch : Entity, IGlobalSearch
     /// <inheritdoc />
     public int Page { get; private set; }
 
+    /// <summary>
+    /// Pass this as <c>Cursor</c> on the next search request to get the next page, or null on the last page.
+    /// </summary>
+    public string[]? Cursor { get; private set; }
+
     IMessage[] IGlobalSearch.Messages => Messages;
 
     IChannel[] IGlobalSearch.Channels => Channels;
@@ -39,7 +44,8 @@ public class GlobalSearch : Entity, IGlobalSearch
             Channels = json.Channels != null ? json.Channels.Select(x => Channel.Create(client, x)).ToArray() : Array.Empty<Channel>(),
             HitsPerPage = json.HitsPerPage,
             Page = json.Page,
-            Total = json.Total
+            Total = json.Total,
+            Cursor = json.Cursor
         };
     }
 }
