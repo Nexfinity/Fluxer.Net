@@ -16,6 +16,13 @@ jobs:
   build-and-publish:
     runs-on: ubuntu-latest
 
+    # Required to match your NuGet Trusted Publisher policy
+    environment: release
+
+    permissions:
+      contents: read
+      id-token: write
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -46,8 +53,38 @@ jobs:
       - name: Test
         run: dotnet test --configuration Release --no-build
 
+      - name: Determine package version
+        id: version
+        shell: bash
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+
+          if [[ "$VERSION" == "$GITHUB_REF_NAME" ]]; then
+            echo "::error::Release tag must start with v (example: v1.0.0)"
+            exit 1
+          fi
+
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "Publishing version: $VERSION"
+
       - name: Pack NuGet package
-        run: dotnet pack --configuration Release --no-build -p:PackageVersion=${GITHUB_REF_NAME#v} --output ./nupkg
+        run: |
+          dotnet pack \
+            --configuration Release \
+            --no-build \
+            -p:PackageVersion=${{ steps.version.outputs.version }} \
+            --output ./nupkg
+
+      # Exchange GitHub OIDC identity for a temporary NuGet API key
+      - name: NuGet Login (Trusted Publishing)
+        uses: NuGet/login@v1
+        id: login
+        with:
+          user: ${{ secrets.NUGET_USER }}
 
       - name: Publish to NuGet.org
-        run: dotnet nuget push "./nupkg/*.nupkg" --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
+        run: |
+          dotnet nuget push "./nupkg/*.nupkg" \
+            --api-key "${{ steps.login.outputs.NUGET_API_KEY }}" \
+            --source https://api.nuget.org/v3/index.json \
+            --skip-duplicate
