@@ -66,4 +66,52 @@ public class WebhookTests
             Assert.That(handler.Requests[3].Url, Does.EndWith("/webhooks/12/tok/messages/5"));
         });
     }
+
+    [Test]
+    public async Task FilesAreSentAsMultipart()
+    {
+        (FluxerWebhookClient client, RecordingHandler handler) = Create(MessageJson);
+
+        await client.Rest.ExecuteWebhookWaitAsync(12, "tok", "hi",
+            attachments: new List<AttachmentRequest> { new(new MemoryStream(System.Text.Encoding.ASCII.GetBytes("data")), "a.txt") });
+
+        string body = handler.Requests.Single().Body;
+        Assert.Multiple(() =>
+        {
+            Assert.That(body, Does.Contain("name=\"files[0]\"").Or.Contain("name=files[0]"));
+            Assert.That(body, Does.Contain("payload_json"));
+            Assert.That(body, Does.Contain("data"));
+        });
+    }
+
+    [Test]
+    public async Task EditingAMessageSendsItsFiles()
+    {
+        RecordingHandler handler = new(MessageJson);
+        FluxerClient client = new("Bot test", RecordingHandler.Config(new HttpClient(handler)));
+
+        await client.Rest.EditMessageAsync(2, 5, "edited",
+            attachments: new List<AttachmentRequest> { new(new MemoryStream(System.Text.Encoding.ASCII.GetBytes("data")), "a.txt") });
+
+        string body = handler.Requests.Single().Body;
+        Assert.Multiple(() =>
+        {
+            Assert.That(body, Does.Contain("name=\"files[0]\"").Or.Contain("name=files[0]"));
+            Assert.That(body, Does.Contain("payload_json"));
+            Assert.That(body, Does.Contain("data"));
+        });
+    }
+
+    [Test]
+    public async Task WebhookEntityDeleteMessageDeletes()
+    {
+        RecordingHandler handler = new();
+        FluxerClient client = new("Bot test", RecordingHandler.Config(new HttpClient(handler)));
+        Webhook webhook = Webhook.Create(client, Newtonsoft.Json.JsonConvert.DeserializeObject<WebhookJson>("{\"id\":\"1\",\"token\":\"tok\"}", FluxerClient._restSerializer)!);
+
+        await webhook.DeleteMessageAsync(9);
+
+        Assert.That(handler.Requests.Single().Method, Is.EqualTo(HttpMethod.Delete));
+        Assert.That(handler.Requests.Single().Url, Does.EndWith("/webhooks/1/tok/messages/9"));
+    }
 }
