@@ -39,13 +39,13 @@ public static class WebhookHelpers
         RequestOptions? options = null)
         => webhook.Client.Rest.ExecuteWebhookWaitAsync(webhook.Id, webhook.Token, content, embeds, username, avatarUrl, reference, allowedMentions, flags, nonce, favoriteMediaId, tts, stickerIds, attachments, options: options);
 
-    /// <inheritdoc cref="FluxerApiClient.DeleteWebhookMessageAsync(ulong, string, ulong, RequestOptions?)" />
-    public static Task DeleteMessageAsync(this Webhook webhook, Message message, RequestOptions? options = null)
-        => webhook.Client.Rest.EditWebhookMessageAsync(webhook.Id, webhook.Token, message.Id, options: options);
+    /// <inheritdoc cref="FluxerApiClient.DeleteWebhookMessageAsync(ulong, string, ulong, RequestOptions?, ulong?)" />
+    public static Task DeleteMessageAsync(this Webhook webhook, Message message, RequestOptions? options = null, ulong? threadId = null)
+        => webhook.Client.Rest.DeleteWebhookMessageAsync(webhook.Id, webhook.Token, message.Id, options, threadId);
 
-    /// <inheritdoc cref="FluxerApiClient.DeleteWebhookMessageAsync(ulong, string, ulong, RequestOptions?)" />
-    public static Task DeleteMessageAsync(this Webhook webhook, ulong messageId, RequestOptions? options = null)
-        => webhook.Client.Rest.EditWebhookMessageAsync(webhook.Id, webhook.Token, messageId, options: options);
+    /// <inheritdoc cref="FluxerApiClient.DeleteWebhookMessageAsync(ulong, string, ulong, RequestOptions?, ulong?)" />
+    public static Task DeleteMessageAsync(this Webhook webhook, ulong messageId, RequestOptions? options = null, ulong? threadId = null)
+        => webhook.Client.Rest.DeleteWebhookMessageAsync(webhook.Id, webhook.Token, messageId, options, threadId);
 
     /// <inheritdoc cref="FluxerApiClient.EditWebhookMessageAsync(ulong, string, ulong, string?, List{EmbedRequest}?, MessageReferenceRequest?, AllowedMentionsRequest?, MessageFlag, string?, ulong?, List{ulong}?, List{AttachmentRequest}?, RequestOptions?)" />
     public static Task<Message> EditMessageAsync(this Webhook webhook, ulong messageId, string? content = null, List<EmbedRequest>? embeds = null,

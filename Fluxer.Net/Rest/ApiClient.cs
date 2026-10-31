@@ -2715,8 +2715,9 @@ public class FluxerApiClient : FluxerBaseApiClient
         string? nonce = null, ulong? favoriteMediaId = null, bool? tts = null, List<ulong>? stickerIds = null, List<AttachmentRequest>? attachments = null, RequestOptions? options = null,
         ulong? threadId = null, string? threadName = null, List<ulong>? appliedTags = null)
     {
-        MessageRequest req = BuildWebhookExecuteRequest(content, embeds, username, avatarUrl, reference, allowedMentions, flags, nonce, favoriteMediaId, tts, stickerIds, attachments, threadName, appliedTags);
-        await SendRequestAsync(HttpMethod.Post, WebhookRoute(webhookId, token, null, false, threadId), req, true, false, options: options);
+        MessageRequest req = BuildWebhookExecuteRequest(content, embeds, username, avatarUrl, reference, allowedMentions, flags, nonce, favoriteMediaId, tts, stickerIds, threadName, appliedTags);
+        await SendRequestAsync<object, MessageRequest>(HttpMethod.Post, WebhookRoute(webhookId, token, null, false, threadId), req, true, false,
+            WebhookFiles(req, attachments), options);
     }
 
     /// <summary>
@@ -2760,17 +2761,8 @@ public class FluxerApiClient : FluxerBaseApiClient
             FavoriteMediaId = favoriteMediaId,
             StickerIds = stickerIds
         };
-        if ((attachments?.Count ?? 0) > 0)
-        {
-            List<KeyValuePair<string, (HttpContent content, string? filename)>> form = new List<KeyValuePair<string, (HttpContent content, string? filename)>>();
-            for (int i = 0; i < attachments.Count; i++)
-            {
-                attachments[i].Id = (ulong)i;
-                form.Add(new KeyValuePair<string, (HttpContent content, string? filename)>($"file[{i}]", (new StreamContent(attachments[i].Stream), attachments[i].Filename)));
-            }
-            req.Attachments = attachments.Select(x => x.ToJson()).ToList();
-        }
-        MessageJson json = await SendRequestAsync<MessageJson, MessageRequest>(HttpMethod.Patch, WebhookRoute(webhookId, token, messageId, false, threadId), req, true, false, options: options);
+        MessageJson json = await SendRequestAsync<MessageJson, MessageRequest>(HttpMethod.Patch, WebhookRoute(webhookId, token, messageId, false, threadId), req, true, false,
+            WebhookFiles(req, attachments), options);
         return Message.Create(_client, json);
     }
 
@@ -2787,8 +2779,9 @@ public class FluxerApiClient : FluxerBaseApiClient
         string? nonce = null, ulong? favoriteMediaId = null, bool? tts = null, List<ulong>? stickerIds = null, List<AttachmentRequest>? attachments = null, RequestOptions? options = null,
         ulong? threadId = null, string? threadName = null, List<ulong>? appliedTags = null)
     {
-        MessageRequest req = BuildWebhookExecuteRequest(content, embeds, username, avatarUrl, reference, allowedMentions, flags, nonce, favoriteMediaId, tts, stickerIds, attachments, threadName, appliedTags);
-        MessageJson json = await SendRequestAsync<MessageJson, MessageRequest>(HttpMethod.Post, WebhookRoute(webhookId, token, null, true, threadId), req, true, options: options);
+        MessageRequest req = BuildWebhookExecuteRequest(content, embeds, username, avatarUrl, reference, allowedMentions, flags, nonce, favoriteMediaId, tts, stickerIds, threadName, appliedTags);
+        MessageJson json = await SendRequestAsync<MessageJson, MessageRequest>(HttpMethod.Post, WebhookRoute(webhookId, token, null, true, threadId), req, true, false,
+            WebhookFiles(req, attachments), options);
         return Message.Create(_client, json);
     }
 
@@ -2809,7 +2802,7 @@ public class FluxerApiClient : FluxerBaseApiClient
 
     private static MessageRequest BuildWebhookExecuteRequest(string? content, List<EmbedRequest>? embeds, string? username, string? avatarUrl,
         MessageReferenceRequest? reference, AllowedMentionsRequest? allowedMentions, MessageFlag flags, string? nonce, ulong? favoriteMediaId,
-        bool? tts, List<ulong>? stickerIds, List<AttachmentRequest>? attachments, string? threadName, List<ulong>? appliedTags)
+        bool? tts, List<ulong>? stickerIds, string? threadName, List<ulong>? appliedTags)
     {
         MessageRequest req = new MessageRequest
         {
@@ -2827,13 +2820,22 @@ public class FluxerApiClient : FluxerBaseApiClient
             ThreadName = threadName,
             AppliedTags = appliedTags,
         };
-        if ((attachments?.Count ?? 0) > 0)
-        {
-            for (int i = 0; i < attachments.Count; i++)
-                attachments[i].Id = (ulong)i;
-            req.Attachments = attachments.Select(x => x.ToJson()).ToList();
-        }
         return req;
+    }
+
+    private static List<KeyValuePair<string, (HttpContent content, string? filename)>>? WebhookFiles(MessageRequest req, List<AttachmentRequest>? attachments)
+    {
+        if ((attachments?.Count ?? 0) == 0)
+            return null;
+
+        List<KeyValuePair<string, (HttpContent content, string? filename)>> form = new List<KeyValuePair<string, (HttpContent content, string? filename)>>();
+        for (int i = 0; i < attachments!.Count; i++)
+        {
+            attachments[i].Id = (ulong)i;
+            form.Add(new KeyValuePair<string, (HttpContent content, string? filename)>($"files[{i}]", (new StreamContent(attachments[i].Stream), attachments[i].Filename)));
+        }
+        req.Attachments = attachments.Select(x => x.ToJson()).ToList();
+        return form;
     }
     #endregion
 
