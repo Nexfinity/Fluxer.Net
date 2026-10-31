@@ -2251,6 +2251,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// </summary>
     /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
     /// <returns>List of <see cref="Gif"/></returns>
+    [Obsolete("Use the /gifs methods. The /klipy routes are deprecated aliases.")]
     [UserTokenOnly]
     public async Task<IEnumerable<Gif>> SearchKlipyAsync(string query, RequestOptions? options = null)
     {
@@ -2263,6 +2264,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// </summary>
     /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
     /// <returns><see cref="GifFeaturedJson"/></returns>
+    [Obsolete("Use the /gifs methods. The /klipy routes are deprecated aliases.")]
     [UserTokenOnly]
     public async Task<GifFeaturedJson> GetKlipyFeaturedAsync(RequestOptions? options = null)
     {
@@ -2274,6 +2276,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// </summary>
     /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
     /// <returns>List of <see cref="Gif"/></returns>
+    [Obsolete("Use the /gifs methods. The /klipy routes are deprecated aliases.")]
     [UserTokenOnly]
     public async Task<IEnumerable<Gif>> GetKlipyTrendingGifsAsync(RequestOptions? options = null)
     {
@@ -2281,6 +2284,551 @@ public class FluxerApiClient : FluxerBaseApiClient
         return json.Select(x => Gif.Create(_client, x));
     }
 
+
+    #endregion
+
+    #region Gifs API
+    /// <summary>
+    /// Search gifs.
+    /// </summary>
+    /// <param name="locale">The locale of the client, such as en-US.</param>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
+    /// <returns>List of <see cref="Gif"/></returns>
+    [UserTokenOnly]
+    public async Task<IEnumerable<Gif>> SearchGifsAsync(string query, string? locale = null, RequestOptions? options = null)
+    {
+        string route = new QueryBuilder("/gifs/search").With("q", query).With("locale", locale ?? string.Empty).Build();
+        IEnumerable<GifJson> json = await SendRequestAsync<IEnumerable<GifJson>>(HttpMethod.Get, route, true, options: options);
+        return json.Select(x => Gif.Create(_client, x));
+    }
+
+    /// <summary>
+    /// Get featured gifs and gif categories.
+    /// </summary>
+    /// <param name="locale">The locale of the client, such as en-US.</param>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
+    /// <returns><see cref="GifFeaturedJson"/></returns>
+    [UserTokenOnly]
+    public async Task<GifFeaturedJson> GetGifsFeaturedAsync(string? locale = null, RequestOptions? options = null)
+    {
+        string route = new QueryBuilder("/gifs/featured").With("locale", locale ?? string.Empty).Build();
+        return await SendRequestAsync<GifFeaturedJson>(HttpMethod.Get, route, true, options: options);
+    }
+
+    /// <summary>
+    /// Get trending gifs.
+    /// </summary>
+    /// <param name="locale">The locale of the client, such as en-US.</param>
+    /// <returns>List of <see cref="Gif"/></returns>
+    public async Task<IEnumerable<Gif>> GetGifsTrendingAsync(string? locale = null, RequestOptions? options = null)
+    {
+        string route = new QueryBuilder("/gifs/trending").With("locale", locale ?? string.Empty).Build();
+        IEnumerable<GifJson> json = await SendRequestAsync<IEnumerable<GifJson>>(HttpMethod.Get, route, true, options: options);
+        return json.Select(x => Gif.Create(_client, x));
+    }
+
+    /// <summary>
+    /// Get search suggestions for a partial gif search.
+    /// </summary>
+    /// <param name="locale">The locale of the client, such as en-US.</param>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
+    /// <returns>List of suggested search terms</returns>
+    [UserTokenOnly]
+    public async Task<IReadOnlyList<string>> GetGifSuggestionsAsync(string query, string? locale = null, RequestOptions? options = null)
+    {
+        string route = new QueryBuilder("/gifs/suggest").With("q", query).With("locale", locale ?? string.Empty).Build();
+        return await SendRequestAsync<string[]>(HttpMethod.Get, route, true, options: options);
+    }
+
+    /// <summary>
+    /// Tell the gif provider that a gif was shared.
+    /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
+    [UserTokenOnly]
+    public async Task RegisterGifShareAsync(RegisterGifShareRequest request, RequestOptions? options = null)
+        => await SendRequestAsync(HttpMethod.Post, "/gifs/register-share", request, true, options: options);
+
+    /// <summary>
+    /// Resolve gif urls into entries with proxy metadata, such as before saving them as favorites.
+    /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
+    /// <returns><see cref="ResolveGifUrlsJson"/></returns>
+    [UserTokenOnly]
+    public async Task<ResolveGifUrlsJson> ResolveFavoriteGifsAsync(ResolveGifUrlsRequest request, RequestOptions? options = null)
+        => await SendRequestAsync<ResolveGifUrlsJson, ResolveGifUrlsRequest>(HttpMethod.Post, "/users/@me/favorite-gifs/resolve", request, true, options: options);
+
+    #endregion
+
+    #region Connections API
+    /// <summary>
+    /// Start adding an external connection. Nothing is saved until <see cref="VerifyConnectionAsync"/> succeeds.
+    /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
+    /// <returns><see cref="ConnectionVerificationJson"/></returns>
+    [UserTokenOnly]
+    public async Task<ConnectionVerificationJson> InitiateConnectionAsync(CreateConnectionRequest request, RequestOptions? options = null)
+        => await SendRequestAsync<ConnectionVerificationJson, CreateConnectionRequest>(HttpMethod.Post, "/users/@me/connections", request, true, options: options);
+
+    /// <summary>
+    /// Verify an external connection and add it.
+    /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
+    /// <returns><see cref="UserConnection"/></returns>
+    [UserTokenOnly]
+    public async Task<UserConnection> VerifyConnectionAsync(VerifyConnectionRequest request, RequestOptions? options = null)
+    {
+        UserConnectionJson json = await SendRequestAsync<UserConnectionJson, VerifyConnectionRequest>(HttpMethod.Post, "/users/@me/connections/verify", request, true, options: options);
+        return UserConnection.Create(_client, json);
+    }
+
+    /// <summary>
+    /// Change who can see a connection or where it is listed.
+    /// </summary>
+    /// <param name="type">"bluesky" or "domain".</param>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
+    [UserTokenOnly]
+    public async Task UpdateConnectionAsync(string type, string connectionId, UpdateConnectionRequest request, RequestOptions? options = null)
+        => await SendRequestAsync(HttpMethod.Patch, $"/users/@me/connections/{Uri.EscapeDataString(type)}/{Uri.EscapeDataString(connectionId)}", request, true, options: options);
+
+    /// <summary>
+    /// Remove a connection from your profile.
+    /// </summary>
+    /// <param name="type">"bluesky" or "domain".</param>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
+    [UserTokenOnly]
+    public async Task DeleteConnectionAsync(string type, string connectionId, RequestOptions? options = null)
+        => await SendRequestRawAsync(HttpMethod.Delete, $"/users/@me/connections/{Uri.EscapeDataString(type)}/{Uri.EscapeDataString(connectionId)}", true, options: options);
+
+    /// <summary>
+    /// Set the display order of your connections.
+    /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
+    [UserTokenOnly]
+    public async Task ReorderConnectionsAsync(ReorderConnectionsRequest request, RequestOptions? options = null)
+        => await SendRequestAsync(HttpMethod.Patch, "/users/@me/connections/reorder", request, true, options: options);
+
+    #endregion
+
+    #region Entrance Sounds API
+    /// <summary>
+    /// Get your entrance sound library and the active sound for each scope.
+    /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
+    /// <returns><see cref="EntranceSoundLibraryJson"/></returns>
+    [UserTokenOnly]
+    public async Task<EntranceSoundLibraryJson> GetEntranceSoundsAsync(RequestOptions? options = null)
+        => await SendRequestAsync<EntranceSoundLibraryJson>(HttpMethod.Get, "/users/@me/entrance-sounds", true, options: options);
+
+    /// <summary>
+    /// Add an audio clip to your entrance sound library.
+    /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
+    /// <returns><see cref="EntranceSoundJson"/></returns>
+    [UserTokenOnly]
+    public async Task<EntranceSoundJson> UploadEntranceSoundAsync(UploadEntranceSoundRequest request, RequestOptions? options = null)
+        => await SendRequestAsync<EntranceSoundJson, UploadEntranceSoundRequest>(HttpMethod.Post, "/users/@me/entrance-sounds", request, true, options: options);
+
+    /// <summary>
+    /// Rename an entrance sound.
+    /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
+    /// <returns><see cref="EntranceSoundJson"/></returns>
+    [UserTokenOnly]
+    public async Task<EntranceSoundJson> RenameEntranceSoundAsync(ulong soundId, RenameEntranceSoundRequest request, RequestOptions? options = null)
+        => await SendRequestAsync<EntranceSoundJson, RenameEntranceSoundRequest>(HttpMethod.Patch, $"/users/@me/entrance-sounds/{soundId}", request, true, options: options);
+
+    /// <summary>
+    /// Delete an entrance sound and clear any selection that pointed at it.
+    /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
+    [UserTokenOnly]
+    public async Task DeleteEntranceSoundAsync(ulong soundId, RequestOptions? options = null)
+        => await SendRequestRawAsync(HttpMethod.Delete, $"/users/@me/entrance-sounds/{soundId}", true, options: options);
+
+    /// <summary>
+    /// Choose the entrance sound for a scope, or clear it with a null sound.
+    /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
+    [UserTokenOnly]
+    public async Task SetEntranceSoundSelectionAsync(SetEntranceSoundSelectionRequest request, RequestOptions? options = null)
+        => await SendRequestAsync(HttpMethod.Put, "/users/@me/entrance-sound-selections", request, true, options: options);
+
+    /// <summary>
+    /// Play one of your entrance sounds for everyone in a voice channel.
+    /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
+    [UserTokenOnly]
+    public async Task PlayEntranceSoundAsync(ulong channelId, ulong soundId, RequestOptions? options = null)
+        => await SendRequestAsync(HttpMethod.Post, $"/voice/channels/{channelId}/entrance-sound", new PlayEntranceSoundRequest
+        {
+            SoundId = soundId
+        }, true, options: options);
+
+    #endregion
+
+    #region Reports API
+    /// <summary>
+    /// Report a message.
+    /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
+    /// <returns><see cref="ReportJson"/></returns>
+    [UserTokenOnly]
+    public async Task<ReportJson> ReportMessageAsync(ReportMessageRequest request, RequestOptions? options = null)
+        => await SendRequestAsync<ReportJson, ReportMessageRequest>(HttpMethod.Post, "/reports/message", request, true, options: options);
+
+    /// <summary>
+    /// Report a user.
+    /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
+    /// <returns><see cref="ReportJson"/></returns>
+    [UserTokenOnly]
+    public async Task<ReportJson> ReportUserAsync(ReportUserRequest request, RequestOptions? options = null)
+        => await SendRequestAsync<ReportJson, ReportUserRequest>(HttpMethod.Post, "/reports/user", request, true, options: options);
+
+    /// <summary>
+    /// Report a guild.
+    /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
+    /// <returns><see cref="ReportJson"/></returns>
+    [UserTokenOnly]
+    public async Task<ReportJson> ReportGuildAsync(ReportGuildRequest request, RequestOptions? options = null)
+        => await SendRequestAsync<ReportJson, ReportGuildRequest>(HttpMethod.Post, "/reports/guild", request, true, options: options);
+
+    /// <summary>
+    /// Submit the answers of a finished message report flow.
+    /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
+    /// <returns><see cref="ReportJson"/></returns>
+    [UserTokenOnly]
+    public async Task<ReportJson> SubmitMessageReportFlowAsync(ReportFlowMessageSubmissionRequest request, RequestOptions? options = null)
+        => await SendRequestAsync<ReportJson, ReportFlowMessageSubmissionRequest>(HttpMethod.Post, "/reports/flows/message/submissions", request, true, options: options);
+
+    /// <summary>
+    /// Submit the answers of a finished user report flow.
+    /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
+    /// <returns><see cref="ReportJson"/></returns>
+    [UserTokenOnly]
+    public async Task<ReportJson> SubmitUserReportFlowAsync(ReportFlowUserSubmissionRequest request, RequestOptions? options = null)
+        => await SendRequestAsync<ReportJson, ReportFlowUserSubmissionRequest>(HttpMethod.Post, "/reports/flows/user/submissions", request, true, options: options);
+
+    #endregion
+
+    #region User Account API
+    /// <summary>
+    /// Fetch message windows from several channels in one request.
+    /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
+    /// <returns><see cref="BulkMessagesJson"/></returns>
+    [UserTokenOnly]
+    public async Task<BulkMessagesJson> GetMessagesBulkAsync(BulkFetchMessagesRequest request, RequestOptions? options = null)
+        => await SendRequestAsync<BulkMessagesJson, BulkFetchMessagesRequest>(HttpMethod.Post, "/channels/messages/bulk", request, true, options: options);
+
+    /// <summary>
+    /// Cancel a bulk deletion of all your messages that has not finished.
+    /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
+    [UserTokenOnly]
+    public async Task CancelBulkMessageDeletionAsync(RequestOptions? options = null)
+        => await SendRequestRawAsync(HttpMethod.Delete, "/users/@me/messages/delete", true, options: options);
+
+    /// <summary>
+    /// Delete your own messages that match a filter. The deletion runs in the background and needs sudo verification.
+    /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
+    [UserTokenOnly]
+    public async Task BulkDeleteOwnMessagesAsync(BulkDeleteOwnMessagesRequest request, RequestOptions? options = null)
+        => await SendRequestAsync(HttpMethod.Post, "/users/@me/messages/bulk-delete-mine", request, true, options: options);
+
+    /// <summary>
+    /// Request a data harvest where the messages are narrowed by a filter.
+    /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
+    /// <returns><see cref="HarvestCreationJson"/></returns>
+    [UserTokenOnly]
+    public async Task<HarvestCreationJson> RequestFilteredHarvestAsync(OwnMessagesFilterRequest request, RequestOptions? options = null)
+        => await SendRequestAsync<HarvestCreationJson, OwnMessagesFilterRequest>(HttpMethod.Post, "/users/@me/harvest/filtered", request, true, options: options);
+
+    /// <summary>
+    /// Store a theme so it can be shared.
+    /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
+    /// <returns><see cref="ThemeJson"/></returns>
+    [UserTokenOnly]
+    public async Task<ThemeJson> CreateThemeAsync(string css, RequestOptions? options = null)
+        => await SendRequestAsync<ThemeJson, CreateThemeRequest>(HttpMethod.Post, "/users/@me/themes", new CreateThemeRequest
+        {
+            Css = css
+        }, true, options: options);
+
+    /// <summary>
+    /// Resolve a url into the embeds Fluxer would show for it.
+    /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
+    /// <returns>List of <see cref="EmbedJson"/></returns>
+    [UserTokenOnly]
+    public async Task<IReadOnlyList<EmbedJson>> UnfurlAsync(string url, RequestOptions? options = null)
+        => await SendRequestAsync<EmbedJson[], UnfurlRequest>(HttpMethod.Post, "/unfurl", new UnfurlRequest
+        {
+            Url = url
+        }, true, options: options);
+
+    /// <summary>
+    /// Preview your profile badges with badge settings applied. Nothing is saved.
+    /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
+    /// <returns><see cref="ProfileBadgePreviewJson"/></returns>
+    [UserTokenOnly]
+    public async Task<ProfileBadgePreviewJson> PreviewProfileBadgesAsync(ProfileBadgePreviewRequest request, RequestOptions? options = null)
+        => await SendRequestAsync<ProfileBadgePreviewJson, ProfileBadgePreviewRequest>(HttpMethod.Post, "/users/@me/profile-badges/preview", request, true, options: options);
+
+    /// <summary>
+    /// Accept the current terms of service and privacy policy.
+    /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
+    /// <returns><see cref="CurrentUserJson"/></returns>
+    [UserTokenOnly]
+    public async Task<CurrentUserJson> AcceptTermsAsync(RequestOptions? options = null)
+        => await SendRequestAsync<CurrentUserJson, object>(HttpMethod.Post, "/users/@me/terms-acceptance", new object(), true, options: options);
+
+    /// <summary>
+    /// Set the default for sharing voice activity with friends and apply it to every friend. This can be changed once every 24 hours.
+    /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
+    /// <returns><see cref="CurrentUserJson"/></returns>
+    [UserTokenOnly]
+    public async Task<CurrentUserJson> SetVoiceActivitySharingAsync(bool shareVoiceActivity, RequestOptions? options = null)
+        => await SendRequestAsync<CurrentUserJson, VoiceActivitySharingRequest>(HttpMethod.Put, "/users/@me/settings/voice-activity-sharing", new VoiceActivitySharingRequest
+        {
+            ShareVoiceActivity = shareVoiceActivity
+        }, true, options: options);
+
+    /// <summary>
+    /// Set the nickname you give a friend, or clear it with null.
+    /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
+    /// <returns><see cref="RelationshipJson"/></returns>
+    [UserTokenOnly]
+    public async Task<RelationshipJson> UpdateRelationshipNicknameAsync(ulong userId, string? nickname, RequestOptions? options = null)
+        => await SendRequestAsync<RelationshipJson, UpdateRelationshipNicknameRequest>(HttpMethod.Patch, $"/users/@me/relationships/{userId}", new UpdateRelationshipNicknameRequest
+        {
+            Nickname = nickname
+        }, true, options: options);
+
+    /// <summary>
+    /// Ignore incoming friend requests in bulk, optionally only those from new accounts.
+    /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
+    /// <returns><see cref="BulkIgnoreFriendRequestsJson"/></returns>
+    [UserTokenOnly]
+    public async Task<BulkIgnoreFriendRequestsJson> BulkIgnoreFriendRequestsAsync(BulkIgnoreFriendRequestsRequest request, RequestOptions? options = null)
+        => await SendRequestAsync<BulkIgnoreFriendRequestsJson, BulkIgnoreFriendRequestsRequest>(HttpMethod.Post, "/users/@me/relationships/bulk-ignore", request, true, options: options);
+
+    /// <summary>
+    /// Remove messages from your recent mentions. The messages are not deleted.
+    /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
+    [UserTokenOnly]
+    public async Task MarkMentionsReadAsync(IEnumerable<ulong> messageIds, RequestOptions? options = null)
+        => await SendRequestAsync(HttpMethod.Post, "/users/@me/mentions/read", new MarkMentionsReadRequest
+        {
+            MessageIds = messageIds
+        }, true, options: options);
+
+    /// <summary>
+    /// Save an attachment or embed of a message as favorite media.
+    /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
+    /// <returns><see cref="FavoriteMedia"/></returns>
+    [UserTokenOnly]
+    public async Task<FavoriteMedia> CreateFavoriteMediaFromMessageAsync(ulong channelId, ulong messageId, CreateFavoriteMediaFromMessageRequest request, RequestOptions? options = null)
+    {
+        FavoriteMediaJson json = await SendRequestAsync<FavoriteMediaJson, CreateFavoriteMediaFromMessageRequest>(HttpMethod.Post, $"/channels/{channelId}/messages/{messageId}/memes", request, true, options: options);
+        return FavoriteMedia.Create(_client, json);
+    }
+
+    /// <summary>
+    /// End the call in a channel.
+    /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
+    [UserTokenOnly]
+    public async Task EndCallAsync(ulong channelId, RequestOptions? options = null)
+        => await SendRequestRawAsync(HttpMethod.Post, $"/channels/{channelId}/call/end", true, options: options);
+
+    /// <summary>
+    /// Change your notification settings for a thread.
+    /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
+    /// <returns><see cref="ThreadMember"/>, or null when Fluxer sends no body</returns>
+    [UserTokenOnly]
+    public async Task<ThreadMember?> UpdateThreadMemberSettingsAsync(ulong channelId, UpdateThreadMemberSettingsRequest request, RequestOptions? options = null)
+    {
+        ThreadMemberJson? json = await SendRequestAsync<ThreadMemberJson?, UpdateThreadMemberSettingsRequest>(HttpMethod.Patch, $"/channels/{channelId}/thread-members/@me/settings", request, true, options: options);
+        if (json == null)
+            return null;
+
+        return ThreadMember.Create(_client, json);
+    }
+
+    #endregion
+
+    #region Guild Visits API
+    /// <summary>
+    /// Get a channel of a discoverable guild that new members can view.
+    /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
+    /// <returns><see cref="DiscoveryChannelPreviewJson"/></returns>
+    [UserTokenOnly]
+    public async Task<DiscoveryChannelPreviewJson> GetDiscoveryChannelPreviewAsync(ulong guildId, ulong channelId, RequestOptions? options = null)
+        => await SendRequestAsync<DiscoveryChannelPreviewJson>(HttpMethod.Get, $"/discovery/guilds/{guildId}/channels/{channelId}", true, options: options);
+
+    /// <summary>
+    /// Join a discoverable guild.
+    /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
+    [UserTokenOnly]
+    public async Task JoinDiscoveryGuildAsync(ulong guildId, RequestOptions? options = null)
+        => await SendRequestRawAsync(HttpMethod.Post, $"/discovery/guilds/{guildId}/join", true, options: options);
+
+    /// <summary>
+    /// Start visiting a discoverable guild without joining it.
+    /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
+    /// <returns><see cref="GuildVisitStartJson"/></returns>
+    [UserTokenOnly]
+    public async Task<GuildVisitStartJson> StartDiscoveryGuildVisitAsync(ulong guildId, RequestOptions? options = null)
+        => await SendRequestAsync<GuildVisitStartJson>(HttpMethod.Post, $"/discovery/guilds/{guildId}/visit", true, options: options);
+
+    /// <summary>
+    /// Start visiting the guild of an invite without joining it.
+    /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
+    /// <returns><see cref="GuildVisitStartJson"/></returns>
+    [UserTokenOnly]
+    public async Task<GuildVisitStartJson> StartInviteVisitAsync(string inviteCode, RequestOptions? options = null)
+        => await SendRequestAsync<GuildVisitStartJson>(HttpMethod.Post, $"/invites/{Uri.EscapeDataString(inviteCode)}/visit", true, options: options);
+
+    /// <summary>
+    /// Get the guilds you are visiting.
+    /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
+    /// <returns>List of <see cref="GuildVisitJson"/></returns>
+    [UserTokenOnly]
+    public async Task<IReadOnlyList<GuildVisitJson>> GetGuildVisitsAsync(RequestOptions? options = null)
+        => await SendRequestAsync<GuildVisitJson[]>(HttpMethod.Get, "/users/@me/guild-visits", true, options: options);
+
+    /// <summary>
+    /// Join a guild you are visiting.
+    /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
+    /// <returns><see cref="Guild"/></returns>
+    [UserTokenOnly]
+    public async Task<Guild> JoinVisitedGuildAsync(ulong guildId, RequestOptions? options = null)
+    {
+        GuildJson json = await SendRequestAsync<GuildJson>(HttpMethod.Post, $"/users/@me/guild-visits/{guildId}/join", true, options: options);
+        return Guild.Create(_client, json);
+    }
+
+    /// <summary>
+    /// Stop visiting a guild.
+    /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
+    [UserTokenOnly]
+    public async Task EndGuildVisitAsync(ulong guildId, RequestOptions? options = null)
+        => await SendRequestRawAsync(HttpMethod.Delete, $"/users/@me/guild-visits/{guildId}", true, options: options);
+
+    #endregion
+
+    #region Application Management API
+    /// <summary>
+    /// Get the applications you own.
+    /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
+    /// <returns>List of <see cref="OwnedApplicationJson"/></returns>
+    [UserTokenOnly]
+    public async Task<IReadOnlyList<OwnedApplicationJson>> GetOwnedApplicationsAsync(RequestOptions? options = null)
+        => await SendRequestAsync<OwnedApplicationJson[]>(HttpMethod.Get, "/users/@me/applications", true, options: options);
+
+    /// <summary>
+    /// Change an application you own.
+    /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
+    /// <returns><see cref="OwnedApplicationJson"/></returns>
+    [UserTokenOnly]
+    public async Task<OwnedApplicationJson> UpdateApplicationAsync(ulong applicationId, UpdateApplicationRequest request, RequestOptions? options = null)
+        => await SendRequestAsync<OwnedApplicationJson, UpdateApplicationRequest>(HttpMethod.Patch, $"/oauth2/applications/{applicationId}", request, true, options: options);
+
+    /// <summary>
+    /// Delete an application you own. Needs sudo verification.
+    /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
+    [UserTokenOnly]
+    public async Task DeleteApplicationAsync(ulong applicationId, SudoVerificationRequest sudo, RequestOptions? options = null)
+        => await SendRequestAsync(HttpMethod.Delete, $"/oauth2/applications/{applicationId}", sudo, true, options: options);
+
+    /// <summary>
+    /// Change the bot user of an application you own.
+    /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
+    /// <returns><see cref="BotProfileJson"/></returns>
+    [UserTokenOnly]
+    public async Task<BotProfileJson> UpdateApplicationBotAsync(ulong applicationId, UpdateApplicationBotRequest request, RequestOptions? options = null)
+        => await SendRequestAsync<BotProfileJson, UpdateApplicationBotRequest>(HttpMethod.Patch, $"/oauth2/applications/{applicationId}/bot", request, true, options: options);
+
+    /// <summary>
+    /// Reset the bot token of an application you own. Needs sudo verification.
+    /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
+    /// <returns><see cref="BotTokenResetJson"/></returns>
+    [UserTokenOnly]
+    public async Task<BotTokenResetJson> ResetApplicationBotTokenAsync(ulong applicationId, SudoVerificationRequest sudo, RequestOptions? options = null)
+        => await SendRequestAsync<BotTokenResetJson, SudoVerificationRequest>(HttpMethod.Post, $"/oauth2/applications/{applicationId}/bot/reset-token", sudo, true, options: options);
+
+    /// <summary>
+    /// Reset the client secret of an application you own. Needs sudo verification.
+    /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
+    /// <returns><see cref="OwnedApplicationJson"/></returns>
+    [UserTokenOnly]
+    public async Task<OwnedApplicationJson> ResetApplicationClientSecretAsync(ulong applicationId, SudoVerificationRequest sudo, RequestOptions? options = null)
+        => await SendRequestAsync<OwnedApplicationJson, SudoVerificationRequest>(HttpMethod.Post, $"/oauth2/applications/{applicationId}/client-secret/reset", sudo, true, options: options);
+
+    /// <summary>
+    /// Get the applications you authorized through OAuth2.
+    /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
+    /// <returns>List of <see cref="OAuthAuthorizationJson"/></returns>
+    [UserTokenOnly]
+    public async Task<IReadOnlyList<OAuthAuthorizationJson>> GetOAuthAuthorizationsAsync(RequestOptions? options = null)
+        => await SendRequestAsync<OAuthAuthorizationJson[]>(HttpMethod.Get, "/oauth2/@me/authorizations", true, options: options);
+
+    /// <summary>
+    /// Revoke your OAuth2 authorization of an application.
+    /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
+    [UserTokenOnly]
+    public async Task RevokeOAuthAuthorizationAsync(ulong applicationId, RequestOptions? options = null)
+        => await SendRequestRawAsync(HttpMethod.Delete, $"/oauth2/@me/authorizations/{applicationId}", true, options: options);
+
+    /// <summary>
+    /// Revoke your OAuth2 authorizations of several applications.
+    /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
+    [UserTokenOnly]
+    public async Task RevokeOAuthAuthorizationsAsync(IEnumerable<ulong> applicationIds, RequestOptions? options = null)
+        => await SendRequestAsync(HttpMethod.Post, "/oauth2/@me/authorizations/revoke", new RevokeOAuthAuthorizationsRequest
+        {
+            ApplicationIds = applicationIds
+        }, true, options: options);
+
+    /// <summary>
+    /// Grant an application the consent it asked for.
+    /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
+    /// <returns><see cref="OAuthConsentJson"/></returns>
+    [UserTokenOnly]
+    public async Task<OAuthConsentJson> ConsentOAuthAuthorizeAsync(AuthorizeConsentRequest request, RequestOptions? options = null)
+        => await SendRequestAsync<OAuthConsentJson, AuthorizeConsentRequest>(HttpMethod.Post, "/oauth2/authorize/consent", request, true, options: options);
 
     #endregion
 

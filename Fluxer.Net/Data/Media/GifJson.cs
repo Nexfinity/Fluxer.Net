@@ -32,4 +32,20 @@ public class GifJson : IGif
     /// <inheritdoc />
     [JsonProperty("height")]
     public int Height { get; set; }
+
+    /// <inheritdoc />
+    [JsonProperty("slug")]
+    public string? Slug { get; set; }
+
+    /// <inheritdoc />
+    [JsonProperty("provider")]
+    public string? Provider { get; set; }
+
+    /// <inheritdoc />
+    [JsonProperty("media")]
+    public Dictionary<string, GifMediaFormatJson>? Media { get; set; }
+
+    /// <inheritdoc />
+    [JsonProperty("placeholder")]
+    public string? Placeholder { get; set; }
 }

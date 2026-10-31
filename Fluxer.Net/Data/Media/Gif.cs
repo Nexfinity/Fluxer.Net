@@ -24,6 +24,18 @@ public class Gif : Entity, IGif
     /// <inheritdoc />
     public int Height { get; private set; }
 
+    /// <inheritdoc />
+    public string? Slug { get; private set; }
+
+    /// <inheritdoc />
+    public string? Provider { get; private set; }
+
+    /// <inheritdoc />
+    public Dictionary<string, GifMediaFormatJson>? Media { get; private set; }
+
+    /// <inheritdoc />
+    public string? Placeholder { get; private set; }
+
     internal Gif(FluxerBaseClient client) : base(client)
     {
 
@@ -49,5 +61,9 @@ public class Gif : Entity, IGif
         ProxySource = json.ProxySource;
         Width = json.Width;
         Height = json.Height;
+        Slug = json.Slug;
+        Provider = json.Provider;
+        Media = json.Media;
+        Placeholder = json.Placeholder;
     }
 }

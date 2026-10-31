@@ -36,4 +36,24 @@ public interface IGif
     /// Height of the GIF in pixels.
     /// </summary>
     int Height { get; }
+
+    /// <summary>
+    /// The slug used to share and re-resolve this GIF.
+    /// </summary>
+    string? Slug { get; }
+
+    /// <summary>
+    /// The name of the provider that produced this GIF.
+    /// </summary>
+    string? Provider { get; }
+
+    /// <summary>
+    /// Format name to media descriptor map. Every key is optional.
+    /// </summary>
+    Dictionary<string, GifMediaFormatJson>? Media { get; }
+
+    /// <summary>
+    /// Compact thumbhash placeholder for a low-res preview.
+    /// </summary>
+    string? Placeholder { get; }
 }
