@@ -16,7 +16,7 @@ public class PartialInvite : Entity, IPartialInvite
     public PartialChannel? Channel { get; private set; }
 
     /// <inheritdoc />
-    public User Inviter { get; private set; }
+    public User? Inviter { get; private set; }
 
     /// <inheritdoc />
     public int MemberCount { get; private set; }
@@ -59,8 +59,8 @@ public class PartialInvite : Entity, IPartialInvite
         if (json.Guild != null)
             Guild = PartialGuild.Create(Client, json.Guild);
 
-        Channel = PartialChannel.Create(Client, json.Channel);
-        Inviter = User.Create(Client, json.Inviter);
+        Channel = json.Channel == null ? null : PartialChannel.Create(Client, json.Channel);
+        Inviter = json.Inviter == null ? null : User.Create(Client, json.Inviter);
         MemberCount = json.MemberCount;
         PresenceCount = json.PresenceCount;
         ExpiresAt = json.ExpiresAt;

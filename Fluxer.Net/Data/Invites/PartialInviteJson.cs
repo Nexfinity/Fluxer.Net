@@ -17,7 +17,7 @@ public class PartialInviteJson : IPartialInvite
     public PartialChannelJson? Channel { get; set; }
 
     [JsonProperty("inviter")]
-    public UserJson Inviter { get; set; }
+    public UserJson? Inviter { get; set; }
 
     [JsonProperty("member_count")]
     public int MemberCount { get; set; }

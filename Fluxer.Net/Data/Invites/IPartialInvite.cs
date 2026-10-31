@@ -25,7 +25,7 @@ public interface IPartialInvite
     /// <summary>
     /// The user who created the invite.
     /// </summary>
-    IUser Inviter { get; }
+    IUser? Inviter { get; }
 
     /// <summary>
     /// The approximate total member count of the guild
