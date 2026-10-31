@@ -22,6 +22,8 @@
   items:
     - name: Introduction
       href: gateway/intro.md
+    - name: Events
+      href: gateway/events.md
     - name: Caching
       href: gateway/caching.md
 - name: OAuth

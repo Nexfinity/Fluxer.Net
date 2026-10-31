@@ -37,4 +37,9 @@ public class FluxerGatewayConfig
     /// Everything is off by default.
     /// </summary>
     public FluxerCacheConfig Cache { get; set; } = new FluxerCacheConfig();
+
+    /// <summary>
+    /// How events reach your handlers: ordered per guild by default, with async handlers awaited.
+    /// </summary>
+    public FluxerEventConfig Events { get; set; } = new FluxerEventConfig();
 }

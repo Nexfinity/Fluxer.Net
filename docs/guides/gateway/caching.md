@@ -104,9 +104,10 @@ that don't use `SerializedEntityStore`.
 ## Slow stores and shutdown
 
 Events are applied to the cache in order. While a store is slow, received events wait in line, and `PendingEvents`
-shows the current length. Receiving, heartbeats and reconnects carry on meanwhile.
+shows the current length. Receiving, heartbeats and reconnects carry on, and a warning is logged once the line is
+longer than `Events.MaxQueuedEvents`.
 
-Before shutting down, wait for the line to empty:
+Before shutting down, wait for the line to empty and handlers to finish:
 
 ```csharp
 await client.Gateway.WaitForPendingEventsAsync();

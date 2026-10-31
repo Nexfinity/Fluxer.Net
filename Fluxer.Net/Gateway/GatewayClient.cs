@@ -293,6 +293,7 @@ public partial class FluxerGatewayClient : IDisposable
             _cacheConfigured = true;
         }
 
+        StartEventDispatch(config.Events);
         SeedPresence(config.Presence);
 
         if (_isConnecting)
@@ -570,7 +571,7 @@ public partial class FluxerGatewayClient : IDisposable
             switch (packet.OpCode)
             {
                 case FluxerOpCode.Dispatch:
-                    Interlocked.Increment(ref _pendingDispatches);
+                    TrackReceivedBacklog(Interlocked.Increment(ref _pendingDispatches));
                     _ = DispatchInOrderAsync(packet);
                     return;
                 case FluxerOpCode.Heartbeat:
@@ -704,17 +705,26 @@ public partial class FluxerGatewayClient : IDisposable
     private int _pendingDispatches;
 
     /// <summary>
-    /// The number of received events still waiting to be handled, usually behind a slow cache store.
+    /// The number of received events not yet applied to the cache, usually behind a slow cache store or busy handlers.
     /// </summary>
     public int PendingEvents => Volatile.Read(ref _pendingDispatches);
 
     /// <summary>
-    /// Waits until every event received so far has been handled, for example before shutting down.
+    /// Waits until every event received so far has been handled and its handlers have finished, for example before
+    /// shutting down.
     /// </summary>
     public async Task WaitForPendingEventsAsync(CancellationToken cancellationToken = default)
     {
-        await _dispatchLock.WaitAsync(cancellationToken);
-        _dispatchLock.Release();
+        while (true)
+        {
+            await _dispatchLock.WaitAsync(cancellationToken);
+            _dispatchLock.Release();
+            await WaitForQueuedEventsAsync(0, cancellationToken);
+            if (Volatile.Read(ref _pendingDispatches) == 0 && Volatile.Read(ref _queuedEvents) == 0 || _dispatchStopped)
+                return;
+
+            await Task.Delay(1, cancellationToken);
+        }
     }
 
     private async Task DispatchInOrderAsync(GatewayPacket p)
@@ -722,7 +732,9 @@ public partial class FluxerGatewayClient : IDisposable
         await _dispatchLock.WaitAsync();
         try
         {
+            _dispatchScope.Value = new DispatchScope(PartitionOf(p));
             await HandleDispatchAsync(p);
+            await WaitForHandlerRoomAsync();
         }
         catch (Exception ex)
         {
@@ -730,7 +742,8 @@ public partial class FluxerGatewayClient : IDisposable
         }
         finally
         {
-            Interlocked.Decrement(ref _pendingDispatches);
+            _dispatchScope.Value = null;
+            TrackReceivedBacklog(Interlocked.Decrement(ref _pendingDispatches));
             _dispatchLock.Release();
         }
     }
@@ -857,7 +870,10 @@ public partial class FluxerGatewayClient : IDisposable
 
                                 Guilds.TryAdd(g.Id, guild);
                                 if (guild.IsAvailable)
-                                    GuildAvailable?.Invoke(guild);
+                                {
+                                    using (EventsFor(guild.Id))
+                                        GuildAvailable?.Invoke(guild);
+                                }
                             }
                         }
 
@@ -3246,7 +3262,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when the gateway acknowledges a heartbeat packet.
     /// </summary>
-    public event HeartbeatAckEvent HeartbeatAck;
+    public GatewayEvent HeartbeatAck { get => Event<GatewayEvent>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for gateway connected.
@@ -3256,7 +3272,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when the gateway is connected.
     /// </summary>
-    public event ConnectedEvent Connected;
+    public GatewayEvent Connected { get => Event<GatewayEvent>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for gateway disconnected.
@@ -3266,7 +3282,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when the gateway is disconnected.
     /// </summary>
-    public event DisconnectedEvent Disconnected;
+    public GatewayEvent Disconnected { get => Event<GatewayEvent>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for the READY event fired when the gateway connection is established.
@@ -3277,7 +3293,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// Occurs when the gateway connection is established and initial data is received.
     /// Contains session ID, current user information, and initial guilds/channels/DMs.
     /// </summary>
-    public event ReadyEvent Ready;
+    public GatewayEvent<SocketCurrentUser> Ready { get => Event<GatewayEvent<SocketCurrentUser>>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for the RESUMED event fired when a session is successfully resumed.
@@ -3287,7 +3303,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when a disconnected session is successfully resumed without data loss.
     /// </summary>
-    public event ResumedEvent Resumed;
+    public GatewayEvent Resumed { get => Event<GatewayEvent>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for SESSIONS_REPLACE event when auth sessions are replaced.
@@ -3297,7 +3313,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when auth sessions are replaced.
     /// </summary>
-    public event SessionsReplacedEvent SessionsReplaced;
+    public GatewayEvent<GatewaySession[]> SessionsReplaced { get => Event<GatewayEvent<GatewaySession[]>>(); set => Keep(value); }
 
     // ============================================================================
     // User Settings Events
@@ -3311,7 +3327,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when user settings are updated.
     /// </summary>
-    public event UserSettingsUpdatedEvent UserSettingsUpdated;
+    public GatewayEvent<UserSettings> UserSettingsUpdated { get => Event<GatewayEvent<UserSettings>>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for USER_GUILD_SETTINGS_UPDATE events when user guild settings are updated.
@@ -3321,7 +3337,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when user guild settings are updated.
     /// </summary>
-    public event UserGuildSettingsUpdatedEvent UserGuildSettingsUpdated;
+    public GatewayEvent<UserGuildSettings> UserGuildSettingsUpdated { get => Event<GatewayEvent<UserGuildSettings>>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for USER_PINNED_DMS_UPDATE events when pinned DMs are updated.
@@ -3331,7 +3347,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when pinned DMs are updated.
     /// </summary>
-    public event UserPinnedDMsUpdatedEvent UserPinnedDMsUpdated;
+    public GatewayEvent<List<ulong>> UserPinnedDMsUpdated { get => Event<GatewayEvent<List<ulong>>>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for USER_NOTE_UPDATE events when a user note is updated.
@@ -3341,7 +3357,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when a user note is updated.
     /// </summary>
-    public event UserNoteUpdatedEvent UserNoteUpdated;
+    public GatewayEvent<ulong, string> UserNoteUpdated { get => Event<GatewayEvent<ulong, string>>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for AUTH_SESSION_CHANGE events when an auth session changes.
@@ -3351,7 +3367,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when an auth session changes.
     /// </summary>
-    public event AuthSessionChangedEvent AuthSessionChanged;
+    public GatewayEvent<AuthSessionChangeGatewayData> AuthSessionChanged { get => Event<GatewayEvent<AuthSessionChangeGatewayData>>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for RATE_LIMITED event when rate limited.
@@ -3361,7 +3377,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs on rate limited.
     /// </summary>
-    public event RateLimitedEvent RateLimited;
+    public GatewayEvent<RateLimitedGatewayData> RateLimited { get => Event<GatewayEvent<RateLimitedGatewayData>>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for the gateway error opcode, sent when Fluxer refuses a voice state update.
@@ -3371,7 +3387,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when Fluxer refuses a voice state update with a code the client is expected to act on.
     /// </summary>
-    public event GatewayErrorEvent GatewayErrorReceived;
+    public GatewayEvent<GatewayErrorGatewayData> GatewayErrorReceived { get => Event<GatewayEvent<GatewayErrorGatewayData>>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for USER_CONNECTIONS_UPDATE event when user updates a connection.
@@ -3381,7 +3397,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs on user connection updated.
     /// </summary>
-    public event UserConnectionsUpdatedEvent ConnectionsUpdated;
+    public GatewayEvent<UserConnection[]> ConnectionsUpdated { get => Event<GatewayEvent<UserConnection[]>>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for WEBAUTHN_CREDENTIALS_UPDATE event when user updates webauthn credentials.
@@ -3391,7 +3407,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs on user connection updated.
     /// </summary>
-    public event UserWebAuthnCredentialsUpdatedEvent WebAuthnCredentialsUpdated;
+    public GatewayEvent<WebAuthnCredential[]> WebAuthnCredentialsUpdated { get => Event<GatewayEvent<WebAuthnCredential[]>>(); set => Keep(value); }
 
     // ============================================================================
     // Message Events
@@ -3405,7 +3421,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when a new message is created in any channel the user has access to.
     /// </summary>
-    public event MessageCreatedEvent MessageCreated;
+    public GatewayEvent<SocketMessage> MessageCreated { get => Event<GatewayEvent<SocketMessage>>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for MESSAGE_CREATE events when a new message is sent.
@@ -3415,7 +3431,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when a new message is created in any channel the user has access to.
     /// </summary>
-    public event PrivateMessageCreatedEvent PrivateMessageCreated;
+    public GatewayEvent<SocketPrivateMessage> PrivateMessageCreated { get => Event<GatewayEvent<SocketPrivateMessage>>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for MESSAGE_UPDATE events when a message is edited.
@@ -3425,12 +3441,12 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when a message is edited.
     /// </summary>
-    public event MessageUpdatedEvent MessageUpdated;
+    public GatewayEvent<SocketMessage> MessageUpdated { get => Event<GatewayEvent<SocketMessage>>(); set => Keep(value); }
 
     /// <summary>
     /// Occurs when a new message is created in any channel the user has access to.
     /// </summary>
-    public event PrivateMessageCreatedEvent PrivateMessageUpdated;
+    public GatewayEvent<SocketPrivateMessage> PrivateMessageUpdated { get => Event<GatewayEvent<SocketPrivateMessage>>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for MESSAGE_DELETE events when a message is deleted.
@@ -3440,7 +3456,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when a message is deleted.
     /// </summary>
-    public event MessageDeletedEvent MessageDeleted;
+    public GatewayEvent<Channel, ulong?, ulong, string?> MessageDeleted { get => Event<GatewayEvent<Channel, ulong?, ulong, string?>>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for MESSAGE_DELETE events when a message is deleted.
@@ -3450,7 +3466,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when a message is deleted.
     /// </summary>
-    public event PrivateMessageDeletedEvent PrivateMessageDeleted;
+    public GatewayEvent<Cacheable<Channel>, ulong?, ulong, string?> PrivateMessageDeleted { get => Event<GatewayEvent<Cacheable<Channel>, ulong?, ulong, string?>>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for MESSAGE_UPDATE events that also hands over the message as it was before the edit.
@@ -3463,7 +3479,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// Occurs when a guild message is edited, after <see cref="MessageUpdated"/>.
     /// Turn on <see cref="FluxerCacheConfig.Messages"/> to get the message from before the edit.
     /// </summary>
-    public event MessageEditedEvent MessageEdited;
+    public GatewayEvent<SocketMessage?, SocketMessage> MessageEdited { get => Event<GatewayEvent<SocketMessage?, SocketMessage>>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for MESSAGE_DELETE events that also hands over the deleted message when it was cached.
@@ -3477,7 +3493,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// Occurs when a guild message is deleted, after <see cref="MessageDeleted"/>.
     /// Turn on <see cref="FluxerCacheConfig.Messages"/> to get the deleted message.
     /// </summary>
-    public event MessageRemovedEvent MessageRemoved;
+    public GatewayEvent<Channel, ulong, SocketMessage?> MessageRemoved { get => Event<GatewayEvent<Channel, ulong, SocketMessage?>>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for MESSAGE_DELETE_BULK events that also hands over the deleted messages that were cached.
@@ -3491,7 +3507,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// Occurs when guild messages are bulk deleted, after <see cref="MessagesDeleted"/>.
     /// Turn on <see cref="FluxerCacheConfig.Messages"/> to get the deleted messages.
     /// </summary>
-    public event MessagesRemovedEvent MessagesRemoved;
+    public GatewayEvent<Channel, IReadOnlyList<ulong>, IReadOnlyList<SocketMessage>> MessagesRemoved { get => Event<GatewayEvent<Channel, IReadOnlyList<ulong>, IReadOnlyList<SocketMessage>>>(); set => Keep(value); }
 
 
     // ============================================================================
@@ -3506,7 +3522,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when a channel is created in a guild.
     /// </summary>
-    public event ChannelCreatedEvent ChannelCreated;
+    public GatewayEvent<SocketGuild, Channel> ChannelCreated { get => Event<GatewayEvent<SocketGuild, Channel>>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for CHANNEL_CREATE events when a channel is created.
@@ -3516,7 +3532,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when a private DM channel is created.
     /// </summary>
-    public event DMChannelCreatedEvent DMCreated;
+    public GatewayEvent<DMChannel> DMCreated { get => Event<GatewayEvent<DMChannel>>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for CHANNEL_CREATE events when a channel is created.
@@ -3526,12 +3542,12 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when a private Group channel is joined.
     /// </summary>
-    public event GroupChannelJoinedEvent GroupJoined;
+    public GatewayEvent<GroupChannel> GroupJoined { get => Event<GatewayEvent<GroupChannel>>(); set => Keep(value); }
 
     /// <summary>
     /// Occurs when a private Group channel is left.
     /// </summary>
-    public event GroupChannelJoinedEvent GroupLeft;
+    public GatewayEvent<GroupChannel> GroupLeft { get => Event<GatewayEvent<GroupChannel>>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for CHANNEL_UPDATE events when a channel is updated.
@@ -3541,7 +3557,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when a channel is updated.
     /// </summary>
-    public event ChannelUpdatedEvent ChannelUpdated;
+    public GatewayEvent<SocketGuild, Channel, Channel> ChannelUpdated { get => Event<GatewayEvent<SocketGuild, Channel, Channel>>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for CHANNEL_UPDATE events when a channel is updated.
@@ -3551,7 +3567,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when a private DM or Group channel is created.
     /// </summary>
-    public event GroupChannelUpdatedEvent GroupUpdated;
+    public GatewayEvent<GroupChannel> GroupUpdated { get => Event<GatewayEvent<GroupChannel>>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for CHANNEL_DELETE events when a channel is deleted.
@@ -3561,31 +3577,31 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when a channel is deleted.
     /// </summary>
-    public event ChannelDeletedEvent ChannelDeleted;
+    public GatewayEvent<SocketGuild, Channel> ChannelDeleted { get => Event<GatewayEvent<SocketGuild, Channel>>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for THREAD_CREATE events when a thread is created.
     /// </summary>
     public delegate void ThreadCreatedEvent(SocketGuild guild, ThreadChannel channel);
 
-    public event ThreadCreatedEvent ThreadCreated;
+    public GatewayEvent<SocketGuild, ThreadChannel> ThreadCreated { get => Event<GatewayEvent<SocketGuild, ThreadChannel>>(); set => Keep(value); }
 
 
-    public event ThreadCreatedEvent ThreadJoined;
+    public GatewayEvent<SocketGuild, ThreadChannel> ThreadJoined { get => Event<GatewayEvent<SocketGuild, ThreadChannel>>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for THREAD_CREATE events when a thread is created.
     /// </summary>
     public delegate void ThreadLeftEvent(SocketGuild guild, Cacheable<ThreadChannel> channel);
 
-    public event ThreadLeftEvent ThreadLeft;
+    public GatewayEvent<SocketGuild, Cacheable<ThreadChannel>> ThreadLeft { get => Event<GatewayEvent<SocketGuild, Cacheable<ThreadChannel>>>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for THREAD_UPDATE events when a thread is updated.
     /// </summary>
     public delegate void ThreadUpdatedEvent(SocketGuild guild, Cacheable<ThreadChannel> before, ThreadChannel after);
 
-    public event ThreadUpdatedEvent ThreadUpdated;
+    public GatewayEvent<SocketGuild, Cacheable<ThreadChannel>, ThreadChannel> ThreadUpdated { get => Event<GatewayEvent<SocketGuild, Cacheable<ThreadChannel>, ThreadChannel>>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for THREAD_UPDATE events that hands over the cached thread from before the change.
@@ -3598,35 +3614,35 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when a thread is updated, after <see cref="ThreadUpdated"/>.
     /// </summary>
-    public event ThreadChangedEvent ThreadChanged;
+    public GatewayEvent<SocketGuild, Channel?, Channel> ThreadChanged { get => Event<GatewayEvent<SocketGuild, Channel?, Channel>>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for THREAD_DELETE events when a thread is deleted.
     /// </summary>
     public delegate void ThreadDeletedEvent(SocketGuild guild, Cacheable<ThreadChannel> thread);
 
-    public event ThreadDeletedEvent ThreadDeleted;
+    public GatewayEvent<SocketGuild, Cacheable<ThreadChannel>> ThreadDeleted { get => Event<GatewayEvent<SocketGuild, Cacheable<ThreadChannel>>>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for THREAD_DELETE events when a thread is deleted.
     /// </summary>
     public delegate void ThreadMembersAddedEvent(SocketGuild guild, Cacheable<ThreadChannel> thread, ThreadMember[] members);
 
-    public event ThreadMembersAddedEvent ThreadMembersAdded;
+    public GatewayEvent<SocketGuild, Cacheable<ThreadChannel>, ThreadMember[]> ThreadMembersAdded { get => Event<GatewayEvent<SocketGuild, Cacheable<ThreadChannel>, ThreadMember[]>>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for THREAD_DELETE events when a thread is deleted.
     /// </summary>
     public delegate void ThreadMembersRemovedEvent(SocketGuild guild, Cacheable<ThreadChannel> thread, ulong[] members);
 
-    public event ThreadMembersRemovedEvent ThreadMembersRemoved;
+    public GatewayEvent<SocketGuild, Cacheable<ThreadChannel>, ulong[]> ThreadMembersRemoved { get => Event<GatewayEvent<SocketGuild, Cacheable<ThreadChannel>, ulong[]>>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for THREAD_DELETE events when a thread is deleted.
     /// </summary>
     public delegate void ThreadMembersCountEvent(SocketGuild guild, Cacheable<ThreadChannel> thread, int membersCount);
 
-    public event ThreadMembersCountEvent ThreadMembersCount;
+    public GatewayEvent<SocketGuild, Cacheable<ThreadChannel>, int> ThreadMembersCount { get => Event<GatewayEvent<SocketGuild, Cacheable<ThreadChannel>, int>>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for THREAD_LIST_SYNC events carrying the threads the gateway currently lists for a guild.
@@ -3640,7 +3656,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when the gateway syncs the thread list of a guild.
     /// </summary>
-    public event ThreadListSyncedEvent ThreadListSynced;
+    public GatewayEvent<SocketGuild, ThreadChannel[], ThreadMember[], ulong[]?> ThreadListSynced { get => Event<GatewayEvent<SocketGuild, ThreadChannel[], ThreadMember[], ulong[]?>>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for THREAD_MEMBER_UPDATE events when the current user's membership of a thread changes.
@@ -3650,7 +3666,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when the current user's membership of a thread changes, for example its flags or mute state.
     /// </summary>
-    public event ThreadMemberUpdatedEvent ThreadMemberUpdated;
+    public GatewayEvent<SocketGuild, ThreadMember> ThreadMemberUpdated { get => Event<GatewayEvent<SocketGuild, ThreadMember>>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for THREAD_MEMBER_LIST_UPDATE events.
@@ -3660,7 +3676,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs with the full member list of a thread subscribed to with <see cref="GuildSubscription.ThreadMemberLists"/>.
     /// </summary>
-    public event ThreadMemberListUpdatedEvent ThreadMemberListUpdated;
+    public GatewayEvent<ThreadMemberListUpdateGatewayData> ThreadMemberListUpdated { get => Event<GatewayEvent<ThreadMemberListUpdateGatewayData>>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for FORUM_UNREADS events.
@@ -3670,7 +3686,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs with the answer to <see cref="RequestForumUnreads"/>.
     /// </summary>
-    public event ForumUnreadsReceivedEvent ForumUnreadsReceived;
+    public GatewayEvent<ForumUnreadsGatewayData> ForumUnreadsReceived { get => Event<GatewayEvent<ForumUnreadsGatewayData>>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for GUILD_MEMBER_LIST_UPDATE events.
@@ -3680,7 +3696,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when a member list subscribed to with <see cref="GuildSubscription.MemberListChannels"/> changes.
     /// </summary>
-    public event GuildMemberListUpdatedEvent GuildMemberListUpdated;
+    public GatewayEvent<GuildMemberListUpdateGatewayData> GuildMemberListUpdated { get => Event<GatewayEvent<GuildMemberListUpdateGatewayData>>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for GUILD_HEALTH_UPDATE events when a guild becomes degraded or recovers.
@@ -3690,7 +3706,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when the gateway reports a guild as degraded or recovered.
     /// </summary>
-    public event GuildHealthUpdatedEvent GuildHealthUpdated;
+    public GatewayEvent<ulong, bool> GuildHealthUpdated { get => Event<GatewayEvent<ulong, bool>>(); set => Keep(value); }
 
     // ============================================================================
     // User Events
@@ -3704,7 +3720,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when the current user's account is updated.
     /// </summary>
-    public event CurrentUserUpdatedEvent CurrentUserUpdated;
+    public GatewayEvent<SocketCurrentUser, SocketCurrentUser> CurrentUserUpdated { get => Event<GatewayEvent<SocketCurrentUser, SocketCurrentUser>>(); set => Keep(value); }
 
     // ============================================================================
     // Presence Events
@@ -3718,7 +3734,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when a user's presence (online status) changes.
     /// </summary>
-    public event PresenceUpdatedEvent PresenceUpdated;
+    public GatewayEvent<PresenceGatewayData> PresenceUpdated { get => Event<GatewayEvent<PresenceGatewayData>>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for PRESENCE_UPDATE events that also hands over the user's previous presence.
@@ -3731,7 +3747,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// Occurs when a presence changes, after <see cref="PresenceUpdated"/>. Turn on <see cref="FluxerCacheConfig.Presences"/>
     /// to get the previous presence.
     /// </summary>
-    public event PresenceChangedEvent PresenceChanged;
+    public GatewayEvent<PresenceGatewayData?, PresenceGatewayData> PresenceChanged { get => Event<GatewayEvent<PresenceGatewayData?, PresenceGatewayData>>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for user changes seen in member, presence and message events.
@@ -3744,7 +3760,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// Occurs when a user's name, discriminator, display name, avatar or flags change. Needs <see cref="FluxerCacheConfig.Users"/>,
     /// and is raised the first time the gateway sees the user again after the change.
     /// </summary>
-    public event UserChangedEvent UserChanged;
+    public GatewayEvent<User, User> UserChanged { get => Event<GatewayEvent<User, User>>(); set => Keep(value); }
 
     // ============================================================================
     // Typing Events
@@ -3758,7 +3774,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when a user starts typing in a channel.
     /// </summary>
-    public event TypingStartEvent TypingStarted;
+    public GatewayEvent<Channel, SocketGuild?, ulong, DateTimeOffset> TypingStarted { get => Event<GatewayEvent<Channel, SocketGuild?, ulong, DateTimeOffset>>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for TYPING_START events when a user starts typing.
@@ -3768,7 +3784,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when a user starts typing in a channel.
     /// </summary>
-    public event PrivateTypingStartEvent PrivateTypingStarted;
+    public GatewayEvent<Cacheable<Channel>, ulong, DateTimeOffset> PrivateTypingStarted { get => Event<GatewayEvent<Cacheable<Channel>, ulong, DateTimeOffset>>(); set => Keep(value); }
 
     // ============================================================================
     // Message Reaction Events
@@ -3782,7 +3798,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when a user adds a reaction to a message.
     /// </summary>
-    public event MessageReactionAddedEvent MessageReactionAdded;
+    public GatewayEvent<Channel, Cacheable<Message>, SocketReaction> MessageReactionAdded { get => Event<GatewayEvent<Channel, Cacheable<Message>, SocketReaction>>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for MESSAGE_REACTION_ADD events when a reaction is added.
@@ -3792,7 +3808,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when a user adds a reaction to a message.
     /// </summary>
-    public event PrivateMessageReactionAddedEvent PrivateMessageReactionAdded;
+    public GatewayEvent<Cacheable<Channel>, Cacheable<Message>, SocketReaction> PrivateMessageReactionAdded { get => Event<GatewayEvent<Cacheable<Channel>, Cacheable<Message>, SocketReaction>>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for MESSAGE_REACTION_ADD_MANY events when several reactions are added to a message at once.
@@ -3802,7 +3818,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when the gateway delivers a batch of reactions added to a message. Needs <see cref="FluxerGatewayConfig.DebounceMessageReactions"/>.
     /// </summary>
-    public event MessageReactionsAddedEvent MessageReactionsAdded;
+    public GatewayEvent<Channel, Cacheable<Message>, SocketReaction[]> MessageReactionsAdded { get => Event<GatewayEvent<Channel, Cacheable<Message>, SocketReaction[]>>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for MESSAGE_REACTION_ADD_MANY events in direct messages.
@@ -3812,7 +3828,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when the gateway delivers a batch of reactions added to a direct message. Needs <see cref="FluxerGatewayConfig.DebounceMessageReactions"/>.
     /// </summary>
-    public event PrivateMessageReactionsAddedEvent PrivateMessageReactionsAdded;
+    public GatewayEvent<Cacheable<Channel>, Cacheable<Message>, SocketReaction[]> PrivateMessageReactionsAdded { get => Event<GatewayEvent<Cacheable<Channel>, Cacheable<Message>, SocketReaction[]>>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for MESSAGE_REACTION_REMOVE events when a reaction is removed.
@@ -3822,7 +3838,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when a user removes a reaction from a message.
     /// </summary>
-    public event MessageReactionRemovedEvent MessageReactionRemoved;
+    public GatewayEvent<Channel, Cacheable<Message>, SocketReaction> MessageReactionRemoved { get => Event<GatewayEvent<Channel, Cacheable<Message>, SocketReaction>>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for MESSAGE_REACTION_REMOVE events when a reaction is removed.
@@ -3832,7 +3848,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when a user removes a reaction from a message.
     /// </summary>
-    public event PrivateMessageReactionRemovedEvent PrivateMessageReactionRemoved;
+    public GatewayEvent<Cacheable<Channel>, Cacheable<Message>, SocketReaction> PrivateMessageReactionRemoved { get => Event<GatewayEvent<Cacheable<Channel>, Cacheable<Message>, SocketReaction>>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for MESSAGE_REACTION_REMOVE_ALL events when all reactions are cleared.
@@ -3842,7 +3858,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when all reactions are removed from a message.
     /// </summary>
-    public event MessageReactionRemoveAllEvent MessageReactionRemoveAll;
+    public GatewayEvent<Channel, Cacheable<Message>> MessageReactionRemoveAll { get => Event<GatewayEvent<Channel, Cacheable<Message>>>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for MESSAGE_REACTION_REMOVE_ALL events when all reactions are cleared.
@@ -3852,7 +3868,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when all reactions are removed from a message.
     /// </summary>
-    public event PrivateMessageReactionRemoveAllEvent PrivateMessageReactionRemoveAll;
+    public GatewayEvent<Cacheable<Channel>, Cacheable<Message>> PrivateMessageReactionRemoveAll { get => Event<GatewayEvent<Cacheable<Channel>, Cacheable<Message>>>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for MESSAGE_REACTION_REMOVE_EMOJI events when all reactions of a specific emoji are removed.
@@ -3862,7 +3878,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when all instances of a specific emoji are removed from a message.
     /// </summary>
-    public event MessageReactionRemovedEmojiEvent MessageReactionRemovedEmoji;
+    public GatewayEvent<Channel, Cacheable<Message>, IEmoji> MessageReactionRemovedEmoji { get => Event<GatewayEvent<Channel, Cacheable<Message>, IEmoji>>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for MESSAGE_REACTION_REMOVE_EMOJI events when all reactions of a specific emoji are removed.
@@ -3872,7 +3888,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when all instances of a specific emoji are removed from a message.
     /// </summary>
-    public event PrivateMessageReactionRemovedEmojiEvent PrivateMessageReactionRemovedEmoji;
+    public GatewayEvent<Cacheable<Channel>, Cacheable<Message>, IEmoji> PrivateMessageReactionRemovedEmoji { get => Event<GatewayEvent<Cacheable<Channel>, Cacheable<Message>, IEmoji>>(); set => Keep(value); }
 
     // ============================================================================
     // Saved Messages and Mentions
@@ -3886,7 +3902,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when a message is saved.
     /// </summary>
-    public event SavedMessageCreatedEvent SavedMessageCreated;
+    public GatewayEvent<SavedMessage> SavedMessageCreated { get => Event<GatewayEvent<SavedMessage>>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for SAVED_MESSAGE_DELETE events when a saved message is deleted.
@@ -3896,7 +3912,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when a saved message is deleted.
     /// </summary>
-    public event SavedMessageDeletedEvent SavedMessageDeleted;
+    public GatewayEvent<ulong> SavedMessageDeleted { get => Event<GatewayEvent<ulong>>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for RECENT_MENTION_DELETE events when a recent mention is deleted.
@@ -3906,7 +3922,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when a recent mention is deleted.
     /// </summary>
-    public event RecentMentionDeletedEvent RecentMentionDeleted;
+    public GatewayEvent<ulong> RecentMentionDeleted { get => Event<GatewayEvent<ulong>>(); set => Keep(value); }
 
     // ============================================================================
     // Message Bulk Operations
@@ -3920,7 +3936,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when multiple messages are deleted in bulk (e.g., purge operation).
     /// </summary>
-    public event MessageDeleteBulkEvent MessagesDeleted;
+    public GatewayEvent<Channel, SocketGuild?, ulong[]> MessagesDeleted { get => Event<GatewayEvent<Channel, SocketGuild?, ulong[]>>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for MESSAGE_DELETE_BULK events when multiple messages are deleted at once.
@@ -3930,7 +3946,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when multiple messages are deleted in bulk (e.g., purge operation).
     /// </summary>
-    public event PrivateMessageDeleteBulkEvent PrivateMessagesDeleted;
+    public GatewayEvent<Cacheable<Channel>, ulong[]> PrivateMessagesDeleted { get => Event<GatewayEvent<Cacheable<Channel>, ulong[]>>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for MESSAGE_ACK events when a message is acknowledged as read.
@@ -3940,7 +3956,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when a message is acknowledged as read by the current user.
     /// </summary>
-    public event MessageAckEvent MessageAck;
+    public GatewayEvent<Cacheable<Channel>, Cacheable<Message>> MessageAck { get => Event<GatewayEvent<Cacheable<Channel>, Cacheable<Message>>>(); set => Keep(value); }
 
     // ============================================================================
     // Channel Update Events
@@ -3954,7 +3970,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when a message is pinned or unpinned in a channel.
     /// </summary>
-    public event ChannelPinsUpdatedEvent ChannelPinsUpdated;
+    public GatewayEvent<Channel, SocketGuild?> ChannelPinsUpdated { get => Event<GatewayEvent<Channel, SocketGuild?>>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for CHANNEL_PINS_UPDATE events in guilds that also hands over the previous pin time.
@@ -3967,7 +3983,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when a guild channel's pins change, after <see cref="ChannelPinsUpdated"/>.
     /// </summary>
-    public event ChannelPinsChangedEvent ChannelPinsChanged;
+    public GatewayEvent<Channel, SocketGuild, DateTimeOffset?> ChannelPinsChanged { get => Event<GatewayEvent<Channel, SocketGuild, DateTimeOffset?>>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for CHANNEL_PINS_UPDATE events when channel pins are updated.
@@ -3977,7 +3993,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when a message is pinned or unpinned in a channel.
     /// </summary>
-    public event PrivateChannelPinsUpdatedEvent PrivateChannelPinsUpdated;
+    public GatewayEvent<Cacheable<Channel>> PrivateChannelPinsUpdated { get => Event<GatewayEvent<Cacheable<Channel>>>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for CHANNEL_PINS_ACK events when channel pins are acknowledged.
@@ -3987,7 +4003,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when channel pins are acknowledged.
     /// </summary>
-    public event ChannelPinsAckEvent ChannelPinsAck;
+    public GatewayEvent<Cacheable<Channel>> ChannelPinsAck { get => Event<GatewayEvent<Cacheable<Channel>>>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for CHANNEL_RECIPIENT_ADD events when a recipient is added to a channel.
@@ -3997,7 +4013,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when a recipient is added to a group DM or channel.
     /// </summary>
-    public event GroupUserAddedEvent GroupUserAdded;
+    public GatewayEvent<Cacheable<GroupChannel>, SocketUser> GroupUserAdded { get => Event<GatewayEvent<Cacheable<GroupChannel>, SocketUser>>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for CHANNEL_RECIPIENT_REMOVE events when a recipient is removed from a channel.
@@ -4007,7 +4023,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when a recipient is removed from a group DM or channel.
     /// </summary>
-    public event GroupUserRemovedEvent GroupUserRemoved;
+    public GatewayEvent<Cacheable<GroupChannel>, SocketUser> GroupUserRemoved { get => Event<GatewayEvent<Cacheable<GroupChannel>, SocketUser>>(); set => Keep(value); }
 
     // ============================================================================
     // Voice Events
@@ -4021,7 +4037,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when a user joins, leaves, or updates their state in a voice channel.
     /// </summary>
-    public event VoiceStateUpdatedEvent VoiceStateUpdated;
+    public GatewayEvent<SocketVoiceState> VoiceStateUpdated { get => Event<GatewayEvent<SocketVoiceState>>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for VOICE_STATE_UPDATE events that also hands over the voice state from before the change.
@@ -4033,7 +4049,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when a voice connection in a guild joins, leaves, moves or changes state, after <see cref="VoiceStateUpdated"/>.
     /// </summary>
-    public event VoiceStateChangedEvent VoiceStateChanged;
+    public GatewayEvent<SocketVoiceState?, SocketVoiceState> VoiceStateChanged { get => Event<GatewayEvent<SocketVoiceState?, SocketVoiceState>>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for VOICE_SERVER_UPDATE events for voice connection data.
@@ -4043,7 +4059,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when voice server information is updated (used for establishing voice connections).
     /// </summary>
-    public event VoiceServerUpdatedEvent VoiceServerUpdated;
+    public GatewayEvent<VoiceServer> VoiceServerUpdated { get => Event<GatewayEvent<VoiceServer>>(); set => Keep(value); }
 
     // ============================================================================
     // Guild Ban Events
@@ -4057,7 +4073,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when a user is banned from a guild.
     /// </summary>
-    public event GuildBanAddedEvent UserBanned;
+    public GatewayEvent<SocketGuild, Cacheable<SocketGuildMember>> UserBanned { get => Event<GatewayEvent<SocketGuild, Cacheable<SocketGuildMember>>>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for GUILD_BAN_REMOVE events when a user is unbanned from a guild.
@@ -4067,7 +4083,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when a user is unbanned from a guild.
     /// </summary>
-    public event GuildBanRemovedEvent UserUnbanned;
+    public GatewayEvent<SocketGuild, ulong> UserUnbanned { get => Event<GatewayEvent<SocketGuild, ulong>>(); set => Keep(value); }
 
     // ============================================================================
     // Webhook Events
@@ -4081,7 +4097,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when webhooks are created, updated, or deleted in a channel.
     /// </summary>
-    public event WebhooksUpdatedEvent WebhooksUpdated;
+    public GatewayEvent<SocketGuild, Channel> WebhooksUpdated { get => Event<GatewayEvent<SocketGuild, Channel>>(); set => Keep(value); }
 
     // ============================================================================
     // Guild Events
@@ -4095,7 +4111,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when the bot joins a guild.
     /// </summary>
-    public event GuildJoinedEvent GuildJoined;
+    public GatewayEvent<SocketGuild> GuildJoined { get => Event<GatewayEvent<SocketGuild>>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for GUILD_UPDATE events when guild properties are updated.
@@ -4105,7 +4121,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when a guild is updated (name, icon, settings, etc.).
     /// </summary>
-    public event GuildUpdatedEvent GuildUpdated;
+    public GatewayEvent<SocketGuild, SocketGuild> GuildUpdated { get => Event<GatewayEvent<SocketGuild, SocketGuild>>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for GUILD_DELETE events when the bot is removed.
@@ -4116,7 +4132,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// Occurs when the bot is removed from a guild or when a guild becomes unavailable.
     /// Check the Unavailable property to distinguish between guild outages (true) and the user being removed (false/null).
     /// </summary>
-    public event GuildLeftEvent GuildLeft;
+    public GatewayEvent<SocketGuild> GuildLeft { get => Event<GatewayEvent<SocketGuild>>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for GUILD_CREATE events when a guild has come back.
@@ -4126,7 +4142,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when the guild becomes available again.
     /// </summary>
-    public event GuildAvailableEvent GuildAvailable;
+    public GatewayEvent<SocketGuild> GuildAvailable { get => Event<GatewayEvent<SocketGuild>>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for GUILD_DELETE events when a guild has gone down.
@@ -4136,7 +4152,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when the guild becomes unavailable.
     /// </summary>
-    public event GuildUnavailableEvent GuildUnavailable;
+    public GatewayEvent<SocketGuild> GuildUnavailable { get => Event<GatewayEvent<SocketGuild>>(); set => Keep(value); }
 
     // ============================================================================
     // Guild Member Events
@@ -4150,7 +4166,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when a new member joins a guild.
     /// </summary>
-    public event GuildMemberAddedEvent MemberJoined;
+    public GatewayEvent<SocketGuildMember> MemberJoined { get => Event<GatewayEvent<SocketGuildMember>>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for GUILD_MEMBER_UPDATE events when a guild member is updated.
@@ -4160,7 +4176,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when a guild member is updated (roles, nickname, avatar, etc.).
     /// </summary>
-    public event GuildMemberUpdatedEvent MemberUpdated;
+    public GatewayEvent<SocketGuildMember> MemberUpdated { get => Event<GatewayEvent<SocketGuildMember>>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for GUILD_MEMBER_UPDATE events that also hands over the member as they were before.
@@ -4172,7 +4188,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when a guild member is updated, after <see cref="MemberUpdated"/>.
     /// </summary>
-    public event GuildMemberChangedEvent MemberChanged;
+    public GatewayEvent<SocketGuildMember?, SocketGuildMember> MemberChanged { get => Event<GatewayEvent<SocketGuildMember?, SocketGuildMember>>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for GUILD_MEMBER_REMOVE events when a member leaves or is removed from a guild.
@@ -4182,7 +4198,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when a member leaves a guild or is kicked/banned.
     /// </summary>
-    public event GuildMemberRemovedEvent MemberLeft;
+    public GatewayEvent<SocketGuild, Cacheable<SocketGuildMember>> MemberLeft { get => Event<GatewayEvent<SocketGuild, Cacheable<SocketGuildMember>>>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for GUILD_AUDIT_LOG_ENTRY_CREATE event.
@@ -4192,7 +4208,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when an audit log is created.
     /// </summary>
-    public event AuditLogCreatedEvent AuditLogCreated;
+    public GatewayEvent<SocketGuild, SocketAuditLog> AuditLogCreated { get => Event<GatewayEvent<SocketGuild, SocketAuditLog>>(); set => Keep(value); }
 
     // ============================================================================
     // Guild Role Events
@@ -4206,7 +4222,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when a new role is created in a guild.
     /// </summary>
-    public event GuildRoleCreatedEvent RoleCreated;
+    public GatewayEvent<SocketRole> RoleCreated { get => Event<GatewayEvent<SocketRole>>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for GUILD_ROLE_UPDATE events when a role is updated.
@@ -4216,7 +4232,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when a role is updated (name, color, permissions, etc.).
     /// </summary>
-    public event GuildRoleUpdatedEvent RoleUpdated;
+    public GatewayEvent<SocketRole, SocketRole> RoleUpdated { get => Event<GatewayEvent<SocketRole, SocketRole>>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for GUILD_ROLE_DELETE events when a role is deleted from a guild.
@@ -4226,7 +4242,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when a role is deleted from a guild.
     /// </summary>
-    public event GuildRoleDeletedEvent RoleDeleted;
+    public GatewayEvent<SocketRole> RoleDeleted { get => Event<GatewayEvent<SocketRole>>(); set => Keep(value); }
 
     // ============================================================================
     // Guild Emoji Events
@@ -4234,19 +4250,19 @@ public partial class FluxerGatewayClient : IDisposable
 
     public delegate void GuildEmojiCreatedEvent(Emoji emoji);
 
-    public event GuildEmojiCreatedEvent EmojiCreated;
+    public GatewayEvent<Emoji> EmojiCreated { get => Event<GatewayEvent<Emoji>>(); set => Keep(value); }
 
     public delegate void GuildEmojiDeletedEvent(Emoji emoji);
 
-    public event GuildEmojiDeletedEvent EmojiDeleted;
+    public GatewayEvent<Emoji> EmojiDeleted { get => Event<GatewayEvent<Emoji>>(); set => Keep(value); }
 
     public delegate void GuildStickerCreatedEvent(Sticker sticker);
 
-    public event GuildStickerCreatedEvent StickerCreated;
+    public GatewayEvent<Sticker> StickerCreated { get => Event<GatewayEvent<Sticker>>(); set => Keep(value); }
 
     public delegate void GuildStickerDeletedEvent(Sticker sticker);
 
-    public event GuildStickerDeletedEvent StickerDeleted;
+    public GatewayEvent<Sticker> StickerDeleted { get => Event<GatewayEvent<Sticker>>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for GUILD_EMOJIS_UPDATE events when guild emojis are updated.
@@ -4256,7 +4272,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when the list of emojis in a guild is updated (added, removed, or modified).
     /// </summary>
-    public event GuildEmojiUpdatedEvent EmojiUpdated;
+    public GatewayEvent<Emoji, Emoji> EmojiUpdated { get => Event<GatewayEvent<Emoji, Emoji>>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for GUILD_STICKERS_UPDATE events when guild stickers are updated.
@@ -4266,7 +4282,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when the list of stickers in a guild is updated (added, removed, or modified).
     /// </summary>
-    public event GuildStickerUpdatedEvent StickerUpdated;
+    public GatewayEvent<Sticker, Sticker> StickerUpdated { get => Event<GatewayEvent<Sticker, Sticker>>(); set => Keep(value); }
 
     // ============================================================================
     // Relationship Events
@@ -4280,7 +4296,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when a relationship (friend, blocked user, etc.) is added.
     /// </summary>
-    public event RelationshipAddedEvent RelationshipAdded;
+    public GatewayEvent<SocketRelationship> RelationshipAdded { get => Event<GatewayEvent<SocketRelationship>>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for RELATIONSHIP_UPDATE events when a relationship is updated.
@@ -4290,7 +4306,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when a relationship is updated.
     /// </summary>
-    public event RelationshipUpdatedEvent RelationshipUpdated;
+    public GatewayEvent<SocketRelationship> RelationshipUpdated { get => Event<GatewayEvent<SocketRelationship>>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for RELATIONSHIP_REMOVE events when a relationship is removed.
@@ -4300,7 +4316,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when a relationship is removed.
     /// </summary>
-    public event RelationshipRemovedEvent RelationshipRemoved;
+    public GatewayEvent<ulong> RelationshipRemoved { get => Event<GatewayEvent<ulong>>(); set => Keep(value); }
 
     // ============================================================================
     // Favorite Meme Events
@@ -4314,7 +4330,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when a favorite meme is created.
     /// </summary>
-    public event FavoriteMediaCreatedEvent FavoriteMediaCreated;
+    public GatewayEvent<FavoriteMedia> FavoriteMediaCreated { get => Event<GatewayEvent<FavoriteMedia>>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for FAVORITE_MEME_UPDATE events when a favorite meme is updated.
@@ -4324,7 +4340,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when a favorite meme is updated.
     /// </summary>
-    public event FavoriteMediaUpdatedEvent FavoriteMediaUpdated;
+    public GatewayEvent<FavoriteMedia> FavoriteMediaUpdated { get => Event<GatewayEvent<FavoriteMedia>>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for FAVORITE_MEME_DELETE events when a favorite meme is deleted.
@@ -4334,7 +4350,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when a favorite meme is deleted.
     /// </summary>
-    public event FavoriteMediaDeletedEvent FavoriteMediaDeleted;
+    public GatewayEvent<string> FavoriteMediaDeleted { get => Event<GatewayEvent<string>>(); set => Keep(value); }
 
     // ============================================================================
     // Call Events
@@ -4348,7 +4364,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when a call is created.
     /// </summary>
-    public event CallCreatedEvent CallCreated;
+    public GatewayEvent<SocketCall> CallCreated { get => Event<GatewayEvent<SocketCall>>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for CALL_UPDATE events when a call is updated.
@@ -4358,7 +4374,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when a call is updated.
     /// </summary>
-    public event CallUpdatedEvent CallUpdated;
+    public GatewayEvent<SocketCall> CallUpdated { get => Event<GatewayEvent<SocketCall>>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for CALL_DELETE events when a call is deleted.
@@ -4368,7 +4384,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when a call is deleted.
     /// </summary>
-    public event CallDeletedEvent CallDeleted;
+    public GatewayEvent<Channel, bool> CallDeleted { get => Event<GatewayEvent<Channel, bool>>(); set => Keep(value); }
 
     // ============================================================================
     // Invite Events
@@ -4382,7 +4398,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when a new invite is created for a guild or group DM.
     /// </summary>
-    public event InviteCreatedEvent InviteCreated;
+    public GatewayEvent<Invite> InviteCreated { get => Event<GatewayEvent<Invite>>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for INVITE_DELETE events when an invite is deleted or expires.
@@ -4392,7 +4408,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <summary>
     /// Occurs when an invite is deleted or expires.
     /// </summary>
-    public event InviteDeletedEvent InviteDeleted;
+    public GatewayEvent<Channel, SocketGuild?, string> InviteDeleted { get => Event<GatewayEvent<Channel, SocketGuild?, string>>(); set => Keep(value); }
 
     /// <summary>
     /// Delegate for INVITE_DELETE events that also hands over the deleted invite.
@@ -4407,15 +4423,15 @@ public partial class FluxerGatewayClient : IDisposable
     /// Occurs when an invite is deleted, after <see cref="InviteDeleted"/>. Turn on <see cref="FluxerCacheConfig.Invites"/>
     /// to get the deleted invite.
     /// </summary>
-    public event InviteRemovedEvent InviteRemoved;
+    public GatewayEvent<Channel, SocketGuild?, string, Invite?> InviteRemoved { get => Event<GatewayEvent<Channel, SocketGuild?, string, Invite?>>(); set => Keep(value); }
 
     public delegate void GuildMemberCountsEvent(GuildMemberCountGatewayData[] guilds);
 
-    public event GuildMemberCountsEvent GuildMemberCounts;
+    public GatewayEvent<GuildMemberCountGatewayData[]> GuildMemberCounts { get => Event<GatewayEvent<GuildMemberCountGatewayData[]>>(); set => Keep(value); }
 
     public delegate void ChannelMemberCountsEvent(GuildChannelMemberCountGatewayData[] channels);
 
-    public event ChannelMemberCountsEvent ChannelMemberCounts;
+    public GatewayEvent<GuildChannelMemberCountGatewayData[]> ChannelMemberCounts { get => Event<GatewayEvent<GuildChannelMemberCountGatewayData[]>>(); set => Keep(value); }
 
     #endregion
 
@@ -4463,6 +4479,7 @@ public partial class FluxerGatewayClient : IDisposable
             _logger.Information("Disposing GatewayClient");
 
             _sendQueue.Dispose();
+            StopEventDispatch();
 
             try
             {
