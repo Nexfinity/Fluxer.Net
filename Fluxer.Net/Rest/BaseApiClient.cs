@@ -17,6 +17,19 @@ public class FluxerBaseApiClient
     internal FluxerConfig _config;
 
     /// <summary>
+    /// Whether the client authenticates with a bot token. User tokens start with <c>flx_</c>.
+    /// </summary>
+    public bool IsBot => _token != null && _token.StartsWith("Bot ", StringComparison.OrdinalIgnoreCase);
+
+    private string Authorization(HttpMethod method, string route)
+    {
+        if (IsBot && _config.EnforceUserOnlyRoutes && UserOnlyRoutes.IsUserOnly(method, route))
+            throw new UserTokenRequiredException(method, route);
+
+        return _token;
+    }
+
+    /// <summary>
     /// The HTTP client used to make requests. Can be shared or injected for connection pooling.
     /// </summary>
     public HttpClient HttpClient { get; internal set; }
@@ -128,7 +141,7 @@ public class FluxerBaseApiClient
                 );
         }
         if (!string.IsNullOrEmpty(_token) && authorize)
-            req.Headers.Add("Authorization", _token);
+            req.Headers.Add("Authorization", Authorization(method, route));
 
         HttpResponseMessage result = await RequestQueue.SendAsync(HttpClient, req, route, options);
 
@@ -237,7 +250,7 @@ public class FluxerBaseApiClient
         SetOptions(req, options);
 
         if (!string.IsNullOrEmpty(_token) && authorize)
-            req.Headers.Add("Authorization", _token);
+            req.Headers.Add("Authorization", Authorization(method, route));
         HttpResponseMessage result = await RequestQueue.SendAsync(HttpClient, req, route, options);
 
         if (_logger.IsEnabled(LogEventLevel.Debug))
@@ -290,7 +303,7 @@ public class FluxerBaseApiClient
         if (!string.IsNullOrEmpty(accessToken))
             req.Headers.Add("Authorization", "Bearer " + accessToken);
         else if (!string.IsNullOrEmpty(_token) && authorize)
-            req.Headers.Add("Authorization", _token);
+            req.Headers.Add("Authorization", Authorization(method, route));
 
         HttpResponseMessage result = await RequestQueue.SendAsync(HttpClient, req, route, options);
 
@@ -361,7 +374,7 @@ public class FluxerBaseApiClient
         if (!string.IsNullOrEmpty(accessToken))
             req.Headers.Add("Authorization", "Bearer " + accessToken);
         else if (!string.IsNullOrEmpty(_token) && authorize)
-            req.Headers.Add("Authorization", _token);
+            req.Headers.Add("Authorization", Authorization(method, route));
 
         HttpResponseMessage result = await RequestQueue.SendAsync(HttpClient, req, route, options);
 
@@ -411,7 +424,7 @@ public class FluxerBaseApiClient
         SetOptions(req, options);
 
         if (!string.IsNullOrEmpty(_token) && authorize)
-            req.Headers.Add("Authorization", _token);
+            req.Headers.Add("Authorization", Authorization(method, route));
         HttpResponseMessage result = await RequestQueue.SendAsync(HttpClient, req, route, options);
 
         if (_logger.IsEnabled(LogEventLevel.Debug))

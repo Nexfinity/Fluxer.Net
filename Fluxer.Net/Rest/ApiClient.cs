@@ -214,6 +214,8 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// <summary>
     /// Send an email verification for the user account.
     /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
+    [UserTokenOnly]
     public async Task ResendVerificationEmailAsync()
         => await SendRequestRawAsync(HttpMethod.Post, "/auth/verify/resend", true);
 
@@ -232,7 +234,9 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// <summary>
     /// Get all sessions for the user account.
     /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
     /// <returns>List of <see cref="AuthSession"/></returns>
+    [UserTokenOnly]
     public async Task<IEnumerable<AuthSession>> GetSessionsAsync(RestClientQueryParams? queryParams)
     {
         IEnumerable<AuthSessionJson> json = await SendRequestAsync<IEnumerable<AuthSessionJson>>(HttpMethod.Get, "/auth/sessions", true);
@@ -242,6 +246,8 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// <summary>
     /// Logout a specific session for the user account.
     /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
+    [UserTokenOnly]
     public async Task LogoutSessionsAsync<TRequest>(TRequest data)
         => await SendRequestAsync<TRequest>(HttpMethod.Post, "/auth/sessions/logout", data, true);
 
@@ -329,8 +335,10 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// </summary>
     /// <remarks>
     /// Requires <see cref="ChannelPermissions.ViewChannel"/> for guild channels.
+    /// <para>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</para>
     /// </remarks>
     /// <returns>List of <see cref="RtcRegion"/></returns>
+    [UserTokenOnly]
     public async Task<IEnumerable<RtcRegion>> GetChannelRtcRegionsAsync(ulong channelId, RequestOptions? options = null)
     {
         IEnumerable<RtcRegionJson> json = await SendRequestAsync<IEnumerable<RtcRegionJson>>(HttpMethod.Get, $"/channels/{channelId}/rtc-regions", true, options: options);
@@ -602,7 +610,9 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// </summary>
     /// <remarks>
     /// User accounts only.
+    /// <para>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</para>
     /// </remarks>
+    [UserTokenOnly]
     public async Task AcknowledgeMessageAsync(ulong channelId, ulong messageId, MessageAckJson details, RequestOptions? options = null)
         => await SendRequestAsync<MessageAckJson>(HttpMethod.Post, $"/channels/{channelId}/messages/{messageId}/ack", details, true, options: options);
 
@@ -803,7 +813,9 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// <summary>
     /// Get if you can call a voice channel/group/dm.
     /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
     /// <returns><see cref="CallEligibility"/></returns>
+    [UserTokenOnly]
     public async Task<CallEligibility> GetVoiceEligibilityAsync(ulong channelId, RequestOptions? options = null)
     {
         CallEligibilityJson json = await SendRequestAsync<CallEligibilityJson>(HttpMethod.Get, $"/channels/{channelId}/call", true, options: options);
@@ -815,7 +827,9 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// </summary>
     /// <remarks>
     /// Requires <see cref="ChannelPermissions.ViewChannel"/> and <see cref="ChannelPermissions.UpdateRTCRegion"/> in a guild channel.
+    /// <para>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</para>
     /// </remarks>
+    [UserTokenOnly]
     public async Task UpdateVoiceRegionAsync(ulong channelId, string? region, RequestOptions? options = null)
         => await SendRequestAsync(HttpMethod.Patch, $"/channels/{channelId}/call", new UpdateVoiceRegionRequest
         {
@@ -827,7 +841,9 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// </summary>
     /// <remarks>
     /// User account only.
+    /// <para>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</para>
     /// </remarks>
+    [UserTokenOnly]
     public async Task RingCallAsync(ulong channelId, ulong[] recipients, RequestOptions? options = null)
         => await SendRequestAsync(HttpMethod.Post, $"/channels/{channelId}/call/ring", new VoiceRingRequest
         {
@@ -839,7 +855,9 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// </summary>
     /// <remarks>
     /// User account only.
+    /// <para>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</para>
     /// </remarks>
+    [UserTokenOnly]
     public async Task StopRingingAsync(ulong channelId, RequestOptions? options = null)
         => await SendRequestRawAsync(HttpMethod.Post, $"/channels/{channelId}/call/stop-ringing", true, options: options);
 
@@ -1351,7 +1369,9 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// <summary>
     /// Get all your favorite media.
     /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
     /// <returns>List of <see cref="FavoriteMedia"/></returns>
+    [UserTokenOnly]
     public async Task<IEnumerable<FavoriteMedia>> GetCurrentUserFavoriteMediaAsync(RequestOptions? options = null)
     {
         IEnumerable<FavoriteMediaJson> json = await SendRequestAsync<IEnumerable<FavoriteMediaJson>>(HttpMethod.Get, "/users/@me/memes", true, options: options);
@@ -1361,7 +1381,9 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// <summary>
     /// Add a favorite media.
     /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
     /// <returns><see cref="FavoriteMedia"/></returns>
+    [UserTokenOnly]
     public async Task<FavoriteMedia> PostCurrentUserFavoriteMediaAsync<TRequest>(TRequest data, RequestOptions? options = null)
     {
         FavoriteMediaJson json = await SendRequestAsync<FavoriteMediaJson, TRequest>(HttpMethod.Post, "/users/@me/memes", data, true, options: options);
@@ -1371,7 +1393,9 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// <summary>
     /// Get your favorite media.
     /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
     /// <returns><see cref="FavoriteMedia"/></returns>
+    [UserTokenOnly]
     public async Task<FavoriteMedia> GetCurrentUserFavoriteMediaAsync(ulong mediaId, RequestOptions? options = null)
     {
         FavoriteMediaJson json = await SendRequestAsync<FavoriteMediaJson>(HttpMethod.Get, $"/users/@me/memes/{mediaId}", true, options: options);
@@ -1381,7 +1405,9 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// <summary>
     /// Update your favorite media.
     /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
     /// <returns><see cref="FavoriteMedia"/></returns>
+    [UserTokenOnly]
     public async Task<FavoriteMedia> PatchCurrentUserFavoriteMediaAsync<TRequest>(ulong mediaId, TRequest data, RequestOptions? options = null)
     {
         FavoriteMediaJson json = await SendRequestAsync<FavoriteMediaJson, TRequest>(HttpMethod.Patch, $"/users/@me/memes/{mediaId}", data, true, options: options);
@@ -1391,6 +1417,8 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// <summary>
     /// Delete your favorite media.
     /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
+    [UserTokenOnly]
     public async Task DeleteCurrentUserFavoriteMediaAsync(ulong mediaId, RequestOptions? options = null)
         => await SendRequestRawAsync(HttpMethod.Delete, $"/users/@me/memes/{mediaId}", true, options: options);
 
@@ -1415,8 +1443,10 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// </summary>
     /// <remarks>
     /// User account only.
+    /// <para>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</para>
     /// </remarks>
     /// <returns><see cref="PartialInvite"/></returns>
+    [UserTokenOnly]
     public async Task<PartialInvite> JoinGuildAsync(string inviteCode, RequestOptions? options = null)
     {
         PartialInviteJson json = await SendRequestAsync<PartialInviteJson>(HttpMethod.Post, $"/invites/{inviteCode}", true, options: options);
@@ -1440,7 +1470,9 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// </summary>
     /// <remarks>
     /// User account only.
+    /// <para>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</para>
     /// </remarks>
+    [UserTokenOnly]
     public async Task PostReadStatesAckBulkAsync<TRequest>(TRequest data, RequestOptions? options = null)
         => await SendRequestAsync<TRequest>(HttpMethod.Post, "/read-states/ack-bulk", data, true, options: options);
 
@@ -2217,17 +2249,21 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// <summary>
     /// Search klipy gifs.
     /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
     /// <returns>List of <see cref="Gif"/></returns>
+    [UserTokenOnly]
     public async Task<IEnumerable<Gif>> SearchKlipyAsync(string query, RequestOptions? options = null)
     {
-        IEnumerable<GifJson> json = await SendRequestAsync<IEnumerable<GifJson>>(HttpMethod.Get, $"/klipy/search?q={query}", true, options: options);
+        IEnumerable<GifJson> json = await SendRequestAsync<IEnumerable<GifJson>>(HttpMethod.Get, $"/klipy/search?q={Uri.EscapeDataString(query)}", true, options: options);
         return json.Select(x => Gif.Create(_client, x));
     }
 
     /// <summary>
     /// Get featured klipy gifs.
     /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
     /// <returns><see cref="GifFeaturedJson"/></returns>
+    [UserTokenOnly]
     public async Task<GifFeaturedJson> GetKlipyFeaturedAsync(RequestOptions? options = null)
     {
         return await SendRequestAsync<GifFeaturedJson>(HttpMethod.Get, "/klipy/featured", true, options: options);
@@ -2236,7 +2272,9 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// <summary>
     /// Get trending klipy gifs.
     /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
     /// <returns>List of <see cref="Gif"/></returns>
+    [UserTokenOnly]
     public async Task<IEnumerable<Gif>> GetKlipyTrendingGifsAsync(RequestOptions? options = null)
     {
         IEnumerable<GifJson> json = await SendRequestAsync<IEnumerable<GifJson>>(HttpMethod.Get, "/klipy/trending-gifs", true, options: options);
@@ -2307,8 +2345,10 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// <summary>
     /// Update the current user.
     /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
     /// <returns><see cref="CurrentUser"/></returns>
     [Obsolete("Every property of UserJson is sent, so this also resets profile fields that were not meant to change. Use the UpdateCurrentUserRequest overload.")]
+    [UserTokenOnly]
     public async Task<CurrentUser> UpdateCurrentUserAsync(UserJson user, RequestOptions? options = null)
     {
         CurrentUserJson json = await SendRequestAsync<CurrentUserJson, UserJson>(HttpMethod.Patch, "/users/@me", user, true, options: options);
@@ -2318,7 +2358,9 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// <summary>
     /// Update the current user. Only the properties set on <paramref name="request"/> are changed.
     /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
     /// <returns><see cref="CurrentUser"/></returns>
+    [UserTokenOnly]
     public async Task<CurrentUser> UpdateCurrentUserAsync(UpdateCurrentUserRequest request, RequestOptions? options = null)
     {
         CurrentUserJson json = await SendRequestAsync<CurrentUserJson, UpdateCurrentUserRequest>(HttpMethod.Patch, "/users/@me", request, true, options: options);
@@ -2367,8 +2409,10 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// </summary>
     /// <remarks>
     /// User account only.
+    /// <para>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</para>
     /// </remarks>
     /// <returns><see cref="UserSettings"/></returns>
+    [UserTokenOnly]
     public async Task<UserSettings> GetCurrentUserSettingsAsync(RequestOptions? options = null)
     {
         UserSettingsJson json = await SendRequestAsync<UserSettingsJson>(HttpMethod.Get, "/users/@me/settings", true, options: options);
@@ -2380,8 +2424,10 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// </summary>
     /// <remarks>
     /// User account only.
+    /// <para>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</para>
     /// </remarks>
     /// <returns><see cref="UserSettings"/></returns>
+    [UserTokenOnly]
     public async Task<UserSettings> UpdateCurrentUserSettingsAsync<TRequest>(TRequest settings, RequestOptions? options = null)
     {
         UserSettingsJson json = await SendRequestAsync<UserSettingsJson, TRequest>(HttpMethod.Patch, "/users/@me/settings", settings, true, options: options);
@@ -2391,7 +2437,9 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// <summary>
     /// Set current user status.
     /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
     /// <returns><see cref="UserSettings"/></returns>
+    [UserTokenOnly]
     public async Task<UserSettings> SetCustomStatusAsync(UserCustomStatusJson status, RequestOptions? options = null)
     {
         UserSettingsJson json = await SendRequestAsync<UserSettingsJson, UpdateCustomStatus>(HttpMethod.Patch, "/users/@me/settings", new UpdateCustomStatus(status), true, options: options);
@@ -2401,18 +2449,24 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// <summary>
     /// Get all current user notes.
     /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
+    [UserTokenOnly]
     public async Task<TResponse> GetCurrentUserNotesAsync<TResponse>(RequestOptions? options = null)
         => await SendRequestAsync<TResponse>(HttpMethod.Get, "/users/@me/notes", true, options: options);
 
     /// <summary>
     /// Get current user note for target user.
     /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
+    [UserTokenOnly]
     public async Task<TResponse> GetCurrentUserNoteAsync<TResponse>(ulong targetId, RequestOptions? options = null)
         => await SendRequestAsync<TResponse>(HttpMethod.Get, $"/users/@me/notes/{targetId}", true, options: options);
 
     /// <summary>
     /// Add/update current user note for target user.
     /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
+    [UserTokenOnly]
     public async Task<TResponse> PutCurrentUserNoteAsync<TRequest, TResponse>(ulong targetId, TRequest data, RequestOptions? options = null)
         => await SendRequestAsync<TResponse, TRequest>(HttpMethod.Put, $"/users/@me/notes/{targetId}", data, true, options: options);
 
@@ -2421,7 +2475,9 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// </summary>
     /// <remarks>
     /// User account only.
+    /// <para>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</para>
     /// </remarks>
+    [UserTokenOnly]
     public async Task<TResponse> GetCurrentUserMentionsAsync<TResponse>(RequestOptions? options = null)
         => await SendRequestAsync<TResponse>(HttpMethod.Get, "/users/@me/mentions", true, options: options);
 
@@ -2430,7 +2486,9 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// </summary>
     /// <remarks>
     /// User account only.
+    /// <para>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</para>
     /// </remarks>
+    [UserTokenOnly]
     public async Task DeleteCurrentUserMentionAsync(ulong messageId, RequestOptions? options = null)
         => await SendRequestRawAsync(HttpMethod.Delete, $"/users/@me/mentions/{messageId}", true, options: options);
 
@@ -2439,7 +2497,9 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// </summary>
     /// <remarks>
     /// User account only.
+    /// <para>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</para>
     /// </remarks>
+    [UserTokenOnly]
     public async Task<TResponse> PostCurrentUserMfaTotpEnableAsync<TRequest, TResponse>(TRequest data, RequestOptions? options = null)
         => await SendRequestAsync<TResponse, TRequest>(HttpMethod.Post, "/users/@me/mfa/totp/enable", data, true, options: options);
 
@@ -2448,7 +2508,9 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// </summary>
     /// <remarks>
     /// User account only.
+    /// <para>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</para>
     /// </remarks>
+    [UserTokenOnly]
     public async Task PostCurrentUserMfaTotpDisableAsync<TRequest>(TRequest data, RequestOptions? options = null)
         => await SendRequestAsync<TRequest>(HttpMethod.Post, "/users/@me/mfa/totp/disable", data, true, options: options);
 
@@ -2457,7 +2519,9 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// </summary>
     /// <remarks>
     /// User account only.
+    /// <para>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</para>
     /// </remarks>
+    [UserTokenOnly]
     public async Task<TResponse> PostCurrentUserMfaBackupCodesAsync<TRequest, TResponse>(TRequest data, RequestOptions? options = null)
         => await SendRequestAsync<TResponse, TRequest>(HttpMethod.Post, "/users/@me/mfa/backup-codes", data, true, options: options);
 
@@ -2526,7 +2590,9 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// </summary>
     /// <remarks>
     /// User account only.
+    /// <para>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</para>
     /// </remarks>
+    [UserTokenOnly]
     public async Task<TResponse> GetCurrentUserMfaWebauthnCredentialsAsync<TResponse>(RequestOptions? options = null)
         => await SendRequestAsync<TResponse>(HttpMethod.Get, "/users/@me/mfa/webauthn/credentials", true, options: options);
 
@@ -2535,7 +2601,9 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// </summary>
     /// <remarks>
     /// User account only.
+    /// <para>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</para>
     /// </remarks>
+    [UserTokenOnly]
     public async Task<TResponse> PostCurrentUserMfaWebauthnCredentialsRegistrationOptionsAsync<TResponse>(RequestOptions? options = null)
         => await SendRequestAsync<TResponse>(HttpMethod.Post, "/users/@me/mfa/webauthn/credentials/registration-options", true, options: options);
 
@@ -2544,7 +2612,9 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// </summary>
     /// <remarks>
     /// User account only.
+    /// <para>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</para>
     /// </remarks>
+    [UserTokenOnly]
     public async Task<TResponse> PostCurrentUserMfaWebauthnCredentialsAsync<TRequest, TResponse>(TRequest data, RequestOptions? options = null)
         => await SendRequestAsync<TResponse, TRequest>(HttpMethod.Post, "/users/@me/mfa/webauthn/credentials", data, true, options: options);
 
@@ -2553,20 +2623,42 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// </summary>
     /// <remarks>
     /// User account only.
+    /// <para>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</para>
     /// </remarks>
+    [UserTokenOnly]
     public async Task<TResponse> PatchCurrentUserMfaWebauthnCredentialAsync<TRequest, TResponse>(ulong credentialId, TRequest data, RequestOptions? options = null)
         => await SendRequestAsync<TResponse, TRequest>(HttpMethod.Patch, $"/users/@me/mfa/webauthn/credentials/{credentialId}", data, true, options: options);
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+    /// <summary>
+    /// Delete webauthn MFA for current user.
+    /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
+    [UserTokenOnly]
     public async Task DeleteCurrentUserMfaWebauthnCredentialAsync(ulong credentialId, RequestOptions? options = null)
         => await SendRequestRawAsync(HttpMethod.Delete, $"/users/@me/mfa/webauthn/credentials/{credentialId}", true, options: options);
 
+    /// <summary>
+    /// Get saved messages for current user.
+    /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
+    [UserTokenOnly]
     public async Task<TResponse> GetCurrentUserSavedMessagesAsync<TResponse>(RequestOptions? options = null)
         => await SendRequestAsync<TResponse>(HttpMethod.Get, "/users/@me/saved-messages", true, options: options);
 
+    /// <summary>
+    /// Save a message for current user.
+    /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
+    [UserTokenOnly]
     public async Task<TResponse> PostCurrentUserSavedMessageAsync<TRequest, TResponse>(TRequest data)
         => await SendRequestAsync<TResponse, TRequest>(HttpMethod.Post, "/users/@me/saved-messages", data, true);
 
+    /// <summary>
+    /// Delete a saved message for current user.
+    /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
+    [UserTokenOnly]
     public async Task DeleteCurrentUserSavedMessageAsync(ulong messageId, RequestOptions? options = null)
         => await SendRequestRawAsync(HttpMethod.Delete, $"/users/@me/saved-messages/{messageId}", true, options: options);
 
@@ -2582,57 +2674,142 @@ public class FluxerApiClient : FluxerBaseApiClient
     public async Task DeleteCurrentUserChannelPinAsync(ulong channelId, RequestOptions? options = null)
         => await SendRequestRawAsync(HttpMethod.Delete, $"/users/@me/channels/{channelId}/pin", true, options: options);
 
+    /// <summary>
+    /// Get relationships for current user.
+    /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
+    [UserTokenOnly]
     public async Task<TResponse> GetCurrentUserRelationshipsAsync<TResponse>(RequestOptions? options = null)
         => await SendRequestAsync<TResponse>(HttpMethod.Get, "/users/@me/relationships", true, options: options);
 
+    /// <summary>
+    /// Create a relationship for current user.
+    /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
+    [UserTokenOnly]
     public async Task<TResponse> PostCurrentUserRelationshipAsync<TRequest, TResponse>(TRequest data, RequestOptions? options = null)
         => await SendRequestAsync<TResponse, TRequest>(HttpMethod.Post, "/users/@me/relationships", data, true, options: options);
 
+    /// <summary>
+    /// Create a relationship with a user for current user.
+    /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
+    [UserTokenOnly]
     public async Task<TResponse> PostCurrentUserRelationshipWithUserAsync<TRequest, TResponse>(ulong userId, TRequest data, RequestOptions? options = null)
         => await SendRequestAsync<TResponse, TRequest>(HttpMethod.Post, $"/users/@me/relationships/{userId}", data, true, options: options);
 
+    /// <summary>
+    /// Update a relationship for current user.
+    /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
+    [UserTokenOnly]
     public async Task PutCurrentUserRelationshipAsync<TRequest>(ulong userId, TRequest data, RequestOptions? options = null)
         => await SendRequestAsync<TRequest>(HttpMethod.Put, $"/users/@me/relationships/{userId}", data, true, options: options);
 
+    /// <summary>
+    /// Delete a relationship for current user.
+    /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
+    [UserTokenOnly]
     public async Task DeleteCurrentUserRelationshipAsync(ulong userId, RequestOptions? options = null)
         => await SendRequestRawAsync(HttpMethod.Delete, $"/users/@me/relationships/{userId}", true, options: options);
 
+    /// <summary>
+    /// Update current user settings for the current guild.
+    /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
+    [UserTokenOnly]
     public async Task<TResponse> PatchCurrentUserGuildSettingsSelfAsync<TRequest, TResponse>(TRequest data, RequestOptions? options = null)
         => await SendRequestAsync<TResponse, TRequest>(HttpMethod.Patch, "/users/@me/guilds/@me/settings", data, true, options: options);
 
+    /// <summary>
+    /// Update current user settings for a guild.
+    /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
+    [UserTokenOnly]
     public async Task<TResponse> PatchCurrentUserGuildSettingsAsync<TRequest, TResponse>(ulong guildId, TRequest data, RequestOptions? options = null)
         => await SendRequestAsync<TResponse, TRequest>(HttpMethod.Patch, $"/users/@me/guilds/{guildId}/settings", data, true, options: options);
 
+    /// <summary>
+    /// Disable the current user account.
+    /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
+    [UserTokenOnly]
     public async Task PostCurrentUserDisableAsync<TRequest>(TRequest data, RequestOptions? options = null)
         => await SendRequestAsync<TRequest>(HttpMethod.Post, "/users/@me/disable", data, true, options: options);
 
+    /// <summary>
+    /// Delete the current user account.
+    /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
+    [UserTokenOnly]
     public async Task PostCurrentUserDeleteAsync<TRequest>(TRequest data, RequestOptions? options = null)
         => await SendRequestAsync<TRequest>(HttpMethod.Post, "/users/@me/delete", data, true, options: options);
 
+    /// <summary>
+    /// Subscribe the current user to push notifications.
+    /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
+    [UserTokenOnly]
     public async Task<TResponse> PostCurrentUserPushSubscribeAsync<TRequest, TResponse>(TRequest data, RequestOptions? options = null)
         => await SendRequestAsync<TResponse, TRequest>(HttpMethod.Post, "/users/@me/push/subscribe", data, true, options: options);
 
+    /// <summary>
+    /// Get push subscriptions for current user.
+    /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
+    [UserTokenOnly]
     public async Task<TResponse> GetCurrentUserPushSubscriptionsAsync<TResponse>(RequestOptions? options = null)
         => await SendRequestAsync<TResponse>(HttpMethod.Get, "/users/@me/push/subscriptions", true, options: options);
 
+    /// <summary>
+    /// Delete a push subscription for current user.
+    /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
+    [UserTokenOnly]
     public async Task DeleteCurrentUserPushSubscriptionAsync(ulong subscriptionId, RequestOptions? options = null)
         => await SendRequestRawAsync(HttpMethod.Delete, $"/users/@me/push/subscriptions/{subscriptionId}", true, options: options);
 
+    /// <summary>
+    /// Request a data harvest for current user.
+    /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
+    [UserTokenOnly]
     public async Task<TResponse> PostCurrentUserHarvestAsync<TRequest, TResponse>(TRequest data, RequestOptions? options = null)
         => await SendRequestAsync<TResponse, TRequest>(HttpMethod.Post, "/users/@me/harvest", data, true, options: options);
 
+    /// <summary>
+    /// Get the latest data harvest for current user.
+    /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
+    [UserTokenOnly]
     public async Task<TResponse> GetCurrentUserHarvestLatestAsync<TResponse>(RequestOptions? options = null)
         => await SendRequestAsync<TResponse>(HttpMethod.Get, "/users/@me/harvest/latest", true, options: options);
 
+    /// <summary>
+    /// Get a data harvest for current user.
+    /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
+    [UserTokenOnly]
     public async Task<TResponse> GetCurrentUserHarvestAsync<TResponse>(string harvestId, RequestOptions? options = null)
         => await SendRequestAsync<TResponse>(HttpMethod.Get, $"/users/@me/harvest/{harvestId}", true, options: options);
 
+    /// <summary>
+    /// Get the download for a data harvest for current user.
+    /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
+    [UserTokenOnly]
     public async Task<TResponse> GetCurrentUserHarvestDownloadAsync<TResponse>(string harvestId, RequestOptions? options = null)
         => await SendRequestAsync<TResponse>(HttpMethod.Get, $"/users/@me/harvest/{harvestId}/download", true, options: options);
 
     public async Task PostCurrentUserPreloadMessagesAsync<TRequest>(TRequest data, RequestOptions? options = null)
         => await SendRequestAsync<TRequest>(HttpMethod.Post, "/users/@me/preload-messages", data, true, options: options);
 
+    /// <summary>
+    /// Delete messages for current user.
+    /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
+    [UserTokenOnly]
     public async Task PostCurrentUserMessagesDeleteAsync<TRequest>(TRequest data, RequestOptions? options = null)
         => await SendRequestAsync<TRequest>(HttpMethod.Post, "/users/@me/messages/delete", data, true, options: options);
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
@@ -2860,7 +3037,9 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// <summary>
     /// Get oauth token from access token.
     /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
     /// <returns><see cref="FluxerOAuthToken"/></returns>
+    [UserTokenOnly]
     public async Task<FluxerOAuthToken?> GetOAuthTokenAsync(string accessToken, RequestOptions? options = null)
     {
         FluxerOAuthTokenJson? json = await InternalSendRequestAsync<FluxerOAuthTokenJson>(HttpMethod.Get, "/oauth2/@me", false, false, accessToken, options: options);
@@ -2884,7 +3063,9 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// <summary>
     /// Get user connections from access token.
     /// </summary>
+    /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
     /// <returns>List of <see cref="UserConnection"/></returns>
+    [UserTokenOnly]
     public async Task<IEnumerable<UserConnection>> GetOAuthConnectionsAsync(string accessToken, RequestOptions? options = null)
     {
         IEnumerable<UserConnectionJson> json = await InternalSendRequestAsync<IEnumerable<UserConnectionJson>>(HttpMethod.Get, "/users/@me/connections", true, false, accessToken, options: options);

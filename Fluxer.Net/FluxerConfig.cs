@@ -68,6 +68,13 @@ public class FluxerConfig
     public RetryMode DefaultRetryMode { get; set; } = RetryMode.AlwaysRetry;
 
     /// <summary>
+    /// Whether a bot token calling a route Fluxer only serves to users throws <see cref="Rest.UserTokenRequiredException"/>
+    /// before anything is sent. Defaults to true. Turn it off to send such calls anyway, for example against an
+    /// instance with different rules.
+    /// </summary>
+    public bool EnforceUserOnlyRoutes { get; set; } = true;
+
+    /// <summary>
     /// Milliseconds a REST request may wait for rate limits before throwing. Null waits as long as needed.
     /// </summary>
     public int? DefaultRequestTimeout { get; set; }

@@ -6,6 +6,8 @@
   items:
     - name: Introduction
       href: api/intro.md
+    - name: User-only routes
+      href: api/user-only.md
 - name: Commands
   items:
     - name: Introduction
