@@ -1615,6 +1615,11 @@
         <member name="P:Fluxer.Net.CurrentApplication.Owner">
             <inheritdoc />
         </member>
+        <member name="P:Fluxer.Net.CurrentApplication.VerifyKey">
+            <summary>
+            The public key used to verify requests signed by Fluxer for this application.
+            </summary>
+        </member>
         <member name="M:Fluxer.Net.CurrentApplication.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.CurrentApplicationJson)">
             <summary>
             Create a Application object from json.
@@ -1626,6 +1631,11 @@
         </member>
         <member name="P:Fluxer.Net.CurrentApplicationJson.Owner">
             <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.CurrentApplicationJson.VerifyKey">
+            <summary>
+            The public key used to verify requests signed by Fluxer for this application.
+            </summary>
         </member>
         <member name="T:Fluxer.Net.IApplication">
             <summary>
@@ -2220,6 +2230,16 @@
         <member name="P:Fluxer.Net.Channel.RtcRegion">
             <inheritdoc />
         </member>
+        <member name="P:Fluxer.Net.Channel.RtcP2P">
+            <summary>
+            Whether voice calls connect participants directly, without a voice server.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Channel.DefaultTagSetting">
+            <summary>
+            How a forum's tag search combines several picked tags.
+            </summary>
+        </member>
         <member name="P:Fluxer.Net.Channel.LastMessageId">
             <inheritdoc />
         </member>
@@ -2431,6 +2451,16 @@
         </member>
         <member name="P:Fluxer.Net.ChannelJson.DefaultRateLimitPerUser">
             <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.ChannelJson.DefaultTagSetting">
+            <summary>
+            How a forum's tag search combines several picked tags.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.ChannelJson.RtcP2P">
+            <summary>
+            Whether voice calls connect participants directly, without a voice server.
+            </summary>
         </member>
         <member name="P:Fluxer.Net.ChannelJson.MemberCount">
             <summary>
@@ -3152,6 +3182,21 @@
         <member name="P:Fluxer.Net.Embed.IsNsfw">
             <inheritdoc />
         </member>
+        <member name="P:Fluxer.Net.Embed.Html">
+            <summary>
+            Cleaned-up oEmbed HTML from the linked site, for embeds Fluxer renders as a player.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Embed.HtmlWidth">
+            <summary>
+            The preferred width of <see cref="P:Fluxer.Net.Embed.Html"/>.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Embed.HtmlHeight">
+            <summary>
+            The preferred height of <see cref="P:Fluxer.Net.Embed.Html"/>.
+            </summary>
+        </member>
         <member name="M:Fluxer.Net.Embed.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.EmbedJson)">
             <summary>
             Create a Embed object from json.
@@ -3497,6 +3542,12 @@
             <returns><see cref="T:Fluxer.Net.EmbedBuilder"/></returns>
             <exception cref="T:System.ArgumentException">Field count exceeds <see cref="P:Fluxer.Net.EmbedBuilder.MaxFieldCount"/>.</exception>
         </member>
+        <member name="M:Fluxer.Net.EmbedBuilder.FromEmbed(Fluxer.Net.IEmbed)">
+            <summary>
+            Creates a builder filled from an existing embed, for example one on a received message, to change and send again.
+            </summary>
+            <returns><see cref="T:Fluxer.Net.EmbedBuilder"/></returns>
+        </member>
         <member name="M:Fluxer.Net.EmbedBuilder.AddField(System.Action{Fluxer.Net.EmbedFieldBuilder})">
             <summary>
             Adds a field to the embed using an action.
@@ -3650,6 +3701,21 @@
         </member>
         <member name="P:Fluxer.Net.EmbedJson.Video">
             <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.EmbedJson.Html">
+            <summary>
+            Cleaned-up oEmbed HTML from the linked site, for embeds Fluxer renders as a player.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.EmbedJson.HtmlWidth">
+            <summary>
+            The preferred width of <see cref="P:Fluxer.Net.EmbedJson.Html"/>.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.EmbedJson.HtmlHeight">
+            <summary>
+            The preferred height of <see cref="P:Fluxer.Net.EmbedJson.Html"/>.
+            </summary>
         </member>
         <member name="P:Fluxer.Net.EmbedJson.Audio">
             <inheritdoc />
@@ -4307,6 +4373,21 @@
         <member name="P:Fluxer.Net.ForumTagJson.IsModerated">
             <inheritdoc />
         </member>
+        <member name="T:Fluxer.Net.ForumTagMatchSetting">
+            <summary>
+            How a forum filters posts when several tags are picked in its tag search.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ForumTagMatchSetting.MatchSome">
+            <summary>
+            Show posts with any of the picked tags.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.ForumTagMatchSetting.MatchAll">
+            <summary>
+            Show only posts with all of the picked tags.
+            </summary>
+        </member>
         <member name="T:Fluxer.Net.IForumChannel">
             <summary>
             A guild channel made of posts.
@@ -4775,6 +4856,16 @@
         <member name="P:Fluxer.Net.GuildMember.RoleIds">
             <inheritdoc />
         </member>
+        <member name="P:Fluxer.Net.GuildMember.ProfileFlags">
+            <summary>
+            Flags on the member's guild profile.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.GuildMember.MentionFlags">
+            <summary>
+            Whether replies to the member mention them by default in this guild.
+            </summary>
+        </member>
         <member name="M:Fluxer.Net.GuildMember.GetCurrentName">
             <inheritdoc />
         </member>
@@ -4849,6 +4940,16 @@
         <member name="P:Fluxer.Net.GuildMemberJson.RoleIds">
             <inheritdoc />
         </member>
+        <member name="P:Fluxer.Net.GuildMemberJson.ProfileFlags">
+            <summary>
+            Flags on the member's guild profile.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.GuildMemberJson.MentionFlags">
+            <summary>
+            Whether replies to the member mention them by default in this guild.
+            </summary>
+        </member>
         <member name="M:Fluxer.Net.GuildMemberJson.GetCurrentName">
             <inheritdoc />
         </member>
@@ -4866,6 +4967,26 @@
         </member>
         <member name="M:Fluxer.Net.GuildMemberJson.GetBannerUrl(System.Int32)">
             <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.GuildMemberProfileFlags">
+            <summary>
+            Flags on a member's guild profile.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildMemberProfileFlags.None">
+            <summary>
+            No flags.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildMemberProfileFlags.AvatarUnset">
+            <summary>
+            The member's guild avatar is unset and their user avatar shows.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.GuildMemberProfileFlags.BannerUnset">
+            <summary>
+            The member's guild banner is unset and their user banner shows.
+            </summary>
         </member>
         <member name="P:Fluxer.Net.GuildMemberSearchJson.IsIndexing">
             <summary>
@@ -5030,6 +5151,26 @@
         <member name="P:Fluxer.Net.IRole.IsMentionable">
             <summary>
             Whether this role can be mentioned by anyone.
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.MentionReplyPreference">
+            <summary>
+            Whether replies to a user should mention them by default.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.MentionReplyPreference.NoPreference">
+            <summary>
+            Respect the sender's choice on each reply. On a guild member, the user-level preference applies.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.MentionReplyPreference.PreferMention">
+            <summary>
+            Replies mention the user by default, and the sender is warned when turning the mention off.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.MentionReplyPreference.PreferNoMention">
+            <summary>
+            Replies leave out the mention by default, and the sender is warned when turning it on.
             </summary>
         </member>
         <member name="T:Fluxer.Net.Role">
@@ -6882,6 +7023,81 @@
         <member name="P:Fluxer.Net.AttachmentJson.IsExpired">
             <inheritdoc />
         </member>
+        <member name="T:Fluxer.Net.AttachmentUploadPlan">
+            <summary>
+            Where and how to upload one planned file.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.AttachmentUploadPlan.Id">
+            <summary>
+            The identifier given when planning.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.AttachmentUploadPlan.Filename">
+            <summary>
+            The original name of the file.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.AttachmentUploadPlan.FileSize">
+            <summary>
+            The expected size of the file in bytes.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.AttachmentUploadPlan.ContentType">
+            <summary>
+            The MIME type the file must be uploaded with.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.AttachmentUploadPlan.UploadFilename">
+            <summary>
+            The upload key to reference when sending the message.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.AttachmentUploadPlan.UploadMode">
+            <summary>
+            <c>singlepart</c> for one PUT to <see cref="P:Fluxer.Net.AttachmentUploadPlan.UploadUrl"/>, or <c>multipart</c> for one PUT per entry in <see cref="P:Fluxer.Net.AttachmentUploadPlan.Parts"/>.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.AttachmentUploadPlan.IsMultipart">
+            <summary>
+            Whether the file is uploaded in parts.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.AttachmentUploadPlan.UploadUrl">
+            <summary>
+            The URL to PUT the whole file to, for a single-part upload.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.AttachmentUploadPlan.UploadId">
+            <summary>
+            The multipart upload identifier, needed to finish the upload.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.AttachmentUploadPlan.PartSize">
+            <summary>
+            The size in bytes of every part except the last.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.AttachmentUploadPlan.Parts">
+            <summary>
+            The URL for each part, in order.
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.AttachmentUploadPart">
+            <summary>
+            One part of a multipart upload.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.AttachmentUploadPart.PartNumber">
+            <summary>
+            The part number, starting at 1.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.AttachmentUploadPart.UploadUrl">
+            <summary>
+            The URL to PUT this part to.
+            </summary>
+        </member>
         <member name="T:Fluxer.Net.CrosspostSourceGuildJson">
             <summary>
             The public details of the guild an announcement was published from.
@@ -7245,6 +7461,17 @@
         <member name="P:Fluxer.Net.Message.MessageSnapshots">
             <inheritdoc />
         </member>
+        <member name="P:Fluxer.Net.Message.ReferencedMessage">
+            <summary>
+            The message this one replies to, sent along by Fluxer. Null when this isn't a reply or the replied-to message was deleted;
+            check <see cref="P:Fluxer.Net.Message.MessageReference"/> to tell those apart.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Message.MentionChannels">
+            <summary>
+            Channels mentioned in the message that everyone in the guild can see.
+            </summary>
+        </member>
         <member name="P:Fluxer.Net.Message.Nonce">
             <inheritdoc />
         </member>
@@ -7283,6 +7510,26 @@
         </member>
         <member name="P:Fluxer.Net.MessageCallJson.EndedAt">
             <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.MessageChannelMention">
+            <summary>
+            A channel mentioned in a message that everyone in the guild can see.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.MessageChannelMention.Id">
+            <summary>
+            The ID of the mentioned channel.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.MessageChannelMention.Name">
+            <summary>
+            The name of the mentioned channel.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.MessageChannelMention.Type">
+            <summary>
+            The type of the mentioned channel.
+            </summary>
         </member>
         <member name="T:Fluxer.Net.MessageFlag">
             <summary>
@@ -7399,6 +7646,16 @@
         </member>
         <member name="P:Fluxer.Net.MessageJson.MessageSnapshots">
             <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.MessageJson.ReferencedMessage">
+            <summary>
+            The message this one replies to, or null when it isn't a reply or the replied-to message was deleted.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.MessageJson.MentionChannels">
+            <summary>
+            Channels mentioned in the message that everyone in the guild can see.
+            </summary>
         </member>
         <member name="P:Fluxer.Net.MessageJson.Nonce">
             <inheritdoc />
@@ -7764,6 +8021,11 @@
         <member name="P:Fluxer.Net.GlobalSearch.Page">
             <inheritdoc />
         </member>
+        <member name="P:Fluxer.Net.GlobalSearch.Cursor">
+            <summary>
+            Pass this as <c>Cursor</c> on the next search request to get the next page, or null on the last page.
+            </summary>
+        </member>
         <member name="M:Fluxer.Net.GlobalSearch.Create(Fluxer.Net.FluxerBaseClient,Fluxer.Net.GlobalSearchJson)">
             <summary>
             Create a Instance object from json.
@@ -7787,6 +8049,11 @@
         </member>
         <member name="P:Fluxer.Net.GlobalSearchJson.Page">
             <inheritdoc />
+        </member>
+        <member name="P:Fluxer.Net.GlobalSearchJson.Cursor">
+            <summary>
+            Pass this as <c>Cursor</c> on the next search request to get the next page, or null on the last page.
+            </summary>
         </member>
         <member name="T:Fluxer.Net.IMentionable">
             <summary>
@@ -8055,6 +8322,61 @@
         </member>
         <member name="P:Fluxer.Net.InstanceAppRegistration.CollectDateOfBirth">
             <inheritdoc />
+        </member>
+        <member name="T:Fluxer.Net.InstanceBadges">
+            <summary>
+            A page of the instance's community badge catalog.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.InstanceBadges.Version">
+            <summary>
+            The version of the catalog. It changes whenever a badge is created, edited, deleted or moved.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.InstanceBadges.Badges">
+            <summary>
+            The badges on this page.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.InstanceBadges.Next">
+            <summary>
+            Pass this as <c>after</c> to get the next page, or null on the last page and for a lookup by IDs.
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.InstanceBadge">
+            <summary>
+            A community badge, as listed in <see cref="P:Fluxer.Net.PartialGuild.BadgeIds"/>.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.InstanceBadge.Id">
+            <summary>
+            The ID of the badge.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.InstanceBadge.Name">
+            <summary>
+            The name of the badge.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.InstanceBadge.Description">
+            <summary>
+            The text shown under the name when hovering over the badge.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.InstanceBadge.AssetUrl">
+            <summary>
+            The URL of the badge image.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.InstanceBadge.Href">
+            <summary>
+            The link the badge opens, if any.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.InstanceBadge.Position">
+            <summary>
+            The position of the badge in the catalog.
+            </summary>
         </member>
         <member name="T:Fluxer.Net.InstanceJson">
             <inheritdoc />
@@ -10927,6 +11249,15 @@
             </summary>
             <returns><see cref="T:Fluxer.Net.Instance"/></returns>
         </member>
+        <member name="M:Fluxer.Net.Rest.FluxerApiClient.GetInstanceBadgesAsync(System.Collections.Generic.IEnumerable{System.UInt64},System.String,Fluxer.Net.Rest.RequestOptions)">
+            <summary>
+            Get the instance's community badge catalog, either one page at a time or by badge ID.
+            </summary>
+            <param name="ids">Up to 100 badge IDs to look up. Cannot be combined with <paramref name="after"/>.</param>
+            <param name="after">The <see cref="P:Fluxer.Net.InstanceBadges.Next"/> cursor of the previous page.</param>
+            <param name="options">Request options.</param>
+            <returns><see cref="T:Fluxer.Net.InstanceBadges"/></returns>
+        </member>
         <member name="M:Fluxer.Net.Rest.FluxerApiClient.GetExperimentsAsync(Fluxer.Net.Rest.RequestOptions)">
             <summary>
             Get the current user's experiment assignments, such as whether channel threads are enabled.
@@ -11617,6 +11948,36 @@
             </summary>
             <returns>The upload filename of each finished upload</returns>
         </member>
+        <member name="M:Fluxer.Net.Rest.FluxerApiClient.PlanAttachmentUploadsAsync(System.UInt64,System.Collections.Generic.IEnumerable{Fluxer.Net.Rest.PlannedAttachmentUpload},Fluxer.Net.Rest.RequestOptions)">
+            <summary>
+            Plan direct uploads of up to 10 files to a channel. Each plan says where to PUT the file, whole or in parts.
+            <see cref="M:Fluxer.Net.Rest.FluxerApiClient.UploadAttachmentAsync(System.UInt64,System.IO.Stream,System.String,System.String,Fluxer.Net.Rest.RequestOptions)"/> does the whole upload for one file.
+            </summary>
+            <returns>One plan for each file</returns>
+        </member>
+        <member name="M:Fluxer.Net.Rest.FluxerApiClient.UploadAttachmentAsync(System.UInt64,System.IO.Stream,System.String,System.String,Fluxer.Net.Rest.RequestOptions)">
+            <summary>
+            Upload a file straight to Fluxer's storage, in parts when it is large, ready to send with
+            <see cref="M:Fluxer.Net.Rest.FluxerApiClient.SendMessageAsync(System.UInt64,System.Collections.Generic.IEnumerable{Fluxer.Net.Rest.UploadedAttachment},System.String,System.Collections.Generic.List{Fluxer.Net.Rest.EmbedRequest},Fluxer.Net.Rest.MessageReferenceRequest,Fluxer.Net.Rest.AllowedMentionsRequest,Fluxer.Net.Rest.RequestOptions)"/>.
+            Use this for files too big to send with the message itself.
+            </summary>
+            <param name="channelId">The channel the file will be sent in.</param>
+            <param name="stream">The file. It is read from its current position to the end.</param>
+            <param name="filename">The name of the file.</param>
+            <param name="contentType">The MIME type of the file.</param>
+            <param name="options">Request options for the Fluxer API calls.</param>
+            <returns>The uploaded file</returns>
+        </member>
+        <member name="M:Fluxer.Net.Rest.FluxerApiClient.SendMessageAsync(System.UInt64,System.Collections.Generic.IEnumerable{Fluxer.Net.Rest.UploadedAttachment},System.String,System.Collections.Generic.List{Fluxer.Net.Rest.EmbedRequest},Fluxer.Net.Rest.MessageReferenceRequest,Fluxer.Net.Rest.AllowedMentionsRequest,Fluxer.Net.Rest.RequestOptions)">
+            <summary>
+            Send a message with files uploaded by <see cref="M:Fluxer.Net.Rest.FluxerApiClient.UploadAttachmentAsync(System.UInt64,System.IO.Stream,System.String,System.String,Fluxer.Net.Rest.RequestOptions)"/>.
+            </summary>
+            <remarks>
+            Requires <see cref="P:Fluxer.Net.ChannelPermissions.ViewChannel"/>, <see cref="P:Fluxer.Net.ChannelPermissions.SendMessages"/> and
+            <see cref="P:Fluxer.Net.ChannelPermissions.AttachFiles"/> for guild channels.
+            </remarks>
+            <returns><see cref="T:Fluxer.Net.Message"/></returns>
+        </member>
         <member name="M:Fluxer.Net.Rest.FluxerApiClient.DeleteAttachmentAsync(System.String,Fluxer.Net.Rest.RequestOptions)">
             <summary>
             Delete an attachment.
@@ -11791,6 +12152,15 @@
         <member name="M:Fluxer.Net.Rest.FluxerApiClient.UpdateCurrentMemberAsync(System.UInt64,Fluxer.Net.GuildMemberJson,Fluxer.Net.Rest.RequestOptions)">
             <summary>
             Update current member in a guild.
+            </summary>
+            <remarks>
+            Requires <see cref="P:Fluxer.Net.GuildPermissions.ChangeNickname"/> to change your nickname.
+            </remarks>
+            <returns><see cref="T:Fluxer.Net.GuildMember"/></returns>
+        </member>
+        <member name="M:Fluxer.Net.Rest.FluxerApiClient.UpdateCurrentMemberAsync(System.UInt64,Fluxer.Net.Rest.UpdateCurrentMemberRequest,Fluxer.Net.Rest.RequestOptions)">
+            <summary>
+            Update the current user's member profile in a guild. Only the properties set on <paramref name="request"/> are changed.
             </summary>
             <remarks>
             Requires <see cref="P:Fluxer.Net.GuildPermissions.ChangeNickname"/> to change your nickname.
@@ -12682,6 +13052,96 @@
             Request body for updating a guild channel, sending only the properties that are set.
             </summary>
         </member>
+        <member name="P:Fluxer.Net.Rest.UpdateChannelRequest.RtcP2P">
+            <summary>
+            Whether voice calls connect participants directly, without a voice server.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.UpdateChannelRequest.VoiceConnectionLimit">
+            <summary>
+            The most voice connections one user can have in the channel at once, 1 to 100, or null for no limit.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.UpdateChannelRequest.Flags">
+            <summary>
+            The channel flags.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.UpdateChannelRequest.ContentWarningLevel">
+            <summary>
+            Whether to show a content warning before entering the channel, or inherit it from the category or guild.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.UpdateChannelRequest.ContentWarningText">
+            <summary>
+            The text shown in the channel's content warning, or null for the default text.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.UpdateChannelRequest.ForumTags">
+            <summary>
+            The full list of forum tags. Tags left out are removed.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.UpdateChannelRequest.DefaultReactionEmoji">
+            <summary>
+            The reaction shown on new forum posts, or null for none.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.UpdateChannelRequest.DefaultSortOrder">
+            <summary>
+            How forum posts are sorted by default.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.UpdateChannelRequest.DefaultLayout">
+            <summary>
+            How forum posts are laid out by default.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.UpdateChannelRequest.DefaultTagSetting">
+            <summary>
+            How the forum's tag search combines several picked tags.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.UpdateChannelRequest.DefaultAutoArchiveDuration">
+            <summary>
+            How long new threads stay active before they archive.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.UpdateChannelRequest.DefaultRateLimitPerUser">
+            <summary>
+            The slowmode, in seconds, given to new threads.
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.Rest.ForumTagUpdateRequest">
+            <summary>
+            A tag in a forum's tag list. Include <see cref="P:Fluxer.Net.Rest.ForumTagUpdateRequest.Id"/> to keep an existing tag and leave it out to create one.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.ForumTagUpdateRequest.Id">
+            <summary>
+            The ID of an existing tag to keep.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.ForumTagUpdateRequest.Name">
+            <summary>
+            The name of the tag, 1 to 50 characters.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.ForumTagUpdateRequest.IsModerated">
+            <summary>
+            Whether only moderators can add or remove the tag.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.ForumTagUpdateRequest.EmojiId">
+            <summary>
+            The ID of a custom guild emoji for the tag.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.ForumTagUpdateRequest.EmojiName">
+            <summary>
+            The unicode emoji for the tag.
+            </summary>
+        </member>
         <member name="P:Fluxer.Net.Rest.GlobalSearchMessagesRequest.ContextChannelId">
             <summary>
             Channel ID for context when searching across multiple channels
@@ -12833,9 +13293,119 @@
             "asc" or "desc".
             </summary>
         </member>
+        <member name="T:Fluxer.Net.Rest.UpdateCurrentMemberRequest">
+            <summary>
+            Request body for updating the current user's member profile in a guild, sending only the properties that are set.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.UpdateCurrentMemberRequest.Nickname">
+            <summary>
+            The nickname, 1 to 32 characters, or null to clear it.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.UpdateCurrentMemberRequest.AvatarBase64">
+            <summary>
+            Base64 image data for the guild avatar, or null to remove it.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.UpdateCurrentMemberRequest.BannerBase64">
+            <summary>
+            Base64 image data for the guild banner, or null to remove it.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.UpdateCurrentMemberRequest.Bio">
+            <summary>
+            The guild profile bio, 1 to 320 characters, or null to clear it.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.UpdateCurrentMemberRequest.Pronouns">
+            <summary>
+            The guild profile pronouns, 1 to 40 characters, or null to clear them.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.UpdateCurrentMemberRequest.AccentColor">
+            <summary>
+            The guild profile accent color as an RGB integer, or null to clear it.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.UpdateCurrentMemberRequest.ProfileFlags">
+            <summary>
+            Flags on the guild profile.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.UpdateCurrentMemberRequest.MentionFlags">
+            <summary>
+            Whether replies to this member mention them by default in this guild.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.UpdateCurrentMemberRequest.IsMute">
+            <summary>
+            Whether the member is muted in voice channels.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.UpdateCurrentMemberRequest.IsDeaf">
+            <summary>
+            Whether the member is deafened in voice channels.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.UpdateCurrentMemberRequest.ChannelId">
+            <summary>
+            The voice channel to move to, or null to disconnect.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.UpdateCurrentMemberRequest.ConnectionId">
+            <summary>
+            The voice connection to move when <see cref="P:Fluxer.Net.Rest.UpdateCurrentMemberRequest.ChannelId"/> is set.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Rest.UpdateCurrentMemberRequest.AvatarFromStream(System.IO.Stream)">
+            <summary>
+            Sets <see cref="P:Fluxer.Net.Rest.UpdateCurrentMemberRequest.AvatarBase64"/> from an image stream.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Rest.UpdateCurrentMemberRequest.BannerFromStream(System.IO.Stream)">
+            <summary>
+            Sets <see cref="P:Fluxer.Net.Rest.UpdateCurrentMemberRequest.BannerBase64"/> from an image stream.
+            </summary>
+        </member>
         <member name="T:Fluxer.Net.Rest.UpdateGuildMemberRequest">
             <summary>
             Request body for updating a guild member, sending only the properties that are set.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.UpdateGuildMemberRequest.AvatarBase64">
+            <summary>
+            Base64 image data for the member's guild avatar, or null to remove it.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.UpdateGuildMemberRequest.BannerBase64">
+            <summary>
+            Base64 image data for the member's guild banner, or null to remove it.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.UpdateGuildMemberRequest.Bio">
+            <summary>
+            The member's guild profile bio, 1 to 320 characters, or null to clear it.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.UpdateGuildMemberRequest.Pronouns">
+            <summary>
+            The member's guild profile pronouns, 1 to 40 characters, or null to clear them.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.UpdateGuildMemberRequest.AccentColor">
+            <summary>
+            The member's guild profile accent color as an RGB integer, or null to clear it.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.UpdateGuildMemberRequest.ProfileFlags">
+            <summary>
+            Flags on the member's guild profile.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.UpdateGuildMemberRequest.MentionFlags">
+            <summary>
+            Whether replies to the member mention them by default in this guild.
             </summary>
         </member>
         <member name="P:Fluxer.Net.Rest.UpdateGuildMemberRequest.ConnectionId">
@@ -12998,6 +13568,21 @@
             Whether to mention the author of the replied message
             </summary>
         </member>
+        <member name="P:Fluxer.Net.Rest.AllowedMentionsRequest.None">
+            <summary>
+            Mentions nobody, including the author of a replied-to message.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.AllowedMentionsRequest.All">
+            <summary>
+            Mentions every user, role and everyone or here mention in the content, and the author of a replied-to message.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Rest.AllowedMentionsRequest.Only(System.Collections.Generic.IEnumerable{System.UInt64},System.Collections.Generic.IEnumerable{System.UInt64})">
+            <summary>
+            Mentions only the given users and roles.
+            </summary>
+        </member>
         <member name="T:Fluxer.Net.Rest.AttachmentRequest">
             <summary>
             Create an attachment with a request.
@@ -13027,6 +13612,46 @@
         <member name="P:Fluxer.Net.Rest.CompleteAttachmentUploadItem.UploadId">
             <summary>
             The upload_id Fluxer returned when the upload was planned.
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.Rest.PlannedAttachmentUpload">
+            <summary>
+            A file to plan a direct upload for with <see cref="M:Fluxer.Net.Rest.FluxerApiClient.PlanAttachmentUploadsAsync(System.UInt64,System.Collections.Generic.IEnumerable{Fluxer.Net.Rest.PlannedAttachmentUpload},Fluxer.Net.Rest.RequestOptions)"/>.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.PlannedAttachmentUpload.Id">
+            <summary>
+            Your identifier for the file, echoed back in the plan.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.PlannedAttachmentUpload.Filename">
+            <summary>
+            The name of the file, 1 to 255 characters.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.PlannedAttachmentUpload.FileSize">
+            <summary>
+            The size of the file in bytes.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.PlannedAttachmentUpload.ContentType">
+            <summary>
+            The MIME type the file will be uploaded with.
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.Rest.UploadedAttachment">
+            <summary>
+            A file uploaded with <see cref="M:Fluxer.Net.Rest.FluxerApiClient.UploadAttachmentAsync(System.UInt64,System.IO.Stream,System.String,System.String,Fluxer.Net.Rest.RequestOptions)"/>, ready to send in a message.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.UploadedAttachment.UploadFilename">
+            <summary>
+            The upload key Fluxer gave the file.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.UploadedAttachment.FileSize">
+            <summary>
+            The size of the uploaded file in bytes.
             </summary>
         </member>
         <member name="P:Fluxer.Net.Rest.EmbedAuthorRequest.Name">
@@ -13149,6 +13774,16 @@
             Type of reference
             </summary>
         </member>
+        <member name="P:Fluxer.Net.Rest.MessageReferenceRequest.AttachmentIds">
+            <summary>
+            When forwarding, only these attachments of the original message are included.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.MessageReferenceRequest.EmbedIndices">
+            <summary>
+            When forwarding, only the embeds at these positions of the original message are included.
+            </summary>
+        </member>
         <member name="P:Fluxer.Net.Rest.MessageRequest.Content">
             <summary>
             The message content (up to 2000 characters)
@@ -13227,6 +13862,11 @@
         <member name="P:Fluxer.Net.Rest.MessageSearchRequest.Page">
             <summary>
             Page number for pagination.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Rest.MessageSearchRequest.Cursor">
+            <summary>
+            The cursor from the previous page of results. When set, <see cref="P:Fluxer.Net.Rest.MessageSearchRequest.Page"/> is ignored.
             </summary>
         </member>
         <member name="P:Fluxer.Net.Rest.MessageSearchRequest.MaxId">
@@ -14027,6 +14667,96 @@
             Returns the markup for the tag in another style.
             </summary>
         </member>
+        <member name="T:Fluxer.Net.Gateway.ForumUnreadsGatewayData">
+            <summary>
+            The answer to <see cref="M:Fluxer.Net.Gateway.FluxerGatewayClient.RequestForumUnreads(System.UInt64,System.UInt64,System.Collections.Generic.IEnumerable{Fluxer.Net.Gateway.ForumUnreadRequest})"/>.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Gateway.ForumUnreadsGatewayData.GuildId">
+            <summary>
+            The ID of the guild.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Gateway.ForumUnreadsGatewayData.ChannelId">
+            <summary>
+            The ID of the forum or media channel.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Gateway.ForumUnreadsGatewayData.Threads">
+            <summary>
+            One entry for each requested post found in the channel.
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.Gateway.ForumUnread">
+            <summary>
+            The unread count of one forum post.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Gateway.ForumUnread.ThreadId">
+            <summary>
+            The ID of the post.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Gateway.ForumUnread.Count">
+            <summary>
+            Messages after the requested message, at most 25, or null when <see cref="P:Fluxer.Net.Gateway.ForumUnread.Missing"/> is true.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Gateway.ForumUnread.Missing">
+            <summary>
+            True when the request had no valid message to count from for this post.
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.Gateway.ThreadMemberListUpdateGatewayData">
+            <summary>
+            The full member list of a thread the session subscribed to with <see cref="P:Fluxer.Net.Gateway.GuildSubscription.ThreadMemberLists"/>.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Gateway.ThreadMemberListUpdateGatewayData.GuildId">
+            <summary>
+            The ID of the guild.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Gateway.ThreadMemberListUpdateGatewayData.ThreadId">
+            <summary>
+            The ID of the thread.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Gateway.ThreadMemberListUpdateGatewayData.Members">
+            <summary>
+            The members of the thread, at most 1,000.
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.Gateway.ThreadMemberListItem">
+            <summary>
+            A member of a thread member list.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Gateway.ThreadMemberListItem.UserId">
+            <summary>
+            The ID of the user.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Gateway.ThreadMemberListItem.JoinedAt">
+            <summary>
+            When the user joined the thread.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Gateway.ThreadMemberListItem.Flags">
+            <summary>
+            The thread member flags.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Gateway.ThreadMemberListItem.Member">
+            <summary>
+            The user's guild member.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Gateway.ThreadMemberListItem.Presence">
+            <summary>
+            The user's presence. Its status is <c>offline</c> when they aren't visibly online.
+            </summary>
+        </member>
         <member name="T:Fluxer.Net.Gateway.GatewayErrorGatewayData">
             <summary>
             A voice state update Fluxer refused, sent only to the session that sent it.
@@ -14040,6 +14770,106 @@
         <member name="P:Fluxer.Net.Gateway.GatewayErrorGatewayData.Message">
             <summary>
             A description of the refusal, meant for logs.
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.Gateway.GuildMemberListUpdateGatewayData">
+            <summary>
+            A member list the session subscribed to with <see cref="P:Fluxer.Net.Gateway.GuildSubscription.MemberListChannels"/> changed.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Gateway.GuildMemberListUpdateGatewayData.GuildId">
+            <summary>
+            The guild the list belongs to.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Gateway.GuildMemberListUpdateGatewayData.Id">
+            <summary>
+            The list identifier, the same as the channel ID.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Gateway.GuildMemberListUpdateGatewayData.ChannelId">
+            <summary>
+            The channel the list is scoped to.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Gateway.GuildMemberListUpdateGatewayData.MemberCount">
+            <summary>
+            Total members in the list.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Gateway.GuildMemberListUpdateGatewayData.OnlineCount">
+            <summary>
+            Online members in the list.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Gateway.GuildMemberListUpdateGatewayData.Groups">
+            <summary>
+            The group headers in list order: hoisted roles, then online, then offline.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Gateway.GuildMemberListUpdateGatewayData.Operations">
+            <summary>
+            The ranges of the list to replace.
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.Gateway.MemberListGroup">
+            <summary>
+            A group header in a member list.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Gateway.MemberListGroup.Id">
+            <summary>
+            A hoisted role ID, <c>online</c> or <c>offline</c>.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Gateway.MemberListGroup.Count">
+            <summary>
+            The number of members in the group.
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.Gateway.MemberListOperation">
+            <summary>
+            Replaces one range of a member list.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Gateway.MemberListOperation.Op">
+            <summary>
+            The kind of operation, always <c>SYNC</c>.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Gateway.MemberListOperation.Range">
+            <summary>
+            The inclusive <c>[start, end]</c> range this operation replaces.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Gateway.MemberListOperation.Items">
+            <summary>
+            The items that replace the range.
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.Gateway.MemberListItem">
+            <summary>
+            One position in a member list: either a group header or a member.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Gateway.MemberListItem.Group">
+            <summary>
+            The group header at this position, or null when it holds a member.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Gateway.MemberListItem.Member">
+            <summary>
+            The member at this position, or null when it holds a group header.
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.Gateway.MemberListMember">
+            <summary>
+            A guild member in a member list, with their presence.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Gateway.MemberListMember.Presence">
+            <summary>
+            The member's presence. Its status is <c>offline</c> when they aren't visibly online.
             </summary>
         </member>
         <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient">
@@ -14069,6 +14899,11 @@
             Milliseconds between the last heartbeat and its acknowledgement, or 0 before the first one.
             </summary>
         </member>
+        <member name="P:Fluxer.Net.Gateway.FluxerGatewayClient.IsConnected">
+            <summary>
+            Whether the gateway connection is currently open.
+            </summary>
+        </member>
         <member name="P:Fluxer.Net.Gateway.FluxerGatewayClient.ShardId">
             <summary>
             Zero based id of the shard the server reported in READY, or null when the session is not sharded.
@@ -14096,6 +14931,16 @@
             <remarks>
             The client is initialized but not connected. Call <see cref="M:Fluxer.Net.Gateway.FluxerGatewayClient.ConnectAsync(Fluxer.Net.FluxerGatewayConfig)"/> to establish the gateway connection.
             </remarks>
+        </member>
+        <member name="P:Fluxer.Net.Gateway.FluxerGatewayClient.Messages">
+            <summary>
+            Recent guild messages, kept when <see cref="P:Fluxer.Net.FluxerGatewayConfig.MessageCacheSize"/> is above 0.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Gateway.FluxerGatewayClient.GetCachedMessage(System.UInt64)">
+            <summary>
+            Gets a message from <see cref="P:Fluxer.Net.Gateway.FluxerGatewayClient.Messages"/>, or null when it isn't cached.
+            </summary>
         </member>
         <member name="M:Fluxer.Net.Gateway.FluxerGatewayClient.ConnectAsync(Fluxer.Net.FluxerGatewayConfig)">
             <summary>
@@ -14151,6 +14996,47 @@
             This sends a PRESENCE_UPDATE packet to the gateway. Other users will see the status change
             in real-time through PRESENCE_UPDATE events.
             </remarks>
+        </member>
+        <member name="M:Fluxer.Net.Gateway.FluxerGatewayClient.SetCustomStatus(System.String,System.String)">
+            <summary>
+            Sets the custom status text and keeps the online status. Null or empty clears the custom status.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Gateway.FluxerGatewayClient.CurrentStatus">
+            <summary>
+            The online status last set with <see cref="M:Fluxer.Net.Gateway.FluxerGatewayClient.SetStatus(System.Nullable{Fluxer.Net.Status},System.Nullable{System.Boolean},Fluxer.Net.UserCustomStatusJson)"/>, or null when none was set.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Gateway.FluxerGatewayClient.CurrentCustomStatus">
+            <summary>
+            The custom status last set with <see cref="M:Fluxer.Net.Gateway.FluxerGatewayClient.SetStatus(System.Nullable{Fluxer.Net.Status},System.Nullable{System.Boolean},Fluxer.Net.UserCustomStatusJson)"/> or <see cref="M:Fluxer.Net.Gateway.FluxerGatewayClient.SetCustomStatus(System.String,System.String)"/>, or null when there is none.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Gateway.FluxerGatewayClient.SendLazyRequest(System.Collections.Generic.IDictionary{System.UInt64,Fluxer.Net.Gateway.GuildSubscription})">
+            <summary>
+            Sends a Lazy Request with what the session wants to receive from each guild.
+            </summary>
+            <remarks>
+            Fluxer sends a guild member's presence updates only to sessions that listed them in <see cref="P:Fluxer.Net.Gateway.GuildSubscription.Members"/>.
+            Fluxer applies each guild's options again when the session connects to that guild later.
+            </remarks>
+            <param name="subscriptions">The options for each guild, keyed by guild ID.</param>
+        </member>
+        <member name="M:Fluxer.Net.Gateway.FluxerGatewayClient.SubscribePresences(System.UInt64,System.Collections.Generic.IEnumerable{System.UInt64})">
+            <summary>
+            Subscribes to the presence updates of up to 1,000 members of a guild, replacing the guild's previous list.
+            </summary>
+            <param name="guildId">The guild.</param>
+            <param name="userIds">The members to follow. Only the first 1,000 are sent.</param>
+        </member>
+        <member name="M:Fluxer.Net.Gateway.FluxerGatewayClient.RequestForumUnreads(System.UInt64,System.UInt64,System.Collections.Generic.IEnumerable{Fluxer.Net.Gateway.ForumUnreadRequest})">
+            <summary>
+            Asks for unread counts of up to 40 posts in a forum or media channel. The answer arrives as
+            <see cref="E:Fluxer.Net.Gateway.FluxerGatewayClient.ForumUnreadsReceived"/>. Fluxer accepts five of these every 5 seconds.
+            </summary>
+            <param name="guildId">The guild.</param>
+            <param name="channelId">The forum or media channel.</param>
+            <param name="threads">The posts to count.</param>
         </member>
         <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.HeartbeatAckEvent">
             <summary>
@@ -14358,6 +15244,47 @@
             Occurs when a message is deleted.
             </summary>
         </member>
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.MessageEditedEvent">
+            <summary>
+            Delegate for MESSAGE_UPDATE events that also hands over the message as it was before the edit.
+            </summary>
+            <param name="before">The cached message from before the edit, or null when it wasn't cached.</param>
+            <param name="after">The edited message.</param>
+        </member>
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.MessageEdited">
+            <summary>
+            Occurs when a guild message is edited, after <see cref="E:Fluxer.Net.Gateway.FluxerGatewayClient.MessageUpdated"/>.
+            Set <see cref="P:Fluxer.Net.FluxerGatewayConfig.MessageCacheSize"/> to get the message from before the edit.
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.MessageRemovedEvent">
+            <summary>
+            Delegate for MESSAGE_DELETE events that also hands over the deleted message when it was cached.
+            </summary>
+            <param name="channel">The channel the message was in.</param>
+            <param name="messageId">The ID of the deleted message.</param>
+            <param name="message">The cached message, or null when it wasn't cached.</param>
+        </member>
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.MessageRemoved">
+            <summary>
+            Occurs when a guild message is deleted, after <see cref="E:Fluxer.Net.Gateway.FluxerGatewayClient.MessageDeleted"/>.
+            Set <see cref="P:Fluxer.Net.FluxerGatewayConfig.MessageCacheSize"/> to get the deleted message.
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.MessagesRemovedEvent">
+            <summary>
+            Delegate for MESSAGE_DELETE_BULK events that also hands over the deleted messages that were cached.
+            </summary>
+            <param name="channel">The channel the messages were in.</param>
+            <param name="messageIds">The IDs of every deleted message.</param>
+            <param name="messages">The deleted messages that were cached.</param>
+        </member>
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.MessagesRemoved">
+            <summary>
+            Occurs when guild messages are bulk deleted, after <see cref="E:Fluxer.Net.Gateway.FluxerGatewayClient.MessagesDeleted"/>.
+            Set <see cref="P:Fluxer.Net.FluxerGatewayConfig.MessageCacheSize"/> to get the deleted messages.
+            </summary>
+        </member>
         <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.ChannelCreatedEvent">
             <summary>
             Delegate for CHANNEL_CREATE events when a channel is created.
@@ -14480,6 +15407,36 @@
         <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.ThreadMemberUpdated">
             <summary>
             Occurs when the current user's membership of a thread changes, for example its flags or mute state.
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.ThreadMemberListUpdatedEvent">
+            <summary>
+            Delegate for THREAD_MEMBER_LIST_UPDATE events.
+            </summary>
+        </member>
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.ThreadMemberListUpdated">
+            <summary>
+            Occurs with the full member list of a thread subscribed to with <see cref="P:Fluxer.Net.Gateway.GuildSubscription.ThreadMemberLists"/>.
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.ForumUnreadsReceivedEvent">
+            <summary>
+            Delegate for FORUM_UNREADS events.
+            </summary>
+        </member>
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.ForumUnreadsReceived">
+            <summary>
+            Occurs with the answer to <see cref="M:Fluxer.Net.Gateway.FluxerGatewayClient.RequestForumUnreads(System.UInt64,System.UInt64,System.Collections.Generic.IEnumerable{Fluxer.Net.Gateway.ForumUnreadRequest})"/>.
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.GuildMemberListUpdatedEvent">
+            <summary>
+            Delegate for GUILD_MEMBER_LIST_UPDATE events.
+            </summary>
+        </member>
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.GuildMemberListUpdated">
+            <summary>
+            Occurs when a member list subscribed to with <see cref="P:Fluxer.Net.Gateway.GuildSubscription.MemberListChannels"/> changes.
             </summary>
         </member>
         <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.GuildHealthUpdatedEvent">
@@ -14752,6 +15709,18 @@
             Occurs when a user joins, leaves, or updates their state in a voice channel.
             </summary>
         </member>
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.VoiceStateChangedEvent">
+            <summary>
+            Delegate for VOICE_STATE_UPDATE events that also hands over the voice state from before the change.
+            </summary>
+            <param name="before">The cached state of that voice connection, or null when it just joined or wasn't cached.</param>
+            <param name="after">The new state. Its channel is null when the connection left voice.</param>
+        </member>
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.VoiceStateChanged">
+            <summary>
+            Occurs when a voice connection in a guild joins, leaves, moves or changes state, after <see cref="E:Fluxer.Net.Gateway.FluxerGatewayClient.VoiceStateUpdated"/>.
+            </summary>
+        </member>
         <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.VoiceServerUpdatedEvent">
             <summary>
             Delegate for VOICE_SERVER_UPDATE events for voice connection data.
@@ -14861,6 +15830,18 @@
         <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.MemberUpdated">
             <summary>
             Occurs when a guild member is updated (roles, nickname, avatar, etc.).
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.GuildMemberChangedEvent">
+            <summary>
+            Delegate for GUILD_MEMBER_UPDATE events that also hands over the member as they were before.
+            </summary>
+            <param name="before">A copy of the cached member from before the update, or null when they weren't cached.</param>
+            <param name="after">The updated member.</param>
+        </member>
+        <member name="E:Fluxer.Net.Gateway.FluxerGatewayClient.MemberChanged">
+            <summary>
+            Occurs when a guild member is updated, after <see cref="E:Fluxer.Net.Gateway.FluxerGatewayClient.MemberUpdated"/>.
             </summary>
         </member>
         <member name="T:Fluxer.Net.Gateway.FluxerGatewayClient.GuildMemberRemovedEvent">
@@ -15053,6 +16034,61 @@
             Without a connection id a channel opens a new connection, and leaving a guild needs the id of the
             connection to drop.
             </remarks>
+        </member>
+        <member name="T:Fluxer.Net.Gateway.MessageCache">
+            <summary>
+            Keeps the most recent guild messages of each channel for edit and delete events to hand over as they were.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Gateway.MessageCache.#ctor(System.Int32)">
+            <summary>
+            Creates a cache that keeps up to <paramref name="perChannel"/> messages per channel. Zero or less keeps nothing.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Gateway.MessageCache.IsEnabled">
+            <summary>
+            Whether the cache keeps any messages.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Gateway.MessageCache.Count">
+            <summary>
+            The number of messages currently cached.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Gateway.MessageCache.Get(System.UInt64)">
+            <summary>
+            Gets a cached message, or null when it isn't cached.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Gateway.MessageCache.GetChannel(System.UInt64)">
+            <summary>
+            Gets the cached messages of a channel, oldest first.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Gateway.MessageCache.Add(Fluxer.Net.SocketMessage)">
+            <summary>
+            Adds a message, dropping the channel's oldest one when the channel is full.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Gateway.MessageCache.Replace(Fluxer.Net.SocketMessage)">
+            <summary>
+            Replaces a cached message with its edited version and returns the version from before, or null when it wasn't cached.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Gateway.MessageCache.Remove(System.UInt64)">
+            <summary>
+            Removes a message and returns it, or null when it wasn't cached.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Gateway.MessageCache.RemoveChannel(System.UInt64)">
+            <summary>
+            Forgets every cached message of a channel or thread.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.Gateway.MessageCache.RemoveGuild(System.UInt64)">
+            <summary>
+            Forgets every cached message of a guild.
+            </summary>
         </member>
         <member name="T:Fluxer.Net.Gateway.FluxerCloseCode">
             <summary>
@@ -15268,21 +16304,27 @@
             An error in the gateway has occured.
             </summary>
         </member>
+        <member name="F:Fluxer.Net.Gateway.FluxerOpCode.VoiceSignal">
+            <summary>
+            A signaling message for a peer-to-peer voice connection.
+            Client → Server.
+            </summary>
+        </member>
         <member name="F:Fluxer.Net.Gateway.FluxerOpCode.CallConnect">
             <summary>
-            Connects to a call (voice/video).
-            Client → Server. Initiates call connection.
+            The old name of <see cref="F:Fluxer.Net.Gateway.FluxerOpCode.VoiceSignal"/>.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.Gateway.FluxerOpCode.LazyRequest">
+            <summary>
+            Sets the per-guild subscriptions for member lists, presences, typing, syncs and threads.
+            Client → Server. Sent by <see cref="M:Fluxer.Net.Gateway.FluxerGatewayClient.SendLazyRequest(System.Collections.Generic.IDictionary{System.UInt64,Fluxer.Net.Gateway.GuildSubscription})"/>.
             </summary>
         </member>
         <member name="F:Fluxer.Net.Gateway.FluxerOpCode.GuildSubscriptions">
             <summary>
-            Subscribes to events for specific guilds.
-            Client → Server. Controls which guild events are received.
+            The old name of <see cref="F:Fluxer.Net.Gateway.FluxerOpCode.LazyRequest"/>.
             </summary>
-            <remarks>
-            Used to enable or disable events for specific guilds.
-            Useful for managing event load in bots that are in many guilds.
-            </remarks>
         </member>
         <member name="F:Fluxer.Net.Gateway.FluxerOpCode.RequestGuildMemberCounts">
             <summary>
@@ -15292,6 +16334,76 @@
         <member name="F:Fluxer.Net.Gateway.FluxerOpCode.RequestChannelMemberCounts">
             <summary>
             Request channel member count.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.Gateway.FluxerOpCode.RequestForumUnreads">
+            <summary>
+            Requests unread counts for posts in a forum or media channel.
+            Client → Server. Sent by <see cref="M:Fluxer.Net.Gateway.FluxerGatewayClient.RequestForumUnreads(System.UInt64,System.UInt64,System.Collections.Generic.IEnumerable{Fluxer.Net.Gateway.ForumUnreadRequest})"/>, answered with FORUM_UNREADS.
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.Gateway.ForumUnreadRequest">
+            <summary>
+            A forum post to count unread messages in, sent with <see cref="M:Fluxer.Net.Gateway.FluxerGatewayClient.RequestForumUnreads(System.UInt64,System.UInt64,System.Collections.Generic.IEnumerable{Fluxer.Net.Gateway.ForumUnreadRequest})"/>.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Gateway.ForumUnreadRequest.ThreadId">
+            <summary>
+            The ID of the post.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Gateway.ForumUnreadRequest.AckMessageId">
+            <summary>
+            The newest message already read in the post. Messages after it are counted.
+            </summary>
+        </member>
+        <member name="T:Fluxer.Net.Gateway.GuildSubscription">
+            <summary>
+            What the session wants to receive from one guild, sent with <see cref="M:Fluxer.Net.Gateway.FluxerGatewayClient.SendLazyRequest(System.Collections.Generic.IDictionary{System.UInt64,Fluxer.Net.Gateway.GuildSubscription})"/>.
+            Options left null are not sent and keep their current value.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Gateway.GuildSubscription.Active">
+            <summary>
+            Whether the guild is active for this session. Bot sessions are always active.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Gateway.GuildSubscription.Sync">
+            <summary>
+            Whether to ask for a guild sync.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Gateway.GuildSubscription.Typing">
+            <summary>
+            Whether the guild sends typing events.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Gateway.GuildSubscription.Members">
+            <summary>
+            The members whose presence updates the session receives, at most 1,000. Replaces the previous list for this guild.
+            Without this, a session gets no presence updates for the guild's members.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Gateway.GuildSubscription.MemberListChannels">
+            <summary>
+            Member list windows to subscribe to, keyed by channel ID. Each range is <c>[start, end]</c> with at most 100 positions.
+            Raises <see cref="E:Fluxer.Net.Gateway.FluxerGatewayClient.GuildMemberListUpdated"/>.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Gateway.GuildSubscription.FocusedChannelId">
+            <summary>
+            The channel or public thread open in a guild the session is visiting.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Gateway.GuildSubscription.Threads">
+            <summary>
+            Whether the session gets events and messages for every thread it can view in the guild.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.Gateway.GuildSubscription.ThreadMemberLists">
+            <summary>
+            The threads whose member lists the session subscribes to, at most 10. Replaces the previous list, and an empty list clears it.
+            Raises <see cref="E:Fluxer.Net.Gateway.FluxerGatewayClient.ThreadMemberListUpdated"/>.
             </summary>
         </member>
         <member name="P:Fluxer.Net.Gateway.RequestMembersPacket.GuildId">
@@ -15325,6 +16437,13 @@
             <summary>
             Ask the gateway to batch reactions added to the same message into MESSAGE_REACTION_ADD_MANY, raised as
             <see cref="E:Fluxer.Net.Gateway.FluxerGatewayClient.MessageReactionsAdded"/>. A batch of one is still sent as MESSAGE_REACTION_ADD.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.FluxerGatewayConfig.MessageCacheSize">
+            <summary>
+            How many recent messages to keep per guild channel. Cached messages are handed to
+            <see cref="E:Fluxer.Net.Gateway.FluxerGatewayClient.MessageEdited"/> and <see cref="E:Fluxer.Net.Gateway.FluxerGatewayClient.MessageRemoved"/> as they were
+            before the event. Defaults to 0, keeping no messages.
             </summary>
         </member>
         <member name="T:Fluxer.Net.OAuth.FluxerOAuthClient">
@@ -15934,6 +17053,14 @@
         <member name="M:Fluxer.Net.ChannelHelpers.TriggerTypingIndicatorAsync(Fluxer.Net.Channel,Fluxer.Net.Rest.RequestOptions)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.TriggerTypingIndicatorAsync(System.UInt64,Fluxer.Net.Rest.RequestOptions)" />
         </member>
+        <member name="M:Fluxer.Net.ChannelHelpers.EnterTypingState(Fluxer.Net.Channel)">
+            <summary>
+            Shows the typing indicator until the returned object is disposed, sending it again every 8 seconds.
+            </summary>
+            <example>
+            <code>using (channel.EnterTypingState()) { await DoSlowWorkAsync(); }</code>
+            </example>
+        </member>
         <member name="M:Fluxer.Net.ChannelHelpers.GetWebhooksAsync(Fluxer.Net.Channel,Fluxer.Net.Rest.RequestOptions)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.GetChannelWebhooksAsync(System.UInt64,Fluxer.Net.Rest.RequestOptions)" />
         </member>
@@ -16209,6 +17336,22 @@
         <member name="M:Fluxer.Net.GuildHelpers.GetBansAsync(Fluxer.Net.Guild,Fluxer.Net.Rest.RequestOptions)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.GetBansAsync(System.UInt64,Fluxer.Net.Rest.RequestOptions)" />
         </member>
+        <member name="M:Fluxer.Net.GuildHelpers.GetBanAsync(Fluxer.Net.Guild,System.UInt64,Fluxer.Net.Rest.RequestOptions)">
+            <summary>
+            Gets one user's ban, or null when they aren't banned. Fluxer has no single-ban route, and this reads the full ban list.
+            </summary>
+            <remarks>
+            Requires <see cref="P:Fluxer.Net.GuildPermissions.BanMembers"/>.
+            </remarks>
+        </member>
+        <member name="M:Fluxer.Net.GuildHelpers.BanUserAsync(Fluxer.Net.Guild,System.UInt64,System.Int32,System.String,Fluxer.Net.Rest.RequestOptions)">
+            <summary>
+            Ban a user, deleting their messages from the given number of days.
+            </summary>
+            <remarks>
+            Requires <see cref="P:Fluxer.Net.GuildPermissions.BanMembers"/>.
+            </remarks>
+        </member>
         <member name="M:Fluxer.Net.GuildHelpers.BanUserAsync(Fluxer.Net.Guild,System.UInt64,System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},Fluxer.Net.Rest.RequestOptions)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.BanMemberAsync(System.UInt64,System.UInt64,System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},Fluxer.Net.Rest.RequestOptions)" />
         </member>
@@ -16271,6 +17414,9 @@
         </member>
         <member name="M:Fluxer.Net.GuildHelpers.GetMemberAsync(Fluxer.Net.Guild,Fluxer.Net.User,Fluxer.Net.Rest.RequestOptions)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.GetMemberAsync(System.UInt64,System.UInt64,Fluxer.Net.Rest.RequestOptions)" />
+        </member>
+        <member name="M:Fluxer.Net.GuildHelpers.UpdateCurrentMemberAsync(Fluxer.Net.Guild,Fluxer.Net.Rest.UpdateCurrentMemberRequest,Fluxer.Net.Rest.RequestOptions)">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.UpdateCurrentMemberAsync(System.UInt64,Fluxer.Net.Rest.UpdateCurrentMemberRequest,Fluxer.Net.Rest.RequestOptions)" />
         </member>
         <member name="M:Fluxer.Net.GuildHelpers.CreateRoleAsync(Fluxer.Net.Guild,Fluxer.Net.Rest.CreateGuildRoleRequest,Fluxer.Net.Rest.RequestOptions)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.CreateRoleAsync(System.UInt64,Fluxer.Net.Rest.CreateGuildRoleRequest,Fluxer.Net.Rest.RequestOptions)" />
@@ -16366,10 +17512,60 @@
             <remarks>
             Requires <see cref="P:Fluxer.Net.GuildPermissions.ModerateMembers"/>.</remarks>
         </member>
+        <member name="M:Fluxer.Net.MemberHelpers.SetTimeoutAsync(Fluxer.Net.GuildMember,System.TimeSpan,System.String,Fluxer.Net.Rest.RequestOptions)">
+            <summary>
+            Time a member out for a length of time.
+            </summary>
+            <remarks>
+            Requires <see cref="P:Fluxer.Net.GuildPermissions.ModerateMembers"/>.
+            </remarks>
+        </member>
+        <member name="M:Fluxer.Net.MemberHelpers.RemoveTimeoutAsync(Fluxer.Net.GuildMember,Fluxer.Net.Rest.RequestOptions)">
+            <summary>
+            End a member's timeout.
+            </summary>
+            <remarks>
+            Requires <see cref="P:Fluxer.Net.GuildPermissions.ModerateMembers"/>.
+            </remarks>
+        </member>
+        <member name="M:Fluxer.Net.MemberHelpers.AddRolesAsync(Fluxer.Net.GuildMember,System.Collections.Generic.IEnumerable{System.UInt64},Fluxer.Net.Rest.RequestOptions)">
+            <summary>
+            Give a member several roles, one request each.
+            </summary>
+            <remarks>
+            Requires <see cref="P:Fluxer.Net.GuildPermissions.ManageRoles"/>.
+            </remarks>
+        </member>
+        <member name="M:Fluxer.Net.MemberHelpers.AddRolesAsync(Fluxer.Net.GuildMember,System.Collections.Generic.IEnumerable{Fluxer.Net.Role},Fluxer.Net.Rest.RequestOptions)">
+            <inheritdoc cref="M:Fluxer.Net.MemberHelpers.AddRolesAsync(Fluxer.Net.GuildMember,System.Collections.Generic.IEnumerable{System.UInt64},Fluxer.Net.Rest.RequestOptions)" />
+        </member>
+        <member name="M:Fluxer.Net.MemberHelpers.RemoveRolesAsync(Fluxer.Net.GuildMember,System.Collections.Generic.IEnumerable{System.UInt64},Fluxer.Net.Rest.RequestOptions)">
+            <summary>
+            Take several roles from a member, one request each.
+            </summary>
+            <remarks>
+            Requires <see cref="P:Fluxer.Net.GuildPermissions.ManageRoles"/>.
+            </remarks>
+        </member>
+        <member name="M:Fluxer.Net.MemberHelpers.RemoveRolesAsync(Fluxer.Net.GuildMember,System.Collections.Generic.IEnumerable{Fluxer.Net.Role},Fluxer.Net.Rest.RequestOptions)">
+            <inheritdoc cref="M:Fluxer.Net.MemberHelpers.RemoveRolesAsync(Fluxer.Net.GuildMember,System.Collections.Generic.IEnumerable{System.UInt64},Fluxer.Net.Rest.RequestOptions)" />
+        </member>
+        <member name="M:Fluxer.Net.MemberHelpers.GetProfileUrl(Fluxer.Net.GuildMember)">
+            <summary>
+            A link that opens the member's profile in the web app.
+            </summary>
+        </member>
         <member name="T:Fluxer.Net.MessageHelpers">
             <summary>
             Http methods for <see cref="T:Fluxer.Net.Message"/> class. 
             </summary>
+        </member>
+        <member name="M:Fluxer.Net.MessageHelpers.GetJumpUrl(Fluxer.Net.Message,System.Nullable{System.UInt64})">
+            <summary>
+            A link that opens the message in the web app.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="guildId">The guild the message is in, or null for a direct message.</param>
         </member>
         <member name="M:Fluxer.Net.MessageHelpers.DeleteAsync(Fluxer.Net.Message,Fluxer.Net.Rest.RequestOptions)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.DeleteMessageAsync(System.UInt64,System.UInt64,Fluxer.Net.Rest.RequestOptions)" />
@@ -16622,6 +17818,11 @@
             Http methods for <see cref="T:Fluxer.Net.Webhook"/> class. 
             </summary>
         </member>
+        <member name="M:Fluxer.Net.WebhookHelpers.GetUrl(Fluxer.Net.Webhook)">
+            <summary>
+            The webhook's execute URL, or null when the webhook has no token.
+            </summary>
+        </member>
         <member name="M:Fluxer.Net.WebhookHelpers.DeleteAsync(Fluxer.Net.Webhook,Fluxer.Net.Rest.RequestOptions)">
             <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.DeleteWebhookWithTokenAsync(System.UInt64,System.String,Fluxer.Net.Rest.RequestOptions)" />
         </member>
@@ -16634,11 +17835,11 @@
         <member name="M:Fluxer.Net.WebhookHelpers.SendMessageWaitAsync(Fluxer.Net.Webhook,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.EmbedRequest},System.String,System.String,Fluxer.Net.Rest.MessageReferenceRequest,Fluxer.Net.Rest.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Nullable{System.Boolean},System.Collections.Generic.List{System.UInt64},System.Collections.Generic.List{Fluxer.Net.Rest.AttachmentRequest},Fluxer.Net.Rest.RequestOptions)">
             <inheritdoc cref="!:FluxerApiClient.ExecuteWebhookWaitAsync(ulong, string, string?, List&lt;EmbedRequest&gt;?, string?, string?, MessageReferenceRequest?, AllowedMentionsRequest?, MessageFlag, string?, ulong?, bool?, List&lt;ulong&gt;?, List&lt;AttachmentRequest&gt;?, RequestOptions?)" />
         </member>
-        <member name="M:Fluxer.Net.WebhookHelpers.DeleteMessageAsync(Fluxer.Net.Webhook,Fluxer.Net.Message,Fluxer.Net.Rest.RequestOptions)">
-            <inheritdoc cref="!:FluxerApiClient.DeleteWebhookMessageAsync(ulong, string, ulong, RequestOptions?)" />
+        <member name="M:Fluxer.Net.WebhookHelpers.DeleteMessageAsync(Fluxer.Net.Webhook,Fluxer.Net.Message,Fluxer.Net.Rest.RequestOptions,System.Nullable{System.UInt64})">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.DeleteWebhookMessageAsync(System.UInt64,System.String,System.UInt64,Fluxer.Net.Rest.RequestOptions,System.Nullable{System.UInt64})" />
         </member>
-        <member name="M:Fluxer.Net.WebhookHelpers.DeleteMessageAsync(Fluxer.Net.Webhook,System.UInt64,Fluxer.Net.Rest.RequestOptions)">
-            <inheritdoc cref="!:FluxerApiClient.DeleteWebhookMessageAsync(ulong, string, ulong, RequestOptions?)" />
+        <member name="M:Fluxer.Net.WebhookHelpers.DeleteMessageAsync(Fluxer.Net.Webhook,System.UInt64,Fluxer.Net.Rest.RequestOptions,System.Nullable{System.UInt64})">
+            <inheritdoc cref="M:Fluxer.Net.Rest.FluxerApiClient.DeleteWebhookMessageAsync(System.UInt64,System.String,System.UInt64,Fluxer.Net.Rest.RequestOptions,System.Nullable{System.UInt64})" />
         </member>
         <member name="M:Fluxer.Net.WebhookHelpers.EditMessageAsync(Fluxer.Net.Webhook,System.UInt64,System.String,System.Collections.Generic.List{Fluxer.Net.Rest.EmbedRequest},Fluxer.Net.Rest.MessageReferenceRequest,Fluxer.Net.Rest.AllowedMentionsRequest,Fluxer.Net.MessageFlag,System.String,System.Nullable{System.UInt64},System.Collections.Generic.List{System.UInt64},System.Collections.Generic.List{Fluxer.Net.Rest.AttachmentRequest},Fluxer.Net.Rest.RequestOptions)">
             <inheritdoc cref="!:FluxerApiClient.EditWebhookMessageAsync(ulong, string, ulong, string?, List&lt;EmbedRequest&gt;?, MessageReferenceRequest?, AllowedMentionsRequest?, MessageFlag, string?, ulong?, List&lt;ulong&gt;?, List&lt;AttachmentRequest&gt;?, RequestOptions?)" />
