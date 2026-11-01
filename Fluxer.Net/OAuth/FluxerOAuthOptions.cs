@@ -29,6 +29,21 @@ public class FluxerOAuthOptions : OAuthOptions
 
     public string? Prompt { get; set; }
 
+    /// <summary>
+    /// Points the sign in at a self-hosted instance's API, such as <c>https://api.example.org</c> or
+    /// <c>https://api.example.org/v1</c>.
+    /// </summary>
+    public FluxerOAuthOptions UseInstance(string apiUrl)
+    {
+        string api = apiUrl.Trim().TrimEnd('/');
+        if (!System.Text.RegularExpressions.Regex.IsMatch(api, @"/v\d+$"))
+            api += "/v1";
+        AuthorizationEndpoint = $"{api}/oauth2/authorize";
+        TokenEndpoint = $"{api}/oauth2/token";
+        UserInformationEndpoint = $"{api}/oauth2/userinfo";
+        return this;
+    }
+
     public bool EmailScope { get; set; }
 
     public bool GuildsScope { get; set; }

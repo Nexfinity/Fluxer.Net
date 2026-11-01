@@ -119,6 +119,17 @@ public partial class FluxerGatewayClient : IDisposable
 
     #region Cache
 
+    /// <summary>
+
+    /// The service URLs the instance sent in READY, keyed by name (api_public, gateway, media, static_cdn, invite,
+
+    /// webapp and so on), or null before the first READY.
+
+    /// </summary>
+
+    public IReadOnlyDictionary<string, string>? Endpoints { get; private set; }
+
+
     public SocketCurrentUser? CurrentUser { get; internal set; }
 
     internal ulong? OwnerId { get; set; }
@@ -785,6 +796,12 @@ public partial class FluxerGatewayClient : IDisposable
                         CurrentUser.SessionId = data.SessionId;
                         GatewaySessionJson? presence = data.Sessions.FirstOrDefault(x => x.SessionId == CurrentUser.SessionId);
                         _sessionId = data.SessionId;
+                        if (data.Endpoints != null)
+                        {
+                            Endpoints = data.Endpoints;
+                            if (_client.Config.DiscoverEndpoints)
+                                _client.Config.ApplyEndpoints(data.Endpoints);
+                        }
                         ShardId = data.Shard?[0];
                         ShardCount = data.Shard?[1];
                         _isConnecting = false; // Connection successfully established

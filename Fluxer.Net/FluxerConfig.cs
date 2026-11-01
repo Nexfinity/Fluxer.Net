@@ -47,6 +47,60 @@ public class FluxerConfig
     public string GatewayUrl { get; set; } = "wss://gateway.fluxer.app/?v=1&encoding=json";
 
     /// <summary>
+    /// Whether the media, static, web, admin, invite and gift URLs are taken from the <c>endpoints</c> an instance
+    /// sends in READY, so a self-hosted instance only needs <see cref="ApiBaseUrl"/> and <see cref="GatewayUrl"/>
+    /// to be set. Defaults to true. The API and gateway URLs are never changed by READY.
+    /// </summary>
+    public bool DiscoverEndpoints { get; set; } = true;
+
+    /// <summary>
+    /// The media URL of the main Fluxer instance, used where no client configuration is at hand.
+    /// </summary>
+    public const string DefaultMediaUrl = "https://fluxerusercontent.com";
+
+    /// <summary>
+    /// Points the client at a self-hosted Fluxer instance. The API URL may be given with or without the
+    /// <c>/v{v}</c> version path, and the gateway URL with or without its query string; both are completed.
+    /// </summary>
+    /// <param name="apiUrl">The instance's public API, such as <c>https://api.example.org</c>.</param>
+    /// <param name="gatewayUrl">The instance's gateway, such as <c>wss://gateway.example.org</c>.</param>
+    /// <returns>This configuration.</returns>
+    public FluxerConfig UseInstance(string apiUrl, string gatewayUrl)
+    {
+        if (string.IsNullOrWhiteSpace(apiUrl))
+            throw new ArgumentException("The API URL is required.", nameof(apiUrl));
+        if (string.IsNullOrWhiteSpace(gatewayUrl))
+            throw new ArgumentException("The gateway URL is required.", nameof(gatewayUrl));
+
+        string api = apiUrl.Trim().TrimEnd('/');
+        if (!api.Contains("{v}", StringComparison.Ordinal))
+            api = System.Text.RegularExpressions.Regex.IsMatch(api, @"/v\d+$") ? System.Text.RegularExpressions.Regex.Replace(api, @"/v\d+$", "/v{v}") : api + "/v{v}";
+        ApiBaseUrl = api;
+
+        string gateway = gatewayUrl.Trim();
+        if (!gateway.Contains('?'))
+            gateway = gateway.TrimEnd('/') + "/?v=1&encoding=json";
+        GatewayUrl = gateway;
+        return this;
+    }
+
+    /// <summary>
+    /// Applies the endpoints an instance advertises in READY to the media, static, web, admin, invite and gift URLs.
+    /// Unknown keys are ignored and the API and gateway URLs are left alone.
+    /// </summary>
+    /// <param name="endpoints">The <c>endpoints</c> object of READY.</param>
+    public void ApplyEndpoints(IReadOnlyDictionary<string, string> endpoints)
+    {
+        static string? Clean(string? url) => string.IsNullOrWhiteSpace(url) ? null : url.Trim().TrimEnd('/');
+        if (Clean(endpoints.GetValueOrDefault("media")) is { } media) MediaUrl = media;
+        if (Clean(endpoints.GetValueOrDefault("static_cdn")) is { } cdn) StaticUrl = cdn;
+        if (Clean(endpoints.GetValueOrDefault("admin")) is { } admin) AdminUrl = admin;
+        if (Clean(endpoints.GetValueOrDefault("invite")) is { } invite) InviteUrl = invite;
+        if (Clean(endpoints.GetValueOrDefault("gift")) is { } gift) GiftUrl = gift;
+        if (Clean(endpoints.GetValueOrDefault("webapp")) is { } web) WebUrl = web;
+    }
+
+    /// <summary>
     /// Optional HttpClient instance to use for API requests. If null, a new HttpClient will be created.
     /// Providing your own HttpClient allows for connection pooling, custom headers, and proxy configuration.
     /// </summary>

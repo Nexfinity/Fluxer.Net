@@ -67,7 +67,7 @@ public class WebhookJson : IWebhook
         if (string.IsNullOrEmpty(AvatarHash))
             return null;
 
-        return $"https://fluxerusercontent.com/avatars/{Id}/{AvatarHash}.png?size={size}";
+        return $"{FluxerConfig.DefaultMediaUrl}/avatars/{Id}/{AvatarHash}.png?size={size}";
     }
 
     /// <inheritdoc />

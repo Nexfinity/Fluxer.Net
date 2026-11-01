@@ -31,6 +31,13 @@ internal class ReadyGatewayData
     [JsonProperty("session_id")]
     public string SessionId { get; set; }
 
+    /// <summary>
+    /// The URLs of this instance's services, keyed by name: api, api_client, api_public, gateway, media,
+    /// upload_relay, static_cdn, marketing, admin, invite, gift and webapp.
+    /// </summary>
+    [JsonProperty("endpoints")]
+    public Dictionary<string, string>? Endpoints { get; set; }
+
     [JsonProperty("sessions")]
     public GatewaySessionJson[]? Sessions { get; set; }
 

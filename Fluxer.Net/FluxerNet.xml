@@ -16302,6 +16302,34 @@
             Compression is not currently supported. Defaults to "wss://gateway.fluxer.app/?v=1&amp;encoding=json".
             </summary>
         </member>
+        <member name="P:Fluxer.Net.FluxerConfig.DiscoverEndpoints">
+            <summary>
+            Whether the media, static, web, admin, invite and gift URLs are taken from the <c>endpoints</c> an instance
+            sends in READY, so a self-hosted instance only needs <see cref="P:Fluxer.Net.FluxerConfig.ApiBaseUrl"/> and <see cref="P:Fluxer.Net.FluxerConfig.GatewayUrl"/>
+            to be set. Defaults to true. The API and gateway URLs are never changed by READY.
+            </summary>
+        </member>
+        <member name="F:Fluxer.Net.FluxerConfig.DefaultMediaUrl">
+            <summary>
+            The media URL of the main Fluxer instance, used where no client configuration is at hand.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.FluxerConfig.UseInstance(System.String,System.String)">
+            <summary>
+            Points the client at a self-hosted Fluxer instance. The API URL may be given with or without the
+            <c>/v{v}</c> version path, and the gateway URL with or without its query string; both are completed.
+            </summary>
+            <param name="apiUrl">The instance's public API, such as <c>https://api.example.org</c>.</param>
+            <param name="gatewayUrl">The instance's gateway, such as <c>wss://gateway.example.org</c>.</param>
+            <returns>This configuration.</returns>
+        </member>
+        <member name="M:Fluxer.Net.FluxerConfig.ApplyEndpoints(System.Collections.Generic.IReadOnlyDictionary{System.String,System.String})">
+            <summary>
+            Applies the endpoints an instance advertises in READY to the media, static, web, admin, invite and gift URLs.
+            Unknown keys are ignored and the API and gateway URLs are left alone.
+            </summary>
+            <param name="endpoints">The <c>endpoints</c> object of READY.</param>
+        </member>
         <member name="P:Fluxer.Net.FluxerConfig.HttpClient">
             <summary>
             Optional HttpClient instance to use for API requests. If null, a new HttpClient will be created.
@@ -17297,6 +17325,12 @@
             The guild the message is in, or null for direct messages.
             </summary>
         </member>
+        <member name="P:Fluxer.Net.Gateway.ReadyGatewayData.Endpoints">
+            <summary>
+            The URLs of this instance's services, keyed by name: api, api_client, api_public, gateway, media,
+            upload_relay, static_cdn, marketing, admin, invite, gift and webapp.
+            </summary>
+        </member>
         <member name="T:Fluxer.Net.Gateway.EventDispatchMode">
             <summary>
             How gateway events are handed to your handlers.
@@ -17459,6 +17493,7 @@
             The client is initialized but not connected. Call <see cref="M:Fluxer.Net.Gateway.FluxerGatewayClient.ConnectAsync(Fluxer.Net.FluxerGatewayConfig)"/> to establish the gateway connection.
             </remarks>
         </member>
+        <!-- Badly formed XML comment ignored for member "P:Fluxer.Net.Gateway.FluxerGatewayClient.Endpoints" -->
         <member name="P:Fluxer.Net.Gateway.FluxerGatewayClient.Cache">
             <summary>
             The stores the gateway keeps earlier states in, set up from <see cref="P:Fluxer.Net.FluxerGatewayConfig.Cache"/> on connect.
@@ -19294,6 +19329,12 @@
             <Summary>
             Create asp.net oauth handler for Fluxer.
             </Summary>
+        </member>
+        <member name="M:Fluxer.Net.OAuth.FluxerOAuthOptions.UseInstance(System.String)">
+            <summary>
+            Points the sign in at a self-hosted instance's API, such as <c>https://api.example.org</c> or
+            <c>https://api.example.org/v1</c>.
+            </summary>
         </member>
         <member name="T:Fluxer.Net.RateLimiting.BucketId">
             <summary>

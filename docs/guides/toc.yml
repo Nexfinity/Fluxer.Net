@@ -2,6 +2,8 @@
   href: intro.md
 - name: Hosting
   href: hosting.md
+- name: Self-hosted instances
+  href: instances.md
 - name: API
   items:
     - name: Introduction
