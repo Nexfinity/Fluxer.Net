@@ -15,7 +15,7 @@ var client = new FluxerClient(token, config);
 
 ## Discovered endpoints
 
-Every instance sends the URLs of its services in the READY event, under `endpoints`: `api_public`, `gateway`, `media`, `static_cdn`, `invite`, `webapp`, `admin`, `gift` and a few more. With `FluxerConfig.DiscoverEndpoints` on, which is the default, the gateway applies them to `MediaUrl`, `StaticUrl`, `InviteUrl`, `WebUrl`, `AdminUrl` and `GiftUrl` as soon as READY arrives, so avatar, icon, emoji, sticker, attachment and invite URLs produced by the entities point at the right hosts. The API and gateway URLs are never changed by READY.
+Every instance publishes the URLs of its services: `api_public`, `gateway`, `media`, `static_cdn`, `invite`, `webapp`, `admin`, `gift` and a few more. Some send them in the READY event under `endpoints`; the rest serve them at `/.well-known/fluxer`, which the gateway reads once when READY comes without them. With `FluxerConfig.DiscoverEndpoints` on, which is the default, the gateway applies them to `MediaUrl`, `StaticUrl`, `InviteUrl`, `WebUrl`, `AdminUrl` and `GiftUrl` before the Ready event, so avatar, icon, emoji, sticker, attachment and invite URLs produced by the entities point at the right hosts. The API and gateway URLs are never changed by discovery.
 
 The raw list is on the gateway as `client.Gateway.Endpoints`, keyed by name, for anything the library does not map itself (the upload relay, the marketing site).
 

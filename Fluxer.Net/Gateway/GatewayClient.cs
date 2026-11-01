@@ -121,13 +121,50 @@ public partial class FluxerGatewayClient : IDisposable
 
     /// <summary>
 
-    /// The service URLs the instance sent in READY, keyed by name (api_public, gateway, media, static_cdn, invite,
+    /// The service URLs of the instance, keyed by name (api_public, gateway, media, static_cdn, invite,
 
-    /// webapp and so on), or null before the first READY.
+    /// webapp and so on), or null before the first READY. Taken from READY, or from the instance's
+
+    /// /.well-known/fluxer document when READY does not carry them.
 
     /// </summary>
 
     public IReadOnlyDictionary<string, string>? Endpoints { get; private set; }
+
+    private async Task<IReadOnlyDictionary<string, string>?> FetchInstanceEndpointsAsync()
+    {
+        try
+        {
+            string root = _client.Config.RealApiBaseUrl.Replace("v" + _client.Config.Version, null).TrimEnd('/');
+            InstanceJson? instance = await _client.Rest.InternalSendRequestAsync<InstanceJson>(HttpMethod.Get,
+                root + "/.well-known/fluxer", throwOnNonSuccess: false, authorize: false, useConfigUrl: false);
+            InstanceEndpointsJson? e = instance?.Endpoints;
+            if (e == null)
+                return null;
+
+            Dictionary<string, string> endpoints = new Dictionary<string, string>();
+            void Add(string key, string? value)
+            {
+                if (!string.IsNullOrWhiteSpace(value))
+                    endpoints[key] = value!;
+            }
+            Add("api", e.Api);
+            Add("api_public", e.ApiPublic);
+            Add("gateway", e.Gateway);
+            Add("media", e.Media);
+            Add("static_cdn", e.Static);
+            Add("admin", e.Admin);
+            Add("invite", e.Invite);
+            Add("gift", e.Gift);
+            Add("webapp", e.WebApp);
+            return endpoints.Count > 0 ? endpoints : null;
+        }
+        catch (Exception ex)
+        {
+            _logger.Warning(ex, "Could not read the instance's /.well-known/fluxer endpoints");
+            return null;
+        }
+    }
 
 
     public SocketCurrentUser? CurrentUser { get; internal set; }
@@ -796,7 +833,7 @@ public partial class FluxerGatewayClient : IDisposable
                         CurrentUser.SessionId = data.SessionId;
                         GatewaySessionJson? presence = data.Sessions.FirstOrDefault(x => x.SessionId == CurrentUser.SessionId);
                         _sessionId = data.SessionId;
-                        if (data.Endpoints != null)
+                        if (data.Endpoints is { Count: > 0 })
                         {
                             Endpoints = data.Endpoints;
                             if (_client.Config.DiscoverEndpoints)
@@ -810,6 +847,12 @@ public partial class FluxerGatewayClient : IDisposable
                         Roles.Clear();
                         CurrentMembers.Clear();
                         Guilds.Clear();
+                        if (_client.Config.DiscoverEndpoints && Endpoints == null
+                            && await FetchInstanceEndpointsAsync() is { } discovered)
+                        {
+                            Endpoints = discovered;
+                            _client.Config.ApplyEndpoints(discovered);
+                        }
                         RtcRegions = data.RtcRegions.Select(x => RtcRegion.Create(_client, x)).ToArray();
                         if (data.Guilds != null)
                         {
