@@ -99,7 +99,7 @@ public class PartialGuild : Entity, IPartialGuild
         if (string.IsNullOrEmpty(IconHash))
             return null;
 
-        return $"{Client.Config.MediaUrl}/icons/{Id}/{IconHash}.png?size={size}";
+        return CdnUrl.Png($"{Client.Config.MediaUrl}/icons/{Id}/{IconHash}", IconHash, size);
     }
 
     /// <inheritdoc />

@@ -103,6 +103,6 @@ public class CurrentUserJson : UserJson, ICurrentUser, IUserProfile
         if (string.IsNullOrEmpty(BannerHash))
             return null;
 
-        return $"https://fluxerusercontent.com/banners/{Id}/{BannerHash}.png?size={size}";
+        return CdnUrl.Png($"https://fluxerusercontent.com/banners/{Id}/{BannerHash}", BannerHash, size);
     }
 }

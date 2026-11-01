@@ -84,7 +84,7 @@ public class GuildMember : Entity, IGuildMember
         if (string.IsNullOrEmpty(AvatarHash))
             return null;
 
-        return $"{Client.Config.MediaUrl}/guilds/{GuildId}/users/{Id}/avatars/{AvatarHash}.png?size={size}";
+        return CdnUrl.Png($"{Client.Config.MediaUrl}/guilds/{GuildId}/users/{Id}/avatars/{AvatarHash}", AvatarHash, size);
     }
 
     /// <inheritdoc />

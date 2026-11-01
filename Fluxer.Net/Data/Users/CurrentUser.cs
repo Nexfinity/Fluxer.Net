@@ -78,7 +78,7 @@ public class CurrentUser : User, ICurrentUser, IUserProfile
         if (string.IsNullOrEmpty(BannerHash))
             return null;
 
-        return $"{Client.Config.MediaUrl}/banners/{Id}/{BannerHash}.png?size={size}";
+        return CdnUrl.Png($"{Client.Config.MediaUrl}/banners/{Id}/{BannerHash}", BannerHash, size);
     }
 
     internal CurrentUser(FluxerBaseClient client) : base(client)

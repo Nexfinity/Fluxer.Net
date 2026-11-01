@@ -31,7 +31,7 @@ public class UserProfile : Entity, IUserProfile
         if (string.IsNullOrEmpty(BannerHash))
             return null;
 
-        return $"{Client.Config.MediaUrl}/banners/{UserId}/{BannerHash}.png?size={size}";
+        return CdnUrl.Png($"{Client.Config.MediaUrl}/banners/{UserId}/{BannerHash}", BannerHash, size);
     }
 
     internal UserProfile(FluxerBaseClient client) : base(client)

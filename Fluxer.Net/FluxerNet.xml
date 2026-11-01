@@ -11853,6 +11853,21 @@
             Used for announcement/news channel followed messages.
             </summary>
         </member>
+        <member name="T:Fluxer.Net.CdnUrl">
+            <summary>
+            Builds media host URLs for hashed images.
+            </summary>
+        </member>
+        <member name="M:Fluxer.Net.CdnUrl.Png(System.String,System.String,System.Int32)">
+            <summary>
+            Builds a PNG URL for a hashed image. An animated hash asks for its first frame, since the media host
+            otherwise returns every frame stacked into one tall image.
+            </summary>
+            <param name="path">The URL up to and including the hash, without an extension.</param>
+            <param name="hash">The image hash.</param>
+            <param name="size">The requested size.</param>
+            <returns>The URL.</returns>
+        </member>
         <member name="T:Fluxer.Net.Extensions.StringUInt64Converter">
             <summary>
             Deserializes a JSON value as <see cref="T:System.UInt64"/>, accepting both a raw JSON number

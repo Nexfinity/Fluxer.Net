@@ -54,7 +54,7 @@ public class Webhook : Entity, IWebhook
         if (string.IsNullOrEmpty(AvatarHash))
             return null;
 
-        return $"{Client.Config.MediaUrl}/avatars/{Id}/{AvatarHash}.png?size={size}";
+        return CdnUrl.Png($"{Client.Config.MediaUrl}/avatars/{Id}/{AvatarHash}", AvatarHash, size);
     }
 
     /// <inheritdoc />

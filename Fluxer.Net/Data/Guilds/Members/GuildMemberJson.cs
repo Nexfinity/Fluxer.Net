@@ -97,7 +97,7 @@ public class GuildMemberJson : IGuildMember
         if (string.IsNullOrEmpty(AvatarHash))
             return null;
 
-        return $"https://fluxerusercontent.com/guilds/{GuildId}/users/{Id}/avatars/{AvatarHash}.png?size={size}";
+        return CdnUrl.Png($"https://fluxerusercontent.com/guilds/{GuildId}/users/{Id}/avatars/{AvatarHash}", AvatarHash, size);
     }
 
     /// <inheritdoc />

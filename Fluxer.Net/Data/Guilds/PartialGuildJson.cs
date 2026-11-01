@@ -75,7 +75,7 @@ public class PartialGuildJson : IPartialGuild
         if (string.IsNullOrEmpty(IconHash))
             return null;
 
-        return $"https://fluxerusercontent.com/icons/{Id}/{IconHash}.png?size={size}";
+        return CdnUrl.Png($"https://fluxerusercontent.com/icons/{Id}/{IconHash}", IconHash, size);
     }
 
     /// <inheritdoc />

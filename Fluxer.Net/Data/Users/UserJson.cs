@@ -71,7 +71,7 @@ public class UserJson : IUser
         if (string.IsNullOrEmpty(AvatarHash))
             return null;
 
-        return $"https://fluxerusercontent.com/avatars/{Id}/{AvatarHash}.png?size={size}";
+        return CdnUrl.Png($"https://fluxerusercontent.com/avatars/{Id}/{AvatarHash}", AvatarHash, size);
     }
 
     /// <inheritdoc />
