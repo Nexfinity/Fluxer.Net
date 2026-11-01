@@ -12670,11 +12670,17 @@
             Use this for files too big to send with the message itself.
             </summary>
             <param name="channelId">The channel the file will be sent in.</param>
-            <param name="stream">The file. It is read from its current position to the end.</param>
+            <param name="stream">The file. It is read from its current position to the end; a seekable stream that already sits at its end is read from the start.</param>
             <param name="filename">The name of the file.</param>
             <param name="contentType">The MIME type of the file.</param>
             <param name="options">Request options for the Fluxer API calls.</param>
             <returns>The uploaded file</returns>
+        </member>
+        <member name="M:Fluxer.Net.Rest.FluxerApiClient.Rewound(System.IO.Stream)">
+            <summary>
+            A seekable stream that was written and left at its end is read from the start, so a freshly generated file
+            is not sent as empty; any other stream is read from its current position.
+            </summary>
         </member>
         <member name="M:Fluxer.Net.Rest.FluxerApiClient.SendMessageAsync(System.UInt64,System.Collections.Generic.IEnumerable{Fluxer.Net.Rest.UploadedAttachment},System.String,System.Collections.Generic.List{Fluxer.Net.Rest.EmbedRequest},Fluxer.Net.Rest.MessageReferenceRequest,Fluxer.Net.Rest.AllowedMentionsRequest,Fluxer.Net.Rest.RequestOptions)">
             <summary>

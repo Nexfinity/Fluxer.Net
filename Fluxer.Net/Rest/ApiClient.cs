@@ -502,7 +502,7 @@ public class FluxerApiClient : FluxerBaseApiClient
             for (int i = 0; i < attachments.Count; i++)
             {
                 attachments[i].Id = (ulong)i;
-                form.Add(new KeyValuePair<string, (HttpContent content, string? filename)>($"files[{i}]", (new StreamContent(attachments[i].Stream), attachments[i].Filename)));
+                form.Add(new KeyValuePair<string, (HttpContent content, string? filename)>($"files[{i}]", (new StreamContent(Rewound(attachments[i].Stream)), attachments[i].Filename)));
             }
             req.Attachments = attachments.Select(x => x.ToJson()).ToList();
 
@@ -1241,7 +1241,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// Use this for files too big to send with the message itself.
     /// </summary>
     /// <param name="channelId">The channel the file will be sent in.</param>
-    /// <param name="stream">The file. It is read from its current position to the end.</param>
+    /// <param name="stream">The file. It is read from its current position to the end; a seekable stream that already sits at its end is read from the start.</param>
     /// <param name="filename">The name of the file.</param>
     /// <param name="contentType">The MIME type of the file.</param>
     /// <param name="options">Request options for the Fluxer API calls.</param>
@@ -1250,7 +1250,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     {
         CancellationToken token = options?.CancelToken ?? CancellationToken.None;
         if (stream.CanSeek)
-            return await UploadSeekableAttachmentAsync(channelId, stream, filename, contentType, options, token);
+            return await UploadSeekableAttachmentAsync(channelId, Rewound(stream), filename, contentType, options, token);
 
         using FileStream buffer = new FileStream(Path.GetTempFileName(), FileMode.Create, FileAccess.ReadWrite, FileShare.None, 81920, FileOptions.DeleteOnClose | FileOptions.Asynchronous);
         await stream.CopyToAsync(buffer, 81920, token);
@@ -1303,6 +1303,17 @@ public class FluxerApiClient : FluxerBaseApiClient
             UploadFilename = plan.UploadFilename,
             FileSize = size
         };
+    }
+
+    /// <summary>
+    /// A seekable stream that was written and left at its end is read from the start, so a freshly generated file
+    /// is not sent as empty; any other stream is read from its current position.
+    /// </summary>
+    private static Stream Rewound(Stream stream)
+    {
+        if (stream.CanSeek && stream.Length > 0 && stream.Position >= stream.Length)
+            stream.Position = 0;
+        return stream;
     }
 
     private async Task PutUploadAsync(string url, HttpContent content, string contentType, CancellationToken token)
@@ -3561,7 +3572,7 @@ public class FluxerApiClient : FluxerBaseApiClient
         for (int i = 0; i < attachments!.Count; i++)
         {
             attachments[i].Id = (ulong)i;
-            form.Add(new KeyValuePair<string, (HttpContent content, string? filename)>($"files[{i}]", (new StreamContent(attachments[i].Stream), attachments[i].Filename)));
+            form.Add(new KeyValuePair<string, (HttpContent content, string? filename)>($"files[{i}]", (new StreamContent(Rewound(attachments[i].Stream)), attachments[i].Filename)));
         }
         req.Attachments = attachments.Select(x => x.ToJson()).ToList();
         return form;
