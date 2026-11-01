@@ -15,9 +15,9 @@ var client = new FluxerClient(token, config);
 
 ## Discovered endpoints
 
-Every instance publishes the URLs of its services: `api_public`, `gateway`, `media`, `static_cdn`, `invite`, `webapp`, `admin`, `gift` and a few more. Some send them in the READY event under `endpoints`; the rest serve them at `/.well-known/fluxer`, which the gateway reads once when READY comes without them. With `FluxerConfig.DiscoverEndpoints` on, which is the default, the gateway applies them to `MediaUrl`, `StaticUrl`, `InviteUrl`, `WebUrl`, `AdminUrl` and `GiftUrl` before the Ready event, so avatar, icon, emoji, sticker, attachment and invite URLs produced by the entities point at the right hosts. The API and gateway URLs are never changed by discovery.
+Every instance publishes the URLs of its services: `api_public`, `gateway`, `media`, `static_cdn`, `invite`, `webapp`, `admin`, `gift` and a few more. Some send them in the READY event under `endpoints`, and every instance serves them at `/.well-known/fluxer`, which `LoginAsync` and `Rest.GetInstanceAsync` read without the gateway. With `FluxerConfig.DiscoverEndpoints` on, which is the default, the gateway applies READY's endpoints to `MediaUrl`, `StaticUrl`, `InviteUrl`, `WebUrl`, `AdminUrl` and `GiftUrl` before the Ready event, so avatar, icon, emoji, sticker, attachment and invite URLs produced by the entities point at the right hosts. The API and gateway URLs are never changed by discovery.
 
-The raw list is on the gateway as `client.Gateway.Endpoints`, keyed by name, for anything the library does not map itself (the upload relay, the marketing site).
+The raw list from READY is on the gateway as `client.Gateway.Endpoints`, keyed by name, for anything the library does not map itself (the upload relay, the marketing site).
 
 Turn discovery off when you want the configured hosts to stay as they are:
 
