@@ -1,7 +1,7 @@
 namespace Fluxer.Net.Gateway;
 
 /// <summary>
-/// Counters for one cache store, to see how well it works and tune its limits.
+/// The counters of one cache store.
 /// </summary>
 public sealed class CacheStatistics
 {

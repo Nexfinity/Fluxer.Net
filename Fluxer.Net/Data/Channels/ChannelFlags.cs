@@ -1,5 +1,8 @@
 ﻿namespace Fluxer.Net;
 
+/// <summary>
+/// Flags set on a channel.
+/// </summary>
 public enum ChannelFlags
 {
     /// <summary>
@@ -13,12 +16,12 @@ public enum ChannelFlags
     Pinned = 1 << 1,
 
     /// <summary>
-    /// Forum channel requires a tag.
+    /// Forum posts must have a tag.
     /// </summary>
     RequireTag = 1 << 4,
 
     /// <summary>
-    /// Hide media download in forum channel.
+    /// Hides the media download option in a forum channel.
     /// </summary>
     HideMediaDownloadOption = 1 << 15,
 }

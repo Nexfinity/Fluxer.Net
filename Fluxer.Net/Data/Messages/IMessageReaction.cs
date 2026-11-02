@@ -1,5 +1,8 @@
 ﻿namespace Fluxer.Net;
 
+/// <summary>
+/// An emoji reaction on a message.
+/// </summary>
 public interface IMessageReaction
 {
     /// <summary>

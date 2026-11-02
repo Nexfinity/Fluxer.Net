@@ -12,7 +12,7 @@ public class FluxerOAuthUser : User, IFluxerOAuthUser
     }
 
     /// <summary>
-    /// Create a FluxerOAuthUser object from json.
+    /// Creates an OAuth user from its JSON.
     /// </summary>
     /// <returns><see cref="FluxerOAuthUser"/></returns>
     public static FluxerOAuthUser Create(FluxerBaseClient client, FluxerOAuthUserJson json)
@@ -22,6 +22,9 @@ public class FluxerOAuthUser : User, IFluxerOAuthUser
         return data;
     }
 
+    /// <summary>
+    /// Creates an OAuth user from the claims of a signed-in principal.
+    /// </summary>
     public static FluxerOAuthUser Create(FluxerBaseClient client, ClaimsPrincipal principal)
     {
         FluxerOAuthUser data = new FluxerOAuthUser(client);

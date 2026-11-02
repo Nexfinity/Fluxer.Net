@@ -21,9 +21,8 @@ public class ForumPostData : Entity
     }
 
     /// <summary>
-    /// Create a ForumPostData object from json.
+    /// Creates forum post data from JSON.
     /// </summary>
-    /// <returns><see cref="ForumPostData"/></returns>
     public static ForumPostData Create(FluxerBaseClient client, ForumPostDataJson json)
     {
         ForumPostData data = new ForumPostData(client);

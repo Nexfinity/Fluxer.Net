@@ -4,15 +4,17 @@ using Serilog;
 namespace Fluxer.Net.OAuth;
 
 /// <summary>
-/// OAuth client used for Fluxer.
+/// A client for the Fluxer OAuth API. It reads a user's profile, guilds and connections and manages their tokens.
 /// </summary>
 public class FluxerOAuthClient : FluxerBaseClient
 {
     /// <summary>
-    /// Create an OAuth client with id and secret then use access or refresh tokens.
+    /// Creates an OAuth client for an app's client id and secret.
     /// </summary>
-    /// <exception cref="ArgumentNullException"></exception>
-    /// <exception cref="ArgumentException"></exception>
+    /// <param name="clientId">The client id of the OAuth app.</param>
+    /// <param name="clientSecret">The client secret of the OAuth app.</param>
+    /// <param name="config">The settings to use. Defaults are used when null.</param>
+    /// <exception cref="ArgumentNullException">The client id is 0, or the client secret is null or empty.</exception>
     public FluxerOAuthClient(ulong clientId, string clientSecret, FluxerConfig? config = null)
     {
         if (clientId == 0)
@@ -39,12 +41,12 @@ public class FluxerOAuthClient : FluxerBaseClient
     }
 
     /// <summary>
-    /// Client id for the OAuth app.
+    /// The client id of the OAuth app.
     /// </summary>
     public ulong ClientId => base.Id;
 
     /// <summary>
-    /// Client secret for the OAuth app.
+    /// The client secret of the OAuth app.
     /// </summary>
     public string ClientSecret => base.Token;
 
@@ -67,7 +69,12 @@ public class FluxerOAuthClient : FluxerBaseClient
     public Task<IEnumerable<UserConnection>> GetConnectionsAsync(string accessToken, RequestOptions? options = null)
         => Rest.GetOAuthConnectionsAsync(accessToken, options);
 
-    /// <inheritdoc cref="FluxerApiClient.GetOAuthValidTokenAsync(ulong, string, string, RequestOptions?)" />
+    /// <summary>
+    /// Checks whether an access token is active.
+    /// </summary>
+    /// <param name="accessToken">The access token to check.</param>
+    /// <param name="options">The request options.</param>
+    /// <returns>Whether the token is active. False when the check fails for any reason.</returns>
     public async Task<bool> CheckValidTokenAsync(string accessToken, RequestOptions? options = null)
     {
         try

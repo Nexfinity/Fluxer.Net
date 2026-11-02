@@ -1,14 +1,12 @@
 namespace Fluxer.Net.Commands;
 
 /// <summary>
-/// Utility class which contains the default matching pairs of quotation marks for CommandServiceConfig
+/// The default pairs of opening and closing quotation marks used by <see cref="CommandServiceConfig"/>.
 /// </summary>
 internal static class QuotationAliasUtils
 {
     /// <summary>
-    /// A default map of open-close pairs of quotation marks.
-    /// Contains many regional and Unicode equivalents.
-    /// Used in the <see cref="CommandServiceConfig"/>.
+    /// The default map of opening to closing quotation marks, including regional and Unicode equivalents.
     /// </summary>
     /// <seealso cref="CommandServiceConfig.QuotationMarkAliasMap"/>
     internal static Dictionary<char, char> GetDefaultAliasMap

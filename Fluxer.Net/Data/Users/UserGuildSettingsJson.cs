@@ -21,6 +21,7 @@ public class UserGuildSettingsJson : IUserGuildSettings
     [JsonProperty("message_notifications")]
     public NotificationType MessageNotifications { get; set; }
 
+    /// <inheritdoc />
     [JsonProperty("unread_badges")]
     public NotificationType? UnreadBadges { get; set; }
 

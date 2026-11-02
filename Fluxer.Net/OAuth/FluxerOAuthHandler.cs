@@ -12,14 +12,18 @@ using System.Text.Json;
 
 namespace Fluxer.Net.OAuth;
 
-/// <Summary>
-/// Asp.net oauth handler for Fluxer.
-/// </Summary>
+/// <summary>
+/// The ASP.NET Core OAuth handler that signs users in with Fluxer.
+/// </summary>
 public partial class FluxerOAuthHandler : OAuthHandler<FluxerOAuthOptions>
 {
-    /// <Summary>
-    /// Create asp.net oauth handler for Fluxer.
-    /// </Summary>
+    /// <summary>
+    /// Creates the OAuth handler for Fluxer sign-in.
+    /// </summary>
+    /// <param name="options">The sign-in options.</param>
+    /// <param name="logger">The logger factory.</param>
+    /// <param name="encoder">The URL encoder.</param>
+    /// <param name="clock">The system clock.</param>
     public FluxerOAuthHandler(
         IOptionsMonitor<FluxerOAuthOptions> options,
         ILoggerFactory logger,
@@ -29,6 +33,7 @@ public partial class FluxerOAuthHandler : OAuthHandler<FluxerOAuthOptions>
 
     }
 
+    /// <inheritdoc />
     protected override string BuildChallengeUrl(
         [NotNull] AuthenticationProperties properties,
         [NotNull] string redirectUri)
@@ -50,6 +55,7 @@ public partial class FluxerOAuthHandler : OAuthHandler<FluxerOAuthOptions>
         return challengeUrl;
     }
 
+    /// <inheritdoc />
     protected override async Task<AuthenticationTicket> CreateTicketAsync(
         [NotNull] ClaimsIdentity identity,
         [NotNull] AuthenticationProperties properties,

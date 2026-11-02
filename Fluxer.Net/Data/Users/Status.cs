@@ -1,7 +1,7 @@
 namespace Fluxer.Net;
 
 /// <summary>
-/// Represents a user's online status/presence.
+/// A user's online status.
 /// </summary>
 public enum Status
 {

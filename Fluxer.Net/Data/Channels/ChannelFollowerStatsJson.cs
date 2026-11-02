@@ -2,6 +2,9 @@
 
 namespace Fluxer.Net;
 
+/// <summary>
+/// The number of channels and guilds that follow an announcement channel.
+/// </summary>
 public class ChannelFollowerStatsJson
 {
     /// <summary>

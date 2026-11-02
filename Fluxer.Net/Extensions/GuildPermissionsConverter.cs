@@ -2,8 +2,13 @@
 
 namespace Fluxer.Net.Extensions;
 
+/// <summary>
+/// Converts <see cref="GuildPermissions"/> to and from JSON. Reading accepts a string or a number, and writing
+/// always writes a string.
+/// </summary>
 public class GuildPermissionsConverter : JsonConverter<GuildPermissions>
 {
+    /// <inheritdoc />
     public override GuildPermissions ReadJson(JsonReader reader, Type objectType, GuildPermissions GuildPermissions, bool hasExistingValue, JsonSerializer serializer)
     {
         if (reader.Value == null)
@@ -19,6 +24,7 @@ public class GuildPermissionsConverter : JsonConverter<GuildPermissions>
             $"Unexpected token type '{reader.TokenType}' when deserializing GuildPermissions at path '{reader.Path}'.");
     }
 
+    /// <inheritdoc />
     public override void WriteJson(JsonWriter writer, GuildPermissions value, JsonSerializer serializer)
         => writer.WriteValue(((ulong)value.RawValue).ToString());
 }

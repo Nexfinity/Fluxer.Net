@@ -2,44 +2,46 @@
 
 namespace Fluxer.Net;
 
+/// <summary>
+/// Settings for the gateway connection. Some of them are sent to Fluxer when the session identifies.
+/// </summary>
 public class FluxerGatewayConfig
 {
     /// <summary>
-    /// List of gateway event dispatch types to ignore. Useful for filtering out high-volume events
-    /// your application doesn't need (e.g., "PRESENCE_UPDATE", "TYPING_START"). Defaults to empty list.
+    /// The gateway event types Fluxer should not send, such as PRESENCE_UPDATE or TYPING_START. Empty by default.
     /// </summary>
     public List<string> IgnoredEvents { get; set; } = new();
 
     /// <summary>
-    /// Initial presence data to send when connecting to the gateway. If null, no presence is sent.
-    /// Allows setting your bot's or user's online status, activity, and other presence information.
+    /// The presence sent when connecting. Null sends none.
     /// </summary>
     public PresenceUpdateGatewayData? Presence { get; set; } = null;
 
     /// <summary>
-    /// Don't cache emojis and also disable emojis updated event.
+    /// Whether guild emojis are not cached. GUILD_EMOJIS_UPDATE is then ignored, so the emoji created, updated and
+    /// deleted events are not raised.
     /// </summary>
     public bool DisableEmojiCache { get; set; }
 
     /// <summary>
-    /// Don't cache stickers and also disable stickers updated event.
+    /// Whether guild stickers are not cached. GUILD_STICKERS_UPDATE is then ignored, so the sticker created, updated
+    /// and deleted events are not raised.
     /// </summary>
     public bool DisableStickerCache { get; set; }
 
     /// <summary>
-    /// Ask the gateway to batch reactions added to the same message into MESSAGE_REACTION_ADD_MANY, raised as
+    /// Whether the gateway batches reactions added to the same message into MESSAGE_REACTION_ADD_MANY, raised as
     /// <see cref="FluxerGatewayClient.MessageReactionsAdded"/>. A batch of one is still sent as MESSAGE_REACTION_ADD.
     /// </summary>
     public bool DebounceMessageReactions { get; set; }
 
     /// <summary>
-    /// What the gateway remembers to hand over the state from before update and delete events, and where it keeps it.
-    /// Everything is off by default.
+    /// The cache of the state from before update and delete events. Off by default.
     /// </summary>
     public FluxerCacheConfig Cache { get; set; } = new FluxerCacheConfig();
 
     /// <summary>
-    /// How events reach your handlers: ordered per guild by default, with async handlers awaited.
+    /// How gateway events reach your handlers. Ordered per guild by default.
     /// </summary>
     public FluxerEventConfig Events { get; set; } = new FluxerEventConfig();
 }

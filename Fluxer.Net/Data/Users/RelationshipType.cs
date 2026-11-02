@@ -1,7 +1,7 @@
 namespace Fluxer.Net;
 
 /// <summary>
-/// Represents the type of relationship between the current user and another user.
+/// The kind of relationship between the current user and another user.
 /// </summary>
 public enum RelationshipType
 {
@@ -21,7 +21,7 @@ public enum RelationshipType
     IncomingRequest = 3,
 
     /// <summary>
-    /// Outgoing friend request sent to the user.
+    /// The current user has sent a friend request to the user.
     /// </summary>
     OutgoingRequest = 4,
 }

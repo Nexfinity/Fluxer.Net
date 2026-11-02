@@ -67,9 +67,8 @@ public class Instance : Entity, IInstance
     }
 
     /// <summary>
-    /// Create a Instance object from json.
+    /// Creates an instance from JSON.
     /// </summary>
-    /// <returns><see cref="Instance"/></returns>
     public static Instance Create(FluxerBaseClient client, InstanceJson json)
     {
         Instance data = new Instance(client)
@@ -337,6 +336,7 @@ public class InstanceLimits : IInstanceLimits
 
     IInstanceRule[] IInstanceLimits.Rules => Rules;
 }
+/// <inheritdoc />
 public class InstanceRule : IInstanceRule
 {
     internal InstanceRule() { }

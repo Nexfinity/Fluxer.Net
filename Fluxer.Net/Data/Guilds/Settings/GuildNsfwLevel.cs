@@ -1,22 +1,22 @@
 ﻿namespace Fluxer.Net;
 
 /// <summary>
-/// Represents the nsfw level required for members to participate in a guild.
+/// The NSFW level of a guild.
 /// </summary>
 public enum GuildNsfwLevel
 {
     /// <summary>
-    /// Default verification level.
+    /// Safe for all users. Fluxer's only other level is <see cref="AgeRestricted"/>.
     /// </summary>
     Default = 0,
 
     /// <summary>
-    /// May contain some adults topics but not overly nsfw.
+    /// A legacy value that Fluxer reads as <see cref="AgeRestricted"/>.
     /// </summary>
     Explicit = 1,
 
     /// <summary>
-    /// Safe for all user.
+    /// A legacy value that Fluxer reads as <see cref="Default"/>.
     /// </summary>
     Safe = 2,
 

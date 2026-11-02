@@ -1,5 +1,8 @@
 ﻿namespace Fluxer.Net;
 
+/// <summary>
+/// An invite with its guild, channel and inviter.
+/// </summary>
 public interface IPartialInvite
 {
     /// <summary>
@@ -8,12 +11,12 @@ public interface IPartialInvite
     string Code { get; }
 
     /// <summary>
-    /// The type of invite (guild).
+    /// The kind of destination the invite leads to.
     /// </summary>
     InviteType Type { get; }
 
     /// <summary>
-    /// The guild this invite is for
+    /// The guild this invite is for.
     /// </summary>
     IPartialGuild? Guild { get; }
 
@@ -28,7 +31,7 @@ public interface IPartialInvite
     IUser? Inviter { get; }
 
     /// <summary>
-    /// The approximate total member count of the guild
+    /// The approximate total member count of the guild.
     /// </summary>
     int MemberCount { get; }
 
@@ -38,12 +41,12 @@ public interface IPartialInvite
     int PresenceCount { get; }
 
     /// <summary>
-    /// ISO8601 timestamp of when the invite expires.
+    /// The time the invite expires.
     /// </summary>
     DateTimeOffset? ExpiresAt { get; }
 
     /// <summary>
-    /// Whether the invite grants temporary membership
+    /// Whether the invite grants temporary membership.
     /// </summary>
     bool IsTemporary { get; }
 }

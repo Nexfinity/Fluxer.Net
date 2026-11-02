@@ -1,11 +1,10 @@
 namespace Fluxer.Net;
 
 /// <summary>
-/// Represents guild and channel permissions in Fluxer. Multiple permissions can be combined using bitwise OR.
+/// Permissions that apply to a guild. Combine them with bitwise OR.
 /// </summary>
 /// <remarks>
-/// Permissions are stored as a 64-bit unsigned integer where each bit represents a specific permission.
-/// Use bitwise operations to check, add, or remove permissions.
+/// Each permission is one bit of a 64-bit unsigned integer.
 /// </remarks>
 [Flags]
 public enum GuildPermission : ulong
@@ -276,7 +275,7 @@ public enum GuildPermission : ulong
     UpdateRTCRegion = 1UL << 53,
 
     /// <summary>
-    /// Allows you to view members in the channel.
+    /// Allows viewing the members of the channel.
     /// </summary>
     ViewChannelMembers = 1UL << 54,
 }

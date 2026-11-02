@@ -1,14 +1,17 @@
 ﻿namespace Fluxer.Net;
 
+/// <summary>
+/// An invite with its usage and expiry details.
+/// </summary>
 public interface IInvite
 {
     /// <summary>
-    /// ISO8601 timestamp of when the invite was created.
+    /// The time the invite was created.
     /// </summary>
     DateTimeOffset CreatedAt { get; }
 
     /// <summary>
-    /// The number of times this invite has been used
+    /// The number of times this invite has been used.
     /// </summary>
     int Uses { get; }
 

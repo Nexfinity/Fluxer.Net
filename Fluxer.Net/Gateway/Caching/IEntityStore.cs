@@ -8,9 +8,8 @@ namespace Fluxer.Net.Gateway;
 public readonly record struct CacheScope(ulong? GuildId, ulong? ChannelId);
 
 /// <summary>
-/// A store for one kind of cached gateway data. Implement it to keep the cache somewhere else, for example in Redis
-/// to share it between shards or keep it across restarts. <see cref="SerializedEntityStore{TKey, TValue}"/> does the
-/// serialization and scope bookkeeping for key-value backends.
+/// A store for one kind of cached gateway data. Implement it to keep the cache in another backend.
+/// <see cref="SerializedEntityStore{TKey, TValue}"/> does the serialization and scope bookkeeping for key-value backends.
 /// </summary>
 /// <remarks>
 /// <para>Values are the raw JSON models and can be serialized with <see cref="FluxerJson"/>.</para>
@@ -51,7 +50,7 @@ public interface IEntityStore<TKey, TValue> : IAsyncDisposable where TKey : notn
     ValueTask ClearAsync(CancellationToken cancellationToken = default);
 
     /// <summary>
-    /// Gets several entries at once. Keys that aren't stored are left out. Override it when the backend can fetch in one round trip.
+    /// Gets several entries at once. Keys that aren't stored are left out. The default calls <see cref="GetAsync"/> for each key.
     /// </summary>
     async ValueTask<IReadOnlyDictionary<TKey, TValue>> GetManyAsync(IEnumerable<TKey> keys, CancellationToken cancellationToken = default)
     {
@@ -66,7 +65,7 @@ public interface IEntityStore<TKey, TValue> : IAsyncDisposable where TKey : notn
     }
 
     /// <summary>
-    /// Removes several entries at once and returns the ones that were stored. Override it when the backend can delete in one round trip.
+    /// Removes several entries at once and returns the ones that were stored. The default calls <see cref="RemoveAsync"/> for each key.
     /// </summary>
     async ValueTask<IReadOnlyDictionary<TKey, TValue>> RemoveManyAsync(IEnumerable<TKey> keys, CancellationToken cancellationToken = default)
     {

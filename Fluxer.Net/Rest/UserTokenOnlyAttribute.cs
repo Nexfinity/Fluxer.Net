@@ -1,13 +1,9 @@
 namespace Fluxer.Net.Rest;
 
 /// <summary>
-/// Marks an API method that Fluxer only serves to a logged-in user. Called with a bot token, the server answers
-/// 403 <c>ACCESS_DENIED</c>, and the client throws <see cref="UserTokenRequiredException"/> before sending anything.
+/// Marks an API method that Fluxer only serves to user accounts. The client does not read this attribute. Bot token
+/// requests are checked against <see cref="UserOnlyRoutes"/> instead.
 /// </summary>
-/// <remarks>
-/// Fluxer allows user accounts to run automated clients, and these methods work for them. Bot applications have no
-/// setting that unlocks them.
-/// </remarks>
 [AttributeUsage(AttributeTargets.Method, Inherited = false)]
 public sealed class UserTokenOnlyAttribute : Attribute
 {

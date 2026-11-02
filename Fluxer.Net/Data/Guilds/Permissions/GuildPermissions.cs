@@ -1,13 +1,21 @@
 ﻿namespace Fluxer.Net;
 
+/// <summary>
+/// A set of guild permission flags.
+/// </summary>
 public class GuildPermissions
 {
+    /// <summary>
+    /// Creates guild permissions from permission flags.
+    /// </summary>
+    /// <param name="perms">The permission flags.</param>
     public GuildPermissions(GuildPermission perms)
     {
         RawValue = perms;
     }
+
     /// <summary>
-    /// Raw permissions flag for the guild.
+    /// The raw permission flags for the guild.
     /// </summary>
     public GuildPermission RawValue { get; private set; }
 

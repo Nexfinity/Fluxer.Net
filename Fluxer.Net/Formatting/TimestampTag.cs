@@ -52,13 +52,15 @@ public enum TimestampTagStyles
 }
 
 /// <summary>
-/// A timestamp that every reader sees in their own time zone.
+/// A timestamp tag, written as markup that Fluxer clients show in each reader's own time zone.
 /// </summary>
 public readonly struct TimestampTag
 {
     /// <summary>
     /// Creates a tag for a moment in time.
     /// </summary>
+    /// <param name="time">The moment the tag shows.</param>
+    /// <param name="style">How the tag is shown.</param>
     public TimestampTag(DateTimeOffset time, TimestampTagStyles style = TimestampTagStyles.ShortDateTime)
     {
         Time = time;
@@ -78,22 +80,27 @@ public readonly struct TimestampTag
     /// <summary>
     /// Creates a tag for a moment in time.
     /// </summary>
+    /// <param name="time">The moment the tag shows.</param>
+    /// <param name="style">How the tag is shown.</param>
     public static TimestampTag FromDateTimeOffset(DateTimeOffset time,
         TimestampTagStyles style = TimestampTagStyles.ShortDateTime) => new(time, style);
 
     /// <summary>
     /// Creates a tag for a moment in time, treating an unspecified kind as UTC.
     /// </summary>
+    /// <param name="time">The moment the tag shows.</param>
+    /// <param name="style">How the tag is shown.</param>
     public static TimestampTag FromDateTime(DateTime time, TimestampTagStyles style = TimestampTagStyles.ShortDateTime) =>
         new(time.Kind == DateTimeKind.Unspecified ? new DateTimeOffset(time, TimeSpan.Zero) : new DateTimeOffset(time), style);
 
     /// <summary>
-    /// Returns the markup for the tag, for example <c>&lt;t:1618953630:R&gt;</c>.
+    /// Returns the markup for the tag, for example <c>&lt;t:1618953630:f&gt;</c>.
     /// </summary>
     public override string ToString() => ToString(Style);
 
     /// <summary>
     /// Returns the markup for the tag in another style.
     /// </summary>
+    /// <param name="style">How the tag is shown.</param>
     public string ToString(TimestampTagStyles style) => $"<t:{Time.ToUnixTimeSeconds()}:{(char)style}>";
 }

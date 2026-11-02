@@ -1,5 +1,8 @@
 ﻿namespace Fluxer.Net;
 
+/// <summary>
+/// A vanity URL of a guild.
+/// </summary>
 public interface IGuildVanityUrl
 {
     /// <summary>

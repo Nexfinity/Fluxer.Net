@@ -1,9 +1,12 @@
 ﻿namespace Fluxer.Net;
 
+/// <summary>
+/// A channel in a guild, a group or a direct message.
+/// </summary>
 public interface IChannel : IPartialChannel
 {
     /// <summary>
-    /// The unique identifier (snowflake) for guild of this channel.
+    /// The ID of the guild the channel belongs to.
     /// </summary>
     ulong? GuildId { get; }
 
@@ -33,12 +36,12 @@ public interface IChannel : IPartialChannel
     int? Position { get; }
 
     /// <summary>
-    /// The ID of the owner of the channel. (for group DMs)
+    /// The ID of the owner of the channel, for group DMs.
     /// </summary>
     ulong? OwnerId { get; }
 
     /// <summary>
-    /// The recipients of the DM channel.
+    /// The IDs of the recipients of a DM or group DM.
     /// </summary>
     HashSet<ulong>? RecipientIds { get; }
 
@@ -48,7 +51,7 @@ public interface IChannel : IPartialChannel
     bool IsNsfw { get; }
 
     /// <summary>
-    /// The slowmode for this channel to limit messages per second.
+    /// The slowmode delay in seconds between messages from one user.
     /// </summary>
     int? RateLimitPerUser { get; }
 
@@ -93,33 +96,72 @@ public interface IChannel : IPartialChannel
     IEnumerable<IPermissionOverwrite>? PermissionOverwrites { get; }
 
     /// <summary>
-    /// Custom nicknames for users in this channel (for group DMs)
+    /// Custom nicknames for users in this channel, for group DMs.
     /// </summary>
     Dictionary<string, string>? Nicknames { get; }
 
+    /// <summary>
+    /// The content warning level of the channel.
+    /// </summary>
     GuildContentWarning? ContentWarningLevel { get; }
 
+    /// <summary>
+    /// The text shown with the content warning.
+    /// </summary>
     string? ContentWarningText { get; }
 
+    /// <summary>
+    /// Whether the channel is soft deleted.
+    /// </summary>
     bool IsSoftDeleted { get; }
 
+    /// <summary>
+    /// The time the channel was indexed.
+    /// </summary>
     DateTimeOffset? IndexedAt { get; }
 
+    /// <summary>
+    /// The current user's membership in the thread.
+    /// </summary>
     IThreadMember? ThreadMember { get; }
 
+    /// <summary>
+    /// The flags set on the channel.
+    /// </summary>
     ChannelFlags Flags { get; }
 
+    /// <summary>
+    /// The tags a forum or media channel offers for its posts.
+    /// </summary>
     IForumTag[]? ForumTags { get; }
 
+    /// <summary>
+    /// The IDs of the tags applied to a forum or media post.
+    /// </summary>
     ulong[]? AppliedTags { get; }
 
+    /// <summary>
+    /// The emoji a forum shows as the default reaction on its posts.
+    /// </summary>
     ForumReactionEmoji? DefaultReactionEmoji { get; }
 
+    /// <summary>
+    /// The default sort order of a forum's posts.
+    /// </summary>
     ForumSortOrder? DefaultSortOrder { get; }
 
+    /// <summary>
+    /// The default layout of a forum's posts.
+    /// </summary>
     ForumLayout? DefaultLayout { get; }
 
+    /// <summary>
+    /// The default time before a new thread is archived.
+    /// </summary>
     ThreadArchiveDuration? DefaultAutoArchiveDuration { get; }
 
+    /// <summary>
+    /// The default slowmode delay in seconds for new threads.
+    /// </summary>
     int? DefaultRateLimitPerUser { get; }
 }

@@ -7,9 +7,15 @@ namespace Fluxer.Net.Rest;
 /// </summary>
 public class UpdateGuildMemberRequest
 {
+    /// <summary>
+    /// The member's nickname, 1 to 32 characters, or null to clear it.
+    /// </summary>
     [JsonProperty("nick")]
     public Optional<string?> Nickname { get; set; }
 
+    /// <summary>
+    /// The IDs of the roles the member has.
+    /// </summary>
     [JsonProperty("roles")]
     public Optional<IEnumerable<ulong>> RoleIds { get; set; }
 
@@ -55,18 +61,33 @@ public class UpdateGuildMemberRequest
     [JsonProperty("mention_flags")]
     public Optional<MentionReplyPreference?> MentionFlags { get; set; }
 
+    /// <summary>
+    /// Whether the member is muted in voice channels.
+    /// </summary>
     [JsonProperty("mute")]
     public Optional<bool> IsMute { get; set; }
 
+    /// <summary>
+    /// Whether the member is deafened in voice channels.
+    /// </summary>
     [JsonProperty("deaf")]
     public Optional<bool> IsDeaf { get; set; }
 
+    /// <summary>
+    /// When the member's timeout ends, or null to remove the timeout.
+    /// </summary>
     [JsonProperty("communication_disabled_until")]
     public Optional<DateTimeOffset?> CommunicationDisabledUntil { get; set; }
 
+    /// <summary>
+    /// The reason for the timeout, or null to clear it.
+    /// </summary>
     [JsonProperty("timeout_reason")]
     public Optional<string?> TimeoutReason { get; set; }
 
+    /// <summary>
+    /// The voice channel to move the member to, or null to disconnect.
+    /// </summary>
     [JsonProperty("channel_id")]
     public Optional<ulong?> ChannelId { get; set; }
 

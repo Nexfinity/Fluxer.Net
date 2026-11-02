@@ -30,7 +30,7 @@ public class FluxerOAuthValidToken : Entity, IFluxerOAuthValidToken
     }
 
     /// <summary>
-    /// Create a FluxerOAuthValidToken object from json.
+    /// Creates a token validation result from its JSON.
     /// </summary>
     /// <returns><see cref="FluxerOAuthValidToken"/></returns>
     public static FluxerOAuthValidToken Create(FluxerBaseClient client, FluxerOAuthValidTokenJson json)

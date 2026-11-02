@@ -1,9 +1,9 @@
 namespace Fluxer.Net.RateLimiting;
 
 /// <summary>
-/// Which rate limit bucket a request belongs to. Fluxer keeps one allowance per route and per path resource, so a
-/// route is keyed by its method and its path with every id replaced by a placeholder, plus the ids of the channel,
-/// guild and webhook it acts on. Once Fluxer names the route's bucket, the name replaces the route.
+/// The rate limit bucket a request is counted against. A route is keyed by its method and its path with every id
+/// replaced by a placeholder, plus the channel, guild and webhook ids it acts on. Once Fluxer names the bucket of a
+/// route, the name replaces the route key.
 /// </summary>
 public sealed class BucketId : IEquatable<BucketId>
 {
@@ -44,18 +44,17 @@ public sealed class BucketId : IEquatable<BucketId>
     public bool IsHashBucket => BucketHash != null;
 
     /// <summary>
-    /// Gets whether requests in this bucket are left out of the global limit. Fluxer exempts executing a webhook and
-    /// reading, editing or deleting its messages through the webhook token.
+    /// Gets whether the route is a webhook token route, under <c>/webhooks/{id}/</c>, which leaves it out of the global limit.
     /// </summary>
     public bool IsGlobalExempt { get; }
 
     /// <summary>
-    /// Gets the method and route template that identify the route, whatever bucket it ends up in.
+    /// Gets the method and route template that identify the route, or null for a bucket named by Fluxer.
     /// </summary>
     public string RouteKey => HttpMethod != null ? $"{HttpMethod} {Endpoint}" : null;
 
     /// <summary>
-    /// Describes the bucket of a request.
+    /// Creates the bucket of a request from its method and route.
     /// </summary>
     /// <param name="httpMethod">The request method.</param>
     /// <param name="route">The request path, with or without a query string.</param>
@@ -104,7 +103,7 @@ public sealed class BucketId : IEquatable<BucketId>
     }
 
     /// <summary>
-    /// Gets the bucket Fluxer named for this route, keeping the same major parameters.
+    /// Creates the bucket with the name Fluxer gave its route, keeping the same major parameters.
     /// </summary>
     /// <param name="hash">The value of the X-RateLimit-Bucket header.</param>
     /// <returns>The named bucket.</returns>

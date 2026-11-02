@@ -1,9 +1,12 @@
 ﻿namespace Fluxer.Net;
 
+/// <summary>
+/// An embed attached to a message.
+/// </summary>
 public interface IEmbed
 {
     /// <summary>
-    /// The type of embed as raw string.
+    /// The type of the embed, as the API sends it.
     /// </summary>
     string RawType { get; }
 
@@ -18,7 +21,7 @@ public interface IEmbed
     string Title { get; }
 
     /// <summary>
-    /// The color code of the embed sidebar.
+    /// The color of the embed sidebar, as a raw 0xRRGGBB value.
     /// </summary>
     int? Color { get; }
 
@@ -77,6 +80,10 @@ public interface IEmbed
     /// </summary>
     bool IsNsfw { get; }
 }
+
+/// <summary>
+/// A field of an embed, with a name and a value.
+/// </summary>
 public interface IEmbedField
 {
     /// <summary>
@@ -94,6 +101,10 @@ public interface IEmbedField
     /// </summary>
     bool IsInline { get; }
 }
+
+/// <summary>
+/// The author section of an embed.
+/// </summary>
 public interface IEmbedAuthor
 {
     /// <summary>
@@ -116,6 +127,10 @@ public interface IEmbedAuthor
     /// </summary>
     string? ProxyIconUrl { get; }
 }
+
+/// <summary>
+/// The footer section of an embed.
+/// </summary>
 public interface IEmbedFooter
 {
     /// <summary>
@@ -129,10 +144,14 @@ public interface IEmbedFooter
     string? IconUrl { get; }
 
     /// <summary>
-    /// .
+    /// The proxied URL of the footer icon.
     /// </summary>
     string? ProxyIconUrl { get; }
 }
+
+/// <summary>
+/// Media shown in an embed, such as an image or a video.
+/// </summary>
 public interface IEmbedMedia
 {
     /// <summary>

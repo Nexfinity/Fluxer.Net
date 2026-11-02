@@ -1,5 +1,8 @@
 ﻿namespace Fluxer.Net;
 
+/// <summary>
+/// The content of a forwarded message, as it was when it was forwarded.
+/// </summary>
 public interface IMessageSnapshot
 {
     /// <summary>
@@ -8,12 +11,12 @@ public interface IMessageSnapshot
     string? Content { get; }
 
     /// <summary>
-    /// The ISO 8601 timestamp of when the original message was created.
+    /// When the original message was created.
     /// </summary>
     DateTimeOffset CreatedAt { get; }
 
     /// <summary>
-    /// The ISO 8601 timestamp of when the original message was last edited
+    /// When the original message was last edited, or null when it has not been edited.
     /// </summary>
     DateTimeOffset? EditedAt { get; }
 

@@ -51,7 +51,7 @@ public class GuildMember : Entity, IGuildMember
     public GuildMemberProfileFlags ProfileFlags { get; private set; }
 
     /// <summary>
-    /// Whether replies to the member mention them by default in this guild.
+    /// The reply mention preference of the member in this guild.
     /// </summary>
     public MentionReplyPreference MentionFlags { get; private set; }
 
@@ -113,7 +113,7 @@ public class GuildMember : Entity, IGuildMember
     }
 
     /// <summary>
-    /// Create a GuildMember object from json.
+    /// Creates a member from its JSON representation.
     /// </summary>
     /// <returns><see cref="GuildMember"/></returns>
     public static GuildMember Create(FluxerBaseClient client, GuildMemberJson json)

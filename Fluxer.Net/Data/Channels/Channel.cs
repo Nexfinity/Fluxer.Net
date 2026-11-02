@@ -138,9 +138,8 @@ public class Channel : PartialChannel, IChannel
     IForumTag[]? IChannel.ForumTags => ForumTags;
 
     /// <summary>
-    /// Channel types that you can send messages to.
+    /// Whether channels of the given type can hold messages.
     /// </summary>
-    /// <returns><see cref="bool"/></returns>
     static public bool TextableTypes(ChannelType type)
     {
         switch (type)
@@ -169,9 +168,8 @@ public class Channel : PartialChannel, IChannel
     }
 
     /// <summary>
-    /// Create a Channel object from json.
+    /// Creates a channel of the type given in the JSON.
     /// </summary>
-    /// <returns><see cref="Channel"/></returns>
     public static Channel Create(FluxerBaseClient client, ChannelJson json)
     {
         Channel data = null;

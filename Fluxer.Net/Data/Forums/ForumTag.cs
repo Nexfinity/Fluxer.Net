@@ -1,5 +1,8 @@
 ﻿namespace Fluxer.Net;
 
+/// <summary>
+/// A tag that forum posts can be given.
+/// </summary>
 public class ForumTag : Entity, IForumTag
 {
     /// <inheritdoc />
@@ -17,7 +20,9 @@ public class ForumTag : Entity, IForumTag
     /// <inheritdoc />
     public bool IsModerated { get; private set; }
 
-    /// <inheritdoc />
+    /// <summary>
+    /// The ID of the forum channel the tag belongs to.
+    /// </summary>
     public ulong ChannelId { get; private set; }
 
     internal ForumTag(FluxerBaseClient client) : base(client)
@@ -26,9 +31,8 @@ public class ForumTag : Entity, IForumTag
     }
 
     /// <summary>
-    /// Create a ForumTag object from json.
+    /// Creates a forum tag from JSON.
     /// </summary>
-    /// <returns><see cref="ForumTag"/></returns>
     public static ForumTag Create(FluxerBaseClient client, ForumTagJson json, ulong channelId)
     {
         ForumTag data = new ForumTag(client)

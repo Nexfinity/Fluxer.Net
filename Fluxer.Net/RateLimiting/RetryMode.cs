@@ -13,7 +13,7 @@ public enum RetryMode
     AlwaysFail = 0,
 
     /// <summary>
-    /// Requests that time out are sent again. Only GET, HEAD, PUT, DELETE and OPTIONS are resent.
+    /// Requests that time out are sent again, at most three times. Only GET, HEAD, PUT, DELETE and OPTIONS are resent.
     /// </summary>
     RetryTimeouts = 1,
 
@@ -23,12 +23,12 @@ public enum RetryMode
     RetryRatelimit = 4,
 
     /// <summary>
-    /// Requests answered with 502 Bad Gateway are sent again. Only GET, HEAD, PUT, DELETE and OPTIONS are resent.
+    /// Requests answered with 502 Bad Gateway are sent again, at most three times. Only GET, HEAD, PUT, DELETE and OPTIONS are resent.
     /// </summary>
     Retry502 = 8,
 
     /// <summary>
-    /// Every retryable failure is retried.
+    /// Every retry mode is enabled.
     /// </summary>
     AlwaysRetry = RetryTimeouts | RetryRatelimit | Retry502
 }

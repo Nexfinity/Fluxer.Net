@@ -1,20 +1,17 @@
 ﻿namespace Fluxer.Net;
 
 /// <summary>
-/// Application/bot used to interact with the Fluxer platform and API.
+/// An application with its OAuth2 redirect URIs and bot user.
 /// </summary>
 public interface IApplication : IPartialApplication
 {
     /// <summary>
     /// The registered redirect URIs for OAuth2.
     /// </summary>
-    /// <remarks>
-    /// Maximum 20
-    /// </remarks>
     string[] RedirectUrls { get; }
 
     /// <summary>
-    /// Detailed bot user metadata.
+    /// The bot user of the application.
     /// </summary>
     IUser Bot { get; }
 }

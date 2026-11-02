@@ -11,7 +11,7 @@ public interface IRateLimitInfo
     bool IsGlobal { get; }
 
     /// <summary>
-    /// Gets how many requests the route's bucket admits at once.
+    /// Gets how many requests the route's bucket admits in one window.
     /// </summary>
     int? Limit { get; }
 
@@ -21,7 +21,7 @@ public interface IRateLimitInfo
     int? Remaining { get; }
 
     /// <summary>
-    /// Gets how long to wait before one more request is admitted, in milliseconds. Only set on a 429.
+    /// Gets how long to wait before one more request is admitted, in milliseconds, when the response gave a delay.
     /// </summary>
     int? RetryAfter { get; }
 
@@ -41,7 +41,7 @@ public interface IRateLimitInfo
     string Bucket { get; }
 
     /// <summary>
-    /// Gets which allowance refused the request: user, global or shared. Only set on a 429.
+    /// Gets the X-RateLimit-Scope header, which names the allowance that refused the request, such as user, global or shared.
     /// </summary>
     string Scope { get; }
 

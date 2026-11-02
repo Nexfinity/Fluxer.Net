@@ -4,9 +4,13 @@ using System.Globalization;
 namespace Fluxer.Net.Commands;
 
 /// <summary>
-///     A<see cref = "TypeReader" /> for parsing objects implementing <see cref="IUser"/>.
+/// A <see cref="TypeReader"/> that parses an <see cref="IUser"/> from a mention or an id.
 /// </summary>
-/// <typeparam name="T" > The type to be checked; must implement<see cref="IUser"/>.</typeparam>
+/// <remarks>
+/// The user is looked up as a member of the guild, so the reader finds users only in a guild and in a
+/// <see cref="CommandContext"/>. Input of 10 characters or fewer is not read.
+/// </remarks>
+/// <typeparam name="T">The type to be checked. It must implement <see cref="IUser"/>.</typeparam>
 public class UserTypeReader<T> : TypeReader
     where T : class, IUser
 {

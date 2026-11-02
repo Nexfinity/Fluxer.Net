@@ -7,48 +7,114 @@ namespace Fluxer.Net;
 /// </summary>
 public readonly struct Color : IEquatable<Color>
 {
+    /// <summary>
+    /// The largest raw value of a color, 0xFFFFFF.
+    /// </summary>
     public const uint MaxDecimalValue = 0xFFFFFF;
 
+    /// <summary>
+    /// The default color, #000000.
+    /// </summary>
     public static readonly Color Default = new(0);
 
+    /// <summary>
+    /// The teal color, #1ABC9C.
+    /// </summary>
     public static readonly Color Teal = new(0x1ABC9C);
 
+    /// <summary>
+    /// The dark teal color, #11806A.
+    /// </summary>
     public static readonly Color DarkTeal = new(0x11806A);
 
+    /// <summary>
+    /// The green color, #2ECC71.
+    /// </summary>
     public static readonly Color Green = new(0x2ECC71);
 
+    /// <summary>
+    /// The dark green color, #1F8B4C.
+    /// </summary>
     public static readonly Color DarkGreen = new(0x1F8B4C);
 
+    /// <summary>
+    /// The blue color, #3498DB.
+    /// </summary>
     public static readonly Color Blue = new(0x3498DB);
 
+    /// <summary>
+    /// The dark blue color, #206694.
+    /// </summary>
     public static readonly Color DarkBlue = new(0x206694);
 
+    /// <summary>
+    /// The purple color, #9B59B6.
+    /// </summary>
     public static readonly Color Purple = new(0x9B59B6);
 
+    /// <summary>
+    /// The dark purple color, #71368A.
+    /// </summary>
     public static readonly Color DarkPurple = new(0x71368A);
 
+    /// <summary>
+    /// The magenta color, #E91E63.
+    /// </summary>
     public static readonly Color Magenta = new(0xE91E63);
 
+    /// <summary>
+    /// The dark magenta color, #AD1457.
+    /// </summary>
     public static readonly Color DarkMagenta = new(0xAD1457);
 
+    /// <summary>
+    /// The gold color, #F1C40F.
+    /// </summary>
     public static readonly Color Gold = new(0xF1C40F);
 
+    /// <summary>
+    /// The light orange color, #C27C0E.
+    /// </summary>
     public static readonly Color LightOrange = new(0xC27C0E);
 
+    /// <summary>
+    /// The orange color, #E67E22.
+    /// </summary>
     public static readonly Color Orange = new(0xE67E22);
 
+    /// <summary>
+    /// The dark orange color, #A84300.
+    /// </summary>
     public static readonly Color DarkOrange = new(0xA84300);
 
+    /// <summary>
+    /// The red color, #E74C3C.
+    /// </summary>
     public static readonly Color Red = new(0xE74C3C);
 
+    /// <summary>
+    /// The dark red color, #992D22.
+    /// </summary>
     public static readonly Color DarkRed = new(0x992D22);
 
+    /// <summary>
+    /// The light grey color, #979C9F.
+    /// </summary>
     public static readonly Color LightGrey = new(0x979C9F);
 
+    /// <summary>
+    /// The lighter grey color, #95A5A6.
+    /// </summary>
     public static readonly Color LighterGrey = new(0x95A5A6);
 
+    /// <summary>
+    /// The dark grey color, #607D8B.
+    /// </summary>
     public static readonly Color DarkGrey = new(0x607D8B);
 
+    /// <summary>
+    /// The darker grey color, #546E7A.
+    /// </summary>
     public static readonly Color DarkerGrey = new(0x546E7A);
 
     /// <summary>
@@ -149,14 +215,29 @@ public readonly struct Color : IEquatable<Color>
     /// <inheritdoc />
     public override int GetHashCode() => RawValue.GetHashCode();
 
+    /// <summary>
+    /// Whether two colors have the same raw value.
+    /// </summary>
     public static bool operator ==(Color left, Color right) => left.Equals(right);
 
+    /// <summary>
+    /// Whether two colors have different raw values.
+    /// </summary>
     public static bool operator !=(Color left, Color right) => !left.Equals(right);
 
+    /// <summary>
+    /// Converts a color to its raw 0xRRGGBB value.
+    /// </summary>
     public static implicit operator uint(Color color) => color.RawValue;
 
+    /// <summary>
+    /// Converts a color to its raw 0xRRGGBB value as an <see cref="int"/>.
+    /// </summary>
     public static implicit operator int(Color color) => (int)color.RawValue;
 
+    /// <summary>
+    /// Creates a color from a raw 0xRRGGBB value.
+    /// </summary>
     public static explicit operator Color(uint rawValue) => new(rawValue);
 
     private static byte ToByte(int value, string name)

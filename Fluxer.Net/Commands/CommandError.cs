@@ -1,50 +1,52 @@
 namespace Fluxer.Net.Commands;
 
-/// <summary> Defines the type of error a command can throw. </summary>
+/// <summary>
+/// The kind of error reported by a command result.
+/// </summary>
 public enum CommandError
 {
     //Search
     /// <summary>
-    /// Thrown when the command is unknown.
+    /// No command matched the input.
     /// </summary>
     UnknownCommand = 1,
 
     //Parse
     /// <summary>
-    /// Thrown when the command fails to be parsed.
+    /// The input could not be parsed.
     /// </summary>
     ParseFailed,
     /// <summary>
-    /// Thrown when the input text has too few or too many arguments.
+    /// The input has too few or too many arguments.
     /// </summary>
     BadArgCount,
 
     //Parse (Type Reader)
     //CastFailed,
     /// <summary>
-    /// Thrown when the object cannot be found by the <see cref="TypeReader"/>.
+    /// A <see cref="TypeReader"/> found no object for the input.
     /// </summary>
     ObjectNotFound,
     /// <summary>
-    /// Thrown when more than one object is matched by <see cref="TypeReader"/>.
+    /// A <see cref="TypeReader"/> matched more than one object for the input.
     /// </summary>
     MultipleMatches,
 
     //Preconditions
     /// <summary>
-    /// Thrown when the command fails to meet a <see cref="PreconditionAttribute"/>'s conditions.
+    /// A <see cref="PreconditionAttribute"/> was not met.
     /// </summary>
     UnmetPrecondition,
 
     //Execute
     /// <summary>
-    /// Thrown when an exception occurs mid-command execution.
+    /// An exception was thrown while the command ran.
     /// </summary>
     Exception,
 
     //Runtime
     /// <summary>
-    /// Thrown when the command is not successfully executed on runtime.
+    /// The command finished without success, as reported by its <see cref="RuntimeResult"/>.
     /// </summary>
     Unsuccessful
 }

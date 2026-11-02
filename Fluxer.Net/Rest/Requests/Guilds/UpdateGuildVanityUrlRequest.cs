@@ -2,6 +2,9 @@
 
 namespace Fluxer.Net.Rest;
 
+/// <summary>
+/// Request body for changing a guild's vanity URL code.
+/// </summary>
 public class UpdateGuildVanityUrlRequest
 {
     /// <summary>

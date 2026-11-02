@@ -1,5 +1,8 @@
 ﻿namespace Fluxer.Net;
 
+/// <summary>
+/// A message in a channel.
+/// </summary>
 public interface IMessage : ISnowflake
 {
     /// <summary>
@@ -8,7 +11,7 @@ public interface IMessage : ISnowflake
     ulong ChannelId { get; }
 
     /// <summary>
-    /// Partial user that sent the message.
+    /// The user that sent the message.
     /// </summary>
     IUser Author { get; }
 
@@ -23,7 +26,7 @@ public interface IMessage : ISnowflake
     MessageType Type { get; }
 
     /// <summary>
-    /// Message flags bitfield.
+    /// The flags of the message.
     /// </summary>
     MessageFlag Flags { get; }
 
@@ -33,7 +36,7 @@ public interface IMessage : ISnowflake
     string Content { get; }
 
     /// <summary>
-    /// The ISO 8601 timestamp of when the message was last edited.
+    /// When the message was last edited, or null when it has not been edited.
     /// </summary>
     DateTimeOffset? EditedAt { get; }
 
@@ -78,7 +81,7 @@ public interface IMessage : ISnowflake
     ISticker[]? Stickers { get; }
 
     /// <summary>
-    /// The reactions on the message
+    /// The reactions on the message.
     /// </summary>
     IMessageReaction[]? Reactions { get; }
 
@@ -98,9 +101,12 @@ public interface IMessage : ISnowflake
     string? Nonce { get; }
 
     /// <summary>
-    /// Call information if this message represents a call
+    /// The call the message represents, or null when it is not a call.
     /// </summary>
     IMessageCall? Call { get; }
 
+    /// <summary>
+    /// The thread started from the message, or null when there is none.
+    /// </summary>
     IChannel? Thread { get; }
 }

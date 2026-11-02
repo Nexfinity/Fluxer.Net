@@ -1,5 +1,8 @@
 ﻿namespace Fluxer.Net;
 
+/// <summary>
+/// A user's membership in a thread.
+/// </summary>
 public class ThreadMember : Entity, IThreadMember
 {
     /// <inheritdoc />
@@ -30,7 +33,7 @@ public class ThreadMember : Entity, IThreadMember
     }
 
     /// <summary>
-    /// Create a ThreadMember object from json.
+    /// Creates a thread member from its JSON representation.
     /// </summary>
     /// <returns><see cref="ThreadMember"/></returns>
     public static ThreadMember Create(FluxerBaseClient client, ThreadMemberJson json)

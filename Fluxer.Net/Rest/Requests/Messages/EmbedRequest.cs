@@ -2,8 +2,14 @@
 
 namespace Fluxer.Net.Rest;
 
+/// <summary>
+/// A rich embed sent in a message.
+/// </summary>
 public class EmbedRequest
 {
+    /// <summary>
+    /// The embed type. Defaults to rich.
+    /// </summary>
     [JsonProperty("type")]
     public string? Type { get; internal set; } = "rich";
 

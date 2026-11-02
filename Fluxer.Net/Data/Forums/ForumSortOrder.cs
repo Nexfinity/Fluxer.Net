@@ -1,14 +1,17 @@
 ﻿namespace Fluxer.Net;
 
+/// <summary>
+/// The order in which a forum lists its posts.
+/// </summary>
 public enum ForumSortOrder
 {
     /// <summary>
-    /// Sort posts by last active.
+    /// Posts are sorted by their latest activity.
     /// </summary>
     LatestActivity = 0,
 
     /// <summary>
-    /// Sort posts by last created.
+    /// Posts are sorted by when they were created.
     /// </summary>
     CreationDate = 1
 }

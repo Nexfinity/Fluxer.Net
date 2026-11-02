@@ -2,6 +2,9 @@
 
 namespace Fluxer.Net.Rest;
 
+/// <summary>
+/// Reference to the message that a new message replies to or forwards.
+/// </summary>
 public class MessageReferenceRequest
 {
     /// <summary>

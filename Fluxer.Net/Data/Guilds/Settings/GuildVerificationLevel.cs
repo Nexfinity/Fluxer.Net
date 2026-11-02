@@ -1,7 +1,7 @@
 namespace Fluxer.Net;
 
 /// <summary>
-/// Represents the verification level required for members to participate in a guild.
+/// The verification level members must meet to participate in a guild.
 /// </summary>
 public enum GuildVerificationLevel
 {

@@ -3,9 +3,13 @@ using System.Globalization;
 namespace Fluxer.Net.Commands;
 
 /// <summary>
-///     A <see cref="TypeReader"/> for parsing objects implementing <see cref="IMessage"/>.
+/// A <see cref="TypeReader"/> that parses an <see cref="IMessage"/> from a message link or an id.
 /// </summary>
-/// <typeparam name="T">The type to be checked; must implement <see cref="IMessage"/>.</typeparam>
+/// <remarks>
+/// The reader finds messages only in a <see cref="CommandContext"/>. An id is looked up in the channel the command was
+/// sent in.
+/// </remarks>
+/// <typeparam name="T">The type to be checked. It must implement <see cref="IMessage"/>.</typeparam>
 public class MessageTypeReader<T> : TypeReader
     where T : class, IMessage
 {

@@ -6,13 +6,14 @@ using System.Reflection;
 namespace Fluxer.Net;
 
 /// <summary>
-/// Json resolver for Fluxer http and gateway.
+/// The JSON contract resolver for Fluxer REST and gateway payloads.
 /// </summary>
 public class FluxerContractResolver : DefaultContractResolver
 {
     private static readonly TypeInfo _ienumerable = typeof(IEnumerable<ulong[]>).GetTypeInfo();
     private static readonly MethodInfo _shouldSerialize = typeof(FluxerContractResolver).GetTypeInfo().GetDeclaredMethod("ShouldSerialize");
 
+    /// <inheritdoc />
     protected override JsonProperty CreateProperty(MemberInfo member, MemberSerialization memberSerialization)
     {
         JsonProperty property = base.CreateProperty(member, memberSerialization);

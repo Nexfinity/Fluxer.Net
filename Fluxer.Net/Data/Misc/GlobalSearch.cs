@@ -33,9 +33,8 @@ public class GlobalSearch : Entity, IGlobalSearch
     }
 
     /// <summary>
-    /// Create a Instance object from json.
+    /// Creates a global search result from JSON.
     /// </summary>
-    /// <returns><see cref="GlobalSearch"/></returns>
     public static GlobalSearch Create(FluxerBaseClient client, GlobalSearchJson json)
     {
         return new GlobalSearch(client)

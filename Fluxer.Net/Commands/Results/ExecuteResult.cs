@@ -3,13 +3,13 @@ using System.Diagnostics;
 namespace Fluxer.Net.Commands;
 
 /// <summary>
-///     Contains information of the command's overall execution result.
+/// The result of executing a command.
 /// </summary>
 [DebuggerDisplay(@"{DebuggerDisplay,nq}")]
 public struct ExecuteResult : IResult
 {
     /// <summary>
-    ///     Gets the exception that may have occurred during the command execution.
+    /// The exception that caused the failure, or null.
     /// </summary>
     public Exception Exception { get; }
 
@@ -29,54 +29,49 @@ public struct ExecuteResult : IResult
     }
 
     /// <summary>
-    ///     Initializes a new <see cref="ExecuteResult" /> with no error, indicating a successful execution.
+    /// Creates a result for a successful execution.
     /// </summary>
     /// <returns>
-    ///     A <see cref="ExecuteResult" /> that does not contain any errors.
+    /// An <see cref="ExecuteResult"/> that does not contain any errors.
     /// </returns>
     public static ExecuteResult FromSuccess()
         => new ExecuteResult(null, null, null);
     /// <summary>
-    ///     Initializes a new <see cref="ExecuteResult" /> with a specified <see cref="CommandError" /> and its
-    ///     reason, indicating an unsuccessful execution.
+    /// Creates a result for an unsuccessful execution with the given error and reason.
     /// </summary>
     /// <param name="error">The type of error.</param>
     /// <param name="reason">The reason behind the error.</param>
     /// <returns>
-    ///     A <see cref="ExecuteResult" /> that contains a <see cref="CommandError" /> and reason.
+    /// An <see cref="ExecuteResult"/> that contains the <see cref="CommandError"/> and reason.
     /// </returns>
     public static ExecuteResult FromError(CommandError error, string reason)
         => new ExecuteResult(null, error, reason);
     /// <summary>
-    ///     Initializes a new <see cref="ExecuteResult" /> with a specified exception, indicating an unsuccessful
-    ///     execution.
+    /// Creates a result for an execution that threw an exception.
     /// </summary>
     /// <param name="ex">The exception that caused the command execution to fail.</param>
     /// <returns>
-    ///     A <see cref="ExecuteResult" /> that contains the exception that caused the unsuccessful execution, along
-    ///     with a <see cref="CommandError" /> of type <c>Exception</c> as well as the exception message as the
-    ///     reason.
+    /// An <see cref="ExecuteResult"/> that contains the exception, a <see cref="CommandError"/> of type
+    /// <c>Exception</c>, and the exception message as the reason.
     /// </returns>
     public static ExecuteResult FromError(Exception ex)
         => new ExecuteResult(ex, CommandError.Exception, ex.Message);
     /// <summary>
-    ///     Initializes a new <see cref="ExecuteResult" /> with a specified result; this may or may not be an
-    ///     successful execution depending on the <see cref="IResult.Error" /> and
-    ///     <see cref="IResult.ErrorReason" /> specified.
+    /// Creates a result that copies the error and reason of another result.
     /// </summary>
-    /// <param name="result">The result to inherit from.</param>
+    /// <param name="result">The result to copy from.</param>
     /// <returns>
-    ///     A <see cref="ExecuteResult"/> that inherits the <see cref="IResult"/> error type and reason.
+    /// An <see cref="ExecuteResult"/> with the error type and reason of <paramref name="result"/>.
     /// </returns>
     public static ExecuteResult FromError(IResult result)
         => new ExecuteResult(null, result.Error, result.ErrorReason);
 
     /// <summary>
-    ///     Gets a string that indicates the execution result.
+    /// Gets a string that indicates the execution result.
     /// </summary>
     /// <returns>
-    ///     <c>Success</c> if <see cref="IsSuccess"/> is <see langword="true" />; otherwise "<see cref="Error"/>: 
-    ///     <see cref="ErrorReason"/>".
+    /// <c>Success</c> if <see cref="IsSuccess"/> is <see langword="true" />. Otherwise the error type and the error
+    /// reason, separated by a colon.
     /// </returns>
     public override string ToString() => IsSuccess ? "Success" : $"{Error}: {ErrorReason}";
     private string DebuggerDisplay => IsSuccess ? "Success" : $"{Error}: {ErrorReason}";

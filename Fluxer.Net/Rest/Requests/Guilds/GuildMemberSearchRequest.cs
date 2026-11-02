@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace Fluxer.Net.Rest;
 
+/// <summary>
+/// Filters and paging options for searching the members of a guild.
+/// </summary>
 public class GuildMemberSearchRequest
 {
     /// <summary>
@@ -16,6 +19,9 @@ public class GuildMemberSearchRequest
     [JsonProperty("limit")]
     public int? Limit { get; set; }
 
+    /// <summary>
+    /// The number of members to skip before the results start.
+    /// </summary>
     [JsonProperty("offset")]
     public int? Offset { get; set; }
 
@@ -43,6 +49,9 @@ public class GuildMemberSearchRequest
     [JsonProperty("source_invite_code")]
     public IEnumerable<string>? InviteCodes { get; set; }
 
+    /// <summary>
+    /// True for bots only, false for non-bots only, or null for both.
+    /// </summary>
     [JsonProperty("is_bot")]
     public bool? IsBot { get; set; }
 

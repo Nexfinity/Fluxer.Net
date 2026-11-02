@@ -1,6 +1,8 @@
 ﻿namespace Fluxer.Net;
 
-/// <inheritdoc />
+/// <summary>
+/// The status of a user on each client platform.
+/// </summary>
 public class ClientStatus : Entity, IClientStatus
 {
     /// <inheritdoc />
@@ -18,9 +20,11 @@ public class ClientStatus : Entity, IClientStatus
     }
 
     /// <summary>
-    /// Create a ClientStatus object from json.
+    /// Creates a client status from its JSON data.
     /// </summary>
-    /// <returns><see cref="ClientStatus"/></returns>
+    /// <param name="client">The client the status belongs to.</param>
+    /// <param name="json">The status data, or null when there is none.</param>
+    /// <returns>The client status, or null when <paramref name="json"/> is null.</returns>
     public static ClientStatus? Create(FluxerBaseClient client, ClientStatusJson? json)
     {
         if (json == null)

@@ -1,5 +1,8 @@
 ﻿namespace Fluxer.Net;
 
+/// <summary>
+/// A guild with its name, media and features.
+/// </summary>
 public interface IPartialGuild : ISnowflake
 {
     /// <summary>
@@ -38,7 +41,7 @@ public interface IPartialGuild : ISnowflake
     int? EmbedSplashWidth { get; }
 
     /// <summary>
-    /// The height of the embedded invite splash in pixels
+    /// The height of the embedded invite splash in pixels.
     /// </summary>
     int? EmbedSplashHeight { get; }
 
@@ -53,7 +56,7 @@ public interface IPartialGuild : ISnowflake
     int? InviteSplashWidth { get; }
 
     /// <summary>
-    /// The height of the guild splash in pixels
+    /// The height of the guild splash in pixels.
     /// </summary>
     int? InviteSplashHeight { get; }
 
@@ -63,7 +66,7 @@ public interface IPartialGuild : ISnowflake
     GuildSplashCardAlignment SplashCardAligment { get; }
 
     /// <summary>
-    /// Array of guild feature flags.
+    /// The feature flags enabled for the guild.
     /// </summary>
     /// <remarks>
     /// ANIMATED_ICON, ANIMATED_BANNER, BANNER, DETACHED_BANNER, INVITE_SPLASH, INVITES_DISABLED,
@@ -74,27 +77,31 @@ public interface IPartialGuild : ISnowflake
     string[]? Features { get; }
 
     /// <summary>
-    /// IDs of the custom badges assigned to the community. Look them up in the guild badges of the instance discovery document.
+    /// The IDs of the badges assigned to the guild, as listed in the guild badges of the instance discovery document.
     /// </summary>
     ulong[]? BadgeIds { get; }
 
     /// <summary>
-    /// Get the guild's icon.
+    /// Gets the URL of the guild's icon, or null when the guild has no icon.
     /// </summary>
+    /// <param name="size">The size of the image.</param>
     string? GetIconUrl(int size);
 
     /// <summary>
-    /// Get the guild's banner.
+    /// Gets the URL of the guild's banner, or null when the guild has no banner.
     /// </summary>
+    /// <param name="size">The size of the image.</param>
     string? GetBannerUrl(int size);
 
     /// <summary>
-    /// Get the guild's invite splash.
+    /// Gets the URL of the guild's invite splash, or null when the guild has none.
     /// </summary>
+    /// <param name="size">The size of the image.</param>
     string? GetInviteSplashUrl(int size);
 
     /// <summary>
-    /// Get the guild's embed splash.
+    /// Gets the URL of the guild's embed splash, or null when the guild has none.
     /// </summary>
+    /// <param name="size">The size of the image.</param>
     string? GetEmbedSplashUrl(int size);
 }

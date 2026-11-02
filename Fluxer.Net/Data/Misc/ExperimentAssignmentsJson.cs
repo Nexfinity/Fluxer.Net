@@ -3,10 +3,13 @@ using Newtonsoft.Json.Linq;
 
 namespace Fluxer.Net;
 
+/// <summary>
+/// The experiment assignments of the client.
+/// </summary>
 public class ExperimentAssignmentsJson
 {
     /// <summary>
-    /// How often Fluxer's clients check their assignments again, in seconds.
+    /// How often clients check their assignments again, in seconds.
     /// </summary>
     [JsonProperty("poll_interval_seconds")]
     public int PollInterval { get; set; }

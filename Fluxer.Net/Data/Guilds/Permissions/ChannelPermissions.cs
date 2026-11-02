@@ -1,19 +1,30 @@
 ﻿namespace Fluxer.Net;
 
+/// <summary>
+/// A set of channel permission flags.
+/// </summary>
 public class ChannelPermissions
 {
+    /// <summary>
+    /// Creates channel permissions from guild permission flags.
+    /// </summary>
+    /// <param name="perms">The guild permission flags to convert.</param>
     public ChannelPermissions(GuildPermission perms)
     {
         RawValue = (ChannelPermission)(ulong)perms;
     }
 
+    /// <summary>
+    /// Creates channel permissions from channel permission flags.
+    /// </summary>
+    /// <param name="perms">The channel permission flags.</param>
     public ChannelPermissions(ChannelPermission perms)
     {
         RawValue = perms;
     }
 
     /// <summary>
-    /// Raw permissions flag for the guild.
+    /// The raw permission flags for the channel.
     /// </summary>
     public ChannelPermission RawValue { get; private set; }
 

@@ -1,14 +1,17 @@
 ﻿namespace Fluxer.Net;
 
+/// <summary>
+/// A message pinned in a channel.
+/// </summary>
 public interface IChannelPin
 {
     /// <summary>
-    /// The message data for this pin.
+    /// The pinned message.
     /// </summary>
     IMessage Message { get; }
 
     /// <summary>
-    /// The ISO 8601 timestamp of when the message was pinned
+    /// The time the message was pinned.
     /// </summary>
     DateTimeOffset PinnedAt { get; }
 }

@@ -1,7 +1,7 @@
 namespace Fluxer.Net;
 
 /// <summary>
-/// Represents how a message references another message.
+/// How a message references another message.
 /// </summary>
 public enum MessageReferenceType
 {

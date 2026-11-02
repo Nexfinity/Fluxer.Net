@@ -1,5 +1,8 @@
 ﻿namespace Fluxer.Net;
 
+/// <summary>
+/// A sticker that belongs to a guild.
+/// </summary>
 public interface IGuildSticker : ISticker
 {
     /// <summary>
@@ -18,7 +21,7 @@ public interface IGuildSticker : ISticker
     IUser? Creator { get; }
 
     /// <summary>
-    /// Get the sticker's image.
+    /// Gets the URL of the sticker's image.
     /// </summary>
     string GetStickerUrl(int size);
 }

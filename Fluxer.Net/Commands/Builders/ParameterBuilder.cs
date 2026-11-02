@@ -2,24 +2,60 @@ using System.Reflection;
 
 namespace Fluxer.Net.Commands;
 
+/// <summary>
+/// The builder for a parameter of a <see cref="CommandBuilder"/>.
+/// </summary>
 public class ParameterBuilder
 {
     #region ParameterBuilder
     private readonly List<ParameterPreconditionAttribute> _preconditions;
     private readonly List<Attribute> _attributes;
 
+    /// <summary>
+    /// The command the parameter belongs to.
+    /// </summary>
     public CommandBuilder Command { get; }
+    /// <summary>
+    /// The name of the parameter.
+    /// </summary>
     public string Name { get; internal set; }
+    /// <summary>
+    /// The type of the parameter.
+    /// </summary>
     public Type ParameterType { get; internal set; }
 
+    /// <summary>
+    /// The <see cref="TypeReader"/> that reads the parameter from the input.
+    /// </summary>
     public TypeReader TypeReader { get; internal set; }
+    /// <summary>
+    /// Whether the parameter is optional.
+    /// </summary>
     public bool IsOptional { get; internal set; }
+    /// <summary>
+    /// Whether the parameter receives the rest of the input.
+    /// </summary>
     public bool IsRemainder { get; internal set; }
+    /// <summary>
+    /// Whether the parameter is a params array that receives the remaining values.
+    /// </summary>
     public bool IsMultiple { get; internal set; }
+    /// <summary>
+    /// The default value of the parameter.
+    /// </summary>
     public object DefaultValue { get; internal set; }
+    /// <summary>
+    /// The summary of the parameter.
+    /// </summary>
     public string Summary { get; internal set; }
 
+    /// <summary>
+    /// The preconditions of the parameter.
+    /// </summary>
     public IReadOnlyList<ParameterPreconditionAttribute> Preconditions => _preconditions;
+    /// <summary>
+    /// The attributes of the parameter.
+    /// </summary>
     public IReadOnlyList<Attribute> Attributes => _attributes;
     #endregion
 
@@ -89,37 +125,65 @@ public class ParameterBuilder
             return commands.GetDefaultTypeReader(type);
     }
 
+    /// <summary>
+    /// Sets the summary of the parameter.
+    /// </summary>
+    /// <param name="summary">The summary of the parameter.</param>
     public ParameterBuilder WithSummary(string summary)
     {
         Summary = summary;
         return this;
     }
+    /// <summary>
+    /// Sets the default value of the parameter.
+    /// </summary>
+    /// <param name="defaultValue">The default value.</param>
     public ParameterBuilder WithDefault(object defaultValue)
     {
         DefaultValue = defaultValue;
         return this;
     }
+    /// <summary>
+    /// Sets whether the parameter is optional.
+    /// </summary>
+    /// <param name="isOptional">Whether the parameter is optional.</param>
     public ParameterBuilder WithIsOptional(bool isOptional)
     {
         IsOptional = isOptional;
         return this;
     }
+    /// <summary>
+    /// Sets whether the parameter receives the rest of the input.
+    /// </summary>
+    /// <param name="isRemainder">Whether the parameter is a remainder parameter.</param>
     public ParameterBuilder WithIsRemainder(bool isRemainder)
     {
         IsRemainder = isRemainder;
         return this;
     }
+    /// <summary>
+    /// Sets whether the parameter is a params array.
+    /// </summary>
+    /// <param name="isMultiple">Whether the parameter is a params array.</param>
     public ParameterBuilder WithIsMultiple(bool isMultiple)
     {
         IsMultiple = isMultiple;
         return this;
     }
 
+    /// <summary>
+    /// Adds attributes to the parameter.
+    /// </summary>
+    /// <param name="attributes">The attributes to add.</param>
     public ParameterBuilder AddAttributes(params Attribute[] attributes)
     {
         _attributes.AddRange(attributes);
         return this;
     }
+    /// <summary>
+    /// Adds a precondition that the argument of the parameter must pass.
+    /// </summary>
+    /// <param name="precondition">The precondition to add.</param>
     public ParameterBuilder AddPrecondition(ParameterPreconditionAttribute precondition)
     {
         _preconditions.Add(precondition);

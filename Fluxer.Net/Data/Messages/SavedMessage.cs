@@ -9,9 +9,8 @@ public class SavedMessage : Message, ISavedMessage
     }
 
     /// <summary>
-    /// Create a Guild object from json.
+    /// Creates a saved message from JSON.
     /// </summary>
-    /// <returns><see cref="SavedMessage"/></returns>
     public static SavedMessage Create(FluxerBaseClient client, SavedMessageJson json)
     {
         SavedMessage data = new SavedMessage(client);

@@ -61,7 +61,7 @@ public partial class FluxerGatewayClient
             timeout, cancellationToken);
 
     /// <summary>
-    /// Waits for the next guild reaction matching <paramref name="predicate"/>, letting later events of the calling
+    /// Waits for the next reaction added that matches <paramref name="predicate"/>, letting later events of the calling
     /// handler's guild go ahead meanwhile.
     /// </summary>
     /// <param name="predicate">Which reaction to wait for.</param>

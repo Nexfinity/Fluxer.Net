@@ -6,14 +6,11 @@ using System.Reflection;
 namespace Fluxer.Net.Commands;
 
 /// <summary>
-///     Provides a framework for building commands.
+/// The service that holds command modules and TypeReaders, matches input to commands and executes them.
 /// </summary>
 /// <remarks>
-///     <para>
-///         The service provides a framework for building commands both dynamically via runtime builders or
-///         statically via compile-time modules. To create a command module at compile-time, see
-///         <see cref="ModuleBase" /> (most common); otherwise, see <see cref="ModuleBuilder" />.
-///     </para>
+/// Modules can be declared at compile time by deriving from <see cref="ModuleBase"/>, or built at run time with
+/// <see cref="ModuleBuilder"/>.
 /// </remarks>
 public class CommandService : IDisposable
 {
@@ -25,12 +22,11 @@ public class CommandService : IDisposable
     //internal readonly AsyncEvent<Func<LogMessage, Task>> _logEvent = new AsyncEvent<Func<LogMessage, Task>>();
 
     /// <summary>
-    ///     Occurs when a command is executed.
+    /// Raised when a command is executed, whether it succeeded or not.
     /// </summary>
     /// <remarks>
-    ///     This event is fired when a command has been executed, successfully or not. When a command fails to
-    ///     execute during the search stage, the command is null. Commands run with <see cref="RunMode.Async" />
-    ///     report their real outcome only through this event.
+    /// The command is null when the input did not match a command. Commands that run with <see cref="RunMode.Async"/>
+    /// report their outcome only through this event.
     /// </remarks>
     public event Func<CommandInfo?, ICommandContext, IResult, Task>? CommandExecuted;
 
@@ -72,29 +68,29 @@ public class CommandService : IDisposable
     internal bool _isDisposed;
 
     /// <summary>
-    ///     Represents all modules loaded within <see cref="CommandService"/>.
+    /// The modules loaded into the service.
     /// </summary>
     public IEnumerable<ModuleInfo> Modules => _moduleDefs.Select(x => x);
 
     /// <summary>
-    ///     Represents all commands loaded within <see cref="CommandService"/>.
+    /// The commands of all modules loaded into the service.
     /// </summary>
     public IEnumerable<CommandInfo> Commands => _moduleDefs.SelectMany(x => x.Commands);
 
     /// <summary>
-    ///     Represents all <see cref="TypeReader" /> loaded within <see cref="CommandService"/>.
+    /// The custom <see cref="TypeReader"/>s added to the service, grouped by the type they read.
     /// </summary>
     public ILookup<Type, TypeReader> TypeReaders => _typeReaders.SelectMany(x => x.Value.Select(y => new { y.Key, y.Value })).ToLookup(x => x.Key, x => x.Value);
 
     /// <summary>
-    ///     Initializes a new <see cref="CommandService"/> class.
+    /// Creates a command service with the default configuration.
     /// </summary>
     public CommandService() : this(new CommandServiceConfig()) { }
 
     /// <summary>
-    ///     Initializes a new <see cref="CommandService"/> class with the provided configuration.
+    /// Creates a command service with the given configuration.
     /// </summary>
-    /// <param name="config">The configuration class.</param>
+    /// <param name="config">The configuration of the service.</param>
     /// <exception cref="InvalidOperationException">
     /// The <see cref="RunMode"/> cannot be set to <see cref="RunMode.Default"/>.
     /// </exception>
@@ -147,6 +143,14 @@ public class CommandService : IDisposable
     #endregion
 
     #region Modules
+    /// <summary>
+    /// Creates a module with the given primary alias and loads it into the service.
+    /// </summary>
+    /// <param name="primaryAlias">The primary alias of the module.</param>
+    /// <param name="buildFunc">The action that configures the module.</param>
+    /// <returns>
+    /// A task that represents the asynchronous operation. The task result contains the created module.
+    /// </returns>
     public async Task<ModuleInfo> CreateModuleAsync(string primaryAlias, Action<ModuleBuilder> buildFunc)
     {
         await _moduleLock.WaitAsync().ConfigureAwait(false);
@@ -166,38 +170,36 @@ public class CommandService : IDisposable
     }
 
     /// <summary>
-    ///     Add a command module from a <see cref="Type" />.
+    /// Adds the command module of type <typeparamref name="T"/>.
     /// </summary>
     /// <example>
-    ///     <para>The following example registers the module <c>MyModule</c> to <c>commandService</c>.</para>
-    ///     <code language="cs">
-    ///     await commandService.AddModuleAsync&lt;MyModule&gt;(serviceProvider);
-    ///     </code>
+    /// <para>The following example registers the module <c>MyModule</c> to <c>commandService</c>.</para>
+    /// <code language="cs">
+    /// await commandService.AddModuleAsync&lt;MyModule&gt;(serviceProvider);
+    /// </code>
     /// </example>
     /// <typeparam name="T">The type of module.</typeparam>
-    /// <param name="services">The <see cref="IServiceProvider"/> for your dependency injection solution if using one; otherwise, pass <see langword="null" />.</param>
+    /// <param name="services">The <see cref="IServiceProvider"/> for your dependency injection solution if using one, or <see langword="null"/> otherwise.</param>
     /// <exception cref="ArgumentException">This module has already been added.</exception>
     /// <exception cref="InvalidOperationException">
-    /// The <see cref="ModuleInfo"/> fails to be built; an invalid type may have been provided.
+    /// The <see cref="ModuleInfo"/> could not be built. An invalid type may have been provided.
     /// </exception>
     /// <returns>
-    ///     A task that represents the asynchronous operation for adding the module. The task result contains the
-    ///     built module.
+    /// A task that represents the asynchronous operation. The task result contains the added module.
     /// </returns>
     public Task<ModuleInfo> AddModuleAsync<T>(IServiceProvider services = null) => AddModuleAsync(typeof(T), services);
 
     /// <summary>
-    ///     Adds a command module from a <see cref="Type" />.
+    /// Adds a command module from a <see cref="Type"/>.
     /// </summary>
     /// <param name="type">The type of module.</param>
-    /// <param name="services">The <see cref="IServiceProvider" /> for your dependency injection solution if using one; otherwise, pass <see langword="null" /> .</param>
+    /// <param name="services">The <see cref="IServiceProvider"/> for your dependency injection solution if using one, or <see langword="null"/> otherwise.</param>
     /// <exception cref="ArgumentException">This module has already been added.</exception>
     /// <exception cref="InvalidOperationException">
-    /// The <see cref="ModuleInfo"/> fails to be built; an invalid type may have been provided.
+    /// The <see cref="ModuleInfo"/> could not be built. An invalid type may have been provided.
     /// </exception>
     /// <returns>
-    ///     A task that represents the asynchronous operation for adding the module. The task result contains the
-    ///     built module.
+    /// A task that represents the asynchronous operation. The task result contains the added module.
     /// </returns>
     public async Task<ModuleInfo> AddModuleAsync(Type type, IServiceProvider services = null)
     {
@@ -226,13 +228,12 @@ public class CommandService : IDisposable
         }
     }
     /// <summary>
-    ///     Add command modules from an <see cref="Assembly"/>.
+    /// Adds the command modules found in an <see cref="Assembly"/>.
     /// </summary>
     /// <param name="assembly">The <see cref="Assembly"/> containing command modules.</param>
-    /// <param name="services">The <see cref="IServiceProvider"/> for your dependency injection solution if using one; otherwise, pass <see langword="null" />.</param>
+    /// <param name="services">The <see cref="IServiceProvider"/> for your dependency injection solution if using one, or <see langword="null"/> otherwise.</param>
     /// <returns>
-    ///     A task that represents the asynchronous operation for adding the command modules. The task result
-    ///     contains an enumerable collection of modules added.
+    /// A task that represents the asynchronous operation. The task result contains the modules added.
     /// </returns>
     public async Task<IEnumerable<ModuleInfo>> AddModulesAsync(Assembly assembly, IServiceProvider services = null)
     {
@@ -270,12 +271,12 @@ public class CommandService : IDisposable
         return module;
     }
     /// <summary>
-    ///     Removes the command module.
+    /// Removes a module and its commands from the service.
     /// </summary>
-    /// <param name="module">The <see cref="ModuleInfo" /> to be removed from the service.</param>
+    /// <param name="module">The <see cref="ModuleInfo"/> to be removed from the service.</param>
     /// <returns>
-    ///     A task that represents the asynchronous removal operation. The task result contains a value that
-    ///     indicates whether the <paramref name="module"/> is successfully removed.
+    /// A task that represents the asynchronous removal operation. The task result is <see langword="true"/> if the
+    /// <paramref name="module"/> was removed, and <see langword="false"/> otherwise.
     /// </returns>
     public async Task<bool> RemoveModuleAsync(ModuleInfo module)
     {
@@ -295,21 +296,21 @@ public class CommandService : IDisposable
         }
     }
     /// <summary>
-    ///     Removes the command module.
+    /// Removes the module of type <typeparamref name="T"/> from the service.
     /// </summary>
     /// <typeparam name="T">The <see cref="Type"/> of the module.</typeparam>
     /// <returns>
-    ///     A task that represents the asynchronous removal operation. The task result contains a value that
-    ///     indicates whether the module is successfully removed.
+    /// A task that represents the asynchronous removal operation. The task result is <see langword="true"/> if the
+    /// module was removed, and <see langword="false"/> otherwise.
     /// </returns>
     public Task<bool> RemoveModuleAsync<T>() => RemoveModuleAsync(typeof(T));
     /// <summary>
-    ///     Removes the command module.
+    /// Removes the module of the given type from the service.
     /// </summary>
     /// <param name="type">The <see cref="Type"/> of the module.</param>
     /// <returns>
-    ///     A task that represents the asynchronous removal operation. The task result contains a value that
-    ///     indicates whether the module is successfully removed.
+    /// A task that represents the asynchronous removal operation. The task result is <see langword="true"/> if the
+    /// module was removed, and <see langword="false"/> otherwise.
     /// </returns>
     public async Task<bool> RemoveModuleAsync(Type type)
     {
@@ -345,27 +346,25 @@ public class CommandService : IDisposable
 
     #region Type Readers
     /// <summary>
-    ///     Adds a custom <see cref="TypeReader" /> to this <see cref="CommandService" /> for the supplied object
-    ///     type.
-    ///     If <typeparamref name="T" /> is a <see cref="ValueType" />, a nullable <see cref="TypeReader" /> will
-    ///     also be added.
-    ///     If a default <see cref="TypeReader" /> exists for <typeparamref name="T" />, a warning will be logged
-    ///     and the default <see cref="TypeReader" /> will be replaced.
+    /// Adds a custom <see cref="TypeReader"/> for <typeparamref name="T"/>.
     /// </summary>
+    /// <remarks>
+    /// If <typeparamref name="T"/> is a value type, a nullable <see cref="TypeReader"/> is also added. If a default
+    /// <see cref="TypeReader"/> exists for <typeparamref name="T"/>, a warning is logged and the default is replaced.
+    /// </remarks>
     /// <typeparam name="T">The object type to be read by the <see cref="TypeReader"/>.</typeparam>
-    /// <param name="reader">An instance of the <see cref="TypeReader" /> to be added.</param>
+    /// <param name="reader">The <see cref="TypeReader"/> to be added.</param>
     public void AddTypeReader<T>(TypeReader reader)
         => AddTypeReader(typeof(T), reader);
     /// <summary>
-    ///     Adds a custom <see cref="TypeReader" /> to this <see cref="CommandService" /> for the supplied object
-    ///     type.
-    ///     If <paramref name="type" /> is a <see cref="ValueType" />, a nullable <see cref="TypeReader" /> for the
-    ///     value type will also be added.
-    ///     If a default <see cref="TypeReader" /> exists for <paramref name="type" />, a warning will be logged and
-    ///     the default <see cref="TypeReader" /> will be replaced.
+    /// Adds a custom <see cref="TypeReader"/> for the given type.
     /// </summary>
-    /// <param name="type">A <see cref="Type" /> instance for the type to be read.</param>
-    /// <param name="reader">An instance of the <see cref="TypeReader" /> to be added.</param>
+    /// <remarks>
+    /// If <paramref name="type"/> is a value type, a nullable <see cref="TypeReader"/> is also added. If a default
+    /// <see cref="TypeReader"/> exists for <paramref name="type"/>, a warning is logged and the default is replaced.
+    /// </remarks>
+    /// <param name="type">The type to be read.</param>
+    /// <param name="reader">The <see cref="TypeReader"/> to be added.</param>
     public void AddTypeReader(Type type, TypeReader reader)
     {
         if (_defaultTypeReaders.ContainsKey(type))
@@ -374,30 +373,28 @@ public class CommandService : IDisposable
         AddTypeReader(type, reader, true);
     }
     /// <summary>
-    ///     Adds a custom <see cref="TypeReader" /> to this <see cref="CommandService" /> for the supplied object
-    ///     type.
-    ///     If <typeparamref name="T" /> is a <see cref="ValueType" />, a nullable <see cref="TypeReader" /> will
-    ///     also be added.
+    /// Adds a custom <see cref="TypeReader"/> for <typeparamref name="T"/>.
     /// </summary>
+    /// <remarks>
+    /// If <typeparamref name="T"/> is a value type, a nullable <see cref="TypeReader"/> is also added.
+    /// </remarks>
     /// <typeparam name="T">The object type to be read by the <see cref="TypeReader"/>.</typeparam>
-    /// <param name="reader">An instance of the <see cref="TypeReader" /> to be added.</param>
+    /// <param name="reader">The <see cref="TypeReader"/> to be added.</param>
     /// <param name="replaceDefault">
-    ///     Defines whether the <see cref="TypeReader"/> should replace the default one for
-    ///     <see cref="Type" /> if it exists.
+    /// Whether the <see cref="TypeReader"/> replaces the default one for <typeparamref name="T"/>, if one exists.
     /// </param>
     public void AddTypeReader<T>(TypeReader reader, bool replaceDefault)
         => AddTypeReader(typeof(T), reader, replaceDefault);
     /// <summary>
-    ///     Adds a custom <see cref="TypeReader" /> to this <see cref="CommandService" /> for the supplied object
-    ///     type.
-    ///     If <paramref name="type" /> is a <see cref="ValueType" />, a nullable <see cref="TypeReader" /> for the
-    ///     value type will also be added.
+    /// Adds a custom <see cref="TypeReader"/> for the given type.
     /// </summary>
-    /// <param name="type">A <see cref="Type" /> instance for the type to be read.</param>
-    /// <param name="reader">An instance of the <see cref="TypeReader" /> to be added.</param>
+    /// <remarks>
+    /// If <paramref name="type"/> is a value type, a nullable <see cref="TypeReader"/> for the value type is also added.
+    /// </remarks>
+    /// <param name="type">The type to be read.</param>
+    /// <param name="reader">The <see cref="TypeReader"/> to be added.</param>
     /// <param name="replaceDefault">
-    ///     Defines whether the <see cref="TypeReader"/> should replace the default one for <see cref="Type" /> if
-    ///     it exists.
+    /// Whether the <see cref="TypeReader"/> replaces the default one for <paramref name="type"/>, if one exists.
     /// </param>
     public void AddTypeReader(Type type, TypeReader reader, bool replaceDefault)
     {
@@ -422,16 +419,16 @@ public class CommandService : IDisposable
     }
 
     /// <summary>
-    ///     Removes a type reader from the list of type readers.
+    /// Removes the <see cref="TypeReader"/>s registered for a type.
     /// </summary>
     /// <remarks>
-    ///     Removing a <see cref="TypeReader"/> from the <see cref="CommandService"/> will not dereference the <see cref="TypeReader"/> from the loaded module/command instances.
-    ///     You need to reload the modules for the changes to take effect.
+    /// Removing a <see cref="TypeReader"/> from the <see cref="CommandService"/> does not change the <see cref="TypeReader"/>s
+    /// already held by loaded modules and commands. Reload the modules for the change to take effect.
     /// </remarks>
     /// <param name="type">The type to remove the readers from.</param>
-    /// <param name="isDefaultTypeReader"><see langword="true"/> if the default readers for <paramref name="type"/> should be removed; otherwise <see langword="false"/>.</param>
+    /// <param name="isDefaultTypeReader">Whether the default reader for <paramref name="type"/> is removed instead of the added readers.</param>
     /// <param name="readers">The removed collection of type readers.</param>
-    /// <returns><see langword="true"/> if the remove operation was successful; otherwise <see langword="false"/>.</returns>
+    /// <returns><see langword="true"/> if the remove operation was successful, and <see langword="false"/> otherwise.</returns>
     public bool TryRemoveTypeReader(Type type, bool isDefaultTypeReader, out IDictionary<Type, TypeReader> readers)
     {
         readers = new Dictionary<Type, TypeReader>();
@@ -514,21 +511,26 @@ public class CommandService : IDisposable
 
     #region Execution
     /// <summary>
-    ///     Searches for the command.
+    /// Finds the commands that match the message content from <paramref name="argPos"/> onward.
     /// </summary>
     /// <param name="context">The context of the command.</param>
-    /// <param name="argPos">The position of which the command starts at.</param>
+    /// <param name="argPos">The index in the message content where the command text starts.</param>
     /// <returns>The result containing the matching commands.</returns>
     public SearchResult Search(ICommandContext context, int argPos)
         => Search(context.Message.Content.Substring(argPos));
     /// <summary>
-    ///     Searches for the command.
+    /// Finds the commands that match the given input.
     /// </summary>
     /// <param name="context">The context of the command.</param>
     /// <param name="input">The command string.</param>
     /// <returns>The result containing the matching commands.</returns>
     public SearchResult Search(ICommandContext context, string input)
         => Search(input);
+    /// <summary>
+    /// Finds the commands that match the given input.
+    /// </summary>
+    /// <param name="input">The command string.</param>
+    /// <returns>The result containing the matching commands.</returns>
     public SearchResult Search(string input)
     {
         string searchInput = _caseSensitive ? input : input.ToLowerInvariant();
@@ -541,29 +543,29 @@ public class CommandService : IDisposable
     }
 
     /// <summary>
-    ///     Executes the command.
+    /// Finds, checks and executes the command that matches the message content from <paramref name="argPos"/> onward.
     /// </summary>
     /// <param name="context">The context of the command.</param>
-    /// <param name="argPos">The position of which the command starts at.</param>
+    /// <param name="argPos">The index in the message content where the command text starts.</param>
     /// <param name="services">The service to be used in the command's dependency injection.</param>
     /// <param name="multiMatchHandling">The handling mode when multiple command matches are found.</param>
     /// <returns>
-    ///     A task that represents the asynchronous execution operation. The task result contains the result of the
-    ///     command execution.
+    /// A task that represents the asynchronous execution operation. The task result contains the result of the
+    /// command execution.
     /// </returns>
     public Task<IResult> ExecuteAsync(ICommandContext context, int argPos, IServiceProvider services = null, MultiMatchHandling multiMatchHandling = MultiMatchHandling.Exception)
         => ExecuteAsync(context, context.Message.Content.Substring(argPos), services, multiMatchHandling);
 
     /// <summary>
-    ///     Executes the command.
+    /// Finds, checks and executes the command that matches the given input.
     /// </summary>
     /// <param name="context">The context of the command.</param>
     /// <param name="input">The command string.</param>
     /// <param name="services">The service to be used in the command's dependency injection.</param>
     /// <param name="multiMatchHandling">The handling mode when multiple command matches are found.</param>
     /// <returns>
-    ///     A task that represents the asynchronous execution operation. The task result contains the result of the
-    ///     command execution.
+    /// A task that represents the asynchronous execution operation. The task result contains the result of the
+    /// command execution.
     /// </returns>
     public async Task<IResult> ExecuteAsync(ICommandContext context, string input, IServiceProvider services = null, MultiMatchHandling multiMatchHandling = MultiMatchHandling.Exception)
     {
@@ -649,8 +651,10 @@ public class CommandService : IDisposable
     /// <param name="context">The context of the command.</param>
     /// <param name="provider">The service provider to be used on the command's dependency injection.</param>
     /// <param name="multiMatchHandling">The handling mode when multiple command matches are found.</param>
-    /// <returns>A task that represents the asynchronous validation operation. The task result contains the result of the
-    ///     command validation as a <see cref="MatchResult"/> or a <see cref="SearchResult"/> if no matches were found.</returns>
+    /// <returns>
+    /// A task that represents the asynchronous validation operation. The task result contains the result of the
+    /// command validation as a <see cref="MatchResult"/>, or a <see cref="SearchResult"/> if no matches were found.
+    /// </returns>
     public async Task<IResult> ValidateAndGetBestMatch(SearchResult matches, ICommandContext context, IServiceProvider provider, MultiMatchHandling multiMatchHandling = MultiMatchHandling.Exception)
     {
         if (!matches.IsSuccess)
@@ -725,6 +729,10 @@ public class CommandService : IDisposable
     #endregion
 
     #region Dispose
+    /// <summary>
+    /// Releases the resources used by the service.
+    /// </summary>
+    /// <param name="disposing">Whether managed resources are released.</param>
     protected virtual void Dispose(bool disposing)
     {
         if (!_isDisposed)

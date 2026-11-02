@@ -7,11 +7,10 @@ using System.Runtime.ExceptionServices;
 namespace Fluxer.Net.Commands;
 
 /// <summary>
-///     Provides the information of a command.
+/// The information of a command.
 /// </summary>
 /// <remarks>
-///     This object contains the information of a command. This can include the module of the command, various
-///     descriptions regarding the command, and its <see cref="RunMode"/>.
+/// Holds the module, descriptions, parameters, preconditions and <see cref="RunMode"/> of a command.
 /// </remarks>
 [DebuggerDisplay("{Name,nq}")]
 public class CommandInfo
@@ -23,61 +22,52 @@ public class CommandInfo
     private readonly Func<ICommandContext, object[], IServiceProvider, CommandInfo, Task> _action;
 
     /// <summary>
-    ///     Gets the module that the command belongs in.
+    /// The module the command belongs to.
     /// </summary>
     public ModuleInfo Module { get; }
     /// <summary>
-    ///     Gets the name of the command. If none is set, the first alias is used.
+    /// The name of the command.
     /// </summary>
     public string Name { get; }
     /// <summary>
-    ///     Gets the summary of the command.
+    /// The summary of the command.
     /// </summary>
-    /// <remarks>
-    ///     This field returns the summary of the command. <see cref="Summary"/> and <see cref="Remarks"/> can be
-    ///     useful in help commands and various implementation that fetches details of the command for the user.
-    /// </remarks>
     public string Summary { get; }
     /// <summary>
-    ///     Gets the remarks of the command.
+    /// The remarks of the command.
     /// </summary>
-    /// <remarks>
-    ///     This field returns the summary of the command. <see cref="Summary"/> and <see cref="Remarks"/> can be
-    ///     useful in help commands and various implementation that fetches details of the command for the user.
-    /// </remarks>
     public string Remarks { get; }
     /// <summary>
-    ///     Gets the priority of the command. This is used when there are multiple overloads of the command.
+    /// The priority of the command, used to order overloads that match the same input.
     /// </summary>
     public int Priority { get; }
     /// <summary>
-    ///     Indicates whether the command accepts a <see langword="params"/> <see cref="Type"/>[] for its
-    ///     parameter.
+    /// Whether the last parameter is a params array.
     /// </summary>
     public bool HasVarArgs { get; }
     /// <summary>
-    ///     Indicates whether extra arguments should be ignored for this command.
+    /// Whether extra arguments are ignored for the command.
     /// </summary>
     public bool IgnoreExtraArgs { get; }
     /// <summary>
-    ///     Gets the <see cref="RunMode" /> that is being used for the command.
+    /// The <see cref="RunMode"/> the command runs with.
     /// </summary>
     public RunMode RunMode { get; }
 
     /// <summary>
-    ///     Gets a list of aliases defined by the <see cref="AliasAttribute" /> of the command.
+    /// The names that trigger the command, combined with the aliases of its module.
     /// </summary>
     public IReadOnlyList<string> Aliases { get; }
     /// <summary>
-    ///     Gets a list of information about the parameters of the command.
+    /// The parameters of the command, in order.
     /// </summary>
     public IReadOnlyList<ParameterInfo> Parameters { get; }
     /// <summary>
-    ///     Gets a list of preconditions defined by the <see cref="PreconditionAttribute" /> of the command.
+    /// The preconditions of the command.
     /// </summary>
     public IReadOnlyList<PreconditionAttribute> Preconditions { get; }
     /// <summary>
-    ///     Gets a list of attributes of the command.
+    /// The attributes of the command.
     /// </summary>
     public IReadOnlyList<Attribute> Attributes { get; }
 
@@ -116,6 +106,12 @@ public class CommandInfo
         _commandService = service;
     }
 
+    /// <summary>
+    /// Checks the module and command preconditions. The module preconditions are checked first.
+    /// </summary>
+    /// <param name="context">The context of the command.</param>
+    /// <param name="services">The service provider used for dependency injection.</param>
+    /// <returns>The first failed precondition result, or a success result when all pass.</returns>
     public async Task<PreconditionResult> CheckPreconditionsAsync(ICommandContext context, IServiceProvider services = null)
     {
         services ??= EmptyServiceProvider.Instance;
@@ -158,6 +154,15 @@ public class CommandInfo
         return PreconditionResult.FromSuccess();
     }
 
+    /// <summary>
+    /// Parses the arguments of the command from the input after <paramref name="startIndex"/>.
+    /// </summary>
+    /// <param name="context">The context of the command.</param>
+    /// <param name="startIndex">The index in the search text where the arguments start.</param>
+    /// <param name="searchResult">The search result that contains the input.</param>
+    /// <param name="preconditionResult">The result of the precondition checks, if any.</param>
+    /// <param name="services">The service provider used for dependency injection.</param>
+    /// <returns>The result of parsing the arguments.</returns>
     public Task<ParseResult> ParseAsync(ICommandContext context, int startIndex, SearchResult searchResult, PreconditionResult preconditionResult = null, IServiceProvider services = null)
     {
         services ??= EmptyServiceProvider.Instance;
@@ -172,6 +177,13 @@ public class CommandInfo
         return CommandParser.ParseArgsAsync(this, context, _commandService._ignoreExtraArgs, services, input, 0, _commandService._quotationMarkAliasMap);
     }
 
+    /// <summary>
+    /// Executes the command with the parsed input.
+    /// </summary>
+    /// <param name="context">The context of the command.</param>
+    /// <param name="parseResult">The result of parsing the input.</param>
+    /// <param name="services">The service provider used for dependency injection.</param>
+    /// <returns>The result of the execution.</returns>
     public Task<IResult> ExecuteAsync(ICommandContext context, ParseResult parseResult, IServiceProvider services)
     {
         if (!parseResult.IsSuccess)
@@ -195,6 +207,15 @@ public class CommandInfo
 
         return ExecuteAsync(context, argList, paramList, services);
     }
+    /// <summary>
+    /// Checks the parameter preconditions and executes the command. A command with <see cref="RunMode.Async"/> runs on a
+    /// background task, and a successful result is returned before it finishes.
+    /// </summary>
+    /// <param name="context">The context of the command.</param>
+    /// <param name="argList">The parsed arguments.</param>
+    /// <param name="paramList">The parsed values of the params parameter.</param>
+    /// <param name="services">The service provider used for dependency injection.</param>
+    /// <returns>The result of the execution.</returns>
     public async Task<IResult> ExecuteAsync(ICommandContext context, IEnumerable<object> argList, IEnumerable<object> paramList, IServiceProvider services)
     {
         services ??= EmptyServiceProvider.Instance;

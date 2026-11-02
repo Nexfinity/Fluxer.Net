@@ -1,9 +1,12 @@
 ﻿namespace Fluxer.Net.Rest;
 
+/// <summary>
+/// Per-request settings for a REST call.
+/// </summary>
 public class RequestOptions
 {
     /// <summary>
-    /// Add audit log reason to this request, only used for certain endpoints.
+    /// The reason written to the audit log, sent in the <c>X-Audit-Log-Reason</c> header. Not sent when empty.
     /// </summary>
     public string AuditLogReason { get; set; }
 

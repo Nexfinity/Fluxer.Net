@@ -21,7 +21,7 @@ public class WebAuthnCredential : Entity, IWebAuthnCredential
     }
 
     /// <summary>
-    /// Create a Login object from json.
+    /// Creates a credential from its JSON.
     /// </summary>
     /// <returns><see cref="WebAuthnCredential"/></returns>
     public static WebAuthnCredential Create(FluxerBaseClient client, WebAuthnCredentialJson json)

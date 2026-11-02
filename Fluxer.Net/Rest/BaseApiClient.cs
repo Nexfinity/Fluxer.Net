@@ -9,6 +9,9 @@ using System.Reflection;
 
 namespace Fluxer.Net.Rest;
 
+/// <summary>
+/// The request pipeline shared by the REST clients. Sends HTTP requests, adds the authorization header and raises the HTTP error event.
+/// </summary>
 public class FluxerBaseApiClient
 {
     internal FluxerBaseApiClient() { }
@@ -17,7 +20,7 @@ public class FluxerBaseApiClient
     internal FluxerConfig _config;
 
     /// <summary>
-    /// Whether the client authenticates with a bot token. User tokens start with <c>flx_</c>.
+    /// Whether the client authenticates with a bot token, which is prefixed with <c>Bot </c>.
     /// </summary>
     public bool IsBot => _token != null && _token.StartsWith("Bot ", StringComparison.OrdinalIgnoreCase);
 
@@ -30,7 +33,7 @@ public class FluxerBaseApiClient
     }
 
     /// <summary>
-    /// The HTTP client used to make requests. Can be shared or injected for connection pooling.
+    /// The HTTP client that sends requests. Uses <see cref="FluxerConfig.HttpClient"/> when one is configured.
     /// </summary>
     public HttpClient HttpClient { get; internal set; }
 
@@ -40,14 +43,22 @@ public class FluxerBaseApiClient
     internal RequestQueue RequestQueue { get; private set; }
 
     /// <summary>
-    /// API limits for message length, attachment count and premium limits.
+    /// The API limits for message length, attachment count and premium limits. The client never sets it, so it is null.
     /// </summary>
     public ApiLimits Limits { get; internal set; }
 
     internal ILogger _logger;
 
+    /// <summary>
+    /// Called when the API answers a request with a non-success status code.
+    /// </summary>
+    /// <param name="error">The parsed error body, or null when the body is empty.</param>
+    /// <param name="response">The response the API sent.</param>
     public delegate void HttpErrorEvent(FluxerErrorJson error, HttpResponseMessage response);
 
+    /// <summary>
+    /// Raised when the API answers a request with a non-success status code.
+    /// </summary>
     public event HttpErrorEvent HttpError;
 
     internal void Initialize()
@@ -80,9 +91,9 @@ public class FluxerBaseApiClient
     /// <param name="data">The request body data to serialize and send.</param>
     /// <param name="throwOnNonSuccess">Whether to throw an exception on non-2xx status codes.</param>
     /// <param name="authorize">Whether to include the Authorization header.</param>
-    /// <param name="otherFormData"></param>
-    /// <param name="options"></param>
-    /// <returns>The deserialized response object.</returns>
+    /// <param name="otherFormData">Extra multipart parts keyed by form field name. When set, the JSON body is sent as the <c>payload_json</c> part.</param>
+    /// <param name="options">Request options, such as the audit log reason.</param>
+    /// <returns>The deserialized response, or the default value when the request failed and <paramref name="throwOnNonSuccess"/> is false.</returns>
     /// <exception cref="FluxerApiException">Thrown when <paramref name="throwOnNonSuccess"/> is true and the API returns a non-success status code.</exception>
     public async Task<TResponse> SendRequestAsync<TResponse, TSend>(HttpMethod method, string route, TSend data, bool throwOnNonSuccess = false, bool authorize = true,
         ICollection<KeyValuePair<string, (HttpContent content, string? filename)>>? otherFormData = null, RequestOptions? options = null)
@@ -226,7 +237,7 @@ public class FluxerBaseApiClient
     /// <param name="data">The request body data to serialize and send.</param>
     /// <param name="throwOnNonSuccess">Whether to throw an exception on non-2xx status codes.</param>
     /// <param name="authorize">Whether to include the Authorization header.</param>
-    /// <param name="options"></param>
+    /// <param name="options">Request options, such as the audit log reason.</param>
     /// <returns>The HTTP status code of the response.</returns>
     /// <exception cref="FluxerApiException">Thrown when <paramref name="throwOnNonSuccess"/> is true and the API returns a non-success status code.</exception>
     public async Task<HttpStatusCode> SendRequestAsync<TSend>(HttpMethod method, string route, TSend data, bool throwOnNonSuccess = false,
@@ -284,8 +295,8 @@ public class FluxerBaseApiClient
     /// <param name="route">The API route (e.g., "/users/@me").</param>
     /// <param name="throwOnNonSuccess">Whether to throw an exception on non-2xx status codes.</param>
     /// <param name="authorize">Whether to include the Authorization header.</param>
-    /// <param name="options"></param>
-    /// <returns>The deserialized response object.</returns>
+    /// <param name="options">Request options, such as the audit log reason.</param>
+    /// <returns>The deserialized response, or the default value when the request failed and <paramref name="throwOnNonSuccess"/> is false.</returns>
     /// <exception cref="FluxerApiException">Thrown when <paramref name="throwOnNonSuccess"/> is true and the API returns a non-success status code.</exception>
     public Task<TResponse> SendRequestAsync<TResponse>(HttpMethod method, string route, bool throwOnNonSuccess = false,
         bool authorize = true, RequestOptions? options = null)
@@ -333,16 +344,16 @@ public class FluxerBaseApiClient
     }
 
     /// <summary>
-    /// Makes an HTTP request with no request body but expects a response body.
+    /// Makes an HTTP request with query parameters and no request body, and expects a response body.
     /// </summary>
     /// <typeparam name="TResponse">The type to deserialize the response into.</typeparam>
     /// <param name="method">The HTTP method (typically GET).</param>
-    /// <param name="queryParams">The HTTP method query params like limit, after, etc.</param>
+    /// <param name="queryParams">The query parameters to add to the URL, such as limit and after.</param>
     /// <param name="route">The API route (e.g., "/users/@me").</param>
     /// <param name="throwOnNonSuccess">Whether to throw an exception on non-2xx status codes.</param>
     /// <param name="authorize">Whether to include the Authorization header.</param>
-    /// <param name="options"></param>
-    /// <returns>The deserialized response object.</returns>
+    /// <param name="options">Request options, such as the audit log reason.</param>
+    /// <returns>The deserialized response, or the default value when the request failed and <paramref name="throwOnNonSuccess"/> is false.</returns>
     /// <exception cref="FluxerApiException">Thrown when <paramref name="throwOnNonSuccess"/> is true and the API returns a non-success status code.</exception>
     public Task<TResponse> SendRequestQueryParamsAsync<TResponse>(HttpMethod method, RestClientQueryParams queryParams, string route, bool throwOnNonSuccess = false,
         bool authorize = true, RequestOptions? options = null)
@@ -410,7 +421,7 @@ public class FluxerBaseApiClient
     /// <param name="route">The API route (e.g., "/channels/123").</param>
     /// <param name="throwOnNonSuccess">Whether to throw an exception on non-2xx status codes.</param>
     /// <param name="authorize">Whether to include the Authorization header.</param>
-    /// <param name="options"></param>
+    /// <param name="options">Request options, such as the audit log reason.</param>
     /// <returns>The HTTP status code of the response.</returns>
     /// <exception cref="FluxerApiException">Thrown when <paramref name="throwOnNonSuccess"/> is true and the API returns a non-success status code.</exception>
     public async Task<HttpStatusCode> SendRequestRawAsync(HttpMethod method, string route, bool throwOnNonSuccess = false,

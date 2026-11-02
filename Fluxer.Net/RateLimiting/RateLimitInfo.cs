@@ -4,7 +4,7 @@ using Newtonsoft.Json.Linq;
 namespace Fluxer.Net;
 
 /// <summary>
-/// The rate limit headers of one response, and the delay from the body of a 429.
+/// The rate limit headers of one response, and the retry delay from its body or its Retry-After header.
 /// </summary>
 public readonly struct RateLimitInfo : IRateLimitInfo
 {

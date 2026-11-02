@@ -1,5 +1,8 @@
 ﻿namespace Fluxer.Net;
 
+/// <summary>
+/// An OAuth2 access token, with its application, scopes and user.
+/// </summary>
 public interface IFluxerOAuthToken
 {
     /// <summary>

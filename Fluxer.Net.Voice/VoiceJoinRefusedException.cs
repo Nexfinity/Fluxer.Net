@@ -1,8 +1,7 @@
 namespace Fluxer.Net.Voice;
 
 /// <summary>
-/// Thrown by <see cref="FluxerVoiceClient.JoinAsync"/> when Fluxer refuses the join, for example because the channel
-/// is full.
+/// Thrown when Fluxer refuses a voice join, for example because the channel is full.
 /// </summary>
 public sealed class VoiceJoinRefusedException : Exception
 {

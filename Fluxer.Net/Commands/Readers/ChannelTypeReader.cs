@@ -3,15 +3,15 @@ using System.Globalization;
 namespace Fluxer.Net.Commands;
 
 /// <summary>
-///     A <see cref="TypeReader"/> for parsing objects implementing <see cref="IChannel"/>.
+/// A <see cref="TypeReader"/> that parses an <see cref="IChannel"/> from a mention, an id or a name.
 /// </summary>
 /// <remarks>
-///     This <see cref="TypeReader"/> is shipped with Fluxer.Net and is used by default to parse any 
-///     <see cref="IChannel"/> implemented object within a command. The TypeReader will attempt to first parse the
-///     input by mention, then the snowflake identifier, then by name; the highest candidate will be chosen as the
-///     final output; otherwise, an erroneous <see cref="TypeReaderResult"/> is returned.
+/// The reader is used by default for <see cref="IChannel"/> parameters. Matches are scored: a mention scores 1.0, an
+/// id 0.9, an exact name 0.8 and a name that differs only in case 0.7. When several channels match, all of them are
+/// returned. Mentions and ids are read only from input longer than 10 characters, and names are matched only in a
+/// <see cref="CommandContext"/>. Outside a guild, the reader returns an <see cref="CommandError.ObjectNotFound"/> error.
 /// </remarks>
-/// <typeparam name="T">The type to be checked; must implement <see cref="IChannel"/>.</typeparam>
+/// <typeparam name="T">The type to be checked. It must implement <see cref="IChannel"/>.</typeparam>
 public class ChannelTypeReader<T> : TypeReader
     where T : class, IChannel
 {

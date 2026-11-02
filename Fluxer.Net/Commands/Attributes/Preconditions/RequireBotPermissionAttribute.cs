@@ -1,23 +1,34 @@
 ﻿namespace Fluxer.Net.Commands;
 
+/// <summary>
+/// Requires the bot to hold a guild or channel permission before the command executes.
+/// </summary>
 [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = true, Inherited = true)]
 public class RequireBotPermissionAttribute : PreconditionAttribute
 {
     /// <summary>
-    /// Guild permission to check for.
+    /// The guild permission the bot must hold, or null when a channel permission is checked.
     /// </summary>
     public GuildPermission? Guild { get; }
 
     /// <summary>
-    /// Channel permission to check for.
+    /// The channel permission the bot must hold, or null when a guild permission is checked.
     /// </summary>
     public ChannelPermission? Channel { get; }
 
+    /// <summary>
+    /// Creates a new <see cref="RequireBotPermissionAttribute"/> that checks a guild permission.
+    /// </summary>
+    /// <param name="perm">The guild permission the bot must hold.</param>
     public RequireBotPermissionAttribute(GuildPermission perm)
     {
         Guild = perm;
     }
 
+    /// <summary>
+    /// Creates a new <see cref="RequireBotPermissionAttribute"/> that checks a channel permission.
+    /// </summary>
+    /// <param name="perm">The channel permission the bot must hold.</param>
     public RequireBotPermissionAttribute(ChannelPermission perm)
     {
         Channel = perm;

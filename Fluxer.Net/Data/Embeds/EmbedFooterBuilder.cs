@@ -3,13 +3,12 @@ using Fluxer.Net.Rest;
 namespace Fluxer.Net;
 
 /// <summary>
-/// A builder for creating embed footers with validation.
-/// Based on Fluxer.Net's EmbedFooterBuilder implementation.
+/// A builder for the footer section of an embed.
 /// </summary>
 public class EmbedFooterBuilder
 {
     /// <summary>
-    /// Maximum length of the footer text.
+    /// The maximum length of the footer text.
     /// </summary>
     public static int MaxFooterTextLength { get; } = 2048;
 
@@ -58,7 +57,7 @@ public class EmbedFooterBuilder
     /// <summary>
     /// Builds the embed footer.
     /// </summary>
-    /// <returns>A new <see cref="EmbedFooterJson"/> object.</returns>
+    /// <returns>A new <see cref="EmbedFooterRequest"/> object.</returns>
     public EmbedFooterRequest Build()
     {
         return new EmbedFooterRequest

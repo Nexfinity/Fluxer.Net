@@ -1,7 +1,7 @@
 namespace Fluxer.Net.Voice;
 
 /// <summary>
-/// Thrown by <see cref="FluxerVoiceClient.JoinAsync"/> when Fluxer does not send a voice server in time.
+/// Thrown when Fluxer does not send a voice server for a voice join in time.
 /// </summary>
 public sealed class VoiceJoinTimeoutException : TimeoutException
 {

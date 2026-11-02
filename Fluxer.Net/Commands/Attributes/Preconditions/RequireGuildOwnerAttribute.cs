@@ -1,5 +1,11 @@
 namespace Fluxer.Net.Commands;
 
+/// <summary>
+/// Requires the command to run in a guild by the guild owner.
+/// </summary>
+/// <remarks>
+/// When <see cref="CommandServiceConfig.OwnerBypassPermissions"/> is set, the bot owners pass this check.
+/// </remarks>
 [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false, Inherited = true)]
 public class RequireGuildOwnerAttribute : PreconditionAttribute
 {

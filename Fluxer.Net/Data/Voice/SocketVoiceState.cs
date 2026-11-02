@@ -4,12 +4,12 @@
 public class SocketVoiceState : VoiceState
 {
     /// <summary>
-    /// Guild for the voice state.
+    /// The guild of the voice state, or null when it has no guild or the guild is not cached.
     /// </summary>
     public SocketGuild? Guild { get; private set; }
 
     /// <summary>
-    /// Channel for the voice state.
+    /// The voice channel of the voice state.
     /// </summary>
     public Channel? Channel { get; private set; }
 
@@ -19,9 +19,8 @@ public class SocketVoiceState : VoiceState
     }
 
     /// <summary>
-    /// Create a SocketVoiceState object from json.
+    /// Creates a voice state from JSON, with its channel and guild.
     /// </summary>
-    /// <returns><see cref="SocketVoiceState"/></returns>
     public static SocketVoiceState Create(FluxerBaseClient client, VoiceStateJson json, Channel channel)
     {
         SocketVoiceState data = new SocketVoiceState(client)

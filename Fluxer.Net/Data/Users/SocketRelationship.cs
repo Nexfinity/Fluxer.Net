@@ -1,9 +1,13 @@
 ﻿namespace Fluxer.Net;
 
-/// <inheritdoc />
+/// <summary>
+/// A relationship with another user, as the gateway keeps it.
+/// </summary>
 public class SocketRelationship : Entity, IRelationship
 {
-    /// <inheritdoc />
+    /// <summary>
+    /// The other user of the relationship.
+    /// </summary>
     public SocketUser User { get; private set; }
 
     /// <inheritdoc />

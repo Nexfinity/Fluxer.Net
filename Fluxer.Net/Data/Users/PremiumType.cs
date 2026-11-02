@@ -1,7 +1,7 @@
 namespace Fluxer.Net;
 
 /// <summary>
-/// Represents the type of premium/subscription status for a user.
+/// The premium subscription status of a user.
 /// </summary>
 public enum PremiumType
 {

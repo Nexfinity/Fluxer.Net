@@ -7,36 +7,69 @@ namespace Fluxer.Net.Rest;
 /// </summary>
 public class UpdateGuildRequest
 {
+    /// <summary>
+    /// The name of the guild.
+    /// </summary>
     [JsonProperty("name")]
     public Optional<string> Name { get; set; }
 
+    /// <summary>
+    /// Base64 image data for the guild icon, or null to remove it.
+    /// </summary>
     [JsonProperty("icon")]
     public Optional<string?> IconBase64 { get; set; }
 
+    /// <summary>
+    /// Base64 image data for the guild banner, or null to remove it.
+    /// </summary>
     [JsonProperty("banner")]
     public Optional<string?> BannerBase64 { get; set; }
 
+    /// <summary>
+    /// Base64 image data for the invite splash, or null to remove it.
+    /// </summary>
     [JsonProperty("splash")]
     public Optional<string?> SplashBase64 { get; set; }
 
+    /// <summary>
+    /// The ID of the channel where system messages are sent, or null for none.
+    /// </summary>
     [JsonProperty("system_channel_id")]
     public Optional<ulong?> SystemChannelId { get; set; }
 
+    /// <summary>
+    /// Flags that control which system messages are sent to the system channel.
+    /// </summary>
     [JsonProperty("system_channel_flags")]
     public Optional<SystemChannelFlags> SystemChannelFlags { get; set; }
 
+    /// <summary>
+    /// The ID of the AFK voice channel, or null for none.
+    /// </summary>
     [JsonProperty("afk_channel_id")]
     public Optional<ulong?> AfkChannelId { get; set; }
 
+    /// <summary>
+    /// AFK timeout in seconds before moving users to the AFK channel.
+    /// </summary>
     [JsonProperty("afk_timeout")]
     public Optional<int> AfkTimeout { get; set; }
 
+    /// <summary>
+    /// The default notification level for new members.
+    /// </summary>
     [JsonProperty("default_message_notifications")]
     public Optional<GuildDefaultNotifications> DefaultMessageNotifications { get; set; }
 
+    /// <summary>
+    /// The verification level required for members to participate.
+    /// </summary>
     [JsonProperty("verification_level")]
     public Optional<GuildVerificationLevel> VerificationLevel { get; set; }
 
+    /// <summary>
+    /// The explicit content filter level of the guild.
+    /// </summary>
     [JsonProperty("explicit_content_filter")]
     public Optional<GuildContentFilter> ExplicitContentFilter { get; set; }
 
@@ -141,10 +174,19 @@ public class UpdateGuildRequest
     /// </summary>
     public void EmbedSplashFromStream(Stream stream) => EmbedSplashBase64 = ToBase64(stream);
 
+    /// <summary>
+    /// Sets <see cref="IconBase64"/> from an image stream.
+    /// </summary>
     public void IconFromStream(Stream stream) => IconBase64 = ToBase64(stream);
 
+    /// <summary>
+    /// Sets <see cref="BannerBase64"/> from an image stream.
+    /// </summary>
     public void BannerFromStream(Stream stream) => BannerBase64 = ToBase64(stream);
 
+    /// <summary>
+    /// Sets <see cref="SplashBase64"/> from an image stream.
+    /// </summary>
     public void SplashFromStream(Stream stream) => SplashBase64 = ToBase64(stream);
 
     private static string ToBase64(Stream stream)

@@ -1,6 +1,8 @@
 ﻿namespace Fluxer.Net;
 
-/// <inheritdoc />
+/// <summary>
+/// An application with its bot user and OAuth2 redirect URIs.
+/// </summary>
 public class Application : PartialApplication, IApplication
 {
     /// <inheritdoc />
@@ -17,7 +19,7 @@ public class Application : PartialApplication, IApplication
     }
 
     /// <summary>
-    /// Create a Application object from json.
+    /// Creates an application from its JSON.
     /// </summary>
     /// <returns><see cref="Application"/></returns>
     public static Application Create(FluxerBaseClient client, ApplicationJson json)

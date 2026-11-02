@@ -1,7 +1,7 @@
 ﻿namespace Fluxer.Net;
 
 /// <summary>
-/// Application/bot used to interact with the Fluxer platform and API.
+/// The fields shared by partial and full application objects.
 /// </summary>
 public interface IPartialApplication : ISnowflake
 {
@@ -31,7 +31,7 @@ public interface IPartialApplication : ISnowflake
     bool RequiresCodeGrant { get; }
 
     /// <summary>
-    /// The application flags.
+    /// The application flags as a bit field.
     /// </summary>
     ulong Flags { get; }
 }

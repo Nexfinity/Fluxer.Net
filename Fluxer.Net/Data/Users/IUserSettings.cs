@@ -1,7 +1,13 @@
 ﻿namespace Fluxer.Net;
 
+/// <summary>
+/// The settings of a user, such as language, theme and display options.
+/// </summary>
 public interface IUserSettings
 {
+    /// <summary>
+    /// The id of the user.
+    /// </summary>
     ulong UserId { get; }
 
     /// <summary>
@@ -10,12 +16,12 @@ public interface IUserSettings
     string Locale { get; }
 
     /// <summary>
-    /// The UI theme preference
+    /// The UI theme preference.
     /// </summary>
     string Theme { get; }
 
     /// <summary>
-    /// The current online status of the user
+    /// The current online status of the user.
     /// </summary>
     string Status { get; }
 
@@ -74,20 +80,23 @@ public interface IUserSettings
     /// </summary>
     bool InlineEmbedMedia { get; }
 
+    /// <summary>
+    /// The explicit content filter setting, as the API sends it.
+    /// </summary>
     int ExplicitContentFilter { get; }
 
     /// <summary>
-    /// Friend source flags.
+    /// The flags of the sources that can send friend requests to the user.
     /// </summary>
     int FriendSourceFlags { get; }
 
     /// <summary>
-    /// Incoming call settings.
+    /// The flags for incoming calls.
     /// </summary>
     int IncomingCallFlags { get; }
 
     /// <summary>
-    /// Group DM add permissions.
+    /// The flags for who can add the user to group direct messages.
     /// </summary>
     int GroupDmAddPermissionFlags { get; }
 
@@ -97,10 +106,13 @@ public interface IUserSettings
     bool DefaultGuildsRestricted { get; }
 
     /// <summary>
-    /// Guild IDs where direct messages are restricted
+    /// The ids of the guilds where direct messages are restricted.
     /// </summary>
     List<ulong>? RestrictedGuilds { get; }
 
+    /// <summary>
+    /// The ids of the guilds in the order they appear in the sidebar.
+    /// </summary>
     List<ulong>? GuildPositions { get; }
 
     /// <summary>

@@ -8,7 +8,6 @@ namespace Fluxer.Net.Voice;
 /// </summary>
 /// <remarks>
 /// Audio is 16 bit signed PCM at <see cref="SampleRate"/> Hz with <see cref="Channels"/> interleaved channels.
-/// Frames of 10 or 20 milliseconds work best.
 /// </remarks>
 public sealed class FluxerVoiceConnection : IAudioClient
 {
@@ -79,14 +78,14 @@ public sealed class FluxerVoiceConnection : IAudioClient
     }
 
     /// <summary>
-    /// Drops queued audio that has not been sent yet, for example when skipping or stopping playback.
+    /// Drops queued audio that has not been sent yet.
     /// </summary>
     public void ClearQueue() => _source?.ClearQueue();
 
     /// <summary>
     /// Leaves the voice channel.
     /// </summary>
-    public Task DisconnectAsync() => _owner.LeaveAsync(GuildId);
+    public Task DisconnectAsync() => _owner.LeaveAsync(this);
 
     /// <inheritdoc />
     public async ValueTask DisposeAsync()
@@ -134,7 +133,9 @@ public sealed class FluxerVoiceConnection : IAudioClient
                 LocalAudioTrack track = LocalAudioTrack.Create("audio", source);
                 await room.LocalParticipant!.PublishTrackAsync(track, new TrackPublishOptions
                 {
-                    Source = TrackSource.SourceMicrophone
+                    Source = TrackSource.SourceMicrophone,
+                    AudioEncoding = new AudioEncodingOptions { MaxBitrate = _owner.GetBitrate(server.ChannelId) },
+                    Dtx = false
                 }, cancellationToken).ConfigureAwait(false);
             }
             catch
@@ -147,7 +148,6 @@ public sealed class FluxerVoiceConnection : IAudioClient
             AudioSource? previousSource = _source;
             _room = room;
             _source = source;
-            ChannelId = server.ChannelId;
             ConnectionId = server.ConnectionId;
             await CloseAsync(previousRoom, previousSource).ConfigureAwait(false);
         }

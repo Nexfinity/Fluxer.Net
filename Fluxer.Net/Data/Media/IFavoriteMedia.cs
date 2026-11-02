@@ -1,5 +1,8 @@
 ﻿namespace Fluxer.Net;
 
+/// <summary>
+/// A GIF saved to a user's favorites, with its attachment and media details.
+/// </summary>
 public interface IFavoriteMedia
 {
     /// <summary>
@@ -68,12 +71,12 @@ public interface IFavoriteMedia
     int? Height { get; }
 
     /// <summary>
-    /// Duration of the video in seconds
+    /// Duration of the video in seconds.
     /// </summary>
     int? Duration { get; }
 
     /// <summary>
-    /// Whether the gif is a video converted from GIF
+    /// Whether the gif is a video converted from GIF.
     /// </summary>
     bool IsMediaVideo { get; }
 
@@ -83,7 +86,7 @@ public interface IFavoriteMedia
     string? KlipySlug { get; }
 
     /// <summary>
-    /// Tenor view/- identifier if the media was sourced from Tenor.
+    /// Tenor slug identifier if the media was sourced from Tenor.
     /// </summary>
     string? TenorSlugId { get; }
 }

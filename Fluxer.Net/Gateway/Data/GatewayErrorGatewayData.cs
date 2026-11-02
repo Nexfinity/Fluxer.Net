@@ -8,7 +8,7 @@ namespace Fluxer.Net.Gateway;
 public class GatewayErrorGatewayData
 {
     /// <summary>
-    /// The refusal code, one of the voice codes in <see cref="FluxerErrorCodes"/>.
+    /// The refusal code, such as those in <see cref="FluxerErrorCodes"/>.
     /// </summary>
     [JsonProperty("code")]
     public string Code { get; set; }

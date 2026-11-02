@@ -30,14 +30,18 @@ public class PresenceJson : IPresence
     IClientStatus? IPresence.ClientStatus => ClientStatus;
 }
 
+/// <inheritdoc />
 public class ClientStatusJson : IClientStatus
 {
+    /// <inheritdoc />
     [JsonProperty("desktop")]
     public string? Desktop { get; set; }
 
+    /// <inheritdoc />
     [JsonProperty("mobile")]
     public string? Mobile { get; set; }
 
+    /// <inheritdoc />
     [JsonProperty("web")]
     public string? Web { get; set; }
 }

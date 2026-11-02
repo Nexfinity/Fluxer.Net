@@ -3,7 +3,7 @@ using System.Diagnostics;
 namespace Fluxer.Net.Commands;
 
 /// <summary>
-///     Represents a result type for command preconditions.
+/// The result of a precondition check.
 /// </summary>
 [DebuggerDisplay(@"{DebuggerDisplay,nq}")]
 public class PreconditionResult : IResult
@@ -17,8 +17,7 @@ public class PreconditionResult : IResult
     public bool IsSuccess => !Error.HasValue;
 
     /// <summary>
-    ///     Initializes a new <see cref="PreconditionResult" /> class with the command <paramref name="error"/> type
-    ///     and reason.
+    /// Creates a new <see cref="PreconditionResult"/> with the given error type and reason.
     /// </summary>
     /// <param name="error">The type of failure.</param>
     /// <param name="errorReason">The reason of failure.</param>
@@ -29,21 +28,25 @@ public class PreconditionResult : IResult
     }
 
     /// <summary>
-    ///     Returns a <see cref="PreconditionResult" /> with no errors.
+    /// Returns a <see cref="PreconditionResult"/> with no errors.
     /// </summary>
     public static PreconditionResult FromSuccess()
         => new PreconditionResult(null, null);
     /// <summary>
-    ///     Returns a <see cref="PreconditionResult" /> with <see cref="CommandError.UnmetPrecondition" /> and the
-    ///     specified reason.
+    /// Returns a <see cref="PreconditionResult"/> with <see cref="CommandError.UnmetPrecondition"/> and the
+    /// specified reason.
     /// </summary>
     /// <param name="reason">The reason of failure.</param>
     public static PreconditionResult FromError(string reason)
         => new PreconditionResult(CommandError.UnmetPrecondition, reason);
+    /// <summary>
+    /// Returns a <see cref="PreconditionResult"/> for a check that threw an exception.
+    /// </summary>
+    /// <param name="ex">The exception that caused the failure.</param>
     public static PreconditionResult FromError(Exception ex)
         => new PreconditionResult(CommandError.Exception, ex.Message);
     /// <summary>
-    ///     Returns a <see cref="PreconditionResult" /> with the specified <paramref name="result"/> type.
+    /// Returns a <see cref="PreconditionResult"/> with the specified <paramref name="result"/> type.
     /// </summary>
     /// <param name="result">The result of failure.</param>
     public static PreconditionResult FromError(IResult result)

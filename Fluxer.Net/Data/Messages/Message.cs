@@ -64,13 +64,13 @@ public class Message : Entity, IMessage
     public MessageSnapshot[]? MessageSnapshots { get; private set; }
 
     /// <summary>
-    /// The message this one replies to, sent along by Fluxer. Null when this isn't a reply or the replied-to message was deleted;
-    /// check <see cref="MessageReference"/> to tell those apart.
+    /// The message this one replies to. Null when this message is not a reply or the replied-to message was deleted.
+    /// Check <see cref="MessageReference"/> to tell those apart.
     /// </summary>
     public Message? ReferencedMessage { get; private set; }
 
     /// <summary>
-    /// Channels mentioned in the message that everyone in the guild can see.
+    /// The channels mentioned in the message that everyone in the guild can see.
     /// </summary>
     public MessageChannelMention[]? MentionChannels { get; private set; }
 
@@ -109,9 +109,8 @@ public class Message : Entity, IMessage
     }
 
     /// <summary>
-    /// Create a Message object from json.
+    /// Creates a message from JSON.
     /// </summary>
-    /// <returns><see cref="Message"/></returns>
     public static Message Create(FluxerBaseClient client, MessageJson json)
     {
         Message data = new Message(client);

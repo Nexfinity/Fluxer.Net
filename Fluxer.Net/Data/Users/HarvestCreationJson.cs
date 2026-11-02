@@ -14,7 +14,7 @@ public class HarvestCreationJson
     public ulong HarvestId { get; set; }
 
     /// <summary>
-    /// "pending", "processing", "completed" or "failed".
+    /// The status of the harvest: pending, processing, completed or failed.
     /// </summary>
     [JsonProperty("status")]
     public string Status { get; set; }

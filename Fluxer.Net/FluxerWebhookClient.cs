@@ -4,15 +4,17 @@ using Serilog;
 namespace Fluxer.Net;
 
 /// <summary>
-/// Webhook client for Fluxer.
+/// A client for one Fluxer webhook, used to send, read, edit and delete its messages.
 /// </summary>
 public class FluxerWebhookClient : FluxerBaseClient
 {
     /// <summary>
-    /// Create a Webhook client with url to send webhook messages.
+    /// Creates a client for the webhook at the given URL.
     /// </summary>
-    /// <exception cref="ArgumentNullException"></exception>
-    /// <exception cref="ArgumentException"></exception>
+    /// <param name="webhookUrl">The webhook URL, which ends with the webhook id and token.</param>
+    /// <param name="config">The settings to use. Defaults are used when null.</param>
+    /// <exception cref="ArgumentNullException">The webhook URL is null or empty.</exception>
+    /// <exception cref="ArgumentException">The webhook URL is not an http URL with a numeric webhook id.</exception>
     public FluxerWebhookClient(string webhookUrl, FluxerConfig? config = null)
     {
         // TODO: Implement webhook validation
@@ -52,12 +54,12 @@ public class FluxerWebhookClient : FluxerBaseClient
     }
 
     /// <summary>
-    /// Webhook id.
+    /// The webhook id.
     /// </summary>
     public new ulong Id => base.Id;
 
     /// <summary>
-    /// Webhook token.
+    /// The webhook token.
     /// </summary>
     public new string Token => base.Token;
 

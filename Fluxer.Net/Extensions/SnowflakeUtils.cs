@@ -1,25 +1,23 @@
 ﻿namespace Fluxer.Net;
 
 /// <summary>
-/// Provides a series of helper methods for handling snowflake identifiers.
+/// Converts snowflake identifiers to and from timestamps.
 /// </summary>
 public static class SnowflakeUtils
 {
     /// <summary>
-    /// Resolves the time of which the snowflake is generated.
+    /// Gets the time a snowflake was created.
     /// </summary>
-    /// <returns>
-    /// A <see cref="DateTimeOffset" /> representing the time for when the object is generated.
-    /// </returns>
+    /// <param name="value">The snowflake id.</param>
+    /// <returns>The creation time, with a zero offset.</returns>
     public static DateTimeOffset FromSnowflake(ulong value)
         => DateTimeOffset.FromUnixTimeMilliseconds((long)((value >> 22) + 1420070400000UL));
 
     /// <summary>
-    /// Generates a pseudo-snowflake identifier with a <see cref="DateTimeOffset"/>.
+    /// Creates a snowflake id for a point in time. The worker, process and sequence bits are set to zero.
     /// </summary>
-    /// <returns>
-    /// A <see cref="UInt64" /> representing the newly generated snowflake identifier.
-    /// </returns>
+    /// <param name="value">The time to encode.</param>
+    /// <returns>The snowflake id for the time.</returns>
     public static ulong ToSnowflake(DateTimeOffset value)
         => ((ulong)value.ToUnixTimeMilliseconds() - 1420070400000UL) << 22;
 }

@@ -1,12 +1,8 @@
 namespace Fluxer.Net;
 
 /// <summary>
-/// Represents user account flags and badges in Fluxer. Multiple flags can be combined using bitwise OR.
+/// The flags of a user account, such as its staff and partner badges. Multiple flags can be combined using bitwise OR.
 /// </summary>
-/// <remarks>
-/// User flags indicate special properties, badges, or statuses associated with a user account.
-/// These are typically set by the Fluxer platform and not directly modifiable by users.
-/// </remarks>
 [Flags]
 public enum UserFlags : ulong
 {
@@ -96,27 +92,27 @@ public enum UserFlags : ulong
     HasDismissedPremiumOnboarding = 1UL << 51,
 
     /// <summary>
-    /// User is an app store reviewer (internal flag)
+    /// User is an app store reviewer (internal flag).
     /// </summary>
     AppStoreReviewer = 1UL << 53,
 
     /// <summary>
-    /// User staff status is hidden from public flags (internal flag)
+    /// User staff status is hidden from public flags (internal flag).
     /// </summary>
     StaffHidden = 1UL << 57,
 
     /// <summary>
-    /// User has verified they are an adult (internal flag)
+    /// User has verified they are an adult (internal flag).
     /// </summary>
     AgeVerifiedAdult = 1UL << 60,
 
     /// <summary>
-    /// Force phone verification for this user (internal flag)
+    /// Force phone verification for this user (internal flag).
     /// </summary>
     ForcePhoneVerification = 1UL << 61,
 
     /// <summary>
-    /// User is exempt from automatic flagging (internal flag)
+    /// User is exempt from automatic flagging (internal flag).
     /// </summary>
     NotSuspicious = 1UL << 61,
 }

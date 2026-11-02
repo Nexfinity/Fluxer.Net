@@ -72,6 +72,11 @@ public class Guild : PartialGuild, IGuild
     /// <inheritdoc />
     public bool? Visiting { get; internal set; }
 
+    /// <summary>
+    /// Gets a member of the guild from the API.
+    /// </summary>
+    /// <param name="userId">The ID of the user.</param>
+    /// <returns>The member, or null when the request does not succeed.</returns>
     public virtual async Task<GuildMember?> GetMemberAsync(ulong userId)
     {
         GuildMemberJson? json = await Client.Rest.SendRequestAsync<GuildMemberJson?>(HttpMethod.Get, $"/guilds/{Id}/members/{userId}", false);
@@ -81,6 +86,9 @@ public class Guild : PartialGuild, IGuild
         return GuildMember.Create(Client, json);
     }
 
+    /// <summary>
+    /// Gets the owner of the guild as a member, from the API.
+    /// </summary>
     public virtual Task<GuildMember?> GetOwnerAsync()
         => GetMemberAsync(OwnerId);
 
@@ -90,7 +98,7 @@ public class Guild : PartialGuild, IGuild
     }
 
     /// <summary>
-    /// Create a Guild object from json.
+    /// Creates a guild from its JSON representation.
     /// </summary>
     /// <returns><see cref="Guild"/></returns>
     public static Guild Create(FluxerBaseClient client, GuildJson json)

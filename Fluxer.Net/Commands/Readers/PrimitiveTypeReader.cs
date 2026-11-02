@@ -14,11 +14,18 @@ internal class PrimitiveTypeReader<T> : TypeReader
     private readonly TryParseDelegate<T> _tryParse;
     private readonly float _score;
 
-    /// <exception cref="ArgumentOutOfRangeException"><typeparamref name="T"/> must be within the range [0, 1].</exception>
+    /// <summary>
+    /// Creates a reader that parses <typeparamref name="T"/> with a score of 1.
+    /// </summary>
     public PrimitiveTypeReader()
         : this(PrimitiveParsers.Get<T>(), 1)
     { }
 
+    /// <summary>
+    /// Creates a reader that parses <typeparamref name="T"/> with the given parser and score.
+    /// </summary>
+    /// <param name="tryParse">The parser for the input.</param>
+    /// <param name="score">The score of a successful parse.</param>
     /// <exception cref="ArgumentOutOfRangeException"><paramref name="score"/> must be within the range [0, 1].</exception>
     public PrimitiveTypeReader(TryParseDelegate<T> tryParse, float score)
     {

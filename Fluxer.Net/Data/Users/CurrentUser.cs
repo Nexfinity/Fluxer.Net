@@ -1,6 +1,8 @@
 ﻿namespace Fluxer.Net;
 
-/// <inheritdoc />
+/// <summary>
+/// The user the token belongs to, with account details such as the email address and premium status.
+/// </summary>
 public class CurrentUser : User, ICurrentUser, IUserProfile
 {
     /// <inheritdoc />
@@ -87,9 +89,11 @@ public class CurrentUser : User, ICurrentUser, IUserProfile
     }
 
     /// <summary>
-    /// Create a CurrentUser object from json.
+    /// Creates a current user from its JSON data.
     /// </summary>
-    /// <returns><see cref="CurrentUser"/></returns>
+    /// <param name="client">The client the user belongs to.</param>
+    /// <param name="json">The user data.</param>
+    /// <returns>The current user.</returns>
     public static CurrentUser Create(FluxerBaseClient client, CurrentUserJson json)
     {
         CurrentUser data = new CurrentUser(client);

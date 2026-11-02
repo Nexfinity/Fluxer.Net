@@ -2,6 +2,9 @@
 
 namespace Fluxer.Net.Rest;
 
+/// <summary>
+/// The footer section of a message embed.
+/// </summary>
 public class EmbedFooterRequest
 {
     /// <summary>

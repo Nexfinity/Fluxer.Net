@@ -134,12 +134,12 @@ public enum FluxerOpCode
     HeartbeatAck = 11,
 
     /// <summary>
-    /// An error in the gateway has occured.
+    /// An error in the gateway has occurred.
     /// </summary>
     GatewayError = 12,
 
     /// <summary>
-    /// A signaling message for a peer-to-peer voice connection.
+    /// A signaling message for a voice connection.
     /// Client → Server.
     /// </summary>
     VoiceSignal = 13,
@@ -163,12 +163,12 @@ public enum FluxerOpCode
     GuildSubscriptions = LazyRequest,
 
     /// <summary>
-    /// Request guild member count.
+    /// Requests the member counts of guilds.
     /// </summary>
     RequestGuildMemberCounts = 15,
 
     /// <summary>
-    /// Request channel member count.
+    /// Requests the member counts of channels.
     /// </summary>
     RequestChannelMemberCounts = 16,
 

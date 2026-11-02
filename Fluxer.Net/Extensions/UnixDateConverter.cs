@@ -2,8 +2,12 @@
 
 namespace Fluxer.Net.Extensions;
 
+/// <summary>
+/// Converts <see cref="DateTimeOffset"/> to and from a Unix timestamp in milliseconds. Reading accepts a string or a number.
+/// </summary>
 public class UnixDateConverter : JsonConverter<DateTimeOffset>
 {
+    /// <inheritdoc />
     public override DateTimeOffset ReadJson(JsonReader reader, Type objectType, DateTimeOffset date, bool hasExistingValue, JsonSerializer serializer)
     {
         try
@@ -20,6 +24,7 @@ public class UnixDateConverter : JsonConverter<DateTimeOffset>
             $"Unexpected token type '{reader.TokenType}' when deserializing DateTimeOffset at path '{reader.Path}'.");
     }
 
+    /// <inheritdoc />
     public override void WriteJson(JsonWriter writer, DateTimeOffset value, JsonSerializer serializer)
         => writer.WriteValue(value.ToUnixTimeMilliseconds());
 }

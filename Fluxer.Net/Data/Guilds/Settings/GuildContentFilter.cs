@@ -1,7 +1,7 @@
 namespace Fluxer.Net;
 
 /// <summary>
-/// Represents the NSFW (Not Safe For Work) filter level for a user.
+/// The NSFW content filter level for the members of a guild.
 /// </summary>
 public enum GuildContentFilter
 {

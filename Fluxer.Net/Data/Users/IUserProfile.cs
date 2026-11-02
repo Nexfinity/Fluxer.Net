@@ -1,5 +1,8 @@
 ﻿namespace Fluxer.Net;
 
+/// <summary>
+/// The profile fields of a user, such as the bio and the banner.
+/// </summary>
 public interface IUserProfile
 {
     /// <summary>

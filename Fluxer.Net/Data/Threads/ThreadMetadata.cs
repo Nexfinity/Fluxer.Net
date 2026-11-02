@@ -1,5 +1,8 @@
 ﻿namespace Fluxer.Net;
 
+/// <summary>
+/// The archive and lock state of a thread.
+/// </summary>
 public class ThreadMetadata : Entity, IThreadMetadata
 {
     /// <inheritdoc />
@@ -26,7 +29,7 @@ public class ThreadMetadata : Entity, IThreadMetadata
     }
 
     /// <summary>
-    /// Create a ThreadMetadata object from json.
+    /// Creates thread metadata from its JSON representation.
     /// </summary>
     /// <returns><see cref="ThreadMetadata"/></returns>
     public static ThreadMetadata Create(FluxerBaseClient client, ThreadMetadataJson json)

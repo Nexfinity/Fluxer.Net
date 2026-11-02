@@ -1,5 +1,8 @@
 ﻿namespace Fluxer.Net;
 
+/// <summary>
+/// The account details of the user the token belongs to.
+/// </summary>
 public interface ICurrentUser : IUser
 {
     /// <summary>
@@ -33,7 +36,7 @@ public interface ICurrentUser : IUser
     string? Phone { get; }
 
     /// <summary>
-    /// The user has verified their phone number.
+    /// Whether the user has verified their phone number.
     /// </summary>
     bool IsPhoneVerified { get; }
 
@@ -53,12 +56,12 @@ public interface ICurrentUser : IUser
     PremiumType PremiumType { get; }
 
     /// <summary>
-    /// ISO8601 timestamp of when premium was first activated.
+    /// When premium was first activated, or null when it never was.
     /// </summary>
     DateTimeOffset? PremiumSince { get; }
 
     /// <summary>
-    /// ISO8601 timestamp of when the current premium period ends.
+    /// When the current premium period ends, or null when there is none.
     /// </summary>
     DateTimeOffset? PremiumUntil { get; }
 
@@ -81,6 +84,9 @@ public interface ICurrentUser : IUser
     // TODO ADD MORE PREMIUM STUFF
     //
 
+    /// <summary>
+    /// When the password was last changed, or null when it is not known.
+    /// </summary>
     DateTimeOffset? PasswordLastChangedAt { get; }
 
     //
@@ -98,7 +104,8 @@ public interface ICurrentUser : IUser
     HashSet<AuthenticatorType>? AuthenticatorTypes { get; }
 
     /// <summary>
-    /// Get the user's banner.
+    /// Gets the URL of the user's banner, or null when the user has none.
     /// </summary>
+    /// <param name="size">The requested image size.</param>
     string? GetBannerUrl(int size);
 }

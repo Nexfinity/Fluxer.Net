@@ -264,6 +264,7 @@ public class InstanceLimitsJson : IInstanceLimits
     IInstanceRule[] IInstanceLimits.Rules => Rules;
 }
 
+/// <inheritdoc />
 public class InstanceRuleJson : IInstanceRule
 {
     /// <inheritdoc />

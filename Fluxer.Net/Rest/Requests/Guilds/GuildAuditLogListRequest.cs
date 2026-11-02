@@ -2,6 +2,9 @@
 
 namespace Fluxer.Net.Rest;
 
+/// <summary>
+/// Filters and paging options for listing a guild's audit log entries.
+/// </summary>
 public class GuildAuditLogListRequest
 {
     /// <summary>

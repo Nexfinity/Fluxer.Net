@@ -1,26 +1,25 @@
 namespace Fluxer.Net.Commands;
 
 /// <summary>
-///     Prevents the marked property from being injected into a module.
+/// Excludes a property from dependency injection into a module.
 /// </summary>
 /// <remarks>
-///     This attribute prevents the marked member from being injected into its parent module. Useful when you have a
-///     public property that you do not wish to invoke the library's dependency injection service.
+/// A property marked with this attribute is not set by the dependency injection service when the module is built.
 /// </remarks>
 /// <example>
-///     In the following example, <c>DatabaseService</c> will not be automatically injected into the module and will
-///     not throw an error message if the dependency fails to be resolved.
-///     <code language="cs">
-///     public class MyModule : ModuleBase
+/// In the following example, <c>DatabaseService</c> is not injected into the module, so a failure to resolve it does
+/// not stop the module from being built.
+/// <code language="cs">
+/// public class MyModule : ModuleBase
+/// {
+///     [DontInject]
+///     public DatabaseService DatabaseService { get; set; }
+///     public MyModule()
 ///     {
-///         [DontInject]
-///         public DatabaseService DatabaseService;
-///         public MyModule()
-///         {
-///             DatabaseService = DatabaseFactory.Generate();
-///         }
+///         DatabaseService = DatabaseFactory.Generate();
 ///     }
-///     </code>
+/// }
+/// </code>
 /// </example>
 [AttributeUsage(AttributeTargets.Property, AllowMultiple = false, Inherited = true)]
 public class DontInjectAttribute : Attribute

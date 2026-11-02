@@ -1,5 +1,8 @@
 ﻿namespace Fluxer.Net;
 
+/// <summary>
+/// A ban of a user from a guild.
+/// </summary>
 public interface IGuildBan
 {
     /// <summary>
@@ -8,17 +11,17 @@ public interface IGuildBan
     DateTimeOffset BannedAt { get; }
 
     /// <summary>
-    /// When the ban expires (<see langword="null"/> for never)
+    /// When the ban expires, or null when it does not expire.
     /// </summary>
     DateTimeOffset? ExpiresAt { get; }
 
     /// <summary>
-    /// Id of the user who issues the ban.
+    /// The ID of the user who issued the ban.
     /// </summary>
     ulong ModeratorId { get; }
 
     /// <summary>
-    /// Ban Reason (max 512 characters)
+    /// The reason for the ban, up to 512 characters.
     /// </summary>
     string? Reason { get; }
 

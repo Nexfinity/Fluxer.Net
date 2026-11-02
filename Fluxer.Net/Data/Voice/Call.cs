@@ -32,9 +32,8 @@ public class Call : Entity, ICall
     }
 
     /// <summary>
-    /// Create a Call object from json.
+    /// Creates a call from JSON.
     /// </summary>
-    /// <returns><see cref="Call"/></returns>
     public static Call Create(FluxerBaseClient client, CallJson json)
     {
         Call data = new Call(client);

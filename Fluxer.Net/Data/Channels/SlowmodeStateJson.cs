@@ -19,6 +19,9 @@ public class SlowmodeStateJson
     [JsonProperty("retry_after_ms")]
     public int RetryAfterMs { get; set; }
 
+    /// <summary>
+    /// The time the current user can next send a message.
+    /// </summary>
     [JsonProperty("next_send_allowed_at")]
     public DateTimeOffset? NextSendAllowedAt { get; set; }
 

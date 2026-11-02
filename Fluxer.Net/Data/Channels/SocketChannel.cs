@@ -1,5 +1,8 @@
 ﻿namespace Fluxer.Net;
 
+/// <summary>
+/// The factory for the cached channel types. No channel type derives from it.
+/// </summary>
 public abstract class SocketChannel : Channel
 {
     internal SocketChannel(FluxerBaseClient client) : base(client)
@@ -8,9 +11,8 @@ public abstract class SocketChannel : Channel
     }
 
     /// <summary>
-    /// Create a SocketChannel object from json.
+    /// Creates a cached channel from JSON.
     /// </summary>
-    /// <returns><see cref="Channel"/></returns>
     internal static Channel Create(FluxerBaseClient client, ChannelJson json, SocketGuild? guild)
     {
         Channel data = null;

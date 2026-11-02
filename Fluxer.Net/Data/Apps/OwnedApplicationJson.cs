@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 namespace Fluxer.Net;
 
 /// <summary>
-/// An application you own, as returned to its owner.
+/// An application owned by the current user.
 /// </summary>
 public class OwnedApplicationJson
 {
@@ -51,7 +51,7 @@ public class OwnedApplicationJson
 }
 
 /// <summary>
-/// The bot user of an application you own.
+/// The bot user of an owned application.
 /// </summary>
 public class ApplicationBotJson
 {
@@ -105,7 +105,7 @@ public class ApplicationBotJson
 }
 
 /// <summary>
-/// A bot token that was just reset.
+/// The result of resetting an application's bot token.
 /// </summary>
 public class BotTokenResetJson
 {

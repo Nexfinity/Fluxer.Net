@@ -1,6 +1,8 @@
 ﻿namespace Fluxer.Net;
 
-/// <inheritdoc />
+/// <summary>
+/// The application of the authenticated bot, with its owner user.
+/// </summary>
 public class CurrentApplication : Application, ICurrentApplication
 {
     /// <inheritdoc />
@@ -19,7 +21,7 @@ public class CurrentApplication : Application, ICurrentApplication
     }
 
     /// <summary>
-    /// Create a Application object from json.
+    /// Creates the current application from its JSON.
     /// </summary>
     /// <returns><see cref="CurrentApplication"/></returns>
     public static CurrentApplication Create(FluxerBaseClient client, CurrentApplicationJson json)

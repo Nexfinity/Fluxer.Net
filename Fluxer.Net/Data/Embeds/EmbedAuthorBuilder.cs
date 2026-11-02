@@ -3,13 +3,12 @@ using Fluxer.Net.Rest;
 namespace Fluxer.Net;
 
 /// <summary>
-/// A builder for creating embed authors with validation.
-/// Based on Fluxer.Net's EmbedAuthorBuilder implementation.
+/// A builder for the author section of an embed.
 /// </summary>
 public class EmbedAuthorBuilder
 {
     /// <summary>
-    /// Maximum length of the author name.
+    /// The maximum length of the author name.
     /// </summary>
     public static int MaxAuthorNameLength { get; } = 256;
 
@@ -73,7 +72,7 @@ public class EmbedAuthorBuilder
     /// <summary>
     /// Builds the embed author.
     /// </summary>
-    /// <returns>A new <see cref="EmbedAuthorJson"/> object.</returns>
+    /// <returns>A new <see cref="EmbedAuthorRequest"/> object.</returns>
     public EmbedAuthorRequest Build()
     {
         return new EmbedAuthorRequest

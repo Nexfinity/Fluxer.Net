@@ -1,5 +1,8 @@
 ﻿namespace Fluxer.Net.Commands;
 
+/// <summary>
+/// Requires the command to run in a group direct message channel.
+/// </summary>
 [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false, Inherited = true)]
 public class RequireGroupAttribute : PreconditionAttribute
 {

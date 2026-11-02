@@ -1,6 +1,8 @@
 ﻿namespace Fluxer.Net;
 
-/// <inheritdoc />
+/// <summary>
+/// An application with its id, name, icon and flags, without its bot user.
+/// </summary>
 public class PartialApplication : Entity, IPartialApplication
 {
     /// <inheritdoc />
@@ -33,7 +35,7 @@ public class PartialApplication : Entity, IPartialApplication
     }
 
     /// <summary>
-    /// Create a PartialApplication object from json.
+    /// Creates a partial application from its JSON.
     /// </summary>
     /// <returns><see cref="PartialApplication"/></returns>
     public static PartialApplication Create(FluxerBaseClient client, PartialApplicationJson json)

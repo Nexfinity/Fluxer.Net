@@ -2,6 +2,9 @@
 
 namespace Fluxer.Net.Rest;
 
+/// <summary>
+/// Request body for banning a user from a guild.
+/// </summary>
 public class CreateGuildBanRequest
 {
     /// <summary>

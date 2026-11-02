@@ -31,7 +31,7 @@ public class ThreadList : Entity
     }
 
     /// <summary>
-    /// Create a ThreadList object from json.
+    /// Creates a thread list from its JSON representation.
     /// </summary>
     /// <returns><see cref="ThreadList"/></returns>
     public static ThreadList Create(FluxerBaseClient client, ThreadListJson json)

@@ -1,7 +1,7 @@
 namespace Fluxer.Net;
 
 /// <summary>
-/// Channel types for a guild.
+/// The channel types a guild channel can be created with.
 /// </summary>
 public enum GuildChannelType : int
 {
@@ -45,7 +45,7 @@ public enum GuildChannelType : int
     GuildLink = 998,
 }
 /// <summary>
-/// Represents the different types of channels available in Fluxer.
+/// The types of channels in Fluxer.
 /// </summary>
 public enum ChannelType
 {
@@ -65,7 +65,7 @@ public enum ChannelType
     GuildVoice = 2,
 
     /// <summary>
-    /// A direct message channel between multiple users (group).
+    /// A group direct message channel between several users.
     /// </summary>
     Group = 3,
 
@@ -80,7 +80,7 @@ public enum ChannelType
     GuildNews = 5,
 
     /// <summary>
-    /// A store channel within a guild (deprecated in some platforms).
+    /// A store channel within a guild.
     /// </summary>
     GuildStore = 6,
 
@@ -90,22 +90,22 @@ public enum ChannelType
     NewsThread = 10,
 
     /// <summary>
-    /// A public thread channel that anyone can view and join.
+    /// A public thread channel.
     /// </summary>
     PublicThread = 11,
 
     /// <summary>
-    /// A private thread channel with restricted access.
+    /// A private thread channel.
     /// </summary>
     PrivateThread = 12,
 
     /// <summary>
-    /// A stage voice channel for hosting events with speakers and audience.
+    /// A stage voice channel with speakers and an audience.
     /// </summary>
     GuildStageVoice = 13,
 
     /// <summary>
-    /// A directory channel for guild/server discovery.
+    /// A directory channel for guild discovery.
     /// </summary>
     GuildDirectory = 14,
 
@@ -120,12 +120,12 @@ public enum ChannelType
     GuildMedia = 16,
 
     /// <summary>
-    /// A guild link channel (custom Fluxer channel type).
+    /// A link channel within a guild.
     /// </summary>
     GuildLink = 998,
 
     /// <summary>
-    /// A personal notes DM channel for storing private messages.
+    /// A personal notes channel for the current user.
     /// </summary>
     DMPersonalNotes = 999,
 }

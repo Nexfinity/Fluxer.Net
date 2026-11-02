@@ -1,32 +1,31 @@
 namespace Fluxer.Net.Commands;
 
 /// <summary>
-///     Requires the module or class to pass the specified precondition before execution can begin.
+/// The base class for a check on a module or command that runs before the command executes.
 /// </summary>
 /// <seealso cref="ParameterPreconditionAttribute"/>
 [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class, AllowMultiple = true, Inherited = true)]
 public abstract class PreconditionAttribute : Attribute
 {
     /// <summary>
-    ///     Specifies a group that this precondition belongs to.
+    /// The name of the group this precondition belongs to, or null when it belongs to no group.
     /// </summary>
     /// <remarks>
-    ///     <see cref="PreconditionAttribute" /> of the same group require only one of the preconditions to pass in order to
-    ///     be successful (A || B). Specifying <see cref="Group" /> = <see langword="null" /> or not at all will
-    ///     require *all* preconditions to pass, just like normal (A &amp;&amp; B).
+    /// Preconditions in the same group pass when any one of them passes (A || B). Preconditions without a group must all
+    /// pass (A &amp;&amp; B).
     /// </remarks>
     public string Group { get; set; } = null;
 
     /// <summary>
-    /// When overridden in a derived class, uses the supplied string
-    /// as the error message if the precondition doesn't pass.
-    /// Setting this for a class that doesn't override
-    /// this property is a no-op.
+    /// The message returned when the precondition fails.
     /// </summary>
+    /// <remarks>
+    /// A derived class that does not override this property ignores the value that is set.
+    /// </remarks>
     public virtual string ErrorMessage { get { return null; } set { } }
 
     /// <summary>
-    ///     Checks if the <paramref name="command"/> has the sufficient permission to be executed.
+    /// Checks whether the command can be executed in the given context.
     /// </summary>
     /// <param name="context">The context of the command.</param>
     /// <param name="command">The command being executed.</param>

@@ -20,6 +20,9 @@ public class CreateGuildRoleRequest
     [JsonProperty("name")]
     public string Name { get; set; }
 
+    /// <summary>
+    /// The permissions granted to the role.
+    /// </summary>
     [JsonProperty("permissions")]
     [JsonConverter(typeof(StringUInt64Converter))]
     public ulong? Permissions { get; set; }

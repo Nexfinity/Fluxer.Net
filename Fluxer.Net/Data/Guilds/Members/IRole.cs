@@ -1,5 +1,8 @@
 ﻿namespace Fluxer.Net;
 
+/// <summary>
+/// A role in a guild.
+/// </summary>
 public interface IRole : ISnowflake, IMentionable
 {
     /// <summary>
@@ -8,7 +11,7 @@ public interface IRole : ISnowflake, IMentionable
     string Name { get; }
 
     /// <summary>
-    /// The role's permission bitfield. Sent as a quoted string by the gateway (e.g. "8933636165184").
+    /// The permissions granted by the role.
     /// </summary>
     GuildPermissions Permissions { get; }
 
@@ -18,7 +21,7 @@ public interface IRole : ISnowflake, IMentionable
     int Position { get; }
 
     /// <summary>
-    /// The hoisted position of the role, otherwise use position.
+    /// The hoisted position of the role, or null when <see cref="Position"/> is used instead.
     /// </summary>
     int? HoistPosition { get; }
 
@@ -33,7 +36,7 @@ public interface IRole : ISnowflake, IMentionable
     string? IconHash { get; }
 
     /// <summary>
-    /// The unicode emoji for this role.
+    /// The unicode emoji shown with the role, or null when it has none.
     /// </summary>
     string? UnicodeEmoji { get; }
 

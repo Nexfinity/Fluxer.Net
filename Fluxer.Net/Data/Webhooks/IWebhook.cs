@@ -1,12 +1,15 @@
 ﻿namespace Fluxer.Net;
 
+/// <summary>
+/// A webhook that posts messages into a channel.
+/// </summary>
 public interface IWebhook : ISnowflake
 {
     /// <summary>
     /// The secure token used to execute the webhook.
     /// </summary>
     /// <remarks>
-    /// Will be missing if you don't have access.
+    /// Null when the current user does not have access to the token.
     /// </remarks>
     string? Token { get; }
 
@@ -36,7 +39,7 @@ public interface IWebhook : ISnowflake
     string? AvatarHash { get; }
 
     /// <summary>
-    /// Type of webhook either external of followed.
+    /// The type of the webhook.
     /// </summary>
     WebhookType Type { get; }
 
@@ -51,17 +54,19 @@ public interface IWebhook : ISnowflake
     IPartialChannel? SourceChannel { get; }
 
     /// <summary>
-    /// Get the default avatar for the user.
+    /// Gets the default avatar URL of the webhook.
     /// </summary>
     string GetDefaultAvatarUrl();
 
     /// <summary>
-    /// Get the webhooks's avatar.
+    /// Gets the avatar URL of the webhook, or null when it has no avatar.
     /// </summary>
+    /// <param name="size">The requested avatar size.</param>
     string? GetAvatarUrl(int size);
 
     /// <summary>
-    /// Get the webhooks's avatar or fallback to default.
+    /// Gets the avatar URL of the webhook, or the default avatar URL when it has no avatar.
     /// </summary>
+    /// <param name="size">The requested avatar size.</param>
     string GetAvatarOrDefaultUrl(int size);
 }

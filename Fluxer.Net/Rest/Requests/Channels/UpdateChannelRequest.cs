@@ -7,33 +7,63 @@ namespace Fluxer.Net.Rest;
 /// </summary>
 public class UpdateChannelRequest
 {
+    /// <summary>
+    /// The new name of the channel.
+    /// </summary>
     [JsonProperty("name")]
     public Optional<string?> Name { get; set; }
 
+    /// <summary>
+    /// The new topic of the channel.
+    /// </summary>
     [JsonProperty("topic")]
     public Optional<string?> Topic { get; set; }
 
+    /// <summary>
+    /// The new URL of the channel.
+    /// </summary>
     [JsonProperty("url")]
     public Optional<string?> Url { get; set; }
 
+    /// <summary>
+    /// The ID of the new parent category.
+    /// </summary>
     [JsonProperty("parent_id")]
     public Optional<ulong?> ParentId { get; set; }
 
+    /// <summary>
+    /// Whether the channel is marked as NSFW.
+    /// </summary>
     [JsonProperty("nsfw_override")]
     public Optional<bool?> IsNsfw { get; set; }
 
+    /// <summary>
+    /// The new slowmode delay in seconds between messages from one user.
+    /// </summary>
     [JsonProperty("rate_limit_per_user")]
     public Optional<int?> RateLimitPerUser { get; set; }
 
+    /// <summary>
+    /// The new bitrate of the voice channel in bits per second.
+    /// </summary>
     [JsonProperty("bitrate")]
     public Optional<int?> Bitrate { get; set; }
 
+    /// <summary>
+    /// The new maximum number of users allowed in the voice channel.
+    /// </summary>
     [JsonProperty("user_limit")]
     public Optional<int?> UserLimit { get; set; }
 
+    /// <summary>
+    /// The new voice region ID of the channel.
+    /// </summary>
     [JsonProperty("rtc_region")]
     public Optional<string?> RtcRegion { get; set; }
 
+    /// <summary>
+    /// The new permission overwrites of the channel.
+    /// </summary>
     [JsonProperty("permission_overwrites")]
     public Optional<IEnumerable<ChannelOverwriteRequest>> PermissionOverwrites { get; set; }
 

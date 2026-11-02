@@ -1,19 +1,22 @@
 ﻿namespace Fluxer.Net;
 
+/// <summary>
+/// The layout a forum uses to show its posts.
+/// </summary>
 public enum ForumLayout
 {
     /// <summary>
-    /// Default layout.
+    /// The default layout.
     /// </summary>
     Default = 0,
 
     /// <summary>
-    /// Order posts in a list view.
+    /// Posts are shown in a list view.
     /// </summary>
     List = 1,
 
     /// <summary>
-    /// Order posts in a grid/gallery view.
+    /// Posts are shown in a grid view.
     /// </summary>
     Grid = 2
 }

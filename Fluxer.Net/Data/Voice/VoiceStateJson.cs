@@ -21,6 +21,8 @@ public class VoiceStateJson : IVoiceState
     [JsonProperty("connection_id")]
     public string? ConnectionId { get; set; }
 
+    internal string CacheKey => ConnectionId ?? SessionId;
+
     /// <inheritdoc />
     [JsonProperty("deaf")]
     public bool IsDeaf { get; set; }

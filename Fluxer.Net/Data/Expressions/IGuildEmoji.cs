@@ -1,5 +1,8 @@
 ﻿namespace Fluxer.Net;
 
+/// <summary>
+/// A custom emoji that belongs to a guild.
+/// </summary>
 public interface IGuildEmoji : IEmoji
 {
     /// <summary>
@@ -8,7 +11,7 @@ public interface IGuildEmoji : IEmoji
     IUser? Creator { get; }
 
     /// <summary>
-    /// Get the emoji's image.
+    /// Gets the URL of the emoji's image.
     /// </summary>
     string GetEmojiUrl(int size);
 }

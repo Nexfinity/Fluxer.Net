@@ -1,5 +1,8 @@
 ﻿namespace Fluxer.Net;
 
+/// <summary>
+/// A GIF category, with its search term and preview image.
+/// </summary>
 public interface IGifCategory
 {
     /// <summary>

@@ -1,5 +1,8 @@
 ﻿namespace Fluxer.Net;
 
+/// <summary>
+/// A call started from a message.
+/// </summary>
 public interface IMessageCall
 {
     /// <summary>
@@ -8,7 +11,7 @@ public interface IMessageCall
     HashSet<ulong> Participants { get; }
 
     /// <summary>
-    /// The ISO 8601 timestamp of when the call ended.
+    /// When the call ended, or null when it has not ended.
     /// </summary>
     DateTimeOffset? EndedAt { get; }
 }

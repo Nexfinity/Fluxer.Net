@@ -42,9 +42,9 @@ public class RoleJson : IRole
     public string? IconHash { get; set; }
 
     /// <summary>
-    /// Get the role icon url, or null when the role has no icon image.
+    /// Gets the role icon URL, or null when the role has no icon.
     /// </summary>
-    /// <param name="size">Image size between 16 and 512.</param>
+    /// <param name="size">The size of the image.</param>
     public string? GetIconUrl(int size = 64)
         => string.IsNullOrEmpty(IconHash) ? null : $"https://fluxerusercontent.com/role-icons/{Id}/{IconHash}.webp?size={size}";
 

@@ -1,12 +1,12 @@
 ﻿namespace Fluxer.Net;
 
 /// <summary>
-/// Action types for audit logs.
+/// The kind of change an audit log entry records.
 /// </summary>
 public enum ActionType
 {
     /// <summary>
-    /// this guild was updated.
+    /// The guild was updated.
     /// </summary>
     GuildUpdated = 1,
 
@@ -156,12 +156,12 @@ public enum ActionType
     MessageBulkDeleted = 73,
 
     /// <summary>
-    /// A message was pinned from this guild.
+    /// A message was pinned in this guild.
     /// </summary>
     MessagePinned = 74,
 
     /// <summary>
-    /// A message was unpinned from this guild.
+    /// A message was unpinned in this guild.
     /// </summary>
     MessageUnpinned = 75,
 

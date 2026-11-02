@@ -3,9 +3,14 @@ using System.Globalization;
 namespace Fluxer.Net.Commands;
 
 /// <summary>
-///     A <see cref="TypeReader"/> for parsing objects implementing <see cref="IRole"/>.
+/// A <see cref="TypeReader"/> that parses an <see cref="IRole"/> from a mention, an id or a name.
 /// </summary>
-/// <typeparam name="T">The type to be checked; must implement <see cref="IRole"/>.</typeparam>
+/// <remarks>
+/// Matches are scored: a mention scores 1.0, an id 0.9, an exact name 0.8 and a name that differs only in case 0.7.
+/// When several roles match, all of them are returned. Mentions and ids are read only from input longer than 10
+/// characters. The reader finds roles only in a guild and in a <see cref="CommandContext"/>.
+/// </remarks>
+/// <typeparam name="T">The type to be checked. It must implement <see cref="IRole"/>.</typeparam>
 public class RoleTypeReader<T> : TypeReader
     where T : class, IRole
 {

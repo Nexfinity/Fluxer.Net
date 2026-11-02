@@ -2,6 +2,9 @@
 
 namespace Fluxer.Net.Rest;
 
+/// <summary>
+/// A field of a message embed.
+/// </summary>
 public class EmbedFieldRequest
 {
     /// <summary>

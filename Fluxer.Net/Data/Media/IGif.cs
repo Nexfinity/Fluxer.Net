@@ -1,9 +1,12 @@
 ﻿namespace Fluxer.Net;
 
+/// <summary>
+/// A GIF from a search or the featured list.
+/// </summary>
 public interface IGif
 {
     /// <summary>
-    /// The unique Gif result id.
+    /// The id of the GIF result.
     /// </summary>
     string Id { get; }
 
@@ -13,7 +16,7 @@ public interface IGif
     string Title { get; }
 
     /// <summary>
-    /// The Gif page URL for the GIF.
+    /// The page URL of the GIF.
     /// </summary>
     string Url { get; }
 
@@ -48,7 +51,7 @@ public interface IGif
     string? Provider { get; }
 
     /// <summary>
-    /// Format name to media descriptor map. Every key is optional.
+    /// Format name to media descriptor map. Formats may be absent.
     /// </summary>
     Dictionary<string, GifMediaFormatJson>? Media { get; }
 

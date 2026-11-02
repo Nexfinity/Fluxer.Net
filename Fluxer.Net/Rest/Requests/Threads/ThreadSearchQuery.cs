@@ -1,5 +1,8 @@
 namespace Fluxer.Net.Rest;
 
+/// <summary>
+/// Filters and paging options for searching the threads of a channel.
+/// </summary>
 public class ThreadSearchQuery
 {
     /// <summary>
@@ -22,8 +25,14 @@ public class ThreadSearchQuery
     /// </summary>
     public bool? IsArchived { get; set; }
 
+    /// <summary>
+    /// The field to sort the threads by.
+    /// </summary>
     public ThreadSearchSortBy? SortBy { get; set; }
 
+    /// <summary>
+    /// The order to sort the threads in.
+    /// </summary>
     public SortDirection? SortDirection { get; set; }
 
     /// <summary>
@@ -31,6 +40,9 @@ public class ThreadSearchQuery
     /// </summary>
     public int? Limit { get; set; }
 
+    /// <summary>
+    /// The number of threads to skip before the results start.
+    /// </summary>
     public int? Offset { get; set; }
 
     /// <summary>
@@ -43,6 +55,9 @@ public class ThreadSearchQuery
     /// </summary>
     public ulong? AfterId { get; set; }
 
+    /// <summary>
+    /// Builds the query string for the thread search from the filters that are set.
+    /// </summary>
     public string BuildQuery()
     {
         List<string> list = new List<string>();
@@ -78,22 +93,60 @@ public class ThreadSearchQuery
     }
 }
 
+/// <summary>
+/// How a thread's forum tags are matched against the tags in a thread search.
+/// </summary>
 public enum ForumTagSetting
 {
+    /// <summary>
+    /// A thread needs at least one of the tags.
+    /// </summary>
     MatchSome,
+
+    /// <summary>
+    /// A thread needs all of the tags.
+    /// </summary>
     MatchAll
 }
 
+/// <summary>
+/// The field that thread search results are sorted by.
+/// </summary>
 public enum ThreadSearchSortBy
 {
+    /// <summary>
+    /// Sort by the time of the last message.
+    /// </summary>
     LastMessageTime,
+
+    /// <summary>
+    /// Sort by the time the thread was archived.
+    /// </summary>
     ArchiveTime,
+
+    /// <summary>
+    /// Sort by how closely the thread matches the search.
+    /// </summary>
     Relevance,
+
+    /// <summary>
+    /// Sort by the time the thread was created.
+    /// </summary>
     CreationTime
 }
 
+/// <summary>
+/// The order that thread search results are sorted in.
+/// </summary>
 public enum SortDirection
 {
+    /// <summary>
+    /// Sort from the lowest value to the highest.
+    /// </summary>
     Ascending,
+
+    /// <summary>
+    /// Sort from the highest value to the lowest.
+    /// </summary>
     Descending
 }

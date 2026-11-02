@@ -1,6 +1,8 @@
 ﻿namespace Fluxer.Net;
 
-/// <inheritdoc />
+/// <summary>
+/// A user as the gateway keeps it.
+/// </summary>
 public class SocketUser : User
 {
     internal SocketUser(FluxerBaseClient client) : base(client)
@@ -9,9 +11,11 @@ public class SocketUser : User
     }
 
     /// <summary>
-    /// Create a SocketUser object from json.
+    /// Creates a user from its JSON data.
     /// </summary>
-    /// <returns><see cref="SocketUser"/></returns>
+    /// <param name="client">The client the user belongs to.</param>
+    /// <param name="json">The user data.</param>
+    /// <returns>The user.</returns>
     public static new SocketUser Create(FluxerBaseClient client, UserJson json)
     {
         SocketUser data = new SocketUser(client);

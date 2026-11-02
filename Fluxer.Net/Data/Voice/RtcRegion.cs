@@ -18,9 +18,8 @@ public class RtcRegion : Entity, IRtcRegion
     }
 
     /// <summary>
-    /// Create a RtcRegion object from json.
+    /// Creates a voice region from JSON.
     /// </summary>
-    /// <returns><see cref="RtcRegion"/></returns>
     public static RtcRegion Create(FluxerBaseClient client, RtcRegionJson json)
     {
         RtcRegion data = new RtcRegion(client);

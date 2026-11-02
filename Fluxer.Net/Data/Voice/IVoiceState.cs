@@ -1,79 +1,82 @@
 ﻿namespace Fluxer.Net;
 
+/// <summary>
+/// A user's presence in a voice channel.
+/// </summary>
 public interface IVoiceState
 {
     /// <summary>
-    /// Voice connection session.
+    /// The voice session id of the state.
     /// </summary>
     string SessionId { get; }
 
     /// <summary>
-    /// User id that is connected.
+    /// The id of the user in voice.
     /// </summary>
     ulong UserId { get; }
 
     /// <summary>
-    /// Channel id connected to.
+    /// The id of the voice channel the user is in, or null when the user is not in a channel.
     /// </summary>
     ulong? ChannelId { get; }
 
     /// <summary>
-    /// Voice connection id.
+    /// The id of the voice connection.
     /// </summary>
     string? ConnectionId { get; }
 
     /// <summary>
-    /// User is deafened in the guild.
+    /// Whether the user is deafened in the guild.
     /// </summary>
     bool IsDeaf { get; }
 
     /// <summary>
-    /// User is muted in the guild.
+    /// Whether the user is muted in the guild.
     /// </summary>
     bool IsMute { get; }
 
     /// <summary>
-    /// Guild id for the voice channel.
+    /// The id of the guild of the voice channel.
     /// </summary>
     ulong? GuildId { get; }
 
     /// <summary>
-    /// User connected with mobile.
+    /// Whether the user is connected from a mobile client.
     /// </summary>
     bool IsMobile { get; }
 
     /// <summary>
-    /// User is self deafend.
+    /// Whether the user has deafened themselves.
     /// </summary>
     bool IsSelfDeaf { get; }
 
     /// <summary>
-    /// User is self muted.
+    /// Whether the user has muted themselves.
     /// </summary>
     bool IsSelfMute { get; }
 
     /// <summary>
-    /// User is streaming.
+    /// Whether the user is streaming.
     /// </summary>
     bool IsSelfStream { get; }
 
     /// <summary>
-    /// User is using video.
+    /// Whether the user has video turned on.
     /// </summary>
     bool IsSelfVideo { get; }
 
     /// <summary>
-    /// User can't speak in voice.
+    /// Whether the user is suppressed and cannot speak in voice.
     /// </summary>
     bool IsSuppressed { get; }
 
     /// <summary>
-    /// Keys used for streaming.
+    /// The keys of the streams the user is watching.
     /// </summary>
     string[] ViewerStreamKeys { get; }
 
     /// <summary>
-    /// Member for the voice connection.
+    /// The guild member of the user, or null when it is not sent.
     /// </summary>
     IGuildMember? Member { get; }
 }

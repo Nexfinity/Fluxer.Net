@@ -2,6 +2,9 @@
 
 namespace Fluxer.Net.Rest;
 
+/// <summary>
+/// The author section of a message embed.
+/// </summary>
 public class EmbedAuthorRequest
 {
     /// <summary>

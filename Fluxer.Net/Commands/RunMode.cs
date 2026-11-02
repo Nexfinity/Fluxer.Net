@@ -1,22 +1,22 @@
 namespace Fluxer.Net.Commands;
 
 /// <summary>
-///     Specifies the behavior of the command execution workflow.
+/// The workflow a command runs with when it is executed.
 /// </summary>
 /// <seealso cref="CommandServiceConfig"/>
 /// <seealso cref="CommandAttribute"/>
 public enum RunMode
 {
     /// <summary>
-    /// The default behavior set in <see cref="CommandServiceConfig"/>.
+    /// The <see cref="CommandServiceConfig.DefaultRunMode"/> of the command service.
     /// </summary>
     Default,
     /// <summary>
-    /// Executes the command on the same thread as gateway one.
+    /// The command runs and is awaited before the execution call returns.
     /// </summary>
     Sync,
     /// <summary>
-    /// Executes the command on a different thread from the gateway one.
+    /// The command runs on a background task, and the execution call returns before it finishes.
     /// </summary>
     Async
 }

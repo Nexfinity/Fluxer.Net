@@ -3,57 +3,57 @@ using System.Collections.Immutable;
 namespace Fluxer.Net.Commands;
 
 /// <summary>
-///     Provides the information of a module.
+/// The information of a command module.
 /// </summary>
 public class ModuleInfo
 {
     /// <summary>
-    ///     Gets the command service associated with this module.
+    /// The command service the module belongs to.
     /// </summary>
     public CommandService Service { get; }
     /// <summary>
-    ///     Gets the name of this module.
+    /// The name of the module.
     /// </summary>
     public string Name { get; }
     /// <summary>
-    ///     Gets the summary of this module.
+    /// The summary of the module.
     /// </summary>
     public string Summary { get; }
     /// <summary>
-    ///     Gets the remarks of this module.
+    /// The remarks of the module.
     /// </summary>
     public string Remarks { get; }
     /// <summary>
-    ///     Gets the group name (main prefix) of this module.
+    /// The group name, or main prefix, of the module.
     /// </summary>
     public string Group { get; }
 
     /// <summary>
-    ///     Gets a read-only list of aliases associated with this module.
+    /// The aliases of the module.
     /// </summary>
     public IReadOnlyList<string> Aliases { get; }
     /// <summary>
-    ///     Gets a read-only list of commands associated with this module.
+    /// The commands of the module.
     /// </summary>
     public IReadOnlyList<CommandInfo> Commands { get; }
     /// <summary>
-    ///     Gets a read-only list of preconditions that apply to this module.
+    /// The preconditions that apply to the module, including those of its parent modules.
     /// </summary>
     public IReadOnlyList<PreconditionAttribute> Preconditions { get; }
     /// <summary>
-    ///     Gets a read-only list of attributes that apply to this module.
+    /// The attributes of the module, including those of its parent modules.
     /// </summary>
     public IReadOnlyList<Attribute> Attributes { get; }
     /// <summary>
-    ///     Gets a read-only list of submodules associated with this module.
+    /// The submodules of the module.
     /// </summary>
     public IReadOnlyList<ModuleInfo> Submodules { get; }
     /// <summary>
-    ///     Gets the parent module of this submodule if applicable.
+    /// The parent module, or null for a top-level module.
     /// </summary>
     public ModuleInfo Parent { get; }
     /// <summary>
-    ///     Gets a value that indicates whether this module is a submodule or not.
+    /// Whether the module has a parent module.
     /// </summary>
     public bool IsSubmodule => Parent != null;
 

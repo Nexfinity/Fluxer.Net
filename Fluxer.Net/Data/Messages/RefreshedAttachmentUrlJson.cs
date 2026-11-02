@@ -2,8 +2,14 @@
 
 namespace Fluxer.Net;
 
+/// <summary>
+/// An attachment URL and its refreshed form.
+/// </summary>
 public class RefreshedAttachmentUrlJson
 {
+    /// <summary>
+    /// The URL that was sent for refreshing.
+    /// </summary>
     [JsonProperty("original")]
     public string Original { get; set; }
 
@@ -14,8 +20,14 @@ public class RefreshedAttachmentUrlJson
     public string Refreshed { get; set; }
 }
 
+/// <summary>
+/// The result of refreshing attachment URLs.
+/// </summary>
 public class RefreshedAttachmentUrlListJson
 {
+    /// <summary>
+    /// The refreshed URLs.
+    /// </summary>
     [JsonProperty("refreshed_urls")]
     public RefreshedAttachmentUrlJson[] Urls { get; set; } = Array.Empty<RefreshedAttachmentUrlJson>();
 }

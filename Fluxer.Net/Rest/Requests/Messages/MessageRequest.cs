@@ -2,6 +2,9 @@
 
 namespace Fluxer.Net.Rest;
 
+/// <summary>
+/// Request body for creating a message.
+/// </summary>
 public class MessageRequest
 {
     /// <summary>

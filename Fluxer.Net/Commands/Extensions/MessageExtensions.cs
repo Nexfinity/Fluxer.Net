@@ -1,18 +1,18 @@
 namespace Fluxer.Net.Commands;
 
 /// <summary>
-///     Provides extension methods for <see cref="IMessage" /> that relates to commands.
+/// Extension methods for <see cref="SocketMessage"/> that check for a command prefix.
 /// </summary>
 public static class MessageExtensions
 {
     /// <summary>
-    ///     Gets whether the message starts with the provided character.
+    /// Checks whether the message starts with the given character.
     /// </summary>
-    /// <param name="msg">The message to check against.</param>
-    /// <param name="c">The char prefix.</param>
-    /// <param name="argPos">References where the command starts.</param>
+    /// <param name="msg">The message to check.</param>
+    /// <param name="c">The character prefix.</param>
+    /// <param name="argPos">Set to 1 when the message starts with the character, which is where the command text begins.</param>
     /// <returns>
-    ///     <see langword="true" /> if the message begins with the char <paramref name="c"/>; otherwise <see langword="false" />.
+    /// <see langword="true" /> if the message begins with <paramref name="c"/>. Otherwise <see langword="false" />.
     /// </returns>
     public static bool HasCharPrefix(this SocketMessage msg, char c, ref int argPos)
     {
@@ -25,8 +25,15 @@ public static class MessageExtensions
         return false;
     }
     /// <summary>
-    ///     Gets whether the message starts with the provided string.
+    /// Checks whether the message starts with the given string.
     /// </summary>
+    /// <param name="msg">The message to check.</param>
+    /// <param name="str">The string prefix.</param>
+    /// <param name="argPos">Set to the length of <paramref name="str"/> when the message starts with it, which is where the command text begins.</param>
+    /// <param name="comparisonType">The comparison used to match the prefix.</param>
+    /// <returns>
+    /// <see langword="true" /> if the message begins with <paramref name="str"/>. Otherwise <see langword="false" />.
+    /// </returns>
     public static bool HasStringPrefix(this SocketMessage msg, string str, ref int argPos, StringComparison comparisonType = StringComparison.Ordinal)
     {
         var text = msg.Content;

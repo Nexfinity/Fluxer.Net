@@ -8,6 +8,11 @@ namespace Fluxer.Net.Rest;
 [System.Serializable]
 public class FluxerApiException : System.Exception
 {
+    /// <summary>
+    /// Creates the exception from a message and the raw response body.
+    /// </summary>
+    /// <param name="message">The exception message.</param>
+    /// <param name="data">The raw response body.</param>
     public FluxerApiException(string message, string data) : base(message)
     {
         FluxerData = data;
@@ -16,6 +21,10 @@ public class FluxerApiException : System.Exception
     /// <summary>
     /// Creates the exception from a response status and its parsed error body.
     /// </summary>
+    /// <param name="message">The exception message.</param>
+    /// <param name="data">The raw response body.</param>
+    /// <param name="httpCode">The HTTP status of the response.</param>
+    /// <param name="error">The parsed error body, or null when the body could not be parsed.</param>
     public FluxerApiException(string message, string data, HttpStatusCode httpCode, FluxerErrorJson? error) : this(message, data)
     {
         HttpCode = httpCode;
@@ -35,12 +44,12 @@ public class FluxerApiException : System.Exception
     public HttpStatusCode HttpCode { get; }
 
     /// <summary>
-    /// Fluxer's error code.
+    /// The error code from the response body, or null when there is none.
     /// </summary>
     public string? ErrorCode { get; }
 
     /// <summary>
-    /// Fluxer's explanation of the error.
+    /// The reason from the response body, or null when there is none.
     /// </summary>
     public string? Reason { get; }
 

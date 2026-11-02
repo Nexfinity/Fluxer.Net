@@ -1,18 +1,21 @@
 ﻿namespace Fluxer.Net;
 
+/// <summary>
+/// A member of a guild.
+/// </summary>
 public interface IGuildMember : ISnowflake, IMentionable
 {
     /// <summary>
-    /// Guild id that the user is in.
+    /// The ID of the guild the member is in.
     /// </summary>
     ulong GuildId { get; }
     /// <summary>
-    /// User data for the member.
+    /// The user account of the member.
     /// </summary>
     IUser User { get; }
 
     /// <summary>
-    /// ISO8601 timestamp of when the user joined the guild.
+    /// When the user joined the guild.
     /// </summary>
     DateTimeOffset JoinedAt { get; }
 
@@ -22,12 +25,12 @@ public interface IGuildMember : ISnowflake, IMentionable
     string? Nickname { get; }
 
     /// <summary>
-    /// The hash of the member guild-specific avatar.
+    /// The hash of the member's guild avatar.
     /// </summary>
     string? AvatarHash { get; }
 
     /// <summary>
-    /// The hash of the member guild-specific banner.
+    /// The hash of the member's guild banner.
     /// </summary>
     string? BannerHash { get; }
 
@@ -47,42 +50,46 @@ public interface IGuildMember : ISnowflake, IMentionable
     bool IsMute { get; }
 
     /// <summary>
-    /// ISO8601 timestamp until which the member is timed out.
+    /// When the member's timeout ends, or null when the member is not timed out.
     /// </summary>
     DateTimeOffset? CommunicationDisabledUntil { get; }
 
     /// <summary>
-    /// Array of role IDs the member has.
+    /// The IDs of the roles the member has.
     /// </summary>
     HashSet<ulong> RoleIds { get; }
 
     /// <summary>
-    /// Get the members's current nickname, display name or username.
+    /// Gets the member's nickname, display name or username.
     /// </summary>
     string GetCurrentName();
 
     /// <summary>
-    /// Get the default avatar for the user.
+    /// Gets the default avatar URL for the user.
     /// </summary>
     string GetDefaultAvatarUrl();
 
     /// <summary>
-    /// Get the member's server avatar, or their account avatar when they have none.
+    /// Gets the member's guild avatar URL, or their account avatar URL when they have no guild avatar.
     /// </summary>
+    /// <param name="size">The size of the image.</param>
     string? GetAvatarUrl(int size);
 
     /// <summary>
-    /// Get the member's server avatar, or null when they have none.
+    /// Gets the member's guild avatar URL, or null when they have no guild avatar.
     /// </summary>
+    /// <param name="size">The size of the image.</param>
     string? GetGuildAvatarUrl(int size);
 
     /// <summary>
-    /// Get the members's avatar or fallback to default.
+    /// Gets the member's avatar URL, or the default avatar URL when they have no avatar.
     /// </summary>
+    /// <param name="size">The size of the image.</param>
     string GetAvatarOrDefaultUrl(int size);
 
     /// <summary>
-    /// Get the member's banner.
+    /// Gets the member's guild banner URL, or null when they have no guild banner.
     /// </summary>
+    /// <param name="size">The size of the image.</param>
     string? GetBannerUrl(int size);
 }

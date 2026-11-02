@@ -2,6 +2,9 @@
 
 namespace Fluxer.Net.Rest;
 
+/// <summary>
+/// A media item of a message embed, such as an image or thumbnail.
+/// </summary>
 public class EmbedMediaRequest
 {
     /// <summary>

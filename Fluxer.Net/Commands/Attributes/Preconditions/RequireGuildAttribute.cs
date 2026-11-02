@@ -1,5 +1,8 @@
 ﻿namespace Fluxer.Net.Commands;
 
+/// <summary>
+/// Requires the command to run in a guild.
+/// </summary>
 [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false, Inherited = true)]
 public class RequireGuildAttribute : PreconditionAttribute
 {

@@ -7,7 +7,7 @@ using Serilog;
 namespace Fluxer.Net;
 
 /// <summary>
-/// Base client used for all Fluxer http requests.
+/// Base client for the Fluxer client types, holding the token, the REST client and the config.
 /// </summary>
 public abstract class FluxerBaseClient
 {
@@ -19,18 +19,18 @@ public abstract class FluxerBaseClient
     internal string Token { get; set; }
 
     /// <summary>
-    /// Http client for Fluxer with requests.
+    /// The REST client used for requests to the Fluxer API.
     /// </summary>
     public FluxerApiClient Rest { get; internal set; }
 
     /// <summary>
-    /// Client options and settings to configure.
+    /// The settings the client was created with.
     /// </summary>
     public FluxerConfig Config { get; internal set; }
 
     /// <summary>
-    /// Joins voice for <see cref="IVoiceChannel.ConnectAsync"/>, or null when voice is not set up. Creating a
-    /// FluxerVoiceClient from Fluxer.Net.Voice sets it.
+    /// The voice provider that <see cref="IVoiceChannel.ConnectAsync"/> joins through, or null when voice is not set up.
+    /// Creating a FluxerVoiceClient from Fluxer.Net.Voice sets it.
     /// </summary>
     public IVoiceProvider? Voice { get; set; }
 
@@ -44,8 +44,12 @@ public abstract class FluxerBaseClient
 public class FluxerClient : FluxerBaseClient
 {
     /// <summary>
-    /// Create a Fluxer client.
+    /// Creates a Fluxer client.
     /// </summary>
+    /// <param name="token">The bot token, prefixed with <c>Bot </c>, or a user token prefixed with <c>flx_</c>.</param>
+    /// <param name="config">The settings to use. Defaults are used when null.</param>
+    /// <exception cref="ArgumentNullException">The token is null, empty or whitespace.</exception>
+    /// <exception cref="ArgumentException">The token has neither the bot nor the user prefix.</exception>
     public FluxerClient(string token, FluxerConfig? config = null)
     {
         // Load token
@@ -78,8 +82,9 @@ public class FluxerClient : FluxerBaseClient
     }
 
     /// <summary>
-    /// Use canary features for the API.
+    /// Points the REST API at the canary host.
     /// </summary>
+    /// <returns>This client.</returns>
     public FluxerClient UseCanary()
     {
         Config.ApiBaseUrl = "https://api.canary.fluxer.app/v{v}";
@@ -99,7 +104,7 @@ public class FluxerClient : FluxerBaseClient
 
 
     /// <summary>
-    /// Gateway client for Fluxer with events.
+    /// The gateway client that receives events for this client.
     /// </summary>
     public FluxerGatewayClient Gateway { get; }
 
@@ -107,11 +112,12 @@ public class FluxerClient : FluxerBaseClient
     public new FluxerApiClient Rest => base.Rest;
 
     /// <summary>
-    /// This will update your config urls to use the instance.
+    /// Reads the well-known endpoints of an instance and points the config URLs at them.
     /// </summary>
-    /// <returns><see cref="Instance"/></returns>
-    /// <exception cref="ArgumentNullException"></exception>
-    /// <exception cref="Exception"></exception>
+    /// <param name="hostUrl">The instance's API host. Defaults to the configured API URL without its version path when null or empty.</param>
+    /// <returns>The instance the client is now pointed at.</returns>
+    /// <exception cref="ArgumentException">The host URL is not an absolute URL.</exception>
+    /// <exception cref="Exception">The instance returned no data.</exception>
     public async Task<Instance> LoginAsync(string hostUrl = null)
     {
         if (string.IsNullOrEmpty(hostUrl))
@@ -139,7 +145,7 @@ public class FluxerClient : FluxerBaseClient
     }
 
     /// <summary>
-    /// Start the gateway session to recieve events.
+    /// Starts the gateway session that receives events.
     /// </summary>
     public Task StartAsync() => Gateway.ConnectAsync();
 
@@ -176,12 +182,12 @@ public class FluxerClient : FluxerBaseClient
     }
 
     /// <summary>
-    /// Validates that the token has a recognized prefix for the Fluxer API.
+    /// Checks that the token has a recognized prefix for the Fluxer API.
     /// </summary>
+    /// <param name="token">The token to check.</param>
+    /// <exception cref="ArgumentNullException">The token is null, empty or whitespace.</exception>
     /// <exception cref="ArgumentException">
-    /// Thrown when the token is null, empty, or does not begin with a valid prefix.
-    /// Bot tokens must start with <c>Bot </c> (including the trailing space).
-    /// User tokens must start with <c>flx_</c>.
+    /// The token does not begin with <c>Bot </c> (including the trailing space) or <c>flx_</c>.
     /// </exception>
     public static void ValidateToken(string token)
     {

@@ -1,174 +1,177 @@
 ﻿namespace Fluxer.Net;
 
 /// <summary>
-/// API limits for the current instance.
+/// The default message, file, guild and user limits of a Fluxer instance.
 /// </summary>
 public class ApiLimits
 {
     /// <summary>
-    /// How many guilds you can join with premium.
+    /// The maximum number of guilds a premium user can join.
     /// </summary>
     public int MaxGuildsPremium = 200;
 
     /// <summary>
-    /// How many guilds you can join.
+    /// The maximum number of guilds a user can join.
     /// </summary>
     public int MaxGuilds = 100;
 
     /// <summary>
-    /// How many channels a guild can have.
+    /// The maximum number of channels a guild can have.
     /// </summary>
     public int MaxGuildChannels = 500;
 
     /// <summary>
-    /// How many channels a category can have.
+    /// The maximum number of channels a category can have.
     /// </summary>
     public int MaxChannelsPerCategory = 50;
 
     /// <summary>
-    /// Minimum bitrate for voice channel.
+    /// The minimum bitrate of a voice channel.
     /// </summary>
     public int VoiceChannelBitrateMin = 8000;
 
     /// <summary>
-    /// Maximum bitrate for voice channel.
+    /// The maximum bitrate of a voice channel.
     /// </summary>
     public int VoiceChannelBitrateMax = 320000;
 
     /// <summary>
-    /// Maximum users that can join a voice channel.
+    /// The maximum user limit of a voice channel.
     /// </summary>
     public int VoiceChannelUserLimitMax = 99;
 
     /// <summary>
-    /// Maximum users that can use camera in a voice channel.
+    /// The maximum number of users with a camera on in a voice channel.
     /// </summary>
     public int VoiceChannelCameraUserLimit = 25;
 
     /// <summary>
-    /// Maximum connections a user can have in a voice channel.
+    /// The maximum number of connections a user can have in a voice channel.
     /// </summary>
     public int VoiceChannelConnectionLimitMax = 100;
 
+    /// <summary>
+    /// The maximum slowmode delay of a channel, in seconds.
+    /// </summary>
     public int ChannelRateLimitPerUserMax = 21600;
 
     /// <summary>
-    /// Maximum length a channel topic can have.
+    /// The maximum length of a channel topic.
     /// </summary>
     public int ChannelTopicMaxLength = 1024;
 
     /// <summary>
-    /// Maximum length a region id can have.
+    /// The maximum length of a voice region id.
     /// </summary>
     public int RTCRegionIdMaxLength = 64;
 
     /// <summary>
-    /// How many emojis you can create in a guild.
+    /// The maximum number of emojis a guild can have.
     /// </summary>
     public int MaxGuildEmojis = 50;
 
     /// <summary>
-    /// How many animated emojis you can create in a guild.
+    /// The maximum number of animated emojis a guild can have.
     /// </summary>
     public int MaxGuildEmojisAnimated = 50;
 
     /// <summary>
-    /// How many more emojis you can create in a guild with <see cref="GuildFeatures.MoreEmojis"/>.
+    /// The maximum number of emojis a guild can have with <see cref="GuildFeatures.MoreEmojis"/>.
     /// </summary>
     public int MaxGuildEmojisMore = 250;
 
     /// <summary>
-    /// How many more animated emojis you can create in a guild with <see cref="GuildFeatures.MoreEmojis"/>.
+    /// The maximum number of animated emojis a guild can have with <see cref="GuildFeatures.MoreEmojis"/>.
     /// </summary>
     public int MaxGuildEmojisAnimatedMore = 250;
 
     /// <summary>
-    /// How many stickers you can create in a guild.
+    /// The maximum number of stickers a guild can have.
     /// </summary>
     public int MaxStickers = 50;
 
     /// <summary>
-    /// How many more stickers you can create in a guild with <see cref="GuildFeatures.MoreStickers"/>.
+    /// The maximum number of stickers a guild can have with <see cref="GuildFeatures.MoreStickers"/>.
     /// </summary>
     public int MaxGuildStickersMore = 250;
 
     /// <summary>
-    /// Maximum invites a guild can create.
+    /// The maximum number of invites a guild can have.
     /// </summary>
     public int MaxGuildInvites = 1000;
 
     /// <summary>
-    /// How many users can join a guild.
+    /// The maximum number of members a guild can have.
     /// </summary>
     public int MaxGuildMembers = 1000000;
 
     /// <summary>
-    /// How many more users can join a guild with <see cref="GuildFeatures.IsLargeGuild"/>.
+    /// The maximum number of members a guild can have with <see cref="GuildFeatures.IsLargeGuild"/>.
     /// </summary>
     public int MaxGuildMembersLarge = 10000000;
 
     /// <summary>
-    /// Maximum limit a limited invite can be set to.
+    /// The maximum number of uses a limited invite can be set to.
     /// </summary>
     public int MaxInviteUses = 100;
 
     /// <summary>
-    /// Maximum seconds a limited invite can be set to.
+    /// The maximum lifetime of an invite, in seconds.
     /// </summary>
     public int MaxInviteAgeSeconds = 604800;
 
     /// <summary>
-    /// Maximum roles a guild can create.
+    /// The maximum number of roles a guild can have.
     /// </summary>
     public int MaxGuildRoles = 250;
 
     /// <summary>
-    /// Maximum apps a user can create.
+    /// The maximum number of apps a user can create.
     /// </summary>
     public int MaxAppsPerUser = 25;
 
     /// <summary>
-    /// Maximum webhooks a channel can have.
+    /// The maximum number of webhooks a channel can have.
     /// </summary>
     public int MaxWebhooksPerChannel = 15;
 
     /// <summary>
-    /// Maximum webhooks a guild can create.
+    /// The maximum number of webhooks a guild can have.
     /// </summary>
     public int MaxWebhooksPerGuild = 1000;
 
     /// <summary>
-    /// Max length of message text you can send with premium.
+    /// The maximum length of message content for a premium user.
     /// </summary>
     public int MaxMessageContentLengthPremium = 4000;
 
     /// <summary>
-    /// Max length of message text you can send.
+    /// The maximum length of message content.
     /// </summary>
     public int MaxMessageContentLength = 2000;
 
     /// <summary>
-    /// Max attachments you can send in 1 message.
+    /// The maximum number of attachments in one message.
     /// </summary>
     public int MaxAttachmentsPerMessage = 10;
 
     /// <summary>
-    /// Max embeds you can send in 1 message.
+    /// The maximum number of embeds in one message.
     /// </summary>
     public int MaxMessageEmbeds = 10;
 
     /// <summary>
-    /// Maximum reactions a message can have.
+    /// The maximum number of reactions a message can have.
     /// </summary>
     public int MaxReactionsPerMessage = 30;
 
     /// <summary>
-    /// Maximum users each reaction can have.
+    /// The maximum number of users that can react to a message with one emoji.
     /// </summary>
     public int MaxUsersPerMessageReaction = 1000000;
 
     /// <summary>
-    /// Maximum length of attachment alternative text.
+    /// The maximum length of attachment alternative text.
     /// </summary>
     public int NaxAttachmentAltTextLength = 4096;
 
@@ -176,101 +179,101 @@ public class ApiLimits
     #region User Limits
 
     /// <summary>
-    /// Maximum length of profile bio/text you can set.
+    /// The maximum length of a profile bio.
     /// </summary>
     public int MaxBioLength = 320;
 
     /// <summary>
-    /// Maximum length of profile bio/text you can set with premium.
+    /// The maximum length of a profile bio for a premium user.
     /// </summary>
     public int MaxBioLengthPremium = 320;
 
     internal static int AssetMaxBytes = 10 * 1024 * 1024;
 
     /// <summary>
-    /// Maximum size and avatar upload can be.
+    /// The maximum size in bytes of an avatar upload.
     /// </summary>
     public int AvatarMaxSize = AssetMaxBytes;
 
     /// <summary>
-    /// Maximum friends a user can have.
+    /// The maximum number of relationships a user can have, such as friends.
     /// </summary>
     public int MaxRelationships = 1000;
 
     /// <summary>
-    /// Maximum users a group can have.
+    /// The maximum number of users in a group.
     /// </summary>
     public int MaxGroupMembers = 50;
 
     /// <summary>
-    /// Maximum private channels a user can have open.
+    /// The maximum number of private channels a user can have open.
     /// </summary>
     public int MaxPrivateChannelsPerUser = 250;
 
     /// <summary>
-    /// Maximum groups a user can create.
+    /// The maximum number of groups a user can create.
     /// </summary>
     public int MaxGroupsPerUser = 150;
 
     /// <summary>
-    /// Max bookmarks you can have with premium.
+    /// The maximum number of bookmarks a premium user can have.
     /// </summary>
     public int MaxBookmarksPremium = 300;
 
     /// <summary>
-    /// Max bookmarks you can have.
+    /// The maximum number of bookmarks a user can have.
     /// </summary>
     public int MaxBookmarks = 50;
 
     /// <summary>
-    /// Max favorite media you can have with premium.
+    /// The maximum number of favorite media items a premium user can have.
     /// </summary>
     public int MaxFavoriteMediaPremium = 500;
 
     /// <summary>
-    /// Max favorite media you can have.
+    /// The maximum number of favorite media items a user can have.
     /// </summary>
     public int MaxFavoriteMedia = 50;
 
     /// <summary>
-    /// Max tags a favorite media can have.
+    /// The maximum number of tags a favorite media item can have.
     /// </summary>
     public int MaxFavoriteMediaTags = 10;
 
     /// <summary>
-    /// Max favorite media saved.
+    /// The maximum number of favorite media items that can be saved.
     /// </summary>
     public int MaxFavoriteMediaSaved = 10000;
 
     #endregion
 
     /// <summary>
-    /// Min length of attachment filename.
+    /// The minimum length of an attachment filename.
     /// </summary>
     public const int FilenameTypeMinLength = 1;
 
     /// <summary>
-    /// Max length of attachment filename.
+    /// The maximum length of an attachment filename.
     /// </summary>
     public const int FilenameTypeMaxLength = 255;
 
     /// <summary>
-    /// Min length of embed url.
+    /// The minimum length of an embed URL.
     /// </summary>
     public const int UrlTypeMinLength = 1;
 
     /// <summary>
-    /// Max length of embed url.
+    /// The maximum length of an embed URL.
     /// </summary>
     public const int UrlTypeMaxLength = 2048;
 
     /// <summary>
-    /// Min length of message nonce.
+    /// The minimum length of a message nonce.
     /// </summary>
     public const int MessageNonceMinLength = 1;
 
     /// <summary>
-    /// Max length of message nonce.
+    /// The maximum length of a message nonce.
     /// </summary>
     public const int MessageNonceMaxLength = 32;
 }

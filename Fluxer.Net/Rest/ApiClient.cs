@@ -6,13 +6,10 @@ using Fluxer.Net.OAuth;
 namespace Fluxer.Net.Rest;
 
 /// <summary>
-/// REST API client for the Fluxer platform. Provides methods for all Fluxer API endpoints
-/// including authentication, channels, guilds, users, messages, and more.
+/// The REST client for the Fluxer API, with methods for its authentication, channel, guild, user and message endpoints.
 /// </summary>
 /// <remarks>
-/// This client handles HTTP requests to the Fluxer API with automatic rate limiting,
-/// JSON serialization, and error handling. It supports both synchronous operations via
-/// REST and can be paired with <see cref="FluxerGatewayClient"/> for real-time events.
+/// Requests are sent through the rate limit queue. Real-time events come from <see cref="FluxerGatewayClient"/>.
 /// </remarks>
 public class FluxerApiClient : FluxerBaseApiClient
 {
@@ -73,16 +70,16 @@ public class FluxerApiClient : FluxerBaseApiClient
     #endregion
 
     /// <summary>
-    /// Get the gateway URL, recommended shard count and session start limits.
+    /// Gets the gateway URL, the recommended shard count and the session start limits.
     /// </summary>
     /// <returns><see cref="GatewayBotJson"/>, or null when the request fails.</returns>
     public async Task<GatewayBotJson?> GetGatewayBotAsync(RequestOptions? options = null)
         => await SendRequestAsync<GatewayBotJson>(HttpMethod.Get, "/gateway/bot", false, options: options);
 
     /// <summary>
-    /// Get info and config for the Fluxer instance, useful for self-hosted.
+    /// Gets the info and config of the Fluxer instance.
     /// </summary>
-    /// <returns><see cref="Instance"/></returns>
+    /// <returns>The instance, or null when the request fails.</returns>
     public async Task<Instance?> GetInstanceAsync(RequestOptions? options = null)
     {
         InstanceJson? json = await SendRequestAsync<InstanceJson>(HttpMethod.Get, "/.well-known/fluxer", false, options: options);
@@ -93,12 +90,13 @@ public class FluxerApiClient : FluxerBaseApiClient
     }
 
     /// <summary>
-    /// Get the instance's community badge catalog, either one page at a time or by badge ID.
+    /// Gets the instance's community badge catalog, one page at a time or by badge ID.
     /// </summary>
-    /// <param name="ids">Up to 100 badge IDs to look up. Cannot be combined with <paramref name="after"/>.</param>
+    /// <param name="ids">Up to 100 badge IDs to look up.</param>
     /// <param name="after">The <see cref="InstanceBadges.Next"/> cursor of the previous page.</param>
-    /// <param name="options">Request options.</param>
-    /// <returns><see cref="InstanceBadges"/></returns>
+    /// <param name="options">Request options, such as the audit log reason.</param>
+    /// <returns>The badge page, or null when the request fails.</returns>
+    /// <exception cref="ArgumentOutOfRangeException">More than 100 badge IDs are passed in <paramref name="ids"/>.</exception>
     public async Task<InstanceBadges?> GetInstanceBadgesAsync(IEnumerable<ulong>? ids = null, string? after = null, RequestOptions? options = null)
     {
         List<ulong>? idList = ids?.ToList();
@@ -113,7 +111,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     }
 
     /// <summary>
-    /// Get the current user's experiment assignments, such as whether channel threads are enabled.
+    /// Gets the experiment assignments of the current user.
     /// </summary>
     /// <returns><see cref="ExperimentAssignmentsJson"/></returns>
     public async Task<ExperimentAssignmentsJson> GetExperimentsAsync(RequestOptions? options = null)
@@ -121,7 +119,7 @@ public class FluxerApiClient : FluxerBaseApiClient
 
     #region Expressions API
     /// <summary>
-    /// Get a custom emoji.
+    /// Gets a custom emoji.
     /// </summary>
     /// <returns><see cref="Emoji"/></returns>
     public async Task<Emoji?> GetEmojiAsync(ulong emojiId, RequestOptions? options = null)
@@ -134,7 +132,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     }
 
     /// <summary>
-    /// Get a custom sticker.
+    /// Gets a custom sticker.
     /// </summary>
     /// <returns><see cref="Sticker"/></returns>
     public async Task<Sticker?> GetStickerAsync(ulong stickerId, RequestOptions? options = null)
@@ -147,14 +145,14 @@ public class FluxerApiClient : FluxerBaseApiClient
     }
 
     /// <summary>
-    /// Get the guild a custom emoji belongs to.
+    /// Gets the guild a custom emoji belongs to.
     /// </summary>
     /// <returns><see cref="ExpressionSourceGuildJson"/></returns>
     public async Task<ExpressionSourceGuildJson> GetEmojiSourceAsync(ulong emojiId, RequestOptions? options = null)
         => await SendRequestAsync<ExpressionSourceGuildJson>(HttpMethod.Get, $"/emojis/{emojiId}/source", true, options: options);
 
     /// <summary>
-    /// Get the guild a custom sticker belongs to.
+    /// Gets the guild a custom sticker belongs to.
     /// </summary>
     /// <returns><see cref="ExpressionSourceGuildJson"/></returns>
     public async Task<ExpressionSourceGuildJson> GetStickerSourceAsync(ulong stickerId, RequestOptions? options = null)
@@ -164,7 +162,7 @@ public class FluxerApiClient : FluxerBaseApiClient
 
     #region Auth API
     /// <summary>
-    /// Login with a user account.
+    /// Logs in with a user account.
     /// </summary>
     /// <returns><see cref="Login"/></returns>
     public async Task<Login> LoginAsync(LoginRequestJson data, RequestOptions? options = null)
@@ -174,45 +172,45 @@ public class FluxerApiClient : FluxerBaseApiClient
     }
 
     /// <summary>
-    /// Create a user account
+    /// Creates a user account.
     /// </summary>
     public async Task RegisterAsync<TRequest>(TRequest data, RequestOptions? options = null)
         => await SendRequestAsync<TRequest>(HttpMethod.Post, "/auth/register", data, true, false, options: options);
 
     /// <summary>
-    /// Login with a user account that has MFA.
+    /// Logs in with a TOTP code for a user account that has MFA enabled.
     /// </summary>
     public async Task LoginMfaTotpAsync<TRequest, TResponse>(TRequest data)
         => await SendRequestAsync<TResponse, TRequest>(HttpMethod.Post, "/auth/login/mfa/totp", data, true, false);
 
     /// <summary>
-    /// Send a SMS code.
+    /// Sends an SMS code for MFA login.
     /// </summary>
     [Obsolete("Fluxer removed phone numbers and SMS verification.")]
     public async Task SendMfaSmsCodeAsync()
         => await SendRequestRawAsync(HttpMethod.Post, "/auth/login/mfa/sms/send", true, false);
 
     /// <summary>
-    /// Login with a SMS code.
+    /// Logs in with an SMS MFA code.
     /// </summary>
     [Obsolete("Fluxer removed phone numbers and SMS verification.")]
     public async Task LoginMfaSmsAsync<TRequest, TResponse>(TRequest data, RequestOptions? options = null)
         => await SendRequestAsync<TResponse, TRequest>(HttpMethod.Post, "/auth/login/mfa/sms", data, true, false, options: options);
 
     /// <summary>
-    /// Logout of the current session/auth.
+    /// Logs out of the current session.
     /// </summary>
     public async Task LogoutAsync()
         => await SendRequestRawAsync(HttpMethod.Post, "/auth/logout", true);
 
     /// <summary>
-    /// Verify the user account email.
+    /// Verifies the email address of the user account.
     /// </summary>
     public async Task VerifyEmailAsync<TRequest>(TRequest data)
         => await SendRequestAsync<TRequest>(HttpMethod.Post, "/auth/verify", data, true, false);
 
     /// <summary>
-    /// Send an email verification for the user account.
+    /// Sends an email verification for the user account.
     /// </summary>
     /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
     [UserTokenOnly]
@@ -220,19 +218,19 @@ public class FluxerApiClient : FluxerBaseApiClient
         => await SendRequestRawAsync(HttpMethod.Post, "/auth/verify/resend", true);
 
     /// <summary>
-    /// Request a password reset for the user account.
+    /// Requests a password reset for the user account.
     /// </summary>
     public async Task ForgotPasswordAsync<TRequest>(TRequest data)
         => await SendRequestAsync<TRequest>(HttpMethod.Post, "/auth/forgot", data, true, false);
 
     /// <summary>
-    /// Reset the password for the user account.
+    /// Resets the password of the user account.
     /// </summary>
     public async Task ResetPasswordAsync<TRequest>(TRequest data)
         => await SendRequestAsync<TRequest>(HttpMethod.Post, "/auth/reset", data, true, false);
 
     /// <summary>
-    /// Get all sessions for the user account.
+    /// Gets all sessions of the user account.
     /// </summary>
     /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
     /// <returns>List of <see cref="AuthSession"/></returns>
@@ -244,7 +242,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     }
 
     /// <summary>
-    /// Logout a specific session for the user account.
+    /// Logs out one session of the user account.
     /// </summary>
     /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
     [UserTokenOnly]
@@ -252,31 +250,31 @@ public class FluxerApiClient : FluxerBaseApiClient
         => await SendRequestAsync<TRequest>(HttpMethod.Post, "/auth/sessions/logout", data, true);
 
     /// <summary>
-    /// Authorize and IP for the user account.
+    /// Authorizes an IP address for the user account.
     /// </summary>
     public async Task PostAuthAuthorizeIpAsync<TRequest>(TRequest data)
         => await SendRequestAsync<TRequest>(HttpMethod.Post, "/auth/authorize-ip", data, true);
 
     /// <summary>
-    /// Setup webauth for the user account.
+    /// Gets the WebAuthn authentication options for the user account.
     /// </summary>
     public async Task<TResponse> PostAuthWebauthnAuthenticationOptionsAsync<TResponse>()
         => await SendRequestAsync<TResponse>(HttpMethod.Post, "/auth/webauthn/authentication-options", true, false);
 
     /// <summary>
-    /// Setup webauth for the user account.
+    /// Completes a WebAuthn authentication for the user account.
     /// </summary>
     public async Task<TResponse> PostAuthWebauthnAuthenticateAsync<TRequest, TResponse>(TRequest data, RequestOptions? options = null)
         => await SendRequestAsync<TResponse, TRequest>(HttpMethod.Post, "/auth/webauthn/authenticate", data, true, false, options: options);
 
     /// <summary>
-    /// Setup webauth for the user account.
+    /// Gets the WebAuthn authentication options for logging in with MFA.
     /// </summary>
     public async Task<TResponse> PostAuthLoginMfaWebauthnAuthenticationOptionsAsync<TResponse>(RequestOptions? options = null)
         => await SendRequestAsync<TResponse>(HttpMethod.Post, "/auth/login/mfa/webauthn/authentication-options", true, false, options: options);
 
     /// <summary>
-    /// Setup webauth for the user account.
+    /// Logs in with a WebAuthn MFA response.
     /// </summary>
     public async Task<TResponse> PostAuthLoginMfaWebauthnAsync<TRequest, TResponse>(TRequest data, RequestOptions? options = null)
         => await SendRequestAsync<TResponse, TRequest>(HttpMethod.Post, "/auth/login/mfa/webauthn", data, true, false, options: options);
@@ -285,7 +283,7 @@ public class FluxerApiClient : FluxerBaseApiClient
 
     #region Channels API
     /// <summary>
-    /// Create a DM channel.
+    /// Creates a DM channel.
     /// </summary>
     /// <returns><see cref="DMChannel"/></returns>
     public async Task<DMChannel> CreateDMChannelAsync(CreatePrivateChannelRequest req, RequestOptions? options = null)
@@ -295,7 +293,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     }
 
     /// <summary>
-    /// Create a Group channel.
+    /// Creates a group channel.
     /// </summary>
     /// <returns><see cref="GroupChannel"/></returns>
     public async Task<GroupChannel> CreateGroupChannelAsync(CreatePrivateChannelRequest req, RequestOptions? options = null)
@@ -305,12 +303,12 @@ public class FluxerApiClient : FluxerBaseApiClient
     }
 
     /// <summary>
-    /// Get a channel.
+    /// Gets a channel.
     /// </summary>
     /// <remarks>
     /// Requires <see cref="ChannelPermissions.ViewChannel"/> for guild channels.
     /// </remarks>
-    /// <returns><see cref="Channel"/></returns>
+    /// <returns>The channel, or null when the request fails.</returns>
     public async Task<Channel?> GetChannelAsync(ulong channelId, RequestOptions? options = null)
     {
         ChannelJson json = await SendRequestAsync<ChannelJson>(HttpMethod.Get, $"/channels/{channelId}", false, options: options);
@@ -320,7 +318,13 @@ public class FluxerApiClient : FluxerBaseApiClient
         return Channel.Create(_client, json);
     }
 
-    /// <inheritdoc cref="GetChannelAsync(ulong, RequestOptions?)"/>
+    /// <summary>
+    /// Gets a channel as a thread.
+    /// </summary>
+    /// <remarks>
+    /// Requires <see cref="ChannelPermissions.ViewChannel"/> for guild channels.
+    /// </remarks>
+    /// <returns>The thread, or null when the channel is not a thread or the request fails.</returns>
     public async Task<ThreadChannel?> GetThreadChannelAsync(ulong channelId, RequestOptions? options = null)
     {
         ChannelJson json = await SendRequestAsync<ChannelJson>(HttpMethod.Get, $"/channels/{channelId}", false, options: options);
@@ -331,7 +335,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     }
 
     /// <summary>
-    /// Get voice regions for a channel.
+    /// Gets the voice regions of a channel.
     /// </summary>
     /// <remarks>
     /// Requires <see cref="ChannelPermissions.ViewChannel"/> for guild channels.
@@ -346,7 +350,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     }
 
     /// <summary>
-    /// Modify a channel.
+    /// Modifies a channel.
     /// </summary>
     /// <remarks>
     /// Requires <see cref="ChannelPermissions.ManageChannel"/> for guild channels.
@@ -374,7 +378,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     }
 
     /// <summary>
-    /// Delete a channel.
+    /// Deletes a channel.
     /// </summary>
     /// <remarks>
     /// Requires <see cref="ChannelPermissions.ManageChannel"/> for guild channels.
@@ -383,13 +387,13 @@ public class FluxerApiClient : FluxerBaseApiClient
         => await SendRequestRawAsync(HttpMethod.Delete, $"/channels/{channelId}", true, options: options);
 
     /// <summary>
-    /// Clear message unreads for a channel.
+    /// Clears the message acknowledgement of a channel.
     /// </summary>
     public async Task ClearMessageAcknowledgementAsync(ulong channelId, RequestOptions? options = null)
         => await SendRequestRawAsync(HttpMethod.Delete, $"/channels/{channelId}/messages/ack", true, options: options);
 
     /// <summary>
-    /// Get messages in a channel.
+    /// Gets messages in a channel.
     /// </summary>
     /// <remarks>
     /// Requires <see cref="ChannelPermissions.ReadMessageHistory"/> for guild channels.
@@ -408,7 +412,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     }
 
     /// <summary>
-    /// Get a message in a channel.
+    /// Gets a message in a channel.
     /// </summary>
     /// <remarks>
     /// Requires <see cref="ChannelPermissions.ViewChannel"/> and <see cref="ChannelPermissions.ReadMessageHistory"/> for guild channels.
@@ -424,14 +428,17 @@ public class FluxerApiClient : FluxerBaseApiClient
     }
 
     /// <summary>
-    /// Crosspost a message.
+    /// Crossposts a message from an announcement channel to the channels that follow it.
     /// </summary>
     public async Task CrosspostMessageAsync(ulong channelId, ulong messageId, RequestOptions? options = null)
         => await SendRequestAsync<dynamic>(HttpMethod.Post, $"/channels/{channelId}/messages/{messageId}/crosspost", null, true, options: options);
 
     /// <summary>
-    /// Follow a news channel.
+    /// Follows an announcement channel, sending its messages to another channel.
     /// </summary>
+    /// <param name="channelId">The ID of the announcement channel to follow.</param>
+    /// <param name="newsChannelId">The ID of the channel that receives the announcement channel's messages.</param>
+    /// <param name="options">Request options, such as the audit log reason.</param>
     public async Task FollowChannelAsync(ulong channelId, ulong newsChannelId, RequestOptions? options = null)
         => await SendRequestAsync<dynamic>(HttpMethod.Post, $"/channels/{channelId}/followers", new FollowChannelRequest
         {
@@ -439,14 +446,14 @@ public class FluxerApiClient : FluxerBaseApiClient
         }, true, options: options);
 
     /// <summary>
-    /// Get how many channels and guilds follow an announcement channel.
+    /// Gets the number of channels and guilds that follow an announcement channel.
     /// </summary>
     /// <returns><see cref="ChannelFollowerStatsJson"/></returns>
     public async Task<ChannelFollowerStatsJson> GetFollowerStatsAsync(ulong channelId, RequestOptions? options = null)
         => await SendRequestAsync<ChannelFollowerStatsJson>(HttpMethod.Get, $"/channels/{channelId}/follower-stats", true, options: options);
 
     /// <summary>
-    /// Get the guild a published announcement was copied from.
+    /// Gets the guild a crossposted message was copied from.
     /// </summary>
     /// <returns><see cref="CrosspostSourceGuildJson"/></returns>
     public async Task<CrosspostSourceGuildJson> GetCrosspostSourceAsync(ulong channelId, ulong messageId, RequestOptions? options = null)
@@ -456,24 +463,24 @@ public class FluxerApiClient : FluxerBaseApiClient
     }
 
     /// <summary>
-    /// Get a channel's slowmode and how long the current user must wait before sending.
+    /// Gets the slowmode of a channel and how long the current user must wait before sending.
     /// </summary>
     /// <returns><see cref="SlowmodeStateJson"/></returns>
     public async Task<SlowmodeStateJson> GetSlowmodeStateAsync(ulong channelId, RequestOptions? options = null)
         => await SendRequestAsync<SlowmodeStateJson>(HttpMethod.Get, $"/channels/{channelId}/slowmode", true, options: options);
 
     /// <summary>
-    /// Search messages in a channel.
+    /// Searches messages in a channel.
     /// </summary>
     /// <remarks>
-    /// Not implemented or tested properly.
+    /// Fluxer no longer serves this route. Use <see cref="SearchChannelMessagesAsync"/>.
     /// </remarks>
     [Obsolete("Fluxer removed this route. Use SearchChannelMessagesAsync.")]
     public async Task<TResponse> SearchChannelAsync<TRequest, TResponse>(ulong channelId, TRequest data, RequestOptions? options = null)
         => await SendRequestAsync<TResponse, TRequest>(HttpMethod.Post, $"/channels/{channelId}/search", data, true, options: options);
 
     /// <summary>
-    /// Send a message in the channel.
+    /// Sends a message to a channel. When the client is a webhook client, the message is sent through the webhook.
     /// </summary>
     /// <remarks>
     /// Requires <see cref="ChannelPermissions.ViewChannel"/> and <see cref="ChannelPermissions.SendMessages"/> for guild channels.
@@ -520,7 +527,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     }
 
     /// <summary>
-    /// Modify your message in a channel
+    /// Edits a message in a channel.
     /// </summary>
     /// <remarks>
     /// Requires <see cref="ChannelPermissions.ViewChannel"/> and <see cref="ChannelPermissions.ReadMessageHistory"/> in a guild channel.
@@ -548,7 +555,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     }
 
     /// <summary>
-    /// Delete a message in a channel.
+    /// Deletes a message in a channel.
     /// </summary>
     /// <remarks>
     /// Requires <see cref="ChannelPermissions.ViewChannel"/> and <see cref="ChannelPermissions.ReadMessageHistory"/> in a guild channel.
@@ -559,7 +566,7 @@ public class FluxerApiClient : FluxerBaseApiClient
         => await SendRequestRawAsync(HttpMethod.Delete, $"/channels/{channelId}/messages/{messageId}", true, options: options);
 
     /// <summary>
-    /// Delete a attachment on a message.
+    /// Deletes an attachment from a message.
     /// </summary>
     /// <remarks>
     /// Requires <see cref="ChannelPermissions.ViewChannel"/> and <see cref="ChannelPermissions.ReadMessageHistory"/> in a guild channel.
@@ -568,7 +575,7 @@ public class FluxerApiClient : FluxerBaseApiClient
         => await SendRequestRawAsync(HttpMethod.Delete, $"/channels/{channelId}/messages/{messageId}/attachments/{attachmentId}", true, options: options);
 
     /// <summary>
-    /// Delete many messages in a channel.
+    /// Deletes many messages in a channel.
     /// </summary>
     /// <remarks>
     /// Requires <see cref="ChannelPermissions.ViewChannel"/>, <see cref="ChannelPermissions.ReadMessageHistory"/> and <see cref="ChannelPermissions.ManageMessages"/> in a guild channel.
@@ -582,14 +589,16 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// <summary>
     /// Delete every message the current user sent in a channel. Fluxer deletes them in the background.
     /// </summary>
+    /// <param name="channelId">The channel to delete the messages from.</param>
     /// <param name="verification">The password or MFA code user accounts must confirm with.</param>
+    /// <param name="options">Request options, such as the audit log reason.</param>
     public async Task DeleteOwnMessagesAsync(ulong channelId, SudoVerificationRequest? verification = null, RequestOptions? options = null)
         => await SendRequestAsync(HttpMethod.Post, $"/channels/{channelId}/messages/bulk-delete-mine", verification ?? new SudoVerificationRequest(), true, options: options);
 
     /// <summary>
-    /// Delete every message in the current user's Saved Notes channel.
+    /// Deletes every message in the current user's Saved Notes channel.
     /// </summary>
-    /// <returns>The number of deleted messages</returns>
+    /// <returns>The number of deleted messages.</returns>
     public async Task<int> PurgeSavedNotesAsync(ulong channelId, RequestOptions? options = null)
     {
         MessagePurgeJson json = await SendRequestAsync<MessagePurgeJson>(HttpMethod.Post, $"/channels/{channelId}/messages/purge", true, options: options);
@@ -597,7 +606,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     }
 
     /// <summary>
-    /// Send a user typing status for the channel.
+    /// Sends a typing indicator to a channel.
     /// </summary>
     /// <remarks>
     /// Requires <see cref="ChannelPermissions.ViewChannel"/> in a guild channel.
@@ -606,10 +615,9 @@ public class FluxerApiClient : FluxerBaseApiClient
         => await SendRequestRawAsync(HttpMethod.Post, $"/channels/{channelId}/typing", true, options: options);
 
     /// <summary>
-    /// Acknowledge a message has been read for the current user.
+    /// Marks a message as read by the current user.
     /// </summary>
     /// <remarks>
-    /// User accounts only.
     /// <para>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</para>
     /// </remarks>
     [UserTokenOnly]
@@ -617,7 +625,7 @@ public class FluxerApiClient : FluxerBaseApiClient
         => await SendRequestAsync<MessageAckJson>(HttpMethod.Post, $"/channels/{channelId}/messages/{messageId}/ack", details, true, options: options);
 
     /// <summary>
-    /// Get pinned messages in a channel.
+    /// Gets the pinned messages in a channel.
     /// </summary>
     /// <remarks>
     /// Requires <see cref="ChannelPermissions.ViewChannel"/> and <see cref="ChannelPermissions.ReadMessageHistory"/> in a guild channel.
@@ -630,7 +638,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     }
 
     /// <summary>
-    /// Pin a message in a channel.
+    /// Pins a message in a channel.
     /// </summary>
     /// <remarks>
     /// Requires <see cref="ChannelPermissions.ViewChannel"/>, <see cref="ChannelPermissions.ReadMessageHistory"/> and <see cref="ChannelPermissions.PinMessages"/> in a guild channel.
@@ -639,7 +647,7 @@ public class FluxerApiClient : FluxerBaseApiClient
         => await SendRequestRawAsync(HttpMethod.Put, $"/channels/{channelId}/pins/{messageId}", true, options: options);
 
     /// <summary>
-    /// Remove a pinned message in a channel.
+    /// Unpins a message in a channel.
     /// </summary>
     /// <remarks>
     /// Requires <see cref="ChannelPermissions.ViewChannel"/>, <see cref="ChannelPermissions.ReadMessageHistory"/> and <see cref="ChannelPermissions.PinMessages"/> in a guild channel.
@@ -648,13 +656,13 @@ public class FluxerApiClient : FluxerBaseApiClient
         => await SendRequestRawAsync(HttpMethod.Delete, $"/channels/{channelId}/pins/{messageId}", true, options: options);
 
     /// <summary>
-    /// Mark the new pins of a channel as seen.
+    /// Marks the new pins of a channel as seen.
     /// </summary>
     public async Task AcknowledgePinsAsync(ulong channelId, RequestOptions? options = null)
         => await SendRequestRawAsync(HttpMethod.Post, $"/channels/{channelId}/pins/ack", true, options: options);
 
     /// <summary>
-    /// Create or replace the permission overwrite for a role or member on a guild channel.
+    /// Creates or replaces the permission overwrite for a role or member on a guild channel.
     /// </summary>
     /// <remarks>
     /// Requires <see cref="ChannelPermissions.ManagePermissions"/> in the channel. Not available on threads.
@@ -669,7 +677,7 @@ public class FluxerApiClient : FluxerBaseApiClient
         }, true, options: options);
 
     /// <summary>
-    /// Remove the permission overwrite for a role or member from a guild channel.
+    /// Removes the permission overwrite for a role or member from a guild channel.
     /// </summary>
     /// <remarks>
     /// Requires <see cref="ChannelPermissions.ManagePermissions"/> in the channel.
@@ -678,7 +686,7 @@ public class FluxerApiClient : FluxerBaseApiClient
         => await SendRequestRawAsync(HttpMethod.Delete, $"/channels/{channelId}/permissions/{targetId}", true, options: options);
 
     /// <summary>
-    /// Get reaction users for a certain emoji on a message.
+    /// Gets the users who reacted to a message with an emoji.
     /// </summary>
     /// <remarks>
     /// Requires <see cref="ChannelPermissions.ViewChannel"/> and <see cref="ChannelPermissions.ReadMessageHistory"/> in a guild channel.
@@ -696,12 +704,17 @@ public class FluxerApiClient : FluxerBaseApiClient
     }
 
     /// <summary>
-    /// Get a page of the users who reacted to a message with an emoji.
+    /// Gets a page of the users who reacted to a message with an emoji.
     /// </summary>
     /// <remarks>
     /// Requires <see cref="ChannelPermissions.ViewChannel"/> and <see cref="ChannelPermissions.ReadMessageHistory"/> in a guild channel.
     /// </remarks>
+    /// <param name="channelId">The channel the message is in.</param>
+    /// <param name="messageId">The message the reaction was added to.</param>
+    /// <param name="emoji">The emoji the reaction was made with.</param>
+    /// <param name="limit">The maximum number of users to return.</param>
     /// <param name="afterId">Only users after this one, such as <see cref="ReactionUserPage.NextAfterId"/> of the previous page.</param>
+    /// <param name="options">Request options, such as the audit log reason.</param>
     /// <returns><see cref="ReactionUserPage"/></returns>
     public async Task<ReactionUserPage> GetReactionUsersAsync(ulong channelId, ulong messageId, string emoji, int? limit = null, ulong? afterId = null, RequestOptions? options = null)
     {
@@ -714,7 +727,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     }
 
     /// <summary>
-    /// Add a reaction to a message.
+    /// Adds a reaction to a message.
     /// </summary>
     /// <remarks>
     /// Requires <see cref="ChannelPermissions.ViewChannel"/> and <see cref="ChannelPermissions.AddReactions"/> in a guild channel.
@@ -730,7 +743,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     }
 
     /// <summary>
-    /// Remove a reaction on a message.
+    /// Removes the current user's reaction from a message.
     /// </summary>
     /// <remarks>
     /// Requires <see cref="ChannelPermissions.ViewChannel"/> in a guild channel.
@@ -746,7 +759,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     }
 
     /// <summary>
-    /// Remove a user's reaction on a message.
+    /// Removes a user's reaction from a message.
     /// </summary>
     /// <remarks>
     /// Requires <see cref="ChannelPermissions.ViewChannel"/>, <see cref="ChannelPermissions.ReadMessageHistory"/> and <see cref="ChannelPermissions.ManageMessages"/> in a guild channel.
@@ -762,7 +775,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     }
 
     /// <summary>
-    /// Remove all reactions for a specific emoji on a message.
+    /// Removes all reactions of one emoji from a message.
     /// </summary>
     /// <remarks>
     /// Requires <see cref="ChannelPermissions.ViewChannel"/>, <see cref="ChannelPermissions.ReadMessageHistory"/> and <see cref="ChannelPermissions.ManageMessages"/> in a guild channel.
@@ -778,7 +791,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     }
 
     /// <summary>
-    /// Remove all reactions on a message.
+    /// Removes all reactions from a message.
     /// </summary>
     /// <remarks>
     /// Requires <see cref="ChannelPermissions.ViewChannel"/>, <see cref="ChannelPermissions.ReadMessageHistory"/> and <see cref="ChannelPermissions.ManageMessages"/> in a guild channel.
@@ -787,13 +800,13 @@ public class FluxerApiClient : FluxerBaseApiClient
         => await SendRequestRawAsync(HttpMethod.Delete, $"/channels/{channelId}/messages/{messageId}/reactions", true, options: options);
 
     /// <summary>
-    /// Upload multiple attachments to a channel.
+    /// Uploads attachments to a channel.
     /// </summary>
     public async Task<TResponse> UploadAttachmentsAsync<TRequest, TResponse>(ulong channelId, TRequest data, RequestOptions? options = null)
         => await SendRequestAsync<TResponse, TRequest>(HttpMethod.Post, $"/channels/{channelId}/attachments", data, true, options: options);
 
     /// <summary>
-    /// Add a user to a group channel.
+    /// Adds a user to a group channel.
     /// </summary>
     /// <remarks>
     /// User account only.
@@ -802,7 +815,7 @@ public class FluxerApiClient : FluxerBaseApiClient
         => await SendRequestRawAsync(HttpMethod.Put, $"/channels/{channelId}/recipients/{userId}", true, options: options);
 
     /// <summary>
-    /// Remove a user from the group channel.
+    /// Removes a user from a group channel.
     /// </summary>
     /// <remarks>
     /// User account only.
@@ -811,7 +824,7 @@ public class FluxerApiClient : FluxerBaseApiClient
         => await SendRequestRawAsync(HttpMethod.Delete, $"/channels/{channelId}/recipients/{userId}", true, options: options);
 
     /// <summary>
-    /// Get if you can call a voice channel/group/dm.
+    /// Gets whether the current user can call a voice channel, group or DM.
     /// </summary>
     /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
     /// <returns><see cref="CallEligibility"/></returns>
@@ -823,7 +836,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     }
 
     /// <summary>
-    /// Update the voice region for a voice channel.
+    /// Updates the voice region of a voice channel.
     /// </summary>
     /// <remarks>
     /// Requires <see cref="ChannelPermissions.ViewChannel"/> and <see cref="ChannelPermissions.UpdateRTCRegion"/> in a guild channel.
@@ -837,7 +850,7 @@ public class FluxerApiClient : FluxerBaseApiClient
         }, true, options: options);
 
     /// <summary>
-    /// Voice call users.
+    /// Rings users to join a call in a channel.
     /// </summary>
     /// <remarks>
     /// User account only.
@@ -851,7 +864,7 @@ public class FluxerApiClient : FluxerBaseApiClient
         }, true, options: options);
 
     /// <summary>
-    /// Stop voice calling user.
+    /// Stops ringing the users of a call.
     /// </summary>
     /// <remarks>
     /// User account only.
@@ -862,7 +875,7 @@ public class FluxerApiClient : FluxerBaseApiClient
         => await SendRequestRawAsync(HttpMethod.Post, $"/channels/{channelId}/call/stop-ringing", true, options: options);
 
     /// <summary>
-    /// Get invites for a guild channel.
+    /// Gets the invites for a guild channel.
     /// </summary>
     /// <remarks>
     /// Requires <see cref="ChannelPermissions.ViewChannel"/> and <see cref="ChannelPermissions.ManageChannel"/>.
@@ -875,7 +888,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     }
 
     /// <summary>
-    /// Create invite for the guild channel.
+    /// Creates an invite for a guild channel.
     /// </summary>
     /// <remarks>
     /// Requires <see cref="ChannelPermissions.ViewChannel"/> and <see cref="ChannelPermissions.CreateInstantInvite"/>.
@@ -888,7 +901,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     }
 
     /// <summary>
-    /// Get webhooks for a guild channel.
+    /// Gets the webhooks for a guild channel.
     /// </summary>
     /// <remarks>
     /// Requires <see cref="ChannelPermissions.ViewChannel"/> and <see cref="ChannelPermissions.ManageWebhooks"/>.
@@ -901,7 +914,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     }
 
     /// <summary>
-    /// Create a webhook for the guild channel.
+    /// Creates a webhook for a guild channel.
     /// </summary>
     /// <remarks>
     /// Requires <see cref="ChannelPermissions.ViewChannel"/> and <see cref="ChannelPermissions.ManageWebhooks"/>.
@@ -922,7 +935,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     #region Threads API
 
     /// <summary>
-    /// Create a private thread.
+    /// Creates a private thread in a channel.
     /// </summary>
     /// <remarks>
     /// Requires <see cref="ChannelPermissions.ViewChannel"/> and <see cref="ChannelPermissions.CreatePrivateThreads"/>.
@@ -935,7 +948,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     }
 
     /// <summary>
-    /// Create a public thread.
+    /// Creates a public thread in a channel.
     /// </summary>
     /// <remarks>
     /// Requires <see cref="ChannelPermissions.ViewChannel"/> and <see cref="ChannelPermissions.CreatePublicThreads"/>.
@@ -948,7 +961,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     }
 
     /// <summary>
-    /// Create a thread from a message
+    /// Creates a thread from a message.
     /// </summary>
     /// <remarks>
     /// Requires <see cref="ChannelPermissions.ViewChannel"/> and <see cref="ChannelPermissions.CreatePublicThreads"/>.
@@ -961,7 +974,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     }
 
     /// <summary>
-    /// Update a thread.
+    /// Updates a thread.
     /// </summary>
     /// <remarks>
     /// Requires <see cref="ChannelPermissions.ManageThreads"/> or Thread Owner.
@@ -974,7 +987,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     }
 
     /// <summary>
-    /// Join a thread.
+    /// Joins a thread.
     /// </summary>
     /// <remarks>
     /// Requires <see cref="ChannelPermissions.ViewChannel"/>.
@@ -985,7 +998,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     }
 
     /// <summary>
-    /// Leave a thread.
+    /// Leaves a thread.
     /// </summary>
     /// <remarks>
     /// Requires <see cref="ChannelPermissions.ViewChannel"/>.
@@ -996,7 +1009,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     }
 
     /// <summary>
-    /// Add a member to the thread.
+    /// Adds a member to a thread.
     /// </summary>
     /// <remarks>
     /// Requires <see cref="ChannelPermissions.ManageThreads"/> or Thread Owner.
@@ -1007,7 +1020,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     }
 
     /// <summary>
-    /// Remove a member from a thread.
+    /// Removes a member from a thread.
     /// </summary>
     /// <remarks>
     /// Requires <see cref="ChannelPermissions.ManageThreads"/> or Thread Owner.
@@ -1018,12 +1031,16 @@ public class FluxerApiClient : FluxerBaseApiClient
     }
 
     /// <summary>
-    /// Get the members of a thread.
+    /// Gets the members of a thread.
     /// </summary>
     /// <remarks>
     /// Requires <see cref="ChannelPermissions.ViewChannel"/>.
     /// </remarks>
+    /// <param name="channelId">The thread to get the members of.</param>
     /// <param name="withMember">Whether to include each member's guild member.</param>
+    /// <param name="limit">The maximum number of members to return.</param>
+    /// <param name="afterId">Only members with an ID after this one.</param>
+    /// <param name="options">Request options, such as the audit log reason.</param>
     /// <returns>List of <see cref="ThreadMember"/></returns>
     public async Task<IEnumerable<ThreadMember>> GetThreadMembersAsync(ulong channelId, bool withMember = false, int? limit = null, ulong? afterId = null, RequestOptions? options = null)
     {
@@ -1037,12 +1054,15 @@ public class FluxerApiClient : FluxerBaseApiClient
     }
 
     /// <summary>
-    /// Get a member of a thread.
+    /// Gets a member of a thread.
     /// </summary>
     /// <remarks>
     /// Requires <see cref="ChannelPermissions.ViewChannel"/>.
     /// </remarks>
+    /// <param name="channelId">The thread the member is in.</param>
+    /// <param name="userId">The ID of the member.</param>
     /// <param name="withMember">Whether to include the guild member.</param>
+    /// <param name="options">Request options, such as the audit log reason.</param>
     /// <returns><see cref="ThreadMember"/></returns>
     public async Task<ThreadMember> GetThreadMemberAsync(ulong channelId, ulong userId, bool withMember = false, RequestOptions? options = null)
     {
@@ -1054,7 +1074,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     }
 
     /// <summary>
-    /// Get the active threads of a guild.
+    /// Gets the active threads of a guild.
     /// </summary>
     /// <returns><see cref="ThreadList"/></returns>
     public async Task<ThreadList> GetActiveThreadsAsync(ulong guildId, RequestOptions? options = null)
@@ -1064,34 +1084,43 @@ public class FluxerApiClient : FluxerBaseApiClient
     }
 
     /// <summary>
-    /// Get the archived public threads of a channel, newest first.
+    /// Gets the archived public threads of a channel.
     /// </summary>
     /// <remarks>
     /// Requires <see cref="ChannelPermissions.ReadMessageHistory"/>.
     /// </remarks>
+    /// <param name="channelId">The channel to get the threads of.</param>
+    /// <param name="limit">The maximum number of threads to return.</param>
     /// <param name="before">Only threads archived before this time.</param>
+    /// <param name="options">Request options, such as the audit log reason.</param>
     /// <returns><see cref="ThreadList"/></returns>
     public async Task<ThreadList> GetPublicArchivedThreadsAsync(ulong channelId, int? limit = null, DateTimeOffset? before = null, RequestOptions? options = null)
         => await GetArchivedThreadsAsync($"/channels/{channelId}/threads/archived/public", limit, before?.ToString("O"), options);
 
     /// <summary>
-    /// Get the archived private threads of a channel, newest first.
+    /// Gets the archived private threads of a channel.
     /// </summary>
     /// <remarks>
     /// Requires <see cref="ChannelPermissions.ReadMessageHistory"/> and <see cref="ChannelPermissions.ManageThreads"/>.
     /// </remarks>
+    /// <param name="channelId">The channel to get the threads of.</param>
+    /// <param name="limit">The maximum number of threads to return.</param>
     /// <param name="before">Only threads archived before this time.</param>
+    /// <param name="options">Request options, such as the audit log reason.</param>
     /// <returns><see cref="ThreadList"/></returns>
     public async Task<ThreadList> GetPrivateArchivedThreadsAsync(ulong channelId, int? limit = null, DateTimeOffset? before = null, RequestOptions? options = null)
         => await GetArchivedThreadsAsync($"/channels/{channelId}/threads/archived/private", limit, before?.ToString("O"), options);
 
     /// <summary>
-    /// Get the archived private threads of a channel that the current user joined.
+    /// Gets the archived private threads of a channel that the current user joined.
     /// </summary>
     /// <remarks>
     /// Requires <see cref="ChannelPermissions.ReadMessageHistory"/>.
     /// </remarks>
+    /// <param name="channelId">The channel to get the threads of.</param>
+    /// <param name="limit">The maximum number of threads to return.</param>
     /// <param name="beforeId">Only threads created before this thread.</param>
+    /// <param name="options">Request options, such as the audit log reason.</param>
     /// <returns><see cref="ThreadList"/></returns>
     public async Task<ThreadList> GetJoinedPrivateArchivedThreadsAsync(ulong channelId, int? limit = null, ulong? beforeId = null, RequestOptions? options = null)
         => await GetArchivedThreadsAsync($"/channels/{channelId}/users/@me/threads/archived/private", limit, beforeId?.ToString(), options);
@@ -1107,7 +1136,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     }
 
     /// <summary>
-    /// Search the threads of a channel by name, tags and archive state.
+    /// Searches the threads of a channel by name, tags and archive state.
     /// </summary>
     /// <remarks>
     /// Requires <see cref="ChannelPermissions.ReadMessageHistory"/>. Returns no threads while Fluxer is still indexing the channel.
@@ -1124,7 +1153,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     #region Forums API
 
     /// <summary>
-    /// Create a new post in a forum channel.
+    /// Creates a post in a forum channel.
     /// </summary>
     /// <remarks>
     /// Requires <see cref="ChannelPermissions.SendMessages"/>.
@@ -1137,7 +1166,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     }
 
     /// <summary>
-    /// Create a forum tag.
+    /// Creates a tag in a forum channel.
     /// </summary>
     /// <remarks>
     /// Requires <see cref="ChannelPermissions.ManageChannel"/>.
@@ -1151,7 +1180,7 @@ public class FluxerApiClient : FluxerBaseApiClient
 
 
     /// <summary>
-    /// Update a forum tag.
+    /// Updates a forum tag.
     /// </summary>
     /// <remarks>
     /// Requires <see cref="ChannelPermissions.ManageChannel"/>.
@@ -1164,7 +1193,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     }
 
     /// <summary>
-    /// Delete a forum tag.
+    /// Deletes a forum tag.
     /// </summary>
     /// <remarks>
     /// Requires <see cref="ChannelPermissions.ManageChannel"/>.
@@ -1177,7 +1206,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     }
 
     /// <summary>
-    /// Get the author and first message of up to 100 posts in a forum or media channel.
+    /// Gets the author and first message of up to 100 posts in a forum or media channel.
     /// </summary>
     /// <remarks>
     /// Requires <see cref="ChannelPermissions.ViewChannel"/>.
@@ -1196,7 +1225,7 @@ public class FluxerApiClient : FluxerBaseApiClient
 
     #region Attachments API
     /// <summary>
-    /// Get fresh signed URLs for up to 50 attachment URLs whose signature expired.
+    /// Gets fresh signed URLs for up to 50 attachment URLs whose signature has expired.
     /// </summary>
     /// <returns>One <see cref="RefreshedAttachmentUrlJson"/> per URL, in the order given</returns>
     public async Task<IReadOnlyList<RefreshedAttachmentUrlJson>> RefreshAttachmentUrlsAsync(IEnumerable<string> urls, RequestOptions? options = null)
@@ -1236,9 +1265,8 @@ public class FluxerApiClient : FluxerBaseApiClient
     }
 
     /// <summary>
-    /// Upload a file straight to Fluxer's storage, in parts when it is large, ready to send with
+    /// Uploads a file to Fluxer's storage, in parts when it is large, so it can be sent with
     /// <see cref="SendMessageAsync(ulong, IEnumerable{UploadedAttachment}, string?, List{EmbedRequest}?, MessageReferenceRequest?, AllowedMentionsRequest?, RequestOptions?)"/>.
-    /// Use this for files too big to send with the message itself.
     /// </summary>
     /// <param name="channelId">The channel the file will be sent in.</param>
     /// <param name="stream">The file. It is read from its current position to the end; a seekable stream that already sits at its end is read from the start.</param>
@@ -1334,7 +1362,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     }
 
     /// <summary>
-    /// Send a message with files uploaded by <see cref="UploadAttachmentAsync"/>.
+    /// Sends a message with files uploaded by <see cref="UploadAttachmentAsync"/>.
     /// </summary>
     /// <remarks>
     /// Requires <see cref="ChannelPermissions.ViewChannel"/>, <see cref="ChannelPermissions.SendMessages"/> and
@@ -1368,7 +1396,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     }
 
     /// <summary>
-    /// Delete an attachment.
+    /// Deletes an attachment.
     /// </summary>
     [Obsolete("Fluxer removed this route.")]
     public async Task DeleteAttachmentAsync(string uploadFilename, RequestOptions? options = null)
@@ -1378,7 +1406,7 @@ public class FluxerApiClient : FluxerBaseApiClient
 
     #region Favorite Media API
     /// <summary>
-    /// Get all your favorite media.
+    /// Gets all favorite media of the current user.
     /// </summary>
     /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
     /// <returns>List of <see cref="FavoriteMedia"/></returns>
@@ -1390,7 +1418,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     }
 
     /// <summary>
-    /// Add a favorite media.
+    /// Adds a favorite media item for the current user.
     /// </summary>
     /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
     /// <returns><see cref="FavoriteMedia"/></returns>
@@ -1402,7 +1430,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     }
 
     /// <summary>
-    /// Get your favorite media.
+    /// Gets a favorite media item of the current user.
     /// </summary>
     /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
     /// <returns><see cref="FavoriteMedia"/></returns>
@@ -1414,7 +1442,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     }
 
     /// <summary>
-    /// Update your favorite media.
+    /// Updates a favorite media item of the current user.
     /// </summary>
     /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
     /// <returns><see cref="FavoriteMedia"/></returns>
@@ -1426,7 +1454,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     }
 
     /// <summary>
-    /// Delete your favorite media.
+    /// Deletes a favorite media item of the current user.
     /// </summary>
     /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
     [UserTokenOnly]
@@ -1437,7 +1465,7 @@ public class FluxerApiClient : FluxerBaseApiClient
 
     #region Invites API
     /// <summary>
-    /// Get invite info from invite code.
+    /// Gets the info of an invite by its code.
     /// </summary>
     /// <returns><see cref="PartialInvite"/></returns>
     public async Task<PartialInvite?> GetInviteAsync(string inviteCode, RequestOptions? options = null)
@@ -1450,7 +1478,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     }
 
     /// <summary>
-    /// Join a guild by invite code.
+    /// Joins a guild with an invite code.
     /// </summary>
     /// <remarks>
     /// User account only.
@@ -1465,7 +1493,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     }
 
     /// <summary>
-    /// Delete an invite.
+    /// Deletes an invite.
     /// </summary>
     /// <remarks>
     /// Requires <see cref="ChannelPermissions.ViewChannel"/> and <see cref="ChannelPermissions.ManageChannel"/>.
@@ -1477,7 +1505,7 @@ public class FluxerApiClient : FluxerBaseApiClient
 
     #region Read States API
     /// <summary>
-    /// Clear read message stats for guilds or channels.
+    /// Clears the read states of guilds or channels.
     /// </summary>
     /// <remarks>
     /// User account only.
@@ -1491,11 +1519,8 @@ public class FluxerApiClient : FluxerBaseApiClient
 
     #region Guilds API
     /// <summary>
-    /// Create a guild.
+    /// Creates a guild.
     /// </summary>
-    /// <remarks>
-    /// User account only.
-    /// </remarks>
     /// <returns><see cref="Guild"/></returns>
     public async Task<Guild> CreateGuildAsync(CreateGuildRequest data, RequestOptions? options = null)
     {
@@ -1504,16 +1529,17 @@ public class FluxerApiClient : FluxerBaseApiClient
     }
 
     /// <summary>
-    /// Get all guilds for the current user.
+    /// Gets the guilds of the current user.
     /// </summary>
     /// <returns>List of <see cref="Guild"/></returns>
     public Task<IEnumerable<Guild>> GetCurrentUserGuildsAsync(RequestOptions? options = null)
         => GetCurrentUserGuildsAsync(false, options);
 
     /// <summary>
-    /// Get the guilds the current user is in, optionally with approximate member and presence counts.
+    /// Gets the guilds of the current user, optionally with approximate member and presence counts.
     /// </summary>
     /// <param name="withCounts">Fill <see cref="Guild.ApproximateMemberCount"/> and <see cref="Guild.ApproximatePresenceCount"/>.</param>
+    /// <param name="options">Request options, such as the audit log reason.</param>
     /// <returns>List of <see cref="Guild"/></returns>
     public async Task<IEnumerable<Guild>> GetCurrentUserGuildsAsync(bool withCounts, RequestOptions? options = null)
     {
@@ -1522,13 +1548,13 @@ public class FluxerApiClient : FluxerBaseApiClient
     }
 
     /// <summary>
-    /// Leave a guild for the current user.
+    /// Leaves a guild as the current user.
     /// </summary>
     public async Task LeaveGuildAsync(ulong guildId, RequestOptions? options = null)
         => await SendRequestRawAsync(HttpMethod.Delete, $"/users/@me/guilds/{guildId}", true, options: options);
 
     /// <summary>
-    /// Get a guild that the current user is in.
+    /// Gets a guild the current user is in.
     /// </summary>
     /// <returns><see cref="Guild"/></returns>
     public async Task<Guild?> GetGuildAsync(ulong guildId, RequestOptions? options = null)
@@ -1541,7 +1567,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     }
 
     /// <summary>
-    /// Update a guild that you manage.
+    /// Updates a guild.
     /// </summary>
     /// <remarks>
     /// Requires <see cref="GuildPermissions.ManageGuild"/>.
@@ -1555,7 +1581,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     }
 
     /// <summary>
-    /// Update a guild that you manage. Only the properties set on <paramref name="request"/> are changed.
+    /// Updates a guild. Only the properties set on <paramref name="request"/> are changed.
     /// </summary>
     /// <remarks>
     /// Requires <see cref="GuildPermissions.ManageGuild"/>.
@@ -1568,7 +1594,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     }
 
     /// <summary>
-    /// Pause or resume invites for a guild by toggling the INVITES_DISABLED feature in its current feature set.
+    /// Pauses or resumes invites for a guild by toggling the INVITES_DISABLED feature.
     /// </summary>
     /// <remarks>
     /// Requires <see cref="GuildPermissions.ManageGuild"/>.
@@ -1588,13 +1614,13 @@ public class FluxerApiClient : FluxerBaseApiClient
     }
 
     /// <summary>
-    /// Delete a guild that you own.
+    /// Deletes a guild.
     /// </summary>
     public async Task DeleteGuildAsync(ulong guildId, DeleteGuildRequest data, RequestOptions? options = null)
         => await SendRequestAsync(HttpMethod.Post, $"/guilds/{guildId}/delete", data, true, options: options);
 
     /// <summary>
-    /// Get vanity url for a guild.
+    /// Gets the vanity URL of a guild.
     /// </summary>
     /// <returns><see cref="GuildVanityUrl"/></returns>
     public async Task<GuildVanityUrl> GetGuildVanityUrlAsync(ulong guildId, RequestOptions? options = null)
@@ -1604,7 +1630,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     }
 
     /// <summary>
-    /// Update vanity url for a guild.
+    /// Updates the vanity URL of a guild.
     /// </summary>
     /// <remarks>
     /// Requires <see cref="GuildPermissions.ManageGuild"/>.
@@ -1615,7 +1641,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     }
 
     /// <summary>
-    /// Get a list of members for a guild, default and maximum 1000.
+    /// Gets the members of a guild. The limit defaults to 1000.
     /// </summary>
     /// <returns>List of <see cref="GuildMember"/></returns>
     public async Task<IEnumerable<GuildMember>> GetMembersAsync(ulong guildId, int limit = 1000, ulong? afterId = null, RestClientQueryParams? queryParams = null, RequestOptions? options = null)
@@ -1629,7 +1655,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     }
 
     /// <summary>
-    /// Search the members of a guild by name, roles, join time and more.
+    /// Searches the members of a guild by name, roles and join time.
     /// </summary>
     /// <remarks>
     /// Results can be incomplete while <see cref="GuildMemberSearchJson.IsIndexing"/> is true.
@@ -1639,7 +1665,7 @@ public class FluxerApiClient : FluxerBaseApiClient
         => await SendRequestAsync<GuildMemberSearchJson, GuildMemberSearchRequest>(HttpMethod.Post, $"/guilds/{guildId}/members-search", request, true, options: options);
 
     /// <summary>
-    /// Get current member for a guild.
+    /// Gets the current user's member in a guild.
     /// </summary>
     /// <returns><see cref="GuildMember"/></returns>
     public async Task<GuildMember?> GetCurrentMemberAsync(ulong guildId, RequestOptions? options = null)
@@ -1652,7 +1678,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     }
 
     /// <summary>
-    /// Get a member in a guild.
+    /// Gets a member of a guild.
     /// </summary>
     /// <returns><see cref="GuildMember"/></returns>
     public async Task<GuildMember?> GetMemberAsync(ulong guildId, ulong userId, RequestOptions? options = null)
@@ -1665,7 +1691,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     }
 
     /// <summary>
-    /// Update current member in a guild.
+    /// Updates the current user's member in a guild.
     /// </summary>
     /// <remarks>
     /// Requires <see cref="GuildPermissions.ChangeNickname"/> to change your nickname.
@@ -1692,7 +1718,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     }
 
     /// <summary>
-    /// Update a member in a guild.
+    /// Updates a member of a guild.
     /// </summary>
     /// <remarks>
     /// Requires either <see cref="GuildPermissions.ManageNicknames"/>, <see cref="GuildPermissions.DeafenMembers"/>, 
@@ -1722,7 +1748,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     }
 
     /// <summary>
-    /// Kick a member from the guild.
+    /// Kicks a member from a guild.
     /// </summary>
     /// <remarks>
     /// Requires <see cref="GuildPermissions.KickMembers"/>.
@@ -1738,7 +1764,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     }
 
     /// <summary>
-    /// Change ownership of a guild to another member.
+    /// Transfers ownership of a guild to another member.
     /// </summary>
     /// <remarks>
     /// Requires guild ownership and user account only.
@@ -1751,7 +1777,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     }
 
     /// <summary>
-    /// Get bans for a guild.
+    /// Gets the bans of a guild.
     /// </summary>
     /// <remarks>
     /// Requires <see cref="GuildPermissions.BanMembers"/>.
@@ -1764,11 +1790,12 @@ public class FluxerApiClient : FluxerBaseApiClient
     }
 
     /// <summary>
-    /// Ban a member from the guild.
+    /// Bans a member from a guild.
     /// </summary>
     /// <remarks>
     /// Requires <see cref="GuildPermissions.BanMembers"/>.
     /// </remarks>
+    /// <exception cref="Exception">Thrown when <paramref name="deleteMessageSeconds"/> is outside 0 to 604800, or <paramref name="banDurationSeconds"/> is outside 60 to 63072000.</exception>
     public async Task BanMemberAsync(ulong guildId, ulong userId, string? reason = null, int? deleteMessageSeconds = null, int? banDurationSeconds = null, RequestOptions? options = null)
     {
         if (deleteMessageSeconds.HasValue)
@@ -1802,7 +1829,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     }
 
     /// <summary>
-    /// Unban a user from the guild.
+    /// Unbans a user from a guild.
     /// </summary>
     /// <remarks>
     /// Requires <see cref="GuildPermissions.BanMembers"/>.
@@ -1811,7 +1838,7 @@ public class FluxerApiClient : FluxerBaseApiClient
         => await SendRequestRawAsync(HttpMethod.Delete, $"/guilds/{guildId}/bans/{userId}", true, options: options);
 
     /// <summary>
-    /// Give role to a member in the guild.
+    /// Adds a role to a member of a guild.
     /// </summary>
     /// <remarks>
     /// Requires <see cref="GuildPermissions.ManageRoles"/>.
@@ -1820,7 +1847,7 @@ public class FluxerApiClient : FluxerBaseApiClient
         => await SendRequestRawAsync(HttpMethod.Put, $"/guilds/{guildId}/members/{userId}/roles/{roleId}", true, options: options);
 
     /// <summary>
-    /// Remove role from a member in the guild.
+    /// Removes a role from a member of a guild.
     /// </summary>
     /// <remarks>
     /// Requires <see cref="GuildPermissions.ManageRoles"/>.
@@ -1829,7 +1856,7 @@ public class FluxerApiClient : FluxerBaseApiClient
         => await SendRequestRawAsync(HttpMethod.Delete, $"/guilds/{guildId}/members/{userId}/roles/{roleId}", true, options: options);
 
     /// <summary>
-    /// Create a role in the guild.
+    /// Creates a role in a guild.
     /// </summary>
     /// <remarks>
     /// Requires <see cref="GuildPermissions.ManageRoles"/>.
@@ -1842,7 +1869,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     }
 
     /// <summary>
-    /// Update a role in the guild.
+    /// Updates a role in a guild.
     /// </summary>
     /// <remarks>
     /// Requires <see cref="GuildPermissions.ManageRoles"/>.
@@ -1855,7 +1882,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     }
 
     /// <summary>
-    /// Update role positions in the guild.
+    /// Updates the positions of roles in a guild.
     /// </summary>
     /// <remarks>
     /// Requires <see cref="GuildPermissions.ManageRoles"/>.
@@ -1864,7 +1891,7 @@ public class FluxerApiClient : FluxerBaseApiClient
         => await SendRequestAsync(HttpMethod.Patch, $"/guilds/{guildId}/roles", positions, true, options: options);
 
     /// <summary>
-    /// Get all roles in the guild.
+    /// Gets the roles of a guild.
     /// </summary>
     /// <returns>List of <see cref="Role"/></returns>
     public async Task<IEnumerable<Role>> GetRolesAsync(ulong guildId, RequestOptions? options = null)
@@ -1874,7 +1901,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     }
 
     /// <summary>
-    /// Set the order hoisted roles are shown in the member list, separate from their permission order.
+    /// Sets the order in which hoisted roles are shown in the member list, separate from their permission order.
     /// </summary>
     /// <remarks>
     /// Requires <see cref="GuildPermissions.ManageRoles"/>.
@@ -1883,7 +1910,7 @@ public class FluxerApiClient : FluxerBaseApiClient
         => await SendRequestAsync(HttpMethod.Patch, $"/guilds/{guildId}/roles/hoist-positions", positions, true, options: options);
 
     /// <summary>
-    /// Show hoisted roles in the member list in their permission order again.
+    /// Resets hoisted roles to be shown in the member list in their permission order.
     /// </summary>
     /// <remarks>
     /// Requires <see cref="GuildPermissions.ManageRoles"/>.
@@ -1892,7 +1919,7 @@ public class FluxerApiClient : FluxerBaseApiClient
         => await SendRequestRawAsync(HttpMethod.Delete, $"/guilds/{guildId}/roles/hoist-positions", true, options: options);
 
     /// <summary>
-    /// Delete a role in the guild.
+    /// Deletes a role in a guild.
     /// </summary>
     /// <remarks>
     /// Requires <see cref="GuildPermissions.ManageRoles"/>.
@@ -1901,7 +1928,7 @@ public class FluxerApiClient : FluxerBaseApiClient
         => await SendRequestRawAsync(HttpMethod.Delete, $"/guilds/{guildId}/roles/{roleId}", true, options: options);
 
     /// <summary>
-    /// Get all channels in the guild.
+    /// Gets the channels of a guild.
     /// </summary>
     /// <remarks>
     /// Requires <see cref="ChannelPermissions.ViewChannel"/>.
@@ -1914,7 +1941,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     }
 
     /// <summary>
-    /// Create a channel in the guild.
+    /// Creates a channel in a guild.
     /// </summary>
     /// <remarks>
     /// Requires <see cref="GuildPermissions.ManageChannels"/>.
@@ -1926,49 +1953,84 @@ public class FluxerApiClient : FluxerBaseApiClient
         return Channel.Create(_client, json);
     }
 
-    /// <inheritdoc cref="CreateGuildChannelAsync(ulong, CreateGuildChannelRequest, RequestOptions?)" />
+    /// <summary>
+    /// Creates a category channel in a guild.
+    /// </summary>
+    /// <remarks>
+    /// Requires <see cref="GuildPermissions.ManageChannels"/>.
+    /// </remarks>
     public async Task<CategoryChannel> CreateCategoryChannelAsync(ulong guildId, CreateCategoryChannelRequest data, RequestOptions? options = null)
     {
         ChannelJson json = await SendRequestAsync<ChannelJson, CreateCategoryChannelRequest>(HttpMethod.Post, $"/guilds/{guildId}/channels", data, true, options: options);
         return (CategoryChannel)Channel.Create(_client, json);
     }
 
-    /// <inheritdoc cref="CreateGuildChannelAsync(ulong, CreateGuildChannelRequest, RequestOptions?)" />
+    /// <summary>
+    /// Creates a text channel in a guild.
+    /// </summary>
+    /// <remarks>
+    /// Requires <see cref="GuildPermissions.ManageChannels"/>.
+    /// </remarks>
     public async Task<TextChannel> CreateTextChannelAsync(ulong guildId, CreateTextChannelRequest data, RequestOptions? options = null)
     {
         ChannelJson json = await SendRequestAsync<ChannelJson, CreateTextChannelRequest>(HttpMethod.Post, $"/guilds/{guildId}/channels", data, true, options: options);
         return (TextChannel)Channel.Create(_client, json);
     }
 
-    /// <inheritdoc cref="CreateGuildChannelAsync(ulong, CreateGuildChannelRequest, RequestOptions?)" />
+    /// <summary>
+    /// Creates a voice channel in a guild.
+    /// </summary>
+    /// <remarks>
+    /// Requires <see cref="GuildPermissions.ManageChannels"/>.
+    /// </remarks>
     public async Task<VoiceChannel> CreateVoiceChannelAsync(ulong guildId, CreateVoiceChannelRequest data, RequestOptions? options = null)
     {
         ChannelJson json = await SendRequestAsync<ChannelJson, CreateVoiceChannelRequest>(HttpMethod.Post, $"/guilds/{guildId}/channels", data, true, options: options);
         return (VoiceChannel)Channel.Create(_client, json);
     }
 
-    /// <inheritdoc cref="CreateGuildChannelAsync(ulong, CreateGuildChannelRequest, RequestOptions?)" />
+    /// <summary>
+    /// Creates a link channel in a guild.
+    /// </summary>
+    /// <remarks>
+    /// Requires <see cref="GuildPermissions.ManageChannels"/>.
+    /// </remarks>
     public async Task<LinkChannel> CreateLinkChannelAsync(ulong guildId, CreateLinkChannelRequest data, RequestOptions? options = null)
     {
         ChannelJson json = await SendRequestAsync<ChannelJson, CreateLinkChannelRequest>(HttpMethod.Post, $"/guilds/{guildId}/channels", data, true, options: options);
         return (LinkChannel)Channel.Create(_client, json);
     }
 
-    /// <inheritdoc cref="CreateGuildChannelAsync(ulong, CreateGuildChannelRequest, RequestOptions?)" />
+    /// <summary>
+    /// Creates an announcement channel in a guild.
+    /// </summary>
+    /// <remarks>
+    /// Requires <see cref="GuildPermissions.ManageChannels"/>.
+    /// </remarks>
     public async Task<NewsChannel> CreateNewsChannelAsync(ulong guildId, CreateNewsChannelRequest data, RequestOptions? options = null)
     {
         ChannelJson json = await SendRequestAsync<ChannelJson, CreateNewsChannelRequest>(HttpMethod.Post, $"/guilds/{guildId}/channels", data, true, options: options);
         return (NewsChannel)Channel.Create(_client, json);
     }
 
-    /// <inheritdoc cref="CreateGuildChannelAsync(ulong, CreateGuildChannelRequest, RequestOptions?)" />
+    /// <summary>
+    /// Creates a forum channel in a guild.
+    /// </summary>
+    /// <remarks>
+    /// Requires <see cref="GuildPermissions.ManageChannels"/>.
+    /// </remarks>
     public async Task<ForumChannel> CreateForumChannelAsync(ulong guildId, CreateForumChannelRequest data, RequestOptions? options = null)
     {
         ChannelJson json = await SendRequestAsync<ChannelJson, CreateForumChannelRequest>(HttpMethod.Post, $"/guilds/{guildId}/channels", data, true, options: options);
         return (ForumChannel)Channel.Create(_client, json);
     }
 
-    /// <inheritdoc cref="CreateGuildChannelAsync(ulong, CreateGuildChannelRequest, RequestOptions?)" />
+    /// <summary>
+    /// Creates a media channel in a guild.
+    /// </summary>
+    /// <remarks>
+    /// Requires <see cref="GuildPermissions.ManageChannels"/>.
+    /// </remarks>
     public async Task<MediaChannel> CreateMediaChannelAsync(ulong guildId, CreateMediaChannelRequest data, RequestOptions? options = null)
     {
         ChannelJson json = await SendRequestAsync<ChannelJson, CreateMediaChannelRequest>(HttpMethod.Post, $"/guilds/{guildId}/channels", data, true, options: options);
@@ -1976,7 +2038,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     }
 
     /// <summary>
-    /// Update channel positions in a guild.
+    /// Updates the positions of channels in a guild.
     /// </summary>
     /// <remarks>
     /// Requires <see cref="GuildPermissions.ManageChannels"/>.
@@ -1985,14 +2047,14 @@ public class FluxerApiClient : FluxerBaseApiClient
         => await SendRequestAsync(HttpMethod.Patch, $"/guilds/{guildId}/channels", list, true, options: options);
 
     /// <summary>
-    /// Search the guild.
+    /// Searches a guild.
     /// </summary>
     [Obsolete("Fluxer removed this route. Use SearchGuildMessagesAsync.")]
     public async Task<TResponse> SearchGuildAsync<TRequest, TResponse>(ulong guildId, TRequest data, RequestOptions? options = null)
         => await SendRequestAsync<TResponse, TRequest>(HttpMethod.Post, $"/guilds/{guildId}/search", data, true, options: options);
 
     /// <summary>
-    /// Search audit logs in the guild.
+    /// Gets the audit log of a guild.
     /// </summary>
     /// <remarks>
     /// Requires <see cref="GuildPermissions.ViewAuditLog"/>.
@@ -2198,7 +2260,14 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// <summary>
     /// Search the guilds listed in discovery.
     /// </summary>
+    /// <param name="query">The text to search for.</param>
+    /// <param name="category">The ID of the discovery category to filter by.</param>
+    /// <param name="language">The language to filter by.</param>
+    /// <param name="tag">The tag to filter by.</param>
     /// <param name="sortBy">"member_count", "online_count" or "relevance".</param>
+    /// <param name="limit">The maximum number of guilds to return.</param>
+    /// <param name="offset">The number of matching guilds to skip.</param>
+    /// <param name="options">Request options, such as the audit log reason.</param>
     /// <returns><see cref="DiscoveryGuildListJson"/></returns>
     public async Task<DiscoveryGuildListJson> SearchDiscoveryGuildsAsync(string? query = null, int? category = null, string? language = null, string? tag = null,
         string? sortBy = null, int? limit = null, int? offset = null, RequestOptions? options = null)
@@ -2302,7 +2371,9 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// <summary>
     /// Search gifs.
     /// </summary>
+    /// <param name="query">The text to search for.</param>
     /// <param name="locale">The locale of the client, such as en-US.</param>
+    /// <param name="options">Request options, such as the audit log reason.</param>
     /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
     /// <returns>List of <see cref="Gif"/></returns>
     [UserTokenOnly]
@@ -2317,6 +2388,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// Get featured gifs and gif categories.
     /// </summary>
     /// <param name="locale">The locale of the client, such as en-US.</param>
+    /// <param name="options">Request options, such as the audit log reason.</param>
     /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
     /// <returns><see cref="GifFeaturedJson"/></returns>
     [UserTokenOnly]
@@ -2330,6 +2402,7 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// Get trending gifs.
     /// </summary>
     /// <param name="locale">The locale of the client, such as en-US.</param>
+    /// <param name="options">Request options, such as the audit log reason.</param>
     /// <returns>List of <see cref="Gif"/></returns>
     public async Task<IEnumerable<Gif>> GetGifsTrendingAsync(string? locale = null, RequestOptions? options = null)
     {
@@ -2341,7 +2414,9 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// <summary>
     /// Get search suggestions for a partial gif search.
     /// </summary>
+    /// <param name="query">The partial search text.</param>
     /// <param name="locale">The locale of the client, such as en-US.</param>
+    /// <param name="options">Request options, such as the audit log reason.</param>
     /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
     /// <returns>List of suggested search terms</returns>
     [UserTokenOnly]
@@ -2396,6 +2471,9 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// Change who can see a connection or where it is listed.
     /// </summary>
     /// <param name="type">"bluesky" or "domain".</param>
+    /// <param name="connectionId">The ID of the connection.</param>
+    /// <param name="request">The visibility and display order to set on the connection.</param>
+    /// <param name="options">Request options, such as the audit log reason.</param>
     /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
     [UserTokenOnly]
     public async Task UpdateConnectionAsync(string type, string connectionId, UpdateConnectionRequest request, RequestOptions? options = null)
@@ -2405,6 +2483,8 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// Remove a connection from your profile.
     /// </summary>
     /// <param name="type">"bluesky" or "domain".</param>
+    /// <param name="connectionId">The ID of the connection.</param>
+    /// <param name="options">Request options, such as the audit log reason.</param>
     /// <remarks>Only user accounts can call this. A bot token gets <see cref="UserTokenRequiredException"/>.</remarks>
     [UserTokenOnly]
     public async Task DeleteConnectionAsync(string type, string connectionId, RequestOptions? options = null)
@@ -2887,7 +2967,9 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// <summary>
     /// Delete every message the current user sent in a guild. Fluxer deletes them in the background.
     /// </summary>
+    /// <param name="guildId">The guild to delete the messages from.</param>
     /// <param name="verification">The password or MFA code user accounts must confirm with.</param>
+    /// <param name="options">Request options, such as the audit log reason.</param>
     public async Task DeleteOwnGuildMessagesAsync(ulong guildId, SudoVerificationRequest? verification = null, RequestOptions? options = null)
         => await SendRequestAsync(HttpMethod.Post, $"/users/@me/guilds/{guildId}/messages/bulk-delete-mine", verification ?? new SudoVerificationRequest(), true, options: options);
 
@@ -3446,6 +3528,21 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// <summary>
     /// Send message using the webhook token in a guild channel.
     /// </summary>
+    /// <param name="webhookId">The ID of the webhook, used in the route.</param>
+    /// <param name="token">The token of the webhook.</param>
+    /// <param name="content">The text of the message.</param>
+    /// <param name="embeds">The embeds to send with the message.</param>
+    /// <param name="username">Overrides the name of the webhook for this message.</param>
+    /// <param name="avatarUrl">Overrides the avatar of the webhook for this message.</param>
+    /// <param name="reference">The message to reply to.</param>
+    /// <param name="allowedMentions">The mentions the message may trigger.</param>
+    /// <param name="flags">The flags of the message.</param>
+    /// <param name="nonce">The nonce of the message.</param>
+    /// <param name="favoriteMediaId">The ID of a favorite media item to attach.</param>
+    /// <param name="tts">Whether the message is sent as text to speech.</param>
+    /// <param name="stickerIds">The IDs of the stickers to send.</param>
+    /// <param name="attachments">The attachments to send with the message.</param>
+    /// <param name="options">Request options, such as the audit log reason.</param>
     /// <param name="threadId">Thread in the webhook channel to send into.</param>
     /// <param name="threadName">Name of the post to create when the webhook belongs to a forum or media channel.</param>
     /// <param name="appliedTags">Tags to apply to the post created by <paramref name="threadName"/>.</param>
@@ -3463,7 +3560,11 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// <summary>
     /// Get a message previously sent by the webhook.
     /// </summary>
+    /// <param name="webhookId">The ID of the webhook, used in the route.</param>
+    /// <param name="token">The token of the webhook.</param>
+    /// <param name="messageId">The ID of the message to get.</param>
     /// <param name="threadId">Thread in the webhook channel the message was sent in.</param>
+    /// <param name="options">Request options, such as the audit log reason.</param>
     /// <returns><see cref="Message"/></returns>
     public async Task<Message> GetWebhookMessageAsync(ulong webhookId, string token, ulong messageId, ulong? threadId = null, RequestOptions? options = null)
     {
@@ -3474,6 +3575,10 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// <summary>
     /// Delete a webhook message using the webhook token.
     /// </summary>
+    /// <param name="webhookId">The ID of the webhook, used in the route.</param>
+    /// <param name="token">The token of the webhook.</param>
+    /// <param name="messageId">The ID of the message to delete.</param>
+    /// <param name="options">Request options, such as the audit log reason.</param>
     /// <param name="threadId">Thread in the webhook channel the message was sent in.</param>
     public async Task DeleteWebhookMessageAsync(ulong webhookId, string token, ulong messageId, RequestOptions? options = null, ulong? threadId = null)
     {
@@ -3483,6 +3588,19 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// <summary>
     /// Modify a webhook message using the webhook token.
     /// </summary>
+    /// <param name="webhookId">The ID of the webhook, used in the route.</param>
+    /// <param name="token">The token of the webhook.</param>
+    /// <param name="messageId">The ID of the message to edit.</param>
+    /// <param name="content">The text of the message.</param>
+    /// <param name="embeds">The embeds of the message.</param>
+    /// <param name="reference">The message to reply to.</param>
+    /// <param name="allowedMentions">The mentions the message may trigger.</param>
+    /// <param name="flags">The flags of the message.</param>
+    /// <param name="nonce">The nonce of the message.</param>
+    /// <param name="favoriteMediaId">The ID of a favorite media item to attach.</param>
+    /// <param name="stickerIds">The IDs of the stickers on the message.</param>
+    /// <param name="attachments">The attachments of the message.</param>
+    /// <param name="options">Request options, such as the audit log reason.</param>
     /// <param name="threadId">Thread in the webhook channel the message was sent in.</param>
     /// <returns><see cref="Message"/></returns>
     public async Task<Message> EditWebhookMessageAsync(ulong webhookId, string token, ulong messageId, string? content = null, List<EmbedRequest>? embeds = null,
@@ -3509,6 +3627,21 @@ public class FluxerApiClient : FluxerBaseApiClient
     /// <summary>
     /// Send message using the webhook token in a guild channel and wait for response message.
     /// </summary>
+    /// <param name="webhookId">The ID of the webhook, used in the route.</param>
+    /// <param name="token">The token of the webhook.</param>
+    /// <param name="content">The text of the message.</param>
+    /// <param name="embeds">The embeds to send with the message.</param>
+    /// <param name="username">Overrides the name of the webhook for this message.</param>
+    /// <param name="avatarUrl">Overrides the avatar of the webhook for this message.</param>
+    /// <param name="reference">The message to reply to.</param>
+    /// <param name="allowedMentions">The mentions the message may trigger.</param>
+    /// <param name="flags">The flags of the message.</param>
+    /// <param name="nonce">The nonce of the message.</param>
+    /// <param name="favoriteMediaId">The ID of a favorite media item to attach.</param>
+    /// <param name="tts">Whether the message is sent as text to speech.</param>
+    /// <param name="stickerIds">The IDs of the stickers to send.</param>
+    /// <param name="attachments">The attachments to send with the message.</param>
+    /// <param name="options">Request options, such as the audit log reason.</param>
     /// <param name="threadId">Thread in the webhook channel to send into.</param>
     /// <param name="threadName">Name of the post to create when the webhook belongs to a forum or media channel.</param>
     /// <param name="appliedTags">Tags to apply to the post created by <paramref name="threadName"/>.</param>

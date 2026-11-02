@@ -25,13 +25,17 @@ public class Emoji : Entity, IEmoji
         return Name;
     }
 
-    /// <inheritdoc />
+    /// <summary>
+    /// Creates a unicode emoji from its text.
+    /// </summary>
     public Emoji(string name) : base(null)
     {
         Name = name;
     }
 
-    /// <inheritdoc />
+    /// <summary>
+    /// Creates a custom emoji from its ID, name and animation.
+    /// </summary>
     public Emoji(ulong id, string name, bool isAnimated = false) : base(null)
     {
         Name = name;
@@ -47,7 +51,7 @@ public class Emoji : Entity, IEmoji
     /// <summary>
     /// Creates a unicode emoji.
     /// </summary>
-    /// <exception cref="ArgumentException">The text is empty.</exception>
+    /// <exception cref="ArgumentException">The text is empty or only whitespace.</exception>
     public static Emoji FromUnicode(string emoji)
     {
         if (string.IsNullOrWhiteSpace(emoji))
@@ -56,12 +60,12 @@ public class Emoji : Entity, IEmoji
     }
 
     /// <summary>
-    /// Creates a custom emoji from its name and id.
+    /// Creates a custom emoji from its name and ID.
     /// </summary>
     public static Emoji FromCustom(string name, ulong id, bool animated = false) => new(id, name, animated);
 
     /// <summary>
-    /// Reads a custom emoji from its message markup.
+    /// Reads a custom emoji from its message markup, such as <c>&lt;:name:id&gt;</c>.
     /// </summary>
     public static bool TryParseCustom(string? text, out Emoji emoji)
     {
@@ -85,8 +89,11 @@ public class Emoji : Entity, IEmoji
     }
 
     /// <summary>
-    /// Reads a custom emoji, or a unicode emoji.
+    /// Reads a custom emoji or a unicode emoji from text, and returns whether the text was an emoji.
     /// </summary>
+    /// <remarks>
+    /// Text that contains whitespace or only ASCII characters is not read as a unicode emoji.
+    /// </remarks>
     public static bool TryParse(string? text, out Emoji emoji)
     {
         if (TryParseCustom(text, out emoji))
@@ -148,9 +155,8 @@ public class Emoji : Entity, IEmoji
     }
 
     /// <summary>
-    /// Create a Emoji object from json.
+    /// Creates an emoji from JSON.
     /// </summary>
-    /// <returns><see cref="Emoji"/></returns>
     public static Emoji Create(FluxerBaseClient client, EmojiJson json)
     {
         Emoji data = new Emoji(client);

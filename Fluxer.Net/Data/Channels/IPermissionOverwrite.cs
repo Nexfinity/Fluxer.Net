@@ -1,24 +1,27 @@
 ﻿namespace Fluxer.Net;
 
+/// <summary>
+/// A permission overwrite for a role or member in a channel.
+/// </summary>
 public interface IPermissionOverwrite
 {
     /// <summary>
-    /// The unique identifier for the role or user this overwrite applies to.
+    /// The ID of the role or member the overwrite applies to.
     /// </summary>
     ulong Id { get; }
 
     /// <summary>
-    ///  The type of overwrite (0 = role, 1 = member)
+    /// The kind of target the overwrite applies to.
     /// </summary>
     PermissionOverwriteType Type { get; }
 
     /// <summary>
-    /// The bitwise value of allowed permissions.
+    /// The permissions the overwrite allows.
     /// </summary>
     ChannelPermissions Allow { get; }
 
     /// <summary>
-    /// The bitwise value of denied permissions.
+    /// The permissions the overwrite denies.
     /// </summary>
     ChannelPermissions Deny { get; }
 }

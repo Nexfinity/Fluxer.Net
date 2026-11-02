@@ -5,8 +5,14 @@ using System.Security.Claims;
 
 namespace Fluxer.Net.OAuth;
 
+/// <summary>
+/// The options of the Fluxer sign-in handler.
+/// </summary>
 public class FluxerOAuthOptions : OAuthOptions
 {
+    /// <summary>
+    /// Creates options that use the main Fluxer instance, map the user's claims and request the identify scope.
+    /// </summary>
     public FluxerOAuthOptions()
     {
         ClaimsIssuer = FluxerOAuthDefaults.Issuer;
@@ -27,12 +33,17 @@ public class FluxerOAuthOptions : OAuthOptions
         Scope.Add("identify");
     }
 
+    /// <summary>
+    /// The prompt value sent with the authorization request. Not sent when null or empty.
+    /// </summary>
     public string? Prompt { get; set; }
 
     /// <summary>
-    /// Points the sign in at a self-hosted instance's API, such as <c>https://api.example.org</c> or
+    /// Points the sign in at an instance's API, such as <c>https://api.example.org</c> or
     /// <c>https://api.example.org/v1</c>.
     /// </summary>
+    /// <param name="apiUrl">The instance's public API URL.</param>
+    /// <returns>These options.</returns>
     public FluxerOAuthOptions UseInstance(string apiUrl)
     {
         string api = apiUrl.Trim().TrimEnd('/');
@@ -44,10 +55,19 @@ public class FluxerOAuthOptions : OAuthOptions
         return this;
     }
 
+    /// <summary>
+    /// Whether to request the email scope.
+    /// </summary>
     public bool EmailScope { get; set; }
 
+    /// <summary>
+    /// Whether to request the guilds scope.
+    /// </summary>
     public bool GuildsScope { get; set; }
 
+    /// <summary>
+    /// Whether to request the connections scope.
+    /// </summary>
     public bool ConnectionsScope { get; set; }
 }
 #endif

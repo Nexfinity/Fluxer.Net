@@ -1,23 +1,37 @@
 ﻿namespace Fluxer.Net.Commands;
 
+/// <summary>
+/// Requires the user to hold a guild or channel permission before the command executes.
+/// </summary>
+/// <remarks>
+/// When <see cref="CommandServiceConfig.OwnerBypassPermissions"/> is set, the bot owners pass this check.
+/// </remarks>
 [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = true, Inherited = true)]
 public class RequireUserPermissionAttribute : PreconditionAttribute
 {
     /// <summary>
-    /// Guild/Group permission to check for.
+    /// The guild permission the user must hold, or null when a channel permission is checked.
     /// </summary>
     public GuildPermission? Guild { get; }
 
     /// <summary>
-    /// Channel permission to check for.
+    /// The channel permission the user must hold, or null when a guild permission is checked.
     /// </summary>
     public ChannelPermission? Channel { get; }
 
+    /// <summary>
+    /// Creates a new <see cref="RequireUserPermissionAttribute"/> that checks a guild permission.
+    /// </summary>
+    /// <param name="perm">The guild permission the user must hold.</param>
     public RequireUserPermissionAttribute(GuildPermission perm)
     {
         Guild = perm;
     }
 
+    /// <summary>
+    /// Creates a new <see cref="RequireUserPermissionAttribute"/> that checks a channel permission.
+    /// </summary>
+    /// <param name="perm">The channel permission the user must hold.</param>
     public RequireUserPermissionAttribute(ChannelPermission perm)
     {
         Channel = perm;

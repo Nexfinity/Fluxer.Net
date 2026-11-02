@@ -52,10 +52,10 @@ public class CommandContext : ICommandContext
     CommandInfo ICommandContext.Command { get => Command; set => Command = value; }
 
     /// <summary>
-    ///     Initializes a new <see cref="CommandContext" /> class with the provided client and message.
+    /// Creates a context for a message received by the given client.
     /// </summary>
-    /// <param name="client">The underlying client.</param>
-    /// <param name="message">The underlying message.</param>
+    /// <param name="client">The client that received the message.</param>
+    /// <param name="message">The message that triggered the command.</param>
     public CommandContext(FluxerClient client, SocketMessage message)
     {
         Client = client;

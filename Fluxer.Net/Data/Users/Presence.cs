@@ -1,6 +1,8 @@
 ﻿namespace Fluxer.Net;
 
-/// <inheritdoc />
+/// <summary>
+/// The status and activities of a user.
+/// </summary>
 public class Presence : Entity, IPresence
 {
     /// <inheritdoc />
@@ -28,9 +30,11 @@ public class Presence : Entity, IPresence
     }
 
     /// <summary>
-    /// Create a Presence object from json.
+    /// Creates a presence from its JSON data.
     /// </summary>
-    /// <returns><see cref="Presence"/></returns>
+    /// <param name="client">The client the presence belongs to.</param>
+    /// <param name="json">The presence data.</param>
+    /// <returns>The presence.</returns>
     public static Presence Create(FluxerBaseClient client, PresenceJson json)
     {
         Presence data = new Presence(client);

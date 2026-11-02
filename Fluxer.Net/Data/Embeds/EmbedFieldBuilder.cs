@@ -3,18 +3,17 @@ using Fluxer.Net.Rest;
 namespace Fluxer.Net;
 
 /// <summary>
-/// A builder for creating embed fields with validation.
-/// Based on Fluxer.Net's EmbedFieldBuilder implementation.
+/// A builder for a field of an embed.
 /// </summary>
 public class EmbedFieldBuilder
 {
     /// <summary>
-    /// Maximum length of the field name.
+    /// The maximum length of the field name.
     /// </summary>
     public static int MaxFieldNameLength { get; } = 256;
 
     /// <summary>
-    /// Maximum length of the field value.
+    /// The maximum length of the field value.
     /// </summary>
     public static int MaxFieldValueLength { get; } = 1024;
 
@@ -89,8 +88,8 @@ public class EmbedFieldBuilder
     /// <summary>
     /// Builds the embed field.
     /// </summary>
-    /// <returns>A new <see cref="EmbedFieldJson"/> object.</returns>
-    /// <exception cref="InvalidOperationException">Name or Value is null or empty.</exception>
+    /// <returns>A new <see cref="EmbedFieldRequest"/> object.</returns>
+    /// <exception cref="InvalidOperationException">The name or value is null, empty or only whitespace.</exception>
     public EmbedFieldRequest Build()
     {
         if (string.IsNullOrWhiteSpace(Name))

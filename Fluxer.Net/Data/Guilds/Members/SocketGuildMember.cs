@@ -3,7 +3,7 @@
 namespace Fluxer.Net;
 
 /// <summary>
-/// Cached Guild Member.
+/// A guild member cached from gateway events.
 /// </summary>
 public class SocketGuildMember : GuildMember
 {
@@ -12,6 +12,9 @@ public class SocketGuildMember : GuildMember
     /// </summary>
     public SocketGuild Guild { get; internal set; }
 
+    /// <summary>
+    /// The voice states of the member, keyed by connection ID or session ID.
+    /// </summary>
     public ConcurrentDictionary<string, SocketVoiceState> VoiceStates { get; private set; } = new ConcurrentDictionary<string, SocketVoiceState>();
 
     internal override GuildMember Snapshot()
@@ -22,11 +25,14 @@ public class SocketGuildMember : GuildMember
     }
 
     /// <summary>
-    /// List of roles the member is part of.
+    /// The cached roles the member has.
     /// </summary>
     public IEnumerable<SocketRole> Roles
             => RoleIds.Select(Guild.Roles.GetValueOrDefault).Where(x => x != null);
 
+    /// <summary>
+    /// The guild permissions of the member, from the @everyone role and the member's roles. All permissions when the member is the owner or an administrator.
+    /// </summary>
     public GuildPermissions GuildPermissions => GuildPermissions.Resolve(this);
 
     /// <summary>
@@ -44,8 +50,16 @@ public class SocketGuildMember : GuildMember
         }
     }
 
+    /// <summary>
+    /// Whether the member's resolved <see cref="GuildPermissions"/> include the permission.
+    /// </summary>
+    /// <param name="permission">The permission to check.</param>
     public bool HasPermission(GuildPermission permission) => GuildPermissions.Resolve(this).Has(permission);
 
+    /// <summary>
+    /// Gets the member's permissions in a channel, with the channel's permission overwrites applied.
+    /// </summary>
+    /// <param name="channel">The channel to resolve the permissions for.</param>
     public ChannelPermissions GetPermissions(Channel channel)
     {
         if (Id == Guild.OwnerId)
@@ -101,7 +115,7 @@ public class SocketGuildMember : GuildMember
     }
 
     /// <summary>
-    /// Create a SocketGuildMember object from json.
+    /// Creates a cached member from its JSON representation.
     /// </summary>
     /// <returns><see cref="SocketGuildMember"/></returns>
     public static new SocketGuildMember Create(FluxerBaseClient client, GuildMemberJson json)

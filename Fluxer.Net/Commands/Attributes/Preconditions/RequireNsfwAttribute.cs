@@ -1,5 +1,8 @@
 ﻿namespace Fluxer.Net.Commands;
 
+/// <summary>
+/// Requires the command to run in an NSFW channel.
+/// </summary>
 [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = true, Inherited = true)]
 public class RequireNsfwAttribute : PreconditionAttribute
 {

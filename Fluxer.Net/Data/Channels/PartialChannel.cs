@@ -13,7 +13,7 @@ public class PartialChannel : Entity, IPartialChannel
     public string Mention => $"<#{Id}>";
 
     /// <summary>
-    /// Returns the name.
+    /// Returns the channel name, or the ID when the channel has no name.
     /// </summary>
     public override string ToString() => Name ?? Id.ToString();
 
@@ -31,6 +31,9 @@ public class PartialChannel : Entity, IPartialChannel
 
     }
 
+    /// <summary>
+    /// Creates a partial channel from JSON.
+    /// </summary>
     public static PartialChannel Create(FluxerBaseClient client, PartialChannelJson json)
     {
         PartialChannel data = new PartialChannel(client);

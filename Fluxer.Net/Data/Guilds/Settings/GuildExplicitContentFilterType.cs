@@ -1,7 +1,7 @@
 namespace Fluxer.Net;
 
 /// <summary>
-/// Represents the explicit content filter level for a guild.
+/// The explicit content filter level for a guild.
 /// </summary>
 public enum GuildExplicitContentFilterType
 {

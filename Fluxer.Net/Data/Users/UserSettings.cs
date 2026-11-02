@@ -1,6 +1,8 @@
 ﻿namespace Fluxer.Net;
 
-/// <inheritdoc />
+/// <summary>
+/// The settings of a user, such as language, theme and display options.
+/// </summary>
 public class UserSettings : Entity, IUserSettings
 {
     /// <inheritdoc />
@@ -84,9 +86,11 @@ public class UserSettings : Entity, IUserSettings
     }
 
     /// <summary>
-    /// Create a UserSettings object from json.
+    /// Creates settings from their JSON data.
     /// </summary>
-    /// <returns><see cref="UserSettings"/></returns>
+    /// <param name="client">The client the settings belong to.</param>
+    /// <param name="json">The settings data.</param>
+    /// <returns>The settings.</returns>
     public static UserSettings Create(FluxerBaseClient client, UserSettingsJson json)
     {
         UserSettings data = new UserSettings(client);

@@ -66,7 +66,7 @@ public class Attachment : Entity, IAttachment
     internal ulong ChannelId { get; set; }
 
     /// <summary>
-    /// Get the attachment's url.
+    /// Gets the URL the attachment is served from, built from the media URL, channel, id and file name.
     /// </summary>
     public string? GetAttachmentUrl()
     {
@@ -79,9 +79,8 @@ public class Attachment : Entity, IAttachment
     }
 
     /// <summary>
-    /// Create a Attachment object from json.
+    /// Creates an attachment from JSON, in a channel.
     /// </summary>
-    /// <returns><see cref="Attachment"/></returns>
     public static Attachment Create(FluxerBaseClient client, AttachmentJson json, ulong channelId)
     {
         Attachment data = new Attachment(client)

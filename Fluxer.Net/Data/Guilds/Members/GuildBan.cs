@@ -1,5 +1,8 @@
 ﻿namespace Fluxer.Net;
 
+/// <summary>
+/// A ban of a user from a guild.
+/// </summary>
 public class GuildBan : Entity, IGuildBan
 {
     /// <inheritdoc />
@@ -25,7 +28,7 @@ public class GuildBan : Entity, IGuildBan
     }
 
     /// <summary>
-    /// Create a GuildBan object from json.
+    /// Creates a ban from its JSON representation.
     /// </summary>
     /// <returns><see cref="GuildBan"/></returns>
     public static GuildBan Create(FluxerBaseClient client, GuildBanJson json)

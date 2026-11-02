@@ -72,7 +72,7 @@ public class Webhook : Entity, IWebhook
     }
 
     /// <summary>
-    /// Create a Webhook object from json.
+    /// Creates a webhook from its JSON.
     /// </summary>
     /// <returns><see cref="Webhook"/></returns>
     public static Webhook Create(FluxerBaseClient client, WebhookJson json)

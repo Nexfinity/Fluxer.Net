@@ -1,6 +1,8 @@
 ﻿namespace Fluxer.Net;
 
-/// <inheritdoc />
+/// <summary>
+/// A user account, with its name, avatar and flags.
+/// </summary>
 public class User : Entity, IUser
 {
     /// <inheritdoc />
@@ -81,9 +83,11 @@ public class User : Entity, IUser
     }
 
     /// <summary>
-    /// Create a User object from json.
+    /// Creates a user from its JSON data.
     /// </summary>
-    /// <returns><see cref="User"/></returns>
+    /// <param name="client">The client the user belongs to.</param>
+    /// <param name="json">The user data.</param>
+    /// <returns>The user.</returns>
     public static User Create(FluxerBaseClient client, UserJson json)
     {
         User data = new User(client);

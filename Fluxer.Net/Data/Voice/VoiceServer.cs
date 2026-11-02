@@ -27,9 +27,8 @@ public class VoiceServer : Entity, IVoiceServer
     }
 
     /// <summary>
-    /// Create a VoiceServer object from json.
+    /// Creates a voice server from JSON.
     /// </summary>
-    /// <returns><see cref="VoiceServer"/></returns>
     public static VoiceServer Create(FluxerBaseClient client, VoiceServerJson json)
     {
         VoiceServer data = new VoiceServer(client);

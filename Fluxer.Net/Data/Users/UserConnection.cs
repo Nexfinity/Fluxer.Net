@@ -1,6 +1,8 @@
 ﻿namespace Fluxer.Net;
 
-/// <inheritdoc />
+/// <summary>
+/// An account or domain that a user has connected to their profile.
+/// </summary>
 public class UserConnection : Entity, IUserConnection
 {
     /// <inheritdoc />
@@ -27,9 +29,11 @@ public class UserConnection : Entity, IUserConnection
     }
 
     /// <summary>
-    /// Create a UserConnection object from json.
+    /// Creates a connection from its JSON data.
     /// </summary>
-    /// <returns><see cref="UserConnection"/></returns>
+    /// <param name="client">The client the connection belongs to.</param>
+    /// <param name="json">The connection data.</param>
+    /// <returns>The connection.</returns>
     public static UserConnection Create(FluxerBaseClient client, UserConnectionJson json)
     {
         UserConnection data = new UserConnection(client);

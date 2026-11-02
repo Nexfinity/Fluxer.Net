@@ -2,6 +2,9 @@
 
 namespace Fluxer.Net.Rest;
 
+/// <summary>
+/// Request body for applying a guild to discovery or updating its discovery application.
+/// </summary>
 public class DiscoveryApplicationRequest
 {
     /// <summary>

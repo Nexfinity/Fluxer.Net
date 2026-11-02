@@ -68,7 +68,7 @@ public class GuildMemberJson : IGuildMember
     public GuildMemberProfileFlags? ProfileFlags { get; set; }
 
     /// <summary>
-    /// Whether replies to the member mention them by default in this guild.
+    /// The reply mention preference of the member in this guild.
     /// </summary>
     [JsonProperty("mention_flags")]
     public MentionReplyPreference? MentionFlags { get; set; }

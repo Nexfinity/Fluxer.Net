@@ -4,8 +4,8 @@ using Newtonsoft.Json.Linq;
 namespace Fluxer.Net.Gateway;
 
 /// <summary>
-/// A base for stores backed by a key-value database such as Redis. It serializes entries with <see cref="FluxerJson"/>,
-/// keeps every key under a namespace and tracks the keys of each guild and channel. A backend provides six string operations.
+/// A base for stores backed by a key-value database. It serializes entries with <see cref="FluxerJson"/>, keeps every
+/// key under a namespace and tracks the keys of each guild and channel. A backend implements six operations on keys and sets.
 /// </summary>
 /// <remarks>
 /// <para>Keys look like <c>{namespace}:e:{key}</c>, the index of a guild or channel is the set <c>{namespace}:s:{id}</c>,

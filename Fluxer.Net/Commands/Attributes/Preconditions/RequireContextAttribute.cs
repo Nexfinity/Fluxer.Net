@@ -1,15 +1,22 @@
 ﻿namespace Fluxer.Net.Commands;
 
+/// <summary>
+/// Requires the command to run in one of the given channel types.
+/// </summary>
 [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false, Inherited = true)]
 public class RequireContextAttribute : PreconditionAttribute
 {
+    /// <summary>
+    /// Creates a new <see cref="RequireContextAttribute"/> with the given channel types.
+    /// </summary>
+    /// <param name="contextTypes">The channel types the command may run in.</param>
     public RequireContextAttribute(ContextType contextTypes)
     {
         Contexts = contextTypes;
     }
 
     /// <summary>
-    /// Gets the context required to execute the command.
+    /// The channel types the command may run in.
     /// </summary>
     public ContextType Contexts { get; }
 
@@ -33,7 +40,7 @@ public class RequireContextAttribute : PreconditionAttribute
 }
 
 /// <summary>
-/// Where a command may run. Combine values to allow several.
+/// The channel types a command may run in. Values can be combined.
 /// </summary>
 [Flags]
 public enum ContextType
@@ -49,12 +56,12 @@ public enum ContextType
     Group = 0x02,
 
     /// <summary>
-    /// A channel in a community.
+    /// A channel in a guild.
     /// </summary>
     Community = 0x04,
 
     /// <summary>
-    /// The same as <see cref="Community" />, named after the guild ids the API uses.
+    /// The same value as <see cref="Community"/>.
     /// </summary>
     Guild = Community
 }

@@ -1,5 +1,8 @@
 ﻿namespace Fluxer.Net;
 
+/// <summary>
+/// The notification and mute settings of a user for one guild.
+/// </summary>
 public class UserGuildSettings : Entity, IUserGuildSettings
 {
     /// <inheritdoc />
@@ -45,9 +48,11 @@ public class UserGuildSettings : Entity, IUserGuildSettings
     }
 
     /// <summary>
-    /// Create a UserGuildSettings object from json.
+    /// Creates guild settings from their JSON data.
     /// </summary>
-    /// <returns><see cref="UserGuildSettings"/></returns>
+    /// <param name="client">The client the settings belong to.</param>
+    /// <param name="json">The settings data.</param>
+    /// <returns>The guild settings.</returns>
     public static UserGuildSettings Create(FluxerBaseClient client, UserGuildSettingsJson json)
     {
         UserGuildSettings data = new UserGuildSettings(client);

@@ -1,5 +1,8 @@
 ﻿namespace Fluxer.Net;
 
+/// <summary>
+/// A channel with its ID, name and type.
+/// </summary>
 public interface IPartialChannel : ISnowflake, IMentionable
 {
     /// <summary>
@@ -13,7 +16,7 @@ public interface IPartialChannel : ISnowflake, IMentionable
     ChannelType Type { get; }
 
     /// <summary>
-    /// Can you send messages in this channel.
+    /// Whether messages can be sent in this channel.
     /// </summary>
     bool IsTextable { get; }
 }

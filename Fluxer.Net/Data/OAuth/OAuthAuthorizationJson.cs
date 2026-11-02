@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 namespace Fluxer.Net;
 
 /// <summary>
-/// An application you authorized through OAuth2.
+/// An OAuth2 authorization granted to an application.
 /// </summary>
 public class OAuthAuthorizationJson
 {

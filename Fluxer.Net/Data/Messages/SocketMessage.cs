@@ -2,8 +2,14 @@
 
 namespace Fluxer.Net;
 
+/// <summary>
+/// A message received in a private channel.
+/// </summary>
 public class SocketPrivateMessage : SocketMessage
 {
+    /// <summary>
+    /// The channel the message was sent in, as a cacheable value.
+    /// </summary>
     public new Cacheable<Channel> Channel { get; private set; }
 
     internal SocketPrivateMessage(FluxerBaseClient client) : base(client)
@@ -12,9 +18,8 @@ public class SocketPrivateMessage : SocketMessage
     }
 
     /// <summary>
-    /// Create a SocketMessage object from json.
+    /// Creates a private message from gateway data.
     /// </summary>
-    /// <returns><see cref="SocketMessage"/></returns>
     internal static SocketPrivateMessage Create(FluxerBaseClient client, MessageGatewayData json, Cacheable<Channel> channel)
     {
         SocketPrivateMessage data = new SocketPrivateMessage(client)
@@ -36,16 +41,34 @@ public class SocketPrivateMessage : SocketMessage
     }
 }
 
+/// <summary>
+/// A message received through the gateway.
+/// </summary>
 public class SocketMessage : Message
 {
+    /// <summary>
+    /// The channel the message was sent in.
+    /// </summary>
     public Channel Channel { get; internal set; }
 
+    /// <summary>
+    /// The author of the message, or null when it is not sent.
+    /// </summary>
     public new SocketUser? Author { get; internal set; }
 
+    /// <summary>
+    /// The guild the message was sent in, or null for a private message.
+    /// </summary>
     public SocketGuild? Guild { get; private set; }
 
+    /// <summary>
+    /// The guild member who sent the message, or null when it is not known.
+    /// </summary>
     public SocketGuildMember? Member { get; internal set; }
 
+    /// <summary>
+    /// Gets a link that opens the message in the web app.
+    /// </summary>
     public string GetJumpUrl() => this.GetJumpUrl(Channel.GuildId);
 
     internal SocketMessage(FluxerBaseClient client) : base(client)
@@ -54,9 +77,8 @@ public class SocketMessage : Message
     }
 
     /// <summary>
-    /// Create a SocketMessage object from json.
+    /// Creates a message from gateway data, with its channel and guild.
     /// </summary>
-    /// <returns><see cref="SocketMessage"/></returns>
     internal static SocketMessage Create(FluxerBaseClient client, MessageGatewayData json, Channel channel, SocketGuild guild)
     {
         SocketMessage data = new SocketMessage(client)
@@ -85,9 +107,8 @@ public class SocketMessage : Message
     /// Creates a local copy of this message as if another member had sent it with other content, for example to run
     /// a command on that member's behalf. The copy only exists in memory and is never sent to Fluxer.
     /// </summary>
-    /// <param name="member">Member the copy is sent by.</param>
-    /// <param name="content">Content of the copy.</param>
-    /// <returns><see cref="SocketMessage"/></returns>
+    /// <param name="member">The member the copy is sent by.</param>
+    /// <param name="content">The content of the copy.</param>
     public SocketMessage CopyAs(SocketGuildMember member, string content)
     {
         SocketMessage copy = (SocketMessage)MemberwiseClone();

@@ -1,10 +1,12 @@
 ﻿namespace Fluxer.Net;
 
-/// <inheritdoc />
+/// <summary>
+/// The profile of a user, with the bio, pronouns and banner.
+/// </summary>
 public class UserProfile : Entity, IUserProfile
 {
     /// <summary>
-    /// User's id for the profile.
+    /// The id of the user the profile belongs to.
     /// </summary>
     public ulong UserId { get; private set; }
 
@@ -24,8 +26,9 @@ public class UserProfile : Entity, IUserProfile
     public int? BannerColor { get; private set; }
 
     /// <summary>
-    /// Get the user's banner.
+    /// Gets the URL of the user's banner, or null when the user has none.
     /// </summary>
+    /// <param name="size">The requested image size.</param>
     public string? GetBannerUrl(int size = 600)
     {
         if (string.IsNullOrEmpty(BannerHash))
@@ -40,9 +43,12 @@ public class UserProfile : Entity, IUserProfile
     }
 
     /// <summary>
-    /// Create a UserProfile object from json.
+    /// Creates a profile from its JSON data.
     /// </summary>
-    /// <returns><see cref="UserProfile"/></returns>
+    /// <param name="client">The client the profile belongs to.</param>
+    /// <param name="json">The profile data.</param>
+    /// <param name="userId">The id of the user the profile belongs to.</param>
+    /// <returns>The profile.</returns>
     public static UserProfile Create(FluxerBaseClient client, UserProfileJson json, ulong userId)
     {
         UserProfile data = new UserProfile(client)

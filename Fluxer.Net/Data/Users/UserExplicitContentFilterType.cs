@@ -1,7 +1,7 @@
 namespace Fluxer.Net;
 
 /// <summary>
-/// Represents the explicit content filter level for a user's direct messages.
+/// The explicit content filter level for a user's direct messages.
 /// </summary>
 public enum UserExplicitContentFilterType
 {

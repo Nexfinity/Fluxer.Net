@@ -16,7 +16,7 @@ public class Role : Entity, IRole
     public string Mention => $"<@&{Id}>";
 
     /// <summary>
-    /// Returns the name.
+    /// Returns the name, or the ID when the name is not set.
     /// </summary>
     public override string ToString() => Name ?? Id.ToString();
 
@@ -39,9 +39,9 @@ public class Role : Entity, IRole
     public string? IconHash { get; private set; }
 
     /// <summary>
-    /// Get the role icon url, or null when the role has no icon image.
+    /// Gets the role icon URL, or null when the role has no icon.
     /// </summary>
-    /// <param name="size">Image size between 16 and 512.</param>
+    /// <param name="size">The size of the image.</param>
     public string? GetIconUrl(int size = 64)
         => string.IsNullOrEmpty(IconHash) ? null : $"{Client.Config.MediaUrl}/role-icons/{Id}/{IconHash}.webp?size={size}";
 
@@ -60,7 +60,7 @@ public class Role : Entity, IRole
     }
 
     /// <summary>
-    /// Create a Role object from json.
+    /// Creates a role from its JSON representation in the given guild.
     /// </summary>
     /// <returns><see cref="Role"/></returns>
     public static Role Create(FluxerBaseClient client, RoleJson json, ulong guildId)

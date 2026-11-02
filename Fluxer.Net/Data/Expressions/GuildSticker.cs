@@ -4,7 +4,7 @@
 public class GuildSticker : Sticker, IGuildSticker
 {
     /// <summary>
-    /// Guild id for this sticker.
+    /// The ID of the guild the sticker belongs to.
     /// </summary>
     public ulong GuildId { get; private set; }
 
@@ -44,9 +44,8 @@ public class GuildSticker : Sticker, IGuildSticker
     }
 
     /// <summary>
-    /// Create a GuildSticker object from json.
+    /// Creates a guild sticker from JSON.
     /// </summary>
-    /// <returns><see cref="GuildSticker"/></returns>
     public static GuildSticker Create(FluxerBaseClient client, GuildStickerJson json, ulong guildId)
     {
         GuildSticker data = new GuildSticker(client)

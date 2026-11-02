@@ -1,5 +1,8 @@
 ﻿namespace Fluxer.Net;
 
+/// <summary>
+/// A cached forum tag.
+/// </summary>
 public class SocketForumTag : ForumTag
 {
 
@@ -9,9 +12,8 @@ public class SocketForumTag : ForumTag
     }
 
     /// <summary>
-    /// Create a ForumTag object from json.
+    /// Creates a cached forum tag from JSON.
     /// </summary>
-    /// <returns><see cref="SocketForumTag"/></returns>
     public static SocketForumTag Create(FluxerBaseClient client, ForumTagJson json)
     {
         SocketForumTag data = new SocketForumTag(client);

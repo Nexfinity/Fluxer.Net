@@ -1,5 +1,8 @@
 ﻿namespace Fluxer.Net;
 
+/// <summary>
+/// A user signed in through OAuth2.
+/// </summary>
 public interface IFluxerOAuthUser
 {
     /// <summary>

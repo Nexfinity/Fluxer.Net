@@ -86,13 +86,13 @@ public class MessageJson : IMessage
     public MessageSnapshotJson[]? MessageSnapshots { get; set; }
 
     /// <summary>
-    /// The message this one replies to, or null when it isn't a reply or the replied-to message was deleted.
+    /// The message this one replies to, or null when this message is not a reply or the replied-to message was deleted.
     /// </summary>
     [JsonProperty("referenced_message")]
     public MessageJson? ReferencedMessage { get; set; }
 
     /// <summary>
-    /// Channels mentioned in the message that everyone in the guild can see.
+    /// The channels mentioned in the message that everyone in the guild can see.
     /// </summary>
     [JsonProperty("mention_channels")]
     public MessageChannelMention[]? MentionChannels { get; set; }

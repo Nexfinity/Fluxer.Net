@@ -1,27 +1,27 @@
 ﻿namespace Fluxer.Net;
 
 /// <summary>
-/// Exchange a refresh token for a new access token.
+/// The result of exchanging a refresh token for a new access token.
 /// </summary>
 public interface IFluxerOAuthRefreshToken
 {
     /// <summary>
-    /// New access token.
+    /// The new access token.
     /// </summary>
     string AccessToken { get; }
 
     /// <summary>
-    /// Token type.
+    /// The type of the token.
     /// </summary>
     string TokenType { get; }
 
     /// <summary>
-    /// Expires in 
+    /// The number of seconds until the access token expires.
     /// </summary>
     int ExpiresIn { get; }
 
     /// <summary>
-    /// New refresh token.
+    /// The new refresh token.
     /// </summary>
     string RefreshToken { get; }
 

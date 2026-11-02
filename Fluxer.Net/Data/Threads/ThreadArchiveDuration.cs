@@ -1,7 +1,7 @@
 ﻿namespace Fluxer.Net;
 
 /// <summary>
-/// The duration of time until a thread is locked.
+/// The time of inactivity after which a thread is archived.
 /// </summary>
 public enum ThreadArchiveDuration
 {

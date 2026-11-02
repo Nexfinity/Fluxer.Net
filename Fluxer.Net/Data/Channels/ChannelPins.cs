@@ -17,9 +17,8 @@ public class ChannelPins : Entity, IChannelPins
     }
 
     /// <summary>
-    /// Create a ChannelPins object from json.
+    /// Creates a page of channel pins from JSON.
     /// </summary>
-    /// <returns><see cref="ChannelPins"/></returns>
     public static ChannelPins Create(FluxerBaseClient client, ChannelPinsJson json)
     {
         ChannelPins data = new ChannelPins(client);

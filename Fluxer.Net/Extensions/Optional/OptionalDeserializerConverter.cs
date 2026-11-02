@@ -4,14 +4,20 @@ using System.Reflection;
 namespace Fluxer.Net;
 
 
+/// <summary>
+/// Converts <c>Optional&lt;T&gt;</c> values to and from JSON. A JSON null reads as an empty optional, and an empty
+/// optional writes as null.
+/// </summary>
 public class OptionalDeserializerConverter : JsonConverter
 {
+    /// <inheritdoc />
     public override bool CanConvert(Type objectType)
     {
         if (objectType == null) throw new ArgumentNullException(nameof(objectType));
         return objectType.IsGenericType && objectType.GetGenericTypeDefinition() == typeof(Optional<>);
     }
 
+    /// <inheritdoc />
     public override object? ReadJson(JsonReader reader, Type objectType, object? existingValue, JsonSerializer serializer)
     {
         if (reader == null) throw new ArgumentNullException(nameof(reader));
@@ -37,6 +43,7 @@ public class OptionalDeserializerConverter : JsonConverter
         return someMethod.Invoke(noneMethod, new[] { innerValue });
     }
 
+    /// <inheritdoc />
     public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
     {
         if (writer == null) throw new ArgumentNullException(nameof(writer));

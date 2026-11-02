@@ -1,12 +1,12 @@
 ﻿namespace Fluxer.Net;
 
 /// <summary>
-/// Object is mentionable.
+/// An object that can be mentioned in a message.
 /// </summary>
 public interface IMentionable
 {
     /// <summary>
-    /// Formatted mention string for this object.
+    /// The mention string that refers to the object.
     /// </summary>
     string Mention { get; }
 }

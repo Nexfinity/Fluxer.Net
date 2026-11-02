@@ -5,25 +5,25 @@ using System.Runtime.Serialization;
 namespace Fluxer.Net;
 
 /// <summary>
-/// Which mentions should be used when sending a message.
+/// The kinds of mention a message may ping.
 /// </summary>
 [JsonConverter(typeof(StringEnumConverter))]
 public enum AllowedMentionParseType
 {
     /// <summary>
-    /// Allow all user mentions.
+    /// Users can be mentioned.
     /// </summary>
     [EnumMember(Value = "users")]
     USERS,
 
     /// <summary>
-    /// Allow all role mentions.
+    /// Roles can be mentioned.
     /// </summary>
     [EnumMember(Value = "roles")]
     ROLES,
 
     /// <summary>
-    /// Allow everyone and here mentions.
+    /// @everyone and @here can be mentioned.
     /// </summary>
     [EnumMember(Value = "everyone")]
     EVERYONE

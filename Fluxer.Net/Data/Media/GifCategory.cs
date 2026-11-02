@@ -18,7 +18,7 @@ public class GifCategory : Entity, IGifCategory
     }
 
     /// <summary>
-    /// Create a GifCategory object from json.
+    /// Creates a GIF category from its JSON.
     /// </summary>
     /// <returns><see cref="GifCategory"/></returns>
     public static GifCategory Create(FluxerBaseClient client, GifCategoryJson json)

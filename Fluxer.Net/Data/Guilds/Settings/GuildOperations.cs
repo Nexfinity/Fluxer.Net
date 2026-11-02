@@ -1,5 +1,8 @@
 ﻿namespace Fluxer.Net;
 
+/// <summary>
+/// Guild operations that can be disabled, as a bit set.
+/// </summary>
 [Flags]
 public enum GuildOperations : ulong
 {

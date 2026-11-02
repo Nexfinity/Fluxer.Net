@@ -3,13 +3,12 @@ using Newtonsoft.Json;
 namespace Fluxer.Net.Extensions;
 
 /// <summary>
-/// Deserializes a JSON value as <see cref="ulong"/>, accepting both a raw JSON number
-/// and a quoted numeric string (e.g. <c>"8933636165184"</c>).
-/// The Fluxer gateway sends permission bitfields as quoted strings to avoid JavaScript
-/// integer precision loss, but the REST API may return them as plain numbers.
+/// Converts a <see cref="ulong"/> to and from JSON. Reading accepts a quoted numeric string or a number, and writing
+/// always writes a quoted string.
 /// </summary>
 public class StringUInt64Converter : JsonConverter<ulong>
 {
+    /// <inheritdoc />
     public override ulong ReadJson(JsonReader reader, Type objectType, ulong existingValue, bool hasExistingValue, JsonSerializer serializer)
     {
         if (reader.TokenType == JsonToken.String)
@@ -22,6 +21,7 @@ public class StringUInt64Converter : JsonConverter<ulong>
             $"Unexpected token type '{reader.TokenType}' when deserializing ulong at path '{reader.Path}'.");
     }
 
+    /// <inheritdoc />
     public override void WriteJson(JsonWriter writer, ulong value, JsonSerializer serializer)
         => writer.WriteValue(value.ToString());
 }

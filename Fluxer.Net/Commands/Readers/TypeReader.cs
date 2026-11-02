@@ -1,18 +1,18 @@
 namespace Fluxer.Net.Commands;
 
 /// <summary>
-///     Defines a reader class that parses user input into a specified type.
+/// The base class for a reader that parses raw command input into an object of a specific type.
 /// </summary>
 public abstract class TypeReader
 {
     /// <summary>
-    ///     Attempts to parse the <paramref name="input"/> into the desired type.
+    /// Parses the <paramref name="input"/> into the desired type.
     /// </summary>
     /// <param name="context">The context of the command.</param>
     /// <param name="input">The raw input of the command.</param>
     /// <param name="services">The service collection used for dependency injection.</param>
     /// <returns>
-    ///     A task that represents the asynchronous parsing operation. The task result contains the parsing result.
+    /// A task that represents the asynchronous parsing operation. The task result contains the parsing result.
     /// </returns>
     public abstract Task<TypeReaderResult> ReadAsync(ICommandContext context, string input, IServiceProvider services);
 }

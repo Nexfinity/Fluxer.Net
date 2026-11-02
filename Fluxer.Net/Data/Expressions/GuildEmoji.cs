@@ -10,7 +10,7 @@ public class GuildEmoji : Emoji, IGuildEmoji
     public new DateTimeOffset CreatedAt => SnowflakeUtils.FromSnowflake(Id);
 
     /// <summary>
-    /// Guild id for this emoji.
+    /// The ID of the guild the emoji belongs to.
     /// </summary>
     public ulong GuildId { get; private set; }
 
@@ -41,9 +41,8 @@ public class GuildEmoji : Emoji, IGuildEmoji
     }
 
     /// <summary>
-    /// Create a GuildEmoji object from json.
+    /// Creates a guild emoji from JSON.
     /// </summary>
-    /// <returns><see cref="GuildEmoji"/></returns>
     public static GuildEmoji Create(FluxerBaseClient client, GuildEmojiJson json, ulong guildId)
     {
         GuildEmoji data = new GuildEmoji(client)

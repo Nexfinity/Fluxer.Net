@@ -1,7 +1,7 @@
 ﻿namespace Fluxer.Net;
 
 /// <summary>
-/// Mention prefrences for a user.
+/// The mention preferences of a user.
 /// </summary>
 public enum MentionPreference
 {

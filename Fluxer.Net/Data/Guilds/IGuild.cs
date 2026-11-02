@@ -1,5 +1,8 @@
 ﻿namespace Fluxer.Net;
 
+/// <summary>
+/// A guild with its settings and member counts.
+/// </summary>
 public interface IGuild : IPartialGuild
 {
     /// <summary>
@@ -13,12 +16,12 @@ public interface IGuild : IPartialGuild
     string? VanityUrlCode { get; }
 
     /// <summary>
-    /// Required verification level for members to participate.
+    /// The verification level required for members to participate.
     /// </summary>
     GuildVerificationLevel VerificationLevel { get; }
 
     /// <summary>
-    /// Required MFA level for moderation actions.
+    /// The MFA level required for moderation actions.
     /// </summary>
     GuildMfaLevel MfaLevel { get; }
 
@@ -28,12 +31,12 @@ public interface IGuild : IPartialGuild
     GuildNsfwLevel NsfwLevel { get; }
 
     /// <summary>
-    /// Level of content filtering for explicit media.
+    /// The explicit content filter level of the guild.
     /// </summary>
     GuildContentFilter ExplicitContentFilter { get; }
 
     /// <summary>
-    /// Default notification level for new members.
+    /// The default notification level for new members.
     /// </summary>
     GuildDefaultNotifications DefaultMessageNotifications { get; }
 
@@ -68,36 +71,33 @@ public interface IGuild : IPartialGuild
     GuildOperations DisabledOperations { get; }
 
     /// <summary>
-    /// ISO8601 timestamp controlling how far back members without Read Message History can access messages. When null, no historical access is allowed.
+    /// How far back members without Read Message History can read messages, or null when they cannot read any message history.
     /// </summary>
     DateTimeOffset? MessageHistoryCutoff { get; }
 
     /// <summary>
-    /// Is the guild nsfw.
+    /// Whether the guild is marked as NSFW.
     /// </summary>
     bool IsNsfw { get; }
 
+    /// <summary>
+    /// The content warning setting of the guild.
+    /// </summary>
     GuildContentWarning ContentWarningLevel { get; }
 
     /// <summary>
-    /// Show a custom warning to new members.
+    /// The custom warning text shown to new members.
     /// </summary>
     string ContentWarningText { get; }
 
     /// <summary>
-    /// Current ammount of online members in the guild.
+    /// The number of online members in the guild.
     /// </summary>
-    /// <remarks>
-    /// Only available from rest get guild not socket guild.
-    /// </remarks>
     int? OnlineCount { get; }
 
     /// <summary>
-    /// Total ammount of members in the guild.
+    /// The total number of members in the guild.
     /// </summary>
-    /// <remarks>
-    /// Only available from rest get guild not socket guild.
-    /// </remarks>
     int? MemberCount { get; }
 
     /// <summary>
@@ -117,12 +117,12 @@ public interface IGuild : IPartialGuild
     int? ApproximatePresenceCount { get; }
 
     /// <summary>
-    /// True when threads, forum and media channels are active in this guild for the requesting client. Only sent on the current user guild list.
+    /// Whether threads, forum and media channels are active in this guild for the requesting client. Only sent on the current user guild list.
     /// </summary>
     bool? ThreadsActive { get; }
 
     /// <summary>
-    /// True when the requesting user is visiting the guild without being a member.
+    /// Whether the requesting user is visiting the guild without being a member.
     /// </summary>
     bool? Visiting { get; }
 }

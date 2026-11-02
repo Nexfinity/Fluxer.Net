@@ -5,6 +5,9 @@
 /// </summary>
 public class ReactionUserPage : Entity
 {
+    /// <summary>
+    /// The users on this page.
+    /// </summary>
     public IReadOnlyList<User> Users { get; private set; } = Array.Empty<User>();
 
     /// <summary>
@@ -23,9 +26,8 @@ public class ReactionUserPage : Entity
     }
 
     /// <summary>
-    /// Create a ReactionUserPage object from json.
+    /// Creates a page of reaction users from JSON.
     /// </summary>
-    /// <returns><see cref="ReactionUserPage"/></returns>
     public static ReactionUserPage Create(FluxerBaseClient client, ReactionUserPageJson json)
     {
         ReactionUserPage data = new ReactionUserPage(client);

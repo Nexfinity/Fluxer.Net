@@ -1,5 +1,8 @@
 ﻿namespace Fluxer.Net;
 
+/// <summary>
+/// A file attached to a message.
+/// </summary>
 public interface IAttachment : ISnowflake
 {
     /// <summary>
@@ -13,7 +16,7 @@ public interface IAttachment : ISnowflake
     long Size { get; }
 
     /// <summary>
-    /// Attachment flags.
+    /// The flags of the attachment.
     /// </summary>
     AttachmentFlag Flags { get; }
 
@@ -48,12 +51,12 @@ public interface IAttachment : ISnowflake
     string? ProxyUrl { get; }
 
     /// <summary>
-    /// The width of the attachment in pixels (for images/videos).
+    /// The width of the attachment in pixels, for images and videos.
     /// </summary>
     int? Width { get; }
 
     /// <summary>
-    /// The height of the attachment in pixels (for images/videos).
+    /// The height of the attachment in pixels, for images and videos.
     /// </summary>
     int? Height { get; }
 
@@ -83,7 +86,7 @@ public interface IAttachment : ISnowflake
     string? Waveform { get; }
 
     /// <summary>
-    /// The ISO 8601 timestamp when the attachment URL expires.
+    /// When the attachment URL expires, or null when it is not sent.
     /// </summary>
     DateTimeOffset? ExpiresAt { get; }
 

@@ -2,6 +2,9 @@
 
 namespace Fluxer.Net.Rest;
 
+/// <summary>
+/// Search options for finding messages.
+/// </summary>
 public class MessageSearchRequest
 {
     /// <summary>

@@ -26,7 +26,7 @@ public class GuildVisitJson
     public DateTimeOffset StartedAt { get; set; }
 
     /// <summary>
-    /// When the visit was last opened, updated at most once a day.
+    /// When the visit was last opened.
     /// </summary>
     [JsonProperty("opened_at")]
     public DateTimeOffset OpenedAt { get; set; }
@@ -44,7 +44,7 @@ public class GuildVisitStartJson
     public ulong GuildId { get; set; }
 
     /// <summary>
-    /// True when the current user is already a member, in which case no visit starts.
+    /// Whether the current user is already a member, in which case no visit starts.
     /// </summary>
     [JsonProperty("member")]
     public bool IsMember { get; set; }
@@ -80,7 +80,7 @@ public class DiscoveryChannelPreviewJson
 public class DiscoveryChannelPreviewGuildJson
 {
     /// <summary>
-    /// The guild id.
+    /// The ID of the guild.
     /// </summary>
     [JsonProperty("id")]
     public ulong Id { get; set; }
@@ -104,7 +104,7 @@ public class DiscoveryChannelPreviewGuildJson
 public class DiscoveryChannelPreviewChannelJson
 {
     /// <summary>
-    /// The channel id.
+    /// The ID of the channel.
     /// </summary>
     [JsonProperty("id")]
     public ulong Id { get; set; }

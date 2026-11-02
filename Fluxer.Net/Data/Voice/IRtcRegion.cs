@@ -1,25 +1,22 @@
 ﻿namespace Fluxer.Net;
 
 /// <summary>
-/// Returns available voice and video calling regions for the channel, used to optimise connection quality.
+/// A voice region a channel can use for calls.
 /// </summary>
-/// <remarks>
-/// Requires Call permission.
-/// </remarks>
 public interface IRtcRegion
 {
     /// <summary>
-    /// The unique identifier for this RTC region.
+    /// The unique identifier of the region.
     /// </summary>
     string Id { get; }
 
     /// <summary>
-    /// The display name of the RTC region.
+    /// The display name of the region.
     /// </summary>
     string Name { get; }
 
     /// <summary>
-    /// The emoji associated with this RTC region
+    /// The emoji associated with the region.
     /// </summary>
     string Emoji { get; }
 }

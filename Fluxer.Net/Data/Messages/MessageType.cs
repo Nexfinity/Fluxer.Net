@@ -1,7 +1,7 @@
 namespace Fluxer.Net;
 
 /// <summary>
-/// Represents the type of a message, including regular messages and system messages.
+/// The type of a message, including regular messages and system messages.
 /// </summary>
 public enum MessageType
 {
@@ -51,7 +51,7 @@ public enum MessageType
     ChannelFollowAdded = 12,
 
     /// <summary>
-    /// Thread created from message.
+    /// System message indicating a thread was created from the message.
     /// </summary>
     ThreadCreated = 18,
 

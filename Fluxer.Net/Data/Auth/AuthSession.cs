@@ -33,7 +33,7 @@ public class AuthSession : Entity, IAuthSession
     }
 
     /// <summary>
-    /// Create a AuthSession object from json.
+    /// Creates an auth session from its JSON.
     /// </summary>
     /// <returns><see cref="AuthSession"/></returns>
     public static AuthSession Create(FluxerBaseClient client, AuthSessionJson json)

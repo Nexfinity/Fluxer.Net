@@ -2,6 +2,9 @@
 
 namespace Fluxer.Net.Rest;
 
+/// <summary>
+/// Request body for searching messages across channels and guilds.
+/// </summary>
 public class GlobalSearchMessagesRequest : MessageSearchRequest
 {
     /// <summary>

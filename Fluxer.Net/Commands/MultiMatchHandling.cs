@@ -1,12 +1,16 @@
 namespace Fluxer.Net.Commands;
 
 /// <summary>
-/// Specifies the behavior when multiple matches are found during the command parsing stage.
+/// The behavior when a parameter matches more than one object during the parsing stage.
 /// </summary>
 public enum MultiMatchHandling
 {
-    /// <summary> Indicates that when multiple results are found, an exception should be thrown. </summary>
+    /// <summary>
+    /// The parse fails with <see cref="CommandError.MultipleMatches"/>.
+    /// </summary>
     Exception,
-    /// <summary> Indicates that when multiple results are found, the best result should be chosen. </summary>
+    /// <summary>
+    /// The highest scoring match is chosen.
+    /// </summary>
     Best
 }

@@ -1,5 +1,8 @@
 ﻿namespace Fluxer.Net;
 
+/// <summary>
+/// An account or domain that a user has connected to their profile.
+/// </summary>
 public interface IUserConnection
 {
     /// <summary>
@@ -11,12 +14,12 @@ public interface IUserConnection
     /// The type of connection.
     /// </summary>
     /// <remarks>
-    /// bsky or domain
+    /// <c>bluesky</c> or <c>domain</c>.
     /// </remarks>
     string Type { get; }
 
     /// <summary>
-    /// The display name of the connection. (handle or domain)
+    /// The handle or domain of the connection.
     /// </summary>
     string Name { get; }
 

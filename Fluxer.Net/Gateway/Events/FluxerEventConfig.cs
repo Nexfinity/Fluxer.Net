@@ -7,7 +7,7 @@ public enum EventDispatchMode
 {
     /// <summary>
     /// Events of one guild, or of one DM or group channel, reach your handlers one at a time and in the order they
-    /// arrived. Events of different guilds are handled at the same time.
+    /// arrived. Events of guilds on different lanes are handled at the same time.
     /// </summary>
     OrderedPerGuild,
 
@@ -33,8 +33,8 @@ public class FluxerEventConfig
     public EventDispatchMode Mode { get; set; } = EventDispatchMode.OrderedPerGuild;
 
     /// <summary>
-    /// With <see cref="EventDispatchMode.OrderedPerGuild"/>, how many guilds can have handlers running at the same time.
-    /// Guilds are spread over this many lanes, and guilds sharing a lane wait for each other. Defaults to 32.
+    /// With <see cref="EventDispatchMode.OrderedPerGuild"/>, the number of lanes that guilds are spread over. Guilds
+    /// sharing a lane wait for each other. Defaults to 32.
     /// </summary>
     public int Lanes { get; set; } = 32;
 

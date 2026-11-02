@@ -21,18 +21,17 @@ namespace Fluxer.Net.Gateway;
 /// </summary>
 /// <remarks>
 /// <para>
-/// The GatewayClient provides an event-driven architecture for receiving real-time updates
-/// from Fluxer, including messages, user presence, guild changes, and more. It implements
-/// the Fluxer Gateway protocol with support for:
+/// The client raises events for real-time updates from Fluxer, including messages, user presence
+/// and guild changes. It implements the Fluxer Gateway protocol with:
 /// </para>
 /// <list type="bullet">
 /// <item>Automatic heartbeat mechanism to maintain connection</item>
 /// <item>Sequence tracking for ordered event processing</item>
-/// <item>Session-based reconnection with resume capability (no event loss)</item>
+/// <item>Reconnection that resumes the session when Fluxer allows it</item>
 /// <item>Event filtering via <see cref="FluxerGatewayConfig.IgnoredEvents"/></item>
 /// </list>
 /// <para>
-/// This client should be paired with <see cref="FluxerApiClient"/> for full Fluxer functionality.
+/// REST calls are made through <see cref="FluxerApiClient"/>.
 /// </para>
 /// </remarks>
 public partial class FluxerGatewayClient : IDisposable
@@ -53,6 +52,9 @@ public partial class FluxerGatewayClient : IDisposable
     /// </summary>
     public bool IsConnected => _webSocket?.IsRunning == true;
 
+    /// <summary>
+    /// The configuration of the current connection.
+    /// </summary>
     public FluxerGatewayConfig Config { get; internal set; }
 
     /// <summary>
@@ -65,10 +67,13 @@ public partial class FluxerGatewayClient : IDisposable
     /// </summary>
     public int? ShardCount { get; private set; }
 
+    /// <summary>
+    /// The IDs of the guilds sent in READY. Guilds the session is removed from are dropped, joined guilds are not added.
+    /// </summary>
     public HashSet<ulong> GuildIds { get; private set; } = new HashSet<ulong>();
 
     /// <summary>
-    /// Current sequence number for gateway events. Used for resuming connections without data loss.
+    /// The sequence number of the last gateway event received. Sent when the session resumes.
     /// </summary>
     private int _sequence = 0;
 
@@ -120,20 +125,24 @@ public partial class FluxerGatewayClient : IDisposable
     #region Cache
 
     /// <summary>
-
     /// The service URLs the instance sent in READY, keyed by name (api_public, gateway, media, static_cdn, invite,
-
     /// webapp and so on), or null before the first READY.
-
     /// </summary>
-
     public IReadOnlyDictionary<string, string>? Endpoints { get; private set; }
 
 
+    /// <summary>
+    /// The user the session is logged in as, or null before READY.
+    /// </summary>
     public SocketCurrentUser? CurrentUser { get; internal set; }
 
     internal ulong? OwnerId { get; set; }
 
+    /// <summary>
+    /// Gets a group channel from the cache, or fetches it from the REST API when it isn't cached.
+    /// </summary>
+    /// <param name="channelId">The ID of the channel.</param>
+    /// <returns>The group channel, or null when the channel isn't one.</returns>
     public async Task<GroupChannel?> GetGroupChannelAsync(ulong channelId)
     {
         if (Channels.TryGetValue(channelId, out Channel? channel))
@@ -147,6 +156,11 @@ public partial class FluxerGatewayClient : IDisposable
         return gc;
     }
 
+    /// <summary>
+    /// Gets a DM channel from the cache, or fetches it from the REST API when it isn't cached.
+    /// </summary>
+    /// <param name="channelId">The ID of the channel.</param>
+    /// <returns>The DM channel, or null when the channel isn't one.</returns>
     public async Task<DMChannel?> GetDMChannelAsync(ulong channelId)
     {
         if (Channels.TryGetValue(channelId, out Channel? channel))
@@ -160,6 +174,10 @@ public partial class FluxerGatewayClient : IDisposable
         return dm;
     }
 
+    /// <summary>
+    /// Gets the ID of the application's owner, fetching it from the REST API the first time.
+    /// </summary>
+    /// <returns>The owner's user ID.</returns>
     public async Task<ulong?> GetOwnerIdAsync()
     {
         if (OwnerId == null)
@@ -171,31 +189,58 @@ public partial class FluxerGatewayClient : IDisposable
         return OwnerId;
     }
 
+    /// <summary>
+    /// The guilds the session knows of, by guild ID.
+    /// </summary>
     public ConcurrentDictionary<ulong, SocketGuild> Guilds { get; internal set; } = new ConcurrentDictionary<ulong, SocketGuild>();
 
+    /// <summary>
+    /// The channels the session knows of, by channel ID.
+    /// </summary>
     public ConcurrentDictionary<ulong, Channel> Channels { get; internal set; } = new ConcurrentDictionary<ulong, Channel>();
 
+    /// <summary>
+    /// The roles the session knows of, by role ID.
+    /// </summary>
     public ConcurrentDictionary<ulong, SocketRole> Roles { get; internal set; } = new ConcurrentDictionary<ulong, SocketRole>();
 
+    /// <summary>
+    /// The session's own member of each guild, by guild ID.
+    /// </summary>
     public ConcurrentDictionary<ulong, SocketGuildMember> CurrentMembers { get; internal set; } = new ConcurrentDictionary<ulong, SocketGuildMember>();
 
+    /// <summary>
+    /// The RTC regions sent in READY.
+    /// </summary>
     public RtcRegion[] RtcRegions;
 
+    /// <summary>
+    /// Gets the session's own member of a guild, or null when it isn't cached.
+    /// </summary>
     public SocketGuildMember? GetCurrentMember(ulong guildId)
     {
         return CurrentMembers.GetValueOrDefault(guildId);
     }
 
+    /// <summary>
+    /// Gets a guild from the cache, or null when it isn't cached.
+    /// </summary>
     public SocketGuild? GetGuild(ulong guildId)
     {
         return Guilds.GetValueOrDefault(guildId);
     }
 
+    /// <summary>
+    /// Gets a role from the cache, or null when it isn't cached.
+    /// </summary>
     public SocketRole? GetRole(ulong roleId)
     {
         return Roles.GetValueOrDefault(roleId);
     }
 
+    /// <summary>
+    /// Gets a channel from the cache, or null when it isn't cached.
+    /// </summary>
     public Channel? GetChannel(ulong channelId)
     {
         return Channels.GetValueOrDefault(channelId);
@@ -281,7 +326,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// <returns>A task that represents the asynchronous connection operation.</returns>
     /// <remarks>
     /// <para>
-    /// This method:
+    /// Connecting does the following:
     /// </para>
     /// <list type="number">
     /// <item>Creates a WebSocket connection to the gateway URL specified in configuration</item>
@@ -370,6 +415,11 @@ public partial class FluxerGatewayClient : IDisposable
         }
     }
 
+    /// <summary>
+    /// Requests the members of a guild and waits up to 30 seconds for them.
+    /// </summary>
+    /// <param name="guild">The guild to download the members of.</param>
+    /// <returns>Whether the members arrived in time.</returns>
     public async Task<bool> DownloadMembersAsync(SocketGuild guild)
     {
         if (guild._downloaderPromise != null)
@@ -410,7 +460,7 @@ public partial class FluxerGatewayClient : IDisposable
     /// </summary>
     /// <typeparam name="T">The type of the gateway packet data.</typeparam>
     /// <remarks>
-    /// This method automatically schedules reconnection if sending fails. Packets may be dropped
+    /// A failed send schedules a reconnection. Packets may be dropped
     /// during reconnection attempts. For critical operations, use the REST API via <see cref="FluxerApiClient"/>.
     /// </remarks>
     public void SendGatewayPacket<T>(T Data) where T : class
@@ -872,15 +922,15 @@ public partial class FluxerGatewayClient : IDisposable
                                 {
                                     SocketGuildMember voiceMember = guild.AddOrUpdateMember(v.Member);
                                     SocketVoiceChannel Channel = GetChannel(v.ChannelId.Value) as SocketVoiceChannel;
-                                    if (voiceMember.VoiceStates.TryGetValue(v.SessionId, out SocketVoiceState state))
+                                    if (voiceMember.VoiceStates.TryGetValue(v.CacheKey, out SocketVoiceState state))
                                     {
                                         state.Update(v);
                                     }
                                     else
                                     {
                                         state = SocketVoiceState.Create(_client, v, Channel);
-                                        voiceMember.VoiceStates.TryAdd(v.SessionId, state);
-                                        Channel.VoiceStates.TryAdd(v.SessionId, state);
+                                        voiceMember.VoiceStates.TryAdd(v.CacheKey, state);
+                                        Channel.VoiceStates.TryAdd(v.CacheKey, state);
                                     }
                                 }
 
@@ -1186,15 +1236,15 @@ public partial class FluxerGatewayClient : IDisposable
                         {
                             SocketGuildMember voiceMember = guild.AddOrUpdateMember(v.Member);
                             SocketVoiceChannel Channel = GetChannel(v.ChannelId.Value) as SocketVoiceChannel;
-                            if (voiceMember.VoiceStates.TryGetValue(v.SessionId, out SocketVoiceState state))
+                            if (voiceMember.VoiceStates.TryGetValue(v.CacheKey, out SocketVoiceState state))
                             {
                                 state.Update(v);
                             }
                             else
                             {
                                 state = SocketVoiceState.Create(_client, v, Channel);
-                                voiceMember.VoiceStates.TryAdd(v.SessionId, state);
-                                Channel.VoiceStates.TryAdd(v.SessionId, state);
+                                voiceMember.VoiceStates.TryAdd(v.CacheKey, state);
+                                Channel.VoiceStates.TryAdd(v.CacheKey, state);
                             }
                         }
                         if (guild.CurrentMember.JoinedAt > DateTime.UtcNow.AddMinutes(-1))
@@ -1281,15 +1331,15 @@ public partial class FluxerGatewayClient : IDisposable
                         {
                             SocketGuildMember voiceMember = guild.AddOrUpdateMember(v.Member);
                             SocketVoiceChannel Channel = GetChannel(v.ChannelId.Value) as SocketVoiceChannel;
-                            if (voiceMember.VoiceStates.TryGetValue(v.SessionId, out SocketVoiceState state))
+                            if (voiceMember.VoiceStates.TryGetValue(v.CacheKey, out SocketVoiceState state))
                             {
                                 state.Update(v);
                             }
                             else
                             {
                                 state = SocketVoiceState.Create(_client, v, Channel);
-                                voiceMember.VoiceStates.TryAdd(v.SessionId, state);
-                                Channel.VoiceStates.TryAdd(v.SessionId, state);
+                                voiceMember.VoiceStates.TryAdd(v.CacheKey, state);
+                                Channel.VoiceStates.TryAdd(v.CacheKey, state);
                             }
                         }
                     }
@@ -2619,39 +2669,39 @@ public partial class FluxerGatewayClient : IDisposable
                         {
                             guild.AddOrUpdateMember(data.Member);
                             SocketGuildMember member = guild.Members.GetValueOrDefault(data.Member.Id);
-                            if (member.VoiceStates.TryGetValue(data.SessionId, out SocketVoiceState cachedState))
+                            if (member.VoiceStates.TryGetValue(data.CacheKey, out SocketVoiceState cachedState))
                                 previousState = (SocketVoiceState)cachedState.Snapshot();
 
                             if (data.ChannelId.HasValue)
                             {
                                 SocketVoiceChannel? Channel = GetChannel(data.ChannelId.Value) as SocketVoiceChannel;
-                                if (member.VoiceStates.TryGetValue(data.SessionId, out SocketVoiceState state))
+                                if (member.VoiceStates.TryGetValue(data.CacheKey, out SocketVoiceState state))
                                 {
                                     ulong? previousChannelId = state.ChannelId;
                                     state.Update(data);
                                     if (previousChannelId != data.ChannelId)
                                     {
                                         if (previousChannelId.HasValue && GetChannel(previousChannelId.Value) is SocketVoiceChannel previousChannel)
-                                            previousChannel.VoiceStates.TryRemove(data.SessionId, out _);
+                                            previousChannel.VoiceStates.TryRemove(data.CacheKey, out _);
                                         if (Channel != null)
-                                            Channel.VoiceStates[data.SessionId] = state;
+                                            Channel.VoiceStates[data.CacheKey] = state;
                                     }
                                 }
                                 else
                                 {
                                     state = currentState;
-                                    member.VoiceStates.TryAdd(data.SessionId, state);
+                                    member.VoiceStates.TryAdd(data.CacheKey, state);
                                     if (Channel != null)
-                                        Channel.VoiceStates.TryAdd(data.SessionId, state);
+                                        Channel.VoiceStates.TryAdd(data.CacheKey, state);
                                 }
                             }
                             else
                             {
-                                if (member.VoiceStates.TryRemove(data.SessionId, out SocketVoiceState oldState))
+                                if (member.VoiceStates.TryRemove(data.CacheKey, out SocketVoiceState oldState))
                                 {
                                     SocketVoiceChannel? Channel = GetChannel(oldState.ChannelId.Value) as SocketVoiceChannel;
                                     if (Channel != null)
-                                        Channel.VoiceStates.TryRemove(data.SessionId, out _);
+                                        Channel.VoiceStates.TryRemove(data.CacheKey, out _);
                                 }
                             }
                         }
@@ -3314,7 +3364,7 @@ public partial class FluxerGatewayClient : IDisposable
     public delegate void ResumedEvent();
 
     /// <summary>
-    /// Occurs when a disconnected session is successfully resumed without data loss.
+    /// Occurs when a disconnected session is successfully resumed.
     /// </summary>
     public GatewayEvent Resumed { get => Event<GatewayEvent>(); set => Keep(value); }
 
@@ -3383,12 +3433,12 @@ public partial class FluxerGatewayClient : IDisposable
     public GatewayEvent<AuthSessionChangeGatewayData> AuthSessionChanged { get => Event<GatewayEvent<AuthSessionChangeGatewayData>>(); set => Keep(value); }
 
     /// <summary>
-    /// Delegate for RATE_LIMITED event when rate limited.
+    /// Delegate for the RATE_LIMITED event.
     /// </summary>
     public delegate void RateLimitedEvent(RateLimitedGatewayData ratelimited);
 
     /// <summary>
-    /// Occurs on rate limited.
+    /// Occurs when the gateway rate limits the session.
     /// </summary>
     public GatewayEvent<RateLimitedGatewayData> RateLimited { get => Event<GatewayEvent<RateLimitedGatewayData>>(); set => Keep(value); }
 
@@ -3398,7 +3448,7 @@ public partial class FluxerGatewayClient : IDisposable
     public delegate void GatewayErrorEvent(GatewayErrorGatewayData error);
 
     /// <summary>
-    /// Occurs when Fluxer refuses a voice state update with a code the client is expected to act on.
+    /// Occurs when the gateway sends a GatewayError packet, which Fluxer sends when it refuses a voice state update.
     /// </summary>
     public GatewayEvent<GatewayErrorGatewayData> GatewayErrorReceived { get => Event<GatewayEvent<GatewayErrorGatewayData>>(); set => Keep(value); }
 
@@ -3408,17 +3458,17 @@ public partial class FluxerGatewayClient : IDisposable
     public delegate void UserConnectionsUpdatedEvent(UserConnection[] connections);
 
     /// <summary>
-    /// Occurs on user connection updated.
+    /// Occurs when the user's connections are updated.
     /// </summary>
     public GatewayEvent<UserConnection[]> ConnectionsUpdated { get => Event<GatewayEvent<UserConnection[]>>(); set => Keep(value); }
 
     /// <summary>
-    /// Delegate for WEBAUTHN_CREDENTIALS_UPDATE event when user updates webauthn credentials.
+    /// Delegate for the WEBAUTHN_CREDENTIALS_UPDATE event.
     /// </summary>
     public delegate void UserWebAuthnCredentialsUpdatedEvent(WebAuthnCredential[] credentials);
 
     /// <summary>
-    /// Occurs on user connection updated.
+    /// Occurs when the user's WebAuthn credentials are updated.
     /// </summary>
     public GatewayEvent<WebAuthnCredential[]> WebAuthnCredentialsUpdated { get => Event<GatewayEvent<WebAuthnCredential[]>>(); set => Keep(value); }
 
@@ -3442,7 +3492,7 @@ public partial class FluxerGatewayClient : IDisposable
     public delegate void PrivateMessageCreatedEvent(SocketPrivateMessage message);
 
     /// <summary>
-    /// Occurs when a new message is created in any channel the user has access to.
+    /// Occurs when a message is created outside a guild, in a DM or group channel.
     /// </summary>
     public GatewayEvent<SocketPrivateMessage> PrivateMessageCreated { get => Event<GatewayEvent<SocketPrivateMessage>>(); set => Keep(value); }
 
@@ -3457,7 +3507,7 @@ public partial class FluxerGatewayClient : IDisposable
     public GatewayEvent<SocketMessage> MessageUpdated { get => Event<GatewayEvent<SocketMessage>>(); set => Keep(value); }
 
     /// <summary>
-    /// Occurs when a new message is created in any channel the user has access to.
+    /// Occurs when a message outside a guild, in a DM or group channel, is edited.
     /// </summary>
     public GatewayEvent<SocketPrivateMessage> PrivateMessageUpdated { get => Event<GatewayEvent<SocketPrivateMessage>>(); set => Keep(value); }
 
@@ -3578,7 +3628,7 @@ public partial class FluxerGatewayClient : IDisposable
     public delegate void GroupChannelUpdatedEvent(GroupChannel channel);
 
     /// <summary>
-    /// Occurs when a private DM or Group channel is created.
+    /// Occurs when a group channel is updated.
     /// </summary>
     public GatewayEvent<GroupChannel> GroupUpdated { get => Event<GatewayEvent<GroupChannel>>(); set => Keep(value); }
 
@@ -3597,16 +3647,25 @@ public partial class FluxerGatewayClient : IDisposable
     /// </summary>
     public delegate void ThreadCreatedEvent(SocketGuild guild, ThreadChannel channel);
 
+    /// <summary>
+    /// Occurs when a thread is created in a guild.
+    /// </summary>
     public GatewayEvent<SocketGuild, ThreadChannel> ThreadCreated { get => Event<GatewayEvent<SocketGuild, ThreadChannel>>(); set => Keep(value); }
 
 
+    /// <summary>
+    /// Occurs when THREAD_CREATE delivers a thread that is not new.
+    /// </summary>
     public GatewayEvent<SocketGuild, ThreadChannel> ThreadJoined { get => Event<GatewayEvent<SocketGuild, ThreadChannel>>(); set => Keep(value); }
 
     /// <summary>
-    /// Delegate for THREAD_CREATE events when a thread is created.
+    /// Delegate for the event raised when the current user is removed from a thread.
     /// </summary>
     public delegate void ThreadLeftEvent(SocketGuild guild, Cacheable<ThreadChannel> channel);
 
+    /// <summary>
+    /// Occurs when THREAD_MEMBERS_UPDATE removes the current user from a thread.
+    /// </summary>
     public GatewayEvent<SocketGuild, Cacheable<ThreadChannel>> ThreadLeft { get => Event<GatewayEvent<SocketGuild, Cacheable<ThreadChannel>>>(); set => Keep(value); }
 
     /// <summary>
@@ -3614,6 +3673,9 @@ public partial class FluxerGatewayClient : IDisposable
     /// </summary>
     public delegate void ThreadUpdatedEvent(SocketGuild guild, Cacheable<ThreadChannel> before, ThreadChannel after);
 
+    /// <summary>
+    /// Occurs when a thread is updated.
+    /// </summary>
     public GatewayEvent<SocketGuild, Cacheable<ThreadChannel>, ThreadChannel> ThreadUpdated { get => Event<GatewayEvent<SocketGuild, Cacheable<ThreadChannel>, ThreadChannel>>(); set => Keep(value); }
 
     /// <summary>
@@ -3634,27 +3696,39 @@ public partial class FluxerGatewayClient : IDisposable
     /// </summary>
     public delegate void ThreadDeletedEvent(SocketGuild guild, Cacheable<ThreadChannel> thread);
 
+    /// <summary>
+    /// Occurs when a thread is deleted.
+    /// </summary>
     public GatewayEvent<SocketGuild, Cacheable<ThreadChannel>> ThreadDeleted { get => Event<GatewayEvent<SocketGuild, Cacheable<ThreadChannel>>>(); set => Keep(value); }
 
     /// <summary>
-    /// Delegate for THREAD_DELETE events when a thread is deleted.
+    /// Delegate for the event raised when members are added to a thread.
     /// </summary>
     public delegate void ThreadMembersAddedEvent(SocketGuild guild, Cacheable<ThreadChannel> thread, ThreadMember[] members);
 
+    /// <summary>
+    /// Occurs when members are added to a thread.
+    /// </summary>
     public GatewayEvent<SocketGuild, Cacheable<ThreadChannel>, ThreadMember[]> ThreadMembersAdded { get => Event<GatewayEvent<SocketGuild, Cacheable<ThreadChannel>, ThreadMember[]>>(); set => Keep(value); }
 
     /// <summary>
-    /// Delegate for THREAD_DELETE events when a thread is deleted.
+    /// Delegate for the event raised when members are removed from a thread.
     /// </summary>
     public delegate void ThreadMembersRemovedEvent(SocketGuild guild, Cacheable<ThreadChannel> thread, ulong[] members);
 
+    /// <summary>
+    /// Occurs when members are removed from a thread.
+    /// </summary>
     public GatewayEvent<SocketGuild, Cacheable<ThreadChannel>, ulong[]> ThreadMembersRemoved { get => Event<GatewayEvent<SocketGuild, Cacheable<ThreadChannel>, ulong[]>>(); set => Keep(value); }
 
     /// <summary>
-    /// Delegate for THREAD_DELETE events when a thread is deleted.
+    /// Delegate for the event raised when the member count of a thread changes.
     /// </summary>
     public delegate void ThreadMembersCountEvent(SocketGuild guild, Cacheable<ThreadChannel> thread, int membersCount);
 
+    /// <summary>
+    /// Occurs when the member count of a thread changes.
+    /// </summary>
     public GatewayEvent<SocketGuild, Cacheable<ThreadChannel>, int> ThreadMembersCount { get => Event<GatewayEvent<SocketGuild, Cacheable<ThreadChannel>, int>>(); set => Keep(value); }
 
     /// <summary>
@@ -4261,20 +4335,44 @@ public partial class FluxerGatewayClient : IDisposable
     // Guild Emoji Events
     // ============================================================================
 
+    /// <summary>
+    /// Delegate for GUILD_EMOJIS_UPDATE events when an emoji is created.
+    /// </summary>
     public delegate void GuildEmojiCreatedEvent(Emoji emoji);
 
+    /// <summary>
+    /// Occurs when an emoji is created in a guild.
+    /// </summary>
     public GatewayEvent<Emoji> EmojiCreated { get => Event<GatewayEvent<Emoji>>(); set => Keep(value); }
 
+    /// <summary>
+    /// Delegate for GUILD_EMOJIS_UPDATE events when an emoji is deleted.
+    /// </summary>
     public delegate void GuildEmojiDeletedEvent(Emoji emoji);
 
+    /// <summary>
+    /// Occurs when an emoji is deleted from a guild.
+    /// </summary>
     public GatewayEvent<Emoji> EmojiDeleted { get => Event<GatewayEvent<Emoji>>(); set => Keep(value); }
 
+    /// <summary>
+    /// Delegate for GUILD_STICKERS_UPDATE events when a sticker is created.
+    /// </summary>
     public delegate void GuildStickerCreatedEvent(Sticker sticker);
 
+    /// <summary>
+    /// Occurs when a sticker is created in a guild.
+    /// </summary>
     public GatewayEvent<Sticker> StickerCreated { get => Event<GatewayEvent<Sticker>>(); set => Keep(value); }
 
+    /// <summary>
+    /// Delegate for GUILD_STICKERS_UPDATE events when a sticker is deleted.
+    /// </summary>
     public delegate void GuildStickerDeletedEvent(Sticker sticker);
 
+    /// <summary>
+    /// Occurs when a sticker is deleted from a guild.
+    /// </summary>
     public GatewayEvent<Sticker> StickerDeleted { get => Event<GatewayEvent<Sticker>>(); set => Keep(value); }
 
     /// <summary>
@@ -4438,12 +4536,24 @@ public partial class FluxerGatewayClient : IDisposable
     /// </summary>
     public GatewayEvent<Channel, SocketGuild?, string, Invite?> InviteRemoved { get => Event<GatewayEvent<Channel, SocketGuild?, string, Invite?>>(); set => Keep(value); }
 
+    /// <summary>
+    /// Delegate for the event that carries the member counts of guilds.
+    /// </summary>
     public delegate void GuildMemberCountsEvent(GuildMemberCountGatewayData[] guilds);
 
+    /// <summary>
+    /// Occurs when the member counts of guilds are updated.
+    /// </summary>
     public GatewayEvent<GuildMemberCountGatewayData[]> GuildMemberCounts { get => Event<GatewayEvent<GuildMemberCountGatewayData[]>>(); set => Keep(value); }
 
+    /// <summary>
+    /// Delegate for the event that carries the member counts of channels.
+    /// </summary>
     public delegate void ChannelMemberCountsEvent(GuildChannelMemberCountGatewayData[] channels);
 
+    /// <summary>
+    /// Occurs when the member counts of channels are updated.
+    /// </summary>
     public GatewayEvent<GuildChannelMemberCountGatewayData[]> ChannelMemberCounts { get => Event<GatewayEvent<GuildChannelMemberCountGatewayData[]>>(); set => Keep(value); }
 
     #endregion
@@ -4476,12 +4586,19 @@ public partial class FluxerGatewayClient : IDisposable
 
     #region IDisposable
 
+    /// <summary>
+    /// Releases the gateway connection and its resources.
+    /// </summary>
     public void Dispose()
     {
         Dispose(true);
         GC.SuppressFinalize(this);
     }
 
+    /// <summary>
+    /// Releases the gateway connection and its resources. Managed resources are only released when disposing is true.
+    /// </summary>
+    /// <param name="disposing">Whether managed resources are being released.</param>
     protected virtual void Dispose(bool disposing)
     {
         if (_disposed)
@@ -4539,6 +4656,9 @@ public partial class FluxerGatewayClient : IDisposable
         _disposed = true;
     }
 
+    /// <summary>
+    /// Releases resources when the client is finalized without being disposed.
+    /// </summary>
     ~FluxerGatewayClient()
     {
         Dispose(false);

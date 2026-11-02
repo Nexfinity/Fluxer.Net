@@ -1,5 +1,8 @@
 ﻿namespace Fluxer.Net;
 
+/// <summary>
+/// A sticker and its basic details.
+/// </summary>
 public interface ISticker : ISnowflake
 {
     /// <summary>
@@ -13,7 +16,7 @@ public interface ISticker : ISnowflake
     bool IsAnimated { get; }
 
     /// <summary>
-    /// Wether you can clone this emoji.
+    /// Whether this sticker can be cloned.
     /// </summary>
     bool AllowCloning { get; }
 }

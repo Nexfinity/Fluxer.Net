@@ -2,6 +2,7 @@
 
 namespace Fluxer.Net;
 
+/// <inheritdoc />
 public class ThreadMetadataJson : IThreadMetadata
 {
     /// <inheritdoc />

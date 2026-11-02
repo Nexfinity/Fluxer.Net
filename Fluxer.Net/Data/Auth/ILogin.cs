@@ -1,17 +1,17 @@
 ﻿namespace Fluxer.Net;
 
 /// <summary>
-/// Login response data when successful.
+/// The result of a successful login.
 /// </summary>
 public interface ILogin
 {
     /// <summary>
-    /// Authentication token for API requests.
+    /// The token for authenticated API requests.
     /// </summary>
     string Token { get; }
 
     /// <summary>
-    /// ID of the authenticated user.
+    /// The id of the logged-in user.
     /// </summary>
     ulong UserId { get; }
 }

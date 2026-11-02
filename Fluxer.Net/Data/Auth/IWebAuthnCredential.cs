@@ -1,27 +1,27 @@
 ﻿namespace Fluxer.Net;
 
 /// <summary>
-/// Passkey or device based authentication credential.
+/// A WebAuthn credential, such as a passkey.
 /// </summary>
 public interface IWebAuthnCredential
 {
     /// <summary>
-    /// ID of the credential.
+    /// The id of the credential.
     /// </summary>
     string Id { get; }
 
     /// <summary>
-    /// User given name of the credential.
+    /// The name the user gave the credential.
     /// </summary>
     string Name { get; }
 
     /// <summary>
-    /// Credential created at date.
+    /// The time the credential was created.
     /// </summary>
     DateTimeOffset CreatedAt { get; }
 
     /// <summary>
-    /// Credential last used at date.
+    /// The time the credential was last used.
     /// </summary>
     DateTimeOffset? LastUsedAt { get; }
 }

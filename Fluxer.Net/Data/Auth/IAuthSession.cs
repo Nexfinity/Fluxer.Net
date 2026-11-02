@@ -1,7 +1,7 @@
 ﻿namespace Fluxer.Net;
 
 /// <summary>
-/// Authenticated session for a device with client, os and IP data.
+/// A signed-in session on a device, with its client and IP details.
 /// </summary>
 public interface IAuthSession
 {
@@ -16,7 +16,7 @@ public interface IAuthSession
     DateTimeOffset CreatedAt { get; }
 
     /// <summary>
-    /// ISO timestamp of the session last usage. (approximate)
+    /// The approximate time the session was last used.
     /// </summary>
     DateTimeOffset ApproximateLastUsedAt { get; }
 
@@ -41,7 +41,7 @@ public interface IAuthSession
     string? ClientPlatform { get; }
 
     /// <summary>
-    /// Approximate geo location label for the client IP, if available.
+    /// The approximate location of the client IP, if available.
     /// </summary>
     string? ClientCountry { get; }
 }

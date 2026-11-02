@@ -21,7 +21,7 @@ public class GatewaySession : Entity, IGatewaySession
     }
 
     /// <summary>
-    /// Create a AuthSession object from json.
+    /// Creates a gateway session from its JSON.
     /// </summary>
     /// <returns><see cref="GatewaySession"/></returns>
     public static GatewaySession Create(FluxerBaseClient client, GatewaySessionJson json)

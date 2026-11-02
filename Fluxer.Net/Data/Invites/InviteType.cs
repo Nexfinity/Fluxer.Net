@@ -1,12 +1,12 @@
 namespace Fluxer.Net;
 
 /// <summary>
-/// Represents the type of invite (what the invite is for).
+/// The kind of destination an invite leads to.
 /// </summary>
 public enum InviteType
 {
     /// <summary>
-    /// An invite to join a guild/server.
+    /// An invite to join a guild.
     /// </summary>
     Guild = 0,
 

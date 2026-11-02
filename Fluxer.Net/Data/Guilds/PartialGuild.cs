@@ -13,7 +13,7 @@ public class PartialGuild : Entity, IPartialGuild
     public string Name { get; private set; }
 
     /// <summary>
-    /// Returns the name.
+    /// Returns the name, or the ID when the name is not set.
     /// </summary>
     public override string ToString() => Name ?? Id.ToString();
 
@@ -64,7 +64,7 @@ public class PartialGuild : Entity, IPartialGuild
     }
 
     /// <summary>
-    /// Create a PartialGuild object from json.
+    /// Creates a partial guild from its JSON representation.
     /// </summary>
     /// <returns><see cref="PartialGuild"/></returns>
     public static PartialGuild Create(FluxerBaseClient client, PartialGuildJson json)

@@ -3,40 +3,39 @@ using Serilog;
 namespace Fluxer.Net.Commands;
 
 /// <summary>
-///     Represents a configuration class for <see cref="CommandService"/>.
+/// The configuration of a <see cref="CommandService"/>.
 /// </summary>
 public class CommandServiceConfig
 {
     /// <summary>
-    ///     Gets or sets the default <see cref="RunMode" /> commands should have, if one is not specified on the
-    ///     Command attribute or builder.
+    /// The <see cref="RunMode"/> used by commands that do not set one.
     /// </summary>
     public RunMode DefaultRunMode { get; set; } = RunMode.Sync;
 
     /// <summary>
-    ///     Gets or sets the <see cref="char"/> that separates an argument with another.
+    /// The character that separates the words of a command name, such as the space in "guild info".
     /// </summary>
     public char SeparatorChar { get; set; } = ' ';
 
     /// <summary>
-    ///     Gets or sets whether commands should be case-sensitive.
+    /// Whether command names are matched case-sensitively.
     /// </summary>
     public bool CaseSensitiveCommands { get; set; } = false;
 
     /// <summary>
-    ///     Gets or sets whether <see cref="RunMode.Sync"/> commands should push exceptions up to the caller.
+    /// Whether exceptions thrown by a command are rethrown to the caller. When <see langword="false"/>, they are
+    /// reported only through the result.
     /// </summary>
     public bool ThrowOnError { get; set; } = true;
 
     /// <summary>
-    /// Collection of aliases for matching pairs of string delimiters.
-    /// The dictionary stores the opening delimiter as a key, and the matching closing delimiter as the value.
-    /// If no value is supplied <see cref="QuotationAliasUtils.GetDefaultAliasMap"/> will be used, which contains
-    /// many regional equivalents.
-    /// Only values that are specified in this map will be used as string delimiters, so if " is removed then
-    /// it won't be used.
-    /// If this map is set to null or empty, the default delimiter of " will be used.
+    /// The pairs of opening and closing quotation marks that start and end a quoted argument. The key is the opening
+    /// mark and the value is the closing mark.
     /// </summary>
+    /// <remarks>
+    /// Defaults to the regional and Unicode pairs in <c>QuotationAliasUtils.GetDefaultAliasMap</c>. When this map is null
+    /// or empty, only the double quote <c>"</c> starts a quoted argument. Removing a mark from this map disables it.
+    /// </remarks>
     /// <example>
     /// <code language="cs">
     /// QuotationMarkAliasMap = new Dictionary&lt;char, char&gt;()
@@ -50,22 +49,22 @@ public class CommandServiceConfig
     public Dictionary<char, char> QuotationMarkAliasMap { get; set; } = QuotationAliasUtils.GetDefaultAliasMap;
 
     /// <summary>
-    ///     Gets or sets a value that indicates whether extra parameters should be ignored.
+    /// Whether extra arguments are ignored instead of failing the command with <see cref="CommandError.BadArgCount"/>.
     /// </summary>
     public bool IgnoreExtraArgs { get; set; } = false;
 
     /// <summary>
-    /// Configure the logger for the command service.
+    /// The logger the command service writes to, or null to write no logs.
     /// </summary>
     public ILogger Logger { get; set; }
 
     /// <summary>
-    /// Extra owner IDs when checking RequireOwner precondition.
+    /// The user ids that pass the owner preconditions, in addition to the bot owner reported by the gateway.
     /// </summary>
     public ulong[]? OwnerIDs { get; set; }
 
     /// <summary>
-    /// Owners can bypass permission preconditions.
+    /// Whether owners pass the user permission and owner preconditions without holding the permission.
     /// </summary>
     public bool OwnerBypassPermissions { get; set; }
 }

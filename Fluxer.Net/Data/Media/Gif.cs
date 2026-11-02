@@ -42,7 +42,7 @@ public class Gif : Entity, IGif
     }
 
     /// <summary>
-    /// Create a Gif object from json.
+    /// Creates a GIF from its JSON.
     /// </summary>
     /// <returns><see cref="Gif"/></returns>
     public static Gif Create(FluxerBaseClient client, GifJson json)

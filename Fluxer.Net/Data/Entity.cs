@@ -1,26 +1,30 @@
 ﻿namespace Fluxer.Net;
 
 /// <summary>
-/// Snowflake object with unique ID.
+/// An object with a snowflake id.
 /// </summary>
 public interface ISnowflake
 {
     /// <summary>
-    /// Unique identifier (snowflake) for the object.
+    /// The unique identifier (snowflake) of the object.
     /// </summary>
     ulong Id { get; }
 
     /// <summary>
-    /// Object created at UTC date.
+    /// When the object was created, in UTC.
     /// </summary>
     DateTimeOffset CreatedAt { get; }
 }
 
 /// <summary>
-/// Fluxer entity with client attached.
+/// A Fluxer object that is attached to the client it was received from.
 /// </summary>
 public abstract class Entity
 {
+    /// <summary>
+    /// Creates an entity attached to a client.
+    /// </summary>
+    /// <param name="client">The client the entity belongs to.</param>
     public Entity(FluxerBaseClient client)
     {
         Client = client;

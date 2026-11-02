@@ -1,6 +1,8 @@
 ﻿namespace Fluxer.Net;
 
-/// <inheritdoc />
+/// <summary>
+/// An activity a user is doing, such as playing a game, with its name and details.
+/// </summary>
 public class Activity : Entity, IActivity
 {
     /// <inheritdoc />
@@ -37,9 +39,11 @@ public class Activity : Entity, IActivity
     }
 
     /// <summary>
-    /// Create a Activity object from json.
+    /// Creates an activity from its JSON data.
     /// </summary>
-    /// <returns><see cref="Activity"/></returns>
+    /// <param name="client">The client the activity belongs to.</param>
+    /// <param name="json">The activity data.</param>
+    /// <returns>The activity.</returns>
     public static Activity Create(FluxerBaseClient client, ActivityJson json)
     {
         Activity data = new Activity(client);
@@ -60,7 +64,9 @@ public class Activity : Entity, IActivity
     }
 }
 
-/// <inheritdoc />
+/// <summary>
+/// The start and end times of an activity.
+/// </summary>
 public class ActivityTimestamps : IActivityTimestamps
 {
     /// <inheritdoc />
@@ -75,9 +81,11 @@ public class ActivityTimestamps : IActivityTimestamps
     }
 
     /// <summary>
-    /// Create a ActivityTimestamps object from json.
+    /// Creates the timestamps from their JSON data.
     /// </summary>
-    /// <returns><see cref="ActivityTimestamps"/></returns>
+    /// <param name="client">The client the timestamps belong to.</param>
+    /// <param name="json">The timestamps data, or null when the activity has none.</param>
+    /// <returns>The timestamps, or null when <paramref name="json"/> is null.</returns>
     public static ActivityTimestamps? Create(FluxerBaseClient client, ActivityTimestampsJson? json)
     {
         if (json == null)

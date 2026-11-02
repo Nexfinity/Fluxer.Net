@@ -3,28 +3,27 @@ using Fluxer.Net.Rest;
 namespace Fluxer.Net;
 
 /// <summary>
-/// A builder for creating rich embeds with validation and a fluent API.
-/// Based on Fluxer.Net's EmbedBuilder implementation.
+/// A builder for an embed that validates its content.
 /// </summary>
 public class EmbedBuilder
 {
     /// <summary>
-    /// Maximum number of fields allowed in an embed.
+    /// The maximum number of fields in an embed.
     /// </summary>
     public static int MaxFieldCount { get; } = 25;
 
     /// <summary>
-    /// Maximum length of the title.
+    /// The maximum length of the title.
     /// </summary>
     public static int MaxTitleLength { get; } = 256;
 
     /// <summary>
-    /// Maximum length of the description.
+    /// The maximum length of the description.
     /// </summary>
     public static int MaxDescriptionLength { get; } = 4096;
 
     /// <summary>
-    /// Maximum total length of all embed content.
+    /// The maximum total length of all embed content.
     /// </summary>
     public static int MaxEmbedLength { get; } = 6000;
 
@@ -122,12 +121,12 @@ public class EmbedBuilder
     public EmbedFooterBuilder? Footer { get; set; }
 
     /// <summary>
-    /// Gets the list of field builders for the embed.
+    /// Gets or sets the field builders of the embed.
     /// </summary>
     public List<EmbedFieldBuilder> Fields { get; set; } = new List<EmbedFieldBuilder>();
 
     /// <summary>
-    /// Gets the total length of all embed content.
+    /// Gets the combined length of the title, description, author name, footer text and fields.
     /// </summary>
     public int Length
     {
@@ -366,9 +365,12 @@ public class EmbedBuilder
     public EmbedBuilder WithFields(params EmbedFieldBuilder[] fields) => WithFields((IEnumerable<EmbedFieldBuilder>)fields);
 
     /// <summary>
-    /// Creates a builder filled from an existing embed, for example one on a received message, to change and send again.
+    /// Creates a builder filled from an existing embed.
     /// </summary>
     /// <returns><see cref="EmbedBuilder"/></returns>
+    /// <remarks>
+    /// The author and footer are copied only when they have a name or text, and at most <see cref="MaxFieldCount"/> fields are copied.
+    /// </remarks>
     public static EmbedBuilder FromEmbed(IEmbed embed)
     {
         EmbedBuilder builder = new EmbedBuilder
@@ -409,8 +411,8 @@ public class EmbedBuilder
     /// <summary>
     /// Builds the embed.
     /// </summary>
-    /// <returns>A new <see cref="EmbedJson"/> object.</returns>
-    /// <exception cref="InvalidOperationException">The embed exceeds <see cref="MaxEmbedLength"/>.</exception>
+    /// <returns>A new <see cref="EmbedRequest"/> object.</returns>
+    /// <exception cref="InvalidOperationException">The embed exceeds <see cref="MaxEmbedLength"/>, a URL does not start with http:// or https://, or a field has no name or value.</exception>
     public EmbedRequest Build()
     {
         // Validate total length
