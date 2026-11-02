@@ -1740,10 +1740,8 @@ public partial class FluxerGatewayClient : IDisposable
                     }
 
                     ThreadChannel channel = (ThreadChannel)Channel.Create(_client, data);
-                    ThreadUpdated?.Invoke(guild, new Cacheable<ThreadChannel>(data.Id, null, () =>
-                    {
-                        return null;
-                    }), channel);
+                    ThreadUpdated?.Invoke(guild, new Cacheable<ThreadChannel>(data.Id, threadBefore as ThreadChannel,
+                        () => Task.FromResult<ThreadChannel>(null!)), channel);
                     ThreadChanged?.Invoke(guild, threadBefore, cachedThread);
                 }
                 break;
@@ -1764,10 +1762,8 @@ public partial class FluxerGatewayClient : IDisposable
                         data.ParentId ??= channel.ParentId;
                     }
 
-                    ThreadDeleted?.Invoke(guild, new Cacheable<ThreadChannel>(data.Id, channel is IThreadChannel ? Channel.Create(_client, data) as ThreadChannel : null, () =>
-                    {
-                        return null;
-                    }));
+                    ThreadDeleted?.Invoke(guild, new Cacheable<ThreadChannel>(data.Id, channel is IThreadChannel ? Channel.Create(_client, data) as ThreadChannel : null,
+                        () => Task.FromResult<ThreadChannel>(null!)));
                 }
                 break;
             case "THREAD_MEMBER_LIST_UPDATE":

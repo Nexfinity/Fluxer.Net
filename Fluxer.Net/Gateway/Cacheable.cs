@@ -15,5 +15,12 @@ public class Cacheable<TEntity> where TEntity : ISnowflake
         DownloadFunc = downloadFunc;
     }
 
-    public async Task<TEntity?> GetOrDownloadAsync() => Value != null ? Value : await DownloadFunc();
+    public async Task<TEntity?> GetOrDownloadAsync()
+    {
+        if (Value != null)
+            return Value;
+
+        Task<TEntity?>? download = DownloadFunc?.Invoke();
+        return download is null ? default : await download;
+    }
 }
