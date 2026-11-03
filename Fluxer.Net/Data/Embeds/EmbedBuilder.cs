@@ -422,10 +422,10 @@ public class EmbedBuilder
         // Validate URLs
         if (!string.IsNullOrEmpty(Url) && !IsValidUrl(Url))
             throw new InvalidOperationException("Embed URL must include a protocol (http:// or https://).");
-        if (!string.IsNullOrEmpty(ThumbnailUrl) && !IsValidUrl(ThumbnailUrl))
-            throw new InvalidOperationException("Thumbnail URL must include a protocol (http:// or https://).");
-        if (!string.IsNullOrEmpty(ImageUrl) && !IsValidUrl(ImageUrl))
-            throw new InvalidOperationException("Image URL must include a protocol (http:// or https://).");
+        if (!string.IsNullOrEmpty(ThumbnailUrl) && !IsValidMediaUrl(ThumbnailUrl))
+            throw new InvalidOperationException("Thumbnail URL must start with http://, https:// or attachment://.");
+        if (!string.IsNullOrEmpty(ImageUrl) && !IsValidMediaUrl(ImageUrl))
+            throw new InvalidOperationException("Image URL must start with http://, https:// or attachment://.");
 
         EmbedRequest embed = new EmbedRequest
         {
@@ -459,4 +459,7 @@ public class EmbedBuilder
         return url.StartsWith("http://", StringComparison.OrdinalIgnoreCase) ||
                url.StartsWith("https://", StringComparison.OrdinalIgnoreCase);
     }
+
+    private static bool IsValidMediaUrl(string url) =>
+        IsValidUrl(url) || url.StartsWith("attachment://", StringComparison.OrdinalIgnoreCase);
 }
