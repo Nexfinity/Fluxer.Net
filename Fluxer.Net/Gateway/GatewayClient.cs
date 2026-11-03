@@ -415,21 +415,22 @@ public partial class FluxerGatewayClient : IDisposable
         }
     }
 
+    private static readonly TimeSpan MemberChunkTimeout = TimeSpan.FromSeconds(30);
+    private readonly ConcurrentQueue<ulong> _memberDownloadQueue = new();
+    private readonly ConcurrentDictionary<ulong, byte> _memberDownloadQueued = new();
+    private readonly SemaphoreSlim _memberDownloadSignal = new(0);
+    private int _memberDownloadWorkersStarted;
+
     /// <summary>
-    /// Requests the members of a guild and waits up to 30 seconds for them.
+    /// Requests the members of a guild and waits for them, for as long as chunks keep arriving within 30 seconds of
+    /// each other.
     /// </summary>
     /// <param name="guild">The guild to download the members of.</param>
-    /// <returns>Whether the members arrived in time.</returns>
+    /// <returns>Whether all the members arrived.</returns>
     public async Task<bool> DownloadMembersAsync(SocketGuild guild)
     {
         if (guild._downloaderPromise != null)
-        {
-            TaskCompletionSource<bool> existing = guild._downloaderPromise;
-            if (await Task.WhenAny(existing.Task, Task.Delay(new TimeSpan(0, 0, 30))) != existing.Task)
-                return false;
-
-            return existing.Task.Result;
-        }
+            return await WaitForMembersAsync(guild, guild._downloaderPromise);
 
         guild._downloaderPromise = new TaskCompletionSource<bool>();
 
@@ -445,14 +446,93 @@ public partial class FluxerGatewayClient : IDisposable
         SendGatewayPacket(login);
 
         TaskCompletionSource<bool> promise = guild._downloaderPromise;
-        if (await Task.WhenAny(promise.Task, Task.Delay(new TimeSpan(0, 0, 30))) != promise.Task)
+        if (await WaitForMembersAsync(guild, promise))
+            return true;
+
+        promise.TrySetResult(false);
+        guild._downloaderPromise = null;
+        return false;
+    }
+
+    private static async Task<bool> WaitForMembersAsync(SocketGuild guild, TaskCompletionSource<bool> promise)
+    {
+        var seen = Volatile.Read(ref guild._memberChunksReceived);
+        while (true)
         {
-            promise.TrySetResult(false);
-            guild._downloaderPromise = null;
-            return false;
+            if (await Task.WhenAny(promise.Task, Task.Delay(MemberChunkTimeout)) == promise.Task)
+                return promise.Task.Result;
+
+            var received = Volatile.Read(ref guild._memberChunksReceived);
+            if (received == seen)
+                return false;
+
+            seen = received;
+        }
+    }
+
+    /// <summary>
+    /// Queues a guild's members to be downloaded when <see cref="FluxerGatewayConfig.DownloadAllMembers"/> is on.
+    /// </summary>
+    /// <param name="guild">The guild that became available.</param>
+    private void QueueMemberDownload(SocketGuild guild)
+    {
+        if (Config is not { DownloadAllMembers: true } || guild.HasAllMembers || !_memberDownloadQueued.TryAdd(guild.Id, 0))
+            return;
+
+        _memberDownloadQueue.Enqueue(guild.Id);
+        _memberDownloadSignal.Release();
+
+        if (Interlocked.Exchange(ref _memberDownloadWorkersStarted, 1) == 1)
+            return;
+
+        for (var i = 0; i < Math.Max(1, Config.MemberDownloadConcurrency); i++)
+            _ = Task.Run(RunMemberDownloadWorkerAsync);
+    }
+
+    private async Task RunMemberDownloadWorkerAsync()
+    {
+        while (!_disposed)
+        {
+            await _memberDownloadSignal.WaitAsync().ConfigureAwait(false);
+            if (!_memberDownloadQueue.TryDequeue(out var guildId))
+                continue;
+
+            try
+            {
+                await DownloadMembersWithRetriesAsync(guildId).ConfigureAwait(false);
+            }
+            catch (Exception ex)
+            {
+                _logger.Warning(ex, "Could not download the members of guild {GuildId}", guildId);
+            }
+            finally
+            {
+                _memberDownloadQueued.TryRemove(guildId, out _);
+            }
+        }
+    }
+
+    private async Task DownloadMembersWithRetriesAsync(ulong guildId)
+    {
+        var attempts = Math.Max(1, Config.MemberDownloadAttempts);
+        for (var attempt = 1; attempt <= attempts; attempt++)
+        {
+            if (!Guilds.TryGetValue(guildId, out SocketGuild guild) || !guild.IsAvailable || guild.HasAllMembers)
+                return;
+
+            if (await DownloadMembersAsync(guild).ConfigureAwait(false))
+                return;
+
+            if (attempt < attempts)
+            {
+                _logger.Debug("Members of guild {GuildId} did not arrive in time, retrying ({Attempt}/{Attempts})",
+                    guildId, attempt, attempts);
+                await Task.Delay(TimeSpan.FromSeconds(5 * Math.Pow(2, attempt - 1))).ConfigureAwait(false);
+            }
         }
 
-        return promise.Task.Result;
+        _logger.Warning("Could not download the members of guild {GuildId} after {Attempts} attempts", guildId,
+            attempts);
     }
 
     /// <summary>
@@ -940,6 +1020,7 @@ public partial class FluxerGatewayClient : IDisposable
                                 {
                                     using (EventsFor(guild.Id))
                                         GuildAvailable?.Invoke(guild);
+                                    QueueMemberDownload(guild);
                                 }
                             }
                         }
@@ -1251,6 +1332,7 @@ public partial class FluxerGatewayClient : IDisposable
                             GuildJoined?.Invoke(guild);
 
                         GuildAvailable?.Invoke(guild);
+                        QueueMemberDownload(guild);
 
                     }
                     else
@@ -2084,6 +2166,7 @@ public partial class FluxerGatewayClient : IDisposable
                     {
                         if (Guilds.TryGetValue(data.GuildId, out SocketGuild guild))
                         {
+                            Interlocked.Increment(ref guild._memberChunksReceived);
                             foreach (GuildMemberJson m in data.Members)
                             {
                                 guild.AddOrUpdateMember(m);

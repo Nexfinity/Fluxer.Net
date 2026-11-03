@@ -36,6 +36,22 @@ public class FluxerGatewayConfig
     public bool DebounceMessageReactions { get; set; }
 
     /// <summary>
+    /// Whether the members of every guild are downloaded as it becomes available, so the member cache holds them all.
+    /// Guilds are downloaded a few at a time and retried when Fluxer does not send them in time. Off by default.
+    /// </summary>
+    public bool DownloadAllMembers { get; set; }
+
+    /// <summary>
+    /// How many guilds have their members downloaded at once when <see cref="DownloadAllMembers"/> is on. Defaults to 2.
+    /// </summary>
+    public int MemberDownloadConcurrency { get; set; } = 2;
+
+    /// <summary>
+    /// How many times a guild's member download is tried before it is given up and logged. Defaults to 4.
+    /// </summary>
+    public int MemberDownloadAttempts { get; set; } = 4;
+
+    /// <summary>
     /// The cache of the state from before update and delete events. Off by default.
     /// </summary>
     public FluxerCacheConfig Cache { get; set; } = new FluxerCacheConfig();

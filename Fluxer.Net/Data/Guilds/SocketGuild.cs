@@ -10,6 +10,7 @@ namespace Fluxer.Net;
 public class SocketGuild : Guild
 {
     internal TaskCompletionSource<bool>? _downloaderPromise;
+    internal int _memberChunksReceived;
 
     /// <summary>
     /// The bot's own member of the guild.
