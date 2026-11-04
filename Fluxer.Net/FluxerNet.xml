@@ -24643,10 +24643,17 @@
         </member>
         <member name="M:Fluxer.Net.Gateway.FluxerGatewayClient.DownloadMembersAsync(Fluxer.Net.SocketGuild)">
             <summary>
-            Requests the members of a guild and waits up to 30 seconds for them.
+            Requests the members of a guild and waits for them, for as long as chunks keep arriving within 30 seconds of
+            each other.
             </summary>
             <param name="guild">The guild to download the members of.</param>
-            <returns>Whether the members arrived in time.</returns>
+            <returns>Whether all the members arrived.</returns>
+        </member>
+        <member name="M:Fluxer.Net.Gateway.FluxerGatewayClient.QueueMemberDownload(Fluxer.Net.SocketGuild)">
+            <summary>
+            Queues a guild's members to be downloaded when <see cref="P:Fluxer.Net.FluxerGatewayConfig.DownloadAllMembers"/> is on.
+            </summary>
+            <param name="guild">The guild that became available.</param>
         </member>
         <member name="M:Fluxer.Net.Gateway.FluxerGatewayClient.SendGatewayPacket``1(``0)">
             <summary>
@@ -26550,6 +26557,22 @@
             <summary>
             Whether the gateway batches reactions added to the same message into MESSAGE_REACTION_ADD_MANY, raised as
             <see cref="P:Fluxer.Net.Gateway.FluxerGatewayClient.MessageReactionsAdded"/>. A batch of one is still sent as MESSAGE_REACTION_ADD.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.FluxerGatewayConfig.DownloadAllMembers">
+            <summary>
+            Whether the members of every guild are downloaded as it becomes available, so the member cache holds them all.
+            Guilds are downloaded a few at a time and retried when Fluxer does not send them in time. Off by default.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.FluxerGatewayConfig.MemberDownloadConcurrency">
+            <summary>
+            How many guilds have their members downloaded at once when <see cref="P:Fluxer.Net.FluxerGatewayConfig.DownloadAllMembers"/> is on. Defaults to 2.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.FluxerGatewayConfig.MemberDownloadAttempts">
+            <summary>
+            How many times a guild's member download is tried before it is given up and logged. Defaults to 4.
             </summary>
         </member>
         <member name="P:Fluxer.Net.FluxerGatewayConfig.Cache">
