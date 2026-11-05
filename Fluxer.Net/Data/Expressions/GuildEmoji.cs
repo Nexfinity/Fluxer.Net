@@ -56,6 +56,7 @@ public class GuildEmoji : Emoji, IGuildEmoji
     internal void Update(GuildEmojiJson json)
     {
         base.Update(json);
+        Id = json.Id ?? 0;
         if (json.Creator != null)
             Creator = User.Create(Client, json.Creator);
     }
