@@ -124,6 +124,37 @@ public class RateLimitTests
     }
 
     [Test]
+    public async Task OnlyOneRequestProbesAfterA429()
+    {
+        int retriesStartedBeforeProbeDone = 0;
+        bool probeDone = false;
+        FakeHandler handler = null!;
+        handler = new(async _ =>
+        {
+            int call = handler.Calls;
+            if (call == 1)
+                return Ok(limit: 5, remaining: 4, resetAfter: 0.1);
+            if (call <= 5)
+                return Limited(retryAfter: 0.2);
+
+            if (!Volatile.Read(ref probeDone))
+                Interlocked.Increment(ref retriesStartedBeforeProbeDone);
+            await Task.Delay(50);
+            Volatile.Write(ref probeDone, true);
+            return Ok(limit: 5, remaining: 4, resetAfter: 0.1);
+        });
+        RequestQueue queue = new(new FluxerConfig(), Logger);
+
+        (await queue.SendAsync(handler.Client, Get("/channels/8/messages"), "/channels/8/messages")).Dispose();
+        HttpResponseMessage[] responses = await Task.WhenAll(Enumerable.Range(0, 4)
+            .Select(_ => queue.SendAsync(handler.Client, Get("/channels/8/messages"), "/channels/8/messages")));
+        foreach (HttpResponseMessage response in responses)
+            response.Dispose();
+
+        Assert.That(retriesStartedBeforeProbeDone, Is.EqualTo(1));
+    }
+
+    [Test]
     public async Task AGlobal429HoldsEveryRoute()
     {
         FakeHandler handler = new(

@@ -14,6 +14,7 @@ internal sealed class RateLimitBucket
     private DateTimeOffset _blockedUntil;
     private bool _unlimited;
     private bool _probing;
+    private bool _recovering;
     private TaskCompletionSource<bool> _learned = new(TaskCreationOptions.RunContinuationsAsynchronously);
 
     public RateLimitBucket(BucketId id)
@@ -43,7 +44,7 @@ internal sealed class RateLimitBucket
             lock (_lock)
             {
                 Refill(now);
-                return _probing || now < _blockedUntil || (_limit.HasValue && _tokens < _limit.Value);
+                return _probing || _recovering || now < _blockedUntil || (_limit.HasValue && _tokens < _limit.Value);
             }
         }
     }
@@ -67,7 +68,7 @@ internal sealed class RateLimitBucket
                 return false;
             }
 
-            if (_limit is null)
+            if (_limit is null || _recovering)
             {
                 if (!_probing)
                 {
@@ -139,9 +140,14 @@ internal sealed class RateLimitBucket
                     ? TimeSpan.FromMilliseconds(ms)
                     : info.ResetAfter ?? DefaultInterval;
                 _tokens = 0;
-                _updatedAt = now;
                 if (now + retry > _blockedUntil)
                     _blockedUntil = now + retry;
+                _updatedAt = _blockedUntil;
+                _recovering = !_fixed;
+            }
+            else
+            {
+                _recovering = false;
             }
 
             Signal();
