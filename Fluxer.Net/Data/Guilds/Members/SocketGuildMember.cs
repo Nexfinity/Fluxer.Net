@@ -70,9 +70,10 @@ public class SocketGuildMember : GuildMember
             return new ChannelPermissions((GuildPermission)ulong.MaxValue);
 
         ChannelPermission resolvedPermissions = (ChannelPermission)guildPerms.RawValue;
+        IEnumerable<PermissionOverwrite> overwrites = channel.PermissionOverwrites ?? [];
 
         // "everyone" is a special role that has the guild id as its role id.
-        PermissionOverwrite? everyone = channel.PermissionOverwrites.FirstOrDefault(x => x.Id == Guild.Id);
+        PermissionOverwrite? everyone = overwrites.FirstOrDefault(x => x.Id == Guild.Id);
         if (everyone != null)
             resolvedPermissions = (resolvedPermissions & ~everyone.Deny.RawValue) | everyone.Allow.RawValue;
 
@@ -84,7 +85,7 @@ public class SocketGuildMember : GuildMember
             if (r.Id == Guild.Id)
                 continue;
 
-            PermissionOverwrite? role = channel.PermissionOverwrites.FirstOrDefault(x => x.Type == PermissionOverwriteType.Role && x.Id == r.Id);
+            PermissionOverwrite? role = overwrites.FirstOrDefault(x => x.Type == PermissionOverwriteType.Role && x.Id == r.Id);
             if (role != null)
             {
                 deniedPermissions |= role.Deny.RawValue;
@@ -94,7 +95,7 @@ public class SocketGuildMember : GuildMember
         resolvedPermissions = (resolvedPermissions & ~deniedPermissions) | allowedPermissions;
 
         // Check user overwrite
-        PermissionOverwrite? user = channel.PermissionOverwrites.FirstOrDefault(x => x.Type == PermissionOverwriteType.Member && x.Id == Id);
+        PermissionOverwrite? user = overwrites.FirstOrDefault(x => x.Type == PermissionOverwriteType.Member && x.Id == Id);
         if (user != null)
             resolvedPermissions = (resolvedPermissions & ~user.Deny.RawValue) | user.Allow.RawValue;
 

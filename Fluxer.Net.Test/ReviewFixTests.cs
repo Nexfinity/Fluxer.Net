@@ -118,6 +118,22 @@ public class ReviewFixTests
         Assert.That(client.Gateway.CurrentCustomStatus?.Text, Is.EqualTo("busy"));
     }
 
+    [Test]
+    public void PermissionsResolveForChannelsWithoutOverwrites()
+    {
+        FluxerClient client = new("Bot test");
+        SocketGuild guild = new(client);
+        guild.Update(new GuildJson { Id = 10, Name = "Test", OwnerId = 1 });
+        Channel channel = Channel.Create(client, new ChannelJson { Id = 3, GuildId = 10, Type = ChannelType.GuildText });
+        SocketGuildMember member = SocketGuildMember.Create(client, new GuildMemberJson
+        {
+            User = new UserJson { Id = 5, Username = "u" }
+        });
+        member.Guild = guild;
+
+        Assert.DoesNotThrow(() => member.GetPermissions(channel));
+    }
+
     private sealed class NonSeekableStream(byte[] data) : MemoryStream(data)
     {
         public override bool CanSeek => false;

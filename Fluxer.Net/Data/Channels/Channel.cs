@@ -275,7 +275,7 @@ public class Channel : PartialChannel, IChannel
         LastMessageId = json.LastMessageId;
         LastPinAt = json.LastPinAt;
         if (json.PermissionOverwrites != null)
-            PermissionOverwrites = json.PermissionOverwrites.Select(x => PermissionOverwrite.Create(Client, x));
+            PermissionOverwrites = json.PermissionOverwrites.Select(x => PermissionOverwrite.Create(Client, x)).ToList();
 
         Nicknames = json.Nicknames;
         ContentWarningLevel = json.ContentWarningLevel;
