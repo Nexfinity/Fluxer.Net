@@ -3183,9 +3183,14 @@
             The id of the user that made the change.
             </summary>
         </member>
+        <member name="P:Fluxer.Net.AuditLogJson.Target">
+            <summary>
+            The entity that was changed: an id, or a code for entities without one, such as invites.
+            </summary>
+        </member>
         <member name="P:Fluxer.Net.AuditLogJson.TargetId">
             <summary>
-            The id of the entity that was changed.
+            The id of the entity that was changed, or null when the target has no id.
             </summary>
         </member>
         <member name="P:Fluxer.Net.AuditLogJson.Reason">
@@ -3872,7 +3877,12 @@
         </member>
         <member name="P:Fluxer.Net.SocketAuditLog.TargetId">
             <summary>
-            The id of the entity that was changed.
+            The id of the entity that was changed, or null when the target has no id.
+            </summary>
+        </member>
+        <member name="P:Fluxer.Net.SocketAuditLog.Target">
+            <summary>
+            The entity that was changed: an id, or a code for entities without one, such as invites.
             </summary>
         </member>
         <member name="P:Fluxer.Net.SocketAuditLog.Reason">

@@ -8,6 +8,20 @@ public class AuditLogTests
         SocketAuditLog.Create(new FluxerClient("Bot test"), JsonConvert.DeserializeObject<GuildAuditLogJson>(json)!);
 
     [Test]
+    public void InviteTargetsKeepTheirCode()
+    {
+        SocketAuditLog entry = Parse("""
+            {"id":"12","guild_id":"1","action_type":40,"user_id":"2","target_id":"1EP5FpUU","changes":[]}
+            """);
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(entry.Target, Is.EqualTo("1EP5FpUU"));
+            Assert.That(entry.TargetId, Is.Null);
+        });
+    }
+
+    [Test]
     public void MemberRoleUpdatesCarryTypedRoleIds()
     {
         SocketAuditLog entry = Parse("""

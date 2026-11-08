@@ -33,9 +33,14 @@ public class SocketAuditLog : Entity, ISnowflake
     public ulong? UserId { get; private set; }
 
     /// <summary>
-    /// The id of the entity that was changed.
+    /// The id of the entity that was changed, or null when the target has no id.
     /// </summary>
     public ulong? TargetId { get; private set; }
+
+    /// <summary>
+    /// The entity that was changed: an id, or a code for entities without one, such as invites.
+    /// </summary>
+    public string? Target { get; private set; }
 
     /// <summary>
     /// The reason given for the change.
@@ -74,6 +79,7 @@ public class SocketAuditLog : Entity, ISnowflake
             Action = json.Action,
             UserId = json.UserId,
             TargetId = json.TargetId,
+            Target = json.Target,
             Reason = json.Reason,
             Raw = new AuditLogRawDataJson
             {

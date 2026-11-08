@@ -37,10 +37,20 @@ public class AuditLogJson
     public ulong? UserId { get; set; }
 
     /// <summary>
-    /// The id of the entity that was changed.
+    /// The entity that was changed: an id, or a code for entities without one, such as invites.
     /// </summary>
     [JsonProperty("target_id")]
-    public ulong? TargetId { get; set; }
+    public string? Target { get; set; }
+
+    /// <summary>
+    /// The id of the entity that was changed, or null when the target has no id.
+    /// </summary>
+    [JsonIgnore]
+    public ulong? TargetId
+    {
+        get => ulong.TryParse(Target, out var id) ? id : null;
+        set => Target = value?.ToString();
+    }
 
     /// <summary>
     /// The reason given for the change.
