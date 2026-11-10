@@ -21963,6 +21963,11 @@
             The channel type, always a private thread.
             </summary>
         </member>
+        <member name="P:Fluxer.Net.Rest.CreatePrivateThreadRequest.Invitable">
+            <summary>
+            Whether members who are not thread moderators can add members, on a private thread (null = true)
+            </summary>
+        </member>
         <member name="T:Fluxer.Net.Rest.CreatePublicThreadRequest">
             <summary>
             Request body for creating a public thread.
